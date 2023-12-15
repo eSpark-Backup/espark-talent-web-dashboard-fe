@@ -16,7 +16,7 @@ const TopNav = () => {
         sx={{
           textAlign: 'center',
           color: '#FFF',
-          fontFamily: 'Inter',
+
           fontSize: '14px',
           fontWeight: 500,
         }}
@@ -25,7 +25,7 @@ const TopNav = () => {
         <span
           style={{
             color: '#FFF',
-            fontFamily: 'Inter',
+
             fontSize: '14px',
             fontWeight: 500,
             textDecoration: 'underline',

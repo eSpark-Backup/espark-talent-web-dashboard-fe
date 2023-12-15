@@ -8,7 +8,6 @@ const DashboardHeading = () => {
     <Box>
       <Typography
         sx={{
-          fontFamily: 'Inter',
           fontSize: '30px',
           fontWeight: 600,
         }}
@@ -18,7 +17,6 @@ const DashboardHeading = () => {
       <br />
       <Typography
         sx={{
-          fontFamily: 'Inter',
           fontSize: { xs: '20px', md: '14px' },
           fontWeight: 400,
         }}

@@ -26,7 +26,7 @@ const DiscoverTalentPlatform = () => {
         <Typography
           sx={{
             color: '#068987',
-            fontFamily: 'Inter',
+
             fontSize: { xs: '25px', md: '35px' },
             fontWeight: 700,
           }}
@@ -35,7 +35,6 @@ const DiscoverTalentPlatform = () => {
         </Typography>
         <Typography
           sx={{
-            fontFamily: 'Inter',
             fontSize: { xs: '20px', md: '25px' },
             fontWeight: 400,
             color: '#595959',

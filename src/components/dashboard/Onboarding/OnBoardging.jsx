@@ -44,7 +44,7 @@ const OnBoarding = () => {
               <Typography
                 sx={{
                   color: '#171717',
-                  fontFamily: 'Inter',
+
                   fontSize: { xs: '20px', md: '25px' },
                   fontWeight: 600,
                 }}
@@ -83,7 +83,7 @@ const OnBoarding = () => {
               <Typography
                 sx={{
                   color: '#171717',
-                  fontFamily: 'Inter',
+
                   fontSize: { xs: '20px', md: '25px' },
                   fontWeight: 600,
                 }}

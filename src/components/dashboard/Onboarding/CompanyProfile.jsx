@@ -19,7 +19,7 @@ const CompanyProfile = () => {
         <Typography
           sx={{
             color: '#595959',
-            fontFamily: 'Inter',
+
             fontSize: '14px',
             fontWeight: 400,
           }}
@@ -46,7 +46,7 @@ const CompanyProfile = () => {
         <Button
           sx={{
             color: '#595959',
-            fontFamily: 'Inter',
+
             fontSize: '14px',
             fontWeight: 400,
             textTransform: 'capitalize',
@@ -57,7 +57,7 @@ const CompanyProfile = () => {
         <Button
           sx={{
             color: '#595959',
-            fontFamily: 'Inter',
+
             fontSize: '14px',
             fontWeight: 300,
             textTransform: 'capitalize',
