@@ -85,7 +85,7 @@ const lightTheme = createTheme({
           },
         },
         {
-          props: { variant: 'E6F5F4' },
+          props: { variant: 'secondary' },
           style: {
             textTransform: 'capitalize',
             borderColor: '#029E9C',
