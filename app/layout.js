@@ -4,6 +4,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import './globals.css';
 import CssBaseline from '@mui/material/CssBaseline';
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter';
 import Box from '@mui/material/Box';
 
 import { Provider } from 'react-redux';
@@ -28,10 +29,12 @@ export default function RootLayout({ children }) {
       </Head>
       <body>
         <Provider store={store}>
-          <ThemeProvider theme={currentTheme}>
-            <CssBaseline />
-            <Box toggleTheme={toggleTheme}>{children}</Box>
-          </ThemeProvider>
+          <AppRouterCacheProvider>
+            <ThemeProvider theme={currentTheme}>
+              <CssBaseline />
+              <Box toggleTheme={toggleTheme}>{children}</Box>
+            </ThemeProvider>
+          </AppRouterCacheProvider>
         </Provider>
       </body>
     </html>

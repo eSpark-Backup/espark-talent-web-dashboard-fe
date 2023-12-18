@@ -1,10 +1,7 @@
-'use client';
-import SignInSide from '@/src/components/Auth/Signin/Signin';
+import React from 'react';
 
-export default function Home() {
-  return (
-    <>
-      <SignInSide />
-    </>
-  );
+function page() {
+  return <>homepage</>;
 }
+
+export default page;

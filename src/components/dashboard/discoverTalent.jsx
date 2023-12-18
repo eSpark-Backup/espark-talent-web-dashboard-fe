@@ -2,7 +2,7 @@ import React from 'react';
 import { Typography, Box } from '@mui/material';
 import Image from 'next/image';
 
-import { DASHBOARD_DATA } from '@/app/constants/Dashboard';
+import { DASHBOARD_DATA } from '@/src/constants/dashboard';
 
 const DiscoverTalentPlatform = () => {
   return (

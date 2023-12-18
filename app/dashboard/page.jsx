@@ -2,9 +2,9 @@
 import React from 'react';
 import { Grid, Box } from '@mui/material';
 
-import OnBoarding from '@/src/components/dashboard/Onboarding/OnBoardging';
-import DashboardHeading from '@/src/components/dashboard/DashboardHeading/DashboardHeading';
-import DiscoverTalentPlatform from '@/src/components/dashboard/DiscoverTalent/DiscoverTalent';
+import OnBoarding from '@/src/components/dashboard/onBoarding';
+import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
+import DiscoverTalentPlatform from '@/src/components/dashboard/discoverTalent';
 
 const Dashboard = () => {
   return (

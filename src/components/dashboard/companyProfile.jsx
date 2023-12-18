@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Button, Typography } from '@mui/material';
 import Image from 'next/image';
 
-import { COMPANY_ONBOARDING } from '@/app/constants/Dashboard';
+import { COMPANY_ONBOARDING } from '@/src/constants/dashboard';
 
 const CompanyProfile = () => {
   return (

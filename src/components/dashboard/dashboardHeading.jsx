@@ -1,7 +1,8 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
 
-import { DASHBOARD_DATA } from '@/app/constants/Dashboard';
+import { DASHBOARD_DATA } from '@/src/constants/dashboard';
+import { ACTIVE_CLIENT } from '@/src/constants/data/client';
 
 const DashboardHeading = () => {
   return (
@@ -12,7 +13,7 @@ const DashboardHeading = () => {
           fontWeight: 600,
         }}
       >
-        {DASHBOARD_DATA.greeting}
+        {`${DASHBOARD_DATA?.greeting} ${ACTIVE_CLIENT?.firstName}`}
       </Typography>
       <br />
       <Typography
@@ -21,7 +22,7 @@ const DashboardHeading = () => {
           fontWeight: 400,
         }}
       >
-        {DASHBOARD_DATA.updates}
+        {DASHBOARD_DATA?.greetingText}
       </Typography>
       <br />
     </Box>
