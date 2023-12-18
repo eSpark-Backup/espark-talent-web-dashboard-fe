@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
 
-import { DASHBOARD_DATA } from '@/app/constants/Dashboard';
+import { DASHBOARD_DATA } from '@/src/constants/dashboard';
 
 const DashboardHeading = () => {
   return (

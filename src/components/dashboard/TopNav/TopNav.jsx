@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
 
-import { DASHBOARD_HEADER } from '@/app/constants/Dashboard';
+import { DASHBOARD_HEADER } from '@/src/constants/dashboard';
 
 const TopNav = () => {
   return (

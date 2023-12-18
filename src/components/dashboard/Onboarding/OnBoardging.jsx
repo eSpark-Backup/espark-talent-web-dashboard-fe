@@ -2,7 +2,7 @@
 import React from 'react';
 import { Typography, Box, Grid } from '@mui/material';
 
-import { COMPANY_ONBOARDING, HIRING_STATUS } from '@/app/constants/Dashboard';
+import { COMPANY_ONBOARDING, HIRING_STATUS } from '@/src/constants/dashboard';
 import CompanyProfile from './CompanyProfile';
 
 const OnBoarding = () => {
