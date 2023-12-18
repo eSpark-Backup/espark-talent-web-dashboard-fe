@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid } from '@mui/material';
 
-import TopNav from '@/src/components/dashboard/TopNav/TopNav';
+import TopNav from '@/src/components/global/topNavbar';
 
 const InnerPagesLayout = ({ children }) => {
   return (

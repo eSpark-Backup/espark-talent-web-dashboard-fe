@@ -3,7 +3,7 @@ import { Box, Typography } from '@mui/material';
 
 import { DASHBOARD_HEADER } from '@/src/constants/dashboard';
 
-const TopNav = () => {
+const TopNavNavbar = () => {
   return (
     <Box
       sx={{
@@ -38,4 +38,4 @@ const TopNav = () => {
     </Box>
   );
 };
-export default TopNav;
+export default TopNavNavbar;
