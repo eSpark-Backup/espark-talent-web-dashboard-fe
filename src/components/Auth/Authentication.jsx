@@ -7,7 +7,7 @@ import {
   Auth_Background_Image,
   Auth_Fields,
   Auth_Signin,
-} from '@/src/constants/Auth';
+} from '@/src/constants/authConstant';
 
 export default function Authentication() {
   return (
