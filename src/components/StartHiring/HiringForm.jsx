@@ -1,7 +1,11 @@
 import React from 'react';
-import { Box, Typography } from '@mui/material';
+import { Box } from '@mui/material';
+
 import HiringDate from './HiringDate';
 import GenderInput from './GenderInput';
+import JobTitle from './JobTitle';
+import CountryDropdown from './SelectCountry';
+import Submit from './SubmitButton';
 
 const HiringForm = () => {
   return (
@@ -13,8 +17,11 @@ const HiringForm = () => {
         border: '1px solid #E4E4E4',
       }}
     >
+      <JobTitle />
       <GenderInput />
-      <HiringDate />
+          <HiringDate />
+          <CountryDropdown />
+          <Submit/>
     </Box>
   );
 };

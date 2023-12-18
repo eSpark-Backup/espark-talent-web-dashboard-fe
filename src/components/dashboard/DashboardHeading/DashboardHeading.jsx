@@ -3,6 +3,7 @@ import { Box, Typography } from '@mui/material';
 
 import { DASHBOARD_DATA } from '@/app/constants/Dashboard';
 
+
 const DashboardHeading = () => {
   return (
     <Box>
@@ -12,6 +13,7 @@ const DashboardHeading = () => {
           fontWeight: 600,
         }}
       >
+      
         {DASHBOARD_DATA.greeting}
       </Typography>
       <br />

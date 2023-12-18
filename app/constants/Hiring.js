@@ -4,7 +4,12 @@ export const HIRING_FORM_DATA = {
     gender: "Gender",
     employementTerm: 'Employment term',
     selectterms: 'Select employment terms',
-    selectGender: 'Select Gender'
+    selectGender: 'Select Gender',
+    jobTitle: "Job Title",
+    roleTitle: "Role Title",
+    selectRole: "Select Role",
+    selectJob: 'Select Job',
+    submit: 'Submit'
 
 }
 export const GENDER_OPTION = [
@@ -18,3 +23,27 @@ export const SALARY_TYPE = [
     { label: 'Project based', value: 'Project based' },
 
 ]
+
+export const ROLE_TYPE = [
+    { label: 'Senior', value: 'Senior' },
+    { label: 'Intermediate', value: 'Intermediate' },
+    { label: 'Junior', value: 'Junior' },
+    { label: 'Inter', value: 'Inter' },
+
+
+]
+
+export const jobTitles = [
+    {
+        label: 'Frontend Developer',
+        options: ['Angular Js Developer', 'React Js Developer', 'Vue Js Developer', 'Javascript Developer', 'NextJS Developer'],
+    },
+    {
+        label: 'Back-End',
+        options: ['UI Designer', 'UX Designer', 'Graphic Designer'],
+    },
+    {
+        label: 'Manager',
+        options: ['Project Manager', 'Team Lead', 'Product Manager'],
+    },
+];
