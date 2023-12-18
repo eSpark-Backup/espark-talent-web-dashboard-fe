@@ -9,7 +9,8 @@ export const HIRING_FORM_DATA = {
     roleTitle: "Role Title",
     selectRole: "Select Role",
     selectJob: 'Select Job',
-    submit: 'Submit'
+    submit: 'Submit',
+    hire: "Hire"
 
 }
 export const GENDER_OPTION = [

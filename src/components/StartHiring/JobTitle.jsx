@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Autocomplete, Box, FormControl, InputLabel, MenuItem, Select, TextField, Typography } from '@mui/material';
-import { GENDER_OPTION, HIRING_FORM_DATA } from '@/app/constants/Hiring';
+import { HIRING_FORM_DATA } from '@/src/constants/Hiring';
 import RoleType from './RoleType';
 
 export const jobTitles = [
@@ -18,19 +18,8 @@ export const jobTitles = [
     },
 ];
 const JobTitle = () => {
-   const [selectedJobTitle, setSelectedJobTitle] = useState(null);
-  const [subOptions, setSubOptions] = useState([]);
 
-  const handleJobTitleChange = (event, newValue) => {
-    setSelectedJobTitle(newValue);
-    const selectedJob = jobTitles.find((job) => job.label === newValue);
-    setSubOptions(selectedJob ? selectedJob.subOptions : []);
-  };
 
-  const handleSubOptionChange = (event) => {
-    const newSubOption = event.target.value;
-    setSelectedSubOption(newSubOption);
-  };
   return (
     <Box
       sx={{
@@ -43,33 +32,23 @@ const JobTitle = () => {
           display: 'flex',
           flexDirection: 'column',
         }}
-      >
-        <Autocomplete
-      value={selectedJobTitle}
-      onChange={handleJobTitleChange}
-      options={jobTitles.map((job) => job.label)}
-      getOptionLabel={(option) => option}
-      renderInput={(params) => (
-        <TextField {...params} label="Job Title" variant="outlined" fullWidth />
-      )}
-      renderOption={(props, option, state) => (
-        <li {...props}>{option}</li>
-      )}
-      renderTags={(value, getTagProps) =>
-        value.map((option, index) => (
-          <li key={index} {...getTagProps({ index })}>
-            {option}
-          </li>
-        ))
-      }
-      isOptionEqualToValue={(option, value) => option === value}
-      renderGroup={(params) => [
-        <li {...params}>
-          <strong>{params.key}</strong>
-        </li>,
-      ]}
-    />
-    
+          >
+                      <Typography>{HIRING_FORM_DATA.jobTitle}</Typography>
+
+           <Autocomplete
+          sx={{ width: '100%' }}
+          options={jobTitles}
+          getOptionLabel={(option) => option.label}
+          renderInput={(params) => (
+            <TextField
+              sx={{ width: '250px' }}
+              {...params}
+              label={HIRING_FORM_DATA.selectJob}
+              variant="outlined"
+              fullWidth
+            />
+          )}
+        />
       </Box>
      <RoleType/>
     </Box>

@@ -2,8 +2,9 @@
 import React from 'react';
 import { Typography, Box, Grid } from '@mui/material';
 
-import { COMPANY_ONBOARDING, HIRING_STATUS } from '@/app/constants/Dashboard';
-import CompanyProfile from './CompanyProfile';
+import { COMPANY_ONBOARDING, HIRING_STATUS } from '@/src/constants/dashboard';
+import CompanyProfile from './companyProfile';
+import { ACTIVE_CLIENT } from '@/src/constants/data/client';
 
 const OnBoarding = () => {
   return (
@@ -112,9 +113,9 @@ const OnBoarding = () => {
                       fontWeight: 400,
                     }}
                   >
-                    {HIRING_STATUS.activeEmployee}
+                    {HIRING_STATUS.activeEmployee}:
                     <span style={{ fontSize: '14px' }}>
-                      :{HIRING_STATUS.activeEmployeeNo}
+                      {ACTIVE_CLIENT?.hiringStatus.activeEmployees}
                     </span>
                   </Typography>
                   <Typography
@@ -123,9 +124,9 @@ const OnBoarding = () => {
                       fontWeight: 400,
                     }}
                   >
-                    {HIRING_STATUS.onBoard}
+                    {HIRING_STATUS.onBoard}:
                     <span style={{ fontSize: '14px' }}>
-                      :{HIRING_STATUS.onBoardNo}
+                      {ACTIVE_CLIENT?.hiringStatus.onBoarded}
                     </span>
                   </Typography>
                 </Box>
@@ -142,9 +143,9 @@ const OnBoarding = () => {
                       fontWeight: 400,
                     }}
                   >
-                    {HIRING_STATUS.interviewSchedule}
+                    {HIRING_STATUS.interviewSchedule}:
                     <span style={{ fontSize: '14px' }}>
-                      :{HIRING_STATUS.interviews}
+                      {ACTIVE_CLIENT?.hiringStatus.onBoarded}
                     </span>
                   </Typography>
                   <Typography
@@ -153,9 +154,9 @@ const OnBoarding = () => {
                       fontWeight: 400,
                     }}
                   >
-                    {HIRING_STATUS.hiringReuqest}
+                    {HIRING_STATUS.hiringReuqest}:
                     <span style={{ fontSize: '14px' }}>
-                      :{HIRING_STATUS.hiringReuqestNo}
+                      {ACTIVE_CLIENT?.hiringStatus.hiringReuqests}
                     </span>
                   </Typography>
                 </Box>

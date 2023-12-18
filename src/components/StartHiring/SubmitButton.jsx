@@ -1,6 +1,6 @@
-import { HIRING_FORM_DATA } from "@/app/constants/Hiring";
-import { Button } from "@mui/material";
 import React from "react";
+import { Button } from "@mui/material";
+import { HIRING_FORM_DATA } from "@/src/constants/Hiring";
 
 const Submit = () => {
     return (

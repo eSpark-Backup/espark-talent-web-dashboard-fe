@@ -4,7 +4,7 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import Image from 'next/image';
-import { HIRING_FORM_DATA } from '@/app/constants/Hiring';
+import { HIRING_FORM_DATA } from '@/src/constants/Hiring';
 
 const HiringDate = () => {
   return (

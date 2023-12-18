@@ -1,6 +1,6 @@
 import React from 'react';
 import { Autocomplete, Box, TextField, Typography } from '@mui/material';
-import {  HIRING_FORM_DATA, ROLE_TYPE } from '@/app/constants/Hiring';
+import {  HIRING_FORM_DATA, ROLE_TYPE } from '@/src/constants/Hiring';
 
 
 const RoleType = () => {
@@ -12,7 +12,7 @@ const RoleType = () => {
           flexDirection: 'column',
         }}
       >
-        <Typography>{HIRING_FORM_DATA.roleTitle}</Typography>
+        <Typography >{HIRING_FORM_DATA.roleTitle}</Typography>
         <Autocomplete
           sx={{ width: '100%' }}
           options={ROLE_TYPE}

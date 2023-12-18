@@ -1,6 +1,6 @@
 import React from 'react';
 import { Autocomplete, Box, TextField, Typography } from '@mui/material';
-import { GENDER_OPTION, HIRING_FORM_DATA } from '@/app/constants/Hiring';
+import { GENDER_OPTION,HIRING_FORM_DATA } from '@/src/constants/Hiring';
 
 import EmployementTerm from './EmployementTerm';
 
