@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { Grid, Box, Typography } from '@mui/material';
+import { Grid, Box } from '@mui/material';
 import HiringForm from '@/src/components/StartHiring/HiringForm';
 
 
