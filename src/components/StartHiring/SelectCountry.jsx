@@ -1,48 +1,73 @@
 import React, { useState } from 'react';
-import Select from 'react-select';
+import {
+  Box,
+  InputAdornment,
+  MenuItem,
+  Select,
+  Typography,
+} from '@mui/material';
 
-const countryOptions = [
-  { value: 'PS', label: 'Pakistan', images: '/images/flags/pakistan.png' },
-  { value: 'PL', label: 'Palestine', images: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PS.svg'},
-  { value: 'IN', label:'India', images: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PK.svg'},
-  // Add more countries as needed
-];
+import { HIRING_FORM_DATA } from '@/src/constants/Hiring';
+import { COUNTRY_OPTIONS } from '@/src/constants/countryCode';
+import SalaryRange from './SalaryRangle';
 
-const CountryDropdown = () => {
-  const [selectedCountry, setSelectedCountry] = useState(null);
-
-  const handleChange = (selectedOption) => {
-    setSelectedCountry(selectedOption);
-  };
+const CountryDropdown = ({open,SelectOpen,SelectClose}) => {
 
   return (
-    <Select
-      value={selectedCountry}
-      onChange={handleChange}
-      options={countryOptions}
-      isSearchable
-      components={{
-        Option: CustomOption,
-        SingleValue: CustomSingleValue,
-      }}
-    />
+    <>
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: { xs: 'column', md: 'row' },
+          justifyContent: 'space-around',
+          paddingTop:"25px",
+          '@media (min-width: 960px) and (max-width: 1200px)': {
+            flexDirection: 'column',
+          },
+        }}
+      >
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+              gap:"12px",
+            width: { xs: '100%', md: '300px' },
+            '@media (min-width: 960px) and (max-width: 1200px)': {
+              width: '100%',
+            },
+          }}
+        >
+          <Typography>{HIRING_FORM_DATA.country}</Typography>
+           
+          <Select
+            sx={{ height: '50px' }}
+            IconComponent={() => (
+                <InputAdornment sx={{
+                  marginRight:"10px"
+                }}>
+                  {open ?
+                    (
+                      <img src="/images/hiring/icon-down.svg" alt="ArrowDown" />
+                    ) : (
+                  
+                      <img src="/images/hiring/rightarrow.png" alt="ArrowRight" />
+                    )}
+                </InputAdornment>
+            )}
+            onOpen={SelectOpen}
+            onClose={SelectClose}
+          >
+            {COUNTRY_OPTIONS.map((option) => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
+            </Select>
+          
+        </Box>
+        <SalaryRange />
+      </Box>
+    </>
   );
 };
-
-// Custom Option component to display flag along with country name
-const CustomOption = ({ innerProps, label, data }) => (
-  <div {...innerProps}>
-    <img src={data.image} alt={label} style={{ width: '24px', marginRight: '8px' }} />
-    <span style={{ marginLeft: '8px' }}>{label}</span>
-  </div>
-);
-
-// Custom SingleValue component to display flag along with selected country name
-const CustomSingleValue = ({ innerProps, label, data }) => (
-  <div {...innerProps}>
-    {data.images}
-    <span style={{ marginLeft: '8px' }}>{label}</span>
-  </div>
-);
-
 export default CountryDropdown;

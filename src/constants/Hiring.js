@@ -1,18 +1,21 @@
 export const HIRING_FORM_DATA = {
-    startDate: "Hiring Start Date",
-    endDate: "Hiring End Date",
-    gender: "Gender",
+    startDate: 'Hiring Start Date',
+    endDate: 'Hiring End Date',
+    gender: 'Gender',
     employementTerm: 'Employment term',
     selectterms: 'Select employment terms',
-    selectGender: 'Select Gender',
-    jobTitle: "Job Title",
-    roleTitle: "Role Title",
-    selectRole: "Select Role",
-    selectJob: 'Select Job',
+    selectGender: 'Select gender',
+    jobTitle: 'Job Title',
+    roleTitle: 'Role Title',
+    selectRole: 'Select role',
+    selectJob: 'Select job',
     submit: 'Submit',
-    hire: "Hire"
-
-}
+    hire: 'Hire',
+    salaryRange: 'Salary Range',
+    country: 'Country',
+    selectStartDate: 'Select Start Date',
+    selectEndDate: 'Select End Date',
+};
 export const GENDER_OPTION = [
     { label: 'Male', value: 'male' },
     { label: 'Female', value: 'female' },
@@ -22,29 +25,24 @@ export const SALARY_TYPE = [
     { label: 'Salary based', value: 'Salary based' },
     { label: 'Hourly based', value: 'Hourly based' },
     { label: 'Project based', value: 'Project based' },
-
-]
+];
 
 export const ROLE_TYPE = [
     { label: 'Senior', value: 'Senior' },
     { label: 'Intermediate', value: 'Intermediate' },
     { label: 'Junior', value: 'Junior' },
     { label: 'Inter', value: 'Inter' },
+];
 
-
-]
-
-export const jobTitles = [
+export const JOBTITLE = [
+    { label: 'Front-End Developer', value: 'Front-End Developer' },
+    { label: 'Back-End Developer', value: 'Back-End Developer' },
+    { label: 'Mobile App Developer', value: 'Ecommerce Developer' },
+    { label: 'Embedded Developer', value: 'Embedded Developer' },
+    { label: 'Ecommerce Developer', value: 'Ecommerce Developer' },
+    { label: 'Digital Marketer', value: 'Digital Marketer' },
     {
-        label: 'Frontend Developer',
-        options: ['Angular Js Developer', 'React Js Developer', 'Vue Js Developer', 'Javascript Developer', 'NextJS Developer'],
-    },
-    {
-        label: 'Back-End',
-        options: ['UI Designer', 'UX Designer', 'Graphic Designer'],
-    },
-    {
-        label: 'Manager',
-        options: ['Project Manager', 'Team Lead', 'Product Manager'],
+        label: 'Sale Development Representative',
+        value: 'Sale Development Representative',
     },
 ];
