@@ -7,7 +7,6 @@ import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
 import DiscoverTalentPlatform from '@/src/components/dashboard/discoverTalent';
 
 const Dashboard = () => {
-
   return (
     <>
       <Grid container>

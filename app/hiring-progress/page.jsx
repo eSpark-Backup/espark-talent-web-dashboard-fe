@@ -1,38 +1,20 @@
 'use client';
 import React from 'react';
-import { Grid, Box, Typography, Button, InputAdornment } from '@mui/material';
-import PropTypes from 'prop-types';
+import { Grid, Box, Typography, Button } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Input from '@/src/components/dashboard/input';
 import AppTable from '@/src/components/dashboard/appTable';
-import { employeeTableColumn, employeeTableDataInterviewSchedule, employeeTableDataHiringRequest, employeeTableDataOnBoarding } from '@/src/constants/data/employee';
-
-function CustomTabPanel(props) {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-      {...other}
-    >
-      {value === index && (
-        <Box>
-          {children}
-        </Box>
-      )}
-    </div>
-  );
-}
-
-CustomTabPanel.propTypes = {
-  children: PropTypes.node,
-  index: PropTypes.number.isRequired,
-  value: PropTypes.number.isRequired,
-};
+import {
+  employeeTableDataInterviewSchedule,
+  employeeTableDataHiringRequest,
+  employeeTableDataOnBoarding,
+  employeeTableHiringRequestColumn,
+  employeeTableInterviewScheduleColumn,
+  employeeTableOnboardingColumn,
+} from '@/src/constants/data/employee';
+import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
+import { filterDataByKeyword } from '@/src/utils';
 
 function a11yProps(index) {
   return {
@@ -41,35 +23,21 @@ function a11yProps(index) {
   };
 }
 
-const fetchData = () => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      // Simulating asynchronous data fetching
-      resolve([1, 2, 3, 4, 5]);
-    }, 1000); // Resolve after 5 seconds
-  });
-};
-
-const getFilteredData = (data, filterBy) => {
-  if (!filterBy) return data
-  else {
-    const tempData = [...data].filter(({ status }) => status === filterBy)
-    return tempData
-  }
-}
 const Dashboard = () => {
   const [value, setValue] = React.useState(0);
+  const [currentTab, setCurrentTab] = React.useState('Hiring Request');
   const [isLoading, setIsLoading] = React.useState(true);
   const [search, setSearch] = React.useState('');
-  const [data, setData] = React.useState(null);
   const [empData, setEmpData] = React.useState(employeeTableDataHiringRequest);
- 
+
+  const fetchDataFake = async () => {
+    return true;
+  };
 
   React.useEffect(() => {
     const fetchDataAsync = async () => {
       try {
-        const result = await fetchData();
-        setData(result);
+        await fetchDataFake();
       } finally {
         setIsLoading(false);
       }
@@ -78,50 +46,48 @@ const Dashboard = () => {
     fetchDataAsync();
   }, []);
 
-  const tabs = [
-    {
-      label: 'Hiring Request',
-      prop: a11yProps(0),
-      data: employeeTableDataHiringRequest
-    },
-    {
-      label: 'Interview Schedule',
-      prop: a11yProps(1),
-      data: employeeTableDataInterviewSchedule
-    },
-    {
-      label: 'Onboarding',
-      prop: a11yProps(2),
-      data: employeeTableDataOnBoarding
-    },
-  ]
+  const tabs = React.useMemo(
+    () => [
+      {
+        label: 'Hiring Request',
+        prop: a11yProps(0),
+        data: employeeTableDataHiringRequest,
+        column: employeeTableHiringRequestColumn,
+      },
+      {
+        label: 'Interview Schedule',
+        prop: a11yProps(1),
+        data: employeeTableDataInterviewSchedule,
+        column: employeeTableInterviewScheduleColumn,
+      },
+      {
+        label: 'Onboarding',
+        prop: a11yProps(2),
+        data: employeeTableDataOnBoarding,
+        column: employeeTableOnboardingColumn,
+      },
+    ],
+    []
+  );
 
   const handleChange = (event, newValue) => {
+    const tab = event?.target?.innerText.split(' ');
+    tab.pop();
+    setCurrentTab(tab.join(' '));
     setValue(newValue);
-    setEmpData(tabs[newValue].data)
+    setEmpData(tabs[newValue].data);
   };
 
-  function filterData(data, keyword) {
-    const tempData = data.filter(employee => {
-        const lowerKeyword = keyword.toLowerCase();
-        return Object.values(employee).some(value =>
-            typeof value === 'string' && value.toLowerCase().includes(lowerKeyword)
-        );
-    });
-    setEmpData(tempData)
-}
-
-React.useEffect(() => {
-  const data = tabs[value].data
-  const timeoutId = setTimeout(() => {
-    filterData(data, search || "")
-    setIsLoading(false)
-  }, 500); 
-  return () => {
-    clearTimeout(timeoutId);
-  };
-},[search])
-
+  React.useEffect(() => {
+    const data = tabs[value].data;
+    const timeoutId = setTimeout(() => {
+      filterDataByKeyword(data, search || '', setEmpData);
+      setIsLoading(false);
+    }, 500);
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [search, tabs, value]);
 
   return (
     <>
@@ -137,41 +103,62 @@ React.useEffect(() => {
           }}
         >
           <div>
-            <Box marginY={5} display={"flex"} justifyContent={"space-between"} alignItems={"center"}>
-              <Typography variant='h3'>
-                Hire a team member
-              </Typography>
-              <Button style={{
-                background: "#029894"
-              }} variant="contained">Contained</Button>
+            <Box
+              marginY={5}
+              display={'flex'}
+              justifyContent={'space-between'}
+              alignItems={'center'}
+            >
+              <Typography variant="h3">Hire a team member</Typography>
+              <Button
+                style={{
+                  background: '#029894',
+                }}
+                variant="contained"
+              >
+                New hire
+              </Button>
             </Box>
             <Box sx={{ width: '100%' }}>
               <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-                  {
-                    tabs?.map(({ label, prop }, i) => (
-                      <Tab label={label} {...prop} />
-                    ))
-                  }
+                <Tabs
+                  value={value}
+                  onChange={handleChange}
+                  aria-label="basic tabs example"
+                >
+                  {tabs?.map(({ label, prop, data }, i) => (
+                    <Tab
+                      key={i}
+                      label={`${label} (${data?.length})`}
+                      {...prop}
+                    />
+                  ))}
                 </Tabs>
               </Box>
-              <Input setIsLoading={setIsLoading} handleChange={setSearch} value={search} prefixIcon="SearchIcon.svg" suffixIcon="QuestionMarkIcon.svg" />
-              {
-                tabs?.map(( _, i) => (
-                  <CustomTabPanel value={value} index={i}>
-                    {isLoading ? (
-                      <div>Loading...</div>
-                    ) : <AppTable column={employeeTableColumn}
-                      data={empData} />
-                    }
-
-                  </CustomTabPanel>
-                ))
-              }
+              <Input
+                setIsLoading={setIsLoading}
+                handleChange={setSearch}
+                value={search}
+                prefixIcon="SearchIcon.svg"
+                suffixIcon="QuestionMarkIcon.svg"
+              />
+              {tabs?.map(({ column }, i) => (
+                <CustomTabPanel value={value} key={i} index={i}>
+                  {isLoading ? (
+                    <div>Loading...</div>
+                  ) : (
+                    <AppTable
+                      currentTab={currentTab}
+                      column={column}
+                      data={empData}
+                    />
+                  )}
+                </CustomTabPanel>
+              ))}
             </Box>
           </div>
-        </Box >
-      </Grid >
+        </Box>
+      </Grid>
     </>
   );
 };
