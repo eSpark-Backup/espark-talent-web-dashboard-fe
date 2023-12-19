@@ -157,7 +157,7 @@ React.useEffect(() => {
               </Box>
               <Input setIsLoading={setIsLoading} handleChange={setSearch} value={search} prefixIcon="SearchIcon.svg" suffixIcon="QuestionMarkIcon.svg" />
               {
-                tabs?.map(({ data }, i) => (
+                tabs?.map(( _, i) => (
                   <CustomTabPanel value={value} index={i}>
                     {isLoading ? (
                       <div>Loading...</div>
