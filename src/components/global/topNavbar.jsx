@@ -10,11 +10,14 @@ const TopNavNavbar = () => {
         background: '#029E9C;',
         padding: '15px',
         width: '100%',
+        display: 'flex',
+        alignItems: 'center',
       }}
     >
       <Typography
         sx={{
           textAlign: 'center',
+          mx: 'auto',
           color: '#FFF',
 
           fontSize: '14px',

@@ -1,6 +1,9 @@
 import { Box } from '@mui/material';
 import React from 'react';
-import SidebarLink from './SidebarLink';
+import SidebarAccordion from './SidebarAccordion';
+import { IconsAndLinks } from '@/src/constants/sidebar';
+import SidebarLogo from './sidebarLogo';
+import SidebarProfileMenu from './sidebarProfileMenu';
 
 const Sidebar = () => {
   return (
@@ -8,8 +11,8 @@ const Sidebar = () => {
       <Box
         sx={{
           width: '280px',
-          height: '95%',
-          position: 'relative',
+          // height: '95vh',
+          backgroundColor: '#fff',
         }}
       >
         <Box
@@ -18,11 +21,10 @@ const Sidebar = () => {
             position: 'relative',
             top: 0,
             width: '100%',
-            height: '50px',
             padding: '12px',
           }}
         >
-          Active Link
+          <SidebarProfileMenu />
         </Box>
         <Box
           sx={{
@@ -31,37 +33,17 @@ const Sidebar = () => {
             pt: '60px',
           }}
         >
-          <SidebarLink
-            image={'/images/sidebar-icons/dashboard.svg'}
-            text={'Dashboard'}
-            link={'/dashboard'}
-          />
-          <SidebarLink
-            image={'/images/sidebar-icons/hire.svg'}
-            text={'Hire & Onboard'}
-            link={'/dashboard/hire'}
-          />
-          <SidebarLink
-            image={'/images/sidebar-icons/hire.svg'}
-            text={'Hire & Onboard'}
-            link={'dashboard/hire'}
-          />
-          <SidebarLink
-            image={'/images/sidebar-icons/hire.svg'}
-            text={'Hire & Onboard'}
-            link={'/hire'}
-          />
+          <SidebarAccordion sidebarLinks={IconsAndLinks} />
         </Box>
         <Box
           sx={{
             width: '100%',
             backgroundColor: '#068987',
             position: 'absolute',
-            height: '47px',
             bottom: 0,
           }}
         >
-          Logo
+          <SidebarLogo />
         </Box>
       </Box>
     </>
