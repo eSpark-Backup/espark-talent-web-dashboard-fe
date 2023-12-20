@@ -14,7 +14,7 @@ import {
   employeeTableOnboardingColumn,
 } from '@/src/constants/data/employee';
 import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
-import { filterDataByKeyword } from '@/src/utils';
+import { filterDataByKeyword } from '@/src/utils/search';
 
 function a11yProps(index) {
   return {
@@ -102,7 +102,6 @@ const Dashboard = () => {
             width: '100%',
           }}
         >
-          <div>
             <Box
               marginY={5}
               display={'flex'}
@@ -156,7 +155,6 @@ const Dashboard = () => {
                 </CustomTabPanel>
               ))}
             </Box>
-          </div>
         </Box>
       </Grid>
     </>

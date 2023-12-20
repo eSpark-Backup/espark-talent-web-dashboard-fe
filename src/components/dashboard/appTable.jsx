@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { toCamelCase } from '@/src/utils';
+import { toCamelCase } from '@/src/utils/stringModification';
 
 const AppTable = ({ column, data }) => {
   return (

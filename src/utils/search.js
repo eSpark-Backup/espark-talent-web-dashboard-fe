@@ -1,9 +1,4 @@
 'use client';
-export const toCamelCase = (inputString) => {
-  return inputString
-    .toLowerCase()
-    .replace(/[^a-zA-Z0-9]+(.)/g, (match, chr) => chr.toUpperCase());
-};
 
 export const filterDataByKeyword = (data, keyword, setData) => {
   if (keyword === '') {
