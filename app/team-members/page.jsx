@@ -8,7 +8,7 @@ import AppTable from '@/src/components/dashboard/appTable';
 import { teamMembersData } from '@/src/constants/data/teamMembers';
 import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
 import { filterDataByKeyword } from '@/src/utils/search';
-import { filterTeamMembers } from '@/src/utils/table';
+import { filterTableRowsWRTTab } from '@/src/utils/table';
 import { changeTab } from '@/src/utils/tabs';
 import { teamTabs } from '@/src/constants/data/teamTabs';
 
@@ -18,7 +18,7 @@ const Dashboard = () => {
   const [isLoading, setIsLoading] = React.useState(true);
   const [search, setSearch] = React.useState('');
   const [empData, setEmpData] = React.useState(
-    filterTeamMembers(teamMembersData, { memberStatus: '' })
+    filterTableRowsWRTTab(teamMembersData, { memberStatus: '' })
   );
 
   const fetchDataFake = async () => {
@@ -45,13 +45,13 @@ const Dashboard = () => {
       setCurrentTab,
       setValue,
       setData: setEmpData,
-      filterTeamMembers,
+      filterTableRowsWRTTab,
       teamMembersData,
     });
   };
 
   React.useEffect(() => {
-    const data = filterTeamMembers(teamMembersData, {
+    const data = filterTableRowsWRTTab(teamMembersData, {
       memberStatus: currentTab,
     });
     const timeoutId = setTimeout(() => {
@@ -104,7 +104,7 @@ const Dashboard = () => {
                     <Tab
                       key={i}
                       label={`${label} (${
-                        filterTeamMembers(data, {
+                        filterTableRowsWRTTab(data, {
                           memberStatus: label === 'All' ? '' : label,
                         }).length
                       })`}
