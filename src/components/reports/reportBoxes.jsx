@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Box, Grid } from '@mui/material';
 
-import DownloadReports from './DownloadReports';
 import ReportDate from './DatePicker';
+import DownloadReports from './downloadReports';
 
 const ReportBoxes = ({ data }) => {
   const [showDatePicker, setDatePicker] = useState(false);
