@@ -5,7 +5,9 @@ export const filterTeamMembers = (data, filters) => {
     return data.filter((member) => {
       return Object.keys(filters).every((key) => {
         // Check if the member has the specified property and the value matches
-        return member.hasOwnProperty(key) && member[key] === filters[key];
+        return (
+          member.prototype.hasOwnProperty(key) && member[key] === filters[key]
+        );
       });
     });
   }

@@ -5,25 +5,11 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Input from '@/src/components/dashboard/input';
 import AppTable from '@/src/components/dashboard/appTable';
-import {
-  employeeTableDataInterviewSchedule,
-  employeeTableDataHiringRequest,
-  employeeTableDataOnBoarding,
-  employeeTableHiringRequestColumn,
-  employeeTableInterviewScheduleColumn,
-  employeeTableOnboardingColumn,
-} from '@/src/constants/data/employee';
+import { employeeTableDataHiringRequest } from '@/src/constants/data/employee';
 import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
 import { filterDataByKeyword } from '@/src/utils/search';
 import { changeTab } from '@/src/utils/tabs';
 import { empTabs } from '@/src/constants/data/empTabs';
-
-function a11yProps(index) {
-  return {
-    id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
-  };
-}
 
 const Dashboard = () => {
   const [value, setValue] = React.useState(0);
@@ -70,7 +56,7 @@ const Dashboard = () => {
     return () => {
       clearTimeout(timeoutId);
     };
-  }, [search, empTabs, value]);
+  }, [search, value]);
 
   return (
     <>

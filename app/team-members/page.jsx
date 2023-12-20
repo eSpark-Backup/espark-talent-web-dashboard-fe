@@ -5,10 +5,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Input from '@/src/components/dashboard/input';
 import AppTable from '@/src/components/dashboard/appTable';
-import {
-  teamMembersColumn,
-  teamMembersData,
-} from '@/src/constants/data/teamMembers';
+import { teamMembersData } from '@/src/constants/data/teamMembers';
 import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
 import { filterDataByKeyword } from '@/src/utils/search';
 import { filterTeamMembers } from '@/src/utils/table';
@@ -64,7 +61,7 @@ const Dashboard = () => {
     return () => {
       clearTimeout(timeoutId);
     };
-  }, [search]);
+  }, [search, currentTab]);
 
   return (
     <>
