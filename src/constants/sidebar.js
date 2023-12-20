@@ -10,8 +10,11 @@ export const IconsAndLinks = [
     text: 'Hire & Onboard',
     link: '#',
     sublinks: [
-      { text: 'Hiring Progress', link: '/dashboard/hiring-progress' },
-      { text: 'Start Hiring', link: '/dashboard/start-hiring' },
+      {
+        text: 'Hiring Progress',
+        link: '/dashboard/client/client/hiring-progress',
+      },
+      { text: 'Start Hiring', link: '/dashboard/client/start-hiring' },
     ],
   },
   {
@@ -19,16 +22,16 @@ export const IconsAndLinks = [
     text: 'Team',
     link: '#',
     sublinks: [
-      { text: 'Team members', link: '/dashboard/team-members' },
-      { text: 'Team Management', link: '/dashboard/team-management' },
-      { text: 'Time off', link: '/dashboard/time-off' },
-      { text: 'Time tracking', link: '/dashboard/time-tracking' },
+      { text: 'Team members', link: '/dashboard/client/team-members' },
+      { text: 'Team Management', link: '/dashboard/client/team-management' },
+      { text: 'Time off', link: '/dashboard/client/time-off' },
+      { text: 'Time tracking', link: '/dashboard/client/time-tracking' },
     ],
   },
   {
     icon: '/images/sidebar-icons/resources.svg',
     text: 'Resources',
-    link: '/dashboard/resources',
+    link: '/dashboard/client/resources',
     sublinks: null,
   },
   {
@@ -36,7 +39,7 @@ export const IconsAndLinks = [
     text: 'Payments',
     link: '#',
     sublinks: [
-      { text: 'Invoice payments', link: '/dashboard/invoice-payments' },
+      { text: 'Invoice payments', link: '/dashboard/client/invoice-payments' },
     ],
   },
   {
@@ -44,8 +47,8 @@ export const IconsAndLinks = [
     text: 'Administration',
     link: '#',
     sublinks: [
-      { text: 'Policies', link: '/dashboard/policies' },
-      { text: 'Contracts Signed', link: '/dashboard/contracts-signed' },
+      { text: 'Policies', link: '/dashboard/client/policies' },
+      { text: 'Contracts Signed', link: '/dashboard/client/contracts-signed' },
     ],
   },
   {
@@ -53,8 +56,13 @@ export const IconsAndLinks = [
     text: 'Organization',
     link: '#',
     sublinks: [
-      { text: 'Settings', link: '/dashboard/settings' },
-      { text: 'Reports', link: '/dashboard/reports' },
+      { text: 'Settings', link: '/dashboard/client/settings' },
+      { text: 'Reports', link: '/dashboard/client/reports' },
     ],
   },
+];
+
+export const profileMenuData = [
+  { icon: '/images/sidebar-icons/notification.svg', text: 'Notification' },
+  { icon: '/images/sidebar-icons/signout.svg', text: 'Sign out' },
 ];

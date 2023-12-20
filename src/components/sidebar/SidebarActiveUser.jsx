@@ -2,6 +2,7 @@ import React from 'react';
 import SidebarUserIcon from './SidebarUserIcon';
 import SidebarUserAvatar from './SidebarUserAvatar';
 import SidebarProfileMenu from './sidebarProfileMenu';
+import { profileMenuData } from '@/src/constants/sidebar';
 import { Box, Typography } from '@mui/material';
 
 const SidebarActiveUser = ({ userName }) => {
@@ -25,7 +26,7 @@ const SidebarActiveUser = ({ userName }) => {
           <SidebarUserAvatar userName={userName} />
           <Typography sx={{ mx: 1.3 }}>{userName}</Typography>
         </Box>
-        <SidebarProfileMenu />
+        <SidebarProfileMenu profileMenuData={profileMenuData} />
       </Box>
     </>
   );

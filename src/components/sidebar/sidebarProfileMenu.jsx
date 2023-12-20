@@ -1,19 +1,18 @@
 import { Box, IconButton, Menu, MenuItem, Typography } from '@mui/material';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import LogoutIcon from '@mui/icons-material/Logout';
 import React from 'react';
 import DotBadge from './SidebarProfileBadge';
+import Image from 'next/image';
 
-const SidebarProfileMenu = () => {
-  //   const [auth, setAuth] = React.useState(true);
-  const [anchorEl, setAnchorEl] = React.useState(null);
+const SidebarProfileMenu = ({ profileMenuData }) => {
+  const [profileMenu, setProfileMenu] = React.useState(null);
+
   const handleMenu = (event) => {
-    setAnchorEl(event.currentTarget);
+    setProfileMenu(event.currentTarget);
   };
 
   const handleClose = () => {
-    setAnchorEl(null);
+    setProfileMenu(null);
   };
 
   return (
@@ -33,7 +32,7 @@ const SidebarProfileMenu = () => {
       </IconButton>
       <Menu
         id="menu-appbar"
-        anchorEl={anchorEl}
+        anchorEl={profileMenu}
         anchorOrigin={{
           vertical: 'top',
           horizontal: 'right',
@@ -43,21 +42,21 @@ const SidebarProfileMenu = () => {
           vertical: 'top',
           horizontal: 'right',
         }}
-        open={Boolean(anchorEl)}
+        open={Boolean(profileMenu)}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose} sx={{ width: '200px', py: 1.1 }}>
-          <Box sx={{ display: 'flex', gap: 1.5 }}>
-            <NotificationsIcon sx={{ width: '20px', height: '20px' }} />
-            <Typography>Notification</Typography>
-          </Box>
-        </MenuItem>
-        <MenuItem onClick={handleClose} sx={{ width: '200px', py: 1.1 }}>
-          <Box sx={{ display: 'flex', gap: 1.5 }}>
-            <LogoutIcon sx={{ width: '20px', height: '20px' }} />
-            <Typography>Sign out</Typography>
-          </Box>
-        </MenuItem>
+        {profileMenuData?.map((item, i) => (
+          <MenuItem
+            key={i}
+            onClick={handleClose}
+            sx={{ width: '200px', py: 1.1 }}
+          >
+            <Box sx={{ display: 'flex', gap: 1.5 }}>
+              <Image src={item?.icon} width={20} height={20} alt="icon" />
+              <Typography>{item?.text}</Typography>
+            </Box>
+          </MenuItem>
+        ))}
       </Menu>
     </>
   );
