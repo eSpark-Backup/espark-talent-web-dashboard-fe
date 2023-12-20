@@ -12,7 +12,13 @@ export const changeTab = ({
 }) => {
   setSearch('');
 
-  const tab = event?.target?.innerText.split(' ').slice(0, -1).join(' ');
+  let tab = event?.target?.innerText.split(' ');
+  if(tab.length > 1) {
+    tab = tab.slice(0, -1).join(' ')
+  }
+  else {
+    tab = tab.join(' ')
+  }
   setCurrentTab(tab);
 
   setValue(newValue);
