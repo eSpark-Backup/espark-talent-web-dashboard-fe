@@ -85,7 +85,7 @@ const lightTheme = createTheme({
           },
         },
         {
-          props: { variant: 'E6F5F4' },
+          props: { variant: 'secondary' },
           style: {
             textTransform: 'capitalize',
             borderColor: '#029E9C',
@@ -139,9 +139,9 @@ const lightTheme = createTheme({
     values: {
       xs: 0,
       sm: 600,
-      md: 960,
-      lg: 1440,
-      xl: 1920,
+      md: 900,
+      lg: 1200,
+      xl: 1536,
     },
   },
 });
@@ -272,9 +272,9 @@ const darkTheme = createTheme({
     values: {
       xs: 0,
       sm: 600,
-      md: 960,
-      lg: 1440,
-      xl: 1920,
+      md: 900,
+      lg: 1200,
+      xl: 1536,
     },
   },
 });
