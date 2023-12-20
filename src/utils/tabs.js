@@ -6,7 +6,7 @@ export const changeTab = ({
   setCurrentTab,
   setValue,
   setData,
-  filterTeamMembers,
+  filterTableRowsWRTTab,
   teamMembersData,
   tabs,
 }) => {
@@ -21,7 +21,7 @@ export const changeTab = ({
     setData(tabs[newValue].data);
   } else {
     const memberStatus = tab === 'All' ? '' : tab;
-    setData(filterTeamMembers(teamMembersData, { memberStatus }));
+    setData(filterTableRowsWRTTab(teamMembersData, { memberStatus }));
   }
 };
 

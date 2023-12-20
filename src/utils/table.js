@@ -1,4 +1,4 @@
-export const filterTeamMembers = (data, filters) => {
+export const filterTableRowsWRTTab = (data, filters) => {
   if (filters?.memberStatus === 'All' || !filters?.memberStatus) {
     return data;
   } else {
@@ -6,7 +6,8 @@ export const filterTeamMembers = (data, filters) => {
       return Object.keys(filters).every((key) => {
         // Check if the member has the specified property and the value matches
         return (
-          member.prototype.hasOwnProperty(key) && member[key] === filters[key]
+          Object.prototype.hasOwnProperty.call(member, key) &&
+          member[key] === filters[key]
         );
       });
     });
