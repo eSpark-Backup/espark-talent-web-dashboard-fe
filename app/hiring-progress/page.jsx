@@ -144,7 +144,7 @@ const Dashboard = () => {
               {tabs?.map(({ column }, i) => (
                 <CustomTabPanel value={value} key={i} index={i}>
                   {isLoading ? (
-                    <div>Loading...</div>
+                    <Box>Loading...</Box>
                   ) : (
                     <AppTable
                       currentTab={currentTab}
