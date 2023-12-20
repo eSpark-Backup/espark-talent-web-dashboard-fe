@@ -1,8 +1,20 @@
 export const RESOURCE_DATA = {
-  resource: 'Resource',
-  discoverAssets: 'Discover assets for your global employment needs',
-  esparkWiki: 'eSpark Wiki',
-  employeeData:
-    'Lorem ipsum dolor sit amet consectetur.Sodales consequat dignissim at erat.Neque ac id eros adipiscing vitae.',
-  holidayCalender: 'Holiday Calendar',
+  title: 'Resource',
+  description: 'Discover assets for your global employment needs',
+  items: [
+    {
+      image: '',
+      title: 'Resource',
+      description:
+        'Lorem ipsum dolor sit amet consectetur.Sodales consequat dignissim at erat.Neque ac id eros adipiscing vitae.',
+      link: '/',
+    },
+    {
+      image: '',
+      title: 'Holiday Calendar',
+      description:
+        'Lorem ipsum dolor sit amet consectetur.Sodales consequat dignissim at erat.Neque ac id eros adipiscing vitae.',
+      link: '/',
+    },
+  ],
 };
