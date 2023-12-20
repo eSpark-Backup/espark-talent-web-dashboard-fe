@@ -7,7 +7,7 @@ import Input from '@/src/components/dashboard/input';
 import AppTable from '@/src/components/dashboard/appTable';
 import {
   teamMembersColumn,
-  teamMembersData
+  teamMembersData,
 } from '@/src/constants/data/teamMembers';
 import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
 import { filterDataByKeyword } from '@/src/utils/search';
@@ -20,7 +20,9 @@ const Dashboard = () => {
   const [currentTab, setCurrentTab] = React.useState('All');
   const [isLoading, setIsLoading] = React.useState(true);
   const [search, setSearch] = React.useState('');
-  const [empData, setEmpData] = React.useState(filterTeamMembers(teamMembersData, { memberStatus: '' }));
+  const [empData, setEmpData] = React.useState(
+    filterTeamMembers(teamMembersData, { memberStatus: '' })
+  );
 
   const fetchDataFake = async () => {
     return true;
@@ -39,11 +41,22 @@ const Dashboard = () => {
   }, []);
 
   const handleChangeTab = (event, newValue) => {
-    changeTab({event, newValue,setSearch,setCurrentTab,setValue,setData:setEmpData,filterTeamMembers,teamMembersData})
+    changeTab({
+      event,
+      newValue,
+      setSearch,
+      setCurrentTab,
+      setValue,
+      setData: setEmpData,
+      filterTeamMembers,
+      teamMembersData,
+    });
   };
 
   React.useEffect(() => {
-    const data = filterTeamMembers(teamMembersData, { memberStatus: currentTab });
+    const data = filterTeamMembers(teamMembersData, {
+      memberStatus: currentTab,
+    });
     const timeoutId = setTimeout(() => {
       filterDataByKeyword(data, search || '', setEmpData);
       setIsLoading(false);
@@ -93,7 +106,11 @@ const Dashboard = () => {
                   {teamTabs?.map(({ label, prop, data }, i) => (
                     <Tab
                       key={i}
-                      label={`${label} (${filterTeamMembers(data, { memberStatus: label === 'All' ? '' : label }).length})`}
+                      label={`${label} (${
+                        filterTeamMembers(data, {
+                          memberStatus: label === 'All' ? '' : label,
+                        }).length
+                      })`}
                       {...prop}
                     />
                   ))}

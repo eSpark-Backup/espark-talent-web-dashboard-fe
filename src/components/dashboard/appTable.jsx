@@ -27,7 +27,9 @@ const AppTable = ({ column, data }) => {
         ) : (
           <tr>
             <td className="app-table-row" colSpan={column?.length}>
-              <Typography variant='caption' sx={{width:'100%'}}>No Records Founds</Typography>
+              <Typography variant="caption" sx={{ width: '100%' }}>
+                No Records Founds
+              </Typography>
             </td>
           </tr>
         )}

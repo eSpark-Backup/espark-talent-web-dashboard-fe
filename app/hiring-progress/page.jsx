@@ -49,7 +49,16 @@ const Dashboard = () => {
   }, []);
 
   const handleChange = (event, newValue) => {
-    changeTab({isSingular:true,tabs:empTabs, event, newValue,setSearch,setCurrentTab,setValue,setData:setEmpData})
+    changeTab({
+      isSingular: true,
+      tabs: empTabs,
+      event,
+      newValue,
+      setSearch,
+      setCurrentTab,
+      setValue,
+      setData: setEmpData,
+    });
   };
 
   React.useEffect(() => {
@@ -76,59 +85,55 @@ const Dashboard = () => {
             width: '100%',
           }}
         >
-            <Box
-              marginY={5}
-              display={'flex'}
-              justifyContent={'space-between'}
-              alignItems={'center'}
+          <Box
+            marginY={5}
+            display={'flex'}
+            justifyContent={'space-between'}
+            alignItems={'center'}
+          >
+            <Typography variant="h3">Hire a team member</Typography>
+            <Button
+              style={{
+                background: '#029894',
+              }}
+              variant="contained"
             >
-              <Typography variant="h3">Hire a team member</Typography>
-              <Button
-                style={{
-                  background: '#029894',
-                }}
-                variant="contained"
+              New hire
+            </Button>
+          </Box>
+          <Box sx={{ width: '100%' }}>
+            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+              <Tabs
+                value={value}
+                onChange={handleChange}
+                aria-label="basic tabs example"
               >
-                New hire
-              </Button>
+                {empTabs?.map(({ label, prop, data }, i) => (
+                  <Tab key={i} label={`${label} (${data?.length})`} {...prop} />
+                ))}
+              </Tabs>
             </Box>
-            <Box sx={{ width: '100%' }}>
-              <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                <Tabs
-                  value={value}
-                  onChange={handleChange}
-                  aria-label="basic tabs example"
-                >
-                  {empTabs?.map(({ label, prop, data }, i) => (
-                    <Tab
-                      key={i}
-                      label={`${label} (${data?.length})`}
-                      {...prop}
-                    />
-                  ))}
-                </Tabs>
-              </Box>
-              <Input
-                setIsLoading={setIsLoading}
-                handleChange={setSearch}
-                value={search}
-                prefixIcon="SearchIcon.svg"
-                suffixIcon="QuestionMarkIcon.svg"
-              />
-              {empTabs?.map(({ column }, i) => (
-                <CustomTabPanel value={value} key={i} index={i}>
-                  {isLoading ? (
-                    <Box>Loading...</Box>
-                  ) : (
-                    <AppTable
-                      currentTab={currentTab}
-                      column={column}
-                      data={empData}
-                    />
-                  )}
-                </CustomTabPanel>
-              ))}
-            </Box>
+            <Input
+              setIsLoading={setIsLoading}
+              handleChange={setSearch}
+              value={search}
+              prefixIcon="SearchIcon.svg"
+              suffixIcon="QuestionMarkIcon.svg"
+            />
+            {empTabs?.map(({ column }, i) => (
+              <CustomTabPanel value={value} key={i} index={i}>
+                {isLoading ? (
+                  <Box>Loading...</Box>
+                ) : (
+                  <AppTable
+                    currentTab={currentTab}
+                    column={column}
+                    data={empData}
+                  />
+                )}
+              </CustomTabPanel>
+            ))}
+          </Box>
         </Box>
       </Grid>
     </>
