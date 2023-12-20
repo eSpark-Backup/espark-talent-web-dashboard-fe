@@ -15,6 +15,8 @@ import {
 } from '@/src/constants/data/employee';
 import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
 import { filterDataByKeyword } from '@/src/utils/search';
+import { changeTab } from '@/src/utils/tabs';
+import { empTabs } from '@/src/constants/data/empTabs';
 
 function a11yProps(index) {
   return {
@@ -46,40 +48,12 @@ const Dashboard = () => {
     fetchDataAsync();
   }, []);
 
-  const tabs = React.useMemo(
-    () => [
-      {
-        label: 'Hiring Request',
-        prop: a11yProps(0),
-        data: employeeTableDataHiringRequest,
-        column: employeeTableHiringRequestColumn,
-      },
-      {
-        label: 'Interview Schedule',
-        prop: a11yProps(1),
-        data: employeeTableDataInterviewSchedule,
-        column: employeeTableInterviewScheduleColumn,
-      },
-      {
-        label: 'Onboarding',
-        prop: a11yProps(2),
-        data: employeeTableDataOnBoarding,
-        column: employeeTableOnboardingColumn,
-      },
-    ],
-    []
-  );
-
   const handleChange = (event, newValue) => {
-    const tab = event?.target?.innerText.split(' ');
-    tab.pop();
-    setCurrentTab(tab.join(' '));
-    setValue(newValue);
-    setEmpData(tabs[newValue].data);
+    changeTab({isSingular:true,tabs:empTabs, event, newValue,setSearch,setCurrentTab,setValue,setData:setEmpData})
   };
 
   React.useEffect(() => {
-    const data = tabs[value].data;
+    const data = empTabs[value].data;
     const timeoutId = setTimeout(() => {
       filterDataByKeyword(data, search || '', setEmpData);
       setIsLoading(false);
@@ -87,7 +61,7 @@ const Dashboard = () => {
     return () => {
       clearTimeout(timeoutId);
     };
-  }, [search, tabs, value]);
+  }, [search, empTabs, value]);
 
   return (
     <>
@@ -125,7 +99,7 @@ const Dashboard = () => {
                   onChange={handleChange}
                   aria-label="basic tabs example"
                 >
-                  {tabs?.map(({ label, prop, data }, i) => (
+                  {empTabs?.map(({ label, prop, data }, i) => (
                     <Tab
                       key={i}
                       label={`${label} (${data?.length})`}
@@ -141,7 +115,7 @@ const Dashboard = () => {
                 prefixIcon="SearchIcon.svg"
                 suffixIcon="QuestionMarkIcon.svg"
               />
-              {tabs?.map(({ column }, i) => (
+              {empTabs?.map(({ column }, i) => (
                 <CustomTabPanel value={value} key={i} index={i}>
                   {isLoading ? (
                     <Box>Loading...</Box>
