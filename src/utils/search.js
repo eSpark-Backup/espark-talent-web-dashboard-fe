@@ -1,0 +1,18 @@
+'use client';
+
+export const filterDataByKeyword = (data, keyword, setData) => {
+  if (keyword === '') {
+    setData(data);
+    return data;
+  } else {
+    const tempData = data.filter((employee) => {
+      const lowerKeyword = keyword.toLowerCase();
+      return Object.values(employee).some(
+        (value) =>
+          typeof value === 'string' &&
+          value.toLowerCase().includes(lowerKeyword)
+      );
+    });
+    setData(tempData);
+  }
+};
