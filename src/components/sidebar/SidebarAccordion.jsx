@@ -44,7 +44,7 @@ const SidebarAccordion = ({ sidebarLinks }) => {
                 sx={{
                   mx: 'auto',
                   p: 1.4,
-                  mb: 1.3,
+                  mb: 0.7,
                   gap: 2,
                   width: '95%',
                   height: '43px',

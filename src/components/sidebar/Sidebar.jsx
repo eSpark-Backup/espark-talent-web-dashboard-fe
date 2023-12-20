@@ -3,7 +3,7 @@ import React from 'react';
 import SidebarAccordion from './SidebarAccordion';
 import { IconsAndLinks } from '@/src/constants/sidebar';
 import SidebarLogo from './sidebarLogo';
-import SidebarProfileMenu from './sidebarProfileMenu';
+import SidebarActiveUser from './SidebarActiveUser';
 
 const Sidebar = () => {
   return (
@@ -11,7 +11,7 @@ const Sidebar = () => {
       <Box
         sx={{
           width: '280px',
-          // height: '95vh',
+          // height: '100vh',
           backgroundColor: '#fff',
         }}
       >
@@ -21,10 +21,10 @@ const Sidebar = () => {
             position: 'relative',
             top: 0,
             width: '100%',
-            padding: '12px',
+            px: '12px',
           }}
         >
-          <SidebarProfileMenu />
+          <SidebarActiveUser userName={'Mohammad Ali'} />
         </Box>
         <Box
           sx={{

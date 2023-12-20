@@ -10,8 +10,7 @@ const TopNavNavbar = () => {
         background: '#029E9C;',
         padding: '15px',
         width: '100%',
-        display: 'flex',
-        alignItems: 'center',
+        display: { xs: 'none', lg: 'flex', xl: 'flex' },
       }}
     >
       <Typography

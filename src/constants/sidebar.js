@@ -52,6 +52,9 @@ export const IconsAndLinks = [
     icon: '/images/sidebar-icons/administration.svg',
     text: 'Organization',
     link: '#',
-    sublinks: null,
+    sublinks: [
+      { text: 'Settings', link: '/dashboard/settings' },
+      { text: 'Reports', link: '/dashboard/reports' },
+    ],
   },
 ];

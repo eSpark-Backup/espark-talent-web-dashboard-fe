@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Drawer from '@mui/material/Drawer';
-import Button from '@mui/material/Button';
 import Sidebar from './Sidebar';
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 
@@ -23,18 +22,11 @@ export default function SidebarToggle() {
   return (
     <div>
       <React.Fragment>
-        <Button
+        <MenuOpenIcon
           onClick={toggleDrawer('left', true)}
           sx={{
-            width: '60px',
-            height: '60px',
-            padding: '5px',
-            borderRadius: '100%',
-            zIndex: 2,
-            right: '20px',
-            bottom: '20px',
-            backgroundColor: '#029E9C',
-            position: 'fixed',
+            color: 'white',
+            fontSize: '37px',
             display: {
               xs: 'flex',
               sm: 'flex',
@@ -42,14 +34,8 @@ export default function SidebarToggle() {
               lg: 'none',
               xl: 'none',
             },
-            '&:hover': {
-              backgroundColor: '#029E9C',
-            },
           }}
-        >
-          <MenuOpenIcon sx={{ color: 'white' }} />
-        </Button>
-
+        />
         <Drawer
           anchor={'left'}
           open={state['left']}

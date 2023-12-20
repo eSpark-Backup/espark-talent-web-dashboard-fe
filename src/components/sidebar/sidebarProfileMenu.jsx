@@ -3,6 +3,7 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import LogoutIcon from '@mui/icons-material/Logout';
 import React from 'react';
+import DotBadge from './SidebarProfileBadge';
 
 const SidebarProfileMenu = () => {
   //   const [auth, setAuth] = React.useState(true);
@@ -25,7 +26,10 @@ const SidebarProfileMenu = () => {
         onMouseOver={handleMenu}
         color="inherit"
       >
-        <ArrowForwardIosIcon sx={{ width: '17px', height: '17px' }} />
+        <DotBadge
+          color={'lightGreen'}
+          icon={<ArrowForwardIosIcon sx={{ width: '20px', height: '20px' }} />}
+        />
       </IconButton>
       <Menu
         id="menu-appbar"
