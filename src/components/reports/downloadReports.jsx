@@ -1,14 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box, Button, Typography } from '@mui/material';
 import Image from 'next/image';
+import DatePickerModal from './Modal';
 
 const DownloadReports = ({
   image,
   reportHeading,
   downloadReports,
   downloadBtn,
-  onDownloadClick,
 }) => {
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <Box
       sx={{
@@ -30,10 +39,11 @@ const DownloadReports = ({
           width: { xs: '100px', md: '170px' },
           padding: '8px',
         }}
-        onClick={onDownloadClick}
+        onClick={handleOpen}
       >
         {downloadBtn}
       </Button>
+      {open && <DatePickerModal handleClose={handleClose} open={open} />}
     </Box>
   );
 };

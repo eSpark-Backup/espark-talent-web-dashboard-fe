@@ -1,14 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Box, Grid } from '@mui/material';
 
-import ReportDate from './DatePicker';
 import DownloadReports from './downloadReports';
 
 const ReportBoxes = ({ data }) => {
-  const [showDatePicker, setDatePicker] = useState(false);
-  const showReportDate = () => {
-    setDatePicker(true);
-  };
   return (
     <>
       <Grid container spacing={0}>
@@ -40,13 +35,11 @@ const ReportBoxes = ({ data }) => {
                 reportHeading={item.reportHeading}
                 downloadReports={item.downloadReports}
                 downloadBtn={item.downloadBtn}
-                onDownloadClick={showReportDate}
+                // onDownloadClick={showReportDate}
               />
             </Grid>
           ))}
         </Box>
-
-        {showDatePicker && <ReportDate />}
       </Grid>
     </>
   );

@@ -2,9 +2,9 @@
 import React from 'react';
 import { Grid, Box } from '@mui/material';
 
-import ReportHeading from '@/src/components/reports/reportHeading';
+import { REPORT_DATA } from '@/src/constants/report';
+import Heading from '@/src/components/global/Heading';
 import ReportBoxes from '@/src/components/reports/reportBoxes';
-import { DOWNLOAD_REPORTS_DATA } from '@/src/constants/report';
 
 const Reports = () => {
   return (
@@ -20,8 +20,16 @@ const Reports = () => {
             width: '100%',
           }}
         >
-          <ReportHeading />
-          <ReportBoxes data={DOWNLOAD_REPORTS_DATA} />
+          <Heading
+            title={REPORT_DATA?.title}
+            description={REPORT_DATA?.description}
+            containerStyles={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+            }}
+          />
+          <ReportBoxes data={REPORT_DATA?.items} />
         </Box>
       </Grid>
     </>
