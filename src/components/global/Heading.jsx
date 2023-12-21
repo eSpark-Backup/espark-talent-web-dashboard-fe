@@ -1,9 +1,7 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
 
-import { RESOURCE_DATA } from '@/src/constants/resources';
-
-const ResourceHeading = () => {
+const Heading = ({ title, description }) => {
   return (
     <Box>
       <Typography
@@ -12,7 +10,7 @@ const ResourceHeading = () => {
           fontWeight: 600,
         }}
       >
-        {RESOURCE_DATA?.resource}
+        {title}
       </Typography>
       <br />
       <Typography
@@ -21,11 +19,11 @@ const ResourceHeading = () => {
           fontWeight: 400,
         }}
       >
-        {RESOURCE_DATA?.discoverAssets}
+        {description}
       </Typography>
       <br />
     </Box>
   );
 };
 
-export default ResourceHeading;
+export default Heading;

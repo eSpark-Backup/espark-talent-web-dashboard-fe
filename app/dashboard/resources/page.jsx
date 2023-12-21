@@ -1,8 +1,8 @@
 import React from 'react';
 import { Box, Grid } from '@mui/material';
 
-import EmployeeData from '@/src/components/resources/EmployeeData';
-import ResourceHeading from '@/src/components/resources/ResourceHeading';
+import EmployeeData from '@/src/components/resources/ResourceCard';
+import ResourceHeading from '@/src/components/global/Heading';
 
 const Resource = () => {
   return (

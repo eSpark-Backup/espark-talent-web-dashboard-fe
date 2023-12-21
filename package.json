@@ -27,8 +27,6 @@
     "@mui/material": "^5.15.0",
     "@mui/material-nextjs": "^5.15.0",
     "@mui/system": "^5.14.14",
-    "@mui/x-date-pickers": "^6.18.5",
-    "@next/font": "^14.0.4",
     "@reduxjs/toolkit": "^1.9.7",
     "dayjs": "^1.11.10",
     "formik": "^2.4.5",
