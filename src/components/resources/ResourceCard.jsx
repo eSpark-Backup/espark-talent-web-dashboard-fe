@@ -1,9 +1,6 @@
 import React from 'react';
 import { Box, Grid, Typography } from '@mui/material';
 import Image from 'next/image';
-
-import { RESOURCE_DATA } from '@/src/constants/resources';
-import HolidaysCalender from './HolidaysCalender';
 import Link from 'next/link';
 
 const ResourceCard = ({ data }) => {
@@ -18,8 +15,8 @@ const ResourceCard = ({ data }) => {
           justifyContent: 'space-between',
         }}
       >
-        {data.map((item) => (
-          <Grid item xs={12} md={6}>
+        {data?.map((item, index) => (
+          <Grid item xs={12} md={6} key={index}>
             <Link href="/">
               <Box
                 sx={{
@@ -50,9 +47,7 @@ const ResourceCard = ({ data }) => {
                       alt="search"
                     />
                   </Box>
-                  <Typography variant="h3">
-                    {item?.title}
-                  </Typography>
+                  <Typography variant="h3">{item?.title}</Typography>
                   <Typography variant="body1" sx={{ textAlign: 'center' }}>
                     {item?.description}
                   </Typography>
