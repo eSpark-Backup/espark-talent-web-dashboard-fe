@@ -2,7 +2,7 @@ export const IconsAndLinks = [
   {
     icon: '/images/sidebar-icons/dashboard.svg',
     text: 'Dashboard',
-    link: '/dashboard',
+    link: '/dashboard/client/',
     sublinks: null,
   },
   {
