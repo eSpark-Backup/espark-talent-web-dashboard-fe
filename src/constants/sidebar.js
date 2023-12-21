@@ -12,9 +12,12 @@ export const IconsAndLinks = [
     sublinks: [
       {
         text: 'Hiring Progress',
-        link: '/dashboard/client/client/hiring-progress',
+        link: '/dashboard/client/hire-onboard/hiring-progress',
       },
-      { text: 'Start Hiring', link: '/dashboard/client/start-hiring' },
+      {
+        text: 'Start Hiring',
+        link: '/dashboard/client/hire-onboard/start-hiring',
+      },
     ],
   },
   {
@@ -22,10 +25,13 @@ export const IconsAndLinks = [
     text: 'Team',
     link: '#',
     sublinks: [
-      { text: 'Team members', link: '/dashboard/client/team-members' },
-      { text: 'Team Management', link: '/dashboard/client/team-management' },
-      { text: 'Time off', link: '/dashboard/client/time-off' },
-      { text: 'Time tracking', link: '/dashboard/client/time-tracking' },
+      { text: 'Team members', link: '/dashboard/client/team/team-members' },
+      {
+        text: 'Team Management',
+        link: '/dashboard/client/team/team-management',
+      },
+      { text: 'Time off', link: '/dashboard/client/team/time-off' },
+      { text: 'Time tracking', link: '/dashboard/client/team/time-tracking' },
     ],
   },
   {
@@ -39,7 +45,10 @@ export const IconsAndLinks = [
     text: 'Payments',
     link: '#',
     sublinks: [
-      { text: 'Invoice payments', link: '/dashboard/client/invoice-payments' },
+      {
+        text: 'Invoice payments',
+        link: '/dashboard/client/payments/invoice-payments',
+      },
     ],
   },
   {
@@ -47,8 +56,11 @@ export const IconsAndLinks = [
     text: 'Administration',
     link: '#',
     sublinks: [
-      { text: 'Policies', link: '/dashboard/client/policies' },
-      { text: 'Contracts Signed', link: '/dashboard/client/contracts-signed' },
+      { text: 'Policies', link: '/dashboard/client/adminstration/policies' },
+      {
+        text: 'Contracts Signed',
+        link: '/dashboard/client/adminstration/contracts-signed',
+      },
     ],
   },
   {
@@ -56,8 +68,8 @@ export const IconsAndLinks = [
     text: 'Organization',
     link: '#',
     sublinks: [
-      { text: 'Settings', link: '/dashboard/client/settings' },
-      { text: 'Reports', link: '/dashboard/client/reports' },
+      { text: 'Settings', link: '/dashboard/client/organization/settings' },
+      { text: 'Reports', link: '/dashboard/client/organization/reports' },
     ],
   },
 ];
