@@ -9,22 +9,25 @@ const Resource = () => {
   return (
     <>
       <Grid container>
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            paddingTop: '60px',
-            gap: '20px',
-            width: '100%',
-          }}
-        >
-          <Heading
-            title={RESOURCE_DATA?.title}
-            description={RESOURCE_DATA?.description}
-          />
-          <ResourceCard data={RESOURCE_DATA?.items} />
-        </Box>
+        <Grid item xs={12} sm={12} md={11}>
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              paddingTop: '60px',
+              paddingLeft: '20px',
+              gap: '20px',
+              width: '100%',
+            }}
+          >
+            <Heading
+              title={RESOURCE_DATA?.title}
+              description={RESOURCE_DATA?.description}
+            />
+            <ResourceCard data={RESOURCE_DATA?.items} />
+          </Box>
+        </Grid>
       </Grid>
     </>
   );
