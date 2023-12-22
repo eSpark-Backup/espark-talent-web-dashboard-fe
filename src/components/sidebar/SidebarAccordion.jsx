@@ -71,9 +71,13 @@ const SidebarAccordion = ({ sidebarLinks }) => {
               </AccordionSummary>
               {item?.sublinks &&
                 item?.sublinks?.map((eachItem, index) => (
-                  <div key={index}>
-                    <AccordionDetails
-                      key={index}
+
+                  <>
+                    <Link
+                          style={{ width: '100%', height: '100%' }}
+                          href={`${eachItem?.link}`}
+                        ><div key={index}>
+                        <AccordionDetails key={index}
                       sx={{
                         pl: 6.5,
                         pt: 1.5,
@@ -95,15 +99,14 @@ const SidebarAccordion = ({ sidebarLinks }) => {
                       }}
                     >
                       <Typography sx={{ width: '100%', height: '100%' }}>
-                        <Link
-                          style={{ width: '100%', height: '100%' }}
-                          href={`${eachItem?.link}`}
-                        >
+                        
                           {eachItem?.text}
-                        </Link>
+                      
                       </Typography>
                     </AccordionDetails>
-                  </div>
+</div>
+                    </Link>
+                  </>
                 ))}
             </Accordion>
           </Box>

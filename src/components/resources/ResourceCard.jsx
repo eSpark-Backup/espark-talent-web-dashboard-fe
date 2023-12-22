@@ -10,9 +10,13 @@ const ResourceCard = ({ data }) => {
         sx={{
           display: 'flex',
           flexDirection: { xs: 'column', sm: 'column', md: 'row' },
-          gap: '12px',
-          width: '100%',
-          justifyContent: 'space-between',
+          gap: '80px',
+          width: { xs: '95%', md: '100%' },
+          alignItems: 'center',
+          '@media (min-width: 900px) and (max-width: 1490px)': {
+            width: '90%',
+            gap: '60px',
+          },
         }}
       >
         {data?.map((item, index) => (
@@ -20,7 +24,7 @@ const ResourceCard = ({ data }) => {
             <Link href="/">
               <Box
                 sx={{
-                  height: { xs: '350px', md: '300px' },
+                  height: { xs: '37 0px', md: '300px' },
                   borderRadius: '10px',
                   background: '#FFF',
                   display: 'flex',
@@ -47,8 +51,10 @@ const ResourceCard = ({ data }) => {
                       alt="search"
                     />
                   </Box>
-                  <Typography variant="h3">{item?.title}</Typography>
-                  <Typography variant="body1" sx={{ textAlign: 'center' }}>
+                  <Typography variant="h3" sx={{ textAlign: 'center' }}>
+                    {item?.title}
+                  </Typography>
+                  <Typography sx={{ fontSize: '16px' }}>
                     {item?.description}
                   </Typography>
                 </Box>
