@@ -19,7 +19,7 @@ const Dashboard = () => {
               paddingTop: '60px',
               gap: '20px',
               width: '100%',
-              paddingLeft: '20px',
+              paddingLeft: '40px',
             }}
           >
             <DashboardHeading />

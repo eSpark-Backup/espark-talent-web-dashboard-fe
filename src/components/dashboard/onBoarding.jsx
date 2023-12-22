@@ -21,7 +21,7 @@ const OnBoarding = () => {
         <Grid item xs={12} md={6}>
           <Box
             sx={{
-              height: { xs: '250px', md: '200px' },
+              height: { xs: '270px', md: '200px' },
               borderRadius: '10px',
               background: '#FFF',
               boxShadow: '0px 0px 10px 0px rgba(0, 0, 0, 0.30)',
@@ -61,7 +61,7 @@ const OnBoarding = () => {
           <Box
             sx={{
               display: 'flex',
-              height: { xs: '250px', md: '200px' },
+              height: { xs: '270px', md: '200px' },
               borderRadius: '10px',
               background: '#fff',
               boxShadow: '0px 0px 10px 0px rgba(0, 0, 0, 0.30)',
