@@ -4,20 +4,21 @@ import TopNav from '@/src/components/global/topNavbar';
 import { Box } from '@mui/material';
 import Sidebar from '@/src/components/sidebar/Sidebar';
 import ResponsiveNavbar from '@/src/components/sidebar/ResponsiveNavbar';
+import { ActiveUser } from '@/src/constants/sidebar';
 
 const InnerPagesLayout = ({ children }) => {
   return (
     <>
       <Box sx={{ flexGrow: 1, width: 'auto' }}>
-        <Box sx={{ width: '100%', height: { lg: '5.8vh', xl: '5.4vh' } }}>
+        <Box sx={{ width: '100%', height: { lg: '6.1vh' } }}>
           <TopNav />
-          <ResponsiveNavbar userName={'Mohammad Ali'} />
+          <ResponsiveNavbar userName={ActiveUser?.userName} />
         </Box>
         <Box
           sx={{
             display: 'flex',
             width: '100%',
-            height: { lg: '94.2vh', xl: '94.6vh' },
+            height: { lg: '93.9vh' },
           }}
         >
           <Box
@@ -30,7 +31,7 @@ const InnerPagesLayout = ({ children }) => {
               display: { xs: 'none', lg: 'flex', xl: 'flex' },
             }}
           >
-            <Sidebar />
+            <Sidebar userName={ActiveUser?.userName} />
           </Box>
           <Box
             item

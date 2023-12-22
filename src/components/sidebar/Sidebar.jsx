@@ -5,7 +5,7 @@ import { IconsAndLinks } from '@/src/constants/sidebar';
 import SidebarLogo from './sidebarLogo';
 import SidebarActiveUser from './SidebarActiveUser';
 
-const Sidebar = () => {
+const Sidebar = ({ userName }) => {
   return (
     <>
       <Box
@@ -24,7 +24,7 @@ const Sidebar = () => {
             px: '12px',
           }}
         >
-          <SidebarActiveUser userName={'Mohammad Ali'} />
+          <SidebarActiveUser userName={userName} />
         </Box>
         <Box
           sx={{
