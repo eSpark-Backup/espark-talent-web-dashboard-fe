@@ -1,9 +1,13 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
 
-const Heading = ({ title, description }) => {
+const Heading = ({ title, description, containerStyles }) => {
   return (
-    <Box>
+    <Box
+      sx={{
+        ...containerStyles,
+      }}
+    >
       <Typography
         sx={{
           fontSize: { xs: '25px', md: '30px' },

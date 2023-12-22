@@ -1,4 +1,5 @@
 import React from 'react';
+import { useRouter } from 'next/navigation';
 
 import Typography from '@mui/material/Typography';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -15,8 +16,7 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 const AuthForm = ({ uiData, fields }) => {
   const [showPassword, setShowPassword] = React.useState(false);
   const [formData, setFormData] = React.useState();
-  const { title, link, text, checkText, forgotText, forgotLink, linkText } =
-    uiData;
+  const { title, checkText, forgotText, forgotLink } = uiData;
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const handleChange = (key, val) => {
@@ -25,10 +25,12 @@ const AuthForm = ({ uiData, fields }) => {
       [key]: val,
     });
   };
+  const router = useRouter();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData, 'formData');
-    // add submit functionality here
+    router.push('/dashboard');
   };
   return (
     <>
@@ -47,10 +49,10 @@ const AuthForm = ({ uiData, fields }) => {
         <Typography component="h3" variant="h3" sx={{ my: 2 }}>
           {title}
         </Typography>
-        <Box sx={{ display: 'flex', gap: 0.7 }}>
+        {/* <Box sx={{ display: 'flex', gap: 0.7 }}>
           <Typography>{text}</Typography>
           <Link href={link}>{linkText}</Link>
-        </Box>
+        </Box> */}
         <Box
           component="form"
           noValidate
@@ -65,7 +67,6 @@ const AuthForm = ({ uiData, fields }) => {
                   required
                   fullWidth
                   placeholder={field?.placeHolder}
-                  // id="outlined-adornment-password"
                   type={
                     field?.type && field?.type == 'password'
                       ? showPassword

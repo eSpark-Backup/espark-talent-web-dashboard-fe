@@ -3,7 +3,7 @@ import Drawer from '@mui/material/Drawer';
 import Sidebar from './Sidebar';
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 
-export default function SidebarToggle() {
+export default function SidebarToggle({ userName }) {
   const [state, setState] = React.useState({
     left: false,
   });
@@ -41,7 +41,7 @@ export default function SidebarToggle() {
           open={state['left']}
           onClose={toggleDrawer('left', false)}
         >
-          <Sidebar />
+          <Sidebar userName={userName} />
         </Drawer>
       </React.Fragment>
     </div>
