@@ -18,7 +18,7 @@ const Resource = () => {
               paddingTop: '60px',
               paddingLeft: '20px',
               gap: '20px',
-              width: '100%',
+              width: '95%',
             }}
           >
             <Heading
