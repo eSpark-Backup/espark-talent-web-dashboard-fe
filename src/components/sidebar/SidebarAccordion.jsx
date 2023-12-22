@@ -20,8 +20,8 @@ const SidebarAccordion = ({ sidebarLinks }) => {
   return (
     <div>
       {sidebarLinks?.map((item, index) => (
-        <div key={index}>
-          <Box>
+        <>
+          <Box key={index}>
             <Accordion
               expanded={
                 item.sublinks == null ? null : expanded === `panel${index + 1}`
@@ -71,46 +71,43 @@ const SidebarAccordion = ({ sidebarLinks }) => {
               </AccordionSummary>
               {item?.sublinks &&
                 item?.sublinks?.map((eachItem, index) => (
-
                   <>
                     <Link
-                          style={{ width: '100%', height: '100%' }}
-                          href={`${eachItem?.link}`}
-                        ><div key={index}>
-                        <AccordionDetails key={index}
-                      sx={{
-                        pl: 6.5,
-                        pt: 1.5,
-                        pb: 1.5,
-                        mb: 0.7,
-                        boxShadow: 'none !important',
-                        alignItems: 'center',
-                        '&:hover': { backgroundColor: '#E6F5F4 !important' },
-                        borderRight: `${
-                          eachItem?.link == pathname
-                            ? '2px solid #068987 !important'
-                            : null
-                        }`,
-                        backgroundColor: `${
-                          eachItem?.link == pathname
-                            ? '#E6F5F4 !important'
-                            : null
-                        }`,
-                      }}
+                      style={{ width: '100%', height: '100%' }}
+                      href={`${eachItem?.link}`}
                     >
-                      <Typography sx={{ width: '100%', height: '100%' }}>
-                        
+                      <AccordionDetails
+                        key={index}
+                        sx={{
+                          pl: 6.5,
+                          pt: 1.5,
+                          pb: 1.5,
+                          mb: 0.7,
+                          boxShadow: 'none !important',
+                          alignItems: 'center',
+                          '&:hover': { backgroundColor: '#E6F5F4 !important' },
+                          borderRight: `${
+                            eachItem?.link == pathname
+                              ? '2px solid #068987 !important'
+                              : null
+                          }`,
+                          backgroundColor: `${
+                            eachItem?.link == pathname
+                              ? '#E6F5F4 !important'
+                              : null
+                          }`,
+                        }}
+                      >
+                        <Typography sx={{ width: '100%', height: '100%' }}>
                           {eachItem?.text}
-                      
-                      </Typography>
-                    </AccordionDetails>
-</div>
+                        </Typography>
+                      </AccordionDetails>{' '}
                     </Link>
                   </>
                 ))}
             </Accordion>
           </Box>
-        </div>
+        </>
       ))}
     </div>
   );
