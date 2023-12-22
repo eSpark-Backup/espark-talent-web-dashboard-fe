@@ -4,7 +4,7 @@ export const RESOURCE_DATA = {
   items: [
     {
       image: '/images/resources/earth-search.svg',
-      title: 'Resource',
+      title: 'eSpark Wiki',
       description:
         'Lorem ipsum dolor sit amet consectetur.Sodales consequat dignissim at erat.Neque ac id eros adipiscing vitae.',
       link: '#',

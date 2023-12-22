@@ -12,6 +12,7 @@ const DiscoverTalentPlatform = () => {
         background: '#E6F5F4',
         justifyContent: 'space-around',
         alignItems: 'center',
+        p:'50px',borderRadius: '5px',
         flexDirection: { xs: 'column', md: 'row' },
         width: '100%',
       }}
