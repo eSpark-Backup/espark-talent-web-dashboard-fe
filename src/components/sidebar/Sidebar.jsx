@@ -5,32 +5,34 @@ import { IconsAndLinks } from '@/src/constants/sidebar';
 import SidebarLogo from './sidebarLogo';
 import SidebarActiveUser from './SidebarActiveUser';
 
-const Sidebar = () => {
+const Sidebar = ({ userName }) => {
   return (
     <>
       <Box
         sx={{
           width: '280px',
-          // height: '100vh',
+          display: 'flex',
+          height: '100%',
+          flexDirection: 'column',
           backgroundColor: '#fff',
         }}
       >
         <Box
           sx={{
             borderBottom: '1px solid #E7E7E7',
-            position: 'relative',
-            top: 0,
             width: '100%',
             px: '12px',
           }}
         >
-          <SidebarActiveUser userName={'Mohammad Ali'} />
+          <SidebarActiveUser userName={userName} />
         </Box>
         <Box
           sx={{
-            position: 'relative',
             px: '12px',
             pt: '60px',
+            pb: '60px',
+            mb: '10px',
+            height: '100%',
           }}
         >
           <SidebarAccordion sidebarLinks={IconsAndLinks} />
@@ -39,8 +41,7 @@ const Sidebar = () => {
           sx={{
             width: '100%',
             backgroundColor: '#068987',
-            position: 'absolute',
-            bottom: 0,
+            alignSelf: 'flex-end',
           }}
         >
           <SidebarLogo />
