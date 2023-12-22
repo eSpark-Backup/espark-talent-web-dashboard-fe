@@ -27,7 +27,7 @@ const CompanyProfile = () => {
           {COMPANY_ONBOARDING.completeProfile}
         </Typography>
         <Image
-          src="/images/dashboard/tick.png"
+          src="/images/dashboard/tick.svg"
           width={24}
           height={24}
           alt="tick"

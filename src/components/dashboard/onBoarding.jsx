@@ -27,7 +27,7 @@ const OnBoarding = () => {
               boxShadow: '0px 0px 10px 0px rgba(0, 0, 0, 0.30)',
               display: 'flex',
               padding: '18px',
-              '@media (min-width: 900px) and (max-width: 1040px)': {
+              '@media (min-width: 900px) and (max-width: 1250px)': {
                 height: '250px',
               },
             }}
@@ -66,7 +66,7 @@ const OnBoarding = () => {
               background: '#fff',
               boxShadow: '0px 0px 10px 0px rgba(0, 0, 0, 0.30)',
               padding: '18px',
-              '@media (min-width: 900px) and (max-width: 1040px)': {
+              '@media (min-width: 900px) and (max-width: 1250px)': {
                 height: '250px',
               },
             }}
@@ -77,7 +77,7 @@ const OnBoarding = () => {
                 flexDirection: 'column',
                 justifyContent: 'flex-start',
                 padding: '20px',
-                width: '480px',
+                width: '90%',
                 gap: '15px',
               }}
             >
@@ -109,7 +109,7 @@ const OnBoarding = () => {
                 >
                   <Typography
                     sx={{
-                      fontSize: '14px',
+                      fontSize: { xs: '12px', md: '14px' },
                       fontWeight: 400,
                     }}
                   >
@@ -120,7 +120,7 @@ const OnBoarding = () => {
                   </Typography>
                   <Typography
                     sx={{
-                      fontSize: '14px',
+                      fontSize: { xs: '12px', md: '14px' },
                       fontWeight: 400,
                     }}
                   >
@@ -135,11 +135,12 @@ const OnBoarding = () => {
                     display: 'flex',
                     flexDirection: 'column',
                     gap: '15px',
+                    marginLeft: { xs: '8px', md: '0px' },
                   }}
                 >
                   <Typography
                     sx={{
-                      fontSize: '14px',
+                      fontSize: { xs: '12px', md: '14px' },
                       fontWeight: 400,
                     }}
                   >
@@ -150,7 +151,7 @@ const OnBoarding = () => {
                   </Typography>
                   <Typography
                     sx={{
-                      fontSize: '14px',
+                      fontSize: { xs: '12px', md: '14px' },
                       fontWeight: 400,
                     }}
                   >

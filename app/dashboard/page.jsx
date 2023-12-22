@@ -10,20 +10,23 @@ const Dashboard = () => {
   return (
     <>
       <Grid container>
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            paddingTop: '60px',
-            gap: '20px',
-            width: '100%',
-          }}
-        >
-          <DashboardHeading />
-          <DiscoverTalentPlatform />
-          <OnBoarding />
-        </Box>
+        <Grid item xs={12} sm={12} md={10}>
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              paddingTop: '60px',
+              gap: '20px',
+              width: '100%',
+              paddingLeft: '20px',
+            }}
+          >
+            <DashboardHeading />
+            <DiscoverTalentPlatform />
+            <OnBoarding />
+          </Box>
+        </Grid>
       </Grid>
     </>
   );
