@@ -1,4 +1,5 @@
 import React from 'react';
+import { redirect, useRouter } from 'next/navigation';
 
 import Typography from '@mui/material/Typography';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -25,10 +26,12 @@ const AuthForm = ({ uiData, fields }) => {
       [key]: val,
     });
   };
+  const router = useRouter();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData, 'formData');
-    // add submit functionality here
+    router.push('/dashboard');
   };
   return (
     <>
