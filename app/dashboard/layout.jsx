@@ -24,7 +24,6 @@ const InnerPagesLayout = ({ children }) => {
           <Box
             sx={{
               borderRight: '1px solid #E7E7E7',
-              // position: 'relative',
               background: ' #FFF',
               width: 'auto',
               height: 'auto',
@@ -57,7 +56,6 @@ const InnerPagesLayout = ({ children }) => {
                 py: { xs: '20px', sm: '20px', md: '20px', lg: '30px' },
               }}
             >
-              {children}
               {children}
             </Box>
           </Box>
