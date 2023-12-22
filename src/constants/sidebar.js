@@ -78,5 +78,3 @@ export const profileMenuData = [
   { icon: '/images/sidebar-icons/notification.svg', text: 'Notification' },
   { icon: '/images/sidebar-icons/signout.svg', text: 'Sign out' },
 ];
-
-export const ActiveUser = { userName: 'Arman Khan' };
