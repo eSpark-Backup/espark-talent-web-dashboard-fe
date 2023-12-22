@@ -11,7 +11,7 @@ const ReportBoxes = ({ data }) => {
           sx={{
             display: 'flex',
             flexWrap: 'wrap',
-            width: '70%',
+            width: { xs: '100%', md: '60%' },
             mx: 'auto',
           }}
         >
