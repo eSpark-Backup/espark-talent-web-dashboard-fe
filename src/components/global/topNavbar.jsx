@@ -8,13 +8,17 @@ const TopNavNavbar = () => {
     <Box
       sx={{
         background: '#029E9C;',
+        margin: 0,
         padding: '15px',
+        height: 'auto',
         width: '100%',
+        display: { xs: 'none', lg: 'flex', xl: 'flex' },
       }}
     >
       <Typography
         sx={{
           textAlign: 'center',
+          mx: 'auto',
           color: '#FFF',
 
           fontSize: '14px',
