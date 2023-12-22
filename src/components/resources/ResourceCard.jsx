@@ -15,6 +15,7 @@ const ResourceCard = ({ data }) => {
           alignItems: 'center',
           '@media (min-width: 900px) and (max-width: 1490px)': {
             width: '90%',
+            gap: '60px',
           },
         }}
       >
