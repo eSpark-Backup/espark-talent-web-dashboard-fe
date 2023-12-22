@@ -24,7 +24,7 @@ export default function ResponsiveNavbar({ userName }) {
               justifyContent: 'space-between',
             }}
           >
-            <SidebarToggle />
+            <SidebarToggle userName={userName} />
             <Box sx={{ display: 'flex' }}>
               <SidebarUserIcon />
               <SidebarUserAvatar userName={userName} />

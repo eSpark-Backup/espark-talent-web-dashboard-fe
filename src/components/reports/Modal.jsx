@@ -1,9 +1,10 @@
 import React from 'react';
-import { Box, Modal } from '@mui/material';
+import { Box, Button, Modal } from '@mui/material';
 
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { StaticDatePicker } from '@mui/x-date-pickers';
+import { REPORT_DATA } from '@/src/constants/report';
 
 const DatePickerModal = ({ open, handleClose }) => {
   return (
@@ -18,29 +19,48 @@ const DatePickerModal = ({ open, handleClose }) => {
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
+          flexDirection: 'column',
         }}
       >
-        <LocalizationProvider
-          dateAdapter={AdapterDayjs}
-          localeText={{ cancelButtonLabel: 'Close', okButtonLabel: 'Download' }}
+        <Box
+          sx={{
+            background: '#fff',
+            marginTop: '150px',
+          }}
         >
-          <StaticDatePicker
-            openTo="month"
-            // onChange={handleDateChange}
-            views={['year', 'month', 'day']}
-            // slots={{
-            //     actionBar: MyActionBar,
-
-            //           }}
-
-            slotProps={{
-              actionBar: {
-                actions: ['cancel', 'accept'],
-                style: { border: '1px solid #029894' },
-              },
-            }}
-          />
-        </LocalizationProvider>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <StaticDatePicker
+              openTo="month"
+              views={['year', 'month', 'day']}
+              slotProps={{
+                actionBar: {
+                  actions: [],
+                },
+              }}
+            />
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                gap: '10px',
+                paddingBottom: '15px',
+              }}
+            >
+              <Button
+                sx={{
+                  borderRadius: '5px',
+                  border: '1px solid #029894',
+                  background: '#FFF',
+                  width: '100px',
+                }}
+                onClick={handleClose}
+              >
+                {REPORT_DATA?.close}
+              </Button>
+              <Button variant="contained">{REPORT_DATA?.download}</Button>{' '}
+            </Box>
+          </LocalizationProvider>
+        </Box>
       </Box>
     </Modal>
   );

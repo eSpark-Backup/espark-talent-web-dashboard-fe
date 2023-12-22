@@ -20,8 +20,8 @@ const SidebarAccordion = ({ sidebarLinks }) => {
   return (
     <div>
       {sidebarLinks?.map((item, index) => (
-        <>
-          <Box key={index}>
+        <div key={index}>
+          <Box>
             <Accordion
               expanded={
                 item.sublinks == null ? null : expanded === `panel${index + 1}`
@@ -71,7 +71,7 @@ const SidebarAccordion = ({ sidebarLinks }) => {
               </AccordionSummary>
               {item?.sublinks &&
                 item?.sublinks?.map((eachItem, index) => (
-                  <>
+                  <div key={index}>
                     <AccordionDetails
                       key={index}
                       sx={{
@@ -103,11 +103,11 @@ const SidebarAccordion = ({ sidebarLinks }) => {
                         </Link>
                       </Typography>
                     </AccordionDetails>
-                  </>
+                  </div>
                 ))}
             </Accordion>
           </Box>
-        </>
+        </div>
       ))}
     </div>
   );

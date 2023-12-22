@@ -4,33 +4,33 @@ import TopNav from '@/src/components/global/topNavbar';
 import { Box } from '@mui/material';
 import Sidebar from '@/src/components/sidebar/Sidebar';
 import ResponsiveNavbar from '@/src/components/sidebar/ResponsiveNavbar';
+import { Active_User_Data } from '@/src/constants/data/userData';
 
 const InnerPagesLayout = ({ children }) => {
   return (
     <>
       <Box sx={{ flexGrow: 1, width: 'auto' }}>
-        <Box sx={{ width: '100%', height: { lg: '5.8vh', xl: '5.4vh' } }}>
+        <Box sx={{ width: '100%' }}>
           <TopNav />
-          <ResponsiveNavbar userName={'Mohammad Ali'} />
+          <ResponsiveNavbar userName={Active_User_Data?.userName} />
         </Box>
         <Box
           sx={{
             display: 'flex',
             width: '100%',
-            height: { lg: '94.2vh', xl: '94.6vh' },
+            height: { lg: '93.9vh' },
           }}
         >
           <Box
             sx={{
               borderRight: '1px solid #E7E7E7',
-              position: 'relative',
               background: ' #FFF',
               width: 'auto',
               height: 'auto',
               display: { xs: 'none', lg: 'flex', xl: 'flex' },
             }}
           >
-            <Sidebar />
+            <Sidebar userName={Active_User_Data?.userName} />
           </Box>
           <Box
             item
@@ -40,14 +40,12 @@ const InnerPagesLayout = ({ children }) => {
               padding: 0,
               width: '100%',
               height: 'auto',
-              position: 'relative',
             }}
           >
             <Box
               sx={{
                 width: '100%',
                 height: '100%',
-                position: 'relative',
                 overflowY: 'scroll',
                 px: {
                   xs: '15px',
