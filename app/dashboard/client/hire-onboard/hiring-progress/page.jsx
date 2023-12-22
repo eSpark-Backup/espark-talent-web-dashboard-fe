@@ -99,13 +99,15 @@ const Dashboard = () => {
                 ))}
               </Tabs>
             </Box>
-            <Input
-              setIsLoading={setIsLoading}
-              handleChange={setSearch}
-              value={search}
-              prefixIcon="SearchIcon.svg"
-              suffixIcon="QuestionMarkIcon.svg"
-            />
+            <Box my={4}>
+              <Input
+                setIsLoading={setIsLoading}
+                handleChange={setSearch}
+                value={search}
+                prefixIcon="SearchIcon.svg"
+                suffixIcon="QuestionMarkIcon.svg"
+              />
+            </Box>
             {empTabs?.map(({ column }, i) => (
               <CustomTabPanel value={value} key={i} index={i}>
                 {isLoading ? (

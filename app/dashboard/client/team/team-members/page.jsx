@@ -52,7 +52,7 @@ const Dashboard = () => {
 
   React.useEffect(() => {
     const data = filterTableRowsWRTTab(teamMembersData, {
-      memberStatus: currentTab,
+      memberStatus: currentTab === 'All' ? '' : currentTab,
     });
     const timeoutId = setTimeout(() => {
       filterDataByKeyword(data, search || '', setEmpData);
@@ -113,13 +113,15 @@ const Dashboard = () => {
                   ))}
                 </Tabs>
               </Box>
-              <Input
-                setIsLoading={setIsLoading}
-                handleChange={setSearch}
-                value={search}
-                prefixIcon="SearchIcon.svg"
-                suffixIcon="QuestionMarkIcon.svg"
-              />
+              <Box my={4}>
+                <Input
+                  setIsLoading={setIsLoading}
+                  handleChange={setSearch}
+                  value={search}
+                  prefixIcon="SearchIcon.svg"
+                  suffixIcon="QuestionMarkIcon.svg"
+                />
+              </Box>
               {teamTabs?.map(({ column }, i) => (
                 <CustomTabPanel value={value} key={i} index={i}>
                   {isLoading ? (

@@ -2,8 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { toCamelCase } from '@/src/utils/stringModification';
 import { Typography } from '@mui/material';
+import Image from 'next/image';
 
 const AppTable = ({ column, data }) => {
+  console.log({ data });
   return (
     <table className="table">
       <thead>
@@ -19,7 +21,93 @@ const AppTable = ({ column, data }) => {
             <React.Fragment key={rowIndex}>
               <tr className="app-table-row">
                 {column?.map((col, colIndex) => {
-                  return <td key={colIndex}>{row[toCamelCase(col)]}</td>;
+                  if (row?.actionStatus && col === 'Status') {
+                    if (row?.status === 'Pending')
+                      return (
+                        <td
+                          key={colIndex}
+                          style={{ display: 'flex', justifyContent: 'center' }}
+                        >
+                          <span
+                            style={{
+                              borderRadius: '30px',
+                              padding: '10px 0',
+                              display: 'block',
+                              width: '110px',
+                              background: '#F6E9D0',
+                              border: 'solid 1px #CB8822',
+                              color: '#CB8822',
+                            }}
+                          >
+                            {row[toCamelCase(col)]}
+                          </span>
+                        </td>
+                      );
+                    else if (row?.status === 'Completed')
+                      return (
+                        <td
+                          key={colIndex}
+                          style={{ display: 'flex', justifyContent: 'center' }}
+                        >
+                          <span
+                            style={{
+                              borderRadius: '30px',
+                              padding: '10px 0',
+                              display: 'block',
+                              width: '110px',
+                              background: '#E6F5F4',
+                              border: 'solid 1px #068987',
+                              color: '#068987',
+                            }}
+                          >
+                            {row[toCamelCase(col)]}
+                          </span>
+                        </td>
+                      );
+                    return (
+                      <td
+                        key={colIndex}
+                        style={{ display: 'flex', justifyContent: 'center' }}
+                      >
+                        <span
+                          style={{
+                            borderRadius: '30px',
+                            padding: '10px 0',
+                            display: 'block',
+                            width: '110px',
+                            background: '#FFD6D6',
+                            border: 'solid 1px #A72A45',
+                            color: '#A72A45',
+                          }}
+                        >
+                          {row[toCamelCase(col)]}
+                        </span>
+                      </td>
+                    );
+                  }
+                  return (
+                    <td
+                      key={colIndex}
+                      style={{ display: 'flex', justifyContent: 'center' }}
+                    >
+                      {col === 'Action' ? (
+                        <>
+                          {row[toCamelCase(col)]?.map((item, rowIndex) => (
+                            <Image
+                              key={rowIndex}
+                              style={{ margin: rowIndex === 1 && '0 5px' }}
+                              width={25}
+                              height={25}
+                              alt="Icon"
+                              src={`/icons/${item}.svg`}
+                            />
+                          ))}
+                        </>
+                      ) : (
+                        row[toCamelCase(col)]
+                      )}
+                    </td>
+                  );
                 })}
               </tr>
             </React.Fragment>

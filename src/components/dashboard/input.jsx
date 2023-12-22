@@ -9,14 +9,14 @@ const Input = ({
   handleChange,
   value,
   setIsLoading,
+  width,
 }) => {
   return (
     <Box
       display={'flex'}
       alignItems={'center'}
-      marginY={5}
       borderRadius={1}
-      width={400}
+      width={width || 400}
     >
       <Box
         display={'flex'}

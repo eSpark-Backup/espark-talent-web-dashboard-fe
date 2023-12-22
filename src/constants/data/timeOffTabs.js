@@ -1,59 +1,98 @@
 import { a11yProps } from '@/src/utils/tabs';
-import { teamMembersColumn, teamMembersData } from './teamMembers';
 
-export const requestsStatusTab = [
+export const leaveRequestsStatusTab = [
   {
     label: 'All',
     prop: a11yProps(0),
-    data: teamMembersData,
-    column: teamMembersColumn,
-    background:"#CDECF3",
-    color:'#006C9C'
+    background: '#CDECF3',
+    color: '#006C9C',
   },
   {
     label: 'Pending',
     prop: a11yProps(1),
-    data: teamMembersData,
-    column: teamMembersColumn,
-    background:"#F6E9D0",
-    color:'#CB8822'
+    background: '#F6E9D0',
+    color: '#CB8822',
   },
   {
     label: 'Completed',
     prop: a11yProps(2),
-    data: teamMembersData,
-    column: teamMembersColumn,
-    background:"#D6EDE4",
-    color:'#068987'
+    background: '#D6EDE4',
+    color: '#068987',
   },
   {
     label: 'Rejected',
     prop: a11yProps(3),
-    data: teamMembersData,
-    column: teamMembersColumn,
-    background:"#FFD6D6",
-    color:'#A72A45'
+    background: '#FFD6D6',
+    color: '#A72A45',
+  },
+];
+export const checkInOutRequestsStatusTab = [
+  {
+    label: 'All',
+    prop: a11yProps(0),
+    background: '#CDECF3',
+    color: '#006C9C',
+  },
+  {
+    label: 'Pending',
+    prop: a11yProps(1),
+    background: '#F6E9D0',
+    color: '#CB8822',
+  },
+  {
+    label: 'Completed',
+    prop: a11yProps(2),
+    background: '#D6EDE4',
+    color: '#068987',
+  },
+  {
+    label: 'Rejected',
+    prop: a11yProps(3),
+    background: '#FFD6D6',
+    color: '#A72A45',
+  },
+];
+export const requestsStatusTab = [
+  {
+    label: 'All',
+    prop: a11yProps(0),
+    background: '#CDECF3',
+    color: '#006C9C',
+  },
+  {
+    label: 'Pending',
+    prop: a11yProps(1),
+    background: '#F6E9D0',
+    color: '#CB8822',
+  },
+  {
+    label: 'Completed',
+    prop: a11yProps(2),
+    background: '#D6EDE4',
+    color: '#068987',
+  },
+  {
+    label: 'Rejected',
+    prop: a11yProps(3),
+    background: '#FFD6D6',
+    color: '#A72A45',
   },
 ];
 
-
-export const requestsTab = [
+export const leaveRequestsTab = [
   {
     label: 'Leave Requests',
     prop: a11yProps(0),
-    data: teamMembersData,
-    column: teamMembersColumn,
+    hasNestedTabs: true,
   },
   {
     label: 'Leave Balance',
     prop: a11yProps(1),
-    data: teamMembersData,
-    column: teamMembersColumn,
+    hasNestedTabs: false,
   },
   {
-    label: 'Clockin/out Requests',
+    label: 'Clockin/Out Requests',
     prop: a11yProps(2),
-    data: teamMembersData,
-    column: teamMembersColumn,
+    hasNestedTabs: true,
   },
 ];
