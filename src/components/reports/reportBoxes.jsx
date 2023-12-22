@@ -35,7 +35,6 @@ const ReportBoxes = ({ data }) => {
                 reportHeading={item.reportHeading}
                 downloadReports={item.downloadReports}
                 downloadBtn={item.downloadBtn}
-                // onDownloadClick={showReportDate}
               />
             </Grid>
           ))}
