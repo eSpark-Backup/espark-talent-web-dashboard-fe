@@ -11,15 +11,15 @@ const Sidebar = ({ userName }) => {
       <Box
         sx={{
           width: '280px',
-          // height: '100vh',
+          display: 'flex',
+          height: '100%',
+          flexDirection: 'column',
           backgroundColor: '#fff',
         }}
       >
         <Box
           sx={{
             borderBottom: '1px solid #E7E7E7',
-            position: 'relative',
-            top: 0,
             width: '100%',
             px: '12px',
           }}
@@ -28,9 +28,11 @@ const Sidebar = ({ userName }) => {
         </Box>
         <Box
           sx={{
-            position: 'relative',
             px: '12px',
             pt: '60px',
+            pb: '60px',
+            mb: '10px',
+            height: '100%',
           }}
         >
           <SidebarAccordion sidebarLinks={IconsAndLinks} />
@@ -39,8 +41,7 @@ const Sidebar = ({ userName }) => {
           sx={{
             width: '100%',
             backgroundColor: '#068987',
-            position: 'absolute',
-            bottom: 0,
+            alignSelf: 'flex-end',
           }}
         >
           <SidebarLogo />
