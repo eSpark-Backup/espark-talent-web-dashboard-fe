@@ -20,7 +20,10 @@ const DiscoverTalentPlatform = () => {
         sx={{
           maxWidth: '680px',
           padding: { xs: '10px', md: '0px' },
-          marginTop: { xs: '20px', md: '10px' },
+          marginRight: { xs: '0px', md: '125px' },
+          '@media (min-width: 900px) and (max-width: 1770px)': {
+            marginLeft: '30px',
+          },
         }}
       >
         <Typography
