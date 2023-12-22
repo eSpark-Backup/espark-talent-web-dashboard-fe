@@ -23,9 +23,12 @@ const Dashboard = () => {
             }}
           >
             <DashboardHeading />
-            <Grid item xs={9}><DiscoverTalentPlatform /></Grid>
-            <Grid item xs={9}><OnBoarding /></Grid>
-            
+            <Grid item xs={9}>
+              <DiscoverTalentPlatform />
+            </Grid>
+            <Grid item xs={9}>
+              <OnBoarding />
+            </Grid>
           </Box>
         </Grid>
       </Grid>
