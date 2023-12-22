@@ -1,19 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Box, Modal } from '@mui/material';
 
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { StaticDatePicker } from '@mui/x-date-pickers';
-import dayjs from 'dayjs';
-import MyActionBar from './actionBar';
 
 const DatePickerModal = ({ open, handleClose }) => {
-  const [selectedDate, setSelectedDate] = useState(dayjs('2022-04-17'));
-
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-  };
-
   return (
     <Modal
       open={open}
