@@ -20,7 +20,7 @@ export const REPORT_DATA = {
     },
     {
       id: 3,
-      image: '/images/report/invoice.svg',
+      image: '/images/report/invoice-report.svg',
       reportHeading: 'Invoice report',
       downloadReports: 'Generate and download all your invoice reports',
       downloadBtn: 'Download',

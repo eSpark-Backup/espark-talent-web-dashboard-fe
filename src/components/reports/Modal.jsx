@@ -6,6 +6,11 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { StaticDatePicker } from '@mui/x-date-pickers';
 
 const DatePickerModal = ({ open, handleClose }) => {
+  const handleOutsideClick = (event) => {
+    if (event.target === event.currentTarget) {
+      handleClose();
+    }
+  };
   return (
     <Modal
       open={open}
@@ -20,6 +25,7 @@ const DatePickerModal = ({ open, handleClose }) => {
           alignItems: 'center',
           flexDirection: 'column',
         }}
+        onClick={handleOutsideClick}
       >
         <Box
           sx={{
