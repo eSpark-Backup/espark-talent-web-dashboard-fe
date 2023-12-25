@@ -1,8 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { toCamelCase } from '@/src/utils/stringModification';
-import { Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import Image from 'next/image';
+import { trackingStatusTypes } from '@/src/constants/data/timeTracking';
+
+const renderAttendenceStatus = (statusType) => {
+  const status = trackingStatusTypes?.find(
+    ({ shortForm }) => shortForm === statusType
+  );
+  return (
+    <Box
+      sx={{
+        width: '30px',
+        height: '30px',
+        borderRadius: '50%',
+        background: status.background,
+        color: '#fff',
+      }}
+      mr={'10px'}
+      display={'flex'}
+      fontSize={'12px'}
+      justifyContent={'center'}
+      alignItems={'center'}
+    >
+      {statusType}
+    </Box>
+  );
+};
 
 const AppTable = ({ column, data }) => {
   console.log({ data });
@@ -104,7 +129,21 @@ const AppTable = ({ column, data }) => {
                           ))}
                         </>
                       ) : (
-                        row[toCamelCase(col)]
+                        <>
+                          {col === 'Attendence Status' ? (
+                            <>
+                              {row[toCamelCase(col)]?.map((item) =>
+                                renderAttendenceStatus(item)
+                              )}
+                            </>
+                          ) : (
+                            <>
+                              {row[toCamelCase(col)] === null
+                                ? '-'
+                                : row[toCamelCase(col)]}
+                            </>
+                          )}
+                        </>
                       )}
                     </td>
                   );
@@ -131,4 +170,4 @@ AppTable.propTypes = {
   suffixIcon: PropTypes.array,
 };
 
-export default AppTable;
+export default React.memo(AppTable);

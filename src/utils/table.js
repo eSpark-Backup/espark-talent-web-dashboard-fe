@@ -1,5 +1,4 @@
 export const filterTableRowsWRTTab = (data, filters) => {
-  // console.log({filters})
   if (!filters || Object.keys(filters).length === 0) {
     return data;
   } else {

@@ -105,7 +105,6 @@ const Dashboard = () => {
     };
   }, [searchLeaveRequest]);
   React.useEffect(() => {
-    console.log('sec use eff runn');
     const data = filterTableRowsWRTTab(checkInOutRequestData);
     const timeoutId = setTimeout(() => {
       filterDataByKeyword(
