@@ -10,7 +10,7 @@ const Dashboard = () => {
   return (
     <>
       <Grid container>
-        <Grid item xs={12} sm={12} md={10}>
+        <Grid item xs={12} sm={10} md={9}>
           <Box
             sx={{
               display: 'flex',
@@ -19,14 +19,14 @@ const Dashboard = () => {
               paddingTop: '60px',
               gap: '20px',
               width: '100%',
-              paddingLeft: '40px',
+              paddingLeft: { xs: '0px', md: '40px' },
             }}
           >
             <DashboardHeading />
-            <Grid item xs={9}>
+            <Grid item xs={12}>
               <DiscoverTalentPlatform />
             </Grid>
-            <Grid item xs={9}>
+            <Grid item xs={12}>
               <OnBoarding />
             </Grid>
           </Box>
