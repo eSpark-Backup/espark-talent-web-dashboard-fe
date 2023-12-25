@@ -30,7 +30,6 @@ const renderAttendenceStatus = (statusType) => {
 };
 
 const AppTable = ({ column, data }) => {
-  console.log({ data });
   return (
     <table className="table">
       <thead>
@@ -135,6 +134,22 @@ const AppTable = ({ column, data }) => {
                               {row[toCamelCase(col)]?.map((item) =>
                                 renderAttendenceStatus(item)
                               )}
+                            </>
+                          ) : col === 'Payment status' ? (
+                            <>
+                              <span
+                                style={{
+                                  borderRadius: '30px',
+                                  padding: '10px 0',
+                                  display: 'block',
+                                  width: '110px',
+                                  background: '#E6F5F4',
+                                  border: 'solid 1px #068987',
+                                  color: '#068987',
+                                }}
+                              >
+                                {row[toCamelCase(col)]}
+                              </span>
                             </>
                           ) : (
                             <>

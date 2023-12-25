@@ -199,7 +199,6 @@ AppSearchableDropdown.propTypes = {
   setIsLoadingList: PropTypes.func.isRequired,
   setSelectedItem: PropTypes.func.isRequired,
   data: PropTypes.array.isRequired,
-
 };
 
 export default AppSearchableDropdown;

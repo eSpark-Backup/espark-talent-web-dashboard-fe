@@ -9,8 +9,9 @@ export const changeTab = ({
   filterTableRowsWRTTab,
   teamMembersData,
   tabs,
+  filterBy,
 }) => {
-  setSearch('');
+  setSearch?.('');
 
   let tab = event?.target?.innerText.split(' ');
   if (tab.length > 1) {
@@ -18,7 +19,6 @@ export const changeTab = ({
   } else {
     tab = tab.join(' ');
   }
-  console.log({ tab, ev: event?.target?.innerText, evTar: event?.target });
   setCurrentTab(tab);
 
   setValue(newValue);
@@ -26,8 +26,10 @@ export const changeTab = ({
   if (isSingular) {
     setData(tabs[newValue].data);
   } else {
-    const memberStatus = tab === 'All' ? '' : tab;
-    setData(filterTableRowsWRTTab(teamMembersData, { memberStatus }));
+    const filterByVal = tab === 'All' ? '' : tab;
+    setData(
+      filterTableRowsWRTTab(teamMembersData, { [filterBy]: filterByVal })
+    );
   }
 };
 
@@ -47,7 +49,7 @@ export const changeActionStatusTab = ({
   teamMembersData,
   tabs,
 }) => {
-  setSearch('');
+  setSearch?.('');
 
   const tab = extractedStatus(event?.target?.innerText);
   setCurrentTab(tab);
@@ -57,8 +59,8 @@ export const changeActionStatusTab = ({
   if (isSingular) {
     setData(tabs[newValue].data);
   } else {
-    const memberStatus = tab === 'All' ? '' : tab;
-    setData(filterTableRowsWRTTab(teamMembersData, { memberStatus }));
+    const filterByVal = tab === 'All' ? '' : tab;
+    setData(filterTableRowsWRTTab(teamMembersData, { filterByVal }));
   }
 };
 

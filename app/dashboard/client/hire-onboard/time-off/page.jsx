@@ -58,7 +58,6 @@ const Dashboard = () => {
     } else if (!isNaN(+tab)) {
       tab = data[newValue]?.label;
     }
-    console.log({ newValue, tab });
     setcurrentReqStatusTab(tab);
     setcurrentReqStatusTabVal(newValue);
   };
@@ -90,7 +89,6 @@ const Dashboard = () => {
     };
   }, [search]);
   React.useEffect(() => {
-    console.log('sec use eff runn');
     const data = filterTableRowsWRTTab(leaveRequestsData);
     const timeoutId = setTimeout(() => {
       filterDataByKeyword(

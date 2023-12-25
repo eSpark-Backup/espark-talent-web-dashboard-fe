@@ -47,6 +47,7 @@ const Dashboard = () => {
       setData: setEmpData,
       filterTableRowsWRTTab,
       teamMembersData,
+      filterBy: 'memberStatus',
     });
   };
 

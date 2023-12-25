@@ -19,7 +19,6 @@
 // };
 
 export const filterDataByKeyword = (data, keyword, setData) => {
-  console.log({ keyword, data });
   if (!data || data.length === 0) {
     setData([]);
     return [];
