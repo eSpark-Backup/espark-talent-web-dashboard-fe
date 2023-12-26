@@ -1,5 +1,5 @@
 export const RESOURCE_DATA = {
-  title: 'Resource',
+  title: 'Resources',
   description: 'Discover assets for your global employment needs',
   items: [
     {
