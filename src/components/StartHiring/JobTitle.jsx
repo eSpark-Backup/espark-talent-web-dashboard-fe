@@ -11,6 +11,7 @@ import {
 
 import { HIRING_FORM_DATA, JOBTITLE } from '@/src/constants/Hiring';
 import RoleType from './RoleType';
+import Image from 'next/image';
 
 const JobTitle = ({ open, SelectOpen, SelectClose }) => {
   return (
@@ -34,14 +35,14 @@ const JobTitle = ({ open, SelectOpen, SelectClose }) => {
           gap: '12px',
         }}
       >
-        <Typography>{HIRING_FORM_DATA.jobTitle}</Typography>
+        <Typography>{HIRING_FORM_DATA?.jobTitle}</Typography>
 
         <FormControl>
           <InputLabel sx={{ color: '#888888' }}>
-            {HIRING_FORM_DATA.selectRole}
+            {HIRING_FORM_DATA?.selectRole}
           </InputLabel>
           <Select
-            label={HIRING_FORM_DATA.selectJob}
+            label={HIRING_FORM_DATA?.selectJob}
             sx={{
               height: '50px',
               width: { xs: '100%', md: '300px' },
@@ -56,18 +57,28 @@ const JobTitle = ({ open, SelectOpen, SelectClose }) => {
                 }}
               >
                 {open ? (
-                  <img src="/images/hiring/icon-down.svg" alt="ArrowDown" />
+                  <Image
+                    src="/images/hiring/icon-down.svg"
+                    width={20}
+                    height={20}
+                    alt="ArrowDown"
+                  />
                 ) : (
-                  <img src="/images/hiring/rightarrow.png" alt="ArrowRight" />
+                  <Image
+                    src="/images/hiring/rightarrow.png"
+                    width={20}
+                    height={20}
+                    alt="ArrowRight"
+                  />
                 )}
               </InputAdornment>
             )}
             onOpen={SelectOpen}
             onClose={SelectClose}
           >
-            {JOBTITLE.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
+            {JOBTITLE?.map((option) => (
+              <MenuItem key={option?.value} value={option?.value}>
+                {option?.label}
               </MenuItem>
             ))}
           </Select>

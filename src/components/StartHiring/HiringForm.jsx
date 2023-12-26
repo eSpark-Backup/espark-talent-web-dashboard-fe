@@ -40,7 +40,7 @@ const HiringForm = () => {
           }}
         >
           <Typography variant="h2" sx={{ textAlign: 'center' }}>
-            {HIRING_FORM_DATA.hire}
+            {HIRING_FORM_DATA?.hire}
           </Typography>
           <Box
             sx={{

@@ -28,7 +28,7 @@ const Submit = () => {
             },
           }}
         >
-          {HIRING_FORM_DATA.submit}
+          {HIRING_FORM_DATA?.submit}
         </Button>
       </Box>
     </>
