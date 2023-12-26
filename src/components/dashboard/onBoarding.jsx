@@ -111,21 +111,29 @@ const OnBoarding = () => {
                     sx={{
                       fontSize: { xs: '12px', md: '14px' },
                       fontWeight: 400,
+                      color: '#595959',
                     }}
                   >
                     {HIRING_STATUS.activeEmployee}:
-                    <span style={{ fontSize: '14px' }}>
+                    <span
+                      style={{
+                        fontSize: '14px',
+                        fontWeight: 400,
+                        color: '#595959',
+                      }}
+                    >
                       {ACTIVE_CLIENT?.hiringStatus.activeEmployees}
                     </span>
                   </Typography>
                   <Typography
                     sx={{
                       fontSize: { xs: '12px', md: '14px' },
+                      color: '#595959',
                       fontWeight: 400,
                     }}
                   >
                     {HIRING_STATUS.onBoard}:
-                    <span style={{ fontSize: '14px' }}>
+                    <span style={{ fontSize: '14px', fontWeight: 400 }}>
                       {ACTIVE_CLIENT?.hiringStatus.onBoarded}
                     </span>
                   </Typography>
@@ -142,10 +150,17 @@ const OnBoarding = () => {
                     sx={{
                       fontSize: { xs: '12px', md: '14px' },
                       fontWeight: 400,
+                      color: '#595959',
                     }}
                   >
                     {HIRING_STATUS.interviewSchedule}:
-                    <span style={{ fontSize: '14px' }}>
+                    <span
+                      style={{
+                        fontSize: '14px',
+                        fontWeight: 400,
+                        color: '#595959',
+                      }}
+                    >
                       {ACTIVE_CLIENT?.hiringStatus.onBoarded}
                     </span>
                   </Typography>
@@ -153,10 +168,17 @@ const OnBoarding = () => {
                     sx={{
                       fontSize: { xs: '12px', md: '14px' },
                       fontWeight: 400,
+                      color: '#595959',
                     }}
                   >
                     {HIRING_STATUS.hiringReuqest}:
-                    <span style={{ fontSize: '14px' }}>
+                    <span
+                      style={{
+                        fontSize: '14px',
+                        fontWeight: 400,
+                        color: '#595959',
+                      }}
+                    >
                       {ACTIVE_CLIENT?.hiringStatus.hiringReuqests}
                     </span>
                   </Typography>
