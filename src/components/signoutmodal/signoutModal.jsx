@@ -4,7 +4,7 @@ import { Box, Button, Modal, Typography } from '@mui/material';
 import { SIGNOUT_MODAL_DATA } from '@/src/constants/signoutModal';
 
 const SignoutModal = () => {
-  const [open, setOpen] =useState(false);
+  const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   return (
