@@ -1,3 +1,4 @@
+export const SIDE_NAV_WIDTH = 280;
 export const IconsAndLinks = [
   {
     icon: '/images/sidebar-icons/dashboard.svg',

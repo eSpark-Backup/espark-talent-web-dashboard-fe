@@ -1,11 +1,10 @@
 import { Box, useMediaQuery } from '@mui/material';
 import { alpha } from '@mui/material/styles';
+
 import ResponsiveNavbar from './ResponsiveNavbar';
 import TopNavNavbar from '../global/topNavbar';
 import { Active_User_Data } from '@/src/constants/data/userData';
-
-const SIDE_NAV_WIDTH = 280;
-// const TOP_NAV_HEIGHT = 64;
+import { SIDE_NAV_WIDTH } from '@/src/constants/sidebar';
 
 export const TopNav = (props) => {
   const { onNavOpen } = props;
