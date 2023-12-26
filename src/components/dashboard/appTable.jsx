@@ -4,6 +4,32 @@ import { toCamelCase } from '@/src/utils/stringModification';
 import { Box, Pagination, Stack, Typography } from '@mui/material';
 import Image from 'next/image';
 import AppCustomDropdown from './appCustomDropdown';
+import { trackingStatusTypes } from '@/src/constants/data/timeTracking';
+
+const renderAttendenceStatus = (statusType, index) => {
+  const status = trackingStatusTypes?.find(
+    ({ shortForm }) => shortForm === statusType
+  );
+  return (
+    <Box
+      key={index}
+      sx={{
+        width: '30px',
+        height: '30px',
+        borderRadius: '50%',
+        background: status.background,
+        color: '#fff',
+      }}
+      mr={'10px'}
+      display={'flex'}
+      fontSize={'12px'}
+      justifyContent={'center'}
+      alignItems={'center'}
+    >
+      {statusType}
+    </Box>
+  );
+};
 
 const AppTable = ({ column, data, renderMessage }) => {
   return (
@@ -141,7 +167,7 @@ const AppTable = ({ column, data, renderMessage }) => {
                     } else if (row?.dropdownStatus) {
                       if (col === 'Payment status') {
                         return (
-                          <>
+                          <React.Fragment key={colIndex}>
                             <AppCustomDropdown
                               col={col}
                               colIndex={colIndex}
@@ -152,75 +178,52 @@ const AppTable = ({ column, data, renderMessage }) => {
                                 { label: 'Paid', disabled: true },
                               ]}
                             />
-                          </>
+                          </React.Fragment>
                         );
                       } else if (col === 'Status')
                         return (
-                          <>
+                          <React.Fragment key={colIndex}>
                             <AppCustomDropdown
                               col={col}
                               colIndex={colIndex}
                               row={row}
                             />
-                          </>
+                          </React.Fragment>
                         );
                     }
                     return (
-                      <td
-                        key={colIndex}
-                        style={{ display: 'flex', justifyContent: 'center' }}
-                      >
-                        {col === 'Action' ? (
-                          <>
-                            {row[toCamelCase(col)]?.map((item, rowIndex) => (
-                              <Image
-                                key={rowIndex}
-                                style={{ margin: rowIndex === 1 && '0 5px' }}
-                                width={25}
-                                height={25}
-                                alt="Icon"
-                                src={`/icons/${item}.svg`}
-                              />
-                            ))}
-                          </>
-                        ) : (
-                          <>
-                            {row[toCamelCase(col)] === null
-                              ? '-'
-                              : row[toCamelCase(col)]}
-
-                            {/* {col === 'Attendence Status' ? (
-                              <>
-                                {row[toCamelCase(col)]?.map((item) =>
-                                  renderAttendenceStatus(item)
-                                )}
-                              </>
-                            ) : col === 'Payment status' ? (
-                              <>
-                                <span
-                                  style={{
-                                    borderRadius: '30px',
-                                    padding: '10px 0',
-                                    display: 'block',
-                                    width: '110px',
-                                    background: '#E6F5F4',
-                                    border: 'solid 1px #068987',
-                                    color: '#068987',
-                                  }}
-                                >
-                                  {row[toCamelCase(col)]}
-                                </span>
-                              </>
-                            ) : (
-                              <>
-                                {row[toCamelCase(col)] === null
-                                  ? '-'
-                                  : row[toCamelCase(col)]}
-                              </>
-                            )} */}
-                          </>
-                        )}
-                      </td>
+                      <React.Fragment key={colIndex}>
+                        <td
+                          style={{ display: 'flex', justifyContent: 'center' }}
+                        >
+                          {col === 'Action' ? (
+                            <>
+                              {row[toCamelCase(col)]?.map((item, rowIndex) => (
+                                <Image
+                                  key={rowIndex}
+                                  style={{ margin: rowIndex === 1 && '0 5px' }}
+                                  width={25}
+                                  height={25}
+                                  alt="Icon"
+                                  src={`/icons/${item}.svg`}
+                                />
+                              ))}
+                            </>
+                          ) : col === 'Attendence Status' ? (
+                            <>
+                              {row[toCamelCase(col)]?.map((item, index) =>
+                                renderAttendenceStatus(item, index)
+                              )}
+                            </>
+                          ) : (
+                            <>
+                              {row[toCamelCase(col)] === null
+                                ? '-'
+                                : row[toCamelCase(col)]}
+                            </>
+                          )}
+                        </td>
+                      </React.Fragment>
                     );
                   })}
                 </tr>

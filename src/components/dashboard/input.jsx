@@ -11,7 +11,16 @@ const Input = ({
   setIsLoading,
   width,
   onKeyDown,
+  autofocus,
 }) => {
+  const inputRef = React.useRef(null);
+
+  React.useEffect(() => {
+    if (autofocus) {
+      inputRef.current.focus();
+    }
+  }, [autofocus]);
+
   return (
     <Box
       display={'flex'}
@@ -38,6 +47,7 @@ const Input = ({
           </Box>
         )}
         <input
+          ref={inputRef}
           value={value}
           onChange={(e) => {
             setIsLoading(true);
@@ -47,6 +57,7 @@ const Input = ({
           placeholder="Search here..."
           style={{ overflow: 'hidden', width: '100%' }}
           onKeyDown={onKeyDown}
+          autoFocus={autofocus} // eslint-disable-line jsx-a11y/no-autofocus
         />
       </Box>
       {!!suffixIcon && (

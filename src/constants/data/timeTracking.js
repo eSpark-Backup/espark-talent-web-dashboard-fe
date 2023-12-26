@@ -75,6 +75,7 @@ export const timeTrackingTableData = [
     hoursWorked: '10h 30m',
     overtime: '01h 30m',
     attendenceStatus: ['P'],
+    attendenceShortHand: true,
   },
   {
     date: '2-November-2023',
@@ -84,6 +85,7 @@ export const timeTrackingTableData = [
     hoursWorked: '08h 30m',
     overtime: null,
     attendenceStatus: ['P', 'S'],
+    attendenceShortHand: true,
   },
   {
     date: '3-November-2023',
@@ -93,6 +95,7 @@ export const timeTrackingTableData = [
     hoursWorked: null,
     overtime: null,
     attendenceStatus: ['A'],
+    attendenceShortHand: true,
   },
   {
     date: '4-November-2023',
@@ -102,6 +105,7 @@ export const timeTrackingTableData = [
     hoursWorked: null,
     overtime: null,
     attendenceStatus: ['D'],
+    attendenceShortHand: true,
   },
   {
     date: '5-November-2023',
@@ -111,6 +115,7 @@ export const timeTrackingTableData = [
     hoursWorked: null,
     overtime: null,
     attendenceStatus: ['D'],
+    attendenceShortHand: true,
   },
   {
     date: '6-November-2023',
@@ -120,6 +125,7 @@ export const timeTrackingTableData = [
     hoursWorked: '08h 30m',
     overtime: null,
     attendenceStatus: ['P', 'S'],
+    attendenceShortHand: true,
   },
   {
     date: '7-November-2023',
@@ -129,6 +135,7 @@ export const timeTrackingTableData = [
     hoursWorked: null,
     overtime: null,
     attendenceStatus: ['A'],
+    attendenceShortHand: true,
   },
   {
     date: '8-November-2023',
@@ -138,6 +145,7 @@ export const timeTrackingTableData = [
     hoursWorked: '10h 30m',
     overtime: '01h 30m',
     attendenceStatus: ['P'],
+    attendenceShortHand: true,
   },
   {
     date: '9-November-2023',
@@ -147,6 +155,7 @@ export const timeTrackingTableData = [
     hoursWorked: '08h 30m',
     overtime: null,
     attendenceStatus: ['P', 'S'],
+    attendenceShortHand: true,
   },
   {
     date: '10-November-2023',
@@ -156,6 +165,7 @@ export const timeTrackingTableData = [
     hoursWorked: '10h 30m',
     overtime: '01h 30m',
     attendenceStatus: ['P'],
+    attendenceShortHand: true,
   },
   {
     date: '11-November-2023',
@@ -165,5 +175,6 @@ export const timeTrackingTableData = [
     hoursWorked: '10h 30m',
     overtime: '01h 30m',
     attendenceStatus: ['P'],
+    attendenceShortHand: true,
   },
 ];
