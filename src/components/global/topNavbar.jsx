@@ -1,6 +1,5 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
-
 import { DASHBOARD_HEADER } from '@/src/constants/dashboard';
 
 const TopNavNavbar = () => {
@@ -9,7 +8,7 @@ const TopNavNavbar = () => {
       sx={{
         background: '#029E9C;',
         margin: 0,
-        padding: '15px',
+        padding: '22px',
         height: 'auto',
         width: '100%',
         display: { xs: 'none', lg: 'flex', xl: 'flex' },

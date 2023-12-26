@@ -1,5 +1,6 @@
-import { Box } from '@mui/material';
 import React from 'react';
+import { Box } from '@mui/material';
+
 import SidebarAccordion from './SidebarAccordion';
 import { IconsAndLinks } from '@/src/constants/sidebar';
 import SidebarLogo from './sidebarLogo';
@@ -12,7 +13,7 @@ const Sidebar = ({ userName }) => {
         sx={{
           width: '280px',
           display: 'flex',
-          height: '100%',
+          height: '100vh',
           flexDirection: 'column',
           backgroundColor: '#fff',
         }}
@@ -28,23 +29,31 @@ const Sidebar = ({ userName }) => {
         </Box>
         <Box
           sx={{
-            px: '12px',
-            pt: '60px',
-            pb: '60px',
-            mb: '10px',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
             height: '100%',
           }}
         >
-          <SidebarAccordion sidebarLinks={IconsAndLinks} />
-        </Box>
-        <Box
-          sx={{
-            width: '100%',
-            backgroundColor: '#068987',
-            alignSelf: 'flex-end',
-          }}
-        >
-          <SidebarLogo />
+          <Box
+            sx={{
+              px: '12px',
+              pt: '60px',
+              pb: '60px',
+              mb: '10px',
+            }}
+          >
+            <SidebarAccordion sidebarLinks={IconsAndLinks} />
+          </Box>
+          <Box
+            sx={{
+              width: '100%',
+              backgroundColor: '#068987',
+              alignSelf: 'flex-end',
+            }}
+          >
+            <SidebarLogo />
+          </Box>
         </Box>
       </Box>
     </>

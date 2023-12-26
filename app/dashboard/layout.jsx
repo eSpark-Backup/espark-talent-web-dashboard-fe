@@ -1,67 +1,72 @@
 'use client';
-import React from 'react';
-import TopNav from '@/src/components/global/topNavbar';
 import { Box } from '@mui/material';
-import Sidebar from '@/src/components/sidebar/Sidebar';
-import ResponsiveNavbar from '@/src/components/sidebar/ResponsiveNavbar';
-import { Active_User_Data } from '@/src/constants/data/userData';
+import { useCallback, useEffect, useState } from 'react';
+import { usePathname } from 'next/navigation';
+import { styled } from '@mui/material/styles';
 
-const InnerPagesLayout = ({ children }) => {
+import { SideNav } from '@/src/components/sidebar/SideNavLayout';
+import { TopNav } from '@/src/components/sidebar/TopNavLayout';
+import { SIDE_NAV_WIDTH } from '@/src/constants/sidebar';
+
+const LayoutRoot = styled('div')(({ theme }) => ({
+  display: 'flex',
+  flex: '1 1 auto',
+  maxWidth: '100%',
+  [theme.breakpoints.up('lg')]: {
+    paddingLeft: SIDE_NAV_WIDTH,
+  },
+}));
+
+const LayoutContainer = styled('div')({
+  display: 'flex',
+  flex: '1 1 auto',
+  flexDirection: 'column',
+  width: '100%',
+});
+
+const Layout = ({ children }) => {
+  const pathname = usePathname();
+  const [openNav, setOpenNav] = useState(true);
+  const [child, setChild] = useState(false);
+
+  const handlePathnameChange = useCallback(() => {
+    if (openNav) {
+      setOpenNav(false);
+    }
+  }, [openNav]);
+
+  useEffect(() => {
+    handlePathnameChange();
+  }, [pathname]);
+
+  useEffect(() => {
+    setChild(!child);
+  }, []);
+
   return (
     <>
-      <Box sx={{ flexGrow: 1, width: 'auto' }}>
-        <Box sx={{ width: '100%' }}>
-          <TopNav />
-          <ResponsiveNavbar userName={Active_User_Data?.userName} />
-        </Box>
-        <Box
-          sx={{
-            display: 'flex',
-            width: '100%',
-            height: { lg: '93.9vh' },
-          }}
-        >
+      <TopNav onNavOpen={() => setOpenNav(true)} />
+      <SideNav onClose={() => setOpenNav(false)} open={openNav} />
+      <LayoutRoot>
+        <LayoutContainer>
           <Box
             sx={{
-              borderRight: '1px solid #E7E7E7',
-              background: ' #FFF',
-              width: 'auto',
-              height: 'auto',
-              display: { xs: 'none', lg: 'flex', xl: 'flex' },
+              px: {
+                xs: '15px',
+                sm: '20px',
+                md: '20px',
+                lg: '30px',
+              },
+              pt: { xs: '80px', sm: '90px', md: '90px', lg: '30px' },
+              pb: { xs: '20px', sm: '20px', md: '20px', lg: '30px' },
             }}
           >
-            <Sidebar userName={Active_User_Data?.userName} />
+            {child && children}
           </Box>
-          <Box
-            item
-            xs={5}
-            sx={{
-              margin: 0,
-              padding: 0,
-              width: '100%',
-              height: 'auto',
-            }}
-          >
-            <Box
-              sx={{
-                width: '100%',
-                height: '100%',
-                overflowY: 'scroll',
-                px: {
-                  xs: '15px',
-                  sm: '20px',
-                  md: '20px',
-                  lg: '30px',
-                },
-                py: { xs: '20px', sm: '20px', md: '20px', lg: '30px' },
-              }}
-            >
-              {children}
-            </Box>
-          </Box>
-        </Box>
-      </Box>
+        </LayoutContainer>
+      </LayoutRoot>
     </>
   );
 };
-export default InnerPagesLayout;
+
+export default Layout;

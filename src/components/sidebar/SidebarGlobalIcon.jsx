@@ -1,8 +1,7 @@
-import { Box } from '@mui/material';
-import Image from 'next/image';
 import React from 'react';
+import { Box } from '@mui/material';
 
-const SidebarUserIcon = () => {
+const SidebarGlobalIcon = () => {
   return (
     <>
       <Box
@@ -15,13 +14,11 @@ const SidebarUserIcon = () => {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          // padding: 5
         }}
       >
-        <Image
+        <img
           src={'/images/sidebar-icons/internet-logo.svg'}
-          width={25}
-          height={25}
+          style={{ width: '25px', height: '25px' }}
           alt="internet-logo"
         />
       </Box>
@@ -29,4 +26,4 @@ const SidebarUserIcon = () => {
   );
 };
 
-export default SidebarUserIcon;
+export default SidebarGlobalIcon;

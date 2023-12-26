@@ -6,7 +6,6 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import Image from 'next/image';
 import Link from 'next/link';
 import { Box } from '@mui/material';
 import { usePathname } from 'next/navigation';
@@ -14,14 +13,14 @@ import { usePathname } from 'next/navigation';
 const SidebarAccordion = ({ sidebarLinks }) => {
   const pathname = usePathname();
   const [expanded, setExpanded] = React.useState(false);
-  const handleChange = (panel) => (event, isExpanded) => {
+  const handleChange = (panel) => (_event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
   return (
     <div>
       {sidebarLinks?.map((item, index) => (
-        <>
-          <Box key={index}>
+        <div key={index}>
+          <Box>
             <Accordion
               expanded={
                 item.sublinks == null ? null : expanded === `panel${index + 1}`
@@ -44,7 +43,8 @@ const SidebarAccordion = ({ sidebarLinks }) => {
                 sx={{
                   mx: 'auto',
                   p: 1.4,
-                  mb: 0.7,
+                  mb: 0,
+                  minHeight: '57px',
                   gap: 2,
                   width: '95%',
                   height: '43px',
@@ -58,7 +58,11 @@ const SidebarAccordion = ({ sidebarLinks }) => {
                 }}
               >
                 {item?.icon && (
-                  <Image src={item?.icon} alt="icon" width={20} height={20} />
+                  <img
+                    style={{ width: '20px', height: '20px' }}
+                    src={item?.icon}
+                    alt="icon"
+                  />
                 )}
                 <Typography sx={{ width: '100%', height: '100%', ml: 2 }}>
                   <Link
@@ -71,43 +75,43 @@ const SidebarAccordion = ({ sidebarLinks }) => {
               </AccordionSummary>
               {item?.sublinks &&
                 item?.sublinks?.map((eachItem, index) => (
-                  <>
-                    <Link
-                      style={{ width: '100%', height: '100%' }}
-                      href={`${eachItem?.link}`}
+                  <div key={index}>
+                    <AccordionDetails
+                      key={index}
+                      sx={{
+                        pl: 6.5,
+                        pt: 1.5,
+                        pb: 1.5,
+                        mb: 0.7,
+                        boxShadow: 'none !important',
+                        alignItems: 'center',
+                        '&:hover': { backgroundColor: '#E6F5F4 !important' },
+                        borderRight: `${
+                          eachItem?.link == pathname
+                            ? '2px solid #068987 !important'
+                            : null
+                        }`,
+                        backgroundColor: `${
+                          eachItem?.link == pathname
+                            ? '#E6F5F4 !important'
+                            : null
+                        }`,
+                      }}
                     >
-                      <AccordionDetails
-                        key={index}
-                        sx={{
-                          pl: 6.5,
-                          pt: 1.5,
-                          pb: 1.5,
-                          mb: 0.7,
-                          boxShadow: 'none !important',
-                          alignItems: 'center',
-                          '&:hover': { backgroundColor: '#E6F5F4 !important' },
-                          borderRight: `${
-                            eachItem?.link == pathname
-                              ? '2px solid #068987 !important'
-                              : null
-                          }`,
-                          backgroundColor: `${
-                            eachItem?.link == pathname
-                              ? '#E6F5F4 !important'
-                              : null
-                          }`,
-                        }}
-                      >
-                        <Typography sx={{ width: '100%', height: '100%' }}>
+                      <Typography sx={{ width: '100%', height: '100%' }}>
+                        <Link
+                          style={{ width: '100%', height: '100%' }}
+                          href={`${eachItem?.link}`}
+                        >
                           {eachItem?.text}
-                        </Typography>
-                      </AccordionDetails>{' '}
-                    </Link>
-                  </>
+                        </Link>
+                      </Typography>
+                    </AccordionDetails>
+                  </div>
                 ))}
             </Accordion>
           </Box>
-        </>
+        </div>
       ))}
     </div>
   );
