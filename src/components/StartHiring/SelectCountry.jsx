@@ -11,6 +11,7 @@ import { HIRING_FORM_DATA } from '@/src/constants/Hiring';
 import { COUNTRY_OPTIONS } from '@/src/constants/countryCode';
 import SalaryRange from './SalaryRangle';
 import Image from 'next/image';
+import FlagIcon from '@/src/constants/Flag';
 
 const CountryDropdown = ({ open, SelectOpen, SelectClose }) => {
   return (
@@ -69,7 +70,8 @@ const CountryDropdown = ({ open, SelectOpen, SelectClose }) => {
             onClose={SelectClose}
           >
             {COUNTRY_OPTIONS?.map((option) => (
-              <MenuItem key={option?.value} value={option?.value}>
+              <MenuItem key={option?.value} value={option?.label}>
+                <FlagIcon countryCode={option?.value} />
                 {option?.label}
               </MenuItem>
             ))}
