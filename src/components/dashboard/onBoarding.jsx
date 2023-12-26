@@ -27,7 +27,7 @@ const OnBoarding = () => {
               boxShadow: '0px 0px 10px 0px rgba(0, 0, 0, 0.30)',
               display: 'flex',
               padding: '18px',
-              '@media (min-width: 900px) and (max-width: 1250px)': {
+              '@media (min-width: 900px) and (max-width: 1350px)': {
                 height: '250px',
               },
             }}
@@ -66,7 +66,7 @@ const OnBoarding = () => {
               background: '#fff',
               boxShadow: '0px 0px 10px 0px rgba(0, 0, 0, 0.30)',
               padding: '18px',
-              '@media (min-width: 900px) and (max-width: 1250px)': {
+              '@media (min-width: 900px) and (max-width: 1350px)': {
                 height: '250px',
               },
             }}

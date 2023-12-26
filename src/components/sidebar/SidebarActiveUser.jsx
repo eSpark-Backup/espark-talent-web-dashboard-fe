@@ -1,9 +1,11 @@
 import React from 'react';
-import SidebarUserIcon from './SidebarUserIcon';
+
+import { Box, Typography } from '@mui/material';
+
 import SidebarUserAvatar from './SidebarUserAvatar';
 import SidebarProfileMenu from './sidebarProfileMenu';
+import SidebarGlobalIcon from './SidebarGlobalIcon';
 import { profileMenuData } from '@/src/constants/sidebar';
-import { Box, Typography } from '@mui/material';
 
 const SidebarActiveUser = ({ userName }) => {
   return (
@@ -15,7 +17,7 @@ const SidebarActiveUser = ({ userName }) => {
           alignItems: 'center',
         }}
       >
-        <SidebarUserIcon />
+        <SidebarGlobalIcon />
         <Box
           sx={{
             display: 'flex',

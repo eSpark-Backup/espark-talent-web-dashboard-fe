@@ -14,8 +14,11 @@ const DiscoverTalentPlatform = () => {
         alignItems: 'center',
         p: '50px',
         borderRadius: '5px',
-        flexDirection: { xs: 'column', md: 'row' },
+        flexDirection: { xs: 'column', sm: 'column', md: 'row' },
         width: '100%',
+        '@media (min-width: 900px) and (max-width: 1350px)': {
+          flexDirection: 'column',
+        },
       }}
     >
       <Box
