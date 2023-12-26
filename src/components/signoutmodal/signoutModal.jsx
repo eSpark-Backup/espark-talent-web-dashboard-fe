@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box, Button, Modal, Typography } from '@mui/material';
+
 import { SIGNOUT_MODAL_DATA } from '@/src/constants/signoutModal';
 
 const SignoutModal = () => {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] =useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   return (
@@ -37,7 +38,6 @@ const SignoutModal = () => {
               flexDirection: 'column',
             }}
           >
-            {' '}
             <Typography variant="h5" sx={{ textAlign: 'center' }}>
               {SIGNOUT_MODAL_DATA?.signout}
             </Typography>
