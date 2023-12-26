@@ -15,6 +15,7 @@ export const HIRING_FORM_DATA = {
   country: 'Country',
   selectStartDate: 'Select Start Date',
   selectEndDate: 'Select End Date',
+  numberOfFields: '2',
 };
 export const GENDER_OPTION = [
   { label: 'Male', value: 'male' },

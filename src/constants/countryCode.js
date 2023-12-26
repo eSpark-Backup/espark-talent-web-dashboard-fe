@@ -1,15 +1,18 @@
 import Flag from 'react-country-flag';
 
+export const FlagIcon = ({ countryCode }) => (
+  <Flag
+    countryCode={countryCode}
+    svg
+    style={{ marginRight: '8px', width: '34px', height: '26px' }}
+  />
+);
 export const COUNTRY_OPTIONS = [
   {
     value: 'AF',
     label: (
       <>
-        <Flag
-          countryCode="AF"
-          svg
-          style={{ marginRight: '8px', width: '34px', height: '26px' }}
-        />
+        <FlagIcon countryCode="AF" />
         Afghanistan
       </>
     ),
@@ -18,11 +21,7 @@ export const COUNTRY_OPTIONS = [
     value: 'AX',
     label: (
       <>
-        <Flag
-          countryCode="AX"
-          svg
-          style={{ marginRight: '8px', width: '34px', height: '26px' }}
-        />
+        <FlagIcon countryCode="AX" />
         Aland Islands
       </>
     ),
@@ -31,11 +30,7 @@ export const COUNTRY_OPTIONS = [
     value: 'PK',
     label: (
       <>
-        <Flag
-          countryCode="PK"
-          svg
-          style={{ marginRight: '8px', width: '34px', height: '26px' }}
-        />
+        <FlagIcon countryCode="PK" />
         Pakistan
       </>
     ),
@@ -44,11 +39,7 @@ export const COUNTRY_OPTIONS = [
     value: 'AU',
     label: (
       <>
-        <Flag
-          countryCode="AU"
-          svg
-          style={{ marginRight: '8px', width: '34px', height: '26px' }}
-        />
+        <FlagIcon countryCode="AU" />
         Australia
       </>
     ),
@@ -57,11 +48,7 @@ export const COUNTRY_OPTIONS = [
     value: 'IN',
     label: (
       <>
-        <Flag
-          countryCode="IN"
-          svg
-          style={{ marginRight: '8px', width: '34px', height: '26px' }}
-        />
+        <FlagIcon countryCode="IN" />
         India
       </>
     ),

@@ -10,6 +10,7 @@ import {
 } from '@mui/material';
 
 import { HIRING_FORM_DATA, SALARY_TYPE } from '@/src/constants/Hiring';
+import Image from 'next/image';
 
 const EmployementTerm = ({ open, SelectOpen, SelectClose }) => {
   return (
@@ -20,14 +21,14 @@ const EmployementTerm = ({ open, SelectOpen, SelectClose }) => {
         gap: '12px',
       }}
     >
-      <Typography>{HIRING_FORM_DATA.employementTerm}</Typography>
+      <Typography>{HIRING_FORM_DATA?.employementTerm}</Typography>
       <FormControl>
         <InputLabel sx={{ color: '#888888' }}>
-          {HIRING_FORM_DATA.selectterms}
+          {HIRING_FORM_DATA?.selectterms}
         </InputLabel>
         <Select
           required={true}
-          label={HIRING_FORM_DATA.selectterms}
+          label={HIRING_FORM_DATA?.selectterms}
           sx={{
             height: '50px',
             width: { xs: '100%', md: '300px' },
@@ -42,18 +43,28 @@ const EmployementTerm = ({ open, SelectOpen, SelectClose }) => {
               }}
             >
               {open ? (
-                <img src="/images/hiring/icon-down.svg" alt="ArrowDown" />
+                <Image
+                  src="/images/hiring/icon-down.svg"
+                  width={20}
+                  height={20}
+                  alt="ArrowDown"
+                />
               ) : (
-                <img src="/images/hiring/rightarrow.png" alt="ArrowRight" />
+                <Image
+                  src="/images/hiring/rightarrow.png"
+                  width={20}
+                  height={20}
+                  alt="ArrowRight"
+                />
               )}
             </InputAdornment>
           )}
           onOpen={SelectOpen}
           onClose={SelectClose}
         >
-          {SALARY_TYPE.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
+          {SALARY_TYPE?.map((option) => (
+            <MenuItem key={option?.value} value={option?.value}>
+              {option?.label}
             </MenuItem>
           ))}
         </Select>

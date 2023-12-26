@@ -1,9 +1,10 @@
-import { HIRING_FORM_DATA } from '@/src/constants/Hiring';
-import { Box, TextField, Typography } from '@mui/material';
 import React from 'react';
+import { Box, TextField, Typography } from '@mui/material';
+
+import { HIRING_FORM_DATA } from '@/src/constants/Hiring';
 
 const SalaryRange = () => {
-  const textField = [0, 1];
+  const numberOfFields = HIRING_FORM_DATA?.numberOfFields;
   return (
     <Box
       sx={{
@@ -12,7 +13,7 @@ const SalaryRange = () => {
         gap: '12px',
       }}
     >
-      <Typography>{HIRING_FORM_DATA.salaryRange}</Typography>
+      <Typography>{HIRING_FORM_DATA?.salaryRange}</Typography>
       <Box
         sx={{
           display: 'flex',
@@ -20,7 +21,7 @@ const SalaryRange = () => {
           gap: '10px',
         }}
       >
-        {textField.map((index, arrayIndex) => (
+        {Array.from({ length: numberOfFields }, (_, index) => (
           <React.Fragment key={index}>
             <TextField
               required={true}
@@ -42,14 +43,9 @@ const SalaryRange = () => {
                   '-webkit-appearance': 'none',
                   margin: 0,
                 },
-                // endAdornment: (
-                //   <InputAdornment position="start">
-                //     <Typography variant="body1">$</Typography>
-                //   </InputAdornment>
-                //     ),
               }}
             />
-            {arrayIndex < textField.length - 1 && (
+            {index < numberOfFields - 1 && (
               <Typography
                 variant="body1"
                 sx={{

@@ -10,6 +10,7 @@ import {
 import { HIRING_FORM_DATA } from '@/src/constants/Hiring';
 import { COUNTRY_OPTIONS } from '@/src/constants/countryCode';
 import SalaryRange from './SalaryRangle';
+import Image from 'next/image';
 
 const CountryDropdown = ({ open, SelectOpen, SelectClose }) => {
   return (
@@ -37,7 +38,7 @@ const CountryDropdown = ({ open, SelectOpen, SelectClose }) => {
             },
           }}
         >
-          <Typography>{HIRING_FORM_DATA.country}</Typography>
+          <Typography>{HIRING_FORM_DATA?.country}</Typography>
 
           <Select
             sx={{ height: '53px' }}
@@ -48,18 +49,28 @@ const CountryDropdown = ({ open, SelectOpen, SelectClose }) => {
                 }}
               >
                 {open ? (
-                  <img src="/images/hiring/icon-down.svg" alt="ArrowDown" />
+                  <Image
+                    src="/images/hiring/icon-down.svg"
+                    width={20}
+                    height={20}
+                    alt="ArrowDown"
+                  />
                 ) : (
-                  <img src="/images/hiring/rightarrow.png" alt="ArrowRight" />
+                  <Image
+                    src="/images/hiring/rightarrow.png"
+                    width={20}
+                    height={20}
+                    alt="ArrowRight"
+                  />
                 )}
               </InputAdornment>
             )}
             onOpen={SelectOpen}
             onClose={SelectClose}
           >
-            {COUNTRY_OPTIONS.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
+            {COUNTRY_OPTIONS?.map((option) => (
+              <MenuItem key={option?.value} value={option?.value}>
+                {option?.label}
               </MenuItem>
             ))}
           </Select>

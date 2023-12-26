@@ -11,6 +11,7 @@ import {
 import { GENDER_OPTION, HIRING_FORM_DATA } from '@/src/constants/Hiring';
 
 import EmployementTerm from './EmployementTerm';
+import Image from 'next/image';
 
 const GenderInput = ({ open, SelectOpen, SelectClose }) => {
   return (
@@ -34,14 +35,14 @@ const GenderInput = ({ open, SelectOpen, SelectClose }) => {
           gap: '12px',
         }}
       >
-        <Typography>{HIRING_FORM_DATA.gender}</Typography>
+        <Typography>{HIRING_FORM_DATA?.gender}</Typography>
 
         <FormControl>
           <InputLabel sx={{ color: '#888888' }}>
-            {HIRING_FORM_DATA.selectGender}
+            {HIRING_FORM_DATA?.selectGender}
           </InputLabel>
           <Select
-            label={HIRING_FORM_DATA.selectGender}
+            label={HIRING_FORM_DATA?.selectGender}
             required={true}
             sx={{
               height: '50px',
@@ -57,18 +58,29 @@ const GenderInput = ({ open, SelectOpen, SelectClose }) => {
                 }}
               >
                 {open ? (
-                  <img src="/images/hiring/icon-down.svg" alt="ArrowDown" />
+                  <Image
+                    src="/images/hiring/icon-down.svg"
+                    width={20}
+                    height={20}
+                    W
+                    alt="ArrowDown"
+                  />
                 ) : (
-                  <img src="/images/hiring/rightarrow.png" alt="ArrowRight" />
+                  <Image
+                    src="/images/hiring/rightarrow.png"
+                    width={20}
+                    height={20}
+                    alt="ArrowRight"
+                  />
                 )}
               </InputAdornment>
             )}
             onOpen={SelectOpen}
             onClose={SelectClose}
           >
-            {GENDER_OPTION.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
+            {GENDER_OPTION?.map((option) => (
+              <MenuItem key={option?.value} value={option?.value}>
+                {option?.label}
               </MenuItem>
             ))}
           </Select>
