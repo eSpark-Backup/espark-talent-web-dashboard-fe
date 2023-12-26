@@ -1,18 +1,26 @@
+import React from 'react';
+
+import { useRouter } from 'next/navigation';
 import { Box, IconButton, Menu, MenuItem, Typography } from '@mui/material';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import React from 'react';
+
 import DotBadge from './SidebarProfileBadge';
-import Image from 'next/image';
 
 const SidebarProfileMenu = ({ profileMenuData }) => {
   const [profileMenu, setProfileMenu] = React.useState(null);
+  const router = useRouter();
 
   const handleMenu = (event) => {
     setProfileMenu(event.currentTarget);
   };
 
-  const handleClose = () => {
+  const handleClose = (text) => {
     setProfileMenu(null);
+    if (text == 'Sign out') {
+      router.push('/');
+    } else {
+      null;
+    }
   };
 
   return (
@@ -48,11 +56,15 @@ const SidebarProfileMenu = ({ profileMenuData }) => {
         {profileMenuData?.map((item, i) => (
           <MenuItem
             key={i}
-            onClick={handleClose}
+            onClick={() => handleClose(item?.text)}
             sx={{ width: '200px', py: 1.1 }}
           >
             <Box sx={{ display: 'flex', gap: 1.5 }}>
-              <Image src={item?.icon} width={20} height={20} alt="icon" />
+              <img
+                src={item?.icon}
+                style={{ width: '20px', height: '20px' }}
+                alt="icon"
+              />
               <Typography>{item?.text}</Typography>
             </Box>
           </MenuItem>

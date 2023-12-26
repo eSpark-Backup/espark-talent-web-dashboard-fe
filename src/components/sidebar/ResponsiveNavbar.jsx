@@ -1,12 +1,14 @@
 import * as React from 'react';
+
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
-import SidebarToggle from './SidebarToggle';
-import SidebarUserIcon from './SidebarUserIcon';
-import SidebarUserAvatar from './SidebarUserAvatar';
 
-export default function ResponsiveNavbar({ userName }) {
+import SidebarUserAvatar from './SidebarUserAvatar';
+import MenuOpenIcon from '@mui/icons-material/MenuOpen';
+import SidebarGlobalIcon from './SidebarGlobalIcon';
+
+export default function ResponsiveNavbar({ userName, openSidebar }) {
   return (
     <Box
       sx={{
@@ -24,9 +26,22 @@ export default function ResponsiveNavbar({ userName }) {
               justifyContent: 'space-between',
             }}
           >
-            <SidebarToggle userName={userName} />
+            <MenuOpenIcon
+              onClick={openSidebar}
+              sx={{
+                color: 'white',
+                fontSize: '37px',
+                display: {
+                  xs: 'flex',
+                  sm: 'flex',
+                  md: 'flex',
+                  lg: 'none',
+                  xl: 'none',
+                },
+              }}
+            />
             <Box sx={{ display: 'flex' }}>
-              <SidebarUserIcon />
+              <SidebarGlobalIcon />
               <SidebarUserAvatar userName={userName} />
             </Box>
           </Box>
