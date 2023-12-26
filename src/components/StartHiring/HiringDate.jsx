@@ -13,8 +13,10 @@ const HiringDate = () => {
           flexDirection: { xs: 'column', md: 'row' },
           justifyContent: 'space-around',
           paddingTop: '25px',
-          '@media (min-width: 960px) and (max-width: 1200px)': {
+          gap: { xs: '9px', md: '0px' },
+          '@media (min-width: 900px) and (max-width: 1400px)': {
             flexDirection: 'column',
+            gap: '10px',
           },
         }}
       >
@@ -46,75 +48,4 @@ const HiringDate = () => {
     </Box>
   );
 };
-// return (
-//   <>
-//     <Box
-//       sx={{
-//         display: 'flex',
-//         flexDirection: { xs: 'column', md: 'row' },
-//         justifyContent: 'space-around',
-//         paddingTop: '25px',
-//         '@media (min-width: 960px) and (max-width: 1200px)': {
-//           flexDirection: 'column',
-//         },
-//       }}
-//     >
-//       <Box
-//         sx={{
-//           display: 'flex',
-//           flexDirection: 'column',
-//           gap:"15px"
-//         }}
-//       >
-//         <Typography>{HIRING_FORM_DATA.startDate}</Typography>
-//         <LocalizationProvider dateAdapter={AdapterDayjs}>
-
-//           <DatePicker
-//             slots={{
-//               openPickerIcon: CalendarIcon,
-//             }}
-//             label={HIRING_FORM_DATA.selectStartDate}
-//             sx={{
-//               width: { xs: '100%', md: '300px' },
-//               '@media (min-width: 960px) and (max-width: 1200px)': {
-//                 width: '100%',
-//               },
-//               '& .MuiInputLabel-root': {
-//         color: '#888888',
-//       },
-//             }}
-//             />
-
-//         </LocalizationProvider>
-//       </Box>
-//       <Box
-//         sx={{
-//           display: 'flex',
-//           flexDirection: 'column',
-//             gap:"15px"
-//         }}
-//       >
-//         <Typography>{HIRING_FORM_DATA.endDate}</Typography>
-//         <LocalizationProvider dateAdapter={AdapterDayjs}>
-//           <DatePicker
-//             slots={{
-//               openPickerIcon: CalendarIcon,
-//             }}
-//             label={HIRING_FORM_DATA.selectEndDate}
-//             sx={{
-//               width: { xs: '100%', md: '300px' },
-//               '@media (min-width: 960px) and (max-width: 1200px)': {
-//                 width: '100%',
-//               },
-//               '& .MuiInputLabel-root': {
-//         color: '#888888', // Replace with your desired color
-//       },
-//             }}
-//           />
-//         </LocalizationProvider>
-//       </Box>
-//     </Box>
-//   </>
-// );
-
 export default HiringDate;

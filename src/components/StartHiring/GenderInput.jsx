@@ -1,13 +1,11 @@
 import React from 'react';
 import {
-  Autocomplete,
   Box,
   FormControl,
   InputAdornment,
   InputLabel,
   MenuItem,
   Select,
-  TextField,
   Typography,
 } from '@mui/material';
 import { GENDER_OPTION, HIRING_FORM_DATA } from '@/src/constants/Hiring';
@@ -22,9 +20,11 @@ const GenderInput = ({ open, SelectOpen, SelectClose }) => {
         flexDirection: { xs: 'column', md: 'row' },
         justifyContent: 'space-around',
         paddingTop: '25px',
-        '@media (min-width: 960px) and (max-width: 1200px)': {
+        '@media (min-width: 900px) and (max-width: 1400px)': {
           flexDirection: 'column',
+          gap: '10px',
         },
+        gap: { xs: '9px', md: '0px' },
       }}
     >
       <Box
@@ -35,33 +35,7 @@ const GenderInput = ({ open, SelectOpen, SelectClose }) => {
         }}
       >
         <Typography>{HIRING_FORM_DATA.gender}</Typography>
-        {/* <Autocomplete
-          options={GENDER_OPTION}
-          getOptionLabel={(option) => option.label}
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              placeholder={HIRING_FORM_DATA.selectGender}
-              variant="outlined"
-              fullWidth
-              sx={{
-                width: { xs: '100%', md: '300px' },
-                '@media (min-width: 960px) and (max-width: 1200px)': {
-                  width: '100%',
-                },
-              }}
-          //     InputProps={{
-          //   ...params.InputProps,
-          //   endAdornment: (
-          //     <InputAdornment position="end">
-          //       <img src="/images/hiring/rightarrow.png" alt="ArrowRight" />
-          //     </InputAdornment>
-          //   ),
-          // }}
-        />
-          
-          )}
-        /> */}
+
         <FormControl>
           <InputLabel sx={{ color: '#888888' }}>
             {HIRING_FORM_DATA.selectGender}
@@ -72,7 +46,7 @@ const GenderInput = ({ open, SelectOpen, SelectClose }) => {
             sx={{
               height: '50px',
               width: { xs: '100%', md: '300px' },
-              '@media (min-width: 960px) and (max-width: 1200px)': {
+              '@media (min-width: 900px) and (max-width: 1400px)': {
                 width: '100%',
               },
             }}

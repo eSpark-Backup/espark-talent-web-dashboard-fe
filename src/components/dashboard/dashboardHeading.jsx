@@ -4,7 +4,6 @@ import { Box, Typography } from '@mui/material';
 import { DASHBOARD_DATA } from '@/src/constants/dashboard';
 import { ACTIVE_CLIENT } from '@/src/constants/data/client';
 
-
 const DashboardHeading = () => {
   return (
     <Box>
