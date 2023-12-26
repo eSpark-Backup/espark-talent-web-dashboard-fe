@@ -18,12 +18,12 @@ const Submit = () => {
           fullWidth
           type="submit"
           sx={{
-            fontSize:"16px",
+            fontSize: '16px',
             width: '88%',
             padding: '10px',
-            fontWeight:400,
-             background: '#fff',
-            color:  '#029E9C',
+            fontWeight: 400,
+            background: '#fff',
+            color: '#029E9C',
             border: '1px solid #029E9C',
             '&:hover': {
               background: '#029E9C',
