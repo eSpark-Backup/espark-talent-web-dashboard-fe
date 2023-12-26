@@ -42,13 +42,20 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 ### Epic Branch Creation:
 
 - When starting work on a new epic, create an epic branch from the development branch.
-- Naming Convention: epic/issues/issue-no, e.g., epic/issues/3.
+- Naming Convention: epic/issues/issue-no, 
+```bash
+e.g., epic/issues/3.
+```
 
 ### Feature Branch Creation:
 
 - For tasks related to an epic, create a feature branch from the corresponding epic branch.
-- Naming Convention: feature/issues/issue-no, e.g., feature/issues/5.
 - Perform all development work related to the feature in this branch.
+- Naming Convention:
+```bash
+ feature/issues/issue-number,
+e.g., feature/issues/5.
+```
 
 ### Testing and QA:
 
@@ -69,13 +76,25 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 - Create a PR to merge the epic branch into the development branch.
 - This step ensures that the completed epic is integrated into the development branch.
 
-### Bug Fix Branch Creation:
+### BUg/Hot Fix Branch Creation:
 
-- If a bug is found in the development branch, create a hotfix branch.
-- Naming Convention: hotfix/issues/issue-no, e.g., hotfix/issues/4.
-- Fix the bug within this branch.
+- If a minor issue is found in the development branch, 
+create a hotfix branch & fix within this branch.
 
-### Bug Fix PR with Development:
+```bash
+- Naming Convention: hotfix/issues/issue-no,
+- e.g., hotfix/issues/4.
+```
+
+- If a bug is found in the development branch, 
+create a bugfix branch.- Fix the bug within this branch.
+
+```bash
+- Naming Convention: bugfix/issues/issue-no,
+- e.g., bugfix/issues/4.
+```
+
+### Bug Fix Resolved & Merged PR within Development:
 
 - After fixing the bug, create a PR to merge the hotfix branch into the development branch.
 - The fix is then incorporated into the development codebase.

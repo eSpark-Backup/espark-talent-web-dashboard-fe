@@ -3,3 +3,29 @@
 @tailwind utilities;
 
 
+.search-input:focus{
+    outline: none;
+}
+
+.table{
+    width: 100%;
+    border-spacing: 0px 4px;
+    margin-bottom: 20px;
+}
+.table td,.table th{
+    text-align: center;
+    padding: 10px 0;
+    color: #595959;
+    flex: 1;
+}
+.app-table-row{
+    background-color: #F6F6F6;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.empty-row{
+    background-color: #fff;
+    height: 20px;
+}
