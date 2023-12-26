@@ -15,16 +15,19 @@ const Submit = () => {
       >
         <Button
           variant="contained"
-          color="primary"
           fullWidth
           type="submit"
           sx={{
+            fontSize:"16px",
             width: '88%',
             padding: '10px',
+            fontWeight:400,
+             background: '#fff',
+            color:  '#029E9C',
+            border: '1px solid #029E9C',
             '&:hover': {
-              background: '#fff',
-              color: 'teal',
-              border: '1px solid teal',
+              background: '#029E9C',
+              color: '#fff',
             },
           }}
         >
