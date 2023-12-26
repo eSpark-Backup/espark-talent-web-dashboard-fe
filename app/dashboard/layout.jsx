@@ -1,12 +1,12 @@
 'use client';
+import { Box } from '@mui/material';
 import { useCallback, useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { styled } from '@mui/material/styles';
-import { SideNav } from '@/src/components/sidebar/SideNavLayout';
-import { Box } from '@mui/material';
-import { TopNav } from '@/src/components/sidebar/TopNavLayout';
 
-const SIDE_NAV_WIDTH = 280;
+import { SideNav } from '@/src/components/sidebar/SideNavLayout';
+import { TopNav } from '@/src/components/sidebar/TopNavLayout';
+import { SIDE_NAV_WIDTH } from '@/src/constants/sidebar';
 
 const LayoutRoot = styled('div')(({ theme }) => ({
   display: 'flex',
