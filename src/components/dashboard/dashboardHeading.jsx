@@ -2,7 +2,6 @@ import React from 'react';
 import { Box, Typography } from '@mui/material';
 
 import { DASHBOARD_DATA } from '@/src/constants/dashboard';
-import { ACTIVE_CLIENT } from '@/src/constants/data/client';
 
 const DashboardHeading = () => {
   return (
@@ -13,7 +12,6 @@ const DashboardHeading = () => {
           fontWeight: 600,
         }}
       >
-      
         {DASHBOARD_DATA.greeting}
       </Typography>
       <br />

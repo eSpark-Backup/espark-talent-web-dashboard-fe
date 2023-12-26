@@ -1,9 +1,10 @@
 import React from 'react';
-import { Box, Modal } from '@mui/material';
+import { Box, Button, Modal } from '@mui/material';
 
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { StaticDatePicker } from '@mui/x-date-pickers';
+import { REPORT_DATA } from '@/src/constants/report';
 
 const DatePickerModal = ({ open, handleClose }) => {
   const handleOutsideClick = (event) => {
