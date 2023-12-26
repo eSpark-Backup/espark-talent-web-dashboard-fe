@@ -1,0 +1,20 @@
+import React from 'react';
+import { Box, Typography } from '@mui/material';
+
+import { REQUESTVIEW_DATA } from '@/src/constants/requestviewModal';
+
+const RequestHeading = () => {
+  return (
+    <Box sx={{ borderBottom: '1px solid #E4E4E4', p: 3 }}>
+      <Typography
+        sx={{
+          fontSize: '25px',
+          fontWeight: '600',
+        }}
+      >
+        {REQUESTVIEW_DATA?.leaveRequestView}
+      </Typography>
+    </Box>
+  );
+};
+export default RequestHeading;
