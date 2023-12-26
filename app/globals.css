@@ -63,3 +63,27 @@
 .list-item-box:hover::before {
   background-color: #068987;
 }
+.custom-dropdown-item:hover {
+  cursor: pointer;
+  background: #e6f5f4;
+}
+.custom-dropdown-item:hover::before {
+  background-color: #068987;
+}
+.selected-dropdown{
+  position: relative;
+  cursor: pointer;
+}
+.selected-dropdown::before {
+  content: '';
+  position: absolute;
+  /* height: 10px; */
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: #068987;
+}
+.disabled-dropdown{
+  background-color: #eee !important;
+}

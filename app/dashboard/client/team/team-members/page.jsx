@@ -72,14 +72,14 @@ const Dashboard = () => {
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
-            paddingTop: '60px',
+            // paddingTop: '60px',
             gap: '20px',
             width: '100%',
           }}
         >
           <div>
             <Box
-              marginY={5}
+              marginBottom={4}
               display={'flex'}
               justifyContent={'space-between'}
               alignItems={'center'}

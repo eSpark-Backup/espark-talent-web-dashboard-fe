@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { Grid, Box, Typography, Button } from '@mui/material';
+import { Grid, Box, Typography } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Input from '@/src/components/dashboard/input';
@@ -106,14 +106,6 @@ const Dashboard = () => {
             alignItems={'center'}
           >
             <Typography variant="h3">Invoice payments</Typography>
-            <Button
-              style={{
-                background: '#029894',
-              }}
-              variant="contained"
-            >
-              New hire
-            </Button>
           </Box>
           <Box sx={{ width: '100%' }}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
@@ -164,14 +156,6 @@ const Dashboard = () => {
             alignItems={'center'}
           >
             <Typography variant="h3">Other payments</Typography>
-            <Button
-              style={{
-                background: '#029894',
-              }}
-              variant="contained"
-            >
-              New hire
-            </Button>
           </Box>
           <Box sx={{ width: '100%' }}>
             <Box my={4}>

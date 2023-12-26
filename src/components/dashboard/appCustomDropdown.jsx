@@ -1,0 +1,113 @@
+import { toCamelCase } from '@/src/utils/stringModification';
+import { Box, Typography } from '@mui/material';
+import Image from 'next/image';
+import React from 'react';
+
+const AppCustomDropdown = ({
+  // options = ['Short listed', 'Pending', 'Rejected'],
+  options = [
+    { label: 'Short listed' },
+    { label: 'Pending' },
+    { label: 'Rejected' },
+  ],
+  colIndex,
+  col,
+  row,
+}) => {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const [currentState, setCurrentState] = React.useState(row[toCamelCase(col)]);
+  const componentRef = React.useRef(null);
+  React.useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        componentRef.current &&
+        !componentRef.current.contains(event.target)
+      ) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
+  return (
+    <td
+      key={colIndex}
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+      }}
+    >
+      <Box sx={{ position: 'relative' }} ref={componentRef}>
+        <Box
+          onClick={() => setIsOpen((ps) => !ps)}
+          width={'120px'}
+          p={'5px 10px'}
+          sx={{
+            border: 'solid 1px #068987',
+            backgroundColor: '#E6F5F4',
+            borderRadius: '17px',
+            cursor: 'pointer',
+          }}
+          display="flex"
+          justifyContent={'space-between'}
+        >
+          {currentState}
+          <Image
+            style={{ marginLeft: '10px' }}
+            src={'/icons/DownGreen.svg'}
+            width={15}
+            height={15}
+            alt="Down"
+          />
+        </Box>
+        {isOpen && (
+          <Box
+            sx={{
+              zIndex: 1,
+              border: 'solid 1px #ccc',
+              position: 'absolute',
+              width: '100%',
+              background: '#fff',
+              marginTop: '5px',
+              borderRadius: '5px',
+              cursor: 'pointer',
+            }}
+          >
+            {options.map(({ label, disabled }, index) => {
+              return (
+                <Typography
+                  onClick={() => {
+                    if (disabled) return;
+                    else {
+                      setCurrentState(label);
+                      setIsOpen(false);
+                    }
+                  }}
+                  className={[
+                    currentState === label && 'selected-dropdown',
+                    'custom-dropdown-item',
+                    disabled && 'disabled-dropdown',
+                  ].join(' ')}
+                  p={'5px 10px'}
+                  sx={{
+                    borderBottom: 'solid 1px #ccc',
+                    background: currentState === label && '#E6F5F4',
+                  }}
+                  key={index}
+                >
+                  {label}
+                </Typography>
+              );
+            })}
+          </Box>
+        )}
+      </Box>
+    </td>
+  );
+};
+
+export default AppCustomDropdown;

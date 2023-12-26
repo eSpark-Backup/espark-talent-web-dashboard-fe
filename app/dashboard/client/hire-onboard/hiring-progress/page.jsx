@@ -66,13 +66,13 @@ const Dashboard = () => {
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
-            paddingTop: '60px',
+            // paddingTop: '60px',
             gap: '20px',
             width: '100%',
           }}
         >
           <Box
-            marginY={5}
+            marginBottom={4}
             display={'flex'}
             justifyContent={'space-between'}
             alignItems={'center'}
@@ -84,7 +84,7 @@ const Dashboard = () => {
               }}
               variant="contained"
             >
-              New hire
+              Add New hire
             </Button>
           </Box>
           <Box sx={{ width: '100%' }}>

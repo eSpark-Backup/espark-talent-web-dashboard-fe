@@ -26,6 +26,7 @@ export const invoicePaymentData = [
     invoiceStatus: '07-October-2021',
     amountDue: '1000$',
     paymentStatus: 'Paid',
+    dropdownStatus: true,
   },
   {
     employeeName: 'Arman Khan',
@@ -35,6 +36,7 @@ export const invoicePaymentData = [
     invoiceStatus: '07-October-2021',
     amountDue: '1000$',
     paymentStatus: 'Paid',
+    dropdownStatus: true,
   },
   {
     employeeName: 'Saad Zafar',
@@ -44,6 +46,7 @@ export const invoicePaymentData = [
     invoiceStatus: '07-October-2021',
     amountDue: '1000$',
     paymentStatus: 'Paid',
+    dropdownStatus: true,
   },
   {
     employeeName: 'Muhammad',
@@ -53,6 +56,7 @@ export const invoicePaymentData = [
     invoiceStatus: '07-October-2021',
     amountDue: '1000$',
     paymentStatus: 'Paid',
+    dropdownStatus: true,
   },
   {
     employeeName: 'Abdullah',
@@ -62,6 +66,7 @@ export const invoicePaymentData = [
     invoiceStatus: '07-October-2021',
     amountDue: '1000$',
     paymentStatus: 'Processing',
+    dropdownStatus: true,
   },
   {
     employeeName: 'Yusuf',
@@ -71,6 +76,7 @@ export const invoicePaymentData = [
     invoiceStatus: '07-October-2021',
     amountDue: '1000$',
     paymentStatus: 'Paid',
+    dropdownStatus: true,
   },
   {
     employeeName: 'Hassan',
@@ -80,6 +86,7 @@ export const invoicePaymentData = [
     invoiceStatus: '07-October-2021',
     amountDue: '1000$',
     paymentStatus: 'Pending',
+    dropdownStatus: true,
   },
   {
     employeeName: 'Sumaya',
@@ -89,6 +96,7 @@ export const invoicePaymentData = [
     invoiceStatus: '07-October-2021',
     amountDue: '1000$',
     paymentStatus: 'Pending',
+    dropdownStatus: true,
   },
   {
     employeeName: 'Abdullah',
@@ -98,6 +106,7 @@ export const invoicePaymentData = [
     invoiceStatus: '07-October-2021',
     amountDue: '1000$',
     paymentStatus: 'Paid',
+    dropdownStatus: true,
   },
   {
     employeeName: 'Zainab',
@@ -107,6 +116,7 @@ export const invoicePaymentData = [
     invoiceStatus: '07-October-2021',
     amountDue: '1000$',
     paymentStatus: 'Pending',
+    dropdownStatus: true,
   },
   {
     employeeName: 'Zainab',
@@ -116,6 +126,7 @@ export const invoicePaymentData = [
     invoiceStatus: '07-October-2021',
     amountDue: '1000$',
     paymentStatus: 'Processing',
+    dropdownStatus: true,
   },
 ];
 export const otherPaymentData = [
@@ -127,6 +138,7 @@ export const otherPaymentData = [
     invoiceStatus: '07-October-2021',
     amountDue: '1000$',
     paymentStatus: 'Paid',
+    dropdownStatus: true,
   },
   {
     invoiceNumber: '456',
@@ -136,6 +148,7 @@ export const otherPaymentData = [
     invoiceStatus: '07-October-2021',
     amountDue: '1000$',
     paymentStatus: 'Paid',
+    dropdownStatus: true,
   },
   {
     invoiceNumber: '789',
@@ -145,6 +158,7 @@ export const otherPaymentData = [
     invoiceStatus: '07-October-2021',
     amountDue: '1000$',
     paymentStatus: 'Paid',
+    dropdownStatus: true,
   },
   {
     invoiceNumber: '147',
@@ -154,6 +168,7 @@ export const otherPaymentData = [
     invoiceStatus: '07-October-2021',
     amountDue: '1000$',
     paymentStatus: 'Paid',
+    dropdownStatus: true,
   },
   {
     invoiceNumber: '852',
@@ -163,6 +178,7 @@ export const otherPaymentData = [
     invoiceStatus: '07-October-2021',
     amountDue: '1000$',
     paymentStatus: 'Paid',
+    dropdownStatus: true,
   },
   {
     invoiceNumber: '293',
@@ -172,6 +188,7 @@ export const otherPaymentData = [
     invoiceStatus: '07-October-2021',
     amountDue: '1000$',
     paymentStatus: 'Paid',
+    dropdownStatus: true,
   },
   {
     invoiceNumber: '119',
@@ -181,6 +198,7 @@ export const otherPaymentData = [
     invoiceStatus: '07-October-2021',
     amountDue: '1000$',
     paymentStatus: 'Paid',
+    dropdownStatus: true,
   },
   {
     invoiceNumber: '102',
@@ -190,6 +208,7 @@ export const otherPaymentData = [
     invoiceStatus: '07-October-2021',
     amountDue: '1000$',
     paymentStatus: 'Paid',
+    dropdownStatus: true,
   },
   {
     invoiceNumber: '510',
@@ -199,6 +218,7 @@ export const otherPaymentData = [
     invoiceStatus: '07-October-2021',
     amountDue: '1000$',
     paymentStatus: 'Paid',
+    dropdownStatus: true,
   },
   {
     invoiceNumber: '853',
@@ -208,6 +228,7 @@ export const otherPaymentData = [
     invoiceStatus: '07-October-2021',
     amountDue: '1000$',
     paymentStatus: 'Paid',
+    dropdownStatus: true,
   },
   {
     invoiceNumber: '722',
@@ -217,5 +238,6 @@ export const otherPaymentData = [
     invoiceStatus: '07-October-2021',
     amountDue: '1000$',
     paymentStatus: 'Paid',
+    dropdownStatus: true,
   },
 ];

@@ -11,7 +11,6 @@ const Input = ({
   setIsLoading,
   width,
   onKeyDown,
-  autofocus,
 }) => {
   return (
     <Box
@@ -48,7 +47,6 @@ const Input = ({
           placeholder="Search here..."
           style={{ overflow: 'hidden', width: '100%' }}
           onKeyDown={onKeyDown}
-          autoFocus={autofocus} // eslint-disable-line jsx-a11y/no-autofocus
         />
       </Box>
       {!!suffixIcon && (

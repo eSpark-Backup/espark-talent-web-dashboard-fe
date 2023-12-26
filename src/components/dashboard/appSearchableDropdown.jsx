@@ -97,98 +97,94 @@ const AppSearchableDropdown = ({
     }
   };
   return (
-    <Grid container spacing={2}>
-      <Grid item xs={12} md={6}>
-        <Grid sx={{ position: 'relative' }} item xs={6}>
-          <Box ref={componentRef}>
+    <Grid sx={{ position: 'relative' }} item xs={6}>
+      <Box ref={componentRef}>
+        <Box
+          onClick={toggleComponent}
+          display={'flex'}
+          justifyContent={'space-between'}
+          sx={{
+            border: 'solid 1px #ccc',
+            borderTopLeftRadius: '5px',
+            borderTopRightRadius: '5px',
+            borderBottomLeftRadius: !isOpenedDropdown && '5px',
+            borderBottomRightRadius: !isOpenedDropdown && '5px',
+          }}
+          p={'10px'}
+        >
+          <Typography>{selectedItem || 'Selected Employee...'}</Typography>
+          <Image
+            src={'/icons/Dropdown.svg'}
+            width={15}
+            height={15}
+            alt="Dropdown"
+          />
+        </Box>
+        {isOpenedDropdown && (
+          <Box
+            sx={{
+              border: 'solid 1px #ccc',
+              borderBottomLeftRadius: '5px',
+              borderBottomRightRadius: '5px',
+              borderTopLeftRadius: !isOpenedDropdown && '5px',
+              borderTopRightRadius: !isOpenedDropdown && '5px',
+              borderTop: 'none',
+              position: 'absolute',
+              width: '100%',
+              background: '#fff',
+            }}
+          >
             <Box
-              onClick={toggleComponent}
-              display={'flex'}
-              justifyContent={'space-between'}
-              sx={{
-                border: 'solid 1px #ccc',
-                borderTopLeftRadius: '5px',
-                borderTopRightRadius: '5px',
-                borderBottomLeftRadius: !isOpenedDropdown && '5px',
-                borderBottomRightRadius: !isOpenedDropdown && '5px',
-              }}
+              width="100%"
               p={'10px'}
+              position="sticky"
+              top="0"
+              sx={{ background: '#fff', zIndex: 1 }}
             >
-              <Typography>{selectedItem}</Typography>
-              <Image
-                src={'/icons/Dropdown.svg'}
-                width={15}
-                height={15}
-                alt="Dropdown"
+              <Input
+                setIsLoading={setIsLoadingList}
+                handleChange={setSearchItem}
+                value={searchItem}
+                prefixIcon="SearchIcon.svg"
+                width={'100%'}
+                onKeyDown={handleKeyDown}
+                autofocus
               />
             </Box>
-            {isOpenedDropdown && (
-              <Box
-                sx={{
-                  border: 'solid 1px #ccc',
-                  borderBottomLeftRadius: '5px',
-                  borderBottomRightRadius: '5px',
-                  borderTopLeftRadius: !isOpenedDropdown && '5px',
-                  borderTopRightRadius: !isOpenedDropdown && '5px',
-                  borderTop: 'none',
-                  position: 'absolute',
-                  width: '100%',
-                  background: '#fff',
-                }}
-              >
-                <Box
-                  width="100%"
-                  p={'10px'}
-                  position="sticky"
-                  top="0"
-                  sx={{ background: '#fff', zIndex: 1 }}
-                >
-                  <Input
-                    setIsLoading={setIsLoadingList}
-                    handleChange={setSearchItem}
-                    value={searchItem}
-                    prefixIcon="SearchIcon.svg"
-                    width={'100%'}
-                    onKeyDown={handleKeyDown}
-                    autofocus
-                  />
+            <Box maxHeight="250px" overflow={'scroll'}>
+              {isLoadingList ? (
+                <Box p={'10px'}>
+                  <Typography>Loading...</Typography>
                 </Box>
-                <Box maxHeight="250px" overflow={'scroll'}>
-                  {isLoadingList ? (
-                    <Box p={'10px'}>
-                      <Typography>Loading...</Typography>
-                    </Box>
-                  ) : listData?.length ? (
-                    listData?.map((item, index) => (
-                      <Box
-                        onClick={() => {
-                          setSearchItem('');
-                          setSelectedItem(item);
-                          setIsOpenedDropdown(false);
-                        }}
-                        key={index}
-                        data-key={item}
-                        className={`list-item-box ${
-                          item === selectedItem || item === pointedElement
-                            ? 'selected-list-item'
-                            : ''
-                        }`}
-                        p={'10px'}
-                      >
-                        <Typography>{item}</Typography>
-                      </Box>
-                    ))
-                  ) : (
-                    <Box p={'10px'}>
-                      <Typography>No item found</Typography>
-                    </Box>
-                  )}
+              ) : listData?.length ? (
+                listData?.map((item, index) => (
+                  <Box
+                    onClick={() => {
+                      setSearchItem('');
+                      setSelectedItem(item);
+                      setIsOpenedDropdown(false);
+                    }}
+                    key={index}
+                    data-key={item}
+                    className={`list-item-box ${
+                      item === selectedItem || item === pointedElement
+                        ? 'selected-list-item'
+                        : ''
+                    }`}
+                    p={'10px'}
+                  >
+                    <Typography>{item}</Typography>
+                  </Box>
+                ))
+              ) : (
+                <Box p={'10px'}>
+                  <Typography>No item found</Typography>
                 </Box>
-              </Box>
-            )}
+              )}
+            </Box>
           </Box>
-        </Grid>
-      </Grid>
+        )}
+      </Box>
     </Grid>
   );
 };

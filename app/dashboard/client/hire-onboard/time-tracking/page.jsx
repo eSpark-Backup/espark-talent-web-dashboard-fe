@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { Grid, Box, Typography, Button } from '@mui/material';
+import { Grid, Box, Typography } from '@mui/material';
 import AppTable from '@/src/components/dashboard/appTable';
 import {
   timeTrackingTableColumn,
@@ -10,6 +10,7 @@ import {
 import Link from 'next/link';
 import AppSearchableDropdown from '@/src/components/dashboard/appSearchableDropdown';
 import { renderTrackingStatus } from './renderComponents';
+import AppCustomMonthYearPicker from '@/src/components/dashboard/appCustomMonthYearPicker';
 
 const Dashboard = () => {
   const listItems = [
@@ -32,8 +33,10 @@ const Dashboard = () => {
 
   const [isLoading, setIsLoading] = React.useState(true);
   const [isLoadingEmployee, setIsLoadingEmployee] = React.useState(false);
-  const [selectedEmployee, setSelectedEmployee] =
-    React.useState('Sohaib-Xtreme');
+
+  // const [selectedEmployee, setSelectedEmployee] =
+  //   React.useState('Sohaib-Xtreme');
+  const [selectedEmployee, setSelectedEmployee] = React.useState('');
 
   const fetchDataFake = async () => {
     return true;
@@ -50,6 +53,7 @@ const Dashboard = () => {
 
     fetchDataAsync();
   }, []);
+
   return (
     <>
       <Grid container>
@@ -102,23 +106,23 @@ const Dashboard = () => {
                 </Typography>
               </Box>
             </Box>
-            <Button
-              style={{
-                background: '#029894',
-              }}
-              variant="contained"
-            >
-              New hire
-            </Button>
           </Box>
           <Box sx={{ width: '100%' }}>
-            <AppSearchableDropdown
-              setIsLoadingList={setIsLoadingEmployee}
-              isLoadingList={isLoadingEmployee}
-              selectedItem={selectedEmployee}
-              data={listItems}
-              setSelectedItem={setSelectedEmployee}
-            />
+            <Box display={'flex'} alignItems="center" sx={{ width: '100%' }}>
+              <Grid container spacing={2}>
+                <Grid display={'flex'} alignItems="center" item xs={12} md={6}>
+                  <AppSearchableDropdown
+                    setIsLoadingList={setIsLoadingEmployee}
+                    isLoadingList={isLoadingEmployee}
+                    selectedItem={selectedEmployee}
+                    data={listItems}
+                    setSelectedItem={setSelectedEmployee}
+                  />
+
+                  <AppCustomMonthYearPicker />
+                </Grid>
+              </Grid>
+            </Box>
             <Box marginY={'30px'} display={'flex'} alignItems={'center'}>
               {trackingStatusTypes?.map(
                 ({ label, shortForm, background }, statusIndex) =>
@@ -133,10 +137,19 @@ const Dashboard = () => {
             {isLoading ? (
               <Box>Loading...</Box>
             ) : (
-              <AppTable
-                column={timeTrackingTableColumn}
-                data={timeTrackingTableData}
-              />
+              <>
+                {selectedEmployee ? (
+                  <AppTable
+                    column={timeTrackingTableColumn}
+                    data={timeTrackingTableData}
+                  />
+                ) : (
+                  <AppTable
+                    column={timeTrackingTableColumn}
+                    renderMessage="Select employee to see there data"
+                  />
+                )}
+              </>
             )}
           </Box>
         </Box>

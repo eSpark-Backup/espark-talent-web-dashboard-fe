@@ -125,14 +125,12 @@ const Dashboard = () => {
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
-            paddingTop: '60px',
             gap: '20px',
             width: '100%',
           }}
         >
           <div>
             <Box
-              // marginTop={5}
               display={'flex'}
               justifyContent={'space-between'}
               alignItems={'center'}
@@ -176,12 +174,10 @@ const Dashboard = () => {
                 </Box>
               </Box>
               <Button
-                style={{
-                  background: '#029894',
-                }}
-                variant="contained"
+                sx={{ marginX: '10px', minWidth: '120px' }}
+                variant="outlined"
               >
-                New hire
+                Download Report
               </Button>
             </Box>
             <Box sx={{ width: '100%' }}>
