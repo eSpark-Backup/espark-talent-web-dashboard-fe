@@ -33,9 +33,6 @@ const Dashboard = () => {
 
   const [isLoading, setIsLoading] = React.useState(true);
   const [isLoadingEmployee, setIsLoadingEmployee] = React.useState(false);
-
-  // const [selectedEmployee, setSelectedEmployee] =
-  //   React.useState('Sohaib-Xtreme');
   const [selectedEmployee, setSelectedEmployee] = React.useState('');
 
   const fetchDataFake = async () => {

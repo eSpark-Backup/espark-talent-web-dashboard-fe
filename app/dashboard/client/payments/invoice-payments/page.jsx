@@ -49,7 +49,6 @@ const Dashboard = () => {
 
   const handleChange = (event, newValue) => {
     changeTab({
-      // isSingular: true,
       tabs: paymentStatusTabs,
       event,
       newValue,

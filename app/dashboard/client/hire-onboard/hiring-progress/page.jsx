@@ -66,7 +66,6 @@ const Dashboard = () => {
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
-            // paddingTop: '60px',
             gap: '20px',
             width: '100%',
           }}

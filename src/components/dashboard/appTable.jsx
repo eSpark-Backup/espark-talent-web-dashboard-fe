@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { toCamelCase } from '@/src/utils/stringModification';
-import { Box, Pagination, Stack, Typography } from '@mui/material';
+import { Box, Button, Pagination, Stack, Typography } from '@mui/material';
 import Image from 'next/image';
 import AppCustomDropdown from './appCustomDropdown';
 import { trackingStatusTypes } from '@/src/constants/data/timeTracking';
@@ -30,8 +30,81 @@ const renderAttendenceStatus = (statusType, index) => {
     </Box>
   );
 };
+const renderInfoOptions = (
+  row,
+  col,
+  handleClick,
+  handleClickRenderMessageButton
+) => {
+  return (
+    <Box
+      sx={{
+        width: '90px',
+        position: 'relative',
+      }}
+    >
+      <Box
+        sx={{
+          border: 'solid 1px #ccc',
+          borderRadius: '5px',
+          backgroundColor: '#fff',
+        }}
+        justifyContent={'center'}
+        p="7px 10px"
+        display={'flex'}
+        alignItems="center"
+      >
+        <Box>
+          <Image
+            src={'/icons/OptionDots.svg'}
+            width={20}
+            height={20}
+            alt="Options"
+          />
+        </Box>
+        <Box>{row[toCamelCase(col)]}</Box>
+      </Box>
+      <Box
+        sx={{
+          border: 'solid 1px #ccc',
+          borderRadius: '5px',
+          marginTop: '10px',
+          position: 'absolute',
+          backgroundColor: '#fff',
+          width: '120px',
+        }}
+      >
+        <Box
+          onClick={handleClick}
+          sx={{
+            borderBottom: 'solid 1px #ccc',
+            padding: '7px 10px',
+          }}
+        >
+          View details
+        </Box>
+        <Box
+          onClick={handleClickRenderMessageButton}
+          sx={{
+            padding: '7px 10px',
+            // width: '120px',
+          }}
+        >
+          Add member
+        </Box>
+      </Box>
+    </Box>
+  );
+};
 
-const AppTable = ({ column, data, renderMessage }) => {
+const AppTable = ({
+  column,
+  data,
+  renderMessage,
+  handleClick,
+  renderMessageButton,
+  handleClickRenderMessageButton,
+}) => {
   return (
     <>
       <table className="table">
@@ -55,19 +128,32 @@ const AppTable = ({ column, data, renderMessage }) => {
                 className="app-table-row"
               >
                 {index === 2 ? (
-                  <Typography
-                    sx={{
-                      fontSize: '24px',
-                      fontWeight: 400,
-                      lineHeight: '29px',
-                      letterSpacing: '0em',
-                      textAlign: 'left',
-                    }}
-                    variant="body1"
-                    textAlign={'center'}
+                  <Box
+                    display={'flex'}
+                    flexDirection={'column'}
+                    alignItems={'center'}
                   >
-                    {renderMessage}
-                  </Typography>
+                    <Typography
+                      sx={{
+                        fontSize: '24px',
+                        fontWeight: 400,
+                        lineHeight: '29px',
+                        letterSpacing: '0em',
+                        textAlign: 'left',
+                      }}
+                      variant="body1"
+                      textAlign={'center'}
+                    >
+                      {renderMessage}
+                    </Typography>
+                    <Button
+                      onClick={handleClickRenderMessageButton}
+                      sx={{ marginTop: '20px' }}
+                      variant="contained"
+                    >
+                      {renderMessageButton}
+                    </Button>
+                  </Box>
                 ) : (
                   <td />
                 )}
@@ -190,6 +276,25 @@ const AppTable = ({ column, data, renderMessage }) => {
                             />
                           </React.Fragment>
                         );
+                    } else if (row?.optionsDropdown && col === 'Team members') {
+                      return (
+                        <td
+                          key={colIndex}
+                          style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            flexDirection: 'column',
+                          }}
+                        >
+                          {renderInfoOptions(
+                            row,
+                            col,
+                            handleClick,
+                            handleClickRenderMessageButton
+                          )}
+                        </td>
+                      );
                     }
                     return (
                       <React.Fragment key={colIndex}>
