@@ -7,6 +7,11 @@ import { StaticDatePicker } from '@mui/x-date-pickers';
 import { REPORT_DATA } from '@/src/constants/report';
 
 const DatePickerModal = ({ open, handleClose }) => {
+  const handleOutsideClick = (event) => {
+    if (event.target === event.currentTarget) {
+      handleClose();
+    }
+  };
   return (
     <Modal
       open={open}
@@ -21,6 +26,7 @@ const DatePickerModal = ({ open, handleClose }) => {
           alignItems: 'center',
           flexDirection: 'column',
         }}
+        onClick={handleOutsideClick}
       >
         <Box
           sx={{
