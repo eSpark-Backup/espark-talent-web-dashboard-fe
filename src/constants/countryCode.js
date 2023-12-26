@@ -5,7 +5,11 @@ export const COUNTRY_OPTIONS = [
     value: 'AF',
     label: (
       <>
-        <Flag countryCode="AF" svg style={{ marginRight: '8px', width: '34px', height: '26px' }} />
+        <Flag
+          countryCode="AF"
+          svg
+          style={{ marginRight: '8px', width: '34px', height: '26px' }}
+        />
         Afghanistan
       </>
     ),
@@ -14,7 +18,11 @@ export const COUNTRY_OPTIONS = [
     value: 'AX',
     label: (
       <>
-        <Flag countryCode="AX" svg style={{ marginRight: '8px', width: '34px', height: '26px' }} />
+        <Flag
+          countryCode="AX"
+          svg
+          style={{ marginRight: '8px', width: '34px', height: '26px' }}
+        />
         Aland Islands
       </>
     ),
@@ -23,7 +31,11 @@ export const COUNTRY_OPTIONS = [
     value: 'PK',
     label: (
       <>
-        <Flag countryCode="PK" svg style={{ marginRight: '8px', width: '34px', height: '26px' }} />
+        <Flag
+          countryCode="PK"
+          svg
+          style={{ marginRight: '8px', width: '34px', height: '26px' }}
+        />
         Pakistan
       </>
     ),
@@ -32,7 +44,11 @@ export const COUNTRY_OPTIONS = [
     value: 'AU',
     label: (
       <>
-        <Flag countryCode="AU" svg style={{ marginRight: '8px', width: '34px', height: '26px' }} />
+        <Flag
+          countryCode="AU"
+          svg
+          style={{ marginRight: '8px', width: '34px', height: '26px' }}
+        />
         Australia
       </>
     ),
@@ -41,7 +57,11 @@ export const COUNTRY_OPTIONS = [
     value: 'IN',
     label: (
       <>
-        <Flag countryCode="IN" svg style={{ marginRight: '8px', width: '34px', height: '26px' }} />
+        <Flag
+          countryCode="IN"
+          svg
+          style={{ marginRight: '8px', width: '34px', height: '26px' }}
+        />
         India
       </>
     ),

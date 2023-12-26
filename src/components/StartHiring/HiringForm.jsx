@@ -17,28 +17,34 @@ const HiringForm = () => {
   };
   return (
     <>
-      <Grid item xs={12} sm={10} md={12} lg={10}>
+      <Grid item xs={12} sm={10} md={10} lg={8}>
         <Box
           sx={{
             width: '100%',
-            height: { xs: "auto", md: '900px' },
+            height: { xs: 'auto', md: '900px' },
             borderRadius: '10px',
             border: '1px solid #E4E4E4',
+            display: 'flex',
+            justifyContent: 'flex-start',
+            flexDirection: 'column',
+            padding: '20px',
+            gap: '30px',
+
+            '@media (min-width: 960px) and (max-width: 1590px)': {
+              width: '120%',
+            },
+            '@media (min-width: 900px) and (max-width: 1440px)': {
+              height: '1200px',
+            },
           }}
         >
+          <Typography variant="h2" sx={{ textAlign: 'center' }}>
+            {HIRING_FORM_DATA.hire}
+          </Typography>
           <Box
             sx={{
-              display: 'flex',
-              justifyContent: 'center',
-              paddingTop: '30px',
-            }}
-          >
-            {' '}
-            <Typography variant="h2">{HIRING_FORM_DATA.hire}</Typography>
-          </Box>
-          <Box
-            sx={{
-              paddingTop: '80px',
+              width: '100%',
+              padding: { xs: '10px', md: '8px' },
             }}
           >
             <JobTitle
@@ -52,9 +58,11 @@ const HiringForm = () => {
               SelectClose={SelectClose}
             />
             <HiringDate />
-            <CountryDropdown  open={open}
+            <CountryDropdown
+              open={open}
               SelectOpen={SelectOpen}
-              SelectClose={SelectClose} />
+              SelectClose={SelectClose}
+            />
             <Submit />
           </Box>
         </Box>
