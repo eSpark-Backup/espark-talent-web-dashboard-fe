@@ -1,12 +1,11 @@
 import React from 'react';
-import { Box, Button } from '@mui/material';
+import { Box } from '@mui/material';
 
 import SidebarAccordion from './SidebarAccordion';
 import { IconsAndLinks } from '@/src/constants/sidebar';
 import SidebarLogo from './sidebarLogo';
 import SidebarActiveUser from './SidebarActiveUser';
 import ProfilePopper from '../popover/ProfilePopper';
-import NotificationPopper from '../popover/NotificationPopper';
 
 const Sidebar = ({ userName }) => {
   return (
@@ -26,10 +25,6 @@ const Sidebar = ({ userName }) => {
             width: '100%',
           }}
         >
-          {/* <SidebarActiveUser userName={userName} /> */}
-          {/* <NotificationPopper
-            button={<SidebarActiveUser userName={userName} />}
-          /> */}
           <ProfilePopper button={<SidebarActiveUser userName={userName} />} />
         </Box>
         <Box

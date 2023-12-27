@@ -5,7 +5,6 @@ import { Box, Typography } from '@mui/material';
 import SidebarUserAvatar from './SidebarUserAvatar';
 import SidebarProfileMenu from './sidebarProfileMenu';
 import SidebarGlobalIcon from './SidebarGlobalIcon';
-import { profileMenuData } from '@/src/constants/sidebar';
 
 const SidebarActiveUser = ({ userName }) => {
   return (

@@ -2,9 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Popper from '@mui/material/Popper';
 import { MenuItem, Typography } from '@mui/material';
-import SidebarProfileMenu from '../sidebar/sidebarProfileMenu';
-import { SIDE_NAV_WIDTH, profileMenuData } from '@/src/constants/sidebar';
-import NotificationPopper from './NotificationPopper';
+import { profileMenuData } from '@/src/constants/sidebar';
 import SidebarUserAvatar from '../sidebar/SidebarUserAvatar';
 
 export default function ProfilePopper({ button }) {
@@ -41,7 +39,7 @@ export default function ProfilePopper({ button }) {
     // else if (key == 'Sign out') {
     //   // sign out
     // }
-    else{
+    else {
       null;
     }
   };
@@ -61,7 +59,7 @@ export default function ProfilePopper({ button }) {
       <button
         aria-describedby={id}
         type="button"
-        onMouseOver={handleClick}
+        onClick={handleClick}
         style={{ width: '100%', height: '100%' }}
       >
         {button}
