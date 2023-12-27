@@ -4,7 +4,6 @@ import Image from 'next/image';
 import React, { useEffect, useRef, useState } from 'react';
 
 const AppCustomDropdown = ({
-  // options = ['Short listed', 'Pending', 'Rejected'],
   options = [
     { label: 'Short listed' },
     { label: 'Pending' },

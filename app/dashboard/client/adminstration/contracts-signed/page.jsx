@@ -101,10 +101,8 @@ const ContractSigned = () => {
     transform: 'translate(-50%, -50%)',
     width: 450,
     bgcolor: 'background.paper',
-    // border: '2px solid #000',
     boxShadow: 24,
     borderRadius: '10px',
-    // p: 4,
   };
   const handleClose = () => setIsOpenAddMemberModal(false);
 
@@ -235,7 +233,6 @@ const ContractSigned = () => {
             <AppTable
               currentTab={currentTab}
               column={contractSignedColumn}
-              // data={teamManagementData}
               handleClick={handleViewDetails}
               renderMessage="You haven't added any members yet"
               renderMessageButton="Add members"
@@ -245,7 +242,6 @@ const ContractSigned = () => {
         </Box>
       )}
       <Modal
-        // keepMounted
         open={isOpenAddMemberModal}
         onClose={handleClose}
         aria-labelledby="keep-mounted-modal-title"

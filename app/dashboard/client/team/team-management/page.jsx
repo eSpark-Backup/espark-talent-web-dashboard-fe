@@ -233,7 +233,6 @@ const TeamManagement = () => {
             <AppTable
               currentTab={currentTab}
               column={teamManagementColumn}
-              // data={teamManagementData}
               handleClick={handleViewDetails}
               renderMessage="You haven't added any members yet"
               renderMessageButton="Add members"
@@ -243,7 +242,6 @@ const TeamManagement = () => {
         </Box>
       )}
       <Modal
-        // keepMounted
         open={isOpenAddMemberModal}
         onClose={handleClose}
         aria-labelledby="keep-mounted-modal-title"
