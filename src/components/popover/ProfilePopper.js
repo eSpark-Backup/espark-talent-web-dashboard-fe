@@ -1,3 +1,4 @@
+'use client';
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Popper from '@mui/material/Popper';
@@ -13,8 +14,12 @@ export default function ProfilePopper({ button }) {
   const [profileMenu, setProfileMenu] = React.useState(null);
   const [openModal, setOpenModal] = React.useState(false);
   const [notificationPopup, setNotificationPopup] = React.useState(null);
+  const [bondary, setBondary] = React.useState(null);
   const notificationPopupRef = React.useRef(null);
   const router = useRouter();
+
+  // const bondary = document.querySelector('#popperBoundary');
+
   const handleClick = (event) => {
     setProfileMenu(profileMenu ? null : event.currentTarget);
     setNotificationPopup(null);
@@ -31,6 +36,7 @@ export default function ProfilePopper({ button }) {
 
   React.useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
+    setBondary(document.querySelector('#popperBoundary'));
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
@@ -131,7 +137,7 @@ export default function ProfilePopper({ button }) {
           {
             name: 'preventOverflow',
             options: {
-              boundary: document.querySelector('#popperBoundary'),
+              boundary: `${bondary}`,
             },
           },
         ]}
