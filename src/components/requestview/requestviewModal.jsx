@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { Box, Button, Modal, Typography } from '@mui/material';
-import { REQUESTVIEW_DATA } from '@/src/constants/requestviewModal';
+import { Box, Button, Modal } from '@mui/material';
+import Image from 'next/image';
+
 import RequestHeading from './modalHeading';
+import LeaveRequest from './leaveRequestview';
 
 const RequestviewModal = () => {
   const [open, setOpen] = useState(false);
@@ -18,20 +20,48 @@ const RequestviewModal = () => {
       >
         <Box
           sx={{
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            width: 400,
-            bgcolor: '#fff',
-            width: '50%',
             display: 'flex',
             flexDirection: 'column',
-            borderRadius: '10px',
+            alignItems: 'flex-end',
+            border: '1px solid #029894',
           }}
         >
-          <RequestHeading />
-          <Box>ljaj</Box>
+          <Box
+            sx={{
+              background: '#fff',
+              borderRadius: '20px',
+              width: '40px',
+              padding: '2.5px',
+              position: 'absolute',
+              top: '3%',
+              right: '25%',
+            }}
+          >
+            <Image
+              src="/images/leave-request/cancel.svg"
+              width={37}
+              height={37}
+              alt="cancel"
+              onClick={handleClose}
+            />
+          </Box>
+          <Box
+            sx={{
+              position: 'absolute',
+              top: '55%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              width: 400,
+              bgcolor: '#fff',
+              width: '50%',
+              display: 'flex',
+              flexDirection: 'column',
+              borderRadius: '10px',
+            }}
+          >
+            <RequestHeading />
+            <LeaveRequest />
+          </Box>
         </Box>
       </Modal>
     </Box>
