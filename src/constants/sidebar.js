@@ -27,10 +27,10 @@ export const IconsAndLinks = [
     link: '#',
     sublinks: [
       { text: 'Team members', link: '/dashboard/client/team/team-members' },
-      {
-        text: 'Team Management',
-        link: '/dashboard/client/team/team-management',
-      },
+      // {
+      //   text: 'Team Management',
+      //   link: '/dashboard/client/team/team-management',
+      // },
       { text: 'Time off', link: '/dashboard/client/team/time-off' },
       { text: 'Time tracking', link: '/dashboard/client/team/time-tracking' },
     ],
