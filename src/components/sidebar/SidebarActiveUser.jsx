@@ -11,10 +11,14 @@ const SidebarActiveUser = ({ userName }) => {
   return (
     <>
       <Box
+        component={'button'}
         sx={{
           width: '100%',
+          height: '100%',
           display: 'flex',
           alignItems: 'center',
+          py: 2,
+          px: 1.2,
         }}
       >
         <SidebarGlobalIcon />
@@ -28,7 +32,7 @@ const SidebarActiveUser = ({ userName }) => {
           <SidebarUserAvatar userName={userName} />
           <Typography sx={{ mx: 1.3 }}>{userName}</Typography>
         </Box>
-        <SidebarProfileMenu profileMenuData={profileMenuData} />
+        <SidebarProfileMenu />
       </Box>
     </>
   );
