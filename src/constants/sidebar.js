@@ -1,4 +1,5 @@
 export const SIDE_NAV_WIDTH = 280;
+export const NOTIFICATION_TITLE = 'Notifications';
 export const IconsAndLinks = [
   {
     icon: '/images/sidebar-icons/dashboard.svg',

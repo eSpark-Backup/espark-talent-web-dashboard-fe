@@ -1,10 +1,10 @@
-export const SettingData = {
+export const Setting_Data = {
   title: 'Settings',
   description:
     'Here you can edit your profile, understand how you can request to export your data and update your notification preferences.',
 };
 
-export const ProfileEditSection = {
+export const Profile_Edit_Section = {
   title: 'Profile Picture',
   profileAvatar: '/icons/avatar.svg',
   buttonIcon: '/icons/upload.svg',
@@ -12,7 +12,7 @@ export const ProfileEditSection = {
   alt: 'Profile_Avatar',
 };
 
-export const UserDetail = {
+export const User_Detail = {
   title: 'General',
   buttonText: 'Update',
   Fields: [
@@ -20,18 +20,16 @@ export const UserDetail = {
       label: 'Company Name',
       place: 'Company Name',
       type: 'text',
-      // buttonText: 'Update',
     },
     {
       label: 'Email',
       place: 'Email',
       type: 'email',
-      // buttonText: 'Update',
     },
   ],
 };
 
-export const UserPassword = {
+export const User_Password = {
   title: 'Change your password',
   buttonText: 'Update',
   Fields: [
