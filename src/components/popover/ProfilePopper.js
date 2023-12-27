@@ -2,14 +2,19 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Popper from '@mui/material/Popper';
 import { MenuItem, Typography } from '@mui/material';
-import { profileMenuData } from '@/src/constants/sidebar';
+import { useRouter } from 'next/navigation';
+
 import SidebarUserAvatar from '../sidebar/SidebarUserAvatar';
+import { NOTIFICATION_TITLE, profileMenuData } from '@/src/constants/sidebar';
+import { NOTIFICATION_DATA } from '@/src/constants/data/userData';
+import SignoutModal from '../signoutmodal/signoutModal';
 
 export default function ProfilePopper({ button }) {
   const [profileMenu, setProfileMenu] = React.useState(null);
+  const [openModal, setOpenModal] = React.useState(false);
   const [notificationPopup, setNotificationPopup] = React.useState(null);
   const notificationPopupRef = React.useRef(null);
-
+  const router = useRouter();
   const handleClick = (event) => {
     setProfileMenu(profileMenu ? null : event.currentTarget);
     setNotificationPopup(null);
@@ -17,8 +22,8 @@ export default function ProfilePopper({ button }) {
 
   const handleClickOutside = (event) => {
     if (
-      notificationPopupRef.current &&
-      !notificationPopupRef.current.contains(event.target)
+      notificationPopupRef?.current &&
+      !notificationPopupRef?.current?.contains(event.target)
     ) {
       setNotificationPopup(null);
     }
@@ -35,17 +40,19 @@ export default function ProfilePopper({ button }) {
     setProfileMenu(null);
     if (key == 'Notification') {
       setNotificationPopup(notificationPopup ? null : event.currentTarget);
-    }
-    // else if (key == 'Sign out') {
-    //   // sign out
-    // }
-    else {
+    } else if (key == 'Sign out') {
+      setOpenModal(true);
+    } else {
       null;
     }
   };
 
   const handlePopoverClose = () => {
     setProfileMenu(null);
+  };
+
+  const handleLogout = () => {
+    router.push('/');
   };
 
   const open = Boolean(profileMenu);
@@ -64,6 +71,11 @@ export default function ProfilePopper({ button }) {
       >
         {button}
       </button>
+      <SignoutModal
+        openModal={openModal}
+        setOpenModal={setOpenModal}
+        onClick={handleLogout}
+      />
 
       <Popper
         id={id}
@@ -85,8 +97,11 @@ export default function ProfilePopper({ button }) {
             flexDirection: 'column',
             justifyContent: 'center',
             alignItems: 'flex-start',
-            marginLeft: 0.8,
-            marginTop: 1,
+            position: 'fixed',
+            marginLeft: { xs: 'auto', lg: 0.8 },
+            right: { xs: 0, lg: 'auto' },
+            marginRight: { xs: 0, lg: 0 },
+            marginTop: { xs: 8, lg: 1 },
           }}
         >
           {profileMenuData?.map((item, i) => (
@@ -111,7 +126,7 @@ export default function ProfilePopper({ button }) {
       <Popper
         id={notificationId}
         open={notifiactionOpen}
-        anchorEl={notificationPopupRef.current}
+        anchorEl={notificationPopupRef?.current}
         modifiers={[
           {
             name: 'preventOverflow',
@@ -132,148 +147,79 @@ export default function ProfilePopper({ button }) {
             boxShadow: '0px 0px 80px 0px rgba(0, 0, 0, 0.20)',
             display: 'flex',
             width: '350px',
-            height: '350px',
+            minHeight: 'auto',
+            maxHeight: '410px',
             overflowY: 'auto',
             flexDirection: 'column',
             alignItems: 'flex-start',
-            marginLeft: 36,
-            marginTop: 1,
+            position: 'fixed',
+            marginLeft: { xs: 1, lg: 36 },
+            right: { xs: 0, lg: 'auto' },
+            marginTop: { xs: 9, lg: 1 },
+            marginRight: { xs: 1.5, lg: 'auto' },
+            '@media (max-width: 374px)': {
+              right: 0,
+              left: 0,
+              width: '310px',
+              mx: 'auto',
+            },
           }}
         >
           <Box sx={{ width: '100%', padding: '15px 228px 16px 23px' }}>
-            <Typography variant="h6">Notifications</Typography>
+            <Typography variant="h6">{NOTIFICATION_TITLE}</Typography>
           </Box>
           <Box sx={{ width: '100%', height: '100%' }}>
-            <Box
-              sx={{
-                width: '100%',
-                background: '#F5F5F5',
-                padding: '11px 138px 12px 20px',
-                borderTop: '1px solid #E4E4E4',
-                borderBottom: '1px solid #E4E4E4',
-              }}
-            >
-              <Typography>Today</Typography>
-            </Box>
-            <Box
-              sx={{
-                width: '100%',
-                display: 'flex',
-                gap: 3,
-                px: 4,
-                py: 2,
-                borderBottom: '1px solid #E4E4E4',
-              }}
-            >
-              <Box>
-                <SidebarUserAvatar userName={'Muhammad Ali'} />
-              </Box>
-              <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
-                <Typography
-                  variant="p"
+            {NOTIFICATION_DATA?.map((item, index) => (
+              <Box component={'div'} key={index}>
+                <Box
                   sx={{
-                    fontWeight: 700,
-                    pb: 0.5,
+                    width: '100%',
+                    background: '#F5F5F5',
+                    padding: '11px 138px 12px 20px',
+                    borderTop: '1px solid #E4E4E4',
+                    borderBottom: '1px solid #E4E4E4',
                   }}
                 >
-                  Review Submitted Expense
-                </Typography>
-                <Typography variant="p">
-                  A new expense was submitted by Arman khan
-                </Typography>
+                  <Typography>{item?.day}</Typography>
+                </Box>
+                {item?.userNotifications?.map((notification, index) => (
+                  <Box
+                    key={index}
+                    sx={{
+                      width: '100%',
+                      display: 'flex',
+                      gap: 3,
+                      px: 4,
+                      py: 2,
+                      borderBottom: '1px solid #E4E4E4',
+                    }}
+                  >
+                    <Box>
+                      <SidebarUserAvatar userName={notification?.userName} />
+                    </Box>
+                    <Box
+                      sx={{ display: 'flex', flexDirection: 'column', gap: 0 }}
+                    >
+                      <Typography
+                        variant="p"
+                        sx={{
+                          fontWeight: 700,
+                          pb: 0.5,
+                        }}
+                      >
+                        {notification?.userName}
+                      </Typography>
+                      <Typography variant="p">
+                        {notification?.message}
+                      </Typography>
+                    </Box>
+                    <Box>
+                      <Typography variant="p">{notification?.time}</Typography>
+                    </Box>
+                  </Box>
+                ))}
               </Box>
-              <Box>
-                <Typography variant="p">Now</Typography>
-              </Box>
-            </Box>
-          </Box>
-          <Box sx={{ width: '100%', height: '100%' }}>
-            <Box
-              sx={{
-                width: '100%',
-                background: '#F5F5F5',
-                padding: '11px 138px 12px 20px',
-                borderTop: '1px solid #E4E4E4',
-                borderBottom: '1px solid #E4E4E4',
-              }}
-            >
-              <Typography>Today</Typography>
-            </Box>
-            <Box
-              sx={{
-                width: '100%',
-                display: 'flex',
-                gap: 3,
-                px: 4,
-                py: 2,
-                borderBottom: '1px solid #E4E4E4',
-              }}
-            >
-              <Box>
-                <SidebarUserAvatar userName={'Muhammad Ali'} />
-              </Box>
-              <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
-                <Typography
-                  variant="p"
-                  sx={{
-                    fontWeight: 700,
-                    pb: 0.5,
-                  }}
-                >
-                  Review Submitted Expense
-                </Typography>
-                <Typography variant="p">
-                  A new expense was submitted by Arman khan
-                </Typography>
-              </Box>
-              <Box>
-                <Typography variant="p">Now</Typography>
-              </Box>
-            </Box>
-          </Box>
-          <Box sx={{ width: '100%', height: '100%' }}>
-            <Box
-              sx={{
-                width: '100%',
-                background: '#F5F5F5',
-                padding: '11px 138px 12px 20px',
-                borderTop: '1px solid #E4E4E4',
-                borderBottom: '1px solid #E4E4E4',
-              }}
-            >
-              <Typography>Today</Typography>
-            </Box>
-            <Box
-              sx={{
-                width: '100%',
-                display: 'flex',
-                gap: 3,
-                px: 4,
-                py: 2,
-                borderBottom: '1px solid #E4E4E4',
-              }}
-            >
-              <Box>
-                <SidebarUserAvatar userName={'Muhammad Ali'} />
-              </Box>
-              <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
-                <Typography
-                  variant="p"
-                  sx={{
-                    fontWeight: 700,
-                    pb: 0.5,
-                  }}
-                >
-                  Review Submitted Expense
-                </Typography>
-                <Typography variant="p">
-                  A new expense was submitted by Arman khan
-                </Typography>
-              </Box>
-              <Box>
-                <Typography variant="p">Now</Typography>
-              </Box>
-            </Box>
+            ))}
           </Box>
         </Box>
       </Popper>

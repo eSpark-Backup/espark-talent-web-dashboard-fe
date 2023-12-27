@@ -6,10 +6,10 @@ import ProfileSection from './ProfileSection';
 import SettingTitle from './SettingTitle';
 import PasswordSection from './PasswordSection';
 import {
-  ProfileEditSection,
-  SettingData,
-  UserDetail,
-  UserPassword,
+  Profile_Edit_Section,
+  Setting_Data,
+  User_Detail,
+  User_Password,
 } from '@/src/constants/profileEditData';
 
 const EditProfile = () => {
@@ -33,13 +33,13 @@ const EditProfile = () => {
           },
         }}
       >
-        <SettingTitle SettingData={SettingData} />
+        <SettingTitle Setting_Data={Setting_Data} />
         <Box sx={{ mt: 5 }}>
           <ProfileSection
-            ProfileEditSection={ProfileEditSection}
-            UserDetail={UserDetail}
+            Profile_Edit_Section={Profile_Edit_Section}
+            User_Detail={User_Detail}
           />
-          <PasswordSection UserPassword={UserPassword} />
+          <PasswordSection User_Password={User_Password} />
         </Box>
       </Box>
     </>

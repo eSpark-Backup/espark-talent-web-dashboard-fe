@@ -4,37 +4,37 @@ import Box from '@mui/material/Box';
 import Image from 'next/image';
 import { Button, TextField, Typography } from '@mui/material';
 
-export default function ProfileSection({ ProfileEditSection, UserDetail }) {
+export default function ProfileSection({ Profile_Edit_Section, User_Detail }) {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Box sx={{ mb: 2 }}>
-        <Typography variant="h6">{ProfileEditSection?.title}</Typography>
+        <Typography variant="h6">{Profile_Edit_Section?.title}</Typography>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mt: 2 }}>
           <Image
-            src={ProfileEditSection?.profileAvatar}
+            src={Profile_Edit_Section?.profileAvatar}
             width={50}
             height={50}
-            alt={ProfileEditSection?.alt}
+            alt={Profile_Edit_Section?.alt}
           />
           <Button
             sx={{ width: '160px', height: '40px' }}
             variant="contained"
             startIcon={
               <Image
-                src={ProfileEditSection?.buttonIcon}
+                src={Profile_Edit_Section?.buttonIcon}
                 width={24}
                 height={24}
                 alt={'upload'}
               />
             }
           >
-            {ProfileEditSection?.buttonText}
+            {Profile_Edit_Section?.buttonText}
           </Button>
         </Box>
       </Box>
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5, my: 3 }}>
-        <Typography variant="h6">{UserDetail?.title}</Typography>
-        {UserDetail?.Fields?.map((item, index) => (
+        <Typography variant="h6">{User_Detail?.title}</Typography>
+        {User_Detail?.Fields?.map((item, index) => (
           <Box component={'div'} key={index}>
             <Typography sx={{ mb: 1 }}>{item?.label}</Typography>
             <TextField
@@ -61,7 +61,7 @@ export default function ProfileSection({ ProfileEditSection, UserDetail }) {
             },
           }}
         >
-          {UserDetail?.buttonText}
+          {User_Detail?.buttonText}
         </Button>
       </Box>
     </Box>

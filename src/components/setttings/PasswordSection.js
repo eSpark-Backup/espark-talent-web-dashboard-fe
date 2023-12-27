@@ -1,12 +1,12 @@
 import React from 'react';
 import { Box, Button, TextField, Typography } from '@mui/material';
 
-const PasswordSection = ({ UserPassword }) => {
+const PasswordSection = ({ User_Password }) => {
   return (
     <>
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5, my: 4 }}>
-        <Typography variant="h6">{UserPassword?.title}</Typography>
-        {UserPassword?.Fields?.map((item, index) => (
+        <Typography variant="h6">{User_Password?.title}</Typography>
+        {User_Password?.Fields?.map((item, index) => (
           <Box component={'div'} key={index}>
             <Typography sx={{ mb: 1 }}>{item?.label}</Typography>
             <TextField
@@ -33,7 +33,7 @@ const PasswordSection = ({ UserPassword }) => {
             },
           }}
         >
-          {UserPassword?.buttonText}
+          {User_Password?.buttonText}
         </Button>
       </Box>
     </>
