@@ -2,9 +2,9 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Popper from '@mui/material/Popper';
 import { MenuItem, Typography } from '@mui/material';
-// import SidebarProfileMenu from '../sidebar/sidebarProfileMenu';
-import { profileMenuData } from '@/src/constants/sidebar';
-// import NotificationPopper from './NotificationPopper';
+import SidebarProfileMenu from '../sidebar/sidebarProfileMenu';
+import { SIDE_NAV_WIDTH, profileMenuData } from '@/src/constants/sidebar';
+import NotificationPopper from './NotificationPopper';
 import SidebarUserAvatar from '../sidebar/SidebarUserAvatar';
 
 export default function ProfilePopper({ button }) {
@@ -14,35 +14,41 @@ export default function ProfilePopper({ button }) {
 
   const handleClick = (event) => {
     setProfileMenu(profileMenu ? null : event.currentTarget);
+    setNotificationPopup(null);
   };
-  // const handleClickOutside = (event) => {
-  //   if (
-  //     notificationPopupRef.current &&
-  //     !notificationPopupRef.current.contains(event.target)
-  //   ) {
-  //     setNotificationPopup(null);
-  //   }
-  // };
 
-  // React.useEffect(() => {
-  //   document.addEventListener('mousedown', handleClickOutside);
-  //   return () => {
-  //     document.removeEventListener('mousedown', handleClickOutside);
-  //   };
-  // }, []);
+  const handleClickOutside = (event) => {
+    if (
+      notificationPopupRef.current &&
+      !notificationPopupRef.current.contains(event.target)
+    ) {
+      setNotificationPopup(null);
+    }
+  };
 
-  const handleNotification = (event) => {
-    setProfileMenu(null); // Close anchorEl Popper
-    setNotificationPopup(notificationPopup ? null : event.currentTarget);
-    // handleClick();
+  React.useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  const handleNotification = (event, key) => {
+    setProfileMenu(null);
+    if (key == 'Notification') {
+      setNotificationPopup(notificationPopup ? null : event.currentTarget);
+    }
+    // else if (key == 'Sign out') {
+    //   // sign out
+    // }
+    else{
+      null;
+    }
   };
 
   const handlePopoverClose = () => {
     setProfileMenu(null);
   };
-  // const handleNotificationPopoverClose = () => {
-  //   setNotificationPopup(null);
-  // };
 
   const open = Boolean(profileMenu);
   const id = open ? 'simple-popper-1' : undefined;
@@ -88,8 +94,7 @@ export default function ProfilePopper({ button }) {
           {profileMenuData?.map((item, i) => (
             <MenuItem
               key={i}
-              // onClick={() => handleClose(item?.text)}
-              onClick={handleNotification}
+              onClick={(e) => handleNotification(e, item?.text)}
               sx={{ width: '100%', py: 1.1 }}
             >
               <Box sx={{ display: 'flex', gap: 1.5 }}>
@@ -109,19 +114,19 @@ export default function ProfilePopper({ button }) {
         id={notificationId}
         open={notifiactionOpen}
         anchorEl={notificationPopupRef.current}
-        // modifiers={[
-        //   {
-        //     name: 'preventOverflow',
-        //     options: {
-        //       boundary: document.querySelector('#popperBoundary'),
-        //     },
-        //   },
-        // ]}
+        modifiers={[
+          {
+            name: 'preventOverflow',
+            options: {
+              boundary: document.querySelector('#popperBoundary'),
+            },
+          },
+        ]}
         placement={'right-start'}
         sx={{ position: 'relative', zIndex: 2 }}
       >
         <Box
-          // ref={notificationPopupRef}
+          ref={notificationPopupRef}
           sx={{
             borderRadius: '5px',
             border: '1px solid #068987',
@@ -129,16 +134,104 @@ export default function ProfilePopper({ button }) {
             boxShadow: '0px 0px 80px 0px rgba(0, 0, 0, 0.20)',
             display: 'flex',
             width: '350px',
-            height: 'auto',
+            height: '350px',
+            overflowY: 'auto',
             flexDirection: 'column',
-            // justifyContent: 'center',
             alignItems: 'flex-start',
-            marginLeft: 35.6,
+            marginLeft: 36,
             marginTop: 1,
           }}
         >
           <Box sx={{ width: '100%', padding: '15px 228px 16px 23px' }}>
             <Typography variant="h6">Notifications</Typography>
+          </Box>
+          <Box sx={{ width: '100%', height: '100%' }}>
+            <Box
+              sx={{
+                width: '100%',
+                background: '#F5F5F5',
+                padding: '11px 138px 12px 20px',
+                borderTop: '1px solid #E4E4E4',
+                borderBottom: '1px solid #E4E4E4',
+              }}
+            >
+              <Typography>Today</Typography>
+            </Box>
+            <Box
+              sx={{
+                width: '100%',
+                display: 'flex',
+                gap: 3,
+                px: 4,
+                py: 2,
+                borderBottom: '1px solid #E4E4E4',
+              }}
+            >
+              <Box>
+                <SidebarUserAvatar userName={'Muhammad Ali'} />
+              </Box>
+              <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
+                <Typography
+                  variant="p"
+                  sx={{
+                    fontWeight: 700,
+                    pb: 0.5,
+                  }}
+                >
+                  Review Submitted Expense
+                </Typography>
+                <Typography variant="p">
+                  A new expense was submitted by Arman khan
+                </Typography>
+              </Box>
+              <Box>
+                <Typography variant="p">Now</Typography>
+              </Box>
+            </Box>
+          </Box>
+          <Box sx={{ width: '100%', height: '100%' }}>
+            <Box
+              sx={{
+                width: '100%',
+                background: '#F5F5F5',
+                padding: '11px 138px 12px 20px',
+                borderTop: '1px solid #E4E4E4',
+                borderBottom: '1px solid #E4E4E4',
+              }}
+            >
+              <Typography>Today</Typography>
+            </Box>
+            <Box
+              sx={{
+                width: '100%',
+                display: 'flex',
+                gap: 3,
+                px: 4,
+                py: 2,
+                borderBottom: '1px solid #E4E4E4',
+              }}
+            >
+              <Box>
+                <SidebarUserAvatar userName={'Muhammad Ali'} />
+              </Box>
+              <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
+                <Typography
+                  variant="p"
+                  sx={{
+                    fontWeight: 700,
+                    pb: 0.5,
+                  }}
+                >
+                  Review Submitted Expense
+                </Typography>
+                <Typography variant="p">
+                  A new expense was submitted by Arman khan
+                </Typography>
+              </Box>
+              <Box>
+                <Typography variant="p">Now</Typography>
+              </Box>
+            </Box>
           </Box>
           <Box sx={{ width: '100%', height: '100%' }}>
             <Box
