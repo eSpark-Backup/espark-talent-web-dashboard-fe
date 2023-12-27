@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Grid, Box, Typography } from '@mui/material';
 import AppTable from '@/src/components/dashboard/appTable';
 import {
@@ -31,15 +31,15 @@ const Dashboard = () => {
     'Abdullah Zaidi',
   ];
 
-  const [isLoading, setIsLoading] = React.useState(true);
-  const [isLoadingEmployee, setIsLoadingEmployee] = React.useState(false);
-  const [selectedEmployee, setSelectedEmployee] = React.useState('');
+  const [isLoading, setIsLoading] = useState(true);
+  const [isLoadingEmployee, setIsLoadingEmployee] = useState(false);
+  const [selectedEmployee, setSelectedEmployee] = useState('');
 
   const fetchDataFake = async () => {
     return true;
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     const fetchDataAsync = async () => {
       try {
         await fetchDataFake();

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { useRouter } from 'next/navigation';
 import { Box, IconButton, Menu, MenuItem, Typography } from '@mui/material';
@@ -7,7 +7,7 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import DotBadge from './SidebarProfileBadge';
 
 const SidebarProfileMenu = ({ profileMenuData }) => {
-  const [profileMenu, setProfileMenu] = React.useState(null);
+  const [profileMenu, setProfileMenu] = useState(null);
   const router = useRouter();
 
   const handleMenu = (event) => {

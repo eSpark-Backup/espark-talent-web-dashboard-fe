@@ -1,7 +1,7 @@
 import { toCamelCase } from '@/src/utils/stringModification';
 import { Box, Typography } from '@mui/material';
 import Image from 'next/image';
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 const AppCustomDropdown = ({
   // options = ['Short listed', 'Pending', 'Rejected'],
@@ -14,10 +14,10 @@ const AppCustomDropdown = ({
   col,
   row,
 }) => {
-  const [isOpen, setIsOpen] = React.useState(false);
-  const [currentState, setCurrentState] = React.useState(row[toCamelCase(col)]);
-  const componentRef = React.useRef(null);
-  React.useEffect(() => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [currentState, setCurrentState] = useState(row[toCamelCase(col)]);
+  const componentRef = useRef(null);
+  useEffect(() => {
     const handleClickOutside = (event) => {
       if (
         componentRef.current &&

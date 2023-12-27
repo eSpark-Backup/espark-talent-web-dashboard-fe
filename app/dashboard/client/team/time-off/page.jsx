@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Grid, Box, Typography, Button } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -25,26 +25,26 @@ import { renderNestedTable } from './renderComponents';
 import Link from 'next/link';
 
 const Dashboard = () => {
-  const [isLoading, setIsLoading] = React.useState(true);
-  const [search, setSearch] = React.useState('');
-  const [searchLeaveRequest, setSearchLeaveRequest] = React.useState('');
+  const [isLoading, setIsLoading] = useState(true);
+  const [search, setSearch] = useState('');
+  const [searchLeaveRequest, setSearchLeaveRequest] = useState('');
   const [searchCheckInOutRequest, setSearchCheckInOutRequest] =
-    React.useState('');
-  const [leaveBalanceDataState, setLeaveBalanceDataState] = React.useState(
+    useState('');
+  const [leaveBalanceDataState, setLeaveBalanceDataState] = useState(
     filterTableRowsWRTTab(leaveBalanceData, { status: '' })
   );
-  const [leaveRequestDataState, setLeaveRequestDataState] = React.useState(
+  const [leaveRequestDataState, setLeaveRequestDataState] = useState(
     filterTableRowsWRTTab(leaveRequestsData, { status: '' })
   );
   const [checkInOutRequestDataState, setCheckInOutRequestDataState] =
-    React.useState(
+    useState(
       filterTableRowsWRTTab(checkInOutRequestData, { status: '' })
     );
   const [currentReqTypeTab, setcurrentReqTypeTab] =
-    React.useState('Leave Requests');
-  const [currentReqTypeTabVal, setcurrentReqTypeTabVal] = React.useState(0);
-  const [currentReqStatusTab, setcurrentReqStatusTab] = React.useState('All');
-  const [currentReqStatusTabVal, setcurrentReqStatusTabVal] = React.useState(0);
+    useState('Leave Requests');
+  const [currentReqTypeTabVal, setcurrentReqTypeTabVal] = useState(0);
+  const [currentReqStatusTab, setcurrentReqStatusTab] = useState('All');
+  const [currentReqStatusTabVal, setcurrentReqStatusTabVal] = useState(0);
   const handleChangeCurrReqTypeTab = (event, newValue) => {
     const tab = event?.target?.innerText;
     setcurrentReqTypeTab(tab);
@@ -66,7 +66,7 @@ const Dashboard = () => {
     return true;
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     const fetchDataAsync = async () => {
       try {
         await fetchDataFake();
@@ -78,7 +78,7 @@ const Dashboard = () => {
     fetchDataAsync();
   }, []);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const data = filterTableRowsWRTTab(leaveBalanceData);
     const timeoutId = setTimeout(() => {
       filterDataByKeyword(data, search || '', setLeaveBalanceDataState);
@@ -88,7 +88,7 @@ const Dashboard = () => {
       clearTimeout(timeoutId);
     };
   }, [search]);
-  React.useEffect(() => {
+  useEffect(() => {
     const data = filterTableRowsWRTTab(leaveRequestsData);
     const timeoutId = setTimeout(() => {
       filterDataByKeyword(
@@ -102,7 +102,7 @@ const Dashboard = () => {
       clearTimeout(timeoutId);
     };
   }, [searchLeaveRequest]);
-  React.useEffect(() => {
+  useEffect(() => {
     const data = filterTableRowsWRTTab(checkInOutRequestData);
     const timeoutId = setTimeout(() => {
       filterDataByKeyword(

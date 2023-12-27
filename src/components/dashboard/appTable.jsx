@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment, memo, useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { toCamelCase } from '@/src/utils/stringModification';
 import { Box, Button, Pagination, Stack, Typography } from '@mui/material';
@@ -36,9 +36,9 @@ const InfoOption = ({
   handleClick,
   handleClickRenderMessageButton,
 }) => {
-  const [isOpen, setIsOpen] = React.useState(false);
-  const componentRef = React.useRef(null);
-  React.useEffect(() => {
+  const [isOpen, setIsOpen] = useState(false);
+  const componentRef = useRef(null);
+  useEffect(() => {
     const handleClickOutside = (event) => {
       if (
         componentRef.current &&
@@ -184,7 +184,7 @@ const AppTable = ({
             ))
           ) : data?.length ? (
             data.map((row, rowIndex) => (
-              <React.Fragment key={rowIndex}>
+              <Fragment key={rowIndex}>
                 <tr className="app-table-row">
                   {column?.map((col, colIndex) => {
                     if (row?.actionStatus && col === 'Status') {
@@ -276,7 +276,7 @@ const AppTable = ({
                     } else if (row?.dropdownStatus) {
                       if (col === 'Payment status') {
                         return (
-                          <React.Fragment key={colIndex}>
+                          <Fragment key={colIndex}>
                             <AppCustomDropdown
                               col={col}
                               colIndex={colIndex}
@@ -287,17 +287,17 @@ const AppTable = ({
                                 { label: 'Paid', disabled: true },
                               ]}
                             />
-                          </React.Fragment>
+                          </Fragment>
                         );
                       } else if (col === 'Status')
                         return (
-                          <React.Fragment key={colIndex}>
+                          <Fragment key={colIndex}>
                             <AppCustomDropdown
                               col={col}
                               colIndex={colIndex}
                               row={row}
                             />
-                          </React.Fragment>
+                          </Fragment>
                         );
                     } else if (row?.optionsDropdown && col === 'Team members') {
                       return (
@@ -322,7 +322,7 @@ const AppTable = ({
                       );
                     }
                     return (
-                      <React.Fragment key={colIndex}>
+                      <Fragment key={colIndex}>
                         <td
                           style={{ display: 'flex', justifyContent: 'center' }}
                         >
@@ -367,11 +367,11 @@ const AppTable = ({
                             </>
                           )}
                         </td>
-                      </React.Fragment>
+                      </Fragment>
                     );
                   })}
                 </tr>
-              </React.Fragment>
+              </Fragment>
             ))
           ) : (
             <tr>
@@ -398,4 +398,4 @@ AppTable.propTypes = {
   suffixIcon: PropTypes.array,
 };
 
-export default React.memo(AppTable);
+export default memo(AppTable);

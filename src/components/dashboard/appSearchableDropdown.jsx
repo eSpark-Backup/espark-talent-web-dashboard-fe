@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Box, Grid, Typography } from '@mui/material';
 import Image from 'next/image';
@@ -12,13 +12,13 @@ const AppSearchableDropdown = ({
   setSelectedItem,
   data,
 }) => {
-  const [isOpenedDropdown, setIsOpenedDropdown] = React.useState(false);
-  const [listData, setListData] = React.useState([...data]);
-  const [searchItem, setSearchItem] = React.useState('');
-  const [pointedElement, setPointedElement] = React.useState(selectedItem);
+  const [isOpenedDropdown, setIsOpenedDropdown] = useState(false);
+  const [listData, setListData] = useState([...data]);
+  const [searchItem, setSearchItem] = useState('');
+  const [pointedElement, setPointedElement] = useState(selectedItem);
 
-  const componentRef = React.useRef(null);
-  React.useEffect(() => {
+  const componentRef = useRef(null);
+  useEffect(() => {
     const tempData = [...data];
     const timeoutId = setTimeout(() => {
       filterDataByKeyword(tempData, searchItem.trim() || '', setListData);
@@ -28,7 +28,7 @@ const AppSearchableDropdown = ({
       clearTimeout(timeoutId);
     };
   }, [searchItem, data]);
-  React.useEffect(() => {
+  useEffect(() => {
     const handleClickOutside = (event) => {
       if (
         componentRef.current &&
@@ -44,7 +44,7 @@ const AppSearchableDropdown = ({
       document.removeEventListener('click', handleClickOutside);
     };
   }, []);
-  React.useEffect(() => {
+  useEffect(() => {
     if (isOpenedDropdown && pointedElement && componentRef.current) {
       const selectedElement = componentRef.current.querySelector(
         `[data-key="${pointedElement}"]`
@@ -152,7 +152,9 @@ const AppSearchableDropdown = ({
                 autofocus
               />
             </Box>
-            <Box maxHeight="250px" overflow={'scroll'}>
+            <Box maxHeight="250px" sx={{
+              overflowY:"scroll"
+            }}>
               {isLoadingList ? (
                 <Box p={'10px'}>
                   <Typography>Loading...</Typography>

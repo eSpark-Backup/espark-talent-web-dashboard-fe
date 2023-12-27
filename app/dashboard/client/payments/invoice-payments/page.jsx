@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Grid, Box, Typography } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -18,16 +18,16 @@ import {
 import { filterTableRowsWRTTab } from '@/src/utils/table';
 
 const Dashboard = () => {
-  const [value, setValue] = React.useState(0);
-  const [currentTab, setCurrentTab] = React.useState('Pending');
-  const [isLoading, setIsLoading] = React.useState(true);
-  const [isLoadingOthPay, setIsLoadingOthPay] = React.useState(true);
-  const [search, setSearch] = React.useState('');
-  const [searchOthPay, setSearchOthPay] = React.useState('');
-  const [invPayData, setInvPayData] = React.useState(
+  const [value, setValue] = useState(0);
+  const [currentTab, setCurrentTab] = useState('Pending');
+  const [isLoading, setIsLoading] = useState(true);
+  const [isLoadingOthPay, setIsLoadingOthPay] = useState(true);
+  const [search, setSearch] = useState('');
+  const [searchOthPay, setSearchOthPay] = useState('');
+  const [invPayData, setInvPayData] = useState(
     filterTableRowsWRTTab(invoicePaymentData, { paymentStatus: currentTab })
   );
-  const [othPayData, setOthPayData] = React.useState(
+  const [othPayData, setOthPayData] = useState(
     filterTableRowsWRTTab(invoicePaymentData, { paymentStatus: currentTab })
   );
 
@@ -35,7 +35,7 @@ const Dashboard = () => {
     return true;
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     const fetchDataAsync = async () => {
       try {
         await fetchDataFake();
@@ -62,7 +62,7 @@ const Dashboard = () => {
     });
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     const data = [
       ...filterTableRowsWRTTab(invoicePaymentData, {
         paymentStatus: currentTab,
@@ -76,7 +76,7 @@ const Dashboard = () => {
       clearTimeout(timeoutId);
     };
   }, [search, value, currentTab]);
-  React.useEffect(() => {
+  useEffect(() => {
     const data = [...filterTableRowsWRTTab(otherPaymentData)];
     const timeoutId = setTimeout(() => {
       filterDataByKeyword(data, searchOthPay || '', setOthPayData);

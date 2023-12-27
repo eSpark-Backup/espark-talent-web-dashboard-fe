@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Box } from '@mui/material';
 import PropTypes from 'prop-types';
 import Image from 'next/image';
@@ -13,9 +13,9 @@ const Input = ({
   onKeyDown,
   autofocus,
 }) => {
-  const inputRef = React.useRef(null);
+  const inputRef = useRef(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (autofocus) {
       inputRef.current.focus();
     }

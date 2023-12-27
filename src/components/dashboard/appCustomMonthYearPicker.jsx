@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Box, Typography } from '@mui/material';
 import Image from 'next/image';
 
@@ -17,11 +17,11 @@ const AppCustomMonthYearPicker = () => {
     'November',
     'December',
   ];
-  const [selectedDate, setSelectedDate] = React.useState(new Date());
-  const [isOpenCalendar, setIsOpenCalendar] = React.useState(false);
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [isOpenCalendar, setIsOpenCalendar] = useState(false);
   const currentYear = selectedDate.getFullYear();
   const currentMonth = selectedDate.getMonth();
-  const componentRef = React.useRef(null);
+  const componentRef = useRef(null);
 
   const handleYearChange = (increment) => {
     const newYear = currentYear + increment;
@@ -35,7 +35,7 @@ const AppCustomMonthYearPicker = () => {
     setIsOpenCalendar(false);
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     const handleClickOutside = (event) => {
       if (
         componentRef.current &&

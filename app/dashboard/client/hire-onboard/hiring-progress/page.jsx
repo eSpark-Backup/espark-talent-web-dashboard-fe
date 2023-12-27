@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Grid, Box, Typography, Button } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -12,17 +12,17 @@ import { changeTab } from '@/src/utils/tabs';
 import { empTabs } from '@/src/constants/data/empTabs';
 
 const Dashboard = () => {
-  const [value, setValue] = React.useState(0);
-  const [currentTab, setCurrentTab] = React.useState('Hiring Request');
-  const [isLoading, setIsLoading] = React.useState(true);
-  const [search, setSearch] = React.useState('');
-  const [empData, setEmpData] = React.useState(employeeTableDataHiringRequest);
+  const [value, setValue] = useState(0);
+  const [currentTab, setCurrentTab] = useState('Hiring Request');
+  const [isLoading, setIsLoading] = useState(true);
+  const [search, setSearch] = useState('');
+  const [empData, setEmpData] = useState(employeeTableDataHiringRequest);
 
   const fetchDataFake = async () => {
     return true;
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     const fetchDataAsync = async () => {
       try {
         await fetchDataFake();
@@ -47,7 +47,7 @@ const Dashboard = () => {
     });
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     const data = empTabs[value].data;
     const timeoutId = setTimeout(() => {
       filterDataByKeyword(data, search || '', setEmpData);

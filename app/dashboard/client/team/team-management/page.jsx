@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Grid, Box, Typography, Modal, Button } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -19,16 +19,16 @@ import Image from 'next/image';
 import AppSearchableDropdown from '@/src/components/dashboard/appSearchableDropdown';
 
 const TeamManagement = () => {
-  const [value, setValue] = React.useState(0);
-  const [currentTab, setCurrentTab] = React.useState('Hiring Request');
-  const [isLoading, setIsLoading] = React.useState(true);
-  const [search, setSearch] = React.useState('');
-  const [empData, setEmpData] = React.useState(employeeTableDataHiringRequest);
-  const [isOpenViewDetails, setIsOpenViewDetails] = React.useState(false);
-  const [isOpenAddMemberModal, setIsOpenAddMemberModal] = React.useState(false);
+  const [value, setValue] = useState(0);
+  const [currentTab, setCurrentTab] = useState('Hiring Request');
+  const [isLoading, setIsLoading] = useState(true);
+  const [search, setSearch] = useState('');
+  const [empData, setEmpData] = useState(employeeTableDataHiringRequest);
+  const [isOpenViewDetails, setIsOpenViewDetails] = useState(false);
+  const [isOpenAddMemberModal, setIsOpenAddMemberModal] = useState(false);
   // Searchable States
-  const [isLoadingEmployee, setIsLoadingEmployee] = React.useState(false);
-  const [selectedEmployee, setSelectedEmployee] = React.useState('');
+  const [isLoadingEmployee, setIsLoadingEmployee] = useState(false);
+  const [selectedEmployee, setSelectedEmployee] = useState('');
   const listItems = [
     'Arman Khan',
     'Bilal Ahmed Khan',
@@ -51,7 +51,7 @@ const TeamManagement = () => {
     return true;
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     const fetchDataAsync = async () => {
       try {
         await fetchDataFake();
@@ -76,7 +76,7 @@ const TeamManagement = () => {
     });
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     const data = empTabs[value].data;
     const timeoutId = setTimeout(() => {
       filterDataByKeyword(data, search || '', setEmpData);

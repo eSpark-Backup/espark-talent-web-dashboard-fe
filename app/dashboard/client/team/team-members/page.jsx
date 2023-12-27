@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useState } from 'react';
 import { Grid, Box, Typography, Button } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -13,11 +13,11 @@ import { changeTab } from '@/src/utils/tabs';
 import { teamTabs } from '@/src/constants/data/teamTabs';
 
 const Dashboard = () => {
-  const [value, setValue] = React.useState(0);
-  const [currentTab, setCurrentTab] = React.useState('All');
-  const [isLoading, setIsLoading] = React.useState(true);
-  const [search, setSearch] = React.useState('');
-  const [empData, setEmpData] = React.useState(
+  const [value, setValue] = useState(0);
+  const [currentTab, setCurrentTab] = useState('All');
+  const [isLoading, setIsLoading] = useState(true);
+  const [search, setSearch] = useState('');
+  const [empData, setEmpData] = useState(
     filterTableRowsWRTTab(teamMembersData, { memberStatus: '' })
   );
 
@@ -25,7 +25,7 @@ const Dashboard = () => {
     return true;
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     const fetchDataAsync = async () => {
       try {
         await fetchDataFake();
@@ -51,7 +51,7 @@ const Dashboard = () => {
     });
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     const data = filterTableRowsWRTTab(teamMembersData, {
       memberStatus: currentTab === 'All' ? '' : currentTab,
     });
