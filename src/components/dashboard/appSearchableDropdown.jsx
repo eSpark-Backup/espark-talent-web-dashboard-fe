@@ -152,9 +152,12 @@ const AppSearchableDropdown = ({
                 autofocus
               />
             </Box>
-            <Box maxHeight="250px" sx={{
-              overflowY:"scroll"
-            }}>
+            <Box
+              maxHeight="250px"
+              sx={{
+                overflowY: 'scroll',
+              }}
+            >
               {isLoadingList ? (
                 <Box p={'10px'}>
                   <Typography>Loading...</Typography>

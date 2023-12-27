@@ -28,20 +28,17 @@ const Dashboard = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [search, setSearch] = useState('');
   const [searchLeaveRequest, setSearchLeaveRequest] = useState('');
-  const [searchCheckInOutRequest, setSearchCheckInOutRequest] =
-    useState('');
+  const [searchCheckInOutRequest, setSearchCheckInOutRequest] = useState('');
   const [leaveBalanceDataState, setLeaveBalanceDataState] = useState(
     filterTableRowsWRTTab(leaveBalanceData, { status: '' })
   );
   const [leaveRequestDataState, setLeaveRequestDataState] = useState(
     filterTableRowsWRTTab(leaveRequestsData, { status: '' })
   );
-  const [checkInOutRequestDataState, setCheckInOutRequestDataState] =
-    useState(
-      filterTableRowsWRTTab(checkInOutRequestData, { status: '' })
-    );
-  const [currentReqTypeTab, setcurrentReqTypeTab] =
-    useState('Leave Requests');
+  const [checkInOutRequestDataState, setCheckInOutRequestDataState] = useState(
+    filterTableRowsWRTTab(checkInOutRequestData, { status: '' })
+  );
+  const [currentReqTypeTab, setcurrentReqTypeTab] = useState('Leave Requests');
   const [currentReqTypeTabVal, setcurrentReqTypeTabVal] = useState(0);
   const [currentReqStatusTab, setcurrentReqStatusTab] = useState('All');
   const [currentReqStatusTabVal, setcurrentReqStatusTabVal] = useState(0);
