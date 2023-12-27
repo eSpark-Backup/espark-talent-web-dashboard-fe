@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Grid, Box, Typography, Button } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -13,11 +13,11 @@ import { changeTab } from '@/src/utils/tabs';
 import { teamTabs } from '@/src/constants/data/teamTabs';
 
 const Dashboard = () => {
-  const [value, setValue] = React.useState(0);
-  const [currentTab, setCurrentTab] = React.useState('All');
-  const [isLoading, setIsLoading] = React.useState(true);
-  const [search, setSearch] = React.useState('');
-  const [empData, setEmpData] = React.useState(
+  const [value, setValue] = useState(0);
+  const [currentTab, setCurrentTab] = useState('All');
+  const [isLoading, setIsLoading] = useState(true);
+  const [search, setSearch] = useState('');
+  const [empData, setEmpData] = useState(
     filterTableRowsWRTTab(teamMembersData, { memberStatus: '' })
   );
 
@@ -25,7 +25,7 @@ const Dashboard = () => {
     return true;
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     const fetchDataAsync = async () => {
       try {
         await fetchDataFake();
@@ -47,12 +47,13 @@ const Dashboard = () => {
       setData: setEmpData,
       filterTableRowsWRTTab,
       teamMembersData,
+      filterBy: 'memberStatus',
     });
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     const data = filterTableRowsWRTTab(teamMembersData, {
-      memberStatus: currentTab,
+      memberStatus: currentTab === 'All' ? '' : currentTab,
     });
     const timeoutId = setTimeout(() => {
       filterDataByKeyword(data, search || '', setEmpData);
@@ -71,14 +72,13 @@ const Dashboard = () => {
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
-            paddingTop: '60px',
             gap: '20px',
             width: '100%',
           }}
         >
           <div>
             <Box
-              marginY={5}
+              marginBottom={4}
               display={'flex'}
               justifyContent={'space-between'}
               alignItems={'center'}
@@ -113,13 +113,15 @@ const Dashboard = () => {
                   ))}
                 </Tabs>
               </Box>
-              <Input
-                setIsLoading={setIsLoading}
-                handleChange={setSearch}
-                value={search}
-                prefixIcon="SearchIcon.svg"
-                suffixIcon="QuestionMarkIcon.svg"
-              />
+              <Box my={4}>
+                <Input
+                  setIsLoading={setIsLoading}
+                  handleChange={setSearch}
+                  value={search}
+                  prefixIcon="SearchIcon.svg"
+                  suffixIcon="QuestionMarkIcon.svg"
+                />
+              </Box>
               {teamTabs?.map(({ column }, i) => (
                 <CustomTabPanel value={value} key={i} index={i}>
                   {isLoading ? (

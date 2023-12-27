@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Grid, Box, Typography, Button } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -12,17 +12,17 @@ import { changeTab } from '@/src/utils/tabs';
 import { empTabs } from '@/src/constants/data/empTabs';
 
 const Dashboard = () => {
-  const [value, setValue] = React.useState(0);
-  const [currentTab, setCurrentTab] = React.useState('Hiring Request');
-  const [isLoading, setIsLoading] = React.useState(true);
-  const [search, setSearch] = React.useState('');
-  const [empData, setEmpData] = React.useState(employeeTableDataHiringRequest);
+  const [value, setValue] = useState(0);
+  const [currentTab, setCurrentTab] = useState('Hiring Request');
+  const [isLoading, setIsLoading] = useState(true);
+  const [search, setSearch] = useState('');
+  const [empData, setEmpData] = useState(employeeTableDataHiringRequest);
 
   const fetchDataFake = async () => {
     return true;
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     const fetchDataAsync = async () => {
       try {
         await fetchDataFake();
@@ -47,7 +47,7 @@ const Dashboard = () => {
     });
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     const data = empTabs[value].data;
     const timeoutId = setTimeout(() => {
       filterDataByKeyword(data, search || '', setEmpData);
@@ -66,13 +66,12 @@ const Dashboard = () => {
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
-            paddingTop: '60px',
             gap: '20px',
             width: '100%',
           }}
         >
           <Box
-            marginY={5}
+            marginBottom={4}
             display={'flex'}
             justifyContent={'space-between'}
             alignItems={'center'}
@@ -84,7 +83,7 @@ const Dashboard = () => {
               }}
               variant="contained"
             >
-              New hire
+              Add New hire
             </Button>
           </Box>
           <Box sx={{ width: '100%' }}>
@@ -99,13 +98,15 @@ const Dashboard = () => {
                 ))}
               </Tabs>
             </Box>
-            <Input
-              setIsLoading={setIsLoading}
-              handleChange={setSearch}
-              value={search}
-              prefixIcon="SearchIcon.svg"
-              suffixIcon="QuestionMarkIcon.svg"
-            />
+            <Box my={4}>
+              <Input
+                setIsLoading={setIsLoading}
+                handleChange={setSearch}
+                value={search}
+                prefixIcon="SearchIcon.svg"
+                suffixIcon="QuestionMarkIcon.svg"
+              />
+            </Box>
             {empTabs?.map(({ column }, i) => (
               <CustomTabPanel value={value} key={i} index={i}>
                 {isLoading ? (

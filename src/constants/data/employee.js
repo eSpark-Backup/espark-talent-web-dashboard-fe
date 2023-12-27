@@ -16,6 +16,7 @@ export const employeeTableHiringRequestColumn = [
   'Hiring starting date',
   'Hiring ending date',
   'Salary range',
+  'Action',
 ];
 export const employeeTableOnboardingColumn = [
   'Employee name',
@@ -39,6 +40,7 @@ export const employeeTableDataInterviewSchedule = [
     country: 'Pakistan',
     status: 'Short listed',
     hiringStatus: 'Hiring Request',
+    dropdownStatus: true,
   },
   {
     employeeName: 'Areeba Shakeel',
@@ -50,6 +52,7 @@ export const employeeTableDataInterviewSchedule = [
     country: 'Pakistan',
     status: 'Pending',
     hiringStatus: 'Interview Schedule',
+    dropdownStatus: true,
   },
   {
     employeeName: 'Arman Khan',
@@ -61,6 +64,7 @@ export const employeeTableDataInterviewSchedule = [
     country: 'Pakistan',
     status: 'Rejected',
     hiringStatus: 'Onboarding',
+    dropdownStatus: true,
   },
   {
     employeeName: 'Saad Zafar',
@@ -72,6 +76,7 @@ export const employeeTableDataInterviewSchedule = [
     country: 'Pakistan',
     status: 'Short listed',
     hiringStatus: 'Hiring Request',
+    dropdownStatus: true,
   },
   {
     employeeName: 'Muhammad',
@@ -83,6 +88,7 @@ export const employeeTableDataInterviewSchedule = [
     country: 'Pakistan',
     status: 'Short listed',
     hiringStatus: 'Interview Schedule',
+    dropdownStatus: true,
   },
   {
     employeeName: 'Abdullah',
@@ -94,6 +100,7 @@ export const employeeTableDataInterviewSchedule = [
     country: 'Pakistan',
     status: 'Rejected',
     hiringStatus: 'Onboarding',
+    dropdownStatus: true,
   },
 ];
 export const employeeTableDataHiringRequest = [
@@ -105,6 +112,8 @@ export const employeeTableDataHiringRequest = [
     hiringStartingDate: '07-October-2021, 9:30AM (PST)',
     hiringEndingDate: '07-October-2021, 9:30AM (PST)',
     salaryRange: '1,000 $ - 1,200 $',
+    action: ['Delete'],
+    actionStatus: true,
   },
   {
     jobTitle: 'UI/UX Designer',
@@ -114,6 +123,8 @@ export const employeeTableDataHiringRequest = [
     hiringStartingDate: '28-February-2021, 9:30AM (PST)',
     hiringEndingDate: '28-February-2021, 9:30AM (PST)',
     salaryRange: '1,000 $ - 1,200 $',
+    action: ['Delete'],
+    actionStatus: true,
   },
   {
     jobTitle: 'Marketing Director',
@@ -123,6 +134,8 @@ export const employeeTableDataHiringRequest = [
     hiringStartingDate: '12-October-2022, 9:30AM (PST)',
     hiringEndingDate: '12-October-2022, 9:30AM (PST)',
     salaryRange: '1,000 $ - 1,200 $',
+    action: ['Delete'],
+    actionStatus: true,
   },
   {
     jobTitle: 'Web Developer',
@@ -132,6 +145,8 @@ export const employeeTableDataHiringRequest = [
     hiringStartingDate: '07-October-2021, 9:30AM (PST)',
     hiringEndingDate: '07-October-2021, 9:30AM (PST)',
     salaryRange: '1,000 $ - 1,200 $',
+    action: ['Delete'],
+    actionStatus: true,
   },
   {
     jobTitle: 'Hiring Specialist',
@@ -141,6 +156,8 @@ export const employeeTableDataHiringRequest = [
     hiringStartingDate: '7-June-2022, 8:36PM (PST)',
     hiringEndingDate: '7-June-2022, 8:36PM (PST)',
     salaryRange: '1,000 $ - 1,200 $',
+    action: ['Delete'],
+    actionStatus: true,
   },
 ];
 export const employeeTableDataOnBoarding = [
