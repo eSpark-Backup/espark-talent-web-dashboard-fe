@@ -378,6 +378,7 @@ const Dashboard = () => {
                   isLoading,
                   currentReqStatusTabVal,
                   currentReqStatusTab,
+                  
                   column:
                     currentReqTypeTab === 'Leave Requests'
                       ? leaveRequestsColumn
