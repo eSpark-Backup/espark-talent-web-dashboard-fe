@@ -11,7 +11,7 @@ const RequestviewModal = () => {
   const handleClose = () => setOpen(false);
   return (
     <Box>
-      <Button onClick={handleOpen}>Open modal</Button>
+      {/* <Button onClick={handleOpen}>Open modal</Button> */}
       <Modal
         open={open}
         onClose={handleClose}
@@ -33,7 +33,7 @@ const RequestviewModal = () => {
               width: '40px',
               padding: '2.5px',
               position: 'absolute',
-              top: '3%',
+              top: '7%',
               right: '25%',
             }}
           >

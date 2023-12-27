@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Grid, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 
 import { REQUESTVIEW_DATA } from '@/src/constants/requestviewModal';
 import LeaveDay from './leaveDay';
@@ -8,14 +8,13 @@ const LeaveDuration = () => {
   return (
     <Box
       sx={{
-              marginTop: '14px',
-          marginBottom:"14px",
+        marginTop: '14px',
+        marginBottom: '14px',
         border: '1px solid #E4E4E4',
         p: 1.5,
         display: 'flex',
         flexDirection: 'column',
-              gap: '8px',
-    
+        gap: '8px',
       }}
     >
       <Box
@@ -24,32 +23,29 @@ const LeaveDuration = () => {
           justifyContent: 'space-between',
         }}
       >
-        <Grid
-          item
-          xs={6}
-          md={3}
+        <Box
+         
           sx={{
             background: '#F6F6F6',
             border: '1px solid #E4E4E4',
-            p: 2,
+            p: 1.5,
+            width:"260px"
           }}
         >
           <Typography>{REQUESTVIEW_DATA.fromTo}</Typography>
-        </Grid>
-        <Grid
-          item
-          xs={6}
-          md={9}
+        </Box>
+        <Box
           sx={{
             background: '#F6F6F6',
             border: '1px solid #E4E4E4',
-            p: 2,
+            p: 1.5,
+            width:"700px"
           }}
         >
           <Typography sx={{ textAlign: 'center' }}>
             {REQUESTVIEW_DATA.leaveweek}
           </Typography>
-        </Grid>
+        </Box>
       </Box>
       <LeaveDay />
     </Box>

@@ -9,6 +9,7 @@ export const renderNestedTable = ({
   currentReqStatusTab,
   column,
   data,
+  handleOpen,
 }) => {
   return (
     <CustomTabPanel
@@ -24,6 +25,7 @@ export const renderNestedTable = ({
           data={filterTableRowsWRTTab(data, {
             status: currentReqStatusTab === 'All' ? '' : currentReqStatusTab,
           })}
+            handleOpen={handleOpen}
         />
       )}
     </CustomTabPanel>

@@ -10,7 +10,10 @@ export const REQUESTVIEW_DATA = {
     count: 'Count',
     sandwichCount: 'Sandwich Count',
     total: "Total",
-    reason: "Reason"
+    reason: "Reason",
+    approve: "Approve",
+    approved: 'Approved',
+    decline: 'Decline'
 }
 export const LEAVE_DATA = {
     fromTo: 'Oct 17, 23 - Oct 17, 23',

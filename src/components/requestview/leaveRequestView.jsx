@@ -8,8 +8,9 @@ import LeaveDuration from './leaveDuration';
 import LeaveCount from './leaveCount';
 import LeaveDatePicker from './leaveDatepicker';
 import LeaveReason from './leaveReason';
+import LeaveRequestButtons from './leaveRequestButton';
 
-const LeaveRequest = () => {
+const LeaveRequest = ({modalType}) => {
   return (
     <Box sx={{p:4}}>
       <LeaveType />
@@ -34,6 +35,8 @@ const LeaveRequest = () => {
         countLabel={REQUESTVIEW_DATA?.reason}
         component={<LeaveReason />}
       />
+      <LeaveRequestButtons modalType={modalType } />
+      
     </Box>
   );
 };

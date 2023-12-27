@@ -127,6 +127,7 @@ const AppTable = ({
   handleClick,
   renderMessageButton,
   handleClickRenderMessageButton,
+  handleOpen
 }) => {
   return (
     <>
@@ -330,6 +331,7 @@ const AppTable = ({
                             <>
                               {row[toCamelCase(col)]?.map((item, rowIndex) => (
                                 <Image
+                                  onClick={() => handleOpen(item)}
                                   key={rowIndex}
                                   style={{ margin: rowIndex === 1 && '0 5px' }}
                                   width={25}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Grid, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import Image from 'next/image';
 
 import { LEAVE_DATA } from '@/src/constants/requestviewModal';
@@ -13,16 +13,16 @@ const LeaveDay = () => {
         height: '70px',
       }}
     >
-      <Grid
-        item
-        xs={6}
-        md={3}
+      <Box
+      
         sx={{
           border: '1px solid #E4E4E4',
           display: 'flex',
           gap: '10px',
           justifyContent: 'center',
           alignItems: 'center',
+          width: "300px",
+          padding:"10px"
         }}
       >
         <Image
@@ -39,15 +39,13 @@ const LeaveDay = () => {
           <Typography>{LEAVE_DATA?.employeeName}</Typography>
           <Typography>{LEAVE_DATA?.id}</Typography>
         </Box>
-      </Grid>
-      <Grid
-        item
-        xs={6}
-        md={9}
+      </Box>
+      <Box
         sx={{
           border: '1px solid #E4E4E4',
           display: 'flex',
           alignItems: 'center',
+          width:"700px"
         }}
       >
         <Box
@@ -78,7 +76,7 @@ const LeaveDay = () => {
             </Typography>
           </Box>
         </Box>
-      </Grid>
+      </Box>
     </Box>
   );
 };
