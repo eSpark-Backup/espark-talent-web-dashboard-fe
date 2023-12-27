@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 import Typography from '@mui/material/Typography';
@@ -14,8 +14,8 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 const AuthForm = ({ uiData, fields }) => {
-  const [showPassword, setShowPassword] = React.useState(false);
-  const [formData, setFormData] = React.useState();
+  const [showPassword, setShowPassword] = useState(false);
+  const [formData, setFormData] = useState();
   const { title, checkText, forgotText, forgotLink } = uiData;
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);

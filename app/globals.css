@@ -2,30 +2,91 @@
 @tailwind components;
 @tailwind utilities;
 
-
-.search-input:focus{
-    outline: none;
+.search-input:focus {
+  outline: none;
 }
 
-.table{
-    width: 100%;
-    border-spacing: 0px 4px;
-    margin-bottom: 20px;
+.table {
+  width: 100%;
+  border-spacing: 0px 4px;
+  margin-bottom: 20px;
 }
-.table td,.table th{
-    text-align: center;
-    padding: 10px 0;
-    color: #595959;
-    flex: 1;
+.table td,
+.table th {
+  text-align: center;
+  padding: 10px 0;
+  color: #595959;
+  flex: 1;
 }
-.app-table-row{
-    background-color: #F6F6F6;
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
+.app-table-row {
+  background-color: #f6f6f6;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
 }
-.empty-row{
-    background-color: #fff;
-    height: 20px;
+.empty-row {
+  background-color: #fff;
+  height: 20px;
+}
+/* Assuming you are using a CSS file */
+.list-item-box {
+  position: relative;
+  cursor: pointer;
+}
+
+.list-item-box::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: #fff;
+}
+
+.list-item-box.selected-list-item {
+  background: #e6f5f4;
+}
+.list-item-box.selected-list-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: #068987;
+}
+.list-item-box:hover {
+  background: #e6f5f4;
+}
+.list-item-box:hover::before {
+  background-color: #068987;
+}
+.custom-dropdown-item:hover {
+  cursor: pointer;
+  background: #e6f5f4;
+}
+.custom-dropdown-item:hover::before {
+  background-color: #068987;
+}
+.selected-dropdown{
+  position: relative;
+  cursor: pointer;
+}
+.selected-dropdown::before {
+  content: '';
+  position: absolute;
+  /* height: 10px; */
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: #068987;
+}
+.disabled-dropdown{
+  background-color: #eee !important;
+}
+.modal-wrapper:focus-visible{
+  outline: none;
 }

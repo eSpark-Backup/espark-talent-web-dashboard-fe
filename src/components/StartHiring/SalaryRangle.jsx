@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Box, TextField, Typography } from '@mui/material';
 
 import { HIRING_FORM_DATA } from '@/src/constants/Hiring';
@@ -22,7 +22,7 @@ const SalaryRange = () => {
         }}
       >
         {Array.from({ length: numberOfFields }, (_, index) => (
-          <React.Fragment key={index}>
+          <Fragment key={index}>
             <TextField
               required={true}
               sx={{
@@ -55,7 +55,7 @@ const SalaryRange = () => {
                 _
               </Typography>
             )}
-          </React.Fragment>
+          </Fragment>
         ))}
       </Box>
     </Box>

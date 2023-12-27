@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Box } from '@mui/material';
 import PropTypes from 'prop-types';
 import Image from 'next/image';
@@ -9,14 +9,24 @@ const Input = ({
   handleChange,
   value,
   setIsLoading,
+  width,
+  onKeyDown,
+  autofocus,
 }) => {
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    if (autofocus) {
+      inputRef.current.focus();
+    }
+  }, [autofocus]);
+
   return (
     <Box
       display={'flex'}
       alignItems={'center'}
-      marginY={5}
       borderRadius={1}
-      width={400}
+      width={width || 400}
     >
       <Box
         display={'flex'}
@@ -37,6 +47,7 @@ const Input = ({
           </Box>
         )}
         <input
+          ref={inputRef}
           value={value}
           onChange={(e) => {
             setIsLoading(true);
@@ -45,6 +56,7 @@ const Input = ({
           className="search-input"
           placeholder="Search here..."
           style={{ overflow: 'hidden', width: '100%' }}
+          onKeyDown={onKeyDown}
         />
       </Box>
       {!!suffixIcon && (
