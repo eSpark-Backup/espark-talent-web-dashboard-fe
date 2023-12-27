@@ -87,3 +87,6 @@
 .disabled-dropdown{
   background-color: #eee !important;
 }
+.modal-wrapper:focus-visible{
+  outline: none;
+}

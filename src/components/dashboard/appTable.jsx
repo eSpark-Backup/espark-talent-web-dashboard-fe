@@ -30,20 +30,40 @@ const renderAttendenceStatus = (statusType, index) => {
     </Box>
   );
 };
-const renderInfoOptions = (
+const InfoOption = ({
   row,
   col,
   handleClick,
-  handleClickRenderMessageButton
-) => {
+  handleClickRenderMessageButton,
+}) => {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const componentRef = React.useRef(null);
+  React.useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        componentRef.current &&
+        !componentRef.current.contains(event.target)
+      ) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
   return (
     <Box
       sx={{
         width: '90px',
         position: 'relative',
       }}
+      ref={componentRef}
     >
       <Box
+        onClick={() => setIsOpen((ps) => !ps)}
         sx={{
           border: 'solid 1px #ccc',
           borderRadius: '5px',
@@ -64,35 +84,38 @@ const renderInfoOptions = (
         </Box>
         <Box>{row[toCamelCase(col)]}</Box>
       </Box>
-      <Box
-        sx={{
-          border: 'solid 1px #ccc',
-          borderRadius: '5px',
-          marginTop: '10px',
-          position: 'absolute',
-          backgroundColor: '#fff',
-          width: '120px',
-        }}
-      >
+      {isOpen && (
         <Box
-          onClick={handleClick}
           sx={{
-            borderBottom: 'solid 1px #ccc',
-            padding: '7px 10px',
+            border: 'solid 1px #ccc',
+            borderRadius: '5px',
+            marginTop: '10px',
+            position: 'absolute',
+            backgroundColor: '#fff',
+            width: '120px',
           }}
         >
-          View details
+          <Box
+            onClick={handleClick}
+            sx={{
+              borderBottom: 'solid 1px #ccc',
+              padding: '7px 10px',
+              cursor: 'pointer',
+            }}
+          >
+            View details
+          </Box>
+          <Box
+            onClick={handleClickRenderMessageButton}
+            sx={{
+              padding: '7px 10px',
+              cursor: 'pointer',
+            }}
+          >
+            Add member
+          </Box>
         </Box>
-        <Box
-          onClick={handleClickRenderMessageButton}
-          sx={{
-            padding: '7px 10px',
-            // width: '120px',
-          }}
-        >
-          Add member
-        </Box>
-      </Box>
+      )}
     </Box>
   );
 };
@@ -287,12 +310,14 @@ const AppTable = ({
                             flexDirection: 'column',
                           }}
                         >
-                          {renderInfoOptions(
-                            row,
-                            col,
-                            handleClick,
-                            handleClickRenderMessageButton
-                          )}
+                          <InfoOption
+                            row={row}
+                            col={col}
+                            handleClick={handleClick}
+                            handleClickRenderMessageButton={
+                              handleClickRenderMessageButton
+                            }
+                          />
                         </td>
                       );
                     }
@@ -320,6 +345,20 @@ const AppTable = ({
                                 renderAttendenceStatus(item, index)
                               )}
                             </>
+                          ) : col === 'Download' ? (
+                            <span
+                              style={{
+                                borderRadius: '30px',
+                                padding: '10px 0',
+                                display: 'block',
+                                width: '110px',
+                                background: '#E6F5F4',
+                                border: 'solid 1px #068987',
+                                color: '#068987',
+                              }}
+                            >
+                              {row[toCamelCase(col)]}
+                            </span>
                           ) : (
                             <>
                               {row[toCamelCase(col)] === null

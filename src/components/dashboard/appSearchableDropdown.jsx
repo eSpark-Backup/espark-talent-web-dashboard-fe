@@ -132,6 +132,7 @@ const AppSearchableDropdown = ({
               position: 'absolute',
               width: '100%',
               background: '#fff',
+              zIndex: 1,
             }}
           >
             <Box
@@ -162,6 +163,7 @@ const AppSearchableDropdown = ({
                     onClick={() => {
                       setSearchItem('');
                       setSelectedItem(item);
+                      setPointedElement(item);
                       setIsOpenedDropdown(false);
                     }}
                     key={index}
