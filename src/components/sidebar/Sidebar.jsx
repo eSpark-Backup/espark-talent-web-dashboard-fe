@@ -1,12 +1,16 @@
 import React from 'react';
-import { Box } from '@mui/material';
+import { Box, useMediaQuery, useTheme } from '@mui/material';
 
 import SidebarAccordion from './SidebarAccordion';
 import { IconsAndLinks } from '@/src/constants/sidebar';
 import SidebarLogo from './sidebarLogo';
 import SidebarActiveUser from './SidebarActiveUser';
+import ProfilePopper from '../popover/ProfilePopper';
 
 const Sidebar = ({ userName }) => {
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('lg'));
+
   return (
     <>
       <Box
@@ -22,10 +26,13 @@ const Sidebar = ({ userName }) => {
           sx={{
             borderBottom: '1px solid #E7E7E7',
             width: '100%',
-            px: '12px',
           }}
         >
-          <SidebarActiveUser userName={userName} />
+          {isSmallScreen ? (
+            <SidebarActiveUser userName={userName} />
+          ) : (
+            <ProfilePopper button={<SidebarActiveUser userName={userName} />} />
+          )}
         </Box>
         <Box
           sx={{

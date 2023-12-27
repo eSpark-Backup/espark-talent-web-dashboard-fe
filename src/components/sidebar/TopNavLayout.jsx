@@ -24,7 +24,7 @@ export const TopNav = (props) => {
           width: {
             lg: `calc(100% - ${SIDE_NAV_WIDTH}px)`,
           },
-          zIndex: (theme) => theme.zIndex.appBar,
+          zIndex: 1,
         }}
       >
         {lgUp && <TopNavNavbar />}
