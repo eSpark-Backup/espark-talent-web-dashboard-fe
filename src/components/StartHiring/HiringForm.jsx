@@ -60,7 +60,6 @@ const HiringForm = () => {
             />
             <HiringDate />
             <CountryDropdown
-              open={open}
               SelectOpen={SelectOpen}
               SelectClose={SelectClose}
             />
