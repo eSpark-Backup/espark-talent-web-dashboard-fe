@@ -11,26 +11,7 @@ import {
 } from '@/src/constants/data/tables/timeSheet';
 import Image from 'next/image';
 
-const Dashboard = () => {
-  const listItems = [
-    'Arman Khan',
-    'Bilal Ahmed Khan',
-    'Areeba Shakeel',
-    'Saad Zafar',
-    'Muhammad Ali',
-    'Sohaib-Xtreme',
-    'Faizan-ur-Rehman',
-    'Faisal Hanif',
-    'Faraz Shah',
-    'Abdul Rehman',
-    'Abdul Mannan',
-    'Hassan',
-    'Muzammil',
-    'Nauman',
-    'Abdullah Zaidi',
-  ];
-
-  const [isLoading, setIsLoading] = useState(true);
+const Dashboard = () => {  const [isLoading, setIsLoading] = useState(true);
 
   const fetchDataFake = async () => {
     return true;

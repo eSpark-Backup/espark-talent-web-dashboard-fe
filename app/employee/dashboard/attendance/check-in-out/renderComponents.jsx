@@ -36,7 +36,6 @@ export const renderTrackingStatus = ({
 };
 
 export const renderNestedTable = ({
-  isLoading,
   currentReqStatusTabVal,
   currentReqStatusTab,
   column,
