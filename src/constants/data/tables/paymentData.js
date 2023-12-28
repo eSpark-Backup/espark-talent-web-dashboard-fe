@@ -6,6 +6,7 @@ export const invoicePaymentColumn = [
   'Invoice status',
   'Amount due',
   'Payment status',
+  'Download',
 ];
 export const otherPaymentColumn = [
   'Invoice number',
@@ -15,6 +16,7 @@ export const otherPaymentColumn = [
   'Invoice status',
   'Amount due',
   'Payment status',
+  'Download',
 ];
 
 export const invoicePaymentData = [
@@ -27,6 +29,7 @@ export const invoicePaymentData = [
     amountDue: '1000$',
     paymentStatus: 'Paid',
     dropdownStatus: true,
+    download: 'Download',
   },
   {
     employeeName: 'Arman Khan',
@@ -37,6 +40,7 @@ export const invoicePaymentData = [
     amountDue: '1000$',
     paymentStatus: 'Paid',
     dropdownStatus: true,
+    download: 'Download',
   },
   {
     employeeName: 'Saad Zafar',
@@ -47,6 +51,7 @@ export const invoicePaymentData = [
     amountDue: '1000$',
     paymentStatus: 'Paid',
     dropdownStatus: true,
+    download: 'Download',
   },
   {
     employeeName: 'Muhammad',
@@ -57,6 +62,7 @@ export const invoicePaymentData = [
     amountDue: '1000$',
     paymentStatus: 'Paid',
     dropdownStatus: true,
+    download: 'Download',
   },
   {
     employeeName: 'Abdullah',
@@ -67,6 +73,7 @@ export const invoicePaymentData = [
     amountDue: '1000$',
     paymentStatus: 'Processing',
     dropdownStatus: true,
+    download: 'Download',
   },
   {
     employeeName: 'Yusuf',
@@ -77,6 +84,7 @@ export const invoicePaymentData = [
     amountDue: '1000$',
     paymentStatus: 'Paid',
     dropdownStatus: true,
+    download: 'Download',
   },
   {
     employeeName: 'Hassan',
@@ -87,6 +95,7 @@ export const invoicePaymentData = [
     amountDue: '1000$',
     paymentStatus: 'Pending',
     dropdownStatus: true,
+    download: 'Download',
   },
   {
     employeeName: 'Sumaya',
@@ -97,6 +106,7 @@ export const invoicePaymentData = [
     amountDue: '1000$',
     paymentStatus: 'Pending',
     dropdownStatus: true,
+    download: 'Download',
   },
   {
     employeeName: 'Abdullah',
@@ -107,6 +117,7 @@ export const invoicePaymentData = [
     amountDue: '1000$',
     paymentStatus: 'Paid',
     dropdownStatus: true,
+    download: 'Download',
   },
   {
     employeeName: 'Zainab',
@@ -117,6 +128,7 @@ export const invoicePaymentData = [
     amountDue: '1000$',
     paymentStatus: 'Pending',
     dropdownStatus: true,
+    download: 'Download',
   },
   {
     employeeName: 'Zainab',
@@ -127,6 +139,7 @@ export const invoicePaymentData = [
     amountDue: '1000$',
     paymentStatus: 'Processing',
     dropdownStatus: true,
+    download: 'Download',
   },
 ];
 export const otherPaymentData = [
@@ -139,6 +152,7 @@ export const otherPaymentData = [
     amountDue: '1000$',
     paymentStatus: 'Paid',
     dropdownStatus: true,
+    download: 'Download',
   },
   {
     invoiceNumber: '456',
@@ -149,6 +163,7 @@ export const otherPaymentData = [
     amountDue: '1000$',
     paymentStatus: 'Paid',
     dropdownStatus: true,
+    download: 'Download',
   },
   {
     invoiceNumber: '789',
@@ -159,6 +174,7 @@ export const otherPaymentData = [
     amountDue: '1000$',
     paymentStatus: 'Paid',
     dropdownStatus: true,
+    download: 'Download',
   },
   {
     invoiceNumber: '147',
@@ -169,6 +185,7 @@ export const otherPaymentData = [
     amountDue: '1000$',
     paymentStatus: 'Paid',
     dropdownStatus: true,
+    download: 'Download',
   },
   {
     invoiceNumber: '852',
@@ -179,6 +196,7 @@ export const otherPaymentData = [
     amountDue: '1000$',
     paymentStatus: 'Paid',
     dropdownStatus: true,
+    download: 'Download',
   },
   {
     invoiceNumber: '293',
@@ -189,6 +207,7 @@ export const otherPaymentData = [
     amountDue: '1000$',
     paymentStatus: 'Paid',
     dropdownStatus: true,
+    download: 'Download',
   },
   {
     invoiceNumber: '119',
@@ -199,6 +218,7 @@ export const otherPaymentData = [
     amountDue: '1000$',
     paymentStatus: 'Paid',
     dropdownStatus: true,
+    download: 'Download',
   },
   {
     invoiceNumber: '102',
@@ -209,6 +229,7 @@ export const otherPaymentData = [
     amountDue: '1000$',
     paymentStatus: 'Paid',
     dropdownStatus: true,
+    download: 'Download',
   },
   {
     invoiceNumber: '510',
@@ -219,6 +240,7 @@ export const otherPaymentData = [
     amountDue: '1000$',
     paymentStatus: 'Paid',
     dropdownStatus: true,
+    download: 'Download',
   },
   {
     invoiceNumber: '853',
@@ -229,6 +251,7 @@ export const otherPaymentData = [
     amountDue: '1000$',
     paymentStatus: 'Paid',
     dropdownStatus: true,
+    download: 'Download',
   },
   {
     invoiceNumber: '722',
@@ -239,5 +262,6 @@ export const otherPaymentData = [
     amountDue: '1000$',
     paymentStatus: 'Paid',
     dropdownStatus: true,
+    download: 'Download',
   },
 ];
