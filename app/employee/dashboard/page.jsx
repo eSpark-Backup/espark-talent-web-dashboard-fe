@@ -3,7 +3,6 @@ import React from 'react';
 import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
 import { Box, Grid } from '@mui/material';
 import AttendanceSummary from '@/src/components/AtttendanceSummary/AttendanceSummary';
-import StatusSlider from '@/src/components/AtttendanceSummary/SummarySlider';
 
 const Dashboard = () => {
   return (
