@@ -11,7 +11,8 @@ import {
 } from '@/src/constants/data/tables/timeSheet';
 import Image from 'next/image';
 
-const Dashboard = () => {  const [isLoading, setIsLoading] = useState(true);
+const Dashboard = () => {
+  const [isLoading, setIsLoading] = useState(true);
 
   const fetchDataFake = async () => {
     return true;
