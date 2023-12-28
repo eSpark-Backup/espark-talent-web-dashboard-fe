@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, useMediaQuery, useTheme } from '@mui/material';
 
 import SidebarAccordion from './SidebarAccordion';
-import { IconsAndLinks } from '@/src/constants/sidebar';
+import { Client_Routes } from '@/src/constants/sidebar';
 import SidebarLogo from './sidebarLogo';
 import SidebarActiveUser from './SidebarActiveUser';
 import ProfilePopper from '../popover/ProfilePopper';
@@ -50,7 +50,7 @@ const Sidebar = ({ userName }) => {
               mb: '10px',
             }}
           >
-            <SidebarAccordion sidebarLinks={IconsAndLinks} />
+            <SidebarAccordion sidebarLinks={Client_Routes} />
           </Box>
           <Box
             sx={{
