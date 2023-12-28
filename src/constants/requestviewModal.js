@@ -1,6 +1,8 @@
 export const REQUESTVIEW_DATA = {
   leaveRequestView: 'Leave request view',
+  createLeaveRequest: 'Create Leave Request',
   leaveType: 'Leave type',
+  leaveTypeStar: 'Leave type *',
   startDate: 'Start Date',
   endDate: 'End Date',
   close: 'Close',
@@ -14,6 +16,10 @@ export const REQUESTVIEW_DATA = {
   approve: 'Approve',
   approved: 'Approved',
   decline: 'Decline',
+  cancel: "Cancelled",
+  cancelReq: "Cancel Request",
+  attachment: "Attachments",
+  totalCount: "Total Count"
 };
 export const LEAVE_DATA = {
   fromTo: 'Oct 17, 23 - Oct 17, 23',
@@ -31,3 +37,9 @@ export const LEAVE_TYPE = [
   { label: 'Casual Leave', value: 'Casual Leave' },
   { label: 'Annual Leave', value: 'Annual Leave' },
 ];
+
+export const BACKDATE_MODAL = {
+  warning: 'WARNING',
+  backdate: "You cannot apply back date leave for this leave type",
+  okBtn: 'Ok'
+}

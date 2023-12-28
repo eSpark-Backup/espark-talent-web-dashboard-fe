@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Grid } from '@mui/material';
 
 import DownloadReports from './downloadReports';
-import RequestviewModal from '../requestview/requestviewModal';
+import PreviousDateModal from '../requestview/PreviousDateModal';
 
 const ReportBoxes = ({ data }) => {
   return (
@@ -16,7 +16,7 @@ const ReportBoxes = ({ data }) => {
             mx: 'auto',
           }}
         >
-          <RequestviewModal />
+          <PreviousDateModal />
           {data.map((item) => (
             <Grid
               item
