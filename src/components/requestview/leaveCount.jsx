@@ -1,8 +1,7 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
 
-
-const LeaveCount = ({ countLabel, totalNo, backgroundColor,component }) => {
+const LeaveCount = ({ countLabel, totalNo, backgroundColor, component }) => {
   return (
     <Box
       sx={{
@@ -13,21 +12,20 @@ const LeaveCount = ({ countLabel, totalNo, backgroundColor,component }) => {
         p: 1.5,
       }}
     >
-          <Typography>{countLabel}</Typography>
-          {totalNo ?(
-      <Box
-        sx={{
-          borderRadius: '5px',
-          border: '1px solid #E4E4E4',
-          width: '600px',
-          p: 1.5,
-        }}
-      >
-              <Typography>{totalNo}</Typography>
-             
-              </Box>
-              ):null}
-           {component}
+      <Typography>{countLabel}</Typography>
+      {totalNo ? (
+        <Box
+          sx={{
+            borderRadius: '5px',
+            border: '1px solid #E4E4E4',
+            width: '600px',
+            p: 1.5,
+          }}
+        >
+          <Typography>{totalNo}</Typography>
+        </Box>
+      ) : null}
+      {component}
     </Box>
   );
 };

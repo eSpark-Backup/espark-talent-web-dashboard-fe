@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Button, Modal } from '@mui/material';
+import { Box, Modal } from '@mui/material';
 import Image from 'next/image';
 
 import RequestHeading from './modalHeading';
@@ -7,11 +7,9 @@ import LeaveRequest from './leaveRequestview';
 
 const RequestviewModal = () => {
   const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   return (
     <Box>
-      {/* <Button onClick={handleOpen}>Open modal</Button> */}
       <Modal
         open={open}
         onClose={handleClose}
@@ -53,7 +51,6 @@ const RequestviewModal = () => {
               transform: 'translate(-50%, -50%)',
               width: 400,
               bgcolor: '#fff',
-              width: '50%',
               display: 'flex',
               flexDirection: 'column',
               borderRadius: '10px',

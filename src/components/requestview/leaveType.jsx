@@ -18,8 +18,8 @@ const LeaveType = () => {
           background: '#F6F6F6',
           display: 'flex',
           justifyContent: 'space-between',
-                  alignItems: 'center',
-          p:1
+          alignItems: 'center',
+          p: 1,
         }}
       >
         <Typography>{REQUESTVIEW_DATA.leaveType}</Typography>

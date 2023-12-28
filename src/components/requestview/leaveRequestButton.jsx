@@ -13,6 +13,7 @@ const LeaveRequestButtons = ({ modalType }) => {
         display: 'flex',
         justifyContent: 'flex-end',
         gap: '10px',
+        marginRight: '10px',
       }}
     >
       {isDeclineModal && (
@@ -21,6 +22,7 @@ const LeaveRequestButtons = ({ modalType }) => {
             border: '1px solid #029894',
             background: '#FFF',
             width: '120px',
+            borderRadius: '5px',
           }}
         >
           {REQUESTVIEW_DATA?.decline}
@@ -32,6 +34,7 @@ const LeaveRequestButtons = ({ modalType }) => {
             border: '1px solid #029894',
             background: '#FFF',
             width: '120px',
+            borderRadius: '5px',
           }}
         >
           {REQUESTVIEW_DATA?.approved}
@@ -44,11 +47,15 @@ const LeaveRequestButtons = ({ modalType }) => {
               border: '1px solid #029894',
               background: '#FFF',
               width: '120px',
+              borderRadius: '5px',
             }}
           >
             {REQUESTVIEW_DATA?.decline}
           </Button>
-          <Button variant="contained" sx={{ width: '120px' }}>
+          <Button
+            variant="contained"
+            sx={{ width: '120px', borderRadius: '5px' }}
+          >
             {REQUESTVIEW_DATA.approve}
           </Button>
         </>

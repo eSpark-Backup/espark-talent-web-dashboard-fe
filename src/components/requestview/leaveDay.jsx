@@ -3,6 +3,7 @@ import { Box, Typography } from '@mui/material';
 import Image from 'next/image';
 
 import { LEAVE_DATA } from '@/src/constants/requestviewModal';
+import { leaveRequestsData } from '@/src/constants/data/timeOffRequest';
 
 const LeaveDay = () => {
   return (
@@ -14,15 +15,14 @@ const LeaveDay = () => {
       }}
     >
       <Box
-      
         sx={{
           border: '1px solid #E4E4E4',
           display: 'flex',
           gap: '10px',
           justifyContent: 'center',
           alignItems: 'center',
-          width: "300px",
-          padding:"10px"
+          width: '300px',
+          padding: '10px',
         }}
       >
         <Image
@@ -36,8 +36,8 @@ const LeaveDay = () => {
             gap: '10px',
           }}
         >
-          <Typography>{LEAVE_DATA?.employeeName}</Typography>
-          <Typography>{LEAVE_DATA?.id}</Typography>
+          <Typography>{leaveRequestsData[0]?.employeeName}</Typography>
+          <Typography>{leaveRequestsData[0]?.employeeId}</Typography>
         </Box>
       </Box>
       <Box
@@ -45,7 +45,7 @@ const LeaveDay = () => {
           border: '1px solid #E4E4E4',
           display: 'flex',
           alignItems: 'center',
-          width:"700px"
+          width: '700px',
         }}
       >
         <Box

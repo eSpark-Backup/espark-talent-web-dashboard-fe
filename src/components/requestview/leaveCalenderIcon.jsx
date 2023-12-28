@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 
-const LeaveCalendarIcon = (props) => {
+const LeaveCalendarIcon = ({ props, open }) => {
   return (
     <Image
       {...props}
@@ -9,6 +9,7 @@ const LeaveCalendarIcon = (props) => {
       width={30}
       height={30}
       alt="calender"
+      onClick={open}
     />
   );
 };

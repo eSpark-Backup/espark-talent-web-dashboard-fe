@@ -24,12 +24,11 @@ const LeaveDuration = () => {
         }}
       >
         <Box
-         
           sx={{
             background: '#F6F6F6',
             border: '1px solid #E4E4E4',
             p: 1.5,
-            width:"260px"
+            width: '260px',
           }}
         >
           <Typography>{REQUESTVIEW_DATA.fromTo}</Typography>
@@ -39,7 +38,7 @@ const LeaveDuration = () => {
             background: '#F6F6F6',
             border: '1px solid #E4E4E4',
             p: 1.5,
-            width:"700px"
+            width: '700px',
           }}
         >
           <Typography sx={{ textAlign: 'center' }}>

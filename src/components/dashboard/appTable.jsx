@@ -127,7 +127,7 @@ const AppTable = ({
   handleClick,
   renderMessageButton,
   handleClickRenderMessageButton,
-  handleOpen
+  handleOpen,
 }) => {
   return (
     <>

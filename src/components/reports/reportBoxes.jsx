@@ -16,7 +16,7 @@ const ReportBoxes = ({ data }) => {
             mx: 'auto',
           }}
         >
-          <RequestviewModal/>
+          <RequestviewModal />
           {data.map((item) => (
             <Grid
               item

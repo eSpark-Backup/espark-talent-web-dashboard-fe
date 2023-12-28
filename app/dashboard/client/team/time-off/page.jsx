@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Grid, Box, Typography, Button, Modal } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
+
 import Input from '@/src/components/dashboard/input';
 import AppTable from '@/src/components/dashboard/appTable';
 import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
@@ -23,7 +24,6 @@ import {
 import Image from 'next/image';
 import { renderNestedTable } from './renderComponents';
 import Link from 'next/link';
-import RequestviewModal from '@/src/components/requestview/requestviewModal';
 import RequestHeading from '@/src/components/requestview/modalHeading';
 import LeaveRequest from '@/src/components/requestview/leaveRequestView';
 
@@ -35,12 +35,12 @@ const Dashboard = () => {
   const [leaveBalanceDataState, setLeaveBalanceDataState] = useState(
     filterTableRowsWRTTab(leaveBalanceData, { status: '' })
   );
-   const [open, setOpen] = useState(false);
-   const [modalType, setModalType] = useState("");
+  const [open, setOpen] = useState(false);
+  const [modalType, setModalType] = useState('');
   const handleOpen = (type) => {
-    console.log({ type })
-    setModalType(type)
-    setOpen(true)
+    console.log({ type });
+    setModalType(type);
+    setOpen(true);
   };
   const handleClose = () => setOpen(false);
   const [leaveRequestDataState, setLeaveRequestDataState] = useState(
@@ -395,61 +395,61 @@ const Dashboard = () => {
           </div>
         </Box>
       </Grid>
-      {/* <RequestviewModal /> */}
-       <Box> <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'flex-end',
-            border: '1px solid #029894',
-          }}
+      <Box>
+        {' '}
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
         >
           <Box
             sx={{
-              background: '#fff',
-              borderRadius: '20px',
-              width: '40px',
-              padding: '2.5px',
-              position: 'absolute',
-              top: '3%',
-              right: '25%',
-            }}
-          >
-            <Image
-              src="/images/leave-request/cancel.svg"
-              width={37}
-              height={37}
-              alt="cancel"
-              onClick={handleClose}
-            />
-          </Box>
-          <Box
-            sx={{
-              position: 'absolute',
-              top: '55%',
-              left: '50%',
-              transform: 'translate(-50%, -50%)',
-              width: 400,
-              bgcolor: '#fff',
-              width: '50%',
               display: 'flex',
               flexDirection: 'column',
-              borderRadius: '10px',
+              alignItems: 'flex-end',
+              border: '1px solid #029894',
             }}
           >
-            <RequestHeading />
-            <LeaveRequest modalType={modalType} />
+            <Box
+              sx={{
+                background: '#fff',
+                borderRadius: '20px',
+                width: '40px',
+                padding: '2.5px',
+                position: 'absolute',
+                top: '2%',
+                right: '25%',
+              }}
+            >
+              <Image
+                src="/images/leave-request/cancel.svg"
+                width={37}
+                height={37}
+                alt="cancel"
+                onClick={handleClose}
+              />
+            </Box>
+            <Box
+              sx={{
+                position: 'absolute',
+                top: '53%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                bgcolor: '#fff',
+                width: '50%',
+                display: 'flex',
+                flexDirection: 'column',
+                borderRadius: '10px',
+                height: '850px',
+              }}
+            >
+              <RequestHeading />
+              <LeaveRequest modalType={modalType} />
+            </Box>
           </Box>
-        </Box>
-      </Modal></Box>
-      
-
+        </Modal>
+      </Box>
     </>
   );
 };

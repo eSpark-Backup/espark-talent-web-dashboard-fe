@@ -10,9 +10,9 @@ import LeaveDatePicker from './leaveDatepicker';
 import LeaveReason from './leaveReason';
 import LeaveRequestButtons from './leaveRequestButton';
 
-const LeaveRequest = ({modalType}) => {
+const LeaveRequest = ({ modalType }) => {
   return (
-    <Box sx={{p:4}}>
+    <Box sx={{ p: 3.5 }}>
       <LeaveType />
       <LeaveDate date={REQUESTVIEW_DATA?.startDate} />
       <LeaveDate date={REQUESTVIEW_DATA?.endDate} backgroundColor="#F6F6F6" />
@@ -24,7 +24,7 @@ const LeaveRequest = ({modalType}) => {
       />
       <LeaveCount
         countLabel={REQUESTVIEW_DATA?.sandwichCount}
-        component={<LeaveDatePicker label={"0"}/>}
+        component={<LeaveDatePicker label={'0'} />}
       />
       <LeaveCount
         countLabel={REQUESTVIEW_DATA?.total}
@@ -35,8 +35,7 @@ const LeaveRequest = ({modalType}) => {
         countLabel={REQUESTVIEW_DATA?.reason}
         component={<LeaveReason />}
       />
-      <LeaveRequestButtons modalType={modalType } />
-      
+      <LeaveRequestButtons modalType={modalType} />
     </Box>
   );
 };
