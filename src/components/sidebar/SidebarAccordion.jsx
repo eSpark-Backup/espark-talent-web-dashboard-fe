@@ -64,14 +64,14 @@ const SidebarAccordion = ({ sidebarLinks }) => {
                     alt="icon"
                   />
                 )}
-                <Typography sx={{ width: '100%', height: '100%', ml: 2 }}>
-                  <Link
-                    style={{ width: '100%', height: '100%' }}
-                    href={`${item?.link}`}
-                  >
+                <Link
+                  style={{ width: '100%', height: '100%' }}
+                  href={`${item?.link}`}
+                >
+                  <Typography sx={{ width: '100%', height: '100%', ml: 2 }}>
                     {item?.text}
-                  </Link>
-                </Typography>
+                  </Typography>
+                </Link>
               </AccordionSummary>
               {item?.sublinks &&
                 item?.sublinks?.map((eachItem, index) => (
@@ -98,14 +98,19 @@ const SidebarAccordion = ({ sidebarLinks }) => {
                         }`,
                       }}
                     >
-                      <Typography sx={{ width: '100%', height: '100%' }}>
-                        <Link
-                          style={{ width: '100%', height: '100%' }}
-                          href={`${eachItem?.link}`}
+                      <Link
+                        style={{ width: '100%', height: '100%' }}
+                        href={`${eachItem?.link}`}
+                      >
+                        <Typography
+                          sx={{
+                            width: '100%',
+                            height: '100%',
+                          }}
                         >
                           {eachItem?.text}
-                        </Link>
-                      </Typography>
+                        </Typography>
+                      </Link>
                     </AccordionDetails>
                   </div>
                 ))}
