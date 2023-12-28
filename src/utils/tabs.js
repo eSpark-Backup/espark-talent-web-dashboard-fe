@@ -1,3 +1,5 @@
+import { filterTableRowsWRTTab } from "./table";
+
 export const changeTab = ({
   isSingular,
   event,
@@ -6,7 +8,6 @@ export const changeTab = ({
   setCurrentTab,
   setValue,
   setData,
-  filterTableRowsWRTTab,
   teamMembersData,
   tabs,
   filterBy,

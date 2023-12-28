@@ -7,12 +7,11 @@ import Input from '@/src/components/dashboard/input';
 import AppTable from '@/src/components/dashboard/appTable';
 import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
 import { filterDataByKeyword } from '@/src/utils/search';
-import { a11yProps, changeTab } from '@/src/utils/tabs';
-import { empTabs } from '@/src/constants/data/tabs/empTabs';
 import {
   contractSignedColumn,
   contractSignedData,
 } from '@/src/constants/data/tables/contractSigned';
+import { contractSignedTabs } from '@/src/constants/data/tabs/contractSignedTabs';
 
 const ContractSigned = () => {
   const [value, setValue] = useState(0);
@@ -39,16 +38,15 @@ const ContractSigned = () => {
   }, []);
 
   const handleChange = (event, newValue) => {
-    changeTab({
-      isSingular: true,
-      tabs: empTabs,
-      event,
-      newValue,
-      setSearch,
-      setCurrentTab,
-      setValue,
-      setData: setEmpData,
-    });
+    let tab = event?.target?.innerText.split(' ');
+    if (tab.length > 1) {
+      tab = tab.slice(0, -1).join(' ');
+    } else {
+      tab = tab.join(' ');
+    }
+    setCurrentTab(tab);
+
+    setValue(newValue);
   };
 
   useEffect(() => {
@@ -115,7 +113,7 @@ const ContractSigned = () => {
                 onChange={handleChange}
                 aria-label="basic tabs example"
               >
-                {[{ label: 'Active contracts', prop: a11yProps(0) }]?.map(
+                {contractSignedTabs?.map(
                   ({ label, prop }, i) => (
                     <Tab key={i} label={`${label}`} {...prop} />
                   )
@@ -131,7 +129,7 @@ const ContractSigned = () => {
                 suffixIcon="QuestionMarkIcon.svg"
               />
             </Box>
-            {empTabs?.map((_, i) => (
+            {contractSignedTabs?.map((_, i) => (
               <CustomTabPanel value={value} key={i} index={i}>
                 {isLoading ? (
                   <Box>Loading...</Box>
