@@ -169,13 +169,15 @@ const AppTable = ({
                     >
                       {renderMessage}
                     </Typography>
-                    {renderMessageButton && <Button
-                      onClick={handleClickRenderMessageButton}
-                      sx={{ marginTop: '20px' }}
-                      variant="contained"
-                    >
-                      {renderMessageButton}
-                    </Button>}
+                    {renderMessageButton && (
+                      <Button
+                        onClick={handleClickRenderMessageButton}
+                        sx={{ marginTop: '20px' }}
+                        variant="contained"
+                      >
+                        {renderMessageButton}
+                      </Button>
+                    )}
                   </Box>
                 ) : (
                   <td />
@@ -256,7 +258,11 @@ const AppTable = ({
                           </span>
                         </td>
                       );
-                    } else if (row?.actionStatus && col === 'Action' && row[toCamelCase(col)][0] === 'Delete') {
+                    } else if (
+                      row?.actionStatus &&
+                      col === 'Action' &&
+                      row[toCamelCase(col)][0] === 'Delete'
+                    ) {
                       return (
                         <td
                           key={colIndex}

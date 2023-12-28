@@ -9,11 +9,22 @@ import { filterTableRowsWRTTab } from '@/src/utils/table';
 import Image from 'next/image';
 import { renderNestedTable } from './renderComponents';
 import { employeeRequestsTabs } from '@/src/constants/data/tabs/requestTabs';
-import { employeeLeaveBalanceColumn, employeeLeaveBalanceData, employeeLeaveRequestsColumn, employeeLeaveRequestsData } from '@/src/constants/data/tables/requestsData';
+import {
+  employeeLeaveBalanceColumn,
+  employeeLeaveBalanceData,
+  employeeLeaveRequestsColumn,
+  employeeLeaveRequestsData,
+} from '@/src/constants/data/tables/requestsData';
 
 const Dashboard = () => {
-  const leaveBalanceDataState = useMemo(() => filterTableRowsWRTTab(employeeLeaveBalanceData, { status: '' }), [leaveBalanceDataState])
-  const leaveRequestDataState = useMemo(() => filterTableRowsWRTTab(employeeLeaveRequestsData, { status: '' }), [leaveBalanceDataState])
+  const leaveBalanceDataState = useMemo(
+    () => filterTableRowsWRTTab(employeeLeaveBalanceData, { status: '' }),
+    [leaveBalanceDataState]
+  );
+  const leaveRequestDataState = useMemo(
+    () => filterTableRowsWRTTab(employeeLeaveRequestsData, { status: '' }),
+    [leaveBalanceDataState]
+  );
   const [currentReqStatusTab, setcurrentReqStatusTab] = useState('All');
   const [currentReqStatusTabVal, setcurrentReqStatusTabVal] = useState(0);
   const handleChangeCurrReqStatusTab = (event, newValue, data) => {
@@ -46,14 +57,17 @@ const Dashboard = () => {
               alignItems={'center'}
             >
               <Box display={'flex'} flexDirection={'column'}>
-                <Typography sx={{
-                  fontSize: "30px",
-                  fontWeight: 400,
-                  lineHeight: "36px",
-                  letterSpacing: "0em",
-                  textAlign: "left",
-
-                }} >Requests</Typography>
+                <Typography
+                  sx={{
+                    fontSize: '30px',
+                    fontWeight: 400,
+                    lineHeight: '36px',
+                    letterSpacing: '0em',
+                    textAlign: 'left',
+                  }}
+                >
+                  Requests
+                </Typography>
                 <Box display={'flex'} flexDirection={'column'} marginY={'20px'}>
                   <Typography
                     sx={{
@@ -109,15 +123,17 @@ const Dashboard = () => {
               alignItems={'center'}
             >
               <Box display={'flex'} flexDirection={'column'}>
-                <Typography sx={{
-                  fontSize: "30px",
-                  fontWeight: 400,
-                  lineHeight: "36px",
-                  letterSpacing: "0em",
-                  textAlign: "left",
-
-                }} >Requests</Typography>
-                
+                <Typography
+                  sx={{
+                    fontSize: '30px',
+                    fontWeight: 400,
+                    lineHeight: '36px',
+                    letterSpacing: '0em',
+                    textAlign: 'left',
+                  }}
+                >
+                  Requests
+                </Typography>
               </Box>
             </Box>
             <Box sx={{ width: '100%' }}>
@@ -128,11 +144,7 @@ const Dashboard = () => {
                   borderBottom: 'solid 1px #ccc',
                 }}
               >
-                <CustomTabPanel
-                  value={0}
-                  index={0}
-                  key={0}
-                >
+                <CustomTabPanel value={0} index={0} key={0}>
                   <Box
                     display={'flex'}
                     justifyContent={'space-between'}
@@ -156,10 +168,7 @@ const Dashboard = () => {
                             <Tab
                               key={index}
                               label={
-                                <Box
-                                  display={'flex'}
-                                  alignItems={'center'}
-                                >
+                                <Box display={'flex'} alignItems={'center'}>
                                   <Box
                                     sx={{
                                       width: 30,
@@ -179,10 +188,10 @@ const Dashboard = () => {
                                     alignItems={'center'}
                                   >
                                     {
-                                      filterTableRowsWRTTab(employeeLeaveRequestsData,
+                                      filterTableRowsWRTTab(
+                                        employeeLeaveRequestsData,
                                         {
-                                          status:
-                                            label === 'All' ? '' : label,
+                                          status: label === 'All' ? '' : label,
                                         }
                                       ).length
                                     }
@@ -191,8 +200,7 @@ const Dashboard = () => {
                                     variant="body1"
                                     sx={{
                                       color:
-                                        label === currentReqStatusTab &&
-                                        color,
+                                        label === currentReqStatusTab && color,
                                     }}
                                   >
                                     {label}

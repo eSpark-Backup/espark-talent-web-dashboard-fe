@@ -8,10 +8,16 @@ import { filterTableRowsWRTTab } from '@/src/utils/table';
 import Image from 'next/image';
 import { renderNestedTable } from './renderComponents';
 import { checkInOutStatusTabs } from '@/src/constants/data/tabs/checkInOutTabs';
-import { employeeCheckInOutRequestColumn, employeeCheckInOutRequestData } from '@/src/constants/data/tables/checkInOutRequestsData';
+import {
+  employeeCheckInOutRequestColumn,
+  employeeCheckInOutRequestData,
+} from '@/src/constants/data/tables/checkInOutRequestsData';
 
 const Dashboard = () => {
-  const checkInOutRequestDataState = useMemo(() => filterTableRowsWRTTab(employeeCheckInOutRequestData, { status: '' }), [employeeCheckInOutRequestData])
+  const checkInOutRequestDataState = useMemo(
+    () => filterTableRowsWRTTab(employeeCheckInOutRequestData, { status: '' }),
+    [employeeCheckInOutRequestData]
+  );
   const [currentReqStatusTab, setcurrentReqStatusTab] = useState('All');
   const [currentReqStatusTabVal, setcurrentReqStatusTabVal] = useState(0);
   const handleChangeCurrReqStatusTab = (event, newValue, data) => {
@@ -38,7 +44,7 @@ const Dashboard = () => {
           }}
         >
           <div>
-          <Box display={'flex'} flexDirection={'column'}>
+            <Box display={'flex'} flexDirection={'column'}>
               <Typography variant="h3">Check in / out</Typography>
               <Box display={'flex'} flexDirection={'column'} marginY={'20px'}>
                 <Typography
@@ -54,15 +60,19 @@ const Dashboard = () => {
                 </Typography>
               </Box>
             </Box>
-            <Box mb={"20px"}>
-              <Typography sx={{
-                fontSize: '30px',
-                fontWeight: 400,
-                lineHeight: '36px',
-                letterSpacing: '0em',
-                color:'#595959'
-                
-              }} textAlign={"center"}>Bilal Khan - (eS-00020)</Typography>
+            <Box mb={'20px'}>
+              <Typography
+                sx={{
+                  fontSize: '30px',
+                  fontWeight: 400,
+                  lineHeight: '36px',
+                  letterSpacing: '0em',
+                  color: '#595959',
+                }}
+                textAlign={'center'}
+              >
+                Bilal Khan - (eS-00020)
+              </Typography>
             </Box>
             <Box sx={{ width: '100%' }}>
               <Box
@@ -72,11 +82,7 @@ const Dashboard = () => {
                   borderBottom: 'solid 1px #ccc',
                 }}
               >
-                <CustomTabPanel
-                  value={0}
-                  index={0}
-                  key={0}
-                >
+                <CustomTabPanel value={0} index={0} key={0}>
                   <Box
                     display={'flex'}
                     justifyContent={'space-between'}
@@ -100,10 +106,7 @@ const Dashboard = () => {
                             <Tab
                               key={index}
                               label={
-                                <Box
-                                  display={'flex'}
-                                  alignItems={'center'}
-                                >
+                                <Box display={'flex'} alignItems={'center'}>
                                   <Box
                                     sx={{
                                       width: 30,
@@ -123,10 +126,10 @@ const Dashboard = () => {
                                     alignItems={'center'}
                                   >
                                     {
-                                      filterTableRowsWRTTab(checkInOutRequestDataState,
+                                      filterTableRowsWRTTab(
+                                        checkInOutRequestDataState,
                                         {
-                                          status:
-                                            label === 'All' ? '' : label,
+                                          status: label === 'All' ? '' : label,
                                         }
                                       ).length
                                     }
@@ -135,8 +138,7 @@ const Dashboard = () => {
                                     variant="body1"
                                     sx={{
                                       color:
-                                        label === currentReqStatusTab &&
-                                        color,
+                                        label === currentReqStatusTab && color,
                                     }}
                                   >
                                     {label}

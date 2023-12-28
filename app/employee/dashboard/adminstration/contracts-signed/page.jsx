@@ -21,7 +21,6 @@ const ContractSigned = () => {
   const [search, setSearch] = useState('');
   const [empData, setEmpData] = useState(contractSignedData);
 
-
   const fetchDataFake = async () => {
     return true;
   };

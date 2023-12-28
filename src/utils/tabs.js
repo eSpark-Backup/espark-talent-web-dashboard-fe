@@ -1,4 +1,4 @@
-import { filterTableRowsWRTTab } from "./table";
+import { filterTableRowsWRTTab } from './table';
 
 export const changeTab = ({
   isSingular,

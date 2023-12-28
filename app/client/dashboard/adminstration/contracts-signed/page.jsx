@@ -20,7 +20,6 @@ const ContractSigned = () => {
   const [search, setSearch] = useState('');
   const [empData, setEmpData] = useState(contractSignedData);
 
-
   const fetchDataFake = async () => {
     return true;
   };
@@ -113,11 +112,9 @@ const ContractSigned = () => {
                 onChange={handleChange}
                 aria-label="basic tabs example"
               >
-                {contractSignedTabs?.map(
-                  ({ label, prop }, i) => (
-                    <Tab key={i} label={`${label}`} {...prop} />
-                  )
-                )}
+                {contractSignedTabs?.map(({ label, prop }, i) => (
+                  <Tab key={i} label={`${label}`} {...prop} />
+                ))}
               </Tabs>
             </Box>
             <Box my={4}>

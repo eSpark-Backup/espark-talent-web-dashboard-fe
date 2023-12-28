@@ -11,7 +11,11 @@ import Link from 'next/link';
 import AppSearchableDropdown from '@/src/components/dashboard/appSearchableDropdown';
 import { renderTrackingStatus } from './renderComponents';
 import AppCustomMonthYearPicker from '@/src/components/dashboard/appCustomMonthYearPicker';
-import { sheetStatusTypes, timeSheetTableColumn, timeSheetTableData } from '@/src/constants/data/tables/timeSheet';
+import {
+  sheetStatusTypes,
+  timeSheetTableColumn,
+  timeSheetTableData,
+} from '@/src/constants/data/tables/timeSheet';
 import Image from 'next/image';
 
 const Dashboard = () => {
@@ -107,7 +111,11 @@ const Dashboard = () => {
             </Box>
           </Box>
           <Box sx={{ width: '100%' }}>
-            <Box display={"flex"} justifyContent={"space-between"} alignItems={"center"}>
+            <Box
+              display={'flex'}
+              justifyContent={'space-between'}
+              alignItems={'center'}
+            >
               <Box marginY={'30px'} display={'flex'} alignItems={'center'}>
                 {sheetStatusTypes?.map(
                   ({ label, shortForm, background }, statusIndex) =>
@@ -153,15 +161,19 @@ const Dashboard = () => {
                 </Button>
               </Box>
             </Box>
-            <Box mb={"20px"}>
-              <Typography sx={{
-                fontSize: '30px',
-                fontWeight: 400,
-                lineHeight: '36px',
-                letterSpacing: '0em',
-                color:'#595959'
-                
-              }} textAlign={"center"}>Bilal Khan - (eS-00020)</Typography>
+            <Box mb={'20px'}>
+              <Typography
+                sx={{
+                  fontSize: '30px',
+                  fontWeight: 400,
+                  lineHeight: '36px',
+                  letterSpacing: '0em',
+                  color: '#595959',
+                }}
+                textAlign={'center'}
+              >
+                Bilal Khan - (eS-00020)
+              </Typography>
             </Box>
             {isLoading ? (
               <Box>Loading...</Box>
