@@ -15,7 +15,7 @@ const Reports = () => {
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
-            paddingTop: { xs: '60px', md: '40px' },
+            paddingTop: { xs: '60px', md: '20px' },
             gap: '20px',
             width: '100%',
           }}
