@@ -11,7 +11,7 @@ import { filterTableRowsWRTTab } from '@/src/utils/table';
 import {
   leaveRequestsTab,
   requestsStatusTab,
-} from '@/src/constants/data/timeOffTabs';
+} from '@/src/constants/data/tabs/timeOffTabs';
 import {
   checkInOutColumn,
   checkInOutRequestData,
@@ -19,7 +19,7 @@ import {
   leaveBalanceData,
   leaveRequestsColumn,
   leaveRequestsData,
-} from '@/src/constants/data/timeOffRequest';
+} from '@/src/constants/data/tables/timeOffRequest';
 import Image from 'next/image';
 import { renderNestedTable } from './renderComponents';
 import Link from 'next/link';

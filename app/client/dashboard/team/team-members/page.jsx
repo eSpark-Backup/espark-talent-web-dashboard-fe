@@ -5,12 +5,12 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Input from '@/src/components/dashboard/input';
 import AppTable from '@/src/components/dashboard/appTable';
-import { teamMembersData } from '@/src/constants/data/teamMembers';
+import { teamMembersData } from '@/src/constants/data/tables/teamMembers';
 import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
 import { filterDataByKeyword } from '@/src/utils/search';
 import { filterTableRowsWRTTab } from '@/src/utils/table';
 import { changeTab } from '@/src/utils/tabs';
-import { teamTabs } from '@/src/constants/data/teamTabs';
+import { teamTabs } from '@/src/constants/data/tabs/teamTabs';
 
 const Dashboard = () => {
   const [value, setValue] = useState(0);

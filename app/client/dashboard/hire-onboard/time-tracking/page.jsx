@@ -6,7 +6,7 @@ import {
   timeTrackingTableColumn,
   timeTrackingTableData,
   trackingStatusTypes,
-} from '@/src/constants/data/timeTracking';
+} from '@/src/constants/data/tables/timeTracking';
 import Link from 'next/link';
 import AppSearchableDropdown from '@/src/components/dashboard/appSearchableDropdown';
 import { renderTrackingStatus } from './renderComponents';
