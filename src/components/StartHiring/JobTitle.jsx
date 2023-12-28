@@ -1,19 +1,15 @@
-import React from 'react';
-import {
-  Box,
-  FormControl,
-  InputAdornment,
-  InputLabel,
-  MenuItem,
-  Select,
-  Typography,
-} from '@mui/material';
+import React, { useState } from 'react';
+import { Box, Typography } from '@mui/material';
 
-import { HIRING_FORM_DATA, JOBTITLE } from '@/src/constants/Hiring';
+import { HIRING_FORM_DATA } from '@/src/constants/Hiring';
 import RoleType from './RoleType';
-import Image from 'next/image';
+import AppNestedDropdown from '../dashboard/appDropdown';
+import { jobTitles } from '@/src/constants/data/startHiring';
 
 const JobTitle = ({ open, SelectOpen, SelectClose }) => {
+  const [isLoadingTitles, setIsLoadingTitles] = useState(false);
+  const [selectedJobTitle, setSelectedJobTitle] = useState('');
+
   return (
     <Box
       sx={{
@@ -21,6 +17,7 @@ const JobTitle = ({ open, SelectOpen, SelectClose }) => {
         flexDirection: { xs: 'column', md: 'row' },
         justifyContent: 'space-around',
         paddingTop: '15px',
+        zIndex: 100,
         '@media (min-width: 900px) and (max-width: 1400px)': {
           flexDirection: 'column',
           gap: '10px',
@@ -33,56 +30,19 @@ const JobTitle = ({ open, SelectOpen, SelectClose }) => {
           display: 'flex',
           flexDirection: 'column',
           gap: '12px',
+          zIndex: 101,
         }}
       >
         <Typography>{HIRING_FORM_DATA?.jobTitle}</Typography>
-
-        <FormControl>
-          <InputLabel sx={{ color: '#888888' }}>
-            {HIRING_FORM_DATA?.selectRole}
-          </InputLabel>
-          <Select
-            label={HIRING_FORM_DATA?.selectJob}
-            sx={{
-              height: '50px',
-              width: { xs: '100%', md: '300px' },
-              '@media (min-width: 900px) and (max-width: 1400px)': {
-                width: '100%',
-              },
-            }}
-            IconComponent={() => (
-              <InputAdornment
-                sx={{
-                  marginRight: '10px',
-                }}
-              >
-                {open ? (
-                  <Image
-                    src="/images/hiring/icon-down.svg"
-                    width={20}
-                    height={20}
-                    alt="ArrowDown"
-                  />
-                ) : (
-                  <Image
-                    src="/images/hiring/rightarrow.png"
-                    width={20}
-                    height={20}
-                    alt="ArrowRight"
-                  />
-                )}
-              </InputAdornment>
-            )}
-            onOpen={SelectOpen}
-            onClose={SelectClose}
-          >
-            {JOBTITLE?.map((option) => (
-              <MenuItem key={option?.value} value={option?.value}>
-                {option?.label}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
+        <AppNestedDropdown
+          data={jobTitles}
+          setIsLoadingList={setIsLoadingTitles}
+          isLoadingList={isLoadingTitles}
+          selectedItem={selectedJobTitle}
+          setSelectedItem={setSelectedJobTitle}
+          nested
+          placeHolder="Select Job Title..."
+        />
       </Box>
       <RoleType open={open} SelectOpen={SelectOpen} SelectClose={SelectClose} />
     </Box>
