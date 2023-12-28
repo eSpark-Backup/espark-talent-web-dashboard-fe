@@ -2,15 +2,8 @@
 import React, { useEffect, useState } from 'react';
 import { Grid, Box, Typography, Button } from '@mui/material';
 import AppTable from '@/src/components/dashboard/appTable';
-import {
-  timeTrackingTableColumn,
-  timeTrackingTableData,
-  trackingStatusTypes,
-} from '@/src/constants/data/tables/timeTracking';
 import Link from 'next/link';
-import AppSearchableDropdown from '@/src/components/dashboard/appSearchableDropdown';
 import { renderTrackingStatus } from './renderComponents';
-import AppCustomMonthYearPicker from '@/src/components/dashboard/appCustomMonthYearPicker';
 import {
   sheetStatusTypes,
   timeSheetTableColumn,
@@ -38,8 +31,6 @@ const Dashboard = () => {
   ];
 
   const [isLoading, setIsLoading] = useState(true);
-  const [isLoadingEmployee, setIsLoadingEmployee] = useState(false);
-  const [selectedEmployee, setSelectedEmployee] = useState('Bilal Ahmed Khan');
 
   const fetchDataFake = async () => {
     return true;
