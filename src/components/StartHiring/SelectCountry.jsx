@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Box,
   InputAdornment,
@@ -13,7 +13,8 @@ import SalaryRange from './SalaryRangle';
 import Image from 'next/image';
 import FlagIcon from '@/src/constants/Flag';
 
-const CountryDropdown = ({ open, SelectOpen, SelectClose }) => {
+const CountryDropdown = ({ SelectOpen, SelectClose }) => {
+  const [selectedValue, setSelectedValue] = useState(COUNTRY_OPTIONS[2].label);
   return (
     <>
       <Box
@@ -21,8 +22,8 @@ const CountryDropdown = ({ open, SelectOpen, SelectClose }) => {
           display: 'flex',
           flexDirection: { xs: 'column', md: 'row' },
           justifyContent: 'space-around',
-          paddingTop: '25px',
-          gap: { xs: '9px', md: '20px' },
+          marginTop: '10px',
+          gap: { xs: '9px', md: '0px' },
           '@media (min-width: 960px) and (max-width: 1400px)': {
             flexDirection: 'column',
           },
@@ -39,31 +40,32 @@ const CountryDropdown = ({ open, SelectOpen, SelectClose }) => {
             },
           }}
         >
-          <Typography>{HIRING_FORM_DATA?.country}</Typography>
+          <Typography sx={{ marginLeft: '4px' }}>
+            {HIRING_FORM_DATA?.country}
+          </Typography>
 
           <Select
-            sx={{ height: '53px' }}
+            sx={{
+              height: '45px',
+              border: 'solid 1px #ccc',
+              '&:focus': {
+                borderColor: 'teal',
+              },
+            }}
+            value={selectedValue}
+            onChange={(event) => setSelectedValue(event.target.value)}
             IconComponent={() => (
               <InputAdornment
                 sx={{
                   marginRight: '10px',
                 }}
               >
-                {open ? (
-                  <Image
-                    src="/images/hiring/icon-down.svg"
-                    width={20}
-                    height={20}
-                    alt="ArrowDown"
-                  />
-                ) : (
-                  <Image
-                    src="/images/hiring/rightarrow.png"
-                    width={20}
-                    height={20}
-                    alt="ArrowRight"
-                  />
-                )}
+                <Image
+                  src={'/icons/Dropdown.svg'}
+                  width={18}
+                  height={18}
+                  alt="Dropdown"
+                />
               </InputAdornment>
             )}
             onOpen={SelectOpen}
