@@ -4,7 +4,7 @@ import { Box, Typography } from '@mui/material';
 import { HIRING_FORM_DATA } from '@/src/constants/Hiring';
 import RoleType from './RoleType';
 import AppNestedDropdown from '../dashboard/appDropdown';
-import { jobTitles } from '@/src/constants/data/startHiring';
+import { jobTitles } from '@/src/constants/data/dropdown.js/startHiring';
 
 const JobTitle = ({ open, SelectOpen, SelectClose }) => {
   const [isLoadingTitles, setIsLoadingTitles] = useState(false);

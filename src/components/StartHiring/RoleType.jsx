@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Box, Typography } from '@mui/material';
 import { HIRING_FORM_DATA } from '@/src/constants/Hiring';
 import AppDropdown from '../dashboard/appDropdown';
-import { roles } from '@/src/constants/data/startHiring';
+import { roles } from '@/src/constants/data/dropdown.js/startHiring';
 
 const RoleType = () => {
   const [isLoadingTitles, setIsLoadingTitles] = useState(false);

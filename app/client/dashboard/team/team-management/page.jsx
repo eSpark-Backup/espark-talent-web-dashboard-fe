@@ -5,15 +5,15 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Input from '@/src/components/dashboard/input';
 import AppTable from '@/src/components/dashboard/appTable';
-import { employeeTableDataHiringRequest } from '@/src/constants/data/employee';
+import { employeeTableDataHiringRequest } from '@/src/constants/data/tables/employee';
 import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
 import { filterDataByKeyword } from '@/src/utils/search';
 import { a11yProps, changeTab } from '@/src/utils/tabs';
-import { empTabs } from '@/src/constants/data/empTabs';
+import { empTabs } from '@/src/constants/data/tabs/empTabs';
 import {
   teamManagementColumn,
   teamManagementData,
-} from '@/src/constants/data/teamManagement';
+} from '@/src/constants/data/tables/teamManagement';
 import TopNavNavbar from '@/src/components/global/topNavbar';
 import Image from 'next/image';
 import AppSearchableDropdown from '@/src/components/dashboard/appSearchableDropdown';

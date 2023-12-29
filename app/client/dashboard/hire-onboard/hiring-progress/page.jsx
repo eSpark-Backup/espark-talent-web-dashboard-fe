@@ -5,11 +5,11 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Input from '@/src/components/dashboard/input';
 import AppTable from '@/src/components/dashboard/appTable';
-import { employeeTableDataHiringRequest } from '@/src/constants/data/employee';
+import { employeeTableDataHiringRequest } from '@/src/constants/data/tables/employee';
 import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
 import { filterDataByKeyword } from '@/src/utils/search';
 import { changeTab } from '@/src/utils/tabs';
-import { empTabs } from '@/src/constants/data/empTabs';
+import { empTabs } from '@/src/constants/data/tabs/empTabs';
 
 const Dashboard = () => {
   const [value, setValue] = useState(0);

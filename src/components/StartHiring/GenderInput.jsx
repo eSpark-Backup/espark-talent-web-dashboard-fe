@@ -4,7 +4,7 @@ import { HIRING_FORM_DATA } from '@/src/constants/Hiring';
 
 import EmployementTerm from './EmployementTerm';
 import AppDropdown from '../dashboard/appDropdown';
-import { gender } from '@/src/constants/data/startHiring';
+import { gender } from '@/src/constants/data/dropdown.js/startHiring';
 
 const GenderInput = ({ open, SelectOpen, SelectClose }) => {
   const [isLoadingTitles, setIsLoadingTitles] = useState(false);
