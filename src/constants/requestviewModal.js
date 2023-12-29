@@ -43,3 +43,8 @@ export const BACKDATE_MODAL = {
   backdate: 'You cannot apply back date leave for this leave type',
   okBtn: 'Ok',
 };
+export const USER_TYPES = {
+  client: 'Client',
+  employee: 'Employee',
+  hr: 'Hr',
+};

@@ -27,7 +27,7 @@ const LeaveRequest = ({ modalType, view }) => {
       <LeaveCount
         countLabel={REQUESTVIEW_DATA?.count}
         totalNo={LEAVE_DATA?.countNo}
-        backgroundColor="#F6F6F6"
+      backgroundColor={view ? "#F6F6F6" : "#fff"}
       />
       {view && (
         <LeaveCount
@@ -42,11 +42,6 @@ const LeaveRequest = ({ modalType, view }) => {
         totalNo={LEAVE_DATA?.totalNo}
         backgroundColor="#F6F6F6"
       />
-      {/* <LeaveCount
-        countLabel={REQUESTVIEW_DATA?.count}
-        totalNo={LEAVE_DATA?.countNo}
-        backgroundColor="#F6F6F6"
-      /> */}
       {!view && (
         <LeaveCount
           countLabel={REQUESTVIEW_DATA?.attachment}
@@ -54,7 +49,27 @@ const LeaveRequest = ({ modalType, view }) => {
         />
       )}
       <LeaveCount
-        countLabel={REQUESTVIEW_DATA?.reason}
+        countLabel={
+          view ? (
+            REQUESTVIEW_DATA?.reason
+          ) : (
+            <>
+              {REQUESTVIEW_DATA?.reason}
+              <span
+                style={{
+                  color: 'red',
+                  fontSize: '25px',
+                  marginLeft: '55px',
+                  marginTop: '-25px',
+                  display: 'flex',
+                  justifyContent: 'flex-end',
+                }}
+              >
+                *
+              </span>
+            </>
+          )
+        }
         component={<LeaveReason />}
       />
       <LeaveRequestButtons modalType={modalType} />

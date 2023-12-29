@@ -9,26 +9,31 @@ import dayjs from 'dayjs';
 
 const LeaveDatePicker = ({ label, view }) => {
   const [open, setOpen] = useState(false);
+    const [openModal, setOpenModal] = useState(true);
+
   const [currentView, setCurretView] = useState('day');
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  // const[selectedDate,setSelectedDate]=useState(null)
-  //   const handleDateChange = (date) => {
-  //   setSelectedDate(date);
-
-  // };
-  //  useEffect(() => {
-  //   // Check if the selected date is before the current date
-  //   if (selectedDate.isBefore(dayjs(), 'day')) {
-  //     handleOpen(); // Show the modal when selecting a previous date
-  //   }
-  // }, [selectedDate]);
-
+  const handleOpenModal=()=>setOpenModal(true)
+  const [selectedDate, setSelectedDate] = useState(null)
+    const handleDateChange = (date) => {
+    setSelectedDate(date);
+  
+      if (date.isBefore(dayjs(),'day')) {
+        console.log('Selected date is before the current date');
+        handleOpenModal();
+    }
+  };
   const handleCurrentView = (view) => {
     setCurretView(view);
   };
-
+  useEffect(() => {
+    if (!open) {
+      setOpenModal(false);
+    }
+  }, [open]);
   return (
+    <>
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DatePicker
         label={label || ''}
@@ -37,8 +42,8 @@ const LeaveDatePicker = ({ label, view }) => {
         views={['year', 'month', 'day']}
         open={open}
         disabled={view}
-        // value={selectedDate}
-        // onChange={handleDateChange}
+        value={selectedDate}
+        onChange={handleDateChange}
         onClose={handleClose}
         onViewChange={handleCurrentView}
         slots={{
@@ -48,11 +53,12 @@ const LeaveDatePicker = ({ label, view }) => {
               <ActionBarComponent onClose={handleClose} />
             ) : null,
         }}
-        // minDate={minDate}
-        // maxDate={maxDate}
+       
       />
       {/* <PreviousDateModal/> */}
     </LocalizationProvider>
+      {openModal && <PreviousDateModal />} 
+      </>
   );
 };
 export default LeaveDatePicker;

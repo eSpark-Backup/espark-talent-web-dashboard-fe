@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Box,
   InputAdornment,
@@ -11,6 +11,11 @@ import Image from 'next/image';
 import { LEAVE_TYPE, REQUESTVIEW_DATA } from '@/src/constants/requestviewModal';
 
 const LeaveType = ({ view }) => {
+  const selectedValue = 'Sick Leave';
+
+  const defaultOption = LEAVE_TYPE.find(
+    (option) => option.value === selectedValue
+  );
   return (
     <Box sx={{}}>
       <Box
@@ -32,8 +37,10 @@ const LeaveType = ({ view }) => {
                 style={{
                   color: 'red',
                   fontSize: '25px',
-                  marginLeft: '10px',
-                  marginBottom: '5px',
+                  marginLeft: '73px',
+                    marginTop: '-25px',
+                    display: "flex",
+                    justifyContent: "flex-end",
                 }}
               >
                 *
@@ -43,7 +50,7 @@ const LeaveType = ({ view }) => {
         </Typography>
 
         <Select
-          value={'Sick Leave'}
+          value={view ? selectedValue : 'Select'} // Conditionally set the value
           required={true}
           disabled={view}
           sx={{

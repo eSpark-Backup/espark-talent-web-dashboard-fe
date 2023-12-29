@@ -26,6 +26,7 @@ import { renderNestedTable } from './renderComponents';
 import Link from 'next/link';
 import RequestHeading from '@/src/components/requestview/modalHeading';
 import LeaveRequest from '@/src/components/requestview/leaveRequestView';
+import { USER_TYPES } from '@/src/constants/requestviewModal';
 
 const Dashboard = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -35,7 +36,33 @@ const Dashboard = () => {
   const [leaveBalanceDataState, setLeaveBalanceDataState] = useState(
     filterTableRowsWRTTab(leaveBalanceData, { status: '' })
   );
-  const isViewingClient = true;
+  // const isViewingClient = true;
+
+  const determineUserType = () => {
+  //   const userType = USER_TYPES.employee
+
+  // if (userType === USER_TYPES.client || userType === USER_TYPES.hr) {
+  //   // Do something specific for 'Client' or 'Hr' user type
+  //   return true;
+  // } else if (userType === USER_TYPES.employee) {
+  //   // Do something specific for 'Employee' user type
+  //   return false;
+  // }
+
+  // // Default value if the user type is not recognized
+  // return false;
+    // return USER_TYPES; 
+
+    return (
+      USER_TYPES.client
+      // (USER_TYPES.employee ,
+      //   USER_TYPES.hr,
+      //  USER_TYPES.client)
+    ); 
+};
+
+const userType = determineUserType();
+const isViewingClient = userType === USER_TYPES.employee;
 
   const [open, setOpen] = useState(false);
   const [modalType, setModalType] = useState('');
