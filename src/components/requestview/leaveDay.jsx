@@ -3,7 +3,7 @@ import { Box, Typography } from '@mui/material';
 import Image from 'next/image';
 
 import { LEAVE_DATA } from '@/src/constants/requestviewModal';
-import { leaveRequestsData } from '@/src/constants/data/timeOffRequest';
+import { leaveRequestsData } from '@/src/constants/data/tables/timeOffRequest';
 
 const LeaveDay = () => {
   return (
