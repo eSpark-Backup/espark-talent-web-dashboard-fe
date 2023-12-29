@@ -5,17 +5,13 @@ import WarningAmberSharpIcon from '@mui/icons-material/WarningAmberSharp';
 
 import { BACKDATE_MODAL } from '@/src/constants/requestviewModal';
 
-const PreviousDateModal = () => {
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+const PreviousDateModal = ({ onClose, open }) => {
   return (
     <Box>
-      {/* <Button onClick={handleOpen}>Open modal</Button> */}
 
       <Modal
         open={open}
-        onClose={handleClose}
+        onClose={onClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
@@ -69,7 +65,7 @@ const PreviousDateModal = () => {
 
                   width: '120px',
                 }}
-                onClick={handleClose}
+                onClick={onClose}
               >
                 {BACKDATE_MODAL?.okBtn}
               </Button>

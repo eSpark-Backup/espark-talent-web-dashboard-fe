@@ -11,7 +11,7 @@ import LeaveReason from './leaveReason';
 import LeaveRequestButtons from './leaveRequestButton';
 import AttachDoc from './attachFile';
 
-const LeaveRequest = ({ modalType, view }) => {
+const LeaveRequest = ({ modalType, view,statusType,rowType }) => {
   return (
     <Box sx={{ p: 3.5 }}>
       <LeaveType view={view} />
@@ -72,7 +72,7 @@ const LeaveRequest = ({ modalType, view }) => {
         }
         component={<LeaveReason />}
       />
-      <LeaveRequestButtons modalType={modalType} />
+      <LeaveRequestButtons modalType={modalType} statusType={statusType} view={view} rowType={rowType} />
     </Box>
   );
 };

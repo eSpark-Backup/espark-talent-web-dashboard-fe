@@ -17,9 +17,12 @@ export const REQUESTVIEW_DATA = {
   approved: 'Approved',
   decline: 'Decline',
   cancel: 'Cancelled',
+  cancelBtn: 'Cancel',
   cancelReq: 'Cancel Request',
   attachment: 'Attachments',
   totalCount: 'Total Count',
+  close: "Close",
+  save: "Save"
 };
 export const LEAVE_DATA = {
   fromTo: 'Oct 17, 23 - Oct 17, 23',

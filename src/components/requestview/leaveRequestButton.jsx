@@ -3,14 +3,45 @@ import { Box, Button } from '@mui/material';
 
 import { REQUESTVIEW_DATA } from '@/src/constants/requestviewModal';
 
-const LeaveRequestButtons = ({ modalType }) => {
+const LeaveRequestButtons = ({ modalType,statusType,view,rowType }) => {
   console.log('test', modalType);
+  console.log('test2', statusType);
+    // console.log('test3', rowType);
+
   const isDeclineModal = modalType === 'Reject';
   const isApproveModal = modalType === 'Approve';
-  const isCancelModal = modalType === 'Cancel';
-  const isCancelRequestModal = modalType === 'Cancel Request';
-  const isCloseModal = modalType === 'Close';
+   const isPendingModal = statusType === 'Pending';
+  const isCompletedModal = statusType === 'Completed';
 
+  // const isCancelModal = statusType === 'Cancel';
+
+  const isCancelRequestModal = statusType === 'Cancel';
+  const isCloseModal = statusType === 'Close';
+
+   const handleOpenConditionalModal = (rowType, actionType) => {
+    if (rowType === "Pending") {
+      if (actionType === "View") {
+       {REQUESTVIEW_DATA?.cancelReq}
+      }
+      else {
+        // render pending reject modal
+      }
+    }
+    else if (rowType === "Completed") {
+      // render completed modal
+      {REQUESTVIEW_DATA?.cancel}
+    
+    }
+    else if (rowType === "cancel ") {
+      // render completed modal
+    {REQUESTVIEW_DATA?.close}
+    }
+    else  {
+      // render cancelled modal
+    
+    }
+
+  }
   return (
     <Box
       sx={{
@@ -20,6 +51,53 @@ const LeaveRequestButtons = ({ modalType }) => {
         marginRight: '10px',
       }}
     >
+      {!view && (
+        <Box sx={{
+          display: "flex",
+          gap:"10px",
+          marginTop: "80px",
+      }}>
+      <Button
+          
+        sx={{
+            border: '1px solid #029894',
+            background: '#FFF',
+            width: '120px',
+            borderRadius: '5px',
+          }}
+        >
+          {REQUESTVIEW_DATA?.cancelBtn}
+      </Button>
+       <Button
+          variant="contained"
+        sx={{ width: '120px', borderRadius: '5px' }}
+        >
+          {REQUESTVIEW_DATA?.save}
+          </Button>
+        </Box>
+      )}
+        {/* {view && (
+      <>
+      <Button
+          
+        sx={{
+            border: '1px solid #029894',
+            background: '#FFF',
+            width: '120px',
+            borderRadius: '5px',
+          }}
+        >
+          {REQUESTVIEW_DATA?.cancelBtn}
+      </Button>
+       <Button
+          variant="contained"
+        sx={{ width: '120px', borderRadius: '5px' }}
+        >
+          {REQUESTVIEW_DATA?.save}
+          </Button>
+        </>
+      )} */}
+         
       {isDeclineModal && (
         <Button
           sx={{
@@ -44,7 +122,8 @@ const LeaveRequestButtons = ({ modalType }) => {
           {REQUESTVIEW_DATA?.approved}
         </Button>
       )}
-      {!isApproveModal && !isDeclineModal && (
+
+     {view && !isApproveModal && !isDeclineModal && (
         <>
           <Button
             sx={{
@@ -64,7 +143,9 @@ const LeaveRequestButtons = ({ modalType }) => {
           </Button>
         </>
       )}
-      {isCloseModal && (
+      {/*  */}
+
+      {/* {isCloseModal && (
         <Button
           variant="contained"
           sx={{ width: '120px', borderRadius: '5px' }}
@@ -94,6 +175,40 @@ const LeaveRequestButtons = ({ modalType }) => {
           }}
         >
           {REQUESTVIEW_DATA?.cancelReq}
+        </Button>
+      )} */}
+              {isCancelRequestModal && (
+        <Button
+          sx={{
+            border: '1px solid #029894',
+            background: '#FFF',
+            width: '120px',
+            borderRadius: '5px',
+          }}
+        >
+          {REQUESTVIEW_DATA?.cancelReq}
+        </Button>
+      )}
+
+      {isPendingModal && (
+        <Button
+          sx={{
+            border: '1px solid #029894',
+            background: '#FFF',
+            width: '120px',
+            borderRadius: '5px',
+          }}
+        >
+          {REQUESTVIEW_DATA?.cancelReq}
+        </Button>
+      )}
+
+      {isCompletedModal && (
+        <Button
+          variant="contained"
+          sx={{ width: '120px', borderRadius: '5px' }}
+        >
+          {REQUESTVIEW_DATA?.close}
         </Button>
       )}
     </Box>

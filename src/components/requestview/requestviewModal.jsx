@@ -1,67 +1,68 @@
-import React, { useState } from 'react';
+import React  from 'react';
 import { Box, Modal } from '@mui/material';
 import Image from 'next/image';
 
 import RequestHeading from './modalHeading';
 import LeaveRequest from './leaveRequestview';
 
-const RequestviewModal = () => {
-  const [open, setOpen] = useState(false);
-  const handleClose = () => setOpen(false);
+const RequestviewModal = ({open,onClose}) => {
+
   return (
+
     <Box>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'flex-end',
-            border: '1px solid #029894',
-          }}
+        <Modal
+          open={open}
+          onClose={onClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
         >
           <Box
             sx={{
-              background: '#fff',
-              borderRadius: '20px',
-              width: '40px',
-              padding: '2.5px',
-              position: 'absolute',
-              top: '7%',
-              right: '25%',
-            }}
-          >
-            <Image
-              src="/images/leave-request/cancel.svg"
-              width={37}
-              height={37}
-              alt="cancel"
-              onClick={handleClose}
-            />
-          </Box>
-          <Box
-            sx={{
-              position: 'absolute',
-              top: '55%',
-              left: '50%',
-              transform: 'translate(-50%, -50%)',
-              width: 400,
-              bgcolor: '#fff',
               display: 'flex',
               flexDirection: 'column',
-              borderRadius: '10px',
+              alignItems: 'flex-end',
+              border: '1px solid #029894',
             }}
           >
-            <RequestHeading />
-            <LeaveRequest />
+            <Box
+              sx={{
+                background: '#fff',
+                borderRadius: '20px',
+                width: '40px',
+                padding: '2.5px',
+                position: 'absolute',
+                top: '2%',
+                right: '25%',
+              }}
+            >
+              <Image
+                src="/images/leave-request/cancel.svg"
+                width={37}
+                height={37}
+                alt="cancel"
+                onClick={onClose}
+              />
+            </Box>
+            <Box
+              sx={{
+                position: 'absolute',
+                top: '53%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                bgcolor: '#fff',
+                width: '50%',
+                display: 'flex',
+                flexDirection: 'column',
+                borderRadius: '10px',
+                height: '850px',
+              }}
+            >
+              <RequestHeading  />
+              <LeaveRequest  />
+            </Box>
           </Box>
-        </Box>
-      </Modal>
-    </Box>
+        </Modal>
+      </Box>
   );
 };
 export default RequestviewModal;

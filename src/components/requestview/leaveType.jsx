@@ -11,7 +11,9 @@ import Image from 'next/image';
 import { LEAVE_TYPE, REQUESTVIEW_DATA } from '@/src/constants/requestviewModal';
 
 const LeaveType = ({ view }) => {
-  const selectedValue = 'Sick Leave';
+    const [selectedValue, setSelectedValue] = useState();
+
+  // const selectedValue = 'Sick Leave';
 
   const defaultOption = LEAVE_TYPE.find(
     (option) => option.value === selectedValue
@@ -50,7 +52,8 @@ const LeaveType = ({ view }) => {
         </Typography>
 
         <Select
-          value={view ? selectedValue : 'Select'} // Conditionally set the value
+          value={selectedValue}
+          placeholder={view ? 'Select': ''}
           required={true}
           disabled={view}
           sx={{
