@@ -30,7 +30,7 @@ const AuthForm = ({ uiData, fields }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData, 'formData');
-    router.push('/dashboard');
+    router.push('client/dashboard');
   };
   return (
     <>

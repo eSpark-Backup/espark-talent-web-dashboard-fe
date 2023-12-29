@@ -1,18 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Box, Button, Modal, Typography } from '@mui/material';
 
 import { SIGNOUT_MODAL_DATA } from '@/src/constants/signoutModal';
 
-const SignoutModal = () => {
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+const SignoutModal = ({ openModal, setOpenModal, onClick }) => {
+  const handleClose = () => setOpenModal(false);
   return (
     <Box>
-      <Button onClick={handleOpen}>Open modal</Button>
-
       <Modal
-        open={open}
+        open={openModal}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
@@ -24,17 +20,20 @@ const SignoutModal = () => {
             top: '50%',
             left: '50%',
             transform: 'translate(-50%, -50%)',
-            width: { xs: '70%', md: '450px' },
-            height: { xs: '280px', sm: '250px' },
+            width: '450px',
+            '@media (max-width: 499px)': {
+              width: '90%',
+            },
+            height: { xs: '250px', sm: '250px' },
             boxShadow: 24,
             borderRadius: '5px',
           }}
         >
           <Box
             sx={{
-              p: { xs: 6, sm: 6.7 },
+              p: { xs: 6.7, sm: 6.7 },
               display: 'flex',
-              gap: '28px',
+              gap: { xs: '20px', lg: '28px' },
               flexDirection: 'column',
             }}
           >
@@ -56,14 +55,19 @@ const SignoutModal = () => {
                   borderRadius: '5px',
                   border: '1px solid #595959',
                   color: ' #595959',
-                  width: '120px',
+                  width: { xs: '90px', sm: '120px' },
+                  height: '40px',
                   fontSize: '16px',
                 }}
                 onClick={handleClose}
               >
                 {SIGNOUT_MODAL_DATA?.cancel}
               </Button>
-              <Button variant="primary" sx={{ width: '120px' }}>
+              <Button
+                variant="primary"
+                sx={{ width: { xs: '100px', sm: '120px' }, height: '40px' }}
+                onClick={onClick}
+              >
                 {SIGNOUT_MODAL_DATA?.signoutBtn}
               </Button>
             </Box>

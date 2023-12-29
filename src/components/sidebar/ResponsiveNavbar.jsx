@@ -7,6 +7,7 @@ import Toolbar from '@mui/material/Toolbar';
 import SidebarUserAvatar from './SidebarUserAvatar';
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 import SidebarGlobalIcon from './SidebarGlobalIcon';
+import ProfilePopper from '../popover/ProfilePopper';
 
 export default function ResponsiveNavbar({ userName, openSidebar }) {
   return (
@@ -42,7 +43,9 @@ export default function ResponsiveNavbar({ userName, openSidebar }) {
             />
             <Box sx={{ display: 'flex' }}>
               <SidebarGlobalIcon />
-              <SidebarUserAvatar userName={userName} />
+              <ProfilePopper
+                button={<SidebarUserAvatar userName={userName} />}
+              />
             </Box>
           </Box>
         </Toolbar>

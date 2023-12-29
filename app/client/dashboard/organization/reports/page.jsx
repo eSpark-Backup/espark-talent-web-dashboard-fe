@@ -2,11 +2,11 @@
 import React from 'react';
 import { Grid, Box } from '@mui/material';
 
+import { REPORT_DATA } from '@/src/constants/report';
 import Heading from '@/src/components/global/Heading';
-import { POLICIES_DATA } from '@/src/constants/policies';
-import PoliciesCard from '@/src/components/policies/policiesCard';
+import ReportBoxes from '@/src/components/reports/reportBoxes';
 
-const Policies = () => {
+const Reports = () => {
   return (
     <>
       <Grid container>
@@ -15,24 +15,24 @@ const Policies = () => {
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
-            paddingTop: '60px',
+            paddingTop: { xs: '60px', md: '20px' },
             gap: '20px',
             width: '100%',
           }}
         >
           <Heading
-            title={POLICIES_DATA?.title}
-            description={POLICIES_DATA?.description}
+            title={REPORT_DATA?.title}
+            description={REPORT_DATA?.description}
             containerStyles={{
               display: 'flex',
               flexDirection: 'column',
-              alignItems: { xs: 'flex-start', md: 'center' },
+              alignItems: 'center',
             }}
           />
-          <PoliciesCard data={POLICIES_DATA?.items} />
+          <ReportBoxes data={REPORT_DATA?.items} />
         </Box>
       </Grid>
     </>
   );
 };
-export default Policies;
+export default Reports;
