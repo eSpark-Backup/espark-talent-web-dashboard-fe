@@ -89,7 +89,7 @@ export default function ProfilePopper({ button }) {
         anchorEl={profileMenu}
         placement={'right-start'}
         onMouseLeave={handlePopoverClose}
-        sx={{ position: 'relative', zIndex: 2 }}
+        sx={{ position: 'relative', zIndex: 505 }}
       >
         <Box
           sx={{
@@ -142,7 +142,7 @@ export default function ProfilePopper({ button }) {
           },
         ]}
         placement={'right-start'}
-        sx={{ position: 'relative', zIndex: 2 }}
+        sx={{ position: 'relative', zIndex: 505 }}
       >
         <Box
           ref={notificationPopupRef}
