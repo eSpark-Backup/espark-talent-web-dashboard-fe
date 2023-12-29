@@ -100,7 +100,7 @@ export const Employee_Routes = [
       },
       {
         text: 'Clock in / Clock out',
-        link: '/employee/dashboard/attendance/clockin-clockout',
+        link: '/employee/dashboard/attendance/check-in-out',
       },
     ],
   },
