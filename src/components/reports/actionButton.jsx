@@ -14,6 +14,7 @@ const ActionButtonComponent = ({ handleClose }) => {
         position: 'absolute',
         bottom: 30,
         zIndex: 1,
+        
       }}
     >
       <Button
