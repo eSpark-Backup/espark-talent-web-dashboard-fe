@@ -26,7 +26,7 @@ const SalaryRange = () => {
             <TextField
               required={true}
               sx={{
-                width: { xs: '50%', md: '130px' },
+                width: { xs: '100%', md: '50%' },
                 '@media (min-width: 960px) and (max-width: 1200px)': {
                   width: '50%',
                 },

@@ -17,7 +17,7 @@ const JobTitle = ({ open, SelectOpen, SelectClose }) => {
         flexDirection: { xs: 'column', md: 'row' },
         justifyContent: 'space-around',
         paddingTop: '15px',
-        zIndex: 100,
+        zIndex: 103,
         '@media (min-width: 900px) and (max-width: 1400px)': {
           flexDirection: 'column',
           gap: '10px',
@@ -30,7 +30,7 @@ const JobTitle = ({ open, SelectOpen, SelectClose }) => {
           display: 'flex',
           flexDirection: 'column',
           gap: '12px',
-          zIndex: 101,
+          zIndex: 103,
         }}
       >
         <Typography>{HIRING_FORM_DATA?.jobTitle}</Typography>
