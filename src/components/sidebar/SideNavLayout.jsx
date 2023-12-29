@@ -18,6 +18,7 @@ export const SideNav = (props) => {
           sx: {
             width: 280,
             overflowX: 'hidden',
+            overflowY: 'hidden',
           },
         }}
         variant="permanent"
@@ -35,6 +36,7 @@ export const SideNav = (props) => {
       PaperProps={{
         sx: {
           overflowX: 'hidden',
+          overflowY: 'hidden',
           width: 280,
         },
       }}

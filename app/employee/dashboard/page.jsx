@@ -14,10 +14,10 @@ const Dashboard = () => {
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'center',
-              paddingTop: '30px',
+              // paddingTop: '30px',
               gap: '20px',
               width: '100%',
-              padding: { xs: '0px', sm: '30px', md: '40px', lg: '40px' },
+              // padding: { xs: '0px', sm: '30px', md: '40px', lg: '40px' },
             }}
           >
             <DashboardHeading />

@@ -3,12 +3,23 @@ import React from 'react';
 import { Box } from '@mui/material';
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 const SidebarLogo = () => {
+  const pathName = usePathname();
+
   return (
     <>
       <Box sx={{ px: 4, py: 2, display: 'flex', justifyContent: 'center' }}>
-        <Link href={'/dashboard'}>
+        <Link
+          href={
+            pathName.includes('/client/dashboard')
+              ? '/client/dashboard'
+              : null || pathName.includes('/employee/dashboard')
+              ? '/employee/dashboard'
+              : null
+          }
+        >
           <Image
             src={'/images/sidebar-icons/logo.svg'}
             width={100}

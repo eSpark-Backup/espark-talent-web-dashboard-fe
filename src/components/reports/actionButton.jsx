@@ -10,10 +10,14 @@ const ActionButtonComponent = ({ handleClose }) => {
         display: 'flex',
         justifyContent: 'center',
         gap: '15px',
+        // left: 'auto',
+        // right: 'auto',
+        width: '100%',
+        // mx: 'auto',
         // marginBottom: '45px',
-        marginLeft: '84px',
+        // marginLeft: '84px',
         position: 'absolute',
-        bottom: 230,
+        bottom: 30,
         zIndex: 1,
       }}
     >

@@ -26,7 +26,7 @@ const DatePickerModal = ({ open, handleClose }) => {
     >
       <Box
         sx={{
-          width: '380px',
+          width: { xs: 'auto', sm: '380px' },
           background: '#fff',
           borderRadius: '10px',
         }}
@@ -35,12 +35,13 @@ const DatePickerModal = ({ open, handleClose }) => {
           sx={{
             background: 'gray',
             borderRadius: '10px',
+            position: 'relative',
           }}
         >
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <StaticDatePicker
               openTo="month"
-              sx={{ borderRadius: '10px', height: '500px' }}
+              sx={{ borderRadius: '10px', height: '500px', display: 'block' }}
               views={['year', 'month', 'day']}
               slots={{
                 actionBar: () => (
