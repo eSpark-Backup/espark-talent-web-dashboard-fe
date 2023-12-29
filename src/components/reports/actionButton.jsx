@@ -9,11 +9,12 @@ const ActionButtonComponent = ({ handleClose }) => {
       sx={{
         display: 'flex',
         justifyContent: 'center',
-        gap: '15px', 
+        gap: '15px',
         width: '100%',
         position: 'absolute',
         bottom: 30,
         zIndex: 1,
+        
       }}
     >
       <Button
