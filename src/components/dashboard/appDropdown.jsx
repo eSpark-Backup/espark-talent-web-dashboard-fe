@@ -88,11 +88,14 @@ const AppDropdown = ({
           display={'flex'}
           justifyContent={'space-between'}
           sx={{
-            border: 'solid 1px #ccc',
+            border: 'solid 2px #ccc',
             borderTopLeftRadius: '5px',
             borderTopRightRadius: '5px',
             borderBottomLeftRadius: !isOpenedDropdown && '5px',
             borderBottomRightRadius: !isOpenedDropdown && '5px',
+            '&:hover': {
+              borderColor: 'teal',
+            },
           }}
           p={'10px'}
         >

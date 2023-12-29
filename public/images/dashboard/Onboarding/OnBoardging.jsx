@@ -1,0 +1,171 @@
+'use client';
+import React from 'react';
+import { Typography, Box, Grid } from '@mui/material';
+
+import { COMPANY_ONBOARDING, HIRING_STATUS } from '@/app/constants/Dashboard';
+import CompanyProfile from './CompanyProfile';
+
+const OnBoarding = () => {
+  return (
+    <Grid container>
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: { xs: 'column', sm: 'column', md: 'row' },
+          gap: '12px',
+          width: '100%',
+          justifyContent: 'space-between',
+        }}
+      >
+        <Grid item xs={12} md={6}>
+          <Box
+            sx={{
+              height: { xs: '250px', md: '200px' },
+              borderRadius: '10px',
+              background: '#FFF',
+              boxShadow: '0px 0px 10px 0px rgba(0, 0, 0, 0.30)',
+              display: 'flex',
+              padding: '18px',
+              '@media (min-width: 900px) and (max-width: 1040px)': {
+                height: '250px',
+              },
+            }}
+          >
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'flex-start',
+                gap: '10px',
+                width: '90%',
+                padding: '15px',
+              }}
+            >
+              <Typography
+                sx={{
+                  color: '#171717',
+                  fontFamily: 'Inter',
+                  fontSize: { xs: '20px', md: '25px' },
+                  fontWeight: 600,
+                }}
+              >
+                {' '}
+                {COMPANY_ONBOARDING.companyOnboarding}
+              </Typography>
+              <CompanyProfile />
+            </Box>
+          </Box>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <Box
+            sx={{
+              display: 'flex',
+              height: { xs: '250px', md: '200px' },
+              borderRadius: '10px',
+              background: '#fff',
+              boxShadow: '0px 0px 10px 0px rgba(0, 0, 0, 0.30)',
+              padding: '18px',
+              '@media (min-width: 900px) and (max-width: 1040px)': {
+                height: '250px',
+              },
+            }}
+          >
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'flex-start',
+                padding: '20px',
+                width: '480px',
+                gap: '15px',
+              }}
+            >
+              <Typography
+                sx={{
+                  color: '#171717',
+                  fontFamily: 'Inter',
+                  fontSize: { xs: '20px', md: '25px' },
+                  fontWeight: 600,
+                }}
+              >
+                {' '}
+                {HIRING_STATUS.status}
+              </Typography>
+              <Box
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  paddingTop: '15px',
+                }}
+              >
+                <Box
+                  sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '15px',
+                  }}
+                >
+                  <Typography
+                    sx={{
+                      fontSize: '14px',
+                      fontWeight: 400,
+                    }}
+                  >
+                    {HIRING_STATUS.activeEmployee}
+                    <span style={{ fontSize: '14px' }}>
+                      :{HIRING_STATUS.activeEmployeeNo}
+                    </span>
+                  </Typography>
+                  <Typography
+                    sx={{
+                      fontSize: '14px',
+                      fontWeight: 400,
+                    }}
+                  >
+                    {HIRING_STATUS.onBoard}
+                    <span style={{ fontSize: '14px' }}>
+                      :{HIRING_STATUS.onBoardNo}
+                    </span>
+                  </Typography>
+                </Box>
+                <Box
+                  sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '15px',
+                  }}
+                >
+                  <Typography
+                    sx={{
+                      fontSize: '14px',
+                      fontWeight: 400,
+                    }}
+                  >
+                    {HIRING_STATUS.interviewSchedule}
+                    <span style={{ fontSize: '14px' }}>
+                      :{HIRING_STATUS.interviews}
+                    </span>
+                  </Typography>
+                  <Typography
+                    sx={{
+                      fontSize: '14px',
+                      fontWeight: 400,
+                    }}
+                  >
+                    {HIRING_STATUS.hiringReuqest}
+                    <span style={{ fontSize: '14px' }}>
+                      :{HIRING_STATUS.hiringReuqestNo}
+                    </span>
+                  </Typography>
+                </Box>
+              </Box>
+            </Box>
+          </Box>
+        </Grid>
+      </Box>
+    </Grid>
+  );
+};
+
+export default OnBoarding;
