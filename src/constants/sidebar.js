@@ -81,3 +81,53 @@ export const profileMenuData = [
   { icon: '/images/sidebar-icons/notification.svg', text: 'Notification' },
   { icon: '/images/sidebar-icons/signout.svg', text: 'Sign out' },
 ];
+
+export const Employee_Routes = [
+  {
+    icon: '/images/sidebar-icons/dashboard.svg',
+    text: 'Dashboard',
+    link: '/employee/dashboard',
+    sublinks: null,
+  },
+  {
+    icon: '/images/sidebar-icons/attendance.svg',
+    text: 'Attendance',
+    link: '#',
+    sublinks: [
+      {
+        text: 'Time Sheet',
+        link: '/employee/dashboard/attendance/time-sheet',
+      },
+      {
+        text: 'Clock in / Clock out',
+        link: '/employee/dashboard/attendance/clockin-clockout',
+      },
+    ],
+  },
+  {
+    icon: '/images/sidebar-icons/request.svg',
+    text: 'Request',
+    link: '#',
+    sublinks: [
+      {
+        text: 'Leave',
+        link: '/employee/dashboard/request/leave',
+      },
+    ],
+  },
+  {
+    icon: '/images/sidebar-icons/administration.svg',
+    text: 'Administration',
+    link: '#',
+    sublinks: [
+      {
+        text: 'Policies',
+        link: '/employee/dashboard/administration/policies',
+      },
+      {
+        text: 'Contracts Signed',
+        link: '/employee/dashboard/administration/contracts-signed',
+      },
+    ],
+  },
+];

@@ -1,14 +1,18 @@
+'use client';
 import React from 'react';
 import { Box, useMediaQuery, useTheme } from '@mui/material';
 
 import SidebarAccordion from './SidebarAccordion';
-import { Client_Routes } from '@/src/constants/sidebar';
+import { Client_Routes, Employee_Routes } from '@/src/constants/sidebar';
 import SidebarLogo from './sidebarLogo';
 import SidebarActiveUser from './SidebarActiveUser';
 import ProfilePopper from '../popover/ProfilePopper';
+import { usePathname } from 'next/navigation';
 
 const Sidebar = ({ userName }) => {
   const theme = useTheme();
+  const pathName = usePathname();
+
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('lg'));
 
   return (
@@ -50,7 +54,17 @@ const Sidebar = ({ userName }) => {
               mb: '10px',
             }}
           >
-            <SidebarAccordion sidebarLinks={Client_Routes} />
+            <SidebarAccordion
+              sidebarLinks={
+                pathName.includes('/client/dashboard')
+                  ? Client_Routes
+                  : null || pathName.includes('/employee/dashboard')
+                  ? Employee_Routes
+                  : null || pathName.includes('/hr/dashboard')
+                // ? Hr_Routes
+                // : null
+              }
+            />
           </Box>
           <Box
             sx={{
