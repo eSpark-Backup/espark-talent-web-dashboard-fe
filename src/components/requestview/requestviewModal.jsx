@@ -3,7 +3,8 @@ import { Box, Modal } from '@mui/material';
 import Image from 'next/image';
 
 import RequestHeading from './modalHeading';
-import LeaveRequest from './leaveRequestview';
+import LeaveRequest from './leaveRequestView';
+// import LeaveRequest from './leaveRequestview';
 
 const RequestviewModal = ({ open, onClose }) => {
   return (
