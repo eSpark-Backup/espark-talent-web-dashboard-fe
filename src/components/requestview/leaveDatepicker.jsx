@@ -16,6 +16,7 @@ const LeaveDatePicker = ({ label, view }) => {
   const handleClose = () => setOpen(false);
   const handleOpenModal = () => setOpenModal(true);
   const [selectedDate, setSelectedDate] = useState(null);
+  console.log(handleOpenModal);
   const handleDateChange = (date) => {
     setSelectedDate(date);
 

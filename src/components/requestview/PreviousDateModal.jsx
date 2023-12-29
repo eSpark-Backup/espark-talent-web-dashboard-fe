@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Box, Button, Modal, Typography } from '@mui/material';
-import Image from 'next/image';
 import WarningAmberSharpIcon from '@mui/icons-material/WarningAmberSharp';
 
 import { BACKDATE_MODAL } from '@/src/constants/requestviewModal';
@@ -8,7 +7,6 @@ import { BACKDATE_MODAL } from '@/src/constants/requestviewModal';
 const PreviousDateModal = ({ onClose, open }) => {
   return (
     <Box>
-
       <Modal
         open={open}
         onClose={onClose}

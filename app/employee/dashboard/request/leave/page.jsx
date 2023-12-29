@@ -21,33 +21,29 @@ import RequestHeading from '@/src/components/requestview/modalHeading';
 import RequestviewModal from '@/src/components/requestview/requestviewModal';
 
 const Dashboard = () => {
-  
   const determineUserType = () => {
-
-    return (
-      USER_TYPES.client
-    ); 
-};
+    return USER_TYPES.client;
+  };
 
   const userType = determineUserType();
-const isViewingClient = userType === USER_TYPES.employee;
+  const isViewingClient = userType === USER_TYPES.employee;
 
   const [open, setOpen] = useState(false);
   const [statusType, setStatusType] = useState('');
-      const [rowType, setRowType] = useState('');
+  const [rowType, setRowType] = useState('');
 
-  const [openModal, setOpenModal]=useState(false)
+  const [openModal, setOpenModal] = useState(false);
   const handleOpenModal = () => {
     setOpenModal(true);
-    console.log("jjj");
-  }
-    const handleCloseModal = () => {
+    console.log('jjj');
+  };
+  const handleCloseModal = () => {
     setOpenModal(false);
-  }
-  const handleOpen = (status,row) => {
-    console.log("status", {status });
+  };
+  const handleOpen = (status, row) => {
+    console.log('status', { status });
     setStatusType(status);
-    setRowType(row)
+    setRowType(row);
     setOpen(true);
   };
   const handleClose = () => setOpen(false);
@@ -73,32 +69,23 @@ const isViewingClient = userType === USER_TYPES.employee;
   };
 
   const handleOpenConditionalModal = (rowType, actionType) => {
-    if (rowType === "Pending") {
-      if (actionType === "View") {
+    if (rowType === 'Pending') {
+      if (actionType === 'View') {
         // render pending view modal
-      }
-      else {
+      } else {
         // render pending reject modal
       }
-    }
-    else if (rowType === "Completed") {
+    } else if (rowType === 'Completed') {
       // render completed modal
-    
-    }
-    else if (rowType === "Rejected") {
+    } else if (rowType === 'Rejected') {
       // render completed modal
-    
-    }
-    else  {
+    } else {
       // render cancelled modal
-    
     }
-
-  }
+  };
 
   return (
     <>
-       
       <Grid container>
         <Box
           sx={{
@@ -149,10 +136,11 @@ const isViewingClient = userType === USER_TYPES.employee;
               >
                 Create
               </Button>
-            {openModal && (<RequestviewModal  open={openModal}
-                onClose={handleCloseModal} />)}
+              {openModal && (
+                <RequestviewModal open={openModal} onClose={handleCloseModal} />
+              )}
             </Box>
-            
+
             <Box sx={{ width: '100%' }}>
               <Box
                 sx={{
@@ -169,7 +157,7 @@ const isViewingClient = userType === USER_TYPES.employee;
           </div>
         </Box>
       </Grid>
-       
+
       <Grid container>
         <Box
           sx={{
@@ -318,14 +306,14 @@ const isViewingClient = userType === USER_TYPES.employee;
                 handleOpen,
                 column: employeeLeaveRequestsColumn,
                 data: leaveRequestDataState,
-                handleOpenConditionalModal
+                handleOpenConditionalModal,
               })}
             </Box>
           </div>
         </Box>
       </Grid>
-     
-        <Box>
+
+      <Box>
         <Modal
           open={open}
           onClose={handleClose}
@@ -374,7 +362,11 @@ const isViewingClient = userType === USER_TYPES.employee;
               }}
             >
               <RequestHeading view={isViewingClient} />
-              <LeaveRequest statusType={statusType} view={isViewingClient} rowType={rowType} />
+              <LeaveRequest
+                statusType={statusType}
+                view={isViewingClient}
+                rowType={rowType}
+              />
             </Box>
           </Box>
         </Modal>

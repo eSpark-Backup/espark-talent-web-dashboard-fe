@@ -11,7 +11,7 @@ import LeaveReason from './leaveReason';
 import LeaveRequestButtons from './leaveRequestButton';
 import AttachDoc from './attachFile';
 
-const LeaveRequest = ({ modalType, view,statusType,rowType }) => {
+const LeaveRequest = ({ modalType, view, statusType, rowType }) => {
   return (
     <Box sx={{ p: 3.5 }}>
       <LeaveType view={view} />
@@ -27,7 +27,7 @@ const LeaveRequest = ({ modalType, view,statusType,rowType }) => {
       <LeaveCount
         countLabel={REQUESTVIEW_DATA?.count}
         totalNo={LEAVE_DATA?.countNo}
-      backgroundColor={view ? "#F6F6F6" : "#fff"}
+        backgroundColor={view ? '#F6F6F6' : '#fff'}
       />
       {view && (
         <LeaveCount
@@ -72,7 +72,12 @@ const LeaveRequest = ({ modalType, view,statusType,rowType }) => {
         }
         component={<LeaveReason />}
       />
-      <LeaveRequestButtons modalType={modalType} statusType={statusType} view={view} rowType={rowType} />
+      <LeaveRequestButtons
+        modalType={modalType}
+        statusType={statusType}
+        view={view}
+        rowType={rowType}
+      />
     </Box>
   );
 };

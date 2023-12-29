@@ -128,7 +128,7 @@ const AppTable = ({
   renderMessageButton,
   handleClickRenderMessageButton,
   handleOpen,
-  handleOpenConditionalModal
+  // handleOpenConditionalModal,
 }) => {
   return (
     <>

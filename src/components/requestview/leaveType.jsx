@@ -11,13 +11,13 @@ import Image from 'next/image';
 import { LEAVE_TYPE, REQUESTVIEW_DATA } from '@/src/constants/requestviewModal';
 
 const LeaveType = ({ view }) => {
-    const [selectedValue, setSelectedValue] = useState();
-
+  const [selectedValue, setSelectedValue] = useState();
+  console.log('yy', setSelectedValue);
   // const selectedValue = 'Sick Leave';
 
-  const defaultOption = LEAVE_TYPE.find(
-    (option) => option.value === selectedValue
-  );
+  // const defaultOption = LEAVE_TYPE.find(
+  //   (option) => option.value === selectedValue
+  // );
   return (
     <Box sx={{}}>
       <Box
@@ -40,9 +40,9 @@ const LeaveType = ({ view }) => {
                   color: 'red',
                   fontSize: '25px',
                   marginLeft: '73px',
-                    marginTop: '-25px',
-                    display: "flex",
-                    justifyContent: "flex-end",
+                  marginTop: '-25px',
+                  display: 'flex',
+                  justifyContent: 'flex-end',
                 }}
               >
                 *
@@ -53,7 +53,7 @@ const LeaveType = ({ view }) => {
 
         <Select
           value={selectedValue}
-          placeholder={view ? 'Select': ''}
+          placeholder={view ? 'Select' : ''}
           required={true}
           disabled={view}
           sx={{

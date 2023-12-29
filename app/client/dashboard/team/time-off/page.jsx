@@ -38,21 +38,16 @@ const Dashboard = () => {
   );
 
   const determineUserType = () => {
-  
+    return USER_TYPES.client;
+  };
 
-    return (
-      USER_TYPES.client
-    
-    ); 
-};
-
-const userType = determineUserType();
-const isViewingClient = userType === USER_TYPES.client;
+  const userType = determineUserType();
+  const isViewingClient = userType === USER_TYPES.client;
 
   const [open, setOpen] = useState(false);
   const [modalType, setModalType] = useState('');
   const handleOpen = (type) => {
-    console.log("types", {type });
+    console.log('types', { type });
     setModalType(type);
     setOpen(true);
   };
@@ -458,7 +453,7 @@ const isViewingClient = userType === USER_TYPES.client;
               }}
             >
               <RequestHeading view={isViewingClient} />
-              <LeaveRequest modalType={modalType} view={isViewingClient}/>
+              <LeaveRequest modalType={modalType} view={isViewingClient} />
             </Box>
           </Box>
         </Modal>

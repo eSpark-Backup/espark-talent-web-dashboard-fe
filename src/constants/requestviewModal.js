@@ -5,7 +5,6 @@ export const REQUESTVIEW_DATA = {
   leaveTypeStar: 'Leave type *',
   startDate: 'Start Date',
   endDate: 'End Date',
-  close: 'Close',
   set: 'Set',
   fromTo: 'Oct 17, 23 - Oct 17, 23',
   leaveweek: 'October week3',
@@ -21,8 +20,8 @@ export const REQUESTVIEW_DATA = {
   cancelReq: 'Cancel Request',
   attachment: 'Attachments',
   totalCount: 'Total Count',
-  close: "Close",
-  save: "Save"
+  close: 'Close',
+  save: 'Save',
 };
 export const LEAVE_DATA = {
   fromTo: 'Oct 17, 23 - Oct 17, 23',

@@ -8,7 +8,7 @@ export const renderNestedTable = ({
   column,
   data,
   handleOpen,
-  handleOpenConditionalModal
+  handleOpenConditionalModal,
 }) => {
   return (
     <CustomTabPanel
@@ -23,7 +23,6 @@ export const renderNestedTable = ({
         })}
         handleOpen={handleOpen}
         handleOpenConditionalModal={handleOpenConditionalModal}
-
       />
     </CustomTabPanel>
   );
