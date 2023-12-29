@@ -19,7 +19,6 @@ const DatePickerBox = ({ label, dateKey }) => {
           label={label}
           sx={{
             width: { xs: '100%', md: '300px' },
-            // background:"green",
             '@media (min-width: 900px) and (max-width: 1400px)': {
               width: '100%',
             },

@@ -16,10 +16,10 @@ export const REQUESTVIEW_DATA = {
   approve: 'Approve',
   approved: 'Approved',
   decline: 'Decline',
-  cancel: "Cancelled",
-  cancelReq: "Cancel Request",
-  attachment: "Attachments",
-  totalCount: "Total Count"
+  cancel: 'Cancelled',
+  cancelReq: 'Cancel Request',
+  attachment: 'Attachments',
+  totalCount: 'Total Count',
 };
 export const LEAVE_DATA = {
   fromTo: 'Oct 17, 23 - Oct 17, 23',
@@ -40,6 +40,6 @@ export const LEAVE_TYPE = [
 
 export const BACKDATE_MODAL = {
   warning: 'WARNING',
-  backdate: "You cannot apply back date leave for this leave type",
-  okBtn: 'Ok'
-}
+  backdate: 'You cannot apply back date leave for this leave type',
+  okBtn: 'Ok',
+};

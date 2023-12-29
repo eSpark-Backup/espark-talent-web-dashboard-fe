@@ -10,7 +10,6 @@ const ActionButtonComponent = ({ handleClose }) => {
         display: 'flex',
         justifyContent: 'center',
         gap: '15px',
-        // marginBottom: '45px',
         marginLeft: '84px',
         position: 'absolute',
         bottom: 230,

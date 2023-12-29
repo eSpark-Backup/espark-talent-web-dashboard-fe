@@ -35,7 +35,7 @@ const Dashboard = () => {
   const [leaveBalanceDataState, setLeaveBalanceDataState] = useState(
     filterTableRowsWRTTab(leaveBalanceData, { status: '' })
   );
-    const isViewingClient = true;
+  const isViewingClient = true;
 
   const [open, setOpen] = useState(false);
   const [modalType, setModalType] = useState('');
@@ -445,8 +445,8 @@ const Dashboard = () => {
                 height: '850px',
               }}
             >
-              <RequestHeading  view={isViewingClient} />
-              <LeaveRequest modalType={modalType} view={isViewingClient}/>
+              <RequestHeading view={isViewingClient} />
+              <LeaveRequest modalType={modalType} view={isViewingClient} />
             </Box>
           </Box>
         </Modal>

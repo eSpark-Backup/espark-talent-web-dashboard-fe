@@ -3,7 +3,7 @@ import { Box, Typography } from '@mui/material';
 
 import LeaveDatePicker from './leaveDatepicker';
 
-const LeaveDate = ({ date, backgroundColor,view }) => {
+const LeaveDate = ({ date, backgroundColor, view }) => {
   return (
     <Box
       sx={{
@@ -17,7 +17,7 @@ const LeaveDate = ({ date, backgroundColor,view }) => {
       <Typography>{date}</Typography>
 
       <Box sx={{ background: '#F6F6F6' }}>
-        <LeaveDatePicker  view={view}/>
+        <LeaveDatePicker view={view} />
       </Box>
     </Box>
   );

@@ -5,7 +5,7 @@ import WarningAmberSharpIcon from '@mui/icons-material/WarningAmberSharp';
 
 import { BACKDATE_MODAL } from '@/src/constants/requestviewModal';
 
-const PreviousDateModal= () => {
+const PreviousDateModal = () => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -37,19 +37,21 @@ const PreviousDateModal= () => {
               p: { xs: 6, sm: 5 },
               display: 'flex',
               gap: '10px',
-                          flexDirection: 'column',
-              justifyContent:"center"
+              flexDirection: 'column',
+              justifyContent: 'center',
             }}
-                  >
-                      <WarningAmberSharpIcon sx={{
-                          fontSize: "60px",
-                          alignSelf: "center",
-                          color:'teal'
-                       }}/>
+          >
+            <WarningAmberSharpIcon
+              sx={{
+                fontSize: '60px',
+                alignSelf: 'center',
+                color: 'teal',
+              }}
+            />
             <Typography variant="h5" sx={{ textAlign: 'center' }}>
               {BACKDATE_MODAL?.warning}
-                      </Typography>
-                    
+            </Typography>
+
             <Typography variant="body1" sx={{ textAlign: 'center' }}>
               {BACKDATE_MODAL?.backdate}
             </Typography>
@@ -60,11 +62,11 @@ const PreviousDateModal= () => {
                 gap: '12px',
               }}
             >
-                          <Button
-                              variant='primary'
+              <Button
+                variant="primary"
                 sx={{
                   borderRadius: '5px',
-               
+
                   width: '120px',
                 }}
                 onClick={handleClose}

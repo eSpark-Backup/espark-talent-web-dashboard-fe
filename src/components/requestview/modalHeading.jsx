@@ -3,7 +3,7 @@ import { Box, Typography } from '@mui/material';
 
 import { REQUESTVIEW_DATA } from '@/src/constants/requestviewModal';
 
-const RequestHeading = ({view}) => {
+const RequestHeading = ({ view }) => {
   return (
     <Box sx={{ borderBottom: '1px solid #E4E4E4', p: 2 }}>
       <Typography
@@ -13,9 +13,8 @@ const RequestHeading = ({view}) => {
         }}
       >
         {view
-        ?REQUESTVIEW_DATA?.leaveRequestView
-        :REQUESTVIEW_DATA?.createLeaveRequest
-}
+          ? REQUESTVIEW_DATA?.leaveRequestView
+          : REQUESTVIEW_DATA?.createLeaveRequest}
       </Typography>
     </Box>
   );

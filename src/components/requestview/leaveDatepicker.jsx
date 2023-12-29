@@ -7,8 +7,7 @@ import ActionBarComponent from './actionbarComponent';
 import PreviousDateModal from './PreviousDateModal';
 import dayjs from 'dayjs';
 
-const LeaveDatePicker = ({ label,view }) => {
-
+const LeaveDatePicker = ({ label, view }) => {
   const [open, setOpen] = useState(false);
   const [currentView, setCurretView] = useState('day');
   const handleOpen = () => setOpen(true);
@@ -16,7 +15,7 @@ const LeaveDatePicker = ({ label,view }) => {
   // const[selectedDate,setSelectedDate]=useState(null)
   //   const handleDateChange = (date) => {
   //   setSelectedDate(date);
-  
+
   // };
   //  useEffect(() => {
   //   // Check if the selected date is before the current date
@@ -30,7 +29,6 @@ const LeaveDatePicker = ({ label,view }) => {
   };
 
   return (
-
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DatePicker
         label={label || ''}
@@ -52,9 +50,8 @@ const LeaveDatePicker = ({ label,view }) => {
         }}
         // minDate={minDate}
         // maxDate={maxDate}
-       
       />
-       {/* <PreviousDateModal/> */}
+      {/* <PreviousDateModal/> */}
     </LocalizationProvider>
   );
 };

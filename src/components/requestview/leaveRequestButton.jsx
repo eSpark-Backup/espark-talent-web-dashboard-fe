@@ -84,7 +84,7 @@ const LeaveRequestButtons = ({ modalType }) => {
           {REQUESTVIEW_DATA?.cancel}
         </Button>
       )}
-       {isCancelRequestModal && (
+      {isCancelRequestModal && (
         <Button
           sx={{
             border: '1px solid #029894',
@@ -96,7 +96,6 @@ const LeaveRequestButtons = ({ modalType }) => {
           {REQUESTVIEW_DATA?.cancelReq}
         </Button>
       )}
-    
     </Box>
   );
 };

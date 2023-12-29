@@ -10,7 +10,7 @@ import Image from 'next/image';
 
 import { LEAVE_TYPE, REQUESTVIEW_DATA } from '@/src/constants/requestviewModal';
 
-const LeaveType = ({view}) => {
+const LeaveType = ({ view }) => {
   return (
     <Box sx={{}}>
       <Box
@@ -22,12 +22,25 @@ const LeaveType = ({view}) => {
           p: 1,
         }}
       >
-        <Typography>{view ? REQUESTVIEW_DATA?.leaveType :
-           <>
-        {REQUESTVIEW_DATA?.leaveType}
-        <span style={{ color: 'red' ,fontSize:"25px", marginLeft:"10px"  ,marginBottom:"5px"}}>*</span>
-      </>
-          }</Typography>
+        <Typography>
+          {view ? (
+            REQUESTVIEW_DATA?.leaveType
+          ) : (
+            <>
+              {REQUESTVIEW_DATA?.leaveType}
+              <span
+                style={{
+                  color: 'red',
+                  fontSize: '25px',
+                  marginLeft: '10px',
+                  marginBottom: '5px',
+                }}
+              >
+                *
+              </span>
+            </>
+          )}
+        </Typography>
 
         <Select
           value={'Sick Leave'}
