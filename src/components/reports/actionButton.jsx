@@ -14,7 +14,6 @@ const ActionButtonComponent = ({ handleClose }) => {
         position: 'absolute',
         bottom: 30,
         zIndex: 1,
-        
       }}
     >
       <Button
@@ -30,7 +29,7 @@ const ActionButtonComponent = ({ handleClose }) => {
       </Button>
       <Button variant="contained" sx={{ width: '120px' }}>
         {REPORT_DATA?.download}
-      </Button>{' '}
+      </Button>
     </Box>
   );
 };
