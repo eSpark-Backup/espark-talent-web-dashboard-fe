@@ -4,7 +4,7 @@ import { toCamelCase } from '@/src/utils/stringModification';
 import { Box, Button, Pagination, Stack, Typography } from '@mui/material';
 import Image from 'next/image';
 import AppCustomDropdown from './appCustomDropdown';
-import { trackingStatusTypes } from '@/src/constants/data/timeTracking';
+import { trackingStatusTypes } from '@/src/constants/data/tables/timeTracking';
 
 const renderAttendenceStatus = (statusType, index) => {
   const status = trackingStatusTypes?.find(
@@ -169,13 +169,15 @@ const AppTable = ({
                     >
                       {renderMessage}
                     </Typography>
-                    <Button
-                      onClick={handleClickRenderMessageButton}
-                      sx={{ marginTop: '20px' }}
-                      variant="contained"
-                    >
-                      {renderMessageButton}
-                    </Button>
+                    {renderMessageButton && (
+                      <Button
+                        onClick={handleClickRenderMessageButton}
+                        sx={{ marginTop: '20px' }}
+                        variant="contained"
+                      >
+                        {renderMessageButton}
+                      </Button>
+                    )}
                   </Box>
                 ) : (
                   <td />
@@ -256,7 +258,11 @@ const AppTable = ({
                           </span>
                         </td>
                       );
-                    } else if (row?.actionStatus && col === 'Action') {
+                    } else if (
+                      row?.actionStatus &&
+                      col === 'Action' &&
+                      row[toCamelCase(col)][0] === 'Delete'
+                    ) {
                       return (
                         <td
                           key={colIndex}

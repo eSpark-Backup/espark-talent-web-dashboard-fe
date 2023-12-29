@@ -6,7 +6,7 @@ import {
   employeeTableHiringRequestColumn,
   employeeTableInterviewScheduleColumn,
   employeeTableOnboardingColumn,
-} from './employee';
+} from '../tables/employee';
 
 export const empTabs = [
   {

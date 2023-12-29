@@ -8,13 +8,13 @@ import AppTable from '@/src/components/dashboard/appTable';
 import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
 import { filterDataByKeyword } from '@/src/utils/search';
 import { changeTab } from '@/src/utils/tabs';
-import { paymentStatusTabs } from '@/src/constants/data/paymentTabs';
+import { paymentStatusTabs } from '@/src/constants/data/tabs/paymentTabs';
 import {
   invoicePaymentColumn,
   invoicePaymentData,
   otherPaymentColumn,
   otherPaymentData,
-} from '@/src/constants/data/paymentData';
+} from '@/src/constants/data/tables/paymentData';
 import { filterTableRowsWRTTab } from '@/src/utils/table';
 
 const Dashboard = () => {
