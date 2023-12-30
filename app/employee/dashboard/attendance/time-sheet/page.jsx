@@ -10,6 +10,7 @@ import {
   timeSheetTableData,
 } from '@/src/constants/data/tables/timeSheet';
 import Image from 'next/image';
+import { EMPLOYEE_TIMESHEET } from '@/src/constants/timeSheet';
 
 const Dashboard = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -82,6 +83,68 @@ const Dashboard = () => {
                 </Typography>
               </Box>
             </Box>
+          </Box>
+
+          <Box
+            sx={{
+              boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.25)',
+              borderRadius: '10px',
+              width: '100%',
+              background: '#FAFAFA',
+              padding: '20px',
+              gap: '15px',
+              flexDirection: 'column',
+              display: 'grid',
+              gridTemplateColumns: {
+                xs: 'repeat(3, 1fr)',
+                md: 'repeat(4, 1fr)',
+              },
+            }}
+          >
+            {EMPLOYEE_TIMESHEET.map((item, index) => (
+              <Box
+                key={index}
+                sx={{
+                  border: '1px solid #ddd',
+                  borderRadius: '5px',
+                  margin: '5px 0',
+                  boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.25)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  height: '40px',
+                }}
+              >
+                <Box
+                  sx={{ display: 'flex', alignItems: 'center', gap: '10px' }}
+                >
+                  <div
+                    style={{
+                      width: '5px',
+                      height: '40px',
+                      borderRadius: '5px 0px 0px 5px',
+                      backgroundColor: `${item.verticalLineColor}`,
+                    }}
+                  ></div>
+                  <Typography>{Object.values(item)[0]}</Typography>
+                </Box>
+
+                <Typography sx={{ marginRight: '6PX' }}>
+                  {Object.values(item)[1]}
+                </Typography>
+              </Box>
+            ))}
+            {/* <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                borderradius: '5px',
+              }}
+            >
+              <Box sx={{ background: '#029e9c' }}>kk</Box>
+              <Typography>Workable shifts</Typography>
+              <Typography>9</Typography>
+            </Box> */}
           </Box>
           <Box sx={{ width: '100%' }}>
             <Box
