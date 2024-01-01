@@ -9,7 +9,6 @@ const AttendanceSummary = () => {
     <>
       <Box
         sx={{
-          //   width: { lg: '1480px' },
           height: '230px',
           borderRadius: '10px',
           background: '#FFF',
