@@ -18,11 +18,11 @@ const LeaveDay = () => {
         sx={{
           border: '1px solid #E4E4E4',
           display: 'flex',
-          gap: '10px',
+          gap: { xs: '0px', md: '10px' },
           justifyContent: 'center',
           alignItems: 'center',
           width: '300px',
-          padding: '10px',
+          padding: { xs: '5px', md: '10px' },
         }}
       >
         <Image
@@ -33,11 +33,30 @@ const LeaveDay = () => {
         />
         <Box
           sx={{
-            gap: '10px',
+            gap: { xs: '5px', md: '10px' },
           }}
         >
-          <Typography>{leaveRequestsData[0]?.employeeName}</Typography>
-          <Typography>{leaveRequestsData[0]?.employeeId}</Typography>
+          <Typography
+            sx={{
+              fontSize: { xs: '10px', md: '16px' },
+              '@media (min-width: 900px) and (max-width: 1300px)': {
+                fontSize: '12px',
+              },
+            }}
+          >
+            {leaveRequestsData[0]?.employeeName}
+          </Typography>
+
+          <Typography
+            sx={{
+              fontSize: { xs: '10px', md: '16px' },
+              '@media (min-width: 900px) and (max-width: 1300px)': {
+                fontSize: '12px',
+              },
+            }}
+          >
+            {leaveRequestsData[0]?.employeeId}
+          </Typography>
         </Box>
       </Box>
       <Box

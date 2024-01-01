@@ -36,7 +36,17 @@ const LeaveDatePicker = ({ label, view }) => {
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DatePicker
           label={label || ''}
-          sx={{ width: '600px' }}
+          sx={{
+            background: '#F6F6F6',
+            width: '100%',
+            '@media (min-width: 1500px) and (max-width: 2000px)': {
+              width: '600px',
+            },
+
+            '.MuiPickersCalendarHeader-iconButton': {
+              display: 'inline-block',
+            },
+          }}
           openTo="month"
           views={['year', 'month', 'day']}
           open={open}

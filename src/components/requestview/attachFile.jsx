@@ -2,6 +2,7 @@ import React from 'react';
 import { InputAdornment, TextField } from '@mui/material';
 import Image from 'next/image';
 import { useRef } from 'react';
+import styles from '@/src/components/requestview/image.module.css';
 
 const AttachDoc = () => {
   const fileInputRef = useRef(null);
@@ -27,11 +28,33 @@ const AttachDoc = () => {
           <InputAdornment position="end">
             <Image
               src="/images/leave-request/attach-icon.svg"
-              width={20}
-              height={20}
+              // width={0}
+              // height={0}
+              className={styles.image}
+              width={30} // Default width value in pixels
+              height={30} // Default height value in pixels
+              // sx={{
+              //   width: {
+              //     xs: '40px',
+              //     md: '30px',
+              //   },
+              //   height: {
+              //     xs: '40px',
+              //     md: '30px,'
+              //   },
+              // }}
               alt="attach"
               onClick={handleImageClick}
-              style={{ cursor: 'pointer' }}
+              // sx={{
+              //   width: {
+              //     xs: 20,
+              //     md: 30,
+              //   },
+              //   height: {
+              //     xs: 20,
+              //     md: 30,
+              //   }
+              // }}
             />
             <input
               ref={fileInputRef}

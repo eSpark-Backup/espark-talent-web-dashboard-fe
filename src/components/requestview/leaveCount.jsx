@@ -10,6 +10,10 @@ const LeaveCount = ({ countLabel, totalNo, backgroundColor, component }) => {
         justifyContent: 'space-between',
         alignItems: 'center',
         p: 1.5,
+        gap: { xs: '15px', md: '0px' },
+        '@media (min-width: 900px) and (max-width: 1530px)': {
+          gap: '15px',
+        },
       }}
     >
       <Typography>{countLabel}</Typography>

@@ -12,9 +12,10 @@ const LeaveDate = ({ date, backgroundColor, view }) => {
         alignItems: 'center',
         background: backgroundColor || '#fff',
         p: 1,
+        gap: '10px',
       }}
     >
-      <Typography>
+      <Typography sx={{ width: '80px' }}>
         {view ? (
           date
         ) : (
@@ -36,7 +37,7 @@ const LeaveDate = ({ date, backgroundColor, view }) => {
         )}
       </Typography>
 
-      <Box sx={{ background: '#F6F6F6' }}>
+      <Box sx={{ width: '100%', display: 'flex', justifyContent: 'flex-end' }}>
         <LeaveDatePicker view={view} />
       </Box>
     </Box>

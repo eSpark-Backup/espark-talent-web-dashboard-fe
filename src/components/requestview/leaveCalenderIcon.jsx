@@ -10,6 +10,14 @@ const LeaveCalendarIcon = ({ props, open }) => {
       height={30}
       alt="calender"
       onClick={open}
+      // sx={{
+      //    ' @media (max-width: 600px)': {
+
+      //         '.MuiPickersCalendarHeader-iconButton': {
+      //           display: 'inline-block'
+      //         }
+      //       }
+      // }}
     />
   );
 };

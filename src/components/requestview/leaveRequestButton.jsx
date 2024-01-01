@@ -3,17 +3,11 @@ import { Box, Button } from '@mui/material';
 
 import { REQUESTVIEW_DATA } from '@/src/constants/requestviewModal';
 
-const LeaveRequestButtons = ({ modalType, statusType, view }) => {
-  console.log('test', modalType);
-  console.log('test2', statusType);
-  // console.log('test3', rowType);
-
+const LeaveRequestButtons = ({ modalType, statusType, view, onClose }) => {
   const isDeclineModal = modalType === 'Reject';
   const isApproveModal = modalType === 'Approve';
   const isPendingModal = statusType === 'Pending';
   const isCompletedModal = statusType === 'Completed';
-
-  // const isCancelModal = statusType === 'Cancel';
 
   const isCancelRequestModal = statusType === 'Cancel';
   // const isCloseModal = statusType === 'Close';
@@ -45,9 +39,9 @@ const LeaveRequestButtons = ({ modalType, statusType, view }) => {
     <Box
       sx={{
         display: 'flex',
-        justifyContent: 'flex-end',
-        gap: '10px',
-        marginRight: '10px',
+        justifyContent: { xs: 'center', md: 'flex-end' },
+        gap: { xs: '5px', md: '10px' },
+        marginRight: { xs: '0px', md: '10px' },
       }}
     >
       {!view && (
@@ -62,41 +56,21 @@ const LeaveRequestButtons = ({ modalType, statusType, view }) => {
             sx={{
               border: '1px solid #029894',
               background: '#FFF',
-              width: '120px',
+              width: { xs: '80px', md: '120px' },
               borderRadius: '5px',
             }}
+            onClick={onClose}
           >
             {REQUESTVIEW_DATA?.cancelBtn}
           </Button>
           <Button
             variant="contained"
-            sx={{ width: '120px', borderRadius: '5px' }}
+            sx={{ width: { xs: '80px', md: '120px' }, borderRadius: '5px' }}
           >
             {REQUESTVIEW_DATA?.save}
           </Button>
         </Box>
       )}
-      {/* {view && (
-      <>
-      <Button
-          
-        sx={{
-            border: '1px solid #029894',
-            background: '#FFF',
-            width: '120px',
-            borderRadius: '5px',
-          }}
-        >
-          {REQUESTVIEW_DATA?.cancelBtn}
-      </Button>
-       <Button
-          variant="contained"
-        sx={{ width: '120px', borderRadius: '5px' }}
-        >
-          {REQUESTVIEW_DATA?.save}
-          </Button>
-        </>
-      )} */}
 
       {isDeclineModal && (
         <Button
@@ -143,40 +117,7 @@ const LeaveRequestButtons = ({ modalType, statusType, view }) => {
           </Button>
         </>
       )}
-      {/*  */}
 
-      {/* {isCloseModal && (
-        <Button
-          variant="contained"
-          sx={{ width: '120px', borderRadius: '5px' }}
-        >
-          {REQUESTVIEW_DATA?.close}
-        </Button>
-      )}
-      {isCancelModal && (
-        <Button
-          sx={{
-            border: '1px solid #029894',
-            background: '#FFF',
-            width: '120px',
-            borderRadius: '5px',
-          }}
-        >
-          {REQUESTVIEW_DATA?.cancel}
-        </Button>
-      )}
-      {isCancelRequestModal && (
-        <Button
-          sx={{
-            border: '1px solid #029894',
-            background: '#FFF',
-            width: '120px',
-            borderRadius: '5px',
-          }}
-        >
-          {REQUESTVIEW_DATA?.cancelReq}
-        </Button>
-      )} */}
       {isCancelRequestModal && (
         <Button
           sx={{

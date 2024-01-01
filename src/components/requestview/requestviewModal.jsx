@@ -4,25 +4,32 @@ import Image from 'next/image';
 
 import RequestHeading from './modalHeading';
 import LeaveRequest from './leaveRequestView';
-// import LeaveRequest from './leaveRequestview';
 
-const RequestviewModal = ({ open, onClose }) => {
+const RequestviewModal = ({ open, onClose, view }) => {
   return (
-    <Box>
-      <Modal
-        open={open}
-        onClose={onClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
+    <Modal
+      open={open}
+      onClose={onClose}
+      aria-labelledby="modal-modal-title"
+      aria-describedby="modal-modal-description"
+      sx={{
+        height: { xs: '850px', md: '900px' },
+        display: 'flex',
+        alignItems: 'center',
+      }}
+    >
+      <Box
+        sx={{
+          mx: 'auto',
+          bgcolor: '#fff',
+          width: { xs: '80%', md: '50%' },
+          display: 'flex',
+          flexDirection: 'column',
+          borderRadius: '10px',
+          boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
+        }}
       >
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'flex-end',
-            border: '1px solid #029894',
-          }}
-        >
+        {view && (
           <Box
             sx={{
               background: '#fff',
@@ -42,26 +49,17 @@ const RequestviewModal = ({ open, onClose }) => {
               onClick={onClose}
             />
           </Box>
-          <Box
-            sx={{
-              position: 'absolute',
-              top: '53%',
-              left: '50%',
-              transform: 'translate(-50%, -50%)',
-              bgcolor: '#fff',
-              width: '50%',
-              display: 'flex',
-              flexDirection: 'column',
-              borderRadius: '10px',
-              height: '850px',
-            }}
-          >
-            <RequestHeading />
-            <LeaveRequest />
-          </Box>
+        )}
+        <Box
+          sx={{
+            width: '100%',
+          }}
+        >
+          <RequestHeading />
+          <LeaveRequest onClose={onClose} />
         </Box>
-      </Modal>
-    </Box>
+      </Box>
+    </Modal>
   );
 };
 export default RequestviewModal;
