@@ -1,4 +1,7 @@
 export const Attendance_Summary_Title = 'Attendance Summary';
+export const Leave_Summary_Title = 'Leave Summary';
+export const Clock_Title = 'Clock';
+export const Clock_Dial = '/images/dashboard/clock-dial.svg';
 export const Summary_Slider_Breakpoints = {
   300: {
     slidesPerView: 1,
@@ -142,8 +145,71 @@ export const Summary_Boxes = [
   },
   {
     title: 'Short duration',
-    count: 0,
+    count: 15,
     horizotalLineColor: '#006C9C',
     backgroundColor: '#E0F6FA',
+  },
+];
+
+export const Leave_Summary_Boxes = [
+  {
+    title: 'Casual Leaves',
+    subtitle: '(LRT-00001)',
+    leaveType: [
+      { title: 'Total:', quantity: 12, circleColor: '' },
+      { title: 'Availed:', quantity: 0, circleColor: '#F16E61' },
+      { title: 'Pending:', quantity: 0, circleColor: '#F4B844' },
+      { title: 'Available:', quantity: 0, circleColor: '#136E91' },
+    ],
+  },
+  {
+    title: 'Sick Leaves',
+    subtitle: '(LRT-00002)',
+    leaveType: [
+      { title: 'Total:', quantity: 8, circleColor: '' },
+      { title: 'Availed:', quantity: 0, circleColor: '#F16E61' },
+      { title: 'Pending:', quantity: 0, circleColor: '#F4B844' },
+      { title: 'Available:', quantity: 0, circleColor: '#136E91' },
+    ],
+  },
+  {
+    title: 'Annual Leave',
+    subtitle: '(LRT-00006)',
+    leaveType: [
+      { title: 'Total:', quantity: 20, circleColor: '' },
+      { title: 'Availed:', quantity: 0, circleColor: '#F16E61' },
+      { title: 'Pending:', quantity: 0, circleColor: '#F4B844' },
+      { title: 'Available:', quantity: 0, circleColor: '#136E91' },
+    ],
+  },
+  {
+    title: 'Unpaid Leaves',
+    subtitle: '(LRT-00007)',
+    leaveType: [
+      { title: 'Total:', quantity: 365, circleColor: '' },
+      { title: 'Availed:', quantity: 0, circleColor: '#F16E61' },
+      { title: 'Pending:', quantity: 0, circleColor: '#F4B844' },
+      { title: 'Available:', quantity: 0, circleColor: '#136E91' },
+    ],
+  },
+  {
+    title: 'Paternity Leaves',
+    subtitle: '(LRT-00004)',
+    leaveType: [
+      { title: 'Total:', quantity: 7, circleColor: '' },
+      { title: 'Availed:', quantity: 0, circleColor: '#F16E61' },
+      { title: 'Pending:', quantity: 0, circleColor: '#F4B844' },
+      { title: 'Available:', quantity: 0, circleColor: '#136E91' },
+    ],
+  },
+  {
+    title: 'Hajj Leaves',
+    subtitle: '(LRT-00005)',
+    leaveType: [
+      { title: 'Total:', quantity: 20, circleColor: '' },
+      { title: 'Availed:', quantity: 0, circleColor: '#F16E61' },
+      { title: 'Pending:', quantity: 0, circleColor: '#F4B844' },
+      { title: 'Available:', quantity: 0, circleColor: '#136E91' },
+    ],
   },
 ];

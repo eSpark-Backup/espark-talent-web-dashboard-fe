@@ -1,6 +1,11 @@
 import React from 'react';
-import { Box, Typography } from '@mui/material';
+import { Box, Grid, Typography } from '@mui/material';
+
 import ProgressBar from './ProgressBar';
+import {
+  Leave_Summary_Boxes,
+  Leave_Summary_Title,
+} from '@/src/constants/employeeDashboard';
 
 const LeaveSummary = () => {
   return (
@@ -23,82 +28,120 @@ const LeaveSummary = () => {
             background: '#FFF',
           }}
         >
-          <Typography variant="h5">Leave summary</Typography>
+          <Typography variant="h5">{Leave_Summary_Title}</Typography>
         </Box>
         <Box
           sx={{
             px: { xs: 3, sm: 3, lg: 3 },
-            py: 3,
+            pt: 3,
             width: '100%',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 2.5,
-            justifyContent: 'center',
-            alignItems: 'center',
+            height: '360px',
+            overflowY: 'auto',
           }}
         >
-          <Box
-            sx={{
-              display: 'flex',
-              width: '100%',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: 4,
-              borderRadius: '5px',
-              px: 1,
-              py: 3,
-              border: '1px solid #E4E4E4',
-              background: '#FFF',
-              //   height: '100px',
-              boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
-            }}
-          >
-            <Box sx={{ Width: '100%' }}>
-              <Typography variant="h6" color="text.secondary">
-                Casual leaves
-              </Typography>
-              <Typography variant="body1" color="text.secondary">
-                (LRT-00001)
-              </Typography>
-            </Box>
-            <Box sx={{ width: '70%' }}>
-              <ProgressBar />
-              <Typography variant="body2" color="text.secondary">
-                30%
-              </Typography>
-            </Box>
-          </Box>
-          <Box
-            sx={{
-              display: 'flex',
-              width: '100%',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: 4,
-              borderRadius: '5px',
-              px: 1,
-              py: 3,
-              border: '1px solid #E4E4E4',
-              background: '#FFF',
-              //   height: '100px',
-              boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
-            }}
-          >
-            <Box sx={{ Width: '100%' }}>
-              <Typography variant="h6" color="text.secondary">
-                Casual leaves
-              </Typography>
-              <Typography variant="body1" color="text.secondary">
-                (LRT-00001)
-              </Typography>
-            </Box>
-            <Box sx={{ width: '70%' }}>
-              <ProgressBar />
-              <Typography variant="body2" color="text.secondary">
-                30%
-              </Typography>
-            </Box>
-          </Box>
+          {Leave_Summary_Boxes &&
+            Leave_Summary_Boxes?.map((item, index) => (
+              <Box sx={{ flexGrow: 1 }} key={index}>
+                <Grid
+                  container
+                  sx={{
+                    borderRadius: '5px',
+                    px: 2,
+                    py: 3,
+                    mb: 3,
+                    border: '1px solid #E4E4E4',
+                    background: '#FFF',
+                    boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
+                  }}
+                  spacing={0}
+                >
+                  <Grid item xs={12} sm={2.2} md={3.5} lg={2.5} xl={3.2}>
+                    <Box
+                      sx={{
+                        Width: '100%',
+                        display: 'flex',
+                        // '@media (min-width: 1200px) and (max-width: 1919px) ': {
+                        //   paddingRight: 2.2,
+                        // },
+                        flexDirection: 'column',
+                        gap: 0.5,
+                      }}
+                    >
+                      <Typography
+                        sx={{ fontSize: '16px', width: '100%' }}
+                        variant="h6"
+                        color="text.secondary"
+                      >
+                        {item?.title}
+                      </Typography>
+                      <Typography
+                        sx={{ fontSize: '14px' }}
+                        variant="body1"
+                        color="text.secondary"
+                      >
+                        {item?.subtitle}
+                      </Typography>
+                    </Box>
+                  </Grid>
+                  <Grid item xs={12} sm={9.8} md={8.5} lg={9.5} xl={8.8}>
+                    <Box
+                      sx={{
+                        width: '100%',
+                        display: 'flex',
+                        '@media (min-width: 1200px) and (max-width: 1919px) ': {
+                          paddingLeft: 2.2,
+                        },
+                        '@media (min-width: 900px) and (max-width: 1199px) ': {
+                          paddingLeft: 2.2,
+                        },
+                        '@media (min-width: 600px) and (max-width: 899px) ': {
+                          paddingLeft: 2.2,
+                        },
+                        flexDirection: 'column',
+                        pt: 0.9,
+                        gap: 1.5,
+                      }}
+                    >
+                      <ProgressBar />
+                      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
+                        {item?.leaveType &&
+                          item?.leaveType?.map((type, index) => (
+                            <div key={index}>
+                              <Box
+                                sx={{
+                                  width: 'auto',
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  gap: 1,
+                                }}
+                              >
+                                {type?.circleColor && (
+                                  <Box
+                                    sx={{
+                                      width: '6px',
+                                      height: '6px',
+                                      backgroundColor: `${type?.circleColor}`,
+                                      borderRadius: '100%',
+                                    }}
+                                  ></Box>
+                                )}
+                                <Box sx={{ display: 'flex' }}>
+                                  <Typography sx={{ fontSize: '12px' }}>
+                                    {type?.title}
+                                  </Typography>
+                                  <Typography sx={{ fontSize: '12px' }}>
+                                    {type?.quantity}
+                                  </Typography>
+                                </Box>
+                              </Box>
+                            </div>
+                          ))}
+                      </Box>
+                    </Box>
+                  </Grid>
+                </Grid>
+              </Box>
+            ))}
         </Box>
       </Box>
     </>

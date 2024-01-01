@@ -17,7 +17,7 @@ export const HIRING_STATUS = {
 };
 
 export const DASHBOARD_DATA = {
-  greeting: 'Hello',
+  greeting: 'Hello Arman,',
   greetingText: 'Here’s what we have for you today',
   talentPlatform: 'Discover the eSpark Talent Platform',
   employeeData:

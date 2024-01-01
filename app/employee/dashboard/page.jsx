@@ -1,9 +1,12 @@
 'use client';
 import React from 'react';
-import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
 import { Box, Grid, Typography } from '@mui/material';
+
+import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
 import AttendanceSummary from '@/src/components/AtttendanceSummary/AttendanceSummary';
 import LeaveSummary from '@/src/components/AtttendanceSummary/LeaveSummary';
+import Clock from '@/src/components/AtttendanceSummary/Clock';
+import { Clock_Title } from '@/src/constants/employeeDashboard';
 
 const Dashboard = () => {
   return (
@@ -12,13 +15,7 @@ const Dashboard = () => {
         <Grid item xs={12}>
           <Box
             sx={{
-              // display: 'flex',
-              // flexDirection: 'column',
-              // justifyContent: 'center',
-              // paddingTop: '30px',
-              // gap: '20px',
               width: '100%',
-              // padding: { xs: '0px', sm: '30px', md: '40px', lg: '40px' },
             }}
           >
             <DashboardHeading />
@@ -27,10 +24,10 @@ const Dashboard = () => {
         <Grid item xs={12}>
           <AttendanceSummary />
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={12} md={6} lg={6} xl={4}>
           <Box
             sx={{
-              height: '230px',
+              height: '430px',
               borderRadius: '10px',
               background: '#FFF',
               boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
@@ -59,13 +56,15 @@ const Dashboard = () => {
             ></Box>
           </Box>
         </Grid>
-        <Grid item xs={5}>
+        <Grid item xs={12} md={6} lg={6} xl={5}>
           <LeaveSummary />
         </Grid>
-        <Grid item xs={3}>
+        <Grid item xs={12} lg={12} xl={3}>
           <Box
             sx={{
-              height: '230px',
+              mx: { xs: 'auto', md: 0 },
+              width: { xs: 'auto', md: 'auto' },
+              height: '430px',
               borderRadius: '10px',
               background: '#FFF',
               boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
@@ -81,17 +80,20 @@ const Dashboard = () => {
                 background: '#FFF',
               }}
             >
-              <Typography variant="h5">Clock</Typography>
+              <Typography variant="h5">{Clock_Title}</Typography>
             </Box>
             <Box
               sx={{
                 px: { xs: 3, sm: 3, lg: 3 },
-                py: 3,
                 width: '100%',
+                height: '360px',
+                display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
               }}
-            ></Box>
+            >
+              <Clock />
+            </Box>
           </Box>
         </Grid>
       </Grid>

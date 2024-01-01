@@ -6,17 +6,19 @@ import LinearProgress, {
 } from '@mui/material/LinearProgress';
 
 const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
-  height: 10,
+  height: 5,
   borderRadius: 5,
   width: '100%',
-
+  transform: 'rotate(180deg)',
+  '& > .MuiLinearProgress-bar': {
+    transform: 'rotate(180deg)',
+  },
   [`&.${linearProgressClasses.colorPrimary}`]: {
     backgroundColor:
       theme.palette.grey[theme.palette.mode === 'light' ? 200 : 800],
   },
   [`& .${linearProgressClasses.bar}`]: {
-    borderRadius: 5,
-    backgroundColor: theme.palette.mode === 'light' ? '#1a90ff' : '#308fe8',
+    backgroundColor: theme.palette.mode === 'light' ? '#068987' : '#308fe8',
   },
 }));
 
@@ -26,8 +28,6 @@ export default function ProgressBar() {
       sx={{
         flexGrow: 1,
         height: 'auto',
-        pt: 1.1,
-        mb: 1.2,
       }}
     >
       <BorderLinearProgress variant="determinate" value={50} />
