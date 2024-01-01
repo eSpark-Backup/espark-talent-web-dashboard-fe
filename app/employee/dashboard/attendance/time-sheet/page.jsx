@@ -96,8 +96,9 @@ const Dashboard = () => {
               flexDirection: 'column',
               display: 'grid',
               gridTemplateColumns: {
-                xs: 'repeat(3, 1fr)',
-                md: 'repeat(4, 1fr)',
+                xs: 'repeat(2, 1fr)',
+                md: 'repeat(3, 1fr)',
+                lg: 'repeat(4, 1fr)',
               },
             }}
           >
@@ -134,17 +135,6 @@ const Dashboard = () => {
                 </Typography>
               </Box>
             ))}
-            {/* <Box
-              sx={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                borderradius: '5px',
-              }}
-            >
-              <Box sx={{ background: '#029e9c' }}>kk</Box>
-              <Typography>Workable shifts</Typography>
-              <Typography>9</Typography>
-            </Box> */}
           </Box>
           <Box sx={{ width: '100%' }}>
             <Box
