@@ -60,9 +60,6 @@ const LeaveSummary = () => {
                       sx={{
                         Width: '100%',
                         display: 'flex',
-                        // '@media (min-width: 1200px) and (max-width: 1919px) ': {
-                        //   paddingRight: 2.2,
-                        // },
                         flexDirection: 'column',
                         gap: 0.5,
                       }}
