@@ -29,7 +29,7 @@ const GenderInput = ({ open, SelectOpen, SelectClose }) => {
           display: 'flex',
           flexDirection: 'column',
           gap: '12px',
-          zIndex: 100,
+          zIndex: 102,
         }}
       >
         <Typography>{HIRING_FORM_DATA?.gender}</Typography>

@@ -77,7 +77,8 @@ const AppDropdown = ({
     <Grid
       sx={{
         position: 'relative',
-        width: { xs: '100%', md: '300px', background: '#fff', zIndex: 1 },
+        width: { xs: '100%', background: '#fff', zIndex: 1 },
+        minWidth: { xs: '100%', md: '300px' },
       }}
       item
     >
@@ -178,10 +179,11 @@ const AppDropdown = ({
                           sx={{
                             border: 'solid 1px #ccc',
                             position: 'absolute',
-                            right: '-250px',
-                            width: '250px',
+                            right: { xs: 0, md: '-250px' },
+                            width: { xs: '100%', md: '250px' },
                             background: '#fff',
                             top: '-1px',
+                            zIndex: 105,
                           }}
                         >
                           {children?.map((item, chIndex) => (
