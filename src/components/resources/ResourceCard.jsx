@@ -11,7 +11,7 @@ const ResourceCard = ({ data }) => {
           display: 'flex',
           flexDirection: { xs: 'column', sm: 'column', md: 'row' },
           gap: '80px',
-          width: { xs: '95%', md: '100%' },
+          width: { xs: '100%', md: '100%' },
           alignItems: 'center',
           '@media (min-width: 900px) and (max-width: 1490px)': {
             width: '90%',
@@ -24,13 +24,19 @@ const ResourceCard = ({ data }) => {
             <Link href="/">
               <Box
                 sx={{
-                  height: { xs: '37 0px', md: '300px' },
+                  height: { xs: '375px', md: '300px' },
                   borderRadius: '10px',
                   background: '#FFF',
                   display: 'flex',
                   justifyContent: 'center',
                   padding: '18px',
                   border: '1px solid #E4E4E4',
+                  '@media (min-width: 900px) and (max-width: 924px)': {
+                    height: '320px',
+                  },
+                  '@media (min-width: 1150px) and (max-width: 1220px)': {
+                    height: '320px',
+                  },
                 }}
               >
                 <Box
