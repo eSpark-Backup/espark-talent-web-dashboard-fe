@@ -4,7 +4,7 @@ import { Box, Typography } from '@mui/material';
 import { REQUESTVIEW_DATA } from '@/src/constants/requestviewModal';
 import LeaveDay from './leaveDay';
 
-const LeaveDuration = ({ employeeId, employeeName }) => {
+const LeaveDuration = ({ employeeId, employeeName, fromTo }) => {
   return (
     <Box
       sx={{
@@ -31,7 +31,7 @@ const LeaveDuration = ({ employeeId, employeeName }) => {
             width: '260px',
           }}
         >
-          <Typography>{REQUESTVIEW_DATA.fromTo}</Typography>
+          <Typography>{fromTo}</Typography>
         </Box>
         <Box
           sx={{

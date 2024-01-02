@@ -1,5 +1,4 @@
 'use client';
-
 import React, { useState } from 'react';
 
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
@@ -12,7 +11,6 @@ import dayjs from 'dayjs';
 const LeaveDatePicker = ({ label, isViewingClient }) => {
   const [open, setOpen] = useState(false);
   const [openModal, setOpenModal] = useState(false);
-
   const [currentView, setCurretView] = useState('day');
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -21,7 +19,6 @@ const LeaveDatePicker = ({ label, isViewingClient }) => {
   console.log(handleOpenModal);
   const handleDateChange = (date) => {
     setSelectedDate(date);
-
     if (date.isBefore(dayjs(), 'day')) {
       console.log('Selected date is before the current date');
       setOpenModal(true);
@@ -32,7 +29,6 @@ const LeaveDatePicker = ({ label, isViewingClient }) => {
   const handleCurrentView = (view) => {
     setCurretView(view);
   };
-
   return (
     <>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -52,8 +48,6 @@ const LeaveDatePicker = ({ label, isViewingClient }) => {
           views={['year', 'month', 'day']}
           open={open}
           disabled={isViewingClient}
-          // disabled={isClientDashboard}
-          // disabled={!isClientDashboard || isEmployeeDashboard}
           value={selectedDate}
           onChange={handleDateChange}
           onClose={handleClose}

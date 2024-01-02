@@ -15,31 +15,6 @@ const LeaveRequestButtons = ({
   const isCompletedModal = statusType === 'Completed';
 
   const isCancelRequestModal = statusType === 'Cancel';
-  // const isCloseModal = statusType === 'Close';
-
-  // const handleOpenConditionalModal = (rowType, actionType) => {
-  //   if (rowType === 'Pending') {
-  //     if (actionType === 'View') {
-  //       {
-  //         REQUESTVIEW_DATA?.cancelReq;
-  //       }
-  //     } else {
-  //       // render pending reject modal
-  //     }
-  //   } else if (rowType === 'Completed') {
-  //     // render completed modal
-  //     {
-  //       REQUESTVIEW_DATA?.cancel;
-  //     }
-  //   } else if (rowType === 'cancel ') {
-  //     // render completed modal
-  //     {
-  //       REQUESTVIEW_DATA?.close;
-  //     }
-  //   } else {
-  //     // render cancelled modal
-  //   }
-  // };
   return (
     <Box
       sx={{

@@ -12,7 +12,8 @@ import { LEAVE_TYPE, REQUESTVIEW_DATA } from '@/src/constants/requestviewModal';
 
 const LeaveType = ({ isViewingClient, leaveType }) => {
   const [selectedValue, setSelectedValue] = useState();
-  console.log('yy', setSelectedValue);
+  console.log(setSelectedValue);
+
   return (
     <Box
       sx={{
@@ -48,7 +49,7 @@ const LeaveType = ({ isViewingClient, leaveType }) => {
 
       <Select
         value={selectedValue}
-        placeholder={isViewingClient ? 'Select' : ''}
+        placeholder={isViewingClient ? 'Select' : leaveType}
         required={true}
         disabled={isViewingClient}
         sx={{
@@ -82,7 +83,6 @@ const LeaveType = ({ isViewingClient, leaveType }) => {
           </InputAdornment>
         )}
       >
-        {/* { leaveType} */}
         {LEAVE_TYPE?.map((column, index) => (
           <MenuItem key={index} value={column}>
             {column}

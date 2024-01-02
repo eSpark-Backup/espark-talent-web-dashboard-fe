@@ -27,7 +27,6 @@ import Link from 'next/link';
 import RequestHeading from '@/src/components/requestview/modalHeading';
 import LeaveRequest from '@/src/components/requestview/leaveRequestView';
 
-
 const Dashboard = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [search, setSearch] = useState('');
@@ -35,19 +34,21 @@ const Dashboard = () => {
   const [searchCheckInOutRequest, setSearchCheckInOutRequest] = useState('');
   const [leaveBalanceDataState, setLeaveBalanceDataState] = useState(
     filterTableRowsWRTTab(leaveBalanceData, { status: '' })
-  );  
+  );
 
   const [open, setOpen] = useState(false);
   const [modalType, setModalType] = useState('');
   const [employeeId, setEmployeeId] = useState();
   const [leaveType, setLeaveType] = useState();
+  const [fromTo, setFromTo] = useState();
 
   const [employeeName, setEmployeeName] = useState();
 
-  const handleOpen = (type, employeeId, employeeName, leaveType) => {
+  const handleOpen = (type, employeeId, employeeName, leaveType, fromTo) => {
     setModalType(type);
     setEmployeeId(employeeId);
     setLeaveType(leaveType);
+    setFromTo(fromTo);
     setEmployeeName(employeeName);
     setOpen(true);
   };
@@ -437,6 +438,7 @@ const Dashboard = () => {
               employeeId={employeeId}
               employeeName={employeeName}
               leaveType={leaveType}
+              fromTo={fromTo}
             />
           </Box>
         </Box>

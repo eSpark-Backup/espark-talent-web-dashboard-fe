@@ -20,6 +20,7 @@ const LeaveRequest = ({
   employeeId,
   employeeName,
   leaveType,
+  fromTo,
 }) => {
   const pathName = usePathname();
   const isViewingClient = pathName == '/client/dashboard/team/time-off';
@@ -37,7 +38,11 @@ const LeaveRequest = ({
       />
 
       {isViewingClient && (
-        <LeaveDuration employeeId={employeeId} employeeName={employeeName} />
+        <LeaveDuration
+          employeeId={employeeId}
+          employeeName={employeeName}
+          fromTo={fromTo}
+        />
       )}
 
       <LeaveCount

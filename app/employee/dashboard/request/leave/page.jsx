@@ -35,7 +35,6 @@ const Dashboard = () => {
     setOpenModal(false);
   };
   const handleOpen = (status, row) => {
-    console.log('status', { status });
     setStatusType(status);
     setRowType(row);
     setOpen(true);
@@ -213,7 +212,7 @@ const Dashboard = () => {
                       aria-label="basic tabs example"
                     >
                       {employeeRequestsTabs?.map(
-                        ({ label, prop, background, color }, index) => {
+                        ({ label, prop, color }, index) => {
                           return (
                             <Tab
                               key={index}
