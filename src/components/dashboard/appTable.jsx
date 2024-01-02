@@ -343,14 +343,14 @@ const AppTable = ({
                               {row[toCamelCase(col)]?.map((item, rowIndex) => (
                                 <Image
                                   onClick={() =>{
-                                    handleClickActionView({row,item})
-                                    // handleImage(
-                                    //   row.employeeId,
-                                    //   row.employeeName,
-                                    //   row.leaveType,
-                                    //   row.fromTo,
-                                    //   item
-                                    // )
+                                    // handleClickActionView({row,item})
+                                    handleImage(
+                                      row.employeeId,
+                                      row.employeeName,
+                                      row.leaveType,
+                                      row.fromTo,
+                                      item
+                                    )
                                   }}
                                   key={rowIndex}
                                   style={{
