@@ -38,6 +38,7 @@ export const leaveRequestsData = [
     status: 'Pending',
     actionStatus: true,
     action: ['Reject', 'Approve', 'View'],
+    fromTo: 'Oct 17, 23 - Oct 17, 23',
   },
   {
     employeeId: 12223,
@@ -50,6 +51,7 @@ export const leaveRequestsData = [
     status: 'Pending',
     actionStatus: true,
     action: ['Reject', 'Approve', 'View'],
+    fromTo: 'Oct 18, 23 - Oct 18, 23',
   },
   {
     employeeId: 12224,
@@ -62,6 +64,7 @@ export const leaveRequestsData = [
     status: 'Pending',
     actionStatus: true,
     action: ['Reject', 'Approve', 'View'],
+    fromTo: 'Sept 17, 23 - Sept 17, 23',
   },
   {
     employeeId: 12225,
@@ -74,6 +77,7 @@ export const leaveRequestsData = [
     status: 'Pending',
     actionStatus: true,
     action: ['Reject', 'Approve', 'View'],
+    fromTo: 'Sept 17, 23 - Sept 17, 23',
   },
   {
     employeeId: 12226,
@@ -86,6 +90,7 @@ export const leaveRequestsData = [
     status: 'Pending',
     actionStatus: true,
     action: ['Reject', 'Approve', 'View'],
+    fromTo: 'Sept 17, 23 - Sept 17, 23',
   },
   {
     employeeId: 12227,
@@ -98,6 +103,7 @@ export const leaveRequestsData = [
     status: 'Pending',
     actionStatus: true,
     action: ['Reject', 'Approve', 'View'],
+    fromTo: 'Sept 17, 23 - Sept 17, 23',
   },
   {
     employeeId: 12228,
@@ -110,6 +116,7 @@ export const leaveRequestsData = [
     status: 'Completed',
     actionStatus: true,
     action: ['View'],
+    fromTo: 'Sept 17, 23 - Sept 17, 23',
   },
   {
     employeeId: 12229,
@@ -122,6 +129,7 @@ export const leaveRequestsData = [
     status: 'Pending',
     actionStatus: true,
     action: ['Reject', 'Approve', 'View'],
+    fromTo: 'Sept 17, 23 - Sept 17, 23',
   },
   {
     employeeId: 12230,
@@ -134,6 +142,7 @@ export const leaveRequestsData = [
     status: 'Pending',
     actionStatus: true,
     action: ['Reject', 'Approve', 'View'],
+    fromTo: 'Sept 17, 23 - Sept 17, 23',
   },
   {
     employeeId: 12231,

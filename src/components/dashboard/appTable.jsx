@@ -38,6 +38,7 @@ const InfoOption = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const componentRef = useRef(null);
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
@@ -127,7 +128,11 @@ const AppTable = ({
   handleClick,
   renderMessageButton,
   handleClickRenderMessageButton,
+  handleOpen,
 }) => {
+  const handleImage = (employeeId, employeeName, leaveType, fromTo, item) => {
+    handleOpen(item, employeeId, employeeName, leaveType, fromTo);
+  };
   return (
     <>
       <table className="table">
@@ -336,8 +341,19 @@ const AppTable = ({
                             <>
                               {row[toCamelCase(col)]?.map((item, rowIndex) => (
                                 <Image
+                                  onClick={() =>
+                                    handleImage(
+                                      row.employeeId,
+                                      row.employeeName,
+                                      row.leaveType,
+                                      row.fromTo,
+                                      item
+                                    )
+                                  }
                                   key={rowIndex}
-                                  style={{ margin: rowIndex === 1 && '0 5px' }}
+                                  style={{
+                                    margin: rowIndex === 1 && '0 5px',
+                                  }}
                                   width={25}
                                   height={25}
                                   alt="Icon"

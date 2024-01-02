@@ -1,8 +1,9 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import { Grid, Box, Typography, Button } from '@mui/material';
+import { Grid, Box, Typography, Button, Modal } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
+
 import Input from '@/src/components/dashboard/input';
 import AppTable from '@/src/components/dashboard/appTable';
 import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
@@ -23,6 +24,8 @@ import {
 import Image from 'next/image';
 import { renderNestedTable } from './renderComponents';
 import Link from 'next/link';
+import RequestHeading from '@/src/components/requestview/modalHeading';
+import LeaveRequest from '@/src/components/requestview/leaveRequestView';
 
 const Dashboard = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -32,6 +35,24 @@ const Dashboard = () => {
   const [leaveBalanceDataState, setLeaveBalanceDataState] = useState(
     filterTableRowsWRTTab(leaveBalanceData, { status: '' })
   );
+
+  const [open, setOpen] = useState(false);
+  const [modalType, setModalType] = useState('');
+  const [employeeId, setEmployeeId] = useState();
+  const [leaveType, setLeaveType] = useState();
+  const [fromTo, setFromTo] = useState();
+
+  const [employeeName, setEmployeeName] = useState();
+
+  const handleOpen = (type, employeeId, employeeName, leaveType, fromTo) => {
+    setModalType(type);
+    setEmployeeId(employeeId);
+    setLeaveType(leaveType);
+    setFromTo(fromTo);
+    setEmployeeName(employeeName);
+    setOpen(true);
+  };
+  const handleClose = () => setOpen(false);
   const [leaveRequestDataState, setLeaveRequestDataState] = useState(
     filterTableRowsWRTTab(leaveRequestsData, { status: '' })
   );
@@ -369,6 +390,7 @@ const Dashboard = () => {
                   isLoading,
                   currentReqStatusTabVal,
                   currentReqStatusTab,
+                  handleOpen,
                   column:
                     currentReqTypeTab === 'Leave Requests'
                       ? leaveRequestsColumn
@@ -383,6 +405,44 @@ const Dashboard = () => {
           </div>
         </Box>
       </Grid>
+
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          height: { xs: '950px', md: '890px' },
+        }}
+      >
+        <Box
+          sx={{
+            // mx: 'auto',
+            bgcolor: '#fff',
+            width: { xs: '50%', md: '50%' },
+            display: 'flex',
+            flexDirection: 'column',
+            borderRadius: '10px',
+            boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
+            marginTop: '40px',
+          }}
+        >
+          <Box>
+            <RequestHeading />
+            <LeaveRequest
+              onClose={handleClose}
+              modalType={modalType}
+              employeeId={employeeId}
+              employeeName={employeeName}
+              leaveType={leaveType}
+              fromTo={fromTo}
+            />
+          </Box>
+        </Box>
+      </Modal>
     </>
   );
 };

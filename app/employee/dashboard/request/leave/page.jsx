@@ -1,6 +1,6 @@
 'use client';
 import React, { useMemo, useState } from 'react';
-import { Grid, Box, Typography, Button } from '@mui/material';
+import { Grid, Box, Typography, Button, Modal } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import AppTable from '@/src/components/dashboard/appTable';
@@ -15,8 +15,31 @@ import {
   employeeLeaveRequestsColumn,
   employeeLeaveRequestsData,
 } from '@/src/constants/data/tables/requestsData';
+import LeaveRequest from '@/src/components/requestview/leaveRequestView';
+import RequestHeading from '@/src/components/requestview/modalHeading';
+import RequestviewModal from '@/src/components/requestview/requestviewModal';
+import { usePathname } from 'next/navigation';
 
 const Dashboard = () => {
+  const pathName = usePathname();
+  const isViewingClient = pathName == '/client/dashboard/team/time-off';
+  const [open, setOpen] = useState(false);
+  const [statusType, setStatusType] = useState('');
+  const [rowType, setRowType] = useState('');
+
+  const [openModal, setOpenModal] = useState(false);
+  const handleOpenModal = () => {
+    setOpenModal(true);
+  };
+  const handleCloseModal = () => {
+    setOpenModal(false);
+  };
+  const handleOpen = (status, row) => {
+    setStatusType(status);
+    setRowType(row);
+    setOpen(true);
+  };
+  const handleClose = () => setOpen(false);
   const leaveBalanceDataState = useMemo(
     () => filterTableRowsWRTTab(employeeLeaveBalanceData, { status: '' }),
     [leaveBalanceDataState]
@@ -36,6 +59,22 @@ const Dashboard = () => {
     }
     setcurrentReqStatusTab(tab);
     setcurrentReqStatusTabVal(newValue);
+  };
+
+  const handleOpenConditionalModal = (rowType, actionType) => {
+    if (rowType === 'Pending') {
+      if (actionType === 'View') {
+        // render pending view modal
+      } else {
+        // render pending reject modal
+      }
+    } else if (rowType === 'Completed') {
+      // render completed modal
+    } else if (rowType === 'Rejected') {
+      // render completed modal
+    } else {
+      // render cancelled modal
+    }
   };
 
   return (
@@ -86,10 +125,19 @@ const Dashboard = () => {
               <Button
                 sx={{ marginX: '10px', minWidth: '120px' }}
                 variant="contained"
+                onClick={handleOpenModal}
               >
                 Create
               </Button>
+              {openModal && (
+                <RequestviewModal
+                  open={openModal}
+                  onClose={handleCloseModal}
+                  isViewingClient={isViewingClient}
+                />
+              )}
             </Box>
+
             <Box sx={{ width: '100%' }}>
               <Box
                 sx={{
@@ -106,6 +154,7 @@ const Dashboard = () => {
           </div>
         </Box>
       </Grid>
+
       <Grid container>
         <Box
           sx={{
@@ -163,7 +212,7 @@ const Dashboard = () => {
                       aria-label="basic tabs example"
                     >
                       {employeeRequestsTabs?.map(
-                        ({ label, prop, background, color }, index) => {
+                        ({ label, prop, color }, index) => {
                           return (
                             <Tab
                               key={index}
@@ -173,7 +222,7 @@ const Dashboard = () => {
                                     sx={{
                                       width: 30,
                                       height: 30,
-                                      background,
+                                      background: 'green',
                                       borderRadius: '5px',
                                       marginRight: '10px',
                                       color,
@@ -251,13 +300,75 @@ const Dashboard = () => {
               {renderNestedTable({
                 currentReqStatusTabVal,
                 currentReqStatusTab,
+                handleOpen,
                 column: employeeLeaveRequestsColumn,
                 data: leaveRequestDataState,
+                handleOpenConditionalModal,
               })}
             </Box>
           </div>
         </Box>
       </Grid>
+
+      {/* LeaveRequest Modal */}
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+        sx={{
+          height: { xs: '850px', md: '900px' },
+          display: 'flex',
+          alignItems: 'center',
+        }}
+      >
+        <Box
+          sx={{
+            mx: 'auto',
+            bgcolor: '#fff',
+            width: { xs: '80%', md: '50%' },
+            display: 'flex',
+            flexDirection: 'column',
+            borderRadius: '10px',
+            boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
+          }}
+        >
+          {isViewingClient && (
+            <Box
+              sx={{
+                background: '#fff',
+                borderRadius: '20px',
+                width: '40px',
+                padding: '2.5px',
+                position: 'absolute',
+                top: '2%',
+                right: '25%',
+              }}
+            >
+              <Image
+                src="/images/leave-request/cancel.svg"
+                width={37}
+                height={37}
+                alt="cancel"
+                onClick={handleClose}
+              />
+            </Box>
+          )}
+          <Box
+            sx={{
+              width: '100%',
+            }}
+          >
+            <RequestHeading />
+            <LeaveRequest
+              statusType={statusType}
+              view={isViewingClient}
+              rowType={rowType}
+              onClose={handleClose}
+            />
+          </Box>
+        </Box>
+      </Modal>
     </>
   );
 };
