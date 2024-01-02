@@ -48,11 +48,13 @@ const HiringForm = () => {
               padding: { xs: '10px', md: '8px' },
             }}
           >
+            <Box>
             <JobTitle
               open={open}
               SelectOpen={SelectOpen}
               SelectClose={SelectClose}
             />
+            </Box>
             <GenderInput
               open={open}
               SelectOpen={SelectOpen}

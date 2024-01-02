@@ -1,34 +1,34 @@
 import React, { Fragment } from 'react';
-import { Box, TextField, Typography } from '@mui/material';
+import { Box, Grid, TextField, Typography } from '@mui/material';
 
 import { HIRING_FORM_DATA } from '@/src/constants/Hiring';
 
 const SalaryRange = () => {
   const numberOfFields = HIRING_FORM_DATA?.numberOfFields;
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '12px',
-      }}
-    >
-      <Typography>{HIRING_FORM_DATA?.salaryRange}</Typography>
+    <Grid item xs={12} lg={6} flexDirection={"column"} display={"flex"}>
+      <Typography sx={{
+          mb:"10px"
+        }}>{HIRING_FORM_DATA?.salaryRange}</Typography>
       <Box
         sx={{
           display: 'flex',
           justifyContent: 'space-between',
           gap: '10px',
+          alignItems:"center",
+          flex:1
         }}
       >
         {Array.from({ length: numberOfFields }, (_, index) => (
           <Fragment key={index}>
             <TextField
+            className='text-field-custom'
               required={true}
               sx={{
-                width: { xs: '50%', md: '136px' },
-                border: 'solid 0px #ccc',
-                height: '46px',
+                flex:1,
+                display:"flex",
+                flexDirection:"column",
+                height:"100%",
                 borderRadius: '5px',
                 '@media (min-width: 960px) and (max-width: 1200px)': {
                   width: '50%',
@@ -42,7 +42,6 @@ const SalaryRange = () => {
                   border: '0px solid',
                 },
                 '& fieldset': {
-                  height: '49px',
                 },
               }}
               variant="outlined"
@@ -61,19 +60,16 @@ const SalaryRange = () => {
               }}
             />
             {index < numberOfFields - 1 && (
-              <Typography
-                variant="body1"
-                sx={{
-                  marginTop: '10px',
-                }}
-              >
-                _
-              </Typography>
+              <Box sx={{
+                width:'10px',
+                height:'1px',
+                background:'#000'
+              }} />
             )}
           </Fragment>
         ))}
       </Box>
-    </Box>
+    </Grid>
   );
 };
 export default SalaryRange;

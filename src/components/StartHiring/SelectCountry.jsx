@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {
   Box,
+  Grid,
   InputAdornment,
   MenuItem,
   Select,
@@ -16,41 +17,22 @@ import FlagIcon from '@/src/constants/Flag';
 const CountryDropdown = ({ SelectOpen, SelectClose }) => {
   const [selectedValue, setSelectedValue] = useState(COUNTRY_OPTIONS[2].label);
   return (
-    <>
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: { xs: 'column', md: 'row' },
-          justifyContent: 'space-around',
-          marginTop: '10px',
-          gap: { xs: '9px', md: '0px' },
-          '@media (min-width: 960px) and (max-width: 1400px)': {
-            flexDirection: 'column',
-          },
-        }}
-      >
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '12px',
-            width: { xs: '100%', md: '300px' },
-            '@media (min-width: 960px) and (max-width: 1400px)': {
-              width: '100%',
-            },
-          }}
-        >
-          <Typography sx={{ marginLeft: '4px' }}>
+    <Grid container  sx={{
+      flexWrap:{xs:'wrap',lg:'nowrap'}
+    }}
+    gap={"10px"}
+    >
+        <Grid item xs={12} lg={6}>
+          <Typography sx={{ marginLeft: '4px',mb:'10px' }}>
             {HIRING_FORM_DATA?.country}
           </Typography>
 
           <Select
             sx={{
-              height: '45px',
-              border: 'solid 1px #ccc',
               '&:focus': {
                 borderColor: 'teal',
               },
+              width:"100%",
             }}
             value={selectedValue}
             onChange={(event) => setSelectedValue(event.target.value)}
@@ -78,10 +60,9 @@ const CountryDropdown = ({ SelectOpen, SelectClose }) => {
               </MenuItem>
             ))}
           </Select>
-        </Box>
+        </Grid>
         <SalaryRange />
-      </Box>
-    </>
+    </Grid>
   );
 };
 export default CountryDropdown;

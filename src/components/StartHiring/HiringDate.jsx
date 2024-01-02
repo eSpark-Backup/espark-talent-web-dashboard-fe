@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box } from '@mui/material';
+import { Box, Grid } from '@mui/material';
 
 import { HIRING_FORM_DATA } from '@/src/constants/Hiring';
 import DatePickerBox from './DatePicker';
@@ -7,36 +7,33 @@ import DatePickerBox from './DatePicker';
 const HiringDate = () => {
   return (
     <Box>
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: { xs: 'column', md: 'row' },
-          justifyContent: 'space-around',
-          paddingTop: '25px',
-          gap: { xs: '9px', md: '0px' },
-          '@media (min-width: 900px) and (max-width: 1400px)': {
-            flexDirection: 'column',
-            gap: '10px',
-          },
-        }}
+      <Grid container gap={"10px"}  sx={{
+      flexWrap:{xs:'wrap',lg:'nowrap'}
+    }}
       >
+        <Grid item xs={12} lg={6} sx={{
+          mb:"10px"
+        }}>
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '12px',
+            }}
+          >
+            <DatePickerBox
+              label={HIRING_FORM_DATA?.selectStartDate}
+              dateKey="startDate"
+            />
+          </Box>
+        </Grid>
+        <Grid item xs={12} lg={6}>
         <Box
           sx={{
             display: 'flex',
             flexDirection: 'column',
             gap: '12px',
-          }}
-        >
-          <DatePickerBox
-            label={HIRING_FORM_DATA?.selectStartDate}
-            dateKey="startDate"
-          />
-        </Box>
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '12px',
+            mb:"10px"
           }}
         >
           <DatePickerBox
@@ -44,7 +41,8 @@ const HiringDate = () => {
             dateKey="endDate"
           />
         </Box>
-      </Box>
+        </Grid>
+      </Grid>
     </Box>
   );
 };
