@@ -21,6 +21,7 @@ const LeaveRequest = ({
   employeeName,
   leaveType,
   fromTo,
+  modalData
 }) => {
   const pathName = usePathname();
   const isViewingClient = pathName == '/client/dashboard/team/time-off';

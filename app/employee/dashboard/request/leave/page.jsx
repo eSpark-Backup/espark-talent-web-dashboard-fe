@@ -26,7 +26,7 @@ const Dashboard = () => {
   const [open, setOpen] = useState(false);
   const [statusType, setStatusType] = useState('');
   const [rowType, setRowType] = useState('');
-
+const [modalData, setModalData] = useState({})
   const [openModal, setOpenModal] = useState(false);
   const handleOpenModal = () => {
     setOpenModal(true);
@@ -39,6 +39,14 @@ const Dashboard = () => {
     setRowType(row);
     setOpen(true);
   };
+  const handleClickActionView = (props) => {
+    const {item,row: { status, employeeName,count,leaveType  }} = props
+    console.log({item,status,count,leaveType,employeeName})
+    setModalData({item,status,count,leaveType,employeeName})
+    setOpen(true);
+    // setStatusType(item)
+    // setActionType(status)
+  }
   const handleClose = () => setOpen(false);
   const leaveBalanceDataState = useMemo(
     () => filterTableRowsWRTTab(employeeLeaveBalanceData, { status: '' }),
@@ -212,7 +220,7 @@ const Dashboard = () => {
                       aria-label="basic tabs example"
                     >
                       {employeeRequestsTabs?.map(
-                        ({ label, prop, color }, index) => {
+                        ({ label, prop, color,background }, index) => {
                           return (
                             <Tab
                               key={index}
@@ -222,7 +230,7 @@ const Dashboard = () => {
                                     sx={{
                                       width: 30,
                                       height: 30,
-                                      background: 'green',
+                                      background,
                                       borderRadius: '5px',
                                       marginRight: '10px',
                                       color,
@@ -304,6 +312,7 @@ const Dashboard = () => {
                 column: employeeLeaveRequestsColumn,
                 data: leaveRequestDataState,
                 handleOpenConditionalModal,
+                handleClickActionView
               })}
             </Box>
           </div>
@@ -365,6 +374,7 @@ const Dashboard = () => {
               view={isViewingClient}
               rowType={rowType}
               onClose={handleClose}
+              modalData={modalData}
             />
           </Box>
         </Box>

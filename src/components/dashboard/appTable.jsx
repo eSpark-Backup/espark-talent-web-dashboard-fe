@@ -129,6 +129,7 @@ const AppTable = ({
   renderMessageButton,
   handleClickRenderMessageButton,
   handleOpen,
+  handleClickActionView
 }) => {
   const handleImage = (employeeId, employeeName, leaveType, fromTo, item) => {
     handleOpen(item, employeeId, employeeName, leaveType, fromTo);
@@ -341,15 +342,16 @@ const AppTable = ({
                             <>
                               {row[toCamelCase(col)]?.map((item, rowIndex) => (
                                 <Image
-                                  onClick={() =>
-                                    handleImage(
-                                      row.employeeId,
-                                      row.employeeName,
-                                      row.leaveType,
-                                      row.fromTo,
-                                      item
-                                    )
-                                  }
+                                  onClick={() =>{
+                                    handleClickActionView({row,item})
+                                    // handleImage(
+                                    //   row.employeeId,
+                                    //   row.employeeName,
+                                    //   row.leaveType,
+                                    //   row.fromTo,
+                                    //   item
+                                    // )
+                                  }}
                                   key={rowIndex}
                                   style={{
                                     margin: rowIndex === 1 && '0 5px',
