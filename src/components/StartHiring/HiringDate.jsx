@@ -7,13 +7,21 @@ import DatePickerBox from './DatePicker';
 const HiringDate = () => {
   return (
     <Box>
-      <Grid container gap={"10px"}  sx={{
-      flexWrap:{xs:'wrap',lg:'nowrap'}
-    }}
+      <Grid
+        container
+        gap={'10px'}
+        sx={{
+          flexWrap: { xs: 'wrap', lg: 'nowrap' },
+        }}
       >
-        <Grid item xs={12} lg={6} sx={{
-          mb:"10px"
-        }}>
+        <Grid
+          item
+          xs={12}
+          lg={6}
+          sx={{
+            mb: '10px',
+          }}
+        >
           <Box
             sx={{
               display: 'flex',
@@ -28,19 +36,19 @@ const HiringDate = () => {
           </Box>
         </Grid>
         <Grid item xs={12} lg={6}>
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '12px',
-            mb:"10px"
-          }}
-        >
-          <DatePickerBox
-            label={HIRING_FORM_DATA?.selectEndDate}
-            dateKey="endDate"
-          />
-        </Box>
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '12px',
+              mb: '10px',
+            }}
+          >
+            <DatePickerBox
+              label={HIRING_FORM_DATA?.selectEndDate}
+              dateKey="endDate"
+            />
+          </Box>
         </Grid>
       </Grid>
     </Box>

@@ -11,7 +11,7 @@ const LeaveRequestButtons = ({
   onClose,
   createLeaveRequest,
   viewPunchRequest,
-  createPunchRequest
+  createPunchRequest,
 }) => {
   const isDeclineModal = statusType === 'Rejected';
   const isApproveModal = statusType === 'Approve';
@@ -60,17 +60,14 @@ const LeaveRequestButtons = ({
               Declined
             </Button>
           ) : isCompletedModal ? (
-            <Box
-              sx={{
-              }}
-            >
+            <Box sx={{}}>
               <Button
-              sx={{
-                border: '1px solid #029894',
-                width: '120px',
-                borderRadius: '5px',
-              }}
-            >
+                sx={{
+                  border: '1px solid #029894',
+                  width: '120px',
+                  borderRadius: '5px',
+                }}
+              >
                 Approved
               </Button>
             </Box>
@@ -80,10 +77,7 @@ const LeaveRequestButtons = ({
       {Boolean(isViewingEmployee) && (
         <>
           {isPendingModal ? (
-            <Box
-              sx={{
-              }}
-            >
+            <Box sx={{}}>
               <Button
                 sx={{
                   border: '1px solid #029894',
@@ -107,10 +101,7 @@ const LeaveRequestButtons = ({
               Close
             </Button>
           ) : isCompletedModal ? (
-            <Box
-              sx={{
-              }}
-            >
+            <Box sx={{}}>
               <Button
                 variant="contained"
                 sx={{ width: '120px', borderRadius: '5px' }}
@@ -123,23 +114,23 @@ const LeaveRequestButtons = ({
       )}
       {Boolean(createPunchRequest) && (
         <>
-        <Button
-          sx={{
-            border: '1px solid #029894',
-            background: '#FFF',
-            width: '120px',
-            borderRadius: '5px',
-          }}
-        >
-          Cancel
-        </Button>
-        <Button
-          variant="contained"
-          sx={{ width: '120px', borderRadius: '5px' }}
-        >
-          Save
-        </Button>
-      </>
+          <Button
+            sx={{
+              border: '1px solid #029894',
+              background: '#FFF',
+              width: '120px',
+              borderRadius: '5px',
+            }}
+          >
+            Cancel
+          </Button>
+          <Button
+            variant="contained"
+            sx={{ width: '120px', borderRadius: '5px' }}
+          >
+            Save
+          </Button>
+        </>
       )}
       {Boolean(viewPunchRequest) && (
         <Box
@@ -148,11 +139,7 @@ const LeaveRequestButtons = ({
             gap: '10px',
           }}
         >
-          <Button
-            variant='contained'
-          >
-            Close
-          </Button>
+          <Button variant="contained">Close</Button>
         </Box>
       )}
       {Boolean(createLeaveRequest) && (

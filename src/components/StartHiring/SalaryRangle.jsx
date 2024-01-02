@@ -6,29 +6,33 @@ import { HIRING_FORM_DATA } from '@/src/constants/Hiring';
 const SalaryRange = () => {
   const numberOfFields = HIRING_FORM_DATA?.numberOfFields;
   return (
-    <Grid item xs={12} lg={6} flexDirection={"column"} display={"flex"}>
-      <Typography sx={{
-          mb:"10px"
-        }}>{HIRING_FORM_DATA?.salaryRange}</Typography>
+    <Grid item xs={12} lg={6} flexDirection={'column'} display={'flex'}>
+      <Typography
+        sx={{
+          mb: '10px',
+        }}
+      >
+        {HIRING_FORM_DATA?.salaryRange}
+      </Typography>
       <Box
         sx={{
           display: 'flex',
           justifyContent: 'space-between',
           gap: '10px',
-          alignItems:"center",
-          flex:1
+          alignItems: 'center',
+          flex: 1,
         }}
       >
         {Array.from({ length: numberOfFields }, (_, index) => (
           <Fragment key={index}>
             <TextField
-            className='text-field-custom'
+              className="text-field-custom"
               required={true}
               sx={{
-                flex:1,
-                display:"flex",
-                flexDirection:"column",
-                height:"100%",
+                flex: 1,
+                display: 'flex',
+                flexDirection: 'column',
+                height: '100%',
                 borderRadius: '5px',
                 '@media (min-width: 960px) and (max-width: 1200px)': {
                   width: '50%',
@@ -41,8 +45,7 @@ const SalaryRange = () => {
                   borderColor: 'teal',
                   border: '0px solid',
                 },
-                '& fieldset': {
-                },
+                '& fieldset': {},
               }}
               variant="outlined"
               type="number"
@@ -60,11 +63,13 @@ const SalaryRange = () => {
               }}
             />
             {index < numberOfFields - 1 && (
-              <Box sx={{
-                width:'10px',
-                height:'1px',
-                background:'#000'
-              }} />
+              <Box
+                sx={{
+                  width: '10px',
+                  height: '1px',
+                  background: '#000',
+                }}
+              />
             )}
           </Fragment>
         ))}

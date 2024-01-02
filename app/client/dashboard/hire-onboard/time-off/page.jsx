@@ -218,7 +218,7 @@ const Dashboard = () => {
                           marginTop={5}
                         >
                           <Tabs
-                          variant="scrollable"
+                            variant="scrollable"
                             value={currentReqStatusTabVal}
                             onChange={(ev, newVal) =>
                               handleChangeCurrReqStatusTab(

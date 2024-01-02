@@ -11,17 +11,21 @@ const EmployementTerm = () => {
 
   return (
     <Grid item xs={12} lg={6}>
-      <Typography sx={{
-          mb:"10px"
-        }}>{HIRING_FORM_DATA?.employementTerm}</Typography>
-        <AppDropdown
-          data={employmentTerm}
-          setIsLoadingList={setIsLoadingTitles}
-          isLoadingList={isLoadingTitles}
-          selectedItem={selectedJobTitle}
-          setSelectedItem={setSelectedJobTitle}
-          placeHolder="Select Gender..."
-        />
+      <Typography
+        sx={{
+          mb: '10px',
+        }}
+      >
+        {HIRING_FORM_DATA?.employementTerm}
+      </Typography>
+      <AppDropdown
+        data={employmentTerm}
+        setIsLoadingList={setIsLoadingTitles}
+        isLoadingList={isLoadingTitles}
+        selectedItem={selectedJobTitle}
+        setSelectedItem={setSelectedJobTitle}
+        placeHolder="Select Gender..."
+      />
     </Grid>
   );
 };

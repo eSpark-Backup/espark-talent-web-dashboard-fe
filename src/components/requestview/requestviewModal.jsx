@@ -5,7 +5,13 @@ import Image from 'next/image';
 import RequestHeading from './modalHeading';
 import LeaveRequest from './leaveRequestView';
 
-const RequestviewModal = ({ open, onClose, isViewingClient, title,createLeaveRequest }) => {
+const RequestviewModal = ({
+  open,
+  onClose,
+  isViewingClient,
+  title,
+  createLeaveRequest,
+}) => {
   return (
     <Modal
       open={open}
@@ -55,7 +61,7 @@ const RequestviewModal = ({ open, onClose, isViewingClient, title,createLeaveReq
             width: '100%',
           }}
         >
-          <RequestHeading title={title}/>
+          <RequestHeading title={title} />
           <LeaveRequest onClose={onClose} createLeaveRequest />
         </Box>
       </Box>

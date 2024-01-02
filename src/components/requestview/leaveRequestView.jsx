@@ -27,8 +27,8 @@ const LeaveRequest = ({
   createLeaveRequest,
 }) => {
   const pathName = usePathname();
-  const {item,status,count,leaveType,employeeName} = modalData || {}
-  console.log({modalData,isViewingClient})
+  const { item, status, count, leaveType, employeeName } = modalData || {};
+  console.log({ modalData, isViewingClient });
   // const isViewingClient = pathName == '/client/dashboard/team/time-off';
   return (
     <Box sx={{ p: 3.5 }}>

@@ -130,7 +130,7 @@ const AppTable = ({
   handleClickRenderMessageButton,
   handleOpen,
   handleClickActionView,
-  noPagination
+  noPagination,
 }) => {
   const handleImage = (employeeId, employeeName, leaveType, fromTo, item) => {
     handleOpen(item, employeeId, employeeName, leaveType, fromTo);
@@ -343,11 +343,11 @@ const AppTable = ({
                             <>
                               {row[toCamelCase(col)]?.map((item, rowIndex) => (
                                 <Image
-                                  onClick={() =>{
-                                    if(item === 'View'){
-                                      handleClickActionView({row,item})
+                                  onClick={() => {
+                                    if (item === 'View') {
+                                      handleClickActionView({ row, item });
                                     }
-                                    return
+                                    return;
                                     // handleImage(
                                     //   row.employeeId,
                                     //   row.employeeName,
@@ -412,11 +412,13 @@ const AppTable = ({
           )}
         </tbody>
       </table>
-      {!Boolean(noPagination) && <Box my={'20px'} display="flex" justifyContent={'center'}>
-        <Stack spacing={2}>
-          <Pagination count={10} variant="outlined" shape="rounded" />
-        </Stack>
-      </Box>}
+      {!Boolean(noPagination) && (
+        <Box my={'20px'} display="flex" justifyContent={'center'}>
+          <Stack spacing={2}>
+            <Pagination count={10} variant="outlined" shape="rounded" />
+          </Stack>
+        </Box>
+      )}
     </>
   );
 };

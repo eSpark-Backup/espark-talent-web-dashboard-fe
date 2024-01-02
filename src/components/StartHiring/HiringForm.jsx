@@ -49,11 +49,11 @@ const HiringForm = () => {
             }}
           >
             <Box>
-            <JobTitle
-              open={open}
-              SelectOpen={SelectOpen}
-              SelectClose={SelectClose}
-            />
+              <JobTitle
+                open={open}
+                SelectOpen={SelectOpen}
+                SelectClose={SelectClose}
+              />
             </Box>
             <GenderInput
               open={open}

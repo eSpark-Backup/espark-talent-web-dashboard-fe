@@ -10,7 +10,7 @@ export const renderNestedTable = ({
   column,
   data,
   handleOpen,
-  handleClickActionView
+  handleClickActionView,
 }) => {
   return (
     <CustomTabPanel
@@ -20,19 +20,21 @@ export const renderNestedTable = ({
       {isLoading ? (
         <Typography>Loading...</Typography>
       ) : (
-        <Box sx={{
-          maxWidth:'100%',
-          overflowX:'auto'
-        }}>
-        <AppTable
-          currentTab={currentReqStatusTab}
-          column={column}
-          data={filterTableRowsWRTTab(data, {
-            status: currentReqStatusTab === 'All' ? '' : currentReqStatusTab,
-          })}
-          handleOpen={handleOpen}
-          handleClickActionView={handleClickActionView}
-        />
+        <Box
+          sx={{
+            maxWidth: '100%',
+            overflowX: 'auto',
+          }}
+        >
+          <AppTable
+            currentTab={currentReqStatusTab}
+            column={column}
+            data={filterTableRowsWRTTab(data, {
+              status: currentReqStatusTab === 'All' ? '' : currentReqStatusTab,
+            })}
+            handleOpen={handleOpen}
+            handleClickActionView={handleClickActionView}
+          />
         </Box>
       )}
     </CustomTabPanel>

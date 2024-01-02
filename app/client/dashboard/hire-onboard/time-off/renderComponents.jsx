@@ -18,17 +18,19 @@ export const renderNestedTable = ({
       {isLoading ? (
         <Typography>Loading...</Typography>
       ) : (
-        <Box sx={{
-          maxWidth:'100%',
-          overflowX:'auto'
-        }}>
-        <AppTable
-          currentTab={currentReqStatusTab}
-          column={column}
-          data={filterTableRowsWRTTab(data, {
-            status: currentReqStatusTab === 'All' ? '' : currentReqStatusTab,
-          })}
-        />
+        <Box
+          sx={{
+            maxWidth: '100%',
+            overflowX: 'auto',
+          }}
+        >
+          <AppTable
+            currentTab={currentReqStatusTab}
+            column={column}
+            data={filterTableRowsWRTTab(data, {
+              status: currentReqStatusTab === 'All' ? '' : currentReqStatusTab,
+            })}
+          />
         </Box>
       )}
     </CustomTabPanel>

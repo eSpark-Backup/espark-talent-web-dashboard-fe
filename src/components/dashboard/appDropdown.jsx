@@ -84,10 +84,14 @@ const AppDropdown = ({
     <Grid
       sx={{
         position: 'relative',
-        mb:"10px"
+        mb: '10px',
       }}
       item
-      xs={12} sm={12} md={12} lg={12} xl={12}
+      xs={12}
+      sm={12}
+      md={12}
+      lg={12}
+      xl={12}
     >
       <Box
         ref={componentRef}
@@ -194,7 +198,7 @@ const AppDropdown = ({
                               border: 'solid 1px rgba(0, 0, 0, 0.23)',
                               position: 'absolute',
                               right: { xs: 0, md: '-250px' },
-                              width:'100%',
+                              width: '100%',
                               background: '#fff',
                               top: '-1px',
                               zIndex: 105,

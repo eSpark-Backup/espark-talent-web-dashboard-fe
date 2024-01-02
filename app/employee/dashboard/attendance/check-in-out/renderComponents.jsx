@@ -48,10 +48,12 @@ export const renderNestedTable = ({
       value={currentReqStatusTabVal}
       index={currentReqStatusTabVal}
     >
-      <Box sx={{
-        maxWidth:'100%',
-        overflowX:'auto'
-      }}>
+      <Box
+        sx={{
+          maxWidth: '100%',
+          overflowX: 'auto',
+        }}
+      >
         <AppTable
           currentTab={currentReqStatusTab}
           column={column}

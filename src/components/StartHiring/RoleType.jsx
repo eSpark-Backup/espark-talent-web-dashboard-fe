@@ -8,11 +8,14 @@ const RoleType = () => {
   const [isLoadingTitles, setIsLoadingTitles] = useState(false);
   const [selectedJobTitle, setSelectedJobTitle] = useState('');
   return (
-    <Grid item xs={12} lg={6}
-    >
-      <Typography sx={{
-          mb:"10px"
-        }}>{HIRING_FORM_DATA?.roleTitle}</Typography>
+    <Grid item xs={12} lg={6}>
+      <Typography
+        sx={{
+          mb: '10px',
+        }}
+      >
+        {HIRING_FORM_DATA?.roleTitle}
+      </Typography>
       <AppDropdown
         data={roles}
         setIsLoadingList={setIsLoadingTitles}

@@ -11,15 +11,21 @@ const JobTitle = ({ open, SelectOpen, SelectClose }) => {
   const [selectedJobTitle, setSelectedJobTitle] = useState('');
 
   return (
-    <Grid container gap={"10px"} sx={{
-      flexWrap:{xs:'wrap',lg:'nowrap'}
-    }}
+    <Grid
+      container
+      gap={'10px'}
+      sx={{
+        flexWrap: { xs: 'wrap', lg: 'nowrap' },
+      }}
     >
-      <Grid item xs={12} lg={6}
-      >
-        <Typography sx={{
-          mb:"10px"
-        }}>{HIRING_FORM_DATA?.jobTitle}</Typography>
+      <Grid item xs={12} lg={6}>
+        <Typography
+          sx={{
+            mb: '10px',
+          }}
+        >
+          {HIRING_FORM_DATA?.jobTitle}
+        </Typography>
         <AppNestedDropdown
           data={jobTitles}
           setIsLoadingList={setIsLoadingTitles}

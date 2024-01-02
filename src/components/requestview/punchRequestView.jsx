@@ -27,7 +27,7 @@ const PunchRequest = ({
   isViewingEmployee,
   createLeaveRequest,
   createPunchRequest,
-  viewPunchRequest
+  viewPunchRequest,
 }) => {
   const pathName = usePathname();
   const { item, status, count, leaveType, employeeName } = modalData || {};
@@ -54,7 +54,7 @@ const PunchRequest = ({
               textAlign: 'left',
             }}
           >
-            Date <span style={{color:"#FF0000"}}>*</span>
+            Date <span style={{ color: '#FF0000' }}>*</span>
           </Typography>
         </Grid>
         <Grid
@@ -92,47 +92,23 @@ const PunchRequest = ({
           </Box>
         </Grid>
       </Grid>
-      {createPunchRequest && <Grid
-        container
-        sx={{
-          // mb: '15px',
-          // background: '#f6f6f6',
-          p: '15px 5px 15px 15px',
-          borderRadius: '5px',
-        }}
-      >
-        <Grid item sx={{}} md={6} xs={12} alignItems="center" display={'flex'}>
-          <Typography
-            sx={{
-              fontSize: '16px',
-              fontWeight: 500,
-              lineHeight: '19px',
-              letterSpacing: '0em',
-              textAlign: 'left',
-            }}
-          >
-            Expected check in
-          </Typography>
-        </Grid>
+      {createPunchRequest && (
         <Grid
-          item
-          sx={
-            {
-              // border:'solid 1px #800'
-            }
-          }
-          md={6}
-          xs={12}
+          container
+          sx={{
+            // mb: '15px',
+            // background: '#f6f6f6',
+            p: '15px 5px 15px 15px',
+            borderRadius: '5px',
+          }}
         >
-          <Box
-            sx={{
-              border: 'solid 1px #E4E4E4',
-              p: '10px 15px',
-              borderRadius: '5px',
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-            }}
+          <Grid
+            item
+            sx={{}}
+            md={6}
+            xs={12}
+            alignItems="center"
+            display={'flex'}
           >
             <Typography
               sx={{
@@ -143,52 +119,61 @@ const PunchRequest = ({
                 textAlign: 'left',
               }}
             >
-              --:-- --
+              Expected check in
             </Typography>
-          </Box>
-        </Grid>
-      </Grid>}
-      {createPunchRequest &&<Grid
-        container
-        sx={{
-          // mb: '15px',
-          background: '#f6f6f6',
-          p: '15px 5px 15px 15px',
-          borderRadius: '5px',
-        }}
-      >
-        <Grid item sx={{}} md={6} xs={12} alignItems="center" display={'flex'}>
-          <Typography
-            sx={{
-              fontSize: '16px',
-              fontWeight: 500,
-              lineHeight: '19px',
-              letterSpacing: '0em',
-              textAlign: 'left',
-            }}
-          >
-            Expected check out
-          </Typography>
-        </Grid>
-        <Grid
-          item
-          sx={
-            {
-              // border:'solid 1px #800'
+          </Grid>
+          <Grid
+            item
+            sx={
+              {
+                // border:'solid 1px #800'
+              }
             }
-          }
-          md={6}
-          xs={12}
+            md={6}
+            xs={12}
+          >
+            <Box
+              sx={{
+                border: 'solid 1px #E4E4E4',
+                p: '10px 15px',
+                borderRadius: '5px',
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+              }}
+            >
+              <Typography
+                sx={{
+                  fontSize: '16px',
+                  fontWeight: 500,
+                  lineHeight: '19px',
+                  letterSpacing: '0em',
+                  textAlign: 'left',
+                }}
+              >
+                --:-- --
+              </Typography>
+            </Box>
+          </Grid>
+        </Grid>
+      )}
+      {createPunchRequest && (
+        <Grid
+          container
+          sx={{
+            // mb: '15px',
+            background: '#f6f6f6',
+            p: '15px 5px 15px 15px',
+            borderRadius: '5px',
+          }}
         >
-          <Box
-            sx={{
-              border: 'solid 1px #E4E4E4',
-              p: '10px 15px',
-              borderRadius: '5px',
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-            }}
+          <Grid
+            item
+            sx={{}}
+            md={6}
+            xs={12}
+            alignItems="center"
+            display={'flex'}
           >
             <Typography
               sx={{
@@ -199,11 +184,44 @@ const PunchRequest = ({
                 textAlign: 'left',
               }}
             >
-              --:-- --
+              Expected check out
             </Typography>
-          </Box>
+          </Grid>
+          <Grid
+            item
+            sx={
+              {
+                // border:'solid 1px #800'
+              }
+            }
+            md={6}
+            xs={12}
+          >
+            <Box
+              sx={{
+                border: 'solid 1px #E4E4E4',
+                p: '10px 15px',
+                borderRadius: '5px',
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+              }}
+            >
+              <Typography
+                sx={{
+                  fontSize: '16px',
+                  fontWeight: 500,
+                  lineHeight: '19px',
+                  letterSpacing: '0em',
+                  textAlign: 'left',
+                }}
+              >
+                --:-- --
+              </Typography>
+            </Box>
+          </Grid>
         </Grid>
-      </Grid>}
+      )}
 
       <Grid
         container
@@ -224,7 +242,7 @@ const PunchRequest = ({
               textAlign: 'left',
             }}
           >
-            Punch Type <span style={{color:"#FF0000"}}>*</span>
+            Punch Type <span style={{ color: '#FF0000' }}>*</span>
           </Typography>
         </Grid>
         <Grid
@@ -258,7 +276,9 @@ const PunchRequest = ({
             >
               {createPunchRequest ? 'Select Punch Type' : 'Check out'}
             </Typography>
-            {createPunchRequest &&<Image src={'/icons/Dropdown.svg'} width={20} height={20} />}
+            {createPunchRequest && (
+              <Image src={'/icons/Dropdown.svg'} width={20} height={20} />
+            )}
           </Box>
         </Grid>
       </Grid>
@@ -281,7 +301,7 @@ const PunchRequest = ({
               textAlign: 'left',
             }}
           >
-            Punch Time <span style={{color:"#FF0000"}}>*</span>
+            Punch Time <span style={{ color: '#FF0000' }}>*</span>
           </Typography>
         </Grid>
         <Grid
@@ -335,7 +355,7 @@ const PunchRequest = ({
               lineHeight: '19px',
               letterSpacing: '0em',
               textAlign: 'left',
-              pt:'15px'
+              pt: '15px',
             }}
           >
             Description
@@ -360,7 +380,7 @@ const PunchRequest = ({
               justifyContent: 'space-between',
               // alignItems: 'center',
               backgroundColor: '#f6f6f6',
-              minHeight:'150px'
+              minHeight: '150px',
             }}
           >
             <Typography
@@ -370,7 +390,6 @@ const PunchRequest = ({
                 lineHeight: '19px',
                 letterSpacing: '0em',
                 textAlign: 'left',
-                
               }}
             >
               Write you description
