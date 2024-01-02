@@ -3,7 +3,12 @@ import { Box, Button } from '@mui/material';
 
 import { REQUESTVIEW_DATA } from '@/src/constants/requestviewModal';
 
-const LeaveRequestButtons = ({ modalType, statusType, view, onClose }) => {
+const LeaveRequestButtons = ({
+  modalType,
+  statusType,
+  isViewingClient,
+  onClose,
+}) => {
   const isDeclineModal = modalType === 'Reject';
   const isApproveModal = modalType === 'Approve';
   const isPendingModal = statusType === 'Pending';
@@ -44,7 +49,7 @@ const LeaveRequestButtons = ({ modalType, statusType, view, onClose }) => {
         marginRight: { xs: '0px', md: '10px' },
       }}
     >
-      {!view && (
+      {!isViewingClient && (
         <Box
           sx={{
             display: 'flex',
@@ -97,7 +102,7 @@ const LeaveRequestButtons = ({ modalType, statusType, view, onClose }) => {
         </Button>
       )}
 
-      {view && !isApproveModal && !isDeclineModal && (
+      {isViewingClient && !isApproveModal && !isDeclineModal && (
         <>
           <Button
             sx={{

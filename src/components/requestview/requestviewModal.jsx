@@ -5,7 +5,7 @@ import Image from 'next/image';
 import RequestHeading from './modalHeading';
 import LeaveRequest from './leaveRequestView';
 
-const RequestviewModal = ({ open, onClose, view }) => {
+const RequestviewModal = ({ open, onClose, isViewingClient }) => {
   return (
     <Modal
       open={open}
@@ -29,7 +29,7 @@ const RequestviewModal = ({ open, onClose, view }) => {
           boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
         }}
       >
-        {view && (
+        {isViewingClient && (
           <Box
             sx={{
               background: '#fff',

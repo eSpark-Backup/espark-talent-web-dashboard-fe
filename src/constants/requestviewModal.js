@@ -1,7 +1,7 @@
 export const REQUESTVIEW_DATA = {
   leaveRequestView: 'Leave request view',
   createLeaveRequest: 'Create Leave Request',
-  leaveType: 'Leave type',
+  leaveTypes: 'Leave type',
   leaveTypeStar: 'Leave type *',
   startDate: 'Start date',
   endDate: 'End date',
@@ -35,9 +35,11 @@ export const LEAVE_DATA = {
 };
 
 export const LEAVE_TYPE = [
-  { label: 'Sick Leave', value: 'Sick Leave' },
-  { label: 'Casual Leave', value: 'Casual Leave' },
-  { label: 'Annual Leave', value: 'Annual Leave' },
+  'Casual Leaves',
+  'Sick leaves',
+  'Annual leaves',
+  'Unpaid Leaves',
+  'Paid Leaves',
 ];
 
 export const BACKDATE_MODAL = {

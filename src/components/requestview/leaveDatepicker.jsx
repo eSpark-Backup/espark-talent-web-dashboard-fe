@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
@@ -7,7 +9,7 @@ import ActionBarComponent from './actionbarComponent';
 import PreviousDateModal from './PreviousDateModal';
 import dayjs from 'dayjs';
 
-const LeaveDatePicker = ({ label, view }) => {
+const LeaveDatePicker = ({ label, isViewingClient }) => {
   const [open, setOpen] = useState(false);
   const [openModal, setOpenModal] = useState(false);
 
@@ -38,19 +40,20 @@ const LeaveDatePicker = ({ label, view }) => {
           label={label || ''}
           sx={{
             background: '#F6F6F6',
-            width: '100%',
-            '@media (min-width: 1500px) and (max-width: 2000px)': {
-              width: '600px',
+            width: '75%',
+            '@media (max-width: 1800px)': {
+              width: '70%',
             },
-
-            '.MuiPickersCalendarHeader-iconButton': {
-              display: 'inline-block',
+            '@media (max-width: 1500px)': {
+              width: '100%',
             },
           }}
           openTo="month"
           views={['year', 'month', 'day']}
           open={open}
-          disabled={view}
+          disabled={isViewingClient}
+          // disabled={isClientDashboard}
+          // disabled={!isClientDashboard || isEmployeeDashboard}
           value={selectedDate}
           onChange={handleDateChange}
           onClose={handleClose}

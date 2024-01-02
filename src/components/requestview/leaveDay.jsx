@@ -3,9 +3,8 @@ import { Box, Typography } from '@mui/material';
 import Image from 'next/image';
 
 import { LEAVE_DATA } from '@/src/constants/requestviewModal';
-import { leaveRequestsData } from '@/src/constants/data/tables/timeOffRequest';
 
-const LeaveDay = () => {
+const LeaveDay = ({ employeeId, employeeName }) => {
   return (
     <Box
       sx={{
@@ -44,7 +43,7 @@ const LeaveDay = () => {
               },
             }}
           >
-            {leaveRequestsData[0]?.employeeName}
+            {employeeName}
           </Typography>
 
           <Typography
@@ -55,7 +54,7 @@ const LeaveDay = () => {
               },
             }}
           >
-            {leaveRequestsData[0]?.employeeId}
+            {employeeId}
           </Typography>
         </Box>
       </Box>

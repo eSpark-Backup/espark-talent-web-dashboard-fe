@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box } from '@mui/material';
 
+import { usePathname } from 'next/navigation';
 import LeaveType from './leaveType';
 import LeaveDate from './leaveDate';
 import { LEAVE_DATA, REQUESTVIEW_DATA } from '@/src/constants/requestviewModal';
@@ -11,38 +12,57 @@ import LeaveReason from './leaveReason';
 import LeaveRequestButtons from './leaveRequestButton';
 import AttachDoc from './attachFile';
 
-const LeaveRequest = ({ modalType, view, statusType, rowType, onClose }) => {
+const LeaveRequest = ({
+  modalType,
+  statusType,
+  rowType,
+  onClose,
+  employeeId,
+  employeeName,
+  leaveType,
+}) => {
+  const pathName = usePathname();
+  const isViewingClient = pathName == '/client/dashboard/team/time-off';
   return (
     <Box sx={{ p: 3.5 }}>
-      <LeaveType view={view} />
-      <LeaveDate date={REQUESTVIEW_DATA?.startDate} view={view} />
+      <LeaveType isViewingClient={isViewingClient} leaveType={leaveType} />
+      <LeaveDate
+        date={REQUESTVIEW_DATA?.startDate}
+        isViewingClient={isViewingClient}
+      />
       <LeaveDate
         date={REQUESTVIEW_DATA?.endDate}
         backgroundColor="#F6F6F6"
-        view={view}
+        isViewingClient={isViewingClient}
       />
 
-      {view && <LeaveDuration />}
+      {isViewingClient && (
+        <LeaveDuration employeeId={employeeId} employeeName={employeeName} />
+      )}
 
       <LeaveCount
         countLabel={REQUESTVIEW_DATA?.count}
         totalNo={LEAVE_DATA?.countNo}
-        backgroundColor={view ? '#F6F6F6' : '#fff'}
+        backgroundColor={isViewingClient ? '#F6F6F6' : '#fff'}
       />
-      {view && (
+      {isViewingClient && (
         <LeaveCount
           countLabel={REQUESTVIEW_DATA?.sandwichCount}
-          component={<LeaveDatePicker label={'0'} view={view} />}
+          component={
+            <LeaveDatePicker label={'0'} isViewingClient={isViewingClient} />
+          }
         />
       )}
       <LeaveCount
         countLabel={
-          view ? REQUESTVIEW_DATA?.total : REQUESTVIEW_DATA?.totalCount
+          isViewingClient
+            ? REQUESTVIEW_DATA?.total
+            : REQUESTVIEW_DATA?.totalCount
         }
         totalNo={LEAVE_DATA?.totalNo}
         backgroundColor="#F6F6F6"
       />
-      {!view && (
+      {!isViewingClient && (
         <LeaveCount
           countLabel={REQUESTVIEW_DATA?.attachment}
           component={<AttachDoc />}
@@ -50,7 +70,7 @@ const LeaveRequest = ({ modalType, view, statusType, rowType, onClose }) => {
       )}
       <LeaveCount
         countLabel={
-          view ? (
+          isViewingClient ? (
             REQUESTVIEW_DATA?.reason
           ) : (
             <>
@@ -75,7 +95,7 @@ const LeaveRequest = ({ modalType, view, statusType, rowType, onClose }) => {
       <LeaveRequestButtons
         modalType={modalType}
         statusType={statusType}
-        view={view}
+        isViewingClient={isViewingClient}
         rowType={rowType}
         onClose={onClose}
       />

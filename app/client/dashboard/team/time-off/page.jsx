@@ -26,7 +26,7 @@ import { renderNestedTable } from './renderComponents';
 import Link from 'next/link';
 import RequestHeading from '@/src/components/requestview/modalHeading';
 import LeaveRequest from '@/src/components/requestview/leaveRequestView';
-import { USER_TYPES } from '@/src/constants/requestviewModal';
+
 
 const Dashboard = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -35,20 +35,20 @@ const Dashboard = () => {
   const [searchCheckInOutRequest, setSearchCheckInOutRequest] = useState('');
   const [leaveBalanceDataState, setLeaveBalanceDataState] = useState(
     filterTableRowsWRTTab(leaveBalanceData, { status: '' })
-  );
-
-  const determineUserType = () => {
-    return USER_TYPES.client;
-  };
-
-  const userType = determineUserType();
-  const isViewingClient = userType === USER_TYPES.client;
+  );  
 
   const [open, setOpen] = useState(false);
   const [modalType, setModalType] = useState('');
-  const handleOpen = (type) => {
-    console.log('types', { type });
+  const [employeeId, setEmployeeId] = useState();
+  const [leaveType, setLeaveType] = useState();
+
+  const [employeeName, setEmployeeName] = useState();
+
+  const handleOpen = (type, employeeId, employeeName, leaveType) => {
     setModalType(type);
+    setEmployeeId(employeeId);
+    setLeaveType(leaveType);
+    setEmployeeName(employeeName);
     setOpen(true);
   };
   const handleClose = () => setOpen(false);
@@ -413,51 +413,30 @@ const Dashboard = () => {
         sx={{
           display: 'flex',
           alignItems: 'center',
+          justifyContent: 'center',
           height: { xs: '950px', md: '890px' },
         }}
       >
         <Box
           sx={{
-            mx: 'auto',
+            // mx: 'auto',
             bgcolor: '#fff',
-            width: { xs: '80%', md: '50%' },
+            width: { xs: '50%', md: '50%' },
             display: 'flex',
             flexDirection: 'column',
             borderRadius: '10px',
             boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
+            marginTop: '40px',
           }}
         >
-          {/* {isViewingClient && (
-              <Box
-                sx={{
-                  background: '#fff',
-                  borderRadius: '20px',
-                  width: '40px',
-                  padding: '2.5px',
-                  position: 'absolute',
-                  top: '2%',
-                  right: '25%',
-                }}
-              >
-                <Image
-                  src="/images/leave-request/cancel.svg"
-                  width={37}
-                  height={37}
-                  alt="cancel"
-                  onClick={handleClose}
-                />
-              </Box>
-            )} */}
-          <Box
-            sx={{
-              width: '100%',
-            }}
-          >
-            <RequestHeading view={isViewingClient} />
+          <Box>
+            <RequestHeading />
             <LeaveRequest
-              view={isViewingClient}
               onClose={handleClose}
               modalType={modalType}
+              employeeId={employeeId}
+              employeeName={employeeName}
+              leaveType={leaveType}
             />
           </Box>
         </Box>

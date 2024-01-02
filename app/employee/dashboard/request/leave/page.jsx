@@ -15,19 +15,14 @@ import {
   employeeLeaveRequestsColumn,
   employeeLeaveRequestsData,
 } from '@/src/constants/data/tables/requestsData';
-import { USER_TYPES } from '@/src/constants/requestviewModal';
 import LeaveRequest from '@/src/components/requestview/leaveRequestView';
 import RequestHeading from '@/src/components/requestview/modalHeading';
 import RequestviewModal from '@/src/components/requestview/requestviewModal';
+import { usePathname } from 'next/navigation';
 
 const Dashboard = () => {
-  const determineUserType = () => {
-    return USER_TYPES.client;
-  };
-
-  const userType = determineUserType();
-  const isViewingClient = userType === USER_TYPES.employee;
-
+  const pathName = usePathname();
+  const isViewingClient = pathName == '/client/dashboard/team/time-off';
   const [open, setOpen] = useState(false);
   const [statusType, setStatusType] = useState('');
   const [rowType, setRowType] = useState('');
@@ -139,7 +134,7 @@ const Dashboard = () => {
                 <RequestviewModal
                   open={openModal}
                   onClose={handleCloseModal}
-                  view={isViewingClient}
+                  isViewingClient={isViewingClient}
                 />
               )}
             </Box>
@@ -228,7 +223,7 @@ const Dashboard = () => {
                                     sx={{
                                       width: 30,
                                       height: 30,
-                                      background,
+                                      background: 'green',
                                       borderRadius: '5px',
                                       marginRight: '10px',
                                       color,
@@ -365,7 +360,7 @@ const Dashboard = () => {
               width: '100%',
             }}
           >
-            <RequestHeading view={isViewingClient} />
+            <RequestHeading />
             <LeaveRequest
               statusType={statusType}
               view={isViewingClient}

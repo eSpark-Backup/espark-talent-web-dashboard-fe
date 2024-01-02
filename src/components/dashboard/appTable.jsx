@@ -38,6 +38,7 @@ const InfoOption = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const componentRef = useRef(null);
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
@@ -130,6 +131,18 @@ const AppTable = ({
   handleOpen,
   // handleOpenConditionalModal,
 }) => {
+  const handleImage = (employeeId, employeeName, leaveType, item) => {
+    console.log(
+      'Clicked on image. Employee ID:',
+      employeeId,
+      'Name:',
+      name,
+      'Item:',
+      item
+    );
+
+    handleOpen(item, employeeId, employeeName, leaveType);
+  };
   return (
     <>
       <table className="table">
@@ -336,17 +349,32 @@ const AppTable = ({
                         >
                           {col === 'Action' ? (
                             <>
-                              {row[toCamelCase(col)]?.map((item, rowIndex) => (
-                                <Image
-                                  onClick={() => handleOpen(item)}
-                                  key={rowIndex}
-                                  style={{ margin: rowIndex === 1 && '0 5px' }}
-                                  width={25}
-                                  height={25}
-                                  alt="Icon"
-                                  src={`/icons/${item}.svg`}
-                                />
-                              ))}
+                              {row[toCamelCase(col)]?.map(
+                                (item, rowIndex) => (
+                                  console.log('item', row),
+                                  (
+                                    <Image
+                                      // onClick={() => { handleOpen(item)}}
+                                      onClick={() =>
+                                        handleImage(
+                                          row.employeeId,
+                                          row.employeeName,
+                                          row.leaveType,
+                                          item
+                                        )
+                                      }
+                                      key={rowIndex}
+                                      style={{
+                                        margin: rowIndex === 1 && '0 5px',
+                                      }}
+                                      width={25}
+                                      height={25}
+                                      alt="Icon"
+                                      src={`/icons/${item}.svg`}
+                                    />
+                                  )
+                                )
+                              )}
                             </>
                           ) : col === 'Attendence Status' ? (
                             <>

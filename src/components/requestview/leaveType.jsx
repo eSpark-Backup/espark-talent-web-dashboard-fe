@@ -10,14 +10,9 @@ import Image from 'next/image';
 
 import { LEAVE_TYPE, REQUESTVIEW_DATA } from '@/src/constants/requestviewModal';
 
-const LeaveType = ({ view }) => {
+const LeaveType = ({ isViewingClient, leaveType }) => {
   const [selectedValue, setSelectedValue] = useState();
   console.log('yy', setSelectedValue);
-  // const selectedValue = 'Sick Leave';
-
-  // const defaultOption = LEAVE_TYPE.find(
-  //   (option) => option.value === selectedValue
-  // );
   return (
     <Box
       sx={{
@@ -30,11 +25,11 @@ const LeaveType = ({ view }) => {
       }}
     >
       <Typography sx={{ width: '90px' }}>
-        {view ? (
-          REQUESTVIEW_DATA?.leaveType
+        {isViewingClient ? (
+          REQUESTVIEW_DATA?.leaveTypes
         ) : (
           <>
-            {REQUESTVIEW_DATA?.leaveType}
+            {REQUESTVIEW_DATA?.leaveTypes}
             <span
               style={{
                 color: 'red',
@@ -53,9 +48,9 @@ const LeaveType = ({ view }) => {
 
       <Select
         value={selectedValue}
-        placeholder={view ? 'Select' : ''}
+        placeholder={isViewingClient ? 'Select' : ''}
         required={true}
-        disabled={view}
+        disabled={isViewingClient}
         sx={{
           height: '50px',
           width: { xs: '100%', md: '600px' },
@@ -87,9 +82,10 @@ const LeaveType = ({ view }) => {
           </InputAdornment>
         )}
       >
-        {LEAVE_TYPE?.map((option) => (
-          <MenuItem key={option?.value} value={option?.value}>
-            {option?.label}
+        {/* { leaveType} */}
+        {LEAVE_TYPE?.map((column, index) => (
+          <MenuItem key={index} value={column}>
+            {column}
           </MenuItem>
         ))}
       </Select>
