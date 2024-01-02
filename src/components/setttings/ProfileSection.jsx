@@ -8,7 +8,12 @@ export default function ProfileSection({ Profile_Edit_Section, User_Detail }) {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Box sx={{ mb: 2 }}>
-        <Typography variant="h6">{Profile_Edit_Section?.title}</Typography>
+        <Typography
+          variant="body2"
+          sx={{ color: '#171717', fontWeight: '400' }}
+        >
+          {Profile_Edit_Section?.title}
+        </Typography>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mt: 2 }}>
           <Image
             src={Profile_Edit_Section?.profileAvatar}
@@ -17,7 +22,12 @@ export default function ProfileSection({ Profile_Edit_Section, User_Detail }) {
             alt={Profile_Edit_Section?.alt}
           />
           <Button
-            sx={{ width: '160px', height: '40px' }}
+            sx={{
+              width: '165px',
+              height: '40px',
+              fontSize: '16px',
+              fontWeight: 500,
+            }}
             variant="contained"
             startIcon={
               <Image
@@ -33,36 +43,87 @@ export default function ProfileSection({ Profile_Edit_Section, User_Detail }) {
         </Box>
       </Box>
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5, my: 3 }}>
-        <Typography variant="h6">{User_Detail?.title}</Typography>
+        <Typography
+          variant="body2"
+          sx={{ color: '#171717', fontWeight: '400' }}
+        >
+          {User_Detail?.title}
+        </Typography>
         {User_Detail?.Fields?.map((item, index) => (
           <Box component={'div'} key={index}>
-            <Typography sx={{ mb: 1 }}>{item?.label}</Typography>
-            <TextField
-              placeholder={item?.place}
-              type={item?.type}
-              variant="outlined"
+            <Typography
+              variant="body1"
+              sx={{ mb: 1, color: '#595959', fontWeight: '600' }}
+            >
+              {item?.label}
+            </Typography>
+            <Box
               sx={{
-                width: '300px',
-                height: 'auto',
-                '@media (max-width: 380px)': {
-                  width: '100%',
+                display: 'flex',
+                flexDirection: 'row',
+                gap: 2.5,
+                alignItems: 'center',
+                width: '100%',
+                '@media (max-width: 562px)': {
+                  flexDirection: 'column',
+                  alignItems: 'start',
+                  // gap: 2.5,
                 },
               }}
-            />
+            >
+              <Box
+                sx={{
+                  width: 'auto',
+                  '@media (max-width: 562px)': {
+                    width: '100%',
+                  },
+                }}
+              >
+                <TextField
+                  placeholder={item?.place}
+                  type={item?.type}
+                  variant="outlined"
+                  sx={{
+                    width: '300px',
+                    height: 'auto',
+                    fontWeight: 400,
+                    fontSize: '14px',
+                    color: '#666',
+                    '@media (max-width: 562px)': {
+                      width: '100%',
+                    },
+                  }}
+                />
+              </Box>
+              {item?.label !== 'Email' ? (
+                <Box
+                  sx={{
+                    width: 'auto',
+                    '@media (max-width: 562px)': {
+                      width: '100%',
+                    },
+                  }}
+                >
+                  <Button
+                    variant="contained"
+                    sx={{
+                      fontSize: '16px',
+                      fontWeight: 500,
+                      backgroundColor: '#888',
+                      width: '120px',
+                      height: '40px',
+                      '@media (max-width: 380px)': {
+                        width: '100%',
+                      },
+                    }}
+                  >
+                    {User_Detail?.buttonText}
+                  </Button>
+                </Box>
+              ) : null}
+            </Box>
           </Box>
         ))}
-        <Button
-          variant="contained"
-          sx={{
-            width: '120px',
-            height: '40px',
-            '@media (max-width: 380px)': {
-              width: '100%',
-            },
-          }}
-        >
-          {User_Detail?.buttonText}
-        </Button>
       </Box>
     </Box>
   );

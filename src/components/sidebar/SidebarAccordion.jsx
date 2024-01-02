@@ -44,7 +44,7 @@ const SidebarAccordion = ({ sidebarLinks }) => {
                   mx: 'auto',
                   p: 1.4,
                   mb: 0,
-                  minHeight: '57px',
+                  minHeight: '55px',
                   gap: 2,
                   width: '95%',
                   height: '43px',
@@ -68,7 +68,16 @@ const SidebarAccordion = ({ sidebarLinks }) => {
                   style={{ width: '100%', height: '100%' }}
                   href={`${item?.link}`}
                 >
-                  <Typography sx={{ width: '100%', height: '100%', ml: 2 }}>
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      width: '100%',
+                      height: '100%',
+                      fontWeight: `${item?.link == pathname ? 600 : 400}`,
+                      ml: 2,
+                      color: '#595959',
+                    }}
+                  >
                     {item?.text}
                   </Typography>
                 </Link>
@@ -103,9 +112,11 @@ const SidebarAccordion = ({ sidebarLinks }) => {
                         href={`${eachItem?.link}`}
                       >
                         <Typography
+                          variant="body1"
                           sx={{
                             width: '100%',
                             height: '100%',
+                            color: '#595959',
                           }}
                         >
                           {eachItem?.text}

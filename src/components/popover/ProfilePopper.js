@@ -9,6 +9,7 @@ import SidebarUserAvatar from '../sidebar/SidebarUserAvatar';
 import { NOTIFICATION_TITLE, profileMenuData } from '@/src/constants/sidebar';
 import { NOTIFICATION_DATA } from '@/src/constants/data/userData';
 import SignoutModal from '../signoutmodal/signoutModal';
+import DotBadge from '../sidebar/SidebarProfileBadge';
 
 export default function ProfilePopper({ button }) {
   const [profileMenu, setProfileMenu] = React.useState(null);
@@ -17,8 +18,6 @@ export default function ProfilePopper({ button }) {
   const [bondary, setBondary] = React.useState(null);
   const notificationPopupRef = React.useRef(null);
   const router = useRouter();
-
-  // const bondary = document.querySelector('#popperBoundary');
 
   const handleClick = (event) => {
     setProfileMenu(profileMenu ? null : event.currentTarget);
@@ -114,15 +113,33 @@ export default function ProfilePopper({ button }) {
             <MenuItem
               key={i}
               onClick={(e) => handleNotification(e, item?.text)}
-              sx={{ width: '100%', py: 1.1 }}
+              sx={{
+                width: '100%',
+                py: 1.1,
+                '&: hover': { backgroundColor: 'transparent' },
+              }}
             >
-              <Box sx={{ display: 'flex', gap: 1.5 }}>
-                <img
-                  src={item?.icon}
-                  style={{ width: '20px', height: '20px' }}
-                  alt="icon"
-                />
-                <Typography>{item?.text}</Typography>
+              <Box sx={{ display: 'flex', gap: 1.1 }}>
+                <Box sx={{ display: 'flex', gap: 0.5 }}>
+                  <Box sx={{ marginTop: -1.2 }}>
+                    {item?.text == 'Notification' && <DotBadge color={'red'} />}
+                  </Box>
+                  <img
+                    src={item?.icon}
+                    style={{ width: '20px', height: '20px' }}
+                    alt="icon"
+                  />
+                </Box>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    color: `${
+                      item?.text == 'Sign out' ? '#DF1515' : '#595959'
+                    }`,
+                  }}
+                >
+                  {item?.text}
+                </Typography>
               </Box>
             </MenuItem>
           ))}
@@ -155,7 +172,6 @@ export default function ProfilePopper({ button }) {
             width: '350px',
             minHeight: 'auto',
             maxHeight: '410px',
-            overflowY: 'auto',
             flexDirection: 'column',
             alignItems: 'flex-start',
             position: 'fixed',
@@ -172,9 +188,11 @@ export default function ProfilePopper({ button }) {
           }}
         >
           <Box sx={{ width: '100%', padding: '15px 228px 16px 23px' }}>
-            <Typography variant="h6">{NOTIFICATION_TITLE}</Typography>
+            <Typography variant="body2" sx={{ fontWeight: 600 }}>
+              {NOTIFICATION_TITLE}
+            </Typography>
           </Box>
-          <Box sx={{ width: '100%', height: '100%' }}>
+          <Box sx={{ width: '100%', height: '100%', overflowY: 'auto' }}>
             {NOTIFICATION_DATA?.map((item, index) => (
               <Box component={'div'} key={index}>
                 <Box
@@ -186,7 +204,12 @@ export default function ProfilePopper({ button }) {
                     borderBottom: '1px solid #E4E4E4',
                   }}
                 >
-                  <Typography>{item?.day}</Typography>
+                  <Typography
+                    variant="body1"
+                    sx={{ fontWeight: 600, color: '#595959' }}
+                  >
+                    {item?.day}
+                  </Typography>
                 </Box>
                 {item?.userNotifications?.map((notification, index) => (
                   <Box
@@ -207,20 +230,31 @@ export default function ProfilePopper({ button }) {
                       sx={{ display: 'flex', flexDirection: 'column', gap: 0 }}
                     >
                       <Typography
-                        variant="p"
-                        sx={{
-                          fontWeight: 700,
-                          pb: 0.5,
-                        }}
+                        variant="body1"
+                        sx={{ fontWeight: 600, color: '#595959', pb: 0.5 }}
                       >
                         {notification?.userName}
                       </Typography>
-                      <Typography variant="p">
+                      <Typography
+                        sx={{
+                          fontSize: '12px',
+                          fontWeight: 400,
+                          color: '#595959',
+                        }}
+                      >
                         {notification?.message}
                       </Typography>
                     </Box>
                     <Box>
-                      <Typography variant="p">{notification?.time}</Typography>
+                      <Typography
+                        sx={{
+                          fontSize: '12px',
+                          fontWeight: 400,
+                          color: '#595959',
+                        }}
+                      >
+                        {notification?.time}
+                      </Typography>
                     </Box>
                   </Box>
                 ))}

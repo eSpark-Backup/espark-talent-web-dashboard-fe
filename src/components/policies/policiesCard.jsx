@@ -1,45 +1,47 @@
 import React from 'react';
-import { Box, Grid } from '@mui/material';
+import { Box } from '@mui/material';
 
 import DownloadPolicies from './downloadPolicies';
 
 const PoliciesCard = ({ data }) => {
   return (
     <>
-      <Grid container spacing={0}>
-        <Box
-          sx={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            width: { xs: '100%', md: '60%' },
-            mx: 'auto',
-          }}
-        >
-          {data.map((item) => (
-            <Grid
-              item
-              key={item.id}
-              xs={12}
-              sm={12}
-              md={12}
-              lg={6}
-              sx={{
-                display: 'flex',
-                justifyContent: 'center',
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: { xs: 'column', sm: 'column', md: 'row' },
+          justifyContent: 'center',
+          gap: 3,
+          flexWrap: 'wrap',
+          '@media (min-width: 1200px) and (max-width: 1379px)': {
+            width: '100%',
+          },
+          width: { xs: '100%', md: '100%', lg: '90%' },
+          mx: 'auto',
+        }}
+      >
+        {data.map((item) => (
+          <Box
+            key={item.id}
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              padding: { sm: 0, md: '25px' },
+              '@media (min-width: 900px) and (max-width: 1280px)': {
                 padding: '15px',
-              }}
-            >
-              <DownloadPolicies
-                key={item.id}
-                image={item.image}
-                reportHeading={item.reportHeading}
-                downloadReports={item.downloadReports}
-                downloadBtn={item.downloadBtn}
-              />
-            </Grid>
-          ))}
-        </Box>
-      </Grid>
+              },
+            }}
+          >
+            <DownloadPolicies
+              key={item.id}
+              image={item.image}
+              reportHeading={item.reportHeading}
+              downloadReports={item.downloadReports}
+              downloadBtn={item.downloadBtn}
+            />
+          </Box>
+        ))}
+      </Box>
     </>
   );
 };

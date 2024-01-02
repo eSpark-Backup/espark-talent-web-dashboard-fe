@@ -48,6 +48,12 @@ const lightTheme = createTheme({
     },
     body1: {
       fontSize: '14px',
+      fontWeight: 400,
+    },
+    body2: {
+      fontSize: '16px',
+      fontWeight: 500,
+      color: '#595959',
     },
     button: {
       textTransform: 'capitalize',

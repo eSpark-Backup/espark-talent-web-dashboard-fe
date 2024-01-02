@@ -7,7 +7,7 @@ const SidebarProfileMenu = () => {
   return (
     <>
       <DotBadge
-        color={'lightGreen'}
+        color={'#FF0000'}
         icon={<ArrowForwardIosIcon sx={{ width: '20px', height: '20px' }} />}
       />
     </>
