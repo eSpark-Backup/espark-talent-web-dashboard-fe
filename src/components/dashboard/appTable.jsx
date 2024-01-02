@@ -128,13 +128,9 @@ const AppTable = ({
   handleClick,
   renderMessageButton,
   handleClickRenderMessageButton,
-  handleOpen,
   handleClickActionView,
   noPagination,
 }) => {
-  const handleImage = (employeeId, employeeName, leaveType, fromTo, item) => {
-    handleOpen(item, employeeId, employeeName, leaveType, fromTo);
-  };
   return (
     <>
       <table className="table">
@@ -412,7 +408,7 @@ const AppTable = ({
           )}
         </tbody>
       </table>
-      {!Boolean(noPagination) && (
+      {!noPagination && (
         <Box my={'20px'} display="flex" justifyContent={'center'}>
           <Stack spacing={2}>
             <Pagination count={10} variant="outlined" shape="rounded" />

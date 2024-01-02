@@ -1,7 +1,5 @@
 import React from 'react';
 import { Box } from '@mui/material';
-
-import { usePathname } from 'next/navigation';
 import LeaveType from './leaveType';
 import LeaveDate from './leaveDate';
 import { LEAVE_DATA, REQUESTVIEW_DATA } from '@/src/constants/requestviewModal';
@@ -14,22 +12,17 @@ import AttachDoc from './attachFile';
 
 const LeaveRequest = ({
   modalType,
-  statusType,
   rowType,
   onClose,
   employeeId,
-  // employeeName,
-  // leaveType,
   fromTo,
   modalData,
   isViewingClient,
   isViewingEmployee,
   createLeaveRequest,
 }) => {
-  const pathName = usePathname();
-  const { item, status, count, leaveType, employeeName } = modalData || {};
+  const { status, leaveType, employeeName } = modalData || {};
   console.log({ modalData, isViewingClient });
-  // const isViewingClient = pathName == '/client/dashboard/team/time-off';
   return (
     <Box sx={{ p: 3.5 }}>
       <LeaveType isViewingClient={isViewingClient} leaveType={leaveType} />
@@ -105,7 +98,6 @@ const LeaveRequest = ({
       />
       <LeaveRequestButtons
         modalType={modalType}
-        // statusType={statusType}
         statusType={status}
         isViewingClient={isViewingClient}
         isViewingEmployee={isViewingEmployee}

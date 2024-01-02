@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Grid, Typography } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 
 import { HIRING_FORM_DATA } from '@/src/constants/Hiring';
 import RoleType from './RoleType';

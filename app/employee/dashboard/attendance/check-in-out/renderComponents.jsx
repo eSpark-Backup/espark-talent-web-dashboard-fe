@@ -10,7 +10,6 @@ export const renderTrackingStatus = ({
   label,
   background,
   shortForm,
-  handleClickActionView,
 }) => {
   return (
     <Box display={'flex'} alignItems={'center'} key={statusIndex}>

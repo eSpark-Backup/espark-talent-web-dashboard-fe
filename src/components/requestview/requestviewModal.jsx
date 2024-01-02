@@ -5,13 +5,7 @@ import Image from 'next/image';
 import RequestHeading from './modalHeading';
 import LeaveRequest from './leaveRequestView';
 
-const RequestviewModal = ({
-  open,
-  onClose,
-  isViewingClient,
-  title,
-  createLeaveRequest,
-}) => {
+const RequestviewModal = ({ open, onClose, isViewingClient, title }) => {
   return (
     <Modal
       open={open}

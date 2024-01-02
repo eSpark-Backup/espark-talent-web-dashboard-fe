@@ -24,11 +24,6 @@ const Dashboard = () => {
   const [currentReqStatusTab, setcurrentReqStatusTab] = useState('All');
   const [currentReqStatusTabVal, setcurrentReqStatusTabVal] = useState(0);
   const [modalData, setModalData] = useState({});
-  const [modalType, setModalType] = useState('');
-  const [employeeId, setEmployeeId] = useState();
-  const [employeeName, setEmployeeName] = useState();
-  const [leaveType, setLeaveType] = useState();
-  const [fromTo, setFromTo] = useState();
   const [openModal, setOpenModal] = useState(false);
 
   const [open, setOpen] = useState(false);
@@ -201,11 +196,6 @@ const Dashboard = () => {
                 <RequestHeading title={'Punch request view'} />
                 <PunchRequest
                   onClose={handleClose}
-                  modalType={modalType}
-                  employeeId={employeeId}
-                  employeeName={employeeName}
-                  leaveType={leaveType}
-                  fromTo={fromTo}
                   isViewingClient
                   modalData={modalData}
                   createPunchRequest
@@ -931,11 +921,6 @@ const Dashboard = () => {
             <RequestHeading title={'Punch request view'} />
             <PunchRequest
               onClose={handleClose}
-              modalType={modalType}
-              employeeId={employeeId}
-              employeeName={employeeName}
-              leaveType={leaveType}
-              fromTo={fromTo}
               isViewingClient
               modalData={modalData}
               viewPunchRequest

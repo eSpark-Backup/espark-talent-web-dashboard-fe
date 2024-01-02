@@ -4,7 +4,6 @@ import { Box, Button } from '@mui/material';
 import { REQUESTVIEW_DATA } from '@/src/constants/requestviewModal';
 
 const LeaveRequestButtons = ({
-  modalType,
   statusType,
   isViewingClient,
   isViewingEmployee,
@@ -14,7 +13,6 @@ const LeaveRequestButtons = ({
   createPunchRequest,
 }) => {
   const isDeclineModal = statusType === 'Rejected';
-  const isApproveModal = statusType === 'Approve';
   const isPendingModal = statusType === 'Pending';
   const isCompletedModal = statusType === 'Completed';
 

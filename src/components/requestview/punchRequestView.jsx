@@ -1,44 +1,23 @@
 import React from 'react';
 import { Box, Grid, Typography } from '@mui/material';
-
-import { usePathname } from 'next/navigation';
-import LeaveType from './leaveType';
-import LeaveDate from './leaveDate';
-import { LEAVE_DATA, REQUESTVIEW_DATA } from '@/src/constants/requestviewModal';
-import LeaveDuration from './leaveDuration';
-import LeaveCount from './leaveCount';
-import LeaveDatePicker from './leaveDatepicker';
-import LeaveReason from './leaveReason';
 import LeaveRequestButtons from './leaveRequestButton';
-import AttachDoc from './attachFile';
 import Image from 'next/image';
 
 const PunchRequest = ({
   modalType,
-  statusType,
   rowType,
   onClose,
-  employeeId,
-  // employeeName,
-  // leaveType,
-  fromTo,
-  modalData,
   isViewingClient,
   isViewingEmployee,
   createLeaveRequest,
   createPunchRequest,
   viewPunchRequest,
 }) => {
-  const pathName = usePathname();
-  const { item, status, count, leaveType, employeeName } = modalData || {};
-  console.log({ modalData, isViewingClient });
-  // const isViewingClient = pathName == '/client/dashboard/team/time-off';
   return (
     <Box sx={{ p: 3.5 }}>
       <Grid
         container
         sx={{
-          // mb: '15px',
           background: '#f6f6f6',
           p: '15px 5px 15px 15px',
           borderRadius: '5px',
@@ -57,16 +36,7 @@ const PunchRequest = ({
             Date <span style={{ color: '#FF0000' }}>*</span>
           </Typography>
         </Grid>
-        <Grid
-          item
-          sx={
-            {
-              // border:'solid 1px #800'
-            }
-          }
-          md={6}
-          xs={12}
-        >
+        <Grid item sx={{}} md={6} xs={12}>
           <Box
             sx={{
               border: 'solid 1px #E4E4E4',
@@ -96,8 +66,6 @@ const PunchRequest = ({
         <Grid
           container
           sx={{
-            // mb: '15px',
-            // background: '#f6f6f6',
             p: '15px 5px 15px 15px',
             borderRadius: '5px',
           }}
@@ -122,16 +90,7 @@ const PunchRequest = ({
               Expected check in
             </Typography>
           </Grid>
-          <Grid
-            item
-            sx={
-              {
-                // border:'solid 1px #800'
-              }
-            }
-            md={6}
-            xs={12}
-          >
+          <Grid item sx={{}} md={6} xs={12}>
             <Box
               sx={{
                 border: 'solid 1px #E4E4E4',
@@ -161,7 +120,6 @@ const PunchRequest = ({
         <Grid
           container
           sx={{
-            // mb: '15px',
             background: '#f6f6f6',
             p: '15px 5px 15px 15px',
             borderRadius: '5px',
@@ -187,16 +145,7 @@ const PunchRequest = ({
               Expected check out
             </Typography>
           </Grid>
-          <Grid
-            item
-            sx={
-              {
-                // border:'solid 1px #800'
-              }
-            }
-            md={6}
-            xs={12}
-          >
+          <Grid item sx={{}} md={6} xs={12}>
             <Box
               sx={{
                 border: 'solid 1px #E4E4E4',
@@ -226,8 +175,6 @@ const PunchRequest = ({
       <Grid
         container
         sx={{
-          // mb: '15px',
-          // background: '#f6f6f6',
           p: '15px 5px 15px 15px',
           borderRadius: '5px',
         }}
@@ -245,16 +192,7 @@ const PunchRequest = ({
             Punch Type <span style={{ color: '#FF0000' }}>*</span>
           </Typography>
         </Grid>
-        <Grid
-          item
-          sx={
-            {
-              // border:'solid 1px #800'
-            }
-          }
-          md={6}
-          xs={12}
-        >
+        <Grid item sx={{}} md={6} xs={12}>
           <Box
             sx={{
               border: 'solid 1px #E4E4E4',
@@ -285,7 +223,6 @@ const PunchRequest = ({
       <Grid
         container
         sx={{
-          // mb: '15px',
           background: '#f6f6f6',
           p: '15px 5px 15px 15px',
           borderRadius: '5px',
@@ -304,16 +241,7 @@ const PunchRequest = ({
             Punch Time <span style={{ color: '#FF0000' }}>*</span>
           </Typography>
         </Grid>
-        <Grid
-          item
-          sx={
-            {
-              // border:'solid 1px #800'
-            }
-          }
-          md={6}
-          xs={12}
-        >
+        <Grid item sx={{}} md={6} xs={12}>
           <Box
             sx={{
               border: 'solid 1px #E4E4E4',
@@ -341,8 +269,6 @@ const PunchRequest = ({
       <Grid
         container
         sx={{
-          // mb: '15px',
-          // background: '#f6f6f6',
           p: '15px 5px 15px 15px',
           borderRadius: '5px',
         }}
@@ -361,16 +287,7 @@ const PunchRequest = ({
             Description
           </Typography>
         </Grid>
-        <Grid
-          item
-          sx={
-            {
-              // border:'solid 1px #800'
-            }
-          }
-          md={6}
-          xs={12}
-        >
+        <Grid item sx={{}} md={6} xs={12}>
           <Box
             sx={{
               border: 'solid 1px #E4E4E4',
@@ -378,7 +295,7 @@ const PunchRequest = ({
               borderRadius: '5px',
               display: 'flex',
               justifyContent: 'space-between',
-              // alignItems: 'center',
+
               backgroundColor: '#f6f6f6',
               minHeight: '150px',
             }}
@@ -399,7 +316,6 @@ const PunchRequest = ({
       </Grid>
       <LeaveRequestButtons
         modalType={modalType}
-        // statusType={status}
         isViewingClient={isViewingClient}
         isViewingEmployee={isViewingEmployee}
         rowType={rowType}
