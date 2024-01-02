@@ -10,6 +10,7 @@
   width: 100%;
   border-spacing: 0px 4px;
   margin-bottom: 20px;
+  min-width: 1024px;
 }
 .table td,
 .table th {

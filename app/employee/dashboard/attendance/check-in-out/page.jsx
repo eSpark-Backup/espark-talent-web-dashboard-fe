@@ -1,6 +1,6 @@
 'use client';
 import React, { useMemo, useState } from 'react';
-import { Grid, Box, Typography, Button } from '@mui/material';
+import { Grid, Box, Typography, Button, Modal } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
@@ -13,6 +13,8 @@ import {
   employeeCheckInOutRequestData,
 } from '@/src/constants/data/tables/checkInOutRequestsData';
 import { Clock_Title } from '@/src/constants/employeeDashboard';
+import RequestHeading from '@/src/components/requestview/modalHeading';
+import PunchRequest from '@/src/components/requestview/punchRequestView';
 
 const Dashboard = () => {
   const checkInOutRequestDataState = useMemo(
@@ -21,6 +23,15 @@ const Dashboard = () => {
   );
   const [currentReqStatusTab, setcurrentReqStatusTab] = useState('All');
   const [currentReqStatusTabVal, setcurrentReqStatusTabVal] = useState(0);
+  const [modalData, setModalData] = useState({});
+  const [modalType, setModalType] = useState('');
+  const [employeeId, setEmployeeId] = useState();
+  const [employeeName, setEmployeeName] = useState();
+  const [leaveType, setLeaveType] = useState();
+  const [fromTo, setFromTo] = useState();
+  const [openModal, setOpenModal] = useState(false);
+
+  const [open, setOpen] = useState(false);
   const handleChangeCurrReqStatusTab = (event, newValue, data) => {
     let tab = event?.target?.innerText;
     if (tab.includes('\n\n')) {
@@ -111,10 +122,101 @@ const Dashboard = () => {
     // Add more items as needed
   ];
 
+  const handleClickActionView = (props) => {
+    const {
+      item,
+      row,
+      row: { status, employeeName, count, leaveType },
+    } = props;
+    console.log({ item, row, status, count, leaveType, employeeName });
+    setModalData({ item, status, count, leaveType, employeeName });
+    setOpen(true);
+    // setStatusType(item);
+    // setActionType(status)
+  };
+  const handleClose = () => setOpen(false);
+  const handleOpenModal = () => {
+    setOpenModal(true);
+  };
+  const handleCloseModal = () => {
+    setOpenModal(false);
+  };
+
   return (
     <>
+      <Box
+        display={'flex'}
+        justifyContent={'space-between'}
+        alignItems={'center'}
+      >
+        <Box display={'flex'} flexDirection={'column'}>
+          <Typography variant="h3">Check in / out</Typography>
+          <Box display={'flex'} flexDirection={'column'} marginY={'20px'}>
+            <Typography
+              sx={{
+                fontSize: '14px',
+                fontWeight: '400',
+                letterSpacing: '0em',
+                textAlign: 'left',
+              }}
+              variant="caption"
+            >
+              Manage punch request from one place.
+            </Typography>
+          </Box>
+        </Box>
+        <Button
+          sx={{ marginX: '10px', minWidth: '120px' }}
+          variant="contained"
+          onClick={handleOpenModal}
+        >
+          Create
+        </Button>
+        {openModal && (
+          <Modal
+            open={openModal}
+            onClose={handleCloseModal}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              height: { xs: '950px', md: '890px' },
+            }}
+          >
+            <Box
+              sx={{
+                // mx: 'auto',
+                bgcolor: '#fff',
+                width: { xs: '50%', md: '50%' },
+                display: 'flex',
+                flexDirection: 'column',
+                borderRadius: '10px',
+                boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
+                marginTop: '40px',
+              }}
+            >
+              <Box>
+                <RequestHeading title={'Punch request view'} />
+                <PunchRequest
+                  onClose={handleClose}
+                  modalType={modalType}
+                  employeeId={employeeId}
+                  employeeName={employeeName}
+                  leaveType={leaveType}
+                  fromTo={fromTo}
+                  isViewingClient
+                  modalData={modalData}
+                  createPunchRequest
+                />
+              </Box>
+            </Box>
+          </Modal>
+        )}
+      </Box>
       <Grid container spacing={3}>
-        <Grid item xs={12} md={6} lg={6} xl={4}>
+        <Grid item xs={12} md={4} lg={4} xl={4}>
           <Box
             sx={{
               height: '470px',
@@ -416,7 +518,7 @@ const Dashboard = () => {
             </Box>
           </Box>
         </Grid>
-        <Grid item xs={12} md={6} lg={6} xl={4}>
+        <Grid item xs={12} md={4} lg={4} xl={4}>
           <Box
             sx={{
               height: '470px',
@@ -545,7 +647,7 @@ const Dashboard = () => {
             </Box>
           </Box>
         </Grid>
-        <Grid item xs={12} lg={12} xl={4}>
+        <Grid item xs={12} md={4} lg={4} xl={4}>
           <Box
             sx={{
               mx: { xs: 'auto', md: 0 },
@@ -661,23 +763,7 @@ const Dashboard = () => {
           }}
         >
           <div>
-            <Box display={'flex'} flexDirection={'column'}>
-              <Typography variant="h3">Check in / out</Typography>
-              <Box display={'flex'} flexDirection={'column'} marginY={'20px'}>
-                <Typography
-                  sx={{
-                    fontSize: '14px',
-                    fontWeight: '400',
-                    letterSpacing: '0em',
-                    textAlign: 'left',
-                  }}
-                  variant="caption"
-                >
-                  Manage punch request from one place.
-                </Typography>
-              </Box>
-            </Box>
-            <Box mb={'20px'}>
+            <Box my={'20px'}>
               <Typography
                 sx={{
                   fontSize: '30px',
@@ -703,11 +789,13 @@ const Dashboard = () => {
                   <Box
                     display={'flex'}
                     justifyContent={'space-between'}
-                    flexWrap={"wrap"}
+                    flexWrap={'wrap'}
                     alignItems={'center'}
                     marginTop={5}
+                    px={'10px'}
                   >
-                    <Tabs  variant="scrollable"
+                    <Tabs
+                      variant="scrollable"
                       value={currentReqStatusTabVal}
                       onChange={(ev, newVal) =>
                         handleChangeCurrReqStatusTab(
@@ -769,7 +857,7 @@ const Dashboard = () => {
                         }
                       )}
                     </Tabs>
-                    <Box display={'flex'} alignItems={'center'} my={"20px"}>
+                    <Box display={'flex'} alignItems={'center'} my={'20px'}>
                       <Button
                         sx={{ marginX: '10px', minWidth: '120px' }}
                         variant="outlined"
@@ -809,11 +897,52 @@ const Dashboard = () => {
                 currentReqStatusTab,
                 column: employeeCheckInOutRequestColumn,
                 data: checkInOutRequestDataState,
+                handleClickActionView,
               })}
             </Box>
           </div>
         </Box>
       </Grid>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          height: { xs: '950px', md: '890px' },
+        }}
+      >
+        <Box
+          sx={{
+            // mx: 'auto',
+            bgcolor: '#fff',
+            width: { xs: '50%', md: '50%' },
+            display: 'flex',
+            flexDirection: 'column',
+            borderRadius: '10px',
+            boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
+            marginTop: '40px',
+          }}
+        >
+          <Box>
+            <RequestHeading title={'Punch request view'} />
+            <PunchRequest
+              onClose={handleClose}
+              modalType={modalType}
+              employeeId={employeeId}
+              employeeName={employeeName}
+              leaveType={leaveType}
+              fromTo={fromTo}
+              isViewingClient
+              modalData={modalData}
+              viewPunchRequest
+            />
+          </Box>
+        </Box>
+      </Modal>
     </>
   );
 };

@@ -92,6 +92,7 @@ const Dashboard = () => {
                 value={value}
                 onChange={handleChange}
                 aria-label="basic tabs example"
+                variant='scrollable'
               >
                 {empTabs?.map(({ label, prop, data }, i) => (
                   <Tab key={i} label={`${label} (${data?.length})`} {...prop} />
@@ -112,11 +113,18 @@ const Dashboard = () => {
                 {isLoading ? (
                   <Box>Loading...</Box>
                 ) : (
-                  <AppTable
-                    currentTab={currentTab}
-                    column={column}
-                    data={empData}
-                  />
+                  <Box
+                    sx={{
+                      maxWidth: '100%',
+                      overflowX: 'auto',
+                    }}
+                  >
+                    <AppTable
+                      currentTab={currentTab}
+                      column={column}
+                      data={empData}
+                    />
+                  </Box>
                 )}
               </CustomTabPanel>
             ))}

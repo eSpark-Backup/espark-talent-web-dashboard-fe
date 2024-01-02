@@ -18,13 +18,18 @@ const LeaveRequest = ({
   rowType,
   onClose,
   employeeId,
-  employeeName,
-  leaveType,
+  // employeeName,
+  // leaveType,
   fromTo,
-  modalData
+  modalData,
+  isViewingClient,
+  isViewingEmployee,
+  createLeaveRequest,
 }) => {
   const pathName = usePathname();
-  const isViewingClient = pathName == '/client/dashboard/team/time-off';
+  const {item,status,count,leaveType,employeeName} = modalData || {}
+  console.log({modalData,isViewingClient})
+  // const isViewingClient = pathName == '/client/dashboard/team/time-off';
   return (
     <Box sx={{ p: 3.5 }}>
       <LeaveType isViewingClient={isViewingClient} leaveType={leaveType} />
@@ -38,7 +43,7 @@ const LeaveRequest = ({
         isViewingClient={isViewingClient}
       />
 
-      {isViewingClient && (
+      {(isViewingClient || isViewingEmployee) && (
         <LeaveDuration
           employeeId={employeeId}
           employeeName={employeeName}
@@ -100,10 +105,13 @@ const LeaveRequest = ({
       />
       <LeaveRequestButtons
         modalType={modalType}
-        statusType={statusType}
+        // statusType={statusType}
+        statusType={status}
         isViewingClient={isViewingClient}
+        isViewingEmployee={isViewingEmployee}
         rowType={rowType}
         onClose={onClose}
+        createLeaveRequest={createLeaveRequest}
       />
     </Box>
   );

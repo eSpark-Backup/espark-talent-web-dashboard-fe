@@ -26,7 +26,7 @@ const Dashboard = () => {
   const [open, setOpen] = useState(false);
   const [statusType, setStatusType] = useState('');
   const [rowType, setRowType] = useState('');
-const [modalData, setModalData] = useState({})
+  const [modalData, setModalData] = useState({});
   const [openModal, setOpenModal] = useState(false);
   const handleOpenModal = () => {
     setOpenModal(true);
@@ -40,13 +40,17 @@ const [modalData, setModalData] = useState({})
     setOpen(true);
   };
   const handleClickActionView = (props) => {
-    const {item,row: { status, employeeName,count,leaveType  }} = props
-    console.log({item,status,count,leaveType,employeeName})
-    setModalData({item,status,count,leaveType,employeeName})
+    const {
+      item,
+      row,
+      row: { status, employeeName, count, leaveType },
+    } = props;
+    console.log({ item, row, status, count, leaveType, employeeName });
+    setModalData({ item, status, count, leaveType, employeeName });
     setOpen(true);
-    // setStatusType(item)
+    setStatusType(item);
     // setActionType(status)
-  }
+  };
   const handleClose = () => setOpen(false);
   const leaveBalanceDataState = useMemo(
     () => filterTableRowsWRTTab(employeeLeaveBalanceData, { status: '' }),
@@ -139,9 +143,12 @@ const [modalData, setModalData] = useState({})
               </Button>
               {openModal && (
                 <RequestviewModal
+                  title="Create Leave Request"
                   open={openModal}
                   onClose={handleCloseModal}
-                  isViewingClient={isViewingClient}
+                  // isViewingClient={isViewingClient}
+                  // modalData={modalData}
+                  createLeaveRequest
                 />
               )}
             </Box>
@@ -151,11 +158,14 @@ const [modalData, setModalData] = useState({})
                 sx={{
                   marginTop: '10px',
                   marginBottom: '20px',
+                  maxWidth: '100%',
+                  overflowX: 'auto',
                 }}
               >
                 <AppTable
                   column={employeeLeaveBalanceColumn}
                   data={leaveBalanceDataState}
+                  noPagination
                 />
               </Box>
             </Box>
@@ -205,10 +215,13 @@ const [modalData, setModalData] = useState({})
                   <Box
                     display={'flex'}
                     justifyContent={'space-between'}
+                    flexWrap={'wrap'}
                     alignItems={'center'}
                     marginTop={5}
+                    px={'10px'}
                   >
                     <Tabs
+                      variant="scrollable"
                       value={currentReqStatusTabVal}
                       onChange={(ev, newVal) =>
                         handleChangeCurrReqStatusTab(
@@ -220,7 +233,7 @@ const [modalData, setModalData] = useState({})
                       aria-label="basic tabs example"
                     >
                       {employeeRequestsTabs?.map(
-                        ({ label, prop, color,background }, index) => {
+                        ({ label, prop, color, background }, index) => {
                           return (
                             <Tab
                               key={index}
@@ -270,7 +283,7 @@ const [modalData, setModalData] = useState({})
                         }
                       )}
                     </Tabs>
-                    <Box display={'flex'} alignItems={'center'}>
+                    <Box my={'10px'} display={'flex'} alignItems={'center'}>
                       <Button
                         sx={{ marginX: '10px', minWidth: '120px' }}
                         variant="outlined"
@@ -312,7 +325,7 @@ const [modalData, setModalData] = useState({})
                 column: employeeLeaveRequestsColumn,
                 data: leaveRequestDataState,
                 handleOpenConditionalModal,
-                handleClickActionView
+                handleClickActionView,
               })}
             </Box>
           </div>
@@ -368,13 +381,14 @@ const [modalData, setModalData] = useState({})
               width: '100%',
             }}
           >
-            <RequestHeading />
+            <RequestHeading title="Leave request view" />
             <LeaveRequest
               statusType={statusType}
               view={isViewingClient}
               rowType={rowType}
               onClose={handleClose}
               modalData={modalData}
+              isViewingEmployee
             />
           </Box>
         </Box>

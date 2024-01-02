@@ -63,6 +63,8 @@ const Dashboard = () => {
   const [currentReqTypeTabVal, setcurrentReqTypeTabVal] = useState(0);
   const [currentReqStatusTab, setcurrentReqStatusTab] = useState('All');
   const [currentReqStatusTabVal, setcurrentReqStatusTabVal] = useState(0);
+  const [modalData, setModalData] = useState({});
+
   const handleChangeCurrReqTypeTab = (event, newValue) => {
     const tab = event?.target?.innerText;
     setcurrentReqTypeTab(tab);
@@ -134,6 +136,18 @@ const Dashboard = () => {
       clearTimeout(timeoutId);
     };
   }, [searchCheckInOutRequest]);
+  const handleClickActionView = (props) => {
+    const {
+      item,
+      row,
+      row: { status, employeeName, count, leaveType },
+    } = props;
+    console.log({ item, row, status, count, leaveType, employeeName });
+    setModalData({ item, status, count, leaveType, employeeName });
+    setOpen(true);
+    // setStatusType(item);
+    // setActionType(status)
+  };
 
   return (
     <>
@@ -209,6 +223,7 @@ const Dashboard = () => {
                   value={currentReqTypeTabVal}
                   onChange={handleChangeCurrReqTypeTab}
                   aria-label="basic tabs example"
+                  variant="scrollable"
                 >
                   {leaveRequestsTab?.map(({ label, prop }, index) => (
                     <Tab key={index} label={`${label}`} {...prop} />
@@ -238,6 +253,7 @@ const Dashboard = () => {
                           marginTop={5}
                         >
                           <Tabs
+                            variant="scrollable"
                             value={currentReqStatusTabVal}
                             onChange={(ev, newVal) =>
                               handleChangeCurrReqStatusTab(
@@ -373,10 +389,17 @@ const Dashboard = () => {
                           {isLoading ? (
                             <Typography>Loading ...</Typography>
                           ) : (
-                            <AppTable
-                              column={leaveBalanceColumn}
-                              data={leaveBalanceDataState}
-                            />
+                            <Box
+                              sx={{
+                                maxWidth: '100%',
+                                overflowX: 'auto',
+                              }}
+                            >
+                              <AppTable
+                                column={leaveBalanceColumn}
+                                data={leaveBalanceDataState}
+                              />
+                            </Box>
                           )}
                         </>
                       )}
@@ -400,6 +423,7 @@ const Dashboard = () => {
                       ? leaveRequestDataState
                       : checkInOutRequestDataState,
                   currentReqTypeTab,
+                  handleClickActionView,
                 })}
             </Box>
           </div>
@@ -431,7 +455,7 @@ const Dashboard = () => {
           }}
         >
           <Box>
-            <RequestHeading />
+            <RequestHeading title={'Leave request view'} />
             <LeaveRequest
               onClose={handleClose}
               modalType={modalType}
@@ -439,6 +463,8 @@ const Dashboard = () => {
               employeeName={employeeName}
               leaveType={leaveType}
               fromTo={fromTo}
+              isViewingClient
+              modalData={modalData}
             />
           </Box>
         </Box>

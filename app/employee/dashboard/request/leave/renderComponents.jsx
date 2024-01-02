@@ -1,6 +1,7 @@
 import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
 import AppTable from '@/src/components/dashboard/appTable';
 import { filterTableRowsWRTTab } from '@/src/utils/table';
+import { Box } from '@mui/material';
 
 export const renderNestedTable = ({
   currentReqStatusTabVal,
@@ -9,23 +10,30 @@ export const renderNestedTable = ({
   data,
   handleOpen,
   handleOpenConditionalModal,
-  handleClickActionView
+  handleClickActionView,
 }) => {
   return (
     <CustomTabPanel
       value={currentReqStatusTabVal}
       index={currentReqStatusTabVal}
     >
-      <AppTable
-        currentTab={currentReqStatusTab}
-        column={column}
-        data={filterTableRowsWRTTab(data, {
-          status: currentReqStatusTab === 'All' ? '' : currentReqStatusTab,
-        })}
-        handleOpen={handleOpen}
-        handleOpenConditionalModal={handleOpenConditionalModal}
-        handleClickActionView={handleClickActionView}
-      />
+      <Box
+        sx={{
+          maxWidth: '100%',
+          overflowX: 'auto',
+        }}
+      >
+        <AppTable
+          currentTab={currentReqStatusTab}
+          column={column}
+          data={filterTableRowsWRTTab(data, {
+            status: currentReqStatusTab === 'All' ? '' : currentReqStatusTab,
+          })}
+          handleOpen={handleOpen}
+          handleOpenConditionalModal={handleOpenConditionalModal}
+          handleClickActionView={handleClickActionView}
+        />
+      </Box>
     </CustomTabPanel>
   );
 };

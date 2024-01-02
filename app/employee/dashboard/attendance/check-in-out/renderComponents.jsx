@@ -10,6 +10,7 @@ export const renderTrackingStatus = ({
   label,
   background,
   shortForm,
+  handleClickActionView,
 }) => {
   return (
     <Box display={'flex'} alignItems={'center'} key={statusIndex}>
@@ -40,19 +41,26 @@ export const renderNestedTable = ({
   currentReqStatusTab,
   column,
   data,
+  handleClickActionView,
 }) => {
   return (
     <CustomTabPanel
       value={currentReqStatusTabVal}
       index={currentReqStatusTabVal}
     >
-      <AppTable
-        currentTab={currentReqStatusTab}
-        column={column}
-        data={filterTableRowsWRTTab(data, {
-          status: currentReqStatusTab === 'All' ? '' : currentReqStatusTab,
-        })}
-      />
+      <Box sx={{
+        maxWidth:'100%',
+        overflowX:'auto'
+      }}>
+        <AppTable
+          currentTab={currentReqStatusTab}
+          column={column}
+          data={filterTableRowsWRTTab(data, {
+            status: currentReqStatusTab === 'All' ? '' : currentReqStatusTab,
+          })}
+          handleClickActionView={handleClickActionView}
+        />
+      </Box>
     </CustomTabPanel>
   );
 };

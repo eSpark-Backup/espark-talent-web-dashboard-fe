@@ -27,6 +27,7 @@ const Input = ({
       alignItems={'center'}
       borderRadius={1}
       width={width || 400}
+      maxWidth={'100%'}
     >
       <Box
         display={'flex'}

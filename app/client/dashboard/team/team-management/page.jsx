@@ -144,6 +144,7 @@ const TeamManagement = () => {
           <Box sx={{ width: '100%' }}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
               <Tabs
+                variant="scrollable"
                 value={value}
                 onChange={handleChange}
                 aria-label="basic tabs example"
@@ -169,16 +170,23 @@ const TeamManagement = () => {
                 {isLoading ? (
                   <Box>Loading...</Box>
                 ) : (
-                  <AppTable
-                    currentTab={currentTab}
-                    column={teamManagementColumn}
-                    testData={empData}
-                    data={teamManagementData}
-                    handleClick={handleViewDetails}
-                    handleClickRenderMessageButton={
-                      handleClickRenderMessageButton
-                    }
-                  />
+                  <Box
+                    sx={{
+                      maxWidth: '100%',
+                      overflowX: 'auto',
+                    }}
+                  >
+                    <AppTable
+                      currentTab={currentTab}
+                      column={teamManagementColumn}
+                      testData={empData}
+                      data={teamManagementData}
+                      handleClick={handleViewDetails}
+                      handleClickRenderMessageButton={
+                        handleClickRenderMessageButton
+                      }
+                    />
+                  </Box>
                 )}
               </CustomTabPanel>
             ))}
@@ -230,14 +238,21 @@ const TeamManagement = () => {
             <Typography mb={'30px'} textAlign={'center'}>
               All team members are assigned to Arman Khan
             </Typography>
-            <AppTable
-              currentTab={currentTab}
-              column={teamManagementColumn}
-              handleClick={handleViewDetails}
-              renderMessage="You haven't added any members yet"
-              renderMessageButton="Add members"
-              handleClickRenderMessageButton={handleClickRenderMessageButton}
-            />
+            <Box
+              sx={{
+                maxWidth: '100%',
+                overflowX: 'auto',
+              }}
+            >
+              <AppTable
+                currentTab={currentTab}
+                column={teamManagementColumn}
+                handleClick={handleViewDetails}
+                renderMessage="You haven't added any members yet"
+                renderMessageButton="Add members"
+                handleClickRenderMessageButton={handleClickRenderMessageButton}
+              />
+            </Box>
           </Box>
         </Box>
       )}

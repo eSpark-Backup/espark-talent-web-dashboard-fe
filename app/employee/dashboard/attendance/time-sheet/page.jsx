@@ -205,10 +205,17 @@ const Dashboard = () => {
               <Box>Loading...</Box>
             ) : (
               <>
-                <AppTable
-                  column={timeSheetTableColumn}
-                  data={timeSheetTableData}
-                />
+                <Box
+                  sx={{
+                    maxWidth: '100%',
+                    overflowX: 'auto',
+                  }}
+                >
+                  <AppTable
+                    column={timeSheetTableColumn}
+                    data={timeSheetTableData}
+                  />
+                </Box>
               </>
             )}
           </Box>

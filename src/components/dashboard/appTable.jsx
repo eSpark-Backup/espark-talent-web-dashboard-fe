@@ -129,7 +129,8 @@ const AppTable = ({
   renderMessageButton,
   handleClickRenderMessageButton,
   handleOpen,
-  handleClickActionView
+  handleClickActionView,
+  noPagination
 }) => {
   const handleImage = (employeeId, employeeName, leaveType, fromTo, item) => {
     handleOpen(item, employeeId, employeeName, leaveType, fromTo);
@@ -343,14 +344,17 @@ const AppTable = ({
                               {row[toCamelCase(col)]?.map((item, rowIndex) => (
                                 <Image
                                   onClick={() =>{
-                                    // handleClickActionView({row,item})
-                                    handleImage(
-                                      row.employeeId,
-                                      row.employeeName,
-                                      row.leaveType,
-                                      row.fromTo,
-                                      item
-                                    )
+                                    if(item === 'View'){
+                                      handleClickActionView({row,item})
+                                    }
+                                    return
+                                    // handleImage(
+                                    //   row.employeeId,
+                                    //   row.employeeName,
+                                    //   row.leaveType,
+                                    //   row.fromTo,
+                                    //   item
+                                    // )
                                   }}
                                   key={rowIndex}
                                   style={{
@@ -408,11 +412,11 @@ const AppTable = ({
           )}
         </tbody>
       </table>
-      <Box my={'20px'} display="flex" justifyContent={'center'}>
+      {!Boolean(noPagination) && <Box my={'20px'} display="flex" justifyContent={'center'}>
         <Stack spacing={2}>
           <Pagination count={10} variant="outlined" shape="rounded" />
         </Stack>
-      </Box>
+      </Box>}
     </>
   );
 };
