@@ -19,7 +19,7 @@ const SettingTitle = ({ Setting_Data }) => {
         <Typography variant="h3" component={'h2'}>
           {title && title}
         </Typography>
-        <Typography variant="p" component={'p'}>
+        <Typography variant="body1" sx={{ color: '#595959' }} component={'p'}>
           {description && description}
         </Typography>
       </Box>

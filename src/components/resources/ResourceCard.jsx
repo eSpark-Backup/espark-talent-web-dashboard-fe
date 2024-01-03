@@ -10,12 +10,11 @@ const ResourceCard = ({ data }) => {
         sx={{
           display: 'flex',
           flexDirection: { xs: 'column', sm: 'column', md: 'row' },
-          gap: '80px',
+          gap: { xs: '30px', sm: '45px', md: '80px' },
           width: { xs: '100%', md: '100%' },
           alignItems: 'center',
           '@media (min-width: 900px) and (max-width: 1490px)': {
-            width: '90%',
-            gap: '60px',
+            gap: '55px',
           },
         }}
       >
@@ -25,17 +24,20 @@ const ResourceCard = ({ data }) => {
               <Box
                 sx={{
                   height: { xs: '375px', md: '300px' },
-                  borderRadius: '10px',
+                  borderRadius: '20px',
                   background: '#FFF',
                   display: 'flex',
                   justifyContent: 'center',
-                  padding: '18px',
+                  padding: { xs: '25px', sm: '70px', md: '18px' },
                   border: '1px solid #E4E4E4',
                   '@media (min-width: 900px) and (max-width: 924px)': {
                     height: '320px',
                   },
                   '@media (min-width: 1150px) and (max-width: 1220px)': {
                     height: '320px',
+                  },
+                  '&:hover': {
+                    boxShadow: '0px 0px 2px 2px #E4E4E4',
                   },
                 }}
               >
@@ -44,9 +46,10 @@ const ResourceCard = ({ data }) => {
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
-                    width: '440px',
+                    justifyContent: 'center',
+                    textAlign: 'center',
                     gap: '30px',
-                    paddingTop: '30px',
+                    padding: { lg: '30px' },
                   }}
                 >
                   <Box>
@@ -60,7 +63,9 @@ const ResourceCard = ({ data }) => {
                   <Typography variant="h3" sx={{ textAlign: 'center' }}>
                     {item?.title}
                   </Typography>
-                  <Typography sx={{ fontSize: '16px' }}>
+                  <Typography
+                    sx={{ fontSize: '16px', fontWeight: 400, color: '#595959' }}
+                  >
                     {item?.description}
                   </Typography>
                 </Box>

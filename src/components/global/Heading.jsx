@@ -21,6 +21,7 @@ const Heading = ({ title, description, containerStyles }) => {
         sx={{
           fontSize: { xs: '16px', md: '14px' },
           fontWeight: 400,
+          color: '#595959',
         }}
       >
         {description}

@@ -29,7 +29,9 @@ const SidebarActiveUser = ({ userName }) => {
           }}
         >
           <SidebarUserAvatar userName={userName} />
-          <Typography sx={{ mx: 1.3 }}>{userName}</Typography>
+          <Typography variant="body1" sx={{ mx: 1.3, color: '#595959' }}>
+            {userName}
+          </Typography>
         </Box>
         <SidebarProfileMenu />
       </Box>
