@@ -290,7 +290,7 @@ const AppTable = ({
                               options={[
                                 { label: 'Pending' },
                                 { label: 'Processing' },
-                                { label: 'Paid', disabled: true },
+                                { label: 'Paid' },
                               ]}
                             />
                           </Fragment>

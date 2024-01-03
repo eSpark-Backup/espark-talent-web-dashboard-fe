@@ -44,24 +44,36 @@ const AppCustomDropdown = ({
         <Box
           onClick={() => setIsOpen((ps) => !ps)}
           width={'120px'}
-          p={'5px 10px'}
+          p={'5px 15px'}
           sx={{
             border: 'solid 1px #068987',
-            backgroundColor: '#E6F5F4',
+            backgroundColor: '#fff',
             borderRadius: '17px',
+            color: 'teal',
             cursor: 'pointer',
           }}
           display="flex"
           justifyContent={'space-between'}
         >
           {currentState}
-          <Image
-            style={{ marginLeft: '10px' }}
-            src={'/icons/DownGreen.svg'}
-            width={15}
-            height={15}
-            alt="Down"
-          />
+
+          {isOpen ? (
+            <Image
+              style={{ marginLeft: '10px' }}
+              src={'/icons/DownGreen.svg'}
+              width={10}
+              height={10}
+              alt="Down"
+            />
+          ) : (
+            <Image
+              style={{ marginLeft: '10px' }}
+              src={'/images/hiring/icon-park_down.svg'}
+              width={17}
+              height={17}
+              alt="Down"
+            />
+          )}
         </Box>
         {isOpen && (
           <Box
