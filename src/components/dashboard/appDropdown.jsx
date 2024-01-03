@@ -197,7 +197,7 @@ const AppDropdown = ({
                             sx={{
                               border: 'solid 1px rgba(0, 0, 0, 0.23)',
                               position: 'absolute',
-                              right: { xs: 0, md: '-250px' },
+                              right: { xs: 0, md: '-100%' },
                               width: '100%',
                               background: '#fff',
                               top: '-1px',
