@@ -193,7 +193,7 @@ const Dashboard = () => {
               }}
             >
               <Box>
-                <RequestHeading title={'Punch request view'} />
+                <RequestHeading title={'Create punch request '} />
                 <PunchRequest
                   onClose={handleClose}
                   isViewingClient

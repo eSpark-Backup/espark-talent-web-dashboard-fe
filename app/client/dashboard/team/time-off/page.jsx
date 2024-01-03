@@ -251,6 +251,7 @@ const Dashboard = () => {
                           justifyContent={'space-between'}
                           alignItems={'center'}
                           marginTop={5}
+                          flexWrap="wrap"
                         >
                           <Tabs
                             variant="scrollable"
@@ -323,26 +324,37 @@ const Dashboard = () => {
                               }
                             )}
                           </Tabs>
-                          <Box display={'flex'} alignItems={'center'}>
-                            <Input
-                              setIsLoading={
-                                currentReqTypeTab === 'Leave Requests'
-                                  ? setIsLoading
-                                  : setIsLoading
-                              }
-                              handleChange={
-                                currentReqTypeTab === 'Leave Requests'
-                                  ? setSearchLeaveRequest
-                                  : setSearchCheckInOutRequest
-                              }
-                              value={
-                                currentReqTypeTab === 'Leave Requests'
-                                  ? searchLeaveRequest
-                                  : searchCheckInOutRequest
-                              }
-                              prefixIcon="SearchIcon.svg"
-                              width={400}
-                            />
+                          <Box
+                            sx={{ my: { xs: '10px', lg: 0 } }}
+                            maxWidth="100%"
+                            display={'flex'}
+                            flexWrap="wrap"
+                            alignItems={'center'}
+                          >
+                            <Box
+                              maxWidth="100%"
+                              sx={{ mb: { xs: '10px', lg: 0 } }}
+                            >
+                              <Input
+                                setIsLoading={
+                                  currentReqTypeTab === 'Leave Requests'
+                                    ? setIsLoading
+                                    : setIsLoading
+                                }
+                                handleChange={
+                                  currentReqTypeTab === 'Leave Requests'
+                                    ? setSearchLeaveRequest
+                                    : setSearchCheckInOutRequest
+                                }
+                                value={
+                                  currentReqTypeTab === 'Leave Requests'
+                                    ? searchLeaveRequest
+                                    : searchCheckInOutRequest
+                                }
+                                prefixIcon="SearchIcon.svg"
+                                // width={400}
+                              />
+                            </Box>
                             <Button
                               sx={{ marginX: '10px', minWidth: '120px' }}
                               variant="outlined"
