@@ -47,7 +47,6 @@ const ContractSigned = () => {
 
     setValue(newValue);
   };
-
   useEffect(() => {
     const data = [...contractSignedData];
     const timeoutId = setTimeout(() => {
