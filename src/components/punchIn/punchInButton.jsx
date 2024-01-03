@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Button } from '@mui/material';
 
-const PunchRequestButton = ({ onClose, closeBtn, cancelBtn, saveBtn }) => {
+const PunchRequestButton = ({ onClose, closeBtn, createPunch }) => {
   return (
     <>
       <Box
@@ -12,7 +12,7 @@ const PunchRequestButton = ({ onClose, closeBtn, cancelBtn, saveBtn }) => {
           marginTop: '80px',
         }}
       >
-        {cancelBtn && (
+        {createPunch && (
           <Button
             sx={{
               border: '1px solid #029894',
@@ -22,18 +22,21 @@ const PunchRequestButton = ({ onClose, closeBtn, cancelBtn, saveBtn }) => {
             }}
             onClick={onClose}
           >
-            {cancelBtn}
+            Cancel
+            {/* {cancelBtn} */}
           </Button>
         )}
-        {saveBtn && (
+        {createPunch && (
           <Button
             variant="contained"
             sx={{ width: { xs: '80px', md: '120px' }, borderRadius: '5px' }}
+            onClick={onClose}
           >
-            {saveBtn}
+            Save
+            {/* {saveBtn} */}
           </Button>
         )}
-        {closeBtn && (
+        {!createPunch && (
           <Button
             sx={{
               border: '1px solid #029894',

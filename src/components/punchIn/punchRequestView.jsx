@@ -13,7 +13,7 @@ import Image from 'next/image';
 import ReasonDescription from './reasonDescription';
 import PunchRequestButton from './punchInButton';
 
-const PunchRequestView = ({ onClose, punchTime, punchType, modalData }) => {
+const PunchRequestView = ({ onClose, modalData, createPunch }) => {
   return (
     <>
       <Box
@@ -32,7 +32,7 @@ const PunchRequestView = ({ onClose, punchTime, punchType, modalData }) => {
           }}
         >
           <Typography sx={{ width: '140px' }}>{PUNCH_IN?.date}</Typography>
-          <AttendanceDatePicker display={true} />
+          <AttendanceDatePicker createPunch={createPunch} />
         </Box>
         <Box
           sx={{
@@ -50,7 +50,7 @@ const PunchRequestView = ({ onClose, punchTime, punchType, modalData }) => {
           >
             <TextField
               sx={{ width: '82%' }}
-              disabled={true}
+              disabled={!createPunch && true}
               value={modalData?.punchTime}
             />
             {/* {punchTime}
@@ -75,7 +75,7 @@ const PunchRequestView = ({ onClose, punchTime, punchType, modalData }) => {
           >
             <Select
               required={true}
-              disabled={true}
+              disabled={!createPunch && true}
               value={modalData?.punchType}
               sx={{
                 height: '50px',
@@ -104,8 +104,12 @@ const PunchRequestView = ({ onClose, punchTime, punchType, modalData }) => {
             </Select>
           </Box>
         </Box>
-        <ReasonDescription disabled={true} />
-        <PunchRequestButton onClose={onClose} closeBtn={PUNCH_IN?.close} />
+        <ReasonDescription disabled={!createPunch && true} />
+        <PunchRequestButton
+          onClose={onClose}
+          closeBtn={PUNCH_IN?.close}
+          createPunch={createPunch}
+        />
       </Box>
     </>
   );

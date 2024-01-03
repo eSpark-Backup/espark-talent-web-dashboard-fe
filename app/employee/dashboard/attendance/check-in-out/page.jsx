@@ -14,7 +14,6 @@ import {
 } from '@/src/constants/data/tables/checkInOutRequestsData';
 import { Clock_Title } from '@/src/constants/employeeDashboard';
 import RequestHeading from '@/src/components/requestview/modalHeading';
-import PunchRequest from '@/src/components/requestview/punchRequestView';
 import PunchRequestView from '@/src/components/punchIn/punchRequestView';
 
 const Dashboard = () => {
@@ -27,7 +26,6 @@ const Dashboard = () => {
   const [modalData, setModalData] = useState({});
   const [openModal, setOpenModal] = useState(false);
   const [openPunch, setOpenPunch] = useState(false);
-  const [open, setOpen] = useState(false);
   const handleClosePunch = () => setOpenPunch(false);
   const handleChangeCurrReqStatusTab = (event, newValue, data) => {
     let tab = event?.target?.innerText;
@@ -131,7 +129,6 @@ const Dashboard = () => {
     // setStatusType(item);
     // setActionType(status)
   };
-  const handleClose = () => setOpen(false);
   const handleOpenModal = () => {
     setOpenModal(true);
   };
@@ -196,11 +193,18 @@ const Dashboard = () => {
             >
               <Box>
                 <RequestHeading title={'Create punch request '} />
-                <PunchRequest
+                {/* <PunchRequest
                   onClose={handleClose}
                   isViewingClient
                   modalData={modalData}
                   createPunchRequest
+                /> */}
+                <PunchRequestView
+                  onClose={handleCloseModal}
+                  createPunch
+                  // punchTime={punchTime}
+                  // punchType={punchType}
+                  // modalData={modalData}
                 />
               </Box>
             </Box>
@@ -897,7 +901,7 @@ const Dashboard = () => {
       </Grid>
       <Modal
         open={openPunch}
-        onClose={handleClose}
+        onClose={handleClosePunch}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
         sx={{

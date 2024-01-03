@@ -45,8 +45,6 @@ const Dashboard = () => {
   const [employeeId, setEmployeeId] = useState();
   const [leaveType, setLeaveType] = useState();
   const [fromTo, setFromTo] = useState();
-  const [punchTime, setPunchTime] = useState();
-  const [punchType, setPunchType] = useState();
 
   const [employeeName, setEmployeeName] = useState();
 
@@ -147,7 +145,7 @@ const Dashboard = () => {
     const {
       item,
       row,
-      row: { status, employeeName, count, leaveType, date },
+      row: { status, employeeName, count, leaveType },
     } = props;
     console.log({ item, row, status, count, leaveType, employeeName });
     setModalData({ item, ...row });
@@ -156,19 +154,7 @@ const Dashboard = () => {
     } else if (currentReqTypeTab === 'Clockin/Out Requests') {
       setOpenPunch(true);
     } else return;
-    // setStatusType(item);
-    // setActionType(status)
   };
-  const handleCreatePunchOpen = () => {
-    setCreatePunch(true);
-  };
-
-  const handlePunchModal = (punchTime, punchType) => {
-    setOpen(true);
-    setPunchTime(punchTime);
-    setPunchType(punchType);
-  };
-
   return (
     <>
       <Grid container>
@@ -611,8 +597,6 @@ const Dashboard = () => {
             <PunchHeading heading={PUNCH_IN?.punchRequestView} />
             <PunchRequestView
               onClose={handleClosePunch}
-              punchTime={punchTime}
-              punchType={punchType}
               modalData={modalData}
             />
           </Box>

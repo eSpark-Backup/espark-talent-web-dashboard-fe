@@ -21,9 +21,6 @@ const Dashboard = () => {
   const handleAttendanceModal = () => {
     setOpen(true);
   };
-  const handlePunchModal = () => {
-    setOpen(true);
-  };
   const fetchDataFake = async () => {
     return true;
   };
