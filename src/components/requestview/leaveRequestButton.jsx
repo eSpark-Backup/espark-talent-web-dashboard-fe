@@ -37,12 +37,14 @@ const LeaveRequestButtons = ({
                   width: '120px',
                   borderRadius: '5px',
                 }}
+                onClick={onClose}
               >
                 {REQUESTVIEW_DATA?.decline}
               </Button>
               <Button
                 variant="contained"
                 sx={{ width: '120px', borderRadius: '5px' }}
+                onClick={onClose}
               >
                 {REQUESTVIEW_DATA?.approve}
               </Button>
@@ -54,6 +56,7 @@ const LeaveRequestButtons = ({
                 width: '120px',
                 borderRadius: '5px',
               }}
+              onClick={onClose}
             >
               Declined
             </Button>
@@ -65,6 +68,7 @@ const LeaveRequestButtons = ({
                   width: '120px',
                   borderRadius: '5px',
                 }}
+                onClick={onClose}
               >
                 Approved
               </Button>
@@ -83,6 +87,7 @@ const LeaveRequestButtons = ({
                   width: '120px',
                   borderRadius: '5px',
                 }}
+                onClick={onClose}
               >
                 {REQUESTVIEW_DATA?.cancelReq}
               </Button>
@@ -95,6 +100,7 @@ const LeaveRequestButtons = ({
                 borderRadius: '5px',
               }}
               variant="contained"
+              onClick={onClose}
             >
               Close
             </Button>
@@ -103,6 +109,7 @@ const LeaveRequestButtons = ({
               <Button
                 variant="contained"
                 sx={{ width: '120px', borderRadius: '5px' }}
+                onClick={onClose}
               >
                 {REQUESTVIEW_DATA?.close}
               </Button>
@@ -119,12 +126,14 @@ const LeaveRequestButtons = ({
               width: '120px',
               borderRadius: '5px',
             }}
+            onClick={onClose}
           >
             Cancel
           </Button>
           <Button
             variant="contained"
             sx={{ width: '120px', borderRadius: '5px' }}
+            onClick={onClose}
           >
             Save
           </Button>
@@ -137,7 +146,9 @@ const LeaveRequestButtons = ({
             gap: '10px',
           }}
         >
-          <Button variant="contained">Close</Button>
+          <Button variant="contained" onClick={onClose}>
+            Close
+          </Button>
         </Box>
       )}
       {Boolean(createLeaveRequest) && (
@@ -161,6 +172,7 @@ const LeaveRequestButtons = ({
           <Button
             variant="contained"
             sx={{ width: { xs: '80px', md: '120px' }, borderRadius: '5px' }}
+            onClick={onClose}
           >
             {REQUESTVIEW_DATA?.save}
           </Button>

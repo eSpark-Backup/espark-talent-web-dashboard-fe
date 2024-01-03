@@ -15,6 +15,7 @@ import {
 import { Clock_Title } from '@/src/constants/employeeDashboard';
 import RequestHeading from '@/src/components/requestview/modalHeading';
 import PunchRequest from '@/src/components/requestview/punchRequestView';
+import PunchRequestView from '@/src/components/punchIn/punchRequestView';
 
 const Dashboard = () => {
   const checkInOutRequestDataState = useMemo(
@@ -25,8 +26,9 @@ const Dashboard = () => {
   const [currentReqStatusTabVal, setcurrentReqStatusTabVal] = useState(0);
   const [modalData, setModalData] = useState({});
   const [openModal, setOpenModal] = useState(false);
-
+  const [openPunch, setOpenPunch] = useState(false);
   const [open, setOpen] = useState(false);
+  const handleClosePunch = () => setOpenPunch(false);
   const handleChangeCurrReqStatusTab = (event, newValue, data) => {
     let tab = event?.target?.innerText;
     if (tab.includes('\n\n')) {
@@ -125,7 +127,7 @@ const Dashboard = () => {
     } = props;
     console.log({ item, row, status, count, leaveType, employeeName });
     setModalData({ item, status, count, leaveType, employeeName });
-    setOpen(true);
+    setOpenPunch(true);
     // setStatusType(item);
     // setActionType(status)
   };
@@ -894,7 +896,7 @@ const Dashboard = () => {
         </Box>
       </Grid>
       <Modal
-        open={open}
+        open={openPunch}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
@@ -919,11 +921,17 @@ const Dashboard = () => {
         >
           <Box>
             <RequestHeading title={'Punch request view'} />
-            <PunchRequest
+            {/* <PunchRequest
               onClose={handleClose}
               isViewingClient
               modalData={modalData}
               viewPunchRequest
+            /> */}
+            <PunchRequestView
+              onClose={handleClosePunch}
+              // punchTime={punchTime}
+              // punchType={punchType}
+              modalData={modalData}
             />
           </Box>
         </Box>
