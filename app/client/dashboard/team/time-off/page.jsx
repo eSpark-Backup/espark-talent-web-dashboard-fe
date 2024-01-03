@@ -165,13 +165,16 @@ const Dashboard = () => {
                       }}
                       href="/"
                     >
-                      public holidays by country.
+                      <span style={{ color: '#000', fontWeight: 400 }}>
+                        {' '}
+                        public holidays by country.
+                      </span>
                     </Link>
                   </Typography>
                 </Box>
               </Box>
               <Button
-                sx={{ marginX: '10px', minWidth: '120px' }}
+                sx={{ marginX: '10px', minWidth: '220px' }}
                 variant="outlined"
               >
                 Download Report
@@ -243,7 +246,7 @@ const Dashboard = () => {
                                             height: 30,
                                             background,
                                             borderRadius: '5px',
-                                            marginRight: '10px',
+                                            marginRight: '5px',
                                             color,
                                             fontSize: '16px',
                                             fontWeight: 600,
@@ -254,6 +257,7 @@ const Dashboard = () => {
                                           display={'flex'}
                                           justifyContent={'center'}
                                           alignItems={'center'}
+                                          gap={'23px'}
                                         >
                                           {
                                             filterTableRowsWRTTab(
@@ -307,8 +311,14 @@ const Dashboard = () => {
                               width={400}
                             />
                             <Button
-                              sx={{ marginX: '10px', minWidth: '120px' }}
-                              variant="outlined"
+                              sx={{
+                                marginX: '10px',
+                                minWidth: '120px',
+                                border: '1px solid #138A72',
+                                '&:hover:': {
+                                  background: '#fff',
+                                },
+                              }}
                               startIcon={
                                 <Image
                                   width={20}

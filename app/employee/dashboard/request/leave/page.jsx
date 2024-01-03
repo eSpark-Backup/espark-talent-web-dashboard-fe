@@ -215,7 +215,14 @@ const Dashboard = () => {
                     </Tabs>
                     <Box display={'flex'} alignItems={'center'}>
                       <Button
-                        sx={{ marginX: '10px', minWidth: '120px' }}
+                        sx={{
+                          marginX: '10px',
+                          minWidth: '120px',
+                          border: '1px solid #138A72',
+                          '&:hover:': {
+                            background: '#fff',
+                          },
+                        }}
                         variant="outlined"
                         startIcon={
                           <Image

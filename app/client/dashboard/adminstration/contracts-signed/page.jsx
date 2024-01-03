@@ -86,6 +86,7 @@ const ContractSigned = () => {
                     fontWeight: '400',
                     letterSpacing: '0em',
                     textAlign: 'left',
+                    color: '#595959',
                   }}
                   variant="caption"
                 >

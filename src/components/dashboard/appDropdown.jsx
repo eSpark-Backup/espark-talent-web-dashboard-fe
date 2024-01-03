@@ -88,6 +88,7 @@ const AppDropdown = ({
           display={'flex'}
           justifyContent={'space-between'}
           sx={{
+            color: '#888888',
             border: 'solid 2px #ccc',
             borderTopLeftRadius: '5px',
             borderTopRightRadius: '5px',

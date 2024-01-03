@@ -12,7 +12,6 @@ const DiscoverTalentPlatform = () => {
         background: '#E6F5F4',
         justifyContent: 'space-around',
         alignItems: 'center',
-        p: '50px',
         borderRadius: '5px',
         flexDirection: { xs: 'column', sm: 'column', md: 'row' },
         width: '100%',
@@ -25,9 +24,10 @@ const DiscoverTalentPlatform = () => {
         sx={{
           maxWidth: '680px',
           padding: { xs: '10px', md: '0px' },
-          marginRight: { xs: '0px', md: '125px' },
-          '@media (min-width: 900px) and (max-width: 1770px)': {
-            marginLeft: '30px',
+          paddingLeft: '10px',
+          paddingRight: '15px',
+          '@media (min-width: 900px) and (max-width: 1270px)': {
+            // marginLeft: '30px',
           },
         }}
       >

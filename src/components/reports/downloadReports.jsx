@@ -28,16 +28,22 @@ const DownloadReports = ({
         flexDirection: 'column',
         padding: '35px',
         gap: '15px',
-        width: { xs: '100%', md: '400px' },
+        '@media (min-width:1200px) and (max-width:1300px)': {
+          width: '350px',
+        },
+        width: { xs: '100%', sm: '100%', md: '350px', lg: '400px' },
       }}
     >
       <Image src={image} width={50} height={50} alt={reportHeading} />
-      <Typography variant="h5">{reportHeading}</Typography>
-      <Typography>{downloadReports}</Typography>
+      <Typography sx={{ fontSize: '20px', fontWeight: 600 }}>
+        {reportHeading}
+      </Typography>
+      <Typography sx={{ color: '#595959' }}>{downloadReports}</Typography>
       <Button
         variant="primary"
         sx={{
-          width: { xs: '100px', md: '170px' },
+          width: { xs: '120px', md: '120px' },
+          height: '40px',
           padding: '8px',
         }}
         onClick={handleOpen}

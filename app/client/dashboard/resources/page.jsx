@@ -17,7 +17,6 @@ const Resource = () => {
               justifyContent: 'center',
               gap: '20px',
               width: '100%',
-              // marginLeft: { xs: '0px', md: '40px' },
             }}
           >
             <Heading

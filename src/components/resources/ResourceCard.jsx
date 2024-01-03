@@ -36,9 +36,9 @@ const ResourceCard = ({ data }) => {
                   '@media (min-width: 1150px) and (max-width: 1220px)': {
                     height: '320px',
                   },
-                  '&:hover': {
-                    boxShadow: '0px 0px 2px 2px #E4E4E4',
-                  },
+                  // '&:hover': {
+                  //   boxShadow: '0px 0px 2px 2px #E4E4E4',
+                  // },
                 }}
               >
                 <Box

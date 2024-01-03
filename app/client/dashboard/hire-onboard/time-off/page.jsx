@@ -165,7 +165,10 @@ const Dashboard = () => {
                       }}
                       href="/"
                     >
-                      public holidays by country.
+                      <span style={{ color: '#000', fontWeight: 500 }}>
+                        {' '}
+                        public holidays by country.
+                      </span>
                     </Link>
                   </Typography>
                 </Box>
@@ -307,8 +310,14 @@ const Dashboard = () => {
                               width={400}
                             />
                             <Button
-                              sx={{ marginX: '10px', minWidth: '120px' }}
-                              variant="outlined"
+                              sx={{
+                                marginX: '10px',
+                                minWidth: '120px',
+                                border: '1px solid #138A72',
+                                '&:hover:': {
+                                  background: '#fff',
+                                },
+                              }}
                               startIcon={
                                 <Image
                                   width={20}

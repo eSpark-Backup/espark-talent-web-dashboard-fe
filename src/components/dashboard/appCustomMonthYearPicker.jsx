@@ -100,6 +100,7 @@ const AppCustomMonthYearPicker = () => {
             mt="10px"
             justifyContent="center"
             alignItems="center"
+            gap="30px"
           >
             <Image
               onClick={() => handleYearChange(-1)}

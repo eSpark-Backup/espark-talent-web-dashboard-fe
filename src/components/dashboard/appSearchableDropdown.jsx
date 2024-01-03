@@ -112,13 +112,25 @@ const AppSearchableDropdown = ({
           }}
           p={'10px'}
         >
-          <Typography>{selectedItem || 'Selected Employee...'}</Typography>
-          <Image
-            src={'/icons/Dropdown.svg'}
-            width={15}
-            height={15}
-            alt="Dropdown"
-          />
+          <Typography sx={{ color: '#838383' }}>
+            {selectedItem || 'Selected Employee...'}
+          </Typography>
+
+          {isOpenedDropdown ? (
+            <Image
+              src={'/images/hiring/icon-down.svg'}
+              width={25}
+              height={25}
+              alt="Dropdown"
+            />
+          ) : (
+            <Image
+              src={'/icons/Dropdown.svg'}
+              width={15}
+              height={15}
+              alt="Dropdown"
+            />
+          )}
         </Box>
         {isOpenedDropdown && (
           <Box
@@ -179,6 +191,13 @@ const AppSearchableDropdown = ({
                         : ''
                     }`}
                     p={'10px'}
+                    sx={{
+                      '&::-webkit-scrollbar': {
+                        display: 'none',
+                      },
+                      scrollbarWidth: 'none',
+                      '-ms-overflow-style': 'none',
+                    }}
                   >
                     <Typography>{item}</Typography>
                   </Box>

@@ -337,7 +337,10 @@ const AppTable = ({
                               {row[toCamelCase(col)]?.map((item, rowIndex) => (
                                 <Image
                                   key={rowIndex}
-                                  style={{ margin: rowIndex === 1 && '0 5px' }}
+                                  style={{
+                                    margin: rowIndex === 1 && '0 5px',
+                                    cursor: 'pointer',
+                                  }}
                                   width={25}
                                   height={25}
                                   alt="Icon"
@@ -355,9 +358,9 @@ const AppTable = ({
                             <span
                               style={{
                                 borderRadius: '30px',
-                                padding: '10px 0',
+                                padding: '5px 0',
                                 display: 'block',
-                                width: '110px',
+                                width: '120px',
                                 background: '#E6F5F4',
                                 border: 'solid 1px #068987',
                                 color: '#068987',
@@ -392,7 +395,21 @@ const AppTable = ({
       </table>
       <Box my={'20px'} display="flex" justifyContent={'center'}>
         <Stack spacing={2}>
-          <Pagination count={10} variant="outlined" shape="rounded" />
+          <Pagination
+            count={10}
+            variant="outlined"
+            shape="rounded"
+            sx={{
+              background: 'white',
+              '& .MuiPaginationItem-outlined:hover': {
+                borderColor: 'teal',
+                background: 'white',
+              },
+              '& .MuiPaginationItem-outlined:focus': {
+                background: 'white',
+              },
+            }}
+          />
         </Stack>
       </Box>
     </>
