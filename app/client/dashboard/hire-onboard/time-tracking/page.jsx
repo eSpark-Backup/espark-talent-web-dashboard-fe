@@ -7,7 +7,7 @@ import {
   timeTrackingTableData,
   trackingStatusTypes,
 } from '@/src/constants/data/tables/timeTracking';
-import Link from 'next/link';
+import Link from '@mui/material/Link';
 import AppSearchableDropdown from '@/src/components/dashboard/appSearchableDropdown';
 import { renderTrackingStatus } from './renderComponents';
 import AppCustomMonthYearPicker from '@/src/components/dashboard/appCustomMonthYearPicker';
@@ -76,6 +76,7 @@ const Dashboard = () => {
                     fontWeight: '400',
                     letterSpacing: '0em',
                     textAlign: 'left',
+                    color: '#595959',
                   }}
                   variant="caption"
                 >
@@ -88,13 +89,16 @@ const Dashboard = () => {
                     fontWeight: '400',
                     letterSpacing: '0em',
                     textAlign: 'left',
+                    color: '#595959',
                   }}
                   variant="caption"
                 >
                   {'To see a list of countries, please visit the '}
                   <Link
-                    style={{
+                    sx={{
                       textDecoration: 'underline',
+                      fontWeight: 400,
+                      color: 'black !important',
                     }}
                     href="/"
                   >

@@ -9,7 +9,7 @@ const Resource = () => {
   return (
     <>
       <Grid container>
-        <Grid item xs={12} sm={12} md={10}>
+        <Grid item xs={12} sm={12} md={12}>
           <Box
             sx={{
               display: 'flex',
@@ -17,7 +17,6 @@ const Resource = () => {
               justifyContent: 'center',
               gap: '20px',
               width: '100%',
-              marginLeft: { xs: '0px', md: '40px' },
             }}
           >
             <Heading

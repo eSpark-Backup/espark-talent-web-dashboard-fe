@@ -151,7 +151,12 @@ const TeamManagement = () => {
               >
                 {[{ label: 'Active teams', prop: a11yProps(0) }]?.map(
                   ({ label, prop }, i) => (
-                    <Tab key={i} label={`${label}`} {...prop} />
+                    <Tab
+                      key={i}
+                      label={`${label}`}
+                      {...prop}
+                      disableRipple={true}
+                    />
                   )
                 )}
               </Tabs>

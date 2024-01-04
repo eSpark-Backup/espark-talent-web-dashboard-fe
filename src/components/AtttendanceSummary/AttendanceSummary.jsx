@@ -25,7 +25,9 @@ const AttendanceSummary = () => {
             background: '#FFF',
           }}
         >
-          <Typography variant="h5">Attendance Summary</Typography>
+          <Typography sx={{ fontSize: '25px', fontWeight: 600 }}>
+            Attendance Summary
+          </Typography>
         </Box>
         <Box
           sx={{

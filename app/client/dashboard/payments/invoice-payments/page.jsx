@@ -115,11 +115,27 @@ const Dashboard = () => {
                 variant="scrollable"
               >
                 {paymentStatusTabs?.map(({ label, prop }, i) => (
-                  <Tab key={i} label={`${label}`} {...prop} />
+                  <Tab
+                    key={i}
+                    label={`${label}`}
+                    disableRipple={true}
+                    {...prop}
+                    sx={{
+                      display: 'flex',
+                      gap: '15px',
+                    }}
+                  />
                 ))}
               </Tabs>
             </Box>
+
             <Box my={4}>
+              <Typography
+                sx={{ fontSize: '20px', fontWeight: 400, marginBottom: '20px' }}
+              >
+                Employee invoices
+              </Typography>
+
               <Input
                 setIsLoading={setIsLoading}
                 handleChange={setSearch}
@@ -162,7 +178,9 @@ const Dashboard = () => {
             justifyContent={'space-between'}
             alignItems={'center'}
           >
-            <Typography variant="h3">Other payments</Typography>
+            <Typography sx={{ fontSize: '20px', fontWeight: 400 }}>
+              Other payments
+            </Typography>
           </Box>
           <Box sx={{ width: '100%' }}>
             <Box my={4}>

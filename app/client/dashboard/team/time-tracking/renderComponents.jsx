@@ -24,7 +24,7 @@ export const renderTrackingStatus = ({
       >
         {shortForm}
       </Box>
-      <Typography variant="caption" marginX={'10px'}>
+      <Typography variant="caption" marginX={'5px'}>
         {label}
       </Typography>
     </Box>

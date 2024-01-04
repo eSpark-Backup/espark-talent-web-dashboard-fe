@@ -218,13 +218,16 @@ const Dashboard = () => {
                       }}
                       href="/"
                     >
-                      public holidays by country.
+                      <span style={{ color: '#000', fontWeight: 400 }}>
+                        {' '}
+                        public holidays by country.
+                      </span>
                     </Link>
                   </Typography>
                 </Box>
               </Box>
               <Button
-                sx={{ marginX: '10px', minWidth: '120px' }}
+                sx={{ marginX: '10px', minWidth: '220px' }}
                 variant="outlined"
               >
                 Download Report
@@ -244,7 +247,12 @@ const Dashboard = () => {
                   variant="scrollable"
                 >
                   {leaveRequestsTab?.map(({ label, prop }, index) => (
-                    <Tab key={index} label={`${label}`} {...prop} />
+                    <Tab
+                      key={index}
+                      label={`${label}`}
+                      {...prop}
+                      disableRipple={true}
+                    />
                   ))}
                 </Tabs>
               </Box>
@@ -291,6 +299,7 @@ const Dashboard = () => {
                                         <Box
                                           display={'flex'}
                                           alignItems={'center'}
+                                          gap={'23px'}
                                         >
                                           <Box
                                             sx={{

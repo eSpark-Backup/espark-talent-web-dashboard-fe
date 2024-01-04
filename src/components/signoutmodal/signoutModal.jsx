@@ -40,7 +40,10 @@ const SignoutModal = ({ openModal, setOpenModal, onClick }) => {
             <Typography variant="h5" sx={{ textAlign: 'center' }}>
               {SIGNOUT_MODAL_DATA?.signout}
             </Typography>
-            <Typography variant="body1" sx={{ textAlign: 'center' }}>
+            <Typography
+              variant="body1"
+              sx={{ textAlign: 'center', color: '#595959' }}
+            >
               {SIGNOUT_MODAL_DATA?.signoutAccount}
             </Typography>
             <Box
@@ -58,6 +61,7 @@ const SignoutModal = ({ openModal, setOpenModal, onClick }) => {
                   width: { xs: '90px', sm: '120px' },
                   height: '40px',
                   fontSize: '16px',
+                  fontWeight: 600,
                 }}
                 onClick={handleClose}
               >
@@ -65,7 +69,12 @@ const SignoutModal = ({ openModal, setOpenModal, onClick }) => {
               </Button>
               <Button
                 variant="primary"
-                sx={{ width: { xs: '100px', sm: '120px' }, height: '40px' }}
+                sx={{
+                  width: { xs: '100px', sm: '120px' },
+                  height: '40px',
+                  fontSize: '16px',
+                  fontWeight: 600,
+                }}
                 onClick={onClick}
               >
                 {SIGNOUT_MODAL_DATA?.signoutBtn}

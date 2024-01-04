@@ -41,6 +41,7 @@ const Dashboard = () => {
         </Grid>
         <Grid item xs={12}>
           <AttendanceSummary />
+          <br />
         </Grid>
         <Grid item xs={12} md={6} lg={6} xl={4}>
           <Box
@@ -61,7 +62,9 @@ const Dashboard = () => {
                 background: '#FFF',
               }}
             >
-              <Typography variant="h5">Mark clock in/ clock out</Typography>
+              <Typography sx={{ fontSize: '25px', fontWeight: 600 }}>
+                Mark clock in/ clock out
+              </Typography>
             </Box>
             <Box
               sx={{
@@ -349,7 +352,7 @@ const Dashboard = () => {
           <Box
             sx={{
               mx: { xs: 'auto', md: 0 },
-              width: { xs: 'auto', md: 'auto' },
+              // width: { xs: 'auto', md: '300px' },
               height: '430px',
               borderRadius: '10px',
               background: '#FFF',
@@ -366,7 +369,11 @@ const Dashboard = () => {
                 background: '#FFF',
               }}
             >
-              <Typography variant="h5">{Clock_Title}</Typography>
+              <Typography
+                sx={{ fontSize: '25px', fontWeight: 600, textAlign: 'left' }}
+              >
+                {Clock_Title}
+              </Typography>
             </Box>
             <Box
               sx={{
@@ -376,6 +383,7 @@ const Dashboard = () => {
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
+                // mx:"auto",
               }}
             >
               <Clock />

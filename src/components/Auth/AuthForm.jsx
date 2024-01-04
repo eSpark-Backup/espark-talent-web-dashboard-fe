@@ -61,9 +61,17 @@ const AuthForm = ({ uiData, fields }) => {
         >
           {fields?.map((field, index) => (
             <Box key={index}>
-              <Typography sx={{ mb: 1 }}>{field?.label}</Typography>
+              <Typography variant="body2" sx={{ mb: 1 }}>
+                {field?.label}
+              </Typography>
               <FormControl sx={{ mb: 2, width: '100%' }} variant="outlined">
                 <OutlinedInput
+                  sx={{
+                    height: '40px',
+                    color: '#666',
+                    fontSize: '14px',
+                    fontFamily: 400,
+                  }}
                   required
                   fullWidth
                   placeholder={field?.placeHolder}
@@ -79,6 +87,13 @@ const AuthForm = ({ uiData, fields }) => {
                     field.label == 'Password:' ? (
                       <InputAdornment position="end">
                         <IconButton
+                          sx={{
+                            color: '#595959',
+                            '&:hover': {
+                              backgroundColor: 'transparent',
+                              color: '#595959',
+                            },
+                          }}
                           aria-label="toggle password visibility"
                           onClick={handleClickShowPassword}
                           edge="end"
@@ -97,15 +112,55 @@ const AuthForm = ({ uiData, fields }) => {
             sx={{
               width: '100%',
               display: 'flex',
+              '@media (max-width: 400px)': {
+                flexDirection: { xs: 'column', sm: 'row' },
+              },
               alignItems: 'center',
               justifyContent: 'space-between',
             }}
           >
             <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
+              sx={{
+                fontSize: '14px',
+                fontFamily: 400,
+                '@media (max-width: 400px)': {
+                  order: { xs: 2, sm: 1 },
+                  width: '100%',
+                },
+                width: 'auto',
+                color: '#666',
+                '& .MuiCheckbox-root': {
+                  color: '#E4E4E4',
+                  '&:hover': {
+                    backgroundColor: 'transparent',
+                  },
+                  '&.Mui-checked': {
+                    color: 'primary !important',
+                  },
+                },
+              }}
+              control={
+                <Checkbox
+                  value="remember"
+                  color="primary"
+                  sx={{ border: '1px' }}
+                />
+              }
               label={checkText}
             />
-            <Link href={forgotLink} variant="body2">
+            <Link
+              href={forgotLink}
+              variant="body1"
+              sx={{
+                textDecoration: 'none',
+                color: '#666',
+                width: 'auto',
+                '@media (max-width: 400px)': {
+                  order: { xs: 1, sm: 2 },
+                  width: '100%',
+                },
+              }}
+            >
               {forgotText}
             </Link>
           </Box>

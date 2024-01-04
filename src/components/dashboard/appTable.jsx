@@ -205,7 +205,7 @@ const AppTable = ({
                             <span
                               style={{
                                 borderRadius: '30px',
-                                padding: '10px 0',
+                                padding: '4px 0',
                                 display: 'block',
                                 width: '110px',
                                 background: '#F6E9D0',
@@ -229,7 +229,7 @@ const AppTable = ({
                             <span
                               style={{
                                 borderRadius: '30px',
-                                padding: '10px 0',
+                                padding: '4px 0',
                                 display: 'block',
                                 width: '110px',
                                 background: '#E6F5F4',
@@ -249,7 +249,7 @@ const AppTable = ({
                           <span
                             style={{
                               borderRadius: '30px',
-                              padding: '10px 0',
+                              padding: '4px 0',
                               display: 'block',
                               width: '110px',
                               background: '#FFD6D6',
@@ -293,7 +293,7 @@ const AppTable = ({
                               options={[
                                 { label: 'Pending' },
                                 { label: 'Processing' },
-                                { label: 'Paid', disabled: true },
+                                { label: 'Paid' },
                               ]}
                             />
                           </Fragment>
@@ -355,6 +355,7 @@ const AppTable = ({
                                   key={rowIndex}
                                   style={{
                                     margin: rowIndex === 1 && '0 5px',
+                                    cursor: 'pointer',
                                   }}
                                   width={25}
                                   height={25}
@@ -373,9 +374,9 @@ const AppTable = ({
                             <span
                               style={{
                                 borderRadius: '30px',
-                                padding: '10px 0',
+                                padding: '5px 0',
                                 display: 'block',
-                                width: '110px',
+                                width: '120px',
                                 background: '#E6F5F4',
                                 border: 'solid 1px #068987',
                                 color: '#068987',

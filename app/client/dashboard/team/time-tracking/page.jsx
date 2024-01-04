@@ -76,6 +76,7 @@ const Dashboard = () => {
                     fontWeight: '400',
                     letterSpacing: '0em',
                     textAlign: 'left',
+                    color: '#595959',
                   }}
                   variant="caption"
                 >
@@ -88,6 +89,7 @@ const Dashboard = () => {
                     fontWeight: '400',
                     letterSpacing: '0em',
                     textAlign: 'left',
+                    color: '#595959',
                   }}
                   variant="caption"
                 >
@@ -98,7 +100,9 @@ const Dashboard = () => {
                     }}
                     href="/"
                   >
-                    eSpark Talent Help Center.
+                    <span style={{ color: '#000', fontWeight: 400 }}>
+                      eSpark Talent Help Center.
+                    </span>
                   </Link>
                 </Typography>
               </Box>
