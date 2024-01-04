@@ -28,7 +28,7 @@ const ActionBarComponent = ({ onClose }) => {
       >
         {REQUESTVIEW_DATA?.close}
       </Button>
-      <Button variant="contained" sx={{ width: '100px' }}>
+      <Button variant="contained" sx={{ width: '100px' }} onClick={onClose}>
         {REQUESTVIEW_DATA?.set}
       </Button>
     </Box>

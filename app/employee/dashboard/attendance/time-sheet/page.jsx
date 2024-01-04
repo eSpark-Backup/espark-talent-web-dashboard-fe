@@ -11,14 +11,21 @@ import {
 } from '@/src/constants/data/tables/timeSheet';
 import Image from 'next/image';
 import { EMPLOYEE_TIMESHEET } from '@/src/constants/timeSheet';
-import AttendanceHeading from '@/src/components/AtttendanceSummary/attendanceHeading';
-import AttendanceView from '@/src/components/AtttendanceSummary/attendanceView';
+// import AttendanceHeading from '@/src/components/AtttendanceSummary/attendanceHeading';
+// import AttendanceView from '@/src/components/AtttendanceSummary/attendanceView';
+// import AppDropdown from '@/src/components/dashboard/appDropdown';
+import AttendanceViewModal from './AttendanceViewModal';
 
 const Dashboard = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [open, setOpen] = useState(false);
   const handleClose = () => setOpen(false);
-  const handleAttendanceModal = () => {
+  const [modalData, setModalData] = useState({});
+  // const [isLoadingTitles, setIsLoadingTitles] = useState(false);
+  // const [selectedJobTitle, setSelectedJobTitle] = useState('');
+  const handleAttendanceModal = (props) => {
+    const { item, row } = props;
+    setModalData({ item, ...row });
     setOpen(true);
   };
   const fetchDataFake = async () => {
@@ -147,8 +154,14 @@ const Dashboard = () => {
               display={'flex'}
               justifyContent={'space-between'}
               alignItems={'center'}
+              flexWrap={'wrap'}
             >
-              <Box marginY={'30px'} display={'flex'} alignItems={'center'}>
+              <Box
+                mt={'30px'}
+                display={'flex'}
+                flexWrap={'wrap'}
+                alignItems={'center'}
+              >
                 {sheetStatusTypes?.map(
                   ({ label, shortForm, background }, statusIndex) =>
                     renderTrackingStatus({
@@ -160,7 +173,7 @@ const Dashboard = () => {
                 )}
               </Box>
 
-              <Box display={'flex'} alignItems={'center'}>
+              <Box mb={'20px'} display={'flex'} alignItems={'center'}>
                 <Button
                   sx={{ marginX: '10px', minWidth: '120px' }}
                   variant="outlined"
@@ -239,7 +252,7 @@ const Dashboard = () => {
           height: { xs: '950px', md: '890px' },
         }}
       >
-        <Box
+        {/* <Box
           sx={{
             mx: 'auto',
             bgcolor: '#fff',
@@ -258,7 +271,8 @@ const Dashboard = () => {
             <AttendanceHeading />
             <AttendanceView onClose={handleClose} />
           </Box>
-        </Box>
+        </Box> */}
+        <AttendanceViewModal modalData={modalData} handleClose={handleClose} />
       </Modal>
     </>
   );

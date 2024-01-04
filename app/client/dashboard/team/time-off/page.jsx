@@ -24,11 +24,14 @@ import {
 import Image from 'next/image';
 import { renderNestedTable } from './renderComponents';
 import Link from 'next/link';
-import RequestHeading from '@/src/components/requestview/modalHeading';
-import LeaveRequest from '@/src/components/requestview/leaveRequestView';
-import PunchHeading from '@/src/components/punchIn/punchHeading';
-import { PUNCH_IN } from '@/src/constants/punchIn/createPunch';
-import PunchRequestView from '@/src/components/punchIn/punchRequestView';
+// import RequestHeading from '@/src/components/requestview/modalHeading';
+// import LeaveRequest from '@/src/components/requestview/leaveRequestView';
+// import PunchHeading from '@/src/components/punchIn/punchHeading';
+// import { PUNCH_IN } from '@/src/constants/punchIn/createPunch';
+// import PunchRequestView from '@/src/components/punchIn/punchRequestView';
+// import AppDropdown from '@/src/components/dashboard/appDropdown';
+import LeaveViewModal from './LeaveViewModal';
+import PunchViewModal from './PunchViewModal';
 
 const Dashboard = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -41,22 +44,31 @@ const Dashboard = () => {
 
   const [open, setOpen] = useState(false);
   const [openPunch, setOpenPunch] = useState(false);
-  const [modalType, setModalType] = useState('');
-  const [employeeId, setEmployeeId] = useState();
-  const [leaveType, setLeaveType] = useState();
-  const [fromTo, setFromTo] = useState();
+  // const [modalType, setModalType] = useState('');
+  // const [employeeId, setEmployeeId] = useState();
+  // const [leaveType, setLeaveType] = useState();
+  // const [fromTo, setFromTo] = useState();
 
-  const [employeeName, setEmployeeName] = useState();
+  // const [employeeName, setEmployeeName] = useState();
 
-  const handleOpen = (type, employeeId, employeeName, leaveType, fromTo) => {
-    setModalType(type);
-    setEmployeeId(employeeId);
-    setLeaveType(leaveType);
-    setFromTo(fromTo);
-    setEmployeeName(employeeName);
-    setOpen(true);
+  const handleOpen = () =>
+    // type,
+    // employeeId,
+    // employeeName,
+    // leaveType,
+    // fromTo
+    {
+      // setModalType(type);
+      // setEmployeeId(employeeId);
+      // setLeaveType(leaveType);
+      // setFromTo(fromTo);
+      // setEmployeeName(employeeName);
+      setOpen(true);
+    };
+  const handleClose = () => {
+    console.log({ modalData });
+    setOpen(false);
   };
-  const handleClose = () => setOpen(false);
   const handleClosePunch = () => setOpenPunch(false);
   const [leaveRequestDataState, setLeaveRequestDataState] = useState(
     filterTableRowsWRTTab(leaveRequestsData, { status: '' })
@@ -179,7 +191,7 @@ const Dashboard = () => {
                   <Typography
                     sx={{
                       fontSize: '14px',
-                      fontWeight: '400',
+                      fontWeight: 400,
                       lineHeight: '17px',
                       letterSpacing: '0em',
                       textAlign: 'left',
@@ -192,7 +204,7 @@ const Dashboard = () => {
                   <Typography
                     sx={{
                       fontSize: '14px',
-                      fontWeight: '400',
+                      fontWeight: 400,
                       lineHeight: '17px',
                       letterSpacing: '0em',
                       textAlign: 'left',
@@ -257,8 +269,6 @@ const Dashboard = () => {
                             display={'flex'}
                             justifyContent={'space-between'}
                             alignItems={'center'}
-                            // marginTop={5}
-                            // flexWrap="wrap"
                           >
                             <Tabs
                               variant="scrollable"
@@ -339,8 +349,6 @@ const Dashboard = () => {
                                 display: { xs: 'none', md: 'flex' },
                               }}
                               maxWidth="100%"
-                              // display={'flex'}
-                              // flexWrap="wrap"
                               alignItems={'center'}
                             >
                               <Box
@@ -364,7 +372,6 @@ const Dashboard = () => {
                                       : searchCheckInOutRequest
                                   }
                                   prefixIcon="SearchIcon.svg"
-                                  // width={400}
                                 />
                               </Box>
                               <Button
@@ -405,8 +412,6 @@ const Dashboard = () => {
                               display: { xs: 'flex', md: 'none' },
                             }}
                             maxWidth="100%"
-                            // display={'flex'}
-                            // flexWrap="wrap"
                             alignItems={'center'}
                           >
                             <Box
@@ -431,7 +436,6 @@ const Dashboard = () => {
                                     : searchCheckInOutRequest
                                 }
                                 prefixIcon="SearchIcon.svg"
-                                // width={400}
                               />
                               <Box
                                 sx={{
@@ -527,7 +531,6 @@ const Dashboard = () => {
           </div>
         </Box>
       </Grid>
-
       <Modal
         open={open}
         onClose={handleClose}
@@ -537,35 +540,9 @@ const Dashboard = () => {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          height: { xs: '950px', md: '890px' },
         }}
       >
-        <Box
-          sx={{
-            // mx: 'auto',
-            bgcolor: '#fff',
-            width: { xs: '50%', md: '50%' },
-            display: 'flex',
-            flexDirection: 'column',
-            borderRadius: '10px',
-            boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
-            // marginTop: '40px',
-          }}
-        >
-          <Box>
-            <RequestHeading title={'Leave request view'} />
-            <LeaveRequest
-              onClose={handleClose}
-              modalType={modalType}
-              employeeId={employeeId}
-              employeeName={employeeName}
-              leaveType={leaveType}
-              fromTo={fromTo}
-              isViewingClient
-              modalData={modalData}
-            />
-          </Box>
-        </Box>
+        <LeaveViewModal modalData={modalData} handleClose={handleClose} />
       </Modal>
       <Modal
         open={openPunch}
@@ -575,32 +552,10 @@ const Dashboard = () => {
         sx={{
           display: 'flex',
           alignItems: 'center',
-          height: { xs: '950px', md: '890px' },
+          justifyContent: 'center',
         }}
       >
-        <Box
-          sx={{
-            mx: 'auto',
-            bgcolor: '#fff',
-            width: { xs: '80%', md: '50%' },
-            display: 'flex',
-            flexDirection: 'column',
-            borderRadius: '10px',
-            boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
-          }}
-        >
-          <Box
-            sx={{
-              width: '100%',
-            }}
-          >
-            <PunchHeading heading={PUNCH_IN?.punchRequestView} />
-            <PunchRequestView
-              onClose={handleClosePunch}
-              modalData={modalData}
-            />
-          </Box>
-        </Box>
+        <PunchViewModal modalData={modalData} handleClose={handleClosePunch} />
       </Modal>
     </>
   );

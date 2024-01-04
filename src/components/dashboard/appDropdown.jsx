@@ -12,6 +12,7 @@ const AppDropdown = ({
   data,
   placeHolder,
   nested,
+  disabled,
 }) => {
   const [isOpenedDropdown, setIsOpenedDropdown] = useState(false);
   const [isOpenedDropdownNested, setIsOpenedDropdownNested] = useState(false);
@@ -74,6 +75,7 @@ const AppDropdown = ({
     }
   }, [isOpenedDropdown, pointedElement]);
   const toggleComponent = () => {
+    if (disabled) return;
     setIsOpenedDropdown((ps) => !ps);
   };
   const toggleComponentNested = () => {
@@ -84,7 +86,7 @@ const AppDropdown = ({
     <Grid
       sx={{
         position: 'relative',
-        mb: '10px',
+        // mb: '10px',
       }}
       item
       xs={12}
