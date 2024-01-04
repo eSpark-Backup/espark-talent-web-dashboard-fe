@@ -53,8 +53,12 @@ const Clock = () => {
           height: { xs: '240px', sm: '240px' },
           backgroundColor: '#F6F7F8',
           backgroundImage: `url(${Clock_Dial})`,
+          backgroundPosition: 'center',
           backgroundSize: 'cover',
-          borderRadius: '100%',
+          '@media (min-width: 280px) and (max-width: 320px)': {
+            backgroundImage: 'none',
+          },
+          borderRadius: { xs: '80%', md: '100%' },
         }}
       >
         <Box
@@ -68,15 +72,22 @@ const Clock = () => {
             gap: 0.8,
           }}
         >
-          <Typography variant="h6">{currentDate?.day}</Typography>
+          <Typography sx={{ fontSize: '16px', fontWeight: 400 }}>
+            {currentDate?.day}
+          </Typography>
           <Typography variant="h4">{currentDate?.hours}</Typography>
-          <Typography variant="h6">
+          <Typography sx={{ fontSize: '16px', fontWeight: 400 }}>
             {currentDate?.month}
-            <Typography variant="h6" component={'span'} sx={{ ml: 0.5 }}>
+            <Typography
+              component={'span'}
+              sx={{ ml: 0.5, fontSize: '16px', fontWeight: 400 }}
+            >
               {currentDate?.date},{currentDate?.year}
             </Typography>
           </Typography>
-          <Typography variant="h6">{currentDate?.city}</Typography>
+          <Typography sx={{ fontSize: '16px', fontWeight: 400 }}>
+            {currentDate?.city}
+          </Typography>
         </Box>
       </Box>
     </>

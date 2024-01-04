@@ -139,7 +139,13 @@ const AuthForm = ({ uiData, fields }) => {
                   },
                 },
               }}
-              control={<Checkbox value="remember" color="primary" />}
+              control={
+                <Checkbox
+                  value="remember"
+                  color="primary"
+                  sx={{ border: '1px' }}
+                />
+              }
               label={checkText}
             />
             <Link

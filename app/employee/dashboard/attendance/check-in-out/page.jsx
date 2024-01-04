@@ -105,6 +105,7 @@ const Dashboard = () => {
                           return (
                             <Tab
                               key={index}
+                              disableRipple={true}
                               label={
                                 <Box display={'flex'} alignItems={'center'}>
                                   <Box
@@ -153,8 +154,15 @@ const Dashboard = () => {
                     </Tabs>
                     <Box display={'flex'} alignItems={'center'}>
                       <Button
-                        sx={{ marginX: '10px', minWidth: '120px' }}
-                        variant="outlined"
+                        sx={{
+                          marginX: '10px',
+                          minWidth: '120px',
+                          border: '1px solid #138A72',
+                          color: '#138A72',
+                          '&:hover:': {
+                            background: '#fff',
+                          },
+                        }}
                         startIcon={
                           <Image
                             width={20}
@@ -167,9 +175,10 @@ const Dashboard = () => {
                         Refresh
                       </Button>
                       <Button
-                        variant="contained"
                         sx={{
                           minWidth: '120px',
+                          background: '#138A72',
+                          color: '#fff',
                         }}
                         startIcon={
                           <Image

@@ -28,7 +28,9 @@ const LeaveSummary = () => {
             background: '#FFF',
           }}
         >
-          <Typography variant="h5">{Leave_Summary_Title}</Typography>
+          <Typography sx={{ fontSize: '25px', fontWeight: 600 }}>
+            {Leave_Summary_Title}
+          </Typography>
         </Box>
         <Box
           sx={{
@@ -36,7 +38,12 @@ const LeaveSummary = () => {
             pt: 3,
             width: '100%',
             height: '360px',
-            overflowY: 'auto',
+            overflow: 'auto',
+            scrollbarWidth: 'thin',
+            scrollbarColor: 'transparent transparent',
+            '&::-webkit-scrollbar': {
+              display: 'none',
+            },
           }}
         >
           {Leave_Summary_Boxes &&
@@ -65,14 +72,14 @@ const LeaveSummary = () => {
                       }}
                     >
                       <Typography
-                        sx={{ fontSize: '16px', width: '100%' }}
+                        sx={{ fontSize: '14px', width: '100%' }}
                         variant="h6"
                         color="text.secondary"
                       >
                         {item?.title}
                       </Typography>
                       <Typography
-                        sx={{ fontSize: '14px' }}
+                        sx={{ fontSize: '12px' }}
                         variant="body1"
                         color="text.secondary"
                       >
@@ -123,7 +130,7 @@ const LeaveSummary = () => {
                                   ></Box>
                                 )}
                                 <Box sx={{ display: 'flex' }}>
-                                  <Typography sx={{ fontSize: '12px' }}>
+                                  <Typography sx={{ fontSize: '10px' }}>
                                     {type?.title}
                                   </Typography>
                                   <Typography sx={{ fontSize: '12px' }}>

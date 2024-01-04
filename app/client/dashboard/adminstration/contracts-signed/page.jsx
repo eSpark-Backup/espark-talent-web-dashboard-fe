@@ -86,6 +86,7 @@ const ContractSigned = () => {
                     fontWeight: '400',
                     letterSpacing: '0em',
                     textAlign: 'left',
+                    color: '#595959',
                   }}
                   variant="caption"
                 >
@@ -102,7 +103,12 @@ const ContractSigned = () => {
                 aria-label="basic tabs example"
               >
                 {contractSignedTabs?.map(({ label, prop }, i) => (
-                  <Tab key={i} label={`${label}`} {...prop} />
+                  <Tab
+                    key={i}
+                    label={`${label}`}
+                    {...prop}
+                    disableRipple={true}
+                  />
                 ))}
               </Tabs>
             </Box>

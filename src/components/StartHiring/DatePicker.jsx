@@ -7,7 +7,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { HIRING_FORM_DATA } from '@/src/constants/Hiring';
 import CalendarIcon from './CalenderIcon';
 
-const DatePickerBox = ({ label, dateKey }) => {
+const DatePickerBox = ({ dateKey, placeholder }) => {
   return (
     <>
       <Typography>{HIRING_FORM_DATA[dateKey]}</Typography>
@@ -16,10 +16,10 @@ const DatePickerBox = ({ label, dateKey }) => {
           slots={{
             openPickerIcon: CalendarIcon,
           }}
-          label={label}
+          placeholder={placeholder}
+          slotProps={{ textField: { placeholder: placeholder } }}
           sx={{
             width: { xs: '100%', md: '300px' },
-            // background:"green",
             '@media (min-width: 900px) and (max-width: 1400px)': {
               width: '100%',
             },
