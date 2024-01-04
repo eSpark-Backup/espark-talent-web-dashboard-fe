@@ -193,7 +193,12 @@ const Dashboard = () => {
                   aria-label="basic tabs example"
                 >
                   {leaveRequestsTab?.map(({ label, prop }, index) => (
-                    <Tab key={index} label={`${label}`} {...prop} />
+                    <Tab
+                      key={index}
+                      label={`${label}`}
+                      {...prop}
+                      disableRipple={true}
+                    />
                   ))}
                 </Tabs>
               </Box>
@@ -234,6 +239,7 @@ const Dashboard = () => {
                               ({ label, prop, background, color }, index) => {
                                 return (
                                   <Tab
+                                    disableRipple={true}
                                     key={index}
                                     label={
                                       <Box

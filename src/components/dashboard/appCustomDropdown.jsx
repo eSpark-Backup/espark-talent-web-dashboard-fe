@@ -15,6 +15,7 @@ const AppCustomDropdown = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentState, setCurrentState] = useState(row[toCamelCase(col)]);
+
   const componentRef = useRef(null);
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -44,7 +45,7 @@ const AppCustomDropdown = ({
         <Box
           onClick={() => setIsOpen((ps) => !ps)}
           width={'120px'}
-          p={'5px 15px'}
+          p={'5px 10px'}
           sx={{
             border: 'solid 1px #068987',
             backgroundColor: '#fff',
@@ -60,17 +61,17 @@ const AppCustomDropdown = ({
           {isOpen ? (
             <Image
               style={{ marginLeft: '10px' }}
-              src={'/icons/DownGreen.svg'}
-              width={10}
-              height={10}
+              src={'/images/hiring/icon-park_down.svg'}
+              width={17}
+              height={17}
               alt="Down"
             />
           ) : (
             <Image
               style={{ marginLeft: '10px' }}
-              src={'/images/hiring/icon-park_down.svg'}
-              width={17}
-              height={17}
+              src={'/icons/DownGreen.svg'}
+              width={10}
+              height={10}
               alt="Down"
             />
           )}
@@ -84,11 +85,15 @@ const AppCustomDropdown = ({
               width: '100%',
               background: '#fff',
               marginTop: '5px',
-              borderRadius: '5px',
               cursor: 'pointer',
+              borderRadius: '5px',
+              boxShadow: '0px 0px 10px 0px rgba(0, 0, 0, 0.15)',
             }}
           >
             {options.map(({ label, disabled }, index) => {
+              const isFirstElement = index === 0;
+              const isLastElement = index === options.length - 1;
+
               return (
                 <Typography
                   onClick={() => {
@@ -101,12 +106,18 @@ const AppCustomDropdown = ({
                   className={[
                     currentState === label && 'selected-dropdown',
                     'custom-dropdown-item',
+                    isFirstElement && 'divTealLeft',
+                    isLastElement && 'divTealRight',
                     disabled && 'disabled-dropdown',
                   ].join(' ')}
                   p={'5px 10px'}
                   sx={{
                     borderBottom: 'solid 1px #ccc',
-                    background: currentState === label && '#E6F5F4',
+                    background: currentState === label ? '#fff' : 'initial',
+                    transition: 'background 0.3s ease',
+                    '&:hover': {
+                      background: currentState === label ? '#fff' : '#E6F5F4',
+                    },
                   }}
                   key={index}
                 >

@@ -105,6 +105,7 @@ const Dashboard = () => {
                           return (
                             <Tab
                               key={index}
+                              disableRipple={true}
                               label={
                                 <Box display={'flex'} alignItems={'center'}>
                                   <Box

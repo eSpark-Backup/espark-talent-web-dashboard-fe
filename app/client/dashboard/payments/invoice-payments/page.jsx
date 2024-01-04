@@ -117,6 +117,7 @@ const Dashboard = () => {
                   <Tab
                     key={i}
                     label={`${label}`}
+                    disableRipple={true}
                     {...prop}
                     sx={{
                       display: 'flex',

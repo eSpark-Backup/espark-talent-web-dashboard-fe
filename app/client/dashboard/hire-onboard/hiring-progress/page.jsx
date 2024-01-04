@@ -107,6 +107,7 @@ const Dashboard = () => {
               >
                 {empTabs?.map(({ label, prop, data }, i) => (
                   <Tab
+                    disableRipple={true}
                     key={i}
                     label={`${label} (${data?.length})`}
                     sx={{

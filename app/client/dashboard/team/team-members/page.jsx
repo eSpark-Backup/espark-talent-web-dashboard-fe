@@ -108,6 +108,7 @@ const Dashboard = () => {
                   {teamTabs?.map(({ label, prop, data }, i) => (
                     <Tab
                       key={i}
+                      disableRipple={true}
                       label={`${label} (${
                         filterTableRowsWRTTab(data, {
                           memberStatus: label === 'All' ? '' : label,

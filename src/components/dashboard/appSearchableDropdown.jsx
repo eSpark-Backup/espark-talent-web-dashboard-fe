@@ -112,7 +112,7 @@ const AppSearchableDropdown = ({
           }}
           p={'10px'}
         >
-          <Typography sx={{ color: '#838383' }}>
+          <Typography sx={{ color: selectedItem ? '#000' : '#838383' }}>
             {selectedItem || 'Selected Employee...'}
           </Typography>
 
@@ -167,7 +167,12 @@ const AppSearchableDropdown = ({
             <Box
               maxHeight="250px"
               sx={{
-                overflowY: 'scroll',
+                overflow: 'auto',
+                scrollbarWidth: 'thin',
+                scrollbarColor: 'transparent transparent',
+                '&::-webkit-scrollbar': {
+                  display: 'none',
+                },
               }}
             >
               {isLoadingList ? (

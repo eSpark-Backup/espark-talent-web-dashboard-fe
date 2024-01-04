@@ -202,7 +202,7 @@ const AppTable = ({
                             <span
                               style={{
                                 borderRadius: '30px',
-                                padding: '10px 0',
+                                padding: '4px 0',
                                 display: 'block',
                                 width: '110px',
                                 background: '#F6E9D0',
@@ -226,7 +226,7 @@ const AppTable = ({
                             <span
                               style={{
                                 borderRadius: '30px',
-                                padding: '10px 0',
+                                padding: '4px 0',
                                 display: 'block',
                                 width: '110px',
                                 background: '#E6F5F4',
@@ -246,7 +246,7 @@ const AppTable = ({
                           <span
                             style={{
                               borderRadius: '30px',
-                              padding: '10px 0',
+                              padding: '4px 0',
                               display: 'block',
                               width: '110px',
                               background: '#FFD6D6',
