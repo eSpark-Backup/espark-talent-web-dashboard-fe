@@ -14,29 +14,26 @@ const DiscoverTalentPlatform = () => {
         alignItems: 'center',
         borderRadius: '5px',
         flexDirection: { xs: 'column', sm: 'column', md: 'row' },
+        padding: { xs: '15px', md: '10px' },
         width: '100%',
-        '@media (min-width: 900px) and (max-width: 1350px)': {
-          flexDirection: 'column',
-        },
       }}
     >
       <Box
         sx={{
           maxWidth: '680px',
-          padding: { xs: '10px', md: '0px' },
-          paddingLeft: '10px',
-          paddingRight: '15px',
-          '@media (min-width: 900px) and (max-width: 1270px)': {
-            // marginLeft: '30px',
+          '@media (min-width: 900px) and (max-width: 1350px)': {
+            marginLeft: '30px',
           },
         }}
       >
         <Typography
           sx={{
             color: '#068987',
-
             fontSize: { xs: '25px', md: '35px' },
             fontWeight: 700,
+            '@media (min-width: 900px) and (max-width: 1350px)': {
+              fontSize: '28px',
+            },
           }}
         >
           {DASHBOARD_DATA.talentPlatform}
@@ -46,6 +43,9 @@ const DiscoverTalentPlatform = () => {
             fontSize: { xs: '20px', md: '25px' },
             fontWeight: 400,
             color: '#595959',
+            '@media (min-width: 900px) and (max-width: 1350px)': {
+              fontSize: '20px',
+            },
           }}
         >
           {DASHBOARD_DATA.employeeData}
