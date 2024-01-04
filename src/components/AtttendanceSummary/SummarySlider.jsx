@@ -36,7 +36,7 @@ export default function SummarySlider({ Summary_Boxes,isEmployee }) {
           <>
             <Box sx={{
               display: "flex",
-              justifyContent: "row",
+              flexDirection: { xs: "column", md: "row" },
               gap:"10px"
             }}>
                {Summary_Boxes?.map((item, index) => (

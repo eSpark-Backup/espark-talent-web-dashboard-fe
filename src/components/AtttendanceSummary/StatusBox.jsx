@@ -66,40 +66,13 @@ const StatusBox = ({
           ) : (
               <Image
                 src={images}
-                width={30}
-                height={30}
+                width={50}
+                height={50}
                 alt="employee"
                 style={{
                   marginRight:"10px"
                 }}
               />
-            // Summary_Boxes.map((box, index) => {
-            //   let imageSrc;
-
-            //   if (index === 0) {
-            //     imageSrc = '/images/dashboard/hr/employee.svg';
-            //   } else if (index === 1) {
-            //     imageSrc = '/images/dashboard/hr/client.svg';
-            //   } else if (index === 2) {
-            //     imageSrc = '/images/dashboard/hr/hiring.svg';
-            //   } else if (index === 3) {
-            //     imageSrc = '/images/dashboard/hr/interview.svg';
-            //   }
-
-            //   return (
-            //     <Image
-            //       key={index}
-            //       src={imageSrc}
-            //       width={30}
-            //       height={30}
-            //       alt={`image-${index}`}
-            //       style={{
-            //         marginRight: '20px',
-            //       }}
-            //     />
-                  
-            //   )
-            // }))
           )
           }
       
