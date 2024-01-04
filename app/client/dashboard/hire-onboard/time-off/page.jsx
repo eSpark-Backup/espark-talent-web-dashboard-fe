@@ -320,6 +320,7 @@ const Dashboard = () => {
                                 marginX: '10px',
                                 minWidth: '120px',
                                 border: '1px solid #138A72',
+                                color: '#138A72',
                                 '&:hover:': {
                                   background: '#fff',
                                 },
@@ -336,9 +337,9 @@ const Dashboard = () => {
                               Refresh
                             </Button>
                             <Button
-                              variant="contained"
                               sx={{
                                 minWidth: '120px',
+                                background: '#138A72',
                               }}
                               startIcon={
                                 <Image
