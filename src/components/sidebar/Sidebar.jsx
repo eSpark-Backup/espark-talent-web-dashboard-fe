@@ -3,7 +3,7 @@ import React from 'react';
 import { Box, useMediaQuery, useTheme } from '@mui/material';
 
 import SidebarAccordion from './SidebarAccordion';
-import { Client_Routes, Employee_Routes } from '@/src/constants/sidebar';
+import { Client_Routes, Employee_Routes, Hr_Routes } from '@/src/constants/sidebar';
 import SidebarLogo from './sidebarLogo';
 import SidebarActiveUser from './SidebarActiveUser';
 import ProfilePopper from '../popover/ProfilePopper';
@@ -77,8 +77,8 @@ const Sidebar = ({ userName }) => {
                 : null || pathName.includes('/employee/dashboard')
                 ? Employee_Routes
                 : null || pathName.includes('/hr/dashboard')
-              // ? Hr_Routes
-              // : null
+              ? Hr_Routes
+               : null 
             }
           />
         </Box>

@@ -1,7 +1,16 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
+import Image from 'next/image';
+import { Summary_Boxes } from '@/src/constants/data/hrDashboard';
 
-const StatusBox = ({ title, count, horizotalLineColor, backgroundColor }) => {
+const StatusBox = ({
+  title,
+  count,
+  horizotalLineColor,
+  backgroundColor,
+  isEmployee,
+  images
+}) => {
   return (
     <>
       <Box
@@ -34,10 +43,10 @@ const StatusBox = ({ title, count, horizotalLineColor, backgroundColor }) => {
                 backgroundColor: `${horizotalLineColor}`,
               }}
             />
-            <Typography variant="h6">{title}</Typography>
+            <Typography variant="h6">{isEmployee ? title : count}</Typography>
           </Box>
           <Box>
-            <Typography>{count}</Typography>
+            <Typography>{isEmployee ? count : title}</Typography>
           </Box>
         </Box>
         <Box
@@ -48,11 +57,52 @@ const StatusBox = ({ title, count, horizotalLineColor, backgroundColor }) => {
             alignItems: 'center',
           }}
         >
-          <img
-            src="/icons/arrow-right.svg"
-            style={{ width: '15px', height: '15px' }}
-            alt="arrow"
-          />
+          {isEmployee ? (
+            <img
+              src="/icons/arrow-right.svg"
+              style={{ width: '15px', height: '15px' }}
+              alt="arrow"
+            />
+          ) : (
+              <Image
+                src={images}
+                width={30}
+                height={30}
+                alt="employee"
+                style={{
+                  marginRight:"10px"
+                }}
+              />
+            // Summary_Boxes.map((box, index) => {
+            //   let imageSrc;
+
+            //   if (index === 0) {
+            //     imageSrc = '/images/dashboard/hr/employee.svg';
+            //   } else if (index === 1) {
+            //     imageSrc = '/images/dashboard/hr/client.svg';
+            //   } else if (index === 2) {
+            //     imageSrc = '/images/dashboard/hr/hiring.svg';
+            //   } else if (index === 3) {
+            //     imageSrc = '/images/dashboard/hr/interview.svg';
+            //   }
+
+            //   return (
+            //     <Image
+            //       key={index}
+            //       src={imageSrc}
+            //       width={30}
+            //       height={30}
+            //       alt={`image-${index}`}
+            //       style={{
+            //         marginRight: '20px',
+            //       }}
+            //     />
+                  
+            //   )
+            // }))
+          )
+          }
+      
         </Box>
       </Box>
     </>

@@ -3,7 +3,7 @@ import { Box, Typography } from '@mui/material';
 
 import { DASHBOARD_DATA } from '@/src/constants/dashboard';
 
-const DashboardHeading = () => {
+const DashboardHeading = ({dashboardDescription}) => {
   return (
     <Box>
       <Typography
@@ -21,7 +21,8 @@ const DashboardHeading = () => {
           fontWeight: 400,
         }}
       >
-        {DASHBOARD_DATA?.greetingText}
+        {/* {DASHBOARD_DATA?.greetingText} */}
+        {dashboardDescription}
       </Typography>
       <br />
     </Box>

@@ -5,6 +5,7 @@ import { Grid, Box } from '@mui/material';
 import OnBoarding from '@/src/components/dashboard/onBoarding';
 import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
 import DiscoverTalentPlatform from '@/src/components/dashboard/discoverTalent';
+import { DASHBOARD_DATA } from '@/public/images/dashboard/constants/Dashboard';
 
 const Dashboard = () => {
   return (
@@ -16,13 +17,12 @@ const Dashboard = () => {
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'center',
-              // paddingTop: '60px',
               gap: '20px',
               width: '100%',
-              // paddingLeft: { xs: '0px', md: '40px' },
             }}
           >
-            <DashboardHeading />
+            <DashboardHeading dashboardDescription={DASHBOARD_DATA?.updates} />
+
             <Grid item xs={12}>
               <DiscoverTalentPlatform />
             </Grid>

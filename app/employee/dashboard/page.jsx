@@ -7,6 +7,7 @@ import AttendanceSummary from '@/src/components/AtttendanceSummary/AttendanceSum
 import LeaveSummary from '@/src/components/AtttendanceSummary/LeaveSummary';
 import Clock from '@/src/components/AtttendanceSummary/Clock';
 import { Clock_Title } from '@/src/constants/employeeDashboard';
+import { DASHBOARD_DATA } from '@/public/images/dashboard/constants/Dashboard';
 
 const Dashboard = () => {
   return (
@@ -18,7 +19,7 @@ const Dashboard = () => {
               width: '100%',
             }}
           >
-            <DashboardHeading />
+            <DashboardHeading dashboardDescription={DASHBOARD_DATA?.updates} />
           </Box>
         </Grid>
         <Grid item xs={12}>
