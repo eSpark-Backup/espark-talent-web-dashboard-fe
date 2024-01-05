@@ -38,6 +38,7 @@ const InfoOption = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const componentRef = useRef(null);
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
@@ -127,6 +128,8 @@ const AppTable = ({
   handleClick,
   renderMessageButton,
   handleClickRenderMessageButton,
+  handleClickActionView,
+  noPagination,
 }) => {
   return (
     <>
@@ -344,6 +347,19 @@ const AppTable = ({
                             <>
                               {row[toCamelCase(col)]?.map((item, rowIndex) => (
                                 <Image
+                                  onClick={() => {
+                                    if (item === 'View') {
+                                      handleClickActionView({ row, item });
+                                    }
+                                    return;
+                                    // handleImage(
+                                    //   row.employeeId,
+                                    //   row.employeeName,
+                                    //   row.leaveType,
+                                    //   row.fromTo,
+                                    //   item
+                                    // )
+                                  }}
                                   key={rowIndex}
                                   style={{
                                     margin: rowIndex === 1 && '0 5px',
@@ -401,25 +417,13 @@ const AppTable = ({
           )}
         </tbody>
       </table>
-      <Box my={'20px'} display="flex" justifyContent={'center'}>
-        <Stack spacing={2}>
-          <Pagination
-            count={10}
-            variant="outlined"
-            shape="rounded"
-            sx={{
-              background: 'white',
-              '& .MuiPaginationItem-outlined:hover': {
-                borderColor: 'teal',
-                background: 'white',
-              },
-              '& .MuiPaginationItem-outlined:focus': {
-                background: 'white',
-              },
-            }}
-          />
-        </Stack>
-      </Box>
+      {!noPagination && (
+        <Box my={'20px'} display="flex" justifyContent={'center'}>
+          <Stack spacing={2}>
+            <Pagination count={10} variant="outlined" shape="rounded" />
+          </Stack>
+        </Box>
+      )}
     </>
   );
 };

@@ -102,6 +102,7 @@ const ContractSigned = () => {
                 value={value}
                 onChange={handleChange}
                 aria-label="basic tabs example"
+                variant="scrollable"
               >
                 {[
                   {
@@ -135,11 +136,18 @@ const ContractSigned = () => {
                 {isLoading ? (
                   <Box>Loading...</Box>
                 ) : (
-                  <AppTable
-                    currentTab={currentTab}
-                    column={contractSignedColumn}
-                    data={empData}
-                  />
+                  <Box
+                    sx={{
+                      maxWidth: '100%',
+                      overflowX: 'auto',
+                    }}
+                  >
+                    <AppTable
+                      currentTab={currentTab}
+                      column={contractSignedColumn}
+                      data={empData}
+                    />
+                  </Box>
                 )}
               </CustomTabPanel>
             ))}

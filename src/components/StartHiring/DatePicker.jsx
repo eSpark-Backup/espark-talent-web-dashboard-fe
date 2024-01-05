@@ -19,7 +19,8 @@ const DatePickerBox = ({ dateKey, placeholder }) => {
           placeholder={placeholder}
           slotProps={{ textField: { placeholder: placeholder } }}
           sx={{
-            width: { xs: '100%', md: '300px' },
+            width: '100%',
+            // background:"green",
             '@media (min-width: 900px) and (max-width: 1400px)': {
               width: '100%',
             },

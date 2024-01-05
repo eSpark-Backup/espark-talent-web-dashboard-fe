@@ -1,7 +1,7 @@
 import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
 import AppTable from '@/src/components/dashboard/appTable';
 import { filterTableRowsWRTTab } from '@/src/utils/table';
-import { Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 
 export const renderNestedTable = ({
   isLoading,
@@ -18,13 +18,20 @@ export const renderNestedTable = ({
       {isLoading ? (
         <Typography>Loading...</Typography>
       ) : (
-        <AppTable
-          currentTab={currentReqStatusTab}
-          column={column}
-          data={filterTableRowsWRTTab(data, {
-            status: currentReqStatusTab === 'All' ? '' : currentReqStatusTab,
-          })}
-        />
+        <Box
+          sx={{
+            maxWidth: '100%',
+            overflowX: 'auto',
+          }}
+        >
+          <AppTable
+            currentTab={currentReqStatusTab}
+            column={column}
+            data={filterTableRowsWRTTab(data, {
+              status: currentReqStatusTab === 'All' ? '' : currentReqStatusTab,
+            })}
+          />
+        </Box>
       )}
     </CustomTabPanel>
   );

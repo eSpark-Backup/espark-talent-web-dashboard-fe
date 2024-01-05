@@ -5,7 +5,6 @@ export const filterTableRowsWRTTab = (data, filters) => {
     return data?.filter((member) => {
       return Object.keys(filters).every((key) => {
         const filterValue = filters[key];
-        console.log({ filterValue });
 
         // Check if the member has the specified property
         if (Object.prototype.hasOwnProperty.call(member, key)) {

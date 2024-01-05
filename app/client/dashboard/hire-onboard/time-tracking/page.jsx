@@ -140,15 +140,29 @@ const Dashboard = () => {
             ) : (
               <>
                 {selectedEmployee ? (
-                  <AppTable
-                    column={timeTrackingTableColumn}
-                    data={timeTrackingTableData}
-                  />
+                  <Box
+                    sx={{
+                      maxWidth: '100%',
+                      overflowX: 'auto',
+                    }}
+                  >
+                    <AppTable
+                      column={timeTrackingTableColumn}
+                      data={timeTrackingTableData}
+                    />
+                  </Box>
                 ) : (
-                  <AppTable
-                    column={timeTrackingTableColumn}
-                    renderMessage="Select employee to see there data"
-                  />
+                  <Box
+                    sx={{
+                      maxWidth: '100%',
+                      overflowX: 'auto',
+                    }}
+                  >
+                    <AppTable
+                      column={timeTrackingTableColumn}
+                      renderMessage="Select employee to see there data"
+                    />
+                  </Box>
                 )}
               </>
             )}

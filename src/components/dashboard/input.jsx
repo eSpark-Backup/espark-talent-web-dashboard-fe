@@ -12,6 +12,7 @@ const Input = ({
   width,
   onKeyDown,
   autofocus,
+  maxWidth,
 }) => {
   const inputRef = useRef(null);
 
@@ -27,9 +28,11 @@ const Input = ({
       alignItems={'center'}
       borderRadius={1}
       width={width || 400}
+      maxWidth={maxWidth || '100%'}
     >
       <Box
         display={'flex'}
+        flex={1}
         alignItems={'center'}
         sx={{ border: 'solid 1px #ccc' }}
         padding={1}

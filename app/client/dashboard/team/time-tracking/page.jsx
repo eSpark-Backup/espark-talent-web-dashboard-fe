@@ -111,7 +111,14 @@ const Dashboard = () => {
           <Box sx={{ width: '100%' }}>
             <Box display={'flex'} alignItems="center" sx={{ width: '100%' }}>
               <Grid container spacing={2}>
-                <Grid display={'flex'} alignItems="center" item xs={12} md={6}>
+                <Grid
+                  display={'flex'}
+                  flexWrap={'wrap'}
+                  alignItems="center"
+                  item
+                  xs={12}
+                  md={6}
+                >
                   <AppSearchableDropdown
                     setIsLoadingList={setIsLoadingEmployee}
                     isLoadingList={isLoadingEmployee}
@@ -124,7 +131,12 @@ const Dashboard = () => {
                 </Grid>
               </Grid>
             </Box>
-            <Box marginY={'30px'} display={'flex'} alignItems={'center'}>
+            <Box
+              marginY={'20px'}
+              display={'flex'}
+              flexWrap={'wrap'}
+              alignItems={'center'}
+            >
               {trackingStatusTypes?.map(
                 ({ label, shortForm, background }, statusIndex) =>
                   renderTrackingStatus({
@@ -140,15 +152,29 @@ const Dashboard = () => {
             ) : (
               <>
                 {selectedEmployee ? (
-                  <AppTable
-                    column={timeTrackingTableColumn}
-                    data={timeTrackingTableData}
-                  />
+                  <Box
+                    sx={{
+                      maxWidth: '100%',
+                      overflowX: 'auto',
+                    }}
+                  >
+                    <AppTable
+                      column={timeTrackingTableColumn}
+                      data={timeTrackingTableData}
+                    />
+                  </Box>
                 ) : (
-                  <AppTable
-                    column={timeTrackingTableColumn}
-                    renderMessage="Select employee to see there data"
-                  />
+                  <Box
+                    sx={{
+                      maxWidth: '100%',
+                      overflowX: 'auto',
+                    }}
+                  >
+                    <AppTable
+                      column={timeTrackingTableColumn}
+                      renderMessage="Select employee to see there data"
+                    />
+                  </Box>
                 )}
               </>
             )}
