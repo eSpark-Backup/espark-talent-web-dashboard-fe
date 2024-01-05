@@ -52,6 +52,7 @@ const Dashboard = () => {
         >
           <div>
             <Box
+              marginBottom={4}
               display={'flex'}
               justifyContent={'space-between'}
               alignItems={'center'}
@@ -60,13 +61,13 @@ const Dashboard = () => {
                 <Typography
                   sx={{
                     fontSize: '30px',
-                    fontWeight: 400,
+                    fontWeight: 600,
                     lineHeight: '36px',
                     letterSpacing: '0em',
                     textAlign: 'left',
                   }}
                 >
-                  Requests
+                  Leaves Requests
                 </Typography>
                 <Box display={'flex'} flexDirection={'column'} marginY={'20px'}>
                   <Typography
@@ -82,9 +83,23 @@ const Dashboard = () => {
                     Manage Leaves from one place.
                   </Typography>
                 </Box>
+                <Typography
+                  sx={{
+                    fontSize: '20px',
+                    fontWeight: '400',
+                    lineHeight: '17px',
+                    letterSpacing: '0em',
+                    textAlign: 'left',
+                    color: '#595959',
+                    marginTop: '50px',
+                  }}
+                  variant="caption"
+                >
+                  Balance
+                </Typography>
               </Box>
               <Button
-                sx={{ marginX: '10px', minWidth: '120px' }}
+                sx={{ minWidth: '120px', marginBottom: '25px' }}
                 variant="contained"
               >
                 Create
@@ -130,6 +145,7 @@ const Dashboard = () => {
                     lineHeight: '36px',
                     letterSpacing: '0em',
                     textAlign: 'left',
+                    color: '#595959',
                   }}
                 >
                   Requests
@@ -178,7 +194,7 @@ const Dashboard = () => {
                                       borderRadius: '5px',
                                       marginRight: '10px',
                                       color,
-                                      fontSize: '16px',
+                                      fontSize: '14px',
                                       fontWeight: 600,
                                       lineHeight: '19px',
                                       letterSpacing: '0em',

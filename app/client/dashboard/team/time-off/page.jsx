@@ -263,7 +263,7 @@ const Dashboard = () => {
                                             borderRadius: '5px',
                                             marginRight: '5px',
                                             color,
-                                            fontSize: '16px',
+                                            fontSize: '14px',
                                             fontWeight: 600,
                                             lineHeight: '19px',
                                             letterSpacing: '0em',
