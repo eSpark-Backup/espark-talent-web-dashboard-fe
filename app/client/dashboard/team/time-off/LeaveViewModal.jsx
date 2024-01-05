@@ -81,7 +81,7 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
                   selectedItem={selectedJobTitle}
                   setSelectedItem={setSelectedJobTitle}
                   placeHolder="Select Leave Type"
-                  padding="8.5px"
+                  padding="9px"
                 />
               </Grid>
             </Grid>
@@ -124,12 +124,22 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
                   alignItems={'center'}
                   sx={{
                     border: 'solid 1px #ccc',
-                    p: '8.5px',
+                    p: '9px',
                     borderRadius: '5px',
                     background: '#f6f6f6',
                   }}
                 >
-                  <Typography>October 17,2023</Typography>
+                  <Typography
+                    sx={{
+                      color: '#595959',
+                      fontSize: '16px',
+                      fontStyle: 'normal',
+                      fontWeight: '500',
+                      lineHeight: 'normal',
+                    }}
+                  >
+                    October 17,2023
+                  </Typography>
                   <Image
                     src={'/icons/CalendarOutline.svg'}
                     width={20}
@@ -178,12 +188,22 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
                   alignItems={'center'}
                   sx={{
                     border: 'solid 1px #ccc',
-                    p: '8.5px',
+                    p: '9px',
                     borderRadius: '5px',
                     background: '#f6f6f6',
                   }}
                 >
-                  <Typography>October 17,2023</Typography>
+                  <Typography
+                    sx={{
+                      color: '#595959',
+                      fontSize: '16px',
+                      fontStyle: 'normal',
+                      fontWeight: '500',
+                      lineHeight: 'normal',
+                    }}
+                  >
+                    October 17,2023
+                  </Typography>
                   <Image
                     src={'/icons/CalendarOutline.svg'}
                     width={20}
@@ -396,12 +416,22 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
                   alignItems={'center'}
                   sx={{
                     border: 'solid 1px #ccc',
-                    p: '8.5px',
+                    p: '9px',
                     borderRadius: '5px',
                     background: '#f6f6f6',
                   }}
                 >
-                  <Typography>{modalData?.count}</Typography>
+                  <Typography
+                    sx={{
+                      color: '#595959',
+                      fontSize: '16px',
+                      fontStyle: 'normal',
+                      fontWeight: '500',
+                      lineHeight: 'normal',
+                    }}
+                  >
+                    {modalData?.count}
+                  </Typography>
                 </Box>
               </Grid>
             </Grid>
@@ -444,12 +474,22 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
                   alignItems={'center'}
                   sx={{
                     border: 'solid 1px #ccc',
-                    p: '8.5px',
+                    p: '9px',
                     borderRadius: '5px',
                     background: '#f6f6f6',
                   }}
                 >
-                  <Typography>0</Typography>
+                  <Typography
+                    sx={{
+                      color: '#595959',
+                      fontSize: '16px',
+                      fontStyle: 'normal',
+                      fontWeight: '500',
+                      lineHeight: 'normal',
+                    }}
+                  >
+                    0
+                  </Typography>
                 </Box>
               </Grid>
             </Grid>
@@ -492,12 +532,22 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
                   alignItems={'center'}
                   sx={{
                     border: 'solid 1px #ccc',
-                    p: '8.5px',
+                    p: '9px',
                     borderRadius: '5px',
                     background: '#f6f6f6',
                   }}
                 >
-                  <Typography>{modalData?.count}</Typography>
+                  <Typography
+                    sx={{
+                      color: '#595959',
+                      fontSize: '16px',
+                      fontStyle: 'normal',
+                      fontWeight: '500',
+                      lineHeight: 'normal',
+                    }}
+                  >
+                    {modalData?.count}
+                  </Typography>
                 </Box>
               </Grid>
             </Grid>
@@ -545,7 +595,17 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
                     minHeight: '100px',
                   }}
                 >
-                  <Typography>Health issues</Typography>
+                  <Typography
+                    sx={{
+                      color: '#595959',
+                      fontSize: '16px',
+                      fontStyle: 'normal',
+                      fontWeight: '500',
+                      lineHeight: 'normal',
+                    }}
+                  >
+                    Health issues
+                  </Typography>
                 </Box>
               </Grid>
             </Grid>
