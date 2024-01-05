@@ -179,6 +179,9 @@ const Dashboard = () => {
                           minWidth: '120px',
                           background: '#138A72',
                           color: '#fff',
+                          '&:hover': {
+                            background: '#138A72',
+                          },
                         }}
                         startIcon={
                           <Image

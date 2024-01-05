@@ -340,6 +340,9 @@ const Dashboard = () => {
                               sx={{
                                 minWidth: '120px',
                                 background: '#138A72',
+                                '&:hover': {
+                                  background: '#138A72',
+                                },
                               }}
                               startIcon={
                                 <Image

@@ -134,7 +134,9 @@ const AppTable = ({
         <thead>
           <tr className="app-table-row">
             {column?.map((col, colIndex) => (
-              <th key={colIndex}>{col}</th>
+              <th key={colIndex} style={{ fontSize: '14px' }}>
+                {col}
+              </th>
             ))}
           </tr>
         </thead>
@@ -197,6 +199,7 @@ const AppTable = ({
                             style={{
                               display: 'flex',
                               justifyContent: 'center',
+                              fontSize: '12px',
                             }}
                           >
                             <span
@@ -221,6 +224,7 @@ const AppTable = ({
                             style={{
                               display: 'flex',
                               justifyContent: 'center',
+                              fontSize: '12px',
                             }}
                           >
                             <span
@@ -241,7 +245,11 @@ const AppTable = ({
                       return (
                         <td
                           key={colIndex}
-                          style={{ display: 'flex', justifyContent: 'center' }}
+                          style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            fontSize: '12px',
+                          }}
                         >
                           <span
                             style={{

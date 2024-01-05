@@ -174,8 +174,17 @@ const Dashboard = () => {
                 </Box>
               </Box>
               <Button
-                sx={{ marginX: '10px', minWidth: '220px' }}
-                variant="outlined"
+                sx={{
+                  marginX: '10px',
+                  minWidth: '220px',
+                  color: '#029894',
+                  border: '1px solid #029894',
+                  fontSize: '16px',
+                  fontWeight: '600',
+                  '&:hover': {
+                    background: '#E6F5F4',
+                  },
+                }}
               >
                 Download Report
               </Button>
@@ -342,6 +351,9 @@ const Dashboard = () => {
                                 minWidth: '120px',
                                 background: '#138A72',
                                 color: '#fff',
+                                '&:hover': {
+                                  background: '#138A72',
+                                },
                               }}
                               startIcon={
                                 <Image
