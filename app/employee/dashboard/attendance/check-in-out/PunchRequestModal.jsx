@@ -14,13 +14,13 @@ import { TextareaAutosize as BaseTextareaAutosize } from '@mui/base/TextareaAuto
 import { styled } from '@mui/system';
 
 const PunchRequestModal = ({
-  // createModal,
-  //  modalData,
+  createModal,
+   modalData,
   handleClose,
 }) => {
   const [isOpenDatePicker, setIsOpenDatePicker] = useState(false);
   const [isLoadingTitles, setIsLoadingTitles] = useState(false);
-  const [selectedJobTitle, setSelectedJobTitle] = useState('');
+  const [selectedJobTitle, setSelectedJobTitle] = useState(modalData?.punchType || '');
   const blue = {
     100: '#DAECFF',
     200: '#b6daff',
@@ -53,12 +53,10 @@ const PunchRequestModal = ({
         border-radius: 8px;
         color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
         background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
-        border: 1px solid ${
-          theme.palette.mode === 'dark' ? grey[700] : grey[200]
-        };
-        box-shadow: 0px 2px 2px ${
-          theme.palette.mode === 'dark' ? grey[900] : grey[50]
-        };
+        border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]
+      };
+        box-shadow: 0px 2px 2px ${theme.palette.mode === 'dark' ? grey[900] : grey[50]
+      };
     
         &:hover {
           border-color: ${blue[400]};
@@ -66,9 +64,8 @@ const PunchRequestModal = ({
     
         &:focus {
           border-color: ${blue[400]};
-          box-shadow: 0 0 0 3px ${
-            theme.palette.mode === 'dark' ? blue[600] : blue[200]
-          };
+          box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[600] : blue[200]
+      };
         }
     
         // firefox
@@ -84,12 +81,12 @@ const PunchRequestModal = ({
       sx={{
         mx: 'auto',
         bgcolor: '#fff',
-        width: { xs: '90%', sm: '90%', md: '70%' },
+        width: { xs: '90%', sm: '90%', md: '77.084%' },
         display: 'flex',
         flexDirection: 'column',
         borderRadius: '10px',
         boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
-        maxHeight: '80%',
+        maxHeight: '82%',
         overflowY: 'auto',
       }}
     >
@@ -122,22 +119,23 @@ const PunchRequestModal = ({
               flexDirection: { xs: 'column', md: 'row' },
             }}
           >
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} md={5}>
               <Typography
                 sx={{
                   color: '#171717',
                   fontSize: '16px',
                   fontStyle: 'normal',
-                  fontWeight: 600,
+                  fontWeight: 500,
                   lineHeight: 'normal',
                 }}
               >
                 Date <span style={{ color: '#FF0000' }}>*</span>
               </Typography>
             </Grid>
-            <Grid item xs={12} md={6} sx={{ width: '100%' }}>
+            <Grid item xs={12} md={7} sx={{ width: '100%' }}>
               <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DesktopDatePicker
+                  className='custom-date-time-picker'
                   open={isOpenDatePicker}
                   slots={{
                     openPickerIcon: () => (
@@ -153,7 +151,7 @@ const PunchRequestModal = ({
                       <ActionBarComponent onClose={handleCloseDatePicker} />
                     ),
                   }}
-                  sx={{ width: '100%', borderRadius: '50%' }}
+                  sx={{ width: '100%', borderRadius: '50%', }}
                   defaultValue={dayjs('2022-04-17')}
                 />
               </LocalizationProvider>
@@ -161,7 +159,7 @@ const PunchRequestModal = ({
           </Grid>
         </Box>
       </Box>
-      <Box>
+      {createModal && <Box>
         <Box
           sx={{
             padding: '20px',
@@ -177,7 +175,7 @@ const PunchRequestModal = ({
               flexDirection: { xs: 'column', md: 'row' },
             }}
           >
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} md={5}>
               <Typography
                 sx={{
                   color: '#595959',
@@ -190,25 +188,31 @@ const PunchRequestModal = ({
                 Expected check in
               </Typography>
             </Grid>
-            <Grid item xs={12} md={6} sx={{ width: '100%' }}>
+            <Grid item xs={12} md={7} sx={{ width: '100%' }}>
               <Box
                 display={'flex'}
                 justifyContent={'space-between'}
                 alignItems={'center'}
                 sx={{
                   border: 'solid 1px #ccc',
-                  p: '15px',
+                  p: '9px',
                   borderRadius: '5px',
                   background: '#f6f6f6',
                 }}
               >
-                <Typography>10:00 AM</Typography>
+                <Typography sx={{
+                  color: "#595959",
+                  fontSize: "16px",
+                  fontStyle: "normal",
+                  fontWeight: 500,
+                  lineHeight: "normal",
+                }}>10:00 AM</Typography>
               </Box>
             </Grid>
           </Grid>
         </Box>
-      </Box>
-      <Box>
+      </Box>}
+      {createModal && <Box>
         <Box
           sx={{
             padding: '0 20px',
@@ -225,7 +229,7 @@ const PunchRequestModal = ({
               flexDirection: { xs: 'column', md: 'row' },
             }}
           >
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} md={5}>
               <Typography
                 sx={{
                   color: '#595959',
@@ -238,24 +242,30 @@ const PunchRequestModal = ({
                 Expected check out
               </Typography>
             </Grid>
-            <Grid item xs={12} md={6} sx={{ width: '100%' }}>
+            <Grid item xs={12} md={7} sx={{ width: '100%' }}>
               <Box
                 display={'flex'}
                 justifyContent={'space-between'}
                 alignItems={'center'}
                 sx={{
                   border: 'solid 1px #ccc',
-                  p: '15px',
+                  p: '9px',
                   borderRadius: '5px',
                   background: '#f6f6f6',
                 }}
               >
-                <Typography>07:00 PM</Typography>
+                <Typography sx={{
+                  color: "#595959",
+                  fontSize: "16px",
+                  fontStyle: "normal",
+                  fontWeight: 500,
+                  lineHeight: "normal",
+                }}>07:00 PM</Typography>
               </Box>
             </Grid>
           </Grid>
         </Box>
-      </Box>
+      </Box>}
       <Box>
         <Box
           sx={{
@@ -273,7 +283,7 @@ const PunchRequestModal = ({
               flexDirection: { xs: 'column', md: 'row' },
             }}
           >
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} md={5}>
               <Typography
                 sx={{
                   color: '#595959',
@@ -283,10 +293,10 @@ const PunchRequestModal = ({
                   lineHeight: 'normal',
                 }}
               >
-                Punch type
+                Punch type <span style={{ color: '#FF0000' }}>*</span>
               </Typography>
             </Grid>
-            <Grid item xs={12} md={6} sx={{ width: '100%' }}>
+            <Grid item xs={12} md={7} sx={{ width: '100%' }}>
               <Box
                 display={'flex'}
                 justifyContent={'space-between'}
@@ -309,6 +319,7 @@ const PunchRequestModal = ({
                   selectedItem={selectedJobTitle}
                   setSelectedItem={setSelectedJobTitle}
                   placeHolder="Select Punch Type"
+                  padding={"9px"}
                 />
               </Box>
             </Grid>
@@ -333,7 +344,7 @@ const PunchRequestModal = ({
               flexDirection: { xs: 'column', md: 'row' },
             }}
           >
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} md={5}>
               <Typography
                 sx={{
                   color: '#595959',
@@ -343,10 +354,10 @@ const PunchRequestModal = ({
                   lineHeight: 'normal',
                 }}
               >
-                Punch time
+                Punch time <span style={{ color: '#FF0000' }}>*</span>
               </Typography>
             </Grid>
-            <Grid item xs={12} md={6} sx={{ width: '100%' }}>
+            <Grid item xs={12} md={7} sx={{ width: '100%' }}>
               <Box
                 display={'flex'}
                 justifyContent={'space-between'}
@@ -361,6 +372,7 @@ const PunchRequestModal = ({
                   sx={{ width: '100%' }}
                 >
                   <DesktopTimePicker
+                    className='custom-date-time-picker'
                     open={false}
                     slots={{
                       openPickerIcon: () => null,
@@ -390,7 +402,7 @@ const PunchRequestModal = ({
               flexDirection: { xs: 'column', md: 'row' },
             }}
           >
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} md={5}>
               <Typography
                 sx={{
                   color: '#595959',
@@ -403,7 +415,7 @@ const PunchRequestModal = ({
                 Description
               </Typography>
             </Grid>
-            <Grid item xs={12} md={6} sx={{ width: '100%' }}>
+            <Grid item xs={12} md={7} sx={{ width: '100%' }}>
               <Box
                 display={'flex'}
                 justifyContent={'space-between'}
@@ -416,10 +428,17 @@ const PunchRequestModal = ({
                   sx={{
                     width: '100%',
                     background: '#f6f6f6',
+                    color: "#595959",
+                    fontSize: "16px",
+                    fontStyle: "normal",
+                    fontWeight: 500,
+                    lineHeight: "normal",
                   }}
+                  // sx={{
+                  // }}
                   aria-label="minimum height"
                   minRows={3}
-                  placeholder="Minimum 3 rows"
+                  placeholder="Write your description"
                 />
               </Box>
             </Grid>
@@ -431,10 +450,10 @@ const PunchRequestModal = ({
         justifyContent={'flex-end'}
         sx={{ padding: '20px' }}
       >
-        <Button onClick={handleClose} sx={{ ml: '20px' }} variant="outlined">
+        <Button onClick={handleClose} sx={{ ml: '20px', minWidth:'120px' }} variant="outlined">
           Cancel
         </Button>
-        <Button onClick={handleClose} sx={{ ml: '20px' }} variant="contained">
+        <Button onClick={handleClose} sx={{ ml: '20px', minWidth:'120px' }} variant="contained">
           Save
         </Button>
       </Box>

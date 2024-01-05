@@ -175,11 +175,51 @@ const Dashboard = () => {
                 )}
               </Box>
 
-              <Box mb={'20px'} display={'flex'} alignItems={'center'}>
+              <Box display={'flex'} alignItems={'center'}>
+                <Box
+                  sx={{
+                    border: 'solid 1px #029E9C',
+                    width: '35px',
+                    height: "35px",
+                    p: '5px',
+                    display: { xs: 'flex', md: "none" },
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    borderRadius: '5px',
+                    m: '10px 10px 10px 0',
+                  }}
+                >
+                  <Image
+                    width={15}
+                    height={15}
+                    alt="Refresh"
+                    src={`/icons/Refresh.svg`}
+                  />
+                </Box>
+                <Box
+                  sx={{
+                    background: '#029E9C',
+                    display: { xs: 'flex', md: "none" },
+                    width: '35px',
+                    height: "35px",
+                    p: '5px',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    borderRadius: '5px',
+                  }}
+                >
+                  <Image
+                    width={15}
+                    height={15}
+                    alt="Refresh"
+                    src={`/icons/Filter.svg`}
+                  />
+                </Box>
                 <Button
                   sx={{
                     marginX: '10px',
                     minWidth: '120px',
+                    display: { xs: "none", md: "flex" },
                     border: '1px solid #138A72',
                     color: '#138A72',
                     '&:hover:': {
@@ -201,6 +241,7 @@ const Dashboard = () => {
                   sx={{
                     minWidth: '120px',
                     background: '#138A72',
+                    display: { xs: "none", md: "flex" },
                     color: '#fff',
                   }}
                   startIcon={
@@ -262,26 +303,6 @@ const Dashboard = () => {
           height: { xs: '950px', md: '890px' },
         }}
       >
-        {/* <Box
-          sx={{
-            mx: 'auto',
-            bgcolor: '#fff',
-            width: { xs: '80%', md: '50%' },
-            display: 'flex',
-            flexDirection: 'column',
-            borderRadius: '10px',
-            boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
-          }}
-        >
-          <Box
-            sx={{
-              width: '100%',
-            }}
-          >
-            <AttendanceHeading />
-            <AttendanceView onClose={handleClose} />
-          </Box>
-        </Box> */}
         <AttendanceViewModal modalData={modalData} handleClose={handleClose} />
       </Modal>
     </>

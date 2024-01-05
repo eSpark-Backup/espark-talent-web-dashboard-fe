@@ -140,12 +140,13 @@ const Dashboard = () => {
       row: { status, employeeName, count, leaveType },
     } = props;
     console.log({ item, row, status, count, leaveType, employeeName });
-    setModalData({ item, status, count, leaveType, employeeName });
+    setModalData({ item, ...row });
     setOpenPunch(true);
     // setStatusType(item);
     // setActionType(status)
   };
   const handleOpenModal = () => {
+    setModalData({})
     setOpenModal(true);
   };
   const handleCloseModal = () => {
@@ -184,9 +185,8 @@ const Dashboard = () => {
     color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
     background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
     border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
-    box-shadow: 0px 2px 2px ${
-      theme.palette.mode === 'dark' ? grey[900] : grey[50]
-    };
+    box-shadow: 0px 2px 2px ${theme.palette.mode === 'dark' ? grey[900] : grey[50]
+      };
 
     &:hover {
       border-color: ${blue[400]};
@@ -194,8 +194,7 @@ const Dashboard = () => {
 
     &:focus {
       border-color: ${blue[400]};
-      box-shadow: 0 0 0 3px ${
-        theme.palette.mode === 'dark' ? blue[600] : blue[200]
+      box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[600] : blue[200]
       };
     }
 
@@ -254,250 +253,6 @@ const Dashboard = () => {
               handleClose={handleCloseModal}
               createModal
             />
-            {/* <Box
-              sx={{
-                mx: 'auto',
-                bgcolor: '#fff',
-                width: { xs: '90%', sm: "90%", md: '70%' },
-                display: 'flex',
-                flexDirection: 'column',
-                borderRadius: '10px',
-                boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
-                maxHeight: "80%",
-                overflowY: "auto",
-              }}
-            >
-              <Box sx={{ borderBottom: '1px solid #E4E4E4', p: 2 }}>
-                <Typography
-                  sx={{
-                    fontSize: '25px',
-                    fontWeight: '600',
-                  }}
-                >
-                  Create punch request
-                </Typography>
-              </Box>
-
-              <Box>
-                <Box sx={{
-                  padding: "0 20px",
-                  mt: "20px"
-                }}>
-                  <Grid container p={"5px 5px 5px 20px"} sx={{
-                    background: "#F6F6F6",
-                    borderRadius: "5px",
-                    display: "flex",
-                    alignItems: { xs: "flex-start", md: "center" },
-                    flexDirection: { xs: "column", md: "row" },
-                  }}>
-                    <Grid item xs={12} md={6}>
-                      <Typography sx={{
-                        color: "#171717",
-                        fontSize: "16px",
-                        fontStyle: "normal",
-                        fontWeight: 600,
-                        lineHeight: "normal",
-                      }}>Date <span style={{ color: '#FF0000' }}>*</span></Typography>
-                    </Grid>
-                    <Grid item xs={12} md={6} sx={{ width: "100%" }}>
-                      <LocalizationProvider dateAdapter={AdapterDayjs}>
-                        <DesktopDatePicker
-                          open={isOpenDatePicker}
-                          slots={{
-                            openPickerIcon: () => <Image src={"/icons/CalendarOutline.svg"} width={20} height={20} alt='Date' onClick={() => setIsOpenDatePicker(ps => !ps)} />,
-                            actionBar: () => (
-                              <ActionBarComponent onClose={handleCloseDatePicker} />
-                            )
-                          }}
-                          sx={{ width: "100%", borderRadius: "50%" }} defaultValue={dayjs('2022-04-17')} />
-                      </LocalizationProvider>
-                    </Grid>
-                  </Grid>
-                </Box>
-              </Box>
-              <Box>
-                <Box sx={{
-                  padding: "20px"
-                }}>
-                  <Grid container p={"5px 5px 5px 20px"} sx={{
-                    borderRadius: "5px",
-                    display: "flex",
-                    alignItems: { xs: "flex-start", md: "center" },
-                    flexDirection: { xs: "column", md: "row" },
-                  }}>
-                    <Grid item xs={12} md={6}>
-                      <Typography sx={{
-                        color: "#595959",
-                        fontSize: "16px",
-                        fontStyle: "normal",
-                        fontWeight: 600,
-                        lineHeight: "normal",
-                      }}>Expected check in</Typography>
-                    </Grid>
-                    <Grid item xs={12} md={6} sx={{ width: "100%" }}>
-                      <Box display={"flex"} justifyContent={"space-between"} alignItems={"center"} sx={{
-                        border: "solid 1px #ccc",
-                        p: "15px",
-                        borderRadius: "5px",
-                        background: "#f6f6f6"
-                      }}>
-                        <Typography>--:-- --</Typography>
-                      </Box>
-                    </Grid>
-                  </Grid>
-                </Box>
-              </Box>
-              <Box>
-                <Box sx={{
-                  padding: "0 20px"
-                }}>
-                  <Grid container p={"5px 5px 5px 20px"} sx={{
-                    background: "#f6f6f6",
-                    borderRadius: "5px",
-                    display: "flex",
-                    alignItems: { xs: "flex-start", md: "center" },
-                    flexDirection: { xs: "column", md: "row" },
-                  }}>
-                    <Grid item xs={12} md={6}>
-                      <Typography sx={{
-                        color: "#595959",
-                        fontSize: "16px",
-                        fontStyle: "normal",
-                        fontWeight: 600,
-                        lineHeight: "normal",
-                      }}>Expected check out</Typography></Grid>
-                    <Grid item xs={12} md={6} sx={{ width: "100%" }}>
-                      <Box display={"flex"} justifyContent={"space-between"} alignItems={"center"} sx={{
-                        border: "solid 1px #ccc",
-                        p: "15px",
-                        borderRadius: "5px",
-                        background: "#f6f6f6"
-                      }}>
-                        <Typography>--:-- --</Typography>
-                      </Box>
-                    </Grid>
-                  </Grid>
-                </Box>
-              </Box>
-              <Box>
-                <Box sx={{
-                  padding: "20px"
-                }}>
-                  <Grid container p={"5px 5px 5px 20px"} sx={{
-                    background: "#FFF",
-                    borderRadius: "5px",
-                    display: "flex",
-                    alignItems: { xs: "flex-start", md: "center" },
-                    flexDirection: { xs: "column", md: "row" },
-                  }}>
-                    <Grid item xs={12} md={6}>
-                      <Typography sx={{
-                        color: "#595959",
-                        fontSize: "16px",
-                        fontStyle: "normal",
-                        fontWeight: 600,
-                        lineHeight: "normal",
-                      }}>Punch type</Typography>
-                    </Grid>
-                    <Grid item xs={12} md={6} sx={{ width: "100%" }}>
-                      <Box display={"flex"} justifyContent={"space-between"} alignItems={"center"} sx={{
-                        borderRadius: "5px",
-                      }}>
-                        <AppDropdown
-                          data={[
-                            {
-                              label: 'Check in',
-                            },
-                            {
-                              label: 'Check out',
-                            },
-                          ]}
-                          setIsLoadingList={setIsLoadingTitles}
-                          isLoadingList={isLoadingTitles}
-                          selectedItem={selectedJobTitle}
-                          setSelectedItem={setSelectedJobTitle}
-                          placeHolder="Select Punch Type"
-                        />
-                      </Box>
-                    </Grid>
-                  </Grid>
-                </Box>
-              </Box>
-
-              <Box>
-                <Box sx={{
-                  padding: "0 20px"
-                }}>
-                  <Grid container p={"5px 5px 5px 20px"} sx={{
-                    background: "#F6F6F6",
-                    borderRadius: "5px",
-                    display: "flex",
-                    alignItems: { xs: "flex-start", md: "center" },
-                    flexDirection: { xs: "column", md: "row" },
-                  }}>
-                    <Grid item xs={12} md={6}>
-                      <Typography sx={{
-                        color: "#595959",
-                        fontSize: "16px",
-                        fontStyle: "normal",
-                        fontWeight: 600,
-                        lineHeight: "normal",
-                      }}>Punch time</Typography></Grid>
-                    <Grid item xs={12} md={6} sx={{ width: "100%" }}>
-                      <Box display={"flex"} justifyContent={"space-between"} alignItems={"center"} sx={{
-                        borderRadius: "5px",
-                        width: "100%"
-                      }}>
-                        <LocalizationProvider dateAdapter={AdapterDayjs} sx={{ width: "100%" }}>
-                          <DesktopTimePicker
-                            open={false}
-                            slots={{
-                              openPickerIcon: () => null,
-                            }}
-                            sx={{ width: "100%" }} defaultValue={dayjs('2022-04-17T15:30')} />
-                        </LocalizationProvider>
-                      </Box>
-                    </Grid>
-                  </Grid>
-                </Box>
-              </Box>
-              <Box>
-                <Box sx={{
-                  padding: "20px"
-                }}>
-                  <Grid container p={"5px 5px 5px 20px"} sx={{
-                    background: "#fff",
-                    borderRadius: "5px",
-                    display: "flex",
-                    flexDirection: { xs: "column", md: "row" },
-                  }}>
-                    <Grid item xs={12} md={6}>
-                      <Typography sx={{
-                        color: "#595959",
-                        fontSize: "16px",
-                        fontStyle: "normal",
-                        fontWeight: 600,
-                        lineHeight: "normal",
-                      }}>Description</Typography>
-                    </Grid>
-                    <Grid item xs={12} md={6} sx={{ width: "100%" }}>
-                      <Box display={"flex"} justifyContent={"space-between"} sx={{
-                        borderRadius: "5px",
-                        background: "#f6f6f6",
-                      }}>
-                        <Textarea sx={{
-                          width: "100%",
-                          background: "#f6f6f6",
-                        }} aria-label="minimum height" minRows={3} placeholder="Minimum 3 rows" />
-                      </Box>
-                    </Grid>
-                  </Grid>
-                </Box>
-              </Box>
-              <Box display={"flex"} justifyContent={"flex-end"} sx={{ padding: "20px" }}>
-                <Button onClick={handleCloseModal} sx={{ ml: "20px" }} variant='contained'>Close</Button>
-              </Box>
-            </Box> */}
           </Modal>
         )}
       </Box>
@@ -647,20 +402,18 @@ const Dashboard = () => {
             >
               <Box
                 sx={{
-                  width: `${
-                    getPercentage(timeToSeconds('03:10:00'), 9) < 100
+                  width: `${getPercentage(timeToSeconds('03:10:00'), 9) < 100
                       ? getPercentage(timeToSeconds('03:10:00'), 9)
                       : 100
-                  }%`,
+                    }%`,
                   background: '#E6F4F4',
                   height: '100%',
                 }}
               ></Box>
               <Box
                 sx={{
-                  width: `${
-                    100 - getPercentage(timeToSeconds('03:10:00'), 9)
-                  }%`,
+                  width: `${100 - getPercentage(timeToSeconds('03:10:00'), 9)
+                    }%`,
                   background: '#F5F5F5',
                   height: '100%',
                 }}
@@ -899,27 +652,25 @@ const Dashboard = () => {
                       >
                         <Box
                           sx={{
-                            width: `${
-                              getPercentage(
-                                +hoursCompleted * 3600,
-                                +totalHours
-                              ) < 100
+                            width: `${getPercentage(
+                              +hoursCompleted * 3600,
+                              +totalHours
+                            ) < 100
                                 ? getPercentage(
-                                    +hoursCompleted * 3600,
-                                    +totalHours
-                                  )
+                                  +hoursCompleted * 3600,
+                                  +totalHours
+                                )
                                 : 100
-                            }%`,
+                              }%`,
                             background: background,
                             height: '100%',
                           }}
                         ></Box>
                         <Box
                           sx={{
-                            width: `${
-                              100 -
+                            width: `${100 -
                               getPercentage(+hoursCompleted * 3600, +totalHours)
-                            }%`,
+                              }%`,
                             background: remainingBack,
                             height: '100%',
                           }}
@@ -1209,275 +960,10 @@ const Dashboard = () => {
           height: { xs: '950px', md: '890px' },
         }}
       >
-        <Box
-          sx={{
-            mx: 'auto',
-            bgcolor: '#fff',
-            width: { xs: '90%', sm: '90%', md: '70%' },
-            display: 'flex',
-            flexDirection: 'column',
-            borderRadius: '10px',
-            boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
-            maxHeight: '80%',
-            overflowY: 'auto',
-          }}
-        >
-          <Box sx={{ borderBottom: '1px solid #E4E4E4', p: 2 }}>
-            <Typography
-              sx={{
-                fontSize: '25px',
-                fontWeight: '600',
-              }}
-            >
-              Punch request view
-            </Typography>
-          </Box>
-
-          <Box>
-            <Box
-              sx={{
-                padding: '0 20px',
-                mt: '20px',
-              }}
-            >
-              <Grid
-                container
-                p={'5px 5px 5px 20px'}
-                sx={{
-                  background: '#F6F6F6',
-                  borderRadius: '5px',
-                  display: 'flex',
-                  alignItems: { xs: 'flex-start', md: 'center' },
-                  flexDirection: { xs: 'column', md: 'row' },
-                }}
-              >
-                <Grid item xs={12} md={6}>
-                  <Typography
-                    sx={{
-                      color: '#171717',
-                      fontSize: '16px',
-                      fontStyle: 'normal',
-                      fontWeight: 600,
-                      lineHeight: 'normal',
-                    }}
-                  >
-                    Date <span style={{ color: '#FF0000' }}>*</span>
-                  </Typography>
-                </Grid>
-                <Grid item xs={12} md={6} sx={{ width: '100%' }}>
-                  <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <DesktopDatePicker
-                      disabled
-                      open={isOpenDatePicker}
-                      slots={{
-                        openPickerIcon: () => (
-                          <Image
-                            src={'/icons/CalendarOutline.svg'}
-                            width={20}
-                            height={20}
-                            alt="Date"
-                            onClick={() => setIsOpenDatePicker((ps) => !ps)}
-                          />
-                        ),
-                        actionBar: () => (
-                          <ActionBarComponent onClose={handleCloseDatePicker} />
-                        ),
-                      }}
-                      sx={{ width: '100%', borderRadius: '50%' }}
-                      defaultValue={dayjs('2022-04-17')}
-                    />
-                  </LocalizationProvider>
-                </Grid>
-              </Grid>
-            </Box>
-          </Box>
-          <Box>
-            <Box
-              sx={{
-                padding: '20px',
-              }}
-            >
-              <Grid
-                container
-                p={'5px 5px 5px 20px'}
-                sx={{
-                  background: '#FFF',
-                  borderRadius: '5px',
-                  display: 'flex',
-                  alignItems: { xs: 'flex-start', md: 'center' },
-                  flexDirection: { xs: 'column', md: 'row' },
-                }}
-              >
-                <Grid item xs={12} md={6}>
-                  <Typography
-                    sx={{
-                      color: '#595959',
-                      fontSize: '16px',
-                      fontStyle: 'normal',
-                      fontWeight: 600,
-                      lineHeight: 'normal',
-                    }}
-                  >
-                    Punch type
-                  </Typography>
-                </Grid>
-                <Grid item xs={12} md={6} sx={{ width: '100%' }}>
-                  <Box
-                    display={'flex'}
-                    justifyContent={'space-between'}
-                    alignItems={'center'}
-                    sx={{
-                      borderRadius: '5px',
-                    }}
-                  >
-                    <AppDropdown
-                      disabled
-                      data={[
-                        {
-                          label: 'Check in',
-                        },
-                        {
-                          label: 'Check out',
-                        },
-                      ]}
-                      setIsLoadingList={setIsLoadingTitles}
-                      isLoadingList={isLoadingTitles}
-                      selectedItem={selectedJobTitle}
-                      setSelectedItem={setSelectedJobTitle}
-                      placeHolder="Select Punch Type"
-                    />
-                  </Box>
-                </Grid>
-              </Grid>
-            </Box>
-          </Box>
-
-          <Box>
-            <Box
-              sx={{
-                padding: '0 20px',
-              }}
-            >
-              <Grid
-                container
-                p={'5px 5px 5px 20px'}
-                sx={{
-                  background: '#F6F6F6',
-                  borderRadius: '5px',
-                  display: 'flex',
-                  alignItems: { xs: 'flex-start', md: 'center' },
-                  flexDirection: { xs: 'column', md: 'row' },
-                }}
-              >
-                <Grid item xs={12} md={6}>
-                  <Typography
-                    sx={{
-                      color: '#595959',
-                      fontSize: '16px',
-                      fontStyle: 'normal',
-                      fontWeight: 600,
-                      lineHeight: 'normal',
-                    }}
-                  >
-                    Punch time
-                  </Typography>
-                </Grid>
-                <Grid item xs={12} md={6} sx={{ width: '100%' }}>
-                  <Box
-                    display={'flex'}
-                    justifyContent={'space-between'}
-                    alignItems={'center'}
-                    sx={{
-                      borderRadius: '5px',
-                      width: '100%',
-                    }}
-                  >
-                    <LocalizationProvider
-                      dateAdapter={AdapterDayjs}
-                      sx={{ width: '100%' }}
-                    >
-                      <DesktopTimePicker
-                        disabled
-                        open={false}
-                        slots={{
-                          openPickerIcon: () => null,
-                        }}
-                        sx={{ width: '100%' }}
-                        defaultValue={dayjs('2022-04-17T15:30')}
-                      />
-                    </LocalizationProvider>
-                  </Box>
-                </Grid>
-              </Grid>
-            </Box>
-          </Box>
-          <Box>
-            <Box
-              sx={{
-                padding: '20px',
-              }}
-            >
-              <Grid
-                container
-                p={'5px 5px 5px 20px'}
-                sx={{
-                  background: '#fff',
-                  borderRadius: '5px',
-                  display: 'flex',
-                  flexDirection: { xs: 'column', md: 'row' },
-                }}
-              >
-                <Grid item xs={12} md={6}>
-                  <Typography
-                    sx={{
-                      color: '#595959',
-                      fontSize: '16px',
-                      fontStyle: 'normal',
-                      fontWeight: 600,
-                      lineHeight: 'normal',
-                    }}
-                  >
-                    Description
-                  </Typography>
-                </Grid>
-                <Grid item xs={12} md={6} sx={{ width: '100%' }}>
-                  <Box
-                    display={'flex'}
-                    justifyContent={'space-between'}
-                    sx={{
-                      borderRadius: '5px',
-                      background: '#f6f6f6',
-                    }}
-                  >
-                    <Textarea
-                      disabled
-                      sx={{
-                        width: '100%',
-                        background: '#f6f6f6',
-                      }}
-                      aria-label="minimum height"
-                      minRows={3}
-                      placeholder="Minimum 3 rows"
-                    />
-                  </Box>
-                </Grid>
-              </Grid>
-            </Box>
-          </Box>
-          <Box
-            display={'flex'}
-            justifyContent={'flex-end'}
-            sx={{ padding: '20px' }}
-          >
-            <Button
-              onClick={handleClosePunch}
-              sx={{ ml: '20px' }}
-              variant="contained"
-            >
-              Close
-            </Button>
-          </Box>
-        </Box>
+        <PunchRequestModal
+          modalData={modalData}
+          handleClose={handleCloseModal}
+        />
       </Modal>
     </>
   );
