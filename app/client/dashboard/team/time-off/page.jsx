@@ -181,12 +181,12 @@ const Dashboard = () => {
         >
           <div>
             <Box
-            sx={{
-              display:"flex",
-              flexDirection:{xs:"column", md:"row"},
-              justifyContent:{xs:"flex-start", md:"space-between"},
-              alignItems:{xs:"flex-start", md:"center"},
-            }}
+              sx={{
+                display: 'flex',
+                flexDirection: { xs: 'column', md: 'row' },
+                justifyContent: { xs: 'flex-start', md: 'space-between' },
+                alignItems: { xs: 'flex-start', md: 'center' },
+              }}
               // display={'flex'}
               // justifyContent={'space-between'}
               // alignItems={'center'}
@@ -233,7 +233,7 @@ const Dashboard = () => {
                 </Box>
               </Box>
               <Button
-                sx={{ marginX: '10px', minWidth: {xs:'auto',md:'220px'} }}
+                sx={{ marginX: '10px', minWidth: { xs: 'auto', md: '220px' } }}
                 variant="outlined"
               >
                 Download Report

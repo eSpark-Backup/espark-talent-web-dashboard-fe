@@ -13,14 +13,12 @@ import AppDropdown from '@/src/components/dashboard/appDropdown';
 import { TextareaAutosize as BaseTextareaAutosize } from '@mui/base/TextareaAutosize';
 import { styled } from '@mui/system';
 
-const PunchRequestModal = ({
-  createModal,
-   modalData,
-  handleClose,
-}) => {
+const PunchRequestModal = ({ createModal, modalData, handleClose }) => {
   const [isOpenDatePicker, setIsOpenDatePicker] = useState(false);
   const [isLoadingTitles, setIsLoadingTitles] = useState(false);
-  const [selectedJobTitle, setSelectedJobTitle] = useState(modalData?.punchType || '');
+  const [selectedJobTitle, setSelectedJobTitle] = useState(
+    modalData?.punchType || ''
+  );
   const blue = {
     100: '#DAECFF',
     200: '#b6daff',
@@ -53,10 +51,12 @@ const PunchRequestModal = ({
         border-radius: 8px;
         color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
         background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
-        border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]
-      };
-        box-shadow: 0px 2px 2px ${theme.palette.mode === 'dark' ? grey[900] : grey[50]
-      };
+        border: 1px solid ${
+          theme.palette.mode === 'dark' ? grey[700] : grey[200]
+        };
+        box-shadow: 0px 2px 2px ${
+          theme.palette.mode === 'dark' ? grey[900] : grey[50]
+        };
     
         &:hover {
           border-color: ${blue[400]};
@@ -64,8 +64,9 @@ const PunchRequestModal = ({
     
         &:focus {
           border-color: ${blue[400]};
-          box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[600] : blue[200]
-      };
+          box-shadow: 0 0 0 3px ${
+            theme.palette.mode === 'dark' ? blue[600] : blue[200]
+          };
         }
     
         // firefox
@@ -135,7 +136,7 @@ const PunchRequestModal = ({
             <Grid item xs={12} md={7} sx={{ width: '100%' }}>
               <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DesktopDatePicker
-                  className='custom-date-time-picker'
+                  className="custom-date-time-picker"
                   open={isOpenDatePicker}
                   slots={{
                     openPickerIcon: () => (
@@ -151,7 +152,7 @@ const PunchRequestModal = ({
                       <ActionBarComponent onClose={handleCloseDatePicker} />
                     ),
                   }}
-                  sx={{ width: '100%', borderRadius: '50%', }}
+                  sx={{ width: '100%', borderRadius: '50%' }}
                   defaultValue={dayjs('2022-04-17')}
                 />
               </LocalizationProvider>
@@ -159,113 +160,125 @@ const PunchRequestModal = ({
           </Grid>
         </Box>
       </Box>
-      {createModal && <Box>
-        <Box
-          sx={{
-            padding: '20px',
-          }}
-        >
-          <Grid
-            container
-            p={'5px 5px 5px 20px'}
+      {createModal && (
+        <Box>
+          <Box
             sx={{
-              borderRadius: '5px',
-              display: 'flex',
-              alignItems: { xs: 'flex-start', md: 'center' },
-              flexDirection: { xs: 'column', md: 'row' },
+              padding: '20px',
             }}
           >
-            <Grid item xs={12} md={5}>
-              <Typography
-                sx={{
-                  color: '#595959',
-                  fontSize: '16px',
-                  fontStyle: 'normal',
-                  fontWeight: 600,
-                  lineHeight: 'normal',
-                }}
-              >
-                Expected check in
-              </Typography>
+            <Grid
+              container
+              p={'5px 5px 5px 20px'}
+              sx={{
+                borderRadius: '5px',
+                display: 'flex',
+                alignItems: { xs: 'flex-start', md: 'center' },
+                flexDirection: { xs: 'column', md: 'row' },
+              }}
+            >
+              <Grid item xs={12} md={5}>
+                <Typography
+                  sx={{
+                    color: '#595959',
+                    fontSize: '16px',
+                    fontStyle: 'normal',
+                    fontWeight: 600,
+                    lineHeight: 'normal',
+                  }}
+                >
+                  Expected check in
+                </Typography>
+              </Grid>
+              <Grid item xs={12} md={7} sx={{ width: '100%' }}>
+                <Box
+                  display={'flex'}
+                  justifyContent={'space-between'}
+                  alignItems={'center'}
+                  sx={{
+                    border: 'solid 1px #ccc',
+                    p: '9px',
+                    borderRadius: '5px',
+                    background: '#f6f6f6',
+                  }}
+                >
+                  <Typography
+                    sx={{
+                      color: '#595959',
+                      fontSize: '16px',
+                      fontStyle: 'normal',
+                      fontWeight: 500,
+                      lineHeight: 'normal',
+                    }}
+                  >
+                    10:00 AM
+                  </Typography>
+                </Box>
+              </Grid>
             </Grid>
-            <Grid item xs={12} md={7} sx={{ width: '100%' }}>
-              <Box
-                display={'flex'}
-                justifyContent={'space-between'}
-                alignItems={'center'}
-                sx={{
-                  border: 'solid 1px #ccc',
-                  p: '9px',
-                  borderRadius: '5px',
-                  background: '#f6f6f6',
-                }}
-              >
-                <Typography sx={{
-                  color: "#595959",
-                  fontSize: "16px",
-                  fontStyle: "normal",
-                  fontWeight: 500,
-                  lineHeight: "normal",
-                }}>10:00 AM</Typography>
-              </Box>
-            </Grid>
-          </Grid>
+          </Box>
         </Box>
-      </Box>}
-      {createModal && <Box>
-        <Box
-          sx={{
-            padding: '0 20px',
-          }}
-        >
-          <Grid
-            container
-            p={'5px 5px 5px 20px'}
+      )}
+      {createModal && (
+        <Box>
+          <Box
             sx={{
-              background: '#f6f6f6',
-              borderRadius: '5px',
-              display: 'flex',
-              alignItems: { xs: 'flex-start', md: 'center' },
-              flexDirection: { xs: 'column', md: 'row' },
+              padding: '0 20px',
             }}
           >
-            <Grid item xs={12} md={5}>
-              <Typography
-                sx={{
-                  color: '#595959',
-                  fontSize: '16px',
-                  fontStyle: 'normal',
-                  fontWeight: 600,
-                  lineHeight: 'normal',
-                }}
-              >
-                Expected check out
-              </Typography>
+            <Grid
+              container
+              p={'5px 5px 5px 20px'}
+              sx={{
+                background: '#f6f6f6',
+                borderRadius: '5px',
+                display: 'flex',
+                alignItems: { xs: 'flex-start', md: 'center' },
+                flexDirection: { xs: 'column', md: 'row' },
+              }}
+            >
+              <Grid item xs={12} md={5}>
+                <Typography
+                  sx={{
+                    color: '#595959',
+                    fontSize: '16px',
+                    fontStyle: 'normal',
+                    fontWeight: 600,
+                    lineHeight: 'normal',
+                  }}
+                >
+                  Expected check out
+                </Typography>
+              </Grid>
+              <Grid item xs={12} md={7} sx={{ width: '100%' }}>
+                <Box
+                  display={'flex'}
+                  justifyContent={'space-between'}
+                  alignItems={'center'}
+                  sx={{
+                    border: 'solid 1px #ccc',
+                    p: '9px',
+                    borderRadius: '5px',
+                    background: '#f6f6f6',
+                  }}
+                >
+                  <Typography
+                    sx={{
+                      color: '#595959',
+                      fontSize: '16px',
+                      fontStyle: 'normal',
+                      fontWeight: 500,
+                      lineHeight: 'normal',
+                    }}
+                  >
+                    07:00 PM
+                  </Typography>
+                </Box>
+              </Grid>
             </Grid>
-            <Grid item xs={12} md={7} sx={{ width: '100%' }}>
-              <Box
-                display={'flex'}
-                justifyContent={'space-between'}
-                alignItems={'center'}
-                sx={{
-                  border: 'solid 1px #ccc',
-                  p: '9px',
-                  borderRadius: '5px',
-                  background: '#f6f6f6',
-                }}
-              >
-                <Typography sx={{
-                  color: "#595959",
-                  fontSize: "16px",
-                  fontStyle: "normal",
-                  fontWeight: 500,
-                  lineHeight: "normal",
-                }}>07:00 PM</Typography>
-              </Box>
-            </Grid>
-          </Grid>
+          </Box>
         </Box>
-      </Box>}
+      )}
       <Box>
         <Box
           sx={{
@@ -319,7 +332,7 @@ const PunchRequestModal = ({
                   selectedItem={selectedJobTitle}
                   setSelectedItem={setSelectedJobTitle}
                   placeHolder="Select Punch Type"
-                  padding={"9px"}
+                  padding={'9px'}
                 />
               </Box>
             </Grid>
@@ -372,7 +385,7 @@ const PunchRequestModal = ({
                   sx={{ width: '100%' }}
                 >
                   <DesktopTimePicker
-                    className='custom-date-time-picker'
+                    className="custom-date-time-picker"
                     open={false}
                     slots={{
                       openPickerIcon: () => null,
@@ -428,11 +441,11 @@ const PunchRequestModal = ({
                   sx={{
                     width: '100%',
                     background: '#f6f6f6',
-                    color: "#595959",
-                    fontSize: "16px",
-                    fontStyle: "normal",
+                    color: '#595959',
+                    fontSize: '16px',
+                    fontStyle: 'normal',
                     fontWeight: 500,
-                    lineHeight: "normal",
+                    lineHeight: 'normal',
                   }}
                   // sx={{
                   // }}
@@ -450,10 +463,18 @@ const PunchRequestModal = ({
         justifyContent={'flex-end'}
         sx={{ padding: '20px' }}
       >
-        <Button onClick={handleClose} sx={{ ml: '20px', minWidth:'120px' }} variant="outlined">
+        <Button
+          onClick={handleClose}
+          sx={{ ml: '20px', minWidth: '120px' }}
+          variant="outlined"
+        >
           Cancel
         </Button>
-        <Button onClick={handleClose} sx={{ ml: '20px', minWidth:'120px' }} variant="contained">
+        <Button
+          onClick={handleClose}
+          sx={{ ml: '20px', minWidth: '120px' }}
+          variant="contained"
+        >
           Save
         </Button>
       </Box>

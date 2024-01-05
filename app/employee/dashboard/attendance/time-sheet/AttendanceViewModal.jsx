@@ -29,7 +29,7 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
         </Typography>
       </Box>
       <Box p={'20px'}>
-        <Grid container display={'flex'} flexDirection={"row"}>
+        <Grid container display={'flex'} flexDirection={'row'}>
           <Grid item xs={12} md={2.25}>
             <Box
               sx={{
@@ -41,14 +41,14 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
             />
           </Grid>
           <Grid item xs={12} md={9.75}>
-            <Grid container columnSpacing={"40px"}>
+            <Grid container columnSpacing={'40px'}>
               <Grid item xs={12} md={6}>
                 <Box
                   sx={{
                     background: '#F6F6F6',
                     p: '5px 10px',
                     borderRadius: '5px',
-                    maxWidth:"550px"
+                    maxWidth: '550px',
                   }}
                 >
                   <Grid container>
@@ -84,7 +84,7 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
                   sx={{
                     p: '5px 10px',
                     borderRadius: '5px',
-                    maxWidth:"550px"
+                    maxWidth: '550px',
                   }}
                 >
                   <Grid container>
@@ -121,7 +121,7 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
                     background: '#F6F6F6',
                     p: '5px 10px',
                     borderRadius: '5px',
-                    maxWidth:"550px"
+                    maxWidth: '550px',
                   }}
                 >
                   <Grid container>
@@ -157,7 +157,7 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
                   sx={{
                     p: '5px 10px',
                     borderRadius: '5px',
-                    maxWidth:"550px"
+                    maxWidth: '550px',
                   }}
                 >
                   <Grid container>
@@ -196,7 +196,7 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
                     background: '#F6F6F6',
                     p: '5px 10px',
                     borderRadius: '5px',
-                    maxWidth:"550px"
+                    maxWidth: '550px',
                   }}
                 >
                   <Grid container>
@@ -232,7 +232,7 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
                   sx={{
                     p: '5px 10px',
                     borderRadius: '5px',
-                    maxWidth:"550px"
+                    maxWidth: '550px',
                   }}
                 >
                   <Grid container>
@@ -269,7 +269,7 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
                     background: '#F6F6F6',
                     p: '5px 10px',
                     borderRadius: '5px',
-                    maxWidth:"550px"
+                    maxWidth: '550px',
                   }}
                 >
                   <Grid container>
@@ -305,7 +305,7 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
                   sx={{
                     p: '5px 10px',
                     borderRadius: '5px',
-                    maxWidth:"550px"
+                    maxWidth: '550px',
                   }}
                 >
                   <Grid container>
@@ -385,13 +385,17 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
                   background: '#f6f6f6',
                 }}
               >
-                <Typography sx={{
-                  color: "#595959",
-                  fontSize: "16px",
-                  fontStyle: "normal",
-                  fontWeight: 500,
-                  lineHeight: "normal",
-                }}>November 1, 2023</Typography>
+                <Typography
+                  sx={{
+                    color: '#595959',
+                    fontSize: '16px',
+                    fontStyle: 'normal',
+                    fontWeight: 500,
+                    lineHeight: 'normal',
+                  }}
+                >
+                  November 1, 2023
+                </Typography>
                 <Image
                   src={'/icons/CalendarOutline.svg'}
                   width={20}
@@ -444,13 +448,17 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
                   background: '#f6f6f6',
                 }}
               >
-                <Typography sx={{
-                  color: "#595959",
-                  fontSize: "16px",
-                  fontStyle: "normal",
-                  fontWeight: 500,
-                  lineHeight: "normal",
-                }}>10:00 AM</Typography>
+                <Typography
+                  sx={{
+                    color: '#595959',
+                    fontSize: '16px',
+                    fontStyle: 'normal',
+                    fontWeight: 500,
+                    lineHeight: 'normal',
+                  }}
+                >
+                  10:00 AM
+                </Typography>
               </Box>
             </Grid>
           </Grid>
@@ -498,13 +506,17 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
                   background: '#f6f6f6',
                 }}
               >
-                <Typography sx={{
-                  color: "#595959",
-                  fontSize: "16px",
-                  fontStyle: "normal",
-                  fontWeight: 500,
-                  lineHeight: "normal",
-                }}>{modalData?.checkIn}</Typography>
+                <Typography
+                  sx={{
+                    color: '#595959',
+                    fontSize: '16px',
+                    fontStyle: 'normal',
+                    fontWeight: 500,
+                    lineHeight: 'normal',
+                  }}
+                >
+                  {modalData?.checkIn}
+                </Typography>
               </Box>
             </Grid>
           </Grid>
@@ -552,13 +564,17 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
                   background: '#f6f6f6',
                 }}
               >
-                <Typography sx={{
-                  color: "#595959",
-                  fontSize: "16px",
-                  fontStyle: "normal",
-                  fontWeight: 500,
-                  lineHeight: "normal",
-                }}>07:00 PM</Typography>
+                <Typography
+                  sx={{
+                    color: '#595959',
+                    fontSize: '16px',
+                    fontStyle: 'normal',
+                    fontWeight: 500,
+                    lineHeight: 'normal',
+                  }}
+                >
+                  07:00 PM
+                </Typography>
               </Box>
             </Grid>
           </Grid>
@@ -606,13 +622,17 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
                   background: '#f6f6f6',
                 }}
               >
-                <Typography sx={{
-                  color: "#595959",
-                  fontSize: "16px",
-                  fontStyle: "normal",
-                  fontWeight: 500,
-                  lineHeight: "normal",
-                }}>{modalData?.checkOut}</Typography>
+                <Typography
+                  sx={{
+                    color: '#595959',
+                    fontSize: '16px',
+                    fontStyle: 'normal',
+                    fontWeight: 500,
+                    lineHeight: 'normal',
+                  }}
+                >
+                  {modalData?.checkOut}
+                </Typography>
               </Box>
             </Grid>
           </Grid>
@@ -623,7 +643,11 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
         justifyContent={'flex-end'}
         sx={{ padding: '20px' }}
       >
-        <Button onClick={handleClose} sx={{ ml: '20px', minWidth:'120px' }} variant="contained">
+        <Button
+          onClick={handleClose}
+          sx={{ ml: '20px', minWidth: '120px' }}
+          variant="contained"
+        >
           Close
         </Button>
       </Box>

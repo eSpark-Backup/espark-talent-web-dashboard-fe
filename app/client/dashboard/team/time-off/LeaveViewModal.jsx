@@ -340,7 +340,7 @@ const LeaveViewModal = ({ modalData, handleClose, isEmployee }) => {
                     m: '5px',
                     flex: 1,
                     borderRadius: '5px',
-                    overflow: "hidden"
+                    overflow: 'hidden',
                   }}
                   display={'flex'}
                   justifyContent={'flex-end'}
@@ -612,7 +612,7 @@ const LeaveViewModal = ({ modalData, handleClose, isEmployee }) => {
             </Grid>
           </Box>
         </Box>
-        {!isEmployee &&
+        {!isEmployee && (
           <>
             {modalData?.status === 'Pending' ? (
               <Box
@@ -620,12 +620,16 @@ const LeaveViewModal = ({ modalData, handleClose, isEmployee }) => {
                 justifyContent={'flex-end'}
                 sx={{ padding: '20px' }}
               >
-                <Button sx={{ minWidth: '120px' }} onClick={handleClose} variant="outlined">
+                <Button
+                  sx={{ minWidth: '120px' }}
+                  onClick={handleClose}
+                  variant="outlined"
+                >
                   Decline
                 </Button>
                 <Button
                   onClick={handleClose}
-                  sx={{ ml: '20px',minWidth:'120px' }}
+                  sx={{ ml: '20px', minWidth: '120px' }}
                   variant="contained"
                 >
                   Approve
@@ -638,44 +642,52 @@ const LeaveViewModal = ({ modalData, handleClose, isEmployee }) => {
                 justifyContent={'flex-end'}
                 sx={{ padding: '20px' }}
               >
-                <Button sx={{ minWidth: '120px' }} onClick={handleClose} variant="outlined">
+                <Button
+                  sx={{ minWidth: '120px' }}
+                  onClick={handleClose}
+                  variant="outlined"
+                >
                   {modalData?.status}
                 </Button>
               </Box>
-            ) : null
-            }
+            ) : null}
           </>
-        }
-        {
-          isEmployee &&
+        )}
+        {isEmployee && (
           <>
-            {
-              modalData?.status === 'Pending' ? (
-                <Box
-                  display={'flex'}
-                  justifyContent={'flex-end'}
-                  sx={{ padding: '20px' }}
+            {modalData?.status === 'Pending' ? (
+              <Box
+                display={'flex'}
+                justifyContent={'flex-end'}
+                sx={{ padding: '20px' }}
+              >
+                <Button
+                  sx={{ minWidth: '120px' }}
+                  onClick={handleClose}
+                  variant="outlined"
                 >
-                  <Button sx={{ minWidth: '120px' }} onClick={handleClose} variant="outlined">
-                    Cancel Request
-                  </Button>
-                </Box>
-              ) : modalData?.status === 'Completed' ||
-                modalData?.status === 'Rejected' ||
-                modalData?.status === 'Cancelled' ? (
-                <Box
-                  display={'flex'}
-                  justifyContent={'flex-end'}
-                  sx={{ padding: '20px' }}
+                  Cancel Request
+                </Button>
+              </Box>
+            ) : modalData?.status === 'Completed' ||
+              modalData?.status === 'Rejected' ||
+              modalData?.status === 'Cancelled' ? (
+              <Box
+                display={'flex'}
+                justifyContent={'flex-end'}
+                sx={{ padding: '20px' }}
+              >
+                <Button
+                  sx={{ minWidth: '120px' }}
+                  onClick={handleClose}
+                  variant="contained"
                 >
-                  <Button sx={{ minWidth: '120px' }} onClick={handleClose} variant="contained">
-                    Close
-                  </Button>
-                </Box>
-              ) : null
-            }
+                  Close
+                </Button>
+              </Box>
+            ) : null}
           </>
-        }
+        )}
       </Box>
     </>
   );

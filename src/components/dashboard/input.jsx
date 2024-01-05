@@ -13,7 +13,7 @@ const Input = ({
   onKeyDown,
   autofocus,
   maxWidth,
-  placeHolder
+  placeHolder,
 }) => {
   const inputRef = useRef(null);
 
@@ -58,8 +58,12 @@ const Input = ({
             handleChange?.(e?.target?.value);
           }}
           className="search-input"
-          placeholder={placeHolder ||"Search here..."}
-          style={{ overflow: 'hidden', width: '100%',background:"transparent" }}
+          placeholder={placeHolder || 'Search here...'}
+          style={{
+            overflow: 'hidden',
+            width: '100%',
+            background: 'transparent',
+          }}
           onKeyDown={onKeyDown}
         />
       </Box>

@@ -180,9 +180,9 @@ const Dashboard = () => {
                   sx={{
                     border: 'solid 1px #029E9C',
                     width: '35px',
-                    height: "35px",
+                    height: '35px',
                     p: '5px',
-                    display: { xs: 'flex', md: "none" },
+                    display: { xs: 'flex', md: 'none' },
                     justifyContent: 'center',
                     alignItems: 'center',
                     borderRadius: '5px',
@@ -199,9 +199,9 @@ const Dashboard = () => {
                 <Box
                   sx={{
                     background: '#029E9C',
-                    display: { xs: 'flex', md: "none" },
+                    display: { xs: 'flex', md: 'none' },
                     width: '35px',
-                    height: "35px",
+                    height: '35px',
                     p: '5px',
                     justifyContent: 'center',
                     alignItems: 'center',
@@ -219,7 +219,7 @@ const Dashboard = () => {
                   sx={{
                     marginX: '10px',
                     minWidth: '120px',
-                    display: { xs: "none", md: "flex" },
+                    display: { xs: 'none', md: 'flex' },
                     border: '1px solid #138A72',
                     color: '#138A72',
                     '&:hover:': {
@@ -241,7 +241,7 @@ const Dashboard = () => {
                   sx={{
                     minWidth: '120px',
                     background: '#138A72',
-                    display: { xs: "none", md: "flex" },
+                    display: { xs: 'none', md: 'flex' },
                     color: '#fff',
                   }}
                   startIcon={

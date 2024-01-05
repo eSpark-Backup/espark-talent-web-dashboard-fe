@@ -13,20 +13,6 @@ import {
   employeeCheckInOutRequestData,
 } from '@/src/constants/data/tables/checkInOutRequestsData';
 import { Clock_Title } from '@/src/constants/employeeDashboard';
-// import RequestHeading from '@/src/components/requestview/modalHeading';
-// import PunchRequestView from '@/src/components/punchIn/punchRequestView';
-import AppDropdown from '@/src/components/dashboard/appDropdown';
-// import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
-import { DesktopTimePicker } from '@mui/x-date-pickers/DesktopTimePicker';
-import dayjs from 'dayjs';
-// import DateIcon from '@/public/icons/CalendarOutline.svg';
-// import AccessibleIcon from '@mui/icons-material/Accessible';
-import ActionBarComponent from '@/src/components/requestview/actionbarComponent';
-import { TextareaAutosize as BaseTextareaAutosize } from '@mui/base/TextareaAutosize';
-import { styled } from '@mui/system';
 import PunchRequestModal from './PunchRequestModal';
 
 const Dashboard = () => {
@@ -40,11 +26,6 @@ const Dashboard = () => {
   const [openModal, setOpenModal] = useState(false);
   const [openPunch, setOpenPunch] = useState(false);
   const handleClosePunch = () => setOpenPunch(false);
-  const [isLoadingTitles, setIsLoadingTitles] = useState(false);
-  const [selectedJobTitle, setSelectedJobTitle] = useState('');
-  const [isOpenDatePicker, setIsOpenDatePicker] = useState(false);
-
-  const handleCloseDatePicker = () => setIsOpenDatePicker(false);
 
   const handleChangeCurrReqStatusTab = (event, newValue, data) => {
     let tab = event?.target?.innerText;
@@ -146,64 +127,12 @@ const Dashboard = () => {
     // setActionType(status)
   };
   const handleOpenModal = () => {
-    setModalData({})
+    setModalData({});
     setOpenModal(true);
   };
   const handleCloseModal = () => {
     setOpenModal(false);
   };
-  const blue = {
-    100: '#DAECFF',
-    200: '#b6daff',
-    400: '#3399FF',
-    500: '#007FFF',
-    600: '#0072E5',
-    900: '#003A75',
-  };
-
-  const grey = {
-    50: '#F3F6F9',
-    100: '#E5EAF2',
-    200: '#DAE2ED',
-    300: '#C7D0DD',
-    400: '#B0B8C4',
-    500: '#9DA8B7',
-    600: '#6B7A90',
-    700: '#434D5B',
-    800: '#303740',
-    900: '#1C2025',
-  };
-  const Textarea = styled(BaseTextareaAutosize)(
-    ({ theme }) => `
-    width: 320px;
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-size: 0.875rem;
-    font-weight: 400;
-    line-height: 1.5;
-    padding: 8px 12px;
-    border-radius: 8px;
-    color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-    background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
-    border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
-    box-shadow: 0px 2px 2px ${theme.palette.mode === 'dark' ? grey[900] : grey[50]
-      };
-
-    &:hover {
-      border-color: ${blue[400]};
-    }
-
-    &:focus {
-      border-color: ${blue[400]};
-      box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[600] : blue[200]
-      };
-    }
-
-    // firefox
-    &:focus-visible {
-      outline: 0;
-    }
-  `
-  );
 
   return (
     <>
@@ -402,18 +331,20 @@ const Dashboard = () => {
             >
               <Box
                 sx={{
-                  width: `${getPercentage(timeToSeconds('03:10:00'), 9) < 100
+                  width: `${
+                    getPercentage(timeToSeconds('03:10:00'), 9) < 100
                       ? getPercentage(timeToSeconds('03:10:00'), 9)
                       : 100
-                    }%`,
+                  }%`,
                   background: '#E6F4F4',
                   height: '100%',
                 }}
               ></Box>
               <Box
                 sx={{
-                  width: `${100 - getPercentage(timeToSeconds('03:10:00'), 9)
-                    }%`,
+                  width: `${
+                    100 - getPercentage(timeToSeconds('03:10:00'), 9)
+                  }%`,
                   background: '#F5F5F5',
                   height: '100%',
                 }}
@@ -652,25 +583,27 @@ const Dashboard = () => {
                       >
                         <Box
                           sx={{
-                            width: `${getPercentage(
-                              +hoursCompleted * 3600,
-                              +totalHours
-                            ) < 100
+                            width: `${
+                              getPercentage(
+                                +hoursCompleted * 3600,
+                                +totalHours
+                              ) < 100
                                 ? getPercentage(
-                                  +hoursCompleted * 3600,
-                                  +totalHours
-                                )
+                                    +hoursCompleted * 3600,
+                                    +totalHours
+                                  )
                                 : 100
-                              }%`,
+                            }%`,
                             background: background,
                             height: '100%',
                           }}
                         ></Box>
                         <Box
                           sx={{
-                            width: `${100 -
+                            width: `${
+                              100 -
                               getPercentage(+hoursCompleted * 3600, +totalHours)
-                              }%`,
+                            }%`,
                             background: remainingBack,
                             height: '100%',
                           }}
