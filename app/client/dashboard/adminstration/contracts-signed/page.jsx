@@ -47,7 +47,6 @@ const ContractSigned = () => {
 
     setValue(newValue);
   };
-
   useEffect(() => {
     const data = [...contractSignedData];
     const timeoutId = setTimeout(() => {
@@ -98,6 +97,7 @@ const ContractSigned = () => {
           <Box sx={{ width: '100%' }}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
               <Tabs
+                variant="scrollable"
                 value={value}
                 onChange={handleChange}
                 aria-label="basic tabs example"
@@ -126,11 +126,18 @@ const ContractSigned = () => {
                 {isLoading ? (
                   <Box>Loading...</Box>
                 ) : (
-                  <AppTable
-                    currentTab={currentTab}
-                    column={contractSignedColumn}
-                    data={empData}
-                  />
+                  <Box
+                    sx={{
+                      maxWidth: '100%',
+                      overflowX: 'auto',
+                    }}
+                  >
+                    <AppTable
+                      currentTab={currentTab}
+                      column={contractSignedColumn}
+                      data={empData}
+                    />
+                  </Box>
                 )}
               </CustomTabPanel>
             ))}

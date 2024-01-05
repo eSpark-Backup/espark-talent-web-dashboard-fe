@@ -191,6 +191,7 @@ const Dashboard = () => {
                   value={currentReqTypeTabVal}
                   onChange={handleChangeCurrReqTypeTab}
                   aria-label="basic tabs example"
+                  variant="scrollable"
                 >
                   {leaveRequestsTab?.map(({ label, prop }, index) => (
                     <Tab
@@ -225,6 +226,7 @@ const Dashboard = () => {
                           marginTop={5}
                         >
                           <Tabs
+                            variant="scrollable"
                             value={currentReqStatusTabVal}
                             onChange={(ev, newVal) =>
                               handleChangeCurrReqStatusTab(
@@ -368,10 +370,17 @@ const Dashboard = () => {
                           {isLoading ? (
                             <Typography>Loading ...</Typography>
                           ) : (
-                            <AppTable
-                              column={leaveBalanceColumn}
-                              data={leaveBalanceDataState}
-                            />
+                            <Box
+                              sx={{
+                                maxWidth: '100%',
+                                overflowX: 'auto',
+                              }}
+                            >
+                              <AppTable
+                                column={leaveBalanceColumn}
+                                data={leaveBalanceDataState}
+                              />
+                            </Box>
                           )}
                         </>
                       )}
@@ -385,6 +394,7 @@ const Dashboard = () => {
                   isLoading,
                   currentReqStatusTabVal,
                   currentReqStatusTab,
+
                   column:
                     currentReqTypeTab === 'Leave Requests'
                       ? leaveRequestsColumn

@@ -28,6 +28,7 @@ export const employeeLeaveRequestsData = [
     status: 'Pending',
     actionTimeOffReqStatus: true,
     action: ['Reject', 'View'],
+    actionStatus: true,
   },
   {
     employeeId: 12223,
@@ -40,6 +41,7 @@ export const employeeLeaveRequestsData = [
     status: 'Pending',
     actionTimeOffReqStatus: true,
     action: ['Reject', 'View'],
+    actionStatus: true,
   },
   {
     employeeId: 12224,
@@ -52,6 +54,7 @@ export const employeeLeaveRequestsData = [
     status: 'Cancelled',
     actionTimeOffReqStatus: true,
     action: ['View'],
+    actionStatus: true,
   },
   {
     employeeId: 12225,
@@ -64,6 +67,7 @@ export const employeeLeaveRequestsData = [
     status: 'Pending',
     actionTimeOffReqStatus: true,
     action: ['Reject', 'View'],
+    actionStatus: true,
   },
   {
     employeeId: 12226,
@@ -76,6 +80,7 @@ export const employeeLeaveRequestsData = [
     status: 'Pending',
     actionTimeOffReqStatus: true,
     action: ['Reject', 'View'],
+    actionStatus: true,
   },
   {
     employeeId: 12227,
@@ -88,6 +93,7 @@ export const employeeLeaveRequestsData = [
     status: 'Pending',
     actionTimeOffReqStatus: true,
     action: ['Reject', 'View'],
+    actionStatus: true,
   },
   {
     employeeId: 12228,
@@ -100,6 +106,7 @@ export const employeeLeaveRequestsData = [
     status: 'Completed',
     actionTimeOffReqStatus: true,
     action: ['View'],
+    actionStatus: true,
   },
   {
     employeeId: 12229,
@@ -112,6 +119,7 @@ export const employeeLeaveRequestsData = [
     status: 'Pending',
     actionTimeOffReqStatus: true,
     action: ['Reject', 'View'],
+    actionStatus: true,
   },
   {
     employeeId: 12230,
@@ -124,6 +132,7 @@ export const employeeLeaveRequestsData = [
     status: 'Pending',
     actionTimeOffReqStatus: true,
     action: ['Reject', 'View'],
+    actionStatus: true,
   },
   {
     employeeId: 12231,
@@ -136,6 +145,7 @@ export const employeeLeaveRequestsData = [
     status: 'Rejected',
     actionTimeOffReqStatus: true,
     action: ['View'],
+    actionStatus: true,
   },
   {
     employeeId: 12232,
@@ -148,6 +158,7 @@ export const employeeLeaveRequestsData = [
     status: 'Completed',
     actionTimeOffReqStatus: true,
     action: ['View'],
+    actionStatus: true,
   },
   {
     employeeId: 12233,
@@ -160,6 +171,7 @@ export const employeeLeaveRequestsData = [
     status: 'Pending',
     actionTimeOffReqStatus: true,
     action: ['Reject', 'View'],
+    actionStatus: true,
   },
 ];
 export const employeeLeaveBalanceData = [

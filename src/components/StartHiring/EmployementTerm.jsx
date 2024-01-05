@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, FormControl, InputLabel, Typography } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 
 import { HIRING_FORM_DATA } from '@/src/constants/Hiring';
 import AppDropdown from '../dashboard/appDropdown';
@@ -10,29 +10,23 @@ const EmployementTerm = () => {
   const [selectedJobTitle, setSelectedJobTitle] = useState('');
 
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '12px',
-        zIndex: 100,
-      }}
-    >
-      <Typography>{HIRING_FORM_DATA?.employementTerm}</Typography>
-      <FormControl>
-        <InputLabel sx={{ color: '#888888' }}>
-          {HIRING_FORM_DATA?.selectterms}
-        </InputLabel>
-        <AppDropdown
-          data={employmentTerm}
-          setIsLoadingList={setIsLoadingTitles}
-          isLoadingList={isLoadingTitles}
-          selectedItem={selectedJobTitle}
-          setSelectedItem={setSelectedJobTitle}
-          placeHolder="Select Gender..."
-        />
-      </FormControl>
-    </Box>
+    <Grid item xs={12} lg={6}>
+      <Typography
+        sx={{
+          mb: '10px',
+        }}
+      >
+        {HIRING_FORM_DATA?.employementTerm}
+      </Typography>
+      <AppDropdown
+        data={employmentTerm}
+        setIsLoadingList={setIsLoadingTitles}
+        isLoadingList={isLoadingTitles}
+        selectedItem={selectedJobTitle}
+        setSelectedItem={setSelectedJobTitle}
+        placeHolder="Select Gender..."
+      />
+    </Grid>
   );
 };
 export default EmployementTerm;

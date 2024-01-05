@@ -97,7 +97,7 @@ const AppSearchableDropdown = ({
     }
   };
   return (
-    <Grid sx={{ position: 'relative' }} item xs={6}>
+    <Grid sx={{ position: 'relative' }} item xs={12} md={6}>
       <Box ref={componentRef}>
         <Box
           onClick={toggleComponent}

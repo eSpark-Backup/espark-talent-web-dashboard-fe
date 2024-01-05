@@ -112,6 +112,7 @@ const Dashboard = () => {
                 value={value}
                 onChange={handleChange}
                 aria-label="basic tabs example"
+                variant="scrollable"
               >
                 {paymentStatusTabs?.map(({ label, prop }, i) => (
                   <Tab
@@ -148,7 +149,14 @@ const Dashboard = () => {
                 {isLoading ? (
                   <Box>Loading...</Box>
                 ) : (
-                  <AppTable column={invoicePaymentColumn} data={invPayData} />
+                  <Box
+                    sx={{
+                      maxWidth: '100%',
+                      overflowX: 'auto',
+                    }}
+                  >
+                    <AppTable column={invoicePaymentColumn} data={invPayData} />
+                  </Box>
                 )}
               </CustomTabPanel>
             ))}
@@ -187,7 +195,14 @@ const Dashboard = () => {
             {isLoadingOthPay ? (
               <Box>Loading...</Box>
             ) : (
-              <AppTable column={otherPaymentColumn} data={othPayData} />
+              <Box
+                sx={{
+                  maxWidth: '100%',
+                  overflowX: 'auto',
+                }}
+              >
+                <AppTable column={otherPaymentColumn} data={othPayData} />
+              </Box>
             )}
           </Box>
         </Box>
