@@ -9,15 +9,16 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
     modalData?.leaveType
   );
   return (
+    <>
     <Box
       sx={{
         bgcolor: '#fff',
-        width: { xs: '90%', sm: '90%', md: '70%' },
+        width: { xs: '90%', sm: '90%', md: '77.084%' },
         display: 'flex',
         flexDirection: 'column',
         borderRadius: '10px',
         boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
-        maxHeight: '80%',
+        maxHeight: '90%',
         overflowY: 'auto',
       }}
     >
@@ -34,7 +35,7 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
       <Box>
         <Box
           sx={{
-            padding: '20px',
+            padding: '10px 20px',
           }}
         >
           <Grid
@@ -48,10 +49,10 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
               flexDirection: { xs: 'column', md: 'row' },
             }}
           >
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} md={5.5}>
               Leave type
             </Grid>
-            <Grid item xs={12} md={6} sx={{ width: '100%' }}>
+            <Grid item xs={12} md={6.5} sx={{ width: '100%' }}>
               <AppDropdown
                 disabled
                 data={[
@@ -70,6 +71,7 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
                 selectedItem={selectedJobTitle}
                 setSelectedItem={setSelectedJobTitle}
                 placeHolder="Select Leave Type"
+                padding="8.5px"
               />
             </Grid>
           </Grid>
@@ -92,17 +94,17 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
               flexDirection: { xs: 'column', md: 'row' },
             }}
           >
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} md={5.5}>
               Start date
             </Grid>
-            <Grid item xs={12} md={6} sx={{ width: '100%' }}>
+            <Grid item xs={12} md={6.5} sx={{ width: '100%' }}>
               <Box
                 display={'flex'}
                 justifyContent={'space-between'}
                 alignItems={'center'}
                 sx={{
                   border: 'solid 1px #ccc',
-                  p: '15px',
+                  p: '8.5px',
                   borderRadius: '5px',
                   background: '#f6f6f6',
                 }}
@@ -122,7 +124,7 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
       <Box>
         <Box
           sx={{
-            padding: '20px',
+            padding: '10px 20px',
           }}
         >
           <Grid
@@ -136,17 +138,17 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
               flexDirection: { xs: 'column', md: 'row' },
             }}
           >
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} md={5.5}>
               End date
             </Grid>
-            <Grid item xs={12} md={6} sx={{ width: '100%' }}>
+            <Grid item xs={12} md={6.5} sx={{ width: '100%' }}>
               <Box
                 display={'flex'}
                 justifyContent={'space-between'}
                 alignItems={'center'}
                 sx={{
                   border: 'solid 1px #ccc',
-                  p: '15px',
+                  p: '8.5px',
                   borderRadius: '5px',
                   background: '#f6f6f6',
                 }}
@@ -183,7 +185,7 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
             <Box
               sx={{
                 width: '100%',
-                py: '5px',
+                py: '11px',
                 display: 'flex',
                 justifyContent: 'center',
                 background: '#f6f6f6',
@@ -219,7 +221,7 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
                   height: '50px',
                   borderRadius: '50%',
                   background: '#f6f6f6',
-                  my: '10px',
+                  my: '9px',
                 }}
               />
               <Box ml={'5px'}>
@@ -253,7 +255,7 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
             <Box
               sx={{
                 width: '100%',
-                py: '5px',
+                py: '11px',
                 display: 'flex',
                 justifyContent: 'center',
                 background: '#f6f6f6',
@@ -298,7 +300,7 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
                     textAlign={'center'}
                     sx={{
                       color: '#595959',
-                      fontSize: { xs: '12px', lg: '16px' },
+                      fontSize: { xs: '12px', lg: '14px' },
                       fontStyle: 'normal',
                       fontWeight: 500,
                       lineHeight: 'normal',
@@ -311,7 +313,7 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
                   <Typography
                     sx={{
                       color: '#595959',
-                      fontSize: { xs: '10px', lg: '14px' },
+                      fontSize: { xs: '8px', lg: '10px' },
                       fontStyle: 'normal',
                       fontWeight: 500,
                       lineHeight: 'normal',
@@ -330,7 +332,7 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
       <Box>
         <Box
           sx={{
-            padding: '20px',
+            padding: '10px 20px',
           }}
         >
           <Grid
@@ -344,17 +346,17 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
               flexDirection: { xs: 'column', md: 'row' },
             }}
           >
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} md={5.5}>
               Count
             </Grid>
-            <Grid item xs={12} md={6} sx={{ width: '100%' }}>
+            <Grid item xs={12} md={6.5} sx={{ width: '100%' }}>
               <Box
                 display={'flex'}
                 justifyContent={'space-between'}
                 alignItems={'center'}
                 sx={{
                   border: 'solid 1px #ccc',
-                  p: '15px',
+                  p: '8.5px',
                   borderRadius: '5px',
                   background: '#f6f6f6',
                 }}
@@ -382,17 +384,17 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
               flexDirection: { xs: 'column', md: 'row' },
             }}
           >
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} md={5.5}>
               Sandwich count
             </Grid>
-            <Grid item xs={12} md={6} sx={{ width: '100%' }}>
+            <Grid item xs={12} md={6.5} sx={{ width: '100%' }}>
               <Box
                 display={'flex'}
                 justifyContent={'space-between'}
                 alignItems={'center'}
                 sx={{
                   border: 'solid 1px #ccc',
-                  p: '15px',
+                  p: '8.5px',
                   borderRadius: '5px',
                   background: '#f6f6f6',
                 }}
@@ -406,7 +408,7 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
       <Box>
         <Box
           sx={{
-            padding: '20px',
+            padding: '10px 20px',
           }}
         >
           <Grid
@@ -420,17 +422,17 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
               flexDirection: { xs: 'column', md: 'row' },
             }}
           >
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} md={5.5}>
               Total
             </Grid>
-            <Grid item xs={12} md={6} sx={{ width: '100%' }}>
+            <Grid item xs={12} md={6.5} sx={{ width: '100%' }}>
               <Box
                 display={'flex'}
                 justifyContent={'space-between'}
                 alignItems={'center'}
                 sx={{
                   border: 'solid 1px #ccc',
-                  p: '15px',
+                  p: '8.5px',
                   borderRadius: '5px',
                   background: '#f6f6f6',
                 }}
@@ -458,10 +460,10 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
               flexDirection: { xs: 'column', md: 'row' },
             }}
           >
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} md={5.5}>
               Reason
             </Grid>
-            <Grid item xs={12} md={6} sx={{ width: '100%' }}>
+            <Grid item xs={12} md={6.5} sx={{ width: '100%' }}>
               <Box
                 display={'flex'}
                 justifyContent={'space-between'}
@@ -470,7 +472,7 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
                   p: '15px',
                   borderRadius: '5px',
                   background: '#f6f6f6',
-                  minHeight: '150px',
+                  minHeight: '100px',
                 }}
               >
                 <Typography>Health issues</Typography>
@@ -505,6 +507,7 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
         </Box>
       ) : null}
     </Box>
+    </>
   );
 };
 

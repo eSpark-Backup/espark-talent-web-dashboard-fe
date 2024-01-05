@@ -13,6 +13,7 @@ const AppDropdown = ({
   placeHolder,
   nested,
   disabled,
+  padding
 }) => {
   const [isOpenedDropdown, setIsOpenedDropdown] = useState(false);
   const [isOpenedDropdownNested, setIsOpenedDropdownNested] = useState(false);
@@ -116,7 +117,7 @@ const AppDropdown = ({
                 borderColor: 'teal',
               },
             }}
-            p={'15px 10px'}
+            p={padding || '15px 10px'}
           >
             <Typography>
               {(nested ? jobTitle?.title : selectedItem) || placeHolder}
