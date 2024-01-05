@@ -192,7 +192,7 @@ const AppTable = ({
               <Fragment key={rowIndex}>
                 <tr className="app-table-row">
                   {column?.map((col, colIndex) => {
-                    console.log({col,row:row[toCamelCase(col)]})
+                    console.log({ col, row: row[toCamelCase(col)] });
                     if (row?.actionStatus && col === 'Status') {
                       if (row?.status === 'Pending')
                         return (
@@ -336,7 +336,7 @@ const AppTable = ({
                         <td
                           style={{ display: 'flex', justifyContent: 'center' }}
                         >
-                          {(col === 'Action'|| col === 'Actions') ? (
+                          {col === 'Action' || col === 'Actions' ? (
                             <>
                               {row[toCamelCase(col)]?.map((item, rowIndex) => (
                                 <Image
