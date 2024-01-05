@@ -7,7 +7,7 @@ export const employeeLeaveRequestsColumn = [
   'Count',
   'Requested at',
   'Status',
-  'Action',
+  'Actions',
 ];
 export const employeeLeaveBalanceColumn = [
   'Leave type',
@@ -27,7 +27,7 @@ export const employeeLeaveRequestsData = [
     requestedAt: '07-October-2021, 9:30AM (PST)',
     status: 'Pending',
     actionTimeOffReqStatus: true,
-    action: ['Reject', 'View'],
+    actions: ['Deletee', 'View'],
     actionStatus: true,
   },
   {
@@ -40,7 +40,7 @@ export const employeeLeaveRequestsData = [
     requestedAt: '28-February-2021, 9:30AM (PST)',
     status: 'Pending',
     actionTimeOffReqStatus: true,
-    action: ['Reject', 'View'],
+    actions: ['Deletee', 'View'],
     actionStatus: true,
   },
   {
@@ -51,9 +51,9 @@ export const employeeLeaveRequestsData = [
     leaveType: 'Annual',
     count: '7',
     requestedAt: '12-October-2022, 9:30AM (PST)',
-    status: 'Cancelled',
+    status: 'Rejected',
     actionTimeOffReqStatus: true,
-    action: ['View'],
+    actions: ['View'],
     actionStatus: true,
   },
   {
@@ -66,7 +66,7 @@ export const employeeLeaveRequestsData = [
     requestedAt: '07-October-2021, 9:30AM (PST)',
     status: 'Pending',
     actionTimeOffReqStatus: true,
-    action: ['Reject', 'View'],
+    actions: ['Deletee', 'View'],
     actionStatus: true,
   },
   {
@@ -79,7 +79,7 @@ export const employeeLeaveRequestsData = [
     requestedAt: '7-June-2022, 8:36PM (PST)',
     status: 'Pending',
     actionTimeOffReqStatus: true,
-    action: ['Reject', 'View'],
+    actions: ['Deletee', 'View'],
     actionStatus: true,
   },
   {
@@ -92,7 +92,7 @@ export const employeeLeaveRequestsData = [
     requestedAt: '9-January-2023, 6:24PM (PST)',
     status: 'Pending',
     actionTimeOffReqStatus: true,
-    action: ['Reject', 'View'],
+    actions: ['Deletee', 'View'],
     actionStatus: true,
   },
   {
@@ -105,7 +105,7 @@ export const employeeLeaveRequestsData = [
     requestedAt: '07-October-2021, 9:30AM (PST)',
     status: 'Completed',
     actionTimeOffReqStatus: true,
-    action: ['View'],
+    actions: ['View'],
     actionStatus: true,
   },
   {
@@ -118,7 +118,7 @@ export const employeeLeaveRequestsData = [
     requestedAt: '28-February-2021, 9:30AM (PST)',
     status: 'Pending',
     actionTimeOffReqStatus: true,
-    action: ['Reject', 'View'],
+    actions: ['Deletee', 'View'],
     actionStatus: true,
   },
   {
@@ -131,7 +131,7 @@ export const employeeLeaveRequestsData = [
     requestedAt: '12-October-2022, 9:30AM (PST)',
     status: 'Pending',
     actionTimeOffReqStatus: true,
-    action: ['Reject', 'View'],
+    actions: ['Deletee', 'View'],
     actionStatus: true,
   },
   {
@@ -144,7 +144,7 @@ export const employeeLeaveRequestsData = [
     requestedAt: '07-October-2021, 9:30AM (PST)',
     status: 'Rejected',
     actionTimeOffReqStatus: true,
-    action: ['View'],
+    actions: ['View'],
     actionStatus: true,
   },
   {
@@ -157,7 +157,7 @@ export const employeeLeaveRequestsData = [
     requestedAt: '7-June-2022, 8:36PM (PST)',
     status: 'Completed',
     actionTimeOffReqStatus: true,
-    action: ['View'],
+    actions: ['View'],
     actionStatus: true,
   },
   {
@@ -170,7 +170,7 @@ export const employeeLeaveRequestsData = [
     requestedAt: '9-January-2023, 6:24PM (PST)',
     status: 'Pending',
     actionTimeOffReqStatus: true,
-    action: ['Reject', 'View'],
+    actions: ['Deletee', 'View'],
     actionStatus: true,
   },
 ];
