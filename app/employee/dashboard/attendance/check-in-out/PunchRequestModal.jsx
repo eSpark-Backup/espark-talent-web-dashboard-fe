@@ -431,10 +431,29 @@ const PunchRequestModal = ({
         justifyContent={'flex-end'}
         sx={{ padding: '20px' }}
       >
-        <Button onClick={handleClose} sx={{ ml: '20px' }} variant="outlined">
+        <Button
+          onClick={handleClose}
+          sx={{
+            ml: '20px',
+            width: '120px',
+            border: '1px solid #029894',
+
+            background: '#FFF',
+          }}
+        >
           Cancel
         </Button>
-        <Button onClick={handleClose} sx={{ ml: '20px' }} variant="contained">
+        <Button
+          onClick={handleClose}
+          sx={{
+            ml: '20px',
+            width: '120px',
+            '&:hover': {
+              background: '#029894',
+            },
+          }}
+          variant="contained"
+        >
           Save
         </Button>
       </Box>

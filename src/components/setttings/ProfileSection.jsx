@@ -23,9 +23,9 @@ export default function ProfileSection({ Profile_Edit_Section, User_Detail }) {
           />
           <Button
             sx={{
-              width: '165px',
+              width: '160px',
               height: '40px',
-              fontSize: '16px',
+              fontSize: '14px',
               fontWeight: 500,
             }}
             variant="contained"

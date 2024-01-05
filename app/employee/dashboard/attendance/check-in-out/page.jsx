@@ -521,7 +521,14 @@ const Dashboard = () => {
                 background: '#FFF',
               }}
             >
-              <Typography variant="h5">Mark clock in/ clock out</Typography>
+              <Typography
+                sx={{
+                  fontSize: '25px',
+                  fontWeight: 600,
+                }}
+              >
+                Mark clock in/ clock out
+              </Typography>
             </Box>
             <Box
               sx={{
@@ -578,6 +585,7 @@ const Dashboard = () => {
                 </Typography>
               </Box>
             </Box>
+            <br />
             <Box
               sx={{
                 px: { xs: 3, sm: 3, lg: 3 },
@@ -699,8 +707,8 @@ const Dashboard = () => {
                 <Button
                   variant="outlined"
                   sx={{
-                    // border:"solid 1px #ccc",
                     display: 'flex',
+                    border: '1px solid #E4E4E4',
                     justifyContent: 'center',
                     alignItems: 'center',
                     p: '10px',
@@ -727,6 +735,7 @@ const Dashboard = () => {
                   </Typography>
                 </Button>
               </Grid>
+
               <Grid item xs={12} md={6} lg={6} xl={6}>
                 <Button
                   variant="contained"
@@ -822,7 +831,14 @@ const Dashboard = () => {
                 background: '#FFF',
               }}
             >
-              <Typography variant="h5">Statistics</Typography>
+              <Typography
+                sx={{
+                  fontSize: '25px',
+                  fontWeight: 600,
+                }}
+              >
+                Statistics
+              </Typography>
             </Box>
             <Box p={'20px'}>
               {data?.map(
@@ -953,7 +969,14 @@ const Dashboard = () => {
                 background: '#FFF',
               }}
             >
-              <Typography variant="h5">{Clock_Title}</Typography>
+              <Typography
+                sx={{
+                  fontSize: '25px',
+                  fontWeight: 600,
+                }}
+              >
+                {Clock_Title}
+              </Typography>
             </Box>
             <Box
               sx={{
@@ -1013,7 +1036,9 @@ const Dashboard = () => {
                             fontWeight: 400,
                             lineHeight: 'normal',
                             display: 'flex',
+                            marginTop: '10px',
                             alignItems: 'center',
+                            gap: '5px',
                           }}
                         >
                           <Image
@@ -1474,7 +1499,13 @@ const Dashboard = () => {
           >
             <Button
               onClick={handleClosePunch}
-              sx={{ ml: '20px' }}
+              sx={{
+                ml: '20px',
+                width: '120px',
+                '&:hover': {
+                  background: '#029894',
+                },
+              }}
               variant="contained"
             >
               Close

@@ -66,8 +66,8 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
                 <Grid item xs={6}>
                   <Typography
                     sx={{
-                      color: '#171717',
-                      fontSize: '14px',
+                      color: '#595959',
+                      fontSize: '16px',
                       fontStyle: 'normal',
                       fontWeight: 500,
                       lineHeight: 'normal',
@@ -101,8 +101,8 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
                 <Grid item xs={6}>
                   <Typography
                     sx={{
-                      color: '#171717',
-                      fontSize: '14px',
+                      color: '#595959',
+                      fontSize: '16px',
                       fontStyle: 'normal',
                       fontWeight: 500,
                       lineHeight: 'normal',
@@ -137,8 +137,8 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
                 <Grid item xs={6}>
                   <Typography
                     sx={{
-                      color: '#171717',
-                      fontSize: '14px',
+                      color: '#595959',
+                      fontSize: '16px',
                       fontStyle: 'normal',
                       fontWeight: 500,
                       lineHeight: 'normal',
@@ -172,8 +172,8 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
                 <Grid item xs={6}>
                   <Typography
                     sx={{
-                      color: '#171717',
-                      fontSize: '14px',
+                      color: '#595959',
+                      fontSize: '16px',
                       fontStyle: 'normal',
                       fontWeight: 500,
                       lineHeight: 'normal',
@@ -210,8 +210,8 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
                 <Grid item xs={6}>
                   <Typography
                     sx={{
-                      color: '#171717',
-                      fontSize: '14px',
+                      color: '#595959',
+                      fontSize: '16px',
                       fontStyle: 'normal',
                       fontWeight: 500,
                       lineHeight: 'normal',
@@ -245,8 +245,8 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
                 <Grid item xs={6}>
                   <Typography
                     sx={{
-                      color: '#171717',
-                      fontSize: '14px',
+                      color: '#595959',
+                      fontSize: '16px',
                       fontStyle: 'normal',
                       fontWeight: 500,
                       lineHeight: 'normal',
@@ -281,8 +281,8 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
                 <Grid item xs={6}>
                   <Typography
                     sx={{
-                      color: '#171717',
-                      fontSize: '14px',
+                      color: '#595959',
+                      fontSize: '16px',
                       fontStyle: 'normal',
                       fontWeight: 500,
                       lineHeight: 'normal',
@@ -314,7 +314,15 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
                   </Typography>
                 </Grid>
                 <Grid item xs={6}>
-                  Oct26,2021
+                  <Typography
+                    sx={{
+                      fontSize: '16px',
+                      color: '#595959',
+                    }}
+                  >
+                    {' '}
+                    Oct26,2021
+                  </Typography>
                 </Grid>
               </Grid>
             </Box>
@@ -572,7 +580,19 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
         justifyContent={'flex-end'}
         sx={{ padding: '20px' }}
       >
-        <Button onClick={handleClose} sx={{ ml: '20px' }} variant="contained">
+        <Button
+          onClick={handleClose}
+          sx={{
+            ml: '20px',
+            width: '120px',
+            background: '#029894',
+            color: '#fff',
+            ':&hover:': {
+              background: '#029894',
+            },
+          }}
+          variant="contained"
+        >
           Close
         </Button>
       </Box>

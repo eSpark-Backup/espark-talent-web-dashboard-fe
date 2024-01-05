@@ -66,8 +66,6 @@ const Dashboard = () => {
     console.log({ item, row, status, count, leaveType, employeeName });
     setModalData({ item, status, count, leaveType, employeeName });
     setOpen(true);
-    // setStatusType(item);
-    // setActionType(status)
   };
   const handleClose = () => setOpen(false);
   const leaveBalanceDataState = useMemo(
@@ -614,7 +612,13 @@ const Dashboard = () => {
                       </Button>
                       <Button
                         onClick={handleCloseModal}
-                        sx={{ ml: '20px' }}
+                        sx={{
+                          ml: '20px',
+                          width: '120px',
+                          '&:hover': {
+                            background: '#029894',
+                          },
+                        }}
                         variant="contained"
                       >
                         Save

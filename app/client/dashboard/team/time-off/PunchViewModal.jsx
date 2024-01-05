@@ -246,7 +246,16 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
           justifyContent={'flex-end'}
           sx={{ padding: '20px' }}
         >
-          <Button onClick={handleClose} variant="outlined">
+          <Button
+            onClick={handleClose}
+            sx={{
+              width: '120px',
+              border: '1px solid #029894',
+
+              background: '#FFF',
+              '&:hover': {},
+            }}
+          >
             Decline
           </Button>
           <Button onClick={handleClose} sx={{ ml: '20px' }} variant="contained">

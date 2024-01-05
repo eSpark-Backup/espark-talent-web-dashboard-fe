@@ -56,12 +56,12 @@ const AppCustomMonthYearPicker = () => {
     <Grid sx={{ position: 'relative' }} item xs={12} md={6}>
       <Box
         ref={componentRef}
-        // ml={'20px'}
         sx={{
           border: 'solid 1px #ccc',
           borderRadius: '5px',
           position: 'relative',
-           width: '221px',
+          width: '221px',
+          padding: '3px',
         }}
       >
         <Box
@@ -81,7 +81,7 @@ const AppCustomMonthYearPicker = () => {
             width={25}
             height={25}
           />
-          <Typography ml={'10px'} mb={0}>
+          <Typography ml={'14px'} mt={0}>
             {`${months[selectedDate.getMonth()]} ${selectedDate.getFullYear()}`}
           </Typography>
         </Box>

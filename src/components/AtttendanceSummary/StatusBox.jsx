@@ -43,16 +43,17 @@ const StatusBox = ({ title, count, horizotalLineColor, backgroundColor }) => {
         </Box>
         <Box
           sx={{
-            width: '20%',
+            // width: '10%',
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
+            marginRight: '10px',
           }}
         >
           <Image
             width={15}
             height={15}
-            src="/icons/arrow-right.svg"
+            src="/images/dashboard/icon-right.svg"
             alt="arrow"
           />
         </Box>
