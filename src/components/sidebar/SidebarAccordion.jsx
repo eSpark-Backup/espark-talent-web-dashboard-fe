@@ -9,6 +9,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Link from 'next/link';
 import { Box } from '@mui/material';
 import { usePathname } from 'next/navigation';
+import Image from 'next/image';
 
 const SidebarAccordion = ({ sidebarLinks }) => {
   const pathname = usePathname();
@@ -58,11 +59,7 @@ const SidebarAccordion = ({ sidebarLinks }) => {
                 }}
               >
                 {item?.icon && (
-                  <img
-                    style={{ width: '20px', height: '20px' }}
-                    src={item?.icon}
-                    alt="icon"
-                  />
+                  <Image width={20} height={20} src={item?.icon} alt="icon" />
                 )}
                 <Link
                   style={{ width: '100%', height: '100%' }}
