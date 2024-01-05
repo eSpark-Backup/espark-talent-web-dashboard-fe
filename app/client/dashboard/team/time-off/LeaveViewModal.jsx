@@ -50,13 +50,15 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
               }}
             >
               <Grid item xs={12} md={5.5}>
-                <Typography sx={{
-                  color: '#595959',
-                  fontSize: '16px',
-                  fontStyle: 'normal',
-                  fontWeight: 500,
-                  lineHeight: 'normal',
-                }}>
+                <Typography
+                  sx={{
+                    color: '#595959',
+                    fontSize: '16px',
+                    fontStyle: 'normal',
+                    fontWeight: 500,
+                    lineHeight: 'normal',
+                  }}
+                >
                   Leave type
                 </Typography>
               </Grid>
@@ -103,13 +105,15 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
               }}
             >
               <Grid item xs={12} md={5.5}>
-                <Typography sx={{
-                  color: '#595959',
-                  fontSize: '16px',
-                  fontStyle: 'normal',
-                  fontWeight: 500,
-                  lineHeight: 'normal',
-                }}>
+                <Typography
+                  sx={{
+                    color: '#595959',
+                    fontSize: '16px',
+                    fontStyle: 'normal',
+                    fontWeight: 500,
+                    lineHeight: 'normal',
+                  }}
+                >
                   Start date
                 </Typography>
               </Grid>
@@ -155,15 +159,17 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
               }}
             >
               <Grid item xs={12} md={5.5}>
-              <Typography sx={{
-                color: '#595959',
-                fontSize: '16px',
-                fontStyle: 'normal',
-                fontWeight: 500,
-                lineHeight: 'normal',
-              }}>
-                End date
-              </Typography>
+                <Typography
+                  sx={{
+                    color: '#595959',
+                    fontSize: '16px',
+                    fontStyle: 'normal',
+                    fontWeight: 500,
+                    lineHeight: 'normal',
+                  }}
+                >
+                  End date
+                </Typography>
               </Grid>
               <Grid item xs={12} md={6.5} sx={{ width: '100%' }}>
                 <Box
@@ -371,15 +377,17 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
               }}
             >
               <Grid item xs={12} md={5.5}>
-              <Typography sx={{
-                color: '#595959',
-                fontSize: '16px',
-                fontStyle: 'normal',
-                fontWeight: 500,
-                lineHeight: 'normal',
-              }}>
-                Count
-              </Typography>
+                <Typography
+                  sx={{
+                    color: '#595959',
+                    fontSize: '16px',
+                    fontStyle: 'normal',
+                    fontWeight: 500,
+                    lineHeight: 'normal',
+                  }}
+                >
+                  Count
+                </Typography>
               </Grid>
               <Grid item xs={12} md={6.5} sx={{ width: '100%' }}>
                 <Box
@@ -417,15 +425,17 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
               }}
             >
               <Grid item xs={12} md={5.5}>
-              <Typography sx={{
-                color: '#595959',
-                fontSize: '16px',
-                fontStyle: 'normal',
-                fontWeight: 500,
-                lineHeight: 'normal',
-              }}>
-                Sandwich count
-              </Typography>
+                <Typography
+                  sx={{
+                    color: '#595959',
+                    fontSize: '16px',
+                    fontStyle: 'normal',
+                    fontWeight: 500,
+                    lineHeight: 'normal',
+                  }}
+                >
+                  Sandwich count
+                </Typography>
               </Grid>
               <Grid item xs={12} md={6.5} sx={{ width: '100%' }}>
                 <Box
@@ -463,15 +473,17 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
               }}
             >
               <Grid item xs={12} md={5.5}>
-              <Typography sx={{
-                color: '#595959',
-                fontSize: '16px',
-                fontStyle: 'normal',
-                fontWeight: 500,
-                lineHeight: 'normal',
-              }}>
-                Total
-              </Typography>
+                <Typography
+                  sx={{
+                    color: '#595959',
+                    fontSize: '16px',
+                    fontStyle: 'normal',
+                    fontWeight: 500,
+                    lineHeight: 'normal',
+                  }}
+                >
+                  Total
+                </Typography>
               </Grid>
               <Grid item xs={12} md={6.5} sx={{ width: '100%' }}>
                 <Box
@@ -509,15 +521,17 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
               }}
             >
               <Grid item xs={12} md={5.5}>
-              <Typography sx={{
-                color: '#595959',
-                fontSize: '16px',
-                fontStyle: 'normal',
-                fontWeight: 500,
-                lineHeight: 'normal',
-              }}>
-                Reason
-              </Typography>
+                <Typography
+                  sx={{
+                    color: '#595959',
+                    fontSize: '16px',
+                    fontStyle: 'normal',
+                    fontWeight: 500,
+                    lineHeight: 'normal',
+                  }}
+                >
+                  Reason
+                </Typography>
               </Grid>
               <Grid item xs={12} md={6.5} sx={{ width: '100%' }}>
                 <Box
@@ -546,7 +560,11 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
             <Button onClick={handleClose} variant="outlined">
               Decline
             </Button>
-            <Button onClick={handleClose} sx={{ ml: '20px' }} variant="contained">
+            <Button
+              onClick={handleClose}
+              sx={{ ml: '20px' }}
+              variant="contained"
+            >
               Approve
             </Button>
           </Box>

@@ -49,13 +49,15 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
             }}
           >
             <Grid item xs={12} md={6}>
-              <Typography sx={{
-                color: '595959',
-                fontSize: '16px',
-                fontStyle: 'normal',
-                fontWeight: '500',
-                lineHeight: 'normal',
-              }}>
+              <Typography
+                sx={{
+                  color: '595959',
+                  fontSize: '16px',
+                  fontStyle: 'normal',
+                  fontWeight: '500',
+                  lineHeight: 'normal',
+                }}
+              >
                 Date
               </Typography>
             </Grid>
@@ -101,13 +103,15 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
             }}
           >
             <Grid item xs={12} md={6}>
-              <Typography sx={{
-                color: '595959',
-                fontSize: '16px',
-                fontStyle: 'normal',
-                fontWeight: '500',
-                lineHeight: 'normal',
-              }}>
+              <Typography
+                sx={{
+                  color: '595959',
+                  fontSize: '16px',
+                  fontStyle: 'normal',
+                  fontWeight: '500',
+                  lineHeight: 'normal',
+                }}
+              >
                 Punch time
               </Typography>
             </Grid>
@@ -153,13 +157,15 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
             }}
           >
             <Grid item xs={12} md={6}>
-              <Typography sx={{
-                color: '595959',
-                fontSize: '16px',
-                fontStyle: 'normal',
-                fontWeight: '500',
-                lineHeight: 'normal',
-              }}>
+              <Typography
+                sx={{
+                  color: '595959',
+                  fontSize: '16px',
+                  fontStyle: 'normal',
+                  fontWeight: '500',
+                  lineHeight: 'normal',
+                }}
+              >
                 Punch type
               </Typography>
             </Grid>
@@ -204,13 +210,15 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
             }}
           >
             <Grid item xs={12} md={6}>
-              <Typography sx={{
-                color: '595959',
-                fontSize: '16px',
-                fontStyle: 'normal',
-                fontWeight: '500',
-                lineHeight: 'normal',
-              }}>
+              <Typography
+                sx={{
+                  color: '595959',
+                  fontSize: '16px',
+                  fontStyle: 'normal',
+                  fontWeight: '500',
+                  lineHeight: 'normal',
+                }}
+              >
                 Description
               </Typography>
             </Grid>

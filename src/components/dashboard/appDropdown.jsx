@@ -13,7 +13,7 @@ const AppDropdown = ({
   placeHolder,
   nested,
   disabled,
-  padding
+  padding,
 }) => {
   const [isOpenedDropdown, setIsOpenedDropdown] = useState(false);
   const [isOpenedDropdownNested, setIsOpenedDropdownNested] = useState(false);
