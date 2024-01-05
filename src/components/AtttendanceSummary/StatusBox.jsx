@@ -1,5 +1,6 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
+import Image from 'next/image';
 
 const StatusBox = ({ title, count, horizotalLineColor, backgroundColor }) => {
   return (
@@ -48,9 +49,10 @@ const StatusBox = ({ title, count, horizotalLineColor, backgroundColor }) => {
             alignItems: 'center',
           }}
         >
-          <img
+          <Image
+            width={15}
+            height={15}
             src="/icons/arrow-right.svg"
-            style={{ width: '15px', height: '15px' }}
             alt="arrow"
           />
         </Box>

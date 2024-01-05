@@ -107,6 +107,7 @@ const AppCustomMonthYearPicker = () => {
               src={'/icons/Back.svg'}
               width={12}
               height={12}
+              alt="icon"
             />
             <Typography mx={'15px'}>{currentYear}</Typography>
             <Image
@@ -114,6 +115,7 @@ const AppCustomMonthYearPicker = () => {
               src={'/icons/Next.svg'}
               width={12}
               height={12}
+              alt="icon"
             />
           </Box>
           <Box display={'flex'} alignItems="center" flexWrap={'wrap'}>

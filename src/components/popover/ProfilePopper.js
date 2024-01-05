@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import Popper from '@mui/material/Popper';
 import { MenuItem, Typography } from '@mui/material';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 import SidebarUserAvatar from '../sidebar/SidebarUserAvatar';
 import { NOTIFICATION_TITLE, profileMenuData } from '@/src/constants/sidebar';
@@ -124,11 +125,7 @@ export default function ProfilePopper({ button }) {
                   <Box sx={{ marginTop: -1.2 }}>
                     {item?.text == 'Notification' && <DotBadge color={'red'} />}
                   </Box>
-                  <img
-                    src={item?.icon}
-                    style={{ width: '20px', height: '20px' }}
-                    alt="icon"
-                  />
+                  <Image width={20} height={20} src={item?.icon} alt="icon" />
                 </Box>
                 <Typography
                   variant="body1"

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Box } from '@mui/material';
+import Image from 'next/image';
 
 const SidebarGlobalIcon = () => {
   return (
@@ -16,9 +17,10 @@ const SidebarGlobalIcon = () => {
           justifyContent: 'center',
         }}
       >
-        <img
+        <Image
+          width={25}
+          height={25}
           src={'/images/sidebar-icons/internet-logo.svg'}
-          style={{ width: '25px', height: '25px' }}
           alt="internet-logo"
         />
       </Box>
