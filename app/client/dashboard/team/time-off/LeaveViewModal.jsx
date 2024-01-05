@@ -129,13 +129,15 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
                     background: '#f6f6f6',
                   }}
                 >
-                  <Typography sx={{
-                    color: "#595959",
-                    fontSize: "16px",
-                    fontStyle: "normal",
-                    fontWeight: "500",
-                    lineHeight: "normal",
-                  }}>
+                  <Typography
+                    sx={{
+                      color: '#595959',
+                      fontSize: '16px',
+                      fontStyle: 'normal',
+                      fontWeight: '500',
+                      lineHeight: 'normal',
+                    }}
+                  >
                     October 17,2023
                   </Typography>
                   <Image
@@ -191,13 +193,17 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
                     background: '#f6f6f6',
                   }}
                 >
-                  <Typography sx={{
-                    color: "#595959",
-                    fontSize: "16px",
-                    fontStyle: "normal",
-                    fontWeight: "500",
-                    lineHeight: "normal",
-                  }}>October 17,2023</Typography>
+                  <Typography
+                    sx={{
+                      color: '#595959',
+                      fontSize: '16px',
+                      fontStyle: 'normal',
+                      fontWeight: '500',
+                      lineHeight: 'normal',
+                    }}
+                  >
+                    October 17,2023
+                  </Typography>
                   <Image
                     src={'/icons/CalendarOutline.svg'}
                     width={20}
@@ -415,13 +421,17 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
                     background: '#f6f6f6',
                   }}
                 >
-                  <Typography sx={{
-                    color: "#595959",
-                    fontSize: "16px",
-                    fontStyle: "normal",
-                    fontWeight: "500",
-                    lineHeight: "normal",
-                  }}>{modalData?.count}</Typography>
+                  <Typography
+                    sx={{
+                      color: '#595959',
+                      fontSize: '16px',
+                      fontStyle: 'normal',
+                      fontWeight: '500',
+                      lineHeight: 'normal',
+                    }}
+                  >
+                    {modalData?.count}
+                  </Typography>
                 </Box>
               </Grid>
             </Grid>
@@ -469,13 +479,17 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
                     background: '#f6f6f6',
                   }}
                 >
-                  <Typography sx={{
-                    color: "#595959",
-                    fontSize: "16px",
-                    fontStyle: "normal",
-                    fontWeight: "500",
-                    lineHeight: "normal",
-                  }}>0</Typography>
+                  <Typography
+                    sx={{
+                      color: '#595959',
+                      fontSize: '16px',
+                      fontStyle: 'normal',
+                      fontWeight: '500',
+                      lineHeight: 'normal',
+                    }}
+                  >
+                    0
+                  </Typography>
                 </Box>
               </Grid>
             </Grid>
@@ -523,13 +537,17 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
                     background: '#f6f6f6',
                   }}
                 >
-                  <Typography sx={{
-                    color: "#595959",
-                    fontSize: "16px",
-                    fontStyle: "normal",
-                    fontWeight: "500",
-                    lineHeight: "normal",
-                  }}>{modalData?.count}</Typography>
+                  <Typography
+                    sx={{
+                      color: '#595959',
+                      fontSize: '16px',
+                      fontStyle: 'normal',
+                      fontWeight: '500',
+                      lineHeight: 'normal',
+                    }}
+                  >
+                    {modalData?.count}
+                  </Typography>
                 </Box>
               </Grid>
             </Grid>
@@ -577,13 +595,17 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
                     minHeight: '100px',
                   }}
                 >
-                  <Typography sx={{
-                    color: "#595959",
-                    fontSize: "16px",
-                    fontStyle: "normal",
-                    fontWeight: "500",
-                    lineHeight: "normal",
-                  }}>Health issues</Typography>
+                  <Typography
+                    sx={{
+                      color: '#595959',
+                      fontSize: '16px',
+                      fontStyle: 'normal',
+                      fontWeight: '500',
+                      lineHeight: 'normal',
+                    }}
+                  >
+                    Health issues
+                  </Typography>
                 </Box>
               </Grid>
             </Grid>

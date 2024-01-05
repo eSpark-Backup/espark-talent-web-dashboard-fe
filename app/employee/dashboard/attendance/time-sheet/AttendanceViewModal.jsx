@@ -52,11 +52,11 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
                 <Grid item xs={6}>
                   <Typography
                     sx={{
-                      color: "#171717",
-                      fontSize: "16px",
-                      fontStyle: "normal",
+                      color: '#171717',
+                      fontSize: '16px',
+                      fontStyle: 'normal',
                       fontWeight: 500,
-                      lineHeight: "normal",
+                      lineHeight: 'normal',
                     }}
                   >
                     Employee ID:
@@ -65,11 +65,11 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
                 <Grid item xs={6}>
                   <Typography
                     sx={{
-                      color: "#595959",
-                      fontSize: "16px",
-                      fontStyle: "normal",
+                      color: '#595959',
+                      fontSize: '16px',
+                      fontStyle: 'normal',
                       fontWeight: 400,
-                      lineHeight: "normal",
+                      lineHeight: 'normal',
                     }}
                   >
                     es-00020
@@ -87,11 +87,11 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
                 <Grid item xs={6}>
                   <Typography
                     sx={{
-                      color: "#171717",
-                      fontSize: "16px",
-                      fontStyle: "normal",
+                      color: '#171717',
+                      fontSize: '16px',
+                      fontStyle: 'normal',
                       fontWeight: 500,
-                      lineHeight: "normal",
+                      lineHeight: 'normal',
                     }}
                   >
                     Company:
@@ -100,11 +100,11 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
                 <Grid item xs={6}>
                   <Typography
                     sx={{
-                      color: "#595959",
-                      fontSize: "16px",
-                      fontStyle: "normal",
+                      color: '#595959',
+                      fontSize: '16px',
+                      fontStyle: 'normal',
                       fontWeight: 400,
-                      lineHeight: "normal",
+                      lineHeight: 'normal',
                     }}
                   >
                     eSpark talent
@@ -123,11 +123,11 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
                 <Grid item xs={6}>
                   <Typography
                     sx={{
-                      color: "#171717",
-                      fontSize: "16px",
-                      fontStyle: "normal",
+                      color: '#171717',
+                      fontSize: '16px',
+                      fontStyle: 'normal',
                       fontWeight: 500,
-                      lineHeight: "normal",
+                      lineHeight: 'normal',
                     }}
                   >
                     Branch:
@@ -136,11 +136,11 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
                 <Grid item xs={6}>
                   <Typography
                     sx={{
-                      color: "#595959",
-                      fontSize: "16px",
-                      fontStyle: "normal",
+                      color: '#595959',
+                      fontSize: '16px',
+                      fontStyle: 'normal',
                       fontWeight: 400,
-                      lineHeight: "normal",
+                      lineHeight: 'normal',
                     }}
                   >
                     Jauhar, Block 1
@@ -171,11 +171,11 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
                 <Grid item xs={6}>
                   <Typography
                     sx={{
-                      color: "#595959",
-                      fontSize: "16px",
-                      fontStyle: "normal",
+                      color: '#595959',
+                      fontSize: '16px',
+                      fontStyle: 'normal',
                       fontWeight: 400,
-                      lineHeight: "normal",
+                      lineHeight: 'normal',
                     }}
                   >
                     Web developer
@@ -209,11 +209,11 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
                 <Grid item xs={6}>
                   <Typography
                     sx={{
-                      color: "#595959",
-                      fontSize: "16px",
-                      fontStyle: "normal",
+                      color: '#595959',
+                      fontSize: '16px',
+                      fontStyle: 'normal',
                       fontWeight: 400,
-                      lineHeight: "normal",
+                      lineHeight: 'normal',
                     }}
                   >
                     Bilal Khan
@@ -244,11 +244,11 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
                 <Grid item xs={6}>
                   <Typography
                     sx={{
-                      color: "#595959",
-                      fontSize: "16px",
-                      fontStyle: "normal",
+                      color: '#595959',
+                      fontSize: '16px',
+                      fontStyle: 'normal',
                       fontWeight: 400,
-                      lineHeight: "normal",
+                      lineHeight: 'normal',
                     }}
                   >
                     Karachi, Pakistan
@@ -280,11 +280,11 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
                 <Grid item xs={6}>
                   <Typography
                     sx={{
-                      color: "#595959",
-                      fontSize: "16px",
-                      fontStyle: "normal",
+                      color: '#595959',
+                      fontSize: '16px',
+                      fontStyle: 'normal',
                       fontWeight: 400,
-                      lineHeight: "normal",
+                      lineHeight: 'normal',
                     }}
                   >
                     Software
@@ -313,16 +313,16 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
                   </Typography>
                 </Grid>
                 <Grid item xs={6}>
-                <Typography
+                  <Typography
                     sx={{
-                      color: "#595959",
-                      fontSize: "16px",
-                      fontStyle: "normal",
+                      color: '#595959',
+                      fontSize: '16px',
+                      fontStyle: 'normal',
                       fontWeight: 400,
-                      lineHeight: "normal",
+                      lineHeight: 'normal',
                     }}
                   >
-                  Oct26,2021
+                    Oct26,2021
                   </Typography>
                 </Grid>
               </Grid>

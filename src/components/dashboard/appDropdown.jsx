@@ -119,13 +119,15 @@ const AppDropdown = ({
             }}
             p={padding || '15px 10px'}
           >
-            <Typography sx={{
-              color: "#595959",
-              fontSize: "16px",
-              fontStyle: "normal",
-              fontWeight: 500,
-              lineHeight: "normal",
-            }}>
+            <Typography
+              sx={{
+                color: '#595959',
+                fontSize: '16px',
+                fontStyle: 'normal',
+                fontWeight: 500,
+                lineHeight: 'normal',
+              }}
+            >
               {(nested ? jobTitle?.title : selectedItem) || placeHolder}
             </Typography>
             <Image

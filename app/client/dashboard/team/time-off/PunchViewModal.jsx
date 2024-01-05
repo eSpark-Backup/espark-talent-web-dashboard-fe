@@ -73,13 +73,17 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
                   background: '#f6f6f6',
                 }}
               >
-                <Typography sx={{
-                    color: "#595959",
-                    fontSize: "16px",
-                    fontStyle: "normal",
-                    fontWeight: "500",
-                    lineHeight: "normal",
-                  }}>November 1, 2023</Typography>
+                <Typography
+                  sx={{
+                    color: '#595959',
+                    fontSize: '16px',
+                    fontStyle: 'normal',
+                    fontWeight: '500',
+                    lineHeight: 'normal',
+                  }}
+                >
+                  November 1, 2023
+                </Typography>
                 <Image
                   src={'/icons/CalendarOutline.svg'}
                   width={20}
@@ -133,13 +137,17 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
                   background: '#f6f6f6',
                 }}
               >
-                <Typography sx={{
-                    color: "#595959",
-                    fontSize: "16px",
-                    fontStyle: "normal",
-                    fontWeight: "500",
-                    lineHeight: "normal",
-                  }}>08 :00 PM</Typography>
+                <Typography
+                  sx={{
+                    color: '#595959',
+                    fontSize: '16px',
+                    fontStyle: 'normal',
+                    fontWeight: '500',
+                    lineHeight: 'normal',
+                  }}
+                >
+                  08 :00 PM
+                </Typography>
                 <Image
                   src={'/icons/CalendarOutline.svg'}
                   width={20}
@@ -193,13 +201,17 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
                   background: '#f6f6f6',
                 }}
               >
-                <Typography sx={{
-                    color: "#595959",
-                    fontSize: "16px",
-                    fontStyle: "normal",
-                    fontWeight: "500",
-                    lineHeight: "normal",
-                  }}>Check out</Typography>
+                <Typography
+                  sx={{
+                    color: '#595959',
+                    fontSize: '16px',
+                    fontStyle: 'normal',
+                    fontWeight: '500',
+                    lineHeight: 'normal',
+                  }}
+                >
+                  Check out
+                </Typography>
                 <Image
                   src={'/icons/CalendarOutline.svg'}
                   width={20}
@@ -252,13 +264,17 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
                   minHeight: '100px',
                 }}
               >
-                <Typography sx={{
-                    color: "#595959",
-                    fontSize: "16px",
-                    fontStyle: "normal",
-                    fontWeight: "500",
-                    lineHeight: "normal",
-                  }}>Write your description...</Typography>
+                <Typography
+                  sx={{
+                    color: '#595959',
+                    fontSize: '16px',
+                    fontStyle: 'normal',
+                    fontWeight: '500',
+                    lineHeight: 'normal',
+                  }}
+                >
+                  Write your description...
+                </Typography>
               </Box>
             </Grid>
           </Grid>
