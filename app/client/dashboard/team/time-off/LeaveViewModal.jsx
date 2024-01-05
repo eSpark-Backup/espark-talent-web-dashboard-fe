@@ -3,7 +3,7 @@ import AppDropdown from '@/src/components/dashboard/appDropdown';
 import { Box, Button, Grid, Typography } from '@mui/material';
 import Image from 'next/image';
 
-const LeaveViewModal = ({ modalData, handleClose }) => {
+const LeaveViewModal = ({ modalData, handleClose, isEmployee }) => {
   const [isLoadingTitles, setIsLoadingTitles] = useState(false);
   const [selectedJobTitle, setSelectedJobTitle] = useState(
     modalData?.leaveType
@@ -340,6 +340,7 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
                     m: '5px',
                     flex: 1,
                     borderRadius: '5px',
+                    overflow: 'hidden',
                   }}
                   display={'flex'}
                   justifyContent={'flex-end'}
@@ -611,35 +612,82 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
             </Grid>
           </Box>
         </Box>
-        {modalData?.status === 'Pending' ? (
-          <Box
-            display={'flex'}
-            justifyContent={'flex-end'}
-            sx={{ padding: '20px' }}
-          >
-            <Button onClick={handleClose} variant="outlined">
-              Decline
-            </Button>
-            <Button
-              onClick={handleClose}
-              sx={{ ml: '20px' }}
-              variant="contained"
-            >
-              Approve
-            </Button>
-          </Box>
-        ) : modalData?.status === 'Completed' ||
-          modalData?.status === 'Rejected' ? (
-          <Box
-            display={'flex'}
-            justifyContent={'flex-end'}
-            sx={{ padding: '20px' }}
-          >
-            <Button onClick={handleClose} variant="outlined">
-              {modalData?.status}
-            </Button>
-          </Box>
-        ) : null}
+        {!isEmployee && (
+          <>
+            {modalData?.status === 'Pending' ? (
+              <Box
+                display={'flex'}
+                justifyContent={'flex-end'}
+                sx={{ padding: '20px' }}
+              >
+                <Button
+                  sx={{ minWidth: '120px' }}
+                  onClick={handleClose}
+                  variant="outlined"
+                >
+                  Decline
+                </Button>
+                <Button
+                  onClick={handleClose}
+                  sx={{ ml: '20px', minWidth: '120px' }}
+                  variant="contained"
+                >
+                  Approve
+                </Button>
+              </Box>
+            ) : modalData?.status === 'Completed' ||
+              modalData?.status === 'Rejected' ? (
+              <Box
+                display={'flex'}
+                justifyContent={'flex-end'}
+                sx={{ padding: '20px' }}
+              >
+                <Button
+                  sx={{ minWidth: '120px' }}
+                  onClick={handleClose}
+                  variant="outlined"
+                >
+                  {modalData?.status}
+                </Button>
+              </Box>
+            ) : null}
+          </>
+        )}
+        {isEmployee && (
+          <>
+            {modalData?.status === 'Pending' ? (
+              <Box
+                display={'flex'}
+                justifyContent={'flex-end'}
+                sx={{ padding: '20px' }}
+              >
+                <Button
+                  sx={{ minWidth: '120px' }}
+                  onClick={handleClose}
+                  variant="outlined"
+                >
+                  Cancel Request
+                </Button>
+              </Box>
+            ) : modalData?.status === 'Completed' ||
+              modalData?.status === 'Rejected' ||
+              modalData?.status === 'Cancelled' ? (
+              <Box
+                display={'flex'}
+                justifyContent={'flex-end'}
+                sx={{ padding: '20px' }}
+              >
+                <Button
+                  sx={{ minWidth: '120px' }}
+                  onClick={handleClose}
+                  variant="contained"
+                >
+                  Close
+                </Button>
+              </Box>
+            ) : null}
+          </>
+        )}
       </Box>
     </>
   );
