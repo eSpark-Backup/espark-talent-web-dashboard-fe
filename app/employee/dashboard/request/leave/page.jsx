@@ -70,11 +70,11 @@ const Dashboard = () => {
   const handleClose = () => setOpen(false);
   const leaveBalanceDataState = useMemo(
     () => filterTableRowsWRTTab(employeeLeaveBalanceData, { status: '' }),
-    [leaveBalanceDataState]
+    [employeeLeaveBalanceData]
   );
   const leaveRequestDataState = useMemo(
     () => filterTableRowsWRTTab(employeeLeaveRequestsData, { status: '' }),
-    [leaveBalanceDataState]
+    [employeeLeaveRequestsData]
   );
   const [currentReqStatusTab, setcurrentReqStatusTab] = useState('All');
   const [currentReqStatusTabVal, setcurrentReqStatusTabVal] = useState(0);

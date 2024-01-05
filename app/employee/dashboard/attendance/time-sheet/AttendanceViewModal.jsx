@@ -9,8 +9,7 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
       sx={{
         mx: 'auto',
         bgcolor: '#fff',
-        // width: { xs: '80%', md: '50%' },
-        width: { xs: '90%', sm: '90%', md: '70%' },
+        width: { xs: '90%', sm: '90%', md: '77.084%' },
         display: 'flex',
         flexDirection: 'column',
         borderRadius: '10px',
@@ -30,7 +29,7 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
         </Typography>
       </Box>
       <Box p={'20px'}>
-        <Grid container spacing={'10px'} display={'flex'} flexDirection={'row'}>
+        <Grid container spacing={'40px'} display={'flex'} flexDirection={'row'}>
           <Grid item xs={12} md={2}>
             <Box
               sx={{
@@ -56,7 +55,7 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
                       color: '#171717',
                       fontSize: '16px',
                       fontStyle: 'normal',
-                      fontWeight: 600,
+                      fontWeight: 500,
                       lineHeight: 'normal',
                     }}
                   >
@@ -69,7 +68,7 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
                       color: '#595959',
                       fontSize: '16px',
                       fontStyle: 'normal',
-                      fontWeight: 500,
+                      fontWeight: 400,
                       lineHeight: 'normal',
                     }}
                   >
@@ -91,7 +90,7 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
                       color: '#171717',
                       fontSize: '16px',
                       fontStyle: 'normal',
-                      fontWeight: 600,
+                      fontWeight: 500,
                       lineHeight: 'normal',
                     }}
                   >
@@ -104,7 +103,7 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
                       color: '#595959',
                       fontSize: '16px',
                       fontStyle: 'normal',
-                      fontWeight: 500,
+                      fontWeight: 400,
                       lineHeight: 'normal',
                     }}
                   >
@@ -127,7 +126,7 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
                       color: '#171717',
                       fontSize: '16px',
                       fontStyle: 'normal',
-                      fontWeight: 600,
+                      fontWeight: 500,
                       lineHeight: 'normal',
                     }}
                   >
@@ -140,7 +139,7 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
                       color: '#595959',
                       fontSize: '16px',
                       fontStyle: 'normal',
-                      fontWeight: 500,
+                      fontWeight: 400,
                       lineHeight: 'normal',
                     }}
                   >
@@ -162,7 +161,7 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
                       color: '#171717',
                       fontSize: '16px',
                       fontStyle: 'normal',
-                      fontWeight: 600,
+                      fontWeight: 500,
                       lineHeight: 'normal',
                     }}
                   >
@@ -175,7 +174,7 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
                       color: '#595959',
                       fontSize: '16px',
                       fontStyle: 'normal',
-                      fontWeight: 500,
+                      fontWeight: 400,
                       lineHeight: 'normal',
                     }}
                   >
@@ -200,7 +199,7 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
                       color: '#171717',
                       fontSize: '16px',
                       fontStyle: 'normal',
-                      fontWeight: 600,
+                      fontWeight: 500,
                       lineHeight: 'normal',
                     }}
                   >
@@ -213,7 +212,7 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
                       color: '#595959',
                       fontSize: '16px',
                       fontStyle: 'normal',
-                      fontWeight: 500,
+                      fontWeight: 400,
                       lineHeight: 'normal',
                     }}
                   >
@@ -235,7 +234,7 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
                       color: '#171717',
                       fontSize: '16px',
                       fontStyle: 'normal',
-                      fontWeight: 600,
+                      fontWeight: 500,
                       lineHeight: 'normal',
                     }}
                   >
@@ -248,7 +247,7 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
                       color: '#595959',
                       fontSize: '16px',
                       fontStyle: 'normal',
-                      fontWeight: 500,
+                      fontWeight: 400,
                       lineHeight: 'normal',
                     }}
                   >
@@ -271,7 +270,7 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
                       color: '#171717',
                       fontSize: '16px',
                       fontStyle: 'normal',
-                      fontWeight: 600,
+                      fontWeight: 500,
                       lineHeight: 'normal',
                     }}
                   >
@@ -284,7 +283,7 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
                       color: '#595959',
                       fontSize: '16px',
                       fontStyle: 'normal',
-                      fontWeight: 500,
+                      fontWeight: 400,
                       lineHeight: 'normal',
                     }}
                   >
@@ -306,7 +305,7 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
                       color: '#171717',
                       fontSize: '16px',
                       fontStyle: 'normal',
-                      fontWeight: 600,
+                      fontWeight: 500,
                       lineHeight: 'normal',
                     }}
                   >
