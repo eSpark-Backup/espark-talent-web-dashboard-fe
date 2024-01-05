@@ -12,7 +12,7 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
     <Box
       sx={{
         bgcolor: '#fff',
-        width: { xs: '90%', sm: '90%', md: '70%' },
+        width: { xs: '90%', sm: '90%', md: '77.084%' },
         display: 'flex',
         flexDirection: 'column',
         borderRadius: '10px',
@@ -49,7 +49,15 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
             }}
           >
             <Grid item xs={12} md={6}>
-              Date
+              <Typography sx={{
+                color: '595959',
+                fontSize: '16px',
+                fontStyle: 'normal',
+                fontWeight: '500',
+                lineHeight: 'normal',
+              }}>
+                Date
+              </Typography>
             </Grid>
             <Grid item xs={12} md={6} sx={{ width: '100%' }}>
               <Box
@@ -58,7 +66,7 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
                 alignItems={'center'}
                 sx={{
                   border: 'solid 1px #ccc',
-                  p: '15px',
+                  p: '8.5px',
                   borderRadius: '5px',
                   background: '#f6f6f6',
                 }}
@@ -93,7 +101,15 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
             }}
           >
             <Grid item xs={12} md={6}>
-              Punch time
+              <Typography sx={{
+                color: '595959',
+                fontSize: '16px',
+                fontStyle: 'normal',
+                fontWeight: '500',
+                lineHeight: 'normal',
+              }}>
+                Punch time
+              </Typography>
             </Grid>
             <Grid item xs={12} md={6} sx={{ width: '100%' }}>
               <Box
@@ -102,7 +118,7 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
                 alignItems={'center'}
                 sx={{
                   border: 'solid 1px #ccc',
-                  p: '15px',
+                  p: '8.5px',
                   borderRadius: '5px',
                   background: '#f6f6f6',
                 }}
@@ -137,7 +153,15 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
             }}
           >
             <Grid item xs={12} md={6}>
-              Punch type
+              <Typography sx={{
+                color: '595959',
+                fontSize: '16px',
+                fontStyle: 'normal',
+                fontWeight: '500',
+                lineHeight: 'normal',
+              }}>
+                Punch type
+              </Typography>
             </Grid>
             <Grid item xs={12} md={6} sx={{ width: '100%' }}>
               <Box
@@ -146,7 +170,7 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
                 alignItems={'center'}
                 sx={{
                   border: 'solid 1px #ccc',
-                  p: '15px',
+                  p: '8.5px',
                   borderRadius: '5px',
                   background: '#f6f6f6',
                 }}
@@ -180,7 +204,15 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
             }}
           >
             <Grid item xs={12} md={6}>
-              Description
+              <Typography sx={{
+                color: '595959',
+                fontSize: '16px',
+                fontStyle: 'normal',
+                fontWeight: '500',
+                lineHeight: 'normal',
+              }}>
+                Description
+              </Typography>
             </Grid>
             <Grid item xs={12} md={6} sx={{ width: '100%' }}>
               <Box
@@ -188,10 +220,10 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
                 justifyContent={'space-between'}
                 sx={{
                   border: 'solid 1px #ccc',
-                  p: '15px',
+                  p: '8.5px',
                   borderRadius: '5px',
                   background: '#f6f6f6',
-                  minHeight: '150px',
+                  minHeight: '100px',
                 }}
               >
                 <Typography>Write your description...</Typography>
