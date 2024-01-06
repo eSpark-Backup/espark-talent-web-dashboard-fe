@@ -194,7 +194,6 @@ const AppTable = ({
               <Fragment key={rowIndex}>
                 <tr className="app-table-row">
                   {column?.map((col, colIndex) => {
-                    console.log({ col, row: row[toCamelCase(col)] });
                     if (row?.actionStatus && col === 'Status') {
                       if (row?.status === 'Pending')
                         return (

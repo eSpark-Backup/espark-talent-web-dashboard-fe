@@ -161,7 +161,7 @@ const Dashboard = () => {
                   aria-labelledby="modal-modal-title"
                   aria-describedby="modal-modal-description"
                   sx={{
-                    height: { xs: '850px', md: '900px' },
+                    // height: { xs: '850px', md: '900px' },
                     display: 'flex',
                     alignItems: 'center',
                   }}

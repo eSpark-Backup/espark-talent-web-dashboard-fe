@@ -24,7 +24,7 @@ export const checkInOutColumn = [
   'Punch time',
   'Punch type',
   'Status',
-  'Action',
+  'Actions',
 ];
 export const leaveRequestsData = [
   {
