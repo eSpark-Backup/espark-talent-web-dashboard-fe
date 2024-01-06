@@ -12,7 +12,7 @@ export const EMPLOYEE_TIMESHEET = [
   {
     workedHour: 'Worked hours',
     workedHourNo: 9,
-    verticalLineColor: '#f35725',
+    verticalLineColor: '#F59831',
   },
   {
     shortHours: 'Short hours',
@@ -47,11 +47,11 @@ export const EMPLOYEE_TIMESHEET = [
   {
     dayOff: 'Day off',
     dayOffNo: 9,
-    verticalLineColor: '#41acd8',
+    verticalLineColor: '#36C2AA',
   },
   {
     overTime: 'Over time',
     overTimeHours: 9,
-    verticalLineColor: '#029e9c',
+    verticalLineColor: '#136E91',
   },
 ];

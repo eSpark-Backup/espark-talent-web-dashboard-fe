@@ -523,10 +523,27 @@ const LeaveRequestModal = ({ handleClose }) => {
         justifyContent={'flex-end'}
         sx={{ padding: '20px' }}
       >
-        <Button onClick={handleClose} variant="outlined">
+        <Button
+          onClick={handleClose}
+          sx={{
+            width: '120px',
+            border: '1px solid #029894',
+            background: '#FFF',
+          }}
+          variant="outlined"
+        >
           Cancel
         </Button>
-        <Button onClick={handleClose} sx={{ ml: '20px' }} variant="contained">
+        <Button
+          onClick={handleClose}
+          sx={{
+            ml: '20px',
+            width: '120px',
+            background: '#029894',
+            color: '#fff',
+          }}
+          variant="contained"
+        >
           Save
         </Button>
       </Box>

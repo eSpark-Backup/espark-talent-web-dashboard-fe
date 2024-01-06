@@ -87,6 +87,7 @@ const Dashboard = () => {
               >
                 Check in
               </Typography>
+
               <Box display={'flex'} alignItems={'center'}>
                 <Image
                   src="/icons/ClockIcon.svg"
@@ -121,6 +122,7 @@ const Dashboard = () => {
                 </Typography>
               </Box>
             </Box>
+            <br />
             <Box
               sx={{
                 px: { xs: 3, sm: 3, lg: 3 },
@@ -239,14 +241,12 @@ const Dashboard = () => {
             >
               <Grid item xs={12} md={6} lg={6} xl={6}>
                 <Button
-                  variant="outlined"
                   sx={{
-                    // border:"solid 1px #ccc",
+                    border: '1px solid #E4E4E4',
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
                     p: '10px',
-                    // borderRadius:'5px',
                     width: '100%',
                     height: '50px',
                   }}

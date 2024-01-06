@@ -10,6 +10,7 @@ import { filterDataByKeyword } from '@/src/utils/search';
 import { a11yProps, changeTab } from '@/src/utils/tabs';
 import { empTabs } from '@/src/constants/data/tabs/empTabs';
 import {
+  contractHeading,
   contractSignedColumn,
   contractSignedData,
 } from '@/src/constants/data/tables/contractSigned';
@@ -74,7 +75,6 @@ const ContractSigned = () => {
           }}
         >
           <Box
-            marginBottom={4}
             display={'flex'}
             justifyContent={'space-between'}
             alignItems={'center'}
@@ -104,16 +104,22 @@ const ContractSigned = () => {
                 aria-label="basic tabs example"
                 variant="scrollable"
               >
-                {[{ label: 'Active contracts', prop: a11yProps(0) }]?.map(
-                  ({ label, prop }, i) => (
-                    <Tab
-                      key={i}
-                      label={`${label}`}
-                      {...prop}
-                      disableRipple={true}
-                    />
-                  )
-                )}
+                {[
+                  {
+                    label: contractHeading[0]?.activeContracts,
+                    prop: a11yProps(0),
+                  },
+                ]?.map(({ label, prop }, i) => (
+                  <Tab
+                    key={i}
+                    label={`${label}`}
+                    {...prop}
+                    disableRipple={true}
+                    sx={{
+                      textTransform: 'math-auto',
+                    }}
+                  />
+                ))}
               </Tabs>
             </Box>
             <Box my={4}>

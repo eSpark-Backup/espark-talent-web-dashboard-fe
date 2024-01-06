@@ -169,7 +169,7 @@ const AuthForm = ({ uiData, fields }) => {
             fullWidth
             variant="contained"
             color="primary"
-            sx={{ mt: 3, mb: 2 }}
+            sx={{ mt: 3, mb: 2, fontSize: '16px', fontWeight: 600 }}
           >
             {title}
           </Button>

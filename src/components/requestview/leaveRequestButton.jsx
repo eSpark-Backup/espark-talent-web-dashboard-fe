@@ -63,12 +63,14 @@ const LeaveRequestButtons = ({
           ) : isCompletedModal ? (
             <Box sx={{}}>
               <Button
-                sx={{
-                  border: '1px solid #029894',
-                  width: '120px',
-                  borderRadius: '5px',
-                }}
                 onClick={onClose}
+                sx={{
+                  width: '120px',
+                  border: '1px solid #029894',
+
+                  background: '#FFF',
+                  '&:hover': {},
+                }}
               >
                 Approved
               </Button>

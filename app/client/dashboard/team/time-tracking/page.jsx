@@ -5,11 +5,11 @@ import AppTable from '@/src/components/dashboard/appTable';
 import {
   timeTrackingTableColumn,
   timeTrackingTableData,
-  trackingStatusTypes,
+  // trackingStatusTypes,
 } from '@/src/constants/data/tables/timeTracking';
 import Link from 'next/link';
 import AppSearchableDropdown from '@/src/components/dashboard/appSearchableDropdown';
-import { renderTrackingStatus } from './renderComponents';
+// import { renderTrackingStatus } from './renderComponents';
 import AppCustomMonthYearPicker from '@/src/components/dashboard/appCustomMonthYearPicker';
 
 const Dashboard = () => {
@@ -131,7 +131,8 @@ const Dashboard = () => {
                 </Grid>
               </Grid>
             </Box>
-            <Box
+            <br />
+            {/* <Box
               marginY={'20px'}
               display={'flex'}
               flexWrap={'wrap'}
@@ -146,7 +147,7 @@ const Dashboard = () => {
                     shortForm,
                   })
               )}
-            </Box>
+            </Box> */}
             {isLoading ? (
               <Box>Loading...</Box>
             ) : (

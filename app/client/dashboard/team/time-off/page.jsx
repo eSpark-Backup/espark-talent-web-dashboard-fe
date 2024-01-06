@@ -233,8 +233,17 @@ const Dashboard = () => {
                 </Box>
               </Box>
               <Button
-                sx={{ marginX: '10px', minWidth: { xs: 'auto', md: '220px' } }}
-                variant="outlined"
+                sx={{
+                  marginX: '10px',
+                  minWidth: '220px',
+                  color: '#029894',
+                  border: '1px solid #029894',
+                  fontSize: '16px',
+                  fontWeight: '600',
+                  '&:hover': {
+                    background: '#E6F5F4',
+                  },
+                }}
               >
                 Download Report
               </Button>
@@ -315,7 +324,7 @@ const Dashboard = () => {
                                               borderRadius: '5px',
                                               marginRight: '10px',
                                               color,
-                                              fontSize: '16px',
+                                              fontSize: '14px',
                                               fontWeight: 600,
                                               lineHeight: '19px',
                                               letterSpacing: '0em',
@@ -390,8 +399,15 @@ const Dashboard = () => {
                                 />
                               </Box>
                               <Button
-                                sx={{ marginX: '10px', minWidth: '120px' }}
-                                variant="outlined"
+                                sx={{
+                                  marginX: '10px',
+                                  minWidth: '120px',
+                                  border: '1px solid #138A72',
+                                  color: '#138A72',
+                                  '&:hover:': {
+                                    background: '#fff',
+                                  },
+                                }}
                                 startIcon={
                                   <Image
                                     width={20}
@@ -404,9 +420,13 @@ const Dashboard = () => {
                                 Refresh
                               </Button>
                               <Button
-                                variant="contained"
                                 sx={{
                                   minWidth: '120px',
+                                  background: '#138A72',
+                                  color: '#fff',
+                                  '&:hover': {
+                                    background: '#138A72',
+                                  },
                                 }}
                                 startIcon={
                                   <Image

@@ -12,3 +12,8 @@ export const contractSignedData = [
     download: 'Download',
   },
 ];
+export const contractHeading = [
+  {
+    activeContracts: 'Active contracts',
+  },
+];

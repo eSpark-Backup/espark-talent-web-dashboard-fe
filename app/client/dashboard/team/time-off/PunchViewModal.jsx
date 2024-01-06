@@ -287,9 +287,14 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
           sx={{ padding: '20px' }}
         >
           <Button
-            sx={{ minWidth: '120px' }}
             onClick={handleClose}
-            variant="outlined"
+            sx={{
+              width: '120px',
+              border: '1px solid #029894',
+
+              background: '#FFF',
+              '&:hover': {},
+            }}
           >
             Decline
           </Button>

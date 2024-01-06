@@ -18,6 +18,7 @@
   padding: 10px 0;
   color: #595959;
   flex: 1;
+  font-size: 12px;
 }
 .app-table-row {
   background-color: #f6f6f6;

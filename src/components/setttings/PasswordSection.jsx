@@ -47,6 +47,9 @@ const PasswordSection = ({ User_Password }) => {
             '@media (max-width: 380px)': {
               width: '100%',
             },
+            '&:hover': {
+              backgroundColor: '#888',
+            },
           }}
         >
           {User_Password?.buttonText}

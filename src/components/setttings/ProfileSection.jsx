@@ -23,9 +23,9 @@ export default function ProfileSection({ Profile_Edit_Section, User_Detail }) {
           />
           <Button
             sx={{
-              width: '165px',
+              width: '160px',
               height: '40px',
-              fontSize: '16px',
+              fontSize: '14px',
               fontWeight: 500,
             }}
             variant="contained"
@@ -67,13 +67,13 @@ export default function ProfileSection({ Profile_Edit_Section, User_Detail }) {
                 '@media (max-width: 562px)': {
                   flexDirection: 'column',
                   alignItems: 'start',
-                  // gap: 2.5,
                 },
               }}
             >
               <Box
                 sx={{
                   width: 'auto',
+                  height: '40px',
                   '@media (max-width: 562px)': {
                     width: '100%',
                   },
@@ -114,6 +114,9 @@ export default function ProfileSection({ Profile_Edit_Section, User_Detail }) {
                       height: '40px',
                       '@media (max-width: 380px)': {
                         width: '100%',
+                      },
+                      '&:hover': {
+                        backgroundColor: '#888',
                       },
                     }}
                   >

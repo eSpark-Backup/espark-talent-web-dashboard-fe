@@ -645,7 +645,15 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
       >
         <Button
           onClick={handleClose}
-          sx={{ ml: '20px', minWidth: '120px' }}
+          sx={{
+            ml: '20px',
+            width: '120px',
+            background: '#029894',
+            color: '#fff',
+            ':&hover:': {
+              background: '#029894',
+            },
+          }}
           variant="contained"
         >
           Close

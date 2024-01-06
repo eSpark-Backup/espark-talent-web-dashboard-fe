@@ -59,6 +59,7 @@ const Dashboard = () => {
             display={'flex'}
             justifyContent={'space-between'}
             alignItems={'center'}
+            marginBottom={2}
           >
             <Box display={'flex'} flexDirection={'column'}>
               <Typography variant="h3">Time sheet</Typography>
@@ -151,7 +152,22 @@ const Dashboard = () => {
               </Box>
             ))}
           </Box>
+
           <Box sx={{ width: '100%' }}>
+            <Box marginTop={'20px'}>
+              <Typography
+                sx={{
+                  fontSize: '30px',
+                  fontWeight: 400,
+                  lineHeight: '36px',
+                  letterSpacing: '0em',
+                  color: '#595959',
+                }}
+                textAlign={'center'}
+              >
+                Bilal Khan - (eS-00020)
+              </Typography>
+            </Box>
             <Box
               display={'flex'}
               justifyContent={'space-between'}
@@ -243,6 +259,9 @@ const Dashboard = () => {
                     background: '#138A72',
                     display: { xs: 'none', md: 'flex' },
                     color: '#fff',
+                    '&:hover': {
+                      background: '#138A72',
+                    },
                   }}
                   startIcon={
                     <Image
@@ -257,20 +276,7 @@ const Dashboard = () => {
                 </Button>
               </Box>
             </Box>
-            <Box mb={'20px'}>
-              <Typography
-                sx={{
-                  fontSize: '30px',
-                  fontWeight: 400,
-                  lineHeight: '36px',
-                  letterSpacing: '0em',
-                  color: '#595959',
-                }}
-                textAlign={'center'}
-              >
-                Bilal Khan - (eS-00020)
-              </Typography>
-            </Box>
+
             {isLoading ? (
               <Box>Loading...</Box>
             ) : (

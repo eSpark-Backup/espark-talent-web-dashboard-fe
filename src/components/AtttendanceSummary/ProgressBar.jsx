@@ -14,8 +14,8 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
     transform: 'rotate(180deg)',
   },
   [`&.${linearProgressClasses.colorPrimary}`]: {
-    backgroundColor:
-      theme.palette.grey[theme.palette.mode === 'light' ? 200 : 800],
+    backgroundColor: '#E6F4F4',
+    // theme.palette.grey[theme.palette.mode === 'light' ? '#E6F4F4' : 40],
   },
   [`& .${linearProgressClasses.bar}`]: {
     backgroundColor: theme.palette.mode === 'light' ? '#068987' : '#308fe8',

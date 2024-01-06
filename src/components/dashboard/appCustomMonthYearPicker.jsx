@@ -56,33 +56,32 @@ const AppCustomMonthYearPicker = () => {
     <Grid sx={{ position: 'relative' }} item xs={12} md={6}>
       <Box
         ref={componentRef}
-        // ml={'20px'}
         sx={{
           border: 'solid 1px #ccc',
           borderRadius: '5px',
           position: 'relative',
-          ml: { xs: 0, md: '20px' },
-          mt: { xs: '20px', md: 0 },
+          width: '221px',
+          padding: '3px',
         }}
       >
         <Box
           display={'flex'}
-          justifyContent="center"
+          justifyContent="flex-start"
           minWidth={'250px'}
           alignItems="center"
           borderRadius="5px"
           py={'5px'}
           px={'15px'}
-          sx={{ cursor: 'pointer' }}
+          sx={{ cursor: 'pointer', marginLeft: '13px' }}
           onClick={() => setIsOpenCalendar((ps) => !ps)}
         >
           <Image
             src={'/icons/Calendar.svg'}
             alt="Calendar"
-            width={30}
-            height={30}
+            width={25}
+            height={25}
           />
-          <Typography ml={'10px'} mb={0}>
+          <Typography ml={'14px'} mt={0}>
             {`${months[selectedDate.getMonth()]} ${selectedDate.getFullYear()}`}
           </Typography>
         </Box>

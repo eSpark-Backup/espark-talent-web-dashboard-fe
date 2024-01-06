@@ -98,7 +98,7 @@ const AppSearchableDropdown = ({
   };
   return (
     <Grid sx={{ position: 'relative' }} item xs={12} md={6}>
-      <Box ref={componentRef}>
+      <Box ref={componentRef} sx={{ display: 'flex', gap: '2px' }}>
         <Box
           onClick={toggleComponent}
           display={'flex'}
@@ -109,6 +109,7 @@ const AppSearchableDropdown = ({
             borderTopRightRadius: '5px',
             borderBottomLeftRadius: !isOpenedDropdown && '5px',
             borderBottomRightRadius: !isOpenedDropdown && '5px',
+            width: '400px',
           }}
           p={'10px'}
         >

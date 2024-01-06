@@ -465,14 +465,24 @@ const PunchRequestModal = ({ createModal, modalData, handleClose }) => {
       >
         <Button
           onClick={handleClose}
-          sx={{ ml: '20px', minWidth: '120px' }}
-          variant="outlined"
+          sx={{
+            ml: '20px',
+            width: '120px',
+            border: '1px solid #029894',
+            background: '#FFF',
+          }}
         >
           Cancel
         </Button>
         <Button
           onClick={handleClose}
-          sx={{ ml: '20px', minWidth: '120px' }}
+          sx={{
+            ml: '20px',
+            width: '120px',
+            '&:hover': {
+              background: '#029894',
+            },
+          }}
           variant="contained"
         >
           Save
