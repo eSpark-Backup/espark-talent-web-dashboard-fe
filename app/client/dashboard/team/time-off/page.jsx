@@ -181,9 +181,15 @@ const Dashboard = () => {
         >
           <div>
             <Box
-              display={'flex'}
-              justifyContent={'space-between'}
-              alignItems={'center'}
+              sx={{
+                display: 'flex',
+                flexDirection: { xs: 'column', md: 'row' },
+                justifyContent: { xs: 'flex-start', md: 'space-between' },
+                alignItems: { xs: 'flex-start', md: 'center' },
+              }}
+              // display={'flex'}
+              // justifyContent={'space-between'}
+              // alignItems={'center'}
             >
               <Box display={'flex'} flexDirection={'column'}>
                 <Typography variant="h3">Time off Request</Typography>

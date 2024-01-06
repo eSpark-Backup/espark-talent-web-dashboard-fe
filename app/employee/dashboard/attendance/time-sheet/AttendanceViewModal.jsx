@@ -29,302 +29,530 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
         </Typography>
       </Box>
       <Box p={'20px'}>
-        <Grid container spacing={'40px'} display={'flex'} flexDirection={'row'}>
-          <Grid item xs={12} md={2}>
+        <Grid container display={'flex'} flexDirection={'row'}>
+          <Grid item xs={12} md={2.25}>
             <Box
               sx={{
-                width: '100px',
-                height: '100px',
+                width: '176px',
+                height: '176px',
                 borderRadius: '50%',
                 background: '#f6f6f6',
               }}
             />
           </Grid>
-          <Grid item xs={12} md={5}>
-            <Box
-              sx={{
-                background: '#F6F6F6',
-                p: '5px 10px',
-                borderRadius: '5px',
-              }}
-            >
-              <Grid container>
-                <Grid item xs={6}>
-                  <Typography
-                    sx={{
-                      color: '#171717',
-                      fontSize: '16px',
-                      fontStyle: 'normal',
-                      fontWeight: 500,
-                      lineHeight: 'normal',
-                    }}
-                  >
-                    Employee ID:
-                  </Typography>
-                </Grid>
-                <Grid item xs={6}>
-                  <Typography
-                    sx={{
-                      color: '#595959',
-                      fontSize: '16px',
-                      fontStyle: 'normal',
-                      fontWeight: 400,
-                      lineHeight: 'normal',
-                    }}
-                  >
-                    es-00020
-                  </Typography>
-                </Grid>
+          <Grid item xs={12} md={9.75}>
+            <Grid container columnSpacing={'40px'}>
+              <Grid item xs={12} md={6}>
+                <Box
+                  sx={{
+                    background: '#F6F6F6',
+                    p: '5px 10px',
+                    borderRadius: '5px',
+                    maxWidth: '550px',
+                  }}
+                >
+                  <Grid container>
+                    <Grid item xs={6}>
+                      <Typography
+                        sx={{
+                          color: '#171717',
+                          fontSize: '16px',
+                          fontStyle: 'normal',
+                          fontWeight: 500,
+                          lineHeight: 'normal',
+                        }}
+                      >
+                        Employee ID:
+                      </Typography>
+                    </Grid>
+                    <Grid item xs={6}>
+                      <Typography
+                        sx={{
+                          color: '#595959',
+                          fontSize: '16px',
+                          fontStyle: 'normal',
+                          fontWeight: 400,
+                          lineHeight: 'normal',
+                        }}
+                      >
+                        es-00020
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                </Box>
+                <Box
+                  sx={{
+                    p: '5px 10px',
+                    borderRadius: '5px',
+                    maxWidth: '550px',
+                  }}
+                >
+                  <Grid container>
+                    <Grid item xs={6}>
+                      <Typography
+                        sx={{
+                          color: '#171717',
+                          fontSize: '16px',
+                          fontStyle: 'normal',
+                          fontWeight: 500,
+                          lineHeight: 'normal',
+                        }}
+                      >
+                        Company:
+                      </Typography>
+                    </Grid>
+                    <Grid item xs={6}>
+                      <Typography
+                        sx={{
+                          color: '#595959',
+                          fontSize: '16px',
+                          fontStyle: 'normal',
+                          fontWeight: 400,
+                          lineHeight: 'normal',
+                        }}
+                      >
+                        eSpark talent
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                </Box>
+                <Box
+                  sx={{
+                    background: '#F6F6F6',
+                    p: '5px 10px',
+                    borderRadius: '5px',
+                    maxWidth: '550px',
+                  }}
+                >
+                  <Grid container>
+                    <Grid item xs={6}>
+                      <Typography
+                        sx={{
+                          color: '#171717',
+                          fontSize: '16px',
+                          fontStyle: 'normal',
+                          fontWeight: 500,
+                          lineHeight: 'normal',
+                        }}
+                      >
+                        Branch:
+                      </Typography>
+                    </Grid>
+                    <Grid item xs={6}>
+                      <Typography
+                        sx={{
+                          color: '#595959',
+                          fontSize: '16px',
+                          fontStyle: 'normal',
+                          fontWeight: 400,
+                          lineHeight: 'normal',
+                        }}
+                      >
+                        Jauhar, Block 1
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                </Box>
+                <Box
+                  sx={{
+                    p: '5px 10px',
+                    borderRadius: '5px',
+                    maxWidth: '550px',
+                  }}
+                >
+                  <Grid container>
+                    <Grid item xs={6}>
+                      <Typography
+                        sx={{
+                          color: '#171717',
+                          fontSize: '16px',
+                          fontStyle: 'normal',
+                          fontWeight: 500,
+                          lineHeight: 'normal',
+                        }}
+                      >
+                        Job title:
+                      </Typography>
+                    </Grid>
+                    <Grid item xs={6}>
+                      <Typography
+                        sx={{
+                          color: '#595959',
+                          fontSize: '16px',
+                          fontStyle: 'normal',
+                          fontWeight: 400,
+                          lineHeight: 'normal',
+                        }}
+                      >
+                        Web developer
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                </Box>
               </Grid>
-            </Box>
-            <Box
-              sx={{
-                p: '5px 10px',
-                borderRadius: '5px',
-              }}
-            >
-              <Grid container>
-                <Grid item xs={6}>
-                  <Typography
-                    sx={{
-                      color: '#171717',
-                      fontSize: '16px',
-                      fontStyle: 'normal',
-                      fontWeight: 500,
-                      lineHeight: 'normal',
-                    }}
-                  >
-                    Company:
-                  </Typography>
-                </Grid>
-                <Grid item xs={6}>
-                  <Typography
-                    sx={{
-                      color: '#595959',
-                      fontSize: '16px',
-                      fontStyle: 'normal',
-                      fontWeight: 400,
-                      lineHeight: 'normal',
-                    }}
-                  >
-                    eSpark talent
-                  </Typography>
-                </Grid>
+              <Grid item xs={12} md={6}>
+                <Box
+                  sx={{
+                    background: '#F6F6F6',
+                    p: '5px 10px',
+                    borderRadius: '5px',
+                    maxWidth: '550px',
+                  }}
+                >
+                  <Grid container>
+                    <Grid item xs={6}>
+                      <Typography
+                        sx={{
+                          color: '#171717',
+                          fontSize: '16px',
+                          fontStyle: 'normal',
+                          fontWeight: 500,
+                          lineHeight: 'normal',
+                        }}
+                      >
+                        Name:
+                      </Typography>
+                    </Grid>
+                    <Grid item xs={6}>
+                      <Typography
+                        sx={{
+                          color: '#595959',
+                          fontSize: '16px',
+                          fontStyle: 'normal',
+                          fontWeight: 400,
+                          lineHeight: 'normal',
+                        }}
+                      >
+                        Bilal Khan
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                </Box>
+                <Box
+                  sx={{
+                    p: '5px 10px',
+                    borderRadius: '5px',
+                    maxWidth: '550px',
+                  }}
+                >
+                  <Grid container>
+                    <Grid item xs={6}>
+                      <Typography
+                        sx={{
+                          color: '#171717',
+                          fontSize: '16px',
+                          fontStyle: 'normal',
+                          fontWeight: 500,
+                          lineHeight: 'normal',
+                        }}
+                      >
+                        Location:
+                      </Typography>
+                    </Grid>
+                    <Grid item xs={6}>
+                      <Typography
+                        sx={{
+                          color: '#595959',
+                          fontSize: '16px',
+                          fontStyle: 'normal',
+                          fontWeight: 400,
+                          lineHeight: 'normal',
+                        }}
+                      >
+                        Karachi, Pakistan
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                </Box>
+                <Box
+                  sx={{
+                    background: '#F6F6F6',
+                    p: '5px 10px',
+                    borderRadius: '5px',
+                    maxWidth: '550px',
+                  }}
+                >
+                  <Grid container>
+                    <Grid item xs={6}>
+                      <Typography
+                        sx={{
+                          color: '#171717',
+                          fontSize: '16px',
+                          fontStyle: 'normal',
+                          fontWeight: 500,
+                          lineHeight: 'normal',
+                        }}
+                      >
+                        Department:
+                      </Typography>
+                    </Grid>
+                    <Grid item xs={6}>
+                      <Typography
+                        sx={{
+                          color: '#595959',
+                          fontSize: '16px',
+                          fontStyle: 'normal',
+                          fontWeight: 400,
+                          lineHeight: 'normal',
+                        }}
+                      >
+                        Software
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                </Box>
+                <Box
+                  sx={{
+                    p: '5px 10px',
+                    borderRadius: '5px',
+                    maxWidth: '550px',
+                  }}
+                >
+                  <Grid container>
+                    <Grid item xs={6}>
+                      <Typography
+                        sx={{
+                          color: '#171717',
+                          fontSize: '16px',
+                          fontStyle: 'normal',
+                          fontWeight: 500,
+                          lineHeight: 'normal',
+                        }}
+                      >
+                        Joining date:
+                      </Typography>
+                    </Grid>
+                    <Grid item xs={6}>
+                      <Typography
+                        sx={{
+                          color: '#595959',
+                          fontSize: '16px',
+                          fontStyle: 'normal',
+                          fontWeight: 400,
+                          lineHeight: 'normal',
+                        }}
+                      >
+                        Oct26,2021
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                </Box>
               </Grid>
-            </Box>
-            <Box
-              sx={{
-                background: '#F6F6F6',
-                p: '5px 10px',
-                borderRadius: '5px',
-              }}
-            >
-              <Grid container>
-                <Grid item xs={6}>
-                  <Typography
-                    sx={{
-                      color: '#171717',
-                      fontSize: '16px',
-                      fontStyle: 'normal',
-                      fontWeight: 500,
-                      lineHeight: 'normal',
-                    }}
-                  >
-                    Branch:
-                  </Typography>
+
+              <Box
+                sx={{
+                  background: '#F6F6F6',
+                  p: '5px 10px',
+                  borderRadius: '5px',
+                }}
+              >
+                <Grid container>
+                  <Grid item xs={6}>
+                    <Typography
+                      sx={{
+                        color: '#171717',
+                        fontSize: '16px',
+                        fontStyle: 'normal',
+                        fontWeight: 500,
+                        lineHeight: 'normal',
+                      }}
+                    >
+                      Branch:
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Typography
+                      sx={{
+                        color: '#595959',
+                        fontSize: '16px',
+                        fontStyle: 'normal',
+                        fontWeight: 400,
+                        lineHeight: 'normal',
+                      }}
+                    >
+                      Jauhar, Block 1
+                    </Typography>
+                  </Grid>
                 </Grid>
-                <Grid item xs={6}>
-                  <Typography
-                    sx={{
-                      color: '#595959',
-                      fontSize: '16px',
-                      fontStyle: 'normal',
-                      fontWeight: 400,
-                      lineHeight: 'normal',
-                    }}
-                  >
-                    Jauhar, Block 1
-                  </Typography>
+              </Box>
+              <Box
+                sx={{
+                  p: '5px 10px',
+                  borderRadius: '5px',
+                }}
+              >
+                <Grid container>
+                  <Grid item xs={6}>
+                    <Typography
+                      sx={{
+                        color: '#171717',
+                        fontSize: '16px',
+                        fontStyle: 'normal',
+                        fontWeight: 500,
+                        lineHeight: 'normal',
+                      }}
+                    >
+                      Job title:
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Typography
+                      sx={{
+                        color: '#595959',
+                        fontSize: '16px',
+                        fontStyle: 'normal',
+                        fontWeight: 400,
+                        lineHeight: 'normal',
+                      }}
+                    >
+                      Web developer
+                    </Typography>
+                  </Grid>
                 </Grid>
-              </Grid>
-            </Box>
-            <Box
-              sx={{
-                p: '5px 10px',
-                borderRadius: '5px',
-              }}
-            >
-              <Grid container>
-                <Grid item xs={6}>
-                  <Typography
-                    sx={{
-                      color: '#171717',
-                      fontSize: '16px',
-                      fontStyle: 'normal',
-                      fontWeight: 500,
-                      lineHeight: 'normal',
-                    }}
-                  >
-                    Job title:
-                  </Typography>
+              </Box>
+            </Grid>
+            <Grid item xs={12} md={5}>
+              <Box
+                sx={{
+                  background: '#F6F6F6',
+                  p: '5px 10px',
+                  borderRadius: '5px',
+                }}
+              >
+                <Grid container>
+                  <Grid item xs={6}>
+                    <Typography
+                      sx={{
+                        color: '#171717',
+                        fontSize: '16px',
+                        fontStyle: 'normal',
+                        fontWeight: 500,
+                        lineHeight: 'normal',
+                      }}
+                    >
+                      Name:
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Typography
+                      sx={{
+                        color: '#595959',
+                        fontSize: '16px',
+                        fontStyle: 'normal',
+                        fontWeight: 400,
+                        lineHeight: 'normal',
+                      }}
+                    >
+                      Bilal Khan
+                    </Typography>
+                  </Grid>
                 </Grid>
-                <Grid item xs={6}>
-                  <Typography
-                    sx={{
-                      color: '#595959',
-                      fontSize: '16px',
-                      fontStyle: 'normal',
-                      fontWeight: 400,
-                      lineHeight: 'normal',
-                    }}
-                  >
-                    Web developer
-                  </Typography>
+              </Box>
+              <Box
+                sx={{
+                  p: '5px 10px',
+                  borderRadius: '5px',
+                }}
+              >
+                <Grid container>
+                  <Grid item xs={6}>
+                    <Typography
+                      sx={{
+                        color: '#171717',
+                        fontSize: '16px',
+                        fontStyle: 'normal',
+                        fontWeight: 500,
+                        lineHeight: 'normal',
+                      }}
+                    >
+                      Location:
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Typography
+                      sx={{
+                        color: '#595959',
+                        fontSize: '16px',
+                        fontStyle: 'normal',
+                        fontWeight: 400,
+                        lineHeight: 'normal',
+                      }}
+                    >
+                      Karachi, Pakistan
+                    </Typography>
+                  </Grid>
                 </Grid>
-              </Grid>
-            </Box>
-          </Grid>
-          <Grid item xs={12} md={5}>
-            <Box
-              sx={{
-                background: '#F6F6F6',
-                p: '5px 10px',
-                borderRadius: '5px',
-              }}
-            >
-              <Grid container>
-                <Grid item xs={6}>
-                  <Typography
-                    sx={{
-                      color: '#171717',
-                      fontSize: '16px',
-                      fontStyle: 'normal',
-                      fontWeight: 500,
-                      lineHeight: 'normal',
-                    }}
-                  >
-                    Name:
-                  </Typography>
+              </Box>
+              <Box
+                sx={{
+                  background: '#F6F6F6',
+                  p: '5px 10px',
+                  borderRadius: '5px',
+                }}
+              >
+                <Grid container>
+                  <Grid item xs={6}>
+                    <Typography
+                      sx={{
+                        color: '#171717',
+                        fontSize: '16px',
+                        fontStyle: 'normal',
+                        fontWeight: 500,
+                        lineHeight: 'normal',
+                      }}
+                    >
+                      Department:
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Typography
+                      sx={{
+                        color: '#595959',
+                        fontSize: '16px',
+                        fontStyle: 'normal',
+                        fontWeight: 400,
+                        lineHeight: 'normal',
+                      }}
+                    >
+                      Software
+                    </Typography>
+                  </Grid>
                 </Grid>
-                <Grid item xs={6}>
-                  <Typography
-                    sx={{
-                      color: '#595959',
-                      fontSize: '16px',
-                      fontStyle: 'normal',
-                      fontWeight: 400,
-                      lineHeight: 'normal',
-                    }}
-                  >
-                    Bilal Khan
-                  </Typography>
+              </Box>
+              <Box
+                sx={{
+                  p: '5px 10px',
+                  borderRadius: '5px',
+                }}
+              >
+                <Grid container>
+                  <Grid item xs={6}>
+                    <Typography
+                      sx={{
+                        color: '#171717',
+                        fontSize: '16px',
+                        fontStyle: 'normal',
+                        fontWeight: 500,
+                        lineHeight: 'normal',
+                      }}
+                    >
+                      Joining date:
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Typography
+                      sx={{
+                        fontSize: '16px',
+                        color: '#595959',
+                      }}
+                    >
+                      {' '}
+                      Oct26,2021
+                    </Typography>
+                  </Grid>
                 </Grid>
-              </Grid>
-            </Box>
-            <Box
-              sx={{
-                p: '5px 10px',
-                borderRadius: '5px',
-              }}
-            >
-              <Grid container>
-                <Grid item xs={6}>
-                  <Typography
-                    sx={{
-                      color: '#171717',
-                      fontSize: '16px',
-                      fontStyle: 'normal',
-                      fontWeight: 500,
-                      lineHeight: 'normal',
-                    }}
-                  >
-                    Location:
-                  </Typography>
-                </Grid>
-                <Grid item xs={6}>
-                  <Typography
-                    sx={{
-                      color: '#595959',
-                      fontSize: '16px',
-                      fontStyle: 'normal',
-                      fontWeight: 400,
-                      lineHeight: 'normal',
-                    }}
-                  >
-                    Karachi, Pakistan
-                  </Typography>
-                </Grid>
-              </Grid>
-            </Box>
-            <Box
-              sx={{
-                background: '#F6F6F6',
-                p: '5px 10px',
-                borderRadius: '5px',
-              }}
-            >
-              <Grid container>
-                <Grid item xs={6}>
-                  <Typography
-                    sx={{
-                      color: '#171717',
-                      fontSize: '16px',
-                      fontStyle: 'normal',
-                      fontWeight: 500,
-                      lineHeight: 'normal',
-                    }}
-                  >
-                    Department:
-                  </Typography>
-                </Grid>
-                <Grid item xs={6}>
-                  <Typography
-                    sx={{
-                      color: '#595959',
-                      fontSize: '16px',
-                      fontStyle: 'normal',
-                      fontWeight: 400,
-                      lineHeight: 'normal',
-                    }}
-                  >
-                    Software
-                  </Typography>
-                </Grid>
-              </Grid>
-            </Box>
-            <Box
-              sx={{
-                p: '5px 10px',
-                borderRadius: '5px',
-              }}
-            >
-              <Grid container>
-                <Grid item xs={6}>
-                  <Typography
-                    sx={{
-                      color: '#171717',
-                      fontSize: '16px',
-                      fontStyle: 'normal',
-                      fontWeight: 500,
-                      lineHeight: 'normal',
-                    }}
-                  >
-                    Joining date:
-                  </Typography>
-                </Grid>
-                <Grid item xs={6}>
-                  <Typography
-                    sx={{
-                      fontSize: '16px',
-                      color: '#595959',
-                    }}
-                  >
-                    {' '}
-                    Oct26,2021
-                  </Typography>
-                </Grid>
-              </Grid>
-            </Box>
+              </Box>
+            </Grid>
           </Grid>
         </Grid>
       </Box>
@@ -352,7 +580,7 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
                   color: '#171717',
                   fontSize: '16px',
                   fontStyle: 'normal',
-                  fontWeight: 600,
+                  fontWeight: 500,
                   lineHeight: 'normal',
                 }}
               >
@@ -366,12 +594,22 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
                 alignItems={'center'}
                 sx={{
                   border: 'solid 1px #ccc',
-                  p: '15px',
+                  p: '9px',
                   borderRadius: '5px',
                   background: '#f6f6f6',
                 }}
               >
-                <Typography>November 1, 2023</Typography>
+                <Typography
+                  sx={{
+                    color: '#595959',
+                    fontSize: '16px',
+                    fontStyle: 'normal',
+                    fontWeight: 500,
+                    lineHeight: 'normal',
+                  }}
+                >
+                  November 1, 2023
+                </Typography>
                 <Image
                   src={'/icons/CalendarOutline.svg'}
                   width={20}
@@ -419,12 +657,22 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
                 alignItems={'center'}
                 sx={{
                   border: 'solid 1px #ccc',
-                  p: '15px',
+                  p: '9px',
                   borderRadius: '5px',
                   background: '#f6f6f6',
                 }}
               >
-                <Typography>10:00 AM</Typography>
+                <Typography
+                  sx={{
+                    color: '#595959',
+                    fontSize: '16px',
+                    fontStyle: 'normal',
+                    fontWeight: 500,
+                    lineHeight: 'normal',
+                  }}
+                >
+                  10:00 AM
+                </Typography>
               </Box>
             </Grid>
           </Grid>
@@ -467,12 +715,22 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
                 alignItems={'center'}
                 sx={{
                   border: 'solid 1px #ccc',
-                  p: '15px',
+                  p: '9px',
                   borderRadius: '5px',
                   background: '#f6f6f6',
                 }}
               >
-                <Typography>{modalData?.checkIn}</Typography>
+                <Typography
+                  sx={{
+                    color: '#595959',
+                    fontSize: '16px',
+                    fontStyle: 'normal',
+                    fontWeight: 500,
+                    lineHeight: 'normal',
+                  }}
+                >
+                  {modalData?.checkIn}
+                </Typography>
               </Box>
             </Grid>
           </Grid>
@@ -515,12 +773,22 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
                 alignItems={'center'}
                 sx={{
                   border: 'solid 1px #ccc',
-                  p: '15px',
+                  p: '9px',
                   borderRadius: '5px',
                   background: '#f6f6f6',
                 }}
               >
-                <Typography>07:00 PM</Typography>
+                <Typography
+                  sx={{
+                    color: '#595959',
+                    fontSize: '16px',
+                    fontStyle: 'normal',
+                    fontWeight: 500,
+                    lineHeight: 'normal',
+                  }}
+                >
+                  07:00 PM
+                </Typography>
               </Box>
             </Grid>
           </Grid>
@@ -563,12 +831,22 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
                 alignItems={'center'}
                 sx={{
                   border: 'solid 1px #ccc',
-                  p: '15px',
+                  p: '9px',
                   borderRadius: '5px',
                   background: '#f6f6f6',
                 }}
               >
-                <Typography>{modalData?.checkOut}</Typography>
+                <Typography
+                  sx={{
+                    color: '#595959',
+                    fontSize: '16px',
+                    fontStyle: 'normal',
+                    fontWeight: 500,
+                    lineHeight: 'normal',
+                  }}
+                >
+                  {modalData?.checkOut}
+                </Typography>
               </Box>
             </Grid>
           </Grid>

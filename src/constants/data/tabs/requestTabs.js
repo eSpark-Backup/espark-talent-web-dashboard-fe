@@ -71,12 +71,12 @@ export const employeeRequestsTabs = [
     background: '#D6EDE4',
     color: '#068987',
   },
-  {
-    label: 'Cancelled',
-    prop: a11yProps(3),
-    background: '#F6DCD8',
-    color: '#BA424C',
-  },
+  // {
+  //   label: 'Cancelled',
+  //   prop: a11yProps(3),
+  //   background: '#F6DCD8',
+  //   color: '#BA424C',
+  // },
   {
     label: 'Rejected',
     prop: a11yProps(3),

@@ -298,7 +298,11 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
           >
             Decline
           </Button>
-          <Button onClick={handleClose} sx={{ ml: '20px' }} variant="contained">
+          <Button
+            onClick={handleClose}
+            sx={{ ml: '20px', minWidth: '120px' }}
+            variant="contained"
+          >
             Approve
           </Button>
         </Box>
@@ -309,7 +313,11 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
           justifyContent={'flex-end'}
           sx={{ padding: '20px' }}
         >
-          <Button onClick={handleClose} variant="outlined">
+          <Button
+            sx={{ minWidth: '120px' }}
+            onClick={handleClose}
+            variant="outlined"
+          >
             {modalData?.status}
           </Button>
         </Box>

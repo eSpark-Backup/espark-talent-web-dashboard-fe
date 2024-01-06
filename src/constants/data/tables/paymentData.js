@@ -1,10 +1,11 @@
 export const invoicePaymentColumn = [
   'Employee name',
-  'Payroll month',
+  'Invoice date',
+  // 'Payroll month',
   'Due date',
   'Invoice amount',
-  'Invoice status',
-  'Amount due',
+  // 'Invoice status',
+  // 'Amount due',
   'Payment status',
   'Download',
 ];
@@ -22,6 +23,7 @@ export const otherPaymentColumn = [
 export const invoicePaymentData = [
   {
     employeeName: 'Bilal Ahmed Khan',
+    invoiceDate: '07-October-2021',
     payrollMonth: 'April',
     dueDate: '07-October-2021',
     invoiceAmount: '1000$',
@@ -33,6 +35,7 @@ export const invoicePaymentData = [
   },
   {
     employeeName: 'Arman Khan',
+    invoiceDate: '07-October-2021',
     payrollMonth: 'May',
     dueDate: '07-October-2021',
     invoiceAmount: '1000$',
@@ -44,6 +47,7 @@ export const invoicePaymentData = [
   },
   {
     employeeName: 'Saad Zafar',
+    invoiceDate: '07-October-2021',
     payrollMonth: 'August',
     dueDate: '07-October-2021',
     invoiceAmount: '1000$',
@@ -55,6 +59,7 @@ export const invoicePaymentData = [
   },
   {
     employeeName: 'Muhammad',
+    invoiceDate: '07-October-2021',
     payrollMonth: 'December',
     dueDate: '07-October-2021',
     invoiceAmount: '1000$',
@@ -66,6 +71,7 @@ export const invoicePaymentData = [
   },
   {
     employeeName: 'Abdullah',
+    invoiceDate: '07-October-2021',
     payrollMonth: 'April',
     dueDate: '07-October-2021',
     invoiceAmount: '1000$',
@@ -77,6 +83,7 @@ export const invoicePaymentData = [
   },
   {
     employeeName: 'Yusuf',
+    invoiceDate: '07-October-2021',
     payrollMonth: 'June',
     dueDate: '07-October-2021',
     invoiceAmount: '1000$',
@@ -88,6 +95,7 @@ export const invoicePaymentData = [
   },
   {
     employeeName: 'Hassan',
+    invoiceDate: '07-October-2021',
     payrollMonth: 'January',
     dueDate: '07-October-2021',
     invoiceAmount: '1000$',
@@ -99,6 +107,7 @@ export const invoicePaymentData = [
   },
   {
     employeeName: 'Sumaya',
+    invoiceDate: '07-October-2021',
     payrollMonth: 'March',
     dueDate: '07-October-2021',
     invoiceAmount: '1000$',
@@ -110,6 +119,7 @@ export const invoicePaymentData = [
   },
   {
     employeeName: 'Abdullah',
+    invoiceDate: '07-October-2021',
     payrollMonth: 'November',
     dueDate: '07-October-2021',
     invoiceAmount: '1000$',
@@ -121,6 +131,7 @@ export const invoicePaymentData = [
   },
   {
     employeeName: 'Zainab',
+    invoiceDate: '07-October-2021',
     payrollMonth: 'October',
     dueDate: '07-October-2021',
     invoiceAmount: '1000$',
@@ -132,6 +143,7 @@ export const invoicePaymentData = [
   },
   {
     employeeName: 'Zainab',
+    invoiceDate: '07-October-2021',
     payrollMonth: 'July',
     dueDate: '07-October-2021',
     invoiceAmount: '1000$',

@@ -185,3 +185,12 @@ body {
 .text-field-custom > div {
   flex: 1;
 }
+
+.custom-date-time-picker > div > input {
+  padding: 8.5px !important;
+  color: #595959;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}

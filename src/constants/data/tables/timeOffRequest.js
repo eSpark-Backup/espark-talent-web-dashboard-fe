@@ -7,7 +7,7 @@ export const leaveRequestsColumn = [
   'Count',
   'Requested at',
   'Status',
-  'Action',
+  'Actions',
 ];
 export const leaveBalanceColumn = [
   'Name',
@@ -37,7 +37,7 @@ export const leaveRequestsData = [
     requestedAt: '07-October-2021, 9:30AM (PST)',
     status: 'Pending',
     actionStatus: true,
-    action: ['Reject', 'Approve', 'View'],
+    actions: ['Reject', 'Approve', 'View'],
     fromTo: 'Oct 17, 23 - Oct 17, 23',
   },
   {
@@ -50,7 +50,7 @@ export const leaveRequestsData = [
     requestedAt: '28-February-2021, 9:30AM (PST)',
     status: 'Pending',
     actionStatus: true,
-    action: ['Reject', 'Approve', 'View'],
+    actions: ['Reject', 'Approve', 'View'],
     fromTo: 'Oct 18, 23 - Oct 18, 23',
   },
   {
@@ -63,7 +63,7 @@ export const leaveRequestsData = [
     requestedAt: '12-October-2022, 9:30AM (PST)',
     status: 'Pending',
     actionStatus: true,
-    action: ['Reject', 'Approve', 'View'],
+    actions: ['Reject', 'Approve', 'View'],
     fromTo: 'Sept 17, 23 - Sept 17, 23',
   },
   {
@@ -76,7 +76,7 @@ export const leaveRequestsData = [
     requestedAt: '07-October-2021, 9:30AM (PST)',
     status: 'Pending',
     actionStatus: true,
-    action: ['Reject', 'Approve', 'View'],
+    actions: ['Reject', 'Approve', 'View'],
     fromTo: 'Sept 17, 23 - Sept 17, 23',
   },
   {
@@ -89,7 +89,7 @@ export const leaveRequestsData = [
     requestedAt: '7-June-2022, 8:36PM (PST)',
     status: 'Pending',
     actionStatus: true,
-    action: ['Reject', 'Approve', 'View'],
+    actions: ['Reject', 'Approve', 'View'],
     fromTo: 'Sept 17, 23 - Sept 17, 23',
   },
   {
@@ -102,7 +102,7 @@ export const leaveRequestsData = [
     requestedAt: '9-January-2023, 6:24PM (PST)',
     status: 'Pending',
     actionStatus: true,
-    action: ['Reject', 'Approve', 'View'],
+    actions: ['Reject', 'Approve', 'View'],
     fromTo: 'Sept 17, 23 - Sept 17, 23',
   },
   {
@@ -115,7 +115,7 @@ export const leaveRequestsData = [
     requestedAt: '07-October-2021, 9:30AM (PST)',
     status: 'Completed',
     actionStatus: true,
-    action: ['View'],
+    actions: ['View'],
     fromTo: 'Sept 17, 23 - Sept 17, 23',
   },
   {
@@ -128,7 +128,7 @@ export const leaveRequestsData = [
     requestedAt: '28-February-2021, 9:30AM (PST)',
     status: 'Pending',
     actionStatus: true,
-    action: ['Reject', 'Approve', 'View'],
+    actions: ['Reject', 'Approve', 'View'],
     fromTo: 'Sept 17, 23 - Sept 17, 23',
   },
   {
@@ -141,7 +141,7 @@ export const leaveRequestsData = [
     requestedAt: '12-October-2022, 9:30AM (PST)',
     status: 'Pending',
     actionStatus: true,
-    action: ['Reject', 'Approve', 'View'],
+    actions: ['Reject', 'Approve', 'View'],
     fromTo: 'Sept 17, 23 - Sept 17, 23',
   },
   {
@@ -154,7 +154,7 @@ export const leaveRequestsData = [
     requestedAt: '07-October-2021, 9:30AM (PST)',
     status: 'Rejected',
     actionStatus: true,
-    action: ['View'],
+    actions: ['View'],
   },
   {
     employeeId: 12232,
@@ -166,7 +166,7 @@ export const leaveRequestsData = [
     requestedAt: '7-June-2022, 8:36PM (PST)',
     status: 'Completed',
     actionStatus: true,
-    action: ['View'],
+    actions: ['View'],
   },
   {
     employeeId: 12233,
@@ -178,7 +178,7 @@ export const leaveRequestsData = [
     requestedAt: '9-January-2023, 6:24PM (PST)',
     status: 'Pending',
     actionStatus: true,
-    action: ['Reject', 'Approve', 'View'],
+    actions: ['Reject', 'Approve', 'View'],
   },
 ];
 export const leaveBalanceData = [
@@ -288,7 +288,7 @@ export const checkInOutRequestData = [
     punchType: 'Check in',
     status: 'Pending',
     actionStatus: true,
-    action: ['Reject', 'Approve', 'View'],
+    actions: ['Reject', 'Approve', 'View'],
   },
   {
     id: 12223,
@@ -298,7 +298,7 @@ export const checkInOutRequestData = [
     punchType: 'Check in',
     status: 'Pending',
     actionStatus: true,
-    action: ['Reject', 'Approve', 'View'],
+    actions: ['Reject', 'Approve', 'View'],
   },
   {
     id: 12224,
@@ -308,7 +308,7 @@ export const checkInOutRequestData = [
     punchType: 'Check out',
     status: 'Pending',
     actionStatus: true,
-    action: ['Reject', 'Approve', 'View'],
+    actions: ['Reject', 'Approve', 'View'],
   },
   {
     id: 12225,
@@ -318,7 +318,7 @@ export const checkInOutRequestData = [
     punchType: 'Check in',
     status: 'Rejected',
     actionStatus: true,
-    action: ['View'],
+    actions: ['View'],
   },
   {
     id: 12226,
@@ -328,7 +328,7 @@ export const checkInOutRequestData = [
     punchType: 'Check out',
     status: 'Pending',
     actionStatus: true,
-    action: ['Reject', 'Approve', 'View'],
+    actions: ['Reject', 'Approve', 'View'],
   },
   {
     id: 12227,
@@ -338,7 +338,7 @@ export const checkInOutRequestData = [
     punchType: 'Check out',
     status: 'Pending',
     actionStatus: true,
-    action: ['Reject', 'Approve', 'View'],
+    actions: ['Reject', 'Approve', 'View'],
   },
   {
     id: 12228,
@@ -348,7 +348,7 @@ export const checkInOutRequestData = [
     punchType: 'Check in',
     status: 'Completed',
     actionStatus: true,
-    action: ['View'],
+    actions: ['View'],
   },
   {
     id: 12229,
@@ -358,7 +358,7 @@ export const checkInOutRequestData = [
     punchType: 'Check in',
     status: 'Pending',
     actionStatus: true,
-    action: ['Reject', 'Approve', 'View'],
+    actions: ['Reject', 'Approve', 'View'],
   },
   {
     id: 12230,
@@ -368,7 +368,7 @@ export const checkInOutRequestData = [
     punchType: 'Check out',
     status: 'Rejected',
     actionStatus: true,
-    action: ['View'],
+    actions: ['View'],
   },
   {
     id: 12231,
@@ -378,7 +378,7 @@ export const checkInOutRequestData = [
     punchType: 'Check out',
     status: 'Rejected',
     actionStatus: true,
-    action: ['View'],
+    actions: ['View'],
   },
   {
     id: 12232,
@@ -388,7 +388,7 @@ export const checkInOutRequestData = [
     punchType: 'Check in',
     status: 'Completed',
     actionStatus: true,
-    action: ['View'],
+    actions: ['View'],
   },
   {
     id: 12233,
@@ -398,6 +398,6 @@ export const checkInOutRequestData = [
     punchType: 'Check out',
     status: 'Pending',
     actionStatus: true,
-    action: ['Reject', 'Approve', 'View'],
+    actions: ['Reject', 'Approve', 'View'],
   },
 ];
