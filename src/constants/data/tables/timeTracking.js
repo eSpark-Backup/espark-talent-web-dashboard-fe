@@ -63,7 +63,7 @@ export const timeTrackingTableColumn = [
   'Check-out',
   'Hours worked',
   'Overtime',
-  'Attendence Status',
+  'Status',
 ];
 
 export const timeTrackingTableData = [
@@ -74,7 +74,7 @@ export const timeTrackingTableData = [
     checkOut: '08:30 AM',
     hoursWorked: '10h 30m',
     overtime: '01h 30m',
-    attendenceStatus: ['P'],
+    status: ['P'],
     attendenceShortHand: true,
   },
   {
@@ -84,7 +84,7 @@ export const timeTrackingTableData = [
     checkOut: '07:30 AM',
     hoursWorked: '08h 30m',
     overtime: null,
-    attendenceStatus: ['P', 'S'],
+    status: ['P', 'S'],
     attendenceShortHand: true,
   },
   {
@@ -94,7 +94,7 @@ export const timeTrackingTableData = [
     checkOut: null,
     hoursWorked: null,
     overtime: null,
-    attendenceStatus: ['A'],
+    status: ['A'],
     attendenceShortHand: true,
   },
   {
@@ -104,7 +104,7 @@ export const timeTrackingTableData = [
     checkOut: null,
     hoursWorked: null,
     overtime: null,
-    attendenceStatus: ['D'],
+    status: ['D'],
     attendenceShortHand: true,
   },
   {
@@ -114,7 +114,7 @@ export const timeTrackingTableData = [
     checkOut: null,
     hoursWorked: null,
     overtime: null,
-    attendenceStatus: ['D'],
+    status: ['D'],
     attendenceShortHand: true,
   },
   {
@@ -124,7 +124,7 @@ export const timeTrackingTableData = [
     checkOut: '07:30 AM',
     hoursWorked: '08h 30m',
     overtime: null,
-    attendenceStatus: ['P', 'S'],
+    status: ['P', 'S'],
     attendenceShortHand: true,
   },
   {
@@ -134,7 +134,7 @@ export const timeTrackingTableData = [
     checkOut: null,
     hoursWorked: null,
     overtime: null,
-    attendenceStatus: ['A'],
+    status: ['A'],
     attendenceShortHand: true,
   },
   {
@@ -144,7 +144,7 @@ export const timeTrackingTableData = [
     checkOut: '08:30 AM',
     hoursWorked: '10h 30m',
     overtime: '01h 30m',
-    attendenceStatus: ['P'],
+    status: ['P'],
     attendenceShortHand: true,
   },
   {
@@ -154,7 +154,7 @@ export const timeTrackingTableData = [
     checkOut: '07:30 AM',
     hoursWorked: '08h 30m',
     overtime: null,
-    attendenceStatus: ['P', 'S'],
+    status: ['P', 'S'],
     attendenceShortHand: true,
   },
   {
@@ -164,7 +164,7 @@ export const timeTrackingTableData = [
     checkOut: '08:30 AM',
     hoursWorked: '10h 30m',
     overtime: '01h 30m',
-    attendenceStatus: ['P'],
+    status: ['P'],
     attendenceShortHand: true,
   },
   {
@@ -174,7 +174,7 @@ export const timeTrackingTableData = [
     checkOut: '08:30 AM',
     hoursWorked: '10h 30m',
     overtime: '01h 30m',
-    attendenceStatus: ['P'],
+    status: ['P'],
     attendenceShortHand: true,
   },
 ];
