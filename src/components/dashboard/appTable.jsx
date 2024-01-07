@@ -194,7 +194,11 @@ const AppTable = ({
               <Fragment key={rowIndex}>
                 <tr className="app-table-row">
                   {column?.map((col, colIndex) => {
-                    if (row?.actionStatus && !row?.attendenceShortHand && col === 'Status') {
+                    if (
+                      row?.actionStatus &&
+                      !row?.attendenceShortHand &&
+                      col === 'Status'
+                    ) {
                       if (row?.status === 'Pending')
                         return (
                           <td
@@ -372,7 +376,9 @@ const AppTable = ({
                                 />
                               ))}
                             </>
-                          ) : (row?.attendenceShortHand && col === 'Attendence Status' ||row?.attendenceShortHand && col === 'Status') ? (
+                          ) : (row?.attendenceShortHand &&
+                              col === 'Attendence Status') ||
+                            (row?.attendenceShortHand && col === 'Status') ? (
                             <>
                               {row[toCamelCase(col)]?.map((item, index) =>
                                 renderAttendenceStatus(item, index)
