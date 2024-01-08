@@ -37,14 +37,38 @@ export const sheetStatusTypes = [
 ];
 
 export const timeSheetTableColumn = [
-  'Date',
-  'Day',
-  'Check-in',
-  'Check-out',
-  'Hours worked',
-  'Overtime',
-  'Status',
-  'Action',
+  {
+      "title": "Date",
+      "flex": 2
+  },
+  {
+      "title": "Day",
+      "flex": 2
+  },
+  {
+      "title": "Check-in",
+      "flex": 2
+  },
+  {
+      "title": "Check-out",
+      "flex": 2
+  },
+  {
+      "title": "Hours worked",
+      "flex": 2
+  },
+  {
+      "title": "Overtime",
+      "flex": 2
+  },
+  {
+      "title": "Status",
+      "flex": 2
+  },
+  {
+      "title": "Action",
+      "flex": 2
+  }
 ];
 export const timeSheetTableData = [
   {

@@ -31,8 +31,8 @@ const AttendanceSummary = () => {
         </Box>
         <Box
           sx={{
-            px: { xs: 3, sm: 3, lg: 3 },
-            py: 3,
+            px: { xs: 3, md:'25px' },
+            py: {xs: 3, md:'25px'},
             width: '100%',
             justifyContent: 'center',
             alignItems: 'center',

@@ -62,7 +62,13 @@ const Dashboard = () => {
                 background: '#FFF',
               }}
             >
-              <Typography sx={{ fontSize: '25px', fontWeight: 600 }}>
+              <Typography sx={{ 
+                fontSize: '25px', 
+                fontWeight: 600,
+                color: "#171717",
+                fontStyle: "normal",
+                lineHeight: "normal",
+               }}>
                 Mark clock in/ clock out
               </Typography>
             </Box>
@@ -81,7 +87,7 @@ const Dashboard = () => {
                   color: '#595959',
                   fontSize: '20px',
                   fontStyle: 'normal',
-                  fontWeight: '400',
+                  fontWeight: 400,
                   lineHeight: 'normal',
                 }}
               >
@@ -91,8 +97,8 @@ const Dashboard = () => {
               <Box display={'flex'} alignItems={'center'}>
                 <Image
                   src="/icons/ClockIcon.svg"
-                  width={20}
-                  height={20}
+                  width={25}
+                  height={25}
                   alt="Clock"
                 />
                 <Typography
@@ -101,7 +107,7 @@ const Dashboard = () => {
                     textAlign: 'center',
                     fontSize: '16px',
                     fontStyle: 'normal',
-                    fontWeight: '600',
+                    fontWeight: 600,
                     lineHeight: 'normal',
                     mx: '10px',
                   }}
@@ -114,7 +120,7 @@ const Dashboard = () => {
                     textAlign: 'center',
                     fontSize: '14px',
                     fontStyle: 'normal',
-                    fontWeight: '400',
+                    fontWeight: 400,
                     lineHeight: 'normal',
                   }}
                 >
@@ -137,7 +143,7 @@ const Dashboard = () => {
                   color: '#595959',
                   fontSize: '20px',
                   fontStyle: 'normal',
-                  fontWeight: '400',
+                  fontWeight: 400,
                   lineHeight: 'normal',
                 }}
               >
@@ -146,8 +152,8 @@ const Dashboard = () => {
               <Box display={'flex'} alignItems={'center'}>
                 <Image
                   src="/icons/ClockIcon.svg"
-                  width={20}
-                  height={20}
+                  width={25}
+                  height={25}
                   alt="Clock"
                 />
                 <Typography
@@ -156,7 +162,7 @@ const Dashboard = () => {
                     textAlign: 'center',
                     fontSize: '16px',
                     fontStyle: 'normal',
-                    fontWeight: '600',
+                    fontWeight: 600,
                     lineHeight: 'normal',
                     mx: '10px',
                     minWidth: '69.66px',
@@ -170,11 +176,11 @@ const Dashboard = () => {
                     textAlign: 'center',
                     fontSize: '14px',
                     fontStyle: 'normal',
-                    fontWeight: '400',
+                    fontWeight: 400,
                     lineHeight: 'normal',
                   }}
                 >
-                  Exp: 10:00 AM
+                  Exp: 07:00 AM
                 </Typography>
               </Box>
             </Box>
@@ -194,8 +200,8 @@ const Dashboard = () => {
               <Box
                 sx={{
                   width: `${
-                    getPercentage('03:10:00') < 100
-                      ? getPercentage('03:10:00')
+                    getPercentage('08:15:35') < 100
+                      ? getPercentage('08:15:35')
                       : 100
                   }%`,
                   background: '#E6F4F4',
@@ -204,7 +210,7 @@ const Dashboard = () => {
               ></Box>
               <Box
                 sx={{
-                  width: `${100 - getPercentage('03:10:00')}%`,
+                  width: `${100 - getPercentage('08:15:35')}%`,
                   background: '#F5F5F5',
                   height: '100%',
                 }}
@@ -218,11 +224,11 @@ const Dashboard = () => {
                   textAlign: 'center',
                   fontSize: '14px',
                   fontStyle: 'normal',
-                  fontWeight: '600',
+                  fontWeight: 600,
                   lineHeight: 'normal',
                 }}
               >
-                03:10:00
+                08:15:35
               </Typography>
             </Box>
             <Grid
@@ -257,12 +263,12 @@ const Dashboard = () => {
                       textAlign: 'center',
                       fontSize: '14px',
                       fontStyle: 'normal',
-                      fontWeight: '400',
+                      fontWeight: 400,
                       lineHeight: 'normal',
                       ml: '10px',
-                      '&:hover': {
-                        color: '#fff',
-                      },
+                      // '&:hover': {
+                      //   color: '#fff',
+                      // },
                     }}
                   >
                     Mark check in
@@ -273,12 +279,10 @@ const Dashboard = () => {
                 <Button
                   variant="contained"
                   sx={{
-                    // border:"solid 1px #ccc",
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
                     p: '10px',
-                    // borderRadius:'5px',
                     width: '100%',
                     height: '50px',
                   }}
@@ -289,7 +293,7 @@ const Dashboard = () => {
                       textAlign: 'center',
                       fontSize: '14px',
                       fontStyle: 'normal',
-                      fontWeight: '400',
+                      fontWeight: 400,
                       lineHeight: 'normal',
                       ml: '10px',
                     }}
@@ -327,7 +331,7 @@ const Dashboard = () => {
                   textAlign: 'center',
                   fontSize: '14px',
                   fontStyle: 'normal',
-                  fontWeight: '400',
+                  fontWeight: 400,
                   lineHeight: 'normal',
                   '&:hover': {
                     color: '#fff',
@@ -369,8 +373,13 @@ const Dashboard = () => {
                 background: '#FFF',
               }}
             >
-              <Typography
-                sx={{ fontSize: '25px', fontWeight: 600, textAlign: 'left' }}
+              <Typography sx={{ 
+                fontSize: '25px', 
+                fontWeight: 600,
+                color: "#171717",
+                fontStyle: "normal",
+                lineHeight: "normal",
+               }}
               >
                 {Clock_Title}
               </Typography>
