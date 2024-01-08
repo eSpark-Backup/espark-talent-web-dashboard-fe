@@ -1,8 +1,10 @@
 import React from 'react';
 import { Box, Button, Typography } from '@mui/material';
 import Image from 'next/image';
+import Link from 'next/link';
 
 import { COMPANY_ONBOARDING } from '@/app/constants/Dashboard';
+import { HIRING_FORM_DATA } from '@/src/constants/Hiring';
 
 const CompanyProfile = () => {
   return (
@@ -43,6 +45,7 @@ const CompanyProfile = () => {
           width: '100%',
         }}
       >
+         <Link href={HIRING_FORM_DATA?.startHiringLink}>
         <Button
           sx={{
             color: '#595959',
@@ -54,18 +57,21 @@ const CompanyProfile = () => {
         >
           {COMPANY_ONBOARDING.startHiring}
         </Button>
-        <Button
-          sx={{
-            color: '#595959',
-            fontFamily: 'Inter',
-            fontSize: '14px',
-            fontWeight: 300,
-            textTransform: 'capitalize',
-            textDecoration: 'underline',
-          }}
-        >
-          {COMPANY_ONBOARDING.newHire}
-        </Button>
+        </Link>
+        <Link href={HIRING_FORM_DATA?.startHiringLink}>
+          <Button
+            sx={{
+              color: '#595959',
+              fontFamily: 'Inter',
+              fontSize: '14px',
+              fontWeight: 300,
+              textTransform: 'capitalize',
+              textDecoration: 'underline',
+            }}
+          >
+            {COMPANY_ONBOARDING.newHire}
+          </Button>
+        </Link>
       </Box>
     </>
   );

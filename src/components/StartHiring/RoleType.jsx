@@ -22,7 +22,7 @@ const RoleType = () => {
         isLoadingList={isLoadingTitles}
         selectedItem={selectedJobTitle}
         setSelectedItem={setSelectedJobTitle}
-        placeHolder="Select Role Type..."
+        placeHolder="Select role"
       />
     </Grid>
   );

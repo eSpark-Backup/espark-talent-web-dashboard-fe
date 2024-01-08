@@ -17,16 +17,20 @@ const DatePickerBox = ({ dateKey, placeholder }) => {
             openPickerIcon: CalendarIcon,
           }}
           placeholder={placeholder}
-          slotProps={{ textField: { placeholder: placeholder } }}
+          slotProps={{ textField: { placeholder: placeholder , sx: {
+        '& input': {
+          color: '#88888', // Set the desired font color for the placeholder
+        },
+      }, } }}
           sx={{
             width: '100%',
-            // background:"green",
+            height:"40px",
             '@media (min-width: 900px) and (max-width: 1400px)': {
               width: '100%',
             },
-            '& .MuiInputLabel-root': {
-              color: '#888888',
-            },
+            // '& .MuiInputLabel-root': {
+            //   color: '#88888',
+            // },
           }}
         />
       </LocalizationProvider>

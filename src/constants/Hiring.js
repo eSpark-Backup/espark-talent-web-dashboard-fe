@@ -16,7 +16,7 @@ export const HIRING_FORM_DATA = {
   selectStartDate: 'Select Start Date',
   selectEndDate: 'Select End Date',
   numberOfFields: '2',
-  addnewHire: 'Add New hire',
+  addnewHire: 'Add new hire',
   startHiringLink: '/client/dashboard/hire-onboard/start-hiring',
   newHire: 'New hire',
 };
