@@ -33,7 +33,7 @@ const JobTitle = ({ open, SelectOpen, SelectClose }) => {
           selectedItem={selectedJobTitle}
           setSelectedItem={setSelectedJobTitle}
           nested
-          placeHolder="Select job"
+          placeHolder="Select job."
         />
       </Grid>
       <RoleType open={open} SelectOpen={SelectOpen} SelectClose={SelectClose} />

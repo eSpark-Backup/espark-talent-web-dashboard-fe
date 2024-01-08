@@ -14,7 +14,7 @@ const RoleType = () => {
           mb: '10px',
         }}
       >
-        {HIRING_FORM_DATA?.roleTitle}
+        {HIRING_FORM_DATA?.roleType}
       </Typography>
       <AppDropdown
         data={roles}

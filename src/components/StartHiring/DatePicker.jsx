@@ -1,25 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Typography } from '@mui/material';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import {
+  DesktopDatePicker,
+} from '@mui/x-date-pickers';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
 import { HIRING_FORM_DATA } from '@/src/constants/Hiring';
 import CalendarIcon from './CalenderIcon';
+import Image from 'next/image';
+import dayjs from 'dayjs';
+import ActionBarComponent from '../requestview/actionbarComponent';
 
 const DatePickerBox = ({ dateKey, placeholder }) => {
+  const [isOpenDatePicker, setIsOpenDatePicker] = useState(false);
+  const handleCloseDatePicker = () => setIsOpenDatePicker(false);
   return (
     <>
       <Typography>{HIRING_FORM_DATA[dateKey]}</Typography>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <DatePicker
+        <DesktopDatePicker
+        className='date-picker-component'
           slots={{
             openPickerIcon: CalendarIcon,
           }}
           placeholder={placeholder}
           slotProps={{ textField: { placeholder: placeholder , sx: {
         '& input': {
-          color: '#88888', // Set the desired font color for the placeholder
+          color: '#88888',
+          padding:"9.95px 10px" // Set the desired font color for the placeholder
         },
       }, } }}
           sx={{
@@ -34,6 +44,28 @@ const DatePickerBox = ({ dateKey, placeholder }) => {
           }}
         />
       </LocalizationProvider>
+      {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DesktopDatePicker
+                  className="custom-date-time-picker"
+                  open={isOpenDatePicker}
+                  slots={{
+                    openPickerIcon: () => (
+                      <Image
+                        src={'/icons/CalendarOutline.svg'}
+                        width={20}
+                        height={20}
+                        alt="Date"
+                        onClick={() => setIsOpenDatePicker((ps) => !ps)}
+                      />
+                    ),
+                    actionBar: () => (
+                      <ActionBarComponent onClose={handleCloseDatePicker} />
+                    ),
+                  }}
+                  sx={{ width: '100%', borderRadius: '50%' }}
+                  defaultValue={dayjs('2022-04-17')}
+                />
+              </LocalizationProvider> */}
     </>
   );
 };

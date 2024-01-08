@@ -28,7 +28,7 @@ const HiringForm = () => {
             display: 'flex',
             justifyContent: 'flex-start',
             flexDirection: 'column',
-            padding: '20px',
+            padding: {xs:'20px', sm:'20px', md:'20px 60px'},
             gap: '30px',
 
             '@media (min-width: 960px) and (max-width: 1590px)': {
@@ -39,9 +39,20 @@ const HiringForm = () => {
             },
           }}
         >
-          <Typography variant="h2" sx={{ textAlign: 'center' }}>
-            {HIRING_FORM_DATA?.hire}
-          </Typography>
+          <Box display={"flex"} justifyContent={"center"} alignItems={"center"}>
+            <Typography variant="h2" sx={{
+              textAlign: 'center',
+              color: '#595959',
+              fontSize: '20px',
+              fontStyle: 'normal',
+              fontWeight: '600',
+              lineHeight: 'normal',
+              width: "40px",
+              p:"8px 0"
+            }}>
+              {HIRING_FORM_DATA?.hire}
+            </Typography>
+          </Box>
           <Box
             sx={{
               width: '100%',

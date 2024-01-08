@@ -12,6 +12,7 @@
   margin-bottom: 20px;
   min-width: 1024px;
 }
+
 .table td,
 .table th {
   text-align: center;
@@ -20,6 +21,7 @@
   flex: 1;
   font-size: 12px;
 }
+
 .app-table-row {
   background-color: #f6f6f6;
   margin-bottom: 10px;
@@ -27,10 +29,12 @@
   align-items: center;
   margin-bottom: 20px;
 }
+
 .empty-row {
   background-color: #fff;
   height: 20px;
 }
+
 /* Assuming you are using a CSS file */
 .list-item-box {
   position: relative;
@@ -50,6 +54,7 @@
 .list-item-box.selected-list-item {
   background: #e6f5f4;
 }
+
 .list-item-box.selected-list-item::before {
   content: '';
   position: absolute;
@@ -59,23 +64,29 @@
   width: 2px;
   background-color: #068987;
 }
+
 .list-item-box:hover {
   background: #e6f5f4;
 }
+
 .list-item-box:hover::before {
   background-color: #068987;
 }
+
 .custom-dropdown-item:hover {
   cursor: pointer;
   background-color: #e6f5f4;
 }
+
 .custom-dropdown-item:hover::before {
   background-color: #068987;
 }
+
 .selected-dropdown {
   position: relative;
   cursor: pointer;
 }
+
 .selected-dropdown::before {
   content: '';
   position: absolute;
@@ -87,17 +98,21 @@
   background-color: #068987;
   border: 1px solid #068987;
 }
+
 .divTealLeft::before {
   border-left: none;
   border-top-left-radius: 2px;
 }
+
 .divTealRight::before {
   border-bottom-left-radius: 2px;
   color: gray;
 }
+
 .disabled-dropdown {
   background-color: #eee !important;
 }
+
 .modal-wrapper:focus-visible {
   outline: none;
 }
@@ -145,6 +160,7 @@ body {
   height: 100%;
   object-fit: cover;
 }
+
 /* styles/globals.css */
 
 .timeline-list {
@@ -170,27 +186,47 @@ body {
 .timeline-circle {
   width: 10px;
   height: 10px;
-  background-color: #007bff; /* Change the color as needed */
+  background-color: #007bff;
+  /* Change the color as needed */
   border-radius: 50%;
   margin-right: 10px;
 }
 
 .timeline-line {
   width: 2px;
-  height: 20px; /* Adjust the height as needed */
-  background-color: #007bff; /* Change the color as needed */
+  height: 20px;
+  /* Adjust the height as needed */
+  background-color: #007bff;
+  /* Change the color as needed */
   margin-left: 5px;
   margin-right: 5px;
 }
-.text-field-custom > div {
+
+.text-field-custom>div {
   flex: 1;
 }
 
-.custom-date-time-picker > div > input {
+.custom-date-time-picker>div>input {
   padding: 8.5px !important;
   color: #595959;
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+}
+
+.date-picker-component>div>input::placeholder {
+  color: #888 !important;
+  opacity: 1 !important;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.country-custom-dropdown >div >div {
+  padding: 7px 0 7px 15px;
+}
+
+.text-field-custom > div > input {
+  padding: 5px 15px;
 }

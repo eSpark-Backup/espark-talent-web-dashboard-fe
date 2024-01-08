@@ -10,7 +10,7 @@ const Submit = () => {
         sx={{
           display: 'flex',
           justifyContent: 'center',
-          paddingTop: '40px',
+          marginTop: '50px',
         }}
       >
         <Button
@@ -19,7 +19,7 @@ const Submit = () => {
           type="submit"
           sx={{
             fontSize: '16px',
-            width: '88%',
+            // width: '88%',
             padding: '10px',
             fontWeight: 400,
             background: '#fff',

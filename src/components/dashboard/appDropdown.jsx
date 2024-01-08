@@ -47,6 +47,7 @@ const AppDropdown = ({
 
   useEffect(() => {
     const handleClickOutside = (event) => {
+      // console.log({contains:componentRef.current.contains(event.target),current:componentRef.current})
       if (
         componentRef.current &&
         !componentRef.current.contains(event.target)
@@ -75,24 +76,25 @@ const AppDropdown = ({
       }
     }
   }, [isOpenedDropdown, pointedElement]);
-  // useEffect(() => {
-  //   const handleClickOutside = (event) => {
-  //     if (
-  //       componentNestedRef.current &&
-  //       !componentNestedRef.current.contains(event.target)
-  //     ) {
-  //       setIsOpenedDropdown(false);
-  //     }
-  //   };
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      // console.log({contains:componentNestedRef.current.contains(event.target),current:componentNestedRef.current})
+      if (
+        componentNestedRef.current &&
+        !componentNestedRef.current.contains(event.target)
+      ) {
+        setIsOpenedDropdownNested(false);
+      }
+    };
 
-  //   document.addEventListener('click', handleClickOutside);
+    document.addEventListener('click', handleClickOutside);
 
-  //   return () => {
-  //     document.removeEventListener('click', handleClickOutside);
-  //   };
-  // }, []);
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
   // useEffect(() => {
-  //   if (isOpenedDropdown && pointedElement && componentNestedRef.current) {
+  //   if (isOpenedDropdownNested && pointedElement && componentNestedRef.current) {
   //     const selectedElement = componentNestedRef.current.querySelector(
   //       `[data-key="${pointedElement}"]`
   //     );
@@ -125,7 +127,7 @@ const AppDropdown = ({
       md={12}
       lg={12}
       xl={12}
-      mb={'20px'}
+      mb={'30px'}
     >
       <Box
         ref={componentRef}
@@ -152,32 +154,46 @@ const AppDropdown = ({
             p={padding || '15px 10px'}
             height={40}
           >
-            <Typography
+            {(!!placeHolder && !jobTitle?.title && !selectedItem) ? <Typography
               sx={{
-               color: selectedItem ? '#000' : '#838383',
+                color: '#838383',
                 fontSize: '14px',
                 fontStyle: 'normal',
                 fontWeight: 400,
+                wordBreak: "break-word",
+                lineHeight: 'normal',
+                overflow: 'hidden', // Hide any overflowing content
+                textOverflow: 'ellipsis', // Show an ellipsis (...) if text overflows
+                whiteSpace: 'nowrap'
+              }}
+            >
+              {placeHolder}
+            </Typography> : <Typography
+              sx={{
+                color: '#595959',
+                fontSize: '14px',
+                fontStyle: 'normal',
+                fontWeight: 500,
                 lineHeight: 'normal',
               }}
             >
-              {(nested ? jobTitle?.title : selectedItem) || placeHolder}
-            </Typography>
-             {isOpenedDropdown ? (
-            <Image
-              src={'/images/hiring/icon-down.svg'}
-              width={20}
-              height={20}
-              alt="Dropdown"
-            />
-          ) : (
-            <Image
-              src={'/images/hiring/rightarrow.png'}
-              width={20}
-              height={20}
-              alt="Dropdown"
-            />
-          )}
+              {(nested ? jobTitle?.title : selectedItem)}
+            </Typography>}
+            {isOpenedDropdown ? (
+              <Image
+                src={'/images/hiring/icon-down.svg'}
+                width={20}
+                height={20}
+                alt="Dropdown"
+              />
+            ) : (
+              <Image
+                src={'/images/hiring/rightarrow.png'}
+                width={20}
+                height={20}
+                alt="Dropdown"
+              />
+            )}
           </Box>
           {isOpenedDropdown && (
             <Box
@@ -225,15 +241,13 @@ const AppDropdown = ({
                         justifyContent={'space-between'}
                         alignItems={'center'}
                         data-key={{ label }}
-                        className={`list-item-box ${
-                          (label === jobTitle?.category ||
+                        className={`list-item-box ${(label === jobTitle?.category ||
+                          label === pointedElement) &&
+                          'selected-list-item'
+                          } ${(label === selectedItem ||
                             label === pointedElement) &&
                           'selected-list-item'
-                        } ${
-                          (label === selectedItem ||
-                            label === pointedElement) &&
-                          'selected-list-item'
-                        }`}
+                          }`}
                         p={'15px'}
                       >
                         <Typography>{label}</Typography>
@@ -272,12 +286,11 @@ const AppDropdown = ({
                                   });
                                 }}
                                 data-key={{ chIndex }}
-                                className={`list-item-box ${
-                                  item === jobTitle?.title ||
+                                className={`list-item-box ${item === jobTitle?.title ||
                                   item === pointedElement
-                                    ? 'selected-list-item'
-                                    : ''
-                                }`}
+                                  ? 'selected-list-item'
+                                  : ''
+                                  }`}
                                 p={'15px'}
                               >
                                 <Typography>{item}</Typography>
@@ -320,29 +333,50 @@ const AppDropdown = ({
                 borderColor: 'teal',
               },
             }}
-            p={'15px'}
+            p={'10.5px'}
           >
-            <Typography sx={{ color: selectedItem ? '#595959' : '#838383' }}>
-              {(nested ? jobTitle?.title : selectedItem) || placeHolder}
-
-            </Typography>
-                {isOpenedDropdown ? (
-            <Image
-              src={'/images/hiring/icon-down.svg'}
-              width={25}
-              height={25}
-              alt="Dropdown"
-            />
-          ) : (
-            <Image
-              src={'/icons/Dropdown.svg'}
-              width={15}
-              height={15}
-              alt="Dropdown"
-            />
-          )}
+            {(!!placeHolder && !jobTitle?.title && !selectedItem) ? <Typography
+              sx={{
+                color: '#838383',
+                fontSize: '14px',
+                fontStyle: 'normal',
+                fontWeight: 400,
+                wordBreak: "break-word",
+                lineHeight: 'normal',
+                overflow: 'hidden', // Hide any overflowing content
+                textOverflow: 'ellipsis', // Show an ellipsis (...) if text overflows
+                whiteSpace: 'nowrap'
+              }}
+            >
+              {placeHolder}
+            </Typography> : <Typography
+              sx={{
+                color: '#595959',
+                fontSize: '14px',
+                fontStyle: 'normal',
+                fontWeight: 500,
+                lineHeight: 'normal',
+              }}
+            >
+              {(nested ? jobTitle?.title : selectedItem)}
+            </Typography>}
+            {isOpenedDropdown ? (
+              <Image
+                src={'/images/hiring/icon-down.svg'}
+                width={25}
+                height={25}
+                alt="Dropdown"
+              />
+            ) : (
+              <Image
+                src={'/icons/Dropdown.svg'}
+                width={15}
+                height={15}
+                alt="Dropdown"
+              />
+            )}
           </Box>
-          {isOpenedDropdownNested && (
+          {/* {isOpenedDropdownNested && (
             <Box
               sx={{
                 border: 'solid 1px rgba(0, 0, 0, 0.23)',
@@ -365,15 +399,15 @@ const AppDropdown = ({
                 )}
                 {selectedCatIndex === null && listData?.length > 0
                   ? listData?.map(({ label }, listIndex) => (
-                      <Typography
-                        onClick={() => setSelectedCatIndex(listIndex)}
-                        key={listIndex}
-                      >
-                        {label}
-                      </Typography>
-                    ))
+                    <Typography
+                      onClick={() => setSelectedCatIndex(listIndex)}
+                      key={listIndex}
+                    >
+                      {label}
+                    </Typography>
+                  ))
                   : listData[selectedCatIndex]?.children?.length > 0
-                  ? listData[selectedCatIndex]?.children?.map(
+                    ? listData[selectedCatIndex]?.children?.map(
                       (item, chIndex) => (
                         <Typography
                           onClick={() => setIsOpenedDropdownNested(false)}
@@ -383,10 +417,10 @@ const AppDropdown = ({
                         </Typography>
                       )
                     )
-                  : null}
+                    : null}
               </Box>
             </Box>
-          )}
+          )} */}
           {isOpenedDropdownNested && (
             <Box
               sx={{
@@ -428,83 +462,80 @@ const AppDropdown = ({
                       )}
                       {selectedCatIndex === null
                         ? listData?.map(({ label }, index) => (
-                            <Fragment key={index}>
-                              <Box
-                                onMouseEnter={() => {
-                                  setCurrentHoverIndex(index);
-                                }}
-                                onMouseLeave={() => {
-                                  if (!jobTitle?.category) {
-                                    setCurrentHoverIndex(null);
-                                  }
-                                  const categoryIndex = listData?.findIndex(
-                                    ({ label }) => label === jobTitle?.category
-                                  );
-                                  setCurrentHoverIndex(categoryIndex);
-                                }}
-                                onClick={() => {
-                                  if (!nested) {
-                                    setSelectedItem(label);
-                                    setIsOpenedDropdownNested(false);
-                                  } else {
-                                    setSelectedCatIndex(index);
-                                  }
-                                }}
-                                display={'flex'}
-                                justifyContent={'space-between'}
-                                alignItems={'center'}
-                                data-key={{ label }}
-                                className={`list-item-box ${
-                                  (label === jobTitle?.category ||
-                                    label === pointedElement) &&
-                                  'selected-list-item'
-                                } ${
-                                  (label === selectedItem ||
-                                    label === pointedElement) &&
-                                  'selected-list-item'
-                                }`}
-                                p={'15px'}
-                              >
-                                <Typography>{label}</Typography>
-                                {nested && (
-                                  <Image
-                                    src={'/icons/Next.svg'}
-                                    width={8}
-                                    height={8}
-                                    alt="Next"
-                                  />
-                                )}
-                              </Box>
-                            </Fragment>
-                          ))
-                        : listData[selectedCatIndex]?.children?.map(
-                            (item, chIndex) => (
-                              <Box
-                                key={chIndex}
-                                display={'flex'}
-                                justifyContent={'flex-start'}
-                                alignItems={'center'}
-                                onClick={() => {
-                                  setSearchItem('');
+                          <Fragment key={index}>
+                            <Box
+                              onMouseEnter={() => {
+                                setCurrentHoverIndex(index);
+                              }}
+                              onMouseLeave={() => {
+                                if (!jobTitle?.category) {
+                                  setCurrentHoverIndex(null);
+                                }
+                                const categoryIndex = listData?.findIndex(
+                                  ({ label }) => label === jobTitle?.category
+                                );
+                                setCurrentHoverIndex(categoryIndex);
+                              }}
+                              onClick={() => {
+                                if (!nested) {
+                                  setSelectedItem(label);
                                   setIsOpenedDropdownNested(false);
-                                  setJobTitle({
-                                    title: item,
-                                    category: listData[selectedCatIndex]?.label,
-                                  });
-                                }}
-                                data-key={{ chIndex }}
-                                className={`list-item-box ${
-                                  item === jobTitle?.title ||
-                                  item === pointedElement
-                                    ? 'selected-list-item'
-                                    : ''
+                                } else {
+                                  setSelectedCatIndex(index);
+                                }
+                              }}
+                              display={'flex'}
+                              justifyContent={'space-between'}
+                              alignItems={'center'}
+                              data-key={{ label }}
+                              className={`list-item-box ${(label === jobTitle?.category ||
+                                label === pointedElement) &&
+                                'selected-list-item'
+                                } ${(label === selectedItem ||
+                                  label === pointedElement) &&
+                                'selected-list-item'
                                 }`}
-                                p={'15px'}
-                              >
-                                <Typography>{item}</Typography>
-                              </Box>
-                            )
-                          )}
+                              p={'15px'}
+                            >
+                              <Typography>{label}</Typography>
+                              {nested && (
+                                <Image
+                                  src={'/icons/Next.svg'}
+                                  width={8}
+                                  height={8}
+                                  alt="Next"
+                                />
+                              )}
+                            </Box>
+                          </Fragment>
+                        ))
+                        : listData[selectedCatIndex]?.children?.map(
+                          (item, chIndex) => (
+                            <Box
+                              key={chIndex}
+                              display={'flex'}
+                              justifyContent={'flex-start'}
+                              alignItems={'center'}
+                              onClick={() => {
+                                setSearchItem('');
+                                setIsOpenedDropdownNested(false);
+                                setJobTitle({
+                                  title: item,
+                                  category: listData[selectedCatIndex]?.label,
+                                });
+                              }}
+                              data-key={{ chIndex }}
+                              className={`list-item-box ${item === jobTitle?.title ||
+                                item === pointedElement
+                                ? 'selected-list-item'
+                                : ''
+                                }`}
+                              p={'15px'}
+                            >
+                              <Typography>{item}</Typography>
+                            </Box>
+                          )
+                        )}
                     </Box>
                   </Box>
                 ) : (
