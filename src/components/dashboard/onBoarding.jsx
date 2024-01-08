@@ -120,6 +120,7 @@ const OnBoarding = () => {
                         fontSize: '14px',
                         fontWeight: 400,
                         color: '#595959',
+                        marginLeft: '5px',
                       }}
                     >
                       {ACTIVE_CLIENT?.hiringStatus.activeEmployees}
@@ -133,7 +134,13 @@ const OnBoarding = () => {
                     }}
                   >
                     {HIRING_STATUS.onBoard}:
-                    <span style={{ fontSize: '14px', fontWeight: 400 }}>
+                    <span
+                      style={{
+                        fontSize: '14px',
+                        fontWeight: 400,
+                        marginLeft: '5px',
+                      }}
+                    >
                       {ACTIVE_CLIENT?.hiringStatus.onBoarded}
                     </span>
                   </Typography>
@@ -159,6 +166,7 @@ const OnBoarding = () => {
                         fontSize: '14px',
                         fontWeight: 400,
                         color: '#595959',
+                        marginLeft: '5px',
                       }}
                     >
                       {ACTIVE_CLIENT?.hiringStatus.onBoarded}
@@ -177,6 +185,7 @@ const OnBoarding = () => {
                         fontSize: '14px',
                         fontWeight: 400,
                         color: '#595959',
+                        marginLeft: '5px',
                       }}
                     >
                       {ACTIVE_CLIENT?.hiringStatus.hiringReuqests}

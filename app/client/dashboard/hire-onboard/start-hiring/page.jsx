@@ -8,7 +8,7 @@ const StartHiring = () => {
   return (
     <>
       <Grid container justifyContent={'center'}>
-        <Grid item xs={12} sm={10} md={10} lg={10}>
+        <Grid item xs={12} sm={9.125} md={9.125} lg={9.125}>
           <Box
             sx={{
               display: 'flex',

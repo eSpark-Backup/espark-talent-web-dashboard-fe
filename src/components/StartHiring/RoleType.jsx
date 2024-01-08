@@ -14,7 +14,7 @@ const RoleType = () => {
           mb: '10px',
         }}
       >
-        {HIRING_FORM_DATA?.roleTitle}
+        {HIRING_FORM_DATA?.roleType}
       </Typography>
       <AppDropdown
         data={roles}
@@ -22,7 +22,7 @@ const RoleType = () => {
         isLoadingList={isLoadingTitles}
         selectedItem={selectedJobTitle}
         setSelectedItem={setSelectedJobTitle}
-        placeHolder="Select Role Type..."
+        placeHolder="Select role"
       />
     </Grid>
   );

@@ -1,10 +1,12 @@
 import React from 'react';
 import { Box, Button, Typography } from '@mui/material';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 import { COMPANY_ONBOARDING } from '@/src/constants/dashboard';
 
 const CompanyProfile = () => {
+  const router = useRouter();
   return (
     <>
       <Box
@@ -51,6 +53,9 @@ const CompanyProfile = () => {
             fontWeight: 400,
             textTransform: 'capitalize',
           }}
+          onClick={() =>
+            router.push('/client/dashboard/hire-onboard/start-hiring')
+          }
         >
           {COMPANY_ONBOARDING.startHiring}
         </Button>
@@ -63,6 +68,9 @@ const CompanyProfile = () => {
             textTransform: 'capitalize',
             textDecoration: 'underline',
           }}
+          onClick={() =>
+            router.push('/client/dashboard/hire-onboard/start-hiring')
+          }
         >
           {COMPANY_ONBOARDING.newHire}
         </Button>

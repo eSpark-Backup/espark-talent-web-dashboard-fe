@@ -32,7 +32,7 @@ const GenderInput = ({ open, SelectOpen, SelectClose }) => {
           isLoadingList={isLoadingTitles}
           selectedItem={selectedJobTitle}
           setSelectedItem={setSelectedJobTitle}
-          placeHolder="Select Gender..."
+          placeHolder="Select gender"
         />
       </Grid>
       <EmployementTerm

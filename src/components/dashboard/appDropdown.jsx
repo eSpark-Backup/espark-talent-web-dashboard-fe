@@ -47,6 +47,7 @@ const AppDropdown = ({
 
   useEffect(() => {
     const handleClickOutside = (event) => {
+      // console.log({contains:componentRef.current.contains(event.target),current:componentRef.current})
       if (
         componentRef.current &&
         !componentRef.current.contains(event.target)
@@ -75,6 +76,37 @@ const AppDropdown = ({
       }
     }
   }, [isOpenedDropdown, pointedElement]);
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      // console.log({contains:componentNestedRef.current.contains(event.target),current:componentNestedRef.current})
+      if (
+        componentNestedRef.current &&
+        !componentNestedRef.current.contains(event.target)
+      ) {
+        setIsOpenedDropdownNested(false);
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
+  // useEffect(() => {
+  //   if (isOpenedDropdownNested && pointedElement && componentNestedRef.current) {
+  //     const selectedElement = componentNestedRef.current.querySelector(
+  //       `[data-key="${pointedElement}"]`
+  //     );
+  //     if (selectedElement) {
+  //       selectedElement.scrollIntoView({
+  //         behavior: 'smooth',
+  //         block: 'nearest',
+  //         inline: 'start',
+  //       });
+  //     }
+  //   }
+  // }, [isOpenedDropdown, pointedElement]);
   const toggleComponent = () => {
     if (disabled) return;
     setIsOpenedDropdown((ps) => !ps);
@@ -95,6 +127,7 @@ const AppDropdown = ({
       md={12}
       lg={12}
       xl={12}
+      mb={'30px'}
     >
       <Box
         ref={componentRef}
@@ -107,6 +140,7 @@ const AppDropdown = ({
             onClick={toggleComponent}
             display={'flex'}
             justifyContent={'space-between'}
+            alignItems={'center'}
             sx={{
               border: 'solid 1px rgba(0, 0, 0, 0.23)',
               borderTopLeftRadius: '5px',
@@ -118,24 +152,52 @@ const AppDropdown = ({
               },
             }}
             p={padding || '15px 10px'}
+            height={40}
           >
-            <Typography
-              sx={{
-                color: '#595959',
-                fontSize: '16px',
-                fontStyle: 'normal',
-                fontWeight: 500,
-                lineHeight: 'normal',
-              }}
-            >
-              {(nested ? jobTitle?.title : selectedItem) || placeHolder}
-            </Typography>
-            <Image
-              src={'/icons/Dropdown.svg'}
-              width={15}
-              height={15}
-              alt="Dropdown"
-            />
+            {!!placeHolder && !jobTitle?.title && !selectedItem ? (
+              <Typography
+                sx={{
+                  color: '#838383',
+                  fontSize: '14px',
+                  fontStyle: 'normal',
+                  fontWeight: 400,
+                  wordBreak: 'break-word',
+                  lineHeight: 'normal',
+                  overflow: 'hidden', // Hide any overflowing content
+                  textOverflow: 'ellipsis', // Show an ellipsis (...) if text overflows
+                  whiteSpace: 'nowrap',
+                }}
+              >
+                {placeHolder}
+              </Typography>
+            ) : (
+              <Typography
+                sx={{
+                  color: '#595959',
+                  fontSize: '14px',
+                  fontStyle: 'normal',
+                  fontWeight: 500,
+                  lineHeight: 'normal',
+                }}
+              >
+                {nested ? jobTitle?.title : selectedItem}
+              </Typography>
+            )}
+            {isOpenedDropdown ? (
+              <Image
+                src={'/images/hiring/icon-down.svg'}
+                width={20}
+                height={20}
+                alt="Dropdown"
+              />
+            ) : (
+              <Image
+                src={'/images/hiring/rightarrow.png'}
+                width={20}
+                height={20}
+                alt="Dropdown"
+              />
+            )}
           </Box>
           {isOpenedDropdown && (
             <Box
@@ -278,19 +340,54 @@ const AppDropdown = ({
                 borderColor: 'teal',
               },
             }}
-            p={'15px'}
+            p={'10.5px'}
           >
-            <Typography>
-              {(nested ? jobTitle?.title : selectedItem) || placeHolder}
-            </Typography>
-            <Image
-              src={'/icons/Dropdown.svg'}
-              width={15}
-              height={15}
-              alt="Dropdown"
-            />
+            {!!placeHolder && !jobTitle?.title && !selectedItem ? (
+              <Typography
+                sx={{
+                  color: '#838383',
+                  fontSize: '14px',
+                  fontStyle: 'normal',
+                  fontWeight: 400,
+                  wordBreak: 'break-word',
+                  lineHeight: 'normal',
+                  overflow: 'hidden', // Hide any overflowing content
+                  textOverflow: 'ellipsis', // Show an ellipsis (...) if text overflows
+                  whiteSpace: 'nowrap',
+                }}
+              >
+                {placeHolder}
+              </Typography>
+            ) : (
+              <Typography
+                sx={{
+                  color: '#595959',
+                  fontSize: '14px',
+                  fontStyle: 'normal',
+                  fontWeight: 500,
+                  lineHeight: 'normal',
+                }}
+              >
+                {nested ? jobTitle?.title : selectedItem}
+              </Typography>
+            )}
+            {isOpenedDropdown ? (
+              <Image
+                src={'/images/hiring/icon-down.svg'}
+                width={25}
+                height={25}
+                alt="Dropdown"
+              />
+            ) : (
+              <Image
+                src={'/icons/Dropdown.svg'}
+                width={15}
+                height={15}
+                alt="Dropdown"
+              />
+            )}
           </Box>
-          {isOpenedDropdownNested && (
+          {/* {isOpenedDropdownNested && (
             <Box
               sx={{
                 border: 'solid 1px rgba(0, 0, 0, 0.23)',
@@ -313,15 +410,15 @@ const AppDropdown = ({
                 )}
                 {selectedCatIndex === null && listData?.length > 0
                   ? listData?.map(({ label }, listIndex) => (
-                      <Typography
-                        onClick={() => setSelectedCatIndex(listIndex)}
-                        key={listIndex}
-                      >
-                        {label}
-                      </Typography>
-                    ))
+                    <Typography
+                      onClick={() => setSelectedCatIndex(listIndex)}
+                      key={listIndex}
+                    >
+                      {label}
+                    </Typography>
+                  ))
                   : listData[selectedCatIndex]?.children?.length > 0
-                  ? listData[selectedCatIndex]?.children?.map(
+                    ? listData[selectedCatIndex]?.children?.map(
                       (item, chIndex) => (
                         <Typography
                           onClick={() => setIsOpenedDropdownNested(false)}
@@ -331,10 +428,10 @@ const AppDropdown = ({
                         </Typography>
                       )
                     )
-                  : null}
+                    : null}
               </Box>
             </Box>
-          )}
+          )} */}
           {isOpenedDropdownNested && (
             <Box
               sx={{

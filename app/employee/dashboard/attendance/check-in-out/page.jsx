@@ -174,7 +174,7 @@ const Dashboard = () => {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              height: { xs: '950px', md: '890px' },
+              // height: { xs: '950px', md: '890px' },
             }}
           >
             <PunchRequestModal
@@ -918,7 +918,7 @@ const Dashboard = () => {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          height: { xs: '950px', md: '890px' },
+          // height: { xs: '950px', md: '890px' },
         }}
       >
         <PunchRequestModal

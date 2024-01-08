@@ -171,11 +171,13 @@ const Dashboard = () => {
             <Box
               display={'flex'}
               justifyContent={'space-between'}
-              alignItems={'center'}
+              alignItems={'flex-end'}
               flexWrap={'wrap'}
+              // my={"30px"}
+              sx={{ my: '20px' }}
             >
               <Box
-                mt={'30px'}
+                // sx={{mt:{xs:'30px',md:0}}}
                 display={'flex'}
                 flexWrap={'wrap'}
                 alignItems={'center'}
@@ -191,7 +193,7 @@ const Dashboard = () => {
                 )}
               </Box>
 
-              <Box display={'flex'} alignItems={'center'}>
+              <Box sx={{ mt: '20px' }} display={'flex'} alignItems={'center'}>
                 <Box
                   sx={{
                     border: 'solid 1px #029E9C',
@@ -306,7 +308,6 @@ const Dashboard = () => {
         sx={{
           display: 'flex',
           alignItems: 'center',
-          height: { xs: '950px', md: '890px' },
         }}
       >
         <AttendanceViewModal modalData={modalData} handleClose={handleClose} />

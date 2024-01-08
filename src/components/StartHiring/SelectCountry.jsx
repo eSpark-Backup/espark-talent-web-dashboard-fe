@@ -15,6 +15,11 @@ import FlagIcon from '@/src/constants/Flag';
 
 const CountryDropdown = ({ SelectOpen, SelectClose }) => {
   const [selectedValue, setSelectedValue] = useState(COUNTRY_OPTIONS[2].label);
+  const [isOpen, setIsOpen] = useState(false);
+  const handleClick = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
     <Grid
       container
@@ -23,7 +28,7 @@ const CountryDropdown = ({ SelectOpen, SelectClose }) => {
       }}
       gap={'10px'}
     >
-      <Grid item xs={12} lg={6}>
+      <Grid item xs={12} lg={6} className="country-custom-dropdown">
         <Typography sx={{ marginLeft: '4px', mb: '10px' }}>
           {HIRING_FORM_DATA?.country}
         </Typography>
@@ -34,6 +39,7 @@ const CountryDropdown = ({ SelectOpen, SelectClose }) => {
               borderColor: 'teal',
             },
             width: '100%',
+            padding: '0px',
           }}
           value={selectedValue}
           onChange={(event) => setSelectedValue(event.target.value)}
@@ -44,10 +50,15 @@ const CountryDropdown = ({ SelectOpen, SelectClose }) => {
               }}
             >
               <Image
-                src={'/icons/Dropdown.svg'}
-                width={18}
-                height={18}
+                src={
+                  isOpen
+                    ? '/images/hiring/icon-down.svg'
+                    : '/images/hiring/rightarrow.png'
+                }
+                width={25}
+                height={25}
                 alt="Dropdown"
+                onClick={handleClick}
               />
             </InputAdornment>
           )}
