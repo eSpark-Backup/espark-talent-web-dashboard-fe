@@ -14,6 +14,7 @@ const Input = ({
   autofocus,
   maxWidth,
   placeHolder,
+  name
 }) => {
   const inputRef = useRef(null);
 
@@ -66,6 +67,7 @@ const Input = ({
             background: 'transparent',
           }}
           onKeyDown={onKeyDown}
+          name={name || ""}
         />
       </Box>
       {!!suffixIcon && (
