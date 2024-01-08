@@ -65,12 +65,12 @@ const SalaryRange = () => {
             {index < numberOfFields - 1 && (
               <Box p={'0 8.57px'}>
                 <Box
-                sx={{
-                  width: '4px',
-                  height: '1px',
-                  background: '#000',
-                }}
-              />
+                  sx={{
+                    width: '4px',
+                    height: '1px',
+                    background: '#000',
+                  }}
+                />
               </Box>
             )}
           </Fragment>

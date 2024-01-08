@@ -86,8 +86,8 @@ const Dashboard = () => {
                   background: '#029894',
                   width: '160px',
                   color: '#fff',
-                  fontSize: "16px",
-                  textTransform:"math-auto"
+                  fontSize: '16px',
+                  textTransform: 'math-auto',
                 }}
               >
                 {HIRING_FORM_DATA?.addnewHire}

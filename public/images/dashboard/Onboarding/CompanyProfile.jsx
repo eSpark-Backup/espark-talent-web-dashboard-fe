@@ -45,18 +45,18 @@ const CompanyProfile = () => {
           width: '100%',
         }}
       >
-         <Link href={HIRING_FORM_DATA?.startHiringLink}>
-        <Button
-          sx={{
-            color: '#595959',
-            fontFamily: 'Inter',
-            fontSize: '14px',
-            fontWeight: 400,
-            textTransform: 'capitalize',
-          }}
-        >
-          {COMPANY_ONBOARDING.startHiring}
-        </Button>
+        <Link href={HIRING_FORM_DATA?.startHiringLink}>
+          <Button
+            sx={{
+              color: '#595959',
+              fontFamily: 'Inter',
+              fontSize: '14px',
+              fontWeight: 400,
+              textTransform: 'capitalize',
+            }}
+          >
+            {COMPANY_ONBOARDING.startHiring}
+          </Button>
         </Link>
         <Link href={HIRING_FORM_DATA?.startHiringLink}>
           <Button

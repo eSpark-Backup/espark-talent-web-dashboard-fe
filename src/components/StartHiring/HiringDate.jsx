@@ -1,18 +1,10 @@
-import React, { useState } from 'react';
-import { Box, Grid, Typography } from '@mui/material';
+import React from 'react';
+import { Box, Grid } from '@mui/material';
 
 import { HIRING_FORM_DATA } from '@/src/constants/Hiring';
 import DatePickerBox from './DatePicker';
-import { DesktopDatePicker, LocalizationProvider } from '@mui/x-date-pickers';
-import dayjs from 'dayjs';
-import ActionBarComponent from '../requestview/actionbarComponent';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import Image from 'next/image';
-// Test
 
 const HiringDate = () => {
-  const [isOpenDatePicker, setIsOpenDatePicker] = useState(false);
-  const handleCloseDatePicker = () => setIsOpenDatePicker(false);
   return (
     <Box>
       <Grid

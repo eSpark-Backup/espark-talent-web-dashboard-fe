@@ -28,7 +28,7 @@ const CountryDropdown = ({ SelectOpen, SelectClose }) => {
       }}
       gap={'10px'}
     >
-      <Grid item xs={12} lg={6} className='country-custom-dropdown'>
+      <Grid item xs={12} lg={6} className="country-custom-dropdown">
         <Typography sx={{ marginLeft: '4px', mb: '10px' }}>
           {HIRING_FORM_DATA?.country}
         </Typography>
@@ -39,7 +39,7 @@ const CountryDropdown = ({ SelectOpen, SelectClose }) => {
               borderColor: 'teal',
             },
             width: '100%',
-            padding:'0px'
+            padding: '0px',
           }}
           value={selectedValue}
           onChange={(event) => setSelectedValue(event.target.value)}
