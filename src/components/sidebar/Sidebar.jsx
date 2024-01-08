@@ -3,7 +3,11 @@ import React from 'react';
 import { Box, useMediaQuery, useTheme } from '@mui/material';
 
 import SidebarAccordion from './SidebarAccordion';
-import { Client_Routes, Employee_Routes } from '@/src/constants/sidebar';
+import {
+  Client_Routes,
+  Employee_Routes,
+  Hr_Routes,
+} from '@/src/constants/sidebar';
 import SidebarLogo from './sidebarLogo';
 import SidebarActiveUser from './SidebarActiveUser';
 import ProfilePopper from '../popover/ProfilePopper';
@@ -31,6 +35,21 @@ const Sidebar = ({ userName }) => {
   const accordionStyles = {
     paddingTop: windowHeight < 300 ? 0 : '15%',
     paddingBottom: windowHeight < 300 ? 0 : '15%',
+  };
+
+  const renderLinks = () => {
+    const client = pathName.includes('/client/dashboard');
+    const employee = pathName.includes('/employee/dashboard');
+    const hr = pathName.includes('/hr/dashboard');
+    if (client) {
+      return Client_Routes;
+    } else if (employee) {
+      return Employee_Routes;
+    } else if (hr) {
+      return Hr_Routes;
+    } else {
+      null;
+    }
   };
 
   return (
@@ -70,17 +89,7 @@ const Sidebar = ({ userName }) => {
             position: 'relative',
           }}
         >
-          <SidebarAccordion
-            sidebarLinks={
-              pathName.includes('/client/dashboard')
-                ? Client_Routes
-                : null || pathName.includes('/employee/dashboard')
-                ? Employee_Routes
-                : null || pathName.includes('/hr/dashboard')
-              // ? Hr_Routes
-              // : null
-            }
-          />
+          <SidebarAccordion sidebarLinks={renderLinks()} />
         </Box>
         <Box
           sx={{
