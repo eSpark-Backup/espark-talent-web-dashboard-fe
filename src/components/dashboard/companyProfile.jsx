@@ -1,8 +1,10 @@
 import React from 'react';
 import { Box, Button, Typography } from '@mui/material';
 import Image from 'next/image';
+import Link from 'next/link';
 
 import { COMPANY_ONBOARDING } from '@/src/constants/dashboard';
+import { HIRING_FORM_DATA } from '@/src/constants/Hiring';
 
 const CompanyProfile = () => {
   return (
@@ -43,29 +45,33 @@ const CompanyProfile = () => {
           width: '100%',
         }}
       >
-        <Button
-          sx={{
-            color: '#595959',
-
-            fontSize: '14px',
-            fontWeight: 400,
-            textTransform: 'capitalize',
-          }}
-        >
-          {COMPANY_ONBOARDING.startHiring}
-        </Button>
-        <Button
-          sx={{
-            color: '#595959',
-
-            fontSize: '14px',
-            fontWeight: 300,
-            textTransform: 'capitalize',
-            textDecoration: 'underline',
-          }}
-        >
-          {COMPANY_ONBOARDING.newHire}
-        </Button>
+        <Link href={HIRING_FORM_DATA?.startHiringLink}>
+          <Button
+            sx={{
+              color: '#595959',
+              fontFamily: 'Inter',
+              fontSize: '14px',
+              fontWeight: 400,
+              textTransform: 'math-auto',
+            }}
+          >
+            {COMPANY_ONBOARDING.startHiring}
+          </Button>
+        </Link>
+        <Link href={HIRING_FORM_DATA?.startHiringLink}>
+          <Button
+            sx={{
+              color: '#595959',
+              fontFamily: 'Inter',
+              fontSize: '14px',
+              fontWeight: 300,
+              textTransform: 'math-auto',
+              textDecoration: 'underline',
+            }}
+          >
+            {COMPANY_ONBOARDING.newHire}
+          </Button>
+        </Link>
       </Box>
     </>
   );

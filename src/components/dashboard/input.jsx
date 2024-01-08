@@ -39,6 +39,7 @@ const Input = ({
         padding={1}
         borderRadius={1}
         width={'100%'}
+        height={40}
       >
         {!!prefixIcon && (
           <Box sx={{ marginRight: 1 }}>
@@ -70,8 +71,8 @@ const Input = ({
       {!!suffixIcon && (
         <Box sx={{ marginX: 1 }}>
           <Image
-            width={18}
-            height={18}
+            width={24}
+            height={24}
             alt="help"
             src="/icons/QuestionMarkIcon.svg"
           />

@@ -138,6 +138,7 @@ const AppDropdown = ({
             onClick={toggleComponent}
             display={'flex'}
             justifyContent={'space-between'}
+            alignItems={'center'}
             sx={{
               border: 'solid 1px rgba(0, 0, 0, 0.23)',
               borderTopLeftRadius: '5px',
@@ -149,24 +150,34 @@ const AppDropdown = ({
               },
             }}
             p={padding || '15px 10px'}
+            height={40}
           >
             <Typography
               sx={{
-                color: '#595959',
-                fontSize: '16px',
+               color: selectedItem ? '#000' : '#838383',
+                fontSize: '14px',
                 fontStyle: 'normal',
-                fontWeight: 500,
+                fontWeight: 400,
                 lineHeight: 'normal',
               }}
             >
               {(nested ? jobTitle?.title : selectedItem) || placeHolder}
             </Typography>
+             {isOpenedDropdown ? (
             <Image
-              src={'/icons/Dropdown.svg'}
-              width={15}
-              height={15}
+              src={'/images/hiring/icon-down.svg'}
+              width={20}
+              height={20}
               alt="Dropdown"
             />
+          ) : (
+            <Image
+              src={'/images/hiring/rightarrow.png'}
+              width={20}
+              height={20}
+              alt="Dropdown"
+            />
+          )}
           </Box>
           {isOpenedDropdown && (
             <Box
@@ -311,15 +322,25 @@ const AppDropdown = ({
             }}
             p={'15px'}
           >
-            <Typography>
+            <Typography sx={{ color: selectedItem ? '#595959' : '#838383' }}>
               {(nested ? jobTitle?.title : selectedItem) || placeHolder}
+
             </Typography>
+                {isOpenedDropdown ? (
+            <Image
+              src={'/images/hiring/icon-down.svg'}
+              width={25}
+              height={25}
+              alt="Dropdown"
+            />
+          ) : (
             <Image
               src={'/icons/Dropdown.svg'}
               width={15}
               height={15}
               alt="Dropdown"
             />
+          )}
           </Box>
           {isOpenedDropdownNested && (
             <Box

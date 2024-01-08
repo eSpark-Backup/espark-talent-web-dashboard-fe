@@ -33,6 +33,7 @@ const HiringDate = () => {
             <DatePickerBox
               label={HIRING_FORM_DATA?.selectStartDate}
               dateKey="startDate"
+              placeholder={'Select Starting Date'}
             />
           </Box>
         </Grid>
@@ -48,6 +49,7 @@ const HiringDate = () => {
             <DatePickerBox
               label={HIRING_FORM_DATA?.selectEndDate}
               dateKey="endDate"
+              placeholder={'Select End Date'}
             />
           </Box>
         </Grid>
