@@ -21,7 +21,7 @@ const Heading = ({ title, description, containerStyles }) => {
       >
         {title}
       </Typography>
-      <br />
+      {/* <br /> */}
       <Typography
         sx={{
           fontSize: { xs: '16px', md: '14px' },

@@ -1,11 +1,32 @@
 export const employeeCheckInOutRequestColumn = [
-  'ID',
-  'Employee',
-  'Date',
-  'Punch time',
-  'Punch type',
-  'Status',
-  'Action',
+  {
+      "title": "ID",
+      "flex": 1
+  },
+  {
+      "title": "Employee",
+      "flex": 3
+  },
+  {
+      "title": "Date",
+      "flex": 2
+  },
+  {
+      "title": "Punch time",
+      "flex": 2
+  },
+  {
+      "title": "Punch type",
+      "flex": 1
+  },
+  {
+      "title": "Status",
+      "flex": 2
+  },
+  {
+      "title": "Action",
+      "flex": 1
+  }
 ];
 export const employeeCheckInOutRequestData = [
   {

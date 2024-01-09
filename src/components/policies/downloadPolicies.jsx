@@ -15,8 +15,8 @@ const DownloadPolicies = ({
         border: '1px solid #E4E4E4',
         borderRadius: '10px',
         flexDirection: 'column',
-        padding: '35px',
-        gap: '15px',
+        padding: '40px 28px',
+        gap: '23px',
         '@media (min-width:1200px) and (max-width:1300px)': {
           width: '350px',
         },
@@ -24,8 +24,20 @@ const DownloadPolicies = ({
       }}
     >
       <Image src={image} width={50} height={50} alt={reportHeading} />
-      <Typography variant="h5">{reportHeading}</Typography>
-      <Typography variant="body2">{downloadReports}</Typography>
+      <Typography sx={{
+        color: '#171717',
+        fontSize: '20px',
+        fontStyle: 'normal',
+        fontWeight: 500,
+        lineHeight: 'normal',
+      }}>{reportHeading}</Typography>
+      <Typography sx={{
+        color: "#595959",
+        fontSize: "16px",
+        fontStyle: "normal",
+        fontWeight: 400,
+        lineHeight: "normal",
+      }}>{downloadReports}</Typography>
       <Button
         variant="primary"
         sx={{

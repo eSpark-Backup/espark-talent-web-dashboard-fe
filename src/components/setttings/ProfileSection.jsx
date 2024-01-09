@@ -42,7 +42,7 @@ export default function ProfileSection({ Profile_Edit_Section, User_Detail }) {
           </Button>
         </Box>
       </Box>
-      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5, my: 3 }}>
+      <Box sx={{ display: 'flex', flexDirection: 'column', gap: '20px', my: 3 }}>
         <Typography
           variant="body2"
           sx={{ color: '#171717', fontWeight: '400' }}
@@ -53,7 +53,7 @@ export default function ProfileSection({ Profile_Edit_Section, User_Detail }) {
           <Box component={'div'} key={index}>
             <Typography
               variant="body1"
-              sx={{ mb: 1, color: '#595959', fontWeight: '600' }}
+              sx={{ mb: '10px', color: '#595959', fontWeight: '500' }}
             >
               {item?.label}
             </Typography>
@@ -73,7 +73,6 @@ export default function ProfileSection({ Profile_Edit_Section, User_Detail }) {
               <Box
                 sx={{
                   width: 'auto',
-                  height: '40px',
                   '@media (max-width: 562px)': {
                     width: '100%',
                   },
@@ -83,12 +82,20 @@ export default function ProfileSection({ Profile_Edit_Section, User_Detail }) {
                   placeholder={item?.place}
                   type={item?.type}
                   variant="outlined"
+                  inputProps={{
+                    style:{
+                      height:'40px',
+                      padding:"0px 20px"
+                    }
+                  }}
                   sx={{
                     width: '300px',
-                    height: 'auto',
                     fontWeight: 400,
                     fontSize: '14px',
                     color: '#666',
+                    display:"flex",
+                    justifyContent:"stretch",
+                    alignItems:"stretch",
                     '@media (max-width: 562px)': {
                       width: '100%',
                     },

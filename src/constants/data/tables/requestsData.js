@@ -37,11 +37,26 @@ export const employeeLeaveRequestsColumn = [
   }
 ];
 export const employeeLeaveBalanceColumn = [
-  'Leave type',
-  'Balance',
-  'Availed',
-  'Available',
-  'Pending',
+  {
+      "title": "Leave type",
+      "flex": 2
+  },
+  {
+      "title": "Balance",
+      "flex": 2
+  },
+  {
+      "title": "Availed",
+      "flex": 2
+  },
+  {
+      "title": "Available",
+      "flex": 2
+  },
+  {
+      "title": "Pending",
+      "flex": 2
+  }
 ];
 export const employeeLeaveRequestsData = [
   {

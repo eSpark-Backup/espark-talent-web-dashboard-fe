@@ -25,7 +25,7 @@ const AttendanceSummary = () => {
             background: '#FFF',
           }}
         >
-          <Typography sx={{ fontSize: '25px', fontWeight: 600 }}>
+          <Typography sx={{ fontSize: {xs:'18px',md:'25px'}, fontWeight: 600 }}>
             Attendance Summary
           </Typography>
         </Box>

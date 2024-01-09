@@ -12,7 +12,7 @@ const LeaveSummary = () => {
     <>
       <Box
         sx={{
-          height: '430px',
+          height: { xs: 'auto', md: '430px' },
           borderRadius: '10px',
           background: '#FFF',
           boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
@@ -29,7 +29,7 @@ const LeaveSummary = () => {
           }}
         >
           <Typography  sx={{ 
-                fontSize: '25px', 
+                fontSize: { xs: '18px', md: '25px' },
                 fontWeight: 600,
                 color: "#171717",
                 fontStyle: "normal",
@@ -58,10 +58,10 @@ const LeaveSummary = () => {
                 <Grid
                   container
                   sx={{
-                    height:'100px',
+                    height:{xs:'auto',md:'100px'},
                     borderRadius: '5px',
                     px: '14px',
-                    py: '29px',
+                    py: {xs:'15px',md:'29px'},
                     mb: '20px',
                     border: '1px solid #E4E4E4',
                     background: '#FFF',

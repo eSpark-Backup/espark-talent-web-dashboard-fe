@@ -13,6 +13,13 @@
   min-width: 1024px;
 }
 
+.table th {
+  font-weight: 500 !important;
+}
+.table td{
+  font-weight: 400 !important;
+}
+
 .table td,
 .table th {
   text-align: center;

@@ -13,6 +13,7 @@ export const renderTrackingStatus = ({
       alignItems={'center'}
       padding={'6px'}
       key={statusIndex}
+      mr={'30px'}
     >
       <Box
         sx={{
@@ -29,7 +30,7 @@ export const renderTrackingStatus = ({
       >
         {shortForm}
       </Box>
-      <Typography variant="caption" fontSize={'14px'} marginX={'6px'}>
+      <Typography variant="caption" fontSize={'14px'} ml={'5px'}>
         {label}
       </Typography>
     </Box>

@@ -140,50 +140,25 @@ const Dashboard = () => {
         display={'flex'}
         justifyContent={'space-between'}
         alignItems={'center'}
+        marginBottom={'50px'}
       >
         <Box display={'flex'} flexDirection={'column'}>
-          <Typography variant="h3">Check in / out</Typography>
-          <Box display={'flex'} flexDirection={'column'} marginY={'20px'}>
+          <Typography variant="h3">Clock in / out</Typography>
+          <Box display={'flex'} flexDirection={'column'} mt={'20px'}>
             <Typography
               sx={{
                 fontSize: '14px',
-                fontWeight: '400',
+                fontWeight: 400,
                 letterSpacing: '0em',
                 textAlign: 'left',
+                color: '#595959',
               }}
               variant="caption"
             >
-              Manage punch request from one place.
+              Manage timesheet from one place.
             </Typography>
           </Box>
         </Box>
-        <Button
-          sx={{ marginX: '10px', minWidth: '120px' }}
-          variant="contained"
-          onClick={handleOpenModal}
-        >
-          Create
-        </Button>
-        {openModal && (
-          <Modal
-            open={openModal}
-            onClose={handleCloseModal}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
-            sx={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              // height: { xs: '950px', md: '890px' },
-            }}
-          >
-            <PunchRequestModal
-              modalData={modalData}
-              handleClose={handleCloseModal}
-              createModal
-            />
-          </Modal>
-        )}
       </Box>
       <Grid container spacing={3}>
         <Grid item xs={12} md={4} lg={4} xl={4}>
@@ -339,20 +314,18 @@ const Dashboard = () => {
             >
               <Box
                 sx={{
-                  width: `${
-                    getPercentage(timeToSeconds('03:10:00'), 9) < 100
+                  width: `${getPercentage(timeToSeconds('03:10:00'), 9) < 100
                       ? getPercentage(timeToSeconds('03:10:00'), 9)
                       : 100
-                  }%`,
+                    }%`,
                   background: '#E6F4F4',
                   height: '100%',
                 }}
               ></Box>
               <Box
                 sx={{
-                  width: `${
-                    100 - getPercentage(timeToSeconds('03:10:00'), 9)
-                  }%`,
+                  width: `${100 - getPercentage(timeToSeconds('03:10:00'), 9)
+                    }%`,
                   background: '#F5F5F5',
                   height: '100%',
                 }}
@@ -599,27 +572,25 @@ const Dashboard = () => {
                       >
                         <Box
                           sx={{
-                            width: `${
-                              getPercentage(
-                                +hoursCompleted * 3600,
-                                +totalHours
-                              ) < 100
+                            width: `${getPercentage(
+                              +hoursCompleted * 3600,
+                              +totalHours
+                            ) < 100
                                 ? getPercentage(
-                                    +hoursCompleted * 3600,
-                                    +totalHours
-                                  )
+                                  +hoursCompleted * 3600,
+                                  +totalHours
+                                )
                                 : 100
-                            }%`,
+                              }%`,
                             background: background,
                             height: '100%',
                           }}
                         ></Box>
                         <Box
                           sx={{
-                            width: `${
-                              100 -
+                            width: `${100 -
                               getPercentage(+hoursCompleted * 3600, +totalHours)
-                            }%`,
+                              }%`,
                             background: remainingBack,
                             height: '100%',
                           }}
