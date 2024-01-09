@@ -12,21 +12,26 @@ const Heading = ({ title, description, containerStyles }) => {
         sx={{
           fontSize: { xs: '25px', md: '30px' },
           fontWeight: 600,
+          color: '#171717',
+          fontStyle: 'normal',
+          lineHeight: 'normal',
+          mb: '20px',
         }}
       >
         {title}
       </Typography>
-      <br />
+      {/* <br /> */}
       <Typography
         sx={{
           fontSize: { xs: '16px', md: '14px' },
           fontWeight: 400,
           color: '#595959',
+          fontStyle: 'normal',
+          lineHeight: 'normal',
         }}
       >
         {description}
       </Typography>
-      <br />
     </Box>
   );
 };

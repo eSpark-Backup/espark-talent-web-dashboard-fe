@@ -29,22 +29,46 @@ export const sheetStatusTypes = [
     background: '#107863',
     shortForm: 'L',
   },
-  {
-    label: 'Half Day',
-    background: '#107863',
-    shortForm: 'HD',
-  },
+  // {
+  //   label: 'Half Day',
+  //   background: '#107863',
+  //   shortForm: 'HD',
+  // },
 ];
 
 export const timeSheetTableColumn = [
-  'Date',
-  'Day',
-  'Check-in',
-  'Check-out',
-  'Hours worked',
-  'Overtime',
-  'Status',
-  'Action',
+  {
+    title: 'Date',
+    flex: 2,
+  },
+  {
+    title: 'Day',
+    flex: 2,
+  },
+  {
+    title: 'Check-in',
+    flex: 2,
+  },
+  {
+    title: 'Check-out',
+    flex: 2,
+  },
+  {
+    title: 'Hours worked',
+    flex: 2,
+  },
+  {
+    title: 'Overtime',
+    flex: 2,
+  },
+  {
+    title: 'Status',
+    flex: 2,
+  },
+  {
+    title: 'Action',
+    flex: 2,
+  },
 ];
 export const timeSheetTableData = [
   {

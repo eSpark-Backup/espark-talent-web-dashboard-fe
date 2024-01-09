@@ -83,7 +83,7 @@ const InfoOption = ({
             alt="Options"
           />
         </Box>
-        <Box>{row[toCamelCase(col)]}</Box>
+        <Box>{row[toCamelCase(col || col?.title)]}</Box>
       </Box>
       {isOpen && (
         <Box
@@ -137,8 +137,11 @@ const AppTable = ({
         <thead>
           <tr className="app-table-row">
             {column?.map((col, colIndex) => (
-              <th key={colIndex} style={{ fontSize: '14px' }}>
-                {col}
+              <th
+                key={colIndex}
+                style={{ fontSize: '14px', flex: col?.flex ? col?.flex : 1 }}
+              >
+                {col?.title || col}
               </th>
             ))}
           </tr>
@@ -197,7 +200,7 @@ const AppTable = ({
                     if (
                       row?.actionStatus &&
                       !row?.attendenceShortHand &&
-                      col === 'Status'
+                      (col === 'Status' || col?.title === 'Status')
                     ) {
                       if (row?.status === 'Pending')
                         return (
@@ -207,6 +210,7 @@ const AppTable = ({
                               display: 'flex',
                               justifyContent: 'center',
                               fontSize: '12px',
+                              flex: col?.flex || 1,
                             }}
                           >
                             <span
@@ -220,7 +224,7 @@ const AppTable = ({
                                 color: '#CB8822',
                               }}
                             >
-                              {row[toCamelCase(col)]}
+                              {row[toCamelCase(col || col?.title)]}
                             </span>
                           </td>
                         );
@@ -232,6 +236,7 @@ const AppTable = ({
                               display: 'flex',
                               justifyContent: 'center',
                               fontSize: '12px',
+                              flex: col?.flex || 1,
                             }}
                           >
                             <span
@@ -245,7 +250,7 @@ const AppTable = ({
                                 color: '#068987',
                               }}
                             >
-                              {row[toCamelCase(col)]}
+                              {row[toCamelCase(col || col?.title)]}
                             </span>
                           </td>
                         );
@@ -256,6 +261,7 @@ const AppTable = ({
                             display: 'flex',
                             justifyContent: 'center',
                             fontSize: '12px',
+                            flex: col?.flex || 1,
                           }}
                         >
                           <span
@@ -269,14 +275,17 @@ const AppTable = ({
                               color: '#A72A45',
                             }}
                           >
-                            {row[toCamelCase(col)]}
+                            {row[toCamelCase(col || col?.title)]}
                           </span>
                         </td>
                       );
                     } else if (
                       row?.actionStatus &&
-                      (col === 'Action' || col === 'Actions') &&
-                      row[toCamelCase(col)]?.[0] === 'Delete'
+                      (col === 'Action' ||
+                        col?.title === 'Action' ||
+                        col === 'Actions' ||
+                        col?.title === 'Actions') &&
+                      row[toCamelCase(col || col?.title)]?.[0] === 'Delete'
                     ) {
                       return (
                         <td
@@ -284,6 +293,7 @@ const AppTable = ({
                           style={{
                             display: 'flex',
                             justifyContent: 'center',
+                            flex: col?.flex || 1,
                           }}
                         >
                           <Image
@@ -295,11 +305,21 @@ const AppTable = ({
                         </td>
                       );
                     } else if (row?.dropdownStatus) {
-                      if (col === 'Payment status') {
+                      if (
+                        col === 'Payment status' ||
+                        col?.title === 'Payment status'
+                      ) {
                         return (
-                          <Fragment key={colIndex}>
+                          <td
+                            key={colIndex}
+                            style={{
+                              display: 'flex',
+                              justifyContent: 'center',
+                              flex: col?.flex || 1,
+                            }}
+                          >
                             <AppCustomDropdown
-                              col={col}
+                              col={col || col?.title}
                               colIndex={colIndex}
                               row={row}
                               options={[
@@ -308,19 +328,29 @@ const AppTable = ({
                                 { label: 'Paid' },
                               ]}
                             />
-                          </Fragment>
+                          </td>
                         );
-                      } else if (col === 'Status')
+                      } else if (col === 'Status' || col?.title === 'Status')
                         return (
-                          <Fragment key={colIndex}>
+                          <td
+                            style={{
+                              display: 'flex',
+                              justifyContent: 'center',
+                              flex: col?.flex || 1,
+                            }}
+                            key={colIndex}
+                          >
                             <AppCustomDropdown
-                              col={col}
+                              col={col || col?.title}
                               colIndex={colIndex}
                               row={row}
                             />
-                          </Fragment>
+                          </td>
                         );
-                    } else if (row?.optionsDropdown && col === 'Team members') {
+                    } else if (
+                      row?.optionsDropdown &&
+                      (col === 'Team members' || col?.title === 'Team members')
+                    ) {
                       return (
                         <td
                           key={colIndex}
@@ -329,11 +359,12 @@ const AppTable = ({
                             justifyContent: 'center',
                             alignItems: 'center',
                             flexDirection: 'column',
+                            flex: col?.flex || 1,
                           }}
                         >
                           <InfoOption
                             row={row}
-                            col={col}
+                            col={col || col?.title}
                             handleClick={handleClick}
                             handleClickRenderMessageButton={
                               handleClickRenderMessageButton
@@ -345,46 +376,59 @@ const AppTable = ({
                     return (
                       <Fragment key={colIndex}>
                         <td
-                          style={{ display: 'flex', justifyContent: 'center' }}
+                          style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            flex: col?.flex || 1,
+                          }}
                         >
-                          {col === 'Action' || col === 'Actions' ? (
+                          {col === 'Action' ||
+                          col?.title === 'Action' ||
+                          col === 'Actions' ||
+                          col?.title === 'Actions' ? (
                             <>
-                              {row[toCamelCase(col)]?.map((item, rowIndex) => (
-                                <Image
-                                  onClick={() => {
-                                    if (item === 'View') {
-                                      handleClickActionView({ row, item });
-                                    }
-                                    return;
-                                    // handleImage(
-                                    //   row.employeeId,
-                                    //   row.employeeName,
-                                    //   row.leaveType,
-                                    //   row.fromTo,
-                                    //   item
-                                    // )
-                                  }}
-                                  key={rowIndex}
-                                  style={{
-                                    margin: rowIndex === 1 && '0 5px',
-                                    cursor: 'pointer',
-                                  }}
-                                  width={25}
-                                  height={25}
-                                  alt="Icon"
-                                  src={`/icons/${item}.svg`}
-                                />
-                              ))}
+                              {row[toCamelCase(col || col?.title)]?.map(
+                                (item, rowIndex) => (
+                                  <Image
+                                    onClick={() => {
+                                      if (item === 'View') {
+                                        handleClickActionView({ row, item });
+                                      }
+                                      return;
+                                      // handleImage(
+                                      //   row.employeeId,
+                                      //   row.employeeName,
+                                      //   row.leaveType,
+                                      //   row.fromTo,
+                                      //   item
+                                      // )
+                                    }}
+                                    key={rowIndex}
+                                    style={{
+                                      margin: rowIndex === 1 && '0 5px',
+                                      cursor: 'pointer',
+                                    }}
+                                    width={25}
+                                    height={25}
+                                    alt="Icon"
+                                    src={`/icons/${item}.svg`}
+                                  />
+                                )
+                              )}
                             </>
                           ) : (row?.attendenceShortHand &&
                               col === 'Attendence Status') ||
-                            (row?.attendenceShortHand && col === 'Status') ? (
+                            col?.title === 'Attendence Status' ||
+                            (row?.attendenceShortHand &&
+                              (col === 'Status' || col?.title === 'Status')) ? (
                             <>
-                              {row[toCamelCase(col)]?.map((item, index) =>
-                                renderAttendenceStatus(item, index)
+                              {row[toCamelCase(col || col?.title)]?.map(
+                                (item, index) =>
+                                  renderAttendenceStatus(item, index)
                               )}
                             </>
-                          ) : col === 'Download' ? (
+                          ) : col === 'Download' ||
+                            col?.title === 'Download' ? (
                             <span
                               style={{
                                 borderRadius: '30px',
@@ -396,13 +440,13 @@ const AppTable = ({
                                 color: '#068987',
                               }}
                             >
-                              {row[toCamelCase(col)]}
+                              {row[toCamelCase(col || col?.title)]}
                             </span>
                           ) : (
                             <>
-                              {row[toCamelCase(col)] === null
+                              {row[toCamelCase(col || col?.title)] === null
                                 ? '-'
-                                : row[toCamelCase(col)]}
+                                : row[toCamelCase(col || col?.title)]}
                             </>
                           )}
                         </td>

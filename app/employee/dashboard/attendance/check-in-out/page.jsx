@@ -140,20 +140,22 @@ const Dashboard = () => {
         display={'flex'}
         justifyContent={'space-between'}
         alignItems={'center'}
+        marginBottom={'50px'}
       >
         <Box display={'flex'} flexDirection={'column'}>
-          <Typography variant="h3">Check in / out</Typography>
-          <Box display={'flex'} flexDirection={'column'} marginY={'20px'}>
+          <Typography variant="h3">Clock in / out</Typography>
+          <Box display={'flex'} flexDirection={'column'} mt={'20px'}>
             <Typography
               sx={{
                 fontSize: '14px',
-                fontWeight: '400',
+                fontWeight: 400,
                 letterSpacing: '0em',
                 textAlign: 'left',
+                color: '#595959',
               }}
               variant="caption"
             >
-              Manage punch request from one place.
+              Manage timesheet from one place.
             </Typography>
           </Box>
         </Box>
@@ -806,6 +808,11 @@ const Dashboard = () => {
                             <Tab
                               key={index}
                               disableRipple={true}
+                              sx={{
+                                mr: { xs: '10px', sm: '20px', md: '50px' },
+                                p: 0,
+                                // width:"50px"
+                              }}
                               label={
                                 <Box display={'flex'} alignItems={'center'}>
                                   <Box
@@ -852,7 +859,14 @@ const Dashboard = () => {
                         }
                       )}
                     </Tabs>
-                    <Box display={'flex'} alignItems={'center'} my={'20px'}>
+                    <Box
+                      display={'flex'}
+                      alignItems={'center'}
+                      sx={{
+                        pt: { xs: '10px', md: 0 },
+                        pb: '10px',
+                      }}
+                    >
                       <Button
                         sx={{
                           marginX: '10px',
@@ -923,7 +937,7 @@ const Dashboard = () => {
       >
         <PunchRequestModal
           modalData={modalData}
-          handleClose={handleCloseModal}
+          handleClose={handleClosePunch}
         />
       </Modal>
     </>

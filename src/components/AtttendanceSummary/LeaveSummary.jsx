@@ -12,7 +12,7 @@ const LeaveSummary = () => {
     <>
       <Box
         sx={{
-          height: '430px',
+          height: { xs: 'auto', md: '430px' },
           borderRadius: '10px',
           background: '#FFF',
           boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
@@ -28,14 +28,22 @@ const LeaveSummary = () => {
             background: '#FFF',
           }}
         >
-          <Typography sx={{ fontSize: '25px', fontWeight: 600 }}>
+          <Typography
+            sx={{
+              fontSize: { xs: '18px', md: '25px' },
+              fontWeight: 600,
+              color: '#171717',
+              fontStyle: 'normal',
+              lineHeight: 'normal',
+            }}
+          >
             {Leave_Summary_Title}
           </Typography>
         </Box>
         <Box
           sx={{
-            px: { xs: 3, sm: 3, lg: 3 },
-            pt: 3,
+            px: { xs: 3, sm: '25px' },
+            pt: '11px',
             width: '100%',
             height: '360px',
             overflow: 'auto',
@@ -52,10 +60,11 @@ const LeaveSummary = () => {
                 <Grid
                   container
                   sx={{
+                    height: { xs: 'auto', md: '100px' },
                     borderRadius: '5px',
-                    px: 2,
-                    py: 3,
-                    mb: 3,
+                    px: '14px',
+                    py: { xs: '15px', md: '29px' },
+                    mb: '20px',
                     border: '1px solid #E4E4E4',
                     background: '#FFF',
                     boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
@@ -107,16 +116,15 @@ const LeaveSummary = () => {
                       }}
                     >
                       <ProgressBar />
-                      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
+                      <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
                         {item?.leaveType &&
                           item?.leaveType?.map((type, index) => (
-                            <div key={index}>
+                            <div key={index} style={{ marginRight: '10px' }}>
                               <Box
                                 sx={{
                                   width: 'auto',
                                   display: 'flex',
                                   alignItems: 'center',
-                                  gap: 1,
                                 }}
                               >
                                 {type?.circleColor && (
@@ -125,15 +133,36 @@ const LeaveSummary = () => {
                                       width: '6px',
                                       height: '6px',
                                       backgroundColor: `${type?.circleColor}`,
-                                      borderRadius: '100%',
+                                      borderRadius: '50%',
+                                      mr: '5px',
                                     }}
-                                  ></Box>
+                                  />
                                 )}
-                                <Box sx={{ display: 'flex' }}>
-                                  <Typography sx={{ fontSize: '10px' }}>
+                                <Box
+                                  sx={{ display: 'flex', alignItems: 'center' }}
+                                >
+                                  <Typography
+                                    sx={{
+                                      color: '#595959',
+                                      textAlign: 'center',
+                                      fontSize: '10px',
+                                      fontStyle: 'normal',
+                                      fontWeight: 400,
+                                      lineHeight: 'normal',
+                                    }}
+                                  >
                                     {type?.title}
                                   </Typography>
-                                  <Typography sx={{ fontSize: '12px' }}>
+                                  <Typography
+                                    sx={{
+                                      color: '#171717',
+                                      textAlign: 'center',
+                                      fontSize: '12px',
+                                      fontStyle: 'normal',
+                                      fontWeight: 400,
+                                      lineHeight: 'normal',
+                                    }}
+                                  >
                                     {type?.quantity}
                                   </Typography>
                                 </Box>

@@ -13,12 +13,19 @@
   min-width: 1024px;
 }
 
+.table th {
+  font-weight: 500 !important;
+}
+.table td{
+  font-weight: 400 !important;
+}
+
 .table td,
 .table th {
   text-align: center;
   padding: 10px 0;
   color: #595959;
-  flex: 1;
+  /* flex: 1; */
   font-size: 12px;
 }
 

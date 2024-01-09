@@ -93,12 +93,29 @@ const Dashboard = () => {
         >
           <div>
             <Box
-              marginBottom={4}
               display={'flex'}
               justifyContent={'space-between'}
               alignItems={'center'}
+              marginBottom={'50px'}
             >
               <Box display={'flex'} flexDirection={'column'}>
+                <Typography variant="h3">Leaves Requests</Typography>
+                <Box display={'flex'} flexDirection={'column'} mt={'20px'}>
+                  <Typography
+                    sx={{
+                      fontSize: '14px',
+                      fontWeight: 400,
+                      letterSpacing: '0em',
+                      textAlign: 'left',
+                      color: '#595959',
+                    }}
+                    variant="caption"
+                  >
+                    Manage timesheet from one place.
+                  </Typography>
+                </Box>
+              </Box>
+              {/* <Box display={'flex'} flexDirection={'column'}>
                 <Typography
                   sx={{
                     fontSize: '30px',
@@ -138,7 +155,7 @@ const Dashboard = () => {
                 >
                   Balance
                 </Typography>
-              </Box>
+              </Box> */}
               <Button
                 sx={{ minWidth: '120px', marginBottom: '25px' }}
                 variant="contained"
@@ -147,14 +164,6 @@ const Dashboard = () => {
                 Create
               </Button>
               {openModal && (
-                // <RequestviewModal
-                //   title="Create Leave Request"
-                //   open={openModal}
-                //   onClose={handleCloseModal}
-                //   // isViewingClient={isViewingClient}
-                //   // modalData={modalData}
-                //   createLeaveRequest
-                // />
                 <Modal
                   open={openModal}
                   onClose={handleCloseModal}
@@ -180,6 +189,25 @@ const Dashboard = () => {
                   overflowX: 'auto',
                 }}
               >
+                <Box
+                  sx={{
+                    mb: '26px',
+                  }}
+                >
+                  <Typography
+                    sx={{
+                      fontSize: '20px',
+                      fontWeight: '400',
+                      lineHeight: '17px',
+                      letterSpacing: '0em',
+                      textAlign: 'left',
+                      color: '#595959',
+                    }}
+                    variant="caption"
+                  >
+                    Balance
+                  </Typography>
+                </Box>
                 <AppTable
                   column={employeeLeaveBalanceColumn}
                   data={leaveBalanceDataState}
@@ -303,7 +331,14 @@ const Dashboard = () => {
                         }
                       )}
                     </Tabs>
-                    <Box my={'10px'} display={'flex'} alignItems={'center'}>
+                    <Box
+                      display={'flex'}
+                      alignItems={'center'}
+                      sx={{
+                        pt: { xs: '10px', md: 0 },
+                        pb: '10px',
+                      }}
+                    >
                       <Button
                         sx={{
                           marginX: '10px',

@@ -4,7 +4,9 @@ import { Box, Button, TextField, Typography } from '@mui/material';
 const PasswordSection = ({ User_Password }) => {
   return (
     <>
-      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5, my: 4 }}>
+      <Box
+        sx={{ display: 'flex', flexDirection: 'column', gap: '20px', my: 4 }}
+      >
         <Typography
           variant="body2"
           sx={{ color: '#171717', fontWeight: '400' }}
@@ -15,7 +17,7 @@ const PasswordSection = ({ User_Password }) => {
           <Box component={'div'} key={index}>
             <Typography
               variant="body1"
-              sx={{ mb: 1, color: '#595959', fontWeight: '600' }}
+              sx={{ mb: 1, color: '#595959', fontWeight: '500' }}
             >
               {item?.label}
             </Typography>
@@ -23,12 +25,18 @@ const PasswordSection = ({ User_Password }) => {
               placeholder={item?.place}
               type={item?.type}
               variant="outlined"
+              inputProps={{
+                style: {
+                  height: '40px',
+                  padding: '0px 20px',
+                },
+              }}
               sx={{
                 fontWeight: 400,
                 fontSize: '14px',
                 color: '#666',
                 width: '300px',
-                height: 'auto',
+                // height: 'auto',
                 '@media (max-width: 562px)': {
                   width: '100%',
                 },

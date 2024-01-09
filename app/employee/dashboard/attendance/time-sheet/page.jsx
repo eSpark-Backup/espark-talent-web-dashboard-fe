@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from 'react';
 import { Grid, Box, Typography, Button, Modal } from '@mui/material';
 import AppTable from '@/src/components/dashboard/appTable';
-import Link from 'next/link';
 import { renderTrackingStatus } from './renderComponents';
 import {
   sheetStatusTypes,
@@ -59,43 +58,22 @@ const Dashboard = () => {
             display={'flex'}
             justifyContent={'space-between'}
             alignItems={'center'}
-            marginBottom={2}
+            marginBottom={'50px'}
           >
             <Box display={'flex'} flexDirection={'column'}>
               <Typography variant="h3">Time sheet</Typography>
-              <Box display={'flex'} flexDirection={'column'} marginY={'20px'}>
+              <Box display={'flex'} flexDirection={'column'} mt={'20px'}>
                 <Typography
                   sx={{
                     fontSize: '14px',
-                    fontWeight: '400',
+                    fontWeight: 400,
                     letterSpacing: '0em',
                     textAlign: 'left',
                     color: '#595959',
                   }}
                   variant="caption"
                 >
-                  Time tracking is available for Team Members where legally
-                  required or recommended.{' '}
-                </Typography>
-                <Typography
-                  sx={{
-                    fontSize: '14px',
-                    fontWeight: '400',
-                    letterSpacing: '0em',
-                    textAlign: 'left',
-                    color: '#595959',
-                  }}
-                  variant="caption"
-                >
-                  {'To see a list of countries, please visit the '}
-                  <Link
-                    style={{
-                      textDecoration: 'underline',
-                    }}
-                    href="/"
-                  >
-                    eSpark Talent Help Center.
-                  </Link>
+                  Manage timesheet from one place.
                 </Typography>
               </Box>
             </Box>

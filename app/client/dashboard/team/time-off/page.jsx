@@ -310,16 +310,29 @@ const Dashboard = () => {
                                   return (
                                     <Tab
                                       key={index}
+                                      sx={{
+                                        mr: {
+                                          xs: '10px',
+                                          sm: '20px',
+                                          md: '50px',
+                                        },
+                                        p: 0,
+                                        // width:"50px"
+                                      }}
                                       label={
                                         <Box
                                           display={'flex'}
                                           alignItems={'center'}
-                                          gap={'23px'}
+                                          // sx={{
+                                          //   p:0
+                                          //   // mr:{xs:"10px", sm:"20px",md:"50px"}
+                                          // }}
+                                          // gap={'23px'}
                                         >
                                           <Box
                                             sx={{
-                                              width: 30,
-                                              height: 30,
+                                              width: '30px',
+                                              height: '30px',
                                               background,
                                               borderRadius: '5px',
                                               marginRight: '10px',
