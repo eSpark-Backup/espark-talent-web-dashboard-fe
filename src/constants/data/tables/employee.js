@@ -1,108 +1,108 @@
 export const employeeTableInterviewScheduleColumn = [
   {
-      "title": "Employee name",
-      "flex": 1
+    title: 'Employee name',
+    flex: 1,
   },
   {
-      "title": "Gender",
-      "flex": 1
+    title: 'Gender',
+    flex: 1,
   },
   {
-      "title": "Job title",
-      "flex": 1
+    title: 'Job title',
+    flex: 1,
   },
   {
-      "title": "Role type",
-      "flex": 1
+    title: 'Role type',
+    flex: 1,
   },
   {
-      "title": "Employment term",
-      "flex": 1
+    title: 'Employment term',
+    flex: 1,
   },
   {
-      "title": "Interview date & time",
-      "flex": 1
+    title: 'Interview date & time',
+    flex: 1,
   },
   {
-      "title": "Country",
-      "flex": 1
+    title: 'Country',
+    flex: 1,
   },
   {
-      "title": "Status",
-      "flex": 1
-  }
+    title: 'Status',
+    flex: 1,
+  },
 ];
 export const employeeTableHiringRequestColumn = [
   {
-    "title": "Job title",
-    "flex": 1
+    title: 'Job title',
+    flex: 1,
   },
   {
-    "title": "Role type",
-    "flex": 1
+    title: 'Role type',
+    flex: 1,
   },
   {
-    "title": "Gender",
-    "flex": 1
+    title: 'Gender',
+    flex: 1,
   },
   {
-    "title": "Employment term",
-    "flex": 1
+    title: 'Employment term',
+    flex: 1,
   },
   {
-    "title": "Hiring starting date",
-    "flex": 1
+    title: 'Hiring starting date',
+    flex: 1,
   },
   {
-    "title": "Hiring ending date",
-    "flex": 1
+    title: 'Hiring ending date',
+    flex: 1,
   },
   {
-    "title": "Salary range",
-    "flex": 1
+    title: 'Salary range',
+    flex: 1,
   },
   {
-    "title": "Action",
-    "flex": 1
-  }
+    title: 'Action',
+    flex: 1,
+  },
 ];
 export const employeeTableOnboardingColumn = [
   {
-      "title": "Employee name",
-      "flex": 1
+    title: 'Employee name',
+    flex: 1,
   },
   {
-      "title": "Gender",
-      "flex": 1
+    title: 'Gender',
+    flex: 1,
   },
   {
-      "title": "Country",
-      "flex": 1
+    title: 'Country',
+    flex: 1,
   },
   {
-      "title": "Job title",
-      "flex": 1
+    title: 'Job title',
+    flex: 1,
   },
   {
-      "title": "Role type",
-      "flex": 1
+    title: 'Role type',
+    flex: 1,
   },
   {
-      "title": "Employment term",
-      "flex": 1
+    title: 'Employment term',
+    flex: 1,
   },
   {
-      "title": "Joining date",
-      "flex": 1
+    title: 'Joining date',
+    flex: 1,
   },
   {
-      "title": "Notice period",
-      "flex": 1
+    title: 'Notice period',
+    flex: 1,
   },
   {
-      "title": "Salary",
-      "flex": 1
-  }
+    title: 'Salary',
+    flex: 1,
+  },
 ];
 export const employeeTableDataInterviewSchedule = [
   {

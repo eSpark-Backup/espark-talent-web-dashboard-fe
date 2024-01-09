@@ -62,13 +62,15 @@ const Dashboard = () => {
                 background: '#FFF',
               }}
             >
-              <Typography sx={{
-                fontSize: { xs: '18px', md: '25px' },
-                fontWeight: 600,
-                color: "#171717",
-                fontStyle: "normal",
-                lineHeight: "normal",
-              }}>
+              <Typography
+                sx={{
+                  fontSize: { xs: '18px', md: '25px' },
+                  fontWeight: 600,
+                  color: '#171717',
+                  fontStyle: 'normal',
+                  lineHeight: 'normal',
+                }}
+              >
                 Mark clock in/ clock out
               </Typography>
             </Box>
@@ -201,10 +203,11 @@ const Dashboard = () => {
               >
                 <Box
                   sx={{
-                    width: `${getPercentage('08:15:35') < 100
-                      ? getPercentage('08:15:35')
-                      : 100
-                      }%`,
+                    width: `${
+                      getPercentage('08:15:35') < 100
+                        ? getPercentage('08:15:35')
+                        : 100
+                    }%`,
                     background: '#E6F4F4',
                     height: '100%',
                   }}
@@ -377,13 +380,14 @@ const Dashboard = () => {
                 background: '#FFF',
               }}
             >
-              <Typography sx={{
-                fontSize: { xs: '18px', md: '25px' },
-                fontWeight: 600,
-                color: "#171717",
-                fontStyle: "normal",
-                lineHeight: "normal",
-              }}
+              <Typography
+                sx={{
+                  fontSize: { xs: '18px', md: '25px' },
+                  fontWeight: 600,
+                  color: '#171717',
+                  fontStyle: 'normal',
+                  lineHeight: 'normal',
+                }}
               >
                 {Clock_Title}
               </Typography>

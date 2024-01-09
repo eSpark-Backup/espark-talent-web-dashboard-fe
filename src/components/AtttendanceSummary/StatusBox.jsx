@@ -35,13 +35,17 @@ const StatusBox = ({ title, count, horizotalLineColor, backgroundColor }) => {
                 backgroundColor: `${horizotalLineColor}`,
               }}
             />
-            <Typography sx={{
-              color: "#000",
-              fontSize: "16px",
-              fontStyle: "normal",
-              fontWeight: 400,
-              lineHeight: "normal",
-            }}>{title}</Typography>
+            <Typography
+              sx={{
+                color: '#000',
+                fontSize: '16px',
+                fontStyle: 'normal',
+                fontWeight: 400,
+                lineHeight: 'normal',
+              }}
+            >
+              {title}
+            </Typography>
           </Box>
           <Box>
             <Typography>{count}</Typography>

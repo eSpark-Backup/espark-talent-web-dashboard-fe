@@ -189,9 +189,11 @@ const Dashboard = () => {
                   overflowX: 'auto',
                 }}
               >
-                <Box sx={{
-                  mb: '26px',
-                }}>
+                <Box
+                  sx={{
+                    mb: '26px',
+                  }}
+                >
                   <Typography
                     sx={{
                       fontSize: '20px',
@@ -329,7 +331,14 @@ const Dashboard = () => {
                         }
                       )}
                     </Tabs>
-                    <Box my={'10px'} display={'flex'} alignItems={'center'}>
+                    <Box
+                      display={'flex'}
+                      alignItems={'center'}
+                      sx={{
+                        pt: { xs: '10px', md: 0 },
+                        pb: '10px',
+                      }}
+                    >
                       <Button
                         sx={{
                           marginX: '10px',

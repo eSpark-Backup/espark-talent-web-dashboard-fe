@@ -1,62 +1,62 @@
 export const employeeLeaveRequestsColumn = [
   {
-      "title": "Employee ID",
-      "flex": 2
+    title: 'Employee ID',
+    flex: 2,
   },
   {
-      "title": "Employee name",
-      "flex": 2
+    title: 'Employee name',
+    flex: 2,
   },
   {
-      "title": "Country",
-      "flex": 2
+    title: 'Country',
+    flex: 2,
   },
   {
-      "title": "Department",
-      "flex": 1
+    title: 'Department',
+    flex: 1,
   },
   {
-      "title": "Leave type",
-      "flex": 1.5
+    title: 'Leave type',
+    flex: 1.5,
   },
   {
-      "title": "Count",
-      "flex": 1
+    title: 'Count',
+    flex: 1,
   },
   {
-      "title": "Requested at",
-      "flex": 2
+    title: 'Requested at',
+    flex: 2,
   },
   {
-      "title": "Status",
-      "flex": 2
+    title: 'Status',
+    flex: 2,
   },
   {
-      "title": "Actions",
-      "flex": 2
-  }
+    title: 'Actions',
+    flex: 2,
+  },
 ];
 export const employeeLeaveBalanceColumn = [
   {
-      "title": "Leave type",
-      "flex": 2
+    title: 'Leave type',
+    flex: 2,
   },
   {
-      "title": "Balance",
-      "flex": 2
+    title: 'Balance',
+    flex: 2,
   },
   {
-      "title": "Availed",
-      "flex": 2
+    title: 'Availed',
+    flex: 2,
   },
   {
-      "title": "Available",
-      "flex": 2
+    title: 'Available',
+    flex: 2,
   },
   {
-      "title": "Pending",
-      "flex": 2
-  }
+    title: 'Pending',
+    flex: 2,
+  },
 ];
 export const employeeLeaveRequestsData = [
   {

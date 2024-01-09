@@ -28,13 +28,15 @@ const LeaveSummary = () => {
             background: '#FFF',
           }}
         >
-          <Typography  sx={{ 
-                fontSize: { xs: '18px', md: '25px' },
-                fontWeight: 600,
-                color: "#171717",
-                fontStyle: "normal",
-                lineHeight: "normal",
-               }}>
+          <Typography
+            sx={{
+              fontSize: { xs: '18px', md: '25px' },
+              fontWeight: 600,
+              color: '#171717',
+              fontStyle: 'normal',
+              lineHeight: 'normal',
+            }}
+          >
             {Leave_Summary_Title}
           </Typography>
         </Box>
@@ -58,10 +60,10 @@ const LeaveSummary = () => {
                 <Grid
                   container
                   sx={{
-                    height:{xs:'auto',md:'100px'},
+                    height: { xs: 'auto', md: '100px' },
                     borderRadius: '5px',
                     px: '14px',
-                    py: {xs:'15px',md:'29px'},
+                    py: { xs: '15px', md: '29px' },
                     mb: '20px',
                     border: '1px solid #E4E4E4',
                     background: '#FFF',
@@ -117,7 +119,7 @@ const LeaveSummary = () => {
                       <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
                         {item?.leaveType &&
                           item?.leaveType?.map((type, index) => (
-                            <div key={index} style={{marginRight:'10px'}}>
+                            <div key={index} style={{ marginRight: '10px' }}>
                               <Box
                                 sx={{
                                   width: 'auto',
@@ -132,29 +134,35 @@ const LeaveSummary = () => {
                                       height: '6px',
                                       backgroundColor: `${type?.circleColor}`,
                                       borderRadius: '50%',
-                                      mr:'5px'
+                                      mr: '5px',
                                     }}
                                   />
                                 )}
-                                <Box sx={{ display: 'flex', alignItems:"center" }}>
-                                  <Typography sx={{ 
-                                    color: "#595959",
-                                    textAlign: "center",
-                                    fontSize: "10px",
-                                    fontStyle: "normal",
-                                    fontWeight: 400,
-                                    lineHeight: "normal",
-                                   }}>
+                                <Box
+                                  sx={{ display: 'flex', alignItems: 'center' }}
+                                >
+                                  <Typography
+                                    sx={{
+                                      color: '#595959',
+                                      textAlign: 'center',
+                                      fontSize: '10px',
+                                      fontStyle: 'normal',
+                                      fontWeight: 400,
+                                      lineHeight: 'normal',
+                                    }}
+                                  >
                                     {type?.title}
                                   </Typography>
-                                  <Typography sx={{ 
-                                    color: "#171717",
-                                    textAlign: "center",
-                                    fontSize: "12px",
-                                    fontStyle: "normal",
-                                    fontWeight: 400,
-                                    lineHeight: "normal",
-                                   }}>
+                                  <Typography
+                                    sx={{
+                                      color: '#171717',
+                                      textAlign: 'center',
+                                      fontSize: '12px',
+                                      fontStyle: 'normal',
+                                      fontWeight: 400,
+                                      lineHeight: 'normal',
+                                    }}
+                                  >
                                     {type?.quantity}
                                   </Typography>
                                 </Box>

@@ -137,7 +137,10 @@ const AppTable = ({
         <thead>
           <tr className="app-table-row">
             {column?.map((col, colIndex) => (
-              <th key={colIndex} style={{ fontSize: '14px', flex: col?.flex ? col?.flex : 1 }}>
+              <th
+                key={colIndex}
+                style={{ fontSize: '14px', flex: col?.flex ? col?.flex : 1 }}
+              >
                 {col?.title || col}
               </th>
             ))}
@@ -207,7 +210,7 @@ const AppTable = ({
                               display: 'flex',
                               justifyContent: 'center',
                               fontSize: '12px',
-                              flex: col?.flex || 1
+                              flex: col?.flex || 1,
                             }}
                           >
                             <span
@@ -233,7 +236,7 @@ const AppTable = ({
                               display: 'flex',
                               justifyContent: 'center',
                               fontSize: '12px',
-                              flex: col?.flex || 1
+                              flex: col?.flex || 1,
                             }}
                           >
                             <span
@@ -258,7 +261,7 @@ const AppTable = ({
                             display: 'flex',
                             justifyContent: 'center',
                             fontSize: '12px',
-                            flex: col?.flex || 1
+                            flex: col?.flex || 1,
                           }}
                         >
                           <span
@@ -278,7 +281,10 @@ const AppTable = ({
                       );
                     } else if (
                       row?.actionStatus &&
-                      ((col === 'Action' || col?.title === 'Action') || (col === 'Actions' || col?.title === 'Actions')) &&
+                      (col === 'Action' ||
+                        col?.title === 'Action' ||
+                        col === 'Actions' ||
+                        col?.title === 'Actions') &&
                       row[toCamelCase(col || col?.title)]?.[0] === 'Delete'
                     ) {
                       return (
@@ -287,7 +293,7 @@ const AppTable = ({
                           style={{
                             display: 'flex',
                             justifyContent: 'center',
-                            flex: col?.flex || 1
+                            flex: col?.flex || 1,
                           }}
                         >
                           <Image
@@ -299,32 +305,41 @@ const AppTable = ({
                         </td>
                       );
                     } else if (row?.dropdownStatus) {
-                      if (col === 'Payment status' || col?.title === 'Payment status') {
+                      if (
+                        col === 'Payment status' ||
+                        col?.title === 'Payment status'
+                      ) {
                         return (
-                          <td key={colIndex} style={{
-                            display: 'flex',
-                            justifyContent: 'center',
-                            flex: col?.flex || 1
-                          }}>
-                              <AppCustomDropdown
-                                col={col || col?.title}
-                                colIndex={colIndex}
-                                row={row}
-                                options={[
-                                  { label: 'Pending' },
-                                  { label: 'Processing' },
-                                  { label: 'Paid' },
-                                ]}
-                              />
+                          <td
+                            key={colIndex}
+                            style={{
+                              display: 'flex',
+                              justifyContent: 'center',
+                              flex: col?.flex || 1,
+                            }}
+                          >
+                            <AppCustomDropdown
+                              col={col || col?.title}
+                              colIndex={colIndex}
+                              row={row}
+                              options={[
+                                { label: 'Pending' },
+                                { label: 'Processing' },
+                                { label: 'Paid' },
+                              ]}
+                            />
                           </td>
                         );
                       } else if (col === 'Status' || col?.title === 'Status')
                         return (
-                          <td style={{
-                            display: 'flex',
-                            justifyContent: 'center',
-                            flex: col?.flex || 1
-                          }} key={colIndex}>
+                          <td
+                            style={{
+                              display: 'flex',
+                              justifyContent: 'center',
+                              flex: col?.flex || 1,
+                            }}
+                            key={colIndex}
+                          >
                             <AppCustomDropdown
                               col={col || col?.title}
                               colIndex={colIndex}
@@ -332,7 +347,10 @@ const AppTable = ({
                             />
                           </td>
                         );
-                    } else if (row?.optionsDropdown && (col === 'Team members' || col?.title === 'Team members')) {
+                    } else if (
+                      row?.optionsDropdown &&
+                      (col === 'Team members' || col?.title === 'Team members')
+                    ) {
                       return (
                         <td
                           key={colIndex}
@@ -341,7 +359,7 @@ const AppTable = ({
                             justifyContent: 'center',
                             alignItems: 'center',
                             flexDirection: 'column',
-                            flex: col?.flex || 1
+                            flex: col?.flex || 1,
                           }}
                         >
                           <InfoOption
@@ -358,46 +376,59 @@ const AppTable = ({
                     return (
                       <Fragment key={colIndex}>
                         <td
-                          style={{ display: 'flex', justifyContent: 'center', flex: col?.flex || 1 }}
+                          style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            flex: col?.flex || 1,
+                          }}
                         >
-                          {(col === 'Action' || col?.title === 'Action') || (col === 'Actions' || col?.title === 'Actions') ? (
+                          {col === 'Action' ||
+                          col?.title === 'Action' ||
+                          col === 'Actions' ||
+                          col?.title === 'Actions' ? (
                             <>
-                              {row[toCamelCase(col || col?.title)]?.map((item, rowIndex) => (
-                                <Image
-                                  onClick={() => {
-                                    if (item === 'View') {
-                                      handleClickActionView({ row, item });
-                                    }
-                                    return;
-                                    // handleImage(
-                                    //   row.employeeId,
-                                    //   row.employeeName,
-                                    //   row.leaveType,
-                                    //   row.fromTo,
-                                    //   item
-                                    // )
-                                  }}
-                                  key={rowIndex}
-                                  style={{
-                                    margin: rowIndex === 1 && '0 5px',
-                                    cursor: 'pointer',
-                                  }}
-                                  width={25}
-                                  height={25}
-                                  alt="Icon"
-                                  src={`/icons/${item}.svg`}
-                                />
-                              ))}
-                            </>
-                          ) : (row?.attendenceShortHand &&
-                            col === 'Attendence Status' || col?.title === 'Attendence Status') ||
-                            (row?.attendenceShortHand && (col === 'Status' || col?.title === 'Status')) ? (
-                            <>
-                              {row[toCamelCase(col || col?.title)]?.map((item, index) =>
-                                renderAttendenceStatus(item, index)
+                              {row[toCamelCase(col || col?.title)]?.map(
+                                (item, rowIndex) => (
+                                  <Image
+                                    onClick={() => {
+                                      if (item === 'View') {
+                                        handleClickActionView({ row, item });
+                                      }
+                                      return;
+                                      // handleImage(
+                                      //   row.employeeId,
+                                      //   row.employeeName,
+                                      //   row.leaveType,
+                                      //   row.fromTo,
+                                      //   item
+                                      // )
+                                    }}
+                                    key={rowIndex}
+                                    style={{
+                                      margin: rowIndex === 1 && '0 5px',
+                                      cursor: 'pointer',
+                                    }}
+                                    width={25}
+                                    height={25}
+                                    alt="Icon"
+                                    src={`/icons/${item}.svg`}
+                                  />
+                                )
                               )}
                             </>
-                          ) : (col === 'Download' || col?.title === 'Download') ? (
+                          ) : (row?.attendenceShortHand &&
+                              col === 'Attendence Status') ||
+                            col?.title === 'Attendence Status' ||
+                            (row?.attendenceShortHand &&
+                              (col === 'Status' || col?.title === 'Status')) ? (
+                            <>
+                              {row[toCamelCase(col || col?.title)]?.map(
+                                (item, index) =>
+                                  renderAttendenceStatus(item, index)
+                              )}
+                            </>
+                          ) : col === 'Download' ||
+                            col?.title === 'Download' ? (
                             <span
                               style={{
                                 borderRadius: '30px',
@@ -427,7 +458,7 @@ const AppTable = ({
             ))
           ) : (
             <tr>
-              <td className="app-table-row" colSpan={column?.length} style={{ flex: col?.flex || 1 }}>
+              <td className="app-table-row" colSpan={column?.length}>
                 <Typography variant="caption" sx={{ width: '100%' }}>
                   No Records Founds
                 </Typography>

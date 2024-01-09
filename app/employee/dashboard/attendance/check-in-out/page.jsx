@@ -159,6 +159,33 @@ const Dashboard = () => {
             </Typography>
           </Box>
         </Box>
+        <Button
+          sx={{ marginX: '10px', minWidth: '120px' }}
+          variant="contained"
+          onClick={handleOpenModal}
+        >
+          Create
+        </Button>
+        {openModal && (
+          <Modal
+            open={openModal}
+            onClose={handleCloseModal}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              // height: { xs: '950px', md: '890px' },
+            }}
+          >
+            <PunchRequestModal
+              modalData={modalData}
+              handleClose={handleCloseModal}
+              createModal
+            />
+          </Modal>
+        )}
       </Box>
       <Grid container spacing={3}>
         <Grid item xs={12} md={4} lg={4} xl={4}>
@@ -314,18 +341,20 @@ const Dashboard = () => {
             >
               <Box
                 sx={{
-                  width: `${getPercentage(timeToSeconds('03:10:00'), 9) < 100
+                  width: `${
+                    getPercentage(timeToSeconds('03:10:00'), 9) < 100
                       ? getPercentage(timeToSeconds('03:10:00'), 9)
                       : 100
-                    }%`,
+                  }%`,
                   background: '#E6F4F4',
                   height: '100%',
                 }}
               ></Box>
               <Box
                 sx={{
-                  width: `${100 - getPercentage(timeToSeconds('03:10:00'), 9)
-                    }%`,
+                  width: `${
+                    100 - getPercentage(timeToSeconds('03:10:00'), 9)
+                  }%`,
                   background: '#F5F5F5',
                   height: '100%',
                 }}
@@ -572,25 +601,27 @@ const Dashboard = () => {
                       >
                         <Box
                           sx={{
-                            width: `${getPercentage(
-                              +hoursCompleted * 3600,
-                              +totalHours
-                            ) < 100
+                            width: `${
+                              getPercentage(
+                                +hoursCompleted * 3600,
+                                +totalHours
+                              ) < 100
                                 ? getPercentage(
-                                  +hoursCompleted * 3600,
-                                  +totalHours
-                                )
+                                    +hoursCompleted * 3600,
+                                    +totalHours
+                                  )
                                 : 100
-                              }%`,
+                            }%`,
                             background: background,
                             height: '100%',
                           }}
                         ></Box>
                         <Box
                           sx={{
-                            width: `${100 -
+                            width: `${
+                              100 -
                               getPercentage(+hoursCompleted * 3600, +totalHours)
-                              }%`,
+                            }%`,
                             background: remainingBack,
                             height: '100%',
                           }}
@@ -777,6 +808,11 @@ const Dashboard = () => {
                             <Tab
                               key={index}
                               disableRipple={true}
+                              sx={{
+                                mr: { xs: '10px', sm: '20px', md: '50px' },
+                                p: 0,
+                                // width:"50px"
+                              }}
                               label={
                                 <Box display={'flex'} alignItems={'center'}>
                                   <Box
@@ -823,7 +859,14 @@ const Dashboard = () => {
                         }
                       )}
                     </Tabs>
-                    <Box display={'flex'} alignItems={'center'} my={'20px'}>
+                    <Box
+                      display={'flex'}
+                      alignItems={'center'}
+                      sx={{
+                        pt: { xs: '10px', md: 0 },
+                        pb: '10px',
+                      }}
+                    >
                       <Button
                         sx={{
                           marginX: '10px',
@@ -894,7 +937,7 @@ const Dashboard = () => {
       >
         <PunchRequestModal
           modalData={modalData}
-          handleClose={handleCloseModal}
+          handleClose={handleClosePunch}
         />
       </Modal>
     </>

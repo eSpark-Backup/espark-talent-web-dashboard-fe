@@ -42,7 +42,9 @@ export default function ProfileSection({ Profile_Edit_Section, User_Detail }) {
           </Button>
         </Box>
       </Box>
-      <Box sx={{ display: 'flex', flexDirection: 'column', gap: '20px', my: 3 }}>
+      <Box
+        sx={{ display: 'flex', flexDirection: 'column', gap: '20px', my: 3 }}
+      >
         <Typography
           variant="body2"
           sx={{ color: '#171717', fontWeight: '400' }}
@@ -83,19 +85,19 @@ export default function ProfileSection({ Profile_Edit_Section, User_Detail }) {
                   type={item?.type}
                   variant="outlined"
                   inputProps={{
-                    style:{
-                      height:'40px',
-                      padding:"0px 20px"
-                    }
+                    style: {
+                      height: '40px',
+                      padding: '0px 20px',
+                    },
                   }}
                   sx={{
                     width: '300px',
                     fontWeight: 400,
                     fontSize: '14px',
                     color: '#666',
-                    display:"flex",
-                    justifyContent:"stretch",
-                    alignItems:"stretch",
+                    display: 'flex',
+                    justifyContent: 'stretch',
+                    alignItems: 'stretch',
                     '@media (max-width: 562px)': {
                       width: '100%',
                     },

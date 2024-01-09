@@ -27,7 +27,7 @@ const PoliciesCard = ({ data }) => {
               display: 'flex',
               justifyContent: 'center',
               padding: { sm: 0, md: '25px' },
-              mb:{xs:"25px",md:"0"},
+              mb: { xs: '25px', md: '0' },
               '@media (min-width: 900px) and (max-width: 1280px)': {
                 padding: '15px',
               },
