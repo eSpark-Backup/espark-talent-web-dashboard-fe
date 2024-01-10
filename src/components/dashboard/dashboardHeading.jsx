@@ -3,7 +3,7 @@ import { Box, Typography } from '@mui/material';
 
 import { DASHBOARD_DATA } from '@/src/constants/dashboard';
 
-const DashboardHeading = ({dashboardDescription}) => {
+const DashboardHeading = ({ dashboardDescription }) => {
   return (
     <Box>
       <Typography

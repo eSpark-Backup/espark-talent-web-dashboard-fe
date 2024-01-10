@@ -15,9 +15,8 @@ const Policies = () => {
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
-            // paddingTop: '5px',
             paddingTop: '10px',
-            // gap: '20px',
+            gap: '80px',
             width: '100%',
           }}
         >

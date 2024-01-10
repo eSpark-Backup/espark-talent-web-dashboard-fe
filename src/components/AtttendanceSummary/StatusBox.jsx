@@ -1,7 +1,6 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
 import Image from 'next/image';
-import { Summary_Boxes } from '@/src/constants/data/hrDashboard';
 
 const StatusBox = ({
   title,
@@ -16,7 +15,7 @@ const StatusBox = ({
       <Box
         sx={{
           display: 'flex',
-          width: isEmployee ? '100%' : { xs: "100%", md: '300px' },
+          width: isEmployee ? '100%' : { xs: '100%', md: '300px' },
           height: '110px',
           borderRadius: '10px',
           background: `${backgroundColor}`,
@@ -43,11 +42,17 @@ const StatusBox = ({
                 backgroundColor: `${horizotalLineColor}`,
               }}
             />
-            <Typography sx={{  color: '#000',
+            <Typography
+              sx={{
+                color: '#000',
                 fontSize: '16px',
                 fontStyle: 'normal',
                 fontWeight: 400,
-                lineHeight: 'normal'}}>{isEmployee ? title : count}</Typography>
+                lineHeight: 'normal',
+              }}
+            >
+              {isEmployee ? title : count}
+            </Typography>
           </Box>
           <Box>
             <Typography>{isEmployee ? count : title}</Typography>
@@ -55,7 +60,6 @@ const StatusBox = ({
         </Box>
         <Box
           sx={{
-            // width: '10%',
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',

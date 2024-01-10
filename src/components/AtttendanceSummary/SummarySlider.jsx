@@ -40,7 +40,7 @@ export default function SummarySlider({ Summary_Boxes, isEmployee }) {
               flexDirection: { xs: 'column', md: 'row' },
               gap: '40px',
               paddingLeft: { xs: '0px', md: '50px' },
-              }}
+            }}
           >
             {Summary_Boxes?.map((item, index) => (
               <StatusBox

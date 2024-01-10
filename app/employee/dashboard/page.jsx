@@ -8,6 +8,7 @@ import LeaveSummary from '@/src/components/AtttendanceSummary/LeaveSummary';
 import Clock from '@/src/components/AtttendanceSummary/Clock';
 import { Clock_Title } from '@/src/constants/employeeDashboard';
 import Image from 'next/image';
+import { DASHBOARD_DATA } from '@/public/images/dashboard/constants/Dashboard';
 
 const Dashboard = () => {
   function timeToSeconds(time) {
