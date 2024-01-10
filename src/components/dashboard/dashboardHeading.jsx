@@ -21,7 +21,6 @@ const DashboardHeading = ({dashboardDescription}) => {
           fontWeight: 400,
         }}
       >
-        {/* {DASHBOARD_DATA?.greetingText} */}
         {dashboardDescription}
       </Typography>
       <br />

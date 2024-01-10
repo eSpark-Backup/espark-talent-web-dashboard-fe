@@ -9,14 +9,14 @@ const StatusBox = ({
   horizotalLineColor,
   backgroundColor,
   isEmployee,
-  images
+  images,
 }) => {
   return (
     <>
       <Box
         sx={{
           display: 'flex',
-          width: '100%',
+          width: isEmployee ? '100%' : { xs: "100%", md: '300px' },
           height: '110px',
           borderRadius: '10px',
           background: `${backgroundColor}`,
@@ -64,18 +64,16 @@ const StatusBox = ({
               alt="arrow"
             />
           ) : (
-              <Image
-                src={images}
-                width={50}
-                height={50}
-                alt="employee"
-                style={{
-                  marginRight:"10px"
-                }}
-              />
-          )
-          }
-      
+            <Image
+              src={images}
+              width={50}
+              height={50}
+              alt="employee"
+              style={{
+                marginRight: '10px',
+              }}
+            />
+          )}
         </Box>
       </Box>
     </>
