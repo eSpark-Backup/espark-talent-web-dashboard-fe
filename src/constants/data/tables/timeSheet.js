@@ -29,23 +29,47 @@ export const sheetStatusTypes = [
     background: '#107863',
     shortForm: 'L',
   },
-  {
-    label: 'Half Day',
-    background: '#107863',
-    shortForm: 'HD',
-  },
+  // {
+  //   label: 'Half Day',
+  //   background: '#107863',
+  //   shortForm: 'HD',
+  // },
 ];
 
 export const timeSheetTableColumn = [
-  'Date',
-  'Day',
-  'Check-in',
-  'Check-out',
-  'Hours worked',
-  'Overtime',
-  'Attendence Status',
+  {
+    title: 'Date',
+    flex: 2,
+  },
+  {
+    title: 'Day',
+    flex: 2,
+  },
+  {
+    title: 'Check-in',
+    flex: 2,
+  },
+  {
+    title: 'Check-out',
+    flex: 2,
+  },
+  {
+    title: 'Hours worked',
+    flex: 2,
+  },
+  {
+    title: 'Overtime',
+    flex: 2,
+  },
+  {
+    title: 'Status',
+    flex: 2,
+  },
+  {
+    title: 'Action',
+    flex: 2,
+  },
 ];
-
 export const timeSheetTableData = [
   {
     date: '01-November-2023',
@@ -54,8 +78,10 @@ export const timeSheetTableData = [
     checkOut: '08:30 AM',
     hoursWorked: '10h 30m',
     overtime: '01h 30m',
-    attendenceStatus: ['P'],
+    status: ['P'],
     attendenceShortHand: true,
+    actionStatus: true,
+    action: ['View'],
   },
   {
     date: '2-November-2023',
@@ -64,8 +90,10 @@ export const timeSheetTableData = [
     checkOut: '07:30 AM',
     hoursWorked: '08h 30m',
     overtime: null,
-    attendenceStatus: ['P', 'S'],
+    status: ['P', 'S'],
     attendenceShortHand: true,
+    actionStatus: true,
+    action: ['View'],
   },
   {
     date: '3-November-2023',
@@ -74,8 +102,10 @@ export const timeSheetTableData = [
     checkOut: null,
     hoursWorked: null,
     overtime: null,
-    attendenceStatus: ['A'],
+    status: ['A'],
     attendenceShortHand: true,
+    actionStatus: true,
+    action: ['View'],
   },
   {
     date: '4-November-2023',
@@ -84,8 +114,10 @@ export const timeSheetTableData = [
     checkOut: null,
     hoursWorked: null,
     overtime: null,
-    attendenceStatus: ['D'],
+    status: ['D'],
     attendenceShortHand: true,
+    actionStatus: true,
+    action: ['View'],
   },
   {
     date: '5-November-2023',
@@ -94,8 +126,10 @@ export const timeSheetTableData = [
     checkOut: null,
     hoursWorked: null,
     overtime: null,
-    attendenceStatus: ['D'],
+    status: ['D'],
     attendenceShortHand: true,
+    actionStatus: true,
+    action: ['View'],
   },
   {
     date: '6-November-2023',
@@ -104,8 +138,10 @@ export const timeSheetTableData = [
     checkOut: '07:30 AM',
     hoursWorked: '08h 30m',
     overtime: null,
-    attendenceStatus: ['P', 'S'],
+    status: ['P', 'S'],
     attendenceShortHand: true,
+    actionStatus: true,
+    action: ['View'],
   },
   {
     date: '7-November-2023',
@@ -114,8 +150,10 @@ export const timeSheetTableData = [
     checkOut: null,
     hoursWorked: null,
     overtime: null,
-    attendenceStatus: ['A'],
+    status: ['A'],
     attendenceShortHand: true,
+    actionStatus: true,
+    action: ['View'],
   },
   {
     date: '8-November-2023',
@@ -124,8 +162,10 @@ export const timeSheetTableData = [
     checkOut: '08:30 AM',
     hoursWorked: '10h 30m',
     overtime: '01h 30m',
-    attendenceStatus: ['P'],
+    status: ['P'],
     attendenceShortHand: true,
+    actionStatus: true,
+    action: ['View'],
   },
   {
     date: '9-November-2023',
@@ -134,8 +174,10 @@ export const timeSheetTableData = [
     checkOut: '07:30 AM',
     hoursWorked: '08h 30m',
     overtime: null,
-    attendenceStatus: ['P', 'S'],
+    status: ['P', 'S'],
     attendenceShortHand: true,
+    actionStatus: true,
+    action: ['View'],
   },
   {
     date: '10-November-2023',
@@ -144,8 +186,10 @@ export const timeSheetTableData = [
     checkOut: '08:30 AM',
     hoursWorked: '10h 30m',
     overtime: '01h 30m',
-    attendenceStatus: ['P'],
+    status: ['P'],
     attendenceShortHand: true,
+    actionStatus: true,
+    action: ['View'],
   },
   {
     date: '11-November-2023',
@@ -154,7 +198,9 @@ export const timeSheetTableData = [
     checkOut: '08:30 AM',
     hoursWorked: '10h 30m',
     overtime: '01h 30m',
-    attendenceStatus: ['P'],
+    status: ['P'],
     attendenceShortHand: true,
+    actionStatus: true,
+    action: ['View'],
   },
 ];

@@ -13,7 +13,7 @@ const SettingTitle = ({ Setting_Data }) => {
           mx: 'auto',
           display: 'flex',
           flexDirection: 'column',
-          gap: 4,
+          gap: '30px',
         }}
       >
         <Typography variant="h3" component={'h2'}>

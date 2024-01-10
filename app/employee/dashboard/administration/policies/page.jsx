@@ -7,6 +7,10 @@ import { POLICIES_DATA } from '@/src/constants/policies';
 import PoliciesCard from '@/src/components/policies/policiesCard';
 
 const Policies = () => {
+  const filteredItems = POLICIES_DATA?.items.filter(
+    (item) => item.id !== 4 && item.id !== 5
+  );
+
   return (
     <>
       <Grid container>
@@ -15,8 +19,10 @@ const Policies = () => {
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
-            paddingTop: '5px',
-            gap: '20px',
+            // paddingTop: '5px',
+            // gap: '20px',
+            paddingTop: '10px',
+            gap: '100px',
             width: '100%',
           }}
         >
@@ -29,7 +35,8 @@ const Policies = () => {
               alignItems: { xs: 'flex-start', md: 'center' },
             }}
           />
-          <PoliciesCard data={POLICIES_DATA?.items} />
+          <PoliciesCard data={filteredItems} />
+          {/* <PoliciesCard data={POLICIES_DATA?.items} /> */}
         </Box>
       </Grid>
     </>

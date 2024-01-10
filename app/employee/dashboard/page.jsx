@@ -1,15 +1,32 @@
 'use client';
 import React from 'react';
-import { Box, Grid, Typography } from '@mui/material';
+import { Box, Button, Grid, Typography } from '@mui/material';
 
 import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
 import AttendanceSummary from '@/src/components/AtttendanceSummary/AttendanceSummary';
 import LeaveSummary from '@/src/components/AtttendanceSummary/LeaveSummary';
 import Clock from '@/src/components/AtttendanceSummary/Clock';
 import { Clock_Title } from '@/src/constants/employeeDashboard';
-import { DASHBOARD_DATA } from '@/public/images/dashboard/constants/Dashboard';
+import Image from 'next/image';
 
 const Dashboard = () => {
+  function timeToSeconds(time) {
+    // Split the input time into hours, minutes, and seconds
+    const [hours, minutes, seconds] = time.split(':').map(Number);
+
+    // Calculate the total seconds
+    const totalSeconds = hours * 3600 + minutes * 60 + seconds;
+
+    return totalSeconds;
+  }
+
+  const getPercentage = (time) => {
+    const totalSeconds = 9 * 3600;
+    const currentSeconds = timeToSeconds(time);
+    const spentPercentage = (currentSeconds / totalSeconds) * 100;
+    return Math.round(spentPercentage);
+  };
+
   return (
     <>
       <Grid container spacing={3}>
@@ -24,11 +41,12 @@ const Dashboard = () => {
         </Grid>
         <Grid item xs={12}>
           <AttendanceSummary />
+          <br />
         </Grid>
         <Grid item xs={12} md={6} lg={6} xl={4}>
           <Box
             sx={{
-              height: '430px',
+              height: { xs: 'auto', md: '430px' },
               borderRadius: '10px',
               background: '#FFF',
               boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
@@ -44,17 +62,298 @@ const Dashboard = () => {
                 background: '#FFF',
               }}
             >
-              <Typography variant="h5">Mark clock in/ clock out</Typography>
+              <Typography
+                sx={{
+                  fontSize: { xs: '18px', md: '25px' },
+                  fontWeight: 600,
+                  color: '#171717',
+                  fontStyle: 'normal',
+                  lineHeight: 'normal',
+                }}
+              >
+                Mark clock in/ clock out
+              </Typography>
             </Box>
             <Box
               sx={{
                 px: { xs: 3, sm: 3, lg: 3 },
-                py: 3,
+                pt: 3,
+                pb: 3,
                 width: '100%',
-                justifyContent: 'center',
+                justifyContent: 'space-between',
                 alignItems: 'center',
               }}
-            ></Box>
+              display={'flex'}
+            >
+              <Typography
+                sx={{
+                  color: '#595959',
+                  fontSize: { xs: '14px', md: '20px' },
+                  fontStyle: 'normal',
+                  fontWeight: 400,
+                  lineHeight: 'normal',
+                }}
+              >
+                Check in
+              </Typography>
+
+              <Box display={'flex'} alignItems={'center'}>
+                <Image
+                  src="/icons/ClockIcon.svg"
+                  width={25}
+                  height={25}
+                  alt="Clock"
+                />
+                <Typography
+                  sx={{
+                    color: '#171717',
+                    textAlign: 'center',
+                    fontSize: { xs: '12px', md: '16px' },
+                    fontStyle: 'normal',
+                    fontWeight: 600,
+                    lineHeight: 'normal',
+                    mx: '10px',
+                  }}
+                >
+                  10:41 AM
+                </Typography>
+                <Typography
+                  sx={{
+                    color: '#595959',
+                    textAlign: 'center',
+                    fontSize: { xs: '10px', md: '14px' },
+                    fontStyle: 'normal',
+                    fontWeight: 400,
+                    lineHeight: 'normal',
+                  }}
+                >
+                  Exp: 10:00 AM
+                </Typography>
+              </Box>
+            </Box>
+            {/* <br /> */}
+            <Box
+              sx={{
+                px: { xs: 3, sm: 3, lg: 3 },
+                width: '100%',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+              }}
+              display={'flex'}
+            >
+              <Typography
+                sx={{
+                  color: '#595959',
+                  fontSize: { xs: '14px', md: '20px' },
+                  fontStyle: 'normal',
+                  fontWeight: 400,
+                  lineHeight: 'normal',
+                }}
+              >
+                Check out
+              </Typography>
+              <Box display={'flex'} alignItems={'center'}>
+                <Image
+                  src="/icons/ClockIcon.svg"
+                  width={25}
+                  height={25}
+                  alt="Clock"
+                />
+                <Typography
+                  sx={{
+                    color: '#171717',
+                    textAlign: 'center',
+                    fontSize: { xs: '12px', md: '16px' },
+                    fontStyle: 'normal',
+                    fontWeight: 600,
+                    lineHeight: 'normal',
+                    mx: '10px',
+                    minWidth: '69.66px',
+                  }}
+                >
+                  --:-- --
+                </Typography>
+                <Typography
+                  sx={{
+                    color: '#595959',
+                    textAlign: 'center',
+                    fontSize: { xs: '10px', md: '14px' },
+                    fontStyle: 'normal',
+                    fontWeight: 400,
+                    lineHeight: 'normal',
+                  }}
+                >
+                  Exp: 07:00 AM
+                </Typography>
+              </Box>
+            </Box>
+            <Box sx={{ py: '30px' }}>
+              <Box
+                sx={{
+                  height: '50px',
+                  // background:"#ccc",
+                  mx: { xs: 3, sm: 3, lg: 3 },
+                  // my: '30px',
+                  border: 'solid 1px #ccc',
+                  borderRadius: '5px',
+                  position: 'relative',
+                  overflow: 'hidden',
+                }}
+                display={'flex'}
+              >
+                <Box
+                  sx={{
+                    width: `${
+                      getPercentage('08:15:35') < 100
+                        ? getPercentage('08:15:35')
+                        : 100
+                    }%`,
+                    background: '#E6F4F4',
+                    height: '100%',
+                  }}
+                ></Box>
+                <Box
+                  sx={{
+                    width: `${100 - getPercentage('08:15:35')}%`,
+                    background: '#F5F5F5',
+                    height: '100%',
+                  }}
+                ></Box>
+                <Typography
+                  sx={{
+                    position: 'absolute',
+                    left: 'calc(50% - 24px)',
+                    top: 'calc(50% - 8px)',
+                    color: '#595959',
+                    textAlign: 'center',
+                    fontSize: '14px',
+                    fontStyle: 'normal',
+                    fontWeight: 600,
+                    lineHeight: 'normal',
+                  }}
+                >
+                  08:15:35
+                </Typography>
+              </Box>
+            </Box>
+            <Grid
+              gap={'10px'}
+              sx={{
+                height: '50px',
+                // background:"#ccc",
+                mx: { xs: 3, sm: 3, lg: 3 },
+                // my: '30px',
+                // border: "solid 1px #ccc",
+                borderRadius: '5px',
+                position: 'relative',
+                // overflow: "hidden"
+              }}
+              display={'flex'}
+            >
+              <Grid item xs={12} md={6} lg={6} xl={6}>
+                <Button
+                  sx={{
+                    border: '1px solid #E4E4E4',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    p: '10px',
+                    width: '100%',
+                    height: '50px',
+                  }}
+                >
+                  <Typography
+                    sx={{
+                      color: '#595959',
+                      textAlign: 'center',
+                      fontSize: '14px',
+                      fontStyle: 'normal',
+                      fontWeight: 400,
+                      lineHeight: 'normal',
+                      ml: '10px',
+                      // '&:hover': {
+                      //   color: '#fff',
+                      // },
+                    }}
+                  >
+                    Mark check in
+                  </Typography>
+                </Button>
+              </Grid>
+              <Grid item xs={12} md={6} lg={6} xl={6}>
+                <Button
+                  variant="contained"
+                  sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    p: '10px',
+                    width: '100%',
+                    height: '50px',
+                  }}
+                >
+                  <Typography
+                    sx={{
+                      color: '#FFF',
+                      textAlign: 'center',
+                      fontSize: '14px',
+                      fontStyle: 'normal',
+                      fontWeight: 400,
+                      lineHeight: 'normal',
+                      ml: '10px',
+                    }}
+                  >
+                    Mark check out
+                  </Typography>
+                </Button>
+              </Grid>
+            </Grid>
+            <Box sx={{ py: { xs: '30px', md: 0 } }}>
+              <Box
+                sx={{
+                  height: '50px',
+                  // background:"#ccc",
+                  mx: { xs: 3, sm: 3, lg: 3 },
+                  my: { xs: 0, md: '30px' },
+                  // border: "solid 1px #ccc",
+                  borderRadius: '5px',
+                  position: 'relative',
+                  // overflow: "hidden"
+                }}
+                display={'flex'}
+              >
+                <Button
+                  variant="outlined"
+                  sx={{
+                    // border:"solid 1px #ccc",
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    p: '10px',
+                    // borderRadius:'5px',
+                    width: '100%',
+                    height: '50px',
+                    color: '#068987',
+                    textAlign: 'center',
+                    fontSize: '14px',
+                    fontStyle: 'normal',
+                    fontWeight: 400,
+                    lineHeight: 'normal',
+                    '&:hover': {
+                      color: '#fff',
+                    },
+                  }}
+                >
+                  <Image
+                    src="/icons/TeaIcon1.svg"
+                    style={{ marginRight: '10px' }}
+                    width={20}
+                    height={20}
+                  />
+                  Mark break out
+                </Button>
+              </Box>
+            </Box>
           </Box>
         </Grid>
         <Grid item xs={12} md={6} lg={6} xl={5}>
@@ -64,7 +363,7 @@ const Dashboard = () => {
           <Box
             sx={{
               mx: { xs: 'auto', md: 0 },
-              width: { xs: 'auto', md: 'auto' },
+              // width: { xs: 'auto', md: '300px' },
               height: '430px',
               borderRadius: '10px',
               background: '#FFF',
@@ -81,7 +380,17 @@ const Dashboard = () => {
                 background: '#FFF',
               }}
             >
-              <Typography variant="h5">{Clock_Title}</Typography>
+              <Typography
+                sx={{
+                  fontSize: { xs: '18px', md: '25px' },
+                  fontWeight: 600,
+                  color: '#171717',
+                  fontStyle: 'normal',
+                  lineHeight: 'normal',
+                }}
+              >
+                {Clock_Title}
+              </Typography>
             </Box>
             <Box
               sx={{
@@ -91,6 +400,7 @@ const Dashboard = () => {
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
+                // mx:"auto",
               }}
             >
               <Clock />

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, FormControl, InputLabel, Typography } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 import { HIRING_FORM_DATA } from '@/src/constants/Hiring';
 
 import EmployementTerm from './EmployementTerm';
@@ -11,49 +11,36 @@ const GenderInput = ({ open, SelectOpen, SelectClose }) => {
   const [selectedJobTitle, setSelectedJobTitle] = useState('');
 
   return (
-    <Box
+    <Grid
+      container
+      gap={'10px'}
       sx={{
-        display: 'flex',
-        flexDirection: { xs: 'column', md: 'row' },
-        justifyContent: 'space-around',
-        paddingTop: '25px',
-        '@media (min-width: 900px) and (max-width: 1400px)': {
-          flexDirection: 'column',
-          gap: '10px',
-        },
-        gap: { xs: '9px', md: '0px' },
+        flexWrap: { xs: 'wrap', lg: 'nowrap' },
       }}
     >
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '12px',
-          zIndex: 102,
-        }}
-      >
-        <Typography>{HIRING_FORM_DATA?.gender}</Typography>
-
-        <FormControl>
-          <InputLabel sx={{ color: '#888888' }}>
-            {HIRING_FORM_DATA?.selectGender}
-          </InputLabel>
-          <AppDropdown
-            data={gender}
-            setIsLoadingList={setIsLoadingTitles}
-            isLoadingList={isLoadingTitles}
-            selectedItem={selectedJobTitle}
-            setSelectedItem={setSelectedJobTitle}
-            placeHolder="Select Gender..."
-          />
-        </FormControl>
-      </Box>
+      <Grid item xs={12} lg={6}>
+        <Typography
+          sx={{
+            mb: '10px',
+          }}
+        >
+          {HIRING_FORM_DATA?.gender}
+        </Typography>
+        <AppDropdown
+          data={gender}
+          setIsLoadingList={setIsLoadingTitles}
+          isLoadingList={isLoadingTitles}
+          selectedItem={selectedJobTitle}
+          setSelectedItem={setSelectedJobTitle}
+          placeHolder="Select gender"
+        />
+      </Grid>
       <EmployementTerm
         open={open}
         SelectOpen={SelectOpen}
         SelectClose={SelectClose}
       />
-    </Box>
+    </Grid>
   );
 };
 export default GenderInput;

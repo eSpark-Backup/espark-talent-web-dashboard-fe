@@ -165,7 +165,10 @@ const Dashboard = () => {
                       }}
                       href="/"
                     >
-                      public holidays by country.
+                      <span style={{ color: '#000', fontWeight: 500 }}>
+                        {' '}
+                        public holidays by country.
+                      </span>
                     </Link>
                   </Typography>
                 </Box>
@@ -188,9 +191,15 @@ const Dashboard = () => {
                   value={currentReqTypeTabVal}
                   onChange={handleChangeCurrReqTypeTab}
                   aria-label="basic tabs example"
+                  variant="scrollable"
                 >
                   {leaveRequestsTab?.map(({ label, prop }, index) => (
-                    <Tab key={index} label={`${label}`} {...prop} />
+                    <Tab
+                      key={index}
+                      label={`${label}`}
+                      {...prop}
+                      disableRipple={true}
+                    />
                   ))}
                 </Tabs>
               </Box>
@@ -217,6 +226,7 @@ const Dashboard = () => {
                           marginTop={5}
                         >
                           <Tabs
+                            variant="scrollable"
                             value={currentReqStatusTabVal}
                             onChange={(ev, newVal) =>
                               handleChangeCurrReqStatusTab(
@@ -231,6 +241,7 @@ const Dashboard = () => {
                               ({ label, prop, background, color }, index) => {
                                 return (
                                   <Tab
+                                    disableRipple={true}
                                     key={index}
                                     label={
                                       <Box
@@ -245,7 +256,7 @@ const Dashboard = () => {
                                             borderRadius: '5px',
                                             marginRight: '10px',
                                             color,
-                                            fontSize: '16px',
+                                            fontSize: '14px',
                                             fontWeight: 600,
                                             lineHeight: '19px',
                                             letterSpacing: '0em',
@@ -307,8 +318,15 @@ const Dashboard = () => {
                               width={400}
                             />
                             <Button
-                              sx={{ marginX: '10px', minWidth: '120px' }}
-                              variant="outlined"
+                              sx={{
+                                marginX: '10px',
+                                minWidth: '120px',
+                                border: '1px solid #138A72',
+                                color: '#138A72',
+                                '&:hover:': {
+                                  background: '#fff',
+                                },
+                              }}
                               startIcon={
                                 <Image
                                   width={20}
@@ -321,9 +339,12 @@ const Dashboard = () => {
                               Refresh
                             </Button>
                             <Button
-                              variant="contained"
                               sx={{
                                 minWidth: '120px',
+                                background: '#138A72',
+                                '&:hover': {
+                                  background: '#138A72',
+                                },
                               }}
                               startIcon={
                                 <Image
@@ -352,10 +373,17 @@ const Dashboard = () => {
                           {isLoading ? (
                             <Typography>Loading ...</Typography>
                           ) : (
-                            <AppTable
-                              column={leaveBalanceColumn}
-                              data={leaveBalanceDataState}
-                            />
+                            <Box
+                              sx={{
+                                maxWidth: '100%',
+                                overflowX: 'auto',
+                              }}
+                            >
+                              <AppTable
+                                column={leaveBalanceColumn}
+                                data={leaveBalanceDataState}
+                              />
+                            </Box>
                           )}
                         </>
                       )}
@@ -369,6 +397,7 @@ const Dashboard = () => {
                   isLoading,
                   currentReqStatusTabVal,
                   currentReqStatusTab,
+
                   column:
                     currentReqTypeTab === 'Leave Requests'
                       ? leaveRequestsColumn

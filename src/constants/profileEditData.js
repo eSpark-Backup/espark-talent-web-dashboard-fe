@@ -17,14 +17,14 @@ export const User_Detail = {
   buttonText: 'Update',
   Fields: [
     {
-      label: 'Company Name',
-      place: 'Company Name',
-      type: 'text',
-    },
-    {
       label: 'Email',
       place: 'Email',
       type: 'email',
+    },
+    {
+      label: 'Company Name',
+      place: 'Company Name',
+      type: 'text',
     },
   ],
 };

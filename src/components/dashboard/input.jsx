@@ -12,6 +12,9 @@ const Input = ({
   width,
   onKeyDown,
   autofocus,
+  maxWidth,
+  placeHolder,
+  name,
 }) => {
   const inputRef = useRef(null);
 
@@ -27,14 +30,17 @@ const Input = ({
       alignItems={'center'}
       borderRadius={1}
       width={width || 400}
+      maxWidth={maxWidth || '100%'}
     >
       <Box
         display={'flex'}
+        flex={1}
         alignItems={'center'}
         sx={{ border: 'solid 1px #ccc' }}
         padding={1}
         borderRadius={1}
         width={'100%'}
+        height={40}
       >
         {!!prefixIcon && (
           <Box sx={{ marginRight: 1 }}>
@@ -50,20 +56,25 @@ const Input = ({
           ref={inputRef}
           value={value}
           onChange={(e) => {
-            setIsLoading(true);
-            handleChange(e?.target?.value);
+            setIsLoading?.(true);
+            handleChange?.(e?.target?.value);
           }}
           className="search-input"
-          placeholder="Search here..."
-          style={{ overflow: 'hidden', width: '100%' }}
+          placeholder={placeHolder || 'Search here...'}
+          style={{
+            overflow: 'hidden',
+            width: '100%',
+            background: 'transparent',
+          }}
           onKeyDown={onKeyDown}
+          name={name || ''}
         />
       </Box>
       {!!suffixIcon && (
         <Box sx={{ marginX: 1 }}>
           <Image
-            width={18}
-            height={18}
+            width={24}
+            height={24}
             alt="help"
             src="/icons/QuestionMarkIcon.svg"
           />

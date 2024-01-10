@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { Grid, Box, Typography, Button } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
+import Link from 'next/link';
+
 import Input from '@/src/components/dashboard/input';
 import AppTable from '@/src/components/dashboard/appTable';
 import { teamMembersData } from '@/src/constants/data/tables/teamMembers';
@@ -11,6 +13,7 @@ import { filterDataByKeyword } from '@/src/utils/search';
 import { filterTableRowsWRTTab } from '@/src/utils/table';
 import { changeTab } from '@/src/utils/tabs';
 import { teamTabs } from '@/src/constants/data/tabs/teamTabs';
+import { HIRING_FORM_DATA } from '@/src/constants/Hiring';
 
 const Dashboard = () => {
   const [value, setValue] = useState(0);
@@ -84,14 +87,16 @@ const Dashboard = () => {
               alignItems={'center'}
             >
               <Typography variant="h3">Team members</Typography>
-              <Button
-                style={{
-                  background: '#029894',
-                }}
-                variant="contained"
-              >
-                New hire
-              </Button>
+              <Link href={HIRING_FORM_DATA?.startHiringLink}>
+                <Button
+                  style={{
+                    background: '#029894',
+                  }}
+                  variant="contained"
+                >
+                  {HIRING_FORM_DATA?.newHire}
+                </Button>
+              </Link>
             </Box>
             <Box sx={{ width: '100%' }}>
               <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
@@ -99,10 +104,12 @@ const Dashboard = () => {
                   value={value}
                   onChange={handleChangeTab}
                   aria-label="basic tabs example"
+                  variant="scrollable"
                 >
                   {teamTabs?.map(({ label, prop, data }, i) => (
                     <Tab
                       key={i}
+                      disableRipple={true}
                       label={`${label} (${
                         filterTableRowsWRTTab(data, {
                           memberStatus: label === 'All' ? '' : label,
@@ -127,11 +134,18 @@ const Dashboard = () => {
                   {isLoading ? (
                     <div>Loading...</div>
                   ) : (
-                    <AppTable
-                      currentTab={currentTab}
-                      column={column}
-                      data={empData}
-                    />
+                    <Box
+                      sx={{
+                        maxWidth: '100%',
+                        overflowX: 'auto',
+                      }}
+                    >
+                      <AppTable
+                        currentTab={currentTab}
+                        column={column}
+                        data={empData}
+                      />
+                    </Box>
                   )}
                 </CustomTabPanel>
               ))}

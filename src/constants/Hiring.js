@@ -2,11 +2,12 @@ export const HIRING_FORM_DATA = {
   startDate: 'Hiring Start Date',
   endDate: 'Hiring End Date',
   gender: 'Gender',
-  employementTerm: 'Employment term',
+  employementTerm: 'Employment Term',
   selectterms: 'Select employment terms',
   selectGender: 'Select gender',
   jobTitle: 'Job Title',
   roleTitle: 'Role Title',
+  roleType: 'Role Type',
   selectRole: 'Select role',
   selectJob: 'Select job',
   submit: 'Submit',
@@ -16,6 +17,9 @@ export const HIRING_FORM_DATA = {
   selectStartDate: 'Select Start Date',
   selectEndDate: 'Select End Date',
   numberOfFields: '2',
+  addnewHire: 'Add new hire',
+  startHiringLink: '/client/dashboard/hire-onboard/start-hiring',
+  newHire: 'New hire',
 };
 export const GENDER_OPTION = [
   { label: 'Male', value: 'male' },

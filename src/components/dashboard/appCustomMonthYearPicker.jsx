@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Box, Typography } from '@mui/material';
+import { Box, Grid, Typography } from '@mui/material';
 import Image from 'next/image';
 
 const AppCustomMonthYearPicker = () => {
@@ -53,101 +53,104 @@ const AppCustomMonthYearPicker = () => {
   }, []);
 
   return (
-    <Box
-      ref={componentRef}
-      ml={'20px'}
-      sx={{
-        border: 'solid 1px #ccc',
-        borderRadius: '5px',
-        position: 'relative',
-      }}
-    >
+    <Grid sx={{ position: 'relative' }} item xs={12} md={6}>
       <Box
-        display={'flex'}
-        justifyContent="center"
-        minWidth={'250px'}
-        alignItems="center"
-        borderRadius="5px"
-        py={'5px'}
-        px={'15px'}
-        sx={{ cursor: 'pointer' }}
-        onClick={() => setIsOpenCalendar((ps) => !ps)}
+        ref={componentRef}
+        sx={{
+          border: 'solid 1px #ccc',
+          borderRadius: '5px',
+          position: 'relative',
+          width: '221px',
+          padding: '3px',
+        }}
       >
-        <Image
-          src={'/icons/Calendar.svg'}
-          alt="Calendar"
-          width={30}
-          height={30}
-        />
-        <Typography ml={'10px'} mb={0}>
-          {`${months[selectedDate.getMonth()]} ${selectedDate.getFullYear()}`}
-        </Typography>
-      </Box>
-      {isOpenCalendar && (
         <Box
-          sx={{
-            border: 'solid 1px #ccc',
-            background: '#fff',
-            marginTop: '10px',
-            width: '100%',
-            position: 'absolute',
-            borderRadius: '5px',
-            boxShadow: '0px 0px 5px 2px #ccc',
-          }}
+          display={'flex'}
+          justifyContent="flex-start"
+          minWidth={'250px'}
+          alignItems="center"
+          borderRadius="5px"
+          py={'5px'}
+          px={'15px'}
+          sx={{ cursor: 'pointer', marginLeft: '13px' }}
+          onClick={() => setIsOpenCalendar((ps) => !ps)}
         >
+          <Image
+            src={'/icons/Calendar.svg'}
+            alt="Calendar"
+            width={25}
+            height={25}
+          />
+          <Typography ml={'14px'} mt={0}>
+            {`${months[selectedDate.getMonth()]} ${selectedDate.getFullYear()}`}
+          </Typography>
+        </Box>
+        {isOpenCalendar && (
           <Box
-            display={'flex'}
-            mt="10px"
-            justifyContent="center"
-            alignItems="center"
+            sx={{
+              border: 'solid 1px #ccc',
+              background: '#fff',
+              marginTop: '10px',
+              width: '100%',
+              position: 'absolute',
+              borderRadius: '5px',
+              boxShadow: '0px 0px 5px 2px #ccc',
+            }}
           >
-            <Image
-              onClick={() => handleYearChange(-1)}
-              src={'/icons/Back.svg'}
-              width={12}
-              height={12}
-            />
-            <Typography mx={'15px'}>{currentYear}</Typography>
-            <Image
-              onClick={() => handleYearChange(1)}
-              src={'/icons/Next.svg'}
-              width={12}
-              height={12}
-            />
-          </Box>
-          <Box display={'flex'} alignItems="center" flexWrap={'wrap'}>
-            {months.map((item, i) => (
-              <Box
-                onClick={() => handleMonthChange(i)}
-                key={i}
-                sx={{
-                  width: '33.33%',
-                  cursor: 'pointer',
-                }}
-              >
-                <Typography
-                  py={'5px'}
-                  textAlign="center"
+            <Box
+              display={'flex'}
+              mt="10px"
+              justifyContent="center"
+              alignItems="center"
+            >
+              <Image
+                onClick={() => handleYearChange(-1)}
+                src={'/icons/Back.svg'}
+                width={12}
+                height={12}
+              />
+              <Typography mx={'15px'}>{currentYear}</Typography>
+              <Image
+                onClick={() => handleYearChange(1)}
+                src={'/icons/Next.svg'}
+                width={12}
+                height={12}
+              />
+            </Box>
+            <Box display={'flex'} alignItems="center" flexWrap={'wrap'}>
+              {months.map((item, i) => (
+                <Box
+                  onClick={() => handleMonthChange(i)}
+                  key={i}
                   sx={{
-                    margin: '5px 10px',
-                    background:
-                      item.substring(0, 3) ===
-                        months[selectedDate.getMonth()].substring(0, 3) &&
-                      '#029E9C',
-                    color:
-                      item.substring(0, 3) ===
-                        months[selectedDate.getMonth()].substring(0, 3) &&
-                      '#fff',
+                    width: '33.33%',
+                    cursor: 'pointer',
                   }}
                 >
-                  {item.substring(0, 3)}
-                </Typography>
-              </Box>
-            ))}
+                  <Typography
+                    py={'5px'}
+                    textAlign="center"
+                    sx={{
+                      margin: '5px 10px',
+                      background:
+                        item.substring(0, 3) ===
+                          months[selectedDate.getMonth()].substring(0, 3) &&
+                        '#029E9C',
+                      color:
+                        item.substring(0, 3) ===
+                          months[selectedDate.getMonth()].substring(0, 3) &&
+                        '#fff',
+                    }}
+                  >
+                    {item.substring(0, 3)}
+                  </Typography>
+                </Box>
+              ))}
+            </Box>
           </Box>
-        </Box>
-      )}
-    </Box>
+        )}
+      </Box>
+    </Grid>
   );
 };
 

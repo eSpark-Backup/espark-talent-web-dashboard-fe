@@ -1,6 +1,6 @@
 'use client';
 import React, { useMemo, useState } from 'react';
-import { Grid, Box, Typography, Button } from '@mui/material';
+import { Grid, Box, Typography, Button, Modal } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import AppTable from '@/src/components/dashboard/appTable';
@@ -15,15 +15,40 @@ import {
   employeeLeaveRequestsColumn,
   employeeLeaveRequestsData,
 } from '@/src/constants/data/tables/requestsData';
+import LeaveRequestModal from './LeaveRequestModal';
+import LeaveViewModal from '@/app/client/dashboard/team/time-off/LeaveViewModal';
 
 const Dashboard = () => {
+  const [open, setOpen] = useState(false);
+  const [modalData, setModalData] = useState({});
+  const [openModal, setOpenModal] = useState(false);
+  const handleOpenModal = () => {
+    setOpenModal(true);
+  };
+  const handleCloseModal = () => {
+    setOpenModal(false);
+  };
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClickActionView = (props) => {
+    const {
+      item,
+      row,
+      row: { status, employeeName, count, leaveType },
+    } = props;
+    console.log({ item, row, status, count, leaveType, employeeName });
+    setModalData({ item, status, count, leaveType, employeeName });
+    setOpen(true);
+  };
+  const handleClose = () => setOpen(false);
   const leaveBalanceDataState = useMemo(
     () => filterTableRowsWRTTab(employeeLeaveBalanceData, { status: '' }),
-    [leaveBalanceDataState]
+    [employeeLeaveBalanceData]
   );
   const leaveRequestDataState = useMemo(
     () => filterTableRowsWRTTab(employeeLeaveRequestsData, { status: '' }),
-    [leaveBalanceDataState]
+    [employeeLeaveRequestsData]
   );
   const [currentReqStatusTab, setcurrentReqStatusTab] = useState('All');
   const [currentReqStatusTabVal, setcurrentReqStatusTabVal] = useState(0);
@@ -36,6 +61,22 @@ const Dashboard = () => {
     }
     setcurrentReqStatusTab(tab);
     setcurrentReqStatusTabVal(newValue);
+  };
+
+  const handleOpenConditionalModal = (rowType, actionType) => {
+    if (rowType === 'Pending') {
+      if (actionType === 'View') {
+        // render pending view modal
+      } else {
+        // render pending reject modal
+      }
+    } else if (rowType === 'Completed') {
+      // render completed modal
+    } else if (rowType === 'Rejected') {
+      // render completed modal
+    } else {
+      // render cancelled modal
+    }
   };
 
   return (
@@ -55,18 +96,36 @@ const Dashboard = () => {
               display={'flex'}
               justifyContent={'space-between'}
               alignItems={'center'}
+              marginBottom={'50px'}
             >
               <Box display={'flex'} flexDirection={'column'}>
+                <Typography variant="h3">Leaves Requests</Typography>
+                <Box display={'flex'} flexDirection={'column'} mt={'20px'}>
+                  <Typography
+                    sx={{
+                      fontSize: '14px',
+                      fontWeight: 400,
+                      letterSpacing: '0em',
+                      textAlign: 'left',
+                      color: '#595959',
+                    }}
+                    variant="caption"
+                  >
+                    Manage timesheet from one place.
+                  </Typography>
+                </Box>
+              </Box>
+              {/* <Box display={'flex'} flexDirection={'column'}>
                 <Typography
                   sx={{
                     fontSize: '30px',
-                    fontWeight: 400,
+                    fontWeight: 600,
                     lineHeight: '36px',
                     letterSpacing: '0em',
                     textAlign: 'left',
                   }}
                 >
-                  Requests
+                  Leaves Requests
                 </Typography>
                 <Box display={'flex'} flexDirection={'column'} marginY={'20px'}>
                   <Typography
@@ -82,30 +141,84 @@ const Dashboard = () => {
                     Manage Leaves from one place.
                   </Typography>
                 </Box>
-              </Box>
+                <Typography
+                  sx={{
+                    fontSize: '20px',
+                    fontWeight: '400',
+                    lineHeight: '17px',
+                    letterSpacing: '0em',
+                    textAlign: 'left',
+                    color: '#595959',
+                    marginTop: '50px',
+                  }}
+                  variant="caption"
+                >
+                  Balance
+                </Typography>
+              </Box> */}
               <Button
-                sx={{ marginX: '10px', minWidth: '120px' }}
+                sx={{ minWidth: '120px', marginBottom: '25px' }}
                 variant="contained"
+                onClick={handleOpenModal}
               >
                 Create
               </Button>
+              {openModal && (
+                <Modal
+                  open={openModal}
+                  onClose={handleCloseModal}
+                  aria-labelledby="modal-modal-title"
+                  aria-describedby="modal-modal-description"
+                  sx={{
+                    // height: { xs: '850px', md: '900px' },
+                    display: 'flex',
+                    alignItems: 'center',
+                  }}
+                >
+                  <LeaveRequestModal handleClose={handleCloseModal} />
+                </Modal>
+              )}
             </Box>
+
             <Box sx={{ width: '100%' }}>
               <Box
                 sx={{
                   marginTop: '10px',
                   marginBottom: '20px',
+                  maxWidth: '100%',
+                  overflowX: 'auto',
                 }}
               >
+                <Box
+                  sx={{
+                    mb: '26px',
+                  }}
+                >
+                  <Typography
+                    sx={{
+                      fontSize: '20px',
+                      fontWeight: '400',
+                      lineHeight: '17px',
+                      letterSpacing: '0em',
+                      textAlign: 'left',
+                      color: '#595959',
+                    }}
+                    variant="caption"
+                  >
+                    Balance
+                  </Typography>
+                </Box>
                 <AppTable
                   column={employeeLeaveBalanceColumn}
                   data={leaveBalanceDataState}
+                  noPagination
                 />
               </Box>
             </Box>
           </div>
         </Box>
       </Grid>
+
       <Grid container>
         <Box
           sx={{
@@ -130,6 +243,7 @@ const Dashboard = () => {
                     lineHeight: '36px',
                     letterSpacing: '0em',
                     textAlign: 'left',
+                    color: '#595959',
                   }}
                 >
                   Requests
@@ -148,10 +262,13 @@ const Dashboard = () => {
                   <Box
                     display={'flex'}
                     justifyContent={'space-between'}
+                    flexWrap={'wrap'}
                     alignItems={'center'}
                     marginTop={5}
+                    px={'10px'}
                   >
                     <Tabs
+                      variant="scrollable"
                       value={currentReqStatusTabVal}
                       onChange={(ev, newVal) =>
                         handleChangeCurrReqStatusTab(
@@ -163,10 +280,11 @@ const Dashboard = () => {
                       aria-label="basic tabs example"
                     >
                       {employeeRequestsTabs?.map(
-                        ({ label, prop, background, color }, index) => {
+                        ({ label, prop, color, background }, index) => {
                           return (
                             <Tab
                               key={index}
+                              disableRipple={true}
                               label={
                                 <Box display={'flex'} alignItems={'center'}>
                                   <Box
@@ -177,7 +295,7 @@ const Dashboard = () => {
                                       borderRadius: '5px',
                                       marginRight: '10px',
                                       color,
-                                      fontSize: '16px',
+                                      fontSize: '14px',
                                       fontWeight: 600,
                                       lineHeight: '19px',
                                       letterSpacing: '0em',
@@ -213,10 +331,24 @@ const Dashboard = () => {
                         }
                       )}
                     </Tabs>
-                    <Box display={'flex'} alignItems={'center'}>
+                    <Box
+                      display={'flex'}
+                      alignItems={'center'}
+                      sx={{
+                        pt: { xs: '10px', md: 0 },
+                        pb: '10px',
+                      }}
+                    >
                       <Button
-                        sx={{ marginX: '10px', minWidth: '120px' }}
-                        variant="outlined"
+                        sx={{
+                          marginX: '10px',
+                          minWidth: '120px',
+                          border: '1px solid #138A72',
+                          color: '#138A72',
+                          '&:hover:': {
+                            background: '#fff',
+                          },
+                        }}
                         startIcon={
                           <Image
                             width={20}
@@ -229,9 +361,13 @@ const Dashboard = () => {
                         Refresh
                       </Button>
                       <Button
-                        variant="contained"
                         sx={{
                           minWidth: '120px',
+                          background: '#138A72',
+                          color: '#fff',
+                          '&:hover': {
+                            background: '#138A72',
+                          },
                         }}
                         startIcon={
                           <Image
@@ -251,13 +387,35 @@ const Dashboard = () => {
               {renderNestedTable({
                 currentReqStatusTabVal,
                 currentReqStatusTab,
+                handleOpen,
                 column: employeeLeaveRequestsColumn,
                 data: leaveRequestDataState,
+                handleOpenConditionalModal,
+                handleClickActionView,
               })}
             </Box>
           </div>
         </Box>
       </Grid>
+
+      {/* LeaveRequest Modal */}
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <LeaveViewModal
+          modalData={modalData}
+          handleClose={handleClose}
+          isEmployee
+        />
+      </Modal>
     </>
   );
 };

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Typography } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 
 import { HIRING_FORM_DATA } from '@/src/constants/Hiring';
 import RoleType from './RoleType';
@@ -11,29 +11,21 @@ const JobTitle = ({ open, SelectOpen, SelectClose }) => {
   const [selectedJobTitle, setSelectedJobTitle] = useState('');
 
   return (
-    <Box
+    <Grid
+      container
+      gap={'10px'}
       sx={{
-        display: 'flex',
-        flexDirection: { xs: 'column', md: 'row' },
-        justifyContent: 'space-around',
-        paddingTop: '15px',
-        zIndex: 103,
-        '@media (min-width: 900px) and (max-width: 1400px)': {
-          flexDirection: 'column',
-          gap: '10px',
-        },
-        gap: { xs: '7px', sm: '7px', md: '0px' },
+        flexWrap: { xs: 'wrap', lg: 'nowrap' },
       }}
     >
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '12px',
-          zIndex: 103,
-        }}
-      >
-        <Typography>{HIRING_FORM_DATA?.jobTitle}</Typography>
+      <Grid item xs={12} lg={6}>
+        <Typography
+          sx={{
+            mb: '10px',
+          }}
+        >
+          {HIRING_FORM_DATA?.jobTitle}
+        </Typography>
         <AppNestedDropdown
           data={jobTitles}
           setIsLoadingList={setIsLoadingTitles}
@@ -41,11 +33,11 @@ const JobTitle = ({ open, SelectOpen, SelectClose }) => {
           selectedItem={selectedJobTitle}
           setSelectedItem={setSelectedJobTitle}
           nested
-          placeHolder="Select Job Title..."
+          placeHolder="Select job."
         />
-      </Box>
+      </Grid>
       <RoleType open={open} SelectOpen={SelectOpen} SelectClose={SelectClose} />
-    </Box>
+    </Grid>
   );
 };
 

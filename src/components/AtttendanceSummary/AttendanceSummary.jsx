@@ -25,12 +25,16 @@ const AttendanceSummary = () => {
             background: '#FFF',
           }}
         >
-          <Typography variant="h5">Attendance Summary</Typography>
+          <Typography
+            sx={{ fontSize: { xs: '18px', md: '25px' }, fontWeight: 600 }}
+          >
+            Attendance Summary
+          </Typography>
         </Box>
         <Box
           sx={{
-            px: { xs: 3, sm: 3, lg: 3 },
-            py: 3,
+            px: { xs: 3, md: '25px' },
+            py: { xs: 3, md: '25px' },
             width: '100%',
             justifyContent: 'center',
             alignItems: 'center',

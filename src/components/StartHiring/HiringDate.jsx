@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box } from '@mui/material';
+import { Box, Grid } from '@mui/material';
 
 import { HIRING_FORM_DATA } from '@/src/constants/Hiring';
 import DatePickerBox from './DatePicker';
@@ -7,44 +7,75 @@ import DatePickerBox from './DatePicker';
 const HiringDate = () => {
   return (
     <Box>
-      <Box
+      <Grid
+        container
+        gap={'10px'}
         sx={{
-          display: 'flex',
-          flexDirection: { xs: 'column', md: 'row' },
-          justifyContent: 'space-around',
-          paddingTop: '25px',
-          gap: { xs: '9px', md: '0px' },
-          '@media (min-width: 900px) and (max-width: 1400px)': {
-            flexDirection: 'column',
-            gap: '10px',
-          },
+          flexWrap: { xs: 'wrap', lg: 'nowrap' },
         }}
       >
-        <Box
+        <Grid
+          item
+          xs={12}
+          lg={6}
           sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '12px',
+            mb: '10px',
           }}
         >
-          <DatePickerBox
-            label={HIRING_FORM_DATA?.selectStartDate}
-            dateKey="startDate"
-          />
-        </Box>
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '12px',
-          }}
-        >
-          <DatePickerBox
-            label={HIRING_FORM_DATA?.selectEndDate}
-            dateKey="endDate"
-          />
-        </Box>
-      </Box>
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '12px',
+            }}
+          >
+            <DatePickerBox
+              label={HIRING_FORM_DATA?.selectStartDate}
+              dateKey="startDate"
+              placeholder={'Select Start Date'}
+            />
+            {/* <Typography>{HIRING_FORM_DATA["startDate"]}</Typography>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DesktopDatePicker
+                  className="custom-date-time-picker"
+                  open={isOpenDatePicker}
+                  slots={{
+                    openPickerIcon: () => (
+                      <Image
+                        src={'/images/hiring/calender.svg'}
+                        width={20}
+                        height={20}
+                        alt="Date"
+                        onClick={() => setIsOpenDatePicker((ps) => !ps)}
+                      />
+                    ),
+                    actionBar: () => (
+                      <ActionBarComponent onClose={handleCloseDatePicker} />
+                    ),
+                  }}
+                  sx={{ width: '100%', borderRadius: '50%' }}
+                  defaultValue={dayjs('2022-04-17')}
+                />
+              </LocalizationProvider> */}
+          </Box>
+        </Grid>
+        <Grid item xs={12} lg={6}>
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '12px',
+              mb: '10px',
+            }}
+          >
+            <DatePickerBox
+              label={HIRING_FORM_DATA?.selectEndDate}
+              dateKey="endDate"
+              placeholder={'Select End Date'}
+            />
+          </Box>
+        </Grid>
+      </Grid>
     </Box>
   );
 };

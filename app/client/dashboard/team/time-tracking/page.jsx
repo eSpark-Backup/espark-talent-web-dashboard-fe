@@ -5,11 +5,11 @@ import AppTable from '@/src/components/dashboard/appTable';
 import {
   timeTrackingTableColumn,
   timeTrackingTableData,
-  trackingStatusTypes,
+  // trackingStatusTypes,
 } from '@/src/constants/data/tables/timeTracking';
 import Link from 'next/link';
 import AppSearchableDropdown from '@/src/components/dashboard/appSearchableDropdown';
-import { renderTrackingStatus } from './renderComponents';
+// import { renderTrackingStatus } from './renderComponents';
 import AppCustomMonthYearPicker from '@/src/components/dashboard/appCustomMonthYearPicker';
 
 const Dashboard = () => {
@@ -76,6 +76,7 @@ const Dashboard = () => {
                     fontWeight: '400',
                     letterSpacing: '0em',
                     textAlign: 'left',
+                    color: '#595959',
                   }}
                   variant="caption"
                 >
@@ -88,6 +89,7 @@ const Dashboard = () => {
                     fontWeight: '400',
                     letterSpacing: '0em',
                     textAlign: 'left',
+                    color: '#595959',
                   }}
                   variant="caption"
                 >
@@ -98,7 +100,9 @@ const Dashboard = () => {
                     }}
                     href="/"
                   >
-                    eSpark Talent Help Center.
+                    <span style={{ color: '#000', fontWeight: 400 }}>
+                      eSpark Talent Help Center.
+                    </span>
                   </Link>
                 </Typography>
               </Box>
@@ -107,7 +111,14 @@ const Dashboard = () => {
           <Box sx={{ width: '100%' }}>
             <Box display={'flex'} alignItems="center" sx={{ width: '100%' }}>
               <Grid container spacing={2}>
-                <Grid display={'flex'} alignItems="center" item xs={12} md={6}>
+                <Grid
+                  display={'flex'}
+                  flexWrap={'wrap'}
+                  alignItems="center"
+                  item
+                  xs={12}
+                  md={6}
+                >
                   <AppSearchableDropdown
                     setIsLoadingList={setIsLoadingEmployee}
                     isLoadingList={isLoadingEmployee}
@@ -120,7 +131,13 @@ const Dashboard = () => {
                 </Grid>
               </Grid>
             </Box>
-            <Box marginY={'30px'} display={'flex'} alignItems={'center'}>
+            <br />
+            {/* <Box
+              marginY={'20px'}
+              display={'flex'}
+              flexWrap={'wrap'}
+              alignItems={'center'}
+            >
               {trackingStatusTypes?.map(
                 ({ label, shortForm, background }, statusIndex) =>
                   renderTrackingStatus({
@@ -130,21 +147,35 @@ const Dashboard = () => {
                     shortForm,
                   })
               )}
-            </Box>
+            </Box> */}
             {isLoading ? (
               <Box>Loading...</Box>
             ) : (
               <>
                 {selectedEmployee ? (
-                  <AppTable
-                    column={timeTrackingTableColumn}
-                    data={timeTrackingTableData}
-                  />
+                  <Box
+                    sx={{
+                      maxWidth: '100%',
+                      overflowX: 'auto',
+                    }}
+                  >
+                    <AppTable
+                      column={timeTrackingTableColumn}
+                      data={timeTrackingTableData}
+                    />
+                  </Box>
                 ) : (
-                  <AppTable
-                    column={timeTrackingTableColumn}
-                    renderMessage="Select employee to see there data"
-                  />
+                  <Box
+                    sx={{
+                      maxWidth: '100%',
+                      overflowX: 'auto',
+                    }}
+                  >
+                    <AppTable
+                      column={timeTrackingTableColumn}
+                      renderMessage="Select employee to see there data"
+                    />
+                  </Box>
                 )}
               </>
             )}

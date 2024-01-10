@@ -11,7 +11,7 @@ const PoliciesCard = ({ data }) => {
           display: 'flex',
           flexDirection: { xs: 'column', sm: 'column', md: 'row' },
           justifyContent: 'center',
-          gap: 3,
+          // gap: 3,
           flexWrap: 'wrap',
           '@media (min-width: 1200px) and (max-width: 1379px)': {
             width: '100%',
@@ -27,6 +27,7 @@ const PoliciesCard = ({ data }) => {
               display: 'flex',
               justifyContent: 'center',
               padding: { sm: 0, md: '25px' },
+              mb: { xs: '25px', md: '0' },
               '@media (min-width: 900px) and (max-width: 1280px)': {
                 padding: '15px',
               },

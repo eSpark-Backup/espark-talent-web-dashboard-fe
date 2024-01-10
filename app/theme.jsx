@@ -1,5 +1,12 @@
 'use client';
 import { createTheme } from '@mui/material/styles';
+import { Inter } from 'next/font/google';
+
+const inter = Inter({
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
+  style: ['normal'],
+  subsets: ['latin'],
+});
 
 // Light Theme
 const lightTheme = createTheme({
@@ -21,7 +28,7 @@ const lightTheme = createTheme({
     },
   },
   typography: {
-    fontFamily: ['Inter', 'sans-serif'].join(','),
+    fontFamily: [inter.style.fontFamily, 'sans-serif'].join(','),
     h1: {
       fontSize: '40px',
       fontWeight: 700,

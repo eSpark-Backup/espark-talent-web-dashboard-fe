@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { Grid, Box, Typography, Button } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
+import Link from 'next/link';
+
 import Input from '@/src/components/dashboard/input';
 import AppTable from '@/src/components/dashboard/appTable';
 import { employeeTableDataHiringRequest } from '@/src/constants/data/tables/employee';
@@ -10,6 +12,7 @@ import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
 import { filterDataByKeyword } from '@/src/utils/search';
 import { changeTab } from '@/src/utils/tabs';
 import { empTabs } from '@/src/constants/data/tabs/empTabs';
+import { HIRING_FORM_DATA } from '@/src/constants/Hiring';
 
 const Dashboard = () => {
   const [value, setValue] = useState(0);
@@ -77,14 +80,19 @@ const Dashboard = () => {
             alignItems={'center'}
           >
             <Typography variant="h3">Hire a team member</Typography>
-            <Button
-              style={{
-                background: '#029894',
-              }}
-              variant="contained"
-            >
-              Add New hire
-            </Button>
+            <Link href={HIRING_FORM_DATA?.startHiringLink}>
+              <Button
+                style={{
+                  background: '#029894',
+                  width: '160px',
+                  color: '#fff',
+                  fontSize: '16px',
+                  textTransform: 'math-auto',
+                }}
+              >
+                {HIRING_FORM_DATA?.addnewHire}
+              </Button>
+            </Link>
           </Box>
           <Box sx={{ width: '100%' }}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
@@ -92,9 +100,26 @@ const Dashboard = () => {
                 value={value}
                 onChange={handleChange}
                 aria-label="basic tabs example"
+                variant="scrollable"
+                sx={{
+                  '&.Mui-selected': {
+                    outline: 'none',
+                    background: 'transparent',
+                  },
+                }}
               >
                 {empTabs?.map(({ label, prop, data }, i) => (
-                  <Tab key={i} label={`${label} (${data?.length})`} {...prop} />
+                  <Tab
+                    disableRipple={true}
+                    key={i}
+                    label={`${label} (${data?.length})`}
+                    sx={{
+                      '& .MuiTabs-indicator': {
+                        backgroundColor: 'gray',
+                      },
+                    }}
+                    {...prop}
+                  />
                 ))}
               </Tabs>
             </Box>
@@ -112,11 +137,18 @@ const Dashboard = () => {
                 {isLoading ? (
                   <Box>Loading...</Box>
                 ) : (
-                  <AppTable
-                    currentTab={currentTab}
-                    column={column}
-                    data={empData}
-                  />
+                  <Box
+                    sx={{
+                      maxWidth: '100%',
+                      overflowX: 'auto',
+                    }}
+                  >
+                    <AppTable
+                      currentTab={currentTab}
+                      column={column}
+                      data={empData}
+                    />
+                  </Box>
                 )}
               </CustomTabPanel>
             ))}

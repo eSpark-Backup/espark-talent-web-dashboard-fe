@@ -1,20 +1,62 @@
 export const employeeLeaveRequestsColumn = [
-  'Employee ID',
-  'Employee name',
-  'Country',
-  'Department',
-  'Leave type',
-  'Count',
-  'Requested at',
-  'Status',
-  'Action',
+  {
+    title: 'Employee ID',
+    flex: 2,
+  },
+  {
+    title: 'Employee name',
+    flex: 2,
+  },
+  {
+    title: 'Country',
+    flex: 2,
+  },
+  {
+    title: 'Department',
+    flex: 1,
+  },
+  {
+    title: 'Leave type',
+    flex: 1.5,
+  },
+  {
+    title: 'Count',
+    flex: 1,
+  },
+  {
+    title: 'Requested at',
+    flex: 2,
+  },
+  {
+    title: 'Status',
+    flex: 2,
+  },
+  {
+    title: 'Actions',
+    flex: 2,
+  },
 ];
 export const employeeLeaveBalanceColumn = [
-  'Leave type',
-  'Balance',
-  'Availed',
-  'Available',
-  'Pending',
+  {
+    title: 'Leave type',
+    flex: 2,
+  },
+  {
+    title: 'Balance',
+    flex: 2,
+  },
+  {
+    title: 'Availed',
+    flex: 2,
+  },
+  {
+    title: 'Available',
+    flex: 2,
+  },
+  {
+    title: 'Pending',
+    flex: 2,
+  },
 ];
 export const employeeLeaveRequestsData = [
   {
@@ -27,7 +69,8 @@ export const employeeLeaveRequestsData = [
     requestedAt: '07-October-2021, 9:30AM (PST)',
     status: 'Pending',
     actionTimeOffReqStatus: true,
-    action: ['Reject', 'View'],
+    actions: ['Deletee', 'View'],
+    actionStatus: true,
   },
   {
     employeeId: 12223,
@@ -39,7 +82,8 @@ export const employeeLeaveRequestsData = [
     requestedAt: '28-February-2021, 9:30AM (PST)',
     status: 'Pending',
     actionTimeOffReqStatus: true,
-    action: ['Reject', 'View'],
+    actions: ['Deletee', 'View'],
+    actionStatus: true,
   },
   {
     employeeId: 12224,
@@ -49,9 +93,10 @@ export const employeeLeaveRequestsData = [
     leaveType: 'Annual',
     count: '7',
     requestedAt: '12-October-2022, 9:30AM (PST)',
-    status: 'Cancelled',
+    status: 'Rejected',
     actionTimeOffReqStatus: true,
-    action: ['View'],
+    actions: ['View'],
+    actionStatus: true,
   },
   {
     employeeId: 12225,
@@ -63,7 +108,8 @@ export const employeeLeaveRequestsData = [
     requestedAt: '07-October-2021, 9:30AM (PST)',
     status: 'Pending',
     actionTimeOffReqStatus: true,
-    action: ['Reject', 'View'],
+    actions: ['Deletee', 'View'],
+    actionStatus: true,
   },
   {
     employeeId: 12226,
@@ -75,7 +121,8 @@ export const employeeLeaveRequestsData = [
     requestedAt: '7-June-2022, 8:36PM (PST)',
     status: 'Pending',
     actionTimeOffReqStatus: true,
-    action: ['Reject', 'View'],
+    actions: ['Deletee', 'View'],
+    actionStatus: true,
   },
   {
     employeeId: 12227,
@@ -87,7 +134,8 @@ export const employeeLeaveRequestsData = [
     requestedAt: '9-January-2023, 6:24PM (PST)',
     status: 'Pending',
     actionTimeOffReqStatus: true,
-    action: ['Reject', 'View'],
+    actions: ['Deletee', 'View'],
+    actionStatus: true,
   },
   {
     employeeId: 12228,
@@ -99,7 +147,8 @@ export const employeeLeaveRequestsData = [
     requestedAt: '07-October-2021, 9:30AM (PST)',
     status: 'Completed',
     actionTimeOffReqStatus: true,
-    action: ['View'],
+    actions: ['View'],
+    actionStatus: true,
   },
   {
     employeeId: 12229,
@@ -111,7 +160,8 @@ export const employeeLeaveRequestsData = [
     requestedAt: '28-February-2021, 9:30AM (PST)',
     status: 'Pending',
     actionTimeOffReqStatus: true,
-    action: ['Reject', 'View'],
+    actions: ['Deletee', 'View'],
+    actionStatus: true,
   },
   {
     employeeId: 12230,
@@ -123,7 +173,8 @@ export const employeeLeaveRequestsData = [
     requestedAt: '12-October-2022, 9:30AM (PST)',
     status: 'Pending',
     actionTimeOffReqStatus: true,
-    action: ['Reject', 'View'],
+    actions: ['Deletee', 'View'],
+    actionStatus: true,
   },
   {
     employeeId: 12231,
@@ -135,7 +186,8 @@ export const employeeLeaveRequestsData = [
     requestedAt: '07-October-2021, 9:30AM (PST)',
     status: 'Rejected',
     actionTimeOffReqStatus: true,
-    action: ['View'],
+    actions: ['View'],
+    actionStatus: true,
   },
   {
     employeeId: 12232,
@@ -147,7 +199,8 @@ export const employeeLeaveRequestsData = [
     requestedAt: '7-June-2022, 8:36PM (PST)',
     status: 'Completed',
     actionTimeOffReqStatus: true,
-    action: ['View'],
+    actions: ['View'],
+    actionStatus: true,
   },
   {
     employeeId: 12233,
@@ -159,7 +212,8 @@ export const employeeLeaveRequestsData = [
     requestedAt: '9-January-2023, 6:24PM (PST)',
     status: 'Pending',
     actionTimeOffReqStatus: true,
-    action: ['Reject', 'View'],
+    actions: ['Deletee', 'View'],
+    actionStatus: true,
   },
 ];
 export const employeeLeaveBalanceData = [

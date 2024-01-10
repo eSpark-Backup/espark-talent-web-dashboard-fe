@@ -43,7 +43,11 @@ const StatusBox = ({
                 backgroundColor: `${horizotalLineColor}`,
               }}
             />
-            <Typography variant="h6">{isEmployee ? title : count}</Typography>
+            <Typography sx={{  color: '#000',
+                fontSize: '16px',
+                fontStyle: 'normal',
+                fontWeight: 400,
+                lineHeight: 'normal'}}>{isEmployee ? title : count}</Typography>
           </Box>
           <Box>
             <Typography>{isEmployee ? count : title}</Typography>
@@ -51,10 +55,11 @@ const StatusBox = ({
         </Box>
         <Box
           sx={{
-            width: '20%',
+            // width: '10%',
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
+            marginRight: '10px',
           }}
         >
           {isEmployee ? (

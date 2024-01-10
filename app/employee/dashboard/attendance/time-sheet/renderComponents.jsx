@@ -8,7 +8,13 @@ export const renderTrackingStatus = ({
   shortForm,
 }) => {
   return (
-    <Box display={'flex'} alignItems={'center'} key={statusIndex}>
+    <Box
+      display={'flex'}
+      alignItems={'center'}
+      padding={'6px'}
+      key={statusIndex}
+      mr={'30px'}
+    >
       <Box
         sx={{
           width: '30px',
@@ -18,13 +24,13 @@ export const renderTrackingStatus = ({
           color: '#fff',
         }}
         display={'flex'}
-        fontSize={'12px'}
+        fontSize={'14px'}
         justifyContent={'center'}
         alignItems={'center'}
       >
         {shortForm}
       </Box>
-      <Typography variant="caption" marginX={'10px'}>
+      <Typography variant="caption" fontSize={'14px'} ml={'5px'}>
         {label}
       </Typography>
     </Box>
