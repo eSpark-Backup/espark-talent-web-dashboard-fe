@@ -49,20 +49,6 @@ const Layout = ({ children }) => {
       <SideNav onClose={() => setOpenNav(false)} open={openNav} />
       <LayoutRoot>
         <LayoutContainer>
-          {/* <Box
-            sx={{
-              px: {
-                xs: '15px',
-                sm: '20px',
-                md: '20px',
-                lg: '30px',
-              },
-              pt: { xs: '80px', sm: '90px', md: '90px', lg: '30px' },
-              pb: { xs: '20px', sm: '20px', md: '20px', lg: '30px' },
-            }}
-          >
-            {child && children}
-          </Box> */}
           <Box
             sx={{
               '@media (max-width: 400px)': {

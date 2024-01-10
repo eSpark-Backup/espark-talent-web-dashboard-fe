@@ -4,6 +4,7 @@ import { Grid, Menu, MenuItem, Typography } from '@mui/material';
 import { Box, useTheme } from '@mui/system';
 import Image from 'next/image';
 import React, { useState } from 'react';
+import Link from 'next/link';
 
 const EmployeeView = ({ status, id, name, designation, search }) => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -246,14 +247,16 @@ const EmployeeView = ({ status, id, name, designation, search }) => {
                           eachItem.status === 'Active' ? '#068987' : '#F00',
                       }}
                     ></Box>
-                    <Typography
-                      sx={{
-                        color:
-                          eachItem.status === 'Active' ? '#068987' : '#F00',
-                      }}
-                    >
-                      {eachItem.status}
-                    </Typography>
+                    <Link href={`/hr/dashboard/employees/${eachItem?.id}`}>
+                      <Typography
+                        sx={{
+                          color:
+                            eachItem.status === 'Active' ? '#068987' : '#F00',
+                        }}
+                      >
+                        {eachItem.status}
+                      </Typography>
+                    </Link>
                   </Box>
                   <Box
                     sx={{
