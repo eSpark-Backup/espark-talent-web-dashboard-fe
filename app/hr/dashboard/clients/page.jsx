@@ -1,10 +1,10 @@
 import React from 'react';
-import AllEmployee from '@/src/components/HR/AllEmployee';
 
 const page = () => {
   return (
     <>
-      <AllEmployee />
+      <h1>Clients</h1>
+      <h1>Comming Soon</h1>
     </>
   );
 };
