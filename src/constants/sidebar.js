@@ -205,3 +205,42 @@ export const Employee_Routes = [
     ],
   },
 ];
+
+export const Hr_Routes = [
+  {
+    icon: '/images/sidebar-icons/dashboard.svg',
+    text: 'Dashboard',
+    link: '/hr/dashboard',
+    sublinks: null,
+  },
+  {
+    icon: '/images/sidebar-icons/employees.svg',
+    text: 'Employees',
+    link: '/hr/dashboard/employees',
+    sublinks: null,
+  },
+  {
+    icon: '/images/sidebar-icons/clients.svg',
+    text: 'Clients',
+    link: '/hr/dashboard/clients',
+    sublinks: null,
+  },
+  {
+    icon: '/images/sidebar-icons/invoices.svg',
+    text: 'Invoices',
+    link: '/hr/dashboard/invoices',
+    sublinks: null,
+  },
+  {
+    icon: '/images/sidebar-icons/policies.svg',
+    text: 'Policies',
+    link: '/hr/dashboard/policies',
+    sublinks: null,
+  },
+  {
+    icon: '/images/sidebar-icons/settings.svg',
+    text: 'Settings',
+    link: '/hr/dashboard/settings',
+    sublinks: null,
+  },
+];
