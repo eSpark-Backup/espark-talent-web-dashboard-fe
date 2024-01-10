@@ -5,11 +5,11 @@ import Image from 'next/image';
 
 import { employeeProfileData } from '@/src/constants/employeeProfile';
 import Profile from '@/src/components/employeeData/profile';
-import Client from '@/src/components/employeeData/Client';
 import AttendanceReport from '@/src/components/employeeData/attendanceReports';
 import Assets from '@/src/components/employeeData/assets';
 import EditEmployeeCredential from '@/src/components/employeeData/editEmployeeCredential';
 import EditModal from '@/src/components/employeeData/editModal';
+import Client from '@/src/components/employeeData/client';
 
 const Page = () => {
   const [value, setValue] = useState('one');
