@@ -21,6 +21,9 @@ const StatusBox = ({
           background: `${backgroundColor}`,
           justifyContent: 'space-between',
           alignItems: 'center',
+          '@media (min-width: 900px) and (max-width: 1275px)': {
+            height: isEmployee ? '110px' : '150px',
+          },
         }}
       >
         <Box
