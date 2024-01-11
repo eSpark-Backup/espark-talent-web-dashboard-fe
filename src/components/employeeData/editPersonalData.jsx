@@ -108,7 +108,6 @@ const EditPersonalModal = ({ onClose, handleEditProfileModal }) => {
               display: 'flex',
               flexDirection: 'column',
               width: '85%',
-            
             }}
           >
             <Box
