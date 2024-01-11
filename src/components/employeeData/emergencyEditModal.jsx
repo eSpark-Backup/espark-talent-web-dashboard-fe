@@ -27,10 +27,17 @@ const EditEmergencyModal = ({ onClose, handleEmergencyModal }) => {
           borderRadius: '10px',
           boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
           height: { xs: '825px', md: '625px' },
+          position: 'absolute',
+          top: '10%',
           '@media (min-width: 280px) and (max-width: 450px)': {
-            height: '1000px',
+            height: '1100px',
           },
           overflow: 'auto',
+           scrollbarWidth: 'thin',
+                scrollbarColor: 'transparent transparent',
+                '&::-webkit-scrollbar': {
+                  display: 'none',
+                },
         }}
       >
         <Box
@@ -61,8 +68,7 @@ const EditEmergencyModal = ({ onClose, handleEmergencyModal }) => {
               height={25}
               alt="close"
               onClick={onClose}
-              style={{}}
-            />
+s            />
           </Box>
         </Box>
         <Box
@@ -98,7 +104,7 @@ const EditEmergencyModal = ({ onClose, handleEmergencyModal }) => {
                   width: '50%',
                 }}
               >
-                <Typography sx={{ fontSize: '16px', fontWeight: 600 }}>
+                <Typography sx={{ fontSize: { xs: "14px", md: '16px' }, fontWeight: 600 }}>
                   {EDIT_MODAL?.primaryContact}
                 </Typography>
                 <Box sx={{ width: '100%' }}>
@@ -129,7 +135,12 @@ const EditEmergencyModal = ({ onClose, handleEmergencyModal }) => {
                   width: '50%',
                 }}
               >
-                <Typography sx={{ fontSize: '16px', fontWeight: 600 }}>
+                <Typography sx={{
+                  fontSize: { xs: "14px", md: '16px' }, fontWeight: 600,
+                   '@media (min-width: 280px) and (max-width: 450px)': {
+                  marginTop: '30px',
+                }
+                }}>
                   {EDIT_MODAL?.secondaryContact}
                 </Typography>
                 <Box sx={{ width: '100%' }}>
@@ -160,6 +171,7 @@ const EditEmergencyModal = ({ onClose, handleEmergencyModal }) => {
                 height: '40px',
                 fontSize: '16px',
                 fontWeight: 600,
+                marginTop:"30px"
               }}
             >
               {EDIT_MODAL?.save}

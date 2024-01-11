@@ -19,12 +19,14 @@ const EditEmployeeCredential = ({ onClose, open }) => {
       <Box
         sx={{
           bgcolor: '#fff',
-          width: { xs: '90%', sm: '90%', md: '50%' },
+          width: { xs: '90%', sm: '90%', md: '40%' },
           display: 'flex',
           flexDirection: 'column',
           borderRadius: '10px',
           boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
           height: { xs: '600px', md: '414px' },
+          position: 'absolute',
+          top: '10%',
         }}
       >
         <Box
@@ -47,8 +49,6 @@ const EditEmployeeCredential = ({ onClose, open }) => {
           <Box
             sx={{
               display: 'flex',
-              //  marginRight:"10px"
-              //   marginLeft: 'auto',
             }}
           >
             <Image
@@ -57,15 +57,6 @@ const EditEmployeeCredential = ({ onClose, open }) => {
               height={25}
               alt="close"
               onClick={onClose}
-              style={
-                {
-                  //   display:"block",
-                  //   alignSelf: 'flex-end',
-                  //   marginBottom:"auto"
-                  //   display:"flex",
-                  //   alignItems: "flex-end"
-                }
-              }
             />
           </Box>
         </Box>

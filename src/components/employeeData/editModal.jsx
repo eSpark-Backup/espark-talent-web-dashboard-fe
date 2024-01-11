@@ -48,7 +48,7 @@ const EditModal = ({ handleOpenModal, onClose }) => {
           <Box
             sx={{
               display: 'flex',
-              marginLeft: 'auto',
+              justifyContent: 'flex-end',
             }}
           >
             <Image
@@ -57,23 +57,18 @@ const EditModal = ({ handleOpenModal, onClose }) => {
               height={25}
               alt="close"
               onClick={onClose}
-              style={
-                {
-                  //   display:"block",
-                  //   alignSelf: 'flex-end',
-                  //   marginBottom:"auto"
-                  //   display:"flex",
-                  //   alignItems: "flex-end"
-                }
-              }
+              style={{
+                marginTop: '10px',
+                marginRight: '10px',
+              }}
             />
           </Box>
 
           <Box
             sx={{
-              padding: { xs: '10px', md: '10px' },
+              padding: { xs: '10px', md: '0px' },
               display: 'flex',
-              gap: { xs: '20px', md: '20px' },
+              gap: { xs: '10px', md: '15px' },
               flexDirection: 'column',
               justifyContent: 'center',
               alignItems: 'center',

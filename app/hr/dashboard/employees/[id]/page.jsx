@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { Box, Button, Grid, Tab, Tabs, Typography } from '@mui/material';
 import Image from 'next/image';
+import Link from 'next/link';
 
 import { employeeProfileData } from '@/src/constants/employeeProfile';
 import Profile from '@/src/components/employeeData/profile';
@@ -20,8 +21,6 @@ const Page = () => {
 
   const handleOpenModal = () => {
     setEditModal(true);
-
-    console.log('jjj');
   };
   const handleCredentialModal = () => {
     setCredentialModal(true);
@@ -51,11 +50,42 @@ const Page = () => {
           sm={12}
           md={12}
           lg={12}
-          xl={9}
           display={'flex'}
           flexDirection={'column'}
-          gap={7}
+          gap={3}
         >
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <Image
+              src={'/images/dashboard/Left.svg'}
+              width={30}
+              height={30}
+              alt="left"
+            />
+            <Link href={`/hr/dashboard/employees`}>
+              <Typography> {employeeProfileData?.employees} /</Typography>
+            </Link>
+            <Typography
+              sx={{
+                fontWeight: '600',
+              }}
+            >
+              {employeeProfileData?.profile}
+            </Typography>
+          </Box>
+          <Box sx={{ marginBottom: '-30px', paddingBottom: '40px' }}>
+            {' '}
+            <Typography
+              sx={{
+                color: '#171717',
+                fontSize: '30px',
+                fontWeight: '600',
+                marginTop: '10PX',
+              }}
+            >
+              {employeeProfileData?.profile}
+            </Typography>
+          </Box>
+
           <Box
             sx={{
               borderRadius: '5px',
@@ -63,6 +93,7 @@ const Page = () => {
               display: 'flex',
               flexDirection: { xs: 'column', md: 'row' },
               justifyContent: { xs: 'center', md: 'space-between' },
+              marginBottom: '40px',
             }}
           >
             <Box
@@ -70,15 +101,31 @@ const Page = () => {
                 display: 'flex',
                 justifyContent: 'space-between',
                 padding: '25px',
-                gap: '15px',
+                gap: { xs: '10px', sm: '0px', md: '35px' },
+                alignItems: 'center',
+                '@media (min-width: 280px) and (max-width: 450px)': {
+                  flexDirection: 'column',
+                },
               }}
             >
               <Box sx={{ position: 'relative', display: 'inline-block' }}>
-                <Image
+                {/* <Image
                   src={'/images/dashboard/hr/employee.svg'}
                   width={100}
                   height={100}
                   alt="employee"
+                  style={{
+                    width: { xs: '150', md: '100' },
+                    height: { xs: '150', md: '100' },
+                  }}
+                /> */}
+                <Box
+                  sx={{
+                    width: { xs: '150px', md: '100px' },
+                    height: { xs: '150px', md: '100px' },
+                  }}
+                  src="/images/dashboard/hr/employee.svg"
+                  component={'img'}
                 />
                 <Image
                   src={'/images/dashboard/hr/edit.svg'}
@@ -101,15 +148,21 @@ const Page = () => {
                 )}
               </Box>
 
-              <Box>
+              <Box
+                sx={{
+                  '@media (min-width: 280px) and (max-width: 450px)': {
+                    marginLeft: '40px',
+                  },
+                }}
+              >
                 <Typography sx={{ fontSize: '25px', fontWeight: 600 }}>
-                  John Doe
+                  {employeeProfileData?.name}
                 </Typography>
                 <Typography sx={{ fontSize: '16px', fontWeight: 500 }}>
-                  Employee ID:es-00020
+                  {employeeProfileData?.id}
                 </Typography>
                 <Typography sx={{ fontSize: '16px', fontWeight: 500 }}>
-                  Web developer
+                  {employeeProfileData?.designation}
                 </Typography>
               </Box>
             </Box>
@@ -124,13 +177,13 @@ const Page = () => {
               >
                 <Button
                   variant="contained"
-                  sx={{ maxWidth: { xs: '100px', md: '200px' } }}
+                  sx={{ maxWidth: { xs: '300px', md: '200px' } }}
                 >
                   {employeeProfileData?.downloadResume}
                 </Button>
                 <Button
                   sx={{
-                    maxWidth: { xs: '100px', md: '200px' },
+                    maxWidth: { xs: '300px', md: '200px' },
                     borderRadius: '5px',
                     border: '1px solid #029894',
                   }}
@@ -148,7 +201,13 @@ const Page = () => {
             />
           )}
           <Box sx={{ width: '100%' }}>
-            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+            <Box
+              sx={{
+                borderBottom: 1,
+                borderColor: 'divider',
+                marginBottom: '40px',
+              }}
+            >
               <Tabs
                 value={value}
                 onChange={handleChange}
@@ -160,204 +219,27 @@ const Page = () => {
                 <Tab value="three" label="Attendance reports" />
                 <Tab value="four" label="Assets" />
               </Tabs>
-              {value === 'one' ? (
-                <Profile
-                  handleOpenModal={handleOpenModal}
-                  showEditModal={showEditModal}
-                  handleCloseModal={handleCloseModal}
-                  handleEmergencyModal={handleEmergencyModal}
-                  showEmergancyModal={showEmergancyModal}
-                  handleEditProfileModal={handleEditProfileModal}
-                  showEditProfilelModal={showEditProfilelModal}
-                />
-              ) : value === 'two' ? (
-                <Client />
-              ) : value === 'three' ? (
-                <AttendanceReport />
-              ) : (
-                <Assets />
-              )}
             </Box>
+
+            {value === 'one' ? (
+              <Profile
+                handleOpenModal={handleOpenModal}
+                showEditModal={showEditModal}
+                handleCloseModal={handleCloseModal}
+                handleEmergencyModal={handleEmergencyModal}
+                showEmergancyModal={showEmergancyModal}
+                handleEditProfileModal={handleEditProfileModal}
+                showEditProfilelModal={showEditProfilelModal}
+              />
+            ) : value === 'two' ? (
+              <Client />
+            ) : value === 'three' ? (
+              <AttendanceReport />
+            ) : (
+              <Assets />
+            )}
           </Box>
 
-          {/* <Box display={'flex'}>
-            <Box
-              sx={{
-                width: '100%',
-                height: '430px',
-                borderRadius: '5px',
-                boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
-                display: 'flex',
-                alignItems: 'baseline',
-                justifyContent: 'space-between',
-                padding: '25px',
-              }}
-            >
-              <Box sx={{ flex: 1 }}>
-                <Box>
-                  <Typography
-                    sx={{
-                      fontSize: '20px',
-                      fontWeight: 600,
-                      paddingBottom: '15px',
-                    }}
-                  >
-                    {employeeProfileData?.personalInformation}
-                  </Typography>
-                </Box>
-                <Box
-                  sx={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                  }}
-                >
-                  <Box>
-                    {employeeDataLabel.map((data, index) => (
-                      <Typography
-                        key={index}
-                        sx={{ fontSize: '16px', fontWeight: 400 }}
-                      >
-                        {data.label}
-                      </Typography>
-                    ))}
-                  </Box>
-                  <Box>
-                    {employeeData.map((data, index) => (
-                      <Typography
-                        key={index}
-                        sx={{ fontSize: '16px', fontWeight: 400 }}
-                      >
-                        {data.value}
-                      </Typography>
-                    ))}
-                  </Box>
-                </Box>
-              </Box>
-
-              <Box
-                sx={{
-                  flex: 1,
-                  background: '#fff',
-                }}
-              ></Box>
-              <Image
-                src={'/images/dashboard/hr/edit.svg'}
-                width={35}
-                height={35}
-                alt="edit"
-              />
-            </Box>
-            <Box
-              sx={{
-                width: '100%',
-                height: '430px',
-                borderRadius: '5px',
-                boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
-                display: 'flex',
-                alignItems: 'baseline',
-                justifyContent: 'space-between',
-                padding: '25px',
-              }}
-            >
-              <Box sx={{ flex: 1 }}>
-                <Box>
-                  <Typography
-                    sx={{
-                      fontSize: '20px',
-                      fontWeight: 600,
-                      paddingBottom: '15px',
-                    }}
-                  >
-                    {employeeProfileData?.emergencyContact}
-                  </Typography>
-                </Box>
-                <Box display={'flex'} flexDirection={'column'} gap={2}>
-                  <Box
-                    sx={{
-                      borderRadius: '5px',
-                      border: '1px solid #E4E4E4',
-                      padding: '10px',
-                    }}
-                  >
-                    <Box sx={{ borderBottom: '1px solid #E4E4E4' }}>
-                      <Typography textAlign={'center'}>Primary</Typography>
-                    </Box>
-                    <Box
-                      sx={{
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                      }}
-                    >
-                      <Box>
-                        {emergencyContact.map((data, index) => (
-                          <Typography
-                            key={index}
-                            sx={{ fontSize: '16px', fontWeight: 400 }}
-                          >
-                            {data.label}
-                          </Typography>
-                        ))}
-                      </Box>
-                      <Box>
-                        {emergencyContactData.map((data, index) => (
-                          <Typography
-                            key={index}
-                            sx={{ fontSize: '16px', fontWeight: 400 }}
-                          >
-                            {data.value}
-                          </Typography>
-                        ))}
-                      </Box>
-                    </Box>
-                  </Box>
-                  <Box
-                    sx={{
-                      borderRadius: '5px',
-                      border: '1px solid #E4E4E4',
-                      padding: '10px',
-                    }}
-                  >
-                    <Box sx={{ borderBottom: '1px solid #E4E4E4' }}>
-                      <Typography textAlign={'center'}>Primary</Typography>
-                    </Box>
-                    <Box
-                      sx={{
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                      }}
-                    >
-                      <Box>
-                        {emergencyContact.map((data, index) => (
-                          <Typography
-                            key={index}
-                            sx={{ fontSize: '16px', fontWeight: 400 }}
-                          >
-                            {data.label}
-                          </Typography>
-                        ))}
-                      </Box>
-                      <Box>
-                        {emergencyContactData.map((data, index) => (
-                          <Typography
-                            key={index}
-                            sx={{ fontSize: '16px', fontWeight: 400 }}
-                          >
-                            {data.value}
-                          </Typography>
-                        ))}
-                      </Box>
-                    </Box>
-                  </Box>
-                </Box>
-              </Box>
-              <Image
-                src={'/images/dashboard/hr/edit.svg'}
-                width={35}
-                height={35}
-                alt="edit"
-              />
-            </Box>
-          </Box> */}
         </Grid>
       </Grid>
     </>

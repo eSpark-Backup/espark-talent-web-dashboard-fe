@@ -6,7 +6,7 @@ import RoleType from './RoleType';
 import AppNestedDropdown from '../dashboard/appDropdown';
 import { jobTitles } from '@/src/constants/data/dropdown.js/startHiring';
 
-const JobTitle = ({ open, SelectOpen, SelectClose }) => {
+const JobTitle = ({ open, SelectOpen, SelectClose, showRoleType }) => {
   const [isLoadingTitles, setIsLoadingTitles] = useState(false);
   const [selectedJobTitle, setSelectedJobTitle] = useState('');
 
@@ -36,7 +36,13 @@ const JobTitle = ({ open, SelectOpen, SelectClose }) => {
           placeHolder="Select job."
         />
       </Grid>
-      <RoleType open={open} SelectOpen={SelectOpen} SelectClose={SelectClose} />
+      {showRoleType && (
+        <RoleType
+          open={open}
+          SelectOpen={SelectOpen}
+          SelectClose={SelectClose}
+        />
+      )}
     </Grid>
   );
 };

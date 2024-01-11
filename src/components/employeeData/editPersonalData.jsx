@@ -1,14 +1,40 @@
-import React from 'react';
-import { Box, Button, Modal, TextField, Typography } from '@mui/material';
+import React, { useState } from 'react';
+import {
+  Box,
+  Button,
+  FormControl,
+  InputAdornment,
+  InputLabel,
+  MenuItem,
+  Modal,
+  Select,
+  TextField,
+  Typography,
+} from '@mui/material';
 import Image from 'next/image';
 
-import { EDIT_MODAL } from '@/src/constants/employeeProfile';
-import ContactDetails from './phoneDetail';
+import { EDIT_MODAL, MARITAL_STATUS } from '@/src/constants/employeeProfile';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DesktopDatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import JobTitle from '../StartHiring/JobTitle';
+import CalendarIcon from '../StartHiring/CalenderIcon';
+import { GENDER_OPTION } from '@/src/constants/Hiring';
 
 const EditPersonalModal = ({ onClose, handleEditProfileModal }) => {
+  const [selectedValue, setSelectedValue] = useState(MARITAL_STATUS[0].label);
+  const [isOpen, setIsOpen] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  const SelectOpen = () => {
+    setOpen(true);
+  };
+  const SelectClose = () => {
+    setOpen(false);
+  };
+  const handleClick = () => {
+    setIsOpen(!isOpen);
+  };
+  const showRoleType = false;
   return (
     <Modal
       open={handleEditProfileModal}
@@ -30,10 +56,17 @@ const EditPersonalModal = ({ onClose, handleEditProfileModal }) => {
           borderRadius: '10px',
           boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
           height: { xs: '825px', md: '625px' },
+          position: 'absolute',
+          top: '10%',
           '@media (min-width: 280px) and (max-width: 450px)': {
             height: '1000px',
           },
           overflow: 'auto',
+           scrollbarWidth: 'thin',
+                scrollbarColor: 'transparent transparent',
+                '&::-webkit-scrollbar': {
+                  display: 'none',
+                },
         }}
       >
         <Box
@@ -64,7 +97,6 @@ const EditPersonalModal = ({ onClose, handleEditProfileModal }) => {
               height={25}
               alt="close"
               onClick={onClose}
-              style={{}}
             />
           </Box>
         </Box>
@@ -117,9 +149,9 @@ const EditPersonalModal = ({ onClose, handleEditProfileModal }) => {
                   <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DesktopDatePicker
                       className="date-picker-component"
-                      //   slots={{
-                      //     openPickerIcon: CalendarIcon,
-                      //   }}
+                      slots={{
+                        openPickerIcon: CalendarIcon,
+                      }}
                       placeholder="DD/MM/YYYY"
                       slotProps={{
                         textField: {
@@ -127,7 +159,7 @@ const EditPersonalModal = ({ onClose, handleEditProfileModal }) => {
                           sx: {
                             '& input': {
                               //   color: '#88888',
-                              padding: '9.95px 10px',
+                              // padding: '9.95px 10px',
                             },
                           },
                         },
@@ -144,10 +176,6 @@ const EditPersonalModal = ({ onClose, handleEditProfileModal }) => {
                       }}
                     />
                   </LocalizationProvider>
-                  {/* <TextField
-                    sx={{ width: '82%', height: '40px' }}
-                    placeholder={EDIT_MODAL?.father}
-                  /> */}
                 </Box>
                 <Box sx={{ width: '100%' }}>
                   <Typography sx={{ color: '#595959', marginBottom: '10px' }}>
@@ -159,9 +187,55 @@ const EditPersonalModal = ({ onClose, handleEditProfileModal }) => {
                   />
                 </Box>
                 <Box sx={{ width: '100%' }}>
-                  <JobTitle />
+                  <JobTitle showRoleType={showRoleType} />
+                </Box>
+                <Box sx={{ width: '100%' }}>
+                  <Typography sx={{ color: '#595959', marginBottom: '10px' }}>
+                    {EDIT_MODAL?.maritalStatus}
+                  </Typography>
+                 
+
+                  <Select
+                    sx={{
+                      '&:focus': {
+                        borderColor: 'teal',
+                      },
+                      width: '100%',
+                      padding: '0px',
+                    }}
+                    value={selectedValue}
+                    onChange={(event) => setSelectedValue(event.target.value)}
+                    IconComponent={() => (
+                      <InputAdornment
+                        sx={{
+                          marginRight: '10px',
+                        }}
+                      >
+                        <Image
+                          src={
+                            isOpen
+                              ? '/images/hiring/icon-down.svg'
+                              : '/images/hiring/rightarrow.png'
+                          }
+                          width={25}
+                          height={25}
+                          alt="Dropdown"
+                          onClick={handleClick}
+                        />
+                      </InputAdornment>
+                    )}
+                    onOpen={SelectOpen}
+                    onClose={SelectClose}
+                  >
+                    {MARITAL_STATUS?.map((option) => (
+                      <MenuItem key={option?.value} value={option?.label}>
+                        {option?.label}
+                      </MenuItem>
+                    ))}
+                    </Select>
                 </Box>
               </Box>
+
               <Box
                 sx={{
                   display: 'flex',
@@ -170,28 +244,105 @@ const EditPersonalModal = ({ onClose, handleEditProfileModal }) => {
                   width: '50%',
                 }}
               >
-                <Typography sx={{ fontSize: '16px', fontWeight: 600 }}>
-                  {EDIT_MODAL?.secondaryContact}
-                </Typography>
                 <Box sx={{ width: '100%' }}>
                   <Typography sx={{ color: '#595959', marginBottom: '10px' }}>
-                    {EDIT_MODAL?.name}
+                    {EDIT_MODAL?.employeeId}
                   </Typography>
                   <TextField
-                    sx={{ width: '82%', height: '40px' }}
-                    placeholder={EDIT_MODAL?.namePlaceholder}
+                    sx={{ width: '82%' }}
+                    placeholder={EDIT_MODAL?.id}
                   />
                 </Box>
                 <Box sx={{ width: '100%' }}>
                   <Typography sx={{ color: '#595959', marginBottom: '10px' }}>
-                    {EDIT_MODAL?.relationship}
+                    {EDIT_MODAL?.gender}
+                  </Typography>
+                   <FormControl fullWidth >
+                    <InputLabel id="demo-simple-select-label">Select</InputLabel>
+                  <Select
+                    sx={{
+                      '&:focus': {
+                        borderColor: 'teal',
+                      },
+                      width: '100%',
+                      padding: '0px',
+                    }}
+                    placeholder="Select"
+                    IconComponent={() => (
+                      <InputAdornment
+                        sx={{
+                          marginRight: '10px',
+                        }}
+                      >
+                        <Image
+                          src={
+                            isOpen
+                              ? '/images/hiring/icon-down.svg'
+                              : '/images/hiring/rightarrow.png'
+                          }
+                          width={25}
+                          height={25}
+                          alt="Dropdown"
+                          onClick={handleClick}
+                        />
+                      </InputAdornment>
+                    )}
+                    onOpen={SelectOpen}
+                    onClose={SelectClose}
+                  >
+                    {GENDER_OPTION?.map((option) => (
+                      <MenuItem key={option?.value} value={option?.label}>
+                        {option?.label}
+                      </MenuItem>
+                    ))}
+                    </Select>
+                    </FormControl>
+                </Box>
+
+                <Box sx={{ width: '100%' }}>
+                  <Typography sx={{ color: '#595959', marginBottom: '10px' }}>
+                    {EDIT_MODAL?.team}
                   </Typography>
                   <TextField
                     sx={{ width: '82%', height: '40px' }}
-                    placeholder={EDIT_MODAL?.father}
+                    placeholder={EDIT_MODAL?.emailPlaceholder}
                   />
                 </Box>
-                <ContactDetails />
+                <Box sx={{ width: '100%' }}>
+                  <Typography sx={{ color: '#595959', marginBottom: '10px' }}>
+                    {EDIT_MODAL?.joiningDate}
+                  </Typography>
+                  <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <DesktopDatePicker
+                      className="date-picker-component"
+                      slots={{
+                        openPickerIcon: CalendarIcon,
+                      }}
+                      placeholder="DD/MM/YYYY"
+                      slotProps={{
+                        textField: {
+                          //   placeholder: placeholder,
+                          sx: {
+                            '& input': {
+                              //   color: '#88888',
+                              // padding: '9.95px 10px',
+                            },
+                          },
+                        },
+                      }}
+                      sx={{
+                        width: '100%',
+                        height: '40px',
+                        // '@media (min-width: 900px) and (max-width: 1400px)': {
+                        //   width: '100%',
+                        // },
+                        // '& .MuiInputLabel-root': {
+                        //   color: '#88888',
+                        // },
+                      }}
+                    />
+                  </LocalizationProvider>
+                </Box>
               </Box>
             </Box>
             <Button

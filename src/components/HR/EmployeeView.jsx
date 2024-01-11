@@ -217,6 +217,7 @@ const EmployeeView = ({ status, id, name, designation, search }) => {
           })
           .map((eachItem, index) => (
             <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
+                 <Link href={`/hr/dashboard/employees/${eachItem?.id}`}>
               <Box
                 sx={{
                   width: '100%',
@@ -225,6 +226,7 @@ const EmployeeView = ({ status, id, name, designation, search }) => {
                   borderRadius: '5px',
                   boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
                   padding: '20px 15px 10px 15px',
+
                 }}
               >
                 <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -247,7 +249,7 @@ const EmployeeView = ({ status, id, name, designation, search }) => {
                           eachItem.status === 'Active' ? '#068987' : '#F00',
                       }}
                     ></Box>
-                    <Link href={`/hr/dashboard/employees/${eachItem?.id}`}>
+                 
                       <Typography
                         sx={{
                           color:
@@ -256,7 +258,6 @@ const EmployeeView = ({ status, id, name, designation, search }) => {
                       >
                         {eachItem.status}
                       </Typography>
-                    </Link>
                   </Box>
                   <Box
                     sx={{
@@ -322,6 +323,7 @@ const EmployeeView = ({ status, id, name, designation, search }) => {
                   </Box>
                 </Box>
               </Box>
+              </Link>
             </Grid>
           ))}
       </Grid>
