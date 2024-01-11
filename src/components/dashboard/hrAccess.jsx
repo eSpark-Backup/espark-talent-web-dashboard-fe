@@ -1,9 +1,9 @@
 import { Box } from '@mui/material';
 import React from 'react';
-import SummarySlider from '../AtttendanceSummary/SummarySlider';
 import { Summary_Boxes } from '@/src/constants/data/hrDashboard';
+import StatusBox from '../AtttendanceSummary/StatusBox';
 
-const HrAccess = () => {
+const HrAccess = ({ hrView }) => {
   return (
     <Box
       sx={{
@@ -14,7 +14,26 @@ const HrAccess = () => {
         alignItems: 'center',
       }}
     >
-      <SummarySlider Summary_Boxes={Summary_Boxes} isEmployee={false} />
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: { xs: 'column', md: 'row' },
+          gap: '40px',
+          paddingLeft: { xs: '0px', md: '50px' },
+        }}
+      >
+        {Summary_Boxes?.map((item, index) => (
+          <StatusBox
+            key={index}
+            title={item?.title}
+            count={item?.count}
+            horizotalLineColor={item?.horizotalLineColor}
+            backgroundColor={item?.backgroundColor}
+            image={item?.image}
+            hrView={hrView}
+          />
+        ))}
+      </Box>
     </Box>
   );
 };

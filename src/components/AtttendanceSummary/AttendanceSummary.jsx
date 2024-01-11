@@ -40,7 +40,7 @@ const AttendanceSummary = () => {
             alignItems: 'center',
           }}
         >
-          <SummarySlider Summary_Boxes={Summary_Boxes} isEmployee={true} />
+          <SummarySlider summaryBoxes={Summary_Boxes} hrView={true} />
         </Box>
       </Box>
     </>

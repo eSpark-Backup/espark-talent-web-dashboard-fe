@@ -7,22 +7,22 @@ const StatusBox = ({
   count,
   horizotalLineColor,
   backgroundColor,
-  isEmployee,
-  images,
+  hrView,
+  image,
 }) => {
   return (
     <>
       <Box
         sx={{
           display: 'flex',
-          width: isEmployee ? '100%' : { xs: '100%', md: '300px' },
+          width: hrView ? '100%' : { xs: '100%', md: '300px' },
           height: '110px',
           borderRadius: '10px',
           background: `${backgroundColor}`,
           justifyContent: 'space-between',
           alignItems: 'center',
           '@media (min-width: 900px) and (max-width: 1275px)': {
-            height: isEmployee ? '110px' : '150px',
+            height: hrView ? '110px' : '150px',
           },
         }}
       >
@@ -54,11 +54,21 @@ const StatusBox = ({
                 lineHeight: 'normal',
               }}
             >
-              {isEmployee ? title : count}
+              {hrView ? title : count}
             </Typography>
           </Box>
           <Box>
-            <Typography>{isEmployee ? count : title}</Typography>
+            <Typography
+              sx={{
+                color: '#595959',
+                fontSize: '16px',
+                fontStyle: 'normal',
+                fontWeight: 400,
+                lineHeight: 'normal',
+              }}
+            >
+              {hrView ? count : title}
+            </Typography>
           </Box>
         </Box>
         <Box
@@ -69,18 +79,19 @@ const StatusBox = ({
             marginRight: '10px',
           }}
         >
-          {isEmployee ? (
-            <img
+          {hrView ? (
+            <Image
               src="/icons/arrow-right.svg"
-              style={{ width: '15px', height: '15px' }}
+              width={15}
+              height={15}
               alt="arrow"
             />
           ) : (
             <Image
-              src={images}
+              src={image}
               width={50}
               height={50}
-              alt="employee"
+              alt="hrview"
               style={{
                 marginRight: '10px',
               }}
