@@ -5,7 +5,6 @@ import Image from 'next/image';
 import {
   emergencyContact,
   emergencyContactData,
-  employeeData,
   employeeDataLabel,
   employeeProfileData,
 } from '@/src/constants/employeeProfile';
@@ -77,35 +76,66 @@ const Profile = ({
             <Box
               sx={{
                 display: 'flex',
-                justifyContent: 'space-between',
+                // flexDirection: { xs: 'column', md: 'row' },
                 background: 'pink',
-                height: '320px',
+                // height: '320px',
                 width: { xs: '100%', md: '60%' },
               }}
             >
               <Box
                 sx={{
                   display: 'flex',
-                  gap: '8px',
-                  flexDirection: 'column',
+                  flexDirection: { xs: 'column', md: 'row' },
+                  justifyContent: 'space-between',
+                  '@media (max-width: 600px)': {
+                    flexDirection: 'column',
+                  },
                 }}
               >
                 {employeeDataLabel.map((data, index) => (
-                  <Typography
-                    key={index}
-                    sx={{
-                      fontSize: { xs: '12px', md: '16px' },
-                      fontWeight: 400,
-                      '@media (min-width: 200px) and (max-width: 362px)': {
-                        fontSize: '15px',
-                      },
-                    }}
-                  >
-                    {data.label}
-                  </Typography>
+                  <Box key={index} sx={{ margin: '8px' }}>
+                    <Typography
+                      sx={{
+                        fontSize: { xs: '12px', md: '16px' },
+                        fontWeight: 400,
+                        '@media (min-width: 200px) and (max-width: 362px)': {
+                          fontSize: '15px',
+                        },
+                      }}
+                    >
+                      {data.label}
+                    </Typography>
+                    <Typography>{data.value}</Typography>
+                  </Box>
                 ))}
               </Box>
-              <Box
+              {/* <Box
+                sx={{
+                  // display: 'flex',
+                  // gap: '8px',
+                  // flexDirection: { xs: 'column', md: 'row' },
+                  justifyContent: 'space-between',
+                }}
+              >
+                {employeeDataLabel.map((data, index) => (
+                  <>
+                    <Typography
+                      key={index}
+                      sx={{
+                        fontSize: { xs: '12px', md: '16px' },
+                        fontWeight: 400,
+                        '@media (min-width: 200px) and (max-width: 362px)': {
+                          fontSize: '15px',
+                        },
+                      }}
+                    >
+                      {data.label}
+                    </Typography>
+                    <Typography>{data.value}</Typography>
+                  </>
+                ))}
+              </Box> */}
+              {/* <Box
                 sx={{
                   display: 'flex',
                   gap: '8px',
@@ -126,7 +156,7 @@ const Profile = ({
                     {data.value}
                   </Typography>
                 ))}
-              </Box>
+              </Box> */}
             </Box>
             <Box>kk</Box>
           </Box>

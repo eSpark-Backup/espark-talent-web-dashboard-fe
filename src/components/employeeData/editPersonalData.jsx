@@ -107,13 +107,16 @@ const EditPersonalModal = ({ onClose, handleEditProfileModal }) => {
             sx={{
               display: 'flex',
               flexDirection: 'column',
-              width: '85%',
+              justifyContent: 'center',
+              width: '95%',
+              padding: '15px',
+              marginLeft: { xs: '0px', md: '70px' },
             }}
           >
             <Box
               sx={{
                 display: 'flex',
-                padding: '15px',
+                padding: '20px',
                 gap: '100px',
                 flexDirection: { xs: 'column', md: 'row' },
                 '@media (min-width: 280px) and (max-width: 450px)': {
@@ -125,7 +128,7 @@ const EditPersonalModal = ({ onClose, handleEditProfileModal }) => {
                 sx={{
                   display: 'flex',
                   flexDirection: 'column',
-                  gap: '40px',
+                  gap: '30px',
                   width: { xs: '100%', md: '100%' },
                 }}
               >
@@ -155,7 +158,7 @@ const EditPersonalModal = ({ onClose, handleEditProfileModal }) => {
                         openPickerIcon: CalendarIcon,
                       }}
                       placeholder="DD/MM/YYYY"
-                      slotProps={{ textField: { size: '30px ' } }}
+                      slotProps={{ textField: { size: 'small ' } }}
                       sx={{
                         width: '82%',
                       }}
@@ -234,7 +237,7 @@ const EditPersonalModal = ({ onClose, handleEditProfileModal }) => {
                 sx={{
                   display: 'flex',
                   flexDirection: { xs: 'column', md: 'column' },
-                  gap: '40px',
+                  gap: '30px',
                   width: { xs: '100%', md: '100%' },
                 }}
               >
@@ -342,6 +345,8 @@ const EditPersonalModal = ({ onClose, handleEditProfileModal }) => {
                 height: '40px',
                 fontSize: '16px',
                 fontWeight: 600,
+                marginLeft: '20px',
+                marginBottom: '15px',
               }}
             >
               {EDIT_MODAL?.save}

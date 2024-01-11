@@ -46,15 +46,15 @@ export const EDIT_MODAL = {
   joiningDate: 'Joining date',
 };
 export const employeeDataLabel = [
-  { label: 'Employee name' },
-  { label: 'Employee ID' },
-  { label: 'Birth date' },
-  { label: 'Gender' },
-  { label: 'Email' },
-  { label: 'Team' },
-  { label: 'Designation' },
-  { label: 'Joining date' },
-  { label: 'Marital status' },
+  { label: 'Employee name', value: 'John Doe' },
+  { label: 'Employee ID', value: '090078601' },
+  { label: 'Birth date', value: 'January 1, 1990' },
+  { label: 'Gender', value: 'Male' },
+  { label: 'Email', value: 'johndoe@123.com' },
+  { label: 'Team', value: 'Web development' },
+  { label: 'Designation', value: 'Web developer' },
+  { label: 'Joining date', value: '26/01/23' },
+  { label: 'Marital status', value: 'Married' },
 ];
 export const employeeData = [
   { value: 'John Doe' },
