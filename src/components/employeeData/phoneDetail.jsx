@@ -30,8 +30,13 @@ const ContactDetails = () => {
           }}
         >
           <TextField
-            sx={{ width: '82%', height: '40px' }}
+            sx={{ width: '82%' }}
             placeholder={EDIT_MODAL?.phoneNo}
+            inputProps={{
+              style: {
+                height: '10px',
+              },
+            }}
           />
           <Image
             src={'/images/dashboard/plus.svg'}
@@ -52,8 +57,13 @@ const ContactDetails = () => {
             }}
           >
             <TextField
-              sx={{ width: '82%', height: '40px' }}
+              sx={{ width: '82%' }}
               placeholder={EDIT_MODAL?.phoneNo}
+              inputProps={{
+                style: {
+                  height: '10px',
+                },
+              }}
             />
             <Image
               src={'/images/dashboard/minus.svg'}

@@ -1,19 +1,25 @@
 import React, { useState } from 'react';
 import { Grid, Typography } from '@mui/material';
 
-import { HIRING_FORM_DATA } from '@/src/constants/Hiring';
 import RoleType from './RoleType';
 import AppNestedDropdown from '../dashboard/appDropdown';
 import { jobTitles } from '@/src/constants/data/dropdown.js/startHiring';
 
-const JobTitle = ({ open, SelectOpen, SelectClose, showRoleType }) => {
+const JobTitle = ({
+  open,
+  SelectOpen,
+  SelectClose,
+  showRoleType,
+  gap,
+  title,
+}) => {
   const [isLoadingTitles, setIsLoadingTitles] = useState(false);
   const [selectedJobTitle, setSelectedJobTitle] = useState('');
 
   return (
     <Grid
       container
-      gap={'10px'}
+      gap={gap}
       sx={{
         flexWrap: { xs: 'wrap', lg: 'nowrap' },
       }}
@@ -24,7 +30,7 @@ const JobTitle = ({ open, SelectOpen, SelectClose, showRoleType }) => {
             mb: '10px',
           }}
         >
-          {HIRING_FORM_DATA?.jobTitle}
+          {title}
         </Typography>
         <AppNestedDropdown
           data={jobTitles}

@@ -5,11 +5,11 @@ export const employeeProfileData = {
   editCredentials: 'Edit credentials',
   personalInformation: 'Personal information',
   emergencyContact: 'Emergency contact',
-  profile: "Profile",
-  employees: "Employees",
-  name: "John Doe",
-  id: "Employee ID: es-00020",
-  designation: " Web developer"
+  profile: 'Profile',
+  employees: 'Employees',
+  name: 'John Doe',
+  id: 'Employee ID: es-00020',
+  designation: ' Web developer',
 };
 export const EDIT_MODAL = {
   editProfile: 'Edit profile picture',
@@ -100,11 +100,10 @@ export const employeesTabs = [
 export const MARITAL_STATUS = [
   {
     label: 'Single',
-    value: "Single",
+    value: 'Single',
   },
   {
-    label: "Married",
-    value: "Married"
-  }
-
-]
+    label: 'Married',
+    value: 'Married',
+  },
+];

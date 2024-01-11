@@ -35,6 +35,7 @@ const EditPersonalModal = ({ onClose, handleEditProfileModal }) => {
     setIsOpen(!isOpen);
   };
   const showRoleType = false;
+  console.log(open);
   return (
     <Modal
       open={handleEditProfileModal}
@@ -50,23 +51,21 @@ const EditPersonalModal = ({ onClose, handleEditProfileModal }) => {
       <Box
         sx={{
           bgcolor: '#fff',
-          width: { xs: '90%', sm: '90%', md: '50%' },
+          width: { xs: '90%', sm: '90%', md: '55%' },
           display: 'flex',
           flexDirection: 'column',
           borderRadius: '10px',
           boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
-          height: { xs: '825px', md: '625px' },
+          height: { xs: '900px', md: '715px' },
           position: 'absolute',
           top: '10%',
-          '@media (min-width: 280px) and (max-width: 450px)': {
-            height: '1000px',
-          },
+          maxHeight: '80%',
           overflow: 'auto',
-           scrollbarWidth: 'thin',
-                scrollbarColor: 'transparent transparent',
-                '&::-webkit-scrollbar': {
-                  display: 'none',
-                },
+          scrollbarWidth: 'thin',
+          scrollbarColor: 'transparent transparent',
+          '&::-webkit-scrollbar': {
+            display: 'none',
+          },
         }}
       >
         <Box
@@ -86,19 +85,16 @@ const EditPersonalModal = ({ onClose, handleEditProfileModal }) => {
           >
             {EDIT_MODAL?.editPersonalDetails}
           </Typography>
+
           <Box
             sx={{
-              display: 'flex',
+              width: { xs: '35px', md: '25px' },
+              height: { xs: '35px', md: '25px' },
             }}
-          >
-            <Image
-              src={'/images/leave-request/close.svg'}
-              width={25}
-              height={25}
-              alt="close"
-              onClick={onClose}
-            />
-          </Box>
+            src="/images/leave-request/close.svg"
+            component={'img'}
+            onClick={onClose}
+          />
         </Box>
         <Box
           sx={{
@@ -111,15 +107,16 @@ const EditPersonalModal = ({ onClose, handleEditProfileModal }) => {
             sx={{
               display: 'flex',
               flexDirection: 'column',
-              width: '80%',
-              paddingTop: '40px',
-              gap: '20px',
+              width: '85%',
+            
             }}
           >
             <Box
               sx={{
                 display: 'flex',
-                flexDirection: 'row',
+                padding: '15px',
+                gap: '100px',
+                flexDirection: { xs: 'column', md: 'row' },
                 '@media (min-width: 280px) and (max-width: 450px)': {
                   flexDirection: 'column',
                 },
@@ -128,9 +125,9 @@ const EditPersonalModal = ({ onClose, handleEditProfileModal }) => {
               <Box
                 sx={{
                   display: 'flex',
-                  flexDirection: { xs: 'column', md: 'column' },
+                  flexDirection: 'column',
                   gap: '40px',
-                  width: '50%',
+                  width: { xs: '100%', md: '100%' },
                 }}
               >
                 <Box sx={{ width: '100%' }}>
@@ -138,7 +135,12 @@ const EditPersonalModal = ({ onClose, handleEditProfileModal }) => {
                     {EDIT_MODAL?.employeeName}
                   </Typography>
                   <TextField
-                    sx={{ width: '82%', height: '40px' }}
+                    sx={{ width: '82%' }}
+                    inputProps={{
+                      style: {
+                        height: '10px',
+                      },
+                    }}
                     placeholder={EDIT_MODAL?.namePlaceholder}
                   />
                 </Box>
@@ -149,30 +151,14 @@ const EditPersonalModal = ({ onClose, handleEditProfileModal }) => {
                   <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DesktopDatePicker
                       className="date-picker-component"
+                      sty
                       slots={{
                         openPickerIcon: CalendarIcon,
                       }}
                       placeholder="DD/MM/YYYY"
-                      slotProps={{
-                        textField: {
-                          //   placeholder: placeholder,
-                          sx: {
-                            '& input': {
-                              //   color: '#88888',
-                              // padding: '9.95px 10px',
-                            },
-                          },
-                        },
-                      }}
+                      slotProps={{ textField: { size: '30px ' } }}
                       sx={{
-                        width: '100%',
-                        height: '40px',
-                        // '@media (min-width: 900px) and (max-width: 1400px)': {
-                        //   width: '100%',
-                        // },
-                        // '& .MuiInputLabel-root': {
-                        //   color: '#88888',
-                        // },
+                        width: '82%',
                       }}
                     />
                   </LocalizationProvider>
@@ -182,26 +168,35 @@ const EditPersonalModal = ({ onClose, handleEditProfileModal }) => {
                     {EDIT_MODAL?.email}
                   </Typography>
                   <TextField
-                    sx={{ width: '82%', height: '40px' }}
+                    sx={{
+                      width: '82%',
+                    }}
+                    inputProps={{
+                      style: {
+                        height: '10px',
+                      },
+                    }}
                     placeholder={EDIT_MODAL?.emailPlaceholder}
                   />
                 </Box>
-                <Box sx={{ width: '100%' }}>
-                  <JobTitle showRoleType={showRoleType} />
-                </Box>
-                <Box sx={{ width: '100%' }}>
+                <JobTitle
+                  title={'Job title'}
+                  gap={'0px'}
+                  showRoleType={showRoleType}
+                />
+                <Box sx={{ width: '100%', marginTop: '-40px' }}>
                   <Typography sx={{ color: '#595959', marginBottom: '10px' }}>
                     {EDIT_MODAL?.maritalStatus}
                   </Typography>
-                 
 
                   <Select
                     sx={{
                       '&:focus': {
                         borderColor: 'teal',
                       },
-                      width: '100%',
+                      width: '82%',
                       padding: '0px',
+                      height: '45px',
                     }}
                     value={selectedValue}
                     onChange={(event) => setSelectedValue(event.target.value)}
@@ -232,7 +227,7 @@ const EditPersonalModal = ({ onClose, handleEditProfileModal }) => {
                         {option?.label}
                       </MenuItem>
                     ))}
-                    </Select>
+                  </Select>
                 </Box>
               </Box>
 
@@ -241,7 +236,7 @@ const EditPersonalModal = ({ onClose, handleEditProfileModal }) => {
                   display: 'flex',
                   flexDirection: { xs: 'column', md: 'column' },
                   gap: '40px',
-                  width: '50%',
+                  width: { xs: '100%', md: '100%' },
                 }}
               >
                 <Box sx={{ width: '100%' }}>
@@ -250,6 +245,11 @@ const EditPersonalModal = ({ onClose, handleEditProfileModal }) => {
                   </Typography>
                   <TextField
                     sx={{ width: '82%' }}
+                    inputProps={{
+                      style: {
+                        height: '10px',
+                      },
+                    }}
                     placeholder={EDIT_MODAL?.id}
                   />
                 </Box>
@@ -257,46 +257,49 @@ const EditPersonalModal = ({ onClose, handleEditProfileModal }) => {
                   <Typography sx={{ color: '#595959', marginBottom: '10px' }}>
                     {EDIT_MODAL?.gender}
                   </Typography>
-                   <FormControl fullWidth >
-                    <InputLabel id="demo-simple-select-label">Select</InputLabel>
-                  <Select
-                    sx={{
-                      '&:focus': {
-                        borderColor: 'teal',
-                      },
-                      width: '100%',
-                      padding: '0px',
-                    }}
-                    placeholder="Select"
-                    IconComponent={() => (
-                      <InputAdornment
-                        sx={{
-                          marginRight: '10px',
-                        }}
-                      >
-                        <Image
-                          src={
-                            isOpen
-                              ? '/images/hiring/icon-down.svg'
-                              : '/images/hiring/rightarrow.png'
-                          }
-                          width={25}
-                          height={25}
-                          alt="Dropdown"
-                          onClick={handleClick}
-                        />
-                      </InputAdornment>
-                    )}
-                    onOpen={SelectOpen}
-                    onClose={SelectClose}
-                  >
-                    {GENDER_OPTION?.map((option) => (
-                      <MenuItem key={option?.value} value={option?.label}>
-                        {option?.label}
-                      </MenuItem>
-                    ))}
+                  <FormControl fullWidth>
+                    <InputLabel id="demo-simple-select-label">
+                      Select
+                    </InputLabel>
+                    <Select
+                      sx={{
+                        '&:focus': {
+                          borderColor: 'teal',
+                        },
+                        width: '82%',
+                        padding: '0px',
+                        height: '45px',
+                      }}
+                      placeholder="Select"
+                      IconComponent={() => (
+                        <InputAdornment
+                          sx={{
+                            marginRight: '10px',
+                          }}
+                        >
+                          <Image
+                            src={
+                              isOpen
+                                ? '/images/hiring/icon-down.svg'
+                                : '/images/hiring/rightarrow.png'
+                            }
+                            width={25}
+                            height={25}
+                            alt="Dropdown"
+                            onClick={handleClick}
+                          />
+                        </InputAdornment>
+                      )}
+                      onOpen={SelectOpen}
+                      onClose={SelectClose}
+                    >
+                      {GENDER_OPTION?.map((option) => (
+                        <MenuItem key={option?.value} value={option?.label}>
+                          {option?.label}
+                        </MenuItem>
+                      ))}
                     </Select>
-                    </FormControl>
+                  </FormControl>
                 </Box>
 
                 <Box sx={{ width: '100%' }}>
@@ -304,7 +307,12 @@ const EditPersonalModal = ({ onClose, handleEditProfileModal }) => {
                     {EDIT_MODAL?.team}
                   </Typography>
                   <TextField
-                    sx={{ width: '82%', height: '40px' }}
+                    sx={{ width: '82%' }}
+                    inputProps={{
+                      style: {
+                        height: '10px',
+                      },
+                    }}
                     placeholder={EDIT_MODAL?.emailPlaceholder}
                   />
                 </Box>
@@ -318,27 +326,10 @@ const EditPersonalModal = ({ onClose, handleEditProfileModal }) => {
                       slots={{
                         openPickerIcon: CalendarIcon,
                       }}
+                      slotProps={{ textField: { size: '30px ' } }}
                       placeholder="DD/MM/YYYY"
-                      slotProps={{
-                        textField: {
-                          //   placeholder: placeholder,
-                          sx: {
-                            '& input': {
-                              //   color: '#88888',
-                              // padding: '9.95px 10px',
-                            },
-                          },
-                        },
-                      }}
                       sx={{
-                        width: '100%',
-                        height: '40px',
-                        // '@media (min-width: 900px) and (max-width: 1400px)': {
-                        //   width: '100%',
-                        // },
-                        // '& .MuiInputLabel-root': {
-                        //   color: '#88888',
-                        // },
+                        width: '82%',
                       }}
                     />
                   </LocalizationProvider>

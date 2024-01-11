@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Button, Modal, TextField, Typography } from '@mui/material';
-import Image from 'next/image';
+
 import { EDIT_MODAL } from '@/src/constants/employeeProfile';
 
 const EditEmployeeCredential = ({ onClose, open }) => {
@@ -46,19 +46,16 @@ const EditEmployeeCredential = ({ onClose, open }) => {
           >
             {EDIT_MODAL?.editEmployeeCredentials}
           </Typography>
+
           <Box
             sx={{
-              display: 'flex',
+              width: { xs: '35px', md: '25px' },
+              height: { xs: '35px', md: '25px' },
             }}
-          >
-            <Image
-              src={'/images/leave-request/close.svg'}
-              width={25}
-              height={25}
-              alt="close"
-              onClick={onClose}
-            />
-          </Box>
+            src="/images/leave-request/close.svg"
+            component={'img'}
+            onClick={onClose}
+          />
         </Box>
         <Box
           sx={{
@@ -86,7 +83,15 @@ const EditEmployeeCredential = ({ onClose, open }) => {
                 <Typography sx={{ color: '#595959', marginBottom: '10px' }}>
                   {EDIT_MODAL?.employeeId}
                 </Typography>
-                <TextField sx={{ width: '82%' }} placeholder={EDIT_MODAL?.id} />
+                <TextField
+                  sx={{ width: '82%' }}
+                  placeholder={EDIT_MODAL?.id}
+                  inputProps={{
+                    style: {
+                      height: '10px',
+                    },
+                  }}
+                />
               </Box>
               <Box sx={{ width: '100%' }}>
                 <Typography sx={{ color: '#595959', marginBottom: '10px' }}>
@@ -95,6 +100,11 @@ const EditEmployeeCredential = ({ onClose, open }) => {
                 <TextField
                   sx={{ width: '82%' }}
                   placeholder={EDIT_MODAL?.enterPassword}
+                  inputProps={{
+                    style: {
+                      height: '10px',
+                    },
+                  }}
                 />
               </Box>
             </Box>
@@ -112,6 +122,11 @@ const EditEmployeeCredential = ({ onClose, open }) => {
                 <TextField
                   sx={{ width: '82%' }}
                   placeholder={EDIT_MODAL?.enternewPassword}
+                  inputProps={{
+                    style: {
+                      height: '10px',
+                    },
+                  }}
                 />
               </Box>
               <Box sx={{ width: '100%' }}>
@@ -121,6 +136,11 @@ const EditEmployeeCredential = ({ onClose, open }) => {
                 <TextField
                   sx={{ width: '82%' }}
                   placeholder={EDIT_MODAL?.confirmPassword}
+                  inputProps={{
+                    style: {
+                      height: '10px',
+                    },
+                  }}
                 />
               </Box>
             </Box>

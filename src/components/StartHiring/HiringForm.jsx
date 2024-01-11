@@ -10,7 +10,7 @@ import { HIRING_FORM_DATA } from '@/src/constants/Hiring';
 
 const HiringForm = () => {
   const [open, setOpen] = useState(false);
-     const showRoleType = true;
+  const showRoleType = true;
 
   const SelectOpen = () => {
     setOpen(true);
@@ -66,6 +66,8 @@ const HiringForm = () => {
           >
             <Box>
               <JobTitle
+                title={HIRING_FORM_DATA?.jobTitle}
+                gap={'10px'}
                 open={open}
                 SelectOpen={SelectOpen}
                 SelectClose={SelectClose}

@@ -109,16 +109,6 @@ const Page = () => {
               }}
             >
               <Box sx={{ position: 'relative', display: 'inline-block' }}>
-                {/* <Image
-                  src={'/images/dashboard/hr/employee.svg'}
-                  width={100}
-                  height={100}
-                  alt="employee"
-                  style={{
-                    width: { xs: '150', md: '100' },
-                    height: { xs: '150', md: '100' },
-                  }}
-                /> */}
                 <Box
                   sx={{
                     width: { xs: '150px', md: '100px' },
@@ -239,7 +229,6 @@ const Page = () => {
               <Assets />
             )}
           </Box>
-
         </Grid>
       </Grid>
     </>

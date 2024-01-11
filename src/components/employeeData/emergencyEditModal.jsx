@@ -1,6 +1,5 @@
 import React from 'react';
 import { Box, Button, Modal, TextField, Typography } from '@mui/material';
-import Image from 'next/image';
 
 import { EDIT_MODAL } from '@/src/constants/employeeProfile';
 import ContactDetails from './phoneDetail';
@@ -32,12 +31,13 @@ const EditEmergencyModal = ({ onClose, handleEmergencyModal }) => {
           '@media (min-width: 280px) and (max-width: 450px)': {
             height: '1100px',
           },
+          maxHeight: '90%',
           overflow: 'auto',
-           scrollbarWidth: 'thin',
-                scrollbarColor: 'transparent transparent',
-                '&::-webkit-scrollbar': {
-                  display: 'none',
-                },
+          scrollbarWidth: 'thin',
+          scrollbarColor: 'transparent transparent',
+          '&::-webkit-scrollbar': {
+            display: 'none',
+          },
         }}
       >
         <Box
@@ -57,19 +57,16 @@ const EditEmergencyModal = ({ onClose, handleEmergencyModal }) => {
           >
             {EDIT_MODAL?.editEmergencyContacts}
           </Typography>
+
           <Box
             sx={{
-              display: 'flex',
+              width: { xs: '35px', md: '25px' },
+              height: { xs: '35px', md: '25px' },
             }}
-          >
-            <Image
-              src={'/images/leave-request/close.svg'}
-              width={25}
-              height={25}
-              alt="close"
-              onClick={onClose}
-s            />
-          </Box>
+            src="/images/leave-request/close.svg"
+            component={'img'}
+            onClick={onClose}
+          />
         </Box>
         <Box
           sx={{
@@ -101,10 +98,12 @@ s            />
                   display: 'flex',
                   flexDirection: { xs: 'column', md: 'column' },
                   gap: '40px',
-                  width: '50%',
+                  width: { xs: '100%', md: '50%' },
                 }}
               >
-                <Typography sx={{ fontSize: { xs: "14px", md: '16px' }, fontWeight: 600 }}>
+                <Typography
+                  sx={{ fontSize: { xs: '14px', md: '16px' }, fontWeight: 600 }}
+                >
                   {EDIT_MODAL?.primaryContact}
                 </Typography>
                 <Box sx={{ width: '100%' }}>
@@ -112,8 +111,13 @@ s            />
                     {EDIT_MODAL?.name}
                   </Typography>
                   <TextField
-                    sx={{ width: '82%', height: '40px' }}
+                    sx={{ width: '82%' }}
                     placeholder={EDIT_MODAL?.namePlaceholder}
+                    inputProps={{
+                      style: {
+                        height: '10px',
+                      },
+                    }}
                   />
                 </Box>
                 <Box sx={{ width: '100%' }}>
@@ -121,8 +125,13 @@ s            />
                     {EDIT_MODAL?.relationship}
                   </Typography>
                   <TextField
-                    sx={{ width: '82%', height: '40px' }}
+                    sx={{ width: '82%' }}
                     placeholder={EDIT_MODAL?.father}
+                    inputProps={{
+                      style: {
+                        height: '10px',
+                      },
+                    }}
                   />
                 </Box>
                 <ContactDetails />
@@ -132,15 +141,18 @@ s            />
                   display: 'flex',
                   flexDirection: { xs: 'column', md: 'column' },
                   gap: '40px',
-                  width: '50%',
+                  width: { xs: '100%', md: '50%' },
                 }}
               >
-                <Typography sx={{
-                  fontSize: { xs: "14px", md: '16px' }, fontWeight: 600,
-                   '@media (min-width: 280px) and (max-width: 450px)': {
-                  marginTop: '30px',
-                }
-                }}>
+                <Typography
+                  sx={{
+                    fontSize: { xs: '14px', md: '16px' },
+                    fontWeight: 600,
+                    '@media (min-width: 280px) and (max-width: 450px)': {
+                      marginTop: '30px',
+                    },
+                  }}
+                >
                   {EDIT_MODAL?.secondaryContact}
                 </Typography>
                 <Box sx={{ width: '100%' }}>
@@ -148,8 +160,13 @@ s            />
                     {EDIT_MODAL?.name}
                   </Typography>
                   <TextField
-                    sx={{ width: '82%', height: '40px' }}
+                    sx={{ width: '82%' }}
                     placeholder={EDIT_MODAL?.namePlaceholder}
+                    inputProps={{
+                      style: {
+                        height: '10px',
+                      },
+                    }}
                   />
                 </Box>
                 <Box sx={{ width: '100%' }}>
@@ -157,8 +174,13 @@ s            />
                     {EDIT_MODAL?.relationship}
                   </Typography>
                   <TextField
-                    sx={{ width: '82%', height: '40px' }}
+                    sx={{ width: '82%' }}
                     placeholder={EDIT_MODAL?.father}
+                    inputProps={{
+                      style: {
+                        height: '10px',
+                      },
+                    }}
                   />
                 </Box>
                 <ContactDetails />
@@ -171,7 +193,7 @@ s            />
                 height: '40px',
                 fontSize: '16px',
                 fontWeight: 600,
-                marginTop:"30px"
+                marginTop: '10px',
               }}
             >
               {EDIT_MODAL?.save}
