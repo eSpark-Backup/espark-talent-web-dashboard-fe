@@ -119,7 +119,7 @@ const Page = () => {
                     width: { xs: '150px', md: '100px' },
                     height: { xs: '150px', md: '100px' },
                   }}
-                  src="/images/dashboard/hr/employee.svg"
+                  src="/images/dashboard/employee.svg"
                   component={'img'}
                 />
                 <Image

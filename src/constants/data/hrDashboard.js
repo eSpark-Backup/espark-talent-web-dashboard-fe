@@ -4,7 +4,7 @@ export const Summary_Boxes = [
     count: '112',
     horizontalLineColor: '#068987',
     backgroundColor: '#E6F4F4',
-    image: '/images/dashboard/hr/employee.svg',
+    image: '/images/dashboard/hr/employeeimage.svg',
   },
   {
     title: 'Clients',
