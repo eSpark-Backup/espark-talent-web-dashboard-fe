@@ -78,7 +78,7 @@ const EditModal = ({ handleOpenModal, onClose }) => {
               {EDIT_MODAL?.editProfile}
             </Typography>
             <Image
-              src={'/images/dashboard/hr/employee.svg'}
+              src={'/images/dashboard/employee.svg'}
               width={100}
               height={100}
               alt="employee"

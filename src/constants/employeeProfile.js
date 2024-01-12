@@ -13,6 +13,7 @@ export const employeeProfileData = {
 };
 export const EDIT_MODAL = {
   editProfile: 'Edit profile picture',
+  addassetForm: 'Add asset form',
   remove: 'Remove',
   change: 'Change',
   employeeId: 'Employee ID',
@@ -44,6 +45,18 @@ export const EDIT_MODAL = {
   gender: 'Gender',
   team: 'Team',
   joiningDate: 'Joining date',
+  gadgetName: 'Gadget name',
+  gadgetPlaceholder: 'Enter gadget name',
+  assetID: 'Asset ID',
+  assetidPlaceholder: 'Enter asset ID',
+  assignedDate: 'Assigned date',
+  assigneeName: 'Assignee name',
+  assignnamePlacholder: 'Enter assignee name',
+  assignedEmail: 'Assigned email',
+  assignedemailPlaceholder: ' Enter assignee email',
+  assigneePicture: 'Assignee picture',
+  uploadPicture: 'Upload picture',
+  submit: 'Submit',
 };
 
 export const employeeDataLabel = [
@@ -106,5 +119,56 @@ export const MARITAL_STATUS = [
   {
     label: 'Married',
     value: 'Married',
+  },
+];
+
+export const ASSET_TABLECOLUMN = [
+  {
+    title: 'Gadget',
+    flex: 2,
+  },
+  {
+    title: 'Asset ID',
+    flex: 2,
+  },
+  {
+    title: 'Assigned date',
+    flex: 2,
+  },
+  {
+    title: 'Assignee',
+    flex: 2,
+  },
+];
+export const ASSET_TABLEDATA = [
+  {
+    gadget: 'LapTop',
+    assetId: 'AST-001',
+    assignedDate: 'September 7,2023 11:07 AM',
+    assignee: 'Bilal Ahmed Khan',
+  },
+  {
+    gadget: 'Del keyboard',
+    assetId: 'AST-001',
+    assignedDate: 'September 7,2023 11:07 AM',
+    assignee: 'Bilal Ahmed Khan',
+  },
+  {
+    gadget: 'Laptop',
+    assetId: 'AST-001',
+    assignedDate: 'September 7,2023 11:07 AM',
+    assignee: 'Bilal Ahmed Khan',
+  },
+  {
+    gadget: 'Logictech mouse',
+    assetId: 'AST-001',
+    assignedDate: 'September 7,2023 11:07 AM',
+    assignee: 'Bilal Ahmed Khan',
+  },
+  {
+    gadget: 'Laptop',
+    assetId: 'AST-001',
+    assignedDate: 'September 7,2023 11:07 AM',
+    assignee: 'Bilal Ahmed Khan',
   },
 ];

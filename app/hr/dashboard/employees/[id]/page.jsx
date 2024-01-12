@@ -8,11 +8,12 @@ import { usePathname } from 'next/navigation';
 import { employeeProfileData } from '@/src/constants/employeeProfile';
 import Profile from '@/src/components/employeeData/profile';
 import AttendanceReport from '@/src/components/employeeData/attendanceReports';
-import Assets from '@/src/components/employeeData/assets';
 import EditEmployeeCredential from '@/src/components/employeeData/editEmployeeCredential';
 import EditModal from '@/src/components/employeeData/editModal';
-import Client from '@/src/components/employeeData/client';
 import { getEmployeeData } from '@/src/utils/employeeProfile';
+import Client from '@/src/components/employeeData/client';
+import Assets from '@/src/components/employeeData/assets';
+import AssetForm from '@/src/components/employeeData/assetModal';
 
 const Page = () => {
   const [value, setValue] = useState('one');
@@ -20,6 +21,7 @@ const Page = () => {
   const [showEmergancyModal, setEmergencyModal] = useState(false);
   const [showCredentialModal, setCredentialModal] = useState(false);
   const [showEditProfilelModal, setEditProfileModal] = useState(false);
+  const [showAssetModal, setAssetModal] = useState(false);
 
   const pathname = usePathname();
   const employeeId = pathname.split('/').pop();
@@ -30,6 +32,9 @@ const Page = () => {
   };
   const handleCredentialModal = () => {
     setCredentialModal(true);
+  };
+  const handleAssetModal = () => {
+    setAssetModal(true);
   };
   const handleEmergencyModal = () => {
     setEmergencyModal(true);
@@ -42,6 +47,7 @@ const Page = () => {
     setCredentialModal(false);
     setEmergencyModal(false);
     setEditProfileModal(false);
+    setAssetModal(false);
   };
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -154,7 +160,7 @@ const Page = () => {
                   {employeeData ? employeeData.name : 'Employee not found'}
                 </Typography>
                 <Typography sx={{ fontSize: '16px', fontWeight: 400 }}>
-                  Employee ID:{' '}
+                  Employee ID:
                   {employeeData
                     ? employeeData.employeeId
                     : 'Employee not found'}
@@ -204,6 +210,8 @@ const Page = () => {
                 borderBottom: 1,
                 borderColor: 'divider',
                 marginBottom: '40px',
+                display: 'flex',
+                justifyContent: 'space-between',
               }}
             >
               <Tabs
@@ -217,6 +225,84 @@ const Page = () => {
                 <Tab value="three" label="Attendance reports" />
                 <Tab value="four" label="Assets" />
               </Tabs>
+              {value === 'three' && (
+                <Box
+                  sx={{
+                    display: 'flex',
+                    marginBottom: '10px',
+                  }}
+                >
+                  <Button
+                    sx={{
+                      marginX: '10px',
+                      minWidth: '120px',
+                      display: { xs: 'none', md: 'flex' },
+                      border: '1px solid #138A72',
+                      color: '#138A72',
+                      '&:hover:': {
+                        background: '#fff',
+                      },
+                    }}
+                    startIcon={
+                      <Image
+                        width={20}
+                        height={22}
+                        alt="Refresh"
+                        src={`/icons/Refresh.svg`}
+                      />
+                    }
+                  >
+                    Refresh
+                  </Button>
+                  <Button
+                    sx={{
+                      minWidth: '120px',
+                      background: '#138A72',
+                      display: { xs: 'none', md: 'flex' },
+                      color: '#fff',
+                      '&:hover': {
+                        background: '#138A72',
+                      },
+                    }}
+                    startIcon={
+                      <Image
+                        width={18}
+                        height={15}
+                        alt="Refresh"
+                        src={`/icons/Filter.svg`}
+                      />
+                    }
+                  >
+                    Filter
+                  </Button>
+                </Box>
+              )}
+              {value === 'four' && (
+                <>
+                  <Button
+                    sx={{
+                      minWidth: '160px',
+                      background: '#029894',
+                      display: { xs: 'none', md: 'flex' },
+                      color: '#fff',
+                      textTransform: 'math-auto',
+                      marginBottom: '10px',
+                      '&:hover': {
+                        background: '#029894',
+                      },
+                    }}
+                    onClick={handleAssetModal}
+                  >
+                    Add asset
+                  </Button>
+                  {showAssetModal && (
+                    <AssetForm
+                      open={handleAssetModal}
+                      onClose={handleCloseModal}
+                    />
+                  )}
+                </>
+              )}
             </Box>
 
             {value === 'one' ? (
