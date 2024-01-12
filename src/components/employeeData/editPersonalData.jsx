@@ -117,7 +117,7 @@ const EditPersonalModal = ({ onClose, handleEditProfileModal }) => {
               sx={{
                 display: 'flex',
                 padding: '20px',
-                gap: '100px',
+                gap: { xs: '50px', md: '100px' },
                 flexDirection: { xs: 'column', md: 'row' },
                 '@media (min-width: 280px) and (max-width: 450px)': {
                   flexDirection: 'column',
@@ -158,9 +158,20 @@ const EditPersonalModal = ({ onClose, handleEditProfileModal }) => {
                         openPickerIcon: CalendarIcon,
                       }}
                       placeholder="DD/MM/YYYY"
-                      slotProps={{ textField: { size: 'small ' } }}
+                      slotProps={{
+                        textField: {
+                          size: 'small',
+                          style: {
+                            height: '30px',
+                            width: '82%',
+                          },
+                        },
+                      }}
                       sx={{
-                        width: '82%',
+                        '& .MuiInputBase-input': {
+                          height: '30px',
+                          width: '82%',
+                        },
                       }}
                     />
                   </LocalizationProvider>
@@ -328,11 +339,22 @@ const EditPersonalModal = ({ onClose, handleEditProfileModal }) => {
                       slots={{
                         openPickerIcon: CalendarIcon,
                       }}
-                      slotProps={{ textField: { size: '30px ' } }}
-                      placeholder="DD/MM/YYYY"
-                      sx={{
-                        width: '82%',
+                      slotProps={{
+                        textField: {
+                          size: 'small',
+                          style: {
+                            height: '30px',
+                            width: '82%',
+                          },
+                        },
                       }}
+                      sx={{
+                        '& .MuiInputBase-input': {
+                          height: '30px',
+                          width: '82%',
+                        },
+                      }}
+                      placeholder="DD/MM/YYYY"
                     />
                   </LocalizationProvider>
                 </Box>

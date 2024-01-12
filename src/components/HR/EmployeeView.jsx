@@ -192,6 +192,7 @@ const EmployeeView = ({ status, id, name, designation, search }) => {
       );
     }
   }
+
   return (
     <>
       <Grid

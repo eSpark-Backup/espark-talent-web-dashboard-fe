@@ -58,7 +58,7 @@ export const timeSheetTableColumn = [
     flex: 2,
   },
   {
-    title: 'Overtime',
+    title: 'Estimated hours',
     flex: 2,
   },
   {

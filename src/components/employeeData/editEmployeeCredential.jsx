@@ -46,7 +46,6 @@ const EditEmployeeCredential = ({ onClose, open }) => {
           >
             {EDIT_MODAL?.editEmployeeCredentials}
           </Typography>
-
           <Box
             sx={{
               width: { xs: '35px', md: '25px' },
@@ -68,7 +67,7 @@ const EditEmployeeCredential = ({ onClose, open }) => {
               padding: '15px',
               display: 'flex',
               flexDirection: 'column',
-              gap: '40px',
+              gap: { xs: '20px', md: '40px' },
               width: '80%',
             }}
           >
@@ -84,7 +83,12 @@ const EditEmployeeCredential = ({ onClose, open }) => {
                   {EDIT_MODAL?.employeeId}
                 </Typography>
                 <TextField
-                  sx={{ width: '82%' }}
+                  sx={{
+                    width: '82%',
+                    '& input::placeholder': {
+                      fontSize: { xs: '12px', md: '14px' },
+                    },
+                  }}
                   placeholder={EDIT_MODAL?.id}
                   inputProps={{
                     style: {
@@ -98,7 +102,12 @@ const EditEmployeeCredential = ({ onClose, open }) => {
                   {EDIT_MODAL?.currentPassword}
                 </Typography>
                 <TextField
-                  sx={{ width: '82%' }}
+                  sx={{
+                    width: '82%',
+                    '& input::placeholder': {
+                      fontSize: { xs: '11px', md: '14px' },
+                    },
+                  }}
                   placeholder={EDIT_MODAL?.enterPassword}
                   inputProps={{
                     style: {
@@ -120,7 +129,12 @@ const EditEmployeeCredential = ({ onClose, open }) => {
                   {EDIT_MODAL?.newPassword}
                 </Typography>
                 <TextField
-                  sx={{ width: '82%' }}
+                  sx={{
+                    width: '82%',
+                    '& input::placeholder': {
+                      fontSize: { xs: '12px', md: '14px' },
+                    },
+                  }}
                   placeholder={EDIT_MODAL?.enternewPassword}
                   inputProps={{
                     style: {
@@ -134,7 +148,12 @@ const EditEmployeeCredential = ({ onClose, open }) => {
                   {EDIT_MODAL?.confirmPassword}
                 </Typography>
                 <TextField
-                  sx={{ width: '82%' }}
+                  sx={{
+                    width: '82%',
+                    '& input::placeholder': {
+                      fontSize: { xs: '12px', md: '14px' },
+                    },
+                  }}
                   placeholder={EDIT_MODAL?.confirmPassword}
                   inputProps={{
                     style: {
@@ -151,7 +170,6 @@ const EditEmployeeCredential = ({ onClose, open }) => {
                 height: '40px',
                 fontSize: '16px',
                 fontWeight: 600,
-                //   marginTop:"50px"
               }}
             >
               {EDIT_MODAL?.save}

@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Box, Button, Grid, Tab, Tabs, Typography } from '@mui/material';
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 import { employeeProfileData } from '@/src/constants/employeeProfile';
 import Profile from '@/src/components/employeeData/profile';
@@ -11,6 +12,7 @@ import Assets from '@/src/components/employeeData/assets';
 import EditEmployeeCredential from '@/src/components/employeeData/editEmployeeCredential';
 import EditModal from '@/src/components/employeeData/editModal';
 import Client from '@/src/components/employeeData/client';
+import { getEmployeeData } from '@/src/utils/employeeProfile';
 
 const Page = () => {
   const [value, setValue] = useState('one');
@@ -19,6 +21,10 @@ const Page = () => {
   const [showCredentialModal, setCredentialModal] = useState(false);
   const [showEditProfilelModal, setEditProfileModal] = useState(false);
 
+  const pathname = usePathname();
+  const employeeId = pathname.split('/').pop();
+  const findemployeeId = employeeId[employeeId.length - 1];
+  const employeeData = getEmployeeData(findemployeeId);
   const handleOpenModal = () => {
     setEditModal(true);
   };
@@ -73,7 +79,6 @@ const Page = () => {
             </Typography>
           </Box>
           <Box sx={{ marginBottom: '-30px', paddingBottom: '40px' }}>
-            {' '}
             <Typography
               sx={{
                 color: '#171717',
@@ -145,14 +150,17 @@ const Page = () => {
                   },
                 }}
               >
-                <Typography sx={{ fontSize: '25px', fontWeight: 600 }}>
-                  {employeeProfileData?.name}
+                <Typography sx={{ fontSize: '25px', fontWeight: 500 }}>
+                  {employeeData ? employeeData.name : 'Employee not found'}
                 </Typography>
-                <Typography sx={{ fontSize: '16px', fontWeight: 500 }}>
-                  {employeeProfileData?.id}
+                <Typography sx={{ fontSize: '16px', fontWeight: 400 }}>
+                  Employee ID:{' '}
+                  {employeeData
+                    ? employeeData.employeeId
+                    : 'Employee not found'}
                 </Typography>
-                <Typography sx={{ fontSize: '16px', fontWeight: 500 }}>
-                  {employeeProfileData?.designation}
+                <Typography sx={{ fontSize: '16px', fontWeight: 400 }}>
+                  {employeeData ? employeeData.role : 'Employee not found'}
                 </Typography>
               </Box>
             </Box>

@@ -5,11 +5,11 @@ import Image from 'next/image';
 import {
   emergencyContact,
   emergencyContactData,
-  employeeDataLabel,
   employeeProfileData,
 } from '@/src/constants/employeeProfile';
 import EditEmergencyModal from './emergencyEditModal';
 import EditPersonalModal from './editPersonalData';
+import PersonalInformation from './personalInformation';
 
 const Profile = ({
   showEditProfilelModal,
@@ -37,6 +37,9 @@ const Profile = ({
           alignItems: 'baseline',
           justifyContent: 'space-between',
           padding: '30px',
+          '@media (min-width: 280px) and (max-width: 350px)': {
+            padding: '10px',
+          },
         }}
       >
         <Box sx={{ width: '100%' }}>
@@ -72,93 +75,20 @@ const Profile = ({
               />
             )}
           </Box>
-          <Box sx={{ display: 'flex' }}>
+          <Box
+            sx={{
+              display: 'flex',
+            }}
+          >
+            <PersonalInformation />
             <Box
               sx={{
-                display: 'flex',
-                // flexDirection: { xs: 'column', md: 'row' },
-                background: 'pink',
-                // height: '320px',
-                width: { xs: '100%', md: '60%' },
+                display: { xs: 'none', md: 'flex' },
+                '@media (min-width: 900px) and (max-width: 920px)': {
+                  display: 'none',
+                },
               }}
-            >
-              <Box
-                sx={{
-                  display: 'flex',
-                  flexDirection: { xs: 'column', md: 'row' },
-                  justifyContent: 'space-between',
-                  '@media (max-width: 600px)': {
-                    flexDirection: 'column',
-                  },
-                }}
-              >
-                {employeeDataLabel.map((data, index) => (
-                  <Box key={index} sx={{ margin: '8px' }}>
-                    <Typography
-                      sx={{
-                        fontSize: { xs: '12px', md: '16px' },
-                        fontWeight: 400,
-                        '@media (min-width: 200px) and (max-width: 362px)': {
-                          fontSize: '15px',
-                        },
-                      }}
-                    >
-                      {data.label}
-                    </Typography>
-                    <Typography>{data.value}</Typography>
-                  </Box>
-                ))}
-              </Box>
-              {/* <Box
-                sx={{
-                  // display: 'flex',
-                  // gap: '8px',
-                  // flexDirection: { xs: 'column', md: 'row' },
-                  justifyContent: 'space-between',
-                }}
-              >
-                {employeeDataLabel.map((data, index) => (
-                  <>
-                    <Typography
-                      key={index}
-                      sx={{
-                        fontSize: { xs: '12px', md: '16px' },
-                        fontWeight: 400,
-                        '@media (min-width: 200px) and (max-width: 362px)': {
-                          fontSize: '15px',
-                        },
-                      }}
-                    >
-                      {data.label}
-                    </Typography>
-                    <Typography>{data.value}</Typography>
-                  </>
-                ))}
-              </Box> */}
-              {/* <Box
-                sx={{
-                  display: 'flex',
-                  gap: '8px',
-                  flexDirection: 'column',
-                }}
-              >
-                {employeeData.map((data, index) => (
-                  <Typography
-                    key={index}
-                    sx={{
-                      fontSize: { xs: '14px', md: '16px' },
-                      fontWeight: 400,
-                      '@media (min-width: 200px) and (max-width: 362px)': {
-                        fontSize: '15px',
-                      },
-                    }}
-                  >
-                    {data.value}
-                  </Typography>
-                ))}
-              </Box> */}
-            </Box>
-            <Box>kk</Box>
+            ></Box>
           </Box>
         </Box>
       </Box>
@@ -207,17 +137,7 @@ const Profile = ({
               />
             )}
           </Box>
-          <Box
-            display={'flex'}
-            flexDirection={'column'}
-            gap={1}
-            width={'100%'}
-            sx={
-              {
-                // marginTop:"-10px"
-              }
-            }
-          >
+          <Box display={'flex'} flexDirection={'column'} gap={1} width={'100%'}>
             <Box
               sx={{
                 borderRadius: '5px',
