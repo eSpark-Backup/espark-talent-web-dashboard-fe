@@ -20,6 +20,7 @@ export const DASHBOARD_DATA = {
   greeting: 'Hello Arman,',
   updates: 'Here’s what we have for you today',
   talentPlatform: 'Discover the eSpark Talent Platform',
+  dashboard: 'Dashboard',
   employeeData:
     'Manage all your Employee data in a secure, organized HR database, and gather insights that lead to strategic action.',
 };

@@ -20,7 +20,7 @@ const Policies = () => {
             flexDirection: 'column',
             justifyContent: 'center',
             paddingTop: '10px',
-            gap: '100px',
+            gap: '80px',
             width: '100%',
           }}
         >
