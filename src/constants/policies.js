@@ -1,5 +1,6 @@
 export const POLICIES_DATA = {
   title: 'Download Policy',
+  downloadPolicy: 'Download policy',
   description: 'You will find all the policies related to your company below.',
   close: 'Close',
   download: 'Download',
