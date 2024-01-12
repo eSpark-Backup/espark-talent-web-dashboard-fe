@@ -22,7 +22,7 @@ const Dashboard = () => {
           </Box>
         </Grid>
         <Grid item xs={12}>
-          <HrAccess hrView={false} />
+          <HrAccess isHr={true} />
         </Grid>
       </Grid>
     </>

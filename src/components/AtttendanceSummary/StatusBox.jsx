@@ -5,9 +5,9 @@ import Image from 'next/image';
 const StatusBox = ({
   title,
   count,
-  horizotalLineColor,
+  horizontalLineColor,
   backgroundColor,
-  hrView,
+  isHr,
   image,
 }) => {
   return (
@@ -15,14 +15,14 @@ const StatusBox = ({
       <Box
         sx={{
           display: 'flex',
-          width: hrView ? '100%' : { xs: '100%', md: '300px' },
+          width: isHr ? '100%' : { xs: '100%', md: '300px' },
           height: '110px',
           borderRadius: '10px',
           background: `${backgroundColor}`,
           justifyContent: 'space-between',
           alignItems: 'center',
           '@media (min-width: 900px) and (max-width: 1275px)': {
-            height: hrView ? '110px' : '150px',
+            height: isHr ? '120px' : '150px',
           },
         }}
       >
@@ -42,7 +42,7 @@ const StatusBox = ({
               style={{
                 width: '27px',
                 height: '2px',
-                backgroundColor: `${horizotalLineColor}`,
+                backgroundColor: `${horizontalLineColor}`,
               }}
             />
             <Typography
@@ -54,7 +54,7 @@ const StatusBox = ({
                 lineHeight: 'normal',
               }}
             >
-              {hrView ? title : count}
+              {isHr ? count : title}
             </Typography>
           </Box>
           <Box>
@@ -67,7 +67,7 @@ const StatusBox = ({
                 lineHeight: 'normal',
               }}
             >
-              {hrView ? count : title}
+              {isHr ? title : count}
             </Typography>
           </Box>
         </Box>
@@ -79,14 +79,7 @@ const StatusBox = ({
             marginRight: '10px',
           }}
         >
-          {hrView ? (
-            <Image
-              src="/icons/arrow-right.svg"
-              width={15}
-              height={15}
-              alt="arrow"
-            />
-          ) : (
+          {isHr ? (
             <Image
               src={image}
               width={50}
@@ -95,6 +88,13 @@ const StatusBox = ({
               style={{
                 marginRight: '10px',
               }}
+            />
+          ) : (
+            <Image
+              src="/icons/arrow-right.svg"
+              width={15}
+              height={15}
+              alt="arrow"
             />
           )}
         </Box>

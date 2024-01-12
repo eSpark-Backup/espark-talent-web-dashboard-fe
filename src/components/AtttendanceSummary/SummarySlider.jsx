@@ -8,7 +8,7 @@ import { FreeMode, Pagination } from 'swiper/modules';
 import StatusBox from './StatusBox';
 import { Summary_Slider_Breakpoints } from '@/src/constants/employeeDashboard';
 
-export default function SummarySlider({ summaryBoxes, hrView }) {
+const SummarySlider = ({ summaryBoxes }) => {
   return (
     <>
       <Swiper
@@ -22,14 +22,15 @@ export default function SummarySlider({ summaryBoxes, hrView }) {
             <StatusBox
               title={item?.title}
               count={item?.count}
-              horizotalLineColor={item?.horizotalLineColor}
+              horizontalLineColor={item?.horizontalLineColor}
               backgroundColor={item?.backgroundColor}
               image={item?.image}
-              hrView={hrView}
             />
           </SwiperSlide>
         ))}
       </Swiper>
     </>
   );
-}
+};
+
+export default SummarySlider;

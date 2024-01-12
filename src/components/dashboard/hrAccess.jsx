@@ -1,9 +1,10 @@
-import { Box } from '@mui/material';
 import React from 'react';
+import { Box } from '@mui/material';
+
 import { Summary_Boxes } from '@/src/constants/data/hrDashboard';
 import StatusBox from '../AtttendanceSummary/StatusBox';
 
-const HrAccess = ({ hrView }) => {
+const HrAccess = ({ isHr }) => {
   return (
     <Box
       sx={{
@@ -22,17 +23,18 @@ const HrAccess = ({ hrView }) => {
           paddingLeft: { xs: '0px', md: '50px' },
         }}
       >
-        {Summary_Boxes?.map((item, index) => (
-          <StatusBox
-            key={index}
-            title={item?.title}
-            count={item?.count}
-            horizotalLineColor={item?.horizotalLineColor}
-            backgroundColor={item?.backgroundColor}
-            image={item?.image}
-            hrView={hrView}
-          />
-        ))}
+        {isHr &&
+          Summary_Boxes?.map((item, index) => (
+            <StatusBox
+              key={index}
+              title={item?.title}
+              count={item?.count}
+              horizontalLineColor={item?.horizontalLineColor}
+              backgroundColor={item?.backgroundColor}
+              image={item?.image}
+              isHr={isHr}
+            />
+          ))}
       </Box>
     </Box>
   );
