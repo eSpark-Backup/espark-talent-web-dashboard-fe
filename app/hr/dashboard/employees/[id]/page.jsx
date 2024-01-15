@@ -14,6 +14,7 @@ import { getEmployeeData } from '@/src/utils/employeeProfile';
 import Client from '@/src/components/employeeData/client';
 import Assets from '@/src/components/employeeData/assets';
 import AssetForm from '@/src/components/employeeData/assetModal';
+import { allEmployees } from '@/src/constants/AllEmployee';
 
 const Page = () => {
   const [value, setValue] = useState('one');
@@ -25,8 +26,8 @@ const Page = () => {
 
   const pathname = usePathname();
   const employeeId = pathname.split('/').pop();
-  const findemployeeId = employeeId[employeeId.length - 1];
-  const employeeData = getEmployeeData(findemployeeId);
+  const id = employeeId[employeeId.length - 1];
+  const employeeData = getEmployeeData(id, allEmployees);
   const handleOpenModal = () => {
     setEditModal(true);
   };
@@ -68,7 +69,7 @@ const Page = () => {
         >
           <Box sx={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <Image
-              src={'/images/dashboard/Left.svg'}
+              src={'/images/dashboard/left.svg'}
               width={30}
               height={30}
               alt="left"
@@ -156,18 +157,24 @@ const Page = () => {
                   },
                 }}
               >
+                {employeeData ?(
+                <>
                 <Typography sx={{ fontSize: '25px', fontWeight: 500 }}>
-                  {employeeData ? employeeData.name : 'Employee not found'}
+                  {employeeData?.name}
                 </Typography>
                 <Typography sx={{ fontSize: '16px', fontWeight: 400 }}>
-                  Employee ID:
-                  {employeeData
-                    ? employeeData.employeeId
-                    : 'Employee not found'}
+                  {employeeData?.employeeId}
                 </Typography>
                 <Typography sx={{ fontSize: '16px', fontWeight: 400 }}>
-                  {employeeData ? employeeData.role : 'Employee not found'}
-                </Typography>
+                  {employeeData?.role}
+                    </Typography>
+                      </>
+                    ):(
+                    <Typography sx={{ fontSize: '16px', fontWeight: 400 }}>
+                  {employeeProfileData?.noidFound}
+                    </Typography>
+                    )}
+                
               </Box>
             </Box>
             <Box>
@@ -220,12 +227,25 @@ const Page = () => {
                 aria-label="wrapped label tabs example"
                 variant="scrollable"
               >
-                <Tab value="one" label="Profile" wrapped />
-                <Tab value="two" label="Client" />
-                <Tab value="three" label="Attendance reports" />
-                <Tab value="four" label="Assets" />
+                <Tab
+                  value={employeeProfileData?.valueOne}
+                  label={employeeProfileData?.profile}
+                  wrapped
+                  disableRipple={true}
+                />
+                <Tab
+                  value={employeeProfileData?.valueTwo}
+                  label={employeeProfileData?.client}
+                  disableRipple={true}
+                />
+                <Tab
+                  value={employeeProfileData?.valuethree}
+                  label={employeeProfileData?.attendanceReports}
+                  disableRipple={true}
+                />
+                <Tab value={employeeProfileData?.valueFour} label="Assets" disableRipple={true} />
               </Tabs>
-              {value === 'three' && (
+              {value === employeeProfileData?.valuethree && (
                 <Box
                   sx={{
                     display: 'flex',
@@ -252,7 +272,7 @@ const Page = () => {
                       />
                     }
                   >
-                    Refresh
+                    {employeeProfileData?.refreshBtn}
                   </Button>
                   <Button
                     sx={{
@@ -273,11 +293,11 @@ const Page = () => {
                       />
                     }
                   >
-                    Filter
+                    {employeeProfileData?.freshBtn}
                   </Button>
                 </Box>
               )}
-              {value === 'four' && (
+              {value === employeeProfileData?.valueFour && (
                 <>
                   <Button
                     sx={{
@@ -293,7 +313,7 @@ const Page = () => {
                     }}
                     onClick={handleAssetModal}
                   >
-                    Add asset
+                    {employeeProfileData?.addAsset}
                   </Button>
                   {showAssetModal && (
                     <AssetForm
@@ -305,7 +325,7 @@ const Page = () => {
               )}
             </Box>
 
-            {value === 'one' ? (
+            {value === employeeProfileData?.valueOne ? (
               <Profile
                 handleOpenModal={handleOpenModal}
                 showEditModal={showEditModal}
@@ -315,9 +335,9 @@ const Page = () => {
                 handleEditProfileModal={handleEditProfileModal}
                 showEditProfilelModal={showEditProfilelModal}
               />
-            ) : value === 'two' ? (
+            ) : value === employeeProfileData?.valueTwo ? (
               <Client />
-            ) : value === 'three' ? (
+            ) : value === employeeProfileData?.valuethree ? (
               <AttendanceReport />
             ) : (
               <Assets />

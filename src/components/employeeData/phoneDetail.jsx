@@ -1,9 +1,8 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { Box, TextField, Typography } from '@mui/material';
 import Image from 'next/image';
 
 import { EDIT_MODAL } from '@/src/constants/employeeProfile';
-import { useState } from 'react';
 
 const ContactDetails = () => {
   const [showSecondBox, setShowSecondBox] = useState(false);

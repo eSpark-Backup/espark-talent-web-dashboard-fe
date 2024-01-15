@@ -13,18 +13,23 @@ import {
 } from '@mui/material';
 import Image from 'next/image';
 
-import { EDIT_MODAL, MARITAL_STATUS } from '@/src/constants/employeeProfile';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { DesktopDatePicker, LocalizationProvider } from '@mui/x-date-pickers';
+import { EDIT_MODAL, MARITAL_STATUS, employeeProfileData } from '@/src/constants/employeeProfile';
+
 import JobTitle from '../StartHiring/JobTitle';
-import CalendarIcon from '../StartHiring/CalenderIcon';
 import { GENDER_OPTION } from '@/src/constants/Hiring';
+import DatePicker from './Datepicker';
 
 const EditPersonalModal = ({ onClose, handleEditProfileModal }) => {
   const [selectedValue, setSelectedValue] = useState(MARITAL_STATUS[0].label);
   const [isOpen, setIsOpen] = useState(false);
   const [open, setOpen] = useState(false);
+  const [select, setselect] = React.useState('Select');
+  const [isInputLabelVisible, setIsInputLabelVisible] = useState(true);
 
+  const handleChange = (event) => {
+    setselect(event.target.value);
+    setIsInputLabelVisible(selectedValue === '');
+  };
   const SelectOpen = () => {
     setOpen(true);
   };
@@ -128,7 +133,7 @@ const EditPersonalModal = ({ onClose, handleEditProfileModal }) => {
                 sx={{
                   display: 'flex',
                   flexDirection: 'column',
-                  gap: '30px',
+                  gap: '38px',
                   width: { xs: '100%', md: '100%' },
                 }}
               >
@@ -150,31 +155,7 @@ const EditPersonalModal = ({ onClose, handleEditProfileModal }) => {
                   <Typography sx={{ color: '#595959', marginBottom: '10px' }}>
                     {EDIT_MODAL?.birthDate}
                   </Typography>
-                  <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <DesktopDatePicker
-                      className="date-picker-component"
-                      sty
-                      slots={{
-                        openPickerIcon: CalendarIcon,
-                      }}
-                      placeholder="DD/MM/YYYY"
-                      slotProps={{
-                        textField: {
-                          size: 'small',
-                          style: {
-                            height: '30px',
-                            width: '82%',
-                          },
-                        },
-                      }}
-                      sx={{
-                        '& .MuiInputBase-input': {
-                          height: '30px',
-                          width: '82%',
-                        },
-                      }}
-                    />
-                  </LocalizationProvider>
+                  <DatePicker />
                 </Box>
                 <Box sx={{ width: '100%' }}>
                   <Typography sx={{ color: '#595959', marginBottom: '10px' }}>
@@ -248,7 +229,7 @@ const EditPersonalModal = ({ onClose, handleEditProfileModal }) => {
                 sx={{
                   display: 'flex',
                   flexDirection: { xs: 'column', md: 'column' },
-                  gap: '30px',
+                  gap: '35px',
                   width: { xs: '100%', md: '100%' },
                 }}
               >
@@ -271,19 +252,23 @@ const EditPersonalModal = ({ onClose, handleEditProfileModal }) => {
                     {EDIT_MODAL?.gender}
                   </Typography>
                   <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">
-                      Select
+                    <InputLabel
+                      shrink={false}
+                      disabled
+                      sx={{ display: isInputLabelVisible ? 'block' : 'none' }}
+                    >
+                     {employeeProfileData?.select}
                     </InputLabel>
+
                     <Select
                       sx={{
                         '&:focus': {
                           borderColor: 'teal',
                         },
                         width: '82%',
-                        padding: '0px',
                         height: '45px',
                       }}
-                      placeholder="Select"
+                      value={select}
                       IconComponent={() => (
                         <InputAdornment
                           sx={{
@@ -305,6 +290,7 @@ const EditPersonalModal = ({ onClose, handleEditProfileModal }) => {
                       )}
                       onOpen={SelectOpen}
                       onClose={SelectClose}
+                      onChange={handleChange}
                     >
                       {GENDER_OPTION?.map((option) => (
                         <MenuItem key={option?.value} value={option?.label}>
@@ -315,7 +301,7 @@ const EditPersonalModal = ({ onClose, handleEditProfileModal }) => {
                   </FormControl>
                 </Box>
 
-                <Box sx={{ width: '100%' }}>
+                <Box sx={{ width: '100%', marginTop: '-10px' }}>
                   <Typography sx={{ color: '#595959', marginBottom: '10px' }}>
                     {EDIT_MODAL?.team}
                   </Typography>
@@ -333,30 +319,7 @@ const EditPersonalModal = ({ onClose, handleEditProfileModal }) => {
                   <Typography sx={{ color: '#595959', marginBottom: '10px' }}>
                     {EDIT_MODAL?.joiningDate}
                   </Typography>
-                  <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <DesktopDatePicker
-                      className="date-picker-component"
-                      slots={{
-                        openPickerIcon: CalendarIcon,
-                      }}
-                      slotProps={{
-                        textField: {
-                          size: 'small',
-                          style: {
-                            height: '30px',
-                            width: '82%',
-                          },
-                        },
-                      }}
-                      sx={{
-                        '& .MuiInputBase-input': {
-                          height: '30px',
-                          width: '82%',
-                        },
-                      }}
-                      placeholder="DD/MM/YYYY"
-                    />
-                  </LocalizationProvider>
+                  <DatePicker />
                 </Box>
               </Box>
             </Box>
@@ -368,7 +331,7 @@ const EditPersonalModal = ({ onClose, handleEditProfileModal }) => {
                 fontSize: '16px',
                 fontWeight: 600,
                 marginLeft: '20px',
-                marginBottom: '15px',
+                marginTop: { xs: '10px', md: '-10px' },
               }}
             >
               {EDIT_MODAL?.save}

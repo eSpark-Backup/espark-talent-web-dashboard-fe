@@ -2,11 +2,12 @@ import React from 'react';
 import { Box, Typography } from '@mui/material';
 
 import {
-  employeeData,
-  employeeDataLabel,
+  employeeDataLabel, employeeProfileDetails,
 } from '@/src/constants/employeeProfile';
 
+
 const PersonalInformation = () => {
+   
   return (
     <>
       <Box
@@ -14,10 +15,15 @@ const PersonalInformation = () => {
           display: { xs: 'none', md: 'flex' },
           flexDirection: { xs: 'column', md: 'row' },
           justifyContent: 'space-between',
+                               
+
         }}
       >
         <Box
           sx={{
+            display: "flex",
+            flexDirection: "column",
+             gap:"15px",
             marginRight: '80px',
             '@media (min-width: 900px) and (max-width: 1260px)': {
               marginRight: '20px',
@@ -37,14 +43,16 @@ const PersonalInformation = () => {
                   },
                 }}
               >
-                {data.label}
+                {data?.label}
               </Typography>
             </>
           ))}
         </Box>
 
-        <Box>
-          {employeeData?.map((data, index) => (
+        <Box sx={{  display: "flex",
+            flexDirection: "column",
+             gap:"15px",}}>
+          {employeeDataLabel?.map((data, index) => (
             <Typography
               key={index}
               sx={{
@@ -56,7 +64,7 @@ const PersonalInformation = () => {
                 },
               }}
             >
-              {data.value}
+              {data?.value}
             </Typography>
           ))}
         </Box>
@@ -73,7 +81,9 @@ const PersonalInformation = () => {
           },
         }}
       >
-        <Box sx={{ marginRight: '0px', width: '50%' }}>
+        <Box sx={{ marginRight: '0px', width: '50%',  '@media (min-width: 500px) and (max-width: 900px)': {
+                  width: '30%',
+                }, background:"#fff"}}>
           {employeeDataLabel.map((data, index) => (
             <>
               <Typography
@@ -87,14 +97,14 @@ const PersonalInformation = () => {
                   },
                 }}
               >
-                {data.label}
+                {data?.label}
               </Typography>
             </>
           ))}
         </Box>
 
         <Box sx={{ width: '50%' }}>
-          {employeeData?.map((data, index) => (
+          {employeeDataLabel?.map((data, index) => (
             <Typography
               key={index}
               sx={{
@@ -106,7 +116,7 @@ const PersonalInformation = () => {
                 },
               }}
             >
-              {data.value}
+              {data?.value}
             </Typography>
           ))}
         </Box>

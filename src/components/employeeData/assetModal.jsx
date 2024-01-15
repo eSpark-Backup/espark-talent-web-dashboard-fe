@@ -9,10 +9,11 @@ import {
 } from '@mui/material';
 import Image from 'next/image';
 
-import { EDIT_MODAL } from '@/src/constants/employeeProfile';
+import { EDIT_MODAL, employeeProfileData } from '@/src/constants/employeeProfile';
 import { DesktopDatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import CalendarIcon from '../StartHiring/CalenderIcon';
+import DatePicker from './Datepicker';
 
 const AssetForm = ({ onClose, open }) => {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -25,10 +26,10 @@ const AssetForm = ({ onClose, open }) => {
   };
   const handleFileChange = (event) => {
     const file = event.target.files[0];
-    if (file && file.type.startsWith('image/')) {
+    if (file && file.type.startsWith(employeeProfileData?.acceptImage)) {
       setSelectedFile(file);
     } else {
-      alert('Invalid file type. Please select an image.');
+      alert(employeeProfileData?.invalidFile);
       event.target.value = null;
     }
   };
@@ -105,6 +106,7 @@ const AssetForm = ({ onClose, open }) => {
                 display: 'flex',
                 flexDirection: { xs: 'column', md: 'row' },
                 justifyContent: { xs: 'center', md: 'space-between' },
+                gap: { xs: '20px', md: '0px' },
               }}
             >
               <Box sx={{ width: '100%' }}>
@@ -151,37 +153,14 @@ const AssetForm = ({ onClose, open }) => {
                 display: 'flex',
                 flexDirection: { xs: 'column', md: 'row' },
                 justifyContent: { xs: 'center', md: 'space-between' },
+                gap: { xs: '30px', md: '0px' },
               }}
             >
               <Box sx={{ width: '100%' }}>
                 <Typography sx={{ color: '#595959', marginBottom: '10px' }}>
                   {EDIT_MODAL?.assignedDate}
                 </Typography>
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <DesktopDatePicker
-                    className="date-picker-component"
-                    sty
-                    slots={{
-                      openPickerIcon: CalendarIcon,
-                    }}
-                    placeholder="DD/MM/YYYY"
-                    slotProps={{
-                      textField: {
-                        size: 'small',
-                        style: {
-                          height: '30px',
-                          width: '82%',
-                        },
-                      },
-                    }}
-                    sx={{
-                      '& .MuiInputBase-input': {
-                        height: '30px',
-                        width: '82%',
-                      },
-                    }}
-                  />
-                </LocalizationProvider>
+                <DatePicker/>
               </Box>
               <Box sx={{ width: '100%' }}>
                 <Typography sx={{ color: '#595959', marginBottom: '10px' }}>
@@ -208,6 +187,7 @@ const AssetForm = ({ onClose, open }) => {
                 display: 'flex',
                 flexDirection: { xs: 'column', md: 'row' },
                 justifyContent: { xs: 'center', md: 'space-between' },
+                gap: { xs: '20px', md: '0px' },
               }}
             >
               <Box sx={{ width: '100%' }}>
@@ -239,29 +219,39 @@ const AssetForm = ({ onClose, open }) => {
                   style={{ display: 'none' }}
                   onChange={handleFileChange}
                 />
+
                 <TextField
                   sx={{
                     width: '82%',
                     '& input::placeholder': {
                       fontSize: { xs: '12px', md: '14px' },
                     },
+                     
                   }}
                   placeholder={EDIT_MODAL?.uploadPicture}
                   inputProps={{
                     style: {
                       height: '10px',
+                      marginLeft:"10px"
                     },
                   }}
                   InputProps={{
                     startAdornment: (
-                      <InputAdornment position="start">
+                      <InputAdornment sx={{ position:"start"}}>
+                        <Box sx={{
+                          backgroundColor: '#068987', display: 'flex', width: "45px", padding: "1px", marginLeft: "-13px",
+                        '@media (min-width: 280px) and (max-width: 300px)': {
+                  marginTop: "1px",
+                },
+                        }}>
                         <Image
-                          width={30}
-                          height={30}
+                          width={40}
+                          height={42}
                           alt="Refresh"
                           src={`/images/dashboard/upload.svg`}
                           onClick={handleClick}
                         />
+                        </Box>
                       </InputAdornment>
                     ),
                   }}

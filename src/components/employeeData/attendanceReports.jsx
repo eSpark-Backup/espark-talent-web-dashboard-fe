@@ -7,6 +7,7 @@ import {
   timeSheetTableData,
 } from '@/src/constants/data/tables/timeSheet';
 import AttendanceViewModal from '@/app/employee/dashboard/attendance/time-sheet/AttendanceViewModal';
+import { employeeProfileData } from '@/src/constants/employeeProfile';
 
 const AttendanceReport = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -26,7 +27,7 @@ const AttendanceReport = () => {
   return (
     <>
       {isLoading ? (
-        <Box>Loading...</Box>
+        <Box>{employeeProfileData?.loading }</Box>
       ) : (
         <>
           <Box

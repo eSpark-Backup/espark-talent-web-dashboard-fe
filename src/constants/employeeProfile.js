@@ -10,6 +10,25 @@ export const employeeProfileData = {
   name: 'John Doe',
   id: 'Employee ID: es-00020',
   designation: ' Web developer',
+  primary: 'Primary',
+  secondary: "Secondary",
+  acceptImage: 'image/',
+  invalidFile: "Invalid file type.Please select an image.",
+  employeeId: "Employee ID",
+  refreshBtn: "Refresh",
+  freshBtn: "Filter",
+  addAsset: "Add asset",
+  loading: " Loading...",
+  employeeNotfound: " Employee not found",
+  noidFound: "No Employee Id Found",
+  client: "Client",
+  attendanceReports: "Attendance reports",
+  valueOne: "one",
+  valueTwo: "two",
+  valuethree: "three",
+  valueFour: "four",
+  select: " Select"
+
 };
 export const EDIT_MODAL = {
   editProfile: 'Edit profile picture',
@@ -60,38 +79,43 @@ export const EDIT_MODAL = {
 };
 
 export const employeeDataLabel = [
-  { label: 'Employee name' },
-  { label: 'Employee ID' },
-  { label: 'Birth date' },
-  { label: 'Gender' },
-  { label: 'Email' },
-  { label: 'Team' },
-  { label: 'Designation' },
-  { label: 'Joining date' },
-  { label: 'Marital status' },
-];
-export const employeeData = [
-  { value: 'John Doe' },
-  { value: '090078601' },
-  { value: 'January 1, 1990' },
-  { value: 'Male' },
-  { value: 'johndoe@123.com' },
-  { value: 'Web development' },
-  { value: 'Web developer' },
-  { value: '26/01/23' },
-  { value: 'Married' },
+  { label: 'Employee name', value: 'John Doe' },
+  { label: 'Employee ID', value: '090078601' },
+  { label: 'Birth date', value: 'January 1, 1990' },
+  { label: 'Gender', value: 'Male' },
+  { label: 'Email', value: 'johndoe@123.com' },
+  { label: 'Team', value: 'Web development' },
+  { label: 'Designation', value: 'Web developer' },
+  { label: 'Joining date', value: '26/01/23' },
+  { label: 'Marital status', value: 'Married' },
 ];
 export const emergencyContact = [
-  { label: 'Name' },
-  { label: 'Relationship' },
-  { label: 'Phone' },
+  { label: 'Name', value: 'John Doe' },
+  { label: 'Relationship', value: 'Father' },
+  { label: 'Phone', value: '03323883838' },
 ];
-export const emergencyContactData = [
-  { value: 'John Doe' },
-  { value: 'Father' },
-  { value: '03323883838' },
-];
-
+export const employeeProfileDetails = [
+  {
+    employeeId: 12222,
+    employeeName: 'Bilal Ahmed Khan',
+    birthDate: 'January 1, 1997',
+    gender: 'Male',
+    team: "Web development",
+    designation: 'Web developer',
+    joiningDate: '26/01/21',
+    maritalStatus: "single"
+  },
+  {
+    employeeId: 12223,
+    employeeName: 'Muzamil Ali',
+    birthDate: 'January 1, 1996',
+    gender: 'Male',
+    team: "Web development",
+    designation: 'Web developer',
+    joiningDate: '25/05/21',
+    maritalStatus: "single"
+  }
+]
 export const employeesTabs = [
   {
     label: 'Public',

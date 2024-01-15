@@ -1,8 +1,10 @@
-import { allEmployees } from '../constants/AllEmployee';
+import { employeeProfileData } from "../constants/employeeProfile";
 
-export const getEmployeeData = (id) => {
+export const getEmployeeData = (id, allEmployees) => {
   if (id === undefined || id === null) {
-    return 'No Employee Id Found';
+    return null;
   }
-  return allEmployees.find((employee) => employee.id === parseInt(id));
+  // return allEmployees.find((employee) => employee.id === parseInt(id));
+  const employee = allEmployees.find((employee) => employee.id === parseInt(id));
+  return employee || null;
 };

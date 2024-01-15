@@ -5,6 +5,7 @@ import AppTable from '../dashboard/appTable';
 import {
   ASSET_TABLECOLUMN,
   ASSET_TABLEDATA,
+  employeeProfileData,
 } from '@/src/constants/employeeProfile';
 
 const Assets = () => {
@@ -18,7 +19,7 @@ const Assets = () => {
   return (
     <>
       {isLoading ? (
-        <Box>Loading...</Box>
+        <Box>{employeeProfileData?.loading }</Box>
       ) : (
         <>
           <Box
