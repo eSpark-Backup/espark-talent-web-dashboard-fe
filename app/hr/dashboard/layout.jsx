@@ -123,14 +123,30 @@ const Layout = ({ children }) => {
         <LayoutContainer>
           {/* <Box
             sx={{
-              px: {
-                xs: '15px',
-                sm: '20px',
-                md: '20px',
-                lg: '30px',
+              '@media (max-width: 400px)': {
+                px: '20px',
               },
-              pt: { xs: '80px', sm: '90px', md: '90px', lg: '30px' },
-              pb: { xs: '20px', sm: '20px', md: '20px', lg: '30px' },
+              px: {
+                xs: '30px',
+                sm: '30px',
+                md: '50px',
+                lg: '40px',
+                xl: '80px',
+              },
+              pt: {
+                xs: '100px',
+                sm: '100px',
+                md: '100px',
+                lg: '40px',
+                xl: '63px',
+              },
+              pb: {
+                xs: '40px',
+                sm: '40px',
+                md: '40px',
+                lg: '40px',
+                xl: '63px',
+              },
             }}
           >
             {child && children}

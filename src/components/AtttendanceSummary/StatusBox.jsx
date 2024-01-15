@@ -2,18 +2,28 @@ import React from 'react';
 import { Box, Typography } from '@mui/material';
 import Image from 'next/image';
 
-const StatusBox = ({ title, count, horizotalLineColor, backgroundColor }) => {
+const StatusBox = ({
+  title,
+  count,
+  horizontalLineColor,
+  backgroundColor,
+  isHr,
+  image,
+}) => {
   return (
     <>
       <Box
         sx={{
           display: 'flex',
-          width: '100%',
+          width: isHr ? '100%' : { xs: '100%', md: '300px' },
           height: '110px',
           borderRadius: '10px',
           background: `${backgroundColor}`,
           justifyContent: 'space-between',
           alignItems: 'center',
+          '@media (min-width: 900px) and (max-width: 1275px)': {
+            height: isHr ? '120px' : '150px',
+          },
         }}
       >
         <Box
@@ -32,7 +42,7 @@ const StatusBox = ({ title, count, horizotalLineColor, backgroundColor }) => {
               style={{
                 width: '27px',
                 height: '2px',
-                backgroundColor: `${horizotalLineColor}`,
+                backgroundColor: `${horizontalLineColor}`,
               }}
             />
             <Typography
@@ -44,28 +54,49 @@ const StatusBox = ({ title, count, horizotalLineColor, backgroundColor }) => {
                 lineHeight: 'normal',
               }}
             >
-              {title}
+              {isHr ? count : title}
             </Typography>
           </Box>
           <Box>
-            <Typography>{count}</Typography>
+            <Typography
+              sx={{
+                color: '#595959',
+                fontSize: '16px',
+                fontStyle: 'normal',
+                fontWeight: 400,
+                lineHeight: 'normal',
+              }}
+            >
+              {isHr ? title : count}
+            </Typography>
           </Box>
         </Box>
         <Box
           sx={{
-            // width: '10%',
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
             marginRight: '10px',
           }}
         >
-          <Image
-            width={15}
-            height={15}
-            src="/images/dashboard/icon-right.svg"
-            alt="arrow"
-          />
+          {isHr ? (
+            <Image
+              src={image}
+              width={50}
+              height={50}
+              alt="hrview"
+              style={{
+                marginRight: '10px',
+              }}
+            />
+          ) : (
+            <Image
+              src="/icons/arrow-right.svg"
+              width={15}
+              height={15}
+              alt="arrow"
+            />
+          )}
         </Box>
       </Box>
     </>

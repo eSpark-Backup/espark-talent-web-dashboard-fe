@@ -98,7 +98,11 @@ const PunchRequestModal = ({ createModal, modalData, handleClose }) => {
             fontWeight: '600',
           }}
         >
-          Create punch request
+          {createModal ? (
+            <div>Create punch request</div>
+          ) : (
+            <div>Punch request view</div>
+          )}
         </Typography>
       </Box>
 

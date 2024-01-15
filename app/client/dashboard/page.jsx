@@ -5,6 +5,7 @@ import { Grid, Box } from '@mui/material';
 import OnBoarding from '@/src/components/dashboard/onBoarding';
 import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
 import DiscoverTalentPlatform from '@/src/components/dashboard/discoverTalent';
+import { DASHBOARD_DATA } from '@/public/images/dashboard/constants/Dashboard';
 
 const Dashboard = () => {
   return (
@@ -20,7 +21,8 @@ const Dashboard = () => {
               width: '100%',
             }}
           >
-            <DashboardHeading />
+            <DashboardHeading dashboardDescription={DASHBOARD_DATA?.updates} />
+
             <Grid item xs={12}>
               <DiscoverTalentPlatform />
             </Grid>
