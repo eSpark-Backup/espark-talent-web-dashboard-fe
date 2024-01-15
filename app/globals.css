@@ -16,7 +16,8 @@
 .table th {
   font-weight: 500 !important;
 }
-.table td{
+
+.table td {
   font-weight: 400 !important;
 }
 
@@ -230,10 +231,40 @@ body {
   font-weight: 400;
   line-height: normal;
 }
-.country-custom-dropdown >div >div {
+
+.country-custom-dropdown>div>div {
   padding: 7px 0 7px 15px;
 }
 
-.text-field-custom > div > input {
+.text-field-custom>div>input {
   padding: 5px 15px;
+}
+.form-input-field{
+  width: 100%;
+  padding: 10px;
+  min-height: 40px;
+}
+.form-input-field:focus{
+  outline: none;
+}
+.form-input-field::placeholder,.file-upload-label {
+  color: #888;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.file-upload-label {
+  width: 100%;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  padding-left: 10px;
+}
+.form-date-picker-component{
+  width: 100%;
+}
+.error-border fieldset{
+  border: solid 1px red !important;
+  /* border-radius: 7px; */
 }

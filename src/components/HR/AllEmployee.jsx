@@ -5,8 +5,10 @@ import React, { useEffect, useState } from 'react';
 import Input from '../dashboard/input';
 import Image from 'next/image';
 import EmployeeView from './EmployeeView';
+import { useRouter } from 'next/navigation';
 
 const AllEmployee = () => {
+  const router = useRouter();
   const [value, setValue] = useState('one');
 
   const handleChange = (event, newValue) => {
@@ -43,6 +45,7 @@ const AllEmployee = () => {
         </Typography>
         <Button
           style={{ backgroundColor: '#029894', width: '160px', color: '#FFF' }}
+          onClick={() => router.push('/hr/dashboard/employees/add-employee')}
         >
           Add employee
         </Button>
