@@ -14,6 +14,9 @@ const AppDropdown = ({
   nested,
   disabled,
   padding,
+  mb,
+  error,
+  isForm,
 }) => {
   const [isOpenedDropdown, setIsOpenedDropdown] = useState(false);
   const [isOpenedDropdownNested, setIsOpenedDropdownNested] = useState(false);
@@ -127,7 +130,7 @@ const AppDropdown = ({
       md={12}
       lg={12}
       xl={12}
-      mb={'30px'}
+      mb={mb || '30px'}
     >
       <Box
         ref={componentRef}
@@ -142,7 +145,7 @@ const AppDropdown = ({
             justifyContent={'space-between'}
             alignItems={'center'}
             sx={{
-              border: 'solid 1px rgba(0, 0, 0, 0.23)',
+              border: `solid 1px ${error ? 'red' : 'rgba(0, 0, 0, 0.23)'}`,
               borderTopLeftRadius: '5px',
               borderTopRightRadius: '5px',
               borderBottomLeftRadius: !isOpenedDropdown && '5px',
@@ -178,6 +181,8 @@ const AppDropdown = ({
                   fontStyle: 'normal',
                   fontWeight: 500,
                   lineHeight: 'normal',
+                  textOverflow: 'ellipsis', // Show an ellipsis (...) if text overflows
+                  whiteSpace: 'nowrap',
                 }}
               >
                 {nested ? jobTitle?.title : selectedItem}
@@ -290,6 +295,9 @@ const AppDropdown = ({
                                     title: item,
                                     category: label,
                                   });
+                                  if (isForm) {
+                                    setSelectedItem(item);
+                                  }
                                 }}
                                 data-key={{ chIndex }}
                                 className={`list-item-box ${
@@ -366,6 +374,8 @@ const AppDropdown = ({
                   fontStyle: 'normal',
                   fontWeight: 500,
                   lineHeight: 'normal',
+                  textOverflow: 'ellipsis', // Show an ellipsis (...) if text overflows
+                  whiteSpace: 'nowrap',
                 }}
               >
                 {nested ? jobTitle?.title : selectedItem}
@@ -387,51 +397,6 @@ const AppDropdown = ({
               />
             )}
           </Box>
-          {/* {isOpenedDropdownNested && (
-            <Box
-              sx={{
-                border: 'solid 1px rgba(0, 0, 0, 0.23)',
-                borderBottomLeftRadius: '5px',
-                borderBottomRightRadius: '5px',
-                borderTopLeftRadius: !isOpenedDropdown && '5px',
-                borderTopRightRadius: !isOpenedDropdown && '5px',
-                borderTop: 'none',
-                position: 'absolute',
-                width: '100%',
-                background: '#fff',
-                zIndex: 110,
-              }}
-            >
-              <Box>
-                {isLoadingList && (
-                  <Box p={'15px'}>
-                    <Typography>Loading...</Typography>
-                  </Box>
-                )}
-                {selectedCatIndex === null && listData?.length > 0
-                  ? listData?.map(({ label }, listIndex) => (
-                    <Typography
-                      onClick={() => setSelectedCatIndex(listIndex)}
-                      key={listIndex}
-                    >
-                      {label}
-                    </Typography>
-                  ))
-                  : listData[selectedCatIndex]?.children?.length > 0
-                    ? listData[selectedCatIndex]?.children?.map(
-                      (item, chIndex) => (
-                        <Typography
-                          onClick={() => setIsOpenedDropdownNested(false)}
-                          key={chIndex}
-                        >
-                          {item}
-                        </Typography>
-                      )
-                    )
-                    : null}
-              </Box>
-            </Box>
-          )} */}
           {isOpenedDropdownNested && (
             <Box
               sx={{
@@ -493,6 +458,7 @@ const AppDropdown = ({
                                     setIsOpenedDropdownNested(false);
                                   } else {
                                     setSelectedCatIndex(index);
+                                    setIsOpenedDropdownNested(true);
                                   }
                                 }}
                                 display={'flex'}
@@ -536,6 +502,9 @@ const AppDropdown = ({
                                     title: item,
                                     category: listData[selectedCatIndex]?.label,
                                   });
+                                  if (isForm) {
+                                    setSelectedItem(item);
+                                  }
                                 }}
                                 data-key={{ chIndex }}
                                 className={`list-item-box ${
