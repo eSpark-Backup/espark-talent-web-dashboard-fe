@@ -2,7 +2,7 @@ export const teamMembersColumn = [
   'Name',
   'Employment term',
   'Role/Department',
-  'Start date',
+  'Join date',
   'Country',
   'Benefits',
 ];

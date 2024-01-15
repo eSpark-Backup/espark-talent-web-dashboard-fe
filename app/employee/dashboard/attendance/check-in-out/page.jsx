@@ -379,13 +379,10 @@ const Dashboard = () => {
               gap={'10px'}
               sx={{
                 height: '50px',
-                // background:"#ccc",
                 mx: { xs: 3, sm: 3, lg: 3 },
                 my: '30px',
-                // border: "solid 1px #ccc",
                 borderRadius: '5px',
                 position: 'relative',
-                // overflow: "hidden"
               }}
               display={'flex'}
             >
@@ -398,7 +395,6 @@ const Dashboard = () => {
                     justifyContent: 'center',
                     alignItems: 'center',
                     p: '10px',
-                    // borderRadius:'5px',
                     width: '100%',
                     height: '50px',
                   }}
@@ -412,6 +408,7 @@ const Dashboard = () => {
                       fontWeight: '400',
                       lineHeight: 'normal',
                       ml: '10px',
+                      textTransform: 'math-auto',
                       '&:hover': {
                         color: '#fff',
                       },
@@ -426,12 +423,10 @@ const Dashboard = () => {
                 <Button
                   variant="contained"
                   sx={{
-                    // border:"solid 1px #ccc",
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
                     p: '10px',
-                    // borderRadius:'5px',
                     width: '100%',
                     height: '50px',
                   }}
@@ -445,6 +440,7 @@ const Dashboard = () => {
                       fontWeight: '400',
                       lineHeight: 'normal',
                       ml: '10px',
+                      textTransform: 'math-auto',
                     }}
                   >
                     Mark check out
@@ -482,6 +478,7 @@ const Dashboard = () => {
                   fontStyle: 'normal',
                   fontWeight: '400',
                   lineHeight: 'normal',
+                  textTransform: 'math-auto',
                   '&:hover': {
                     color: '#fff',
                   },

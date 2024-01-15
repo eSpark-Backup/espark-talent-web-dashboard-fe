@@ -358,7 +358,7 @@ const LeaveRequestModal = ({ handleClose }) => {
                   lineHeight: 'normal',
                 }}
               >
-                Total count
+                Available leaves
               </Typography>
             </Grid>
             <Grid item xs={12} md={6.6} sx={{ width: '100%' }}>

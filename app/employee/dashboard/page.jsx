@@ -272,9 +272,7 @@ const Dashboard = () => {
                       fontWeight: 400,
                       lineHeight: 'normal',
                       ml: '10px',
-                      // '&:hover': {
-                      //   color: '#fff',
-                      // },
+                      textTransform: 'math-auto',
                     }}
                   >
                     Mark check in
@@ -302,6 +300,7 @@ const Dashboard = () => {
                       fontWeight: 400,
                       lineHeight: 'normal',
                       ml: '10px',
+                      textTransform: 'math-auto',
                     }}
                   >
                     Mark check out
@@ -340,6 +339,7 @@ const Dashboard = () => {
                     fontStyle: 'normal',
                     fontWeight: 400,
                     lineHeight: 'normal',
+                    textTransform: 'math-auto',
                     '&:hover': {
                       color: '#fff',
                     },
