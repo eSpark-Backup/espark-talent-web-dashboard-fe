@@ -20,7 +20,7 @@ export const employeeProfileData = {
   addAsset: 'Add asset',
   loading: ' Loading...',
   employeeNotfound: ' Employee not found',
-  noidFound: 'No Employee Id Found',
+  noidFound: 'No Employee Found',
   client: 'Client',
   attendanceReports: 'Attendance reports',
   valueOne: 'one',
