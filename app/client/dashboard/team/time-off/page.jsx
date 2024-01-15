@@ -24,12 +24,6 @@ import {
 import Image from 'next/image';
 import { renderNestedTable } from './renderComponents';
 import Link from 'next/link';
-// import RequestHeading from '@/src/components/requestview/modalHeading';
-// import LeaveRequest from '@/src/components/requestview/leaveRequestView';
-// import PunchHeading from '@/src/components/punchIn/punchHeading';
-// import { PUNCH_IN } from '@/src/constants/punchIn/createPunch';
-// import PunchRequestView from '@/src/components/punchIn/punchRequestView';
-// import AppDropdown from '@/src/components/dashboard/appDropdown';
 import LeaveViewModal from './LeaveViewModal';
 import PunchViewModal from './PunchViewModal';
 
@@ -44,25 +38,8 @@ const Dashboard = () => {
 
   const [open, setOpen] = useState(false);
   const [openPunch, setOpenPunch] = useState(false);
-  // const [modalType, setModalType] = useState('');
-  // const [employeeId, setEmployeeId] = useState();
-  // const [leaveType, setLeaveType] = useState();
-  // const [fromTo, setFromTo] = useState();
-
-  // const [employeeName, setEmployeeName] = useState();
-
   const handleOpen = () =>
-    // type,
-    // employeeId,
-    // employeeName,
-    // leaveType,
-    // fromTo
     {
-      // setModalType(type);
-      // setEmployeeId(employeeId);
-      // setLeaveType(leaveType);
-      // setFromTo(fromTo);
-      // setEmployeeName(employeeName);
       setOpen(true);
     };
   const handleClose = () => {

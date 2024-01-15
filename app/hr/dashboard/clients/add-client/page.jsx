@@ -19,7 +19,7 @@ const AddEmployee = () => {
   const [currentStep, setCurrentStep] = useState(1);
   return (
     <Box>
-      <Breadcrumb title="Clients /" currentPage="Add client" />
+      <Breadcrumb root="clients" title="Clients /" currentPage="Add client" />
       <Box mb={'40px'}>
         <Typography
           sx={{

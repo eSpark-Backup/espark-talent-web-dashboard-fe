@@ -4,14 +4,18 @@ import { Grid, Menu, MenuItem, Typography } from '@mui/material';
 import { Box, useTheme } from '@mui/system';
 import Image from 'next/image';
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 const ClientView = ({ status, id, name, designation = '', search }) => {
+  const router = useRouter();
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
+    event.stopPropagation();
     setAnchorEl(event.currentTarget);
   };
-  const handleClose = () => {
+  const handleClose = (event) => {
+    event.stopPropagation();
     setAnchorEl(null);
   };
   const theme = useTheme();
@@ -58,10 +62,13 @@ const ClientView = ({ status, id, name, designation = '', search }) => {
                       borderRadius: '5px',
                       boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
                       padding: '20px 15px 10px 15px',
+                      
                     }}
+                    
                   >
                     <Box
-                      sx={{ display: 'flex', justifyContent: 'space-between' }}
+                      sx={{ display: 'flex', justifyContent: 'space-between',cursor:"pointer" }}
+                      onClick={() => router.push('/hr/dashboard/clients/add-client')}
                     >
                       <Box
                         sx={{
@@ -226,7 +233,9 @@ const ClientView = ({ status, id, name, designation = '', search }) => {
                   borderRadius: '5px',
                   boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
                   padding: '20px 15px 10px 15px',
+                  cursor:"pointer"
                 }}
+                onClick={() => router.push('/hr/dashboard/clients/client-profile')}
               >
                 <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                   <Box
