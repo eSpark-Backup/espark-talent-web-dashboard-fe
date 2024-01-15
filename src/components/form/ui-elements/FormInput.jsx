@@ -30,7 +30,7 @@ const FormInput = ({
   const [isLoadingList, setIsLoadingList] = useState(false);
   const handleSelectItem = (item) => {
     const tempErrors = { ...errors };
-    if (tempErrors.prototype.hasOwnProperty(name)) {
+    if (Object.hasOwnProperty.call(tempErrors, name)) {
       delete tempErrors[name];
     }
     setErrors({ ...tempErrors });
