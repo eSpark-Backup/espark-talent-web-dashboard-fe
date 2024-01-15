@@ -30,13 +30,13 @@ const FormInput = ({
   const [isLoadingList, setIsLoadingList] = useState(false);
   const handleSelectItem = (item) => {
     const tempErrors = { ...errors };
-    if (tempErrors.hasOwnProperty(name)) {
+    if (tempErrors.prototype.hasOwnProperty(name)) {
       delete tempErrors[name];
     }
     setErrors({ ...tempErrors });
     setFieldValue(name, item);
   };
-  const handleChangeInput = (field, value, type) => {
+  const handleChangeInput = (field, value) => {
     const tempErrors = { ...errors };
     if (value.length) {
       if (field === 'email') {
@@ -54,7 +54,7 @@ const FormInput = ({
     setErrors({ ...tempErrors });
     setFieldValue?.(field, value);
   };
-  const handleChangeFileInput = (field, value, type) => {
+  const handleChangeFileInput = (field, value) => {
     const tempErrors = { ...errors };
     if (value?.name) {
       delete tempErrors[name];
@@ -142,7 +142,7 @@ const FormInput = ({
               },
             }}
             value={value}
-            onChange={(e, f, g) => {
+            onChange={(e) => {
               handleChangeInput(name, `${e?.$d}`);
             }}
           />

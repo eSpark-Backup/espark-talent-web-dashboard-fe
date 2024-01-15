@@ -145,18 +145,22 @@ const Step = ({ handleGoPrev, handleGoNext, form, isMultiColumn, schema }) => {
         }}
       >
         {form?.map(
-          ({
-            title,
-            placeholder,
-            errorText,
-            prefixIcon,
-            type,
-            suffixIcon,
-            options,
-            name,
-            nested,
-          }) => (
+          (
+            {
+              title,
+              placeholder,
+              errorText,
+              prefixIcon,
+              type,
+              suffixIcon,
+              options,
+              name,
+              nested,
+            },
+            formIndex
+          ) => (
             <FormInput
+              key={formIndex}
               title={title}
               placeholder={placeholder}
               errorText={errorText}

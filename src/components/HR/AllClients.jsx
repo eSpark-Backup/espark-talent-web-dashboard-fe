@@ -11,22 +11,21 @@ const AllClients = () => {
   const router = useRouter();
   const [value, setValue] = useState('one');
 
-  const handleChange = (event, newValue) => {
+  const handleChange = (newValue) => {
     setValue(newValue);
   };
 
   const [id, setId] = useState('');
   const [name, setName] = useState('');
-  const [designation, setDesignation] = useState('');
   const [search, setSearch] = useState(false);
 
   const theme = useTheme();
 
   useEffect(() => {
-    if (name === '' && id === '' && designation === '') {
+    if (name === '' && id === '') {
       setSearch(false);
     }
-  }, [name, id, designation]);
+  }, [name, id]);
 
   return (
     <>
@@ -113,29 +112,11 @@ const AllClients = () => {
           </Grid>
         </Grid>
         {value === 'one' ? (
-          <ClientView
-            search={search}
-            id={id}
-            name={name}
-            designation={designation}
-            status={'All'}
-          />
+          <ClientView search={search} id={id} name={name} status={'All'} />
         ) : value === 'two' ? (
-          <ClientView
-            status={'Active'}
-            id={id}
-            name={name}
-            designation={designation}
-            search={search}
-          />
+          <ClientView status={'Active'} id={id} name={name} search={search} />
         ) : (
-          <ClientView
-            id={id}
-            name={name}
-            designation={designation}
-            status={'Inactive'}
-            search={search}
-          />
+          <ClientView id={id} name={name} status={'Inactive'} search={search} />
         )}
       </Box>
     </>

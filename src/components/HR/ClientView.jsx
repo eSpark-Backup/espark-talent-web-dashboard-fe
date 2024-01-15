@@ -5,7 +5,7 @@ import { Box, useTheme } from '@mui/system';
 import Image from 'next/image';
 import React, { useState } from 'react';
 
-const ClientView = ({ status, id, name, designation, search }) => {
+const ClientView = ({ status, id, name, designation = '', search }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
