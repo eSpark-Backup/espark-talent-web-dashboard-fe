@@ -157,24 +157,23 @@ const Page = () => {
                   },
                 }}
               >
-                {employeeData ?(
-                <>
-                <Typography sx={{ fontSize: '25px', fontWeight: 500 }}>
-                  {employeeData?.name}
-                </Typography>
-                <Typography sx={{ fontSize: '16px', fontWeight: 400 }}>
-                  {employeeData?.employeeId}
-                </Typography>
-                <Typography sx={{ fontSize: '16px', fontWeight: 400 }}>
-                  {employeeData?.role}
+                {employeeData ? (
+                  <>
+                    <Typography sx={{ fontSize: '25px', fontWeight: 500 }}>
+                      {employeeData?.name}
                     </Typography>
-                      </>
-                    ):(
                     <Typography sx={{ fontSize: '16px', fontWeight: 400 }}>
-                  {employeeProfileData?.noidFound}
+                      {employeeData?.employeeId}
                     </Typography>
-                    )}
-                
+                    <Typography sx={{ fontSize: '16px', fontWeight: 400 }}>
+                      {employeeData?.role}
+                    </Typography>
+                  </>
+                ) : (
+                  <Typography sx={{ fontSize: '16px', fontWeight: 400 }}>
+                    {employeeProfileData?.noidFound}
+                  </Typography>
+                )}
               </Box>
             </Box>
             <Box>
@@ -243,7 +242,11 @@ const Page = () => {
                   label={employeeProfileData?.attendanceReports}
                   disableRipple={true}
                 />
-                <Tab value={employeeProfileData?.valueFour} label="Assets" disableRipple={true} />
+                <Tab
+                  value={employeeProfileData?.valueFour}
+                  label="Assets"
+                  disableRipple={true}
+                />
               </Tabs>
               {value === employeeProfileData?.valuethree && (
                 <Box

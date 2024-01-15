@@ -27,9 +27,9 @@ const EditEmployeeCredential = ({ onClose, open }) => {
           height: { xs: '600px', md: '414px' },
           position: 'absolute',
           top: '10%',
-            '@media (min-width: 900px) and (max-width: 1440px)': {
-                width: '70%',
-              },
+          '@media (min-width: 900px) and (max-width: 1440px)': {
+            width: '70%',
+          },
         }}
       >
         <Box
@@ -79,8 +79,7 @@ const EditEmployeeCredential = ({ onClose, open }) => {
                 display: 'flex',
                 flexDirection: { xs: 'column', md: 'row' },
                 justifyContent: { xs: 'center', md: 'space-between' },
-                                gap:{xs:"20px", md:"0px"}
-
+                gap: { xs: '20px', md: '0px' },
               }}
             >
               <Box sx={{ width: '100%' }}>
@@ -127,7 +126,7 @@ const EditEmployeeCredential = ({ onClose, open }) => {
                 display: 'flex',
                 flexDirection: { xs: 'column', md: 'row' },
                 justifyContent: { xs: 'center', md: 'space-between' },
-                gap:{xs:"20px", md:"0px"}
+                gap: { xs: '20px', md: '0px' },
               }}
             >
               <Box sx={{ width: '100%' }}>
@@ -149,7 +148,7 @@ const EditEmployeeCredential = ({ onClose, open }) => {
                   }}
                 />
               </Box>
-              <Box sx={{ width: '100%' , }}>
+              <Box sx={{ width: '100%' }}>
                 <Typography sx={{ color: '#595959', marginBottom: '10px' }}>
                   {EDIT_MODAL?.confirmPassword}
                 </Typography>

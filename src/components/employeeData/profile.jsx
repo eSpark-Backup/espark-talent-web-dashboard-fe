@@ -2,14 +2,11 @@ import React from 'react';
 import { Box, Typography } from '@mui/material';
 import Image from 'next/image';
 
-import {
-  employeeProfileData, employeeProfileDetails,
-} from '@/src/constants/employeeProfile';
+import { employeeProfileData } from '@/src/constants/employeeProfile';
 import EditEmergencyModal from './emergencyEditModal';
 import EditPersonalModal from './editPersonalData';
 import PersonalInformation from './personalInformation';
 import EmergencyContact from './emergencyContact';
-
 
 const Profile = ({
   showEditProfilelModal,
@@ -18,7 +15,6 @@ const Profile = ({
   showEmergancyModal,
   handleEditProfileModal,
 }) => {
- 
   return (
     <Box
       display={'flex'}
@@ -135,7 +131,7 @@ const Profile = ({
               />
             )}
           </Box>
-          <EmergencyContact/>
+          <EmergencyContact />
         </Box>
       </Box>
     </Box>

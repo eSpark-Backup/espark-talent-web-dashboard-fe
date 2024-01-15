@@ -11,24 +11,23 @@ export const employeeProfileData = {
   id: 'Employee ID: es-00020',
   designation: ' Web developer',
   primary: 'Primary',
-  secondary: "Secondary",
+  secondary: 'Secondary',
   acceptImage: 'image/',
-  invalidFile: "Invalid file type.Please select an image.",
-  employeeId: "Employee ID",
-  refreshBtn: "Refresh",
-  freshBtn: "Filter",
-  addAsset: "Add asset",
-  loading: " Loading...",
-  employeeNotfound: " Employee not found",
-  noidFound: "No Employee Id Found",
-  client: "Client",
-  attendanceReports: "Attendance reports",
-  valueOne: "one",
-  valueTwo: "two",
-  valuethree: "three",
-  valueFour: "four",
-  select: " Select"
-
+  invalidFile: 'Invalid file type.Please select an image.',
+  employeeId: 'Employee ID',
+  refreshBtn: 'Refresh',
+  freshBtn: 'Filter',
+  addAsset: 'Add asset',
+  loading: ' Loading...',
+  employeeNotfound: ' Employee not found',
+  noidFound: 'No Employee Id Found',
+  client: 'Client',
+  attendanceReports: 'Attendance reports',
+  valueOne: 'one',
+  valueTwo: 'two',
+  valuethree: 'three',
+  valueFour: 'four',
+  select: ' Select',
 };
 export const EDIT_MODAL = {
   editProfile: 'Edit profile picture',
@@ -100,22 +99,22 @@ export const employeeProfileDetails = [
     employeeName: 'Bilal Ahmed Khan',
     birthDate: 'January 1, 1997',
     gender: 'Male',
-    team: "Web development",
+    team: 'Web development',
     designation: 'Web developer',
     joiningDate: '26/01/21',
-    maritalStatus: "single"
+    maritalStatus: 'single',
   },
   {
     employeeId: 12223,
     employeeName: 'Muzamil Ali',
     birthDate: 'January 1, 1996',
     gender: 'Male',
-    team: "Web development",
+    team: 'Web development',
     designation: 'Web developer',
     joiningDate: '25/05/21',
-    maritalStatus: "single"
-  }
-]
+    maritalStatus: 'single',
+  },
+];
 export const employeesTabs = [
   {
     label: 'Public',

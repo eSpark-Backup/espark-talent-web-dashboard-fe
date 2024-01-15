@@ -9,10 +9,10 @@ import {
 } from '@mui/material';
 import Image from 'next/image';
 
-import { EDIT_MODAL, employeeProfileData } from '@/src/constants/employeeProfile';
-import { DesktopDatePicker, LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import CalendarIcon from '../StartHiring/CalenderIcon';
+import {
+  EDIT_MODAL,
+  employeeProfileData,
+} from '@/src/constants/employeeProfile';
 import DatePicker from './Datepicker';
 
 const AssetForm = ({ onClose, open }) => {
@@ -160,7 +160,7 @@ const AssetForm = ({ onClose, open }) => {
                 <Typography sx={{ color: '#595959', marginBottom: '10px' }}>
                   {EDIT_MODAL?.assignedDate}
                 </Typography>
-                <DatePicker/>
+                <DatePicker />
               </Box>
               <Box sx={{ width: '100%' }}>
                 <Typography sx={{ color: '#595959', marginBottom: '10px' }}>
@@ -226,31 +226,37 @@ const AssetForm = ({ onClose, open }) => {
                     '& input::placeholder': {
                       fontSize: { xs: '12px', md: '14px' },
                     },
-                     
                   }}
                   placeholder={EDIT_MODAL?.uploadPicture}
                   inputProps={{
                     style: {
                       height: '10px',
-                      marginLeft:"10px"
+                      marginLeft: '10px',
                     },
                   }}
                   InputProps={{
                     startAdornment: (
-                      <InputAdornment sx={{ position:"start"}}>
-                        <Box sx={{
-                          backgroundColor: '#068987', display: 'flex', width: "45px", padding: "1px", marginLeft: "-13px",
-                        '@media (min-width: 280px) and (max-width: 300px)': {
-                  marginTop: "1px",
-                },
-                        }}>
-                        <Image
-                          width={40}
-                          height={42}
-                          alt="Refresh"
-                          src={`/images/dashboard/upload.svg`}
-                          onClick={handleClick}
-                        />
+                      <InputAdornment sx={{ position: 'start' }}>
+                        <Box
+                          sx={{
+                            backgroundColor: '#068987',
+                            display: 'flex',
+                            width: '45px',
+                            padding: '1px',
+                            marginLeft: '-13px',
+                            '@media (min-width: 280px) and (max-width: 300px)':
+                              {
+                                marginTop: '1px',
+                              },
+                          }}
+                        >
+                          <Image
+                            width={40}
+                            height={42}
+                            alt="Refresh"
+                            src={`/images/dashboard/upload.svg`}
+                            onClick={handleClick}
+                          />
                         </Box>
                       </InputAdornment>
                     ),

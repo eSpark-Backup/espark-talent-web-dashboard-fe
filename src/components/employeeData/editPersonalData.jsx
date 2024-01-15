@@ -13,7 +13,11 @@ import {
 } from '@mui/material';
 import Image from 'next/image';
 
-import { EDIT_MODAL, MARITAL_STATUS, employeeProfileData } from '@/src/constants/employeeProfile';
+import {
+  EDIT_MODAL,
+  MARITAL_STATUS,
+  employeeProfileData,
+} from '@/src/constants/employeeProfile';
 
 import JobTitle from '../StartHiring/JobTitle';
 import { GENDER_OPTION } from '@/src/constants/Hiring';
@@ -257,7 +261,7 @@ const EditPersonalModal = ({ onClose, handleEditProfileModal }) => {
                       disabled
                       sx={{ display: isInputLabelVisible ? 'block' : 'none' }}
                     >
-                     {employeeProfileData?.select}
+                      {employeeProfileData?.select}
                     </InputLabel>
 
                     <Select

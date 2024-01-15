@@ -27,7 +27,7 @@ const AttendanceReport = () => {
   return (
     <>
       {isLoading ? (
-        <Box>{employeeProfileData?.loading }</Box>
+        <Box>{employeeProfileData?.loading}</Box>
       ) : (
         <>
           <Box
