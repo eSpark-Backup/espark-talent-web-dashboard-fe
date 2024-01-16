@@ -22,10 +22,12 @@ const FormInput = ({
   name,
   setFieldValue,
   value,
+  values,
   error,
   setFieldError,
   errors,
   setErrors,
+  fields,
 }) => {
   const [isLoadingList, setIsLoadingList] = useState(false);
   const handleSelectItem = (item) => {
@@ -37,6 +39,7 @@ const FormInput = ({
     setFieldValue(name, item);
   };
   const handleChangeInput = (field, value) => {
+    console.log({field,value})
     const tempErrors = { ...errors };
     if (value.length) {
       if (field === 'email') {
@@ -147,6 +150,61 @@ const FormInput = ({
             }}
           />
         </LocalizationProvider>
+      ) : type === 'input-range' ? (
+        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+          {fields?.map((field, fieldIndex) => (
+            <>
+              {fieldIndex === 1 && (
+                <Box
+                  sx={{ mx:'10px',width: '20px', height: '1px', background: '#000' }}
+                />
+              )}
+              <Box
+                sx={{
+                  border: `1px solid ${error ? 'red' : '#E4E4E4'}`,
+                  borderRadius: '5px',
+                  display: 'flex',
+                  overflow: 'hidden',
+                  height: '40px',
+                }}
+              >
+                <input
+                  style={{
+                    background: '#FFF',
+                    display: type === 'file' && 'none',
+                  }}
+                  placeholder={field.placeholder}
+                  className="form-input-field"
+                  type={type}
+                  onChange={(e) => {
+                    handleChangeInput(
+                      `${name}.${field.name}`,
+                      e?.target?.value
+                    );
+                  }}
+                  value={values[`${name}.${field.name}`]}
+                />
+                {field.suffixIcon && (
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      padding: '10px',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                    }}
+                  >
+                    <Image
+                      src={`/icons/${field.suffixIcon}.svg`}
+                      width={17}
+                      height={17}
+                      alt="Calendar"
+                    />
+                  </Box>
+                )}
+              </Box>
+            </>
+          ))}
+        </Box>
       ) : (
         <Box
           sx={{
@@ -167,7 +225,7 @@ const FormInput = ({
                 padding: '10px',
                 justifyContent: 'center',
                 alignItems: 'center',
-                background: '#068987',
+                background: type === 'file' && '#068987',
               }}
             >
               <Image

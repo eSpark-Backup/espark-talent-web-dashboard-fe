@@ -1,6 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-import { Grid, Typography, Tabs, Tab } from '@mui/material';
+import { Grid, Typography, Tabs, Modal, Tab, Button } from '@mui/material';
 import { Box } from '@mui/system';
 import Step from '@/src/components/form/step/Step';
 import { formSteps } from '@/src/constants/data/forms/add-client';
@@ -8,314 +8,561 @@ import Navigator from '@/src/components/form/step/Navigator';
 import Breadcrumb from '@/src/components/form/step/Breadcrumb';
 import { clientProfileTabs } from '@/src/constants/data/tabs/hr/client-profile';
 import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
+import { renderTable } from './renderComponents';
+import { filterTableRowsWRTTab } from '@/src/utils/table';
+import { useRouter } from 'next/navigation';
+import { jobTitles, roles } from '@/src/constants/data/dropdown.js/startHiring';
+import FormInput from '@/src/components/form/ui-elements/FormInput';
+import { hringRequestForm } from '@/src/constants/data/forms/hiring-request';
+import { useFormik } from 'formik';
+import { hiringRequestSchema } from '@/src/components/form/schemas/hiringRequestForm';
+import HiringRequestModal from './HiringRequestModal';
+import AddContractModal from './AddContractModal';
+import UploadInvoiceModal from './UploadInvoiceModal';
 
 const AddEmployee = () => {
-    const [currentReqTypeTabVal, setcurrentReqTypeTabVal] = useState(0);
-    // const [currentReqStatusTab, setcurrentReqStatusTab] = useState('All');
-    const [currentTab, setCurrentTab] = useState({
-        label:'Hire & onboard',
-        val:0,
-        nested:{
-            label:'Hiring Request',
-            val:0
-        }
-    })
-    const handleChangeCurrentTab = (event, newValue) => {
-        const current = clientProfileTabs[newValue]
-        const {label,nestedTabs} = current
-        console.log({newValue,allTabs:clientProfileTabs, curr:clientProfileTabs[newValue]})
-        setCurrentTab(ps => {
-            return {
-                ...ps,
-                label,
-                val:newValue,
-                nested:{
-                    label:nestedTabs[0]?.label,
-                    val:0
-                }
-            }
-        })
-    };
-    const handleChangeNestedTab = (event, newValue, data) => {
-        const current = data[newValue]
-        const {label} = current
-        setCurrentTab(ps => {
-            return {
-                ...ps,
-                nested:{
-                    label,
-                    val:newValue
-                }
-            }
-        })
-        console.log({data,current,currNested:data[newValue]})
+  const router = useRouter();
+  const {
+    handleSubmit,
+    values,
+    setFieldValue,
+    errors,
+    touched,
+    setFieldError,
+    setErrors,
+  } = useFormik({
+    initialValues: {},
+    validationSchema: hiringRequestSchema,
+    enableReinitialize: true,
+    onSubmit: (formValues) => {
+      console.log({ formValues });
+      handleGoNext();
+    },
+    validateOnChange: false,
+    validateOnBlur: false,
+  });
+  const [currentReqTypeTabVal, setcurrentReqTypeTabVal] = useState(0);
+  const [isOpenHiringRequestModal, setIsOpenHiringRequestModal] =
+    useState(false);
+  const [isOpenContractModal, setIsOpenContractModal] = useState(false);
+  const [isOpenUploadInvoiceModal, setIsOpenUploadInvoiceModal] =
+    useState(false);
+  // const [currentReqStatusTab, setcurrentReqStatusTab] = useState('All');
+  const [currentTab, setCurrentTab] = useState({
+    label: 'Hire & onboard',
+    val: 0,
+    nested: {
+      label: 'Hiring Request',
+      val: 0,
+    },
+  });
+  const [currentTabTable, setCurrentTabTable] = useState({
+    data: clientProfileTabs[0].nestedTabs[0].data,
+    column: clientProfileTabs[0].nestedTabs[0].column,
+  });
+  const handleChangeCurrentTab = (event, newValue) => {
+    const current = clientProfileTabs[newValue];
+    const { label, nestedTabs, data, column } = current;
+    console.log({
+      newValue,
+      allTabs: clientProfileTabs,
+      curr: clientProfileTabs[newValue],
+    });
+    setCurrentTab((ps) => {
+      return {
+        ...ps,
+        label,
+        val: newValue,
+        nested: {
+          label: nestedTabs[0]?.label,
+          val: 0,
+        },
+      };
+    });
+    if (data?.length) {
+      // console.log({data})
+      const filteredData = filterTableRowsWRTTab(data, {
+        paymentStatus: nestedTabs[0].label,
+      });
+      setCurrentTabTable({
+        data: filteredData,
+        column,
+      });
+    } else if (nestedTabs[0].data?.length) {
+      setCurrentTabTable({
+        data: nestedTabs[0].data,
+        column: nestedTabs[0].column,
+      });
+    } else {
+      setCurrentTabTable({
+        data: [],
+        column: [],
+      });
     }
-    return (
-        <Box>
-            <Breadcrumb root="clients" title="Clients /" currentPage="Profile" />
-            <Box mb={'40px'}>
-                <Typography
-                    sx={{
-                        color: '#171717',
-                        fontSize: '30px',
-                        fontStyle: 'normal',
-                        fontWeight: '600',
-                        lineHeight: 'normal',
-                    }}
-                >
-                    Profile
-                </Typography>
+  };
+  const handleChangeNestedTab = (event, newValue, data, rest) => {
+    const current = data[newValue];
+    const { label } = current;
+    // console.log({current,data})
+    setCurrentTab((ps) => {
+      return {
+        ...ps,
+        nested: {
+          label,
+          val: newValue,
+        },
+      };
+    });
+    if (current?.data?.length) {
+      setCurrentTabTable({
+        data: current?.data,
+        column: current?.column,
+      });
+    } else if (rest.data?.length) {
+      const filteredData = filterTableRowsWRTTab(rest.data, {
+        paymentStatus: current?.label,
+      });
+      console.log({ filteredData });
+      setCurrentTabTable({
+        data: filteredData,
+        column: rest.column,
+      });
+    } else {
+      setCurrentTabTable({
+        data: [],
+        column: [],
+      });
+    }
+    console.log({ data, current, currNested: data[newValue], rest });
+  };
+  const handleOpenHiringRequestModal = () => {
+    setIsOpenHiringRequestModal(true);
+  };
+  const handleCloseHiringRequestModal = () => {
+    setIsOpenHiringRequestModal(false);
+  };
+  const handleOpenContractModal = () => {
+    setIsOpenContractModal(true);
+  };
+  const handleCloseContractModal = () => {
+    setIsOpenContractModal(false);
+  };
+  const handleOpenUploadInvoiceModal = () => {
+    setIsOpenUploadInvoiceModal(true);
+  };
+  const handleCloseUploadInvoiceModal = () => {
+    setIsOpenUploadInvoiceModal(false);
+  };
+  return (
+    <>
+      <Box>
+        <Breadcrumb root="clients" title="Clients /" currentPage="Profile" />
+        <Box mb={'40px'}>
+          <Typography
+            sx={{
+              color: '#171717',
+              fontSize: '30px',
+              fontStyle: 'normal',
+              fontWeight: '600',
+              lineHeight: 'normal',
+            }}
+          >
+            Profile
+          </Typography>
+        </Box>
+        <Grid
+          container
+          sx={{
+            borderRadius: '5px',
+            background: '#FFF',
+            boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
+            display: 'flex',
+            flexDirection: { xs: 'column', md: 'row' },
+            alignItems: { xs: 'flex-start', md: 'center' },
+            position: 'relative',
+            p: { xs: '10px', md: '18px 25px' },
+          }}
+        >
+          <Grid
+            item
+            xs={12}
+            lg={4}
+            sx={{
+              display: 'flex',
+              flexDirection: { xs: 'column', md: 'row' },
+              alignItems: { xs: 'flex-start', md: 'center' },
+            }}
+          >
+            <Box
+              sx={{
+                position: 'relative',
+              }}
+            >
+              <Box
+                component="img"
+                src="/icons/Employee.svg"
+                sx={{
+                  width: { xs: '70px', md: '100px' },
+                  height: { xs: '70px', md: '100px' },
+                }}
+              />
+              <Box
+                component="img"
+                sx={{
+                  position: 'absolute',
+                  right: 0,
+                  bottom: 0,
+                }}
+                src="/icons/EditIcon.svg"
+                width={35}
+                height={35}
+              />
             </Box>
-            <Grid container sx={{
-                borderRadius: '5px',
-                background: '#FFF',
-                boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
-                display: "flex",
-                flexDirection: { xs: "column", md: "row" },
-                alignItems: { xs: "flex-start", md: "center" },
-                position: "relative",
-                p: { xs: "10px", md: "18px 25px" }
-            }}>
-                <Grid item xs={12} lg={4} sx={{
-                    display: "flex",
-                    flexDirection: { xs: "column", md: "row" },
-                    alignItems: { xs: "flex-start", md: "center" },
-                }}>
-                    <Box sx={{
-                        position: "relative"
-                    }}>
-                        <Box component="img" src='/icons/Employee.svg'
-                            sx={{
-                                width: { xs: "70px", md: "100px" },
-                                height: { xs: "70px", md: "100px" },
-                            }}
-                        />
-                        <Box component="img" sx={{
-                            position: "absolute",
-                            right: 0,
-                            bottom: 0
-                        }}
-                            src='/icons/EditIcon.svg' width={35} height={35} />
-                    </Box>
-                    <Box sx={{
-                        ml: { xs: "0px", md: "40px" }
-                    }} display={"flex"} flexDirection={"column"}>
-                        <Typography sx={{
-                            color: '#171717',
-                            fontSize: '25px',
-                            fontStyle: 'normal',
-                            fontWeight: '600',
-                            lineHeight: 'normal',
-                            mb: { xs: "10px", md: "15px" }
-                        }}>John Doe</Typography>
-                        <Typography sx={{
-                            color: '#595959',
-                            fontSize: '16px',
-                            fontStyle: 'normal',
-                            fontWeight: '500',
-                            lineHeight: 'normal',
-                        }}>eSpark Consulting Group</Typography>
-                    </Box>
-                </Grid>
-                <Grid item xs={12} lg={8} sx={{
-                    display: "flex",
-                    flexDirection: { xs: "column", md: "row" },
-                    alignItems: { xs: "flex-start", md: "center" },
-                    mt: { xs: "15px", lg: "0px" }
-                }}>
-                    <Grid container>
-                        <Grid item xs={12} md={4}>
-                            <Box display={"flex"} flexDirection={"column"} >
-                                <Box display={"flex"} alignItems={"center"} sx={{ mb: { xs: "10px", md: "25px" } }}>
-                                    <Typography sx={{
-                                        color: '#595959',
-                                        fontSize: '16px',
-                                        fontStyle: 'normal',
-                                        fontWeight: '500',
-                                        lineHeight: 'normal',
-                                    }}>Client ID:</Typography>
-                                    <Typography sx={{
-                                        color: '#595959',
-                                        fontSize: '16px',
-                                        fontStyle: 'normal',
-                                        fontWeight: '500',
-                                        lineHeight: 'normal',
-                                    }}>es-00020</Typography>
-                                </Box>
-                                <Box display={"flex"} alignItems={"center"}>
-                                    <Typography sx={{
-                                        color: '#595959',
-                                        fontSize: '16px',
-                                        fontStyle: 'normal',
-                                        fontWeight: '500',
-                                        lineHeight: 'normal',
-                                    }}>Marital status:</Typography>
-                                    <Typography sx={{
-                                        color: '#595959',
-                                        fontSize: '16px',
-                                        fontStyle: 'normal',
-                                        fontWeight: '500',
-                                        lineHeight: 'normal',
-                                    }}>Single</Typography>
-                                </Box>
-                            </Box>
-                        </Grid>
-                        <Grid item xs={12} md={4}>
-                            <Box display={"flex"} flexDirection={"column"} >
-                                <Box display={"flex"} alignItems={"center"} sx={{ mb: { xs: "10px", md: "25px" } }}>
-                                    <Typography sx={{
-                                        color: '#595959',
-                                        fontSize: '16px',
-                                        fontStyle: 'normal',
-                                        fontWeight: '500',
-                                        lineHeight: 'normal',
-                                    }}>Gender:</Typography>
-                                    <Typography sx={{
-                                        color: '#595959',
-                                        fontSize: '16px',
-                                        fontStyle: 'normal',
-                                        fontWeight: '500',
-                                        lineHeight: 'normal',
-                                    }}>Male</Typography>
-                                </Box>
-                                <Box display={"flex"} alignItems={"center"}>
-                                    <Typography sx={{
-                                        color: '#595959',
-                                        fontSize: '16px',
-                                        fontStyle: 'normal',
-                                        fontWeight: '500',
-                                        lineHeight: 'normal',
-                                    }}>Phone:</Typography>
-                                    <Typography sx={{
-                                        color: '#595959',
-                                        fontSize: '16px',
-                                        fontStyle: 'normal',
-                                        fontWeight: '500',
-                                        lineHeight: 'normal',
-                                    }}>090078601</Typography>
-                                </Box>
-                            </Box>
-                        </Grid>
-                        <Grid item xs={12} md={4}>
-                            <Box display={"flex"} flexDirection={"column"} >
-                                <Box display={"flex"} alignItems={"center"} sx={{ mb: { xs: "10px", md: "25px" } }}>
-                                    <Typography sx={{
-                                        color: '#595959',
-                                        fontSize: '16px',
-                                        fontStyle: 'normal',
-                                        fontWeight: '500',
-                                        lineHeight: 'normal',
-                                    }}>Email:</Typography>
-                                    <Typography sx={{
-                                        color: '#595959',
-                                        fontSize: '16px',
-                                        fontStyle: 'normal',
-                                        fontWeight: '500',
-                                        lineHeight: 'normal',
-                                    }}>doejohn@321.com</Typography>
-                                </Box>
-                                <Box display={"flex"} alignItems={"center"}>
-                                    <Typography sx={{
-                                        color: '#595959',
-                                        fontSize: '16px',
-                                        fontStyle: 'normal',
-                                        fontWeight: '500',
-                                        lineHeight: 'normal',
-                                    }}>Birth date:</Typography>
-                                    <Typography sx={{
-                                        color: '#595959',
-                                        fontSize: '16px',
-                                        fontStyle: 'normal',
-                                        fontWeight: '500',
-                                        lineHeight: 'normal',
-                                    }}>26 Jan,2023</Typography>
-                                </Box>
-                            </Box>
-                        </Grid>
-                    </Grid>
-                </Grid>
-                <Box component="img"
-                    sx={{
-                        position: "absolute",
-                        top: { xs: '10px', md: '15px' },
-                        right: { xs: '10px', md: '54px' }
-                    }}
-                    src='/icons/EditIcon.svg' width={35} height={35}
-                />
-            </Grid>
-            <Box sx={{ width: "100%" }}>
-                <Box
+            <Box
+              sx={{
+                ml: { xs: '0px', md: '40px' },
+              }}
+              display={'flex'}
+              flexDirection={'column'}
+            >
+              <Typography
+                sx={{
+                  color: '#171717',
+                  fontSize: '25px',
+                  fontStyle: 'normal',
+                  fontWeight: '600',
+                  lineHeight: 'normal',
+                  mb: { xs: '10px', md: '15px' },
+                }}
+              >
+                John Doe
+              </Typography>
+              <Typography
+                sx={{
+                  color: '#595959',
+                  fontSize: '16px',
+                  fontStyle: 'normal',
+                  fontWeight: '500',
+                  lineHeight: 'normal',
+                }}
+              >
+                eSpark Consulting Group
+              </Typography>
+            </Box>
+          </Grid>
+          <Grid
+            item
+            xs={12}
+            lg={8}
+            sx={{
+              display: 'flex',
+              flexDirection: { xs: 'column', md: 'row' },
+              alignItems: { xs: 'flex-start', md: 'center' },
+              mt: { xs: '15px', lg: '0px' },
+            }}
+          >
+            <Grid container>
+              <Grid item xs={12} md={4}>
+                <Box display={'flex'} flexDirection={'column'}>
+                  <Box
                     display={'flex'}
                     alignItems={'center'}
-                    justifyContent={'space-between'}
-                    sx={{ borderBottom: 1, borderColor: 'divider', mt: '40px' }}
-                >
-                    <Tabs
-                        value={currentTab.val}
-                        onChange={handleChangeCurrentTab}
-                        aria-label="basic tabs example"
-                        variant="scrollable"
+                    sx={{ mb: { xs: '10px', md: '25px' } }}
+                  >
+                    <Typography
+                      sx={{
+                        color: '#595959',
+                        fontSize: '16px',
+                        fontStyle: 'normal',
+                        fontWeight: '500',
+                        lineHeight: 'normal',
+                      }}
                     >
-                        {clientProfileTabs?.map(({ label, prop }, index) => (
-                            <Tab
-                                key={index}
-                                label={`${label}`}
-                                {...prop}
-                                disableRipple={true}
-                            />
-                        ))}
-                    </Tabs>
+                      Client ID:
+                    </Typography>
+                    <Typography
+                      sx={{
+                        color: '#595959',
+                        fontSize: '16px',
+                        fontStyle: 'normal',
+                        fontWeight: '500',
+                        lineHeight: 'normal',
+                      }}
+                    >
+                      es-00020
+                    </Typography>
+                  </Box>
+                  <Box display={'flex'} alignItems={'center'}>
+                    <Typography
+                      sx={{
+                        color: '#595959',
+                        fontSize: '16px',
+                        fontStyle: 'normal',
+                        fontWeight: '500',
+                        lineHeight: 'normal',
+                      }}
+                    >
+                      Marital status:
+                    </Typography>
+                    <Typography
+                      sx={{
+                        color: '#595959',
+                        fontSize: '16px',
+                        fontStyle: 'normal',
+                        fontWeight: '500',
+                        lineHeight: 'normal',
+                      }}
+                    >
+                      Single
+                    </Typography>
+                  </Box>
                 </Box>
-                <Box
-                    sx={{
-                        marginTop: '10px',
-                        marginBottom: '20px',
-                        borderBottom:
-                            currentTab.label !== 'Leave Balance' && 'solid 1px #ccc',
-                    }}
+              </Grid>
+              <Grid item xs={12} md={4}>
+                <Box display={'flex'} flexDirection={'column'}>
+                  <Box
+                    display={'flex'}
+                    alignItems={'center'}
+                    sx={{ mb: { xs: '10px', md: '25px' } }}
+                  >
+                    <Typography
+                      sx={{
+                        color: '#595959',
+                        fontSize: '16px',
+                        fontStyle: 'normal',
+                        fontWeight: '500',
+                        lineHeight: 'normal',
+                      }}
+                    >
+                      Gender:
+                    </Typography>
+                    <Typography
+                      sx={{
+                        color: '#595959',
+                        fontSize: '16px',
+                        fontStyle: 'normal',
+                        fontWeight: '500',
+                        lineHeight: 'normal',
+                      }}
+                    >
+                      Male
+                    </Typography>
+                  </Box>
+                  <Box display={'flex'} alignItems={'center'}>
+                    <Typography
+                      sx={{
+                        color: '#595959',
+                        fontSize: '16px',
+                        fontStyle: 'normal',
+                        fontWeight: '500',
+                        lineHeight: 'normal',
+                      }}
+                    >
+                      Phone:
+                    </Typography>
+                    <Typography
+                      sx={{
+                        color: '#595959',
+                        fontSize: '16px',
+                        fontStyle: 'normal',
+                        fontWeight: '500',
+                        lineHeight: 'normal',
+                      }}
+                    >
+                      090078601
+                    </Typography>
+                  </Box>
+                </Box>
+              </Grid>
+              <Grid item xs={12} md={4}>
+                <Box display={'flex'} flexDirection={'column'}>
+                  <Box
+                    display={'flex'}
+                    alignItems={'center'}
+                    sx={{ mb: { xs: '10px', md: '25px' } }}
+                  >
+                    <Typography
+                      sx={{
+                        color: '#595959',
+                        fontSize: '16px',
+                        fontStyle: 'normal',
+                        fontWeight: '500',
+                        lineHeight: 'normal',
+                      }}
+                    >
+                      Email:
+                    </Typography>
+                    <Typography
+                      sx={{
+                        color: '#595959',
+                        fontSize: '16px',
+                        fontStyle: 'normal',
+                        fontWeight: '500',
+                        lineHeight: 'normal',
+                      }}
+                    >
+                      doejohn@321.com
+                    </Typography>
+                  </Box>
+                  <Box display={'flex'} alignItems={'center'}>
+                    <Typography
+                      sx={{
+                        color: '#595959',
+                        fontSize: '16px',
+                        fontStyle: 'normal',
+                        fontWeight: '500',
+                        lineHeight: 'normal',
+                      }}
+                    >
+                      Birth date:
+                    </Typography>
+                    <Typography
+                      sx={{
+                        color: '#595959',
+                        fontSize: '16px',
+                        fontStyle: 'normal',
+                        fontWeight: '500',
+                        lineHeight: 'normal',
+                      }}
+                    >
+                      26 Jan,2023
+                    </Typography>
+                  </Box>
+                </Box>
+              </Grid>
+            </Grid>
+          </Grid>
+          <Box
+            component="img"
+            sx={{
+              position: 'absolute',
+              top: { xs: '10px', md: '15px' },
+              right: { xs: '10px', md: '54px' },
+              cursor: 'pointer',
+            }}
+            src="/icons/EditIcon.svg"
+            width={35}
+            height={35}
+            onClick={() => router.push(`/hr/dashboard/clients/edit-profile`)}
+          />
+        </Grid>
+        <Box sx={{ width: '100%' }}>
+          <Box
+            display={'flex'}
+            alignItems={'center'}
+            justifyContent={'space-between'}
+            sx={{ borderBottom: 1, borderColor: 'divider', mt: '40px' }}
+          >
+            <Tabs
+              value={currentTab.val}
+              onChange={handleChangeCurrentTab}
+              aria-label="basic tabs example"
+              variant="scrollable"
+            >
+              {clientProfileTabs?.map(({ label, prop }, index) => (
+                <Tab
+                  key={index}
+                  label={`${label}`}
+                  {...prop}
+                  disableRipple={true}
+                />
+              ))}
+            </Tabs>
+          </Box>
+          {currentTab?.label !== 'Employees' && (
+            <Box
+              sx={{
+                marginTop: '10px',
+                marginBottom: '20px',
+                borderBottom:
+                  currentTab.label !== 'Leave Balance' && 'solid 1px #ccc',
+              }}
+            >
+              {clientProfileTabs?.map(({ nestedTabs, ...rest }, index) => (
+                <CustomTabPanel
+                  value={currentTab.val}
+                  index={index}
+                  key={index}
                 >
-                    {clientProfileTabs?.map(({ nestedTabs }, index) => (
-                        <CustomTabPanel
-                            // value={currentReqTypeTabVal}
-                            value={currentTab.val}
-                            index={index}
-                            key={index}
-                        >
-                            <Box
-                                display={'flex'}
-                                justifyContent={'space-between'}
-                                alignItems={'center'}
-                            >
-                                <Tabs
-                                    variant="scrollable"
-                                    value={currentTab.nested.val}
-                                    onChange={(ev, newVal) =>
-                                        handleChangeNestedTab(
-                                            ev,
-                                            newVal,
-                                            nestedTabs
-                                        )
-                                    }
-                                    aria-label="basic tabs example"
-                                >
-                                    {
-                                        nestedTabs?.map(({ label, prop }, nestedIndex) => (
-                                            <Tab
-                                                key={nestedIndex}
-                                                label={`${label}`}
-                                                {...prop}
-                                                disableRipple={true}
-                                            />
-                                        ))
-                                    }
-                                </Tabs>
-                            </Box>
-                        </CustomTabPanel>
-                    ))}
-                </Box>
+                  <Box
+                    display={'flex'}
+                    justifyContent={'space-between'}
+                    alignItems={'center'}
+                  >
+                    <Tabs
+                      variant="scrollable"
+                      value={currentTab.nested.val}
+                      onChange={(ev, newVal) =>
+                        handleChangeNestedTab(ev, newVal, nestedTabs, rest)
+                      }
+                      aria-label="basic tabs example"
+                    >
+                      {nestedTabs?.map(({ label, prop }, nestedIndex) => (
+                        <Tab
+                          key={nestedIndex}
+                          label={`${label}`}
+                          {...prop}
+                          disableRipple={true}
+                        />
+                      ))}
+                    </Tabs>
+                    {currentTab.label === 'Hire & onboard' ? (
+                      <Button
+                        onClick={handleOpenHiringRequestModal}
+                        variant="contained"
+                      >
+                        Add new request
+                      </Button>
+                    ) : currentTab.label === 'Contract signed' ? (
+                      <Button
+                        onClick={handleOpenContractModal}
+                        variant="contained"
+                      >
+                        Add contract
+                      </Button>
+                    ) : currentTab.label === 'Employee invoices' ? (
+                      <Button
+                        onClick={handleOpenUploadInvoiceModal}
+                        variant="contained"
+                      >
+                        Upload invoice
+                      </Button>
+                    ) : (
+                      <Button
+                        onClick={handleOpenUploadInvoiceModal}
+                        variant="contained"
+                      >
+                        Upload invoice
+                      </Button>
+                    )}
+                  </Box>
+                </CustomTabPanel>
+              ))}
             </Box>
+          )}
+          {renderTable({
+            currentTab: currentTab.label,
+            data: currentTabTable.data,
+            column: currentTabTable.column,
+            // currentTab:currentTab.label,
+          })}
         </Box>
-    );
+      </Box>
+      <HiringRequestModal
+        open={isOpenHiringRequestModal}
+        onClose={handleCloseHiringRequestModal}
+      />
+      <AddContractModal
+        open={isOpenContractModal}
+        onClose={handleCloseContractModal}
+      />
+      <UploadInvoiceModal
+      title='Employee invoice form'
+        open={isOpenUploadInvoiceModal}
+        onClose={handleCloseUploadInvoiceModal}
+      />
+    </>
+  );
 };
 
 export default AddEmployee;

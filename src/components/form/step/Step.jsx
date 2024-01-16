@@ -3,7 +3,15 @@ import { Box, Button, Grid, Typography } from '@mui/material';
 import React from 'react';
 import { useFormik } from 'formik';
 
-const Step = ({ handleGoPrev, handleGoNext, form, isMultiColumn, schema }) => {
+const Step = ({
+  handleGoPrev,
+  handleGoNext,
+  form,
+  isMultiColumn,
+  schema,
+  pmd = '95px 90px',
+  editProfile
+}) => {
   const {
     handleSubmit,
     values,
@@ -141,7 +149,7 @@ const Step = ({ handleGoPrev, handleGoNext, form, isMultiColumn, schema }) => {
       <Grid
         container
         sx={{
-          p: { xs: '20px', md: '95px 90px' },
+          p: { xs: '20px', md: pmd },
         }}
       >
         {form?.map(
@@ -181,6 +189,23 @@ const Step = ({ handleGoPrev, handleGoNext, form, isMultiColumn, schema }) => {
             />
           )
         )}
+       {editProfile ? <Grid item xs={12}>
+          <Box
+            display={'flex'}
+            justifyContent={'space-between'}
+            alignItems={'center'}
+            p={'0 10px'}
+            mt={'20px'}
+          >
+            <Button
+              type="submit"
+              sx={{ minWidth: '120px' }}
+              variant="contained"
+            >
+              Save
+            </Button>
+          </Box>
+        </Grid> :
         <Grid item xs={12}>
           <Box
             display={'flex'}
@@ -204,7 +229,7 @@ const Step = ({ handleGoPrev, handleGoNext, form, isMultiColumn, schema }) => {
               Next
             </Button>
           </Box>
-        </Grid>
+        </Grid>}
       </Grid>
     </form>
   );

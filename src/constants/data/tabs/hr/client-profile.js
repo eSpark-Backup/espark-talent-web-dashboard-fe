@@ -1,7 +1,8 @@
 import { a11yProps } from "@/src/utils/tabs";
-import { employeeTableDataHiringRequest, employeeTableDataInterviewSchedule, employeeTableDataOnBoarding, employeeTableHiringRequestColumn, employeeTableInterviewScheduleColumn, employeeTableOnboardingColumn } from "../../tables/employee";
-import { contractSignedColumn, contractSignedData } from "../../tables/contractSigned";
-import { invoicePaymentColumn, invoicePaymentData, otherPaymentColumn, otherPaymentData } from "../../tables/paymentData";
+// import { invoicePaymentColumn, invoicePaymentData, otherPaymentColumn, otherPaymentData } from "../../tables/paymentData";
+import { hiringRequestColumn, hiringRequestData, interviewScheduleColumn, interviewScheduleData, onboardingColumn, onBoardingData } from "../../tables/hr/hireOnBoard";
+import { contractSignedColumn, contractSignedData } from "../../tables/hr/contractSigned";
+import { invoicePaymentColumn, invoicePaymentData, otherPaymentColumn, otherPaymentData } from "../../tables/hr/invoices";
 
 export const clientProfileTabs = [
     {
@@ -12,20 +13,20 @@ export const clientProfileTabs = [
             {
                 prop: a11yProps(0),
                 label: 'Hiring request',
-                data:employeeTableDataHiringRequest,
-                column:employeeTableHiringRequestColumn
+                data:hiringRequestData,
+                column:hiringRequestColumn
             },
             {
                 prop: a11yProps(1),
                 label: 'Interview schedule',
-                data:employeeTableDataInterviewSchedule,
-                column:employeeTableInterviewScheduleColumn
+                data:interviewScheduleData,
+                column:interviewScheduleColumn
             },
             {
                 prop: a11yProps(2),
                 label: 'Onboarding',
-                data:employeeTableDataOnBoarding,
-                column:employeeTableOnboardingColumn
+                data:onBoardingData,
+                column:onboardingColumn
             },
         ],
         isTable:true,
