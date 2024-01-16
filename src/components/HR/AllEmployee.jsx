@@ -61,9 +61,9 @@ const AllEmployee = () => {
           onChange={handleChange}
           aria-label="wrapped label tabs example"
         >
-          <Tab value="one" label="All" wrapped />
-          <Tab value="two" label="Active employees" />
-          <Tab value="three" label="Inactive employees" />
+          <Tab value="one" label="All" wrapped disableRipple={true} />
+          <Tab value="two" label="Active employees" disableRipple={true} />
+          <Tab value="three" label="Inactive employees" disableRipple={true} />
         </Tabs>
         <Grid
           container
