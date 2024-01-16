@@ -7,11 +7,15 @@ import {
   Client_Routes,
   Employee_Routes,
   Hr_Routes,
+  WORK_SPACE_ICON,
+  WORK_SPACE_TITLE,
 } from '@/src/constants/sidebar';
 import SidebarLogo from './sidebarLogo';
 import SidebarActiveUser from './SidebarActiveUser';
 import ProfilePopper from '../popover/ProfilePopper';
 import { usePathname } from 'next/navigation';
+import WorkSpacePopper from '../popover/WorkSpacePopper';
+import SidebarWorkSpace from './SidebarWorkSpace';
 
 const Sidebar = ({ userName }) => {
   const theme = useTheme();
@@ -19,6 +23,7 @@ const Sidebar = ({ userName }) => {
 
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('lg'));
   const [windowHeight, setWindowHeight] = React.useState(window.innerHeight);
+  const employee = pathName.includes('/employee/dashboard');
 
   React.useEffect(() => {
     const handleResize = () => {
@@ -77,6 +82,33 @@ const Sidebar = ({ userName }) => {
             <ProfilePopper button={<SidebarActiveUser userName={userName} />} />
           )}
         </Box>
+
+        {employee && (
+          <Box
+            sx={{
+              borderBottom: '1px solid #E7E7E7',
+              position: 'relative',
+              width: '100%',
+            }}
+          >
+            {isSmallScreen ? (
+              <SidebarWorkSpace
+                title={WORK_SPACE_TITLE}
+                image={WORK_SPACE_ICON}
+              />
+            ) : (
+              <WorkSpacePopper
+                button={
+                  <SidebarWorkSpace
+                    title={WORK_SPACE_TITLE}
+                    image={WORK_SPACE_ICON}
+                  />
+                }
+              />
+            )}
+          </Box>
+        )}
+
         <Box
           id={'accrodion'}
           component={'div'}

@@ -1,10 +1,12 @@
 // store.js
 import { configureStore } from '@reduxjs/toolkit';
-import counterSlice from './slices/counterSlice';
+import profileMenuSlice from './slices/profileMenuSlice';
+import workSpaceMenuSlice from './slices/workSpaceMenuSlice';
 
 const store = configureStore({
   reducer: {
-    counter: counterSlice,
+    profileMenu: profileMenuSlice,
+    workSpaceMenu: workSpaceMenuSlice,
   },
 });
 
