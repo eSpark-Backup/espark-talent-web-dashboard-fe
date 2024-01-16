@@ -49,7 +49,7 @@ const AssetForm = ({ onClose, open }) => {
       <Box
         sx={{
           bgcolor: '#fff',
-          width: { xs: '90%', sm: '90%', md: '40%' },
+          width: { xs: '90%', md: '40%' },
           display: 'flex',
           flexDirection: 'column',
           borderRadius: '10px',
@@ -57,6 +57,9 @@ const AssetForm = ({ onClose, open }) => {
           height: { xs: '750px', md: '510px' },
           position: 'absolute',
           top: '10%',
+          '@media (min-width: 900px) and (max-width: 1440px)': {
+            width: '70%',
+          },
         }}
       >
         <Box
