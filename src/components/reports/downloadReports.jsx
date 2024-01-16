@@ -38,13 +38,17 @@ const DownloadReports = ({
       <Typography sx={{ fontSize: '20px', fontWeight: 600 }}>
         {reportHeading}
       </Typography>
-      <Typography sx={{ color: '#595959' }}>{downloadReports}</Typography>
+      <Typography sx={{ fontSize: '16px', fontWeight: 600, color: '#595959' }}>
+        {downloadReports}
+      </Typography>
       <Button
         variant="primary"
         sx={{
           width: { xs: '120px', md: '120px' },
           height: '40px',
           padding: '8px',
+          fontSize: '16px',
+          fontWeight: 600,
         }}
         onClick={handleOpen}
       >

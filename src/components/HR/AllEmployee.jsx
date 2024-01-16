@@ -44,7 +44,12 @@ const AllEmployee = () => {
           Employees
         </Typography>
         <Button
-          style={{ backgroundColor: '#029894', width: '160px', color: '#FFF' }}
+          style={{
+            backgroundColor: '#029894',
+            width: '160px',
+            color: '#FFF',
+            fontSize: '16px',
+          }}
           onClick={() => router.push('/hr/dashboard/employees/add-employee')}
         >
           Add employee

@@ -108,6 +108,9 @@ const ContractSigned = () => {
                     label={`${label}`}
                     {...prop}
                     disableRipple={true}
+                    sx={{
+                      textTransform: 'math-auto',
+                    }}
                   />
                 ))}
               </Tabs>

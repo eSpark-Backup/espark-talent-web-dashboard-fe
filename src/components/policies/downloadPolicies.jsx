@@ -52,6 +52,7 @@ const DownloadPolicies = ({
           width: { xs: '120px', md: '120px' },
           height: '40px',
           padding: '8px',
+          fontSize: '16px',
         }}
       >
         {downloadBtn}
