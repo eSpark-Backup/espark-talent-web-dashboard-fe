@@ -12,7 +12,7 @@ const Profile = ({
   showEditProfilelModal,
   handleCloseModal,
   handleEmergencyModal,
-  showEmergancyModal,
+  showEmergencyModal,
   handleEditProfileModal,
 }) => {
   return (
@@ -124,7 +124,7 @@ const Profile = ({
                 marginBottom: '15px',
               }}
             />
-            {showEmergancyModal && (
+            {showEmergencyModal && (
               <EditEmergencyModal
                 handleEmergencyModal={handleEmergencyModal}
                 onClose={handleCloseModal}

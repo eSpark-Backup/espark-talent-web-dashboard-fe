@@ -15,16 +15,14 @@ import Image from 'next/image';
 
 import {
   EDIT_MODAL,
-  MARITAL_STATUS,
   employeeProfileData,
 } from '@/src/constants/employeeProfile';
-
-import JobTitle from '../StartHiring/JobTitle';
 import { GENDER_OPTION } from '@/src/constants/Hiring';
 import DatePicker from './Datepicker';
+import PersonalDetails from './personalDetails';
 
 const EditPersonalModal = ({ onClose, handleEditProfileModal }) => {
-  const [selectedValue, setSelectedValue] = useState(MARITAL_STATUS[0].label);
+  const [selectedValue, setSelectedValue] = useState();
   const [isOpen, setIsOpen] = useState(false);
   const [open, setOpen] = useState(false);
   const [select, setselect] = React.useState('Select');
@@ -43,7 +41,7 @@ const EditPersonalModal = ({ onClose, handleEditProfileModal }) => {
   const handleClick = () => {
     setIsOpen(!isOpen);
   };
-  const showRoleType = false;
+  console.log(setSelectedValue);
   console.log(open);
   return (
     <Modal
@@ -133,7 +131,13 @@ const EditPersonalModal = ({ onClose, handleEditProfileModal }) => {
                 },
               }}
             >
-              <Box
+              <PersonalDetails
+                isOpen={isOpen}
+                handleClick={handleClick}
+                SelectOpen={SelectOpen}
+                SelectClose={SelectClose}
+              />
+              {/* <Box
                 sx={{
                   display: 'flex',
                   flexDirection: 'column',
@@ -227,7 +231,7 @@ const EditPersonalModal = ({ onClose, handleEditProfileModal }) => {
                     ))}
                   </Select>
                 </Box>
-              </Box>
+              </Box> */}
 
               <Box
                 sx={{

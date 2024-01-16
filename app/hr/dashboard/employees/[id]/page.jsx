@@ -19,7 +19,7 @@ import { allEmployees } from '@/src/constants/AllEmployee';
 const Page = () => {
   const [value, setValue] = useState('one');
   const [showEditModal, setEditModal] = useState(false);
-  const [showEmergancyModal, setEmergencyModal] = useState(false);
+  const [showEmergencyModal, setEmergencyModal] = useState(false);
   const [showCredentialModal, setCredentialModal] = useState(false);
   const [showEditProfilelModal, setEditProfileModal] = useState(false);
   const [showAssetModal, setAssetModal] = useState(false);
@@ -329,7 +329,7 @@ const Page = () => {
                   showEditModal={showEditModal}
                   handleCloseModal={handleCloseModal}
                   handleEmergencyModal={handleEmergencyModal}
-                  showEmergancyModal={showEmergancyModal}
+                  showEmergencyModal={showEmergencyModal}
                   handleEditProfileModal={handleEditProfileModal}
                   showEditProfilelModal={showEditProfilelModal}
                 />
