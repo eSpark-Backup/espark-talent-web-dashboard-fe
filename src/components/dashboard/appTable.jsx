@@ -5,6 +5,8 @@ import { Box, Button, Pagination, Stack, Typography } from '@mui/material';
 import Image from 'next/image';
 import AppCustomDropdown from './appCustomDropdown';
 import { trackingStatusTypes } from '@/src/constants/data/tables/timeTracking';
+import TableHead from './appTableHead';
+import TableHiddenBody from './appTableHiddenBody';
 
 const renderAttendenceStatus = (statusType, index) => {
   const status = trackingStatusTypes?.find(
@@ -134,64 +136,14 @@ const AppTable = ({
   return (
     <>
       <table className="table">
-        <thead>
-          <tr className="app-table-row">
-            {column?.map((col, colIndex) => (
-              <th
-                key={colIndex}
-                style={{ fontSize: '14px', flex: col?.flex ? col?.flex : 1 }}
-              >
-                {col?.title || col}
-              </th>
-            ))}
-          </tr>
-        </thead>
+        <TableHead column={column} />
         <tbody>
           {renderMessage ? (
-            [...Array(5)].map((_, index) => (
-              <tr
-                key={index}
-                style={{
-                  background: index === 2 && '#fff',
-                  display: 'flex',
-                  justifyContent: 'center',
-                }}
-                className="app-table-row"
-              >
-                {index === 2 ? (
-                  <Box
-                    display={'flex'}
-                    flexDirection={'column'}
-                    alignItems={'center'}
-                  >
-                    <Typography
-                      sx={{
-                        fontSize: '24px',
-                        fontWeight: 400,
-                        lineHeight: '29px',
-                        letterSpacing: '0em',
-                        textAlign: 'left',
-                      }}
-                      variant="body1"
-                      textAlign={'center'}
-                    >
-                      {renderMessage}
-                    </Typography>
-                    {renderMessageButton && (
-                      <Button
-                        onClick={handleClickRenderMessageButton}
-                        sx={{ marginTop: '20px' }}
-                        variant="contained"
-                      >
-                        {renderMessageButton}
-                      </Button>
-                    )}
-                  </Box>
-                ) : (
-                  <td />
-                )}
-              </tr>
-            ))
+            <TableHiddenBody
+              renderMessage={renderMessage}
+              handleClickRenderMessageButton={handleClickRenderMessageButton}
+              renderMessageButton={renderMessageButton}
+            />
           ) : data?.length ? (
             data.map((row, rowIndex) => (
               <Fragment key={rowIndex}>
@@ -395,13 +347,6 @@ const AppTable = ({
                                         handleClickActionView({ row, item });
                                       }
                                       return;
-                                      // handleImage(
-                                      //   row.employeeId,
-                                      //   row.employeeName,
-                                      //   row.leaveType,
-                                      //   row.fromTo,
-                                      //   item
-                                      // )
                                     }}
                                     key={rowIndex}
                                     style={{
