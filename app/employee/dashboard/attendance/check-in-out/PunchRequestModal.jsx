@@ -227,6 +227,67 @@ const PunchRequestModal = ({ createModal, modalData, handleClose }) => {
         <Box>
           <Box
             sx={{
+              padding: '20px',
+            }}
+          >
+            <Grid
+              container
+              p={'5px 5px 5px 20px'}
+              sx={{
+                borderRadius: '5px',
+                background: '#F6F6F6',
+                display: 'flex',
+                alignItems: { xs: 'flex-start', md: 'center' },
+                flexDirection: { xs: 'column', md: 'row' },
+              }}
+            >
+              <Grid item xs={12} md={5}>
+                <Typography
+                  sx={{
+                    color: '#595959',
+                    fontSize: '16px',
+                    fontStyle: 'normal',
+                    fontWeight: 600,
+                    lineHeight: 'normal',
+                  }}
+                >
+                  Check in <span style={{ color: '#FF0000' }}>*</span>
+                </Typography>
+              </Grid>
+              <Grid item xs={12} md={7} sx={{ width: '100%' }}>
+                <Box
+                  display={'flex'}
+                  justifyContent={'space-between'}
+                  alignItems={'center'}
+                  sx={{
+                    borderRadius: '5px',
+                    width: '100%',
+                  }}
+                >
+                  <LocalizationProvider
+                    dateAdapter={AdapterDayjs}
+                    sx={{ width: '100%' }}
+                  >
+                    <DesktopTimePicker
+                      className="custom-date-time-picker"
+                      open={false}
+                      slots={{
+                        openPickerIcon: () => null,
+                      }}
+                      sx={{ width: '100%' }}
+                      defaultValue={dayjs('2022-04-17T15:30')}
+                    />
+                  </LocalizationProvider>
+                </Box>
+              </Grid>
+            </Grid>
+          </Box>
+        </Box>
+      )}
+      {createModal && (
+        <Box>
+          <Box
+            sx={{
               padding: '0 20px',
             }}
           >
@@ -234,7 +295,6 @@ const PunchRequestModal = ({ createModal, modalData, handleClose }) => {
               container
               p={'5px 5px 5px 20px'}
               sx={{
-                background: '#f6f6f6',
                 borderRadius: '5px',
                 display: 'flex',
                 alignItems: { xs: 'flex-start', md: 'center' },
@@ -277,6 +337,67 @@ const PunchRequestModal = ({ createModal, modalData, handleClose }) => {
                   >
                     07:00 PM
                   </Typography>
+                </Box>
+              </Grid>
+            </Grid>
+          </Box>
+        </Box>
+      )}
+      {createModal && (
+        <Box>
+          <Box
+            sx={{
+              padding: '20px',
+            }}
+          >
+            <Grid
+              container
+              p={'5px 5px 5px 20px'}
+              sx={{
+                borderRadius: '5px',
+                background: '#F6F6F6',
+                display: 'flex',
+                alignItems: { xs: 'flex-start', md: 'center' },
+                flexDirection: { xs: 'column', md: 'row' },
+              }}
+            >
+              <Grid item xs={12} md={5}>
+                <Typography
+                  sx={{
+                    color: '#595959',
+                    fontSize: '16px',
+                    fontStyle: 'normal',
+                    fontWeight: 600,
+                    lineHeight: 'normal',
+                  }}
+                >
+                  Check out <span style={{ color: '#FF0000' }}>*</span>
+                </Typography>
+              </Grid>
+              <Grid item xs={12} md={7} sx={{ width: '100%' }}>
+                <Box
+                  display={'flex'}
+                  justifyContent={'space-between'}
+                  alignItems={'center'}
+                  sx={{
+                    borderRadius: '5px',
+                    width: '100%',
+                  }}
+                >
+                  <LocalizationProvider
+                    dateAdapter={AdapterDayjs}
+                    sx={{ width: '100%' }}
+                  >
+                    <DesktopTimePicker
+                      className="custom-date-time-picker"
+                      open={false}
+                      slots={{
+                        openPickerIcon: () => null,
+                      }}
+                      sx={{ width: '100%' }}
+                      defaultValue={dayjs('2022-04-17T15:30')}
+                    />
+                  </LocalizationProvider>
                 </Box>
               </Grid>
             </Grid>

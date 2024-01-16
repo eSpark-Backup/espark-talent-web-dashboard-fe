@@ -56,15 +56,29 @@ const AllEmployee = () => {
         </Button>
       </Box>
       <Box sx={{ width: '100%' }}>
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          aria-label="wrapped label tabs example"
+        <Box
+          sx={{
+            borderBottom: 1,
+            borderColor: 'divider',
+            marginBottom: '40px',
+            display: 'flex',
+            justifyContent: 'space-between',
+          }}
         >
-          <Tab value="one" label="All" wrapped disableRipple={true} />
-          <Tab value="two" label="Active employees" disableRipple={true} />
-          <Tab value="three" label="Inactive employees" disableRipple={true} />
-        </Tabs>
+          <Tabs
+            value={value}
+            onChange={handleChange}
+            aria-label="wrapped label tabs example"
+          >
+            <Tab value="one" label="All" wrapped disableRipple={true} />
+            <Tab value="two" label="Active employees" disableRipple={true} />
+            <Tab
+              value="three"
+              label="Inactive employees"
+              disableRipple={true}
+            />
+          </Tabs>
+        </Box>
         <Grid
           container
           sx={{
@@ -103,7 +117,7 @@ const AllEmployee = () => {
               value={designation}
               width={'100%'}
               handleChange={(e) => setDesignation(e)}
-              placeHolder={'Employee Designation'}
+              placeHolder={'Select designation'}
               prefixIcon={'/icons/searchIconWhite.svg'}
               name={'designation'}
             />

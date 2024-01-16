@@ -12,7 +12,6 @@ import {
   employeeCheckInOutRequestColumn,
   employeeCheckInOutRequestData,
 } from '@/src/constants/data/tables/checkInOutRequestsData';
-import { Clock_Title } from '@/src/constants/employeeDashboard';
 import PunchRequestModal from './PunchRequestModal';
 
 const Dashboard = () => {
@@ -143,7 +142,9 @@ const Dashboard = () => {
         marginBottom={'50px'}
       >
         <Box display={'flex'} flexDirection={'column'}>
-          <Typography variant="h3">Clock in / out</Typography>
+          <Typography fontSize={{ xs: '20px', md: '30px' }} fontWeight={600}>
+            Clock in / out
+          </Typography>
           <Box display={'flex'} flexDirection={'column'} mt={'20px'}>
             <Typography
               sx={{
@@ -209,7 +210,7 @@ const Dashboard = () => {
             >
               <Typography
                 sx={{
-                  fontSize: '25px',
+                  fontSize: { xs: '19px', md: '25px' },
                   fontWeight: 600,
                 }}
               >
@@ -229,7 +230,7 @@ const Dashboard = () => {
               <Typography
                 sx={{
                   color: '#595959',
-                  fontSize: '20px',
+                  fontSize: { xs: '15px', md: '20px' },
                   fontStyle: 'normal',
                   fontWeight: '400',
                   lineHeight: 'normal',
@@ -284,7 +285,7 @@ const Dashboard = () => {
               <Typography
                 sx={{
                   color: '#595959',
-                  fontSize: '20px',
+                  fontSize: { xs: '15px', md: '20px' },
                   fontStyle: 'normal',
                   fontWeight: '400',
                   lineHeight: 'normal',
@@ -658,7 +659,7 @@ const Dashboard = () => {
                   fontWeight: 600,
                 }}
               >
-                {Clock_Title}
+                Today Activity
               </Typography>
             </Box>
             <Box

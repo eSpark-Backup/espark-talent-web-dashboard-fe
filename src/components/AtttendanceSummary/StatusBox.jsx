@@ -15,14 +15,14 @@ const StatusBox = ({
       <Box
         sx={{
           display: 'flex',
-          width: isHr ? '100%' : { xs: '100%', md: '300px' },
+          width: isHr ? '100%' : { xs: '100%', md: '100%' },
           height: '110px',
           borderRadius: '10px',
           background: `${backgroundColor}`,
           justifyContent: 'space-between',
           alignItems: 'center',
           '@media (min-width: 900px) and (max-width: 1275px)': {
-            height: isHr ? '120px' : '150px',
+            height: isHr ? '120px' : '110px',
           },
         }}
       >

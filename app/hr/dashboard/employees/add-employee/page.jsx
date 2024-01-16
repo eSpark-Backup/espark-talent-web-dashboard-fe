@@ -16,7 +16,7 @@ const AddEmployee = () => {
     if (currentStep === 1) return;
     setCurrentStep((ps) => ps - 1);
   };
-  const [currentStep, setCurrentStep] = useState(1);
+  const [currentStep, setCurrentStep] = useState(3);
 
   return (
     <Box>
