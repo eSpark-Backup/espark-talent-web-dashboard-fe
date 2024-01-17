@@ -1,8 +1,13 @@
+import React from 'react';
 import { Box, Button, Grid, Typography } from '@mui/material';
 import Image from 'next/image';
-import React from 'react';
 
 const AttendanceViewModal = ({ modalData, handleClose }) => {
+  const fontSize = {
+    '@media (min-width: 280px) and (max-width: 400px)': {
+      fontSize: '12px',
+    },
+  };
   console.log({ modalData });
   return (
     <Box
@@ -81,9 +86,7 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
                           fontStyle: 'normal',
                           fontWeight: 500,
                           lineHeight: 'normal',
-                          '@media (min-width: 280px) and (max-width: 400px)': {
-                            fontSize: '12px',
-                          },
+                          ...fontSize,
                         }}
                       >
                         Employee ID:
@@ -97,9 +100,7 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
                           fontStyle: 'normal',
                           fontWeight: 400,
                           lineHeight: 'normal',
-                          '@media (min-width: 280px) and (max-width: 400px)': {
-                            fontSize: '12px',
-                          },
+                          ...fontSize,
                         }}
                       >
                         es-00020
@@ -123,9 +124,7 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
                           fontStyle: 'normal',
                           fontWeight: 500,
                           lineHeight: 'normal',
-                          '@media (min-width: 280px) and (max-width: 400px)': {
-                            fontSize: '12px',
-                          },
+                          ...fontSize,
                         }}
                       >
                         Company:
@@ -139,9 +138,7 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
                           fontStyle: 'normal',
                           fontWeight: 400,
                           lineHeight: 'normal',
-                          '@media (min-width: 280px) and (max-width: 400px)': {
-                            fontSize: '12px',
-                          },
+                          ...fontSize,
                         }}
                       >
                         eSpark talent
@@ -166,9 +163,7 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
                           fontStyle: 'normal',
                           fontWeight: 500,
                           lineHeight: 'normal',
-                          '@media (min-width: 280px) and (max-width: 400px)': {
-                            fontSize: '12px',
-                          },
+                          ...fontSize,
                         }}
                       >
                         Branch:
@@ -182,9 +177,7 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
                           fontStyle: 'normal',
                           fontWeight: 400,
                           lineHeight: 'normal',
-                          '@media (min-width: 280px) and (max-width: 400px)': {
-                            fontSize: '12px',
-                          },
+                          ...fontSize,
                         }}
                       >
                         Jauhar, Block 1
@@ -208,9 +201,7 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
                           fontStyle: 'normal',
                           fontWeight: 500,
                           lineHeight: 'normal',
-                          '@media (min-width: 280px) and (max-width: 400px)': {
-                            fontSize: '12px',
-                          },
+                          ...fontSize,
                         }}
                       >
                         Job title:
@@ -224,9 +215,7 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
                           fontStyle: 'normal',
                           fontWeight: 400,
                           lineHeight: 'normal',
-                          '@media (min-width: 280px) and (max-width: 400px)': {
-                            fontSize: '12px',
-                          },
+                          ...fontSize,
                         }}
                       >
                         Web developer
@@ -253,9 +242,7 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
                           fontStyle: 'normal',
                           fontWeight: 500,
                           lineHeight: 'normal',
-                          '@media (min-width: 280px) and (max-width: 400px)': {
-                            fontSize: '12px',
-                          },
+                          ...fontSize,
                         }}
                       >
                         Name:
@@ -269,9 +256,7 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
                           fontStyle: 'normal',
                           fontWeight: 400,
                           lineHeight: 'normal',
-                          '@media (min-width: 280px) and (max-width: 400px)': {
-                            fontSize: '12px',
-                          },
+                          ...fontSize,
                         }}
                       >
                         Bilal Khan
@@ -295,9 +280,7 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
                           fontStyle: 'normal',
                           fontWeight: 500,
                           lineHeight: 'normal',
-                          '@media (min-width: 280px) and (max-width: 400px)': {
-                            fontSize: '12px',
-                          },
+                          ...fontSize,
                         }}
                       >
                         Location:
@@ -311,9 +294,7 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
                           fontStyle: 'normal',
                           fontWeight: 400,
                           lineHeight: 'normal',
-                          '@media (min-width: 280px) and (max-width: 400px)': {
-                            fontSize: '12px',
-                          },
+                          ...fontSize,
                         }}
                       >
                         Karachi, Pakistan
@@ -338,9 +319,7 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
                           fontStyle: 'normal',
                           fontWeight: 500,
                           lineHeight: 'normal',
-                          '@media (min-width: 280px) and (max-width: 400px)': {
-                            fontSize: '12px',
-                          },
+                          ...fontSize,
                         }}
                       >
                         Department:
@@ -354,9 +333,7 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
                           fontStyle: 'normal',
                           fontWeight: 400,
                           lineHeight: 'normal',
-                          '@media (min-width: 280px) and (max-width: 400px)': {
-                            fontSize: '12px',
-                          },
+                          ...fontSize,
                         }}
                       >
                         Software
@@ -380,9 +357,7 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
                           fontStyle: 'normal',
                           fontWeight: 500,
                           lineHeight: 'normal',
-                          '@media (min-width: 280px) and (max-width: 400px)': {
-                            fontSize: '12px',
-                          },
+                          ...fontSize,
                         }}
                       >
                         Joining date:
@@ -396,9 +371,7 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
                           fontStyle: 'normal',
                           fontWeight: 400,
                           lineHeight: 'normal',
-                          '@media (min-width: 280px) and (max-width: 400px)': {
-                            fontSize: '12px',
-                          },
+                          ...fontSize,
                         }}
                       >
                         Oct26,2021
