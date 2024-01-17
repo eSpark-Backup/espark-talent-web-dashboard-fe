@@ -1,12 +1,12 @@
 export const contractSignedColumn = [
-  'Contract name',
+  'Contractor name',
   'Email',
   'Date',
   'Download',
 ];
 export const contractSignedData = [
   {
-    contractName: 'NDA',
+    contractorName: 'NDA',
     email: 'arman@esparkconsultants.com',
     date: '07-October-2021',
     download: 'Download',

@@ -115,6 +115,12 @@ const Step = ({ handleGoPrev, handleGoNext, form, isMultiColumn, schema }) => {
               alignItems={'center'}
               p={'0 10px'}
               mt={'20px'}
+              sx={{
+                '@media (min-width: 200px) and (max-width: 400px)': {
+                  flexDirection: 'column',
+                  gap: '10px',
+                },
+              }}
             >
               <Button
                 onClick={handleGoPrev}
@@ -188,6 +194,12 @@ const Step = ({ handleGoPrev, handleGoNext, form, isMultiColumn, schema }) => {
             alignItems={'center'}
             p={'0 10px'}
             mt={'20px'}
+            sx={{
+              '@media (min-width: 200px) and (max-width: 400px)': {
+                flexDirection: 'column',
+                gap: '10px',
+              },
+            }}
           >
             <Button
               onClick={handeClickBack}

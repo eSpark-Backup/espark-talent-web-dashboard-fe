@@ -30,7 +30,7 @@ const Dashboard = () => {
 
   return (
     <>
-      <Grid container spacing={3}>
+      <Grid container spacing={5}>
         <Grid item xs={12}>
           <Box
             sx={{
@@ -42,7 +42,6 @@ const Dashboard = () => {
         </Grid>
         <Grid item xs={12}>
           <AttendanceSummary />
-          <br />
         </Grid>
         <Grid item xs={12} md={6} lg={6} xl={4}>
           <Box
@@ -65,7 +64,7 @@ const Dashboard = () => {
             >
               <Typography
                 sx={{
-                  fontSize: { xs: '18px', md: '25px' },
+                  fontSize: { xs: '12px', md: '25px' },
                   fontWeight: 600,
                   color: '#171717',
                   fontStyle: 'normal',
@@ -272,9 +271,7 @@ const Dashboard = () => {
                       fontWeight: 400,
                       lineHeight: 'normal',
                       ml: '10px',
-                      // '&:hover': {
-                      //   color: '#fff',
-                      // },
+                      textTransform: 'math-auto',
                     }}
                   >
                     Mark check in
@@ -302,6 +299,7 @@ const Dashboard = () => {
                       fontWeight: 400,
                       lineHeight: 'normal',
                       ml: '10px',
+                      textTransform: 'math-auto',
                     }}
                   >
                     Mark check out
@@ -340,6 +338,7 @@ const Dashboard = () => {
                     fontStyle: 'normal',
                     fontWeight: 400,
                     lineHeight: 'normal',
+                    textTransform: 'math-auto',
                     '&:hover': {
                       color: '#fff',
                     },

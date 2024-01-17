@@ -6,7 +6,7 @@ export const COMPANY_ONBOARDING = {
 };
 export const HIRING_STATUS = {
   status: 'Hiring Status',
-  activeEmployee: 'Active Employee',
+  activeEmployee: 'Active Employees',
   activeEmployeeNo: 36,
   interviewSchedule: 'Interview Schedule',
   interviews: 7,

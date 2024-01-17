@@ -256,6 +256,7 @@ const EmployeeView = ({ status, id, name, designation, search }) => {
                         sx={{
                           color:
                             eachItem.status === 'Active' ? '#068987' : '#F00',
+                          fontSize: '12px',
                         }}
                       >
                         {eachItem.status}

@@ -1,21 +1,14 @@
 import React, { useState } from 'react';
 import AppDropdown from '@/src/components/dashboard/appDropdown';
-import ActionBarComponent from '@/src/components/requestview/actionbarComponent';
 import { Box, Button, Grid, Typography } from '@mui/material';
-import { DesktopDatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import Image from 'next/image';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import dayjs from 'dayjs';
 import { TextareaAutosize as BaseTextareaAutosize } from '@mui/base/TextareaAutosize';
 import { styled } from '@mui/system';
+import LeaveDatePicker from '@/src/components/requestview/leaveDatepicker';
 
 const LeaveRequestModal = ({ handleClose }) => {
   const [isLoadingTitles, setIsLoadingTitles] = useState(false);
   const [selectedJobTitle, setSelectedJobTitle] = useState('');
-  const [isOpenDatePicker, setIsOpenDatePicker] = useState(false);
-  const [isOpenDatePickerEnd, setIsOpenDatePickerEnd] = useState(false);
-  const handleCloseDatePicker = () => setIsOpenDatePicker(false);
-  const handleCloseEndDatePicker = () => setIsOpenDatePickerEnd(false);
   const [uploadedFileName, setUploadedFileName] = useState('');
   const blue = {
     100: '#DAECFF',
@@ -103,218 +96,21 @@ const LeaveRequestModal = ({ handleClose }) => {
           Create leave request
         </Typography>
       </Box>
-      <Box>
-        <Box
-          sx={{
-            padding: '20px',
-          }}
-        >
-          <Grid
-            container
-            p={'5px 5px 5px 20px'}
-            sx={{
-              background: '#F6F6F6',
-              borderRadius: '5px',
-              display: 'flex',
-              alignItems: { xs: 'flex-start', md: 'center' },
-              flexDirection: { xs: 'column', md: 'row' },
-            }}
-          >
-            <Grid item xs={12} md={5.4}>
-              <Typography
-                sx={{
-                  color: '#595959',
-                  fontSize: '16px',
-                  fontStyle: 'normal',
-                  fontWeight: 500,
-                  lineHeight: 'normal',
-                }}
-              >
-                Leave type <span style={{ color: '#FF0000' }}>*</span>
-              </Typography>
-            </Grid>
-            <Grid item xs={12} md={6.6} sx={{ width: '100%' }}>
-              <AppDropdown
-                data={[
-                  {
-                    label: 'Sick leave',
-                  },
-                  {
-                    label: 'Casual leave',
-                  },
-                  {
-                    label: 'Annual leave',
-                  },
-                ]}
-                setIsLoadingList={setIsLoadingTitles}
-                isLoadingList={isLoadingTitles}
-                selectedItem={selectedJobTitle}
-                setSelectedItem={setSelectedJobTitle}
-                placeHolder="Select Leave Type"
-                padding={'9px'}
-              />
-            </Grid>
-          </Grid>
-        </Box>
-      </Box>
-      <Box>
-        <Box
-          sx={{
-            padding: '0 20px',
-          }}
-        >
-          <Grid
-            container
-            p={'5px 5px 5px 20px'}
-            sx={{
-              background: '#fff',
-              borderRadius: '5px',
-              display: 'flex',
-              alignItems: { xs: 'flex-start', md: 'center' },
-              flexDirection: { xs: 'column', md: 'row' },
-            }}
-          >
-            <Grid item xs={12} md={5.4}>
-              <Typography
-                sx={{
-                  color: '#595959',
-                  fontSize: '16px',
-                  fontStyle: 'normal',
-                  fontWeight: 500,
-                  lineHeight: 'normal',
-                }}
-              >
-                Start date
-                <span style={{ color: '#FF0000' }}>*</span>
-              </Typography>
-            </Grid>
-            <Grid item xs={12} md={6.6} sx={{ width: '100%' }}>
-              <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <DesktopDatePicker
-                  className="custom-date-time-picker"
-                  open={isOpenDatePicker}
-                  slots={{
-                    openPickerIcon: () => (
-                      <Image
-                        src={'/icons/CalendarOutline.svg'}
-                        width={20}
-                        height={20}
-                        alt="Date"
-                        onClick={() => setIsOpenDatePicker((ps) => !ps)}
-                      />
-                    ),
-                    actionBar: () => (
-                      <ActionBarComponent onClose={handleCloseDatePicker} />
-                    ),
-                  }}
-                  sx={{ width: '100%', borderRadius: '50%' }}
-                  defaultValue={dayjs('2022-04-17')}
-                />
-              </LocalizationProvider>
-            </Grid>
-          </Grid>
-        </Box>
-      </Box>
-      <Box>
-        <Box
-          sx={{
-            padding: '20px',
-          }}
-        >
-          <Grid
-            container
-            p={'5px 5px 5px 20px'}
-            sx={{
-              background: '#F6F6F6',
-              borderRadius: '5px',
-              display: 'flex',
-              alignItems: { xs: 'flex-start', md: 'center' },
-              flexDirection: { xs: 'column', md: 'row' },
-            }}
-          >
-            <Grid item xs={12} md={5.4}>
-              <Typography
-                sx={{
-                  color: '#595959',
-                  fontSize: '16px',
-                  fontStyle: 'normal',
-                  fontWeight: 500,
-                  lineHeight: 'normal',
-                }}
-              >
-                End date
-                <span style={{ color: '#FF0000' }}>*</span>
-              </Typography>
-            </Grid>
-            <Grid item xs={12} md={6.6} sx={{ width: '100%' }}>
-              <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <DesktopDatePicker
-                  className="custom-date-time-picker"
-                  open={isOpenDatePickerEnd}
-                  slots={{
-                    openPickerIcon: () => (
-                      <Image
-                        src={'/icons/CalendarOutline.svg'}
-                        width={20}
-                        height={20}
-                        alt="Date"
-                        onClick={() => setIsOpenDatePickerEnd((ps) => !ps)}
-                      />
-                    ),
-                    actionBar: () => (
-                      <ActionBarComponent onClose={handleCloseEndDatePicker} />
-                    ),
-                  }}
-                  sx={{ width: '100%', borderRadius: '50%' }}
-                  defaultValue={dayjs('2022-04-17')}
-                />
-              </LocalizationProvider>
-            </Grid>
-          </Grid>
-        </Box>
-      </Box>
-      <Box>
-        <Box
-          sx={{
-            padding: '0 20px',
-          }}
-        >
-          <Grid
-            container
-            p={'5px 5px 5px 20px'}
-            sx={{
-              background: '#FFF',
-              borderRadius: '5px',
-              display: 'flex',
-              alignItems: { xs: 'flex-start', md: 'center' },
-              flexDirection: { xs: 'column', md: 'row' },
-            }}
-          >
-            <Grid item xs={12} md={5.4}>
-              <Typography
-                sx={{
-                  color: '#595959',
-                  fontSize: '16px',
-                  fontStyle: 'normal',
-                  fontWeight: 500,
-                  lineHeight: 'normal',
-                }}
-              >
-                Count
-              </Typography>
-            </Grid>
-            <Grid item xs={12} md={6.6} sx={{ width: '100%' }}>
-              <Box
-                display={'flex'}
-                justifyContent={'space-between'}
-                alignItems={'center'}
-                sx={{
-                  border: 'solid 1px #ccc',
-                  p: '9px',
-                  borderRadius: '5px',
-                  background: '#f6f6f6',
-                }}
-              >
+      <Box sx={{ padding: '20px', mb: '10px' }}>
+        <Box>
+          <Box>
+            <Grid
+              container
+              p={'12px'}
+              sx={{
+                background: '#F6F6F6',
+                borderRadius: '5px',
+                display: 'flex',
+                alignItems: { xs: 'flex-start', md: 'center' },
+                flexDirection: { xs: 'column', md: 'row' },
+              }}
+            >
+              <Grid item xs={12} md={5.4}>
                 <Typography
                   sx={{
                     color: '#595959',
@@ -322,57 +118,50 @@ const LeaveRequestModal = ({ handleClose }) => {
                     fontStyle: 'normal',
                     fontWeight: 500,
                     lineHeight: 'normal',
+                    paddingLeft: { xs: '0px', md: '20px' },
                   }}
                 >
-                  1
+                  Leave type <span style={{ color: '#FF0000' }}>*</span>
                 </Typography>
-              </Box>
+              </Grid>
+              <Grid item xs={12} md={6.6} sx={{ width: '100%' }}>
+                <AppDropdown
+                  data={[
+                    {
+                      label: 'Sick leave',
+                    },
+                    {
+                      label: 'Casual leave',
+                    },
+                    {
+                      label: 'Annual leave',
+                    },
+                  ]}
+                  setIsLoadingList={setIsLoadingTitles}
+                  isLoadingList={isLoadingTitles}
+                  selectedItem={selectedJobTitle}
+                  setSelectedItem={setSelectedJobTitle}
+                  placeHolder="Select"
+                  mb={'2px'}
+                />
+              </Grid>
             </Grid>
-          </Grid>
+          </Box>
         </Box>
-      </Box>
-      <Box>
-        <Box
-          sx={{
-            padding: '20px',
-          }}
-        >
-          <Grid
-            container
-            p={'5px 5px 5px 20px'}
-            sx={{
-              background: '#f6f6f6',
-              borderRadius: '5px',
-              display: 'flex',
-              alignItems: { xs: 'flex-start', md: 'center' },
-              flexDirection: { xs: 'column', md: 'row' },
-            }}
-          >
-            <Grid item xs={12} md={5.4}>
-              <Typography
-                sx={{
-                  color: '#595959',
-                  fontSize: '16px',
-                  fontStyle: 'normal',
-                  fontWeight: 500,
-                  lineHeight: 'normal',
-                }}
-              >
-                Total count
-              </Typography>
-            </Grid>
-            <Grid item xs={12} md={6.6} sx={{ width: '100%' }}>
-              <Box
-                display={'flex'}
-                justifyContent={'space-between'}
-                alignItems={'center'}
-                sx={{
-                  border: 'solid 1px #ccc',
-                  p: '9px',
-                  borderRadius: '5px',
-                  background: '#f6f6f6',
-                }}
-              >
+        <Box>
+          <Box>
+            <Grid
+              container
+              p={'12px'}
+              sx={{
+                background: '#fff',
+                borderRadius: '5px',
+                display: 'flex',
+                alignItems: { xs: 'flex-start', md: 'center' },
+                flexDirection: { xs: 'column', md: 'row' },
+              }}
+            >
+              <Grid item xs={12} md={5.4}>
                 <Typography
                   sx={{
                     color: '#595959',
@@ -380,47 +169,81 @@ const LeaveRequestModal = ({ handleClose }) => {
                     fontStyle: 'normal',
                     fontWeight: 500,
                     lineHeight: 'normal',
+                    paddingLeft: { xs: '0px', md: '20px' },
                   }}
                 >
-                  0
+                  Start date
+                  <span style={{ color: '#FF0000' }}>*</span>
                 </Typography>
-              </Box>
+              </Grid>
+              <Grid item xs={12} md={6.6} sx={{ width: '100%' }}>
+                <LeaveDatePicker />
+              </Grid>
             </Grid>
-          </Grid>
+          </Box>
         </Box>
-      </Box>
-      <Box>
-        <Box
-          sx={{
-            padding: '0 20px',
-          }}
-        >
-          <Grid
-            container
-            p={'5px 5px 5px 20px'}
-            sx={{
-              background: '#FFF',
-              borderRadius: '5px',
-              display: 'flex',
-              alignItems: { xs: 'flex-start', md: 'center' },
-              flexDirection: { xs: 'column', md: 'row' },
-            }}
-          >
-            <Grid item xs={12} md={5.4}>
-              <Typography
-                sx={{
-                  color: '#595959',
-                  fontSize: '16px',
-                  fontStyle: 'normal',
-                  fontWeight: 500,
-                  lineHeight: 'normal',
-                }}
-              >
-                Attachment
-              </Typography>
+        <Box>
+          <Box>
+            <Grid
+              container
+              p={'12px'}
+              sx={{
+                background: '#F6F6F6',
+                borderRadius: '5px',
+                display: 'flex',
+                alignItems: { xs: 'flex-start', md: 'center' },
+                flexDirection: { xs: 'column', md: 'row' },
+              }}
+            >
+              <Grid item xs={12} md={5.4}>
+                <Typography
+                  sx={{
+                    color: '#595959',
+                    fontSize: '16px',
+                    fontStyle: 'normal',
+                    fontWeight: 500,
+                    lineHeight: 'normal',
+                    paddingLeft: { xs: '0px', md: '20px' },
+                  }}
+                >
+                  End date
+                  <span style={{ color: '#FF0000' }}>*</span>
+                </Typography>
+              </Grid>
+              <Grid item xs={12} md={6.6} sx={{ width: '100%' }}>
+                <LeaveDatePicker />
+              </Grid>
             </Grid>
-            <Grid item xs={12} md={6.6} sx={{ width: '100%' }}>
-              <label htmlFor="input-attachment">
+          </Box>
+        </Box>
+        <Box>
+          <Box>
+            <Grid
+              container
+              p={'12px'}
+              sx={{
+                background: '#FFF',
+                borderRadius: '5px',
+                display: 'flex',
+                alignItems: { xs: 'flex-start', md: 'center' },
+                flexDirection: { xs: 'column', md: 'row' },
+              }}
+            >
+              <Grid item xs={12} md={5.4}>
+                <Typography
+                  sx={{
+                    color: '#595959',
+                    fontSize: '16px',
+                    fontStyle: 'normal',
+                    fontWeight: 500,
+                    lineHeight: 'normal',
+                    paddingLeft: { xs: '0px', md: '20px' },
+                  }}
+                >
+                  Count
+                </Typography>
+              </Grid>
+              <Grid item xs={12} md={6.6} sx={{ width: '100%' }}>
                 <Box
                   display={'flex'}
                   justifyContent={'space-between'}
@@ -432,90 +255,208 @@ const LeaveRequestModal = ({ handleClose }) => {
                     background: '#f6f6f6',
                   }}
                 >
-                  <Box display={'flex'} flexDirection={'row'}>
-                    <Typography
-                      sx={{
-                        color: '#595959',
-                        fontSize: '16px',
-                        fontStyle: 'normal',
-                        fontWeight: 500,
-                        lineHeight: 'normal',
-                      }}
-                    >
-                      {uploadedFileName}
-                    </Typography>
-                    <input
-                      onChange={handleUpload}
-                      id="input-attachment"
-                      type="file"
-                      style={{ width: 0, height: 0, visibility: 'hidden' }}
-                    />
-                  </Box>
-
-                  <Image
-                    src={'/icons/Attachment.svg'}
-                    width={20}
-                    height={20}
-                    alt="Attachment"
-                  />
+                  <Typography
+                    sx={{
+                      color: '#595959',
+                      fontSize: '16px',
+                      fontStyle: 'normal',
+                      fontWeight: 500,
+                      lineHeight: 'normal',
+                    }}
+                  >
+                    1
+                  </Typography>
                 </Box>
-              </label>
+              </Grid>
             </Grid>
-          </Grid>
+          </Box>
         </Box>
-      </Box>
-      <Box>
-        <Box
-          sx={{
-            padding: '20px',
-          }}
-        >
-          <Grid
-            container
-            p={'5px 5px 5px 20px'}
-            sx={{
-              background: '#f6f6f6',
-              borderRadius: '5px',
-              display: 'flex',
-              // alignItems: { xs: "flex-start", md: "center" },
-              flexDirection: { xs: 'column', md: 'row' },
-            }}
-          >
-            <Grid item xs={12} md={5.4}>
-              <Typography
-                sx={{
-                  color: '#595959',
-                  fontSize: '16px',
-                  fontStyle: 'normal',
-                  fontWeight: 500,
-                  lineHeight: 'normal',
-                }}
-              >
-                Reason
-                <span style={{ color: '#FF0000' }}>*</span>
-              </Typography>
-            </Grid>
-            <Grid item xs={12} md={6.6} sx={{ width: '100%' }}>
-              <Box
-                display={'flex'}
-                justifyContent={'space-between'}
-                sx={{
-                  borderRadius: '5px',
-                  background: '#f6f6f6',
-                }}
-              >
-                <Textarea
+        <Box>
+          <Box>
+            <Grid
+              container
+              p={'12px'}
+              sx={{
+                background: '#f6f6f6',
+                borderRadius: '5px',
+                display: 'flex',
+                alignItems: { xs: 'flex-start', md: 'center' },
+                flexDirection: { xs: 'column', md: 'row' },
+              }}
+            >
+              <Grid item xs={12} md={5.4}>
+                <Typography
                   sx={{
-                    width: '100%',
+                    color: '#595959',
+                    fontSize: '16px',
+                    fontStyle: 'normal',
+                    fontWeight: 500,
+                    lineHeight: 'normal',
+                    paddingLeft: { xs: '0px', md: '20px' },
+                  }}
+                >
+                  Available leaves
+                </Typography>
+              </Grid>
+              <Grid item xs={12} md={6.6} sx={{ width: '100%' }}>
+                <Box
+                  display={'flex'}
+                  justifyContent={'space-between'}
+                  alignItems={'center'}
+                  sx={{
+                    border: 'solid 1px #ccc',
+                    p: '9px',
+                    borderRadius: '5px',
                     background: '#f6f6f6',
                   }}
-                  aria-label="minimum height"
-                  minRows={3}
-                  placeholder="Please mention reason of leave..."
-                />
-              </Box>
+                >
+                  <Typography
+                    sx={{
+                      color: '#595959',
+                      fontSize: '16px',
+                      fontStyle: 'normal',
+                      fontWeight: 500,
+                      lineHeight: 'normal',
+                    }}
+                  >
+                    0
+                  </Typography>
+                </Box>
+              </Grid>
             </Grid>
-          </Grid>
+          </Box>
+        </Box>
+        <Box>
+          <Box>
+            <Grid
+              container
+              p={'12px'}
+              sx={{
+                background: '#FFF',
+                borderRadius: '5px',
+                display: 'flex',
+                alignItems: { xs: 'flex-start', md: 'center' },
+                flexDirection: { xs: 'column', md: 'row' },
+              }}
+            >
+              <Grid item xs={12} md={5.4}>
+                <Typography
+                  sx={{
+                    color: '#595959',
+                    fontSize: '16px',
+                    fontStyle: 'normal',
+                    fontWeight: 500,
+                    lineHeight: 'normal',
+                    paddingLeft: { xs: '0px', md: '20px' },
+                  }}
+                >
+                  Attachment
+                </Typography>
+              </Grid>
+              <Grid item xs={12} md={6.6} sx={{ width: '100%' }}>
+                <label htmlFor="input-attachment">
+                  <Box
+                    display={'flex'}
+                    justifyContent={'space-between'}
+                    alignItems={'center'}
+                    sx={{
+                      border: 'solid 1px #ccc',
+                      p: '9px',
+                      borderRadius: '5px',
+                      background: '#f6f6f6',
+                    }}
+                  >
+                    <Box display={'flex'} flexDirection={'row'}>
+                      <Typography
+                        sx={{
+                          color: '#595959',
+                          fontSize: '16px',
+                          fontStyle: 'normal',
+                          fontWeight: 500,
+                          lineHeight: 'normal',
+                        }}
+                      >
+                        {uploadedFileName}
+                      </Typography>
+                      <input
+                        onChange={handleUpload}
+                        id="input-attachment"
+                        type="file"
+                        style={{ width: 0, height: 0, visibility: 'hidden' }}
+                      />
+                    </Box>
+
+                    <Image
+                      src={'/icons/Attachment.svg'}
+                      width={20}
+                      height={20}
+                      alt="Attachment"
+                    />
+                  </Box>
+                </label>
+              </Grid>
+            </Grid>
+          </Box>
+        </Box>
+        <Box>
+          <Box>
+            <Grid
+              container
+              p={'12px'}
+              sx={{
+                background: '#f6f6f6',
+                borderRadius: '5px',
+                display: 'flex',
+                // alignItems: { xs: "flex-start", md: "center" },
+                flexDirection: { xs: 'column', md: 'row' },
+              }}
+            >
+              <Grid item xs={12} md={5.4}>
+                <Typography
+                  sx={{
+                    color: '#595959',
+                    fontSize: '16px',
+                    fontStyle: 'normal',
+                    fontWeight: 500,
+                    lineHeight: 'normal',
+                    paddingLeft: { xs: '0px', md: '20px' },
+                  }}
+                >
+                  Reason
+                  <span style={{ color: '#FF0000' }}>*</span>
+                </Typography>
+              </Grid>
+              <Grid item xs={12} md={6.6} sx={{ width: '100%' }}>
+                <Box
+                  display={'flex'}
+                  justifyContent={'space-between'}
+                  sx={{
+                    borderRadius: '5px',
+                    background: '#f6f6f6',
+                  }}
+                >
+                  <Textarea
+                    sx={{
+                      width: '100%',
+                      background: '#f6f6f6',
+                      '::placeholder': {
+                        color: '#595959',
+                      },
+                      '&:hover': {
+                        border: '1px solid #E4E4E4',
+                      },
+                      '&:focus': {
+                        border: '1px solid #E4E4E4',
+                      },
+                    }}
+                    aria-label="minimum height"
+                    minRows={3}
+                    placeholder="Please mention reason of leave..."
+                  />
+                </Box>
+              </Grid>
+            </Grid>
+          </Box>
         </Box>
       </Box>
       <Box

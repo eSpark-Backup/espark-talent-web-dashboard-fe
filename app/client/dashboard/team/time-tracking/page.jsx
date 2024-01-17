@@ -113,11 +113,13 @@ const Dashboard = () => {
               <Grid container spacing={2}>
                 <Grid
                   display={'flex'}
-                  flexWrap={'wrap'}
+                  flexWrap={{ xs: 'wrap', md: 'nowrap' }}
                   alignItems="center"
                   item
                   xs={12}
                   md={6}
+                  flexDirection={'row'}
+                  gap={3}
                 >
                   <AppSearchableDropdown
                     setIsLoadingList={setIsLoadingEmployee}

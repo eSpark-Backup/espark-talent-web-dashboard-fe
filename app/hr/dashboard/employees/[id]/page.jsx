@@ -113,6 +113,8 @@ const Page = () => {
                 sx={{
                   display: 'flex',
                   justifyContent: 'space-between',
+                  flexDirection: { xs: 'column', md: 'row' },
+
                   padding: '25px',
                   gap: { xs: '10px', sm: '0px', md: '35px' },
                   alignItems: 'center',
@@ -182,13 +184,13 @@ const Page = () => {
                 >
                   <Button
                     variant="contained"
-                    sx={{ maxWidth: { xs: '300px', md: '200px' } }}
+                    sx={{ maxWidth: { xs: '100%', md: '200px' } }}
                   >
                     {employeeProfileData?.downloadResume}
                   </Button>
                   <Button
                     sx={{
-                      maxWidth: { xs: '300px', md: '200px' },
+                      maxWidth: { xs: '100%', md: '200px' },
                       borderRadius: '5px',
                       border: '1px solid #029894',
                     }}

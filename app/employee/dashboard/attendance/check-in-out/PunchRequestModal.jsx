@@ -88,7 +88,12 @@ const PunchRequestModal = ({ createModal, modalData, handleClose }) => {
         borderRadius: '10px',
         boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
         maxHeight: '82%',
-        overflowY: 'auto',
+        overflow: 'auto',
+        scrollbarWidth: 'thin',
+        scrollbarColor: 'transparent transparent',
+        '&::-webkit-scrollbar': {
+          display: 'none',
+        },
       }}
     >
       <Box sx={{ borderBottom: '1px solid #E4E4E4', p: 2 }}>
@@ -105,76 +110,22 @@ const PunchRequestModal = ({ createModal, modalData, handleClose }) => {
           )}
         </Typography>
       </Box>
-
-      <Box>
-        <Box
-          sx={{
-            padding: '0 20px',
-            mt: '20px',
-          }}
-        >
-          <Grid
-            container
-            p={'5px 5px 5px 20px'}
-            sx={{
-              background: '#F6F6F6',
-              borderRadius: '5px',
-              display: 'flex',
-              alignItems: { xs: 'flex-start', md: 'center' },
-              flexDirection: { xs: 'column', md: 'row' },
-            }}
-          >
-            <Grid item xs={12} md={5}>
-              <Typography
-                sx={{
-                  color: '#171717',
-                  fontSize: '16px',
-                  fontStyle: 'normal',
-                  fontWeight: 500,
-                  lineHeight: 'normal',
-                }}
-              >
-                Date <span style={{ color: '#FF0000' }}>*</span>
-              </Typography>
-            </Grid>
-            <Grid item xs={12} md={7} sx={{ width: '100%' }}>
-              <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <DesktopDatePicker
-                  className="custom-date-time-picker"
-                  open={isOpenDatePicker}
-                  slots={{
-                    openPickerIcon: () => (
-                      <Image
-                        src={'/icons/CalendarOutline.svg'}
-                        width={20}
-                        height={20}
-                        alt="Date"
-                        onClick={() => setIsOpenDatePicker((ps) => !ps)}
-                      />
-                    ),
-                    actionBar: () => (
-                      <ActionBarComponent onClose={handleCloseDatePicker} />
-                    ),
-                  }}
-                  sx={{ width: '100%', borderRadius: '50%' }}
-                  defaultValue={dayjs('2022-04-17')}
-                />
-              </LocalizationProvider>
-            </Grid>
-          </Grid>
-        </Box>
-      </Box>
-      {createModal && (
+      <Box
+        sx={{
+          padding: '28px',
+        }}
+      >
         <Box>
           <Box
             sx={{
-              padding: '20px',
+              padding: '5px 10px',
             }}
           >
             <Grid
               container
               p={'5px 5px 5px 20px'}
               sx={{
+                background: '#F6F6F6',
                 borderRadius: '5px',
                 display: 'flex',
                 alignItems: { xs: 'flex-start', md: 'center' },
@@ -184,288 +135,548 @@ const PunchRequestModal = ({ createModal, modalData, handleClose }) => {
               <Grid item xs={12} md={5}>
                 <Typography
                   sx={{
-                    color: '#595959',
-                    fontSize: '16px',
-                    fontStyle: 'normal',
-                    fontWeight: 600,
-                    lineHeight: 'normal',
-                  }}
-                >
-                  Expected check in
-                </Typography>
-              </Grid>
-              <Grid item xs={12} md={7} sx={{ width: '100%' }}>
-                <Box
-                  display={'flex'}
-                  justifyContent={'space-between'}
-                  alignItems={'center'}
-                  sx={{
-                    border: 'solid 1px #ccc',
-                    p: '9px',
-                    borderRadius: '5px',
-                    background: '#f6f6f6',
-                  }}
-                >
-                  <Typography
-                    sx={{
-                      color: '#595959',
-                      fontSize: '16px',
-                      fontStyle: 'normal',
-                      fontWeight: 500,
-                      lineHeight: 'normal',
-                    }}
-                  >
-                    10:00 AM
-                  </Typography>
-                </Box>
-              </Grid>
-            </Grid>
-          </Box>
-        </Box>
-      )}
-      {createModal && (
-        <Box>
-          <Box
-            sx={{
-              padding: '0 20px',
-            }}
-          >
-            <Grid
-              container
-              p={'5px 5px 5px 20px'}
-              sx={{
-                background: '#f6f6f6',
-                borderRadius: '5px',
-                display: 'flex',
-                alignItems: { xs: 'flex-start', md: 'center' },
-                flexDirection: { xs: 'column', md: 'row' },
-              }}
-            >
-              <Grid item xs={12} md={5}>
-                <Typography
-                  sx={{
-                    color: '#595959',
-                    fontSize: '16px',
-                    fontStyle: 'normal',
-                    fontWeight: 600,
-                    lineHeight: 'normal',
-                  }}
-                >
-                  Expected check out
-                </Typography>
-              </Grid>
-              <Grid item xs={12} md={7} sx={{ width: '100%' }}>
-                <Box
-                  display={'flex'}
-                  justifyContent={'space-between'}
-                  alignItems={'center'}
-                  sx={{
-                    border: 'solid 1px #ccc',
-                    p: '9px',
-                    borderRadius: '5px',
-                    background: '#f6f6f6',
-                  }}
-                >
-                  <Typography
-                    sx={{
-                      color: '#595959',
-                      fontSize: '16px',
-                      fontStyle: 'normal',
-                      fontWeight: 500,
-                      lineHeight: 'normal',
-                    }}
-                  >
-                    07:00 PM
-                  </Typography>
-                </Box>
-              </Grid>
-            </Grid>
-          </Box>
-        </Box>
-      )}
-      <Box>
-        <Box
-          sx={{
-            padding: '20px',
-          }}
-        >
-          <Grid
-            container
-            p={'5px 5px 5px 20px'}
-            sx={{
-              background: '#FFF',
-              borderRadius: '5px',
-              display: 'flex',
-              alignItems: { xs: 'flex-start', md: 'center' },
-              flexDirection: { xs: 'column', md: 'row' },
-            }}
-          >
-            <Grid item xs={12} md={5}>
-              <Typography
-                sx={{
-                  color: '#595959',
-                  fontSize: '16px',
-                  fontStyle: 'normal',
-                  fontWeight: 600,
-                  lineHeight: 'normal',
-                }}
-              >
-                Punch type <span style={{ color: '#FF0000' }}>*</span>
-              </Typography>
-            </Grid>
-            <Grid item xs={12} md={7} sx={{ width: '100%' }}>
-              <Box
-                display={'flex'}
-                justifyContent={'space-between'}
-                alignItems={'center'}
-                sx={{
-                  borderRadius: '5px',
-                }}
-              >
-                <AppDropdown
-                  data={[
-                    {
-                      label: 'Check in',
-                    },
-                    {
-                      label: 'Check out',
-                    },
-                  ]}
-                  setIsLoadingList={setIsLoadingTitles}
-                  isLoadingList={isLoadingTitles}
-                  selectedItem={selectedJobTitle}
-                  setSelectedItem={setSelectedJobTitle}
-                  placeHolder="Select Punch Type"
-                  padding={'9px'}
-                />
-              </Box>
-            </Grid>
-          </Grid>
-        </Box>
-      </Box>
-
-      <Box>
-        <Box
-          sx={{
-            padding: '0 20px',
-          }}
-        >
-          <Grid
-            container
-            p={'5px 5px 5px 20px'}
-            sx={{
-              background: '#F6F6F6',
-              borderRadius: '5px',
-              display: 'flex',
-              alignItems: { xs: 'flex-start', md: 'center' },
-              flexDirection: { xs: 'column', md: 'row' },
-            }}
-          >
-            <Grid item xs={12} md={5}>
-              <Typography
-                sx={{
-                  color: '#595959',
-                  fontSize: '16px',
-                  fontStyle: 'normal',
-                  fontWeight: 600,
-                  lineHeight: 'normal',
-                }}
-              >
-                Punch time <span style={{ color: '#FF0000' }}>*</span>
-              </Typography>
-            </Grid>
-            <Grid item xs={12} md={7} sx={{ width: '100%' }}>
-              <Box
-                display={'flex'}
-                justifyContent={'space-between'}
-                alignItems={'center'}
-                sx={{
-                  borderRadius: '5px',
-                  width: '100%',
-                }}
-              >
-                <LocalizationProvider
-                  dateAdapter={AdapterDayjs}
-                  sx={{ width: '100%' }}
-                >
-                  <DesktopTimePicker
-                    className="custom-date-time-picker"
-                    open={false}
-                    slots={{
-                      openPickerIcon: () => null,
-                    }}
-                    sx={{ width: '100%' }}
-                    defaultValue={dayjs('2022-04-17T15:30')}
-                  />
-                </LocalizationProvider>
-              </Box>
-            </Grid>
-          </Grid>
-        </Box>
-      </Box>
-      <Box>
-        <Box
-          sx={{
-            padding: '20px',
-          }}
-        >
-          <Grid
-            container
-            p={'5px 5px 5px 20px'}
-            sx={{
-              background: '#fff',
-              borderRadius: '5px',
-              display: 'flex',
-              flexDirection: { xs: 'column', md: 'row' },
-            }}
-          >
-            <Grid item xs={12} md={5}>
-              <Typography
-                sx={{
-                  color: '#595959',
-                  fontSize: '16px',
-                  fontStyle: 'normal',
-                  fontWeight: 600,
-                  lineHeight: 'normal',
-                }}
-              >
-                Description
-              </Typography>
-            </Grid>
-            <Grid item xs={12} md={7} sx={{ width: '100%' }}>
-              <Box
-                display={'flex'}
-                justifyContent={'space-between'}
-                sx={{
-                  borderRadius: '5px',
-                  background: '#f6f6f6',
-                }}
-              >
-                <Textarea
-                  sx={{
-                    width: '100%',
-                    background: '#f6f6f6',
-                    color: '#595959',
+                    color: '#171717',
                     fontSize: '16px',
                     fontStyle: 'normal',
                     fontWeight: 500,
                     lineHeight: 'normal',
+                    paddingLeft: { xs: '0px', md: '20px' },
                   }}
-                  // sx={{
-                  // }}
-                  aria-label="minimum height"
-                  minRows={3}
-                  placeholder="Write your description"
-                />
-              </Box>
+                >
+                  Date <span style={{ color: '#FF0000' }}>*</span>
+                </Typography>
+              </Grid>
+              <Grid item xs={12} md={7} sx={{ width: '100%' }}>
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <DesktopDatePicker
+                    className="custom-date-time-picker"
+                    open={isOpenDatePicker}
+                    slots={{
+                      openPickerIcon: () => (
+                        <Image
+                          src={'/icons/CalendarOutline.svg'}
+                          width={20}
+                          height={20}
+                          alt="Date"
+                          onClick={() => setIsOpenDatePicker((ps) => !ps)}
+                        />
+                      ),
+                      actionBar: () => (
+                        <ActionBarComponent onClose={handleCloseDatePicker} />
+                      ),
+                    }}
+                    sx={{ width: '100%', borderRadius: '50%' }}
+                    defaultValue={dayjs('2022-04-17')}
+                  />
+                </LocalizationProvider>
+              </Grid>
             </Grid>
-          </Grid>
+          </Box>
+        </Box>
+        {createModal && (
+          <Box>
+            <Box
+              sx={{
+                padding: '5px 10px',
+              }}
+            >
+              <Grid
+                container
+                p={'5px 5px 5px 20px'}
+                sx={{
+                  borderRadius: '5px',
+                  display: 'flex',
+                  alignItems: { xs: 'flex-start', md: 'center' },
+                  flexDirection: { xs: 'column', md: 'row' },
+                }}
+              >
+                <Grid item xs={12} md={5}>
+                  <Typography
+                    sx={{
+                      color: '#595959',
+                      fontSize: '16px',
+                      fontStyle: 'normal',
+                      fontWeight: 600,
+                      lineHeight: 'normal',
+                      paddingLeft: { xs: '0px', md: '20px' },
+                    }}
+                  >
+                    Expected check in
+                  </Typography>
+                </Grid>
+                <Grid item xs={12} md={7} sx={{ width: '100%' }}>
+                  <Box
+                    display={'flex'}
+                    justifyContent={'space-between'}
+                    alignItems={'center'}
+                    sx={{
+                      border: 'solid 1px #ccc',
+                      p: '9px',
+                      borderRadius: '5px',
+                      background: '#f6f6f6',
+                    }}
+                  >
+                    <Typography
+                      sx={{
+                        color: '#595959',
+                        fontSize: '16px',
+                        fontStyle: 'normal',
+                        fontWeight: 500,
+                        lineHeight: 'normal',
+                      }}
+                    >
+                      10:00 AM
+                    </Typography>
+                  </Box>
+                </Grid>
+              </Grid>
+            </Box>
+          </Box>
+        )}
+        {createModal && (
+          <Box>
+            <Box
+              sx={{
+                padding: '5px 10px',
+              }}
+            >
+              <Grid
+                container
+                p={'5px 5px 5px 20px'}
+                sx={{
+                  borderRadius: '5px',
+                  background: '#F6F6F6',
+                  display: 'flex',
+                  alignItems: { xs: 'flex-start', md: 'center' },
+                  flexDirection: { xs: 'column', md: 'row' },
+                }}
+              >
+                <Grid item xs={12} md={5}>
+                  <Typography
+                    sx={{
+                      color: '#595959',
+                      fontSize: '16px',
+                      fontStyle: 'normal',
+                      fontWeight: 600,
+                      lineHeight: 'normal',
+                      paddingLeft: { xs: '0px', md: '20px' },
+                    }}
+                  >
+                    Check in <span style={{ color: '#FF0000' }}>*</span>
+                  </Typography>
+                </Grid>
+                <Grid item xs={12} md={7} sx={{ width: '100%' }}>
+                  <Box
+                    display={'flex'}
+                    justifyContent={'space-between'}
+                    alignItems={'center'}
+                    sx={{
+                      borderRadius: '5px',
+                      width: '100%',
+                    }}
+                  >
+                    <LocalizationProvider
+                      dateAdapter={AdapterDayjs}
+                      sx={{ width: '100%' }}
+                    >
+                      <DesktopTimePicker
+                        className="custom-date-time-picker"
+                        open={false}
+                        slots={{
+                          openPickerIcon: () => null,
+                        }}
+                        sx={{ width: '100%' }}
+                        defaultValue={dayjs('2022-04-17T15:30')}
+                      />
+                    </LocalizationProvider>
+                  </Box>
+                </Grid>
+              </Grid>
+            </Box>
+          </Box>
+        )}
+        {createModal && (
+          <Box>
+            <Box
+              sx={{
+                padding: '5px 10px',
+              }}
+            >
+              <Grid
+                container
+                p={'5px 5px 5px 20px'}
+                sx={{
+                  borderRadius: '5px',
+                  display: 'flex',
+                  alignItems: { xs: 'flex-start', md: 'center' },
+                  flexDirection: { xs: 'column', md: 'row' },
+                }}
+              >
+                <Grid item xs={12} md={5}>
+                  <Typography
+                    sx={{
+                      color: '#595959',
+                      fontSize: '16px',
+                      fontStyle: 'normal',
+                      fontWeight: 600,
+                      lineHeight: 'normal',
+                      paddingLeft: { xs: '0px', md: '20px' },
+                    }}
+                  >
+                    Expected check out
+                  </Typography>
+                </Grid>
+                <Grid item xs={12} md={7} sx={{ width: '100%' }}>
+                  <Box
+                    display={'flex'}
+                    justifyContent={'space-between'}
+                    alignItems={'center'}
+                    sx={{
+                      border: 'solid 1px #ccc',
+                      p: '9px',
+                      borderRadius: '5px',
+                      background: '#f6f6f6',
+                    }}
+                  >
+                    <Typography
+                      sx={{
+                        color: '#595959',
+                        fontSize: '16px',
+                        fontStyle: 'normal',
+                        fontWeight: 500,
+                        lineHeight: 'normal',
+                      }}
+                    >
+                      07:00 PM
+                    </Typography>
+                  </Box>
+                </Grid>
+              </Grid>
+            </Box>
+          </Box>
+        )}
+        {!createModal && (
+          <Box>
+            <Box
+              sx={{
+                padding: '0 10px',
+              }}
+            >
+              <Grid
+                container
+                p={'5px 5px 5px 20px'}
+                sx={{
+                  borderRadius: '5px',
+                  display: 'flex',
+                  alignItems: { xs: 'flex-start', md: 'center' },
+                  flexDirection: { xs: 'column', md: 'row' },
+                }}
+              >
+                <Grid item xs={12} md={5}>
+                  <Typography
+                    sx={{
+                      color: '#595959',
+                      fontSize: '16px',
+                      fontStyle: 'normal',
+                      fontWeight: 600,
+                      lineHeight: 'normal',
+                      paddingLeft: { xs: '0px', md: '20px' },
+                    }}
+                  >
+                    Punch time <span style={{ color: '#FF0000' }}>*</span>
+                  </Typography>
+                </Grid>
+                <Grid item xs={12} md={7} sx={{ width: '100%' }}>
+                  <Box
+                    display={'flex'}
+                    justifyContent={'space-between'}
+                    alignItems={'center'}
+                    sx={{
+                      borderRadius: '5px',
+                      width: '100%',
+                    }}
+                  >
+                    <LocalizationProvider
+                      dateAdapter={AdapterDayjs}
+                      sx={{ width: '100%' }}
+                    >
+                      <DesktopTimePicker
+                        className="custom-date-time-picker"
+                        open={false}
+                        slots={{
+                          openPickerIcon: () => null,
+                        }}
+                        sx={{ width: '100%' }}
+                        defaultValue={dayjs('2022-04-17T15:30')}
+                      />
+                    </LocalizationProvider>
+                  </Box>
+                </Grid>
+              </Grid>
+            </Box>
+          </Box>
+        )}
+        {createModal && (
+          <Box>
+            <Box
+              sx={{
+                padding: '5px 10px',
+              }}
+            >
+              <Grid
+                container
+                p={'5px 5px 5px 20px'}
+                sx={{
+                  borderRadius: '5px',
+                  background: '#F6F6F6',
+                  display: 'flex',
+                  alignItems: { xs: 'flex-start', md: 'center' },
+                  flexDirection: { xs: 'column', md: 'row' },
+                }}
+              >
+                <Grid item xs={12} md={5}>
+                  <Typography
+                    sx={{
+                      color: '#595959',
+                      fontSize: '16px',
+                      fontStyle: 'normal',
+                      fontWeight: 600,
+                      lineHeight: 'normal',
+                      paddingLeft: { xs: '0px', md: '20px' },
+                    }}
+                  >
+                    Check out <span style={{ color: '#FF0000' }}>*</span>
+                  </Typography>
+                </Grid>
+                <Grid item xs={12} md={7} sx={{ width: '100%' }}>
+                  <Box
+                    display={'flex'}
+                    justifyContent={'space-between'}
+                    alignItems={'center'}
+                    sx={{
+                      borderRadius: '5px',
+                      width: '100%',
+                    }}
+                  >
+                    <LocalizationProvider
+                      dateAdapter={AdapterDayjs}
+                      sx={{ width: '100%' }}
+                    >
+                      <DesktopTimePicker
+                        className="custom-date-time-picker"
+                        open={false}
+                        slots={{
+                          openPickerIcon: () => null,
+                        }}
+                        sx={{ width: '100%' }}
+                        defaultValue={dayjs('2022-04-17T15:30')}
+                      />
+                    </LocalizationProvider>
+                  </Box>
+                </Grid>
+              </Grid>
+            </Box>
+          </Box>
+        )}
+        <Box>
+          <Box
+            sx={{
+              padding: '5px 10px',
+            }}
+          >
+            <Grid
+              container
+              p={createModal ? '0px 5px 0px 20px' : '5px 5px 5px 20px'}
+              sx={{
+                background: createModal ? '#fff' : '#F6F6F6',
+                borderRadius: '5px',
+                display: 'flex',
+                alignItems: { xs: 'flex-start', md: 'center' },
+                flexDirection: { xs: 'column', md: 'row' },
+              }}
+            >
+              <Grid item xs={12} md={5}>
+                <Typography
+                  sx={{
+                    color: '#595959',
+                    fontSize: '16px',
+                    fontStyle: 'normal',
+                    fontWeight: 600,
+                    lineHeight: 'normal',
+                    paddingLeft: { xs: '0px', md: '20px' },
+                  }}
+                >
+                  Punch type <span style={{ color: '#FF0000' }}>*</span>
+                </Typography>
+              </Grid>
+              <Grid item xs={12} md={7} sx={{ width: '100%' }}>
+                <Box
+                  display={'flex'}
+                  justifyContent={'space-between'}
+                  alignItems={'center'}
+                  background={'#F6F6F6'}
+                  sx={{
+                    borderRadius: '5px',
+                  }}
+                >
+                  <AppDropdown
+                    data={[
+                      {
+                        label: 'Check in',
+                      },
+                      {
+                        label: 'Check out',
+                      },
+                    ]}
+                    setIsLoadingList={setIsLoadingTitles}
+                    isLoadingList={isLoadingTitles}
+                    selectedItem={selectedJobTitle}
+                    setSelectedItem={setSelectedJobTitle}
+                    placeHolder="Select Punch Type"
+                    mb={'10px'}
+                  />
+                </Box>
+              </Grid>
+            </Grid>
+          </Box>
+        </Box>
+        {createModal && (
+          <Box>
+            <Box
+              sx={{
+                padding: '0 10px',
+              }}
+            >
+              <Grid
+                container
+                p={'5px 5px 5px 20px'}
+                sx={{
+                  background: '#F6F6F6',
+                  borderRadius: '5px',
+                  display: 'flex',
+                  alignItems: { xs: 'flex-start', md: 'center' },
+                  flexDirection: { xs: 'column', md: 'row' },
+                }}
+              >
+                <Grid item xs={12} md={5}>
+                  <Typography
+                    sx={{
+                      color: '#595959',
+                      fontSize: '16px',
+                      fontStyle: 'normal',
+                      fontWeight: 600,
+                      lineHeight: 'normal',
+                      paddingLeft: { xs: '0px', md: '20px' },
+                    }}
+                  >
+                    Punch time <span style={{ color: '#FF0000' }}>*</span>
+                  </Typography>
+                </Grid>
+                <Grid item xs={12} md={7} sx={{ width: '100%' }}>
+                  <Box
+                    display={'flex'}
+                    justifyContent={'space-between'}
+                    alignItems={'center'}
+                    sx={{
+                      borderRadius: '5px',
+                      width: '100%',
+                    }}
+                  >
+                    <LocalizationProvider
+                      dateAdapter={AdapterDayjs}
+                      sx={{ width: '100%' }}
+                    >
+                      <DesktopTimePicker
+                        className="custom-date-time-picker"
+                        open={false}
+                        slots={{
+                          openPickerIcon: () => null,
+                        }}
+                        sx={{ width: '100%' }}
+                        defaultValue={dayjs('2022-04-17T15:30')}
+                      />
+                    </LocalizationProvider>
+                  </Box>
+                </Grid>
+              </Grid>
+            </Box>
+          </Box>
+        )}
+        <Box>
+          <Box
+            sx={{
+              padding: '5px 10px',
+            }}
+          >
+            <Grid
+              container
+              p={'5px 5px 5px 20px'}
+              sx={{
+                background: '#fff',
+                borderRadius: '5px',
+                display: 'flex',
+                flexDirection: { xs: 'column', md: 'row' },
+              }}
+            >
+              <Grid item xs={12} md={5}>
+                <Typography
+                  sx={{
+                    color: '#595959',
+                    fontSize: '16px',
+                    fontStyle: 'normal',
+                    fontWeight: 600,
+                    lineHeight: 'normal',
+                    paddingLeft: { xs: '0px', md: '20px' },
+                  }}
+                >
+                  Description
+                </Typography>
+              </Grid>
+              <Grid item xs={12} md={7} sx={{ width: '100%' }}>
+                <Box
+                  display={'flex'}
+                  justifyContent={'space-between'}
+                  sx={
+                    {
+                      // background: '#f6f6f6',
+                    }
+                  }
+                >
+                  <Textarea
+                    sx={{
+                      width: '100%',
+                      background: '#f6f6f6',
+                      color: '#595959',
+                      fontSize: '16px',
+                      fontStyle: 'normal',
+                      fontWeight: 500,
+                      lineHeight: 'normal',
+                      border: '1px solid #E4E4E4',
+                      borderRadius: '5px',
+
+                      '::placeholder': {
+                        color: '#595959',
+                      },
+                      '&:hover': {
+                        border: '1px solid #E4E4E4',
+                      },
+                      '&:focus': {
+                        border: '1px solid #E4E4E4',
+                      },
+                    }}
+                    minRows={4}
+                    placeholder="Write your description"
+                  />
+                </Box>
+              </Grid>
+            </Grid>
+          </Box>
         </Box>
       </Box>
       <Box
         display={'flex'}
         justifyContent={'flex-end'}
-        sx={{ padding: '20px' }}
+        sx={{ padding: '20px', marginBottom: '15px' }}
       >
         <Button
           onClick={handleClose}
