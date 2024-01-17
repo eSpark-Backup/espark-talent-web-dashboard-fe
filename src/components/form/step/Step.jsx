@@ -11,6 +11,7 @@ const Step = ({
   schema,
   pmd = '95px 90px',
   editProfile,
+  isLastStep,
 }) => {
   const {
     handleSubmit,
@@ -46,7 +47,13 @@ const Step = ({
         >
           <Grid container columnSpacing={'40px'} p={'0 10px'}>
             {form?.map(({ label, fields }, sectionIndex) => (
-              <Grid xs={12} md={6} item key={sectionIndex}>
+              <Grid
+                sx={{ mb: { xs: sectionIndex === 0 && '40px', md: 0 } }}
+                xs={12}
+                md={6}
+                item
+                key={sectionIndex}
+              >
                 <Box
                   sx={{
                     border: 'solid 1px #ccc',
@@ -98,6 +105,7 @@ const Step = ({
                             xs={12}
                             sm={12}
                             md={12}
+                            lg={12}
                             name={name}
                             setFieldValue={setFieldValue}
                             value={values[name]}
@@ -118,30 +126,29 @@ const Step = ({
           </Grid>
           <Grid item xs={12}>
             <Box
-              display={'flex'}
-              justifyContent={'space-between'}
-              alignItems={'center'}
               p={'0 10px'}
               mt={'20px'}
               sx={{
-                '@media (min-width: 200px) and (max-width: 400px)': {
-                  flexDirection: 'column',
-                  gap: '10px',
-                },
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                flexDirection: { xs: 'column', sm: 'row' },
               }}
             >
               <Button
-                onClick={handleGoPrev}
-                sx={{ minWidth: '120px' }}
+                onClick={handeClickBack}
+                sx={{
+                  minWidth: { xs: '100%', sm: '120px' },
+                  mb: { xs: '20px', md: '0' },
+                }}
                 variant="outlined"
               >
                 Back
               </Button>
               <Button
-                // onClick={handleGoNext}
-                sx={{ minWidth: '120px' }}
-                variant="contained"
                 type="submit"
+                sx={{ minWidth: { xs: '100%', sm: '120px' } }}
+                variant="contained"
               >
                 Next
               </Button>
@@ -216,25 +223,31 @@ const Step = ({
         ) : (
           <Grid item xs={12}>
             <Box
-              display={'flex'}
-              justifyContent={'space-between'}
-              alignItems={'center'}
               p={'0 10px'}
               mt={'20px'}
+              sx={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                flexDirection: { xs: 'column', sm: 'row' },
+              }}
             >
               <Button
                 onClick={handeClickBack}
-                sx={{ minWidth: '120px' }}
+                sx={{
+                  minWidth: { xs: '100%', sm: '120px' },
+                  mb: { xs: '20px', md: '0' },
+                }}
                 variant="outlined"
               >
                 Back
               </Button>
               <Button
                 type="submit"
-                sx={{ minWidth: '120px' }}
+                sx={{ minWidth: { xs: '100%', sm: '120px' } }}
                 variant="contained"
               >
-                Next
+                {isLastStep ? 'Submit' : 'Next'}
               </Button>
             </Box>
           </Grid>

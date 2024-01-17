@@ -123,9 +123,11 @@ const AddEmployeeModal = ({ open, onClose }) => {
                     <form onSubmit={handleSubmit} key={stepIndex}>
                       <Grid
                         container
-                        sx={{
-                          padding: { xs: '10px 20px', lg: '41px 100px' },
-                        }}
+                        sx={
+                          {
+                            // padding: { xs: '10px 20px', lg: '41px 100px' },
+                          }
+                        }
                       >
                         {form.map(
                           (

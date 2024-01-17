@@ -11,7 +11,8 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 const FormInput = ({
   xs = 12,
   sm = 6,
-  md = 3,
+  md = 4,
+  lg = 3,
   title,
   placeholder,
   prefixIcon,
@@ -71,6 +72,7 @@ const FormInput = ({
       xs={xs}
       sm={sm}
       md={md}
+      lg={lg}
       sx={{
         position: 'relative',
         mb: { xs: '30px', md: '30px' },
@@ -261,8 +263,9 @@ const FormInput = ({
             accept=".png"
           />
           {suffixIcon && (
-            <Box
-              sx={{
+            <label
+              htmlFor={`input-file-${title}`}
+              style={{
                 display: 'flex',
                 padding: '10px',
                 justifyContent: 'center',
@@ -275,7 +278,7 @@ const FormInput = ({
                 height={30}
                 alt="Calendar"
               />
-            </Box>
+            </label>
           )}
           {type === 'file' && (
             <label

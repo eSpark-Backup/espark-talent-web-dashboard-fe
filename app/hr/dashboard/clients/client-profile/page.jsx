@@ -213,7 +213,7 @@ const AddEmployee = () => {
               <Typography
                 sx={{
                   color: '#595959',
-                  fontSize: '16px',
+                  fontSize: { xs: '13px', md: '14px', xl: '16px' },
                   fontStyle: 'normal',
                   fontWeight: '500',
                   lineHeight: 'normal',
@@ -240,15 +240,16 @@ const AddEmployee = () => {
                   <Box
                     display={'flex'}
                     alignItems={'center'}
-                    sx={{ mb: { xs: '10px', md: '25px' } }}
+                    sx={{ mb: { xs: '0', md: '25px' } }}
                   >
                     <Typography
                       sx={{
                         color: '#595959',
-                        fontSize: '16px',
+                        fontSize: { xs: '13px', md: '14px', xl: '16px' },
+                        width: { xs: '200px', md: 'auto' },
                         fontStyle: 'normal',
                         fontWeight: '500',
-                        lineHeight: 'normal',
+                        lineHeight: { xs: '1.5', md: 'normal' },
                       }}
                     >
                       Client ID:
@@ -256,10 +257,11 @@ const AddEmployee = () => {
                     <Typography
                       sx={{
                         color: '#595959',
-                        fontSize: '16px',
+                        fontSize: { xs: '13px', md: '14px', xl: '16px' },
+                        width: { xs: '200px', md: 'auto' },
                         fontStyle: 'normal',
                         fontWeight: '500',
-                        lineHeight: 'normal',
+                        lineHeight: { xs: '1.5', md: 'normal' },
                       }}
                     >
                       es-00020
@@ -269,10 +271,11 @@ const AddEmployee = () => {
                     <Typography
                       sx={{
                         color: '#595959',
-                        fontSize: '16px',
+                        fontSize: { xs: '13px', md: '14px', xl: '16px' },
+                        width: { xs: '200px', md: 'auto' },
                         fontStyle: 'normal',
                         fontWeight: '500',
-                        lineHeight: 'normal',
+                        lineHeight: { xs: '1.5', md: 'normal' },
                       }}
                     >
                       Marital status:
@@ -280,10 +283,11 @@ const AddEmployee = () => {
                     <Typography
                       sx={{
                         color: '#595959',
-                        fontSize: '16px',
+                        fontSize: { xs: '13px', md: '14px', xl: '16px' },
+                        width: { xs: '200px', md: 'auto' },
                         fontStyle: 'normal',
                         fontWeight: '500',
-                        lineHeight: 'normal',
+                        lineHeight: { xs: '1.5', md: 'normal' },
                       }}
                     >
                       Single
@@ -296,15 +300,16 @@ const AddEmployee = () => {
                   <Box
                     display={'flex'}
                     alignItems={'center'}
-                    sx={{ mb: { xs: '10px', md: '25px' } }}
+                    sx={{ mb: { xs: '0', md: '25px' } }}
                   >
                     <Typography
                       sx={{
                         color: '#595959',
-                        fontSize: '16px',
+                        fontSize: { xs: '13px', md: '14px', xl: '16px' },
+                        width: { xs: '200px', md: 'auto' },
                         fontStyle: 'normal',
                         fontWeight: '500',
-                        lineHeight: 'normal',
+                        lineHeight: { xs: '1.5', md: 'normal' },
                       }}
                     >
                       Gender:
@@ -312,10 +317,11 @@ const AddEmployee = () => {
                     <Typography
                       sx={{
                         color: '#595959',
-                        fontSize: '16px',
+                        fontSize: { xs: '13px', md: '14px', xl: '16px' },
+                        width: { xs: '200px', md: 'auto' },
                         fontStyle: 'normal',
                         fontWeight: '500',
-                        lineHeight: 'normal',
+                        lineHeight: { xs: '1.5', md: 'normal' },
                       }}
                     >
                       Male
@@ -325,10 +331,11 @@ const AddEmployee = () => {
                     <Typography
                       sx={{
                         color: '#595959',
-                        fontSize: '16px',
+                        fontSize: { xs: '13px', md: '14px', xl: '16px' },
+                        width: { xs: '200px', md: 'auto' },
                         fontStyle: 'normal',
                         fontWeight: '500',
-                        lineHeight: 'normal',
+                        lineHeight: { xs: '1.5', md: 'normal' },
                       }}
                     >
                       Phone:
@@ -336,10 +343,11 @@ const AddEmployee = () => {
                     <Typography
                       sx={{
                         color: '#595959',
-                        fontSize: '16px',
+                        fontSize: { xs: '13px', md: '14px', xl: '16px' },
+                        width: { xs: '200px', md: 'auto' },
                         fontStyle: 'normal',
                         fontWeight: '500',
-                        lineHeight: 'normal',
+                        lineHeight: { xs: '1.5', md: 'normal' },
                       }}
                     >
                       090078601
@@ -352,15 +360,16 @@ const AddEmployee = () => {
                   <Box
                     display={'flex'}
                     alignItems={'center'}
-                    sx={{ mb: { xs: '10px', md: '25px' } }}
+                    sx={{ mb: { xs: '0', md: '25px' } }}
                   >
                     <Typography
                       sx={{
                         color: '#595959',
-                        fontSize: '16px',
+                        fontSize: { xs: '13px', md: '14px', xl: '16px' },
+                        width: { xs: '200px', md: 'auto' },
                         fontStyle: 'normal',
                         fontWeight: '500',
-                        lineHeight: 'normal',
+                        lineHeight: { xs: '1.5', md: 'normal' },
                       }}
                     >
                       Email:
@@ -368,10 +377,11 @@ const AddEmployee = () => {
                     <Typography
                       sx={{
                         color: '#595959',
-                        fontSize: '16px',
+                        fontSize: { xs: '13px', md: '14px', xl: '16px' },
+                        width: { xs: '200px', md: 'auto' },
                         fontStyle: 'normal',
                         fontWeight: '500',
-                        lineHeight: 'normal',
+                        lineHeight: { xs: '1.5', md: 'normal' },
                       }}
                     >
                       doejohn@321.com
@@ -381,10 +391,11 @@ const AddEmployee = () => {
                     <Typography
                       sx={{
                         color: '#595959',
-                        fontSize: '16px',
+                        fontSize: { xs: '13px', md: '14px', xl: '16px' },
+                        width: { xs: '200px', md: 'auto' },
                         fontStyle: 'normal',
                         fontWeight: '500',
-                        lineHeight: 'normal',
+                        lineHeight: { xs: '1.5', md: 'normal' },
                       }}
                     >
                       Birth date:
@@ -392,10 +403,11 @@ const AddEmployee = () => {
                     <Typography
                       sx={{
                         color: '#595959',
-                        fontSize: '16px',
+                        fontSize: { xs: '13px', md: '14px', xl: '16px' },
+                        width: { xs: '200px', md: 'auto' },
                         fontStyle: 'normal',
                         fontWeight: '500',
-                        lineHeight: 'normal',
+                        lineHeight: { xs: '1.5', md: 'normal' },
                       }}
                     >
                       26 Jan,2023
@@ -409,8 +421,8 @@ const AddEmployee = () => {
             component="img"
             sx={{
               position: 'absolute',
-              top: { xs: '10px', md: '15px' },
-              right: { xs: '10px', md: '54px' },
+              top: { xs: '5px', xl: '15px' },
+              right: { xs: '5px', xl: '54px' },
               cursor: 'pointer',
             }}
             src="/icons/EditIcon.svg"
@@ -458,9 +470,15 @@ const AddEmployee = () => {
                   key={index}
                 >
                   <Box
-                    display={'flex'}
-                    justifyContent={'space-between'}
-                    alignItems={'center'}
+                    // display={'flex'}
+                    // justifyContent={'space-between'}
+                    // alignItems={'center'}
+                    sx={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      alignItems: { xs: 'flex-start', md: 'center' },
+                      flexDirection: { xs: 'column', md: 'row' },
+                    }}
                   >
                     <Tabs
                       variant="scrollable"
@@ -483,6 +501,9 @@ const AddEmployee = () => {
                       <Button
                         onClick={handleOpenHiringRequestModal}
                         variant="contained"
+                        sx={{
+                          my: { xs: '20px', md: 0 },
+                        }}
                       >
                         Add new request
                       </Button>
@@ -490,6 +511,9 @@ const AddEmployee = () => {
                       <Button
                         onClick={handleOpenContractModal}
                         variant="contained"
+                        sx={{
+                          my: { xs: '20px', md: 0 },
+                        }}
                       >
                         Add contract
                       </Button>
@@ -497,6 +521,9 @@ const AddEmployee = () => {
                       <Button
                         onClick={handleOpenUploadInvoiceModal}
                         variant="contained"
+                        sx={{
+                          my: { xs: '20px', md: 0 },
+                        }}
                       >
                         Upload invoice
                       </Button>
@@ -504,6 +531,9 @@ const AddEmployee = () => {
                       <Button
                         onClick={handleOpenUploadInvoiceModal}
                         variant="contained"
+                        sx={{
+                          my: { xs: '20px', md: 0 },
+                        }}
                       >
                         Upload invoice
                       </Button>
