@@ -130,7 +130,7 @@ const AppDropdown = ({
       md={12}
       lg={12}
       xl={12}
-      mb={mb || '30px'}
+      mb={mb || '10px'}
     >
       <Box
         ref={componentRef}

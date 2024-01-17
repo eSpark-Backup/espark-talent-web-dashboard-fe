@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import AppDropdown from '@/src/components/dashboard/appDropdown';
 import { Box, Button, Grid, Typography } from '@mui/material';
 import Image from 'next/image';
+import AppDropdown from '@/src/components/dashboard/appDropdown';
 
 const LeaveViewModal = ({ modalData, handleClose, isEmployee }) => {
   const [isLoadingTitles, setIsLoadingTitles] = useState(false);
@@ -57,6 +57,7 @@ const LeaveViewModal = ({ modalData, handleClose, isEmployee }) => {
                     fontStyle: 'normal',
                     fontWeight: 500,
                     lineHeight: 'normal',
+                    paddingLeft: { xs: '0px', md: '20px' },
                   }}
                 >
                   Leave type
@@ -112,6 +113,7 @@ const LeaveViewModal = ({ modalData, handleClose, isEmployee }) => {
                     fontStyle: 'normal',
                     fontWeight: 500,
                     lineHeight: 'normal',
+                    paddingLeft: { xs: '0px', md: '20px' },
                   }}
                 >
                   Start date
@@ -176,6 +178,7 @@ const LeaveViewModal = ({ modalData, handleClose, isEmployee }) => {
                     fontStyle: 'normal',
                     fontWeight: 500,
                     lineHeight: 'normal',
+                    paddingLeft: { xs: '0px', md: '20px' },
                   }}
                 >
                   End date
@@ -217,7 +220,7 @@ const LeaveViewModal = ({ modalData, handleClose, isEmployee }) => {
         </Box>
         <Box
           sx={{
-            padding: '0 20px',
+            padding: '10px 25px',
           }}
         >
           <Grid
@@ -229,7 +232,7 @@ const LeaveViewModal = ({ modalData, handleClose, isEmployee }) => {
               flexDirection: 'row',
             }}
             container
-            p={'5px 5px 5px 10px'}
+            p={'8px'}
           >
             <Grid item xs={12} md={3}>
               <Box
@@ -405,6 +408,7 @@ const LeaveViewModal = ({ modalData, handleClose, isEmployee }) => {
                     fontStyle: 'normal',
                     fontWeight: 500,
                     lineHeight: 'normal',
+                    paddingLeft: { xs: '0px', md: '20px' },
                   }}
                 >
                   Count
@@ -464,6 +468,7 @@ const LeaveViewModal = ({ modalData, handleClose, isEmployee }) => {
                       fontStyle: 'normal',
                       fontWeight: 500,
                       lineHeight: 'normal',
+                      paddingLeft: { xs: '0px', md: '20px' },
                     }}
                   >
                     Sandwich count
@@ -524,6 +529,7 @@ const LeaveViewModal = ({ modalData, handleClose, isEmployee }) => {
                       fontStyle: 'normal',
                       fontWeight: 500,
                       lineHeight: 'normal',
+                      paddingLeft: { xs: '0px', md: '20px' },
                     }}
                   >
                     Total
@@ -583,6 +589,7 @@ const LeaveViewModal = ({ modalData, handleClose, isEmployee }) => {
                     fontStyle: 'normal',
                     fontWeight: 500,
                     lineHeight: 'normal',
+                    paddingLeft: { xs: '0px', md: '20px' },
                   }}
                 >
                   Reason
@@ -622,10 +629,12 @@ const LeaveViewModal = ({ modalData, handleClose, isEmployee }) => {
               <Box
                 display={'flex'}
                 justifyContent={'flex-end'}
-                sx={{ padding: '20px' }}
+                sx={{
+                  padding: '20px',
+                }}
               >
                 <Button
-                  sx={{ minWidth: '120px' }}
+                  sx={{ minWidth: { xs: '100px', md: '120px' } }}
                   onClick={handleClose}
                   variant="outlined"
                 >
@@ -633,7 +642,7 @@ const LeaveViewModal = ({ modalData, handleClose, isEmployee }) => {
                 </Button>
                 <Button
                   onClick={handleClose}
-                  sx={{ ml: '20px', minWidth: '120px' }}
+                  sx={{ ml: '20px', minWidth: { xs: '100px', md: '120px' } }}
                   variant="contained"
                 >
                   Approve
