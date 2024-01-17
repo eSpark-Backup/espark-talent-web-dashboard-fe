@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import {
   Box,
   Button,
   FormControl,
   InputAdornment,
   InputLabel,
+  ListSubheader,
   MenuItem,
   Modal,
   Select,
+  TextField,
   Typography,
 } from '@mui/material';
 import { DesktopDatePicker, LocalizationProvider } from '@mui/x-date-pickers';
@@ -18,9 +20,8 @@ import {
   employeeProfileData,
 } from '@/src/constants/employeeProfile';
 import Image from 'next/image';
-import { FILTER } from '@/src/constants/filter';
+import { FILTER, STATUS } from '@/src/constants/filter';
 import { LEAVE_TYPE } from '@/src/constants/requestviewModal';
-import { leaveRequestsStatusTab } from '@/src/constants/data/tabs/timeOffTabs';
 import dayjs from 'dayjs';
 import ActionBarComponent from '../requestview/actionbarComponent';
 
@@ -29,6 +30,14 @@ const FilterModal = ({ open, onClose }) => {
   const [isOpenDatePicker, setIsOpenDatePicker] = useState(false);
   const handleCloseDatePicker = () => setIsOpenDatePicker(false);
   const [isInputLabelVisible, setIsInputLabelVisible] = useState(true);
+  const containsText = (text, searchText) =>
+    text.toLowerCase().indexOf(searchText.toLowerCase()) > -1;
+  const [searchText, setSearchText] = useState('');
+
+  const displayedOptions = useMemo(
+    () => LEAVE_TYPE?.filter((option) => containsText(option, searchText)),
+    [searchText]
+  );
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
     setIsInputLabelVisible(selectedValue === '');
@@ -101,8 +110,8 @@ const FilterModal = ({ open, onClose }) => {
               padding: '15px',
               display: 'flex',
               flexDirection: 'column',
-              gap: { xs: '20px', md: '40px' },
-              width: '80%',
+              gap: { xs: '20px', md: '20px' },
+              width: '100%',
             }}
           >
             <Box sx={{ width: '100%' }}>
@@ -123,7 +132,7 @@ const FilterModal = ({ open, onClose }) => {
                     '&:focus': {
                       borderColor: 'teal',
                     },
-                    width: '82%',
+                    width: '100%',
                     padding: '0px',
                     height: '45px',
                   }}
@@ -144,7 +153,32 @@ const FilterModal = ({ open, onClose }) => {
                     </InputAdornment>
                   )}
                 >
-                  {LEAVE_TYPE?.map((option, index) => (
+                  <ListSubheader>
+                    <TextField
+                      size="small"
+                      placeholder="Search here...."
+                      fullWidth
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <Image
+                              width={20}
+                              height={22}
+                              alt="Refresh"
+                              src={`/images/filter/searchgray.svg`}
+                            />
+                          </InputAdornment>
+                        ),
+                      }}
+                      onChange={(e) => setSearchText(e.target.value)}
+                      onKeyDown={(e) => {
+                        if (e.key !== 'Escape') {
+                          e.stopPropagation();
+                        }
+                      }}
+                    />
+                  </ListSubheader>
+                  {displayedOptions?.map((option, index) => (
                     <MenuItem key={index} value={option}>
                       {option}
                     </MenuItem>
@@ -169,7 +203,7 @@ const FilterModal = ({ open, onClose }) => {
                     '&:focus': {
                       borderColor: 'teal',
                     },
-                    width: '82%',
+                    width: '100%',
                     padding: '0px',
                     height: '45px',
                   }}
@@ -190,7 +224,7 @@ const FilterModal = ({ open, onClose }) => {
                     </InputAdornment>
                   )}
                 >
-                  {leaveRequestsStatusTab?.map((option, index) => (
+                  {STATUS?.map((option, index) => (
                     <MenuItem key={index} value={option.label}>
                       {option.label}
                     </MenuItem>
@@ -252,49 +286,122 @@ const FilterModal = ({ open, onClose }) => {
                 />
               </LocalizationProvider>
             </Box>
-
-            <Button
-              //   variant="primary"
+            <Box sx={{ width: '100%' }}>
+              <Typography sx={{ color: '#595959', marginBottom: '10px' }}>
+                {FILTER?.checkIn}
+              </Typography>
+              <Box sx={{ display: 'flex' }}>
+                <TextField
+                  type="time"
+                  inputProps={{
+                    style: {
+                      height: '10px',
+                    },
+                  }}
+                ></TextField>
+                <Box
+                  sx={{
+                    background: ' #E4E4E4',
+                    width: '15%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <Typography>-</Typography>
+                </Box>
+                <TextField
+                  type="time"
+                  inputProps={{
+                    style: {
+                      height: '10px',
+                    },
+                  }}
+                ></TextField>
+              </Box>
+            </Box>
+            <Box sx={{ width: '100%' }}>
+              <Typography sx={{ color: '#595959', marginBottom: '10px' }}>
+                {FILTER?.checkOut}
+              </Typography>
+              <Box sx={{ display: 'flex' }}>
+                <TextField
+                  type="time"
+                  inputProps={{
+                    style: {
+                      height: '10px',
+                    },
+                  }}
+                ></TextField>
+                <Box
+                  sx={{
+                    background: '#E4E4E4',
+                    width: '15%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <Typography>-</Typography>
+                </Box>
+                <TextField
+                  type="time"
+                  inputProps={{
+                    style: {
+                      height: '10px',
+                    },
+                  }}
+                ></TextField>
+              </Box>
+            </Box>
+            <Box
               sx={{
-                width: { xs: '100px', sm: '120px' },
-                height: '40px',
-                fontSize: '16px',
-                fontWeight: 600,
-                background: '#F23F3A',
-                color: '#fff',
+                display: 'flex',
+                //   justifyContent: 'space-between',
+                paddingTop: '100px',
               }}
-              startIcon={
-                <Image
-                  width={20}
-                  height={22}
-                  alt="Refresh"
-                  src={`/images/filter/reset.svg`}
-                  style={{ color: '#fff' }}
-                />
-              }
             >
-              {FILTER?.Reset}
-            </Button>
-            <Button
-              variant="primary"
-              sx={{
-                width: { xs: '100px', sm: '120px' },
-                height: '40px',
-                fontSize: '16px',
-                fontWeight: 600,
-              }}
-              startIcon={
-                <Image
-                  width={20}
-                  height={22}
-                  alt="Refresh"
-                  src={`/images/filter/search.svg`}
-                  style={{ color: '#fff' }}
-                />
-              }
-            >
-              {FILTER?.search}
-            </Button>
+              <Button
+                sx={{
+                  width: { xs: '100px', sm: '120px' },
+                  height: '40px',
+                  fontSize: '16px',
+                  fontWeight: 600,
+                  background: '#F23F3A',
+                  color: '#fff',
+                }}
+                startIcon={
+                  <Image
+                    width={20}
+                    height={22}
+                    alt="Refresh"
+                    src={`/images/filter/reset.svg`}
+                    style={{ color: '#fff' }}
+                  />
+                }
+              >
+                {FILTER?.Reset}
+              </Button>
+              <Button
+                variant="primary"
+                sx={{
+                  width: { xs: '100px', sm: '120px' },
+                  height: '40px',
+                  fontSize: '16px',
+                  fontWeight: 600,
+                }}
+                startIcon={
+                  <Image
+                    width={20}
+                    height={22}
+                    alt="Refresh"
+                    src={`/images/filter/search.svg`}
+                  />
+                }
+              >
+                {FILTER?.search}
+              </Button>
+            </Box>
           </Box>
         </Box>
       </Box>
