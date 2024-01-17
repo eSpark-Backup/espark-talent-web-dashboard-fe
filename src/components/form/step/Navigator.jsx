@@ -1,13 +1,17 @@
 import { Box, Typography } from '@mui/material';
 import React from 'react';
 
-const Navigator = ({ formSteps, currentStep }) => {
+const Navigator = ({
+  formSteps,
+  currentStep,
+  navigationLabelWidth = '55px',
+  navigationPadding = '35px 0px 66px 0px',
+}) => {
   return (
     <Box
       sx={{
         display: 'flex',
-        // height: "150px",
-        padding: '35px 0px 66px 0px',
+        padding: navigationPadding,
         justifyContent: 'center',
         alignItems: 'center',
         flexShrink: '0',
@@ -57,7 +61,7 @@ const Navigator = ({ formSteps, currentStep }) => {
               </Box>
               <Box
                 sx={{
-                  width: '55px',
+                  width: navigationLabelWidth,
                   position: 'absolute',
                   bottom: '-30px',
                 }}

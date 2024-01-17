@@ -79,23 +79,23 @@ const AppDropdown = ({
       }
     }
   }, [isOpenedDropdown, pointedElement]);
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      // console.log({contains:componentNestedRef.current.contains(event.target),current:componentNestedRef.current})
-      if (
-        componentNestedRef.current &&
-        !componentNestedRef.current.contains(event.target)
-      ) {
-        setIsOpenedDropdownNested(false);
-      }
-    };
+  // useEffect(() => {
+  //   const handleClickOutside = (event) => {
+  //     // console.log({contains:componentNestedRef.current.contains(event.target),current:componentNestedRef.current})
+  //     if (
+  //       componentNestedRef.current &&
+  //       !componentNestedRef.current.contains(event.target)
+  //     ) {
+  //       setIsOpenedDropdownNested(false);
+  //     }
+  //   };
 
-    document.addEventListener('click', handleClickOutside);
+  //   document.addEventListener('click', handleClickOutside);
 
-    return () => {
-      document.removeEventListener('click', handleClickOutside);
-    };
-  }, []);
+  //   return () => {
+  //     document.removeEventListener('click', handleClickOutside);
+  //   };
+  // }, []);
   // useEffect(() => {
   //   if (isOpenedDropdownNested && pointedElement && componentNestedRef.current) {
   //     const selectedElement = componentNestedRef.current.querySelector(

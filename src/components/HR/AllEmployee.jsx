@@ -7,7 +7,7 @@ import Image from 'next/image';
 import EmployeeView from './EmployeeView';
 import { useRouter } from 'next/navigation';
 
-const AllEmployee = () => {
+const AllEmployee = ({ fromClient, openModal }) => {
   const router = useRouter();
   const [value, setValue] = useState('one');
 
@@ -28,6 +28,65 @@ const AllEmployee = () => {
     }
   }, [name, id, designation]);
 
+  if (fromClient)
+    return (
+      <>
+        <Box
+          sx={{
+            width: '100%',
+            marginTop: '10px',
+            display: 'flex',
+            flexDirection: { xs: 'column', md: 'row' },
+            alignItems: { xs: 'flex-start', md: 'center' },
+            justifyContent: { xs: 'flex-start', md: 'space-between' },
+            borderBottom: 'solid 1px #ccc',
+          }}
+        >
+          <Tabs
+            value={value}
+            onChange={handleChange}
+            aria-label="wrapped label tabs example"
+            variant="scrollable"
+          >
+            <Tab value="one" label="All" wrapped />
+            <Tab value="two" label="Active employees" />
+            <Tab value="three" label="Inactive employees" />
+          </Tabs>
+          <Button
+            onClick={openModal}
+            variant="contained"
+            sx={{ my: { xs: '20px', md: 0 } }}
+          >
+            Add Employee
+          </Button>
+        </Box>
+        {value === 'one' ? (
+          <EmployeeView
+            search={search}
+            id={id}
+            name={name}
+            designation={designation}
+            status={'All'}
+          />
+        ) : value === 'two' ? (
+          <EmployeeView
+            status={'Active'}
+            id={id}
+            name={name}
+            designation={designation}
+            search={search}
+          />
+        ) : (
+          <EmployeeView
+            id={id}
+            name={name}
+            designation={designation}
+            status={'Inactive'}
+            search={search}
+          />
+        )}
+      </>
+    );
   return (
     <>
       <Box
@@ -69,6 +128,7 @@ const AllEmployee = () => {
             value={value}
             onChange={handleChange}
             aria-label="wrapped label tabs example"
+            variant="scrollable"
           >
             <Tab value="one" label="All" wrapped disableRipple={true} />
             <Tab value="two" label="Active employees" disableRipple={true} />

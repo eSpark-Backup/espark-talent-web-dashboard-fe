@@ -16,7 +16,7 @@ const AddEmployee = () => {
     if (currentStep === 1) return;
     setCurrentStep((ps) => ps - 1);
   };
-  const [currentStep, setCurrentStep] = useState(3);
+  const [currentStep, setCurrentStep] = useState(2);
 
   return (
     <Box>
@@ -48,6 +48,7 @@ const AddEmployee = () => {
               return (
                 <Step
                   key={stepIndex}
+                  isLastStep={currentStep === formSteps.length}
                   currentStep={currentStep}
                   form={form}
                   schema={schema}
