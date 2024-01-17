@@ -50,7 +50,7 @@ const UploadInvoiceModal = ({ open, onClose, title }) => {
           flexDirection: 'column',
           borderRadius: '10px',
           boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
-          height: '450px',
+          maxHeight: '90%',
           overflowY: 'auto',
         }}
       >

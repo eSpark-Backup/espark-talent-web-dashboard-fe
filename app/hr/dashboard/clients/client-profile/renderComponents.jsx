@@ -2,7 +2,7 @@ import AppTable from '@/src/components/dashboard/appTable';
 import AllEmployee from '@/src/components/HR/AllEmployee';
 import { Box } from '@mui/material';
 
-export const renderTable = ({ currentTab, data, column }) => {
+export const renderTable = ({ currentTab, data, column, openModal }) => {
   if (currentTab !== 'Employees') {
     return (
       <Box
@@ -14,5 +14,5 @@ export const renderTable = ({ currentTab, data, column }) => {
         <AppTable data={data} column={column} />
       </Box>
     );
-  } else return <AllEmployee fromClient />;
+  } else return <AllEmployee openModal={openModal} fromClient />;
 };

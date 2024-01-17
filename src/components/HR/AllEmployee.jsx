@@ -7,7 +7,7 @@ import Image from 'next/image';
 import EmployeeView from './EmployeeView';
 import { useRouter } from 'next/navigation';
 
-const AllEmployee = ({ fromClient }) => {
+const AllEmployee = ({ fromClient, openModal }) => {
   const router = useRouter();
   const [value, setValue] = useState('one');
 
@@ -51,7 +51,7 @@ const AllEmployee = ({ fromClient }) => {
             <Tab value="two" label="Active employees" />
             <Tab value="three" label="Inactive employees" />
           </Tabs>
-          <Button variant="contained">Add Employee</Button>
+          <Button onClick={openModal} variant="contained">Add Employee</Button>
         </Box>
         {value === 'one' ? (
           <EmployeeView

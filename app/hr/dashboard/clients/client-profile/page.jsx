@@ -19,6 +19,7 @@ import { hiringRequestSchema } from '@/src/components/form/schemas/hiringRequest
 import HiringRequestModal from './HiringRequestModal';
 import AddContractModal from './AddContractModal';
 import UploadInvoiceModal from './UploadInvoiceModal';
+import AddEmployeeModal from './AddEmployeeModal';
 
 const AddEmployee = () => {
   const router = useRouter();
@@ -47,6 +48,8 @@ const AddEmployee = () => {
   const [isOpenContractModal, setIsOpenContractModal] = useState(false);
   const [isOpenUploadInvoiceModal, setIsOpenUploadInvoiceModal] =
     useState(false);
+  const [isOpenAddClientModal, setIsOpenAddClientModal] =
+    useState(false);
   // const [currentReqStatusTab, setcurrentReqStatusTab] = useState('All');
   const [currentTab, setCurrentTab] = useState({
     label: 'Hire & onboard',
@@ -63,11 +66,6 @@ const AddEmployee = () => {
   const handleChangeCurrentTab = (event, newValue) => {
     const current = clientProfileTabs[newValue];
     const { label, nestedTabs, data, column } = current;
-    console.log({
-      newValue,
-      allTabs: clientProfileTabs,
-      curr: clientProfileTabs[newValue],
-    });
     setCurrentTab((ps) => {
       return {
         ...ps,
@@ -122,7 +120,6 @@ const AddEmployee = () => {
       const filteredData = filterTableRowsWRTTab(rest.data, {
         paymentStatus: current?.label,
       });
-      console.log({ filteredData });
       setCurrentTabTable({
         data: filteredData,
         column: rest.column,
@@ -133,7 +130,6 @@ const AddEmployee = () => {
         column: [],
       });
     }
-    console.log({ data, current, currNested: data[newValue], rest });
   };
   const handleOpenHiringRequestModal = () => {
     setIsOpenHiringRequestModal(true);
@@ -152,6 +148,12 @@ const AddEmployee = () => {
   };
   const handleCloseUploadInvoiceModal = () => {
     setIsOpenUploadInvoiceModal(false);
+  };
+  const handleOpenAddClientModal = () => {
+    setIsOpenAddClientModal(true);
+  };
+  const handleCloseAddClientModal = () => {
+    setIsOpenAddClientModal(false);
   };
   return (
     <>
@@ -544,6 +546,7 @@ const AddEmployee = () => {
             currentTab: currentTab.label,
             data: currentTabTable.data,
             column: currentTabTable.column,
+            openModal: handleOpenAddClientModal
             // currentTab:currentTab.label,
           })}
         </Box>
@@ -560,6 +563,11 @@ const AddEmployee = () => {
       title='Employee invoice form'
         open={isOpenUploadInvoiceModal}
         onClose={handleCloseUploadInvoiceModal}
+      />
+      <AddEmployeeModal
+      title='Employee invoice form'
+        open={isOpenAddClientModal}
+        onClose={handleCloseAddClientModal}
       />
     </>
   );

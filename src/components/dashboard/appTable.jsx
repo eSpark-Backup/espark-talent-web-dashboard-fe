@@ -132,10 +132,15 @@ const AppTable = ({
   handleClickRenderMessageButton,
   handleClickActionView,
   noPagination,
+  minWidth,
 }) => {
+  console.log({data})
   return (
     <>
-      <table className="table">
+      <table
+        className={['table', !minWidth && 'table-min-width'].join(' ')}
+        style={{ minWidth: minWidth && minWidth }}
+      >
         <TableHead column={column} />
         <tbody>
           {renderMessage ? (
@@ -149,6 +154,48 @@ const AppTable = ({
               <Fragment key={rowIndex}>
                 <tr className="app-table-row">
                   {column?.map((col, colIndex) => {
+                    if (row?.pic && (col === 'Pic' || col.title === 'Pic')) {
+                      return (
+                        <td
+                          key={colIndex}
+                          style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            fontSize: '12px',
+                            flex: col?.flex || 1,
+                          }}
+                        >
+                          <Box component="img" src={row?.pic} />
+                        </td>
+                      );
+                    }
+                    if(row?.formActionStatus && (col === 'Action' || col.title === 'Action')) {
+                      return (
+                        <td
+                          key={colIndex}
+                          style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            fontSize: '12px',
+                            flex: col?.flex || 1,
+                          }}
+                        >
+                          <Image
+                            onClick={() => {
+                              handleClickActionView(row?.id);
+                            }}
+                            style={{
+                              margin: rowIndex === 1 && '0 5px',
+                              cursor: 'pointer',
+                            }}
+                            width={25}
+                            height={25}
+                            alt="Icon"
+                            src={`/icons/${row?.isSelected ? row?.action[1] : row?.action[0] }.svg`}
+                          />
+                        </td>
+                      )
+                    }
                     if (
                       row?.actionStatus &&
                       !row?.attendenceShortHand &&

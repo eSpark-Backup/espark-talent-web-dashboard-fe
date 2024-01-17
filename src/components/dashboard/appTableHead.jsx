@@ -1,16 +1,33 @@
+import { Box } from '@mui/material';
 import React from 'react';
 
-const TableHead = ({column}) => {
+const TableHead = ({ column }) => {
   return (
     <thead>
       <tr className="app-table-row">
         {column?.map((col, colIndex) => (
-          <th
-            key={colIndex}
-            style={{ fontSize: '14px', flex: col?.flex ? col?.flex : 1 }}
-          >
-            {col?.title || col}
-          </th>
+          <>
+            {col?.isIconTitle ? (
+              <th
+                key={colIndex}
+                style={{
+                  fontSize: '14px',
+                  flex: col?.flex ? col?.flex : 1,
+                  display: 'flex',
+                  justifyContent: 'center',
+                }}
+              >
+                <Box component="img" src={col.src} alt="Profile Pic" />
+              </th>
+            ) : (
+              <th
+                key={colIndex}
+                style={{ fontSize: '14px', flex: col?.flex ? col?.flex : 1 }}
+              >
+                {col?.title || col}
+              </th>
+            )}
+          </>
         ))}
       </tr>
     </thead>
