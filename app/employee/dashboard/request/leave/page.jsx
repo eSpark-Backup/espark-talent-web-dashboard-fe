@@ -17,16 +17,23 @@ import {
 } from '@/src/constants/data/tables/requestsData';
 import LeaveRequestModal from './LeaveRequestModal';
 import LeaveViewModal from '@/app/client/dashboard/team/time-off/LeaveViewModal';
+import FilterModal from '@/src/components/FilterModal/filterModal';
 
 const Dashboard = () => {
   const [open, setOpen] = useState(false);
   const [modalData, setModalData] = useState({});
   const [openModal, setOpenModal] = useState(false);
+  const [showFilterModal, setFilterModal] = useState(false);
+
   const handleOpenModal = () => {
     setOpenModal(true);
   };
   const handleCloseModal = () => {
     setOpenModal(false);
+  };
+  const handleFilterModal = () => {
+    setFilterModal(true);
+    console.log('jjj');
   };
   const handleOpen = () => {
     setOpen(true);
@@ -41,7 +48,10 @@ const Dashboard = () => {
     setModalData({ item, status, count, leaveType, employeeName });
     setOpen(true);
   };
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {
+    setFilterModal(false);
+    setOpen(false);
+  };
   const leaveBalanceDataState = useMemo(
     () => filterTableRowsWRTTab(employeeLeaveBalanceData, { status: '' }),
     [employeeLeaveBalanceData]
@@ -369,6 +379,7 @@ const Dashboard = () => {
                             background: '#138A72',
                           },
                         }}
+                        onClick={handleFilterModal}
                         startIcon={
                           <Image
                             width={18}
@@ -382,6 +393,12 @@ const Dashboard = () => {
                       </Button>
                     </Box>
                   </Box>
+                  {showFilterModal && (
+                    <FilterModal
+                      open={handleFilterModal}
+                      onClose={handleClose}
+                    />
+                  )}
                 </CustomTabPanel>
               </Box>
               {renderNestedTable({

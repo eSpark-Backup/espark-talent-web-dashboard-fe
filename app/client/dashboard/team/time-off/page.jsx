@@ -32,6 +32,7 @@ import Link from 'next/link';
 // import AppDropdown from '@/src/components/dashboard/appDropdown';
 import LeaveViewModal from './LeaveViewModal';
 import PunchViewModal from './PunchViewModal';
+import FilterModal from '@/src/components/FilterModal/filterModal';
 
 const Dashboard = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -44,6 +45,7 @@ const Dashboard = () => {
 
   const [open, setOpen] = useState(false);
   const [openPunch, setOpenPunch] = useState(false);
+  const [showFilterModal, setFilterModal] = useState(false);
   // const [modalType, setModalType] = useState('');
   // const [employeeId, setEmployeeId] = useState();
   // const [leaveType, setLeaveType] = useState();
@@ -51,20 +53,20 @@ const Dashboard = () => {
 
   // const [employeeName, setEmployeeName] = useState();
 
-  const handleOpen = () =>
-    // type,
-    // employeeId,
-    // employeeName,
-    // leaveType,
-    // fromTo
-    {
-      // setModalType(type);
-      // setEmployeeId(employeeId);
-      // setLeaveType(leaveType);
-      // setFromTo(fromTo);
-      // setEmployeeName(employeeName);
-      setOpen(true);
-    };
+  const handleOpen = () => setFilterModal(true);
+  // type,
+  // employeeId,
+  // employeeName,
+  // leaveType,
+  // fromTo
+  {
+    // setModalType(type);
+    // setEmployeeId(employeeId);
+    // setLeaveType(leaveType);
+    // setFromTo(fromTo);
+    // setEmployeeName(employeeName);
+    setOpen(true);
+  }
   const handleClose = () => {
     console.log({ modalData });
     setOpen(false);
@@ -447,6 +449,7 @@ const Dashboard = () => {
                                     height={15}
                                     alt="Refresh"
                                     src={`/icons/Filter.svg`}
+                                    onClick={handleOpen}
                                   />
                                 }
                               >
@@ -454,6 +457,7 @@ const Dashboard = () => {
                               </Button>
                             </Box>
                           </Box>
+                          {showFilterModal && <FilterModal />}
                           <Box
                             sx={{
                               my: { xs: '10px', lg: 0 },
