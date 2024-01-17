@@ -11,7 +11,8 @@ const AllClients = () => {
   const router = useRouter();
   const [value, setValue] = useState('one');
 
-  const handleChange = (newValue) => {
+  const handleChange = (event, newValue) => {
+    console.log({ event });
     setValue(newValue);
   };
 

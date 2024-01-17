@@ -154,6 +154,53 @@ const AppTable = ({
               <Fragment key={rowIndex}>
                 <tr className="app-table-row">
                   {column?.map((col, colIndex) => {
+                    if (col === 'Assignee' || col.title === 'Assignee') {
+                      return (
+                        <td
+                          key={colIndex}
+                          style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            fontSize: '12px',
+                            flex: col?.flex || 1,
+                          }}
+                        >
+                          <Box sx={{ display: 'flex' }}>
+                            <Box>
+                              <Box
+                                component="img"
+                                alt="Avatar"
+                                src={row?.assignee[0]}
+                              />
+                            </Box>
+                            <Box ml={'5px'}>
+                              <Typography
+                                sx={{
+                                  fontSize: '12px',
+                                  fontWeight: '400',
+                                  lineHeight: '15px',
+                                  letterSpacing: '0em',
+                                  // textAlign: 'center',
+                                }}
+                              >
+                                {row?.assignee[1]}
+                              </Typography>
+                              <Typography
+                                sx={{
+                                  fontSize: '10px',
+                                  fontWeight: '300',
+                                  lineHeight: '12px',
+                                  letterSpacing: '0em',
+                                  textAlign: 'left',
+                                }}
+                              >
+                                {row?.assignee[2]}
+                              </Typography>
+                            </Box>
+                          </Box>
+                        </td>
+                      );
+                    }
                     if (row?.pic && (col === 'Pic' || col.title === 'Pic')) {
                       return (
                         <td

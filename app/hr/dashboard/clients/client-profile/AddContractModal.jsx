@@ -133,6 +133,7 @@ const AddContractModal = ({ open, onClose }) => {
                       values={values}
                       nested={nested}
                       md={12}
+                      lg={12}
                       fields={fields}
                     />
                   </Grid>
