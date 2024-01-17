@@ -1,6 +1,9 @@
 import { addEmployeModalFormSchema } from '@/src/components/form/schemas/addEmployeeModal';
 import { jobTitles } from '../dropdown.js/startHiring';
-import { addEmployeeFormTableColumn, addEmployeeFormTableData } from '../tables/hr/addEmployeeFormTable';
+import {
+  addEmployeeFormTableColumn,
+  addEmployeeFormTableData,
+} from '../tables/hr/addEmployeeFormTable';
 
 const form = [
   {
@@ -84,13 +87,13 @@ const form = [
     placeholder: 'Enter benefits',
     name: 'benefits',
   },
-]
+];
 export const addEmployeeModalFormSteps = [
   {
     title: 'Select employee',
     countNo: 1,
-    data:addEmployeeFormTableData,
-    column:addEmployeeFormTableColumn
+    data: addEmployeeFormTableData,
+    column: addEmployeeFormTableColumn,
   },
   {
     title: 'Add employee',

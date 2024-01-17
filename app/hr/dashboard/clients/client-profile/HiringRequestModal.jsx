@@ -81,7 +81,7 @@ const HiringRequestModal = ({ open, onClose }) => {
               borderRadius: '50%',
               width: '25px',
               height: '25px',
-              cursor:'pointer'
+              cursor: 'pointer',
             }}
             onClick={handleCloseModal}
           >
@@ -92,7 +92,7 @@ const HiringRequestModal = ({ open, onClose }) => {
           <Grid
             container
             sx={{
-              padding: {xs:'10px 20px',lg:"41px 100px"},
+              padding: { xs: '10px 20px', lg: '41px 100px' },
             }}
           >
             {hringRequestForm.map(
@@ -140,8 +140,12 @@ const HiringRequestModal = ({ open, onClose }) => {
                 </>
               )
             )}
-            <Grid item p={"0 10px"} xs={12}>
-              <Button sx={{minWidth:'120px'}} variant="contained" type="submit">
+            <Grid item p={'0 10px'} xs={12}>
+              <Button
+                sx={{ minWidth: '120px' }}
+                variant="contained"
+                type="submit"
+              >
                 Submit
               </Button>
             </Grid>

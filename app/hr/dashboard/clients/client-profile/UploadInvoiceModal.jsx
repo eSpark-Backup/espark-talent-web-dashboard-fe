@@ -14,22 +14,22 @@ const UploadInvoiceModal = ({ open, onClose, title }) => {
     touched,
     setFieldError,
     setErrors,
-    handleReset
+    handleReset,
   } = useFormik({
     initialValues: {},
     validationSchema: uploadInvoiceFormSchema,
     enableReinitialize: true,
     onSubmit: (formValues) => {
       console.log({ formValues });
-    //   handleGoNext();
+      //   handleGoNext();
     },
     validateOnChange: false,
     validateOnBlur: false,
   });
   const handleCloseModal = () => {
-    handleReset()
-    onClose()
-  }
+    handleReset();
+    onClose();
+  };
   return (
     <Modal
       open={open}
@@ -80,7 +80,7 @@ const UploadInvoiceModal = ({ open, onClose, title }) => {
               borderRadius: '50%',
               width: '25px',
               height: '25px',
-              cursor:'pointer'
+              cursor: 'pointer',
             }}
             onClick={handleCloseModal}
           >
@@ -91,7 +91,7 @@ const UploadInvoiceModal = ({ open, onClose, title }) => {
           <Grid
             container
             sx={{
-              padding: {xs:'10px 20px',lg:"41px 100px"},
+              padding: { xs: '10px 20px', lg: '41px 100px' },
             }}
           >
             {uploadInvoiceForm.map(
@@ -139,8 +139,12 @@ const UploadInvoiceModal = ({ open, onClose, title }) => {
                 </>
               )
             )}
-            <Grid item p={"0 10px"} xs={12}>
-              <Button sx={{minWidth:'120px'}} variant="contained" type="submit">
+            <Grid item p={'0 10px'} xs={12}>
+              <Button
+                sx={{ minWidth: '120px' }}
+                variant="contained"
+                type="submit"
+              >
                 Submit
               </Button>
             </Grid>

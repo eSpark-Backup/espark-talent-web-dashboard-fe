@@ -27,7 +27,7 @@ const Breadcrumb = ({ title, currentPage, root }) => {
             fontWeight: 400,
             lineHeight: 'normal',
           }}
-          onClick={() => router.push(`/hr/dashboard/${root || employees}`)}
+          onClick={() => router.push(`/hr/dashboard/${root || 'employees'}`)}
         >
           {title}
         </Typography>

@@ -14,11 +14,10 @@ const AppCustomDropdown = ({
   row,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [currentState, setCurrentState] = useState("");
+  const [currentState, setCurrentState] = useState('');
   useEffect(() => {
-    setCurrentState(row[toCamelCase(col)])
-  }, [row,col])
-  
+    setCurrentState(row[toCamelCase(col)]);
+  }, [row, col]);
 
   const componentRef = useRef(null);
   useEffect(() => {

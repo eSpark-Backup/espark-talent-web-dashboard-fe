@@ -1,21 +1,13 @@
 'use client';
 import React, { useState } from 'react';
-import { Grid, Typography, Tabs, Modal, Tab, Button } from '@mui/material';
+import { Grid, Typography, Tabs, Tab, Button } from '@mui/material';
 import { Box } from '@mui/system';
-import Step from '@/src/components/form/step/Step';
-import { formSteps } from '@/src/constants/data/forms/add-client';
-import Navigator from '@/src/components/form/step/Navigator';
 import Breadcrumb from '@/src/components/form/step/Breadcrumb';
 import { clientProfileTabs } from '@/src/constants/data/tabs/hr/client-profile';
 import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
 import { renderTable } from './renderComponents';
 import { filterTableRowsWRTTab } from '@/src/utils/table';
 import { useRouter } from 'next/navigation';
-import { jobTitles, roles } from '@/src/constants/data/dropdown.js/startHiring';
-import FormInput from '@/src/components/form/ui-elements/FormInput';
-import { hringRequestForm } from '@/src/constants/data/forms/hiring-request';
-import { useFormik } from 'formik';
-import { hiringRequestSchema } from '@/src/components/form/schemas/hiringRequestForm';
 import HiringRequestModal from './HiringRequestModal';
 import AddContractModal from './AddContractModal';
 import UploadInvoiceModal from './UploadInvoiceModal';
@@ -23,33 +15,12 @@ import AddEmployeeModal from './AddEmployeeModal';
 
 const AddEmployee = () => {
   const router = useRouter();
-  const {
-    handleSubmit,
-    values,
-    setFieldValue,
-    errors,
-    touched,
-    setFieldError,
-    setErrors,
-  } = useFormik({
-    initialValues: {},
-    validationSchema: hiringRequestSchema,
-    enableReinitialize: true,
-    onSubmit: (formValues) => {
-      console.log({ formValues });
-      handleGoNext();
-    },
-    validateOnChange: false,
-    validateOnBlur: false,
-  });
-  const [currentReqTypeTabVal, setcurrentReqTypeTabVal] = useState(0);
   const [isOpenHiringRequestModal, setIsOpenHiringRequestModal] =
     useState(false);
   const [isOpenContractModal, setIsOpenContractModal] = useState(false);
   const [isOpenUploadInvoiceModal, setIsOpenUploadInvoiceModal] =
     useState(false);
-  const [isOpenAddClientModal, setIsOpenAddClientModal] =
-    useState(false);
+  const [isOpenAddClientModal, setIsOpenAddClientModal] = useState(false);
   // const [currentReqStatusTab, setcurrentReqStatusTab] = useState('All');
   const [currentTab, setCurrentTab] = useState({
     label: 'Hire & onboard',
@@ -546,8 +517,7 @@ const AddEmployee = () => {
             currentTab: currentTab.label,
             data: currentTabTable.data,
             column: currentTabTable.column,
-            openModal: handleOpenAddClientModal
-            // currentTab:currentTab.label,
+            openModal: handleOpenAddClientModal,
           })}
         </Box>
       </Box>
@@ -560,12 +530,12 @@ const AddEmployee = () => {
         onClose={handleCloseContractModal}
       />
       <UploadInvoiceModal
-      title='Employee invoice form'
+        title="Employee invoice form"
         open={isOpenUploadInvoiceModal}
         onClose={handleCloseUploadInvoiceModal}
       />
       <AddEmployeeModal
-      title='Employee invoice form'
+        title="Employee invoice form"
         open={isOpenAddClientModal}
         onClose={handleCloseAddClientModal}
       />

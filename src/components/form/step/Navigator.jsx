@@ -5,7 +5,7 @@ const Navigator = ({
   formSteps,
   currentStep,
   navigationLabelWidth = '55px',
-  navigationPadding = '35px 0px 66px 0px'
+  navigationPadding = '35px 0px 66px 0px',
 }) => {
   return (
     <Box

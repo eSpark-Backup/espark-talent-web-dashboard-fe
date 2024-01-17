@@ -10,7 +10,7 @@ const Step = ({
   isMultiColumn,
   schema,
   pmd = '95px 90px',
-  editProfile
+  editProfile,
 }) => {
   const {
     handleSubmit,
@@ -189,47 +189,50 @@ const Step = ({
             />
           )
         )}
-       {editProfile ? <Grid item xs={12}>
-          <Box
-            display={'flex'}
-            justifyContent={'space-between'}
-            alignItems={'center'}
-            p={'0 10px'}
-            mt={'20px'}
-          >
-            <Button
-              type="submit"
-              sx={{ minWidth: '120px' }}
-              variant="contained"
+        {editProfile ? (
+          <Grid item xs={12}>
+            <Box
+              display={'flex'}
+              justifyContent={'space-between'}
+              alignItems={'center'}
+              p={'0 10px'}
+              mt={'20px'}
             >
-              Save
-            </Button>
-          </Box>
-        </Grid> :
-        <Grid item xs={12}>
-          <Box
-            display={'flex'}
-            justifyContent={'space-between'}
-            alignItems={'center'}
-            p={'0 10px'}
-            mt={'20px'}
-          >
-            <Button
-              onClick={handeClickBack}
-              sx={{ minWidth: '120px' }}
-              variant="outlined"
+              <Button
+                type="submit"
+                sx={{ minWidth: '120px' }}
+                variant="contained"
+              >
+                Save
+              </Button>
+            </Box>
+          </Grid>
+        ) : (
+          <Grid item xs={12}>
+            <Box
+              display={'flex'}
+              justifyContent={'space-between'}
+              alignItems={'center'}
+              p={'0 10px'}
+              mt={'20px'}
             >
-              Back
-            </Button>
-            <Button
-              type="submit"
-              sx={{ minWidth: '120px' }}
-              variant="contained"
-            >
-              Next
-            </Button>
-          </Box>
-        </Grid>}
+              <Button
+                onClick={handeClickBack}
+                sx={{ minWidth: '120px' }}
+                variant="outlined"
+              >
+                Back
+              </Button>
+              <Button
+                type="submit"
+                sx={{ minWidth: '120px' }}
+                variant="contained"
+              >
+                Next
+              </Button>
+            </Box>
+          </Grid>
+        )}
       </Grid>
     </form>
   );

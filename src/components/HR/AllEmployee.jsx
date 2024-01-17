@@ -51,7 +51,9 @@ const AllEmployee = ({ fromClient, openModal }) => {
             <Tab value="two" label="Active employees" />
             <Tab value="three" label="Inactive employees" />
           </Tabs>
-          <Button onClick={openModal} variant="contained">Add Employee</Button>
+          <Button onClick={openModal} variant="contained">
+            Add Employee
+          </Button>
         </Box>
         {value === 'one' ? (
           <EmployeeView

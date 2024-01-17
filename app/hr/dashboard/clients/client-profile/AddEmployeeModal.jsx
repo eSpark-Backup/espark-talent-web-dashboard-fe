@@ -1,15 +1,13 @@
 import AppTable from '@/src/components/dashboard/appTable';
 import { addEmployeModalFormSchema } from '@/src/components/form/schemas/addEmployeeModal';
-import { uploadInvoiceFormSchema } from '@/src/components/form/schemas/uploadInvoice';
 import Navigator from '@/src/components/form/step/Navigator';
 import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { addEmployeeModalFormSteps } from '@/src/constants/data/forms/add-employee-modal';
-import { uploadInvoiceForm } from '@/src/constants/data/forms/upload-invoice';
-import { Box, Button, Grid, Modal, Typography } from '@mui/material';
+import { Box, Button, Grid, Modal } from '@mui/material';
 import { useFormik } from 'formik';
 import React, { useEffect, useState } from 'react';
 
-const AddEmployeeModal = ({ open, onClose, title }) => {
+const AddEmployeeModal = ({ open, onClose }) => {
   const [currentStep, setCurrentStep] = useState(1);
   const [isDisabledNext, setIsDisabledNext] = useState(true);
   const [modalStep1FormTableState, setModalStep1FormTableState] = useState([]);
@@ -50,7 +48,7 @@ const AddEmployeeModal = ({ open, onClose, title }) => {
   });
   const handleCloseModal = () => {
     handleReset();
-    setCurrentStep(1)
+    setCurrentStep(1);
     onClose();
   };
 
@@ -82,7 +80,7 @@ const AddEmployeeModal = ({ open, onClose, title }) => {
           formSteps={addEmployeeModalFormSteps}
           currentStep={currentStep}
           navigationLabelWidth="80px"
-          navigationPadding = '14px 0 36px 0'
+          navigationPadding="14px 0 36px 0"
         />
         <Box
           sx={{
@@ -90,7 +88,7 @@ const AddEmployeeModal = ({ open, onClose, title }) => {
           }}
         >
           {addEmployeeModalFormSteps.map(
-            ({ schema, form, data, column, countNo }, stepIndex) => {
+            ({ form, data, column, countNo }, stepIndex) => {
               if (countNo === currentStep) {
                 if (data?.length)
                   return (
@@ -99,6 +97,7 @@ const AddEmployeeModal = ({ open, onClose, title }) => {
                         maxWidth: '100%',
                         overflowX: 'auto',
                       }}
+                      key={stepIndex}
                     >
                       <AppTable
                         column={column}
@@ -121,7 +120,7 @@ const AddEmployeeModal = ({ open, onClose, title }) => {
                   );
                 else if (form.length)
                   return (
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={handleSubmit} key={stepIndex}>
                       <Grid
                         container
                         sx={{

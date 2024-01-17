@@ -1,7 +1,7 @@
 import React, { Fragment, memo, useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { toCamelCase } from '@/src/utils/stringModification';
-import { Box, Button, Pagination, Stack, Typography } from '@mui/material';
+import { Box, Pagination, Stack, Typography } from '@mui/material';
 import Image from 'next/image';
 import AppCustomDropdown from './appCustomDropdown';
 import { trackingStatusTypes } from '@/src/constants/data/tables/timeTracking';
@@ -134,7 +134,7 @@ const AppTable = ({
   noPagination,
   minWidth,
 }) => {
-  console.log({data})
+  console.log({ data });
   return (
     <>
       <table
@@ -169,7 +169,10 @@ const AppTable = ({
                         </td>
                       );
                     }
-                    if(row?.formActionStatus && (col === 'Action' || col.title === 'Action')) {
+                    if (
+                      row?.formActionStatus &&
+                      (col === 'Action' || col.title === 'Action')
+                    ) {
                       return (
                         <td
                           key={colIndex}
@@ -191,10 +194,12 @@ const AppTable = ({
                             width={25}
                             height={25}
                             alt="Icon"
-                            src={`/icons/${row?.isSelected ? row?.action[1] : row?.action[0] }.svg`}
+                            src={`/icons/${
+                              row?.isSelected ? row?.action[1] : row?.action[0]
+                            }.svg`}
                           />
                         </td>
-                      )
+                      );
                     }
                     if (
                       row?.actionStatus &&

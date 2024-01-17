@@ -38,10 +38,9 @@ const Dashboard = () => {
 
   const [open, setOpen] = useState(false);
   const [openPunch, setOpenPunch] = useState(false);
-  const handleOpen = () =>
-    {
-      setOpen(true);
-    };
+  const handleOpen = () => {
+    setOpen(true);
+  };
   const handleClose = () => {
     console.log({ modalData });
     setOpen(false);

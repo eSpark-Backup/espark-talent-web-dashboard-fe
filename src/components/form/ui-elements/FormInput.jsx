@@ -39,7 +39,7 @@ const FormInput = ({
     setFieldValue(name, item);
   };
   const handleChangeInput = (field, value) => {
-    console.log({field,value})
+    console.log({ field, value });
     const tempErrors = { ...errors };
     if (value.length) {
       if (field === 'email') {
@@ -156,7 +156,12 @@ const FormInput = ({
             <>
               {fieldIndex === 1 && (
                 <Box
-                  sx={{ mx:'10px',width: '20px', height: '1px', background: '#000' }}
+                  sx={{
+                    mx: '10px',
+                    width: '20px',
+                    height: '1px',
+                    background: '#000',
+                  }}
                 />
               )}
               <Box

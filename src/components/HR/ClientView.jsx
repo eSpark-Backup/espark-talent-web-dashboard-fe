@@ -62,13 +62,17 @@ const ClientView = ({ status, id, name, designation = '', search }) => {
                       borderRadius: '5px',
                       boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
                       padding: '20px 15px 10px 15px',
-                      
                     }}
-                    
                   >
                     <Box
-                      sx={{ display: 'flex', justifyContent: 'space-between',cursor:"pointer" }}
-                      onClick={() => router.push('/hr/dashboard/clients/add-client')}
+                      sx={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        cursor: 'pointer',
+                      }}
+                      onClick={() =>
+                        router.push('/hr/dashboard/clients/add-client')
+                      }
                     >
                       <Box
                         sx={{
@@ -233,9 +237,11 @@ const ClientView = ({ status, id, name, designation = '', search }) => {
                   borderRadius: '5px',
                   boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
                   padding: '20px 15px 10px 15px',
-                  cursor:"pointer"
+                  cursor: 'pointer',
                 }}
-                onClick={() => router.push('/hr/dashboard/clients/client-profile')}
+                onClick={() =>
+                  router.push('/hr/dashboard/clients/client-profile')
+                }
               >
                 <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                   <Box
