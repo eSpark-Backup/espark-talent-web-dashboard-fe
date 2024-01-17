@@ -114,7 +114,7 @@ const AppSearchableDropdown = ({
           p={'10px'}
         >
           <Typography sx={{ color: selectedItem ? '#000' : '#838383' }}>
-            {selectedItem || 'Selected Employee...'}
+            {selectedItem || 'Select Employee'}
           </Typography>
 
           {isOpenedDropdown ? (

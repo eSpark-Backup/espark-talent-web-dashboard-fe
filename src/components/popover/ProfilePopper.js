@@ -11,17 +11,25 @@ import { NOTIFICATION_TITLE, profileMenuData } from '@/src/constants/sidebar';
 import { NOTIFICATION_DATA } from '@/src/constants/data/userData';
 import SignoutModal from '../signoutmodal/signoutModal';
 import DotBadge from '../sidebar/SidebarProfileBadge';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  handleProfileMenuClose,
+  handleProfileMenuOpen,
+} from '@/src/redux/slices/profileMenuSlice';
+import { handleworkSpaceMenuClose } from '@/src/redux/slices/workSpaceMenuSlice';
 
 export default function ProfilePopper({ button }) {
-  const [profileMenu, setProfileMenu] = React.useState(null);
   const [openModal, setOpenModal] = React.useState(false);
   const [notificationPopup, setNotificationPopup] = React.useState(null);
   const [bondary, setBondary] = React.useState(null);
   const notificationPopupRef = React.useRef(null);
   const router = useRouter();
+  const isOpen = useSelector((state) => state?.profileMenu?.isOpen);
+  const dispatch = useDispatch();
 
   const handleClick = (event) => {
-    setProfileMenu(profileMenu ? null : event.currentTarget);
+    dispatch(handleProfileMenuOpen(isOpen ? null : event.currentTarget));
+    dispatch(handleworkSpaceMenuClose(null));
     setNotificationPopup(null);
   };
 
@@ -43,7 +51,7 @@ export default function ProfilePopper({ button }) {
   }, []);
 
   const handleNotification = (event, key) => {
-    setProfileMenu(null);
+    dispatch(handleProfileMenuClose(null));
     if (key == 'Notification') {
       setNotificationPopup(notificationPopup ? null : event.currentTarget);
     } else if (key == 'Sign out') {
@@ -54,14 +62,14 @@ export default function ProfilePopper({ button }) {
   };
 
   const handlePopoverClose = () => {
-    setProfileMenu(null);
+    setNotificationPopup(null);
   };
 
   const handleLogout = () => {
     router.push('/');
   };
 
-  const open = Boolean(profileMenu);
+  const open = Boolean(isOpen);
   const id = open ? 'simple-popper-1' : undefined;
 
   const notifiactionOpen = Boolean(notificationPopup);
@@ -82,11 +90,10 @@ export default function ProfilePopper({ button }) {
         setOpenModal={setOpenModal}
         onClick={handleLogout}
       />
-
       <Popper
         id={id}
         open={open}
-        anchorEl={profileMenu}
+        anchorEl={isOpen}
         placement={'right-start'}
         onMouseLeave={handlePopoverClose}
         sx={{ position: 'relative', zIndex: 505 }}

@@ -1,0 +1,207 @@
+import React from 'react';
+import { Box, Button, Modal, TextField, Typography } from '@mui/material';
+
+import { EDIT_MODAL } from '@/src/constants/employeeProfile';
+import ContactDetails from './phoneDetail';
+
+const EditEmergencyModal = ({ onClose, handleEmergencyModal }) => {
+  return (
+    <Modal
+      open={handleEmergencyModal}
+      onClose={onClose}
+      aria-labelledby="modal-modal-title"
+      aria-describedby="modal-modal-description"
+      sx={{
+        display: 'flex',
+        justifyContent: 'center',
+        mx: 'auto',
+      }}
+    >
+      <Box
+        sx={{
+          bgcolor: '#fff',
+          width: { xs: '90%', sm: '90%', md: '50%' },
+          display: 'flex',
+          flexDirection: 'column',
+          borderRadius: '10px',
+          boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
+          height: { xs: '825px', md: '625px' },
+          position: 'absolute',
+          top: '10%',
+          '@media (min-width: 280px) and (max-width: 450px)': {
+            height: '1100px',
+          },
+          maxHeight: '90%',
+          overflow: 'auto',
+          scrollbarWidth: 'thin',
+          scrollbarColor: 'transparent transparent',
+          '&::-webkit-scrollbar': {
+            display: 'none',
+          },
+        }}
+      >
+        <Box
+          sx={{
+            borderBottom: '1px solid #E4E4E4',
+            p: 2,
+            display: 'flex',
+            justifyContent: 'space-between',
+          }}
+        >
+          <Typography
+            sx={{
+              fontSize: '25px',
+              fontWeight: 600,
+              marginLeft: '20px',
+            }}
+          >
+            {EDIT_MODAL?.editEmergencyContacts}
+          </Typography>
+
+          <Box
+            sx={{
+              width: { xs: '35px', md: '25px' },
+              height: { xs: '35px', md: '25px' },
+            }}
+            src="/images/leave-request/close.svg"
+            component={'img'}
+            onClick={onClose}
+          />
+        </Box>
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              width: '80%',
+              paddingTop: '40px',
+              gap: '20px',
+            }}
+          >
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'row',
+                '@media (min-width: 280px) and (max-width: 450px)': {
+                  flexDirection: 'column',
+                },
+              }}
+            >
+              <Box
+                sx={{
+                  display: 'flex',
+                  flexDirection: { xs: 'column', md: 'column' },
+                  gap: '40px',
+                  width: { xs: '100%', md: '50%' },
+                }}
+              >
+                <Typography
+                  sx={{ fontSize: { xs: '14px', md: '16px' }, fontWeight: 600 }}
+                >
+                  {EDIT_MODAL?.primaryContact}
+                </Typography>
+                <Box sx={{ width: '100%' }}>
+                  <Typography sx={{ color: '#595959', marginBottom: '10px' }}>
+                    {EDIT_MODAL?.name}
+                  </Typography>
+                  <TextField
+                    sx={{ width: '82%' }}
+                    placeholder={EDIT_MODAL?.namePlaceholder}
+                    inputProps={{
+                      style: {
+                        height: '10px',
+                      },
+                    }}
+                  />
+                </Box>
+                <Box sx={{ width: '100%' }}>
+                  <Typography sx={{ color: '#595959', marginBottom: '10px' }}>
+                    {EDIT_MODAL?.relationship}
+                  </Typography>
+                  <TextField
+                    sx={{ width: '82%' }}
+                    placeholder={EDIT_MODAL?.father}
+                    inputProps={{
+                      style: {
+                        height: '10px',
+                      },
+                    }}
+                  />
+                </Box>
+                <ContactDetails />
+              </Box>
+              <Box
+                sx={{
+                  display: 'flex',
+                  flexDirection: { xs: 'column', md: 'column' },
+                  gap: '40px',
+                  width: { xs: '100%', md: '50%' },
+                }}
+              >
+                <Typography
+                  sx={{
+                    fontSize: { xs: '14px', md: '16px' },
+                    fontWeight: 600,
+                    '@media (min-width: 280px) and (max-width: 450px)': {
+                      marginTop: '30px',
+                    },
+                  }}
+                >
+                  {EDIT_MODAL?.secondaryContact}
+                </Typography>
+                <Box sx={{ width: '100%' }}>
+                  <Typography sx={{ color: '#595959', marginBottom: '10px' }}>
+                    {EDIT_MODAL?.name}
+                  </Typography>
+                  <TextField
+                    sx={{ width: '82%' }}
+                    placeholder={EDIT_MODAL?.namePlaceholder}
+                    inputProps={{
+                      style: {
+                        height: '10px',
+                      },
+                    }}
+                  />
+                </Box>
+                <Box sx={{ width: '100%' }}>
+                  <Typography sx={{ color: '#595959', marginBottom: '10px' }}>
+                    {EDIT_MODAL?.relationship}
+                  </Typography>
+                  <TextField
+                    sx={{ width: '82%' }}
+                    placeholder={EDIT_MODAL?.father}
+                    inputProps={{
+                      style: {
+                        height: '10px',
+                      },
+                    }}
+                  />
+                </Box>
+                <ContactDetails />
+              </Box>
+            </Box>
+            <Button
+              variant="primary"
+              sx={{
+                width: { xs: '100px', sm: '120px' },
+                height: '40px',
+                fontSize: '16px',
+                fontWeight: 600,
+                marginTop: '10px',
+              }}
+            >
+              {EDIT_MODAL?.save}
+            </Button>
+          </Box>
+        </Box>
+      </Box>
+    </Modal>
+  );
+};
+export default EditEmergencyModal;

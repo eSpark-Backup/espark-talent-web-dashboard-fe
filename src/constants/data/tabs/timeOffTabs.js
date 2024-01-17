@@ -91,7 +91,7 @@ export const leaveRequestsTab = [
     hasNestedTabs: false,
   },
   {
-    label: 'Clockin/Out Requests',
+    label: 'Clockin/out Requests',
     prop: a11yProps(2),
     hasNestedTabs: true,
   },

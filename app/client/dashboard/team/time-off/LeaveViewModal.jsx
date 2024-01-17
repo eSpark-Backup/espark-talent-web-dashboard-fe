@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import AppDropdown from '@/src/components/dashboard/appDropdown';
 import { Box, Button, Grid, Typography } from '@mui/material';
 import Image from 'next/image';
+import AppDropdown from '@/src/components/dashboard/appDropdown';
 
 const LeaveViewModal = ({ modalData, handleClose, isEmployee }) => {
   const [isLoadingTitles, setIsLoadingTitles] = useState(false);
@@ -57,6 +57,7 @@ const LeaveViewModal = ({ modalData, handleClose, isEmployee }) => {
                     fontStyle: 'normal',
                     fontWeight: 500,
                     lineHeight: 'normal',
+                    paddingLeft: { xs: '0px', md: '20px' },
                   }}
                 >
                   Leave type
@@ -112,6 +113,7 @@ const LeaveViewModal = ({ modalData, handleClose, isEmployee }) => {
                     fontStyle: 'normal',
                     fontWeight: 500,
                     lineHeight: 'normal',
+                    paddingLeft: { xs: '0px', md: '20px' },
                   }}
                 >
                   Start date
@@ -176,6 +178,7 @@ const LeaveViewModal = ({ modalData, handleClose, isEmployee }) => {
                     fontStyle: 'normal',
                     fontWeight: 500,
                     lineHeight: 'normal',
+                    paddingLeft: { xs: '0px', md: '20px' },
                   }}
                 >
                   End date
@@ -217,7 +220,7 @@ const LeaveViewModal = ({ modalData, handleClose, isEmployee }) => {
         </Box>
         <Box
           sx={{
-            padding: '0 20px',
+            padding: '10px 25px',
           }}
         >
           <Grid
@@ -229,7 +232,7 @@ const LeaveViewModal = ({ modalData, handleClose, isEmployee }) => {
               flexDirection: 'row',
             }}
             container
-            p={'5px 5px 5px 10px'}
+            p={'8px'}
           >
             <Grid item xs={12} md={3}>
               <Box
@@ -405,6 +408,7 @@ const LeaveViewModal = ({ modalData, handleClose, isEmployee }) => {
                     fontStyle: 'normal',
                     fontWeight: 500,
                     lineHeight: 'normal',
+                    paddingLeft: { xs: '0px', md: '20px' },
                   }}
                 >
                   Count
@@ -444,56 +448,59 @@ const LeaveViewModal = ({ modalData, handleClose, isEmployee }) => {
               padding: '0 20px',
             }}
           >
-            <Grid
-              container
-              p={'5px 5px 5px 20px'}
-              sx={{
-                background: '#fff',
-                borderRadius: '5px',
-                display: 'flex',
-                alignItems: { xs: 'flex-start', md: 'center' },
-                flexDirection: { xs: 'column', md: 'row' },
-              }}
-            >
-              <Grid item xs={12} md={5.5}>
-                <Typography
-                  sx={{
-                    color: '#595959',
-                    fontSize: '16px',
-                    fontStyle: 'normal',
-                    fontWeight: 500,
-                    lineHeight: 'normal',
-                  }}
-                >
-                  Sandwich count
-                </Typography>
-              </Grid>
-              <Grid item xs={12} md={6.5} sx={{ width: '100%' }}>
-                <Box
-                  display={'flex'}
-                  justifyContent={'space-between'}
-                  alignItems={'center'}
-                  sx={{
-                    border: 'solid 1px #ccc',
-                    p: '9px',
-                    borderRadius: '5px',
-                    background: '#f6f6f6',
-                  }}
-                >
+            {!isEmployee && (
+              <Grid
+                container
+                p={'5px 5px 5px 20px'}
+                sx={{
+                  background: '#fff',
+                  borderRadius: '5px',
+                  display: 'flex',
+                  alignItems: { xs: 'flex-start', md: 'center' },
+                  flexDirection: { xs: 'column', md: 'row' },
+                }}
+              >
+                <Grid item xs={12} md={5.5}>
                   <Typography
                     sx={{
                       color: '#595959',
                       fontSize: '16px',
                       fontStyle: 'normal',
-                      fontWeight: '500',
+                      fontWeight: 500,
                       lineHeight: 'normal',
+                      paddingLeft: { xs: '0px', md: '20px' },
                     }}
                   >
-                    0
+                    Sandwich count
                   </Typography>
-                </Box>
+                </Grid>
+                <Grid item xs={12} md={6.5} sx={{ width: '100%' }}>
+                  <Box
+                    display={'flex'}
+                    justifyContent={'space-between'}
+                    alignItems={'center'}
+                    sx={{
+                      border: 'solid 1px #ccc',
+                      p: '9px',
+                      borderRadius: '5px',
+                      background: '#f6f6f6',
+                    }}
+                  >
+                    <Typography
+                      sx={{
+                        color: '#595959',
+                        fontSize: '16px',
+                        fontStyle: 'normal',
+                        fontWeight: '500',
+                        lineHeight: 'normal',
+                      }}
+                    >
+                      0
+                    </Typography>
+                  </Box>
+                </Grid>
               </Grid>
-            </Grid>
+            )}
           </Box>
         </Box>
         <Box>
@@ -502,56 +509,59 @@ const LeaveViewModal = ({ modalData, handleClose, isEmployee }) => {
               padding: '10px 20px',
             }}
           >
-            <Grid
-              container
-              p={'5px 5px 5px 20px'}
-              sx={{
-                background: '#F6F6F6',
-                borderRadius: '5px',
-                display: 'flex',
-                alignItems: { xs: 'flex-start', md: 'center' },
-                flexDirection: { xs: 'column', md: 'row' },
-              }}
-            >
-              <Grid item xs={12} md={5.5}>
-                <Typography
-                  sx={{
-                    color: '#595959',
-                    fontSize: '16px',
-                    fontStyle: 'normal',
-                    fontWeight: 500,
-                    lineHeight: 'normal',
-                  }}
-                >
-                  Total
-                </Typography>
-              </Grid>
-              <Grid item xs={12} md={6.5} sx={{ width: '100%' }}>
-                <Box
-                  display={'flex'}
-                  justifyContent={'space-between'}
-                  alignItems={'center'}
-                  sx={{
-                    border: 'solid 1px #ccc',
-                    p: '9px',
-                    borderRadius: '5px',
-                    background: '#f6f6f6',
-                  }}
-                >
+            {!isEmployee && (
+              <Grid
+                container
+                p={'5px 5px 5px 20px'}
+                sx={{
+                  background: '#F6F6F6',
+                  borderRadius: '5px',
+                  display: 'flex',
+                  alignItems: { xs: 'flex-start', md: 'center' },
+                  flexDirection: { xs: 'column', md: 'row' },
+                }}
+              >
+                <Grid item xs={12} md={5.5}>
                   <Typography
                     sx={{
                       color: '#595959',
                       fontSize: '16px',
                       fontStyle: 'normal',
-                      fontWeight: '500',
+                      fontWeight: 500,
                       lineHeight: 'normal',
+                      paddingLeft: { xs: '0px', md: '20px' },
                     }}
                   >
-                    {modalData?.count}
+                    Total
                   </Typography>
-                </Box>
+                </Grid>
+                <Grid item xs={12} md={6.5} sx={{ width: '100%' }}>
+                  <Box
+                    display={'flex'}
+                    justifyContent={'space-between'}
+                    alignItems={'center'}
+                    sx={{
+                      border: 'solid 1px #ccc',
+                      p: '9px',
+                      borderRadius: '5px',
+                      background: '#f6f6f6',
+                    }}
+                  >
+                    <Typography
+                      sx={{
+                        color: '#595959',
+                        fontSize: '16px',
+                        fontStyle: 'normal',
+                        fontWeight: '500',
+                        lineHeight: 'normal',
+                      }}
+                    >
+                      {modalData?.count}
+                    </Typography>
+                  </Box>
+                </Grid>
               </Grid>
-            </Grid>
+            )}
           </Box>
         </Box>
         <Box>
@@ -579,6 +589,7 @@ const LeaveViewModal = ({ modalData, handleClose, isEmployee }) => {
                     fontStyle: 'normal',
                     fontWeight: 500,
                     lineHeight: 'normal',
+                    paddingLeft: { xs: '0px', md: '20px' },
                   }}
                 >
                   Reason
@@ -618,10 +629,12 @@ const LeaveViewModal = ({ modalData, handleClose, isEmployee }) => {
               <Box
                 display={'flex'}
                 justifyContent={'flex-end'}
-                sx={{ padding: '20px' }}
+                sx={{
+                  padding: '20px',
+                }}
               >
                 <Button
-                  sx={{ minWidth: '120px' }}
+                  sx={{ minWidth: { xs: '100px', md: '120px' } }}
                   onClick={handleClose}
                   variant="outlined"
                 >
@@ -629,7 +642,7 @@ const LeaveViewModal = ({ modalData, handleClose, isEmployee }) => {
                 </Button>
                 <Button
                   onClick={handleClose}
-                  sx={{ ml: '20px', minWidth: '120px' }}
+                  sx={{ ml: '20px', minWidth: { xs: '100px', md: '120px' } }}
                   variant="contained"
                 >
                   Approve
@@ -662,11 +675,11 @@ const LeaveViewModal = ({ modalData, handleClose, isEmployee }) => {
                 sx={{ padding: '20px' }}
               >
                 <Button
-                  sx={{ minWidth: '120px' }}
+                  sx={{ minWidth: '120px', textTransform: 'math-auto' }}
                   onClick={handleClose}
                   variant="outlined"
                 >
-                  Cancel Request
+                  Cancel request
                 </Button>
               </Box>
             ) : modalData?.status === 'Completed' ||

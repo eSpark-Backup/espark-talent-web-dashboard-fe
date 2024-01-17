@@ -8,10 +8,6 @@ export const employeeLeaveRequestsColumn = [
     flex: 2,
   },
   {
-    title: 'Country',
-    flex: 2,
-  },
-  {
     title: 'Department',
     flex: 1,
   },

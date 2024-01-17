@@ -179,7 +179,7 @@ const Dashboard = () => {
             alignItems={'center'}
           >
             <Typography sx={{ fontSize: '20px', fontWeight: 400 }}>
-              Other payments
+              Other Payments
             </Typography>
           </Box>
           <Box sx={{ width: '100%' }}>
