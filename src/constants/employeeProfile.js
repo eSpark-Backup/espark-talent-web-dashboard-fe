@@ -168,30 +168,50 @@ export const ASSET_TABLEDATA = [
     gadget: 'LapTop',
     assetId: 'AST-001',
     assignedDate: 'September 7,2023 11:07 AM',
-    assignee: 'Bilal Ahmed Khan',
+    assignee: [
+      '/icons/AssigneeAvatar.svg',
+      'Bilal Ahmed Khan',
+      'bilal@espark.com',
+    ],
   },
   {
     gadget: 'Del keyboard',
     assetId: 'AST-001',
     assignedDate: 'September 7,2023 11:07 AM',
-    assignee: 'Bilal Ahmed Khan',
+    assignee: [
+      '/icons/AssigneeAvatar.svg',
+      'Bilal Ahmed Khan',
+      'bilal@espark.com',
+    ],
   },
   {
     gadget: 'Laptop',
     assetId: 'AST-001',
     assignedDate: 'September 7,2023 11:07 AM',
-    assignee: 'Bilal Ahmed Khan',
+    assignee: [
+      '/icons/AssigneeAvatar.svg',
+      'Bilal Ahmed Khan',
+      'bilal@espark.com',
+    ],
   },
   {
     gadget: 'Logictech mouse',
     assetId: 'AST-001',
     assignedDate: 'September 7,2023 11:07 AM',
-    assignee: 'Bilal Ahmed Khan',
+    assignee: [
+      '/icons/AssigneeAvatar.svg',
+      'Bilal Ahmed Khan',
+      'bilal@espark.com',
+    ],
   },
   {
     gadget: 'Laptop',
     assetId: 'AST-001',
     assignedDate: 'September 7,2023 11:07 AM',
-    assignee: 'Bilal Ahmed Khan',
+    assignee: [
+      '/icons/AssigneeAvatar.svg',
+      'Bilal Ahmed Khan',
+      'bilal@espark.com',
+    ],
   },
 ];

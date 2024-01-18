@@ -212,7 +212,8 @@ const Page = () => {
                 sx={{
                   borderBottom: 1,
                   borderColor: 'divider',
-                  marginBottom: '40px',
+                  marginBottom:
+                    value !== employeeProfileData?.valueTwo && '40px',
                   display: 'flex',
                   justifyContent: 'space-between',
                 }}

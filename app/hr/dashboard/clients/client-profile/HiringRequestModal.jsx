@@ -132,7 +132,7 @@ const HiringRequestModal = ({ open, onClose }) => {
                       setErrors={setErrors}
                       values={values}
                       nested={nested}
-                      md={12}
+                      lg={12}
                       fields={fields}
                     />
                   </Grid>
