@@ -108,6 +108,7 @@ const LeaveRequestModal = ({ handleClose }) => {
                 display: 'flex',
                 alignItems: { xs: 'flex-start', md: 'center' },
                 flexDirection: { xs: 'column', md: 'row' },
+                gap: { xs: '10px', md: '0px' },
               }}
             >
               <Grid item xs={12} md={5.4}>
@@ -159,6 +160,7 @@ const LeaveRequestModal = ({ handleClose }) => {
                 display: 'flex',
                 alignItems: { xs: 'flex-start', md: 'center' },
                 flexDirection: { xs: 'column', md: 'row' },
+                gap: { xs: '10px', md: '0px' },
               }}
             >
               <Grid item xs={12} md={5.4}>
@@ -193,6 +195,7 @@ const LeaveRequestModal = ({ handleClose }) => {
                 display: 'flex',
                 alignItems: { xs: 'flex-start', md: 'center' },
                 flexDirection: { xs: 'column', md: 'row' },
+                gap: { xs: '10px', md: '0px' },
               }}
             >
               <Grid item xs={12} md={5.4}>
@@ -227,6 +230,7 @@ const LeaveRequestModal = ({ handleClose }) => {
                 display: 'flex',
                 alignItems: { xs: 'flex-start', md: 'center' },
                 flexDirection: { xs: 'column', md: 'row' },
+                gap: { xs: '10px', md: '0px' },
               }}
             >
               <Grid item xs={12} md={5.4}>
@@ -282,6 +286,7 @@ const LeaveRequestModal = ({ handleClose }) => {
                 display: 'flex',
                 alignItems: { xs: 'flex-start', md: 'center' },
                 flexDirection: { xs: 'column', md: 'row' },
+                gap: { xs: '10px', md: '0px' },
               }}
             >
               <Grid item xs={12} md={5.4}>
@@ -337,6 +342,7 @@ const LeaveRequestModal = ({ handleClose }) => {
                 display: 'flex',
                 alignItems: { xs: 'flex-start', md: 'center' },
                 flexDirection: { xs: 'column', md: 'row' },
+                gap: { xs: '10px', md: '0px' },
               }}
             >
               <Grid item xs={12} md={5.4}>
@@ -409,6 +415,7 @@ const LeaveRequestModal = ({ handleClose }) => {
                 display: 'flex',
                 // alignItems: { xs: "flex-start", md: "center" },
                 flexDirection: { xs: 'column', md: 'row' },
+                gap: { xs: '10px', md: '0px' },
               }}
             >
               <Grid item xs={12} md={5.4}>
