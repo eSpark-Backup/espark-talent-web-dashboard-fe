@@ -180,7 +180,6 @@ const AppTable = ({
                                   fontWeight: '400',
                                   lineHeight: '15px',
                                   letterSpacing: '0em',
-                                  // textAlign: 'center',
                                 }}
                               >
                                 {row?.assignee[1]}

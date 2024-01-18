@@ -49,8 +49,6 @@ const Client = () => {
   };
   return (
     <>
-      {/* <h1>Client</h1>
-      <h1>Comming Soon</h1> */}
       <Box
         sx={{
           display: 'flex',
