@@ -65,9 +65,18 @@ const FilterModal = ({
             height: '900px',
             position: 'absolute',
             top: '2%',
-            right: '5px',
+            right: '0px',
+            overflowY: { xs: 'auto', md: 'hidden' },
+            scrollbarWidth: 'thin',
+            scrollbarColor: 'transparent transparent',
+            '&::-webkit-scrollbar': {
+              display: 'none',
+            },
             '@media (min-width: 900px) and (max-width: 1500px)': {
               width: '30%',
+            },
+            '@media (min-width: 600px) and (max-width: 900px)': {
+              width: '45%',
             },
           }}
         >

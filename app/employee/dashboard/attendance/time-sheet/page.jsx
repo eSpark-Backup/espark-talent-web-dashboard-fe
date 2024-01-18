@@ -213,6 +213,7 @@ const Dashboard = () => {
                     alignItems: 'center',
                     borderRadius: '5px',
                   }}
+                  onClick={handleFilterModal}
                 >
                   <Image
                     width={15}
