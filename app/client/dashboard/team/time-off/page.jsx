@@ -26,7 +26,6 @@ import { renderNestedTable } from './renderComponents';
 import Link from 'next/link';
 import LeaveViewModal from './LeaveViewModal';
 import PunchViewModal from './PunchViewModal';
-import FilterModal from '@/src/components/FilterModal/filterModal';
 
 const Dashboard = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -432,7 +431,7 @@ const Dashboard = () => {
                               </Button>
                             </Box>
                           </Box>
-                        
+
                           <Box
                             sx={{
                               my: { xs: '10px', lg: 0 },
