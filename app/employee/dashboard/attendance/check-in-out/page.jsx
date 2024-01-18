@@ -14,6 +14,7 @@ import {
 } from '@/src/constants/data/tables/checkInOutRequestsData';
 import { Clock_Title } from '@/src/constants/employeeDashboard';
 import PunchRequestModal from './PunchRequestModal';
+import FilterModal from '@/src/components/FilterModal/filterModal';
 
 const Dashboard = () => {
   const checkInOutRequestDataState = useMemo(
@@ -26,7 +27,13 @@ const Dashboard = () => {
   const [openModal, setOpenModal] = useState(false);
   const [openPunch, setOpenPunch] = useState(false);
   const handleClosePunch = () => setOpenPunch(false);
-
+  const [showFilterModal, setFilterModal] = useState(false);
+  const handleFilterModal = () => {
+    setFilterModal(true);
+  };
+  const handleClose = () => {
+    setFilterModal(false);
+  };
   const handleChangeCurrReqStatusTab = (event, newValue, data) => {
     let tab = event?.target?.innerText;
     if (tab.includes('\n\n')) {
@@ -897,6 +904,7 @@ const Dashboard = () => {
                             background: '#138A72',
                           },
                         }}
+                        onClick={handleFilterModal}
                         startIcon={
                           <Image
                             width={18}
@@ -910,6 +918,13 @@ const Dashboard = () => {
                       </Button>
                     </Box>
                   </Box>
+                  {showFilterModal && (
+                    <FilterModal
+                      open={handleFilterModal}
+                      onClose={handleClose}
+                      ClockinOut
+                    />
+                  )}
                 </CustomTabPanel>
               </Box>
               {renderNestedTable({

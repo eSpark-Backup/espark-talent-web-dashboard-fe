@@ -33,7 +33,6 @@ const Dashboard = () => {
   };
   const handleFilterModal = () => {
     setFilterModal(true);
-    console.log('jjj');
   };
   const handleOpen = () => {
     setOpen(true);
@@ -397,6 +396,7 @@ const Dashboard = () => {
                     <FilterModal
                       open={handleFilterModal}
                       onClose={handleClose}
+                      isLeaveType
                     />
                   )}
                 </CustomTabPanel>
