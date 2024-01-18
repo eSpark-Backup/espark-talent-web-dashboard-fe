@@ -10,6 +10,9 @@ import StatusType from './statusType';
 import AttendanceType from './attendanceType';
 import DatePickerSet from './datePicker';
 
+const CustomBackdrop = () => {
+  return null;
+};
 const FilterModal = ({
   open,
   onClose,
@@ -34,20 +37,24 @@ const FilterModal = ({
     () => filterOptions(ATTENDANCE_STATUS),
     [searchText]
   );
+
   return (
     <Modal
+      data-aos="fade-left"
       open={open}
       onClose={onClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
       sx={{
-        display: 'flex',
+        width: '100%',
       }}
+      BackdropComponent={CustomBackdrop}
     >
       <Box
         sx={{
           bgcolor: '#fff',
           width: { xs: '90%', md: '20%' },
+
           display: 'flex',
           flexDirection: 'column',
           borderRadius: '10px',
@@ -55,7 +62,7 @@ const FilterModal = ({
           height: '900px',
           position: 'absolute',
           top: '2%',
-          right: '20px',
+          right: '5px',
           '@media (min-width: 900px) and (max-width: 1500px)': {
             width: '30%',
           },

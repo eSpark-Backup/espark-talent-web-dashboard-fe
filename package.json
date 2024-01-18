@@ -30,6 +30,7 @@
     "@mui/x-date-pickers": "^6.18.5",
     "@next/font": "^14.0.4",
     "@reduxjs/toolkit": "^1.9.7",
+    "aos": "^2.3.4",
     "dayjs": "^1.11.10",
     "formik": "^2.4.5",
     "install": "^0.13.0",

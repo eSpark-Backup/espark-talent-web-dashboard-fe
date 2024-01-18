@@ -260,6 +260,7 @@ const Dashboard = () => {
                       height={15}
                       alt="Refresh"
                       src={`/icons/Filter.svg`}
+                      onClick={handleFilterModal}
                     />
                   }
                 >
