@@ -10,9 +10,6 @@ import {
 } from '@/src/constants/data/tables/timeSheet';
 import Image from 'next/image';
 import { EMPLOYEE_TIMESHEET } from '@/src/constants/timeSheet';
-// import AttendanceHeading from '@/src/components/AtttendanceSummary/attendanceHeading';
-// import AttendanceView from '@/src/components/AtttendanceSummary/attendanceView';
-// import AppDropdown from '@/src/components/dashboard/appDropdown';
 import AttendanceViewModal from './AttendanceViewModal';
 
 const Dashboard = () => {
@@ -20,8 +17,6 @@ const Dashboard = () => {
   const [open, setOpen] = useState(false);
   const handleClose = () => setOpen(false);
   const [modalData, setModalData] = useState({});
-  // const [isLoadingTitles, setIsLoadingTitles] = useState(false);
-  // const [selectedJobTitle, setSelectedJobTitle] = useState('');
   const handleAttendanceModal = (props) => {
     const { item, row } = props;
     setModalData({ item, ...row });

@@ -17,6 +17,7 @@ const AppDropdown = ({
   mb,
   error,
   isForm,
+  background = '#FFF',
 }) => {
   const [isOpenedDropdown, setIsOpenedDropdown] = useState(false);
   const [isOpenedDropdownNested, setIsOpenedDropdownNested] = useState(false);
@@ -79,37 +80,6 @@ const AppDropdown = ({
       }
     }
   }, [isOpenedDropdown, pointedElement]);
-  // useEffect(() => {
-  //   const handleClickOutside = (event) => {
-  //     // console.log({contains:componentNestedRef.current.contains(event.target),current:componentNestedRef.current})
-  //     if (
-  //       componentNestedRef.current &&
-  //       !componentNestedRef.current.contains(event.target)
-  //     ) {
-  //       setIsOpenedDropdownNested(false);
-  //     }
-  //   };
-
-  //   document.addEventListener('click', handleClickOutside);
-
-  //   return () => {
-  //     document.removeEventListener('click', handleClickOutside);
-  //   };
-  // }, []);
-  // useEffect(() => {
-  //   if (isOpenedDropdownNested && pointedElement && componentNestedRef.current) {
-  //     const selectedElement = componentNestedRef.current.querySelector(
-  //       `[data-key="${pointedElement}"]`
-  //     );
-  //     if (selectedElement) {
-  //       selectedElement.scrollIntoView({
-  //         behavior: 'smooth',
-  //         block: 'nearest',
-  //         inline: 'start',
-  //       });
-  //     }
-  //   }
-  // }, [isOpenedDropdown, pointedElement]);
   const toggleComponent = () => {
     if (disabled) return;
     setIsOpenedDropdown((ps) => !ps);
@@ -122,6 +92,7 @@ const AppDropdown = ({
     <Grid
       sx={{
         position: 'relative',
+        background,
         // mb: '10px',
       }}
       item
