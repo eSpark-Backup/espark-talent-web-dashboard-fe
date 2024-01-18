@@ -1,18 +1,19 @@
 'use client';
 import React, { useState } from 'react';
 
-import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
+import { DesktopDatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import LeaveCalendarIcon from './leaveCalenderIcon';
 import ActionBarComponent from './actionbarComponent';
 import PreviousDateModal from './PreviousDateModal';
 import dayjs from 'dayjs';
+import Image from 'next/image';
 
-const LeaveDatePicker = ({ label, isViewingClient }) => {
+const LeaveDatePicker = ({ label }) => {
   const [open, setOpen] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [currentView, setCurretView] = useState('day');
-  const handleOpen = () => setOpen(true);
+  const [isOpenDatePicker, setIsOpenDatePicker] = useState(false);
+  const handleCloseDatePicker = () => setIsOpenDatePicker(false);
   const handleClose = () => setOpen(false);
   const handleOpenModal = () => setOpenModal(true);
   const [selectedDate, setSelectedDate] = useState(null);
@@ -20,6 +21,7 @@ const LeaveDatePicker = ({ label, isViewingClient }) => {
   const handleDateChange = (date) => {
     setSelectedDate(date);
     if (date.isBefore(dayjs(), 'day')) {
+      console.log(open);
       console.log('Selected date is before the current date');
       setOpenModal(true);
     } else {
@@ -32,31 +34,37 @@ const LeaveDatePicker = ({ label, isViewingClient }) => {
   return (
     <>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <DatePicker
+        <DesktopDatePicker
+          className="custom-date-time-picker"
           label={label || ''}
           sx={{
             background: '#F6F6F6',
-            width: '75%',
-            '@media (max-width: 1800px)': {
-              width: '70%',
-            },
-            '@media (max-width: 1500px)': {
-              width: '100%',
-            },
+            width: '100%',
+            height: '40px',
           }}
           openTo="month"
           views={['year', 'month', 'day']}
-          open={open}
-          disabled={isViewingClient}
+          open={isOpenDatePicker}
           value={selectedDate}
           onChange={handleDateChange}
           onClose={handleClose}
           onViewChange={handleCurrentView}
           slots={{
-            openPickerIcon: () => <LeaveCalendarIcon open={handleOpen} />,
+            openPickerIcon: () => (
+              <Image
+                src={'/icons/CalendarOutline.svg'}
+                width={20}
+                height={20}
+                alt="Date"
+                sx={{
+                  display: 'block',
+                }}
+                onClick={() => setIsOpenDatePicker((ps) => !ps)}
+              />
+            ),
             actionBar: () =>
               currentView === 'day' ? (
-                <ActionBarComponent onClose={handleClose} />
+                <ActionBarComponent onClose={handleCloseDatePicker} />
               ) : null,
           }}
         />

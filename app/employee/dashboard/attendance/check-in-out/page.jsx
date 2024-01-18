@@ -12,7 +12,6 @@ import {
   employeeCheckInOutRequestColumn,
   employeeCheckInOutRequestData,
 } from '@/src/constants/data/tables/checkInOutRequestsData';
-import { Clock_Title } from '@/src/constants/employeeDashboard';
 import PunchRequestModal from './PunchRequestModal';
 import FilterModal from '@/src/components/FilterModal/filterModal';
 
@@ -150,7 +149,9 @@ const Dashboard = () => {
         marginBottom={'50px'}
       >
         <Box display={'flex'} flexDirection={'column'}>
-          <Typography variant="h3">Clock in / out</Typography>
+          <Typography fontSize={{ xs: '20px', md: '30px' }} fontWeight={600}>
+            Clock in / out
+          </Typography>
           <Box display={'flex'} flexDirection={'column'} mt={'20px'}>
             <Typography
               sx={{
@@ -216,7 +217,7 @@ const Dashboard = () => {
             >
               <Typography
                 sx={{
-                  fontSize: '25px',
+                  fontSize: { xs: '19px', md: '25px' },
                   fontWeight: 600,
                 }}
               >
@@ -236,7 +237,7 @@ const Dashboard = () => {
               <Typography
                 sx={{
                   color: '#595959',
-                  fontSize: '20px',
+                  fontSize: { xs: '15px', md: '20px' },
                   fontStyle: 'normal',
                   fontWeight: '400',
                   lineHeight: 'normal',
@@ -291,7 +292,7 @@ const Dashboard = () => {
               <Typography
                 sx={{
                   color: '#595959',
-                  fontSize: '20px',
+                  fontSize: { xs: '15px', md: '20px' },
                   fontStyle: 'normal',
                   fontWeight: '400',
                   lineHeight: 'normal',
@@ -386,13 +387,10 @@ const Dashboard = () => {
               gap={'10px'}
               sx={{
                 height: '50px',
-                // background:"#ccc",
                 mx: { xs: 3, sm: 3, lg: 3 },
                 my: '30px',
-                // border: "solid 1px #ccc",
                 borderRadius: '5px',
                 position: 'relative',
-                // overflow: "hidden"
               }}
               display={'flex'}
             >
@@ -405,7 +403,6 @@ const Dashboard = () => {
                     justifyContent: 'center',
                     alignItems: 'center',
                     p: '10px',
-                    // borderRadius:'5px',
                     width: '100%',
                     height: '50px',
                   }}
@@ -419,6 +416,7 @@ const Dashboard = () => {
                       fontWeight: '400',
                       lineHeight: 'normal',
                       ml: '10px',
+                      textTransform: 'math-auto',
                       '&:hover': {
                         color: '#fff',
                       },
@@ -433,12 +431,10 @@ const Dashboard = () => {
                 <Button
                   variant="contained"
                   sx={{
-                    // border:"solid 1px #ccc",
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
                     p: '10px',
-                    // borderRadius:'5px',
                     width: '100%',
                     height: '50px',
                   }}
@@ -452,6 +448,7 @@ const Dashboard = () => {
                       fontWeight: '400',
                       lineHeight: 'normal',
                       ml: '10px',
+                      textTransform: 'math-auto',
                     }}
                   >
                     Mark check out
@@ -489,6 +486,7 @@ const Dashboard = () => {
                   fontStyle: 'normal',
                   fontWeight: '400',
                   lineHeight: 'normal',
+                  textTransform: 'math-auto',
                   '&:hover': {
                     color: '#fff',
                   },
@@ -668,7 +666,7 @@ const Dashboard = () => {
                   fontWeight: 600,
                 }}
               >
-                {Clock_Title}
+                Today Activity
               </Typography>
             </Box>
             <Box

@@ -16,7 +16,7 @@ const SidebarActiveUser = ({ userName }) => {
           height: '100%',
           display: 'flex',
           alignItems: 'center',
-          py: 2,
+          py: 1.5,
           px: 1.2,
         }}
       >
@@ -25,11 +25,11 @@ const SidebarActiveUser = ({ userName }) => {
           sx={{
             display: 'flex',
             alignItems: 'center',
-            width: '70%',
+            width: '72%',
           }}
         >
           <SidebarUserAvatar userName={userName} />
-          <Typography variant="body1" sx={{ mx: 1.3, color: '#595959' }}>
+          <Typography variant="body1" sx={{ pl: 1.7, color: '#595959' }}>
             {userName}
           </Typography>
         </Box>

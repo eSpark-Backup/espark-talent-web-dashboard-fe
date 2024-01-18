@@ -1,10 +1,12 @@
 import React, { Fragment, memo, useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { toCamelCase } from '@/src/utils/stringModification';
-import { Box, Button, Pagination, Stack, Typography } from '@mui/material';
+import { Box, Pagination, Stack, Typography } from '@mui/material';
 import Image from 'next/image';
 import AppCustomDropdown from './appCustomDropdown';
 import { trackingStatusTypes } from '@/src/constants/data/tables/timeTracking';
+import TableHead from './appTableHead';
+import TableHiddenBody from './appTableHiddenBody';
 
 const renderAttendenceStatus = (statusType, index) => {
   const status = trackingStatusTypes?.find(
@@ -130,73 +132,75 @@ const AppTable = ({
   handleClickRenderMessageButton,
   handleClickActionView,
   noPagination,
+  minWidth,
 }) => {
+  console.log({ data });
   return (
     <>
-      <table className="table">
-        <thead>
-          <tr className="app-table-row">
-            {column?.map((col, colIndex) => (
-              <th
-                key={colIndex}
-                style={{ fontSize: '14px', flex: col?.flex ? col?.flex : 1 }}
-              >
-                {col?.title || col}
-              </th>
-            ))}
-          </tr>
-        </thead>
+      <table
+        className={['table', !minWidth && 'table-min-width'].join(' ')}
+        style={{ minWidth: minWidth && minWidth }}
+      >
+        <TableHead column={column} />
         <tbody>
           {renderMessage ? (
-            [...Array(5)].map((_, index) => (
-              <tr
-                key={index}
-                style={{
-                  background: index === 2 && '#fff',
-                  display: 'flex',
-                  justifyContent: 'center',
-                }}
-                className="app-table-row"
-              >
-                {index === 2 ? (
-                  <Box
-                    display={'flex'}
-                    flexDirection={'column'}
-                    alignItems={'center'}
-                  >
-                    <Typography
-                      sx={{
-                        fontSize: '24px',
-                        fontWeight: 400,
-                        lineHeight: '29px',
-                        letterSpacing: '0em',
-                        textAlign: 'left',
-                      }}
-                      variant="body1"
-                      textAlign={'center'}
-                    >
-                      {renderMessage}
-                    </Typography>
-                    {renderMessageButton && (
-                      <Button
-                        onClick={handleClickRenderMessageButton}
-                        sx={{ marginTop: '20px' }}
-                        variant="contained"
-                      >
-                        {renderMessageButton}
-                      </Button>
-                    )}
-                  </Box>
-                ) : (
-                  <td />
-                )}
-              </tr>
-            ))
+            <TableHiddenBody
+              renderMessage={renderMessage}
+              handleClickRenderMessageButton={handleClickRenderMessageButton}
+              renderMessageButton={renderMessageButton}
+            />
           ) : data?.length ? (
             data.map((row, rowIndex) => (
               <Fragment key={rowIndex}>
                 <tr className="app-table-row">
                   {column?.map((col, colIndex) => {
+                    if (row?.pic && (col === 'Pic' || col.title === 'Pic')) {
+                      return (
+                        <td
+                          key={colIndex}
+                          style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            fontSize: '12px',
+                            flex: col?.flex || 1,
+                          }}
+                        >
+                          <Box component="img" src={row?.pic} />
+                        </td>
+                      );
+                    }
+                    if (
+                      row?.formActionStatus &&
+                      (col === 'Action' || col.title === 'Action')
+                    ) {
+                      return (
+                        <td
+                          key={colIndex}
+                          style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            fontSize: '12px',
+                            flex: col?.flex || 1,
+                          }}
+                        >
+                          <Image
+                            onClick={() => {
+                              handleClickActionView(row?.id);
+                            }}
+                            style={{
+                              margin: rowIndex === 1 && '0 5px',
+                              cursor: 'pointer',
+                            }}
+                            width={25}
+                            height={25}
+                            alt="Icon"
+                            src={`/icons/${
+                              row?.isSelected ? row?.action[1] : row?.action[0]
+                            }.svg`}
+                          />
+                        </td>
+                      );
+                    }
                     if (
                       row?.actionStatus &&
                       !row?.attendenceShortHand &&
@@ -395,13 +399,6 @@ const AppTable = ({
                                         handleClickActionView({ row, item });
                                       }
                                       return;
-                                      // handleImage(
-                                      //   row.employeeId,
-                                      //   row.employeeName,
-                                      //   row.leaveType,
-                                      //   row.fromTo,
-                                      //   item
-                                      // )
                                     }}
                                     key={rowIndex}
                                     style={{

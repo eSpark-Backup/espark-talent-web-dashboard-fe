@@ -50,15 +50,25 @@ const AllClients = () => {
         </Button>
       </Box>
       <Box sx={{ width: '100%' }}>
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          aria-label="wrapped label tabs example"
+        <Box
+          sx={{
+            borderBottom: 1,
+            borderColor: 'divider',
+            marginBottom: '40px',
+            display: 'flex',
+            justifyContent: 'space-between',
+          }}
         >
-          <Tab value="one" label="All" wrapped />
-          <Tab value="two" label="Active clients" />
-          <Tab value="three" label="Inactive clients" />
-        </Tabs>
+          <Tabs
+            value={value}
+            onChange={handleChange}
+            aria-label="wrapped label tabs example"
+          >
+            <Tab value="one" label="All" wrapped disableRipple={true} />
+            <Tab value="two" label="Active clients" disableRipple={true} />
+            <Tab value="three" label="Inactive clients" disableRipple={true} />
+          </Tabs>
+        </Box>
         <Grid
           container
           sx={{

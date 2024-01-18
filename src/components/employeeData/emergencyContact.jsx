@@ -30,7 +30,10 @@ const EmergencyContact = () => {
         }}
       >
         <Box sx={{ borderBottom: '1px solid #E4E4E4', padding: '10px' }}>
-          <Typography textAlign={'center'}>
+          <Typography
+            textAlign={'center'}
+            fontSize={{ xs: '14px', md: '16px' }}
+          >
             {employeeProfileData?.primary}
           </Typography>
         </Box>
@@ -98,7 +101,10 @@ const EmergencyContact = () => {
         }}
       >
         <Box sx={{ borderBottom: '1px solid #E4E4E4', padding: '10px' }}>
-          <Typography textAlign={'center'}>
+          <Typography
+            textAlign={'center'}
+            fontSize={{ xs: '14px', md: '16px' }}
+          >
             {employeeProfileData?.secondary}
           </Typography>
         </Box>

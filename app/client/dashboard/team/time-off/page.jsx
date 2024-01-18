@@ -24,12 +24,6 @@ import {
 import Image from 'next/image';
 import { renderNestedTable } from './renderComponents';
 import Link from 'next/link';
-// import RequestHeading from '@/src/components/requestview/modalHeading';
-// import LeaveRequest from '@/src/components/requestview/leaveRequestView';
-// import PunchHeading from '@/src/components/punchIn/punchHeading';
-// import { PUNCH_IN } from '@/src/constants/punchIn/createPunch';
-// import PunchRequestView from '@/src/components/punchIn/punchRequestView';
-// import AppDropdown from '@/src/components/dashboard/appDropdown';
 import LeaveViewModal from './LeaveViewModal';
 import PunchViewModal from './PunchViewModal';
 import FilterModal from '@/src/components/FilterModal/filterModal';
@@ -45,28 +39,9 @@ const Dashboard = () => {
 
   const [open, setOpen] = useState(false);
   const [openPunch, setOpenPunch] = useState(false);
-  const [showFilterModal, setFilterModal] = useState(false);
-  // const [modalType, setModalType] = useState('');
-  // const [employeeId, setEmployeeId] = useState();
-  // const [leaveType, setLeaveType] = useState();
-  // const [fromTo, setFromTo] = useState();
-
-  // const [employeeName, setEmployeeName] = useState();
-
-  const handleOpen = () => setFilterModal(true);
-  // type,
-  // employeeId,
-  // employeeName,
-  // leaveType,
-  // fromTo
-  {
-    // setModalType(type);
-    // setEmployeeId(employeeId);
-    // setLeaveType(leaveType);
-    // setFromTo(fromTo);
-    // setEmployeeName(employeeName);
+  const handleOpen = () => {
     setOpen(true);
-  }
+  };
   const handleClose = () => {
     console.log({ modalData });
     setOpen(false);
@@ -457,7 +432,7 @@ const Dashboard = () => {
                               </Button>
                             </Box>
                           </Box>
-                          {showFilterModal && <FilterModal />}
+                        
                           <Box
                             sx={{
                               my: { xs: '10px', lg: 0 },

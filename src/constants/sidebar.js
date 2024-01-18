@@ -1,6 +1,7 @@
 export const SIDE_NAV_WIDTH = 280;
 export const NOTIFICATION_TITLE = 'Notifications';
-
+export const WORK_SPACE_TITLE = 'Workspaces';
+export const WORK_SPACE_ICON = '/images/sidebar-icons/space-top-nav.svg';
 export const Client_Routes = [
   {
     icon: '/images/sidebar-icons/dashboard.svg',
@@ -79,6 +80,11 @@ export const Client_Routes = [
 export const profileMenuData = [
   { icon: '/images/sidebar-icons/notification.svg', text: 'Notification' },
   { icon: '/images/sidebar-icons/signout.svg', text: 'Sign out' },
+];
+
+export const Work_Space_Menu_Data = [
+  { icon: '', text: 'Espark' },
+  { icon: '', text: 'espark' },
 ];
 
 export const Employee_Routes = [

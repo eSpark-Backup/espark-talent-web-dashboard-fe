@@ -57,7 +57,7 @@ const SalaryRange = () => {
                 },
                 style: {
                   '& input:placeholder': {
-                    marginTop: '-10px', // Adjust the margin-top value as needed
+                    marginTop: '-10px',
                   },
                 },
               }}

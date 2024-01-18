@@ -3,7 +3,7 @@ import Image from 'next/image';
 import React from 'react';
 import { useRouter } from 'next/navigation';
 
-const Breadcrumb = ({ title, currentPage }) => {
+const Breadcrumb = ({ title, currentPage, root }) => {
   const router = useRouter();
   return (
     <Box
@@ -27,7 +27,7 @@ const Breadcrumb = ({ title, currentPage }) => {
             fontWeight: 400,
             lineHeight: 'normal',
           }}
-          onClick={() => router.push('/hr/dashboard/employees')}
+          onClick={() => router.push(`/hr/dashboard/${root || 'employees'}`)}
         >
           {title}
         </Typography>

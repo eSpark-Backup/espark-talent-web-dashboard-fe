@@ -25,10 +25,16 @@ export default function ProfileSection({ Profile_Edit_Section, User_Detail }) {
             sx={{
               width: '160px',
               height: '40px',
-              fontSize: '14px',
-              fontWeight: 500,
+              fontSize: { xs: '12px', md: '16px' },
+              whiteSpace: 'nowrap',
+              fontWeight: 600,
+              background: '#029894',
+              borderRadius: '5px',
+              color: '#fff',
+              '&:hover': {
+                background: '#029894',
+              },
             }}
-            variant="contained"
             startIcon={
               <Image
                 src={Profile_Edit_Section?.buttonIcon}

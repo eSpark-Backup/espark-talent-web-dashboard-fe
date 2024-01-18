@@ -51,7 +51,7 @@ const CompanyProfile = () => {
 
             fontSize: '14px',
             fontWeight: 400,
-            textTransform: 'capitalize',
+            textTransform: 'math-auto',
           }}
           onClick={() =>
             router.push('/client/dashboard/hire-onboard/start-hiring')
