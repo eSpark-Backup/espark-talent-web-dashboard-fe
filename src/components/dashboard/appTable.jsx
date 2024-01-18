@@ -7,6 +7,7 @@ import AppCustomDropdown from './appCustomDropdown';
 import { trackingStatusTypes } from '@/src/constants/data/tables/timeTracking';
 import TableHead from './appTableHead';
 import TableHiddenBody from './appTableHiddenBody';
+import AppTableBody from './appTableBody';
 
 const renderAttendenceStatus = (statusType, index) => {
   const status = trackingStatusTypes?.find(
@@ -142,7 +143,15 @@ const AppTable = ({
         style={{ minWidth: minWidth && minWidth }}
       >
         <TableHead column={column} />
-        <tbody>
+        <AppTableBody
+          column={column}
+          data={data}
+          renderMessage={renderMessage}
+          handleClickActionView={handleClickActionView}
+          handleClickRenderMessageButton={handleClickRenderMessageButton}
+          renderMessageButton={renderMessageButton}
+        />
+        {/* <tbody>
           {renderMessage ? (
             <TableHiddenBody
               renderMessage={renderMessage}
@@ -508,7 +517,7 @@ const AppTable = ({
               </td>
             </tr>
           )}
-        </tbody>
+        </tbody> */}
       </table>
       {!noPagination && (
         <Box my={'20px'} display="flex" justifyContent={'center'}>

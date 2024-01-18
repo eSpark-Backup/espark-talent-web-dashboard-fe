@@ -115,47 +115,6 @@ const Dashboard = () => {
                   </Typography>
                 </Box>
               </Box>
-              {/* <Box display={'flex'} flexDirection={'column'}>
-                <Typography
-                  sx={{
-                    fontSize: '30px',
-                    fontWeight: 600,
-                    lineHeight: '36px',
-                    letterSpacing: '0em',
-                    textAlign: 'left',
-                  }}
-                >
-                  Leaves Requests
-                </Typography>
-                <Box display={'flex'} flexDirection={'column'} marginY={'20px'}>
-                  <Typography
-                    sx={{
-                      fontSize: '14px',
-                      fontWeight: '400',
-                      lineHeight: '17px',
-                      letterSpacing: '0em',
-                      textAlign: 'left',
-                    }}
-                    variant="caption"
-                  >
-                    Manage Leaves from one place.
-                  </Typography>
-                </Box>
-                <Typography
-                  sx={{
-                    fontSize: '20px',
-                    fontWeight: '400',
-                    lineHeight: '17px',
-                    letterSpacing: '0em',
-                    textAlign: 'left',
-                    color: '#595959',
-                    marginTop: '50px',
-                  }}
-                  variant="caption"
-                >
-                  Balance
-                </Typography>
-              </Box> */}
               <Button
                 sx={{ minWidth: '120px', marginBottom: '25px' }}
                 variant="contained"
