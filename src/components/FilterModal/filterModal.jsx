@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { Box, Modal, Typography } from '@mui/material';
+import { Backdrop, Box, Modal, Typography } from '@mui/material';
 
 import { ATTENDANCE_STATUS, FILTER, STATUS } from '@/src/constants/filter';
 import { LEAVE_TYPE } from '@/src/constants/requestviewModal';
@@ -10,9 +10,6 @@ import StatusType from './statusType';
 import AttendanceType from './attendanceType';
 import DatePickerSet from './datePicker';
 
-const CustomBackdrop = () => {
-  return null;
-};
 const FilterModal = ({
   open,
   onClose,
@@ -37,7 +34,9 @@ const FilterModal = ({
     () => filterOptions(ATTENDANCE_STATUS),
     [searchText]
   );
-
+  const handleModalClick = (e) => {
+    e.stopPropagation();
+  };
   return (
     <Modal
       data-aos="fade-left"
@@ -45,107 +44,112 @@ const FilterModal = ({
       onClose={onClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
+      BackdropProps={{ click: false }}
       sx={{
         width: '100%',
       }}
-      BackdropComponent={CustomBackdrop}
+      BackdropComponent={(props) => (
+        <Backdrop {...props} sx={{ backgroundColor: 'rgba(0, 0, 0, 0)' }} />
+      )}
     >
-      <Box
-        sx={{
-          bgcolor: '#fff',
-          width: { xs: '90%', md: '20%' },
-
-          display: 'flex',
-          flexDirection: 'column',
-          borderRadius: '10px',
-          boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
-          height: '900px',
-          position: 'absolute',
-          top: '2%',
-          right: '5px',
-          '@media (min-width: 900px) and (max-width: 1500px)': {
-            width: '30%',
-          },
-        }}
-      >
+      <Box onClick={handleModalClick}>
         <Box
           sx={{
-            borderBottom: '1px solid #E4E4E4',
-            borderTopLeftRadius: '10px',
-            p: 1,
+            bgcolor: '#fff',
+            width: { xs: '90%', md: '20%' },
+
             display: 'flex',
-            justifyContent: 'flex-start',
-            alignItems: 'center',
-            flexDirection: 'row',
-            background: '#029E9C',
+            flexDirection: 'column',
+            borderRadius: '10px',
+            boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
+            height: '900px',
+            position: 'absolute',
+            top: '2%',
+            right: '5px',
+            '@media (min-width: 900px) and (max-width: 1500px)': {
+              width: '30%',
+            },
           }}
         >
           <Box
             sx={{
-              width: { xs: '35px', md: '50px' },
-              height: { xs: '35px', md: '50px' },
-            }}
-            src="/images/filter/back.svg"
-            component={'img'}
-            onClick={onClose}
-          />
-          <Typography
-            sx={{
-              fontSize: '18px',
-              fontWeight: 600,
-              marginLeft: '10px',
-              color: '#fff',
-            }}
-          >
-            {FILTER?.filter}
-          </Typography>
-        </Box>
-
-        <Box
-          sx={{
-            display: 'flex',
-            justifyContent: 'center',
-          }}
-        >
-          <Box
-            sx={{
-              padding: '15px',
+              borderBottom: '1px solid #E4E4E4',
+              borderTopLeftRadius: '10px',
+              p: 1,
               display: 'flex',
-              flexDirection: 'column',
-              gap: { xs: '20px', md: '20px' },
-              width: '100%',
+              justifyContent: 'flex-start',
+              alignItems: 'center',
+              flexDirection: 'row',
+              background: '#029E9C',
             }}
           >
-            {isLeaveType && (
-              <>
-                <LeaveType
-                  displayedOptions={displayedOptions}
-                  setSearchText={setSearchText}
-                />
+            <Box
+              sx={{
+                width: { xs: '35px', md: '50px' },
+                height: { xs: '35px', md: '50px' },
+              }}
+              src="/images/filter/back.svg"
+              component={'img'}
+              onClick={onClose}
+            />
+            <Typography
+              sx={{
+                fontSize: '18px',
+                fontWeight: 600,
+                marginLeft: '10px',
+                color: '#fff',
+              }}
+            >
+              {FILTER?.filter}
+            </Typography>
+          </Box>
 
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+            }}
+          >
+            <Box
+              sx={{
+                padding: '15px',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: { xs: '20px', md: '20px' },
+                width: '100%',
+              }}
+            >
+              {isLeaveType && (
+                <>
+                  <LeaveType
+                    displayedOptions={displayedOptions}
+                    setSearchText={setSearchText}
+                  />
+
+                  <StatusType
+                    displayedStatusOptions={displayedStatusOptions}
+                    setSearchText={setSearchText}
+                  />
+                </>
+              )}
+              {ClockinOut && (
                 <StatusType
                   displayedStatusOptions={displayedStatusOptions}
                   setSearchText={setSearchText}
                 />
-              </>
-            )}
-            {ClockinOut && (
-              <StatusType
-                displayedStatusOptions={displayedStatusOptions}
-                setSearchText={setSearchText}
-              />
-            )}
-            {attendanceStatus && (
-              <AttendanceType
-                displayedAttendanceOptions={displayedAttendanceOptions}
-                setSearchText={setSearchText}
-              />
-            )}
-            <DatePickerSet title={FILTER?.from} />
-            <DatePickerSet title={FILTER?.to} />
-            <CheckinTime checkIn={FILTER?.checkIn} />
-            <CheckinTime checkIn={FILTER?.checkOut} />
-            <ResetButton />
+              )}
+              {attendanceStatus && (
+                <AttendanceType
+                  displayedAttendanceOptions={displayedAttendanceOptions}
+                  setSearchText={setSearchText}
+                />
+              )}
+              <DatePickerSet title={FILTER?.from} />
+              <DatePickerSet title={FILTER?.to} />
+              <CheckinTime checkIn={FILTER?.checkIn} />
+              <CheckinTime checkIn={FILTER?.checkOut} />
+              <ResetButton />
+            </Box>
           </Box>
         </Box>
       </Box>
