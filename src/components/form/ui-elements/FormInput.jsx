@@ -224,6 +224,15 @@ const FormInput = ({
           }}
         >
           {prefixIcon && (
+            <label
+            htmlFor={`input-file-${title}`}
+            style={{
+              display: 'flex',
+              // padding: '10px',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
             <Box
               sx={{
                 display: 'flex',
@@ -242,6 +251,7 @@ const FormInput = ({
                 alt="Upload"
               />
             </Box>
+            </label>
           )}
           <input
             id={`input-file-${title}`}
