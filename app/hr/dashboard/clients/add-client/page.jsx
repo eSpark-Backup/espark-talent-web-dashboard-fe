@@ -16,7 +16,7 @@ const AddEmployee = () => {
     if (currentStep === 1) return;
     setCurrentStep((ps) => ps - 1);
   };
-  const [currentStep, setCurrentStep] = useState(1);
+  const [currentStep, setCurrentStep] = useState(4);
   return (
     <Box>
       <Breadcrumb root="clients" title="Clients /" currentPage="Add client" />
@@ -53,6 +53,7 @@ const AddEmployee = () => {
                   isMultiColumn={isMultiColumn}
                   handleGoNext={handleGoNext}
                   handleGoPrev={handleGoPrev}
+                  isLastStep={currentStep === formSteps?.length}
                 />
               );
             }
