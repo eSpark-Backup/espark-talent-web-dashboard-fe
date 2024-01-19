@@ -1,5 +1,5 @@
 export const FILTER = {
-  filter: 'Filter',
+  title: 'Filter',
   leaveType: 'Leave Type',
   status: 'Status',
   to: 'To',

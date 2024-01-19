@@ -18,29 +18,20 @@ import {
 import LeaveRequestModal from './LeaveRequestModal';
 import LeaveViewModal from '@/app/client/dashboard/team/time-off/LeaveViewModal';
 import FilterModal from '@/src/components/FilterModal/filterModal';
-import Aos from 'aos';
 
 const Dashboard = () => {
-  React.useEffect(() => {
-    Aos.init();
-  }, []);
   const [open, setOpen] = useState(false);
   const [modalData, setModalData] = useState({});
   const [openModal, setOpenModal] = useState(false);
   const [showFilterModal, setFilterModal] = useState(false);
-  const [slide, setSlide] = useState(false);
-  const handleSlide = () => {
-    setSlide((slide) => !slide);
-  };
   const handleOpenModal = () => {
     setOpenModal(true);
   };
   const handleCloseModal = () => {
     setOpenModal(false);
   };
-  const handleFilterModal = () => {
+  const handleOpenFilterModal = () => {
     setFilterModal(true);
-    handleSlide();
   };
   const handleOpen = () => {
     setOpen(true);
@@ -387,14 +378,14 @@ const Dashboard = () => {
                             background: '#138A72',
                           },
                         }}
-                        onClick={handleFilterModal}
+                        onClick={handleOpenFilterModal}
                         startIcon={
                           <Image
                             width={18}
                             height={15}
                             alt="Refresh"
                             src={`/icons/Filter.svg`}
-                            onClick={handleFilterModal}
+                            onClick={handleOpenFilterModal}
                           />
                         }
                       >
@@ -404,10 +395,9 @@ const Dashboard = () => {
                   </Box>
                   {showFilterModal && (
                     <FilterModal
-                      open={handleFilterModal}
+                      open={handleOpenFilterModal}
                       onClose={handleClose}
-                      slide={slide}
-                      isLeaveType
+                      leaveType
                     />
                   )}
                 </CustomTabPanel>

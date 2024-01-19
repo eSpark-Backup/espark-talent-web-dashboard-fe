@@ -27,7 +27,7 @@ const Dashboard = () => {
   const [openPunch, setOpenPunch] = useState(false);
   const handleClosePunch = () => setOpenPunch(false);
   const [showFilterModal, setFilterModal] = useState(false);
-  const handleFilterModal = () => {
+  const handleOpenFilterModal = () => {
     setFilterModal(true);
   };
   const handleClose = () => {
@@ -902,7 +902,7 @@ const Dashboard = () => {
                             background: '#138A72',
                           },
                         }}
-                        onClick={handleFilterModal}
+                        onClick={handleOpenFilterModal}
                         startIcon={
                           <Image
                             width={18}
@@ -918,9 +918,9 @@ const Dashboard = () => {
                   </Box>
                   {showFilterModal && (
                     <FilterModal
-                      open={handleFilterModal}
+                      open={handleOpenFilterModal}
                       onClose={handleClose}
-                      ClockinOut
+                      clockinOut
                     />
                   )}
                 </CustomTabPanel>

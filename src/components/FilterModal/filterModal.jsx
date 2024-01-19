@@ -8,14 +8,14 @@ import ResetButton from './resetButton';
 import LeaveType from './leaveType';
 import StatusType from './statusType';
 import AttendanceType from './attendanceType';
-import DatePickerSet from './datePicker';
+import DatePicker from './datePicker';
 
 const FilterModal = ({
   open,
   onClose,
   attendanceStatus,
-  isLeaveType,
-  ClockinOut,
+  leaveType,
+  clockinOut,
 }) => {
   const containsText = (text, searchText) =>
     text.toLowerCase().indexOf(searchText.toLowerCase()) > -1;
@@ -96,6 +96,7 @@ const FilterModal = ({
               sx={{
                 width: { xs: '35px', md: '50px' },
                 height: { xs: '35px', md: '50px' },
+                cursor: 'pointer',
               }}
               src="/images/filter/back.svg"
               component={'img'}
@@ -109,10 +110,9 @@ const FilterModal = ({
                 color: '#fff',
               }}
             >
-              {FILTER?.filter}
+              {FILTER?.title}
             </Typography>
           </Box>
-
           <Box
             sx={{
               display: 'flex',
@@ -128,20 +128,19 @@ const FilterModal = ({
                 width: '100%',
               }}
             >
-              {isLeaveType && (
+              {leaveType && (
                 <>
                   <LeaveType
                     displayedOptions={displayedOptions}
                     setSearchText={setSearchText}
                   />
-
                   <StatusType
                     displayedStatusOptions={displayedStatusOptions}
                     setSearchText={setSearchText}
                   />
                 </>
               )}
-              {ClockinOut && (
+              {clockinOut && (
                 <StatusType
                   displayedStatusOptions={displayedStatusOptions}
                   setSearchText={setSearchText}
@@ -153,8 +152,8 @@ const FilterModal = ({
                   setSearchText={setSearchText}
                 />
               )}
-              <DatePickerSet title={FILTER?.from} />
-              <DatePickerSet title={FILTER?.to} />
+              <DatePicker title={FILTER?.from} />
+              <DatePicker title={FILTER?.to} />
               <CheckinTime checkIn={FILTER?.checkIn} />
               <CheckinTime checkIn={FILTER?.checkOut} />
               <ResetButton />

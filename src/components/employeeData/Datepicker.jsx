@@ -9,26 +9,26 @@ const DatePicker = () => {
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DesktopDatePicker
         className="date-picker-component"
-        sty
+        sx={{ width: '100%', borderRadius: '50%', height: '40px' }}
         slots={{
           openPickerIcon: CalendarIcon,
         }}
         placeholder="DD/MM/YYYY"
-        slotProps={{
-          textField: {
-            size: 'small',
-            style: {
-              height: '28px',
-              width: '82%',
-            },
-          },
-        }}
-        sx={{
-          '& .MuiInputBase-input': {
-            height: '28px',
-            width: '82%',
-          },
-        }}
+        // slotProps={{
+        //   textField: {
+        //     size: 'small',
+        //     style: {
+        //       height: '28px',
+        //       width: '82%',
+        //     },
+        //   },
+        // }}
+        // sx={{
+        //   '& .MuiInputBase-input': {
+        //     height: '28px',
+        //     width: '82%',
+        //   },
+        // }}
       />
     </LocalizationProvider>
   );

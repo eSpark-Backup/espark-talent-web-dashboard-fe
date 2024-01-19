@@ -25,7 +25,7 @@ const Dashboard = () => {
 
   // const [isLoadingTitles, setIsLoadingTitles] = useState(false);
   // const [selectedJobTitle, setSelectedJobTitle] = useState('');
-  const handleFilterModal = () => {
+  const handleOpenFilterModal = () => {
     setFilterModal(true);
   };
   const handleClose = () => {
@@ -213,7 +213,7 @@ const Dashboard = () => {
                     alignItems: 'center',
                     borderRadius: '5px',
                   }}
-                  onClick={handleFilterModal}
+                  onClick={handleOpenFilterModal}
                 >
                   <Image
                     width={15}
@@ -254,14 +254,14 @@ const Dashboard = () => {
                       background: '#138A72',
                     },
                   }}
-                  onClick={handleFilterModal}
+                  onClick={handleOpenFilterModal}
                   startIcon={
                     <Image
                       width={18}
                       height={15}
                       alt="Refresh"
                       src={`/icons/Filter.svg`}
-                      onClick={handleFilterModal}
+                      onClick={handleOpenFilterModal}
                     />
                   }
                 >
@@ -271,7 +271,7 @@ const Dashboard = () => {
             </Box>
             {showFilterModal && (
               <FilterModal
-                open={handleFilterModal}
+                open={handleOpenFilterModal}
                 onClose={handleClose}
                 attendanceStatus
               />

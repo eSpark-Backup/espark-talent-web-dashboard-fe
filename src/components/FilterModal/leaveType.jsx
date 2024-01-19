@@ -48,7 +48,6 @@ const LeaveType = ({ displayedOptions, setSearchText }) => {
         >
           {employeeProfileData?.select}
         </InputLabel>
-
         <Select
           sx={{
             '&:focus': {

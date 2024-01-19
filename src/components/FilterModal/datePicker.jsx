@@ -7,9 +7,10 @@ import Image from 'next/image';
 
 import ActionBarComponent from '../requestview/actionbarComponent';
 
-const DatePickerSet = ({ title }) => {
+const DatePicker = ({ title }) => {
   const [isOpenDatePicker, setIsOpenDatePicker] = useState(false);
   const handleCloseDatePicker = () => setIsOpenDatePicker(false);
+  const currentDate = dayjs();
   return (
     <Box sx={{ width: '100%' }}>
       <Typography
@@ -26,6 +27,7 @@ const DatePickerSet = ({ title }) => {
         <DesktopDatePicker
           className="custom-date-time-picker"
           open={isOpenDatePicker}
+          value={currentDate}
           slots={{
             openPickerIcon: () => (
               <Image
@@ -41,10 +43,9 @@ const DatePickerSet = ({ title }) => {
             ),
           }}
           sx={{ width: '100%', borderRadius: '50%' }}
-          defaultValue={dayjs('2022-04-17')}
         />
       </LocalizationProvider>
     </Box>
   );
 };
-export default DatePickerSet;
+export default DatePicker;
