@@ -91,7 +91,6 @@ const LeaveRequestForm = ({ handleClose }) => {
           Cancel
         </Button>
         <Button
-          onClick={handleClose}
           sx={{
             ml: '20px',
             width: '120px',
