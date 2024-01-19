@@ -1,27 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Box, Button, Grid, Modal, Typography } from '@mui/material';
 import { useFormik } from 'formik';
 
 import { EDIT_MODAL } from '@/src/constants/employeeProfile';
-import ContactDetails from './phoneDetail';
-import {
-  formEmergency,
-  formEmergencyContact,
-  formEmergencyPrimaryContact,
-  formEmergencySecondaryContact,
-} from '@/src/constants/data/forms/emergency-contacts';
+import { formEmergencyContact } from '@/src/constants/data/forms/emergency-contacts';
 import { emergencyContactsSchema } from '../form/schemas/emergencyContact';
 import FormInput from '../form/ui-elements/FormInput';
-import { formElementsStep2 } from '@/src/constants/data/forms/add-employee';
-import Step from '../form/step/Step';
 
 const EditEmergencyModal = ({ onClose, handleEmergencyModal }) => {
-  const [showSecondBox, setShowSecondBox] = useState(false);
-  const handleToggleBox = () => {
-    setShowSecondBox((prev) => !prev);
-  };
-  const [currentStep, setCurrentStep] = useState(1);
-
   const {
     handleSubmit,
     values,
@@ -62,6 +48,8 @@ const EditEmergencyModal = ({ onClose, handleEmergencyModal }) => {
           borderRadius: '10px',
           boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
           maxHeight: '80%',
+          position: 'absolute',
+          top: '10%',
           overflow: 'auto',
           scrollbarWidth: 'thin',
           scrollbarColor: 'transparent transparent',
@@ -104,18 +92,18 @@ const EditEmergencyModal = ({ onClose, handleEmergencyModal }) => {
               flexDirection: 'row',
             }}
           >
-              <Grid item xs={12} md={6} >
+            <Grid item xs={12} md={6}>
               <Typography
                 sx={{
                   fontSize: { xs: '14px', md: '16px' },
                   fontWeight: 600,
                   paddingBottom: '35px',
+                  marginLeft: '10px',
                 }}
               >
                 {EDIT_MODAL?.primaryContact}
               </Typography>
-
-              {formEmergencySecondaryContact.map(
+              {formEmergencyContact.map(
                 (
                   {
                     label,
@@ -166,18 +154,19 @@ const EditEmergencyModal = ({ onClose, handleEmergencyModal }) => {
                 )
               )}
             </Grid>
-            <Grid item xs={12} md={6} >
+            <Grid item xs={12} md={6}>
               <Typography
                 sx={{
                   fontSize: { xs: '14px', md: '16px' },
                   fontWeight: 600,
                   paddingBottom: '35px',
+                  marginLeft: '10px',
                 }}
               >
                 {EDIT_MODAL?.secondaryContact}
               </Typography>
 
-              {formEmergencySecondaryContact.map(
+              {formEmergencyContact.map(
                 (
                   {
                     label,
@@ -228,140 +217,6 @@ const EditEmergencyModal = ({ onClose, handleEmergencyModal }) => {
                 )
               )}
             </Grid>
-
-            {/* {formEmergency.map(
-               ({ schema, form,  isMultiColumn }, stepIndex) => {
-                 console.log("test2",formEmergencyContact);
-              return (
-                <Step
-                  key={stepIndex}
-                  // currentStep={currentStep}
-                  form={form}
-                  schema={schema}
-                  isMultiColumn={isMultiColumn}
-                  // handleGoNext={handleGoNext}
-                  // handleGoPrev={handleGoPrev}
-                />
-              )
-            
-          }
-        )} */}
-            {/* <Grid item xs={12} md={6}>
-              {/* <Typography
-                sx={{
-                  fontSize: { xs: '14px', md: '16px' },
-                  fontWeight: 600,
-                  paddingBottom: '35px',
-                }}
-              >
-                {EDIT_MODAL?.primaryContact}
-              </Typography> */}
-
-            {/* {formEmergencyContact.map(
-                (
-                  {
-                    label,
-                    title,
-                    placeholder,
-                    errorText,
-                    prefixIcon,
-                    type,
-                    suffixIcon,
-                    options,
-                    name,
-                    nested,
-                    fields,
-                  },
-                  formIndex
-                ) => (
-                  <>
-                    <Grid item xs={12} lg={6}>
-                      <FormInput
-                        key={formIndex}
-                        label={label}
-                        title={title}
-                        placeholder={placeholder}
-                        errorText={errorText}
-                        prefixIcon={prefixIcon}
-                        type={type}
-                        suffixIcon={suffixIcon}
-                        options={options}
-                        name={name}
-                        setFieldValue={setFieldValue}
-                        value={values[name]}
-                        error={errors[name]}
-                        touched={touched}
-                        setFieldError={setFieldError}
-                        errors={errors}
-                        setErrors={setErrors}
-                        values={values}
-                        nested={nested}
-                        xs={12}
-                        sm={12}
-                        md={12}
-                        lg={12}
-                        fields={fields}
-                      />
-                    </Grid>
-                    {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>}
-                  </>
-                )
-              )}
-            </Grid>  */}
-            {/* <Grid item xs={12} md={6}>
-             
-              <Typography
-                sx={{ fontSize: { xs: '14px', md: '16px' }, fontWeight: 600 ,  paddingBottom: '35px',}}
-              >
-                {EDIT_MODAL?.secondaryContact}
-              </Typography>
-              {formEmergencySecondaryContact.map(
-                (
-                  {
-                    title,
-                    placeholder,
-                    errorText,
-                    prefixIcon,
-                    type,
-                    suffixIcon,
-                    options,
-                    name,
-                    nested,
-                    fields,
-                  },
-                  formIndex
-                ) => (
-                  <>
-                    <Grid item xs={12} lg={5}>
-                      <FormInput
-                        key={formIndex}
-                        title={title}
-                        placeholder={placeholder}
-                        errorText={errorText}
-                        prefixIcon={prefixIcon}
-                        type={type}
-                        suffixIcon={suffixIcon}
-                        options={options}
-                        name={name}
-                        setFieldValue={setFieldValue}
-                        value={values[name]}
-                        error={errors[name]}
-                        touched={touched}
-                        setFieldError={setFieldError}
-                        errors={errors}
-                        setErrors={setErrors}
-                        values={values}
-                        nested={nested}
-                        lg={12}
-                        fields={fields}
-                      />
-                    </Grid>
-                    {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>}
-                  </>
-                )
-              )}
-            </Grid> */}
-
             <Grid item p={'0 10px'} xs={12}>
               <Button
                 sx={{ minWidth: '120px' }}
@@ -373,138 +228,6 @@ const EditEmergencyModal = ({ onClose, handleEmergencyModal }) => {
             </Grid>
           </Grid>
         </form>
-        {/* <Box
-          sx={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              width: '80%',
-              paddingTop: '40px',
-              gap: '20px',
-            }}
-          >
-            <Box
-              sx={{
-                display: 'flex',
-                flexDirection: 'row',
-                '@media (min-width: 280px) and (max-width: 450px)': {
-                  flexDirection: 'column',
-                },
-              }}
-            >
-              <Box
-                sx={{
-                  display: 'flex',
-                  flexDirection: { xs: 'column', md: 'column' },
-                  gap: '40px',
-                  width: { xs: '100%', md: '50%' },
-                }}
-              >
-                <Typography
-                  sx={{ fontSize: { xs: '14px', md: '16px' }, fontWeight: 600 }}
-                >
-                  {EDIT_MODAL?.primaryContact}
-                </Typography>
-                <Box sx={{ width: '100%' }}>
-                  <Typography sx={{ color: '#595959', marginBottom: '10px' }}>
-                    {EDIT_MODAL?.name}
-                  </Typography>
-                  <TextField
-                    sx={{ width: '82%' }}
-                    placeholder={EDIT_MODAL?.namePlaceholder}
-                    inputProps={{
-                      style: {
-                        height: '10px',
-                      },
-                    }}
-                  />
-                </Box>
-                <Box sx={{ width: '100%' }}>
-                  <Typography sx={{ color: '#595959', marginBottom: '10px' }}>
-                    {EDIT_MODAL?.relationship}
-                  </Typography>
-                  <TextField
-                    sx={{ width: '82%' }}
-                    placeholder={EDIT_MODAL?.father}
-                    inputProps={{
-                      style: {
-                        height: '10px',
-                      },
-                    }}
-                  />
-                </Box>
-                <ContactDetails />
-              </Box>
-              <Box
-                sx={{
-                  display: 'flex',
-                  flexDirection: { xs: 'column', md: 'column' },
-                  gap: '40px',
-                  width: { xs: '100%', md: '50%' },
-                }}
-              >
-                <Typography
-                  sx={{
-                    fontSize: { xs: '14px', md: '16px' },
-                    fontWeight: 600,
-                    '@media (min-width: 280px) and (max-width: 450px)': {
-                      marginTop: '30px',
-                    },
-                  }}
-                >
-                  {EDIT_MODAL?.secondaryContact}
-                </Typography>
-                <Box sx={{ width: '100%' }}>
-                  <Typography sx={{ color: '#595959', marginBottom: '10px' }}>
-                    {EDIT_MODAL?.name}
-                  </Typography>
-                  <TextField
-                    sx={{ width: '82%' }}
-                    placeholder={EDIT_MODAL?.namePlaceholder}
-                    inputProps={{
-                      style: {
-                        height: '10px',
-                      },
-                    }}
-                  />
-                </Box>
-                <Box sx={{ width: '100%' }}>
-                  <Typography sx={{ color: '#595959', marginBottom: '10px' }}>
-                    {EDIT_MODAL?.relationship}
-                  </Typography>
-                  <TextField
-                    sx={{ width: '82%' }}
-                    placeholder={EDIT_MODAL?.father}
-                    inputProps={{
-                      style: {
-                        height: '10px',
-                      },
-                    }}
-                  />
-                </Box>
-                <ContactDetails />
-              </Box>
-            </Box>
-            <Button
-              variant="primary"
-              sx={{
-                width: { xs: '100px', sm: '120px' },
-                height: '40px',
-                fontSize: '16px',
-                fontWeight: 600,
-                marginTop: '10px',
-              }}
-            >
-              {EDIT_MODAL?.save}
-            </Button>
-          </Box>
-        </Box> */}
       </Box>
     </Modal>
   );

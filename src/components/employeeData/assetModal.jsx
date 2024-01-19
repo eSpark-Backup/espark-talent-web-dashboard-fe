@@ -1,26 +1,14 @@
-import React, { useState } from 'react';
-import {
-  Box,
-  Button,
-  Grid,
-  InputAdornment,
-  Modal,
-  TextField,
-  Typography,
-} from '@mui/material';
+import React from 'react';
+import { Box, Button, Grid, Modal, Typography } from '@mui/material';
 import { useFormik } from 'formik';
-import Image from 'next/image';
 
-import {
-  EDIT_MODAL,
-  employeeProfileData,
-} from '@/src/constants/employeeProfile';
+import { EDIT_MODAL } from '@/src/constants/employeeProfile';
 import FormInput from '../form/ui-elements/FormInput';
 import { assetForm } from '@/src/constants/data/forms/asset-form';
 import { assetFormSchema } from '../form/schemas/assetForm';
 
 const AssetForm = ({ onClose, open }) => {
-   const {
+  const {
     handleSubmit,
     values,
     setFieldValue,
@@ -39,23 +27,21 @@ const AssetForm = ({ onClose, open }) => {
     validateOnChange: false,
     validateOnBlur: false,
   });
-  const [selectedFile, setSelectedFile] = useState(null);
-  console.log(selectedFile);
-  const handleClick = () => {
-    const fileInput = document.getElementById('fileInput');
-    if (fileInput) {
-      fileInput.click();
-    }
-  };
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    if (file && file.type.startsWith(employeeProfileData?.acceptImage)) {
-      setSelectedFile(file);
-    } else {
-      alert(employeeProfileData?.invalidFile);
-      event.target.value = null;
-    }
-  };
+  // const handleClick = () => {
+  //   const fileInput = document.getElementById('fileInput');
+  //   if (fileInput) {
+  //     fileInput.click();
+  //   }
+  // };
+  // const handleFileChange = (event) => {
+  //   const file = event.target.files[0];
+  //   if (file && file.type.startsWith(employeeProfileData?.acceptImage)) {
+  //     setSelectedFile(file);
+  //   } else {
+  //     alert(employeeProfileData?.invalidFile);
+  //     event.target.value = null;
+  //   }
+  // }; commented code
 
   return (
     <Modal
@@ -77,10 +63,9 @@ const AssetForm = ({ onClose, open }) => {
           flexDirection: 'column',
           borderRadius: '10px',
           boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
-          // height: { xs: '750px', md: '510px' },
           position: 'absolute',
           top: '10%',
-          maxHeight:"90%",
+          maxHeight: '90%',
           '@media (min-width: 900px) and (max-width: 1440px)': {
             width: '70%',
           },
@@ -92,7 +77,7 @@ const AssetForm = ({ onClose, open }) => {
             p: 2,
             display: 'flex',
             justifyContent: 'space-between',
-            alignItems:"center"
+            alignItems: 'center',
           }}
         >
           <Typography
@@ -110,7 +95,7 @@ const AssetForm = ({ onClose, open }) => {
             onClick={onClose}
           />
         </Box>
-          <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
           <Grid
             container
             sx={{
@@ -134,7 +119,7 @@ const AssetForm = ({ onClose, open }) => {
                 formIndex
               ) => (
                 <>
-                  <Grid item xs={12} lg={5} >
+                  <Grid item xs={12} lg={5}>
                     <FormInput
                       key={formIndex}
                       title={title}
@@ -154,10 +139,10 @@ const AssetForm = ({ onClose, open }) => {
                       setErrors={setErrors}
                       values={values}
                       nested={nested}
-                        xs={12}
-                        sm={12}
-                        md={12}
-                        lg={12}
+                      xs={12}
+                      sm={12}
+                      md={12}
+                      lg={12}
                       fields={fields}
                     />
                   </Grid>
@@ -171,7 +156,7 @@ const AssetForm = ({ onClose, open }) => {
                 variant="contained"
                 type="submit"
               >
-              Save
+                Save
               </Button>
             </Grid>
           </Grid>

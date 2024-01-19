@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Button, Grid, Modal, TextField, Typography } from '@mui/material';
+import { Box, Button, Grid, Modal, Typography } from '@mui/material';
 
 import { EDIT_MODAL } from '@/src/constants/employeeProfile';
 import { useFormik } from 'formik';
@@ -47,7 +47,6 @@ const EditEmployeeCredential = ({ onClose, open }) => {
           flexDirection: 'column',
           borderRadius: '10px',
           boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
-          // height: { xs: '600px', md: '414px' },
           position: 'absolute',
           top: '10%',
           maxHeight: '75%',
@@ -87,8 +86,6 @@ const EditEmployeeCredential = ({ onClose, open }) => {
               padding: { xs: '10px 20px', lg: '41px 60px' },
             }}
           >
-                         
-
             {formEmployeeCredential.map(
               (
                 {
@@ -106,7 +103,7 @@ const EditEmployeeCredential = ({ onClose, open }) => {
                 formIndex
               ) => (
                 <>
-                  <Grid item xs={12} lg={5} >
+                  <Grid item xs={12} lg={5}>
                     <FormInput
                       key={formIndex}
                       title={title}
@@ -136,7 +133,7 @@ const EditEmployeeCredential = ({ onClose, open }) => {
                   {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>}
                 </>
               )
-              )}
+            )}
             <Grid item p={'0 10px'} xs={12}>
               <Button
                 sx={{ minWidth: '120px' }}
@@ -148,128 +145,6 @@ const EditEmployeeCredential = ({ onClose, open }) => {
             </Grid>
           </Grid>
         </form>
-        {/* <Box
-          sx={{
-            display: 'flex',
-            justifyContent: 'center',
-          }}
-        >
-          <Box
-            sx={{
-              padding: '15px',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: { xs: '20px', md: '40px' },
-              width: '80%',
-            }}
-          >
-            <Box
-              sx={{
-                display: 'flex',
-                flexDirection: { xs: 'column', md: 'row' },
-                justifyContent: { xs: 'center', md: 'space-between' },
-                gap: { xs: '20px', md: '0px' },
-              }}
-            >
-              <Box sx={{ width: '100%' }}>
-                <Typography sx={{ color: '#595959', marginBottom: '10px' }}>
-                  {EDIT_MODAL?.employeeId}
-                </Typography>
-                <TextField
-                  sx={{
-                    width: '82%',
-                    '& input::placeholder': {
-                      fontSize: { xs: '12px', md: '14px' },
-                    },
-                  }}
-                  placeholder={EDIT_MODAL?.id}
-                  inputProps={{
-                    style: {
-                      height: '10px',
-                    },
-                  }}
-                />
-              </Box>
-              <Box sx={{ width: '100%' }}>
-                <Typography sx={{ color: '#595959', marginBottom: '10px' }}>
-                  {EDIT_MODAL?.currentPassword}
-                </Typography>
-                <TextField
-                  sx={{
-                    width: '82%',
-                    '& input::placeholder': {
-                      fontSize: { xs: '11px', md: '14px' },
-                    },
-                  }}
-                  placeholder={EDIT_MODAL?.enterPassword}
-                  inputProps={{
-                    style: {
-                      height: '10px',
-                    },
-                  }}
-                />
-              </Box>
-            </Box>
-            <Box
-              sx={{
-                display: 'flex',
-                flexDirection: { xs: 'column', md: 'row' },
-                justifyContent: { xs: 'center', md: 'space-between' },
-                gap: { xs: '20px', md: '0px' },
-              }}
-            >
-              <Box sx={{ width: '100%' }}>
-                <Typography sx={{ color: '#595959', marginBottom: '10px' }}>
-                  {EDIT_MODAL?.newPassword}
-                </Typography>
-                <TextField
-                  sx={{
-                    width: '82%',
-                    '& input::placeholder': {
-                      fontSize: { xs: '12px', md: '14px' },
-                    },
-                  }}
-                  placeholder={EDIT_MODAL?.enternewPassword}
-                  inputProps={{
-                    style: {
-                      height: '10px',
-                    },
-                  }}
-                />
-              </Box>
-              <Box sx={{ width: '100%' }}>
-                <Typography sx={{ color: '#595959', marginBottom: '10px' }}>
-                  {EDIT_MODAL?.confirmPassword}
-                </Typography>
-                <TextField
-                  sx={{
-                    width: '82%',
-                    '& input::placeholder': {
-                      fontSize: { xs: '12px', md: '14px' },
-                    },
-                  }}
-                  placeholder={EDIT_MODAL?.confirmPassword}
-                  inputProps={{
-                    style: {
-                      height: '10px',
-                    },
-                  }}
-                />
-              </Box>
-            </Box>
-            <Button
-              variant="primary"
-              sx={{
-                width: { xs: '100px', sm: '120px' },
-                height: '40px',
-                fontSize: '16px',
-                fontWeight: 600,
-              }}
-            >
-              {EDIT_MODAL?.save}
-            </Button>
-          </Box>
-        </Box> */}
       </Box>
     </Modal>
   );

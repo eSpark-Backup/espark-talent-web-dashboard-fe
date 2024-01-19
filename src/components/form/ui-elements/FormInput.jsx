@@ -93,7 +93,7 @@ const FormInput = ({
         >
           {label}
         </Typography>
-        </Box>
+      </Box>
       <Box>
         <Typography
           sx={{
