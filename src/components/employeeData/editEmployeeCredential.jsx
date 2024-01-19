@@ -1,9 +1,32 @@
 import React from 'react';
-import { Box, Button, Modal, TextField, Typography } from '@mui/material';
+import { Box, Button, Grid, Modal, TextField, Typography } from '@mui/material';
 
 import { EDIT_MODAL } from '@/src/constants/employeeProfile';
+import { useFormik } from 'formik';
+import FormInput from '../form/ui-elements/FormInput';
+import { formEmployeeCredential } from '@/src/constants/data/forms/employee-credential';
+import { editEmployeeCredentialSchema } from '../form/schemas/employeeCredential';
 
 const EditEmployeeCredential = ({ onClose, open }) => {
+   const {
+    handleSubmit,
+    values,
+    setFieldValue,
+    errors,
+    touched,
+    setFieldError,
+    setErrors,
+  } = useFormik({
+    initialValues: {},
+    validationSchema: editEmployeeCredentialSchema,
+    enableReinitialize: true,
+    onSubmit: (formValues) => {
+      console.log({ formValues });
+      //   handleGoNext();
+    },
+    validateOnChange: false,
+    validateOnBlur: false,
+  });
   return (
     <Modal
       open={open}
@@ -50,16 +73,75 @@ const EditEmployeeCredential = ({ onClose, open }) => {
             {EDIT_MODAL?.editEmployeeCredentials}
           </Typography>
           <Box
-            sx={{
-              width: { xs: '35px', md: '25px' },
-              height: { xs: '35px', md: '25px' },
-            }}
             src="/images/leave-request/close.svg"
             component={'img'}
             onClick={onClose}
           />
         </Box>
-        <Box
+          <form onSubmit={handleSubmit}>
+          <Grid
+            container
+            sx={{
+              padding: { xs: '10px 20px', lg: '41px 100px' },
+            }}
+          >
+            {formEmployeeCredential.map(
+              (
+                {
+                  title,
+                  placeholder,
+                  errorText,
+                  prefixIcon,
+                  type,
+                  suffixIcon,
+                  options,
+                  name,
+                  nested,
+                  fields,
+                },
+                formIndex
+              ) => (
+                <>
+                  <Grid item xs={12} lg={5}>
+                    <FormInput
+                      key={formIndex}
+                      title={title}
+                      placeholder={placeholder}
+                      errorText={errorText}
+                      prefixIcon={prefixIcon}
+                      type={type}
+                      suffixIcon={suffixIcon}
+                      options={options}
+                      name={name}
+                      setFieldValue={setFieldValue}
+                      value={values[name]}
+                      error={errors[name]}
+                      touched={touched}
+                      setFieldError={setFieldError}
+                      errors={errors}
+                      setErrors={setErrors}
+                      values={values}
+                      nested={nested}
+                      lg={12}
+                      fields={fields}
+                    />
+                  </Grid>
+                  {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>}
+                </>
+              )
+            )}
+            <Grid item p={'0 10px'} xs={12}>
+              <Button
+                sx={{ minWidth: '120px' }}
+                variant="contained"
+                type="submit"
+              >
+              Save
+              </Button>
+            </Grid>
+          </Grid>
+        </form>
+        {/* <Box
           sx={{
             display: 'flex',
             justifyContent: 'center',
@@ -180,7 +262,7 @@ const EditEmployeeCredential = ({ onClose, open }) => {
               {EDIT_MODAL?.save}
             </Button>
           </Box>
-        </Box>
+        </Box> */}
       </Box>
     </Modal>
   );

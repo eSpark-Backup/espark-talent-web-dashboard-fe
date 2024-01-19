@@ -82,7 +82,7 @@ const formElements = [
     type: 'file',
   },
 ];
-const formElementsStep2 = [
+export const formElementsStep2 = [
   {
     label: 'Primary',
     fields: [

@@ -3,6 +3,7 @@ import {
   Box,
   Button,
   FormControl,
+  Grid,
   InputAdornment,
   InputLabel,
   MenuItem,
@@ -20,8 +21,31 @@ import {
 import { GENDER_OPTION } from '@/src/constants/Hiring';
 import DatePicker from './Datepicker';
 import PersonalDetails from './personalDetails';
+import { useFormik } from 'formik';
+import FormInput from '../form/ui-elements/FormInput';
+import { personalDetailsForm } from '@/src/constants/data/forms/employee-personal-details';
+import { employeePersonalDataSchema } from '../form/schemas/employeePersonalDetails';
 
 const EditPersonalModal = ({ onClose, handleEditProfileModal }) => {
+   const {
+    handleSubmit,
+    values,
+    setFieldValue,
+    errors,
+    touched,
+    setFieldError,
+    setErrors,
+  } = useFormik({
+    initialValues: {},
+    validationSchema: employeePersonalDataSchema,
+    enableReinitialize: true,
+    onSubmit: (formValues) => {
+      console.log({ formValues });
+      //   handleGoNext();
+    },
+    validateOnChange: false,
+    validateOnBlur: false,
+  });
   const [selectedValue, setSelectedValue] = useState();
   const [isOpen, setIsOpen] = useState(false);
   const [open, setOpen] = useState(false);
@@ -57,16 +81,13 @@ const EditPersonalModal = ({ onClose, handleEditProfileModal }) => {
     >
       <Box
         sx={{
-          bgcolor: '#fff',
+         bgcolor: '#fff',
           width: { xs: '90%', sm: '90%', md: '55%' },
           display: 'flex',
           flexDirection: 'column',
           borderRadius: '10px',
           boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
-          height: { xs: '900px', md: '715px' },
-          position: 'absolute',
-          top: '10%',
-          maxHeight: '80%',
+          maxHeight: '90%',
           overflow: 'auto',
           scrollbarWidth: 'thin',
           scrollbarColor: 'transparent transparent',
@@ -81,6 +102,8 @@ const EditPersonalModal = ({ onClose, handleEditProfileModal }) => {
             p: 2,
             display: 'flex',
             justifyContent: 'space-between',
+                        alignItems: 'center',
+
           }}
         >
           <Typography
@@ -94,16 +117,75 @@ const EditPersonalModal = ({ onClose, handleEditProfileModal }) => {
           </Typography>
 
           <Box
-            sx={{
-              width: { xs: '35px', md: '25px' },
-              height: { xs: '35px', md: '25px' },
-            }}
             src="/images/leave-request/close.svg"
             component={'img'}
             onClick={onClose}
           />
         </Box>
-        <Box
+          <form onSubmit={handleSubmit}>
+          <Grid
+            container
+            sx={{
+              padding: { xs: '10px 20px', lg: '41px 100px' },
+            }}
+          >
+            {personalDetailsForm.map(
+              (
+                {
+                  title,
+                  placeholder,
+                  errorText,
+                  prefixIcon,
+                  type,
+                  suffixIcon,
+                  options,
+                  name,
+                  nested,
+                  fields,
+                },
+                formIndex
+              ) => (
+                <>
+                  <Grid item xs={12} lg={5}>
+                    <FormInput
+                      key={formIndex}
+                      title={title}
+                      placeholder={placeholder}
+                      errorText={errorText}
+                      prefixIcon={prefixIcon}
+                      type={type}
+                      suffixIcon={suffixIcon}
+                      options={options}
+                      name={name}
+                      setFieldValue={setFieldValue}
+                      value={values[name]}
+                      error={errors[name]}
+                      touched={touched}
+                      setFieldError={setFieldError}
+                      errors={errors}
+                      setErrors={setErrors}
+                      values={values}
+                      nested={nested}
+                      lg={12}
+                      fields={fields}
+                    />
+                  </Grid>
+                  {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>}
+                </>
+              )
+            )}
+            <Grid item p={'0 10px'} xs={12}>
+              <Button
+                sx={{ minWidth: '120px' }}
+                variant="contained"
+                type="submit"
+              >
+              Save
+              </Button>
+            </Grid>
+          </Grid>
+        </form>
+        {/* <Box
           sx={{
             display: 'flex',
             justifyContent: 'center',
@@ -249,7 +331,7 @@ const EditPersonalModal = ({ onClose, handleEditProfileModal }) => {
               {EDIT_MODAL?.save}
             </Button>
           </Box>
-        </Box>
+        </Box> */}
       </Box>
     </Modal>
   );
