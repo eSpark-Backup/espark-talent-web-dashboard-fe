@@ -4,16 +4,25 @@ import { useFormik } from 'formik';
 
 import { EDIT_MODAL } from '@/src/constants/employeeProfile';
 import ContactDetails from './phoneDetail';
-import {formEmergencyPrimaryContact, formEmergencySecondaryContact } from '@/src/constants/data/forms/emergency-contacts';
+import {
+  formEmergency,
+  formEmergencyContact,
+  formEmergencyPrimaryContact,
+  formEmergencySecondaryContact,
+} from '@/src/constants/data/forms/emergency-contacts';
 import { emergencyContactsSchema } from '../form/schemas/emergencyContact';
 import FormInput from '../form/ui-elements/FormInput';
+import { formElementsStep2 } from '@/src/constants/data/forms/add-employee';
+import Step from '../form/step/Step';
 
 const EditEmergencyModal = ({ onClose, handleEmergencyModal }) => {
-    const [showSecondBox, setShowSecondBox] = useState(false);
+  const [showSecondBox, setShowSecondBox] = useState(false);
   const handleToggleBox = () => {
     setShowSecondBox((prev) => !prev);
   };
-   const {
+  const [currentStep, setCurrentStep] = useState(1);
+
+  const {
     handleSubmit,
     values,
     setFieldValue,
@@ -67,6 +76,7 @@ const EditEmergencyModal = ({ onClose, handleEmergencyModal }) => {
             p: 2,
             display: 'flex',
             justifyContent: 'space-between',
+            alignItems: 'center',
           }}
         >
           <Typography
@@ -85,129 +95,283 @@ const EditEmergencyModal = ({ onClose, handleEmergencyModal }) => {
             onClick={onClose}
           />
         </Box>
-         <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
           <Grid
             container
             sx={{
-              padding: { xs: '10px 20px', lg: '41px 100px' },
-              display: "flex",
-              flexDirection:"row"
+              padding: { xs: '10px 20px', lg: '35px 70px' },
+              display: 'flex',
+              flexDirection: 'row',
             }}
           >
-            <Grid item xs={12} md={6}>
-               <Typography
-                  sx={{ fontSize: { xs: '14px', md: '16px' }, fontWeight: 600 }}
-                >
-              {EDIT_MODAL?.primaryContact}
+              <Grid item xs={12} md={6} >
+              <Typography
+                sx={{
+                  fontSize: { xs: '14px', md: '16px' },
+                  fontWeight: 600,
+                  paddingBottom: '35px',
+                }}
+              >
+                {EDIT_MODAL?.primaryContact}
               </Typography>
-                {formEmergencyPrimaryContact.map(
-              (
-                {
-                  title,
-                  placeholder,
-                  errorText,
-                  prefixIcon,
-                  type,
-                  suffixIcon,
-                  options,
-                  name,
-                  nested,
-                  fields,
-                },
-                formIndex
-              ) => (
-                <>
-                  <Grid item xs={12} lg={5}>
-                    <FormInput
-                      key={formIndex}
-                      title={title}
-                      placeholder={placeholder}
-                      errorText={errorText}
-                      prefixIcon={prefixIcon}
-                      type={type}
-                      suffixIcon={suffixIcon}
-                      options={options}
-                      name={name}
-                      setFieldValue={setFieldValue}
-                      value={values[name]}
-                      error={errors[name]}
-                      touched={touched}
-                      setFieldError={setFieldError}
-                      errors={errors}
-                      setErrors={setErrors}
-                      values={values}
-                      nested={nested}
-                      lg={12}
-                      fields={fields}
-                    />
-                  </Grid>
-                  {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>}
-                </>
-              )
+
+              {formEmergencySecondaryContact.map(
+                (
+                  {
+                    label,
+                    title,
+                    placeholder,
+                    errorText,
+                    prefixIcon,
+                    type,
+                    suffixIcon,
+                    options,
+                    name,
+                    nested,
+                    fields,
+                  },
+                  formIndex
+                ) => (
+                  <>
+                    <Grid item xs={12} lg={10}>
+                      <FormInput
+                        key={formIndex}
+                        label={label}
+                        title={title}
+                        placeholder={placeholder}
+                        errorText={errorText}
+                        prefixIcon={prefixIcon}
+                        type={type}
+                        suffixIcon={suffixIcon}
+                        options={options}
+                        name={name}
+                        setFieldValue={setFieldValue}
+                        value={values[name]}
+                        error={errors[name]}
+                        touched={touched}
+                        setFieldError={setFieldError}
+                        errors={errors}
+                        setErrors={setErrors}
+                        values={values}
+                        nested={nested}
+                        xs={12}
+                        sm={12}
+                        md={12}
+                        lg={12}
+                        fields={fields}
+                      />
+                    </Grid>
+                    {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>}
+                  </>
+                )
               )}
             </Grid>
-            <Grid item xs={12} md={6}>  <Typography
-                  sx={{ fontSize: { xs: '14px', md: '16px' }, fontWeight: 600 }}
-                >
-              {EDIT_MODAL?.secondaryContact}
+            <Grid item xs={12} md={6} >
+              <Typography
+                sx={{
+                  fontSize: { xs: '14px', md: '16px' },
+                  fontWeight: 600,
+                  paddingBottom: '35px',
+                }}
+              >
+                {EDIT_MODAL?.secondaryContact}
               </Typography>
-             {formEmergencySecondaryContact.map(
-              (
-                {
-                  title,
-                  placeholder,
-                  errorText,
-                  prefixIcon,
-                  type,
-                  suffixIcon,
-                  options,
-                  name,
-                  nested,
-                  fields,
-                },
-                formIndex
-              ) => (
-                <>
-                  <Grid item xs={12} lg={5}>
-                    <FormInput
-                      key={formIndex}
-                      title={title}
-                      placeholder={placeholder}
-                      errorText={errorText}
-                      prefixIcon={prefixIcon}
-                      type={type}
-                      suffixIcon={suffixIcon}
-                      options={options}
-                      name={name}
-                      setFieldValue={setFieldValue}
-                      value={values[name]}
-                      error={errors[name]}
-                      touched={touched}
-                      setFieldError={setFieldError}
-                      errors={errors}
-                      setErrors={setErrors}
-                      values={values}
-                      nested={nested}
-                      lg={12}
-                      fields={fields}
-                    />
-                  </Grid>
-                  {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>}
-                </>
+
+              {formEmergencySecondaryContact.map(
+                (
+                  {
+                    label,
+                    title,
+                    placeholder,
+                    errorText,
+                    prefixIcon,
+                    type,
+                    suffixIcon,
+                    options,
+                    name,
+                    nested,
+                    fields,
+                  },
+                  formIndex
+                ) => (
+                  <>
+                    <Grid item xs={12} lg={10}>
+                      <FormInput
+                        key={formIndex}
+                        label={label}
+                        title={title}
+                        placeholder={placeholder}
+                        errorText={errorText}
+                        prefixIcon={prefixIcon}
+                        type={type}
+                        suffixIcon={suffixIcon}
+                        options={options}
+                        name={name}
+                        setFieldValue={setFieldValue}
+                        value={values[name]}
+                        error={errors[name]}
+                        touched={touched}
+                        setFieldError={setFieldError}
+                        errors={errors}
+                        setErrors={setErrors}
+                        values={values}
+                        nested={nested}
+                        xs={12}
+                        sm={12}
+                        md={12}
+                        lg={12}
+                        fields={fields}
+                      />
+                    </Grid>
+                    {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>}
+                  </>
+                )
+              )}
+            </Grid>
+
+            {/* {formEmergency.map(
+               ({ schema, form,  isMultiColumn }, stepIndex) => {
+                 console.log("test2",formEmergencyContact);
+              return (
+                <Step
+                  key={stepIndex}
+                  // currentStep={currentStep}
+                  form={form}
+                  schema={schema}
+                  isMultiColumn={isMultiColumn}
+                  // handleGoNext={handleGoNext}
+                  // handleGoPrev={handleGoPrev}
+                />
               )
-              )}</Grid> 
-           
+            
+          }
+        )} */}
+            {/* <Grid item xs={12} md={6}>
+              {/* <Typography
+                sx={{
+                  fontSize: { xs: '14px', md: '16px' },
+                  fontWeight: 600,
+                  paddingBottom: '35px',
+                }}
+              >
+                {EDIT_MODAL?.primaryContact}
+              </Typography> */}
+
+            {/* {formEmergencyContact.map(
+                (
+                  {
+                    label,
+                    title,
+                    placeholder,
+                    errorText,
+                    prefixIcon,
+                    type,
+                    suffixIcon,
+                    options,
+                    name,
+                    nested,
+                    fields,
+                  },
+                  formIndex
+                ) => (
+                  <>
+                    <Grid item xs={12} lg={6}>
+                      <FormInput
+                        key={formIndex}
+                        label={label}
+                        title={title}
+                        placeholder={placeholder}
+                        errorText={errorText}
+                        prefixIcon={prefixIcon}
+                        type={type}
+                        suffixIcon={suffixIcon}
+                        options={options}
+                        name={name}
+                        setFieldValue={setFieldValue}
+                        value={values[name]}
+                        error={errors[name]}
+                        touched={touched}
+                        setFieldError={setFieldError}
+                        errors={errors}
+                        setErrors={setErrors}
+                        values={values}
+                        nested={nested}
+                        xs={12}
+                        sm={12}
+                        md={12}
+                        lg={12}
+                        fields={fields}
+                      />
+                    </Grid>
+                    {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>}
+                  </>
+                )
+              )}
+            </Grid>  */}
+            {/* <Grid item xs={12} md={6}>
+             
+              <Typography
+                sx={{ fontSize: { xs: '14px', md: '16px' }, fontWeight: 600 ,  paddingBottom: '35px',}}
+              >
+                {EDIT_MODAL?.secondaryContact}
+              </Typography>
+              {formEmergencySecondaryContact.map(
+                (
+                  {
+                    title,
+                    placeholder,
+                    errorText,
+                    prefixIcon,
+                    type,
+                    suffixIcon,
+                    options,
+                    name,
+                    nested,
+                    fields,
+                  },
+                  formIndex
+                ) => (
+                  <>
+                    <Grid item xs={12} lg={5}>
+                      <FormInput
+                        key={formIndex}
+                        title={title}
+                        placeholder={placeholder}
+                        errorText={errorText}
+                        prefixIcon={prefixIcon}
+                        type={type}
+                        suffixIcon={suffixIcon}
+                        options={options}
+                        name={name}
+                        setFieldValue={setFieldValue}
+                        value={values[name]}
+                        error={errors[name]}
+                        touched={touched}
+                        setFieldError={setFieldError}
+                        errors={errors}
+                        setErrors={setErrors}
+                        values={values}
+                        nested={nested}
+                        lg={12}
+                        fields={fields}
+                      />
+                    </Grid>
+                    {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>}
+                  </>
+                )
+              )}
+            </Grid> */}
+
             <Grid item p={'0 10px'} xs={12}>
               <Button
                 sx={{ minWidth: '120px' }}
                 variant="contained"
                 type="submit"
               >
-              Save
+                Save
               </Button>
             </Grid>
           </Grid>
-          
         </form>
         {/* <Box
           sx={{

@@ -64,6 +64,8 @@ export const personalDetailsForm = [
         placeholder: 'Select',
         name: 'maritalStatus',
         type: 'select',
+        defaultValue: 'Married',
+
         options: [
             {
                 label: 'Married',

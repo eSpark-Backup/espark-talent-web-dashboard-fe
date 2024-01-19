@@ -8,7 +8,7 @@ import { formEmployeeCredential } from '@/src/constants/data/forms/employee-cred
 import { editEmployeeCredentialSchema } from '../form/schemas/employeeCredential';
 
 const EditEmployeeCredential = ({ onClose, open }) => {
-   const {
+  const {
     handleSubmit,
     values,
     setFieldValue,
@@ -47,9 +47,10 @@ const EditEmployeeCredential = ({ onClose, open }) => {
           flexDirection: 'column',
           borderRadius: '10px',
           boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
-          height: { xs: '600px', md: '414px' },
+          // height: { xs: '600px', md: '414px' },
           position: 'absolute',
           top: '10%',
+          maxHeight: '75%',
           '@media (min-width: 900px) and (max-width: 1440px)': {
             width: '70%',
           },
@@ -61,6 +62,7 @@ const EditEmployeeCredential = ({ onClose, open }) => {
             p: 2,
             display: 'flex',
             justifyContent: 'space-between',
+            alignItems: 'center',
           }}
         >
           <Typography
@@ -78,13 +80,15 @@ const EditEmployeeCredential = ({ onClose, open }) => {
             onClick={onClose}
           />
         </Box>
-          <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
           <Grid
             container
             sx={{
-              padding: { xs: '10px 20px', lg: '41px 100px' },
+              padding: { xs: '10px 20px', lg: '41px 60px' },
             }}
           >
+                         
+
             {formEmployeeCredential.map(
               (
                 {
@@ -102,7 +106,7 @@ const EditEmployeeCredential = ({ onClose, open }) => {
                 formIndex
               ) => (
                 <>
-                  <Grid item xs={12} lg={5}>
+                  <Grid item xs={12} lg={5} >
                     <FormInput
                       key={formIndex}
                       title={title}
@@ -122,6 +126,9 @@ const EditEmployeeCredential = ({ onClose, open }) => {
                       setErrors={setErrors}
                       values={values}
                       nested={nested}
+                      xs={12}
+                      sm={12}
+                      md={12}
                       lg={12}
                       fields={fields}
                     />
@@ -129,14 +136,14 @@ const EditEmployeeCredential = ({ onClose, open }) => {
                   {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>}
                 </>
               )
-            )}
+              )}
             <Grid item p={'0 10px'} xs={12}>
               <Button
                 sx={{ minWidth: '120px' }}
                 variant="contained"
                 type="submit"
               >
-              Save
+                Save
               </Button>
             </Grid>
           </Grid>

@@ -13,6 +13,7 @@ const FormInput = ({
   sm = 6,
   md = 4,
   lg = 3,
+  label,
   title,
   placeholder,
   prefixIcon,
@@ -79,6 +80,20 @@ const FormInput = ({
         padding: '0 10px',
       }}
     >
+      <Box>
+        <Typography
+          sx={{
+            color: error ? 'red' : '#595959',
+            fontSize: '14px',
+            fontStyle: 'normal',
+            fontWeight: 500,
+            lineHeight: 'normal',
+            mb: '10px',
+          }}
+        >
+          {label}
+        </Typography>
+        </Box>
       <Box>
         <Typography
           sx={{

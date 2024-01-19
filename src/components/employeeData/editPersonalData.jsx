@@ -87,7 +87,7 @@ const EditPersonalModal = ({ onClose, handleEditProfileModal }) => {
           flexDirection: 'column',
           borderRadius: '10px',
           boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
-          maxHeight: '90%',
+          maxHeight: '85%',
           overflow: 'auto',
           scrollbarWidth: 'thin',
           scrollbarColor: 'transparent transparent',
@@ -166,6 +166,9 @@ const EditPersonalModal = ({ onClose, handleEditProfileModal }) => {
                       setErrors={setErrors}
                       values={values}
                       nested={nested}
+                        xs={12}
+                      sm={12}
+                      md={12}
                       lg={12}
                       fields={fields}
                     />
