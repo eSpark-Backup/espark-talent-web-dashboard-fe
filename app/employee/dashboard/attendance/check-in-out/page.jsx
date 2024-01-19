@@ -121,15 +121,9 @@ const Dashboard = () => {
   ];
 
   const handleClickActionView = (props) => {
-    const {
-      item,
-      row,
-      row: { status, employeeName, count, leaveType },
-    } = props;
+    const { item, row } = props;
     setModalData({ item, ...row });
     setOpenPunch(true);
-    // setStatusType(item);
-    // setActionType(status)
   };
   const handleOpenModal = () => {
     setModalData({});

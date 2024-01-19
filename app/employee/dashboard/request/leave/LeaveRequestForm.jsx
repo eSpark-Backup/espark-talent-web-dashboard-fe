@@ -20,7 +20,6 @@ const LeaveRequestForm = ({ handleClose }) => {
     enableReinitialize: true,
     onSubmit: (formValues) => {
       console.log({ formValues });
-      handleGoNext();
     },
     validateOnChange: false,
     validateOnBlur: false,

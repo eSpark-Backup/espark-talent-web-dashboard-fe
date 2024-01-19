@@ -27,7 +27,7 @@ const PunchRequestDataView = ({ modalData, handleClose }) => {
     <Box p={'28px'}>
       {createPunchRequestViewData?.map(
         ({ title, value, suffixIcon }, dataIndex) => (
-          <Box>
+          <Box key={dataIndex}>
             <Box
               sx={{
                 padding: '5px 10px',
