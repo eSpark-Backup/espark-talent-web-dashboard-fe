@@ -8,7 +8,13 @@ export const renderTrackingStatus = ({
   shortForm,
 }) => {
   return (
-    <Box mb={'10px'} display={'flex'} alignItems={'center'} key={statusIndex}>
+    <Box
+      mr={'20px'}
+      mb={'10px'}
+      display={'flex'}
+      alignItems={'center'}
+      key={statusIndex}
+    >
       <Box
         sx={{
           width: '30px',

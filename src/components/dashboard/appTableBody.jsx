@@ -2,127 +2,125 @@ import { trackingStatusTypes } from '@/src/constants/data/tables/timeTracking';
 import { toCamelCase } from '@/src/utils/stringModification';
 import { Box, Typography } from '@mui/material';
 import Image from 'next/image';
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect, useRef, useState } from 'react';
 import AppCustomDropdown from './appCustomDropdown';
 import TableHiddenBody from './appTableHiddenBody';
 
 const InfoOption = ({
-    row,
-    col,
-    handleClick,
-    handleClickRenderMessageButton,
-  }) => {
-    const [isOpen, setIsOpen] = useState(false);
-    const componentRef = useRef(null);
-  
-    useEffect(() => {
-      const handleClickOutside = (event) => {
-        if (
-          componentRef.current &&
-          !componentRef.current.contains(event.target)
-        ) {
-          setIsOpen(false);
-        }
-      };
-  
-      document.addEventListener('click', handleClickOutside);
-  
-      return () => {
-        document.removeEventListener('click', handleClickOutside);
-      };
-    }, []);
-    return (
+  row,
+  col,
+  handleClick,
+  handleClickRenderMessageButton,
+}) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const componentRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        componentRef.current &&
+        !componentRef.current.contains(event.target)
+      ) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
+  return (
+    <Box
+      sx={{
+        width: '90px',
+        position: 'relative',
+      }}
+      ref={componentRef}
+    >
       <Box
+        onClick={() => setIsOpen((ps) => !ps)}
         sx={{
-          width: '90px',
-          position: 'relative',
+          border: 'solid 1px #ccc',
+          borderRadius: '5px',
+          backgroundColor: '#fff',
         }}
-        ref={componentRef}
+        justifyContent={'center'}
+        p="7px 10px"
+        display={'flex'}
+        alignItems="center"
       >
+        <Box>
+          <Image
+            src={'/icons/OptionDots.svg'}
+            width={20}
+            height={20}
+            alt="Options"
+          />
+        </Box>
+        <Box>{row[toCamelCase(col || col?.title)]}</Box>
+      </Box>
+      {isOpen && (
         <Box
-          onClick={() => setIsOpen((ps) => !ps)}
           sx={{
             border: 'solid 1px #ccc',
             borderRadius: '5px',
+            marginTop: '10px',
+            position: 'absolute',
             backgroundColor: '#fff',
+            width: '120px',
           }}
-          justifyContent={'center'}
-          p="7px 10px"
-          display={'flex'}
-          alignItems="center"
         >
-          <Box>
-            <Image
-              src={'/icons/OptionDots.svg'}
-              width={20}
-              height={20}
-              alt="Options"
-            />
-          </Box>
-          <Box>{row[toCamelCase(col || col?.title)]}</Box>
-        </Box>
-        {isOpen && (
           <Box
+            onClick={handleClick}
             sx={{
-              border: 'solid 1px #ccc',
-              borderRadius: '5px',
-              marginTop: '10px',
-              position: 'absolute',
-              backgroundColor: '#fff',
-              width: '120px',
+              borderBottom: 'solid 1px #ccc',
+              padding: '7px 10px',
+              cursor: 'pointer',
             }}
           >
-            <Box
-              onClick={handleClick}
-              sx={{
-                borderBottom: 'solid 1px #ccc',
-                padding: '7px 10px',
-                cursor: 'pointer',
-              }}
-            >
-              View details
-            </Box>
-            <Box
-              onClick={handleClickRenderMessageButton}
-              sx={{
-                padding: '7px 10px',
-                cursor: 'pointer',
-              }}
-            >
-              Add member
-            </Box>
+            View details
           </Box>
-        )}
-      </Box>
-    );
-  };
+          <Box
+            onClick={handleClickRenderMessageButton}
+            sx={{
+              padding: '7px 10px',
+              cursor: 'pointer',
+            }}
+          >
+            Add member
+          </Box>
+        </Box>
+      )}
+    </Box>
+  );
+};
 
-  const renderAttendenceStatus = (statusType, index) => {
-    const status = trackingStatusTypes?.find(
-      ({ shortForm }) => shortForm === statusType
-    );
-    return (
-      <Box
-        key={index}
-        sx={{
-          width: '30px',
-          height: '30px',
-          borderRadius: '50%',
-          background: status.background,
-          color: '#fff',
-        }}
-        mr={'10px'}
-        display={'flex'}
-        fontSize={'12px'}
-        justifyContent={'center'}
-        alignItems={'center'}
-      >
-        {statusType}
-      </Box>
-    );
-  };
-  
-  
+const renderAttendenceStatus = (statusType, index) => {
+  const status = trackingStatusTypes?.find(
+    ({ shortForm }) => shortForm === statusType
+  );
+  return (
+    <Box
+      key={index}
+      sx={{
+        width: '30px',
+        height: '30px',
+        borderRadius: '50%',
+        background: status.background,
+        color: '#fff',
+      }}
+      mr={'10px'}
+      display={'flex'}
+      fontSize={'12px'}
+      justifyContent={'center'}
+      alignItems={'center'}
+    >
+      {statusType}
+    </Box>
+  );
+};
 
 const AppTableBody = ({
   data,
@@ -131,7 +129,7 @@ const AppTableBody = ({
   handleClickActionView,
   handleClickRenderMessageButton,
   renderMessageButton,
-  handleClick
+  handleClick,
 }) => {
   return (
     <tbody>

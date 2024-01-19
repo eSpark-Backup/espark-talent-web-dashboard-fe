@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Modal } from '@mui/material';
 
-import AppTable from '../dashboard/appTable';
 import {
   timeSheetTableColumn,
   timeSheetTableData,
 } from '@/src/constants/data/tables/timeSheet';
 import AttendanceViewModal from '@/app/employee/dashboard/attendance/time-sheet/AttendanceViewModal';
 import { employeeProfileData } from '@/src/constants/employeeProfile';
+import AppTable from '../appTable/AppTable';
 
 const AttendanceReport = () => {
   const [isLoading, setIsLoading] = useState(true);

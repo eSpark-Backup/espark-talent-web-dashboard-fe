@@ -6,13 +6,13 @@ import Tab from '@mui/material/Tab';
 import Link from 'next/link';
 
 import Input from '@/src/components/dashboard/input';
-import AppTable from '@/src/components/dashboard/appTable';
 import { employeeTableDataHiringRequest } from '@/src/constants/data/tables/employee';
 import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
 import { filterDataByKeyword } from '@/src/utils/search';
 import { changeTab } from '@/src/utils/tabs';
 import { empTabs } from '@/src/constants/data/tabs/empTabs';
 import { HIRING_FORM_DATA } from '@/src/constants/Hiring';
+import AppTable from '@/src/components/appTable/AppTable';
 
 const Dashboard = () => {
   const [value, setValue] = useState(0);

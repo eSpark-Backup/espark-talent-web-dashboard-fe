@@ -119,7 +119,6 @@ const Dashboard = () => {
       row,
       row: { status, employeeName, count, leaveType },
     } = props;
-    console.log({ item, row, status, count, leaveType, employeeName });
     setModalData({ item, ...row });
     setOpenPunch(true);
     // setStatusType(item);
@@ -536,13 +535,6 @@ const Dashboard = () => {
                   },
                   index
                 ) => {
-                  console.log({
-                    title,
-                    hoursCompleted,
-                    totalHours,
-                    remainingBack,
-                    background,
-                  });
                   return (
                     <Box
                       sx={{

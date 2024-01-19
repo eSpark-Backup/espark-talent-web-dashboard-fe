@@ -3,7 +3,6 @@ import { Box, Typography } from '@mui/material';
 import LeaveRequestForm from './LeaveRequestForm';
 
 const LeaveRequestModal = ({ handleClose }) => {
-
   return (
     <Box
       sx={{

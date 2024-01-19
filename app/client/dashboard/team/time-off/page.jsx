@@ -5,7 +5,6 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 
 import Input from '@/src/components/dashboard/input';
-import AppTable from '@/src/components/dashboard/appTable';
 import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
 import { filterDataByKeyword } from '@/src/utils/search';
 import { filterTableRowsWRTTab } from '@/src/utils/table';
@@ -26,6 +25,7 @@ import { renderNestedTable } from './renderComponents';
 import Link from 'next/link';
 import LeaveViewModal from './LeaveViewModal';
 import PunchViewModal from './PunchViewModal';
+import AppTable from '@/src/components/appTable/AppTable';
 
 const Dashboard = () => {
   const [isLoading, setIsLoading] = useState(true);

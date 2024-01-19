@@ -1,24 +1,69 @@
 export const invoicePaymentColumn = [
-  'Employee name',
-  'Invoice date',
-  // 'Payroll month',
-  'Due date',
-  'Invoice amount',
-  // 'Invoice status',
-  // 'Amount due',
-  'Payment status',
-  'Download',
+  {
+    title: 'Employee name',
+    flex: 2,
+  },
+  {
+    title: 'Invoice date',
+    flex: 2,
+  },
+  {
+    title: 'Due date',
+    flex: 2,
+  },
+  {
+    title: 'Invoice amount',
+    flex: 2,
+  },
+  {
+    title: 'Payment status',
+    flex: 2,
+  },
+  {
+    title: 'Download',
+    flex: 2,
+  },
+  // 'Employee name',
+  // 'Invoice date',
+  // 'Due date',
+  // 'Invoice amount',
+  // 'Payment status',
+  // 'Download',
 ];
 export const otherPaymentColumn = [
+  {
+    title: 'Invoice reference',
+    flex: 2,
+  },
+  {
+    title: 'Invoice date',
+    flex: 2,
+  },
+  {
+    title: 'Due date',
+    flex: 2,
+  },
+  {
+    title: 'Invoice amount',
+    flex: 2,
+  },
+  {
+    title: 'Payment status',
+    flex: 2,
+  },
+  {
+    title: 'Download',
+    flex: 2,
+  },
   // 'Invoice number',
-  'Invoice reference',
-  'Invoice date',
-  'Due date',
-  // 'Invoice status',
-  'Invoice amount',
-  // 'Amount due',
-  'Payment status',
-  'Download',
+  // 'Invoice reference',
+  // 'Invoice date',
+  // 'Due date',
+  // // 'Invoice status',
+  // 'Invoice amount',
+  // // 'Amount due',
+  // 'Payment status',
+  // 'Download',
 ];
 
 export const invoicePaymentData = [

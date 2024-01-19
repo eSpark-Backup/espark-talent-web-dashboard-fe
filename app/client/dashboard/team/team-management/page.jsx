@@ -4,7 +4,6 @@ import { Grid, Box, Typography, Modal, Button } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Input from '@/src/components/dashboard/input';
-import AppTable from '@/src/components/dashboard/appTable';
 import { employeeTableDataHiringRequest } from '@/src/constants/data/tables/employee';
 import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
 import { filterDataByKeyword } from '@/src/utils/search';
@@ -17,6 +16,7 @@ import {
 import TopNavNavbar from '@/src/components/global/topNavbar';
 import Image from 'next/image';
 import AppSearchableDropdown from '@/src/components/dashboard/appSearchableDropdown';
+import AppTable from '@/src/components/appTable/AppTable';
 
 const TeamManagement = () => {
   const [value, setValue] = useState(0);

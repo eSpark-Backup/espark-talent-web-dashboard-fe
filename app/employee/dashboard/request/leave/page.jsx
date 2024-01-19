@@ -3,7 +3,7 @@ import React, { useMemo, useState } from 'react';
 import { Grid, Box, Typography, Button, Modal } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import AppTable from '@/src/components/dashboard/appTable';
+// import AppTable from '@/src/components/dashboard/appTable';
 import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
 import { filterTableRowsWRTTab } from '@/src/utils/table';
 import Image from 'next/image';
@@ -17,6 +17,7 @@ import {
 } from '@/src/constants/data/tables/requestsData';
 import LeaveRequestModal from './LeaveRequestModal';
 import LeaveViewModal from '@/app/client/dashboard/team/time-off/LeaveViewModal';
+import AppTable from '@/src/components/appTable/AppTable';
 
 const Dashboard = () => {
   const [open, setOpen] = useState(false);
