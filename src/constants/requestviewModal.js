@@ -40,6 +40,7 @@ export const LEAVE_TYPE = [
   'Annual leaves',
   'Unpaid Leaves',
   'Paid Leaves',
+  'Hajj',
 ];
 
 export const BACKDATE_MODAL = {

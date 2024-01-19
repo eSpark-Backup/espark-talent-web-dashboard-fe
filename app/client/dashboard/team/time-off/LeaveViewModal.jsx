@@ -8,6 +8,7 @@ const LeaveViewModal = ({ modalData, handleClose, isEmployee }) => {
   const [selectedJobTitle, setSelectedJobTitle] = useState(
     modalData?.leaveType
   );
+
   return (
     <>
       <Box

@@ -18,16 +18,21 @@ import {
 import LeaveRequestModal from './LeaveRequestModal';
 import LeaveViewModal from '@/app/client/dashboard/team/time-off/LeaveViewModal';
 import AppTable from '@/src/components/appTable/AppTable';
+import FilterModal from '@/src/components/FilterModal/filterModal';
 
 const Dashboard = () => {
   const [open, setOpen] = useState(false);
   const [modalData, setModalData] = useState({});
   const [openModal, setOpenModal] = useState(false);
+  const [showFilterModal, setShowFilterModal] = useState(false);
   const handleOpenModal = () => {
     setOpenModal(true);
   };
   const handleCloseModal = () => {
     setOpenModal(false);
+  };
+  const handleOpenFilterModal = () => {
+    setShowFilterModal(true);
   };
   const handleOpen = () => {
     setOpen(true);
@@ -42,7 +47,11 @@ const Dashboard = () => {
     setModalData({ item, status, count, leaveType, employeeName });
     setOpen(true);
   };
-  const handleClose = () => setOpen(false);
+
+  const handleClose = () => {
+    setShowFilterModal(false);
+    setOpen(false);
+  };
   const leaveBalanceDataState = useMemo(
     () => filterTableRowsWRTTab(employeeLeaveBalanceData, { status: '' }),
     [employeeLeaveBalanceData]
@@ -329,12 +338,14 @@ const Dashboard = () => {
                             background: '#138A72',
                           },
                         }}
+                        onClick={handleOpenFilterModal}
                         startIcon={
                           <Image
                             width={18}
                             height={15}
                             alt="Refresh"
                             src={`/icons/Filter.svg`}
+                            onClick={handleOpenFilterModal}
                           />
                         }
                       >
@@ -342,6 +353,13 @@ const Dashboard = () => {
                       </Button>
                     </Box>
                   </Box>
+                  {showFilterModal && (
+                    <FilterModal
+                      open={handleOpenFilterModal}
+                      onClose={handleClose}
+                      leaveType
+                    />
+                  )}
                 </CustomTabPanel>
               </Box>
               {renderNestedTable({
