@@ -1,7 +1,6 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import { Grid, Box, Typography, Button, Modal } from '@mui/material';
-import AppTable from '@/src/components/dashboard/appTable';
 import { renderTrackingStatus } from './renderComponents';
 import {
   sheetStatusTypes,
@@ -10,10 +9,8 @@ import {
 } from '@/src/constants/data/tables/timeSheet';
 import Image from 'next/image';
 import { EMPLOYEE_TIMESHEET } from '@/src/constants/timeSheet';
-// import AttendanceHeading from '@/src/components/AtttendanceSummary/attendanceHeading';
-// import AttendanceView from '@/src/components/AtttendanceSummary/attendanceView';
-// import AppDropdown from '@/src/components/dashboard/appDropdown';
 import AttendanceViewModal from './AttendanceViewModal';
+import AppTable from '@/src/components/appTable/AppTable';
 import FilterModal from '@/src/components/FilterModal/filterModal';
 
 const Dashboard = () => {
@@ -29,6 +26,7 @@ const Dashboard = () => {
     setOpen(false);
   };
   const handleAttendanceModal = (props) => {
+    console.log({ props });
     const { item, row } = props;
     setModalData({ item, ...row });
     setOpen(true);

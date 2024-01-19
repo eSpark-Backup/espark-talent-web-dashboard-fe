@@ -3,7 +3,6 @@ import React, { useMemo, useState } from 'react';
 import { Grid, Box, Typography, Button, Modal } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import AppTable from '@/src/components/dashboard/appTable';
 import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
 import { filterTableRowsWRTTab } from '@/src/utils/table';
 import Image from 'next/image';
@@ -17,6 +16,7 @@ import {
 } from '@/src/constants/data/tables/requestsData';
 import LeaveRequestModal from './LeaveRequestModal';
 import LeaveViewModal from '@/app/client/dashboard/team/time-off/LeaveViewModal';
+import AppTable from '@/src/components/appTable/AppTable';
 import FilterModal from '@/src/components/FilterModal/filterModal';
 
 const Dashboard = () => {
@@ -124,47 +124,6 @@ const Dashboard = () => {
                   </Typography>
                 </Box>
               </Box>
-              {/* <Box display={'flex'} flexDirection={'column'}>
-                <Typography
-                  sx={{
-                    fontSize: '30px',
-                    fontWeight: 600,
-                    lineHeight: '36px',
-                    letterSpacing: '0em',
-                    textAlign: 'left',
-                  }}
-                >
-                  Leaves Requests
-                </Typography>
-                <Box display={'flex'} flexDirection={'column'} marginY={'20px'}>
-                  <Typography
-                    sx={{
-                      fontSize: '14px',
-                      fontWeight: '400',
-                      lineHeight: '17px',
-                      letterSpacing: '0em',
-                      textAlign: 'left',
-                    }}
-                    variant="caption"
-                  >
-                    Manage Leaves from one place.
-                  </Typography>
-                </Box>
-                <Typography
-                  sx={{
-                    fontSize: '20px',
-                    fontWeight: '400',
-                    lineHeight: '17px',
-                    letterSpacing: '0em',
-                    textAlign: 'left',
-                    color: '#595959',
-                    marginTop: '50px',
-                  }}
-                  variant="caption"
-                >
-                  Balance
-                </Typography>
-              </Box> */}
               <Button
                 sx={{ minWidth: '120px', marginBottom: '25px' }}
                 variant="contained"

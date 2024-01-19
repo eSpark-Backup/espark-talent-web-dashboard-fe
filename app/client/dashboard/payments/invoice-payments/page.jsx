@@ -4,7 +4,6 @@ import { Grid, Box, Typography } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Input from '@/src/components/dashboard/input';
-import AppTable from '@/src/components/dashboard/appTable';
 import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
 import { filterDataByKeyword } from '@/src/utils/search';
 import { changeTab } from '@/src/utils/tabs';
@@ -16,6 +15,7 @@ import {
   otherPaymentData,
 } from '@/src/constants/data/tables/paymentData';
 import { filterTableRowsWRTTab } from '@/src/utils/table';
+import AppTable from '@/src/components/appTable/AppTable';
 
 const Dashboard = () => {
   const [value, setValue] = useState(0);

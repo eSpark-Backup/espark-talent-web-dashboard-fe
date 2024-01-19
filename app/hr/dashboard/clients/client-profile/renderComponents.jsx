@@ -1,5 +1,5 @@
-import AppTable from '@/src/components/dashboard/appTable';
 import AllEmployee from '@/src/components/HR/AllEmployee';
+import AppTable from '@/src/components/appTable/AppTable';
 import { Box } from '@mui/material';
 
 export const renderTable = ({ currentTab, data, column, openModal }) => {

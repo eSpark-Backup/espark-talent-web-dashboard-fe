@@ -1,0 +1,111 @@
+import React from 'react';
+import WideFormInput from '../../../../../src/components/form/ui-elements/WideFormInput';
+import { Box, Button } from '@mui/material';
+import { useFormik } from 'formik';
+import { createLeaveRequestForm } from '@/src/constants/data/forms/create-leave-request';
+import { createLeaveRequestSchema } from '@/src/components/form/schemas/createLeaveRequest';
+
+const LeaveRequestForm = ({ handleClose }) => {
+  const {
+    handleSubmit,
+    values,
+    setFieldValue,
+    errors,
+    touched,
+    setFieldError,
+    setErrors,
+  } = useFormik({
+    initialValues: {},
+    validationSchema: createLeaveRequestSchema,
+    enableReinitialize: true,
+    onSubmit: (formValues) => {
+      console.log({ formValues });
+    },
+    validateOnChange: false,
+    validateOnBlur: false,
+  });
+  return (
+    <form onSubmit={handleSubmit}>
+      <Box>
+        <Box
+          sx={{
+            padding: '28px',
+          }}
+        >
+          {createLeaveRequestForm?.map(
+            (
+              {
+                title,
+                placeholder,
+                name,
+                suffixIcon,
+                type,
+                required,
+                hideSuffix,
+                disabled,
+                options,
+              },
+              formIndex
+            ) => {
+              return (
+                <WideFormInput
+                  key={formIndex}
+                  title={title}
+                  placeholder={placeholder}
+                  suffixIcon={suffixIcon}
+                  type={type}
+                  required={required}
+                  hideSuffix={hideSuffix}
+                  disabled={disabled}
+                  options={options}
+                  darkBack={!(formIndex % 2)}
+                  name={name}
+                  setFieldValue={setFieldValue}
+                  value={values[name]}
+                  error={errors[name]}
+                  touched={touched}
+                  setFieldError={setFieldError}
+                  errors={errors}
+                  setErrors={setErrors}
+                  values={values}
+                />
+              );
+            }
+          )}
+        </Box>
+      </Box>
+      <Box
+        display={'flex'}
+        justifyContent={'flex-end'}
+        sx={{ padding: '20px 40px', marginBottom: '15px' }}
+      >
+        <Button
+          onClick={handleClose}
+          sx={{
+            ml: '20px',
+            width: '120px',
+            border: '1px solid #029894',
+            background: '#FFF',
+          }}
+        >
+          Cancel
+        </Button>
+        <Button
+          sx={{
+            ml: '20px',
+            width: '120px',
+            '&:hover': {
+              background: '#029894',
+            },
+          }}
+          variant="contained"
+          type="submit"
+        >
+          Save
+        </Button>
+      </Box>
+    </form>
+  );
+};
+
+export default LeaveRequestForm;

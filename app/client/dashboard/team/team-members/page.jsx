@@ -6,7 +6,6 @@ import Tab from '@mui/material/Tab';
 import Link from 'next/link';
 
 import Input from '@/src/components/dashboard/input';
-import AppTable from '@/src/components/dashboard/appTable';
 import { teamMembersData } from '@/src/constants/data/tables/teamMembers';
 import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
 import { filterDataByKeyword } from '@/src/utils/search';
@@ -14,6 +13,7 @@ import { filterTableRowsWRTTab } from '@/src/utils/table';
 import { changeTab } from '@/src/utils/tabs';
 import { teamTabs } from '@/src/constants/data/tabs/teamTabs';
 import { HIRING_FORM_DATA } from '@/src/constants/Hiring';
+import AppTable from '@/src/components/appTable/AppTable';
 
 const Dashboard = () => {
   const [value, setValue] = useState(0);

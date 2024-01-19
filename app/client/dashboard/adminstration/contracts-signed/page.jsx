@@ -4,7 +4,6 @@ import { Grid, Box, Typography } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Input from '@/src/components/dashboard/input';
-import AppTable from '@/src/components/dashboard/appTable';
 import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
 import { filterDataByKeyword } from '@/src/utils/search';
 import {
@@ -12,6 +11,7 @@ import {
   contractSignedData,
 } from '@/src/constants/data/tables/contractSigned';
 import { contractSignedTabs } from '@/src/constants/data/tabs/contractSignedTabs';
+import AppTable from '@/src/components/appTable/AppTable';
 
 const ContractSigned = () => {
   const [value, setValue] = useState(0);
