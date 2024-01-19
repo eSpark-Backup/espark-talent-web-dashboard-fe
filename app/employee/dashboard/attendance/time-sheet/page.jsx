@@ -19,17 +19,13 @@ import FilterModal from '@/src/components/FilterModal/filterModal';
 const Dashboard = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [open, setOpen] = useState(false);
-
   const [modalData, setModalData] = useState({});
-  const [showFilterModal, setFilterModal] = useState(false);
-
-  // const [isLoadingTitles, setIsLoadingTitles] = useState(false);
-  // const [selectedJobTitle, setSelectedJobTitle] = useState('');
+  const [showFilterModal, setShowFilterModal] = useState(false);
   const handleOpenFilterModal = () => {
-    setFilterModal(true);
+    setShowFilterModal(true);
   };
   const handleClose = () => {
-    setFilterModal(false);
+    setShowFilterModal(false);
     setOpen(false);
   };
   const handleAttendanceModal = (props) => {

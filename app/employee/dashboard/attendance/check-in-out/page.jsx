@@ -26,12 +26,12 @@ const Dashboard = () => {
   const [openModal, setOpenModal] = useState(false);
   const [openPunch, setOpenPunch] = useState(false);
   const handleClosePunch = () => setOpenPunch(false);
-  const [showFilterModal, setFilterModal] = useState(false);
+  const [showFilterModal, setShowFilterModal] = useState(false);
   const handleOpenFilterModal = () => {
-    setFilterModal(true);
+    setShowFilterModal(true);
   };
   const handleClose = () => {
-    setFilterModal(false);
+    setShowFilterModal(false);
   };
   const handleChangeCurrReqStatusTab = (event, newValue, data) => {
     let tab = event?.target?.innerText;

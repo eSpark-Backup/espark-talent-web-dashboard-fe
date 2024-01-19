@@ -23,7 +23,7 @@ const Dashboard = () => {
   const [open, setOpen] = useState(false);
   const [modalData, setModalData] = useState({});
   const [openModal, setOpenModal] = useState(false);
-  const [showFilterModal, setFilterModal] = useState(false);
+  const [showFilterModal, setShowFilterModal] = useState(false);
   const handleOpenModal = () => {
     setOpenModal(true);
   };
@@ -31,7 +31,7 @@ const Dashboard = () => {
     setOpenModal(false);
   };
   const handleOpenFilterModal = () => {
-    setFilterModal(true);
+    setShowFilterModal(true);
   };
   const handleOpen = () => {
     setOpen(true);
@@ -48,7 +48,7 @@ const Dashboard = () => {
   };
 
   const handleClose = () => {
-    setFilterModal(false);
+    setShowFilterModal(false);
     setOpen(false);
   };
   const leaveBalanceDataState = useMemo(
