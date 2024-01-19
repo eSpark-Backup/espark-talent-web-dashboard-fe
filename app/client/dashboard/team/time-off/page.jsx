@@ -423,6 +423,7 @@ const Dashboard = () => {
                                     height={15}
                                     alt="Refresh"
                                     src={`/icons/Filter.svg`}
+                                    onClick={handleOpen}
                                   />
                                 }
                               >
@@ -430,6 +431,7 @@ const Dashboard = () => {
                               </Button>
                             </Box>
                           </Box>
+
                           <Box
                             sx={{
                               my: { xs: '10px', lg: 0 },

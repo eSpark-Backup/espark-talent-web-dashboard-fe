@@ -13,6 +13,7 @@ import {
   employeeCheckInOutRequestData,
 } from '@/src/constants/data/tables/checkInOutRequestsData';
 import PunchRequestModal from './PunchRequestModal';
+import FilterModal from '@/src/components/FilterModal/filterModal';
 
 const Dashboard = () => {
   const checkInOutRequestDataState = useMemo(
@@ -25,7 +26,13 @@ const Dashboard = () => {
   const [openModal, setOpenModal] = useState(false);
   const [openPunch, setOpenPunch] = useState(false);
   const handleClosePunch = () => setOpenPunch(false);
-
+  const [showFilterModal, setShowFilterModal] = useState(false);
+  const handleOpenFilterModal = () => {
+    setShowFilterModal(true);
+  };
+  const handleClose = () => {
+    setShowFilterModal(false);
+  };
   const handleChangeCurrReqStatusTab = (event, newValue, data) => {
     let tab = event?.target?.innerText;
     if (tab.includes('\n\n')) {
@@ -895,6 +902,7 @@ const Dashboard = () => {
                             background: '#138A72',
                           },
                         }}
+                        onClick={handleOpenFilterModal}
                         startIcon={
                           <Image
                             width={18}
@@ -908,6 +916,13 @@ const Dashboard = () => {
                       </Button>
                     </Box>
                   </Box>
+                  {showFilterModal && (
+                    <FilterModal
+                      open={handleOpenFilterModal}
+                      onClose={handleClose}
+                      clockinOut
+                    />
+                  )}
                 </CustomTabPanel>
               </Box>
               {renderNestedTable({

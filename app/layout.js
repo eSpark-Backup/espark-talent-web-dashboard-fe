@@ -12,6 +12,7 @@ import store from '@/src/redux/store';
 
 import { ThemeProvider } from '@mui/material/styles';
 import { darkTheme, lightTheme } from './theme';
+import { AOSInit } from '@/src/components/aosint';
 
 export default function RootLayout({ children }) {
   const [isDarkTheme, setIsDarkTheme] = useState(false);
@@ -27,6 +28,7 @@ export default function RootLayout({ children }) {
           rel="stylesheet"
         />
       </Head>
+      <AOSInit />
       <body>
         <Provider store={store}>
           <AppRouterCacheProvider>
