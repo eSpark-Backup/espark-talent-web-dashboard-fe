@@ -28,6 +28,7 @@ const WideFormInput = ({
   errors,
   setErrors,
   values,
+  minDate
 }) => {
   const [isOpenDatePicker, setIsOpenDatePicker] = useState(false);
   const [isLoadingTitles, setIsLoadingTitles] = useState(false);
@@ -138,7 +139,7 @@ const WideFormInput = ({
                       error && 'error-border',
                       'custom-date-time-picker',
                     ].join(' ')}
-                    minDate={name === 'startDate' && dayjs().subtract(1, 'day')}
+                    minDate={minDate}
                     open={isOpenDatePicker}
                     slots={{
                       openPickerIcon: () => (

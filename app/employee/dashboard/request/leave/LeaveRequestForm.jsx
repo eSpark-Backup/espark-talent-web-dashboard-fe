@@ -44,6 +44,7 @@ const LeaveRequestForm = ({ handleClose }) => {
                 hideSuffix,
                 disabled,
                 options,
+                minDate,
               },
               formIndex
             ) => {
@@ -68,6 +69,7 @@ const LeaveRequestForm = ({ handleClose }) => {
                   errors={errors}
                   setErrors={setErrors}
                   values={values}
+                  minDate={minDate}
                 />
               );
             }
