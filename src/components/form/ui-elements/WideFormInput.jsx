@@ -42,7 +42,6 @@ const WideFormInput = ({
     setFieldValue(name, item);
   };
   const handleChangeInput = (field, value) => {
-    console.log({ field, value });
     const tempErrors = { ...errors };
     if (value.length) {
       if (field === 'email') {
@@ -139,6 +138,7 @@ const WideFormInput = ({
                       error && 'error-border',
                       'custom-date-time-picker',
                     ].join(' ')}
+                    minDate={name === 'startDate' && dayjs().subtract(1, 'day')}
                     open={isOpenDatePicker}
                     slots={{
                       openPickerIcon: () => (
