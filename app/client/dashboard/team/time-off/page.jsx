@@ -408,7 +408,7 @@ const Dashboard = () => {
                               >
                                 Refresh
                               </Button>
-                              <Button
+                              {/* <Button
                                 sx={{
                                   minWidth: '120px',
                                   background: '#138A72',
@@ -428,7 +428,7 @@ const Dashboard = () => {
                                 }
                               >
                                 Filter
-                              </Button>
+                              </Button> */}
                             </Box>
                           </Box>
 
@@ -482,7 +482,7 @@ const Dashboard = () => {
                                   src={`/icons/Refresh.svg`}
                                 />
                               </Box>
-                              <Box
+                              {/* <Box
                                 sx={{
                                   background: '#029E9C',
                                   width: '60px',
@@ -499,7 +499,7 @@ const Dashboard = () => {
                                   alt="Refresh"
                                   src={`/icons/Filter.svg`}
                                 />
-                              </Box>
+                              </Box> */}
                             </Box>
                           </Box>
                         </Box>

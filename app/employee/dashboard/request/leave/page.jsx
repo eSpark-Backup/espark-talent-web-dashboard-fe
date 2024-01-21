@@ -160,6 +160,10 @@ const Dashboard = () => {
                 <Box
                   sx={{
                     mb: '26px',
+                    display: 'flex',
+                    flexDirection: {xs:'column',md:'row'},
+                    justifyContent: 'space-between',
+                    alignItems: {xs:'flex-start',md:'center'},
                   }}
                 >
                   <Typography
@@ -175,6 +179,27 @@ const Dashboard = () => {
                   >
                     Balance
                   </Typography>
+                  <Button
+                    sx={{
+                      mt: {xs:'20px',md:0},
+                      minWidth: '120px',
+                      border: '1px solid #138A72',
+                      color: '#138A72',
+                      '&:hover:': {
+                        background: '#fff',
+                      },
+                    }}
+                    startIcon={
+                      <Image
+                        width={20}
+                        height={22}
+                        alt="Refresh"
+                        src={`/icons/Refresh.svg`}
+                      />
+                    }
+                  >
+                    Refresh
+                  </Button>
                 </Box>
                 <AppTable
                   column={employeeLeaveBalanceColumn}

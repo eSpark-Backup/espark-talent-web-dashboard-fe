@@ -242,6 +242,13 @@ export const employeeLeaveBalanceData = [
     pending: '0',
   },
   {
+    leaveType: 'Paid leaves',
+    balance: '10',
+    availed: '0',
+    available: '10',
+    pending: '0',
+  },
+  {
     leaveType: 'Hajj',
     balance: '20',
     availed: '0',

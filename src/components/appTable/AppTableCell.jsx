@@ -47,7 +47,8 @@ const renderActions = (
   handleClickActionView,
   commonCellStyle,
   colIndex,
-  rowIndex
+  rowIndex,
+  handleClickActionDelete
 ) => {
   if (row?.formActionStatus) {
     return (
@@ -86,6 +87,9 @@ const renderActions = (
             onClick={() => {
               if (item === 'View') {
                 handleClickActionView({ row, item });
+              }
+              else if(item === 'Delete'){
+                handleClickActionDelete()
               }
               return;
             }}
@@ -237,7 +241,8 @@ export const renderCellContent = (
   handleClick,
   handleClickRenderMessageButton,
   colIndex,
-  rowIndex
+  rowIndex,
+  handleClickActionDelete
 ) => {
   switch (col.title || col) {
     case 'Pic':
@@ -245,7 +250,15 @@ export const renderCellContent = (
     case 'Assignee':
       return renderAssigneeCell(row, col, commonCellStyle);
     case 'Action':
-      return renderActions(row, col, handleClickActionView, commonCellStyle);
+      return renderActions(
+        row,
+        col,
+        handleClickActionView,
+        commonCellStyle,
+        colIndex,
+        rowIndex,
+        handleClickActionDelete
+      );
     case 'Actions':
       return renderActions(
         row,
@@ -253,7 +266,8 @@ export const renderCellContent = (
         handleClickActionView,
         commonCellStyle,
         colIndex,
-        rowIndex
+        rowIndex,
+        handleClickActionDelete
       );
     case 'Status':
       return renderStatusCell(row, col, commonCellStyle);
