@@ -13,7 +13,6 @@ const FormInput = ({
   sm = 6,
   md = 4,
   lg = 3,
-  label,
   title,
   placeholder,
   prefixIcon,
@@ -34,7 +33,6 @@ const FormInput = ({
   onClick,
 }) => {
   const [isLoadingList, setIsLoadingList] = useState(false);
-
   const handleSelectItem = (item) => {
     const tempErrors = { ...errors };
     if (Object.hasOwnProperty.call(tempErrors, name)) {
@@ -70,6 +68,33 @@ const FormInput = ({
     setErrors({ ...tempErrors });
     setFieldValue?.(field, value);
   };
+
+  const handleClickCounter = (type, name, value) => {
+    switch (type) {
+      case 'Sub':
+        switch (value) {
+          case 0:
+            break;
+          default:
+            setFieldValue(name, value - 1);
+            break;
+        }
+        break;
+
+      case 'Add':
+        switch (value) {
+          case 10:
+            break;
+          default:
+            setFieldValue(name, value + 1);
+            break;
+        }
+        break;
+      default:
+        break;
+    }
+  };
+
   return (
     <Grid
       item
@@ -83,20 +108,6 @@ const FormInput = ({
         padding: '0 10px',
       }}
     >
-      <Box>
-        <Typography
-          sx={{
-            color: error ? 'red' : '#595959',
-            fontSize: '14px',
-            fontStyle: 'normal',
-            fontWeight: 500,
-            lineHeight: 'normal',
-            mb: '10px',
-          }}
-        >
-          {label}
-        </Typography>
-      </Box>
       <Box>
         <Typography
           sx={{
@@ -230,83 +241,74 @@ const FormInput = ({
             </>
           ))}
         </Box>
+      ) : type === 'add-sub-counter' ? (
+        <Box
+          sx={{
+            border: 'solid 1px #ccc',
+            display: 'flex',
+            alignItems: 'center',
+            borderRadius: '5px',
+            padding: '5px',
+          }}
+        >
+          <Box
+            sx={{
+              width: '30px',
+              height: '30px',
+              background: value === 0 ? '#888888' : '#068987',
+              borderRadius: '5px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: 'pointer',
+            }}
+            onClick={() => handleClickCounter('Sub', name, value)}
+          >
+            <Box
+              component={'img'}
+              src="/icons/MinusIcon.svg"
+              sx={{ maxWidth: '70%' }}
+            />
+          </Box>
+          <Box
+            sx={{
+              flex: 1,
+            }}
+          >
+            <Typography
+              sx={{
+                color: '#888',
+                fontSize: '14px',
+                fontStyle: 'normal',
+                fontWeight: 400,
+                lineHeight: 'normal',
+                textAlign: 'center',
+              }}
+            >
+              {value}
+            </Typography>
+          </Box>
+          <Box
+            sx={{
+              width: '30px',
+              height: '30px',
+              background: value === 10 ? '#888888' : '#068987',
+              borderRadius: '5px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: 'pointer',
+            }}
+            onClick={() => handleClickCounter('Add', name, value)}
+          >
+            <Box
+              component={'img'}
+              src="/icons/PlusIcon.svg"
+              sx={{ maxWidth: '70%' }}
+            />
+          </Box>
+        </Box>
       ) : (
-        // <Box
-        //   sx={{
-        //     // padding: "10px",
-        //     border: `1px solid ${error ? 'red' : '#E4E4E4'}`,
-        //     borderRadius: '5px',
-        //     display: 'flex',
-        //     overflow: 'hidden',
-        //     height: '40px',
-        //   }}
-        // >
-        //   {prefixIcon && (
-        //     <Box
-        //       sx={{
-        //         display: 'flex',
-        //         width: '40px',
-        //         height: '40px',
-        //         padding: '10px',
-        //         justifyContent: 'center',
-        //         alignItems: 'center',
-        //         background: type === 'file' && '#068987',
-        //       }}
-        //     >
-        //       <Image
-        //         src={`/icons/${prefixIcon}.svg`}
-        //         width={20}
-        //         height={20}
-        //         alt="Upload"
-        //       />
-        //     </Box>
-        //   )}
-        //   <input
-        //     id={`input-file-${title}`}
-        //     style={{
-        //       background: '#FFF',
-        //       display: type === 'file' && 'none',
-        //     }}
-        //     placeholder={placeholder}
-        //     className="form-input-field"
-        //     type={type}
-        //     onChange={(e) => {
-        //       if (type === 'file') {
-        //         handleChangeFileInput(name, e?.currentTarget.files[0]);
-        //       } else {
-        //         handleChangeInput(name, e?.target?.value);
-        //       }
-        //     }}
-        //     value={type !== 'file' ? value : null}
-        //     accept=".png"
-        //   />
-        //   {suffixIcon && (
-        //     <label
-        //       htmlFor={`input-file-${title}`}
-        //       style={{
-        //         display: 'flex',
-        //         padding: '10px',
-        //         justifyContent: 'center',
-        //         alignItems: 'center',
-        //       }}
-        //     >
-        //       <Image
-        //         src={`/images/hiring/${suffixIcon}.svg`}
-        //         width={30}
-        //         height={30}
-        //         alt="Calendar"
-        //       />
-        //     </label>
-        //   )}
-        //   {type === 'file' && (
-        //     <label
-        //       className="file-upload-label"
-        //       htmlFor={`input-file-${title}`}
-        //     >
-        //       {value?.name || placeholder}
-        //     </label>
-        //   )}
-        // </Box>
         <Box
           sx={{
             display: 'flex',
@@ -407,11 +409,11 @@ const FormInput = ({
               width={30}
               height={30}
               alt="Calendar"
-              onClick={onClick}
               style={{
                 position: 'absolute',
                 right: '-40px',
               }}
+              onClick={onClick}
             />
           )}
         </Box>
