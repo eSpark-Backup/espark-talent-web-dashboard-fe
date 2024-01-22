@@ -1,35 +1,56 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, Button, Grid, Modal, Typography } from '@mui/material';
 import { useFormik } from 'formik';
 
 import { EDIT_MODAL } from '@/src/constants/employeeProfile';
 import {
-  formEmergencyContact,
-  formEmergencySecondaryContact,
+  formEmergencyContact as initialFormEmergencyContact,
+  formEmergencySecondaryContact as initialFormEmergencySecondaryContact,
 } from '@/src/constants/data/forms/emergency-contacts';
 import { emergencyContactsSchema } from '../form/schemas/emergencyContact';
 import FormInput from '../form/ui-elements/FormInput';
 
 const EditEmergencyModal = ({ onClose, handleEmergencyModal }) => {
-  // const [showSecondBox, setShowSecondBox] = useState(false);
-  // const [clickedIndex, setClickedIndex] = useState(null);
-
-  // const handleToggleBox = () => {
-  //   setShowSecondBox((prev) => !prev);
-  // };
   const [showSecondBoxPrimary, setShowSecondBoxPrimary] = useState(false);
   const [clickedIndexPrimary, setClickedIndexPrimary] = useState(null);
-
   const [showSecondBoxSecondary, setShowSecondBoxSecondary] = useState(false);
   const [clickedIndexSecondary, setClickedIndexSecondary] = useState(null);
-  const handleToggleBoxPrimary = (index) => {
-    setClickedIndexPrimary(index);
+  const [formEmergencyContact, setFormEmergencyContact] = useState([]);
+  const [formEmergencySecondaryContact, setFormEmergencySecondaryContact] =
+    useState([]);
+  useEffect(() => {
+    setFormEmergencyContact(initialFormEmergencyContact);
+    setFormEmergencySecondaryContact(initialFormEmergencySecondaryContact);
+  }, []);
+  console.log(setClickedIndexPrimary);
+  console.log(setClickedIndexSecondary);
+  const handleToggleBoxPrimary = () => {
+    if (showSecondBoxPrimary) {
+      setFormEmergencyContact((prevFields) => prevFields.slice(0, -1));
+    } else {
+      addNewField(formEmergencyContact, setFormEmergencyContact);
+    }
     setShowSecondBoxPrimary((prev) => !prev);
   };
-
-  const handleToggleBoxSecondary = (index) => {
-    setClickedIndexSecondary(index);
+  const handleToggleBoxSecondary = () => {
+    if (showSecondBoxSecondary) {
+      setFormEmergencySecondaryContact((prevFields) => prevFields.slice(0, -1));
+    } else {
+      addNewField(
+        formEmergencySecondaryContact,
+        setFormEmergencySecondaryContact
+      );
+    }
     setShowSecondBoxSecondary((prev) => !prev);
+  };
+  const addNewField = (formFields, setFormFields) => {
+    const newField = {
+      title: 'Phone',
+      placeholder: '0330012372',
+      name: 'phoneNumber3',
+      suffixIconOutside: 'minus',
+    };
+    setFormFields((prevFields) => [...prevFields, newField]);
   };
   const {
     handleSubmit,
@@ -45,20 +66,10 @@ const EditEmergencyModal = ({ onClose, handleEmergencyModal }) => {
     enableReinitialize: true,
     onSubmit: (formValues) => {
       console.log({ formValues });
-      //   handleGoNext();
     },
     validateOnChange: false,
     validateOnBlur: false,
   });
-  const addNewField = (formFields, setFormFields) => {
-    const newField = {
-      title: 'New Field',
-      placeholder: 'Enter value',
-      name: `newField_${formFields.length + 1}`,
-      suffixIconOutside: 'minus', // Assuming you want to display a minus icon for the newly added field
-    };
-    setFormFields((prevFields) => [...prevFields, newField]);
-  };
   const renderFormInputs = (
     formFields,
     showSecondBox,
@@ -127,7 +138,6 @@ const EditEmergencyModal = ({ onClose, handleEmergencyModal }) => {
       )}
     </>
   );
-
   return (
     <Modal
       open={handleEmergencyModal}
@@ -177,7 +187,6 @@ const EditEmergencyModal = ({ onClose, handleEmergencyModal }) => {
           >
             {EDIT_MODAL?.editEmergencyContacts}
           </Typography>
-
           <Box
             src="/images/leave-request/close.svg"
             component={'img'}
@@ -219,7 +228,7 @@ const EditEmergencyModal = ({ onClose, handleEmergencyModal }) => {
                 variant="contained"
                 type="submit"
               >
-                Save
+                {EDIT_MODAL?.save}
               </Button>
             </Grid>
           </Grid>

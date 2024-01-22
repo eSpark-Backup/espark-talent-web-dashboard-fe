@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Box } from '@mui/material';
 
-import AppTable from '../dashboard/appTable';
 import {
   ASSET_TABLECOLUMN,
   ASSET_TABLEDATA,
   employeeProfileData,
 } from '@/src/constants/employeeProfile';
+import AppTable from '../appTable/AppTable';
 
 const Assets = () => {
   const [isLoading, setIsLoading] = useState(true);

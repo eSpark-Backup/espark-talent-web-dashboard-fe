@@ -15,6 +15,7 @@ import Client from '@/src/components/employeeData/client';
 import Assets from '@/src/components/employeeData/assets';
 import AssetForm from '@/src/components/employeeData/assetModal';
 import { allEmployees } from '@/src/constants/AllEmployee';
+import FilterModal from '@/src/components/FilterModal/filterModal';
 
 const Page = () => {
   const [value, setValue] = useState('one');
@@ -23,6 +24,7 @@ const Page = () => {
   const [showCredentialModal, setCredentialModal] = useState(false);
   const [showEditProfilelModal, setEditProfileModal] = useState(false);
   const [showAssetModal, setAssetModal] = useState(false);
+  const [showFilterModal, setShowFilterModal] = useState(false);
 
   const pathname = usePathname();
   const employeeId = pathname.split('/').pop();
@@ -30,6 +32,9 @@ const Page = () => {
   const employeeData = getEmployeeData(id, allEmployees);
   const handleOpenModal = () => {
     setEditModal(true);
+  };
+  const handleOpenFilterModal = () => {
+    setShowFilterModal(true);
   };
   const handleCredentialModal = () => {
     setCredentialModal(true);
@@ -49,6 +54,7 @@ const Page = () => {
     setEmergencyModal(false);
     setEditProfileModal(false);
     setAssetModal(false);
+    setShowFilterModal(false);
   };
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -215,117 +221,135 @@ const Page = () => {
                   marginBottom:
                     value !== employeeProfileData?.valueTwo && '40px',
                   display: 'flex',
-                  justifyContent: 'space-between',
+                  justifyContent: { xs: 'center', md: 'space-between' },
+                  flexDirection: { xs: 'column', md: 'row' },
                 }}
               >
-                <Tabs
-                  value={value}
-                  onChange={handleChange}
-                  aria-label="wrapped label tabs example"
-                  variant="scrollable"
-                >
-                  <Tab
-                    value={employeeProfileData?.valueOne}
-                    label={employeeProfileData?.profile}
-                    wrapped
-                    disableRipple={true}
-                  />
-                  <Tab
-                    value={employeeProfileData?.valueTwo}
-                    label={employeeProfileData?.client}
-                    disableRipple={true}
-                  />
-                  <Tab
-                    value={employeeProfileData?.valuethree}
-                    label={employeeProfileData?.attendanceReports}
-                    disableRipple={true}
-                  />
-                  <Tab
-                    value={employeeProfileData?.valueFour}
-                    label="Assets"
-                    disableRipple={true}
-                  />
-                </Tabs>
-                {value === employeeProfileData?.valuethree && (
-                  <Box
-                    sx={{
-                      display: 'flex',
-                      marginBottom: '10px',
-                    }}
+                <Box>
+                  <Tabs
+                    value={value}
+                    onChange={handleChange}
+                    aria-label="wrapped label tabs example"
+                    variant="scrollable"
                   >
-                    <Button
+                    <Tab
+                      value={employeeProfileData?.valueOne}
+                      label={employeeProfileData?.profile}
+                      wrapped
+                      disableRipple={true}
+                    />
+                    <Tab
+                      value={employeeProfileData?.valueTwo}
+                      label={employeeProfileData?.client}
+                      disableRipple={true}
+                    />
+                    <Tab
+                      value={employeeProfileData?.valuethree}
+                      label={employeeProfileData?.attendanceReports}
+                      disableRipple={true}
+                    />
+                    <Tab
+                      value={employeeProfileData?.valueFour}
+                      label="Assets"
+                      disableRipple={true}
+                    />
+                  </Tabs>
+                </Box>
+                <Box
+                  sx={{
+                    display: 'flex',
+                    marginTop: { xs: '20px', md: '0px' },
+                  }}
+                >
+                  {value === employeeProfileData?.valuethree && (
+                    <Box
                       sx={{
-                        marginX: '10px',
-                        minWidth: '120px',
-                        display: { xs: 'none', md: 'flex' },
-                        border: '1px solid #138A72',
-                        color: '#138A72',
-                        '&:hover:': {
-                          background: '#fff',
-                        },
-                      }}
-                      startIcon={
-                        <Image
-                          width={20}
-                          height={22}
-                          alt="Refresh"
-                          src={`/icons/Refresh.svg`}
-                        />
-                      }
-                    >
-                      {employeeProfileData?.refreshBtn}
-                    </Button>
-                    <Button
-                      sx={{
-                        minWidth: '120px',
-                        background: '#138A72',
-                        display: { xs: 'none', md: 'flex' },
-                        color: '#fff',
-                        '&:hover': {
-                          background: '#138A72',
-                        },
-                      }}
-                      startIcon={
-                        <Image
-                          width={18}
-                          height={15}
-                          alt="Refresh"
-                          src={`/icons/Filter.svg`}
-                        />
-                      }
-                    >
-                      {employeeProfileData?.freshBtn}
-                    </Button>
-                  </Box>
-                )}
-                {value === employeeProfileData?.valueFour && (
-                  <>
-                    <Button
-                      sx={{
-                        minWidth: '160px',
-                        background: '#029894',
-                        display: { xs: 'none', md: 'flex' },
-                        color: '#fff',
-                        textTransform: 'math-auto',
+                        display: 'flex',
                         marginBottom: '10px',
-                        '&:hover': {
-                          background: '#029894',
-                        },
                       }}
-                      onClick={handleAssetModal}
                     >
-                      {employeeProfileData?.addAsset}
-                    </Button>
-                    {showAssetModal && (
-                      <AssetForm
-                        open={handleAssetModal}
-                        onClose={handleCloseModal}
-                      />
-                    )}
-                  </>
-                )}
+                      <Button
+                        sx={{
+                          marginX: '10px',
+                          minWidth: '120px',
+                          display: 'flex',
+                          border: '1px solid #138A72',
+                          color: '#138A72',
+                          '&:hover:': {
+                            background: '#fff',
+                          },
+                        }}
+                        startIcon={
+                          <Image
+                            width={20}
+                            height={22}
+                            alt="Refresh"
+                            src={`/icons/Refresh.svg`}
+                          />
+                        }
+                      >
+                        {employeeProfileData?.refreshBtn}
+                      </Button>
+                      <Button
+                        sx={{
+                          minWidth: '120px',
+                          background: '#138A72',
+                          display: 'flex',
+                          color: '#fff',
+                          '&:hover': {
+                            background: '#138A72',
+                          },
+                        }}
+                        onClick={handleOpenFilterModal}
+                        startIcon={
+                          <Image
+                            width={18}
+                            height={15}
+                            alt="Refresh"
+                            src={`/icons/Filter.svg`}
+                            onClick={handleOpenFilterModal}
+                          />
+                        }
+                      >
+                        {employeeProfileData?.filterBtn}
+                      </Button>
+                    </Box>
+                  )}
+                  {showFilterModal && (
+                    <FilterModal
+                      open={handleOpenFilterModal}
+                      onClose={handleCloseModal}
+                      attendanceStatus
+                    />
+                  )}
+                  {value === employeeProfileData?.valueFour && (
+                    <>
+                      <Button
+                        sx={{
+                          minWidth: '160px',
+                          background: '#029894',
+                          display: 'flex',
+                          color: '#fff',
+                          textTransform: 'math-auto',
+                          marginBottom: '10px',
+                          '&:hover': {
+                            background: '#029894',
+                          },
+                        }}
+                        onClick={handleAssetModal}
+                      >
+                        {employeeProfileData?.addAsset}
+                      </Button>
+                      {showAssetModal && (
+                        <AssetForm
+                          open={handleAssetModal}
+                          onClose={handleCloseModal}
+                        />
+                      )}
+                    </>
+                  )}
+                </Box>
               </Box>
-
               {value === employeeProfileData?.valueOne ? (
                 <Profile
                   handleOpenModal={handleOpenModal}

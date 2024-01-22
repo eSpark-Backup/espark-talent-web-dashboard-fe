@@ -3,7 +3,6 @@ import React, { useMemo, useState } from 'react';
 import { Grid, Box, Typography, Button, Modal } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import AppTable from '@/src/components/dashboard/appTable';
 import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
 import { filterTableRowsWRTTab } from '@/src/utils/table';
 import Image from 'next/image';
@@ -17,16 +16,24 @@ import {
 } from '@/src/constants/data/tables/requestsData';
 import LeaveRequestModal from './LeaveRequestModal';
 import LeaveViewModal from '@/app/client/dashboard/team/time-off/LeaveViewModal';
+import AppTable from '@/src/components/appTable/AppTable';
+import FilterModal from '@/src/components/FilterModal/filterModal';
+import AppConfirmationMadal from '@/src/components/modals/AppConfirmationMadal';
 
 const Dashboard = () => {
   const [open, setOpen] = useState(false);
   const [modalData, setModalData] = useState({});
   const [openModal, setOpenModal] = useState(false);
+  const [showFilterModal, setShowFilterModal] = useState(false);
+  const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
   const handleOpenModal = () => {
     setOpenModal(true);
   };
   const handleCloseModal = () => {
     setOpenModal(false);
+  };
+  const handleOpenFilterModal = () => {
+    setShowFilterModal(true);
   };
   const handleOpen = () => {
     setOpen(true);
@@ -41,7 +48,17 @@ const Dashboard = () => {
     setModalData({ item, status, count, leaveType, employeeName });
     setOpen(true);
   };
-  const handleClose = () => setOpen(false);
+  const handleClickActionDelete = () => {
+    setIsOpenDeleteModal(true);
+  };
+  const handleCloseDeleteModal = () => {
+    setIsOpenDeleteModal(false);
+  };
+
+  const handleClose = () => {
+    setShowFilterModal(false);
+    setOpen(false);
+  };
   const leaveBalanceDataState = useMemo(
     () => filterTableRowsWRTTab(employeeLeaveBalanceData, { status: '' }),
     [employeeLeaveBalanceData]
@@ -115,47 +132,6 @@ const Dashboard = () => {
                   </Typography>
                 </Box>
               </Box>
-              {/* <Box display={'flex'} flexDirection={'column'}>
-                <Typography
-                  sx={{
-                    fontSize: '30px',
-                    fontWeight: 600,
-                    lineHeight: '36px',
-                    letterSpacing: '0em',
-                    textAlign: 'left',
-                  }}
-                >
-                  Leaves Requests
-                </Typography>
-                <Box display={'flex'} flexDirection={'column'} marginY={'20px'}>
-                  <Typography
-                    sx={{
-                      fontSize: '14px',
-                      fontWeight: '400',
-                      lineHeight: '17px',
-                      letterSpacing: '0em',
-                      textAlign: 'left',
-                    }}
-                    variant="caption"
-                  >
-                    Manage Leaves from one place.
-                  </Typography>
-                </Box>
-                <Typography
-                  sx={{
-                    fontSize: '20px',
-                    fontWeight: '400',
-                    lineHeight: '17px',
-                    letterSpacing: '0em',
-                    textAlign: 'left',
-                    color: '#595959',
-                    marginTop: '50px',
-                  }}
-                  variant="caption"
-                >
-                  Balance
-                </Typography>
-              </Box> */}
               <Button
                 sx={{ minWidth: '120px', marginBottom: '25px' }}
                 variant="contained"
@@ -192,6 +168,10 @@ const Dashboard = () => {
                 <Box
                   sx={{
                     mb: '26px',
+                    display: 'flex',
+                    flexDirection: { xs: 'column', md: 'row' },
+                    justifyContent: 'space-between',
+                    alignItems: { xs: 'flex-start', md: 'center' },
                   }}
                 >
                   <Typography
@@ -207,6 +187,27 @@ const Dashboard = () => {
                   >
                     Balance
                   </Typography>
+                  <Button
+                    sx={{
+                      mt: { xs: '20px', md: 0 },
+                      minWidth: '120px',
+                      border: '1px solid #138A72',
+                      color: '#138A72',
+                      '&:hover:': {
+                        background: '#fff',
+                      },
+                    }}
+                    startIcon={
+                      <Image
+                        width={20}
+                        height={22}
+                        alt="Refresh"
+                        src={`/icons/Refresh.svg`}
+                      />
+                    }
+                  >
+                    Refresh
+                  </Button>
                 </Box>
                 <AppTable
                   column={employeeLeaveBalanceColumn}
@@ -369,12 +370,14 @@ const Dashboard = () => {
                             background: '#138A72',
                           },
                         }}
+                        onClick={handleOpenFilterModal}
                         startIcon={
                           <Image
                             width={18}
                             height={15}
                             alt="Refresh"
                             src={`/icons/Filter.svg`}
+                            onClick={handleOpenFilterModal}
                           />
                         }
                       >
@@ -382,6 +385,13 @@ const Dashboard = () => {
                       </Button>
                     </Box>
                   </Box>
+                  {showFilterModal && (
+                    <FilterModal
+                      open={handleOpenFilterModal}
+                      onClose={handleClose}
+                      leaveType
+                    />
+                  )}
                 </CustomTabPanel>
               </Box>
               {renderNestedTable({
@@ -392,6 +402,7 @@ const Dashboard = () => {
                 data: leaveRequestDataState,
                 handleOpenConditionalModal,
                 handleClickActionView,
+                handleClickActionDelete,
               })}
             </Box>
           </div>
@@ -416,6 +427,14 @@ const Dashboard = () => {
           isEmployee
         />
       </Modal>
+      <AppConfirmationMadal
+        isOpen={isOpenDeleteModal}
+        title={'Delete'}
+        handleClose={handleCloseDeleteModal}
+        bodyText={'Are you sure you want to delete this request?'}
+        cancelButtonText={'Cancel'}
+        confirmButtonText={'Delete'}
+      />
     </>
   );
 };

@@ -16,7 +16,7 @@ export const employeeProfileData = {
   invalidFile: 'Invalid file type.Please select an image.',
   employeeId: 'Employee ID',
   refreshBtn: 'Refresh',
-  freshBtn: 'Filter',
+  filterBtn: 'Filter',
   addAsset: 'Add asset',
   loading: ' Loading...',
   employeeNotfound: ' Employee not found',
@@ -28,6 +28,7 @@ export const employeeProfileData = {
   valuethree: 'three',
   valueFour: 'four',
   select: ' Select',
+  save: 'Save',
 };
 export const EDIT_MODAL = {
   editProfile: 'Edit profile picture',

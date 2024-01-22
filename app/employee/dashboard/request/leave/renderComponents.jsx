@@ -1,5 +1,5 @@
+import AppTable from '@/src/components/appTable/AppTable';
 import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
-import AppTable from '@/src/components/dashboard/appTable';
 import { filterTableRowsWRTTab } from '@/src/utils/table';
 import { Box } from '@mui/material';
 
@@ -11,6 +11,7 @@ export const renderNestedTable = ({
   handleOpen,
   handleOpenConditionalModal,
   handleClickActionView,
+  handleClickActionDelete,
 }) => {
   return (
     <CustomTabPanel
@@ -32,6 +33,7 @@ export const renderNestedTable = ({
           handleOpen={handleOpen}
           handleOpenConditionalModal={handleOpenConditionalModal}
           handleClickActionView={handleClickActionView}
+          handleClickActionDelete={handleClickActionDelete}
         />
       </Box>
     </CustomTabPanel>

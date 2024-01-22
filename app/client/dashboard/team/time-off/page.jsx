@@ -5,7 +5,6 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 
 import Input from '@/src/components/dashboard/input';
-import AppTable from '@/src/components/dashboard/appTable';
 import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
 import { filterDataByKeyword } from '@/src/utils/search';
 import { filterTableRowsWRTTab } from '@/src/utils/table';
@@ -26,6 +25,7 @@ import { renderNestedTable } from './renderComponents';
 import Link from 'next/link';
 import LeaveViewModal from './LeaveViewModal';
 import PunchViewModal from './PunchViewModal';
+import AppTable from '@/src/components/appTable/AppTable';
 
 const Dashboard = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -408,7 +408,7 @@ const Dashboard = () => {
                               >
                                 Refresh
                               </Button>
-                              <Button
+                              {/* <Button
                                 sx={{
                                   minWidth: '120px',
                                   background: '#138A72',
@@ -423,13 +423,15 @@ const Dashboard = () => {
                                     height={15}
                                     alt="Refresh"
                                     src={`/icons/Filter.svg`}
+                                    onClick={handleOpen}
                                   />
                                 }
                               >
                                 Filter
-                              </Button>
+                              </Button> */}
                             </Box>
                           </Box>
+
                           <Box
                             sx={{
                               my: { xs: '10px', lg: 0 },
@@ -480,7 +482,7 @@ const Dashboard = () => {
                                   src={`/icons/Refresh.svg`}
                                 />
                               </Box>
-                              <Box
+                              {/* <Box
                                 sx={{
                                   background: '#029E9C',
                                   width: '60px',
@@ -497,7 +499,7 @@ const Dashboard = () => {
                                   alt="Refresh"
                                   src={`/icons/Filter.svg`}
                                 />
-                              </Box>
+                              </Box> */}
                             </Box>
                           </Box>
                         </Box>

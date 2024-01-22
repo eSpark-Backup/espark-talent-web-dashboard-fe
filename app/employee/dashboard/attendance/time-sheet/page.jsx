@@ -1,7 +1,6 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import { Grid, Box, Typography, Button, Modal } from '@mui/material';
-import AppTable from '@/src/components/dashboard/appTable';
 import { renderTrackingStatus } from './renderComponents';
 import {
   sheetStatusTypes,
@@ -10,19 +9,24 @@ import {
 } from '@/src/constants/data/tables/timeSheet';
 import Image from 'next/image';
 import { EMPLOYEE_TIMESHEET } from '@/src/constants/timeSheet';
-// import AttendanceHeading from '@/src/components/AtttendanceSummary/attendanceHeading';
-// import AttendanceView from '@/src/components/AtttendanceSummary/attendanceView';
-// import AppDropdown from '@/src/components/dashboard/appDropdown';
 import AttendanceViewModal from './AttendanceViewModal';
+import AppTable from '@/src/components/appTable/AppTable';
+import FilterModal from '@/src/components/FilterModal/filterModal';
 
 const Dashboard = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [open, setOpen] = useState(false);
-  const handleClose = () => setOpen(false);
   const [modalData, setModalData] = useState({});
-  // const [isLoadingTitles, setIsLoadingTitles] = useState(false);
-  // const [selectedJobTitle, setSelectedJobTitle] = useState('');
+  const [showFilterModal, setShowFilterModal] = useState(false);
+  const handleOpenFilterModal = () => {
+    setShowFilterModal(true);
+  };
+  const handleClose = () => {
+    setShowFilterModal(false);
+    setOpen(false);
+  };
   const handleAttendanceModal = (props) => {
+    console.log({ props });
     const { item, row } = props;
     setModalData({ item, ...row });
     setOpen(true);
@@ -203,6 +207,7 @@ const Dashboard = () => {
                     alignItems: 'center',
                     borderRadius: '5px',
                   }}
+                  onClick={handleOpenFilterModal}
                 >
                   <Image
                     width={15}
@@ -243,12 +248,14 @@ const Dashboard = () => {
                       background: '#138A72',
                     },
                   }}
+                  onClick={handleOpenFilterModal}
                   startIcon={
                     <Image
                       width={18}
                       height={15}
                       alt="Refresh"
                       src={`/icons/Filter.svg`}
+                      onClick={handleOpenFilterModal}
                     />
                   }
                 >
@@ -256,6 +263,13 @@ const Dashboard = () => {
                 </Button>
               </Box>
             </Box>
+            {showFilterModal && (
+              <FilterModal
+                open={handleOpenFilterModal}
+                onClose={handleClose}
+                attendanceStatus
+              />
+            )}
 
             {isLoading ? (
               <Box>Loading...</Box>

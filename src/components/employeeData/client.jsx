@@ -8,7 +8,7 @@ import {
 import { a11yProps } from '@/src/utils/tabs';
 import { Box, Button, Tab, Tabs } from '@mui/material';
 import React, { useState } from 'react';
-import AppTable from '../dashboard/appTable';
+import AppTable from '../appTable/AppTable';
 
 const Client = () => {
   const [currentTab, setCurrentTab] = useState({

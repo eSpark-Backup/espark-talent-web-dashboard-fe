@@ -1,5 +1,3 @@
-import { emergencyContactsSchema } from '@/src/components/form/schemas/emergencyContact';
-
 export const formEmergencyContact = [
   {
     title: 'Name',
@@ -14,15 +12,9 @@ export const formEmergencyContact = [
   {
     title: 'Phone',
     placeholder: '0330012372',
-    name: 'phoneNumber1',
+    name: 'phoneNumber2',
     suffixIconOutside: 'plus',
   },
-  // {
-  //   title: 'Phone',
-  //   placeholder: '0330012372',
-  //   name: 'phoneNumber2',
-  //   suffixIconOutside: 'minus',
-  // },
 ];
 export const formEmergencySecondaryContact = [
   {
@@ -38,20 +30,7 @@ export const formEmergencySecondaryContact = [
   {
     title: 'Phone',
     placeholder: '0330012373',
-    name: 'phoneNumber3',
+    name: 'phoneNumber2',
     suffixIconOutside: 'plus',
-  },
-  // {
-  //   title: 'Phone',
-  //   placeholder: '0330012372',
-  //   name: 'phoneNumber4',
-  //   suffixIconOutside: 'minus',
-  // },
-];
-
-export const formEmergency = [
-  {
-    schema: emergencyContactsSchema,
-    form: formEmergencyContact,
   },
 ];
