@@ -18,12 +18,14 @@ import LeaveRequestModal from './LeaveRequestModal';
 import LeaveViewModal from '@/app/client/dashboard/team/time-off/LeaveViewModal';
 import AppTable from '@/src/components/appTable/AppTable';
 import FilterModal from '@/src/components/FilterModal/filterModal';
+import AppConfirmationMadal from '@/src/components/modals/AppConfirmationMadal';
 
 const Dashboard = () => {
   const [open, setOpen] = useState(false);
   const [modalData, setModalData] = useState({});
   const [openModal, setOpenModal] = useState(false);
   const [showFilterModal, setShowFilterModal] = useState(false);
+  const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
   const handleOpenModal = () => {
     setOpenModal(true);
   };
@@ -45,6 +47,12 @@ const Dashboard = () => {
     console.log({ item, row, status, count, leaveType, employeeName });
     setModalData({ item, status, count, leaveType, employeeName });
     setOpen(true);
+  };
+  const handleClickActionDelete = () => {
+    setIsOpenDeleteModal(true);
+  };
+  const handleCloseDeleteModal = () => {
+    setIsOpenDeleteModal(false);
   };
 
   const handleClose = () => {
@@ -394,6 +402,7 @@ const Dashboard = () => {
                 data: leaveRequestDataState,
                 handleOpenConditionalModal,
                 handleClickActionView,
+                handleClickActionDelete,
               })}
             </Box>
           </div>
@@ -418,6 +427,14 @@ const Dashboard = () => {
           isEmployee
         />
       </Modal>
+      <AppConfirmationMadal
+        isOpen={isOpenDeleteModal}
+        title={'Delete'}
+        handleClose={handleCloseDeleteModal}
+        bodyText={'Are you sure you want to delete this request?'}
+        cancelButtonText={'Cancel'}
+        confirmButtonText={'Delete'}
+      />
     </>
   );
 };

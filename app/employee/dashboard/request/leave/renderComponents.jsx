@@ -11,6 +11,7 @@ export const renderNestedTable = ({
   handleOpen,
   handleOpenConditionalModal,
   handleClickActionView,
+  handleClickActionDelete,
 }) => {
   return (
     <CustomTabPanel
@@ -32,6 +33,7 @@ export const renderNestedTable = ({
           handleOpen={handleOpen}
           handleOpenConditionalModal={handleOpenConditionalModal}
           handleClickActionView={handleClickActionView}
+          handleClickActionDelete={handleClickActionDelete}
         />
       </Box>
     </CustomTabPanel>

@@ -154,6 +154,13 @@ const Dashboard = () => {
                       column={column}
                       data={empData}
                       handleClickActionDelete={handleClickDelete}
+                      options={
+                        currentTab === 'Interview Schedule' && [
+                          { label: 'Short listed' },
+                          { label: 'Pending' },
+                          { label: 'Rejected' },
+                        ]
+                      }
                     />
                   </Box>
                 )}

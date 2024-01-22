@@ -133,7 +133,7 @@ const renderAttendenceStatus = (statusType, index) => {
   );
 };
 
-const renderStatusCell = (row, col, commonCellStyle) => {
+const renderStatusCell = (row, col, commonCellStyle, options) => {
   const getStatusStyle = (backgroundColor, borderColor, color) => ({
     borderRadius: '30px',
     padding: '4px 0',
@@ -160,6 +160,8 @@ const renderStatusCell = (row, col, commonCellStyle) => {
         )}
       </td>
     );
+  } else if (row?.dropdownStatus) {
+    return renderDropdownCell(row, col, commonCellStyle, options);
   }
 
   return (
@@ -169,11 +171,12 @@ const renderStatusCell = (row, col, commonCellStyle) => {
   );
 };
 
-const renderDropdownCell = (row, col, commonCellStyle) => {
-  const isPaymentStatus = col.title === 'Payment status';
-  const options = isPaymentStatus
-    ? [{ label: 'Pending' }, { label: 'Processing' }, { label: 'Paid' }]
-    : undefined;
+const renderDropdownCell = (row, col, commonCellStyle, options) => {
+  const dropdownOpts = options || [
+    { label: 'Pending' },
+    { label: 'Processing' },
+    { label: 'Paid' },
+  ];
 
   return (
     <td key={col.index} style={{ ...commonCellStyle, flex: col?.flex || 1 }}>
@@ -181,7 +184,7 @@ const renderDropdownCell = (row, col, commonCellStyle) => {
         col={col.title}
         colIndex={col.index}
         row={row}
-        options={options}
+        options={dropdownOpts}
       />
     </td>
   );
@@ -241,7 +244,8 @@ export const renderCellContent = (
   handleClickRenderMessageButton,
   colIndex,
   rowIndex,
-  handleClickActionDelete
+  handleClickActionDelete,
+  options
 ) => {
   switch (col.title || col) {
     case 'Pic':
@@ -269,7 +273,7 @@ export const renderCellContent = (
         handleClickActionDelete
       );
     case 'Status':
-      return renderStatusCell(row, col, commonCellStyle);
+      return renderStatusCell(row, col, commonCellStyle, options);
     case 'Payment status':
       return renderDropdownCell(row, col, commonCellStyle);
     case 'Download':

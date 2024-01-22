@@ -304,8 +304,9 @@ const WideFormInput = ({
                     border: 'solid 1px #ccc',
                     p: '9px',
                     borderRadius: '5px',
-                    background: '#f6f6f6',
+                    background: '#E4E4E4',
                     width: '100%',
+                    cursor: 'no-drop',
                   }}
                 >
                   <Typography

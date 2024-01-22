@@ -15,6 +15,7 @@ const AppTable = ({
   handleClickActionDelete,
   noPagination,
   minWidth,
+  options,
 }) => {
   return (
     <>
@@ -32,6 +33,7 @@ const AppTable = ({
           renderMessageButton={renderMessageButton}
           handleClick={handleClick}
           handleClickActionDelete={handleClickActionDelete}
+          options={options}
         />
       </table>
       {!noPagination && (

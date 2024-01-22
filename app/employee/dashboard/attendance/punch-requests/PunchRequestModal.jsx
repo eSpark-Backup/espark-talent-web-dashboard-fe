@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
-import PunchRequestForm from '@/app/employee/dashboard/attendance/check-in-out/PunchRequestForm';
+import PunchRequestForm from '@/app/employee/dashboard/attendance/punch-requests/PunchRequestForm';
 import PunchRequestDataView from './PunchRequestFormView';
 
 const PunchRequestModal = ({ createModal, modalData, handleClose }) => {

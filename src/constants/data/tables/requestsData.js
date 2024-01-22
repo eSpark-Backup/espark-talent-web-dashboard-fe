@@ -65,7 +65,7 @@ export const employeeLeaveRequestsData = [
     requestedAt: '07-October-2021, 9:30AM (PST)',
     status: 'Pending',
     actionTimeOffReqStatus: true,
-    actions: ['Deletee', 'View'],
+    actions: ['Delete', 'View'],
     actionStatus: true,
   },
   {
@@ -78,7 +78,7 @@ export const employeeLeaveRequestsData = [
     requestedAt: '28-February-2021, 9:30AM (PST)',
     status: 'Pending',
     actionTimeOffReqStatus: true,
-    actions: ['Deletee', 'View'],
+    actions: ['Delete', 'View'],
     actionStatus: true,
   },
   {
@@ -104,7 +104,7 @@ export const employeeLeaveRequestsData = [
     requestedAt: '07-October-2021, 9:30AM (PST)',
     status: 'Pending',
     actionTimeOffReqStatus: true,
-    actions: ['Deletee', 'View'],
+    actions: ['Delete', 'View'],
     actionStatus: true,
   },
   {
@@ -117,7 +117,7 @@ export const employeeLeaveRequestsData = [
     requestedAt: '7-June-2022, 8:36PM (PST)',
     status: 'Pending',
     actionTimeOffReqStatus: true,
-    actions: ['Deletee', 'View'],
+    actions: ['Delete', 'View'],
     actionStatus: true,
   },
   {
@@ -130,7 +130,7 @@ export const employeeLeaveRequestsData = [
     requestedAt: '9-January-2023, 6:24PM (PST)',
     status: 'Pending',
     actionTimeOffReqStatus: true,
-    actions: ['Deletee', 'View'],
+    actions: ['Delete', 'View'],
     actionStatus: true,
   },
   {
@@ -156,7 +156,7 @@ export const employeeLeaveRequestsData = [
     requestedAt: '28-February-2021, 9:30AM (PST)',
     status: 'Pending',
     actionTimeOffReqStatus: true,
-    actions: ['Deletee', 'View'],
+    actions: ['Delete', 'View'],
     actionStatus: true,
   },
   {
@@ -169,7 +169,7 @@ export const employeeLeaveRequestsData = [
     requestedAt: '12-October-2022, 9:30AM (PST)',
     status: 'Pending',
     actionTimeOffReqStatus: true,
-    actions: ['Deletee', 'View'],
+    actions: ['Delete', 'View'],
     actionStatus: true,
   },
   {
@@ -208,7 +208,7 @@ export const employeeLeaveRequestsData = [
     requestedAt: '9-January-2023, 6:24PM (PST)',
     status: 'Pending',
     actionTimeOffReqStatus: true,
-    actions: ['Deletee', 'View'],
+    actions: ['Delete', 'View'],
     actionStatus: true,
   },
 ];
