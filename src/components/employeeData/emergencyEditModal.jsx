@@ -204,7 +204,16 @@ const EditEmergencyModal = ({ onClose, handleEmergencyModal }) => {
           >
             <Grid container>
               <Grid item xs={12} md={6}>
-                <Typography>{EDIT_MODAL?.primaryContact}</Typography>
+                <Typography
+                  sx={{
+                    fontSize: { xs: '14px', md: '16px' },
+                    fontWeight: 600,
+                    paddingBottom: '35px',
+                    marginLeft: '7px',
+                  }}
+                >
+                  {EDIT_MODAL?.primaryContact}
+                </Typography>
                 {renderFormInputs(
                   formEmergencyContact,
                   showSecondBoxPrimary,
@@ -213,7 +222,16 @@ const EditEmergencyModal = ({ onClose, handleEmergencyModal }) => {
                 )}
               </Grid>
               <Grid item xs={12} md={6}>
-                <Typography>{EDIT_MODAL?.secondaryContact}</Typography>
+                <Typography
+                  sx={{
+                    fontSize: { xs: '14px', md: '16px' },
+                    fontWeight: 600,
+                    paddingBottom: '35px',
+                    marginLeft: '7px',
+                  }}
+                >
+                  {EDIT_MODAL?.secondaryContact}
+                </Typography>
                 {renderFormInputs(
                   formEmergencySecondaryContact,
                   showSecondBoxSecondary,

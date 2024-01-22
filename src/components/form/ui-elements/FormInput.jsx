@@ -3,9 +3,9 @@ import React, { useState } from 'react';
 import { Grid, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import Image from 'next/image';
+
 import AppDropdown from '../../dashboard/appDropdown';
 import { DesktopDatePicker, LocalizationProvider } from '@mui/x-date-pickers';
-// import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
 const FormInput = ({
@@ -147,7 +147,6 @@ const FormInput = ({
             slots={{
               openPickerIcon: () => (
                 <Image
-                  // {...props}
                   src="/images/hiring/calender.svg"
                   width={30}
                   height={30}
@@ -318,7 +317,6 @@ const FormInput = ({
         >
           <Box
             sx={{
-              // padding: "10px",
               border: `1px solid ${error ? 'red' : '#E4E4E4'}`,
               borderRadius: '5px',
               display: 'flex',
@@ -332,7 +330,6 @@ const FormInput = ({
                 htmlFor={`input-file-${title}`}
                 style={{
                   display: 'flex',
-                  // padding: '10px',
                   justifyContent: 'center',
                   alignItems: 'center',
                 }}
@@ -404,17 +401,22 @@ const FormInput = ({
             )}
           </Box>
           {suffixIconOutside && (
-            <Image
+            <Box
               src={`/icons/${suffixIconOutside}.svg`}
-              width={30}
-              height={30}
-              alt="Calendar"
-              style={{
+              component={'img'}
+              sx={{
+                width: { xs: '20px', md: '30px' },
+                height: { xs: '20px', md: '30px' },
                 position: 'absolute',
-                right: '-40px',
+                right: { xs: '-30px', md: '-40px' },
+                '@media (min-width: 900px) and (max-width: 1200px)': {
+                  width: '20px',
+                  height: '20px',
+                  marginRight: '20px',
+                },
               }}
               onClick={onClick}
-            />
+            ></Box>
           )}
         </Box>
       )}
