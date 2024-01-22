@@ -28,6 +28,7 @@ const WideFormInput = ({
   errors,
   setErrors,
   values,
+  minDate,
 }) => {
   const [isOpenDatePicker, setIsOpenDatePicker] = useState(false);
   const [isLoadingTitles, setIsLoadingTitles] = useState(false);
@@ -42,7 +43,6 @@ const WideFormInput = ({
     setFieldValue(name, item);
   };
   const handleChangeInput = (field, value) => {
-    console.log({ field, value });
     const tempErrors = { ...errors };
     if (value.length) {
       if (field === 'email') {
@@ -139,6 +139,7 @@ const WideFormInput = ({
                       error && 'error-border',
                       'custom-date-time-picker',
                     ].join(' ')}
+                    minDate={minDate}
                     open={isOpenDatePicker}
                     slots={{
                       openPickerIcon: () => (
@@ -303,8 +304,9 @@ const WideFormInput = ({
                     border: 'solid 1px #ccc',
                     p: '9px',
                     borderRadius: '5px',
-                    background: '#f6f6f6',
+                    background: '#E4E4E4',
                     width: '100%',
+                    cursor: 'no-drop',
                   }}
                 >
                   <Typography

@@ -104,8 +104,8 @@ export const Employee_Routes = [
         link: '/employee/dashboard/attendance/time-sheet',
       },
       {
-        text: 'Clock in / Clock out',
-        link: '/employee/dashboard/attendance/check-in-out',
+        text: 'Punch requests',
+        link: '/employee/dashboard/attendance/punch-requests',
       },
     ],
   },

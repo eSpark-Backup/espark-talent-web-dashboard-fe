@@ -53,6 +53,7 @@ const AddEmployee = () => {
                   isMultiColumn={isMultiColumn}
                   handleGoNext={handleGoNext}
                   handleGoPrev={handleGoPrev}
+                  isLastStep={currentStep === formSteps?.length}
                 />
               );
             }

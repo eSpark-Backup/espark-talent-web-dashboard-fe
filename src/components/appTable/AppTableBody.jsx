@@ -11,6 +11,8 @@ const AppTableBody = ({
   handleClickRenderMessageButton,
   renderMessageButton,
   handleClick,
+  handleClickActionDelete,
+  options,
 }) => {
   const commonCellStyle = {
     display: 'flex',
@@ -39,7 +41,9 @@ const AppTableBody = ({
                   handleClick,
                   handleClickRenderMessageButton,
                   colIndex,
-                  rowIndex
+                  rowIndex,
+                  handleClickActionDelete,
+                  options
                 )}
               </Fragment>
             ))}

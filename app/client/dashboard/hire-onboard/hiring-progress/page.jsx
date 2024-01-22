@@ -13,9 +13,11 @@ import { changeTab } from '@/src/utils/tabs';
 import { empTabs } from '@/src/constants/data/tabs/empTabs';
 import { HIRING_FORM_DATA } from '@/src/constants/Hiring';
 import AppTable from '@/src/components/appTable/AppTable';
+import AppConfirmationMadal from '@/src/components/modals/AppConfirmationMadal';
 
 const Dashboard = () => {
   const [value, setValue] = useState(0);
+  const [isOpen, setIsOpen] = useState(false);
   const [currentTab, setCurrentTab] = useState('Hiring Request');
   const [isLoading, setIsLoading] = useState(true);
   const [search, setSearch] = useState('');
@@ -24,6 +26,8 @@ const Dashboard = () => {
   const fetchDataFake = async () => {
     return true;
   };
+
+  const handleClose = () => setIsOpen(false);
 
   useEffect(() => {
     const fetchDataAsync = async () => {
@@ -60,6 +64,8 @@ const Dashboard = () => {
       clearTimeout(timeoutId);
     };
   }, [search, value]);
+
+  const handleClickDelete = () => setIsOpen(true);
 
   return (
     <>
@@ -147,6 +153,14 @@ const Dashboard = () => {
                       currentTab={currentTab}
                       column={column}
                       data={empData}
+                      handleClickActionDelete={handleClickDelete}
+                      options={
+                        currentTab === 'Interview Schedule' && [
+                          { label: 'Short listed' },
+                          { label: 'Pending' },
+                          { label: 'Rejected' },
+                        ]
+                      }
                     />
                   </Box>
                 )}
@@ -155,6 +169,14 @@ const Dashboard = () => {
           </Box>
         </Box>
       </Grid>
+      <AppConfirmationMadal
+        title={'Delete'}
+        bodyText={'Are you sure you want to delete this request?'}
+        cancelButtonText={'Cancel'}
+        confirmButtonText={'Delete'}
+        isOpen={isOpen}
+        handleClose={handleClose}
+      />
     </>
   );
 };

@@ -224,24 +224,34 @@ const FormInput = ({
           }}
         >
           {prefixIcon && (
-            <Box
-              sx={{
+            <label
+              htmlFor={`input-file-${title}`}
+              style={{
                 display: 'flex',
-                width: '40px',
-                height: '40px',
-                padding: '10px',
+                // padding: '10px',
                 justifyContent: 'center',
                 alignItems: 'center',
-                background: type === 'file' && '#068987',
               }}
             >
-              <Image
-                src={`/icons/${prefixIcon}.svg`}
-                width={20}
-                height={20}
-                alt="Upload"
-              />
-            </Box>
+              <Box
+                sx={{
+                  display: 'flex',
+                  width: '40px',
+                  height: '40px',
+                  padding: '10px',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  background: type === 'file' && '#068987',
+                }}
+              >
+                <Image
+                  src={`/icons/${prefixIcon}.svg`}
+                  width={20}
+                  height={20}
+                  alt="Upload"
+                />
+              </Box>
+            </label>
           )}
           <input
             id={`input-file-${title}`}

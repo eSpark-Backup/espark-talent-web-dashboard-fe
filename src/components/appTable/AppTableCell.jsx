@@ -47,7 +47,8 @@ const renderActions = (
   handleClickActionView,
   commonCellStyle,
   colIndex,
-  rowIndex
+  rowIndex,
+  handleClickActionDelete
 ) => {
   if (row?.formActionStatus) {
     return (
@@ -86,6 +87,8 @@ const renderActions = (
             onClick={() => {
               if (item === 'View') {
                 handleClickActionView({ row, item });
+              } else if (item === 'Delete') {
+                handleClickActionDelete();
               }
               return;
             }}
@@ -130,7 +133,7 @@ const renderAttendenceStatus = (statusType, index) => {
   );
 };
 
-const renderStatusCell = (row, col, commonCellStyle) => {
+const renderStatusCell = (row, col, commonCellStyle, options) => {
   const getStatusStyle = (backgroundColor, borderColor, color) => ({
     borderRadius: '30px',
     padding: '4px 0',
@@ -157,6 +160,8 @@ const renderStatusCell = (row, col, commonCellStyle) => {
         )}
       </td>
     );
+  } else if (row?.dropdownStatus) {
+    return renderDropdownCell(row, col, commonCellStyle, options);
   }
 
   return (
@@ -166,11 +171,12 @@ const renderStatusCell = (row, col, commonCellStyle) => {
   );
 };
 
-const renderDropdownCell = (row, col, commonCellStyle) => {
-  const isPaymentStatus = col.title === 'Payment status';
-  const options = isPaymentStatus
-    ? [{ label: 'Pending' }, { label: 'Processing' }, { label: 'Paid' }]
-    : undefined;
+const renderDropdownCell = (row, col, commonCellStyle, options) => {
+  const dropdownOpts = options || [
+    { label: 'Pending' },
+    { label: 'Processing' },
+    { label: 'Paid' },
+  ];
 
   return (
     <td key={col.index} style={{ ...commonCellStyle, flex: col?.flex || 1 }}>
@@ -178,7 +184,7 @@ const renderDropdownCell = (row, col, commonCellStyle) => {
         col={col.title}
         colIndex={col.index}
         row={row}
-        options={options}
+        options={dropdownOpts}
       />
     </td>
   );
@@ -237,7 +243,9 @@ export const renderCellContent = (
   handleClick,
   handleClickRenderMessageButton,
   colIndex,
-  rowIndex
+  rowIndex,
+  handleClickActionDelete,
+  options
 ) => {
   switch (col.title || col) {
     case 'Pic':
@@ -245,7 +253,15 @@ export const renderCellContent = (
     case 'Assignee':
       return renderAssigneeCell(row, col, commonCellStyle);
     case 'Action':
-      return renderActions(row, col, handleClickActionView, commonCellStyle);
+      return renderActions(
+        row,
+        col,
+        handleClickActionView,
+        commonCellStyle,
+        colIndex,
+        rowIndex,
+        handleClickActionDelete
+      );
     case 'Actions':
       return renderActions(
         row,
@@ -253,10 +269,11 @@ export const renderCellContent = (
         handleClickActionView,
         commonCellStyle,
         colIndex,
-        rowIndex
+        rowIndex,
+        handleClickActionDelete
       );
     case 'Status':
-      return renderStatusCell(row, col, commonCellStyle);
+      return renderStatusCell(row, col, commonCellStyle, options);
     case 'Payment status':
       return renderDropdownCell(row, col, commonCellStyle);
     case 'Download':

@@ -18,12 +18,14 @@ import LeaveRequestModal from './LeaveRequestModal';
 import LeaveViewModal from '@/app/client/dashboard/team/time-off/LeaveViewModal';
 import AppTable from '@/src/components/appTable/AppTable';
 import FilterModal from '@/src/components/FilterModal/filterModal';
+import AppConfirmationMadal from '@/src/components/modals/AppConfirmationMadal';
 
 const Dashboard = () => {
   const [open, setOpen] = useState(false);
   const [modalData, setModalData] = useState({});
   const [openModal, setOpenModal] = useState(false);
   const [showFilterModal, setShowFilterModal] = useState(false);
+  const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
   const handleOpenModal = () => {
     setOpenModal(true);
   };
@@ -45,6 +47,12 @@ const Dashboard = () => {
     console.log({ item, row, status, count, leaveType, employeeName });
     setModalData({ item, status, count, leaveType, employeeName });
     setOpen(true);
+  };
+  const handleClickActionDelete = () => {
+    setIsOpenDeleteModal(true);
+  };
+  const handleCloseDeleteModal = () => {
+    setIsOpenDeleteModal(false);
   };
 
   const handleClose = () => {
@@ -160,6 +168,10 @@ const Dashboard = () => {
                 <Box
                   sx={{
                     mb: '26px',
+                    display: 'flex',
+                    flexDirection: { xs: 'column', md: 'row' },
+                    justifyContent: 'space-between',
+                    alignItems: { xs: 'flex-start', md: 'center' },
                   }}
                 >
                   <Typography
@@ -175,6 +187,27 @@ const Dashboard = () => {
                   >
                     Balance
                   </Typography>
+                  <Button
+                    sx={{
+                      mt: { xs: '20px', md: 0 },
+                      minWidth: '120px',
+                      border: '1px solid #138A72',
+                      color: '#138A72',
+                      '&:hover:': {
+                        background: '#fff',
+                      },
+                    }}
+                    startIcon={
+                      <Image
+                        width={20}
+                        height={22}
+                        alt="Refresh"
+                        src={`/icons/Refresh.svg`}
+                      />
+                    }
+                  >
+                    Refresh
+                  </Button>
                 </Box>
                 <AppTable
                   column={employeeLeaveBalanceColumn}
@@ -369,6 +402,7 @@ const Dashboard = () => {
                 data: leaveRequestDataState,
                 handleOpenConditionalModal,
                 handleClickActionView,
+                handleClickActionDelete,
               })}
             </Box>
           </div>
@@ -393,6 +427,14 @@ const Dashboard = () => {
           isEmployee
         />
       </Modal>
+      <AppConfirmationMadal
+        isOpen={isOpenDeleteModal}
+        title={'Delete'}
+        handleClose={handleCloseDeleteModal}
+        bodyText={'Are you sure you want to delete this request?'}
+        cancelButtonText={'Cancel'}
+        confirmButtonText={'Delete'}
+      />
     </>
   );
 };
