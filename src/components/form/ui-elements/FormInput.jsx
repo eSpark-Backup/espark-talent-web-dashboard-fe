@@ -30,8 +30,11 @@ const FormInput = ({
   errors,
   setErrors,
   fields,
+  suffixIconOutside,
+  onClick,
 }) => {
   const [isLoadingList, setIsLoadingList] = useState(false);
+
   const handleSelectItem = (item) => {
     const tempErrors = { ...errors };
     if (Object.hasOwnProperty.call(tempErrors, name)) {
@@ -228,80 +231,188 @@ const FormInput = ({
           ))}
         </Box>
       ) : (
+        // <Box
+        //   sx={{
+        //     // padding: "10px",
+        //     border: `1px solid ${error ? 'red' : '#E4E4E4'}`,
+        //     borderRadius: '5px',
+        //     display: 'flex',
+        //     overflow: 'hidden',
+        //     height: '40px',
+        //   }}
+        // >
+        //   {prefixIcon && (
+        //     <Box
+        //       sx={{
+        //         display: 'flex',
+        //         width: '40px',
+        //         height: '40px',
+        //         padding: '10px',
+        //         justifyContent: 'center',
+        //         alignItems: 'center',
+        //         background: type === 'file' && '#068987',
+        //       }}
+        //     >
+        //       <Image
+        //         src={`/icons/${prefixIcon}.svg`}
+        //         width={20}
+        //         height={20}
+        //         alt="Upload"
+        //       />
+        //     </Box>
+        //   )}
+        //   <input
+        //     id={`input-file-${title}`}
+        //     style={{
+        //       background: '#FFF',
+        //       display: type === 'file' && 'none',
+        //     }}
+        //     placeholder={placeholder}
+        //     className="form-input-field"
+        //     type={type}
+        //     onChange={(e) => {
+        //       if (type === 'file') {
+        //         handleChangeFileInput(name, e?.currentTarget.files[0]);
+        //       } else {
+        //         handleChangeInput(name, e?.target?.value);
+        //       }
+        //     }}
+        //     value={type !== 'file' ? value : null}
+        //     accept=".png"
+        //   />
+        //   {suffixIcon && (
+        //     <label
+        //       htmlFor={`input-file-${title}`}
+        //       style={{
+        //         display: 'flex',
+        //         padding: '10px',
+        //         justifyContent: 'center',
+        //         alignItems: 'center',
+        //       }}
+        //     >
+        //       <Image
+        //         src={`/images/hiring/${suffixIcon}.svg`}
+        //         width={30}
+        //         height={30}
+        //         alt="Calendar"
+        //       />
+        //     </label>
+        //   )}
+        //   {type === 'file' && (
+        //     <label
+        //       className="file-upload-label"
+        //       htmlFor={`input-file-${title}`}
+        //     >
+        //       {value?.name || placeholder}
+        //     </label>
+        //   )}
+        // </Box>
         <Box
           sx={{
-            // padding: "10px",
-            border: `1px solid ${error ? 'red' : '#E4E4E4'}`,
-            borderRadius: '5px',
             display: 'flex',
-            overflow: 'hidden',
-            height: '40px',
+            alignItems: 'center',
+            position: 'relative',
           }}
         >
-          {prefixIcon && (
-            <Box
-              sx={{
-                display: 'flex',
-                width: '40px',
-                height: '40px',
-                padding: '10px',
-                justifyContent: 'center',
-                alignItems: 'center',
-                background: type === 'file' && '#068987',
-              }}
-            >
-              <Image
-                src={`/icons/${prefixIcon}.svg`}
-                width={20}
-                height={20}
-                alt="Upload"
-              />
-            </Box>
-          )}
-          <input
-            id={`input-file-${title}`}
-            style={{
-              background: '#FFF',
-              display: type === 'file' && 'none',
+          <Box
+            sx={{
+              // padding: "10px",
+              border: `1px solid ${error ? 'red' : '#E4E4E4'}`,
+              borderRadius: '5px',
+              display: 'flex',
+              overflow: 'hidden',
+              height: '40px',
+              flex: 1,
             }}
-            placeholder={placeholder}
-            className="form-input-field"
-            type={type}
-            onChange={(e) => {
-              if (type === 'file') {
-                handleChangeFileInput(name, e?.currentTarget.files[0]);
-              } else {
-                handleChangeInput(name, e?.target?.value);
-              }
-            }}
-            value={type !== 'file' ? value : null}
-            accept=".png"
-          />
-          {suffixIcon && (
-            <label
-              htmlFor={`input-file-${title}`}
+          >
+            {prefixIcon && (
+              <label
+                htmlFor={`input-file-${title}`}
+                style={{
+                  display: 'flex',
+                  // padding: '10px',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
+              >
+                <Box
+                  sx={{
+                    display: 'flex',
+                    width: '40px',
+                    height: '40px',
+                    padding: '10px',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    background: type === 'file' && '#068987',
+                  }}
+                >
+                  <Image
+                    src={`/icons/${prefixIcon}.svg`}
+                    width={20}
+                    height={20}
+                    alt="Upload"
+                  />
+                </Box>
+              </label>
+            )}
+            <input
+              id={`input-file-${title}`}
               style={{
-                display: 'flex',
-                padding: '10px',
-                justifyContent: 'center',
-                alignItems: 'center',
+                background: '#FFF',
+                display: type === 'file' && 'none',
               }}
-            >
-              <Image
-                src={`/images/hiring/${suffixIcon}.svg`}
-                width={30}
-                height={30}
-                alt="Calendar"
-              />
-            </label>
-          )}
-          {type === 'file' && (
-            <label
-              className="file-upload-label"
-              htmlFor={`input-file-${title}`}
-            >
-              {value?.name || placeholder}
-            </label>
+              placeholder={placeholder}
+              className="form-input-field"
+              type={type}
+              onChange={(e) => {
+                if (type === 'file') {
+                  handleChangeFileInput(name, e?.currentTarget.files[0]);
+                } else {
+                  handleChangeInput(name, e?.target?.value);
+                }
+              }}
+              value={type !== 'file' ? value : null}
+              accept=".png"
+            />
+            {suffixIcon && (
+              <label
+                htmlFor={`input-file-${title}`}
+                style={{
+                  display: 'flex',
+                  padding: '10px',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
+              >
+                <Image
+                  src={`/images/hiring/${suffixIcon}.svg`}
+                  width={30}
+                  height={30}
+                  alt="Calendar"
+                />
+              </label>
+            )}
+            {type === 'file' && (
+              <label
+                className="file-upload-label"
+                htmlFor={`input-file-${title}`}
+              >
+                {value?.name || placeholder}
+              </label>
+            )}
+          </Box>
+          {suffixIconOutside && (
+            <Image
+              src={`/icons/${suffixIconOutside}.svg`}
+              width={30}
+              height={30}
+              alt="Calendar"
+              onClick={onClick}
+              style={{
+                position: 'absolute',
+                right: '-40px',
+              }}
+            />
           )}
         </Box>
       )}

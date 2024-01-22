@@ -1,13 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box, Button, Grid, Modal, Typography } from '@mui/material';
 import { useFormik } from 'formik';
 
 import { EDIT_MODAL } from '@/src/constants/employeeProfile';
-import { formEmergencyContact } from '@/src/constants/data/forms/emergency-contacts';
+import {
+  formEmergencyContact,
+  formEmergencySecondaryContact,
+} from '@/src/constants/data/forms/emergency-contacts';
 import { emergencyContactsSchema } from '../form/schemas/emergencyContact';
 import FormInput from '../form/ui-elements/FormInput';
 
 const EditEmergencyModal = ({ onClose, handleEmergencyModal }) => {
+  // const [showSecondBox, setShowSecondBox] = useState(false);
+  // const [clickedIndex, setClickedIndex] = useState(null);
+
+  // const handleToggleBox = () => {
+  //   setShowSecondBox((prev) => !prev);
+  // };
+  const [showSecondBoxPrimary, setShowSecondBoxPrimary] = useState(false);
+  const [clickedIndexPrimary, setClickedIndexPrimary] = useState(null);
+
+  const [showSecondBoxSecondary, setShowSecondBoxSecondary] = useState(false);
+  const [clickedIndexSecondary, setClickedIndexSecondary] = useState(null);
+  const handleToggleBoxPrimary = (index) => {
+    setClickedIndexPrimary(index);
+    setShowSecondBoxPrimary((prev) => !prev);
+  };
+
+  const handleToggleBoxSecondary = (index) => {
+    setClickedIndexSecondary(index);
+    setShowSecondBoxSecondary((prev) => !prev);
+  };
   const {
     handleSubmit,
     values,
@@ -27,6 +50,84 @@ const EditEmergencyModal = ({ onClose, handleEmergencyModal }) => {
     validateOnChange: false,
     validateOnBlur: false,
   });
+  const addNewField = (formFields, setFormFields) => {
+    const newField = {
+      title: 'New Field',
+      placeholder: 'Enter value',
+      name: `newField_${formFields.length + 1}`,
+      suffixIconOutside: 'minus', // Assuming you want to display a minus icon for the newly added field
+    };
+    setFormFields((prevFields) => [...prevFields, newField]);
+  };
+  const renderFormInputs = (
+    formFields,
+    showSecondBox,
+    clickedIndex,
+    handleToggleBox
+  ) => (
+    <>
+      {formFields.map(
+        (
+          {
+            label,
+            title,
+            placeholder,
+            errorText,
+            prefixIcon,
+            type,
+            suffixIcon,
+            options,
+            name,
+            nested,
+            fields,
+            suffixIconOutside,
+          },
+          formIndex
+        ) => (
+          <>
+            <Grid item xs={12} lg={10}>
+              <FormInput
+                key={formIndex}
+                label={label}
+                title={title}
+                placeholder={placeholder}
+                errorText={errorText}
+                prefixIcon={prefixIcon}
+                type={type}
+                suffixIcon={suffixIcon}
+                options={options}
+                name={name}
+                setFieldValue={setFieldValue}
+                value={values[name]}
+                error={errors[name]}
+                touched={touched}
+                setFieldError={setFieldError}
+                errors={errors}
+                setErrors={setErrors}
+                values={values}
+                nested={nested}
+                xs={12}
+                sm={12}
+                md={12}
+                lg={12}
+                fields={fields}
+                suffixIconOutside={
+                  formIndex === clickedIndex
+                    ? showSecondBox
+                      ? 'minus'
+                      : 'plus'
+                    : suffixIconOutside
+                }
+                onClick={() => handleToggleBox(formIndex)}
+              />
+            </Grid>
+            {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>}
+          </>
+        )
+      )}
+    </>
+  );
+
   return (
     <Modal
       open={handleEmergencyModal}
@@ -92,130 +193,25 @@ const EditEmergencyModal = ({ onClose, handleEmergencyModal }) => {
               flexDirection: 'row',
             }}
           >
-            <Grid item xs={12} md={6}>
-              <Typography
-                sx={{
-                  fontSize: { xs: '14px', md: '16px' },
-                  fontWeight: 600,
-                  paddingBottom: '35px',
-                  marginLeft: '10px',
-                }}
-              >
-                {EDIT_MODAL?.primaryContact}
-              </Typography>
-              {formEmergencyContact.map(
-                (
-                  {
-                    label,
-                    title,
-                    placeholder,
-                    errorText,
-                    prefixIcon,
-                    type,
-                    suffixIcon,
-                    options,
-                    name,
-                    nested,
-                    fields,
-                  },
-                  formIndex
-                ) => (
-                  <>
-                    <Grid item xs={12} lg={10}>
-                      <FormInput
-                        key={formIndex}
-                        label={label}
-                        title={title}
-                        placeholder={placeholder}
-                        errorText={errorText}
-                        prefixIcon={prefixIcon}
-                        type={type}
-                        suffixIcon={suffixIcon}
-                        options={options}
-                        name={name}
-                        setFieldValue={setFieldValue}
-                        value={values[name]}
-                        error={errors[name]}
-                        touched={touched}
-                        setFieldError={setFieldError}
-                        errors={errors}
-                        setErrors={setErrors}
-                        values={values}
-                        nested={nested}
-                        xs={12}
-                        sm={12}
-                        md={12}
-                        lg={12}
-                        fields={fields}
-                      />
-                    </Grid>
-                    {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>}
-                  </>
-                )
-              )}
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <Typography
-                sx={{
-                  fontSize: { xs: '14px', md: '16px' },
-                  fontWeight: 600,
-                  paddingBottom: '35px',
-                  marginLeft: '10px',
-                }}
-              >
-                {EDIT_MODAL?.secondaryContact}
-              </Typography>
-
-              {formEmergencyContact.map(
-                (
-                  {
-                    label,
-                    title,
-                    placeholder,
-                    errorText,
-                    prefixIcon,
-                    type,
-                    suffixIcon,
-                    options,
-                    name,
-                    nested,
-                    fields,
-                  },
-                  formIndex
-                ) => (
-                  <>
-                    <Grid item xs={12} lg={10}>
-                      <FormInput
-                        key={formIndex}
-                        label={label}
-                        title={title}
-                        placeholder={placeholder}
-                        errorText={errorText}
-                        prefixIcon={prefixIcon}
-                        type={type}
-                        suffixIcon={suffixIcon}
-                        options={options}
-                        name={name}
-                        setFieldValue={setFieldValue}
-                        value={values[name]}
-                        error={errors[name]}
-                        touched={touched}
-                        setFieldError={setFieldError}
-                        errors={errors}
-                        setErrors={setErrors}
-                        values={values}
-                        nested={nested}
-                        xs={12}
-                        sm={12}
-                        md={12}
-                        lg={12}
-                        fields={fields}
-                      />
-                    </Grid>
-                    {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>}
-                  </>
-                )
-              )}
+            <Grid container>
+              <Grid item xs={12} md={6}>
+                <Typography>{EDIT_MODAL?.primaryContact}</Typography>
+                {renderFormInputs(
+                  formEmergencyContact,
+                  showSecondBoxPrimary,
+                  clickedIndexPrimary,
+                  handleToggleBoxPrimary
+                )}
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <Typography>{EDIT_MODAL?.secondaryContact}</Typography>
+                {renderFormInputs(
+                  formEmergencySecondaryContact,
+                  showSecondBoxSecondary,
+                  clickedIndexSecondary,
+                  handleToggleBoxSecondary
+                )}
+              </Grid>
             </Grid>
             <Grid item p={'0 10px'} xs={12}>
               <Button

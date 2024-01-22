@@ -9,5 +9,4 @@ export const emergencyContactsSchema = Yup.object({
   phoneNumber2: Yup.string().required('Required'),
   phoneNumber3: Yup.string().required('Required'),
   phoneNumber4: Yup.string().required('Required'),
-  image: Yup.string().required('Required'),
 });

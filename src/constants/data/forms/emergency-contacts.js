@@ -13,16 +13,40 @@ export const formEmergencyContact = [
   },
   {
     title: 'Phone',
-    placeholder: '0330012378',
+    placeholder: '0330012372',
     name: 'phoneNumber1',
-    prefixIcon: '/images/dashboard/plus.svg',
+    suffixIconOutside: 'plus',
+  },
+  // {
+  //   title: 'Phone',
+  //   placeholder: '0330012372',
+  //   name: 'phoneNumber2',
+  //   suffixIconOutside: 'minus',
+  // },
+];
+export const formEmergencySecondaryContact = [
+  {
+    title: 'Name',
+    placeholder: 'John Doe',
+    name: 'name2',
+  },
+  {
+    title: 'Relationship',
+    placeholder: 'Father',
+    name: 'relation2',
   },
   {
     title: 'Phone',
-    placeholder: '0330012378',
-    name: 'phoneNumber2',
-    prefixIcon: '/images/dashboard/minus.svg',
+    placeholder: '0330012373',
+    name: 'phoneNumber3',
+    suffixIconOutside: 'plus',
   },
+  // {
+  //   title: 'Phone',
+  //   placeholder: '0330012372',
+  //   name: 'phoneNumber4',
+  //   suffixIconOutside: 'minus',
+  // },
 ];
 
 export const formEmergency = [
