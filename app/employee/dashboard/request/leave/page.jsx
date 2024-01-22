@@ -161,9 +161,9 @@ const Dashboard = () => {
                   sx={{
                     mb: '26px',
                     display: 'flex',
-                    flexDirection: {xs:'column',md:'row'},
+                    flexDirection: { xs: 'column', md: 'row' },
                     justifyContent: 'space-between',
-                    alignItems: {xs:'flex-start',md:'center'},
+                    alignItems: { xs: 'flex-start', md: 'center' },
                   }}
                 >
                   <Typography
@@ -181,7 +181,7 @@ const Dashboard = () => {
                   </Typography>
                   <Button
                     sx={{
-                      mt: {xs:'20px',md:0},
+                      mt: { xs: '20px', md: 0 },
                       minWidth: '120px',
                       border: '1px solid #138A72',
                       color: '#138A72',

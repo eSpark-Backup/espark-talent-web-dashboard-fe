@@ -11,7 +11,7 @@ const AppTableBody = ({
   handleClickRenderMessageButton,
   renderMessageButton,
   handleClick,
-  handleClickActionDelete
+  handleClickActionDelete,
 }) => {
   const commonCellStyle = {
     display: 'flex',

@@ -1,6 +1,6 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import { Grid, Box, Typography, Button, Modal } from '@mui/material';
+import { Grid, Box, Typography, Button } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Link from 'next/link';
@@ -17,7 +17,7 @@ import AppConfirmationMadal from '@/src/components/modals/AppConfirmationMadal';
 
 const Dashboard = () => {
   const [value, setValue] = useState(0);
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
   const [currentTab, setCurrentTab] = useState('Hiring Request');
   const [isLoading, setIsLoading] = useState(true);
   const [search, setSearch] = useState('');

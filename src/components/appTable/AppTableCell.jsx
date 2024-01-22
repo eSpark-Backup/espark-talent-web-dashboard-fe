@@ -87,9 +87,8 @@ const renderActions = (
             onClick={() => {
               if (item === 'View') {
                 handleClickActionView({ row, item });
-              }
-              else if(item === 'Delete'){
-                handleClickActionDelete()
+              } else if (item === 'Delete') {
+                handleClickActionDelete();
               }
               return;
             }}

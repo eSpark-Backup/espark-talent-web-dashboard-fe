@@ -12,7 +12,7 @@ import { DASHBOARD_DATA } from '@/public/images/dashboard/constants/Dashboard';
 
 const Dashboard = () => {
   function timeToSeconds(time) {
-    console.log({time})
+    console.log({ time });
     // Split the input time into hours, minutes, and seconds
     const [hours, minutes, seconds] = time.split(':').map(Number);
 
@@ -34,7 +34,7 @@ const Dashboard = () => {
     const spentPercentage = (time / totalSeconds) * 100;
     return Math.round(spentPercentage);
   };
-    const data = [
+  const data = [
     {
       title: 'Today',
       hoursCompleted: '3.45',
@@ -96,7 +96,6 @@ const Dashboard = () => {
     },
     // Add more items as needed
   ];
-
 
   return (
     <>
@@ -543,7 +542,10 @@ const Dashboard = () => {
                           sx={{
                             width: `${
                               100 -
-                              getPercentage1(+hoursCompleted * 3600, +totalHours)
+                              getPercentage1(
+                                +hoursCompleted * 3600,
+                                +totalHours
+                              )
                             }%`,
                             background: remainingBack,
                             height: '100%',
@@ -680,7 +682,7 @@ const Dashboard = () => {
               mx: { xs: 'auto', md: 0 },
               // width: { xs: 'auto', md: '300px' },
               // height: '430px',
-              height:"100%",
+              height: '100%',
               borderRadius: '10px',
               background: '#FFF',
               boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',

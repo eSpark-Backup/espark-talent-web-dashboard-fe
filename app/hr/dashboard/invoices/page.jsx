@@ -1,39 +1,17 @@
 'use client';
-import { Button, Grid, Tab, Tabs, Typography } from '@mui/material';
+import { Button, Grid } from '@mui/material';
 import { Box, useTheme } from '@mui/system';
-import React, { useEffect, useState } from 'react';
-// import Input from '../dashboard/input';
+import React from 'react';
 import Image from 'next/image';
-// import EmployeeView from './EmployeeView';
-import { useRouter } from 'next/navigation';
-import Input from '@/src/components/dashboard/input';
-import EmployeeView from '@/src/components/HR/EmployeeView';
 import AppTable from '@/src/components/appTable/AppTable';
 import {
   invoicePageColumn,
   invoicePageData,
 } from '@/src/constants/data/tables/hr/invoicesPageData';
 
-const page = ({ fromClient, openModal }) => {
-  const router = useRouter();
-  const [value, setValue] = useState('one');
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
-
-  const [id, setId] = useState('');
-  const [name, setName] = useState('');
-  const [designation, setDesignation] = useState('');
-  const [search, setSearch] = useState(false);
-
+const Page = () => {
   const theme = useTheme();
 
-  useEffect(() => {
-    if (name === '' && id === '' && designation === '') {
-      setSearch(false);
-    }
-  }, [name, id, designation]);
   return (
     <>
       <Box sx={{ width: '100%' }}>
@@ -50,7 +28,7 @@ const page = ({ fromClient, openModal }) => {
           }}
           spacing={3}
         >
-          <Grid item xs={12} md={6} lg={3}>
+          {/* <Grid item xs={12} md={6} lg={3}>
             <Input
               value={id}
               width={'100%'}
@@ -79,10 +57,10 @@ const page = ({ fromClient, openModal }) => {
               prefixIcon={'/icons/searchIconWhite.svg'}
               name={'designation'}
             />
-          </Grid>
+          </Grid> */}
           <Grid item xs={12} md={6} lg={1}>
             <Button
-              onClick={() => setSearch(true)}
+              // onClick={() => setSearch(true)}
               style={{
                 backgroundColor: '#029894',
                 color: '#FFF',
@@ -113,4 +91,4 @@ const page = ({ fromClient, openModal }) => {
   );
 };
 
-export default page;
+export default Page;

@@ -27,8 +27,7 @@ import * as Yup from 'yup';
 
 export const createLeaveRequestSchema = Yup.object({
   leaveType: Yup.string().required('Required'),
-  startDate: Yup.date()
-    .required('Required'),
+  startDate: Yup.date().required('Required'),
   endDate: Yup.date()
     .required('Required')
     .min(Yup.ref('startDate'), 'End date must be greater than start date'),

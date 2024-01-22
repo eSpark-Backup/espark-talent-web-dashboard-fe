@@ -1,7 +1,14 @@
 import { Box, Button, Modal, Typography } from '@mui/material';
 import React from 'react';
 
-const AppConfirmationMadal = ({title,bodyText,confirmButtonText,cancelButtonText,handleClose,isOpen}) => {
+const AppConfirmationMadal = ({
+  title,
+  bodyText,
+  confirmButtonText,
+  cancelButtonText,
+  handleClose,
+  isOpen,
+}) => {
   return (
     <Modal
       open={isOpen}

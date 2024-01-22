@@ -43,82 +43,6 @@ const Dashboard = () => {
     setcurrentReqStatusTab(tab);
     setcurrentReqStatusTabVal(newValue);
   };
-  function timeToSeconds(time) {
-    const [hours, minutes, seconds] = time.split(':').map(Number);
-    const totalSeconds = hours * 3600 + minutes * 60 + seconds;
-
-    return totalSeconds;
-  }
-
-  const getPercentage = (time, totalHours = 9) => {
-    const totalSeconds = totalHours * 3600;
-    // const currentSeconds = timeToSeconds(time);
-    const spentPercentage = (time / totalSeconds) * 100;
-    return Math.round(spentPercentage);
-  };
-
-  const data = [
-    {
-      title: 'Today',
-      hoursCompleted: '3.45',
-      totalHours: '8',
-      remainingBack: '#E6F4F4',
-      background: '#FEDB41',
-    },
-    {
-      title: 'This week',
-      hoursCompleted: '28',
-      totalHours: '40',
-      remainingBack: '#E6F4F4',
-      background: '#F4B844',
-    },
-    {
-      title: 'This month',
-      hoursCompleted: '90',
-      totalHours: '160',
-      remainingBack: '#E6F4F4',
-      background: '#2D9C98',
-    },
-    {
-      title: 'Remaining',
-      hoursCompleted: '90',
-      totalHours: '160',
-      remainingBack: '#E6F4F4',
-      background: '#B24057',
-    },
-    {
-      title: 'Overtime',
-      hoursCompleted: '4',
-      totalHours: '20',
-      remainingBack: '#E6F4F4',
-      background: '#338CB2',
-    },
-  ];
-
-  const timelineData = [
-    {
-      id: 1,
-      title: 'Check in',
-      time: '10:00 AM',
-    },
-    {
-      id: 2,
-      title: 'Break at',
-      time: '10:00 AM',
-      description: 'Description of Event 2.',
-    },
-    {
-      id: 3,
-      title: 'Resumed at',
-      time: '10:00 AM',
-    },
-    {
-      id: 3,
-      title: 'Check out',
-      time: '10:00 AM',
-    },
-    // Add more items as needed
-  ];
 
   const handleClickActionView = (props) => {
     const { item, row } = props;
@@ -143,7 +67,7 @@ const Dashboard = () => {
       >
         <Box display={'flex'} flexDirection={'column'}>
           <Typography fontSize={{ xs: '20px', md: '30px' }} fontWeight={600}>
-          Punch requests
+            Punch requests
           </Typography>
           <Box display={'flex'} flexDirection={'column'} mt={'20px'}>
             <Typography

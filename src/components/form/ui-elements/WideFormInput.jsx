@@ -28,7 +28,7 @@ const WideFormInput = ({
   errors,
   setErrors,
   values,
-  minDate
+  minDate,
 }) => {
   const [isOpenDatePicker, setIsOpenDatePicker] = useState(false);
   const [isLoadingTitles, setIsLoadingTitles] = useState(false);
