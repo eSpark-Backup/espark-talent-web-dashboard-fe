@@ -16,7 +16,7 @@ export const employeeProfileData = {
   invalidFile: 'Invalid file type.Please select an image.',
   employeeId: 'Employee ID',
   refreshBtn: 'Refresh',
-  freshBtn: 'Filter',
+  filterBtn: 'Filter',
   addAsset: 'Add asset',
   loading: ' Loading...',
   employeeNotfound: ' Employee not found',
