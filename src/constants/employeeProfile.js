@@ -28,6 +28,7 @@ export const employeeProfileData = {
   valuethree: 'three',
   valueFour: 'four',
   select: ' Select',
+  save: 'Save',
 };
 export const EDIT_MODAL = {
   editProfile: 'Edit profile picture',
