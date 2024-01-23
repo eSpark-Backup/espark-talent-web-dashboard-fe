@@ -22,9 +22,6 @@ const EditEmergencyModal = ({ onClose, handleEmergencyModal }) => {
     setFormEmergencyContact(initialFormEmergencyContact);
     setFormEmergencySecondaryContact(initialFormEmergencySecondaryContact);
   }, []);
-  const dynamicFields = [{ name: 'phoneNumber3' }, { name: 'phoneNumber4' }];
-
-  const validationContactSchema = emergencyContactsSchema(dynamicFields);
   console.log(setClickedIndexPrimary);
   console.log(setClickedIndexSecondary);
   const handleToggleBoxPrimary = () => {
@@ -76,7 +73,7 @@ const EditEmergencyModal = ({ onClose, handleEmergencyModal }) => {
     setErrors,
   } = useFormik({
     initialValues: {},
-    validationSchema: validationContactSchema,
+    validationSchema: emergencyContactsSchema,
     enableReinitialize: true,
     onSubmit: (formValues) => {
       console.log({ formValues });
@@ -263,16 +260,6 @@ const EditEmergencyModal = ({ onClose, handleEmergencyModal }) => {
               >
                 {EDIT_MODAL?.save}
               </Button>
-              {/* <Button
-                sx={{ minWidth: '120px' }}
-                variant="contained"
-                onClick={() => {
-                  console.log(errors, values);
-                }}
-              >
-                Test
-              // </Button> */}
-              {/* for testing */}
             </Grid>
           </Grid>
         </form>
