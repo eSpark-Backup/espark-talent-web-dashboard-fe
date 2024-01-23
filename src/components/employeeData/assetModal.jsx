@@ -139,7 +139,7 @@ const AssetForm = ({ onClose, open }) => {
                 variant="contained"
                 type="submit"
               >
-                Save
+                {EDIT_MODAL?.save}
               </Button>
             </Grid>
           </Grid>

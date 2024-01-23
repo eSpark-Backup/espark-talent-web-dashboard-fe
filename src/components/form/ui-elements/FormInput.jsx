@@ -243,7 +243,7 @@ const FormInput = ({
       ) : type === 'add-sub-counter' ? (
         <Box
           sx={{
-            border: 'solid 1px #ccc',
+            border: `1px solid ${error ? 'red' : '#E4E4E4'}`,
             display: 'flex',
             alignItems: 'center',
             borderRadius: '5px',

@@ -12,7 +12,7 @@ export const formEmergencyContact = [
   {
     title: 'Phone',
     placeholder: '0330012372',
-    name: 'phoneNumber2',
+    name: 'phoneNumber1',
     suffixIconOutside: 'plus',
   },
 ];

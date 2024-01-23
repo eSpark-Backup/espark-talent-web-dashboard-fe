@@ -22,7 +22,6 @@ const EditEmployeeCredential = ({ onClose, open }) => {
     enableReinitialize: true,
     onSubmit: (formValues) => {
       console.log({ formValues });
-      //   handleGoNext();
     },
     validateOnChange: false,
     validateOnBlur: false,
@@ -140,7 +139,7 @@ const EditEmployeeCredential = ({ onClose, open }) => {
                 variant="contained"
                 type="submit"
               >
-                Save
+                {EDIT_MODAL?.save}
               </Button>
             </Grid>
           </Grid>

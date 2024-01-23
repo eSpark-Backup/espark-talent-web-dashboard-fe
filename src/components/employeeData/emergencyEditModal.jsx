@@ -22,13 +22,16 @@ const EditEmergencyModal = ({ onClose, handleEmergencyModal }) => {
     setFormEmergencyContact(initialFormEmergencyContact);
     setFormEmergencySecondaryContact(initialFormEmergencySecondaryContact);
   }, []);
+  const dynamicFields = [{ name: 'phoneNumber3' }, { name: 'phoneNumber4' }];
+
+  const validationContactSchema = emergencyContactsSchema(dynamicFields);
   console.log(setClickedIndexPrimary);
   console.log(setClickedIndexSecondary);
   const handleToggleBoxPrimary = () => {
     if (showSecondBoxPrimary) {
       setFormEmergencyContact((prevFields) => prevFields.slice(0, -1));
     } else {
-      addNewField(formEmergencyContact, setFormEmergencyContact);
+      addPrimaryNewField(formEmergencyContact, setFormEmergencyContact);
     }
     setShowSecondBoxPrimary((prev) => !prev);
   };
@@ -36,20 +39,31 @@ const EditEmergencyModal = ({ onClose, handleEmergencyModal }) => {
     if (showSecondBoxSecondary) {
       setFormEmergencySecondaryContact((prevFields) => prevFields.slice(0, -1));
     } else {
-      addNewField(
+      addSecondaryNewField(
         formEmergencySecondaryContact,
         setFormEmergencySecondaryContact
       );
     }
     setShowSecondBoxSecondary((prev) => !prev);
   };
-  const addNewField = (formFields, setFormFields) => {
+  const addPrimaryNewField = (formFields, setFormFields) => {
     const newField = {
       title: 'Phone',
-      placeholder: '0330012372',
+      placeholder: '0330012374',
       name: 'phoneNumber3',
       suffixIconOutside: 'minus',
     };
+    console.log(formFields);
+    setFormFields((prevFields) => [...prevFields, newField]);
+  };
+  const addSecondaryNewField = (formFields, setFormFields) => {
+    const newField = {
+      title: 'Phone',
+      placeholder: '0330012379',
+      name: 'phoneNumber4',
+      suffixIconOutside: 'minus',
+    };
+    console.log(formFields);
     setFormFields((prevFields) => [...prevFields, newField]);
   };
   const {
@@ -62,7 +76,7 @@ const EditEmergencyModal = ({ onClose, handleEmergencyModal }) => {
     setErrors,
   } = useFormik({
     initialValues: {},
-    validationSchema: emergencyContactsSchema,
+    validationSchema: validationContactSchema,
     enableReinitialize: true,
     onSubmit: (formValues) => {
       console.log({ formValues });
@@ -132,6 +146,7 @@ const EditEmergencyModal = ({ onClose, handleEmergencyModal }) => {
                 onClick={() => handleToggleBox(formIndex)}
               />
             </Grid>
+
             {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>}
           </>
         )
@@ -248,6 +263,16 @@ const EditEmergencyModal = ({ onClose, handleEmergencyModal }) => {
               >
                 {EDIT_MODAL?.save}
               </Button>
+              {/* <Button
+                sx={{ minWidth: '120px' }}
+                variant="contained"
+                onClick={() => {
+                  console.log(errors, values);
+                }}
+              >
+                Test
+              // </Button> */}
+              {/* for testing */}
             </Grid>
           </Grid>
         </form>

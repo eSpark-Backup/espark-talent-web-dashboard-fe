@@ -26,11 +26,4 @@ export const assetForm = [
     placeholder: 'Enter assignee email',
     name: 'email',
   },
-  {
-    title: 'Assignee picture',
-    placeholder: 'Upload picture',
-    prefixIcon: 'upload',
-    type: 'file',
-    name: 'image',
-  },
 ];
