@@ -12,11 +12,15 @@ import HiringRequestModal from './HiringRequestModal';
 import AddContractModal from './AddContractModal';
 import UploadInvoiceModal from './UploadInvoiceModal';
 import AddEmployeeModal from './AddEmployeeModal';
+import AddInterviewModal from './AddInterviewModal';
+import AddOnboardModal from './AddOnboardModal';
 
 const AddEmployee = () => {
   const router = useRouter();
   const [isOpenHiringRequestModal, setIsOpenHiringRequestModal] =
     useState(false);
+  const [isOpenAddInterviewModal, setIsOpenAddInterviewModal] = useState(false);
+  const [isOpenAddOnboardModal, setIsOpenAddOnboardModal] = useState(false);
   const [isOpenContractModal, setIsOpenContractModal] = useState(false);
   const [isOpenUploadInvoiceModal, setIsOpenUploadInvoiceModal] =
     useState(false);
@@ -108,6 +112,18 @@ const AddEmployee = () => {
   const handleCloseHiringRequestModal = () => {
     setIsOpenHiringRequestModal(false);
   };
+  const handleOpenAddInterviewModal = () => {
+    setIsOpenAddInterviewModal(true);
+  };
+  const handleCloseAddInterviewModal = () => {
+    setIsOpenAddInterviewModal(false);
+  };
+  const handleOpenAddOnboardModal = () => {
+    setIsOpenAddOnboardModal(true);
+  };
+  const handleCloseAddOnboardModal = () => {
+    setIsOpenAddOnboardModal(false);
+  };
   const handleOpenContractModal = () => {
     setIsOpenContractModal(true);
   };
@@ -126,6 +142,10 @@ const AddEmployee = () => {
   const handleCloseAddClientModal = () => {
     setIsOpenAddClientModal(false);
   };
+  const [isOpen, setIsOpen] = useState(false);
+  const handleClose = () => setIsOpen(false);
+  const handleOpen = () => setIsOpen(true);
+
   return (
     <>
       <Box>
@@ -278,7 +298,7 @@ const AddEmployee = () => {
                         lineHeight: { xs: '1.5', md: 'normal' },
                       }}
                     >
-                      Marital status:
+                      Address:
                     </Typography>
                     <Typography
                       sx={{
@@ -290,7 +310,7 @@ const AddEmployee = () => {
                         lineHeight: { xs: '1.5', md: 'normal' },
                       }}
                     >
-                      Single
+                      B1-Johar, near KU
                     </Typography>
                   </Box>
                 </Box>
@@ -312,7 +332,7 @@ const AddEmployee = () => {
                         lineHeight: { xs: '1.5', md: 'normal' },
                       }}
                     >
-                      Gender:
+                      Country:
                     </Typography>
                     <Typography
                       sx={{
@@ -324,7 +344,7 @@ const AddEmployee = () => {
                         lineHeight: { xs: '1.5', md: 'normal' },
                       }}
                     >
-                      Male
+                      Pakistan
                     </Typography>
                   </Box>
                   <Box display={'flex'} alignItems={'center'}>
@@ -398,7 +418,7 @@ const AddEmployee = () => {
                         lineHeight: { xs: '1.5', md: 'normal' },
                       }}
                     >
-                      Birth date:
+                      Join date:
                     </Typography>
                     <Typography
                       sx={{
@@ -498,15 +518,39 @@ const AddEmployee = () => {
                       ))}
                     </Tabs>
                     {currentTab.label === 'Hire & onboard' ? (
-                      <Button
-                        onClick={handleOpenHiringRequestModal}
-                        variant="contained"
-                        sx={{
-                          my: { xs: '20px', md: 0 },
-                        }}
-                      >
-                        Add new request
-                      </Button>
+                      <>
+                        {currentTab.nested.val == 0 ? (
+                          <Button
+                            onClick={handleOpenHiringRequestModal}
+                            variant="contained"
+                            sx={{
+                              my: { xs: '20px', md: 0 },
+                            }}
+                          >
+                            Add new request
+                          </Button>
+                        ) : currentTab.nested.val == 1 ? (
+                          <Button
+                            onClick={handleOpenAddInterviewModal}
+                            variant="contained"
+                            sx={{
+                              my: { xs: '20px', md: 0 },
+                            }}
+                          >
+                            Set New Interview
+                          </Button>
+                        ) : (
+                          <Button
+                            onClick={handleOpenAddOnboardModal}
+                            variant="contained"
+                            sx={{
+                              my: { xs: '20px', md: 0 },
+                            }}
+                          >
+                            Add Onboard
+                          </Button>
+                        )}
+                      </>
                     ) : currentTab.label === 'Contract signed' ? (
                       <Button
                         onClick={handleOpenContractModal}
@@ -548,12 +592,23 @@ const AddEmployee = () => {
             data: currentTabTable.data,
             column: currentTabTable.column,
             openModal: handleOpenAddClientModal,
+            isOpen: isOpen,
+            handleOpen,
+            handleClose,
           })}
         </Box>
       </Box>
       <HiringRequestModal
         open={isOpenHiringRequestModal}
         onClose={handleCloseHiringRequestModal}
+      />
+      <AddInterviewModal
+        open={isOpenAddInterviewModal}
+        onClose={handleCloseAddInterviewModal}
+      />
+      <AddOnboardModal
+        open={isOpenAddOnboardModal}
+        onClose={handleCloseAddOnboardModal}
       />
       <AddContractModal
         open={isOpenContractModal}

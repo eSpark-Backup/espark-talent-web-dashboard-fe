@@ -148,6 +148,7 @@ const renderStatusCell = (row, col, commonCellStyle, options) => {
     Pending: getStatusStyle('#F6E9D0', '#CB8822', '#CB8822'),
     Completed: getStatusStyle('#E6F5F4', '#068987', '#068987'),
     Default: getStatusStyle('#FFD6D6', '#A72A45', '#A72A45'),
+    Enabled: getStatusStyle('#E6F5F4', '#068987', '#068987'),
   };
 
   const statusStyle = statusMap[row.status] || statusMap.Default;
@@ -291,7 +292,11 @@ export const renderCellContent = (
       return (
         <td
           key={col.index}
-          style={{ ...commonCellStyle, flex: col?.flex || 1 }}
+          style={{
+            ...commonCellStyle,
+            flex: col?.flex || 1,
+            justifyContent: col?.textAlign || 'center',
+          }}
         >
           {row[toCamelCase(col?.title || col)] === null
             ? '-'

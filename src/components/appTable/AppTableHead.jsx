@@ -22,7 +22,11 @@ const TableHead = ({ column }) => {
             ) : (
               <th
                 key={colIndex}
-                style={{ fontSize: '14px', flex: col?.flex ? col?.flex : 1 }}
+                style={{
+                  fontSize: '14px',
+                  flex: col?.flex ? col?.flex : 1,
+                  textAlign: col?.textAlign || 'center',
+                }}
               >
                 {col?.title || col}
               </th>

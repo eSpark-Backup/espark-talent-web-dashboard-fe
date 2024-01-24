@@ -1,0 +1,136 @@
+import AddContractModal from '@/app/hr/dashboard/clients/client-profile/AddContractModal';
+import { a11yProps } from '@/src/utils/tabs';
+import { Box, Button, Tab, Tabs } from '@mui/material';
+import React, { useState } from 'react';
+import AppTable from '../appTable/AppTable';
+import {
+  leavesColumn,
+  leavesData,
+  timeColumn,
+  timeData,
+} from '@/src/constants/data/tables/hr/timeAndLeaves';
+import TimeManagementModal from '@/app/hr/dashboard/clients/client-profile/TimeManagementModal';
+import LeaveManagementModal from '@/app/hr/dashboard/clients/client-profile/LeaveManagementModal';
+
+const TimeAndLeaves = () => {
+  const [currentTab, setCurrentTab] = useState({
+    label: 'Time',
+    val: 0,
+    data: timeData,
+    column: timeColumn,
+  });
+  const [isOpenTimeManagementModal, setIsOpenTimeManagementModal] =
+    useState(false);
+  const [isOpenLeaveManagementModal, setIsOpenLeaveManagementModal] =
+    useState(false);
+  const tabs = [
+    {
+      prop: a11yProps(0),
+      label: 'Time',
+      data: timeData,
+      column: timeColumn,
+    },
+    {
+      prop: a11yProps(1),
+      label: 'Leaves',
+      data: leavesData,
+      column: leavesColumn,
+    },
+  ];
+  const handleChangeTab = (event, newValue, rest) => {
+    console.log({ event, newValue, rest });
+    setCurrentTab({
+      label: tabs[newValue].label,
+      val: newValue,
+      data: tabs[newValue].data,
+      column: tabs[newValue].column,
+    });
+  };
+  const handleOpenTimeManagementModal = () => {
+    setIsOpenTimeManagementModal(true);
+  };
+  const handleCloseTimeManagementModal = () => {
+    setIsOpenTimeManagementModal(false);
+  };
+  const handleOpenLeaveManagementModal = () => {
+    setIsOpenLeaveManagementModal(true);
+  };
+  const handleCloseLeaveManagementModal = () => {
+    setIsOpenLeaveManagementModal(false);
+  };
+  const handleOpenModal = () => {
+    if (currentTab?.val === 0) {
+      handleOpenTimeManagementModal();
+    } else {
+      handleOpenLeaveManagementModal();
+    }
+  };
+  return (
+    <>
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: { xs: 'column', md: 'row' },
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          borderBottom: 'solid 1px #ccc',
+          mb: '20px',
+        }}
+      >
+        <Tabs
+          value={currentTab.val}
+          onChange={(ev, newVal) => {
+            handleChangeTab(ev, newVal);
+          }}
+          aria-label="basic tabs example"
+          variant="scrollable"
+        >
+          {tabs?.map(({ label, prop }, tabIndex) => (
+            <Tab
+              key={tabIndex}
+              label={`${label}`}
+              {...prop}
+              disableRipple={true}
+            />
+          ))}
+        </Tabs>
+        {
+          <Button
+            sx={{ minWidth: '160px' }}
+            variant="contained"
+            onClick={handleOpenModal}
+          >
+            Manage
+          </Button>
+        }
+      </Box>
+      <Box
+        sx={{
+          maxWidth: '100%',
+          overflowX: 'auto',
+        }}
+      >
+        <AppTable
+          currentTab={currentTab}
+          column={currentTab.column}
+          data={currentTab.data}
+          noPagination
+        />
+      </Box>
+      <TimeManagementModal
+        open={isOpenTimeManagementModal}
+        onClose={handleCloseTimeManagementModal}
+      />
+      <LeaveManagementModal
+        open={isOpenLeaveManagementModal}
+        onClose={handleCloseLeaveManagementModal}
+      />
+      <AddContractModal
+        open={isOpenLeaveManagementModal}
+        onClose={handleCloseLeaveManagementModal}
+      />
+    </>
+  );
+};
+
+export default TimeAndLeaves;

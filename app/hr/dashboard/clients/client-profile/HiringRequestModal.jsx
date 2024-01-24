@@ -16,7 +16,9 @@ const HiringRequestModal = ({ open, onClose }) => {
     setErrors,
     handleReset,
   } = useFormik({
-    initialValues: {},
+    initialValues: {
+      country: 'Pakistan',
+    },
     validationSchema: hiringRequestSchema,
     enableReinitialize: true,
     onSubmit: (formValues) => {

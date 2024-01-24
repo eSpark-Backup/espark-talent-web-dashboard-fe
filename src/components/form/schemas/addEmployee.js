@@ -35,3 +35,13 @@ export const securitySchema = Yup.object({
     .oneOf([Yup.ref('password'), null], 'Passwords must match')
     .required('Confirm Password is required'),
 });
+export const timeAndLeaveAllotmentSchema = Yup.object({
+  checkinTime: Yup.string().required('Required'),
+  checkoutTime: Yup.string().required('Required'),
+  casualLeaves: Yup.string().required('Required'),
+  sickLeaves: Yup.string().required('Required'),
+  annualLeaves: Yup.string().required('Required'),
+  hajjLeaves: Yup.string().required('Required'),
+  paidLeaves: Yup.string().required('Required'),
+  unpaidLeaves: Yup.string().required('Required'),
+});

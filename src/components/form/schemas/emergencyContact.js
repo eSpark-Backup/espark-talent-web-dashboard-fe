@@ -7,6 +7,6 @@ export const emergencyContactsSchema = Yup.object({
   relation2: Yup.string().required('Required'),
   phoneNumber1: Yup.string().required('Required'),
   phoneNumber2: Yup.string().required('Required'),
-  phoneNumber3: Yup.string().required('Required'),
-  phoneNumber4: Yup.string().required('Required'),
+  phoneNumber3: Yup.string(),
+  phoneNumber4: Yup.string(),
 });
