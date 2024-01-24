@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Typography } from '@mui/material';
+import { Box, Popper, Typography } from '@mui/material';
 import { DesktopDatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs';
@@ -27,13 +27,16 @@ const DatePicker = ({ title }) => {
         <DesktopDatePicker
           className="custom-date-time-picker"
           open={isOpenDatePicker}
-          value={currentDate}
+          defaultValue={currentDate}
+          PopperComponent={(props) => (
+            <Popper {...props} style={{ maxWidth: '100px' }} />
+          )}
           slots={{
             openPickerIcon: () => (
               <Image
-                src={'/icons/CalendarOutline.svg'}
-                width={20}
-                height={20}
+                src={'/icons/CalenderGray.svg'}
+                width={30}
+                height={30}
                 alt="Date"
                 onClick={() => setIsOpenDatePicker((ps) => !ps)}
               />
@@ -42,7 +45,10 @@ const DatePicker = ({ title }) => {
               <ActionBarComponent onClose={handleCloseDatePicker} />
             ),
           }}
-          sx={{ width: '100%', borderRadius: '50%' }}
+          sx={{
+            width: '100%',
+            borderRadius: '50%',
+          }}
         />
       </LocalizationProvider>
     </Box>

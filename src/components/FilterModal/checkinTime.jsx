@@ -1,7 +1,12 @@
 import React from 'react';
-import { Box, TextField, Typography } from '@mui/material';
+import { Box, InputAdornment, TextField, Typography } from '@mui/material';
 
 const CheckinTime = ({ checkIn }) => {
+  const fontSize = {
+    '@media (min-width: 280px) and (max-width: 400px)': {
+      fontSize: '8px',
+    },
+  };
   return (
     <Box sx={{ width: '100%' }}>
       <Typography
@@ -17,10 +22,22 @@ const CheckinTime = ({ checkIn }) => {
       <Box sx={{ display: 'flex' }}>
         <TextField
           type="time"
-          sx={{ width: '50%' }}
+          sx={{ width: { xs: '100%', md: '50%' } }}
+          placeholder="--:-- --"
           inputProps={{
+            startAdornment: (
+              <InputAdornment position="end">
+                <Image
+                  src={'/icons/timeicon.svg'}
+                  width={20}
+                  height={20}
+                  alt="time"
+                />
+              </InputAdornment>
+            ),
             style: {
               height: '5px',
+              ...fontSize,
             },
           }}
         ></TextField>
@@ -38,10 +55,11 @@ const CheckinTime = ({ checkIn }) => {
         </Box>
         <TextField
           type="time"
-          sx={{ width: '50%' }}
+          sx={{ width: { xs: '100%', md: '50%' } }}
           inputProps={{
             style: {
               height: '5px',
+              ...fontSize,
             },
           }}
         ></TextField>

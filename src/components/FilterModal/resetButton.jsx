@@ -9,9 +9,10 @@ const ResetButton = () => {
     <Box
       sx={{
         display: 'flex',
-        paddingTop: '100px',
+        paddingTop: { xs: '0px', md: '100px' },
         justifyContent: 'center',
         gap: '15px',
+        paddingBottom: { xs: '50px', md: '0px' },
       }}
     >
       <Button
