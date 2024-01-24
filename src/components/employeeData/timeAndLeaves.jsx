@@ -96,7 +96,11 @@ const TimeAndLeaves = () => {
         </Tabs>
         {
           <Button
-            sx={{ minWidth: '160px' }}
+            sx={{
+              minWidth: '160px',
+              marginTop: { xs: '10px', md: '0px' },
+              marginBottom: { xs: '10px', md: '0px' },
+            }}
             variant="contained"
             onClick={handleOpenModal}
           >
