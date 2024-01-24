@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import Step from '@/src/components/form/step/Step';
@@ -8,6 +8,27 @@ import { clientEditForm } from '@/src/constants/data/forms/edit-client-info';
 import { editClientSchema } from '@/src/components/form/schemas/editClient';
 
 const AddEmployee = () => {
+  const [countries, setCountries] = useState([]);
+  const fetchCountriesList = async () => {
+    return await fetch(
+      'https://restcountries.com/v3.1/all?fields=name,flags'
+    ).then((res) => res.json().then((data) => data));
+  };
+
+  useEffect(() => {
+    const data = fetchCountriesList();
+    data.then((list) => {
+      console.log({ list });
+      const tempList = [...list]
+        ?.map((item) => ({
+          title: item?.name?.common,
+          flag: item?.flags?.svg,
+        }))
+        ?.sort((a, b) => (a?.title < b.title ? -1 : 1));
+      setCountries(tempList);
+    });
+  }, []);
+
   return (
     <Box>
       <Breadcrumb root="clients" title="Clients /" currentPage="Edit client" />
@@ -36,6 +57,7 @@ const AddEmployee = () => {
           schema={editClientSchema}
           pmd="50px 95px"
           editProfile
+          countries={countries}
         />
       </Box>
     </Box>

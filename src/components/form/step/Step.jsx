@@ -12,6 +12,7 @@ const Step = ({
   pmd = '95px 90px',
   editProfile,
   isLastStep,
+  countries,
 }) => {
   const {
     handleSubmit,
@@ -22,7 +23,18 @@ const Step = ({
     setFieldError,
     setErrors,
   } = useFormik({
-    initialValues: {},
+    initialValues: {
+      annualLeaves: 0,
+      unpaidLeaves: 0,
+      paidLeaves: 0,
+      hajjLeaves: 0,
+      sickLeaves: 0,
+      casualLeaves: 0,
+      country: {
+        flag: 'https://flagcdn.com/pk.svg',
+        title: 'Pakistan',
+      },
+    },
     validationSchema: schema,
     enableReinitialize: true,
     onSubmit: (formValues) => {
@@ -177,6 +189,8 @@ const Step = ({
               options,
               name,
               nested,
+              col,
+              searchable,
             },
             formIndex
           ) => (
@@ -199,6 +213,9 @@ const Step = ({
               setErrors={setErrors}
               values={values}
               nested={nested}
+              lg={col}
+              countries={countries}
+              searchable={searchable}
             />
           )
         )}

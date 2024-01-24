@@ -1,15 +1,22 @@
 'use client';
 import { Button, Grid } from '@mui/material';
 import { Box, useTheme } from '@mui/system';
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import AppTable from '@/src/components/appTable/AppTable';
 import {
   invoicePageColumn,
   invoicePageData,
 } from '@/src/constants/data/tables/hr/invoicesPageData';
+import Input from '@/src/components/dashboard/input';
+import FormInput from '@/src/components/form/ui-elements/FormInput';
+import AppDropdown from '@/src/components/dashboard/appDropdown';
 
 const Page = () => {
+  const [id, setId] = useState('');
+  const [name, setName] = useState('');
+  const [designation, setDesignation] = useState('Active');
+  const [isLoading, setIsLoading] = useState(false);
   const theme = useTheme();
 
   return (
@@ -28,7 +35,7 @@ const Page = () => {
           }}
           spacing={3}
         >
-          {/* <Grid item xs={12} md={6} lg={3}>
+          <Grid item xs={12} md={6} lg={3}>
             <Input
               value={id}
               width={'100%'}
@@ -39,25 +46,33 @@ const Page = () => {
             />
           </Grid>
           <Grid item xs={12} md={6} lg={3}>
-            <Input
+            <FormInput
               value={name}
-              width={'100%'}
-              handleChange={(e) => setName(e)}
-              placeHolder={'Employee name'}
-              prefixIcon={'/icons/searchIconWhite.svg'}
+              setFieldValue={setName}
+              placeHolder={'Date'}
               name={'name'}
+              lg={12}
+              type="date"
             />
           </Grid>
           <Grid item xs={12} md={6} lg={3}>
-            <Input
-              value={designation}
-              width={'100%'}
-              handleChange={(e) => setDesignation(e)}
-              placeHolder={'Select designation'}
-              prefixIcon={'/icons/searchIconWhite.svg'}
-              name={'designation'}
+            <AppDropdown
+              selectedItem={designation}
+              setSelectedItem={setDesignation}
+              lg={12}
+              type="select"
+              data={[
+                {
+                  label: 'Active',
+                },
+                {
+                  label: 'Inactive',
+                },
+              ]}
+              isLoadingList={isLoading}
+              setIsLoadingList={setIsLoading}
             />
-          </Grid> */}
+          </Grid>
           <Grid item xs={12} md={6} lg={1}>
             <Button
               // onClick={() => setSearch(true)}

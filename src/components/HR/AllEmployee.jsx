@@ -18,6 +18,7 @@ const AllEmployee = ({ fromClient, openModal }) => {
   const [id, setId] = useState('');
   const [name, setName] = useState('');
   const [designation, setDesignation] = useState('');
+  const [company, setCompany] = useState('');
   const [search, setSearch] = useState(false);
 
   const theme = useTheme();
@@ -152,7 +153,7 @@ const AllEmployee = ({ fromClient, openModal }) => {
           }}
           spacing={3}
         >
-          <Grid item xs={12} md={6} lg={3}>
+          <Grid item xs={12} md={6} lg={2.75}>
             <Input
               value={id}
               width={'100%'}
@@ -162,7 +163,7 @@ const AllEmployee = ({ fromClient, openModal }) => {
               name={'id'}
             />
           </Grid>
-          <Grid item xs={12} md={6} lg={3}>
+          <Grid item xs={12} md={6} lg={2.75}>
             <Input
               value={name}
               width={'100%'}
@@ -172,12 +173,22 @@ const AllEmployee = ({ fromClient, openModal }) => {
               name={'name'}
             />
           </Grid>
-          <Grid item xs={12} md={6} lg={3}>
+          <Grid item xs={12} md={6} lg={2.75}>
             <Input
               value={designation}
               width={'100%'}
               handleChange={(e) => setDesignation(e)}
               placeHolder={'Select designation'}
+              prefixIcon={'/icons/searchIconWhite.svg'}
+              name={'designation'}
+            />
+          </Grid>
+          <Grid item xs={12} md={6} lg={2.75}>
+            <Input
+              value={company}
+              width={'100%'}
+              handleChange={(e) => setCompany(e)}
+              placeHolder={'Search company'}
               prefixIcon={'/icons/searchIconWhite.svg'}
               name={'designation'}
             />

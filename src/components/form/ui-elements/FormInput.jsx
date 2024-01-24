@@ -7,6 +7,7 @@ import Image from 'next/image';
 import AppDropdown from '../../dashboard/appDropdown';
 import { DesktopDatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import AppSearchableDropdown from '../../dashboard/appSearchableDropdown';
 
 const FormInput = ({
   xs = 12,
@@ -31,6 +32,8 @@ const FormInput = ({
   fields,
   suffixIconOutside,
   onClick,
+  countries,
+  searchable,
 }) => {
   const [isLoadingList, setIsLoadingList] = useState(false);
   const handleSelectItem = (item) => {
@@ -108,40 +111,57 @@ const FormInput = ({
         padding: '0 10px',
       }}
     >
-      <Box>
-        <Typography
-          sx={{
-            color: error ? 'red' : '#595959',
-            fontSize: '14px',
-            fontStyle: 'normal',
-            fontWeight: 500,
-            lineHeight: 'normal',
-            mb: '10px',
-          }}
-        >
-          {title}
-        </Typography>
-      </Box>
+      {title && (
+        <Box>
+          <Typography
+            sx={{
+              color: error ? 'red' : '#595959',
+              fontSize: '14px',
+              fontStyle: 'normal',
+              fontWeight: 500,
+              lineHeight: 'normal',
+              mb: '10px',
+            }}
+          >
+            {title}
+          </Typography>
+        </Box>
+      )}
       {type === 'select' ? (
-        <AppDropdown
-          data={options}
-          placeHolder={'Select'}
-          selectedItem={value}
-          setSelectedItem={handleSelectItem}
-          isLoadingList={isLoadingList}
-          setIsLoadingList={setIsLoadingList}
-          nested={nested}
-          mb={'0px'}
-          error={error}
-          isForm
-          setFieldError={setFieldError}
-          name={name}
-        />
+        <>
+          {searchable ? (
+            <AppSearchableDropdown
+              data={countries}
+              selectedItem={value}
+              setSelectedItem={handleSelectItem}
+              setIsLoadingList={setIsLoadingList}
+              isLoadingList={isLoadingList}
+              md={12}
+              withFlag
+              error={error}
+            />
+          ) : (
+            <AppDropdown
+              data={options}
+              placeHolder={'Select'}
+              selectedItem={value}
+              setSelectedItem={handleSelectItem}
+              isLoadingList={isLoadingList}
+              setIsLoadingList={setIsLoadingList}
+              nested={nested}
+              mb={'0px'}
+              error={error}
+              isForm
+              setFieldError={setFieldError}
+              name={name}
+            />
+          )}
+        </>
       ) : type === 'date' ? (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DesktopDatePicker
             className={[
-              error && 'error-border',
+              error ? 'error-border' : 'no-error-border',
               'form-date-picker-component',
             ].join(' ')}
             slots={{

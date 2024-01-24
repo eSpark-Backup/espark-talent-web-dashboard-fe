@@ -3,6 +3,7 @@ import {
   companyDetailsSchema,
   emergencyContactSchema,
   securitySchema,
+  timeAndLeaveAllotmentSchema,
 } from '@/src/components/form/schemas/addEmployee';
 import { jobTitles } from '../dropdown.js/startHiring';
 
@@ -168,6 +169,62 @@ const formElementsStep3 = [
 ];
 const formElementsStep4 = [
   {
+    title: 'Checkin time',
+    placeholder: '--:-- --',
+    name: 'checkinTime',
+    type: 'time',
+    col: 6,
+  },
+  {
+    title: 'Checkout time',
+    placeholder: '--:-- --',
+    name: 'checkoutTime',
+    col: 6,
+  },
+  {
+    title: 'Casual Leaves',
+    placeholder: 'Enter password',
+    name: 'casualLeaves',
+    type: 'add-sub-counter',
+  },
+  {
+    title: 'Sick Leaves',
+    placeholder: '0',
+    name: 'sickLeaves',
+    type: 'add-sub-counter',
+    defaultValue: 0,
+  },
+  {
+    title: 'Annual Leaves',
+    placeholder: '0',
+    name: 'annualLeaves',
+    type: 'add-sub-counter',
+    defaultValue: 0,
+  },
+  {
+    title: 'Hajj Leaves',
+    placeholder: '0',
+    name: 'hajjLeaves',
+    type: 'add-sub-counter',
+    defaultValue: 0,
+  },
+  {
+    title: 'Paid Leaves',
+    placeholder: '0',
+    name: 'paidLeaves',
+    type: 'add-sub-counter',
+    defaultValue: 0,
+  },
+  {
+    title: 'Unpaid Leaves',
+    placeholder: '0',
+    name: 'unpaidLeaves',
+    type: 'add-sub-counter',
+    defaultValue: 0,
+  },
+];
+const formElementsStep5 = [
+  {
     title: 'Employee ID',
     placeholder: 'Enter employee id',
     name: 'employeeId',
@@ -206,9 +263,15 @@ export const formSteps = [
     form: formElementsStep3,
   },
   {
-    title: 'Security',
+    title: 'Time & Leaves Allotment',
     countNo: 4,
-    schema: securitySchema,
+    schema: timeAndLeaveAllotmentSchema,
     form: formElementsStep4,
+  },
+  {
+    title: 'Security',
+    countNo: 5,
+    schema: securitySchema,
+    form: formElementsStep5,
   },
 ];

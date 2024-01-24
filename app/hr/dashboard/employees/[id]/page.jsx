@@ -16,6 +16,9 @@ import Assets from '@/src/components/employeeData/assets';
 import AssetForm from '@/src/components/employeeData/assetModal';
 import { allEmployees } from '@/src/constants/AllEmployee';
 import FilterModal from '@/src/components/FilterModal/filterModal';
+import TimeAndLeaves from '@/src/components/employeeData/timeAndLeaves';
+import Contract from '@/src/components/employeeData/contract';
+import AddContractModal from '../../clients/client-profile/AddContractModal';
 
 const Page = () => {
   const [value, setValue] = useState('one');
@@ -25,6 +28,7 @@ const Page = () => {
   const [showEditProfilelModal, setEditProfileModal] = useState(false);
   const [showAssetModal, setAssetModal] = useState(false);
   const [showFilterModal, setShowFilterModal] = useState(false);
+  const [isOpenContractModal, setIsOpenContractModal] = useState(false);
 
   const pathname = usePathname();
   const employeeId = pathname.split('/').pop();
@@ -58,6 +62,12 @@ const Page = () => {
   };
   const handleChange = (event, newValue) => {
     setValue(newValue);
+  };
+  const handleOpenContractModal = () => {
+    setIsOpenContractModal(true);
+  };
+  const handleCloseContractModal = () => {
+    setIsOpenContractModal(false);
   };
 
   return (
@@ -219,7 +229,11 @@ const Page = () => {
                   borderBottom: 1,
                   borderColor: 'divider',
                   marginBottom:
-                    value !== employeeProfileData?.valueTwo && '40px',
+                    value === employeeProfileData?.valueTwo ||
+                    value === employeeProfileData?.valuethree ||
+                    value === 'five'
+                      ? '0px'
+                      : '40px',
                   display: 'flex',
                   justifyContent: { xs: 'center', md: 'space-between' },
                   flexDirection: { xs: 'column', md: 'row' },
@@ -253,6 +267,12 @@ const Page = () => {
                       label="Assets"
                       disableRipple={true}
                     />
+                    <Tab
+                      value={'five'}
+                      label="Time & leaves"
+                      disableRipple={true}
+                    />
+                    <Tab value={'six'} label="Contract" disableRipple={true} />
                   </Tabs>
                 </Box>
                 <Box
@@ -348,6 +368,26 @@ const Page = () => {
                       )}
                     </>
                   )}
+                  {value === 'six' && (
+                    <>
+                      <Button
+                        sx={{
+                          minWidth: '160px',
+                          background: '#029894',
+                          display: 'flex',
+                          color: '#fff',
+                          textTransform: 'math-auto',
+                          marginBottom: '10px',
+                          '&:hover': {
+                            background: '#029894',
+                          },
+                        }}
+                        onClick={handleOpenContractModal}
+                      >
+                        Add Contract
+                      </Button>
+                    </>
+                  )}
                 </Box>
               </Box>
               {value === employeeProfileData?.valueOne ? (
@@ -364,6 +404,10 @@ const Page = () => {
                 <Client />
               ) : value === employeeProfileData?.valuethree ? (
                 <AttendanceReport />
+              ) : value === 'five' ? (
+                <TimeAndLeaves />
+              ) : value === 'six' ? (
+                <Contract />
               ) : (
                 <Assets />
               )}
@@ -382,6 +426,10 @@ const Page = () => {
           {employeeProfileData?.noidFound}
         </Typography>
       )}
+      <AddContractModal
+        open={isOpenContractModal}
+        onClose={handleCloseContractModal}
+      />
     </>
   );
 };
