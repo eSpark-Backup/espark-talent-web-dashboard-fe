@@ -11,11 +11,19 @@ const AppSearchableDropdown = ({
   setIsLoadingList,
   setSelectedItem,
   data,
+  md,
+  withFlag,
+  error,
 }) => {
   const [isOpenedDropdown, setIsOpenedDropdown] = useState(false);
-  const [listData, setListData] = useState([...data]);
+  const [listData, setListData] = useState([]);
   const [searchItem, setSearchItem] = useState('');
-  const [pointedElement, setPointedElement] = useState(selectedItem);
+  const [pointedElement, setPointedElement] = useState();
+
+  useEffect(() => {
+    setListData([...data]);
+    setPointedElement(selectedItem);
+  }, [data, selectedItem]);
 
   const componentRef = useRef(null);
   useEffect(() => {
@@ -46,9 +54,11 @@ const AppSearchableDropdown = ({
   }, []);
   useEffect(() => {
     if (isOpenedDropdown && pointedElement && componentRef.current) {
-      const selectedElement = componentRef.current.querySelector(
-        `[data-key="${pointedElement}"]`
-      );
+      const selectedElement = withFlag
+        ? componentRef.current.querySelector(
+            `[data-key="${pointedElement?.title}"]`
+          )
+        : componentRef.current.querySelector(`[data-key="${pointedElement}"]`);
       if (selectedElement) {
         selectedElement.scrollIntoView({
           behavior: 'smooth',
@@ -97,14 +107,14 @@ const AppSearchableDropdown = ({
     }
   };
   return (
-    <Grid sx={{ position: 'relative' }} item xs={12} md={6}>
+    <Grid sx={{ position: 'relative' }} item xs={12} md={md || 6}>
       <Box ref={componentRef} sx={{ display: 'flex', gap: '2px' }}>
         <Box
           onClick={toggleComponent}
           display={'flex'}
           justifyContent={'space-between'}
           sx={{
-            border: 'solid 1px #ccc',
+            border: `solid 1px ${error ? 'red' : '#ccc'}`,
             borderTopLeftRadius: '5px',
             borderTopRightRadius: '5px',
             borderBottomLeftRadius: !isOpenedDropdown && '5px',
@@ -113,9 +123,32 @@ const AppSearchableDropdown = ({
           }}
           p={'10px'}
         >
-          <Typography sx={{ color: selectedItem ? '#000' : '#838383' }}>
-            {selectedItem || 'Select Employee'}
-          </Typography>
+          {withFlag ? (
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+              }}
+            >
+              <Box
+                component={'img'}
+                alt={selectedItem?.titme}
+                src={selectedItem?.flag}
+                sx={{
+                  width: '35px',
+                  height: '20px',
+                  mr: '20px',
+                }}
+              />
+              <Box>
+                <Typography>{selectedItem?.title}</Typography>
+              </Box>
+            </Box>
+          ) : (
+            <Typography sx={{ color: selectedItem ? '#000' : '#838383' }}>
+              {selectedItem || 'Select Employee'}
+            </Typography>
+          )}
 
           {isOpenedDropdown ? (
             <Image
@@ -181,33 +214,85 @@ const AppSearchableDropdown = ({
                   <Typography>Loading...</Typography>
                 </Box>
               ) : listData?.length ? (
-                listData?.map((item, index) => (
-                  <Box
-                    onClick={() => {
-                      setSearchItem('');
-                      setSelectedItem(item);
-                      setPointedElement(item);
-                      setIsOpenedDropdown(false);
-                    }}
-                    key={index}
-                    data-key={item}
-                    className={`list-item-box ${
-                      item === selectedItem || item === pointedElement
-                        ? 'selected-list-item'
-                        : ''
-                    }`}
-                    p={'10px'}
-                    sx={{
-                      '&::-webkit-scrollbar': {
-                        display: 'none',
-                      },
-                      scrollbarWidth: 'none',
-                      '-ms-overflow-style': 'none',
-                    }}
-                  >
-                    <Typography>{item}</Typography>
-                  </Box>
-                ))
+                listData?.map((item, index) => {
+                  if (withFlag) {
+                    return (
+                      <Box
+                        onClick={() => {
+                          setSearchItem('');
+                          setSelectedItem(item);
+                          setPointedElement(item);
+                          setIsOpenedDropdown(false);
+                        }}
+                        key={index}
+                        data-key={item?.title}
+                        className={`list-item-box ${
+                          item?.title === selectedItem?.title ||
+                          item?.title === pointedElement?.title
+                            ? 'selected-list-item'
+                            : ''
+                        }`}
+                        p={'10px'}
+                        sx={{
+                          '&::-webkit-scrollbar': {
+                            display: 'none',
+                          },
+                          scrollbarWidth: 'none',
+                          '-ms-overflow-style': 'none',
+                        }}
+                      >
+                        <Box
+                          sx={{
+                            display: 'flex',
+                            alignItems: 'center',
+                          }}
+                        >
+                          <Box
+                            component={'img'}
+                            alt={item?.titme}
+                            src={item?.flag}
+                            sx={{
+                              width: '35px',
+                              height: '20px',
+                              mr: '20px',
+                            }}
+                          />
+                          <Box>
+                            <Typography>{item?.title}</Typography>
+                          </Box>
+                        </Box>
+                      </Box>
+                    );
+                  } else {
+                    return (
+                      <Box
+                        onClick={() => {
+                          setSearchItem('');
+                          setSelectedItem(item);
+                          setPointedElement(item);
+                          setIsOpenedDropdown(false);
+                        }}
+                        key={index}
+                        data-key={item}
+                        className={`list-item-box ${
+                          item === selectedItem || item === pointedElement
+                            ? 'selected-list-item'
+                            : ''
+                        }`}
+                        p={'10px'}
+                        sx={{
+                          '&::-webkit-scrollbar': {
+                            display: 'none',
+                          },
+                          scrollbarWidth: 'none',
+                          '-ms-overflow-style': 'none',
+                        }}
+                      >
+                        <Typography>{item}</Typography>
+                      </Box>
+                    );
+                  }
+                })
               ) : (
                 <Box p={'10px'}>
                   <Typography>No item found</Typography>

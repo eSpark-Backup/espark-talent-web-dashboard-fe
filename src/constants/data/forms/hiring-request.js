@@ -44,6 +44,30 @@ export const hringRequestForm = [
     ],
   },
   {
+    title: 'Country',
+    placeholder: 'Pakistan',
+    name: 'country',
+  },
+  {
+    title: 'Salary range',
+    placeholder: 'Enter first name',
+    name: 'salaryRange',
+    type: 'input-range',
+    fields: [
+      {
+        placeholder: '0',
+        name: 'min',
+        suffixIcon: '$',
+      },
+      {
+        placeholder: '1',
+        name: 'max',
+        suffixIcon: '$',
+      },
+    ],
+  },
+
+  {
     title: 'Employment term',
     placeholder: 'Select employment term',
     name: 'employmentTerm',
@@ -73,23 +97,5 @@ export const hringRequestForm = [
     suffixIcon: 'calender',
     type: 'date',
     name: 'hiringEndDate',
-  },
-  {
-    title: 'Salary range',
-    placeholder: 'Enter first name',
-    name: 'salaryRange',
-    type: 'input-range',
-    fields: [
-      {
-        placeholder: '0',
-        name: 'min',
-        suffixIcon: '$',
-      },
-      {
-        placeholder: '1',
-        name: 'max',
-        suffixIcon: '$',
-      },
-    ],
   },
 ];

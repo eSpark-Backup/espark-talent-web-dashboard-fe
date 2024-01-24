@@ -270,6 +270,9 @@ body {
 .form-date-picker-component {
   width: 100%;
 }
+.no-error-border fieldset{
+  border: solid 1px #ccc !important;
+}
 .error-border fieldset {
   border: solid 1px red !important;
   /* border-radius: 7px; */

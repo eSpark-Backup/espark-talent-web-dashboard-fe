@@ -10,37 +10,9 @@ export const clientEditForm = [
     name: 'lastName',
   },
   {
-    title: 'Gender',
-    placeholder: 'Select',
-    name: 'gender',
-    type: 'select',
-    options: [
-      {
-        label: 'Male',
-      },
-      {
-        label: 'Female',
-      },
-    ],
-  },
-  {
-    title: 'Phone number',
-    placeholder: 'Enter phone number',
-    name: 'phoneNumber',
-  },
-  {
-    title: 'Marital status',
-    placeholder: 'Select',
-    name: 'maritalStatus',
-    type: 'select',
-    options: [
-      {
-        label: 'Married',
-      },
-      {
-        label: 'Single',
-      },
-    ],
+    title: 'Company',
+    placeholder: 'eSparkTalent',
+    name: 'company',
   },
   {
     title: 'Email',
@@ -48,16 +20,28 @@ export const clientEditForm = [
     name: 'email',
   },
   {
-    title: 'Company',
-    placeholder: 'eSparkTalent',
-    name: 'company',
+    title: 'Phone number',
+    placeholder: 'Enter phone number',
+    name: 'phoneNumber',
   },
   {
-    title: 'Date of birth',
+    title: 'Join date',
     placeholder: 'DD-MM-YYYY',
-    name: 'dateOfBirth',
+    name: 'joinDate',
     suffixIcon: 'calender',
     type: 'date',
+  },
+  {
+    title: 'Country',
+    placeholder: 'Select',
+    name: 'country',
+    type: 'select',
+    searchable: true,
+  },
+  {
+    title: 'Address',
+    placeholder: '15 Sellamuttu Avenue, 03, Colombo',
+    name: 'address',
   },
   {
     title: 'Picture',

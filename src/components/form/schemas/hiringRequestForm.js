@@ -4,9 +4,7 @@ export const hiringRequestSchema = Yup.object({
   jobTitle: Yup.string().required('Required'),
   roleType: Yup.string().required('Required'),
   gender: Yup.string().required('Required'),
-  employmentTerm: Yup.string().required('Required'),
-  hiringStartDate: Yup.string().required('Required'),
-  hiringEndDate: Yup.string().required('Required'),
+  country: Yup.string().required('Required'),
   salaryRange: Yup.object().shape({
     min: Yup.number()
       .required('Required')
@@ -18,4 +16,7 @@ export const hiringRequestSchema = Yup.object({
         'Maximum value must not be less than the minimum value'
       ),
   }),
+  employmentTerm: Yup.string().required('Required'),
+  hiringStartDate: Yup.string().required('Required'),
+  hiringEndDate: Yup.string().required('Required'),
 });

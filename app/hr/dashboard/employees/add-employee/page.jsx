@@ -41,7 +41,11 @@ const AddEmployee = () => {
           borderRadius: '10px 10px 0 0',
         }}
       >
-        <Navigator formSteps={formSteps} currentStep={currentStep} />
+        <Navigator
+          formSteps={formSteps}
+          currentStep={currentStep}
+          navigationLabelWidth="75px"
+        />
         {formSteps.map(
           ({ schema, form, countNo, isMultiColumn }, stepIndex) => {
             if (countNo === currentStep) {
