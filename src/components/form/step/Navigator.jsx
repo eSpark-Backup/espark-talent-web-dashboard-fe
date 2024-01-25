@@ -1,5 +1,6 @@
 import { Box, Typography } from '@mui/material';
 import React from 'react';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const Navigator = ({
   formSteps,
@@ -7,6 +8,7 @@ const Navigator = ({
   navigationLabelWidth = '55px',
   navigationPadding = '35px 0px 66px 0px',
 }) => {
+  const isXsScreen = useMediaQuery('(max-width:600px)');
   return (
     <Box
       sx={{
@@ -44,8 +46,8 @@ const Navigator = ({
                   alignItems: 'center',
                   justifyContent: 'center',
                   '@media (min-width: 280px) and (max-width: 400px)': {
-                    width: '20px',
-                    height: '20px',
+                    width: '25px',
+                    height: '25px',
                   },
                 }}
               >
@@ -63,7 +65,7 @@ const Navigator = ({
               </Box>
               <Box
                 sx={{
-                  width: navigationLabelWidth,
+                  width: { xs: '56px', sm: navigationLabelWidth },
                   position: 'absolute',
                   bottom: '-30px',
                 }}
@@ -85,21 +87,21 @@ const Navigator = ({
                     },
                     '@media (min-width: 300px) and (max-width: 400px)': {
                       fontSize: '8px',
-                      width: '60px',
+                      // width: '60px',
                     },
                     '@media (min-width: 270px) and (max-width: 300px)': {
                       fontSize: '5px',
                     },
                   }}
                 >
-                  {title}
+                  {isXsScreen && currentStep !== stepIndex + 1 ? '...' : title}
                 </Typography>
               </Box>
             </Box>
             {stepIndex < formSteps.length - 1 && (
               <Box
                 sx={{
-                  width: { xs: '30px', sm: '50px' },
+                  width: { xs: '25px', sm: '50px' },
                   height: '2px',
                   flexShrink: '0',
                   border: '0.5px solid #FFF',

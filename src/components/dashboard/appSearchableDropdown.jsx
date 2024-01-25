@@ -14,6 +14,8 @@ const AppSearchableDropdown = ({
   md,
   withFlag,
   error,
+  placeholder,
+  width,
 }) => {
   const [isOpenedDropdown, setIsOpenedDropdown] = useState(false);
   const [listData, setListData] = useState([]);
@@ -31,6 +33,7 @@ const AppSearchableDropdown = ({
     const timeoutId = setTimeout(() => {
       filterDataByKeyword(tempData, searchItem.trim() || '', setListData);
       setIsLoadingList(false);
+      console.log({ searchItem });
     }, 500);
     return () => {
       clearTimeout(timeoutId);
@@ -117,9 +120,11 @@ const AppSearchableDropdown = ({
             border: `solid 1px ${error ? 'red' : '#ccc'}`,
             borderTopLeftRadius: '5px',
             borderTopRightRadius: '5px',
+            // borderRadius:'5px',
             borderBottomLeftRadius: !isOpenedDropdown && '5px',
             borderBottomRightRadius: !isOpenedDropdown && '5px',
-            width: '400px',
+            width: width || '400px',
+            height: '43px',
           }}
           p={'10px'}
         >
@@ -146,7 +151,10 @@ const AppSearchableDropdown = ({
             </Box>
           ) : (
             <Typography sx={{ color: selectedItem ? '#000' : '#838383' }}>
-              {selectedItem || 'Select Employee'}
+              {selectedItem?.label ||
+                selectedItem ||
+                placeholder ||
+                'Select Employee'}
             </Typography>
           )}
 
@@ -170,11 +178,13 @@ const AppSearchableDropdown = ({
           <Box
             sx={{
               border: 'solid 1px #ccc',
-              borderBottomLeftRadius: '5px',
-              borderBottomRightRadius: '5px',
+              borderRadius: '5px',
+              overflow: 'hidden',
+              // borderBottomLeftRadius: '5px',
+              // borderBottomRightRadius: '5px',
               borderTopLeftRadius: !isOpenedDropdown && '5px',
               borderTopRightRadius: !isOpenedDropdown && '5px',
-              borderTop: 'none',
+              // borderTop: 'none',
               position: 'absolute',
               width: '100%',
               background: '#fff',
@@ -187,6 +197,7 @@ const AppSearchableDropdown = ({
               position="sticky"
               top="0"
               sx={{ background: '#fff', zIndex: 1 }}
+              height={'43px'}
             >
               <Input
                 setIsLoading={setIsLoadingList}
@@ -203,6 +214,7 @@ const AppSearchableDropdown = ({
               sx={{
                 overflow: 'auto',
                 scrollbarWidth: 'thin',
+                mt: '10px',
                 scrollbarColor: 'transparent transparent',
                 '&::-webkit-scrollbar': {
                   display: 'none',
@@ -288,7 +300,7 @@ const AppSearchableDropdown = ({
                           '-ms-overflow-style': 'none',
                         }}
                       >
-                        <Typography>{item}</Typography>
+                        <Typography>{item?.label || item}</Typography>
                       </Box>
                     );
                   }

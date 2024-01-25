@@ -70,9 +70,9 @@ const TimeAndLeaves = () => {
       <Box
         sx={{
           display: 'flex',
-          flexDirection: { xs: 'column', md: 'row' },
+          flexDirection: { xs: 'column', sm: 'row' },
           justifyContent: 'space-between',
-          alignItems: 'center',
+          alignItems: { xs: 'flex-start', sm: 'center' },
           borderBottom: 'solid 1px #ccc',
           mb: '20px',
         }}

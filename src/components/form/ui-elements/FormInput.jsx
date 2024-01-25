@@ -5,9 +5,24 @@ import { Box } from '@mui/system';
 import Image from 'next/image';
 
 import AppDropdown from '../../dashboard/appDropdown';
-import { DesktopDatePicker, LocalizationProvider } from '@mui/x-date-pickers';
+import {
+  DesktopDatePicker,
+  DesktopTimePicker,
+  LocalizationProvider,
+  DesktopDateTimePicker,
+  MobileDateTimePicker,
+} from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import AppSearchableDropdown from '../../dashboard/appSearchableDropdown';
+import useMediaQuery from '@mui/material/useMediaQuery';
+
+const DateTimePickerComponent = (props) => {
+  const isXsScreen = useMediaQuery('(max-width:600px)');
+  if (isXsScreen) {
+    return <MobileDateTimePicker {...props} />;
+  }
+  return <DesktopDateTimePicker {...props} />;
+};
 
 const FormInput = ({
   xs = 12,
@@ -168,6 +183,92 @@ const FormInput = ({
               openPickerIcon: () => (
                 <Image
                   src="/images/hiring/calender.svg"
+                  width={30}
+                  height={30}
+                  alt="calender"
+                />
+              ),
+            }}
+            placeholder={placeholder}
+            slotProps={{
+              textField: {
+                placeholder: placeholder,
+                sx: {
+                  '& input': {
+                    color: '#88888',
+                    padding: '9.95px 10px',
+                    width: '100%',
+                  },
+                },
+              },
+            }}
+            sx={{
+              width: '100%',
+              height: '40px',
+              '@media (min-width: 900px) and (max-width: 1400px)': {
+                width: '100%',
+              },
+            }}
+            value={value}
+            onChange={(e) => {
+              handleChangeInput(name, `${e?.$d}`);
+            }}
+          />
+        </LocalizationProvider>
+      ) : type === 'time' ? (
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <DesktopTimePicker
+            className={[
+              error ? 'error-border' : 'no-error-border',
+              'form-date-picker-component',
+            ].join(' ')}
+            slots={{
+              openPickerIcon: () => (
+                <Image
+                  src={`/icons/ClockIcon.svg`}
+                  width={30}
+                  height={30}
+                  alt="calender"
+                />
+              ),
+            }}
+            placeholder={placeholder}
+            slotProps={{
+              textField: {
+                placeholder: placeholder,
+                sx: {
+                  '& input': {
+                    color: '#88888',
+                    padding: '9.95px 10px',
+                    width: '100%',
+                  },
+                },
+              },
+            }}
+            sx={{
+              width: '100%',
+              height: '40px',
+              '@media (min-width: 900px) and (max-width: 1400px)': {
+                width: '100%',
+              },
+            }}
+            value={value}
+            onChange={(e) => {
+              handleChangeInput(name, `${e?.$d}`);
+            }}
+          />
+        </LocalizationProvider>
+      ) : type === 'date-and-time' ? (
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <DateTimePickerComponent
+            className={[
+              error ? 'error-border' : 'no-error-border',
+              'form-date-picker-component',
+            ].join(' ')}
+            slots={{
+              openPickerIcon: () => (
+                <Image
+                  src={`/icons/${suffixIcon}.svg`}
                   width={30}
                   height={30}
                   alt="calender"

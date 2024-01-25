@@ -79,7 +79,7 @@ export const addOnboardForm = [
   },
   {
     title: 'Notice period',
-    placeholder: 'Pakistan',
+    placeholder: 'Days',
     name: 'noticePeriod',
   },
   {

@@ -24,6 +24,7 @@ export const createLeaveRequestForm = [
       },
     ],
     required: true,
+    searchable: true,
   },
   {
     title: 'Start date',
