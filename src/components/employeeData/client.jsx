@@ -77,7 +77,14 @@ const Client = () => {
           ))}
         </Tabs>
         {currentTab.val === 1 && (
-          <Button variant="contained" onClick={handleOpenContractModal}>
+          <Button
+            sx={{
+              marginTop: { xs: '10px', md: '0px' },
+              marginBottom: { xs: '10px', md: '0px' },
+            }}
+            variant="contained"
+            onClick={handleOpenContractModal}
+          >
             Add contact
           </Button>
         )}

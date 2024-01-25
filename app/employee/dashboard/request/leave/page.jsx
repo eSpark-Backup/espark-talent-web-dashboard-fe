@@ -116,7 +116,7 @@ const Dashboard = () => {
               marginBottom={'50px'}
             >
               <Box display={'flex'} flexDirection={'column'}>
-                <Typography variant="h3">Leaves Requests</Typography>
+                <Typography variant="h3">Leaves request</Typography>
                 <Box display={'flex'} flexDirection={'column'} mt={'20px'}>
                   <Typography
                     sx={{

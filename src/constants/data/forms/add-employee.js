@@ -179,6 +179,7 @@ const formElementsStep4 = [
     title: 'Checkout time',
     placeholder: '--:-- --',
     name: 'checkoutTime',
+    type: 'time',
     col: 6,
   },
   {

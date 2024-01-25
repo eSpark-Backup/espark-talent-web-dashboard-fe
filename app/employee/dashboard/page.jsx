@@ -585,6 +585,12 @@ const Dashboard = () => {
                 sx={{
                   fontSize: '25px',
                   fontWeight: 600,
+                  '@media (min-width: 1300px) and (max-width: 1430px)': {
+                    fontSize: '20px',
+                  },
+                  '@media (min-width: 900px) and (max-width: 1300px)': {
+                    fontSize: '18px',
+                  },
                 }}
               >
                 Today Activity
@@ -718,6 +724,7 @@ const Dashboard = () => {
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
+                paddingBottom: '45px',
                 // mx:"auto",
               }}
             >

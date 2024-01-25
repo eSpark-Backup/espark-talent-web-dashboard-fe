@@ -104,11 +104,16 @@ const AllEmployee = ({ fromClient, openModal }) => {
           Employees
         </Typography>
         <Button
-          style={{
+          sx={{
             backgroundColor: '#029894',
             width: '160px',
             color: '#FFF',
-            fontSize: '16px',
+            textTransform: 'math-auto',
+            '&:hover': {
+              backgroundColor: '#029894',
+              color: '#FFF',
+            },
+            marginTop: { xs: '25px', md: '0px' },
           }}
           onClick={() => router.push('/hr/dashboard/employees/add-employee')}
         >
@@ -178,7 +183,7 @@ const AllEmployee = ({ fromClient, openModal }) => {
               value={designation}
               width={'100%'}
               handleChange={(e) => setDesignation(e)}
-              placeHolder={'Select designation'}
+              placeHolder={'Search designation'}
               prefixIcon={'/icons/searchIconWhite.svg'}
               name={'designation'}
             />
