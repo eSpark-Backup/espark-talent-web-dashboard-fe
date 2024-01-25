@@ -133,7 +133,10 @@ const Dashboard = () => {
                 </Box>
               </Box>
               <Button
-                sx={{ minWidth: '120px', marginBottom: '25px' }}
+                sx={{
+                  minWidth: { xs: '100px', md: '120px' },
+                  marginBottom: '25px',
+                }}
                 variant="contained"
                 onClick={handleOpenModal}
               >

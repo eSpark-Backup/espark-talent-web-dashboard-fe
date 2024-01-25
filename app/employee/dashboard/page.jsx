@@ -560,7 +560,7 @@ const Dashboard = () => {
           </Box>
         </Grid>
 
-        <Grid item xs={12} md={3} lg={3} xl={3}>
+        <Grid item xs={12} md={6} lg={3} xl={3}>
           <Box
             sx={{
               mx: { xs: 'auto', md: 0 },
@@ -676,7 +676,15 @@ const Dashboard = () => {
           </Box>
         </Grid>
 
-        <Grid item xs={12} md={3} lg={3} xl={3}>
+        <Grid
+          item
+          xs={12}
+          sm={12}
+          md={12}
+          lg={3}
+          xl={3}
+          order={{ xs: 2, md: 3 }}
+        >
           <Box
             sx={{
               mx: { xs: 'auto', md: 0 },
@@ -718,7 +726,7 @@ const Dashboard = () => {
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-                // mx:"auto",
+                paddingBottom: '60px',
               }}
             >
               <Clock />
