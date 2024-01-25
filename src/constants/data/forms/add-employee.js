@@ -174,6 +174,7 @@ const formElementsStep4 = [
     name: 'checkinTime',
     type: 'time',
     col: 6,
+    suffixIcon: 'ClockIcon',
   },
   {
     title: 'Checkout time',
@@ -181,6 +182,7 @@ const formElementsStep4 = [
     name: 'checkoutTime',
     type: 'time',
     col: 6,
+    suffixIcon: 'ClockIcon',
   },
   {
     title: 'Casual Leaves',

@@ -16,8 +16,15 @@ export const createLeaveRequestForm = [
       {
         label: 'Annual leave',
       },
+      {
+        label: 'Hajj leave',
+      },
+      {
+        label: 'Unpaid leave',
+      },
     ],
     required: true,
+    searchable: true,
   },
   {
     title: 'Start date',
