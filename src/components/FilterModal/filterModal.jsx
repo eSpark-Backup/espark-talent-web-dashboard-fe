@@ -57,21 +57,16 @@ const FilterModal = ({
           sx={{
             bgcolor: '#fff',
             width: { xs: '90%', md: '20%' },
-
             display: 'flex',
             flexDirection: 'column',
             borderRadius: '10px',
             boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
-            height: '900px',
+            height: { xs: '600px', md: '900px' },
+            borderTopLeftRadius: '10px',
+            borderTopRightRadius: '0px',
             position: 'absolute',
             top: '2%',
             right: '0px',
-            overflowY: { xs: 'auto', md: 'hidden' },
-            scrollbarWidth: 'thin',
-            scrollbarColor: 'transparent transparent',
-            '&::-webkit-scrollbar': {
-              display: 'none',
-            },
             '@media (min-width: 900px) and (max-width: 1500px)': {
               width: '30%',
             },
@@ -84,6 +79,7 @@ const FilterModal = ({
             sx={{
               borderBottom: '1px solid #E4E4E4',
               borderTopLeftRadius: '10px',
+              borderTopRightRadius: '0px',
               p: 1,
               display: 'flex',
               justifyContent: 'flex-start',
@@ -117,6 +113,12 @@ const FilterModal = ({
             sx={{
               display: 'flex',
               justifyContent: 'center',
+              overflowY: { xs: 'auto', md: 'hidden' },
+              scrollbarWidth: 'thin',
+              scrollbarColor: 'green',
+              '&::-webkit-scrollbar': {
+                display: 'none',
+              },
             }}
           >
             <Box

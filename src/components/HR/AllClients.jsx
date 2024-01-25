@@ -44,7 +44,17 @@ const AllClients = () => {
           Clients
         </Typography>
         <Button
-          style={{ backgroundColor: '#029894', width: '160px', color: '#FFF' }}
+          sx={{
+            backgroundColor: '#029894',
+            width: '160px',
+            color: '#FFF',
+            textTransform: 'math-auto',
+            '&:hover': {
+              backgroundColor: '#029894',
+              color: '#FFF',
+            },
+            marginTop: { xs: '25px', md: '0px' },
+          }}
           onClick={() => router.push('/hr/dashboard/clients/add-client')}
         >
           Add client
@@ -64,6 +74,7 @@ const AllClients = () => {
             value={value}
             onChange={handleChange}
             aria-label="wrapped label tabs example"
+            variant="scrollable"
           >
             <Tab value="one" label="All" wrapped disableRipple={true} />
             <Tab value="two" label="Active clients" disableRipple={true} />

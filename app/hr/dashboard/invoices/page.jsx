@@ -3,6 +3,7 @@ import { Button, Grid } from '@mui/material';
 import { Box, useTheme } from '@mui/system';
 import React, { useState } from 'react';
 import Image from 'next/image';
+
 import AppTable from '@/src/components/appTable/AppTable';
 import {
   invoicePageColumn,
@@ -46,14 +47,18 @@ const Page = () => {
             />
           </Grid>
           <Grid item xs={12} md={6} lg={3}>
-            <FormInput
-              value={name}
-              setFieldValue={setName}
-              placeHolder={'Date'}
-              name={'name'}
-              lg={12}
-              type="date"
-            />
+            <Box sx={{ width: '100%', borderColor: 'gray' }}>
+              <FormInput
+                value={name}
+                setFieldValue={setName}
+                placeholder={'Date'}
+                name={'name'}
+                sm={12}
+                md={12}
+                lg={12}
+                type="date"
+              />
+            </Box>
           </Grid>
           <Grid item xs={12} md={6} lg={3}>
             <AppDropdown
@@ -75,7 +80,6 @@ const Page = () => {
           </Grid>
           <Grid item xs={12} md={6} lg={1}>
             <Button
-              // onClick={() => setSearch(true)}
               style={{
                 backgroundColor: '#029894',
                 color: '#FFF',

@@ -308,13 +308,9 @@ const Dashboard = () => {
               gap={'10px'}
               sx={{
                 height: '50px',
-                // background:"#ccc",
                 mx: { xs: 3, sm: 3, lg: 3 },
-                // my: '30px',
-                // border: "solid 1px #ccc",
                 borderRadius: '5px',
                 position: 'relative',
-                // overflow: "hidden"
               }}
               display={'flex'}
             >
@@ -392,12 +388,10 @@ const Dashboard = () => {
                 <Button
                   variant="outlined"
                   sx={{
-                    // border:"solid 1px #ccc",
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
                     p: '10px',
-                    // borderRadius:'5px',
                     width: '100%',
                     height: '50px',
                     color: '#068987',
@@ -559,7 +553,6 @@ const Dashboard = () => {
             </Box>
           </Box>
         </Grid>
-
         <Grid item xs={12} md={6} lg={3} xl={3}>
           <Box
             sx={{
@@ -585,6 +578,12 @@ const Dashboard = () => {
                 sx={{
                   fontSize: '25px',
                   fontWeight: 600,
+                  '@media (min-width: 1300px) and (max-width: 1430px)': {
+                    fontSize: '20px',
+                  },
+                  '@media (min-width: 900px) and (max-width: 1300px)': {
+                    fontSize: '18px',
+                  },
                 }}
               >
                 Today Activity

@@ -67,7 +67,7 @@ const Dashboard = () => {
       >
         <Box display={'flex'} flexDirection={'column'}>
           <Typography fontSize={{ xs: '20px', md: '30px' }} fontWeight={600}>
-            Punch requests
+            Punch request
           </Typography>
           <Box display={'flex'} flexDirection={'column'} mt={'20px'}>
             <Typography
