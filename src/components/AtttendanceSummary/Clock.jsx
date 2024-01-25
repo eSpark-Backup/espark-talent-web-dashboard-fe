@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box, Typography } from '@mui/material';
 
 import { Clock_Dial } from '@/src/constants/employeeDashboard';
 
 const Clock = () => {
-  const [currentDate, setCurrentDate] = React.useState({
+  const fontSize = {
+    '@media (min-width: 1200px) and (max-width: 1300px)': {
+      fontSize: '12px',
+    },
+  };
+  const [currentDate, setCurrentDate] = useState({
     hours: '',
     minutes: '',
     seconds: '',
@@ -58,6 +63,16 @@ const Clock = () => {
           '@media (min-width: 280px) and (max-width: 320px)': {
             backgroundImage: 'none',
           },
+          '@media (min-width: 1300px) and (max-width: 1500px)': {
+            width: '250px',
+            height: '180px',
+            backgroundImage: 'none',
+          },
+          '@media (min-width: 1200px) and (max-width: 1300px)': {
+            width: '270px',
+            height: '160px',
+            backgroundImage: 'none',
+          },
           borderRadius: { xs: '80%', md: '100%' },
         }}
       >
@@ -75,17 +90,26 @@ const Clock = () => {
           <Typography sx={{ fontSize: '16px', fontWeight: 400 }}>
             {currentDate?.day}
           </Typography>
-          <Typography variant="h4">{currentDate?.hours}</Typography>
-          <Typography sx={{ fontSize: '16px', fontWeight: 400 }}>
+          <Typography
+            variant="h4"
+            sx={{
+              '@media (min-width: 1200px) and (max-width: 1300px)': {
+                fontSize: '20px',
+              },
+            }}
+          >
+            {currentDate?.hours}
+          </Typography>
+          <Typography sx={{ fontSize: '16px', fontWeight: 400, ...fontSize }}>
             {currentDate?.month}
             <Typography
               component={'span'}
-              sx={{ ml: 0.5, fontSize: '16px', fontWeight: 400 }}
+              sx={{ ml: 0.5, fontSize: '16px', fontWeight: 400, ...fontSize }}
             >
               {currentDate?.date},{currentDate?.year}
             </Typography>
           </Typography>
-          <Typography sx={{ fontSize: '16px', fontWeight: 400 }}>
+          <Typography sx={{ fontSize: '16px', fontWeight: 400, ...fontSize }}>
             {currentDate?.city}
           </Typography>
         </Box>

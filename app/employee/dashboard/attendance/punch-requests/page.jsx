@@ -228,6 +228,9 @@ const Dashboard = () => {
                       alignItems={'center'}
                       sx={{
                         pt: { xs: '10px', md: 0 },
+                        '@media (min-width: 900px) and (max-width: 950px)': {
+                          pt: '15px',
+                        },
                         pb: '10px',
                       }}
                     >

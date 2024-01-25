@@ -88,9 +88,9 @@ const Dashboard = () => {
             <Typography variant="h3">Hire a team member</Typography>
             <Link href={HIRING_FORM_DATA?.startHiringLink}>
               <Button
-                style={{
+                sx={{
                   background: '#029894',
-                  width: '160px',
+                  width: { xs: '120px', md: '160px' },
                   color: '#fff',
                   fontSize: '16px',
                   textTransform: 'math-auto',

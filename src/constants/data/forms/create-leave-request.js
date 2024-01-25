@@ -3,7 +3,7 @@ import dayjs from 'dayjs';
 export const createLeaveRequestForm = [
   {
     title: 'Leave type',
-    placeholder: 'Select leave type',
+    placeholder: 'Select',
     name: 'leaveType',
     type: 'select',
     options: [
@@ -17,10 +17,10 @@ export const createLeaveRequestForm = [
         label: 'Annual leave',
       },
       {
-        label: 'Hajj leave',
+        label: 'Unpaid leave',
       },
       {
-        label: 'Unpaid leave',
+        label: 'Hajj leave',
       },
     ],
     required: true,
