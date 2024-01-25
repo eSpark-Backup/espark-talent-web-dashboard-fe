@@ -675,15 +675,7 @@ const Dashboard = () => {
           </Box>
         </Grid>
 
-        <Grid
-          item
-          xs={12}
-          sm={12}
-          md={12}
-          lg={3}
-          xl={3}
-          order={{ xs: 2, md: 3 }}
-        >
+        <Grid item xs={12} sm={12} md={12} lg={3} xl={3}>
           <Box
             sx={{
               mx: { xs: 'auto', md: 0 },
@@ -691,7 +683,7 @@ const Dashboard = () => {
               // height: '430px',
               height: '100%',
               borderRadius: '10px',
-              background: '#FFF',
+              background: '#fff',
               boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
             }}
           >
