@@ -308,13 +308,9 @@ const Dashboard = () => {
               gap={'10px'}
               sx={{
                 height: '50px',
-                // background:"#ccc",
                 mx: { xs: 3, sm: 3, lg: 3 },
-                // my: '30px',
-                // border: "solid 1px #ccc",
                 borderRadius: '5px',
                 position: 'relative',
-                // overflow: "hidden"
               }}
               display={'flex'}
             >
@@ -392,12 +388,10 @@ const Dashboard = () => {
                 <Button
                   variant="outlined"
                   sx={{
-                    // border:"solid 1px #ccc",
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
                     p: '10px',
-                    // borderRadius:'5px',
                     width: '100%',
                     height: '50px',
                     color: '#068987',
@@ -559,8 +553,7 @@ const Dashboard = () => {
             </Box>
           </Box>
         </Grid>
-
-        <Grid item xs={12} md={3} lg={3} xl={3}>
+        <Grid item xs={12} md={6} lg={3} xl={3}>
           <Box
             sx={{
               mx: { xs: 'auto', md: 0 },
@@ -682,7 +675,7 @@ const Dashboard = () => {
           </Box>
         </Grid>
 
-        <Grid item xs={12} md={3} lg={3} xl={3}>
+        <Grid item xs={12} sm={12} md={12} lg={3} xl={3}>
           <Box
             sx={{
               mx: { xs: 'auto', md: 0 },
@@ -690,7 +683,7 @@ const Dashboard = () => {
               // height: '430px',
               height: '100%',
               borderRadius: '10px',
-              background: '#FFF',
+              background: '#fff',
               boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
             }}
           >
@@ -724,8 +717,7 @@ const Dashboard = () => {
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-                paddingBottom: '45px',
-                // mx:"auto",
+                paddingBottom: '60px',
               }}
             >
               <Clock />
