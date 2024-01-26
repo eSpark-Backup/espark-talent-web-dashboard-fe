@@ -45,6 +45,7 @@ const LeaveRequestForm = ({ handleClose }) => {
                 disabled,
                 options,
                 minDate,
+                searchable,
               },
               formIndex
             ) => {
@@ -70,6 +71,7 @@ const LeaveRequestForm = ({ handleClose }) => {
                   setErrors={setErrors}
                   values={values}
                   minDate={minDate}
+                  searchable={searchable}
                 />
               );
             }

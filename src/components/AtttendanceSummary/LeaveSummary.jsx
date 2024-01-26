@@ -88,7 +88,13 @@ const LeaveSummary = () => {
                         {item?.title}
                       </Typography>
                       <Typography
-                        sx={{ fontSize: '12px' }}
+                        sx={{
+                          fontSize: '12px',
+                          '@media (min-width: 1100px) and (max-width: 1300px)':
+                            {
+                              fontSize: '10px',
+                            },
+                        }}
                         variant="body1"
                         color="text.secondary"
                       >

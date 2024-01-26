@@ -10,6 +10,7 @@ import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import ActionBarComponent from '@/src/components/requestview/actionbarComponent';
 import AppDropdown from '../../dashboard/appDropdown';
+import AppSearchableDropdown from '../../dashboard/appSearchableDropdown';
 
 const WideFormInput = ({
   title,
@@ -29,9 +30,11 @@ const WideFormInput = ({
   setErrors,
   values,
   minDate,
+  searchable,
+  nested,
 }) => {
   const [isOpenDatePicker, setIsOpenDatePicker] = useState(false);
-  const [isLoadingTitles, setIsLoadingTitles] = useState(false);
+  const [isLoadingList, setIsLoadingList] = useState(false);
   const handleCloseDatePicker = () => setIsOpenDatePicker(false);
 
   const handleSelectItem = (item) => {
@@ -105,6 +108,7 @@ const WideFormInput = ({
             alignItems: { xs: 'flex-start', md: 'center' },
             flexDirection: { xs: 'column', md: 'row' },
             gap: { xs: '10px', md: '0px' },
+            height: '50px',
           }}
         >
           <Grid item xs={12} md={5}>
@@ -217,21 +221,36 @@ const WideFormInput = ({
                   )}
                 </LocalizationProvider>
               ) : type === 'select' ? (
-                <AppDropdown
-                  data={options}
-                  setIsLoadingList={setIsLoadingTitles}
-                  isLoadingList={isLoadingTitles}
-                  selectedItem={value}
-                  setSelectedItem={handleSelectItem}
-                  placeHolder={placeholder}
-                  mb={'0px'}
-                  background="#F6F6F6"
-                  isForm
-                  name={name}
-                  setFieldError={setFieldError}
-                  error={error}
-                  disabled={disabled}
-                />
+                <>
+                  {searchable ? (
+                    <AppSearchableDropdown
+                      data={options}
+                      selectedItem={value}
+                      setSelectedItem={handleSelectItem}
+                      setIsLoadingList={setIsLoadingList}
+                      isLoadingList={isLoadingList}
+                      md={12}
+                      error={error}
+                      placeholder={placeholder}
+                      width={'100%'}
+                    />
+                  ) : (
+                    <AppDropdown
+                      data={options}
+                      placeHolder={'Select'}
+                      selectedItem={value}
+                      setSelectedItem={handleSelectItem}
+                      isLoadingList={isLoadingList}
+                      setIsLoadingList={setIsLoadingList}
+                      nested={nested}
+                      mb={'0px'}
+                      error={error}
+                      isForm
+                      setFieldError={setFieldError}
+                      name={name}
+                    />
+                  )}
+                </>
               ) : type === 'text-area' ? (
                 <textarea
                   className="reason-text-area"
