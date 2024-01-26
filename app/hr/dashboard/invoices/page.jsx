@@ -1,5 +1,5 @@
 'use client';
-import { Button, Grid } from '@mui/material';
+import { Button, Grid, Typography } from '@mui/material';
 import { Box, useTheme } from '@mui/system';
 import React, { useState } from 'react';
 import Image from 'next/image';
@@ -10,12 +10,11 @@ import {
   invoicePageData,
 } from '@/src/constants/data/tables/hr/invoicesPageData';
 import Input from '@/src/components/dashboard/input';
-import FormInput from '@/src/components/form/ui-elements/FormInput';
 import AppDropdown from '@/src/components/dashboard/appDropdown';
+import DatePicker from '@/src/components/employeeData/Datepicker';
 
 const Page = () => {
   const [id, setId] = useState('');
-  const [name, setName] = useState('');
   const [designation, setDesignation] = useState('Active');
   const [isLoading, setIsLoading] = useState(false);
   const theme = useTheme();
@@ -23,6 +22,7 @@ const Page = () => {
   return (
     <>
       <Box sx={{ width: '100%' }}>
+        <Typography variant="h3">Invoices</Typography>
         <Grid
           container
           sx={{
@@ -47,17 +47,8 @@ const Page = () => {
             />
           </Grid>
           <Grid item xs={12} md={6} lg={3}>
-            <Box sx={{ width: '100%', borderColor: 'gray' }}>
-              <FormInput
-                value={name}
-                setFieldValue={setName}
-                placeholder={'Date'}
-                name={'name'}
-                sm={12}
-                md={12}
-                lg={12}
-                type="date"
-              />
+            <Box sx={{ width: '100%' }}>
+              <DatePicker />
             </Box>
           </Grid>
           <Grid item xs={12} md={6} lg={3}>

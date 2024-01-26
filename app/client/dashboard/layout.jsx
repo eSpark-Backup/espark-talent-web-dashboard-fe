@@ -6,7 +6,7 @@ import { styled } from '@mui/material/styles';
 
 import { SideNav } from '@/src/components/sidebar/SideNavLayout';
 import { TopNav } from '@/src/components/sidebar/TopNavLayout';
-import { SIDE_NAV_WIDTH } from '@/src/constants/sidebar';
+import { BODY_WIDTH, SIDE_NAV_WIDTH } from '@/src/constants/sidebar';
 
 const LayoutRoot = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -16,7 +16,14 @@ const LayoutRoot = styled('div')(({ theme }) => ({
     paddingLeft: SIDE_NAV_WIDTH,
   },
 }));
-
+const LayoutBodyRoot = styled('div')(({ theme }) => ({
+  display: 'flex',
+  flex: '1 1 auto',
+  maxWidth: '100%',
+  [theme.breakpoints.up('lg')]: {
+    paddingLeft: BODY_WIDTH,
+  },
+}));
 const LayoutContainer = styled('div')({
   display: 'flex',
   flex: '1 1 auto',
@@ -48,38 +55,41 @@ const Layout = ({ children }) => {
       <TopNav onNavOpen={() => setOpenNav(true)} />
       <SideNav onClose={() => setOpenNav(false)} open={openNav} />
       <LayoutRoot>
-        <LayoutContainer>
-          <Box
-            sx={{
-              '@media (max-width: 400px)': {
-                px: '20px',
-              },
-              px: {
-                xs: '30px',
-                sm: '30px',
-                md: '50px',
-                lg: '40px',
-                xl: '80px',
-              },
-              pt: {
-                xs: '100px',
-                sm: '100px',
-                md: '100px',
-                lg: '40px',
-                xl: '63px',
-              },
-              pb: {
-                xs: '40px',
-                sm: '40px',
-                md: '40px',
-                lg: '40px',
-                xl: '63px',
-              },
-            }}
-          >
-            {child && children}
-          </Box>
-        </LayoutContainer>
+        <LayoutBodyRoot>
+          {' '}
+          <LayoutContainer>
+            <Box
+              sx={{
+                '@media (max-width: 400px)': {
+                  px: '20px',
+                },
+                px: {
+                  xs: '30px',
+                  sm: '30px',
+                  md: '50px',
+                  lg: '40px',
+                  xl: '80px',
+                },
+                pt: {
+                  xs: '100px',
+                  sm: '100px',
+                  md: '100px',
+                  lg: '40px',
+                  xl: '63px',
+                },
+                pb: {
+                  xs: '40px',
+                  sm: '40px',
+                  md: '40px',
+                  lg: '40px',
+                  xl: '63px',
+                },
+              }}
+            >
+              {child && children}
+            </Box>
+          </LayoutContainer>
+        </LayoutBodyRoot>
       </LayoutRoot>
     </>
   );
