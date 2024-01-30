@@ -127,7 +127,7 @@ const Sidebar = ({ userName }) => {
           sx={{
             width: '100%',
             position: 'relative',
-            bottom: 0,
+            bottom: { xs: 55, lg: 44 },
             backgroundColor: '#068987',
           }}
         >

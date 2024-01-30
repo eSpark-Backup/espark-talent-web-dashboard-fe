@@ -17,6 +17,7 @@ export const SideNav = (props) => {
         PaperProps={{
           sx: {
             width: 280,
+            marginTop: '44px',
             overflowX: 'hidden',
             overflowY: 'hidden',
           },
@@ -35,9 +36,13 @@ export const SideNav = (props) => {
       open={open}
       PaperProps={{
         sx: {
+          marginTop: '65px',
           overflowX: 'hidden',
           overflowY: 'hidden',
           width: 280,
+          '@media (min-width: 280px) and (max-width: 600px)': {
+            marginTop: '56px',
+          },
         },
       }}
       sx={{ zIndex: (theme) => theme.zIndex.appBar + 100 }}
