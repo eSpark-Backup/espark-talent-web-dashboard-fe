@@ -3,17 +3,13 @@ import React, { useState, useEffect } from 'react';
 import { Grid, Box, Typography } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import Input from '@/src/components/dashboard/input';
 import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
 import { filterDataByKeyword } from '@/src/utils/search';
-import { a11yProps, changeTab } from '@/src/utils/tabs';
+import { changeTab } from '@/src/utils/tabs';
 import { empTabs } from '@/src/constants/data/tabs/empTabs';
-import {
-  contractHeading,
-  contractSignedColumn,
-  contractSignedData,
-} from '@/src/constants/data/tables/contractSigned';
+import { contractSignedData } from '@/src/constants/data/tables/contractSigned';
 import AppTable from '@/src/components/appTable/AppTable';
+import { contractSignedEmployeeTabs } from '@/src/constants/data/tabs/contractSignedTabs';
 
 const ContractSigned = () => {
   const [value, setValue] = useState(0);
@@ -37,7 +33,7 @@ const ContractSigned = () => {
 
     fetchDataAsync();
   }, []);
-
+  console.log(empData, setSearch);
   const handleChange = (event, newValue) => {
     changeTab({
       isSingular: true,
@@ -99,17 +95,12 @@ const ContractSigned = () => {
           <Box sx={{ width: '100%' }}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
               <Tabs
+                variant="scrollable"
                 value={value}
                 onChange={handleChange}
                 aria-label="basic tabs example"
-                variant="scrollable"
               >
-                {[
-                  {
-                    label: contractHeading[0]?.activeContracts,
-                    prop: a11yProps(0),
-                  },
-                ]?.map(({ label, prop }, i) => (
+                {contractSignedEmployeeTabs?.map(({ label, prop }, i) => (
                   <Tab
                     key={i}
                     label={`${label}`}
@@ -123,34 +114,27 @@ const ContractSigned = () => {
               </Tabs>
             </Box>
             <Box my={4}>
-              <Input
-                setIsLoading={setIsLoading}
-                handleChange={setSearch}
-                value={search}
-                prefixIcon="SearchIcon.svg"
-                suffixIcon="QuestionMarkIcon.svg"
-              />
+              {contractSignedEmployeeTabs?.map((tab, i) => (
+                <CustomTabPanel value={value} key={i} index={i}>
+                  {isLoading ? (
+                    <Box>Loading...</Box>
+                  ) : (
+                    <Box
+                      sx={{
+                        maxWidth: '100%',
+                        overflowX: 'auto',
+                      }}
+                    >
+                      <AppTable
+                        currentTab={currentTab}
+                        column={tab?.columns}
+                        data={tab?.data}
+                      />
+                    </Box>
+                  )}
+                </CustomTabPanel>
+              ))}
             </Box>
-            {empTabs?.map((_, i) => (
-              <CustomTabPanel value={value} key={i} index={i}>
-                {isLoading ? (
-                  <Box>Loading...</Box>
-                ) : (
-                  <Box
-                    sx={{
-                      maxWidth: '100%',
-                      overflowX: 'auto',
-                    }}
-                  >
-                    <AppTable
-                      currentTab={currentTab}
-                      column={contractSignedColumn}
-                      data={empData}
-                    />
-                  </Box>
-                )}
-              </CustomTabPanel>
-            ))}
           </Box>
         </Box>
       </Grid>

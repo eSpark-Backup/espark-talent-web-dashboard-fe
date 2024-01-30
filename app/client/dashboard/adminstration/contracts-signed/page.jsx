@@ -3,13 +3,9 @@ import React, { useState, useEffect } from 'react';
 import { Grid, Box, Typography } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import Input from '@/src/components/dashboard/input';
 import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
 import { filterDataByKeyword } from '@/src/utils/search';
-import {
-  contractSignedColumn,
-  contractSignedData,
-} from '@/src/constants/data/tables/contractSigned';
+import { contractSignedData } from '@/src/constants/data/tables/contractSigned';
 import { contractSignedTabs } from '@/src/constants/data/tabs/contractSignedTabs';
 import AppTable from '@/src/components/appTable/AppTable';
 
@@ -18,7 +14,7 @@ const ContractSigned = () => {
   const [currentTab, setCurrentTab] = useState('Hiring Request');
   const [isLoading, setIsLoading] = useState(true);
   const [search, setSearch] = useState('');
-  const [empData, setEmpData] = useState(contractSignedData);
+  const [empData, setEmpData] = useState();
 
   const fetchDataFake = async () => {
     return true;
@@ -35,7 +31,7 @@ const ContractSigned = () => {
 
     fetchDataAsync();
   }, []);
-
+  console.log(empData, setSearch);
   const handleChange = (event, newValue) => {
     let tab = event?.target?.innerText.split(' ');
     if (tab.length > 1) {
@@ -66,12 +62,11 @@ const ContractSigned = () => {
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
-            gap: '20px',
+            gap: '15px',
             width: '100%',
           }}
         >
           <Box
-            marginBottom={4}
             display={'flex'}
             justifyContent={'space-between'}
             alignItems={'center'}
@@ -116,34 +111,27 @@ const ContractSigned = () => {
               </Tabs>
             </Box>
             <Box my={4}>
-              <Input
-                setIsLoading={setIsLoading}
-                handleChange={setSearch}
-                value={search}
-                prefixIcon="SearchIcon.svg"
-                suffixIcon="QuestionMarkIcon.svg"
-              />
+              {contractSignedTabs?.map((tab, i) => (
+                <CustomTabPanel value={value} key={i} index={i}>
+                  {isLoading ? (
+                    <Box>Loading...</Box>
+                  ) : (
+                    <Box
+                      sx={{
+                        maxWidth: '100%',
+                        overflowX: 'auto',
+                      }}
+                    >
+                      <AppTable
+                        currentTab={currentTab}
+                        column={tab?.columns}
+                        data={tab?.data}
+                      />
+                    </Box>
+                  )}
+                </CustomTabPanel>
+              ))}
             </Box>
-            {contractSignedTabs?.map((_, i) => (
-              <CustomTabPanel value={value} key={i} index={i}>
-                {isLoading ? (
-                  <Box>Loading...</Box>
-                ) : (
-                  <Box
-                    sx={{
-                      maxWidth: '100%',
-                      overflowX: 'auto',
-                    }}
-                  >
-                    <AppTable
-                      currentTab={currentTab}
-                      column={contractSignedColumn}
-                      data={empData}
-                    />
-                  </Box>
-                )}
-              </CustomTabPanel>
-            ))}
           </Box>
         </Box>
       </Grid>
