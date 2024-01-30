@@ -7,8 +7,14 @@ import Step from '../form/step/Step';
 
 const CompanySettings = () => {
   return (
-    <Box>
-      <Step form={companyformElement} schema={companyInfoSchema} editProfile />
+    <Box sx={{}}>
+      <Step
+        form={companyformElement}
+        schema={companyInfoSchema}
+        editProfile
+        mt="229px"
+        pmd="70px 10px"
+      />
     </Box>
   );
 };

@@ -1,47 +1,22 @@
 'use client';
-import React, { useEffect, useState } from 'react';
-import { Grid, Tab, Tabs, Typography } from '@mui/material';
+import React, { useState } from 'react';
+import { Button, Grid, Tab, Tabs, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 
 import { settingTabs } from '@/src/constants/data/tabs/settingTabs';
 import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
-import AppTable from '@/src/components/appTable/AppTable';
-import { contractSignedColumn } from '@/src/constants/data/tables/contractSigned';
-import { employeeTableHiringRequestColumn } from '@/src/constants/data/tables/employee';
-import { renderTable } from '../clients/client-profile/renderComponents';
 import CompanySettings from '@/src/components/settings/companySettings';
 import ChangePassword from '@/src/components/settings/changePassword';
-import { Notifications, formElement } from '@/src/constants/data/tables/notifications';
-import { modulepermissionColumn, modulepermissionData } from '@/src/constants/data/tables/modulePermission';
 import Role from '@/src/components/settings/addRole';
+import Notification from '@/src/components/settings/notification';
 
-const page = () => {
+const Page = () => {
   const [value, setValue] = useState(0);
-  const [isLoading, setIsLoading] = useState(true);
-
   const [currentTab, setCurrentTab] = useState({
     label: 'Company settings',
     val: 0,
   });
-
-//   const tableData = formElement.map((notification, index) => ({
-//   title: ,
-// }));
-  const fetchDataFake = async () => {
-    return true;
-  };
-
-  useEffect(() => {
-    const fetchDataAsync = async () => {
-      try {
-        await fetchDataFake();
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchDataAsync();
-  }, []);
+  console.log(currentTab);
   const handleChange = (event, newValue) => {
     let tab = event?.target?.innerText.split(' ');
     if (tab.length > 1) {
@@ -53,7 +28,6 @@ const page = () => {
 
     setValue(newValue);
   };
-
   return (
     <>
       <Grid container>
@@ -92,31 +66,37 @@ const page = () => {
             <Box>
               {settingTabs?.map(({ label, prop }, i) => (
                 <CustomTabPanel value={value} key={i} index={i} {...prop}>
-                  {label === 'Company settings' && (
-                    <CompanySettings />
-                  )}
-                  {label === 'Roles & permissions' && (
-                   <Role/>
-                  )}
-                  {label === 'Change password' && (
-                   <ChangePassword/>
-                  )}
-                   {label === 'Notifications' && (
-                //  <AppTable
-                //       column={Notifications}
-                //       data={Notifications}
-                    //         />
-                    <Typography>kk</Typography>
-                     
-                  )}
+                  {label === 'Company settings' && <CompanySettings />}
+                  {label === 'Roles & permissions' && <Role />}
+                  {label === 'Change password' && <ChangePassword />}
+                  {label === 'Notifications' && <Notification />}
                 </CustomTabPanel>
               ))}
             </Box>
           </Box>
+          <Grid item xs={12}>
+            {value === 3 && (
+              <Box
+                display={'flex'}
+                justifyContent={'space-between'}
+                alignItems={'center'}
+                p={'0 10px'}
+                mt={'20px'}
+              >
+                <Button
+                  type="submit"
+                  sx={{ minWidth: '120px', marginTop: '100px' }}
+                  variant="contained"
+                >
+                  Save
+                </Button>
+              </Box>
+            )}
+          </Grid>
         </Grid>
       </Grid>
     </>
   );
 };
 
-export default page;
+export default Page;

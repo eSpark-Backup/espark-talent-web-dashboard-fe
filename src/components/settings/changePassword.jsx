@@ -8,7 +8,14 @@ import { passwordformElement } from '@/src/constants/data/forms/password-change-
 const ChangePassword = () => {
   return (
     <Box>
-      <Step form={passwordformElement} schema={passwordChangeSchema} editProfile />
+      <Step
+        form={passwordformElement}
+        schema={passwordChangeSchema}
+        editProfile
+        mt="229px"
+        noButtons
+        pmd="70px 10px"
+      />
     </Box>
   );
 };

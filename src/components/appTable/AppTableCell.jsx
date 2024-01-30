@@ -51,6 +51,42 @@ const renderActions = (
   handleClickActionDelete
 ) => {
   if (row?.formActionStatus) {
+    if (row?.isModulePermissionData) {
+      return (
+        <td
+          key={colIndex}
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            fontSize: '12px',
+            flex: col?.flex || 1,
+          }}
+        >
+          <Image
+            onClick={() => {
+              handleClickActionView(row?.id, col || col?.title);
+            }}
+            style={{
+              margin: rowIndex === 1 && '0 5px',
+              cursor: 'pointer',
+            }}
+            width={25}
+            height={25}
+            alt="Icon"
+            src={`/icons/${
+              row[toCamelCase(col || col?.title)][2] === true
+                ? 'EnabledCheck'
+                : 'DisabledCheck'
+            }.svg`}
+            // src={`/icons/${
+            //   row?.isSelected
+            //     ? row[toCamelCase(col || col?.title)][1]
+            //     : row[toCamelCase(col || col?.title)][0]
+            // }.svg`}
+          />
+        </td>
+      );
+    }
     return (
       <td
         key={colIndex}
@@ -248,12 +284,18 @@ export const renderCellContent = (
   handleClickActionDelete,
   options
 ) => {
+  // console.log("test",col);
   switch (col.title || col) {
     case 'Pic':
       return renderUserAvatar(row, col, commonCellStyle);
     case 'Assignee':
       return renderAssigneeCell(row, col, commonCellStyle);
     case 'Action':
+    case 'Write':
+    case 'Read':
+    case 'Create':
+    case 'Delete':
+    case 'Download':
       return renderActions(
         row,
         col,

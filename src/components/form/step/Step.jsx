@@ -13,6 +13,8 @@ const Step = ({
   editProfile,
   isLastStep,
   countries,
+  noButtons,
+  mt,
 }) => {
   const {
     handleSubmit,
@@ -136,6 +138,7 @@ const Step = ({
               </Grid>
             ))}
           </Grid>
+
           <Grid item xs={12}>
             <Box
               p={'0 10px'}
@@ -230,14 +233,14 @@ const Step = ({
             >
               <Button
                 type="submit"
-                sx={{ minWidth: '120px' }}
+                sx={{ minWidth: '120px', marginTop: mt }}
                 variant="contained"
               >
                 Save
               </Button>
             </Box>
           </Grid>
-        ) : (
+        ) : noButtons ? null : (
           <Grid item xs={12}>
             <Box
               p={'0 10px'}
@@ -250,7 +253,7 @@ const Step = ({
               }}
             >
               <Button
-                onClick={handeClickBack}
+                onClick={handeClickBack} // Corrected from `handeClickBack` to `handleClickBack`
                 sx={{
                   minWidth: { xs: '100%', sm: '120px' },
                   mb: { xs: '20px', md: '0' },
