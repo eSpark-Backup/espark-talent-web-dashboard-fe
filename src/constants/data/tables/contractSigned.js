@@ -1,8 +1,28 @@
+// export const contractSignedColumn = [
+
+//   'Contractor name',
+//   'Email',
+//   'Date',
+//   'Download',
+// ];
+
 export const contractSignedColumn = [
-  'Contractor name',
-  'Email',
-  'Date',
-  'Download',
+  {
+    title: 'Contractor name',
+    flex: 2,
+  },
+  {
+    title: 'Email',
+    flex: 2,
+  },
+  {
+    title: 'Date',
+    flex: 2,
+  },
+  {
+    title: 'Download',
+    flex: 2,
+  },
 ];
 export const contractSignedData = [
   {

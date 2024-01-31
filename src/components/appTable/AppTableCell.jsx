@@ -4,6 +4,7 @@ import { Box, Typography } from '@mui/material';
 import { toCamelCase } from '@/src/utils/stringModification';
 import { trackingStatusTypes } from '@/src/constants/data/tables/timeTracking';
 import AppTableInfoOptionsCell from './AppTableInfoOptionsCell';
+import { modulepermissionColumn } from '@/src/constants/data/tables/modulePermission';
 
 const renderAssigneeCell = (row, col, commonCellStyle) => {
   const [avatar, name, subtitle] = row.assignee;
@@ -78,11 +79,6 @@ const renderActions = (
                 ? 'EnabledCheck'
                 : 'DisabledCheck'
             }.svg`}
-            // src={`/icons/${
-            //   row?.isSelected
-            //     ? row[toCamelCase(col || col?.title)][1]
-            //     : row[toCamelCase(col || col?.title)][0]
-            // }.svg`}
           />
         </td>
       );
@@ -284,18 +280,31 @@ export const renderCellContent = (
   handleClickActionDelete,
   options
 ) => {
-  // console.log("test",col);
   switch (col.title || col) {
     case 'Pic':
       return renderUserAvatar(row, col, commonCellStyle);
     case 'Assignee':
       return renderAssigneeCell(row, col, commonCellStyle);
-    case 'Action':
+
     case 'Write':
     case 'Read':
     case 'Create':
     case 'Delete':
     case 'Download':
+      if (modulepermissionColumn.includes(col)) {
+        return renderActions(
+          row,
+          col,
+          handleClickActionView,
+          commonCellStyle,
+          colIndex,
+          rowIndex,
+          handleClickActionDelete
+        );
+      } else {
+        return renderDownloadButton(row, col, commonCellStyle);
+      }
+    case 'Action':
       return renderActions(
         row,
         col,
@@ -319,8 +328,6 @@ export const renderCellContent = (
       return renderStatusCell(row, col, commonCellStyle, options);
     case 'Payment status':
       return renderDropdownCell(row, col, commonCellStyle);
-    case 'Download':
-      return renderDownloadButton(row, col, commonCellStyle);
     case 'Team members':
       return renderInfoOptions(
         row,
