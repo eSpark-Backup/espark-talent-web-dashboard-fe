@@ -34,6 +34,7 @@ const TopNavNavbar = () => {
             fontSize: '14px',
             fontWeight: 500,
             textDecoration: 'underline',
+            cursor: 'pointer',
           }}
         >
           {' '}

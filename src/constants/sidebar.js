@@ -1,4 +1,5 @@
-export const SIDE_NAV_WIDTH = 280;
+export const SIDE_NAV_WIDTH = 0;
+export const BODY_WIDTH = 280;
 export const NOTIFICATION_TITLE = 'Notifications';
 export const WORK_SPACE_TITLE = 'Workspaces';
 export const WORK_SPACE_ICON = '/images/sidebar-icons/space-top-nav.svg';

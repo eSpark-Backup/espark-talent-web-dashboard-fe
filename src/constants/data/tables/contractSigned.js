@@ -1,18 +1,10 @@
-// export const contractSignedColumn = [
-
-//   'Contractor name',
-//   'Email',
-//   'Date',
-//   'Download',
-// ];
-
 export const contractSignedColumn = [
   {
     title: 'Contractor name',
     flex: 2,
   },
   {
-    title: 'Email',
+    title: 'Client ID',
     flex: 2,
   },
   {
@@ -26,8 +18,22 @@ export const contractSignedColumn = [
 ];
 export const contractSignedData = [
   {
-    contractorName: 'NDA',
-    email: 'arman@esparkconsultants.com',
+    contractName: 'NDA',
+    clientId: 'esp123456789',
+    date: '07-October-2021',
+    download: 'Download',
+  },
+];
+export const contractSignedEmployeeColumn = [
+  'Contract name',
+  'Employee ID',
+  'Date',
+  'Download',
+];
+export const contractSignedEmployeeData = [
+  {
+    contractName: 'NDA',
+    employeeId: 'armankhan@esparkconsultants.com',
     date: '07-October-2021',
     download: 'Download',
   },
