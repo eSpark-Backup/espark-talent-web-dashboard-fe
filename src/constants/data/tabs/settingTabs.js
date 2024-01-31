@@ -18,10 +18,3 @@ export const settingTabs = [
     prop: a11yProps(1),
   },
 ];
-
-export const companyContractColumn = [
-  'Contractor name',
-  'Email',
-  'Date',
-  'Download',
-];

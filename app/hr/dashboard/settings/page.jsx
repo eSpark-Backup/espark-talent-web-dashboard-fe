@@ -12,11 +12,6 @@ import Notification from '@/src/components/settings/notification';
 
 const Page = () => {
   const [value, setValue] = useState(0);
-  const [currentTab, setCurrentTab] = useState({
-    label: 'Company settings',
-    val: 0,
-  });
-  console.log(currentTab);
   const handleChange = (event, newValue) => {
     let tab = event?.target?.innerText.split(' ');
     if (tab.length > 1) {
@@ -24,7 +19,6 @@ const Page = () => {
     } else {
       tab = tab.join(' ');
     }
-    setCurrentTab(tab);
 
     setValue(newValue);
   };

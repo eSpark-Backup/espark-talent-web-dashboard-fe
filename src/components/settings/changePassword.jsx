@@ -13,7 +13,6 @@ const ChangePassword = () => {
         schema={passwordChangeSchema}
         editProfile
         mt="229px"
-        noButtons
         pmd="70px 10px"
       />
     </Box>

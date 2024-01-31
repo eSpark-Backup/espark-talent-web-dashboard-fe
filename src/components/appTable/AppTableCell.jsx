@@ -285,7 +285,6 @@ export const renderCellContent = (
       return renderUserAvatar(row, col, commonCellStyle);
     case 'Assignee':
       return renderAssigneeCell(row, col, commonCellStyle);
-
     case 'Write':
     case 'Read':
     case 'Create':

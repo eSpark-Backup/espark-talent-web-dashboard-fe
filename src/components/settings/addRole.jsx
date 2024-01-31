@@ -24,7 +24,6 @@ const Role = () => {
     targetObject[[toCamelCase(column)]][2] =
       !targetObject[[toCamelCase(column)]][2];
     tempForm[employeeIndex] = targetObject;
-    console.log({ tempForm, targetObject });
     setModalStep1FormTableState(tempForm);
   };
   const [open, setOpen] = useState(false);

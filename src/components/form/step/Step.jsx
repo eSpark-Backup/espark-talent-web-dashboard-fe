@@ -13,7 +13,6 @@ const Step = ({
   editProfile,
   isLastStep,
   countries,
-  noButtons,
   mt,
 }) => {
   const {
@@ -240,7 +239,7 @@ const Step = ({
               </Button>
             </Box>
           </Grid>
-        ) : noButtons ? null : (
+        ) : (
           <Grid item xs={12}>
             <Box
               p={'0 10px'}
@@ -253,7 +252,7 @@ const Step = ({
               }}
             >
               <Button
-                onClick={handeClickBack} // Corrected from `handeClickBack` to `handleClickBack`
+                onClick={handeClickBack}
                 sx={{
                   minWidth: { xs: '100%', sm: '120px' },
                   mb: { xs: '20px', md: '0' },

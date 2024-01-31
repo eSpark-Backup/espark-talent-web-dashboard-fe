@@ -1,6 +1,4 @@
 export const toCamelCase = (inputString) => {
-  console.log(inputString);
-
   const { title } = inputString;
   // Use a regular expression to match non-alphanumeric characters excluding white space
   const regex = /[^a-zA-Z0-9]+(.)/g;
