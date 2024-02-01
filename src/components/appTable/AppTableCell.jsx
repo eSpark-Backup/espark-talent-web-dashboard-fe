@@ -4,6 +4,7 @@ import { Box, Typography } from '@mui/material';
 import { toCamelCase } from '@/src/utils/stringModification';
 import { trackingStatusTypes } from '@/src/constants/data/tables/timeTracking';
 import AppTableInfoOptionsCell from './AppTableInfoOptionsCell';
+import Link from 'next/link';
 
 const renderAssigneeCell = (row, col, commonCellStyle) => {
   const [avatar, name, subtitle] = row.assignee;
@@ -287,7 +288,6 @@ export const renderCellContent = (
         handleClick,
         handleClickRenderMessageButton
       );
-    // Add more cases as needed...
     default:
       return (
         <td
@@ -298,9 +298,23 @@ export const renderCellContent = (
             justifyContent: col?.textAlign || 'center',
           }}
         >
-          {row[toCamelCase(col?.title || col)] === null
-            ? '-'
-            : row[toCamelCase(col?.title || col)]}
+          {col.title?.toLowerCase() === 'employee invoices' ||
+          col.title?.toLowerCase() === 'other invoices' ? (
+            row[toCamelCase(col?.title || col)] === null ? (
+              '-'
+            ) : (
+              <Link
+                href="#"
+                style={{ textDecoration: 'underline', cursor: 'pointer' }}
+              >
+                {row[toCamelCase(col?.title || col)]}
+              </Link>
+            )
+          ) : row[toCamelCase(col?.title || col)] === null ? (
+            '-'
+          ) : (
+            row[toCamelCase(col?.title || col)]
+          )}
         </td>
       );
   }

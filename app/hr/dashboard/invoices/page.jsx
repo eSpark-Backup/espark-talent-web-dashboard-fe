@@ -15,7 +15,7 @@ import DatePicker from '@/src/components/employeeData/Datepicker';
 
 const Page = () => {
   const [id, setId] = useState('');
-  const [designation, setDesignation] = useState('Active');
+  const [designation, setDesignation] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const theme = useTheme();
 
@@ -48,7 +48,7 @@ const Page = () => {
           </Grid>
           <Grid item xs={12} md={6} lg={3}>
             <Box sx={{ width: '100%' }}>
-              <DatePicker />
+              <DatePicker placeholder="Date" />
             </Box>
           </Grid>
           <Grid item xs={12} md={6} lg={3}>
@@ -57,6 +57,7 @@ const Page = () => {
               setSelectedItem={setDesignation}
               lg={12}
               type="select"
+              placeHolder={'Select status'}
               data={[
                 {
                   label: 'Active',
