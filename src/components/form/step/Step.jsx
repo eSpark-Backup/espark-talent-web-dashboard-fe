@@ -13,6 +13,7 @@ const Step = ({
   editProfile,
   isLastStep,
   countries,
+  mt,
 }) => {
   const {
     handleSubmit,
@@ -136,6 +137,7 @@ const Step = ({
               </Grid>
             ))}
           </Grid>
+
           <Grid item xs={12}>
             <Box
               p={'0 10px'}
@@ -230,7 +232,7 @@ const Step = ({
             >
               <Button
                 type="submit"
-                sx={{ minWidth: '120px' }}
+                sx={{ minWidth: '120px', marginTop: mt }}
                 variant="contained"
               >
                 Save

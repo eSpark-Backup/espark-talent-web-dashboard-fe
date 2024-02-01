@@ -1,0 +1,65 @@
+export const modulepermissionColumn = [
+  {
+    title: 'Module permission',
+    flex: 2,
+  },
+  {
+    title: 'Write',
+    flex: 2,
+  },
+  {
+    title: 'Read',
+    flex: 2,
+  },
+  {
+    title: 'Create',
+    flex: 2,
+  },
+  {
+    title: 'Delete',
+    flex: 2,
+  },
+  {
+    title: 'Download',
+    flex: 2,
+  },
+];
+
+export const modulepermissionData = [
+  {
+    id: 1,
+    modulePermission: 'Employee',
+    write: ['DisabledCheck', 'EnabledCheck', false],
+    read: ['DisabledCheck', 'EnabledCheck', false],
+    create: ['DisabledCheck', 'EnabledCheck', false],
+    delete: ['DisabledCheck', 'EnabledCheck', false],
+    download: ['DisabledCheck', 'EnabledCheck', false],
+    formActionStatus: true,
+    isModulePermissionData: true,
+    isSelected: false,
+  },
+  {
+    id: 2,
+    modulePermission: 'Client',
+    write: ['DisabledCheck', 'EnabledCheck', false],
+    read: ['DisabledCheck', 'EnabledCheck', false],
+    create: ['DisabledCheck', 'EnabledCheck', false],
+    delete: ['DisabledCheck', 'EnabledCheck', false],
+    download: ['DisabledCheck', 'EnabledCheck', false],
+    formActionStatus: true,
+    isModulePermissionData: true,
+    isSelected: false,
+  },
+  {
+    id: 3,
+    modulePermission: 'Leaves',
+    write: ['DisabledCheck', 'EnabledCheck', false],
+    read: ['DisabledCheck', 'EnabledCheck', false],
+    create: ['DisabledCheck', 'EnabledCheck', false],
+    delete: ['DisabledCheck', 'EnabledCheck', false],
+    download: ['DisabledCheck', 'EnabledCheck', false],
+    formActionStatus: true,
+    isModulePermissionData: true,
+    isSelected: false,
+  },
+];
