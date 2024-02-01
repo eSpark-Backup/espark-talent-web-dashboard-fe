@@ -10,7 +10,6 @@ import { useRouter } from 'next/navigation';
 const AllEmployee = ({ fromClient, openModal }) => {
   const router = useRouter();
   const [value, setValue] = useState('one');
-
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -103,22 +102,24 @@ const AllEmployee = ({ fromClient, openModal }) => {
         >
           Employees
         </Typography>
-        <Button
-          sx={{
-            backgroundColor: '#029894',
-            width: '160px',
-            color: '#FFF',
-            textTransform: 'math-auto',
-            '&:hover': {
+        {value === 'one' && (
+          <Button
+            sx={{
               backgroundColor: '#029894',
+              width: '160px',
               color: '#FFF',
-            },
-            marginTop: { xs: '25px', md: '0px' },
-          }}
-          onClick={() => router.push('/hr/dashboard/employees/add-employee')}
-        >
-          Add employee
-        </Button>
+              textTransform: 'math-auto',
+              '&:hover': {
+                backgroundColor: '#029894',
+                color: '#FFF',
+              },
+              marginTop: { xs: '25px', md: '0px' },
+            }}
+            onClick={() => router.push('/hr/dashboard/employees/add-employee')}
+          >
+            Add employee
+          </Button>
+        )}
       </Box>
       <Box sx={{ width: '100%' }}>
         <Box

@@ -163,6 +163,10 @@ export const ASSET_TABLECOLUMN = [
     title: 'Assignee',
     flex: 2,
   },
+  {
+    title: 'Action',
+    flex: 2,
+  },
 ];
 export const ASSET_TABLEDATA = [
   {
@@ -174,6 +178,8 @@ export const ASSET_TABLEDATA = [
       'Bilal Ahmed Khan',
       'bilal@espark.com',
     ],
+    action: ['Delete'],
+    actionStatus: true,
   },
   {
     gadget: 'Del keyboard',
@@ -184,6 +190,8 @@ export const ASSET_TABLEDATA = [
       'Bilal Ahmed Khan',
       'bilal@espark.com',
     ],
+    action: ['Delete'],
+    actionStatus: true,
   },
   {
     gadget: 'Laptop',
@@ -194,6 +202,8 @@ export const ASSET_TABLEDATA = [
       'Bilal Ahmed Khan',
       'bilal@espark.com',
     ],
+    action: ['Delete'],
+    actionStatus: true,
   },
   {
     gadget: 'Logictech mouse',
@@ -204,6 +214,8 @@ export const ASSET_TABLEDATA = [
       'Bilal Ahmed Khan',
       'bilal@espark.com',
     ],
+    action: ['Delete'],
+    actionStatus: true,
   },
   {
     gadget: 'Laptop',
@@ -214,5 +226,7 @@ export const ASSET_TABLEDATA = [
       'Bilal Ahmed Khan',
       'bilal@espark.com',
     ],
+    action: ['Delete'],
+    actionStatus: true,
   },
 ];

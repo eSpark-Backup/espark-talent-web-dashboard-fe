@@ -1,22 +1,22 @@
 export const activeClientsColumn = [
   {
-    title: 'Client name',
+    title: 'Client Name',
     flex: 1,
   },
   {
-    title: 'Client Id',
+    title: 'Client ID',
     flex: 1,
   },
   {
-    title: 'Job title',
+    title: 'Job Title',
     flex: 1,
   },
   {
-    title: 'Employment term',
+    title: 'Employment Term',
     flex: 1,
   },
   {
-    title: 'Join date',
+    title: 'Join Date',
     flex: 1,
   },
 ];

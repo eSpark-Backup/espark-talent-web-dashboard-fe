@@ -1,12 +1,9 @@
-import AddContractModal from '@/app/hr/dashboard/clients/client-profile/AddContractModal';
 import {
   activeClientData,
   activeClientsColumn,
-  contractSignedColumn,
-  contractSignedData,
 } from '@/src/constants/data/tables/hr/employeeProfileClient';
 import { a11yProps } from '@/src/utils/tabs';
-import { Box, Button, Tab, Tabs } from '@mui/material';
+import { Box, Tab, Tabs } from '@mui/material';
 import React, { useState } from 'react';
 import AppTable from '../appTable/AppTable';
 
@@ -17,7 +14,7 @@ const Client = () => {
     data: activeClientData,
     column: activeClientsColumn,
   });
-  const [isOpenContractModal, setIsOpenContractModal] = useState(false);
+  // const [isOpenContractModal, setIsOpenContractModal] = useState(false);
   const tabs = [
     {
       prop: a11yProps(0),
@@ -27,9 +24,9 @@ const Client = () => {
     },
     {
       prop: a11yProps(1),
-      label: 'Contract signed',
-      data: contractSignedData,
-      column: contractSignedColumn,
+      label: 'Inactive clients',
+      data: activeClientData,
+      column: activeClientsColumn,
     },
   ];
   const handleChangeTab = (event, newValue, rest) => {
@@ -41,12 +38,12 @@ const Client = () => {
       column: tabs[newValue].column,
     });
   };
-  const handleOpenContractModal = () => {
-    setIsOpenContractModal(true);
-  };
-  const handleCloseContractModal = () => {
-    setIsOpenContractModal(false);
-  };
+  // const handleOpenContractModal = () => {
+  //   setIsOpenContractModal(true);
+  // };
+  // const handleCloseContractModal = () => {
+  //   setIsOpenContractModal(false);
+  // };
   return (
     <>
       <Box
@@ -76,7 +73,7 @@ const Client = () => {
             />
           ))}
         </Tabs>
-        {currentTab.val === 1 && (
+        {/* {currentTab.val === 1 && (
           <Button
             sx={{
               marginTop: { xs: '10px', md: '0px' },
@@ -87,7 +84,7 @@ const Client = () => {
           >
             Add contact
           </Button>
-        )}
+        )} */}
       </Box>
       <Box
         sx={{
@@ -102,10 +99,10 @@ const Client = () => {
           noPagination
         />
       </Box>
-      <AddContractModal
+      {/* <AddContractModal
         open={isOpenContractModal}
         onClose={handleCloseContractModal}
-      />
+      /> */}
     </>
   );
 };
