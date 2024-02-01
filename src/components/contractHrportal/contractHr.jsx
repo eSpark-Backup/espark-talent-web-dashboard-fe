@@ -1,9 +1,11 @@
-import { Box, Button, Grid, Modal, Typography } from '@mui/material';
-import { useFormik } from 'formik';
 import React from 'react';
+import { Box, Button, Grid, Modal, Typography } from '@mui/material';
+
+import { useFormik } from 'formik';
 import { contractFormHrPortalSchema } from '../form/schemas/contractSignedForm';
 import { contractFormHrPortal } from '@/src/constants/data/forms/contract';
 import FormInput from '../form/ui-elements/FormInput';
+import { CONTRACT_SIGNED } from '@/src/constants/contractSigned';
 
 const AddContractHrPortalModal = ({ open, onClose }) => {
   const {
@@ -69,7 +71,7 @@ const AddContractHrPortalModal = ({ open, onClose }) => {
               fontWeight: 600,
             }}
           >
-            Contract form
+            {CONTRACT_SIGNED?.contractForm}
           </Typography>
           <Box
             sx={{
@@ -94,7 +96,7 @@ const AddContractHrPortalModal = ({ open, onClose }) => {
               padding: { xs: '10px 20px', md: '50px' },
             }}
           >
-            {contractFormHrPortal.map(
+            {contractFormHrPortal?.map(
               (
                 {
                   title,
@@ -146,7 +148,7 @@ const AddContractHrPortalModal = ({ open, onClose }) => {
                 variant="contained"
                 type="submit"
               >
-                Submit
+                {CONTRACT_SIGNED?.submit}
               </Button>
             </Grid>
           </Grid>
@@ -155,5 +157,4 @@ const AddContractHrPortalModal = ({ open, onClose }) => {
     </Modal>
   );
 };
-
 export default AddContractHrPortalModal;

@@ -11,6 +11,7 @@ import { contractHrSignedTabs } from '@/src/constants/data/tabs/contractSignedTa
 import AppTable from '@/src/components/appTable/AppTable';
 import AppConfirmationMadal from '@/src/components/modals/AppConfirmationMadal';
 import AddContractHrPortalModal from '@/src/components/contractHrportal/contractHr';
+import { CONTRACT_SIGNED } from '@/src/constants/contractSigned';
 
 const ContractSigned = () => {
   const [value, setValue] = useState(0);
@@ -97,7 +98,7 @@ const ContractSigned = () => {
                   }}
                   variant="caption"
                 >
-                  Visualise team details & manage members
+                  {CONTRACT_SIGNED?.teamContract}
                 </Typography>
               </Box>
             </Box>
@@ -141,7 +142,7 @@ const ContractSigned = () => {
                     textTransform: 'math-auto',
                   }}
                 >
-                  Add contract
+                  {CONTRACT_SIGNED?.addContract}
                 </Button>
               )}
             </Box>
@@ -179,9 +180,9 @@ const ContractSigned = () => {
                               />
                             ))}
                           </Tabs>
-                          {nestedValue !== undefined &&
-                            tab?.nested?.[nestedValue]?.columns &&
-                            tab?.nested?.[nestedValue]?.data && (
+                          {tab?.nested &&
+                            tab.nested[nestedValue]?.columns &&
+                            tab.nested[nestedValue]?.data && (
                               <Button
                                 onClick={handleOpenContractModal}
                                 variant="contained"
@@ -192,15 +193,15 @@ const ContractSigned = () => {
                                   textTransform: 'math-auto',
                                 }}
                               >
-                                Add contract
+                                {CONTRACT_SIGNED?.addContract}
                               </Button>
                             )}
                         </Box>
                       )}
                       <Box sx={{ maxWidth: '100%', overflow: 'auto' }}>
-                        {nestedValue !== undefined &&
-                          tab?.nested?.[nestedValue]?.columns &&
-                          tab?.nested?.[nestedValue]?.data && (
+                        {tab?.nested &&
+                          tab.nested[nestedValue]?.columns &&
+                          tab.nested[nestedValue]?.data && (
                             <AppTable
                               currentTab={currentTab}
                               column={tab.nested[nestedValue].columns}
@@ -228,10 +229,10 @@ const ContractSigned = () => {
         </Box>
       </Grid>
       <AppConfirmationMadal
-        title={'Delete'}
-        bodyText={'Are you sure you want to delete this request?'}
-        cancelButtonText={'Cancel'}
-        confirmButtonText={'Delete'}
+        title={CONTRACT_SIGNED?.delete}
+        bodyText={CONTRACT_SIGNED?.warning}
+        cancelButtonText={CONTRACT_SIGNED?.cancel}
+        confirmButtonText={CONTRACT_SIGNED?.delete}
         isOpen={isOpen}
         handleClose={handleClose}
       />
