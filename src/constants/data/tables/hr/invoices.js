@@ -1,6 +1,6 @@
 export const invoicePaymentColumn = [
   {
-    title: 'Employee name',
+    title: 'Employee ID',
     flex: 1,
   },
   {
@@ -38,7 +38,7 @@ export const otherPaymentColumn = [
     flex: 1,
   },
   {
-    title: 'Invoice date',
+    title: 'Due date',
     flex: 1,
   },
   {
@@ -61,7 +61,7 @@ export const otherPaymentColumn = [
 
 export const invoicePaymentData = [
   {
-    employeeName: 'Bilal Ahmed Khan',
+    employeeId: '12345',
     invoiceDate: '07-October-2021',
     payrollMonth: 'April',
     dueDate: '07-October-2021',
@@ -75,7 +75,7 @@ export const invoicePaymentData = [
     actionStatus: true,
   },
   {
-    employeeName: 'Arman Khan',
+    employeeId: '12346',
     invoiceDate: '07-October-2021',
     payrollMonth: 'May',
     dueDate: '07-October-2021',
@@ -89,7 +89,7 @@ export const invoicePaymentData = [
     actionStatus: true,
   },
   {
-    employeeName: 'Saad Zafar',
+    employeeId: '12347',
     invoiceDate: '07-October-2021',
     payrollMonth: 'August',
     dueDate: '07-October-2021',
@@ -103,7 +103,7 @@ export const invoicePaymentData = [
     actionStatus: true,
   },
   {
-    employeeName: 'Muhammad',
+    employeeId: '12348',
     invoiceDate: '07-October-2021',
     payrollMonth: 'December',
     dueDate: '07-October-2021',
@@ -117,7 +117,7 @@ export const invoicePaymentData = [
     actionStatus: true,
   },
   {
-    employeeName: 'Abdullah',
+    employeeId: '12349',
     invoiceDate: '07-October-2021',
     payrollMonth: 'April',
     dueDate: '07-October-2021',
@@ -131,7 +131,7 @@ export const invoicePaymentData = [
     actionStatus: true,
   },
   {
-    employeeName: 'Yusuf',
+    employeeId: '12350',
     invoiceDate: '07-October-2021',
     payrollMonth: 'June',
     dueDate: '07-October-2021',
@@ -145,7 +145,7 @@ export const invoicePaymentData = [
     actionStatus: true,
   },
   {
-    employeeName: 'Hassan',
+    employeeId: '12351',
     invoiceDate: '07-October-2021',
     payrollMonth: 'January',
     dueDate: '07-October-2021',
@@ -159,7 +159,7 @@ export const invoicePaymentData = [
     actionStatus: true,
   },
   {
-    employeeName: 'Sumaya',
+    employeeId: '12352',
     invoiceDate: '07-October-2021',
     payrollMonth: 'March',
     dueDate: '07-October-2021',
@@ -173,7 +173,7 @@ export const invoicePaymentData = [
     actionStatus: true,
   },
   {
-    employeeName: 'Abdullah',
+    employeeId: '12357',
     invoiceDate: '07-October-2021',
     payrollMonth: 'November',
     dueDate: '07-October-2021',
@@ -187,7 +187,7 @@ export const invoicePaymentData = [
     actionStatus: true,
   },
   {
-    employeeName: 'Zainab',
+    employeeId: '12358',
     invoiceDate: '07-October-2021',
     payrollMonth: 'October',
     dueDate: '07-October-2021',
@@ -201,7 +201,7 @@ export const invoicePaymentData = [
     actionStatus: true,
   },
   {
-    employeeName: 'Zainab',
+    employeeId: '12359',
     invoiceDate: '07-October-2021',
     payrollMonth: 'July',
     dueDate: '07-October-2021',
@@ -322,7 +322,7 @@ export const otherPaymentData = [
     dueDate: '07-October-2021',
     // invoiceStatus: '07-October-2021',
     // amountDue: '1000$',
-    paymentStatus: 'Paid',
+    paymentStatus: 'Pending',
     dropdownStatus: true,
     download: 'Download',
     action: ['Delete'],
@@ -336,7 +336,7 @@ export const otherPaymentData = [
     dueDate: '07-October-2021',
     // invoiceStatus: '07-October-2021',
     // amountDue: '1000$',
-    paymentStatus: 'Paid',
+    paymentStatus: 'Pending',
     dropdownStatus: true,
     download: 'Download',
     action: ['Delete'],
@@ -350,7 +350,7 @@ export const otherPaymentData = [
     dueDate: '07-October-2021',
     // invoiceStatus: '07-October-2021',
     // amountDue: '1000$',
-    paymentStatus: 'Paid',
+    paymentStatus: 'Processing',
     dropdownStatus: true,
     download: 'Download',
     action: ['Delete'],
@@ -364,7 +364,7 @@ export const otherPaymentData = [
     invoiceAmount: '1000$',
     // invoiceStatus: '07-October-2021',
     // amountDue: '1000$',
-    paymentStatus: 'Paid',
+    paymentStatus: 'Processing',
     dropdownStatus: true,
     download: 'Download',
     action: ['Delete'],

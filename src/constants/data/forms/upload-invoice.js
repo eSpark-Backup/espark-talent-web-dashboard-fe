@@ -1,8 +1,8 @@
 export const uploadInvoiceForm = [
   {
-    title: 'Employee name',
-    placeholder: 'Enter name',
-    name: 'employeeName',
+    title: 'Employee ID',
+    placeholder: 'Enter employee ID',
+    name: 'employeeId',
   },
   {
     title: 'Invoice date',

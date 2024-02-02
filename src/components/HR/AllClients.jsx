@@ -61,7 +61,7 @@ const AllClients = () => {
         </Button>
       </Box>
       <Box sx={{ width: '100%' }}>
-        <Box
+        {/* <Box
           sx={{
             borderBottom: 1,
             borderColor: 'divider',
@@ -80,7 +80,7 @@ const AllClients = () => {
             <Tab value="two" label="Active clients" disableRipple={true} />
             <Tab value="three" label="Inactive clients" disableRipple={true} />
           </Tabs>
-        </Box>
+        </Box> */}
         <Grid
           container
           sx={{

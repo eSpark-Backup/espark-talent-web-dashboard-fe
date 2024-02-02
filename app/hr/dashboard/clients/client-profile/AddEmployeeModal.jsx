@@ -8,7 +8,7 @@ import { useFormik } from 'formik';
 import React, { useEffect, useState } from 'react';
 
 const AddEmployeeModal = ({ open, onClose }) => {
-  const [currentStep, setCurrentStep] = useState(1);
+  const [currentStep, setCurrentStep] = useState(2);
   const [isDisabledNext, setIsDisabledNext] = useState(true);
   const [modalStep1FormTableState, setModalStep1FormTableState] = useState([]);
   useEffect(() => {
@@ -48,7 +48,7 @@ const AddEmployeeModal = ({ open, onClose }) => {
   });
   const handleCloseModal = () => {
     handleReset();
-    setCurrentStep(1);
+    setCurrentStep(2);
     onClose();
   };
 

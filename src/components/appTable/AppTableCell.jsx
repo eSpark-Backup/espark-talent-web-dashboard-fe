@@ -6,6 +6,7 @@ import { trackingStatusTypes } from '@/src/constants/data/tables/timeTracking';
 import AppTableInfoOptionsCell from './AppTableInfoOptionsCell';
 import Link from 'next/link';
 import { modulepermissionColumn } from '@/src/constants/data/tables/modulePermission';
+import { policyData } from '@/src/constants/data/tables/policyData';
 
 const renderAssigneeCell = (row, col, commonCellStyle) => {
   const [avatar, name, subtitle] = row.assignee;
@@ -54,6 +55,7 @@ const renderActions = (
 ) => {
   if (row?.formActionStatus) {
     if (row?.isModulePermissionData) {
+      // if (row?.actionStatus) {
       return (
         <td
           key={colIndex}
@@ -83,34 +85,35 @@ const renderActions = (
           />
         </td>
       );
-    }
-    return (
-      <td
-        key={colIndex}
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          fontSize: '12px',
-          flex: col?.flex || 1,
-        }}
-      >
-        <Image
-          onClick={() => {
-            handleClickActionView(row?.id);
-          }}
+
+      return (
+        <td
+          key={colIndex}
           style={{
-            margin: rowIndex === 1 && '0 5px',
-            cursor: 'pointer',
+            display: 'flex',
+            justifyContent: 'center',
+            fontSize: '12px',
+            flex: col?.flex || 1,
           }}
-          width={25}
-          height={25}
-          alt="Icon"
-          src={`/icons/${
-            row?.isSelected ? row?.action[1] : row?.action[0]
-          }.svg`}
-        />
-      </td>
-    );
+        >
+          <Image
+            onClick={() => {
+              handleClickActionView(row?.id);
+            }}
+            style={{
+              margin: rowIndex === 1 && '0 5px',
+              cursor: 'pointer',
+            }}
+            width={25}
+            height={25}
+            alt="Icon"
+            src={`/icons/${
+              row?.isSelected ? row?.action[1] : row?.action[0]
+            }.svg`}
+          />
+        </td>
+      );
+    }
   }
   return (
     <td key={col.index} style={{ ...commonCellStyle, flex: col?.flex || 1 }}>
@@ -304,6 +307,17 @@ export const renderCellContent = (
       } else {
         return renderDownloadButton(row, col, commonCellStyle);
       }
+    case 'Employee':
+    case 'Client':
+      return renderActions(
+        row,
+        col,
+        handleClickActionView,
+        commonCellStyle,
+        colIndex,
+        rowIndex,
+        handleClickActionDelete
+      );
     case 'Action':
       return renderActions(
         row,

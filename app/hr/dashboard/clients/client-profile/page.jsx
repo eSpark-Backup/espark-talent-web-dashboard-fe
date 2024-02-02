@@ -14,6 +14,7 @@ import UploadInvoiceModal from './UploadInvoiceModal';
 import AddEmployeeModal from './AddEmployeeModal';
 import AddInterviewModal from './AddInterviewModal';
 import AddOnboardModal from './AddOnboardModal';
+import EditModal from '@/src/components/employeeData/editModal';
 
 const AddEmployee = () => {
   const router = useRouter();
@@ -22,6 +23,7 @@ const AddEmployee = () => {
   const [isOpenAddInterviewModal, setIsOpenAddInterviewModal] = useState(false);
   const [isOpenAddOnboardModal, setIsOpenAddOnboardModal] = useState(false);
   const [isOpenContractModal, setIsOpenContractModal] = useState(false);
+  const [showEditModal, setEditModal] = useState(false);
   const [isOpenUploadInvoiceModal, setIsOpenUploadInvoiceModal] =
     useState(false);
   const [isOpenAddClientModal, setIsOpenAddClientModal] = useState(false);
@@ -105,6 +107,12 @@ const AddEmployee = () => {
         column: [],
       });
     }
+  };
+  const handleOpenModal = () => {
+    setEditModal(true);
+  };
+  const handleCloseModal = () => {
+    setEditModal(false);
   };
   const handleOpenHiringRequestModal = () => {
     setIsOpenHiringRequestModal(true);
@@ -209,7 +217,14 @@ const AddEmployee = () => {
                 src="/icons/EditIcon.svg"
                 width={35}
                 height={35}
+                onClick={handleOpenModal}
               />
+              {showEditModal && (
+                <EditModal
+                  handleOpenModal={handleOpenModal}
+                  onClose={handleCloseModal}
+                />
+              )}
             </Box>
             <Box
               sx={{
@@ -519,6 +534,76 @@ const AddEmployee = () => {
                     </Tabs>
                     {currentTab.label === 'Hire & onboard' ? (
                       <>
+                        {currentTab.nested.val === 0 ? (
+                          <Button
+                            onClick={handleOpenHiringRequestModal}
+                            variant="contained"
+                            sx={{
+                              my: { xs: '20px', md: 0 },
+                              textTransform: 'math-auto',
+                            }}
+                          >
+                            Add new request
+                          </Button>
+                        ) : currentTab.nested.val === 1 ? (
+                          <Button
+                            onClick={handleOpenAddInterviewModal}
+                            variant="contained"
+                            sx={{
+                              my: { xs: '20px', md: 0 },
+                              textTransform: 'math-auto',
+                            }}
+                          >
+                            Set new interview
+                          </Button>
+                        ) : (
+                          <Button
+                            onClick={handleOpenAddOnboardModal}
+                            variant="contained"
+                            sx={{
+                              my: { xs: '20px', md: 0 },
+                            }}
+                          >
+                            Add Onboard
+                          </Button>
+                        )}
+                      </>
+                    ) : currentTab.label === 'Contract signed' ? (
+                      <Button
+                        onClick={handleOpenContractModal}
+                        variant="contained"
+                        sx={{
+                          my: { xs: '20px', md: 0 },
+                        }}
+                      >
+                        Add contract
+                      </Button>
+                    ) : currentTab.label === 'Employee invoices' ||
+                      currentTab.label === 'Other invoices' ? (
+                      currentTab.nested.val === 0 ? (
+                        <Button
+                          onClick={handleOpenUploadInvoiceModal}
+                          variant="contained"
+                          sx={{
+                            my: { xs: '20px', md: 0 },
+                          }}
+                        >
+                          Upload invoices
+                        </Button>
+                      ) : null
+                    ) : // <Button
+                    //   onClick={handleOpenUploadInvoiceModal}
+                    //   variant="contained"
+                    //   sx={{
+                    //     my: { xs: '20px', md: 0 },
+                    //   }}
+                    // >
+                    //   Upload invoice
+                    // </Button>
+                    null}
+
+                    {/* {currentTab.label === 'Hire & onboard' ? (
+                      <>
                         {currentTab.nested.val == 0 ? (
                           <Button
                             onClick={handleOpenHiringRequestModal}
@@ -581,7 +666,7 @@ const AddEmployee = () => {
                       >
                         Upload invoice
                       </Button>
-                    )}
+                    )} */}
                   </Box>
                 </CustomTabPanel>
               ))}
