@@ -11,10 +11,13 @@ import {
 import { toCamelCase } from '@/src/utils/stringModification';
 import UploadPolicyModal from '@/src/components/modals/uploadPolicyModal';
 import { POLICIES_DATA } from '@/src/constants/policies';
+import { CONTRACT_SIGNED } from '@/src/constants/contractSigned';
+import AppConfirmationMadal from '@/src/components/modals/AppConfirmationMadal';
 
 const Policies = () => {
   const [openUploadPolicy, setOpenUploadPolicy] = useState(false);
   const [formTableState, setFormTableState] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
   useEffect(() => {
     setFormTableState([...policyData]);
   }, [policyData]);
@@ -29,12 +32,16 @@ const Policies = () => {
     tempForm[employeeIndex] = targetObject;
     setFormTableState(tempForm);
   };
-  const handleClickDelete = () => setIsOpen(true);
+  const handleClickDelete = () => {
+    setIsOpen(true);
+    console.log('kkk');
+  };
   const handleOpenModal = () => {
     setOpenUploadPolicy(true);
   };
   const handleClose = () => {
     setOpenUploadPolicy(false);
+    setIsOpen(false);
   };
   return (
     <>
@@ -49,37 +56,37 @@ const Policies = () => {
             width: '100%',
           }}
         >
-          <Box sx={{ display: 'flex', justifyContent: 'center', background:"pink" }}>
-            <Heading
-              title={POLICIES_DATA?.policy}
-              description={
-               POLICIES_DATA?.companyPolicy
-              }
-              containerStyles={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: { xs: 'flex-start', md: 'center' },
-              }}
-            />
-            <Box sx={{
-              // marginLeft:"120px"
-            }}><Button
-              sx={{
-                minWidth: '200px',
-                height: '40px',
-                borderColor: '#029894',
+          <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+            <Box sx={{}}>
+              <Heading
+                title={POLICIES_DATA?.policy}
+                description={POLICIES_DATA?.companyPolicy}
+                containerStyles={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: { xs: 'flex-start', md: 'center' },
+                }}
+              />
+            </Box>
+            <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+              {' '}
+              <Button
+                sx={{
+                  minWidth: '200px',
+                  height: '40px',
+                  borderColor: '#029894',
                   color: 'teal',
                   '&:hover': {
-                    background: "#fff",
-                    color:"teal"
-                }
-              }}
-              variant="outlined"
-              onClick={handleOpenModal}
-            >
-              {POLICIES_DATA?.uploadPolicy}
-            </Button></Box>
-            
+                    background: '#fff',
+                    color: 'teal',
+                  },
+                }}
+                variant="outlined"
+                onClick={handleOpenModal}
+              >
+                {POLICIES_DATA?.uploadPolicy}
+              </Button>
+            </Box>
           </Box>
           <AppTable
             column={policyColumn}
@@ -93,6 +100,14 @@ const Policies = () => {
       {openUploadPolicy && (
         <UploadPolicyModal open={handleOpenModal} onClose={handleClose} />
       )}
+      <AppConfirmationMadal
+        title={CONTRACT_SIGNED?.delete}
+        bodyText={CONTRACT_SIGNED?.warning}
+        cancelButtonText={CONTRACT_SIGNED?.cancel}
+        confirmButtonText={CONTRACT_SIGNED?.delete}
+        isOpen={isOpen}
+        handleClose={handleClose}
+      />
     </>
   );
 };

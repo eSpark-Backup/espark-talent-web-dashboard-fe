@@ -3,7 +3,7 @@ export const policyData = [
   {
     policies: 'Salary Based Employee Policy',
     action: ['Delete'],
-    // actionStatus: true,
+    actionStatus: true,
     formActionStatus: true,
     employee: ['DisabledCheck', 'EnabledCheck', false],
     client: ['DisabledCheck', 'EnabledCheck', false],
@@ -13,7 +13,7 @@ export const policyData = [
   {
     policies: 'House Based Employee Policy',
     action: ['Delete'],
-    // actionStatus: true,
+    actionStatus: true,
     formActionStatus: true,
     employee: ['DisabledCheck', 'EnabledCheck', false],
     client: ['DisabledCheck', 'EnabledCheck', false],
@@ -24,18 +24,21 @@ export const policyData = [
     policies: 'Project Based Employee Policy',
     action: ['Delete'],
     actionStatus: true,
+    // formActionStatus: true,
     employee: ['DisabledCheck', 'EnabledCheck', false],
     client: ['DisabledCheck', 'EnabledCheck', false],
-    isModulePermissionData: true,
+    // isModulePermissionData: true,
     isSelected: false,
   },
   {
     policies: 'Employee Cost',
     action: ['Delete'],
     actionStatus: true,
+    // formActionStatus: true,
+
     employee: ['DisabledCheck', 'EnabledCheck', false],
     client: ['DisabledCheck', 'EnabledCheck', false],
-    isModulePermissionData: true,
+    // isModulePermissionData: true,
     isSelected: false,
   },
   {
@@ -44,7 +47,7 @@ export const policyData = [
     actionStatus: true,
     employee: ['DisabledCheck', 'EnabledCheck', false],
     client: ['DisabledCheck', 'EnabledCheck', false],
-    isModulePermissionData: true,
+    // isModulePermissionData: true,
     isSelected: false,
   },
   {
@@ -53,5 +56,6 @@ export const policyData = [
     actionStatus: true,
     employee: ['DisabledCheck', 'EnabledCheck', false],
     client: ['DisabledCheck', 'EnabledCheck', false],
+    isSelected: false,
   },
 ];
