@@ -21,7 +21,10 @@ const ClientView = ({ status, id, name, designation = '', search }) => {
   const handleClose = (event) => {
     event.stopPropagation();
     setAnchorEl(null);
+  };
+  const handleOpenRemove = (event) => {
     setIsOpen(true);
+    event.stopPropagation();
   };
   const handleCloseModal = () => {
     setIsOpen(false);
@@ -171,7 +174,7 @@ const ClientView = ({ status, id, name, designation = '', search }) => {
                           }}
                           sx={{ marginTop: '20px' }}
                         >
-                          <MenuItem onClick={handleClose}>Remove</MenuItem>
+                          <MenuItem onClick={handleOpenRemove}>Remove</MenuItem>
                           <MenuItem onClick={handleClose}>Active</MenuItem>
                           <MenuItem onClick={handleClose}>Inactive</MenuItem>
                         </Menu>
@@ -339,7 +342,7 @@ const ClientView = ({ status, id, name, designation = '', search }) => {
                       }}
                       sx={{ marginTop: '20px' }}
                     >
-                      <MenuItem onClick={handleClose}>Remove</MenuItem>
+                      <MenuItem onClick={handleOpenRemove}>Remove</MenuItem>
                       <MenuItem
                         onClick={() =>
                           router.push('/hr/dashboard/clients/add-client')

@@ -6,6 +6,7 @@ import Input from '../dashboard/input';
 import Image from 'next/image';
 import EmployeeView from './EmployeeView';
 import { useRouter } from 'next/navigation';
+import EmployeeStatus from './ActiveEmployee';
 
 const AllEmployee = ({ fromClient, openModal }) => {
   const router = useRouter();
@@ -61,7 +62,7 @@ const AllEmployee = ({ fromClient, openModal }) => {
           </Button>
         </Box>
         {value === 'one' ? (
-          <EmployeeView
+          <EmployeeStatus
             search={search}
             id={id}
             name={name}
@@ -69,7 +70,7 @@ const AllEmployee = ({ fromClient, openModal }) => {
             status={'All'}
           />
         ) : value === 'two' ? (
-          <EmployeeView
+          <EmployeeStatus
             status={'Active'}
             id={id}
             name={name}
@@ -77,7 +78,7 @@ const AllEmployee = ({ fromClient, openModal }) => {
             search={search}
           />
         ) : (
-          <EmployeeView
+          <EmployeeStatus
             id={id}
             name={name}
             designation={designation}

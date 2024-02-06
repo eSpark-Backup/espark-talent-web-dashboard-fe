@@ -18,10 +18,13 @@ const EmployeeView = ({ status, id, name, designation, search }) => {
     setAnchorEl(event.currentTarget);
     event.stopPropagation();
   };
+    const handleOpenRemove = (event) => {
+    setIsOpen(true);
+    event.stopPropagation();
+  };
   const handleClose = (event) => {
     event.stopPropagation();
     setAnchorEl(null);
-    setIsOpen(true);
   };
   const handleCloseModal = () => {
     setIsOpen(false);
@@ -239,6 +242,7 @@ const EmployeeView = ({ status, id, name, designation, search }) => {
                   borderRadius: '5px',
                   boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
                   padding: '20px 15px 10px 15px',
+                  cursor:"pointer"
                 }}
                 onClick={() =>
                   router.push(`/hr/dashboard/employees/${eachItem?.id}`)
@@ -334,7 +338,7 @@ const EmployeeView = ({ status, id, name, designation, search }) => {
                       }}
                       sx={{ marginTop: '20px' }}
                     >
-                      <MenuItem onClick={handleClose}>Remove</MenuItem>
+                      <MenuItem onClick={handleOpenRemove}>Remove</MenuItem>
                     </Menu>
                   </Box>
                 </Box>

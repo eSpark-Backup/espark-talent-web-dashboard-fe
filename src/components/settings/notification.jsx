@@ -3,7 +3,6 @@ import { Box, FormControlLabel, Grid, Switch } from '@mui/material';
 
 import { NotificationData } from '@/src/constants/data/tables/notifications';
 
-p          >
               <Box>{Object.values(item)}</Box>
               <Box>
                 <FormControlLabel
