@@ -3,6 +3,27 @@ export const SETTING = {
   hr: 'HR',
   admin: 'Admin',
   finance: 'Finance',
+  ceo: 'CEO',
+  coo: 'COO',
+  cto: 'CTO',
+  cfo: 'CFO',
+  hrOfficer: 'HR Officer',
+  hrAssistant: 'HR assistant',
+  teamLead: 'Team Lead',
   add: 'Add',
   roleName: ' Role name',
+  save: 'Save',
 };
+
+export const ROLES = [
+  { key: 'hr', label: SETTING?.hr },
+  { key: 'admin', label: SETTING?.admin },
+  { key: 'finance', label: SETTING?.finance },
+  { key: 'ceo', label: SETTING?.ceo },
+  { key: 'coo', label: SETTING?.coo },
+  { key: 'cto', label: SETTING?.cto },
+  { key: 'cfo', label: SETTING?.cfo },
+  { key: 'hrOfficer', label: SETTING?.hrOfficer },
+  { key: 'hrAssistant', label: SETTING?.hrAssistant },
+  { key: 'teamLead', label: SETTING?.teamLead },
+];

@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 
-import { Box, Button, Grid } from '@mui/material';
+import { Box, Button, Grid, Typography } from '@mui/material';
 import AppTable from '../appTable/AppTable';
 import {
   modulepermissionColumn,
   modulepermissionData,
 } from '@/src/constants/data/tables/modulePermission';
 import RoleModal from './addRoleModal';
-import { SETTING } from '@/src/constants/SettingHr';
+import { ROLES, SETTING } from '@/src/constants/SettingHr';
 import { toCamelCase } from '@/src/utils/stringModification';
 
 const Role = () => {
@@ -56,40 +56,51 @@ const Role = () => {
             marginTop: '17px',
           }}
         >
-          <Button
+          <Typography
             sx={{
-              borderRadius: '5px',
-              border: ' 1px solid #029894',
-              background: ' #FFF',
-              width: '95%',
-              padding: '8px',
+              textAlign: 'center',
+              color: '#595959',
+              fontWeight: '500',
+              padding: '7px',
             }}
           >
-            {SETTING?.hr}
-          </Button>
-          <Button
+            Roles
+          </Typography>
+          <Box
             sx={{
-              borderRadius: '5px',
-              border: ' 1px solid #029894',
-              background: ' #FFF',
-              width: '95%',
-              padding: '8px',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '15px',
+              overflowY: 'auto',
+              scrollbarWidth: 'thin',
+              scrollbarColor: 'transparent transparent',
+              '&::-webkit-scrollbar': {
+                display: 'none',
+              },
+              paddingBottom: '20px',
             }}
           >
-            {SETTING?.admin}
-          </Button>
-          <Button
-            sx={{
-              borderRadius: '5px',
-              border: ' 1px solid #029894',
-              background: ' #FFF',
-              width: '95%',
-              padding: '8px',
-            }}
-          >
-            {SETTING?.finance}
-          </Button>
-          <Button
+            {ROLES.map((button, index) => (
+              <Button
+                key={index}
+                sx={{
+                  borderRadius: '5px',
+                  color: '#595959',
+                  background: ' #FFF',
+                  width: '95%',
+                  padding: '8px',
+                  '&:hover': {
+                    border: ' 1px solid #029894',
+                    color: 'teal',
+                    background: ' #FFF',
+                  },
+                }}
+              >
+                {button.label}
+              </Button>
+            ))}
+          </Box>
+          {/* <Button
             sx={{
               marginTop: '250px',
               background: '#029894',
@@ -103,7 +114,7 @@ const Role = () => {
             onClick={handleOpen}
           >
             {SETTING?.addRole}
-          </Button>
+          </Button> */}
           <RoleModal open={open} handleClose={handleClose} />
         </Grid>
         <Grid item xs={12} md={8}>
@@ -131,14 +142,14 @@ const Role = () => {
             justifyContent={'space-between'}
             alignItems={'center'}
             p={'0 10px'}
-            mt={'20px'}
+            mt={'3px'}
           >
             <Button
               type="submit"
-              sx={{ minWidth: '120px', marginTop: '100px' }}
+              sx={{ minWidth: '120px' }}
               variant="contained"
             >
-              Save
+              {SETTING?.save}
             </Button>
           </Box>
         </Grid>

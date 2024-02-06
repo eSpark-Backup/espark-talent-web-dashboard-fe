@@ -6,15 +6,15 @@ export const settingTabs = [
     prop: a11yProps(0),
   },
   {
-    label: 'Roles & permissions',
+    label: 'Accounts',
     prop: a11yProps(1),
+  },
+  {
+    label: 'Roles & permissions',
+    prop: a11yProps(2),
   },
   {
     label: 'Change password',
-    prop: a11yProps(1),
-  },
-  {
-    label: 'Notifications',
-    prop: a11yProps(1),
+    prop: a11yProps(3),
   },
 ];

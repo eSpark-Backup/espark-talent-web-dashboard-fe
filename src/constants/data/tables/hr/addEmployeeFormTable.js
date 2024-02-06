@@ -1,6 +1,6 @@
 export const addEmployeeFormTableColumn = [
   {
-    title: 'Pic',
+    title: 'Picture',
     flex: 1,
     isIconTitle: true,
     src: '/icons/UserIcon.svg',

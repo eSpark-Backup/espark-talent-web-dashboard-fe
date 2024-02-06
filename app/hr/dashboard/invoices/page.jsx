@@ -11,7 +11,6 @@ import {
 } from '@/src/constants/data/tables/hr/invoicesPageData';
 import Input from '@/src/components/dashboard/input';
 import AppDropdown from '@/src/components/dashboard/appDropdown';
-import DatePicker from '@/src/components/employeeData/Datepicker';
 
 const Page = () => {
   const [id, setId] = useState('');
@@ -45,11 +44,6 @@ const Page = () => {
               prefixIcon={'/icons/searchIconWhite.svg'}
               name={'id'}
             />
-          </Grid>
-          <Grid item xs={12} md={6} lg={3}>
-            <Box sx={{ width: '100%' }}>
-              <DatePicker />
-            </Box>
           </Grid>
           <Grid item xs={12} md={6} lg={3}>
             <AppDropdown

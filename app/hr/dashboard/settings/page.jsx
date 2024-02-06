@@ -9,9 +9,18 @@ import CompanySettings from '@/src/components/settings/companySettings';
 import ChangePassword from '@/src/components/settings/changePassword';
 import Role from '@/src/components/settings/addRole';
 import Notification from '@/src/components/settings/notification';
+import Account from '@/src/components/settings/account';
+import AddAccountModal from '@/src/components/modals/addAccountModal';
 
 const Page = () => {
   const [value, setValue] = useState(0);
+  const [isOpen, setIsOpen] = useState();
+  const handleOpen = () => {
+    setIsOpen(true);
+  };
+  const handleClose = () => {
+    setIsOpen(false);
+  };
   const handleChange = (event, newValue) => {
     let tab = event?.target?.innerText.split(' ');
     if (tab.length > 1) {
@@ -61,15 +70,36 @@ const Page = () => {
               {settingTabs?.map(({ label, prop }, i) => (
                 <CustomTabPanel value={value} key={i} index={i} {...prop}>
                   {label === 'Company settings' && <CompanySettings />}
+                  {label === 'Accounts' && <Account />}
                   {label === 'Roles & permissions' && <Role />}
                   {label === 'Change password' && <ChangePassword />}
-                  {label === 'Notifications' && <Notification />}
+                  {label === 'Accounts' && (
+                    <Box
+                      display={'flex'}
+                      justifyContent={'space-between'}
+                      alignItems={'center'}
+                      p={'0 10px'}
+                      mt={'20px'}
+                    >
+                      <Button
+                        type="submit"
+                        sx={{ minWidth: '120px', marginTop: '100px' }}
+                        variant="contained"
+                        onClick={handleOpen}
+                      >
+                        Add Account
+                      </Button>
+                    </Box>
+                  )}
                 </CustomTabPanel>
               ))}
             </Box>
           </Box>
-          <Grid item xs={12}>
-            {value === 3 && (
+          {isOpen && (
+            <AddAccountModal open={handleOpen} onClose={handleClose} />
+          )}
+          {/* <Grid item xs={12}>
+            {value=== 'Account' && (
               <Box
                 display={'flex'}
                 justifyContent={'space-between'}
@@ -82,11 +112,11 @@ const Page = () => {
                   sx={{ minWidth: '120px', marginTop: '100px' }}
                   variant="contained"
                 >
-                  Save
+                  Add Account
                 </Button>
               </Box>
             )}
-          </Grid>
+          </Grid> */}
         </Grid>
       </Grid>
     </>
