@@ -4,6 +4,12 @@ import {
   contractSignedData,
   contractSignedEmployeeColumn,
   contractSignedEmployeeData,
+  contractSignedNestClientColumn,
+  contractSignedNestClientData,
+  contractSignedNestEmployeeColumn,
+  contractSignedNestEmployeeData,
+  contractSignedOffshoreColumn,
+  contractSignedOffshoreData,
 } from '../tables/contractSigned';
 
 export const contractSignedTabs = [
@@ -18,6 +24,32 @@ export const contractSignedTabs = [
     prop: a11yProps(1),
     data: contractSignedEmployeeData,
     columns: contractSignedEmployeeColumn,
+  },
+];
+export const contractHrSignedTabs = [
+  {
+    label: 'Company contracts',
+    prop: a11yProps(0),
+    nested: [
+      {
+        label: 'Clients',
+        prop: a11yProps(0),
+        data: contractSignedNestClientData,
+        columns: contractSignedNestClientColumn,
+      },
+      {
+        label: 'Employees',
+        prop: a11yProps(1),
+        data: contractSignedNestEmployeeData,
+        columns: contractSignedNestEmployeeColumn,
+      },
+    ],
+  },
+  {
+    label: 'Offshore contracts',
+    prop: a11yProps(1),
+    data: contractSignedOffshoreData,
+    columns: contractSignedOffshoreColumn,
   },
 ];
 

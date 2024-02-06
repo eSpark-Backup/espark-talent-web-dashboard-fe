@@ -24,3 +24,35 @@ export const contractForm = [
     name: 'upload',
   },
 ];
+
+export const contractFormHrPortal = [
+  {
+    title: 'Contract name',
+    placeholder: 'Enter contract name',
+    name: 'contractName',
+  },
+  {
+    title: 'Client ID',
+    placeholder: 'Enter client Id',
+    name: 'clientId',
+  },
+  {
+    title: 'Employee ID',
+    placeholder: 'Enter client Id',
+    name: 'employeeId',
+  },
+  {
+    title: 'Date',
+    placeholder: 'DD-MM-YYYY',
+    suffixIcon: 'calender',
+    type: 'date',
+    name: 'date',
+  },
+  {
+    title: 'Upload',
+    placeholder: 'Upload contract',
+    prefixIcon: 'upload',
+    type: 'file',
+    name: 'upload',
+  },
+];

@@ -56,6 +56,9 @@ const AppConfirmationMadal = ({
                 lineHeight: '17px',
                 letterSpacing: '0em',
                 textAlign: 'left',
+                '@media(min-width:280px) and (max-width:350px)': {
+                  fontSize: '11px',
+                },
               }}
             >
               {bodyText}
@@ -64,14 +67,14 @@ const AppConfirmationMadal = ({
           <Box display={'flex'} justifyContent="center">
             <Button
               onClick={handleClose}
-              sx={{ minWidth: '120px', mr: '15px' }}
+              sx={{ width: { xs: '100px', md: '120px' }, mr: '15px' }}
               variant="outlined"
             >
               {cancelButtonText}
             </Button>
             <Button
               onClick={handleClose}
-              sx={{ minWidth: '120px' }}
+              sx={{ width: { xs: '100px', md: '120px' } }}
               variant="contained"
             >
               {confirmButtonText}
