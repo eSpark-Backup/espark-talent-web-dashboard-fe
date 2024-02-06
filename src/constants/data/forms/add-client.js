@@ -29,7 +29,6 @@ const formElements = [
     placeholder: 'Enter phone number',
     name: 'phoneNumber',
   },
-  ,
   {
     title: 'Join date',
     placeholder: 'DD-MM-YYYY',

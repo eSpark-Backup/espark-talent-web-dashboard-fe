@@ -6,7 +6,6 @@ import { trackingStatusTypes } from '@/src/constants/data/tables/timeTracking';
 import AppTableInfoOptionsCell from './AppTableInfoOptionsCell';
 import Link from 'next/link';
 import { modulepermissionColumn } from '@/src/constants/data/tables/modulePermission';
-import { policyData } from '@/src/constants/data/tables/policyData';
 import React from 'react';
 
 const renderAssigneeCell = (row, col, commonCellStyle) => {
@@ -44,7 +43,6 @@ const renderUserAvatar = (row, col, commonCellStyle) => {
     </td>
   );
 };
-
 const renderActions = (
   row,
   col,
@@ -77,129 +75,43 @@ const renderActions = (
             width={25}
             height={25}
             alt="Icon"
-            src={`/icons/${row[toCamelCase(col || col?.title)][2] === true
+            src={`/icons/${
+              row[toCamelCase(col || col?.title)][2] === true
                 ? 'EnabledCheck'
                 : 'DisabledCheck'
-              }.svg`}
-          />
-        </td>
-      );
-    }
-      return (
-        <td
-          key={colIndex}
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            fontSize: '12px',
-            flex: col?.flex || 1,
-          }}
-        >
-          <Image
-            onClick={() => {
-              handleClickActionView(row?.id);
-            }}
-            style={{
-              margin: rowIndex === 1 && '0 5px',
-              cursor: 'pointer',
-            }}
-            width={25}
-            height={25}
-            alt="Icon"
-            src={`/icons/${
-              row?.isSelected ? row?.action[1] : row?.action[0]
             }.svg`}
           />
         </td>
       );
     }
-  
-
-
-//   if (row?.formActionStatus)  {
-//   return (
-//     <td
-//       key={colIndex}
-//       style={{
-//         display: 'flex',
-//         justifyContent: 'center',
-//         fontSize: '12px',
-//         flex: col?.flex || 1,
-//       }}
-//     >
-//       <Image
-//         onClick={() => {
-//           if (row?.isModulePermissionData) {
-//             handleClickActionView(row?.id, col || col?.title);
-//           } else {
-//             handleClickActionView(row?.id);
-//           }
-//         }}
-//         style={{
-//           margin: rowIndex === 1 && '0 5px',
-//           cursor: 'pointer',
-//         }}
-//         width={25}
-//         height={25}
-//         alt="Icon"
-//         src={`/icons/${
-//           row?.isModulePermissionData
-//             ? (row[toCamelCase(col || col?.title)][2] === true
-//                 ? 'EnabledCheck'
-//                 : 'DisabledCheck')
-//             : (row?.isSelected ? row?.action[1] : row?.action[0])
-//         }.svg`}
-//       />
-//     </td>
-//   );
-// }
-
-  
-//   {policyData.map((row, rowIndex) => (
-//   <tr key={rowIndex}>
-//     {policyData.map((col, colIndex) => (
-//       <React.Fragment key={colIndex}>
-//         {row.formActionStatus && (row.isModulePermissionData || row.actionStatus) ? (
-//           <td
-//             style={{
-//               display: 'flex',
-//               justifyContent: 'center',
-//               fontSize: '12px',
-//               flex: col.flex || 1,
-//             }}
-//           >
-//             <Image
-//               onClick={() => {
-//                 if (row.isModulePermissionData) {
-//                   handleClickActionView(row.id, col || col.title);
-//                 } else {
-//                   handleClickActionView(row.id);
-//                 }
-//               }}
-//               style={{
-//                 margin: rowIndex === 1 && '0 5px',
-//                 cursor: 'pointer',
-//               }}
-//               width={25}
-//               height={25}
-//               alt="Icon"
-//               src={`/icons/${
-//                 row.isModulePermissionData
-//                   ? row[toCamelCase(col || col.title)][2] === true
-//                     ? 'EnabledCheck'
-//                     : 'DisabledCheck'
-//                   : row.isSelected
-//                   ? row.action[1]
-//                   : row.action[0]
-//               }.svg`}
-//             />
-//           </td>
-//         ) : null}
-//       </React.Fragment>
-//     ))}
-//   </tr>
-// ))}
-
+    return (
+      <td
+        key={colIndex}
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          fontSize: '12px',
+          flex: col?.flex || 1,
+        }}
+      >
+        <Image
+          onClick={() => {
+            handleClickActionView(row?.id);
+          }}
+          style={{
+            margin: rowIndex === 1 && '0 5px',
+            cursor: 'pointer',
+          }}
+          width={25}
+          height={25}
+          alt="Icon"
+          src={`/icons/${
+            row?.isSelected ? row?.action[1] : row?.action[0]
+          }.svg`}
+        />
+      </td>
+    );
+  }
   return (
     <td key={col.index} style={{ ...commonCellStyle, flex: col?.flex || 1 }}>
       <>
@@ -232,69 +144,65 @@ const renderCheckActions = (
   row,
   col,
   handleClickActionView,
-  commonCellStyle,
   colIndex,
-  rowIndex,
-  handleClickActionDelete
+  rowIndex
 ) => {
-    if (row?.isModulePermissionData) {
-      return (
-        <td
-          key={colIndex}
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            fontSize: '12px',
-            flex: col?.flex || 1,
+  if (row?.isModulePermissionData) {
+    return (
+      <td
+        key={colIndex}
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          fontSize: '12px',
+          flex: col?.flex || 1,
+        }}
+      >
+        <Image
+          onClick={() => {
+            handleClickActionView(row?.id, col || col?.title);
           }}
-        >
-          <Image
-            onClick={() => {
-              // console.log({row:row?.id,col: col || col?.title})
-              handleClickActionView(row?.id, col || col?.title);
-            }}
-            style={{
-              margin: rowIndex === 1 && '0 5px',
-              cursor: 'pointer',
-            }}
-            width={25}
-            height={25}
-            alt="Icon"
-            src={`/icons/${row[toCamelCase(col || col?.title)][2] === true
-                ? 'EnabledCheck'
-                : 'DisabledCheck'
-              }.svg`}
-          />
-        </td>
-      );
-    }
-      return (
-        <td
-          key={colIndex}
           style={{
-            display: 'flex',
-            justifyContent: 'center',
-            fontSize: '12px',
-            flex: col?.flex || 1,
+            margin: rowIndex === 1 && '0 5px',
+            cursor: 'pointer',
           }}
-        >
-          <Image
-            onClick={() => {
-              handleClickActionView(row?.id);
-            }}
-            style={{
-              margin: rowIndex === 1 && '0 5px',
-              cursor: 'pointer',
-            }}
-            width={25}
-            height={25}
-            alt="Icon"
-            src={`/icons/${
-              row?.isSelected ? row?.action[1] : row?.action[0]
-            }.svg`}
-          />
-        </td>
-      );
+          width={25}
+          height={25}
+          alt="Icon"
+          src={`/icons/${
+            row[toCamelCase(col || col?.title)][2] === true
+              ? 'EnabledCheck'
+              : 'DisabledCheck'
+          }.svg`}
+        />
+      </td>
+    );
+  }
+  return (
+    <td
+      key={colIndex}
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        fontSize: '12px',
+        flex: col?.flex || 1,
+      }}
+    >
+      <Image
+        onClick={() => {
+          handleClickActionView(row?.id);
+        }}
+        style={{
+          margin: rowIndex === 1 && '0 5px',
+          cursor: 'pointer',
+        }}
+        width={25}
+        height={25}
+        alt="Icon"
+        src={`/icons/${row?.isSelected ? row?.action[1] : row?.action[0]}.svg`}
+      />
+    </td>
+  );
 };
 
 const renderAttendenceStatus = (statusType, index) => {

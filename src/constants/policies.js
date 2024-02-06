@@ -5,8 +5,9 @@ export const POLICIES_DATA = {
   close: 'Close',
   download: 'Download',
   policy: 'Policies',
-  companyPolicy: 'You will manage all the policies related to your company below.',
-  uploadPolicy: "Upload Policy",
+  companyPolicy:
+    'You will manage all the policies related to your company below.',
+  uploadPolicy: 'Upload Policy',
   items: [
     {
       id: 1,

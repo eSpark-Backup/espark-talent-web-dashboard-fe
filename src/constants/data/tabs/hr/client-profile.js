@@ -9,10 +9,6 @@ import {
   onBoardingData,
 } from '../../tables/hr/hireOnBoard';
 import {
-  contractSignedColumn,
-  contractSignedData,
-} from '../../tables/hr/contractSigned';
-import {
   invoicePaymentColumn,
   invoicePaymentData,
   otherPaymentColumn,

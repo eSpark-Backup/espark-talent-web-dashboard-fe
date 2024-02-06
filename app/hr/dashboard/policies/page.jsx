@@ -56,8 +56,14 @@ const Policies = () => {
             width: '100%',
           }}
         >
-          <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-            <Box sx={{}}>
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              flexDirection: { xs: 'column', md: 'row' },
+            }}
+          >
+            <Box sx={{ display: 'flex', mx: 'auto' }}>
               <Heading
                 title={POLICIES_DATA?.policy}
                 description={POLICIES_DATA?.companyPolicy}
@@ -68,8 +74,7 @@ const Policies = () => {
                 }}
               />
             </Box>
-            <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-              {' '}
+            <Box>
               <Button
                 sx={{
                   minWidth: '200px',
@@ -80,6 +85,7 @@ const Policies = () => {
                     background: '#fff',
                     color: 'teal',
                   },
+                  marginTop: { xs: '20px', md: '0px' },
                 }}
                 variant="outlined"
                 onClick={handleOpenModal}
@@ -88,13 +94,20 @@ const Policies = () => {
               </Button>
             </Box>
           </Box>
-          <AppTable
-            column={policyColumn}
-            data={formTableState}
-            handleClickActionView={handleSelectRow}
-            handleClickActionDelete={handleClickDelete}
-            noPagination
-          />
+          <Box
+            sx={{
+              maxWidth: '100%',
+              overflowX: 'auto',
+            }}
+          >
+            <AppTable
+              column={policyColumn}
+              data={formTableState}
+              handleClickActionView={handleSelectRow}
+              handleClickActionDelete={handleClickDelete}
+              noPagination
+            />
+          </Box>
         </Box>
       </Grid>
       {openUploadPolicy && (

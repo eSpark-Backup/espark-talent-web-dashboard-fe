@@ -1,5 +1,5 @@
 'use client';
-import { Button, Grid, Tab, Tabs, Typography } from '@mui/material';
+import { Button, Grid, Typography } from '@mui/material';
 import { Box, useTheme } from '@mui/system';
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -10,24 +10,16 @@ import ClientView from './ClientView';
 const AllClients = () => {
   const router = useRouter();
   const [value, setValue] = useState('one');
-
-  const handleChange = (event, newValue) => {
-    console.log({ event });
-    setValue(newValue);
-  };
-
+  console.log(setValue);
   const [id, setId] = useState('');
   const [name, setName] = useState('');
   const [search, setSearch] = useState(false);
-
   const theme = useTheme();
-
   useEffect(() => {
     if (name === '' && id === '') {
       setSearch(false);
     }
   }, [name, id]);
-
   return (
     <>
       <Box
@@ -61,26 +53,6 @@ const AllClients = () => {
         </Button>
       </Box>
       <Box sx={{ width: '100%' }}>
-        {/* <Box
-          sx={{
-            borderBottom: 1,
-            borderColor: 'divider',
-            marginBottom: '40px',
-            display: 'flex',
-            justifyContent: 'space-between',
-          }}
-        >
-          <Tabs
-            value={value}
-            onChange={handleChange}
-            aria-label="wrapped label tabs example"
-            variant="scrollable"
-          >
-            <Tab value="one" label="All" wrapped disableRipple={true} />
-            <Tab value="two" label="Active clients" disableRipple={true} />
-            <Tab value="three" label="Inactive clients" disableRipple={true} />
-          </Tabs>
-        </Box> */}
         <Grid
           container
           sx={{

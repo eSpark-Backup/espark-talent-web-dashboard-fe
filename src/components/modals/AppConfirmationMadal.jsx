@@ -67,14 +67,23 @@ const AppConfirmationMadal = ({
           <Box display={'flex'} justifyContent="center">
             <Button
               onClick={handleClose}
-              sx={{ width: { xs: '100px', md: '120px' }, mr: '15px' }}
+              sx={{
+                width: { xs: '100px', md: '120px' },
+                mr: '15px',
+                '&:hover': {
+                  background: '#fff',
+                  color: 'teal',
+                },
+              }}
               variant="outlined"
             >
               {cancelButtonText}
             </Button>
             <Button
               onClick={handleClose}
-              sx={{ width: { xs: '100px', md: '120px' } }}
+              sx={{
+                width: { xs: '100px', md: '120px' },
+              }}
               variant="contained"
             >
               {confirmButtonText}

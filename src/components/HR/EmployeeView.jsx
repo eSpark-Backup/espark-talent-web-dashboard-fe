@@ -18,7 +18,7 @@ const EmployeeView = ({ status, id, name, designation, search }) => {
     setAnchorEl(event.currentTarget);
     event.stopPropagation();
   };
-    const handleOpenRemove = (event) => {
+  const handleOpenRemove = (event) => {
     setIsOpen(true);
     event.stopPropagation();
   };
@@ -242,7 +242,7 @@ const EmployeeView = ({ status, id, name, designation, search }) => {
                   borderRadius: '5px',
                   boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
                   padding: '20px 15px 10px 15px',
-                  cursor:"pointer"
+                  cursor: 'pointer',
                 }}
                 onClick={() =>
                   router.push(`/hr/dashboard/employees/${eachItem?.id}`)

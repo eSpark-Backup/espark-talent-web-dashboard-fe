@@ -7,7 +7,7 @@ import Image from 'next/image';
 import AppConfirmationMadal from '../modals/AppConfirmationMadal';
 import { allEmployees } from '@/src/constants/AllEmployee';
 import { useRouter } from 'next/navigation';
-import { REMOVE_MODAL, TERMINATE_MODAL } from '@/src/constants/contractSigned';
+import { TERMINATE_MODAL } from '@/src/constants/contractSigned';
 
 const EmployeeStatus = ({ status, id, name, designation, search }) => {
   const [anchorEl, setAnchorEl] = useState(null);

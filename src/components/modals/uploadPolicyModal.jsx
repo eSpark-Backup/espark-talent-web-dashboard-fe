@@ -1,9 +1,7 @@
-import { addNewInterviewFormSchema } from '@/src/components/form/schemas/addNewInterviewForm';
-import FormInput from '@/src/components/form/ui-elements/FormInput';
-import { addNewInterviewForm } from '@/src/constants/data/forms/add-new-interview';
-import { Box, Button, Grid, Modal, Typography } from '@mui/material';
-import { useFormik } from 'formik';
 import React from 'react';
+import { Box, Button, Grid, Modal, Typography } from '@mui/material';
+import FormInput from '@/src/components/form/ui-elements/FormInput';
+import { useFormik } from 'formik';
 import { uploadPolicyFormSchema } from '../form/schemas/uploadPolicy';
 import { uploadPolicyForm } from '@/src/constants/data/forms/upload-policy';
 
@@ -96,9 +94,9 @@ const UploadPolicyModal = ({ open, onClose }) => {
           <Grid
             container
             sx={{
-                padding: { xs: '10px 20px', lg: '41px 100px' },
-                display: "flex",
-                flexDirection: "column",
+              padding: { xs: '10px 20px', lg: '41px 100px' },
+              display: 'flex',
+              flexDirection: 'column',
             }}
           >
             {uploadPolicyForm.map(
