@@ -30,6 +30,7 @@ const Role = () => {
   const handleOpen = () => {
     setOpen(true);
   };
+  console.log(handleOpen);
   const handleClose = () => {
     setOpen(!true);
   };
@@ -64,7 +65,7 @@ const Role = () => {
               padding: '7px',
             }}
           >
-            Roles
+            {SETTING?.roles}
           </Typography>
           <Box
             sx={{
@@ -73,10 +74,15 @@ const Role = () => {
               gap: '15px',
               overflowY: 'auto',
               scrollbarWidth: 'thin',
-              scrollbarColor: 'transparent transparent',
+              scrollbarColor: '#F6F6F6 #D9D9D9',
+              scrollbarGutter: 'both',
               '&::-webkit-scrollbar': {
-                display: 'none',
+                width: '10px',
               },
+              '&::-webkit-scrollbar-button:start, &::-webkit-scrollbar-button:end, &::-moz-scrollbar-button:decrement, &::-moz-scrollbar-button:increment, &::-webkit-scrollbar-button:decrement, &::-webkit-scrollbar-button:increment':
+                {
+                  width: '0px',
+                },
               paddingBottom: '20px',
             }}
           >
@@ -100,21 +106,6 @@ const Role = () => {
               </Button>
             ))}
           </Box>
-          {/* <Button
-            sx={{
-              marginTop: '250px',
-              background: '#029894',
-              color: '#fff',
-              width: '95%',
-              '&:hover': {
-                background: '#029894',
-                color: '#fff',
-              },
-            }}
-            onClick={handleOpen}
-          >
-            {SETTING?.addRole}
-          </Button> */}
           <RoleModal open={open} handleClose={handleClose} />
         </Grid>
         <Grid item xs={12} md={8}>

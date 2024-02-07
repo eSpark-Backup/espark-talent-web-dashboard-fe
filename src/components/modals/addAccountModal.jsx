@@ -4,6 +4,7 @@ import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { useFormik } from 'formik';
 import { accountInfoSchema } from '../form/schemas/addAccount';
 import { accountForm } from '@/src/constants/data/forms/add-account';
+import { SETTING } from '@/src/constants/SettingHr';
 
 const AddAccountModal = ({ open, onClose }) => {
   const {
@@ -47,12 +48,11 @@ const AddAccountModal = ({ open, onClose }) => {
       <Box
         sx={{
           bgcolor: '#fff',
-          width: { xs: '90%', sm: '90%', md: '50%' },
+          width: { xs: '90%', sm: '90%', md: '45%' },
           display: 'flex',
           flexDirection: 'column',
           borderRadius: '10px',
           boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
-          // height: '550px',
           maxHeight: '90%',
           overflowY: 'auto',
         }}
@@ -72,7 +72,7 @@ const AddAccountModal = ({ open, onClose }) => {
               fontWeight: 600,
             }}
           >
-            Add account
+            {SETTING?.addAccount}
           </Typography>
           <Box
             sx={{
@@ -95,6 +95,7 @@ const AddAccountModal = ({ open, onClose }) => {
             container
             sx={{
               padding: { xs: '10px 20px', lg: '41px 100px' },
+              display: 'flex',
             }}
           >
             {accountForm?.map(
@@ -114,7 +115,7 @@ const AddAccountModal = ({ open, onClose }) => {
                 formIndex
               ) => (
                 <>
-                  <Grid item xs={12} lg={12}>
+                  <Grid item xs={12} lg={5}>
                     <FormInput
                       key={formIndex}
                       title={title}

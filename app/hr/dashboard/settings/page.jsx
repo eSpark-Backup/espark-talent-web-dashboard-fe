@@ -4,16 +4,16 @@ import { Button, Grid, Tab, Tabs, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 
 import { settingTabs } from '@/src/constants/data/tabs/settingTabs';
-import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
 import CompanySettings from '@/src/components/settings/companySettings';
 import ChangePassword from '@/src/components/settings/changePassword';
 import Role from '@/src/components/settings/addRole';
-import Notification from '@/src/components/settings/notification';
 import Account from '@/src/components/settings/account';
 import AddAccountModal from '@/src/components/modals/addAccountModal';
+import { SETTING } from '@/src/constants/SettingHr';
+import { employeeProfileData } from '@/src/constants/employeeProfile';
 
 const Page = () => {
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState('one');
   const [isOpen, setIsOpen] = useState();
   const handleOpen = () => {
     setIsOpen(true);
@@ -22,13 +22,6 @@ const Page = () => {
     setIsOpen(false);
   };
   const handleChange = (event, newValue) => {
-    let tab = event?.target?.innerText.split(' ');
-    if (tab.length > 1) {
-      tab = tab.slice(0, -1).join(' ');
-    } else {
-      tab = tab.join(' ');
-    }
-
     setValue(newValue);
   };
   return (
@@ -44,79 +37,90 @@ const Page = () => {
           flexDirection={'column'}
           gap={3}
         >
-          <Typography variant="h3">Settings</Typography>
+          <Typography variant="h3">{SETTING?.settings}</Typography>
           <Box sx={{ width: '100%' }}>
-            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-              <Tabs
-                variant="scrollable"
-                value={value}
-                onChange={handleChange}
-                aria-label="basic tabs example"
-              >
-                {settingTabs?.map(({ label, prop }, i) => (
+            <Box
+              sx={{
+                borderBottom: 1,
+                borderColor: 'divider',
+                marginBottom:
+                  value === employeeProfileData?.valueTwo ||
+                  value === employeeProfileData?.valuethree ||
+                  value === 'five'
+                    ? '0px'
+                    : '40px',
+                display: 'flex',
+                justifyContent: { xs: 'center', md: 'space-between' },
+                flexDirection: { xs: 'column', md: 'row' },
+              }}
+            >
+              <Box>
+                <Tabs
+                  value={value}
+                  onChange={handleChange}
+                  aria-label="wrapped label tabs example"
+                  variant="scrollable"
+                >
                   <Tab
-                    key={i}
-                    label={`${label}`}
-                    {...prop}
+                    value={employeeProfileData?.valueOne}
+                    label={settingTabs?.companySettings}
+                    wrapped
                     disableRipple={true}
-                    sx={{
-                      textTransform: 'math-auto',
-                    }}
                   />
-                ))}
-              </Tabs>
-            </Box>
-            <Box>
-              {settingTabs?.map(({ label, prop }, i) => (
-                <CustomTabPanel value={value} key={i} index={i} {...prop}>
-                  {label === 'Company settings' && <CompanySettings />}
-                  {label === 'Accounts' && <Account />}
-                  {label === 'Roles & permissions' && <Role />}
-                  {label === 'Change password' && <ChangePassword />}
-                  {label === 'Accounts' && (
-                    <Box
-                      display={'flex'}
-                      justifyContent={'space-between'}
-                      alignItems={'center'}
-                      p={'0 10px'}
-                      mt={'20px'}
+                  <Tab
+                    value={employeeProfileData?.valueTwo}
+                    label={settingTabs?.accounts}
+                    disableRipple={true}
+                  />
+                  <Tab
+                    value={employeeProfileData?.valuethree}
+                    label={settingTabs?.rolesAndPermission}
+                    disableRipple={true}
+                  />
+                  <Tab
+                    value={employeeProfileData?.valueFour}
+                    label={settingTabs?.changePassword}
+                    disableRipple={true}
+                  />
+                </Tabs>
+              </Box>
+              <Box
+                sx={{
+                  display: 'flex',
+                  marginTop: { xs: '20px', md: '0px' },
+                }}
+              >
+                {value === employeeProfileData?.valueTwo && (
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      marginBottom: '10px',
+                    }}
+                  >
+                    <Button
+                      sx={{ minWidth: '120px' }}
+                      variant="contained"
+                      onClick={handleOpen}
                     >
-                      <Button
-                        type="submit"
-                        sx={{ minWidth: '120px', marginTop: '100px' }}
-                        variant="contained"
-                        onClick={handleOpen}
-                      >
-                        Add Account
-                      </Button>
-                    </Box>
-                  )}
-                </CustomTabPanel>
-              ))}
+                      {SETTING?.addAccount}
+                    </Button>
+                  </Box>
+                )}
+              </Box>
             </Box>
+            {value === employeeProfileData?.valueOne ? (
+              <CompanySettings />
+            ) : value === employeeProfileData?.valueTwo ? (
+              <Account />
+            ) : value === employeeProfileData?.valuethree ? (
+              <Role />
+            ) : value === employeeProfileData?.valueFour ? (
+              <ChangePassword />
+            ) : null}
           </Box>
           {isOpen && (
             <AddAccountModal open={handleOpen} onClose={handleClose} />
           )}
-          {/* <Grid item xs={12}>
-            {value=== 'Account' && (
-              <Box
-                display={'flex'}
-                justifyContent={'space-between'}
-                alignItems={'center'}
-                p={'0 10px'}
-                mt={'20px'}
-              >
-                <Button
-                  type="submit"
-                  sx={{ minWidth: '120px', marginTop: '100px' }}
-                  variant="contained"
-                >
-                  Add Account
-                </Button>
-              </Box>
-            )}
-          </Grid> */}
         </Grid>
       </Grid>
     </>

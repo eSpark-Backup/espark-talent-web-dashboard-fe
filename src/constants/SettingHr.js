@@ -13,6 +13,13 @@ export const SETTING = {
   add: 'Add',
   roleName: ' Role name',
   save: 'Save',
+  addAccount: 'Add Account',
+  settings: 'Settings',
+  companySetting: 'Company settings',
+  account: 'Accounts',
+  rolesAndPermission: 'Roles & permissions',
+  changePassword: 'Change password',
+  roles: 'Roles',
 };
 
 export const ROLES = [

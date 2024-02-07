@@ -6,10 +6,10 @@ import {
   accountData,
 } from '@/src/constants/data/tables/hr/account';
 import AppConfirmationMadal from '../modals/AppConfirmationMadal';
+import { CONTRACT_SIGNED } from '@/src/constants/contractSigned';
 
 const Account = () => {
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
-
   const handleClickActionDelete = () => {
     setIsOpenDeleteModal(true);
   };
@@ -30,12 +30,12 @@ const Account = () => {
         handleClickActionDelete={handleClickActionDelete}
       />
       <AppConfirmationMadal
+        title={CONTRACT_SIGNED?.delete}
+        bodyText={CONTRACT_SIGNED?.warning}
+        cancelButtonText={CONTRACT_SIGNED?.cancel}
+        confirmButtonText={CONTRACT_SIGNED?.delete}
         isOpen={isOpenDeleteModal}
-        title={'Delete'}
         handleClose={handleCloseDeleteModal}
-        bodyText={'Are you sure you want to delete this request?'}
-        cancelButtonText={'Cancel'}
-        confirmButtonText={'Delete'}
       />
     </Box>
   );
