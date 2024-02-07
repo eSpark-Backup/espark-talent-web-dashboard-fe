@@ -7,10 +7,10 @@ import { settingTabs } from '@/src/constants/data/tabs/settingTabs';
 import CompanySettings from '@/src/components/settings/companySettings';
 import ChangePassword from '@/src/components/settings/changePassword';
 import Role from '@/src/components/settings/addRole';
-import Account from '@/src/components/settings/account';
 import AddAccountModal from '@/src/components/modals/addAccountModal';
 import { SETTING } from '@/src/constants/SettingHr';
 import { employeeProfileData } from '@/src/constants/employeeProfile';
+import Accounts from '@/src/components/settings/accounts';
 
 const Page = () => {
   const [value, setValue] = useState('one');
@@ -43,12 +43,7 @@ const Page = () => {
               sx={{
                 borderBottom: 1,
                 borderColor: 'divider',
-                marginBottom:
-                  value === employeeProfileData?.valueTwo ||
-                  value === employeeProfileData?.valuethree ||
-                  value === 'five'
-                    ? '0px'
-                    : '40px',
+
                 display: 'flex',
                 justifyContent: { xs: 'center', md: 'space-between' },
                 flexDirection: { xs: 'column', md: 'row' },
@@ -111,7 +106,7 @@ const Page = () => {
             {value === employeeProfileData?.valueOne ? (
               <CompanySettings />
             ) : value === employeeProfileData?.valueTwo ? (
-              <Account />
+              <Accounts />
             ) : value === employeeProfileData?.valuethree ? (
               <Role />
             ) : value === employeeProfileData?.valueFour ? (

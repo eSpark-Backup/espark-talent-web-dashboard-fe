@@ -8,7 +8,7 @@ import {
 import AppConfirmationMadal from '../modals/AppConfirmationMadal';
 import { CONTRACT_SIGNED } from '@/src/constants/contractSigned';
 
-const Account = () => {
+const Accounts = () => {
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
   const handleClickActionDelete = () => {
     setIsOpenDeleteModal(true);
@@ -40,4 +40,4 @@ const Account = () => {
     </Box>
   );
 };
-export default Account;
+export default Accounts;

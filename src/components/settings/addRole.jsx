@@ -39,7 +39,7 @@ const Role = () => {
       <Grid
         container
         sx={{ display: 'flex', flexDirection: 'row' }}
-        spacing={2}
+        spacing={2.5}
         marginTop={'30px'}
       >
         <Grid
