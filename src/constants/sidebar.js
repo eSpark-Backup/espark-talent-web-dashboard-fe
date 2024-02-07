@@ -164,6 +164,11 @@ export const Hr_Routes = [
     sublinks: null,
   },
   {
+    icon: '/images/sidebar-icons/contract.svg',
+    text: 'Contracts Signed',
+    link: '/hr/dashboard/contracts-signed',
+  },
+  {
     icon: '/images/sidebar-icons/policies.svg',
     text: 'Policies',
     link: '/hr/dashboard/policies',

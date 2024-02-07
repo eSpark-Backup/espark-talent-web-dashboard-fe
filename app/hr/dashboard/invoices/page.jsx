@@ -14,7 +14,7 @@ import AppDropdown from '@/src/components/dashboard/appDropdown';
 
 const Page = () => {
   const [id, setId] = useState('');
-  const [designation, setDesignation] = useState('Active');
+  const [designation, setDesignation] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const theme = useTheme();
 
@@ -51,6 +51,7 @@ const Page = () => {
               setSelectedItem={setDesignation}
               lg={12}
               type="select"
+              placeHolder={'Select status'}
               data={[
                 {
                   label: 'Active',
