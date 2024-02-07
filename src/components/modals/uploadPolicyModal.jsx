@@ -1,9 +1,11 @@
 import React from 'react';
 import { Box, Button, Grid, Modal, Typography } from '@mui/material';
+
 import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { useFormik } from 'formik';
 import { uploadPolicyFormSchema } from '../form/schemas/uploadPolicy';
 import { uploadPolicyForm } from '@/src/constants/data/forms/upload-policy';
+import { UPLOAD_POLICY } from '@/src/constants/uploadPolicy';
 
 const UploadPolicyModal = ({ open, onClose }) => {
   const {
@@ -16,14 +18,11 @@ const UploadPolicyModal = ({ open, onClose }) => {
     setErrors,
     handleReset,
   } = useFormik({
-    initialValues: {
-      country: 'Pakistan',
-    },
+    initialValues: {},
     validationSchema: uploadPolicyFormSchema,
     enableReinitialize: true,
     onSubmit: (formValues) => {
       console.log({ formValues });
-      //   handleGoNext();
     },
     validateOnChange: false,
     validateOnBlur: false,
@@ -52,7 +51,6 @@ const UploadPolicyModal = ({ open, onClose }) => {
           flexDirection: 'column',
           borderRadius: '10px',
           boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
-          // height: '550px',
           maxHeight: '90%',
           overflowY: 'auto',
         }}
@@ -72,7 +70,7 @@ const UploadPolicyModal = ({ open, onClose }) => {
               fontWeight: 600,
             }}
           >
-            Upload Policy
+            {UPLOAD_POLICY?.uploadPolicy}
           </Typography>
           <Box
             sx={{
@@ -153,7 +151,7 @@ const UploadPolicyModal = ({ open, onClose }) => {
                 variant="contained"
                 type="submit"
               >
-                Upload
+                {UPLOAD_POLICY?.upload}
               </Button>
             </Grid>
           </Grid>

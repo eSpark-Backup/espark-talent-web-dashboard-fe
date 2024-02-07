@@ -1,10 +1,11 @@
+import React, { useState } from 'react';
+import { Box, Tab, Tabs } from '@mui/material';
+
 import {
   activeClientData,
   activeClientsColumn,
 } from '@/src/constants/data/tables/hr/employeeProfileClient';
 import { a11yProps } from '@/src/utils/tabs';
-import { Box, Tab, Tabs } from '@mui/material';
-import React, { useState } from 'react';
 import AppTable from '../appTable/AppTable';
 
 const Client = () => {
@@ -14,7 +15,6 @@ const Client = () => {
     data: activeClientData,
     column: activeClientsColumn,
   });
-  // const [isOpenContractModal, setIsOpenContractModal] = useState(false);
   const tabs = [
     {
       prop: a11yProps(0),
@@ -38,12 +38,6 @@ const Client = () => {
       column: tabs[newValue].column,
     });
   };
-  // const handleOpenContractModal = () => {
-  //   setIsOpenContractModal(true);
-  // };
-  // const handleCloseContractModal = () => {
-  //   setIsOpenContractModal(false);
-  // };
   return (
     <>
       <Box
@@ -73,18 +67,6 @@ const Client = () => {
             />
           ))}
         </Tabs>
-        {/* {currentTab.val === 1 && (
-          <Button
-            sx={{
-              marginTop: { xs: '10px', md: '0px' },
-              marginBottom: { xs: '10px', md: '0px' },
-            }}
-            variant="contained"
-            onClick={handleOpenContractModal}
-          >
-            Add contact
-          </Button>
-        )} */}
       </Box>
       <Box
         sx={{
@@ -99,10 +81,6 @@ const Client = () => {
           noPagination
         />
       </Box>
-      {/* <AddContractModal
-        open={isOpenContractModal}
-        onClose={handleCloseContractModal}
-      /> */}
     </>
   );
 };

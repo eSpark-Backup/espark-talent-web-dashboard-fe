@@ -62,26 +62,6 @@ export const clientProfileTabs = [
     ],
     isTable: false,
   },
-  // {
-  //   label: 'Contract signed',
-  //   hasNestedTabs: true,
-  //   prop: a11yProps(2),
-  //   nestedTabs: [
-  //     {
-  //       prop: a11yProps(0),
-  //       label: 'Company contract',
-  //       data: contractSignedData,
-  //       column: contractSignedColumn,
-  //     },
-  //     {
-  //       prop: a11yProps(1),
-  //       label: 'Employee contract',
-  //       data: contractSignedData,
-  //       column: contractSignedColumn,
-  //     },
-  //   ],
-  //   isTable: true,
-  // },
   {
     label: 'Employee invoices',
     hasNestedTabs: true,

@@ -23,7 +23,9 @@ const Policies = () => {
   }, [policyData]);
   const handleSelectRow = (employeeId, column) => {
     const tempForm = [...policyData];
-    const employeeIndex = tempForm.findIndex((el) => el.id === employeeId);
+    const employeeIndex = tempForm.findIndex(
+      (employee) => employee.id === employeeId
+    );
     const targetObject = {
       ...tempForm[employeeIndex],
     };
@@ -34,7 +36,6 @@ const Policies = () => {
   };
   const handleClickDelete = () => {
     setIsOpen(true);
-    console.log('kkk');
   };
   const handleOpenModal = () => {
     setOpenUploadPolicy(true);
