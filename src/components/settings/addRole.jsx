@@ -12,6 +12,8 @@ import { toCamelCase } from '@/src/utils/stringModification';
 
 const Role = () => {
   const [modalStep1FormTableState, setModalStep1FormTableState] = useState([]);
+  const [rolesData, setRolesData] = useState({});
+
   useEffect(() => {
     setModalStep1FormTableState([...modulepermissionData]);
   }, [modulepermissionData]);
@@ -33,6 +35,11 @@ const Role = () => {
   console.log(handleOpen);
   const handleClose = () => {
     setOpen(!true);
+  };
+
+  const handleRoleChange = (key, val) => {
+    setRolesData({ ...rolesData, [key]: val });
+    console.log('roles', rolesData);
   };
   return (
     <>
@@ -100,6 +107,9 @@ const Role = () => {
                     color: 'teal',
                     background: ' #FFF',
                   },
+                }}
+                onClick={() => {
+                  handleRoleChange(button?.key, button?.label);
                 }}
               >
                 {button.label}

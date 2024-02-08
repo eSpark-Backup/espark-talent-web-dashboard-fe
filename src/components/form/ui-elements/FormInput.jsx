@@ -49,6 +49,7 @@ const FormInput = ({
   onClick,
   countries,
   searchable,
+  handleData,
 }) => {
   const [isLoadingList, setIsLoadingList] = useState(false);
   const handleSelectItem = (item) => {
@@ -60,7 +61,7 @@ const FormInput = ({
     setFieldValue(name, item);
   };
   const handleChangeInput = (field, value) => {
-    console.log({ field, value });
+    // console.log({ field, value });
     const tempErrors = { ...errors };
     if (value.length) {
       if (field === 'email') {
@@ -77,6 +78,7 @@ const FormInput = ({
     }
     setErrors({ ...tempErrors });
     setFieldValue?.(field, value);
+    handleData(field, value);
   };
   const handleChangeFileInput = (field, value) => {
     const tempErrors = { ...errors };
@@ -85,6 +87,7 @@ const FormInput = ({
     }
     setErrors({ ...tempErrors });
     setFieldValue?.(field, value);
+    handleData(field, value);
   };
 
   const handleClickCounter = (type, name, value) => {

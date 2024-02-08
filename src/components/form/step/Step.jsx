@@ -1,6 +1,6 @@
 import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { Box, Button, Grid, Typography } from '@mui/material';
-import React from 'react';
+import React, { useState } from 'react';
 import { useFormik } from 'formik';
 
 const Step = ({
@@ -48,6 +48,11 @@ const Step = ({
   const handeClickBack = () => {
     console.log({ values, errors });
     handleGoPrev();
+  };
+  const [formData, setFormData] = useState({});
+  const handleData = (name, value) => {
+    setFormData({ ...formData, [name]: value });
+    console.log('form', formData);
   };
   if (isMultiColumn)
     return (
@@ -128,6 +133,7 @@ const Step = ({
                             errors={errors}
                             setErrors={setErrors}
                             values={values}
+                            handleData={handleData}
                           />
                         )
                       )}
@@ -218,6 +224,7 @@ const Step = ({
               lg={col}
               countries={countries}
               searchable={searchable}
+              handleData={handleData}
             />
           )
         )}
@@ -265,6 +272,7 @@ const Step = ({
                 type="submit"
                 sx={{ minWidth: { xs: '100%', sm: '120px' } }}
                 variant="contained"
+                // onClick={handleData}
               >
                 {isLastStep ? 'Submit' : 'Next'}
               </Button>
