@@ -346,7 +346,7 @@ export const renderCellContent = (
   options
 ) => {
   switch (col.title || col) {
-    case 'Pic':
+    case 'Picture':
       return renderUserAvatar(row, col, commonCellStyle);
     case 'Assignee':
       return renderAssigneeCell(row, col, commonCellStyle);
