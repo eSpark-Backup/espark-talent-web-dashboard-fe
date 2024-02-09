@@ -59,9 +59,9 @@ const FormInput = ({
     }
     setErrors({ ...tempErrors });
     setFieldValue(name, item);
+    handleData(name, item);
   };
   const handleChangeInput = (field, value) => {
-    // console.log({ field, value });
     const tempErrors = { ...errors };
     if (value.length) {
       if (field === 'email') {
@@ -98,6 +98,7 @@ const FormInput = ({
             break;
           default:
             setFieldValue(name, value - 1);
+            handleData(name, value - 1);
             break;
         }
         break;
@@ -108,6 +109,7 @@ const FormInput = ({
             break;
           default:
             setFieldValue(name, value + 1);
+            handleData(name, value + 1);
             break;
         }
         break;

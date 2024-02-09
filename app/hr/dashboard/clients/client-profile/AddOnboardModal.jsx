@@ -1,11 +1,14 @@
+import React, { useEffect, useState } from 'react';
+import { Box, Button, Grid, Modal, Typography } from '@mui/material';
+
 import { addOnboardFormSchema } from '@/src/components/form/schemas/addOnBoardForm';
 import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { addOnboardForm } from '@/src/constants/data/forms/add-onboard';
-import { Box, Button, Grid, Modal, Typography } from '@mui/material';
 import { useFormik } from 'formik';
-import React from 'react';
+import { FORM_DATA } from '@/src/constants/form';
 
 const AddOnboardModal = ({ open, onClose }) => {
+  const [formData, setFormData] = useState({});
   const {
     handleSubmit,
     values,
@@ -23,7 +26,6 @@ const AddOnboardModal = ({ open, onClose }) => {
     enableReinitialize: true,
     onSubmit: (formValues) => {
       console.log({ formValues });
-      //   handleGoNext();
     },
     validateOnChange: false,
     validateOnBlur: false,
@@ -32,6 +34,12 @@ const AddOnboardModal = ({ open, onClose }) => {
     handleReset();
     onClose();
   };
+  const handleData = (name, value) => {
+    setFormData({ ...formData, [name]: value });
+  };
+  useEffect(() => {
+    console.log('form', formData);
+  }, [formData]);
   return (
     <Modal
       open={open}
@@ -52,7 +60,6 @@ const AddOnboardModal = ({ open, onClose }) => {
           flexDirection: 'column',
           borderRadius: '10px',
           boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
-          // height: '550px',
           maxHeight: '90%',
           overflowY: 'auto',
         }}
@@ -72,7 +79,7 @@ const AddOnboardModal = ({ open, onClose }) => {
               fontWeight: 600,
             }}
           >
-            Onboarding form
+            {FORM_DATA?.onBoardingForm}
           </Typography>
           <Box
             sx={{
@@ -139,6 +146,7 @@ const AddOnboardModal = ({ open, onClose }) => {
                       md={12}
                       lg={12}
                       fields={fields}
+                      handleData={handleData}
                     />
                   </Grid>
                   {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>}
@@ -151,7 +159,7 @@ const AddOnboardModal = ({ open, onClose }) => {
                 variant="contained"
                 type="submit"
               >
-                Submit
+                {FORM_DATA?.submit}
               </Button>
             </Grid>
           </Grid>

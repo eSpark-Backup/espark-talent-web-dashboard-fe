@@ -5,7 +5,7 @@ import { Box, Button } from '@mui/material';
 import { useFormik } from 'formik';
 import { createPunchRequestSchema } from '../../../../../src/components/form/schemas/createPunchRequest';
 
-const PunchRequestForm = ({ handleClose }) => {
+const PunchRequestForm = ({ handleClose, handleData }) => {
   const {
     handleSubmit,
     values,
@@ -68,6 +68,7 @@ const PunchRequestForm = ({ handleClose }) => {
                   errors={errors}
                   setErrors={setErrors}
                   values={values}
+                  handleData={handleData}
                 />
               );
             }

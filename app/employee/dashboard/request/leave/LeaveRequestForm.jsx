@@ -5,7 +5,7 @@ import { useFormik } from 'formik';
 import { createLeaveRequestForm } from '@/src/constants/data/forms/create-leave-request';
 import { createLeaveRequestSchema } from '@/src/components/form/schemas/createLeaveRequest';
 
-const LeaveRequestForm = ({ handleClose }) => {
+const LeaveRequestForm = ({ handleClose, handleData }) => {
   const {
     handleSubmit,
     values,
@@ -72,6 +72,7 @@ const LeaveRequestForm = ({ handleClose }) => {
                   values={values}
                   minDate={minDate}
                   searchable={searchable}
+                  handleData={handleData}
                 />
               );
             }

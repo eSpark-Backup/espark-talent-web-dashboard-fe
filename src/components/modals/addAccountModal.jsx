@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, Button, Grid, Modal, Typography } from '@mui/material';
 import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { useFormik } from 'formik';
 import { accountInfoSchema } from '../form/schemas/addAccount';
 import { accountForm } from '@/src/constants/data/forms/add-account';
 import { SETTING } from '@/src/constants/SettingHr';
+import { FORM_DATA } from '@/src/constants/form';
 
 const AddAccountModal = ({ open, onClose }) => {
+  const [formData, setFormData] = useState({});
   const {
     handleSubmit,
     values,
@@ -17,14 +19,11 @@ const AddAccountModal = ({ open, onClose }) => {
     setErrors,
     handleReset,
   } = useFormik({
-    initialValues: {
-      country: 'Pakistan',
-    },
+    initialValues: {},
     validationSchema: accountInfoSchema,
     enableReinitialize: true,
     onSubmit: (formValues) => {
       console.log({ formValues });
-      //   handleGoNext();
     },
     validateOnChange: false,
     validateOnBlur: false,
@@ -33,6 +32,12 @@ const AddAccountModal = ({ open, onClose }) => {
     handleReset();
     onClose();
   };
+  const handleData = (name, value) => {
+    setFormData({ ...formData, [name]: value });
+  };
+  useEffect(() => {
+    console.log('form', formData);
+  }, [formData]);
   return (
     <Modal
       open={open}
@@ -115,7 +120,7 @@ const AddAccountModal = ({ open, onClose }) => {
                 formIndex
               ) => (
                 <>
-                  <Grid item xs={12} lg={5}>
+                  <Grid item xs={12} lg={6}>
                     <FormInput
                       key={formIndex}
                       title={title}
@@ -140,9 +145,10 @@ const AddAccountModal = ({ open, onClose }) => {
                       md={12}
                       lg={12}
                       fields={fields}
+                      handleData={handleData}
                     />
                   </Grid>
-                  {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>}
+                  {/* {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>} */}
                 </>
               )
             )}
@@ -152,7 +158,7 @@ const AddAccountModal = ({ open, onClose }) => {
                 variant="contained"
                 type="submit"
               >
-                Add
+                {FORM_DATA?.add}
               </Button>
             </Grid>
           </Grid>

@@ -1,11 +1,15 @@
+import React, { useEffect, useState } from 'react';
+import { Box, Button, Grid, Modal, Typography } from '@mui/material';
+
 import { contractFormSchema } from '@/src/components/form/schemas/contractSignedForm';
 import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { contractForm } from '@/src/constants/data/forms/contract';
-import { Box, Button, Grid, Modal, Typography } from '@mui/material';
 import { useFormik } from 'formik';
-import React from 'react';
+import { CONTRACT_SIGNED } from '@/src/constants/contractSigned';
+import { FORM_DATA } from '@/src/constants/form';
 
 const AddContractModal = ({ open, onClose }) => {
+  const [formData, setFormData] = useState({});
   const {
     handleSubmit,
     values,
@@ -21,7 +25,6 @@ const AddContractModal = ({ open, onClose }) => {
     enableReinitialize: true,
     onSubmit: (formValues) => {
       console.log({ formValues });
-      //   handleGoNext();
     },
     validateOnChange: false,
     validateOnBlur: false,
@@ -30,6 +33,13 @@ const AddContractModal = ({ open, onClose }) => {
     handleReset();
     onClose();
   };
+  const handleData = (name, value) => {
+    setFormData({ ...formData, [name]: value });
+    // setFormData(prevFormData => ({ ...prevFormData, [name]: value }));
+  };
+  useEffect(() => {
+    console.log('form', formData);
+  }, [formData]);
   return (
     <Modal
       open={open}
@@ -50,7 +60,6 @@ const AddContractModal = ({ open, onClose }) => {
           flexDirection: 'column',
           borderRadius: '10px',
           boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
-          // height: '350px',
           maxHeight: '90%',
           overflowY: 'auto',
         }}
@@ -70,7 +79,7 @@ const AddContractModal = ({ open, onClose }) => {
               fontWeight: 600,
             }}
           >
-            Contract form
+            {CONTRACT_SIGNED?.contractForm}
           </Typography>
           <Box
             sx={{
@@ -135,6 +144,7 @@ const AddContractModal = ({ open, onClose }) => {
                       md={12}
                       lg={12}
                       fields={fields}
+                      handleData={handleData}
                     />
                   </Grid>
                   {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>}
@@ -147,7 +157,7 @@ const AddContractModal = ({ open, onClose }) => {
                 variant="contained"
                 type="submit"
               >
-                Submit
+                {FORM_DATA?.submit}
               </Button>
             </Grid>
           </Grid>

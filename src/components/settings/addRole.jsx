@@ -12,7 +12,7 @@ import { toCamelCase } from '@/src/utils/stringModification';
 
 const Role = () => {
   const [modalStep1FormTableState, setModalStep1FormTableState] = useState([]);
-  const [rolesData, setRolesData] = useState({});
+  const [rolesData, setRolesData] = useState('');
 
   useEffect(() => {
     setModalStep1FormTableState([...modulepermissionData]);
@@ -39,8 +39,11 @@ const Role = () => {
 
   const handleRoleChange = (key, val) => {
     setRolesData({ ...rolesData, [key]: val });
-    console.log('roles', rolesData);
   };
+  useEffect(() => {
+    console.log('roles', rolesData);
+  }, [rolesData]);
+
   return (
     <>
       <Grid

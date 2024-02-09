@@ -32,6 +32,7 @@ const WideFormInput = ({
   minDate,
   searchable,
   nested,
+  handleData,
 }) => {
   const [isOpenDatePicker, setIsOpenDatePicker] = useState(false);
   const [isLoadingList, setIsLoadingList] = useState(false);
@@ -44,6 +45,18 @@ const WideFormInput = ({
     }
     setErrors({ ...tempErrors });
     setFieldValue(name, item);
+    handleData(name, item);
+  };
+  const handleSelectFile = (event) => {
+    const name = event.target.name;
+    const file = event.target.files[0];
+    const tempErrors = { ...errors };
+    if (Object.hasOwnProperty.call(tempErrors, name)) {
+      delete tempErrors[name];
+    }
+    setErrors({ ...tempErrors });
+    setFieldValue(name, file);
+    handleData(name, file);
   };
   const handleChangeInput = (field, value) => {
     const tempErrors = { ...errors };
@@ -62,6 +75,7 @@ const WideFormInput = ({
     }
     setErrors({ ...tempErrors });
     setFieldValue?.(field, value);
+    handleData(field, value);
   };
 
   function getDaysDifference(startDate, endDate) {
@@ -303,6 +317,7 @@ const WideFormInput = ({
                         id="input-attachment"
                         type="file"
                         style={{ width: 0, height: 0, visibility: 'hidden' }}
+                        onChange={handleSelectFile}
                       />
                     </Box>
 

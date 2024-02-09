@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, Button, Grid, Modal, Typography } from '@mui/material';
 
 import { useFormik } from 'formik';
@@ -8,6 +8,7 @@ import FormInput from '../form/ui-elements/FormInput';
 import { CONTRACT_SIGNED } from '@/src/constants/contractSigned';
 
 const AddContractHrPortalModal = ({ open, onClose }) => {
+  const [formData, setFormData] = useState({});
   const {
     handleSubmit,
     values,
@@ -31,6 +32,12 @@ const AddContractHrPortalModal = ({ open, onClose }) => {
     handleReset();
     onClose();
   };
+  const handleData = (name, value) => {
+    setFormData({ ...formData, [name]: value });
+  };
+  useEffect(() => {
+    console.log('form', formData);
+  }, [formData]);
   return (
     <Modal
       open={open}
@@ -136,6 +143,7 @@ const AddContractHrPortalModal = ({ open, onClose }) => {
                       md={12}
                       lg={12}
                       fields={fields}
+                      handleData={handleData}
                     />
                   </Grid>
                   {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>}

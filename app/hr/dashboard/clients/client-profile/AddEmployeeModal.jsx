@@ -3,12 +3,14 @@ import { addEmployeModalFormSchema } from '@/src/components/form/schemas/addEmpl
 import Navigator from '@/src/components/form/step/Navigator';
 import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { addEmployeeModalFormSteps } from '@/src/constants/data/forms/add-employee-modal';
+import { FORM_DATA } from '@/src/constants/form';
 import { Box, Button, Grid, Modal } from '@mui/material';
 import { useFormik } from 'formik';
 import React, { useEffect, useState } from 'react';
 
 const AddEmployeeModal = ({ open, onClose }) => {
   const [currentStep, setCurrentStep] = useState(1);
+  const [formData, setFormData] = useState({});
   const [isDisabledNext, setIsDisabledNext] = useState(true);
   const [modalStep1FormTableState, setModalStep1FormTableState] = useState([]);
   useEffect(() => {
@@ -25,7 +27,12 @@ const AddEmployeeModal = ({ open, onClose }) => {
     setModalStep1FormTableState(tempForm);
     setIsDisabledNext(false);
   };
-
+  const handleData = (name, value) => {
+    setFormData({ ...formData, [name]: value });
+  };
+  useEffect(() => {
+    console.log('form', formData);
+  }, [formData]);
   const {
     handleSubmit,
     values,
@@ -41,7 +48,6 @@ const AddEmployeeModal = ({ open, onClose }) => {
     enableReinitialize: true,
     onSubmit: (formValues) => {
       console.log({ formValues });
-      //   handleGoNext();
     },
     validateOnChange: false,
     validateOnBlur: false,
@@ -113,7 +119,7 @@ const AddEmployeeModal = ({ open, onClose }) => {
                           sx={{ minWidth: '120px' }}
                           onClick={() => setCurrentStep((ps) => ps + 1)}
                         >
-                          Add
+                          {FORM_DATA?.add}
                         </Button>
                       </Box>
                     </Box>
@@ -168,6 +174,7 @@ const AddEmployeeModal = ({ open, onClose }) => {
                                   nested={nested}
                                   lg={12}
                                   fields={fields}
+                                  handleData={handleData}
                                 />
                               </Grid>
                               {formIndex % 2 === 0 && (

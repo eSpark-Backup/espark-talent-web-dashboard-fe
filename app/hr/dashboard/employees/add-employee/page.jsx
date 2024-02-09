@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import Step from '@/src/components/form/step/Step';
@@ -8,6 +8,9 @@ import Navigator from '@/src/components/form/step/Navigator';
 import Breadcrumb from '@/src/components/form/step/Breadcrumb';
 
 const AddEmployee = () => {
+  const [formData, setFormData] = useState({});
+  const [currentStep, setCurrentStep] = useState(4);
+
   const handleGoNext = () => {
     if (currentStep === formSteps.length) return;
     setCurrentStep((ps) => ps + 1);
@@ -16,8 +19,12 @@ const AddEmployee = () => {
     if (currentStep === 1) return;
     setCurrentStep((ps) => ps - 1);
   };
-  const [currentStep, setCurrentStep] = useState(4);
-
+  const handleData = (name, value) => {
+    setFormData({ ...formData, [name]: value });
+  };
+  useEffect(() => {
+    console.log('form', formData);
+  }, [formData]);
   return (
     <Box>
       <Breadcrumb title="Employees /" currentPage="Add employee" />
@@ -59,6 +66,7 @@ const AddEmployee = () => {
                   isMultiColumn={isMultiColumn}
                   handleGoNext={handleGoNext}
                   handleGoPrev={handleGoPrev}
+                  handleData={handleData}
                 />
               );
             }
