@@ -6,6 +6,7 @@ import { trackingStatusTypes } from '@/src/constants/data/tables/timeTracking';
 import AppTableInfoOptionsCell from './AppTableInfoOptionsCell';
 import Link from 'next/link';
 import { modulepermissionColumn } from '@/src/constants/data/tables/modulePermission';
+import React from 'react';
 
 const renderAssigneeCell = (row, col, commonCellStyle) => {
   const [avatar, name, subtitle] = row.assignee;
@@ -42,7 +43,6 @@ const renderUserAvatar = (row, col, commonCellStyle) => {
     </td>
   );
 };
-
 const renderActions = (
   row,
   col,
@@ -137,6 +137,70 @@ const renderActions = (
           />
         ))}
       </>
+    </td>
+  );
+};
+const renderCheckActions = (
+  row,
+  col,
+  handleClickActionView,
+  colIndex,
+  rowIndex
+) => {
+  if (row?.isModulePermissionData) {
+    return (
+      <td
+        key={colIndex}
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          fontSize: '12px',
+          flex: col?.flex || 1,
+        }}
+      >
+        <Image
+          onClick={() => {
+            handleClickActionView(row?.id, col || col?.title);
+          }}
+          style={{
+            margin: rowIndex === 1 && '0 5px',
+            cursor: 'pointer',
+          }}
+          width={25}
+          height={25}
+          alt="Icon"
+          src={`/icons/${
+            row[toCamelCase(col || col?.title)][2] === true
+              ? 'EnabledCheck'
+              : 'DisabledCheck'
+          }.svg`}
+        />
+      </td>
+    );
+  }
+  return (
+    <td
+      key={colIndex}
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        fontSize: '12px',
+        flex: col?.flex || 1,
+      }}
+    >
+      <Image
+        onClick={() => {
+          handleClickActionView(row?.id);
+        }}
+        style={{
+          margin: rowIndex === 1 && '0 5px',
+          cursor: 'pointer',
+        }}
+        width={25}
+        height={25}
+        alt="Icon"
+        src={`/icons/${row?.isSelected ? row?.action[1] : row?.action[0]}.svg`}
+      />
     </td>
   );
 };
@@ -304,6 +368,17 @@ export const renderCellContent = (
       } else {
         return renderDownloadButton(row, col, commonCellStyle);
       }
+    case 'Employee':
+    case 'Client':
+      return renderCheckActions(
+        row,
+        col,
+        handleClickActionView,
+        commonCellStyle,
+        colIndex,
+        rowIndex,
+        handleClickActionDelete
+      );
     case 'Action':
       return renderActions(
         row,

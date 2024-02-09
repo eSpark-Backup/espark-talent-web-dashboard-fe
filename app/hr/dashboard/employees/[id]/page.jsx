@@ -17,8 +17,6 @@ import AssetForm from '@/src/components/employeeData/assetModal';
 import { allEmployees } from '@/src/constants/AllEmployee';
 import FilterModal from '@/src/components/FilterModal/filterModal';
 import TimeAndLeaves from '@/src/components/employeeData/timeAndLeaves';
-import Contract from '@/src/components/employeeData/contract';
-import AddContractModal from '../../clients/client-profile/AddContractModal';
 
 const Page = () => {
   const [value, setValue] = useState('one');
@@ -28,7 +26,7 @@ const Page = () => {
   const [showEditProfilelModal, setEditProfileModal] = useState(false);
   const [showAssetModal, setAssetModal] = useState(false);
   const [showFilterModal, setShowFilterModal] = useState(false);
-  const [isOpenContractModal, setIsOpenContractModal] = useState(false);
+  // const [isOpenContractModal, setIsOpenContractModal] = useState(false);
 
   const pathname = usePathname();
   const employeeId = pathname.split('/').pop();
@@ -63,12 +61,12 @@ const Page = () => {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  const handleOpenContractModal = () => {
-    setIsOpenContractModal(true);
-  };
-  const handleCloseContractModal = () => {
-    setIsOpenContractModal(false);
-  };
+  // const handleOpenContractModal = () => {
+  //   setIsOpenContractModal(true);
+  // };
+  // const handleCloseContractModal = () => {
+  //   setIsOpenContractModal(false);
+  // }; may be use in future
 
   return (
     <>
@@ -272,7 +270,8 @@ const Page = () => {
                       label="Time & leaves"
                       disableRipple={true}
                     />
-                    <Tab value={'six'} label="Contract" disableRipple={true} />
+                    {/* <Tab value={'six'} label="Contract" disableRipple={true} /> */}
+                    {/* maybe use in future */}
                   </Tabs>
                 </Box>
                 <Box
@@ -368,7 +367,7 @@ const Page = () => {
                       )}
                     </>
                   )}
-                  {value === 'six' && (
+                  {/* {value === 'six' && ( 
                     <>
                       <Button
                         sx={{
@@ -387,7 +386,8 @@ const Page = () => {
                         Add Contract
                       </Button>
                     </>
-                  )}
+                  )} */}{' '}
+                  {/* maybe use in future */}
                 </Box>
               </Box>
               {value === employeeProfileData?.valueOne ? (
@@ -406,9 +406,11 @@ const Page = () => {
                 <AttendanceReport />
               ) : value === 'five' ? (
                 <TimeAndLeaves />
-              ) : value === 'six' ? (
-                <Contract />
               ) : (
+                //       : value === 'six' ? (
+                // <Contract />
+                //       ) :                    {/* maybe use in future */}
+
                 <Assets />
               )}
             </Box>
@@ -426,10 +428,10 @@ const Page = () => {
           {employeeProfileData?.noidFound}
         </Typography>
       )}
-      <AddContractModal
+      {/* <AddContractModal
         open={isOpenContractModal}
         onClose={handleCloseContractModal}
-      />
+      /> */}
     </>
   );
 };

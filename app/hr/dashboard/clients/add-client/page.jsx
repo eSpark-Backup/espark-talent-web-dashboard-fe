@@ -1,13 +1,32 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import Step from '@/src/components/form/step/Step';
 import { formSteps } from '@/src/constants/data/forms/add-client';
 import Navigator from '@/src/components/form/step/Navigator';
 import Breadcrumb from '@/src/components/form/step/Breadcrumb';
+import { EMPLOYEE_DATA } from '@/src/constants/AllEmployee';
+import { fetchCountriesList } from '@/src/utils/countryList';
 
 const AddEmployee = () => {
+  const [countries, setCountries] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await fetchCountriesList();
+      const formattedCountries = data
+        .map((country) => ({
+          title: country?.name?.common,
+          flag: country?.flags?.svg,
+        }))
+        .sort((countryA, countryB) =>
+          countryA.title < countryB.title ? -1 : 1
+        );
+      setCountries(formattedCountries);
+    };
+
+    fetchData();
+  }, []);
   const handleGoNext = () => {
     if (currentStep === formSteps.length) return;
     setCurrentStep((ps) => ps + 1);
@@ -30,7 +49,7 @@ const AddEmployee = () => {
             lineHeight: 'normal',
           }}
         >
-          Add client
+          {EMPLOYEE_DATA?.addClient}
         </Typography>
       </Box>
       <Box
@@ -54,6 +73,7 @@ const AddEmployee = () => {
                   handleGoNext={handleGoNext}
                   handleGoPrev={handleGoPrev}
                   isLastStep={currentStep === formSteps?.length}
+                  countries={countries}
                 />
               );
             }

@@ -1,4 +1,3 @@
-import AddContractModal from '@/app/hr/dashboard/clients/client-profile/AddContractModal';
 import { a11yProps } from '@/src/utils/tabs';
 import { Box, Button, Tab, Tabs } from '@mui/material';
 import React, { useState } from 'react';
@@ -129,10 +128,10 @@ const TimeAndLeaves = () => {
         open={isOpenLeaveManagementModal}
         onClose={handleCloseLeaveManagementModal}
       />
-      <AddContractModal
+      {/* <AddContractModal
         open={isOpenLeaveManagementModal}
         onClose={handleCloseLeaveManagementModal}
-      />
+      /> */}
     </>
   );
 };

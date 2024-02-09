@@ -54,6 +54,11 @@ const AddContractHrPortalModal = ({ open, onClose }) => {
           height: '518px',
           maxHeight: '90%',
           overflowY: 'auto',
+          scrollbarWidth: 'thin',
+          scrollbarColor: 'transparent transparent',
+          '&::-webkit-scrollbar': {
+            display: 'none',
+          },
         }}
       >
         <Box

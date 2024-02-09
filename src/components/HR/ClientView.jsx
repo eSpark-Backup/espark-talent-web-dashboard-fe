@@ -5,10 +5,14 @@ import { Box, useTheme } from '@mui/system';
 import Image from 'next/image';
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import AppConfirmationMadal from '../modals/AppConfirmationMadal';
+import { REMOVE_MODAL } from '@/src/constants/contractSigned';
 
 const ClientView = ({ status, id, name, designation = '', search }) => {
   const router = useRouter();
   const [anchorEl, setAnchorEl] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
+
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     event.stopPropagation();
@@ -17,6 +21,13 @@ const ClientView = ({ status, id, name, designation = '', search }) => {
   const handleClose = (event) => {
     event.stopPropagation();
     setAnchorEl(null);
+  };
+  const handleOpenRemove = (event) => {
+    setIsOpen(true);
+    event.stopPropagation();
+  };
+  const handleCloseModal = () => {
+    setIsOpen(false);
   };
   const theme = useTheme();
 
@@ -163,7 +174,7 @@ const ClientView = ({ status, id, name, designation = '', search }) => {
                           }}
                           sx={{ marginTop: '20px' }}
                         >
-                          <MenuItem onClick={handleClose}>Remove</MenuItem>
+                          <MenuItem onClick={handleOpenRemove}>Remove</MenuItem>
                           <MenuItem onClick={handleClose}>Active</MenuItem>
                           <MenuItem onClick={handleClose}>Inactive</MenuItem>
                         </Menu>
@@ -331,9 +342,21 @@ const ClientView = ({ status, id, name, designation = '', search }) => {
                       }}
                       sx={{ marginTop: '20px' }}
                     >
-                      <MenuItem onClick={handleClose}>Remove</MenuItem>
-                      <MenuItem onClick={handleClose}>Active</MenuItem>
-                      <MenuItem onClick={handleClose}>Inactive</MenuItem>
+                      <MenuItem onClick={handleOpenRemove}>Remove</MenuItem>
+                      <MenuItem
+                        onClick={() =>
+                          router.push('/hr/dashboard/clients/add-client')
+                        }
+                      >
+                        Active
+                      </MenuItem>
+                      <MenuItem
+                        onClick={() =>
+                          router.push('/hr/dashboard/clients/add-client')
+                        }
+                      >
+                        Inactive
+                      </MenuItem>
                     </Menu>
                   </Box>
                 </Box>
@@ -341,6 +364,14 @@ const ClientView = ({ status, id, name, designation = '', search }) => {
             </Grid>
           ))}
       </Grid>
+      <AppConfirmationMadal
+        title={REMOVE_MODAL?.remove}
+        bodyText={REMOVE_MODAL?.warning}
+        cancelButtonText={REMOVE_MODAL?.cancel}
+        confirmButtonText={REMOVE_MODAL?.remove}
+        isOpen={isOpen}
+        handleClose={handleCloseModal}
+      />
     </>
   );
 };

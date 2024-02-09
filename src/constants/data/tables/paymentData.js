@@ -1,6 +1,6 @@
 export const invoicePaymentColumn = [
   {
-    title: 'Employee name',
+    title: 'Employee ID',
     flex: 2,
   },
   {
@@ -23,12 +23,6 @@ export const invoicePaymentColumn = [
     title: 'Download',
     flex: 2,
   },
-  // 'Employee name',
-  // 'Invoice date',
-  // 'Due date',
-  // 'Invoice amount',
-  // 'Payment status',
-  // 'Download',
 ];
 export const otherPaymentColumn = [
   {
@@ -68,7 +62,7 @@ export const otherPaymentColumn = [
 
 export const invoicePaymentData = [
   {
-    employeeName: 'Bilal Ahmed Khan',
+    employeeId: '123456',
     invoiceDate: '07-October-2021',
     payrollMonth: 'April',
     dueDate: '07-October-2021',
@@ -80,7 +74,7 @@ export const invoicePaymentData = [
     download: 'Download',
   },
   {
-    employeeName: 'Arman Khan',
+    employeeId: '123457',
     invoiceDate: '07-October-2021',
     payrollMonth: 'May',
     dueDate: '07-October-2021',
@@ -92,7 +86,7 @@ export const invoicePaymentData = [
     download: 'Download',
   },
   {
-    employeeName: 'Saad Zafar',
+    employeeId: '123458',
     invoiceDate: '07-October-2021',
     payrollMonth: 'August',
     dueDate: '07-October-2021',
@@ -104,7 +98,7 @@ export const invoicePaymentData = [
     download: 'Download',
   },
   {
-    employeeName: 'Muhammad',
+    employeeId: '123459',
     invoiceDate: '07-October-2021',
     payrollMonth: 'December',
     dueDate: '07-October-2021',
@@ -116,7 +110,7 @@ export const invoicePaymentData = [
     download: 'Download',
   },
   {
-    employeeName: 'Abdullah',
+    employeeId: '123460',
     invoiceDate: '07-October-2021',
     payrollMonth: 'April',
     dueDate: '07-October-2021',
@@ -128,7 +122,7 @@ export const invoicePaymentData = [
     download: 'Download',
   },
   {
-    employeeName: 'Yusuf',
+    employeeId: '123461',
     invoiceDate: '07-October-2021',
     payrollMonth: 'June',
     dueDate: '07-October-2021',
@@ -140,7 +134,7 @@ export const invoicePaymentData = [
     download: 'Download',
   },
   {
-    employeeName: 'Hassan',
+    employeeId: '123462',
     invoiceDate: '07-October-2021',
     payrollMonth: 'January',
     dueDate: '07-October-2021',
@@ -152,7 +146,7 @@ export const invoicePaymentData = [
     download: 'Download',
   },
   {
-    employeeName: 'Sumaya',
+    employeeId: '123463',
     invoiceDate: '07-October-2021',
     payrollMonth: 'March',
     dueDate: '07-October-2021',
@@ -164,7 +158,7 @@ export const invoicePaymentData = [
     download: 'Download',
   },
   {
-    employeeName: 'Abdullah',
+    employeeId: '123464',
     invoiceDate: '07-October-2021',
     payrollMonth: 'November',
     dueDate: '07-October-2021',
@@ -176,7 +170,7 @@ export const invoicePaymentData = [
     download: 'Download',
   },
   {
-    employeeName: 'Zainab',
+    employeeId: '123465',
     invoiceDate: '07-October-2021',
     payrollMonth: 'October',
     dueDate: '07-October-2021',
@@ -188,7 +182,7 @@ export const invoicePaymentData = [
     download: 'Download',
   },
   {
-    employeeName: 'Zainab',
+    employeeId: '123466',
     invoiceDate: '07-October-2021',
     payrollMonth: 'July',
     dueDate: '07-October-2021',

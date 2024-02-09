@@ -14,6 +14,8 @@ import UploadInvoiceModal from './UploadInvoiceModal';
 import AddEmployeeModal from './AddEmployeeModal';
 import AddInterviewModal from './AddInterviewModal';
 import AddOnboardModal from './AddOnboardModal';
+import EditModal from '@/src/components/employeeData/editModal';
+import { CLIENTPROFILE } from '@/src/constants/ClientProfile';
 
 const AddEmployee = () => {
   const router = useRouter();
@@ -22,10 +24,10 @@ const AddEmployee = () => {
   const [isOpenAddInterviewModal, setIsOpenAddInterviewModal] = useState(false);
   const [isOpenAddOnboardModal, setIsOpenAddOnboardModal] = useState(false);
   const [isOpenContractModal, setIsOpenContractModal] = useState(false);
+  const [showEditModal, setEditModal] = useState(false);
   const [isOpenUploadInvoiceModal, setIsOpenUploadInvoiceModal] =
     useState(false);
   const [isOpenAddClientModal, setIsOpenAddClientModal] = useState(false);
-  // const [currentReqStatusTab, setcurrentReqStatusTab] = useState('All');
   const [currentTab, setCurrentTab] = useState({
     label: 'Hire & onboard',
     val: 0,
@@ -76,7 +78,6 @@ const AddEmployee = () => {
   const handleChangeNestedTab = (event, newValue, data, rest) => {
     const current = data[newValue];
     const { label } = current;
-    // console.log({current,data})
     setCurrentTab((ps) => {
       return {
         ...ps,
@@ -105,6 +106,12 @@ const AddEmployee = () => {
         column: [],
       });
     }
+  };
+  const handleOpenModal = () => {
+    setEditModal(true);
+  };
+  const handleCloseModal = () => {
+    setEditModal(false);
   };
   const handleOpenHiringRequestModal = () => {
     setIsOpenHiringRequestModal(true);
@@ -145,7 +152,6 @@ const AddEmployee = () => {
   const [isOpen, setIsOpen] = useState(false);
   const handleClose = () => setIsOpen(false);
   const handleOpen = () => setIsOpen(true);
-
   return (
     <>
       <Box>
@@ -160,7 +166,7 @@ const AddEmployee = () => {
               lineHeight: 'normal',
             }}
           >
-            Profile
+            {CLIENTPROFILE?.profile}
           </Typography>
         </Box>
         <Grid
@@ -209,7 +215,14 @@ const AddEmployee = () => {
                 src="/icons/EditIcon.svg"
                 width={35}
                 height={35}
+                onClick={handleOpenModal}
               />
+              {showEditModal && (
+                <EditModal
+                  handleOpenModal={handleOpenModal}
+                  onClose={handleCloseModal}
+                />
+              )}
             </Box>
             <Box
               sx={{
@@ -272,7 +285,7 @@ const AddEmployee = () => {
                         lineHeight: { xs: '1.5', md: 'normal' },
                       }}
                     >
-                      Client ID:
+                      {CLIENTPROFILE?.clientId}
                     </Typography>
                     <Typography
                       sx={{
@@ -298,7 +311,7 @@ const AddEmployee = () => {
                         lineHeight: { xs: '1.5', md: 'normal' },
                       }}
                     >
-                      Address:
+                      {CLIENTPROFILE?.address}
                     </Typography>
                     <Typography
                       sx={{
@@ -332,7 +345,7 @@ const AddEmployee = () => {
                         lineHeight: { xs: '1.5', md: 'normal' },
                       }}
                     >
-                      Country:
+                      {CLIENTPROFILE?.country}
                     </Typography>
                     <Typography
                       sx={{
@@ -358,7 +371,7 @@ const AddEmployee = () => {
                         lineHeight: { xs: '1.5', md: 'normal' },
                       }}
                     >
-                      Phone:
+                      {CLIENTPROFILE?.phone}
                     </Typography>
                     <Typography
                       sx={{
@@ -392,7 +405,7 @@ const AddEmployee = () => {
                         lineHeight: { xs: '1.5', md: 'normal' },
                       }}
                     >
-                      Email:
+                      {CLIENTPROFILE?.email}
                     </Typography>
                     <Typography
                       sx={{
@@ -418,7 +431,7 @@ const AddEmployee = () => {
                         lineHeight: { xs: '1.5', md: 'normal' },
                       }}
                     >
-                      Join date:
+                      {CLIENTPROFILE?.joinDate}
                     </Typography>
                     <Typography
                       sx={{
@@ -480,7 +493,7 @@ const AddEmployee = () => {
                 marginTop: '10px',
                 marginBottom: '20px',
                 borderBottom:
-                  currentTab.label !== 'Leave Balance' && 'solid 1px #ccc',
+                  currentTab?.label !== 'Leave Balance' && 'solid 1px #ccc',
               }}
             >
               {clientProfileTabs?.map(({ nestedTabs, ...rest }, index) => (
@@ -490,9 +503,6 @@ const AddEmployee = () => {
                   key={index}
                 >
                   <Box
-                    // display={'flex'}
-                    // justifyContent={'space-between'}
-                    // alignItems={'center'}
                     sx={{
                       display: 'flex',
                       justifyContent: 'space-between',
@@ -517,27 +527,29 @@ const AddEmployee = () => {
                         />
                       ))}
                     </Tabs>
-                    {currentTab.label === 'Hire & onboard' ? (
+                    {currentTab?.label === 'Hire & onboard' ? (
                       <>
-                        {currentTab.nested.val == 0 ? (
+                        {currentTab?.nested.val === 0 ? (
                           <Button
                             onClick={handleOpenHiringRequestModal}
                             variant="contained"
                             sx={{
                               my: { xs: '20px', md: 0 },
+                              textTransform: 'math-auto',
                             }}
                           >
-                            Add new request
+                            {CLIENTPROFILE?.addNewRequest}
                           </Button>
-                        ) : currentTab.nested.val == 1 ? (
+                        ) : currentTab?.nested.val === 1 ? (
                           <Button
                             onClick={handleOpenAddInterviewModal}
                             variant="contained"
                             sx={{
                               my: { xs: '20px', md: 0 },
+                              textTransform: 'math-auto',
                             }}
                           >
-                            Set New Interview
+                            {CLIENTPROFILE?.setNewInterview}
                           </Button>
                         ) : (
                           <Button
@@ -547,11 +559,11 @@ const AddEmployee = () => {
                               my: { xs: '20px', md: 0 },
                             }}
                           >
-                            Add Onboard
+                            {CLIENTPROFILE?.addOnboard}
                           </Button>
                         )}
                       </>
-                    ) : currentTab.label === 'Contract signed' ? (
+                    ) : currentTab?.label === 'Contract signed' ? (
                       <Button
                         onClick={handleOpenContractModal}
                         variant="contained"
@@ -559,29 +571,22 @@ const AddEmployee = () => {
                           my: { xs: '20px', md: 0 },
                         }}
                       >
-                        Add contract
+                        {CLIENTPROFILE?.addContract}
                       </Button>
-                    ) : currentTab.label === 'Employee invoices' ? (
-                      <Button
-                        onClick={handleOpenUploadInvoiceModal}
-                        variant="contained"
-                        sx={{
-                          my: { xs: '20px', md: 0 },
-                        }}
-                      >
-                        Upload invoice
-                      </Button>
-                    ) : (
-                      <Button
-                        onClick={handleOpenUploadInvoiceModal}
-                        variant="contained"
-                        sx={{
-                          my: { xs: '20px', md: 0 },
-                        }}
-                      >
-                        Upload invoice
-                      </Button>
-                    )}
+                    ) : currentTab?.label === 'Employee invoices' ||
+                      currentTab?.label === 'Other invoices' ? (
+                      currentTab?.nested.val === 0 ? (
+                        <Button
+                          onClick={handleOpenUploadInvoiceModal}
+                          variant="contained"
+                          sx={{
+                            my: { xs: '20px', md: 0 },
+                          }}
+                        >
+                          {CLIENTPROFILE?.uploadVoice}
+                        </Button>
+                      ) : null
+                    ) : null}
                   </Box>
                 </CustomTabPanel>
               ))}
@@ -627,5 +632,4 @@ const AddEmployee = () => {
     </>
   );
 };
-
 export default AddEmployee;
