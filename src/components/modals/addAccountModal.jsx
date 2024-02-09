@@ -1,14 +1,47 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Button, Grid, Modal, Typography } from '@mui/material';
+
 import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { useFormik } from 'formik';
 import { accountInfoSchema } from '../form/schemas/addAccount';
 import { accountForm } from '@/src/constants/data/forms/add-account';
 import { SETTING } from '@/src/constants/SettingHr';
 import { FORM_DATA } from '@/src/constants/form';
+import { accountData } from '@/src/constants/data/tables/hr/account';
 
-const AddAccountModal = ({ open, onClose }) => {
+const AddAccountModal = ({ open, onClose, handleAdd }) => {
   const [formData, setFormData] = useState({});
+  function generateString() {
+    const characters =
+      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let result = '';
+    const sections = [4, 7, 2];
+    const totalLength = 15;
+    let currentLength = 0;
+
+    for (let i = 0; i < sections.length; i++) {
+      for (let j = 0; j < sections[i]; j++) {
+        result += characters.charAt(
+          Math.floor(Math.random() * characters.length)
+        );
+        currentLength++;
+      }
+      if (currentLength < totalLength) {
+        result += '-';
+        currentLength++;
+      }
+    }
+    return result;
+  }
+  const handleAddPic = () => {
+    const updatedAccountData = accountData.map((account) => {
+      return {
+        ...account,
+        pic: formValues[account.accounts].pic,
+      };
+    });
+    console.log(updatedAccountData);
+  };
   const {
     handleSubmit,
     values,
@@ -24,7 +57,16 @@ const AddAccountModal = ({ open, onClose }) => {
     enableReinitialize: true,
     onSubmit: (formValues) => {
       console.log({ formValues });
+      handleAdd({
+        ...formValues,
+        // pic: '/images/users/Bilal.svg',
+
+        action: ['Delete'],
+        actionStatus: true,
+        id: generateString(),
+      });
     },
+
     validateOnChange: false,
     validateOnBlur: false,
   });

@@ -52,6 +52,7 @@ const FormInput = ({
   handleData,
 }) => {
   const [isLoadingList, setIsLoadingList] = useState(false);
+  const [imageUrl, setImageUrl] = useState();
   const handleSelectItem = (item) => {
     const tempErrors = { ...errors };
     if (Object.hasOwnProperty.call(tempErrors, name)) {
@@ -80,7 +81,12 @@ const FormInput = ({
     setFieldValue?.(field, value);
     handleData(field, value);
   };
+  const handleImage = (event) => {
+    const file = event.target.files[0];
+    setImageUrl(URL.createObjectURL(file));
+  };
   const handleChangeFileInput = (field, value) => {
+    console.log('test', name, value);
     const tempErrors = { ...errors };
     if (value?.name) {
       delete tempErrors[name];
@@ -489,6 +495,7 @@ const FormInput = ({
               placeholder={placeholder}
               className="form-input-field"
               type={type}
+              // onChange={handleImage}
               onChange={(e) => {
                 if (type === 'file') {
                   handleChangeFileInput(name, e?.currentTarget.files[0]);
@@ -526,6 +533,7 @@ const FormInput = ({
               </label>
             )}
           </Box>
+          {imageUrl && <img src={imageUrl} />}
           {suffixIconOutside && (
             <Box
               src={`/icons/${suffixIconOutside}.svg`}

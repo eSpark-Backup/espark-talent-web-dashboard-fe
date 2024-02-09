@@ -2,7 +2,7 @@ export const accountForm = [
   {
     title: 'Acount name',
     placeholder: 'Enter name',
-    name: 'accountName',
+    name: 'accounts',
   },
   {
     title: 'Email',
