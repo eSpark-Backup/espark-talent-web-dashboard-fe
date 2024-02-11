@@ -7,7 +7,6 @@ import { accountInfoSchema } from '../form/schemas/addAccount';
 import { accountForm } from '@/src/constants/data/forms/add-account';
 import { SETTING } from '@/src/constants/SettingHr';
 import { FORM_DATA } from '@/src/constants/form';
-import { accountData } from '@/src/constants/data/tables/hr/account';
 
 const AddAccountModal = ({ open, onClose, handleAdd }) => {
   const [formData, setFormData] = useState({});
@@ -33,15 +32,6 @@ const AddAccountModal = ({ open, onClose, handleAdd }) => {
     }
     return result;
   }
-  const handleAddPic = () => {
-    const updatedAccountData = accountData.map((account) => {
-      return {
-        ...account,
-        pic: formValues[account.accounts].pic,
-      };
-    });
-    console.log(updatedAccountData);
-  };
   const {
     handleSubmit,
     values,
@@ -55,16 +45,31 @@ const AddAccountModal = ({ open, onClose, handleAdd }) => {
     initialValues: {},
     validationSchema: accountInfoSchema,
     enableReinitialize: true,
-    onSubmit: (formValues) => {
+    onSubmit: async (formValues) => {
       console.log({ formValues });
-      handleAdd({
-        ...formValues,
-        // pic: '/images/users/Bilal.svg',
-
-        action: ['Delete'],
-        actionStatus: true,
-        id: generateString(),
-      });
+      let imageUrl = '';
+      if (formValues.upload) {
+        imageUrl = URL.createObjectURL(formValues.upload);
+      } else {
+        imageUrl = '/images/users/default-image.svg';
+      }
+      const imageElement = new Image();
+      imageElement.src = imageUrl;
+      imageElement.onload = () => {
+        const canvas = document.createElement('canvas');
+        const context = canvas.getContext('2d');
+        canvas.width = 50;
+        canvas.height = 50;
+        context.drawImage(imageElement, 0, 0, 50, 50);
+        const resizedImageUrl = canvas.toDataURL();
+        handleAdd({
+          ...formValues,
+          pic: resizedImageUrl,
+          action: ['Delete'],
+          actionStatus: true,
+          id: generateString(),
+        });
+      };
     },
 
     validateOnChange: false,

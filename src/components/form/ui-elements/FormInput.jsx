@@ -81,10 +81,10 @@ const FormInput = ({
     setFieldValue?.(field, value);
     handleData(field, value);
   };
-  const handleImage = (event) => {
-    const file = event.target.files[0];
-    setImageUrl(URL.createObjectURL(file));
-  };
+  // const handleImage = (event) => {
+  //   const file = event.target.files[0];
+  //   setImageUrl(URL.createObjectURL(file));
+  // };
   const handleChangeFileInput = (field, value) => {
     console.log('test', name, value);
     const tempErrors = { ...errors };

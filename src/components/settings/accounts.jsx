@@ -1,11 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Box } from '@mui/material';
 
 import AppTable from '../appTable/AppTable';
-import {
-  accountColumn,
-  accountData,
-} from '@/src/constants/data/tables/hr/account';
+import { accountColumn } from '@/src/constants/data/tables/hr/account';
 import AppConfirmationMadal from '../modals/AppConfirmationMadal';
 import { CONTRACT_SIGNED } from '@/src/constants/contractSigned';
 
