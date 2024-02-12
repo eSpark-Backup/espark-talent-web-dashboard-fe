@@ -52,7 +52,6 @@ const FormInput = ({
   handleData,
 }) => {
   const [isLoadingList, setIsLoadingList] = useState(false);
-  const [imageUrl, setImageUrl] = useState();
   const handleSelectItem = (item) => {
     const tempErrors = { ...errors };
     if (Object.hasOwnProperty.call(tempErrors, name)) {
@@ -533,7 +532,7 @@ const FormInput = ({
               </label>
             )}
           </Box>
-          {imageUrl && <img src={imageUrl} />}
+          {/* {imageUrl && <img src={imageUrl} />} */}
           {suffixIconOutside && (
             <Box
               src={`/icons/${suffixIconOutside}.svg`}

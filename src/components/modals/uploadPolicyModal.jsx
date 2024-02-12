@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, Button, Grid, Modal, Typography } from '@mui/material';
 
 import FormInput from '@/src/components/form/ui-elements/FormInput';
@@ -8,6 +8,7 @@ import { uploadPolicyForm } from '@/src/constants/data/forms/upload-policy';
 import { UPLOAD_POLICY } from '@/src/constants/uploadPolicy';
 
 const UploadPolicyModal = ({ open, onClose }) => {
+  const [formData, setFormData] = useState();
   const {
     handleSubmit,
     values,
@@ -31,6 +32,12 @@ const UploadPolicyModal = ({ open, onClose }) => {
     handleReset();
     onClose();
   };
+  const handleData = (name, value) => {
+    setFormData({ ...formData, [name]: value });
+  };
+  useEffect(() => {
+    console.log('form', formData);
+  }, [formData]);
   return (
     <Modal
       open={open}
@@ -139,6 +146,7 @@ const UploadPolicyModal = ({ open, onClose }) => {
                       md={12}
                       lg={12}
                       fields={fields}
+                      handleData={handleData}
                     />
                   </Grid>
                   {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>}

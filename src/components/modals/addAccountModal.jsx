@@ -58,8 +58,8 @@ const AddAccountModal = ({ open, onClose, handleAdd }) => {
       imageElement.onload = () => {
         const canvas = document.createElement('canvas');
         const context = canvas.getContext('2d');
-        canvas.width = 50;
-        canvas.height = 50;
+        canvas.width = 30;
+        canvas.height = 30;
         context.drawImage(imageElement, 0, 0, 50, 50);
         const resizedImageUrl = canvas.toDataURL();
         handleAdd({
