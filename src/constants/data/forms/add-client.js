@@ -15,30 +15,9 @@ const formElements = [
     name: 'lastName',
   },
   {
-    title: 'Gender',
-    placeholder: 'Select',
-    name: 'gender',
-    type: 'select',
-    options: [
-      {
-        label: 'Male',
-      },
-      {
-        label: 'Female',
-      },
-    ],
-  },
-  {
-    title: 'Date of birth',
-    placeholder: 'DD-MM-YYYY',
-    name: 'dateOfBirth',
-    suffixIcon: 'calender',
-    type: 'date',
-  },
-  {
-    title: 'Phone number',
-    placeholder: 'Enter phone number',
-    name: 'phoneNumber',
+    title: 'Company name',
+    placeholder: 'Enter company name',
+    name: 'companyName',
   },
   {
     title: 'Email',
@@ -46,18 +25,28 @@ const formElements = [
     name: 'email',
   },
   {
-    title: 'Marital status',
+    title: 'Phone number',
+    placeholder: 'Enter phone number',
+    name: 'phoneNumber',
+  },
+  {
+    title: 'Join date',
+    placeholder: 'DD-MM-YYYY',
+    name: 'joinOfDate',
+    suffixIcon: 'calender',
+    type: 'date',
+  },
+  {
+    title: 'Country',
     placeholder: 'Select',
-    name: 'maritalStatus',
+    name: 'country',
     type: 'select',
-    options: [
-      {
-        label: 'Married',
-      },
-      {
-        label: 'Single',
-      },
-    ],
+    searchable: true,
+  },
+  {
+    title: 'Address',
+    placeholder: 'Enter company name',
+    name: 'address',
   },
   {
     title: 'Image',
@@ -65,11 +54,6 @@ const formElements = [
     name: 'image',
     prefixIcon: 'upload',
     type: 'file',
-  },
-  {
-    title: 'Emergency Contact',
-    placeholder: 'Enter phone number',
-    name: 'emergencyContact',
   },
 ];
 const formElementsStep4 = [

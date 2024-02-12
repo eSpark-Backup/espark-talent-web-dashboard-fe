@@ -12,6 +12,7 @@ import AppTable from '@/src/components/appTable/AppTable';
 import AppConfirmationMadal from '@/src/components/modals/AppConfirmationMadal';
 import AddContractHrPortalModal from '@/src/components/contractHrportal/contractHr';
 import { CONTRACT_SIGNED } from '@/src/constants/contractSigned';
+import { handleTabChange } from '@/src/utils/handleTab';
 
 const ContractSigned = () => {
   const [value, setValue] = useState(0);
@@ -37,15 +38,7 @@ const ContractSigned = () => {
   }, []);
   console.log(empData, setSearch);
   const handleChange = (event, newValue) => {
-    let tab = event?.target?.innerText.split(' ');
-    if (tab.length > 1) {
-      tab = tab.slice(0, -1).join(' ');
-    } else {
-      tab = tab.join(' ');
-    }
-    setCurrentTab(tab);
-    setValue(newValue);
-    setNestedValue(newValue);
+    handleTabChange(event, newValue, setCurrentTab, setValue, setNestedValue);
   };
   useEffect(() => {
     const data = [...contractSignedOffshoreData];

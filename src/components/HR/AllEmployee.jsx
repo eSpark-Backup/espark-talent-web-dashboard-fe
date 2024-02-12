@@ -6,11 +6,11 @@ import Input from '../dashboard/input';
 import Image from 'next/image';
 import EmployeeView from './EmployeeView';
 import { useRouter } from 'next/navigation';
+import EmployeeStatus from './ActiveEmployee';
 
 const AllEmployee = ({ fromClient, openModal }) => {
   const router = useRouter();
   const [value, setValue] = useState('one');
-
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -62,7 +62,7 @@ const AllEmployee = ({ fromClient, openModal }) => {
           </Button>
         </Box>
         {value === 'one' ? (
-          <EmployeeView
+          <EmployeeStatus
             search={search}
             id={id}
             name={name}
@@ -70,7 +70,7 @@ const AllEmployee = ({ fromClient, openModal }) => {
             status={'All'}
           />
         ) : value === 'two' ? (
-          <EmployeeView
+          <EmployeeStatus
             status={'Active'}
             id={id}
             name={name}
@@ -78,7 +78,7 @@ const AllEmployee = ({ fromClient, openModal }) => {
             search={search}
           />
         ) : (
-          <EmployeeView
+          <EmployeeStatus
             id={id}
             name={name}
             designation={designation}
@@ -103,22 +103,24 @@ const AllEmployee = ({ fromClient, openModal }) => {
         >
           Employees
         </Typography>
-        <Button
-          sx={{
-            backgroundColor: '#029894',
-            width: '160px',
-            color: '#FFF',
-            textTransform: 'math-auto',
-            '&:hover': {
+        {value === 'one' && (
+          <Button
+            sx={{
               backgroundColor: '#029894',
+              width: '160px',
               color: '#FFF',
-            },
-            marginTop: { xs: '25px', md: '0px' },
-          }}
-          onClick={() => router.push('/hr/dashboard/employees/add-employee')}
-        >
-          Add employee
-        </Button>
+              textTransform: 'math-auto',
+              '&:hover': {
+                backgroundColor: '#029894',
+                color: '#FFF',
+              },
+              marginTop: { xs: '25px', md: '0px' },
+            }}
+            onClick={() => router.push('/hr/dashboard/employees/add-employee')}
+          >
+            Add employee
+          </Button>
+        )}
       </Box>
       <Box sx={{ width: '100%' }}>
         <Box

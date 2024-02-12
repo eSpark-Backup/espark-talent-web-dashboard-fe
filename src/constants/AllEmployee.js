@@ -130,3 +130,8 @@ export const allEmployees = [
     role: 'Web Designer',
   },
 ];
+
+export const EMPLOYEE_DATA = {
+  noUserFound: 'No User Found',
+  addClient: 'Add client',
+};

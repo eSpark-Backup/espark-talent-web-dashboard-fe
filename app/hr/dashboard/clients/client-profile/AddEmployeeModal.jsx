@@ -54,7 +54,7 @@ const AddEmployeeModal = ({ open, onClose }) => {
   });
   const handleCloseModal = () => {
     handleReset();
-    setCurrentStep(1);
+    setCurrentStep(2);
     onClose();
   };
 
