@@ -16,6 +16,7 @@ const AppTable = ({
   noPagination,
   minWidth,
   options,
+  tableRowClass,
 }) => {
   return (
     <>
@@ -34,6 +35,7 @@ const AppTable = ({
           handleClick={handleClick}
           handleClickActionDelete={handleClickActionDelete}
           options={options}
+          tableRowClass={tableRowClass}
         />
       </table>
       {!noPagination && (

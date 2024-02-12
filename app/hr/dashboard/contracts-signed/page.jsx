@@ -120,6 +120,7 @@ const ContractSigned = () => {
                     disableRipple={true}
                     sx={{
                       textTransform: 'math-auto',
+                      mr: '2px',
                     }}
                   />
                 ))}
@@ -133,13 +134,14 @@ const ContractSigned = () => {
                     height: '40px',
                     my: { xs: '20px', md: 0 },
                     textTransform: 'math-auto',
+                    fontSize: '16px',
                   }}
                 >
                   {CONTRACT_SIGNED?.addContract}
                 </Button>
               )}
             </Box>
-            <Box my={4}>
+            <Box my={2}>
               {contractHrSignedTabs?.map((tab, i) => (
                 <CustomTabPanel value={value} key={i} index={i}>
                   {isLoading ? (
@@ -170,6 +172,7 @@ const ContractSigned = () => {
                                 key={nestedIndex}
                                 {...nestedTab.prop}
                                 disableRipple={true}
+                                sx={{ mr: '4px' }}
                               />
                             ))}
                           </Tabs>
@@ -183,6 +186,7 @@ const ContractSigned = () => {
                                   width: '160px',
                                   height: '40px',
                                   my: { xs: '20px', md: 0 },
+                                  fontSize: '16px',
                                   textTransform: 'math-auto',
                                 }}
                               >
@@ -201,6 +205,7 @@ const ContractSigned = () => {
                               data={tab.nested[nestedValue].data}
                               handleClickActionDelete={handleClickDelete}
                               noPagination
+                              tableRowClass="app-table-row-contract"
                             />
                           )}
                         {value !== 0 && (
@@ -210,6 +215,7 @@ const ContractSigned = () => {
                             data={tab?.data}
                             handleClickActionDelete={handleClickDelete}
                             noPagination
+                            tableRowClass="app-table-row-contract"
                           />
                         )}
                       </Box>

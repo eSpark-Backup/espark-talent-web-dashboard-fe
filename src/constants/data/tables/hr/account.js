@@ -23,14 +23,14 @@ export const accountData = [
     accounts: 'HR',
     email: 'hr@esparkconsultants.com',
     pic: '/images/users/Bilal.svg',
-    action: ['Delete'],
+    action: ['Delete', 'View'],
     actionStatus: true,
   },
   {
     accounts: 'Finance',
     email: 'finance@esparkconsultants.com',
     pic: '/images/users/Arman.svg',
-    action: ['Delete'],
+    action: ['Delete', 'View'],
     actionStatus: true,
   },
 ];

@@ -51,7 +51,7 @@ const AllEmployee = ({ fromClient, openModal }) => {
           >
             <Tab value="one" label="All" wrapped />
             <Tab value="two" label="Active employees" />
-            <Tab value="three" label="Inactive employees" />
+            <Tab value="three" label="Terminated employees" />
           </Tabs>
           <Button
             onClick={openModal}

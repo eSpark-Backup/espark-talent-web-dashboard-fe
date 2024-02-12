@@ -13,6 +13,7 @@ const AppTableBody = ({
   handleClick,
   handleClickActionDelete,
   options,
+  tableRowClass,
 }) => {
   const commonCellStyle = {
     display: 'flex',
@@ -30,7 +31,10 @@ const AppTableBody = ({
         />
       ) : data?.length ? (
         data.map((row, rowIndex) => (
-          <tr className="app-table-row" key={rowIndex}>
+          <tr
+            className={tableRowClass ? tableRowClass : 'app-table-row'}
+            key={rowIndex}
+          >
             {column?.map((col, colIndex) => (
               <Fragment key={colIndex}>
                 {renderCellContent(

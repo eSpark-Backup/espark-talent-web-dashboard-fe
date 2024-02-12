@@ -82,6 +82,7 @@ const Policies = () => {
                   height: '40px',
                   borderColor: '#029894',
                   color: 'teal',
+                  fontSize: '16px',
                   '&:hover': {
                     background: '#fff',
                     color: 'teal',

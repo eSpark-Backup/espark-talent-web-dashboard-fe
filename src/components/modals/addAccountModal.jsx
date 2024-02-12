@@ -70,6 +70,7 @@ const AddAccountModal = ({ open, onClose }) => {
             sx={{
               fontSize: '25px',
               fontWeight: 600,
+              marginLeft: '8px',
             }}
           >
             {SETTING?.addAccount}
@@ -84,6 +85,7 @@ const AddAccountModal = ({ open, onClose }) => {
               width: '25px',
               height: '25px',
               cursor: 'pointer',
+              marginRight: '8px',
             }}
             onClick={handleCloseModal}
           >
@@ -94,7 +96,7 @@ const AddAccountModal = ({ open, onClose }) => {
           <Grid
             container
             sx={{
-              padding: { xs: '10px 20px', lg: '41px 100px' },
+              padding: { xs: '10px 20px', lg: '41px 80px' },
               display: 'flex',
             }}
           >
@@ -142,7 +144,7 @@ const AddAccountModal = ({ open, onClose }) => {
                       fields={fields}
                     />
                   </Grid>
-                  {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>}
+                  {formIndex % 2 === 0 && <Grid item xs={12} lg={1.6}></Grid>}
                 </>
               )
             )}

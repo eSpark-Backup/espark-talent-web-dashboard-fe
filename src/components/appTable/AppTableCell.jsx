@@ -72,8 +72,8 @@ const renderActions = (
               margin: rowIndex === 1 && '0 5px',
               cursor: 'pointer',
             }}
-            width={25}
-            height={25}
+            width={30}
+            height={30}
             alt="Icon"
             src={`/icons/${
               row[toCamelCase(col || col?.title)][2] === true
@@ -166,8 +166,8 @@ const renderCheckActions = (
             margin: rowIndex === 1 && '0 5px',
             cursor: 'pointer',
           }}
-          width={25}
-          height={25}
+          width={30}
+          height={30}
           alt="Icon"
           src={`/icons/${
             row[toCamelCase(col || col?.title)][2] === true

@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import { Button, Grid, Tab, Tabs, Typography } from '@mui/material';
-import { Box } from '@mui/system';
+import { Box, fontSize } from '@mui/system';
 
 import { settingTabs } from '@/src/constants/data/tabs/settingTabs';
 import CompanySettings from '@/src/components/settings/companySettings';
@@ -55,27 +55,35 @@ const Page = () => {
                   onChange={handleChange}
                   aria-label="wrapped label tabs example"
                   variant="scrollable"
+                  sx={{}}
                 >
                   <Tab
                     value={employeeProfileData?.valueOne}
                     label={settingTabs?.companySettings}
                     wrapped
                     disableRipple={true}
+                    sx={{ fontSize: '14px', mr: 2 }}
                   />
                   <Tab
                     value={employeeProfileData?.valueTwo}
                     label={settingTabs?.accounts}
+                    wrapped
                     disableRipple={true}
+                    sx={{ fontSize: '14px', mr: 2 }}
                   />
                   <Tab
                     value={employeeProfileData?.valuethree}
                     label={settingTabs?.rolesAndPermission}
+                    wrapped
                     disableRipple={true}
+                    sx={{ fontSize: '14px', mr: 2 }}
                   />
                   <Tab
                     value={employeeProfileData?.valueFour}
                     label={settingTabs?.changePassword}
+                    wrapped
                     disableRipple={true}
+                    sx={{ fontSize: '14px', mr: 2 }}
                   />
                 </Tabs>
               </Box>
@@ -89,11 +97,15 @@ const Page = () => {
                   <Box
                     sx={{
                       display: 'flex',
-                      marginBottom: '10px',
+                      marginBottom: '7px',
                     }}
                   >
                     <Button
-                      sx={{ minWidth: '120px' }}
+                      sx={{
+                        minWidth: '120px',
+                        fontSize: '16px',
+                        textTransform: 'math-auto',
+                      }}
                       variant="contained"
                       onClick={handleOpen}
                     >

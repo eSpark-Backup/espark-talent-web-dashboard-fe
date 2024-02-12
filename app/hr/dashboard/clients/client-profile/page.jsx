@@ -477,14 +477,19 @@ const AddEmployee = () => {
               aria-label="basic tabs example"
               variant="scrollable"
             >
-              {clientProfileTabs?.map(({ label, prop }, index) => (
-                <Tab
-                  key={index}
-                  label={`${label}`}
-                  {...prop}
-                  disableRipple={true}
-                />
-              ))}
+              {clientProfileTabs?.map(
+                ({ label, prop }, index) => (
+                  console.log('test', clientProfileTabs),
+                  (
+                    <Tab
+                      key={index}
+                      label={`${label}`}
+                      {...prop}
+                      disableRipple={true}
+                    />
+                  )
+                )
+              )}
             </Tabs>
           </Box>
           {currentTab?.label !== 'Employees' && (

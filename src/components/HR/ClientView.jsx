@@ -206,7 +206,7 @@ const ClientView = ({ status, id, name, designation = '', search }) => {
           sx={{
             marginTop: '20px',
             [theme.breakpoints.up('md')]: {
-              paddingLeft: '20px',
+              paddingLeft: '60px',
             },
           }}
         >
@@ -222,11 +222,11 @@ const ClientView = ({ status, id, name, designation = '', search }) => {
         sx={{
           marginTop: '20px',
           [theme.breakpoints.up('md')]: {
-            paddingLeft: '20px',
+            paddingLeft: '60px',
           },
         }}
         rowGap={3}
-        spacing={3}
+        spacing={5}
       >
         {allEmployees
           ?.filter((eachItem) => {
@@ -249,6 +249,9 @@ const ClientView = ({ status, id, name, designation = '', search }) => {
                   boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
                   padding: '20px 15px 10px 15px',
                   cursor: 'pointer',
+                  '@media (min-width: 900px) and (max-width: 1480px)': {
+                    minHeight: '250px',
+                  },
                 }}
                 onClick={() =>
                   router.push('/hr/dashboard/clients/client-profile')
@@ -263,6 +266,10 @@ const ClientView = ({ status, id, name, designation = '', search }) => {
                       height: '20px',
                       justifyContent: 'center',
                       alignItems: 'center',
+                      // background: 'pink',
+                      // '@media (min-width: 1200px) and (max-width: 1500px)': {
+                      //   width: '60px',
+                      // },
                     }}
                   >
                     <Box
@@ -278,6 +285,7 @@ const ClientView = ({ status, id, name, designation = '', search }) => {
                       sx={{
                         color:
                           eachItem.status === 'Active' ? '#068987' : '#F00',
+                        fontSize: '12px',
                       }}
                     >
                       {eachItem.status}

@@ -1,6 +1,6 @@
-import FormInput from '@/src/components/form/ui-elements/FormInput';
-import { Box, Button, Grid, Typography } from '@mui/material';
 import React from 'react';
+import { Box, Button, Grid, Typography } from '@mui/material';
+import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { useFormik } from 'formik';
 
 const Step = ({
@@ -110,7 +110,6 @@ const Step = ({
                           fieldIndex
                         ) => (
                           <FormInput
-                            // mb={fieldIndex !== 0 && '40px'}
                             key={fieldIndex}
                             title={title}
                             placeholder={placeholder}
@@ -154,14 +153,18 @@ const Step = ({
                 sx={{
                   minWidth: { xs: '100%', sm: '120px' },
                   mb: { xs: '20px', md: '0' },
+                  fontSize: '16px',
                 }}
                 variant="outlined"
               >
-                Back
+                Backkkk
               </Button>
               <Button
                 type="submit"
-                sx={{ minWidth: { xs: '100%', sm: '120px' } }}
+                sx={{
+                  minWidth: { xs: '100%', sm: '120px' },
+                  fontSize: '16px',
+                }}
                 variant="contained"
               >
                 Next
@@ -232,7 +235,7 @@ const Step = ({
             >
               <Button
                 type="submit"
-                sx={{ minWidth: '120px', marginTop: mt }}
+                sx={{ minWidth: '120px', marginTop: mt, fontSize: '16px' }}
                 variant="contained"
               >
                 Save
@@ -256,6 +259,7 @@ const Step = ({
                 sx={{
                   minWidth: { xs: '100%', sm: '120px' },
                   mb: { xs: '20px', md: '0' },
+                  fontSize: '16px',
                 }}
                 variant="outlined"
               >
@@ -263,7 +267,7 @@ const Step = ({
               </Button>
               <Button
                 type="submit"
-                sx={{ minWidth: { xs: '100%', sm: '120px' } }}
+                sx={{ minWidth: { xs: '100%', sm: '120px' }, fontSize: '16px' }}
                 variant="contained"
               >
                 {isLastStep ? 'Submit' : 'Next'}

@@ -2,10 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-.search-input:focus,.reason-text-area:focus {
+.search-input:focus,
+.reason-text-area:focus {
   outline: none;
 }
-.reason-text-area{
+.reason-text-area {
   padding: 5px 10px;
 }
 
@@ -42,6 +43,22 @@
   align-items: center;
   margin-bottom: 20px;
 }
+.app-table-row-contract {
+  background-color: #fff;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #f6f6f6;
+}
+/* .app-table-row-accounts {
+  background-color: #fff;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #f6f6f6;
+} */
 
 .empty-row {
   background-color: #fff;
@@ -270,7 +287,7 @@ body {
 .form-date-picker-component {
   width: 100%;
 }
-.no-error-border fieldset{
+.no-error-border fieldset {
   border: solid 1px #ccc !important;
 }
 .error-border fieldset {

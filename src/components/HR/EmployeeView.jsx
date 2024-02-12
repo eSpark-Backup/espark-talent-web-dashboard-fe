@@ -220,7 +220,7 @@ const EmployeeView = ({ status, id, name, designation, search }) => {
           },
         }}
         rowGap={3}
-        spacing={3}
+        spacing={5}
       >
         {allEmployees
           ?.filter((eachItem) => {
@@ -243,6 +243,9 @@ const EmployeeView = ({ status, id, name, designation, search }) => {
                   boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
                   padding: '20px 15px 10px 15px',
                   cursor: 'pointer',
+                  '@media (min-width: 900px) and (max-width: 1480px)': {
+                    minHeight: '250px',
+                  },
                 }}
                 onClick={() =>
                   router.push(`/hr/dashboard/employees/${eachItem?.id}`)

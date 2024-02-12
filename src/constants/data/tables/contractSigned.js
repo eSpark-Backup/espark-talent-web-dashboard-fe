@@ -1,6 +1,6 @@
 export const contractSignedColumn = [
   {
-    title: 'Contractor name',
+    title: 'Contract name',
     flex: 2,
   },
   {

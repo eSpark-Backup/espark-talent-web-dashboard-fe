@@ -129,6 +129,7 @@ const ContractSigned = () => {
                         currentTab={currentTab}
                         column={tab?.columns}
                         data={tab?.data}
+                        tableRowClass="app-table-row-contract"
                       />
                     </Box>
                   )}

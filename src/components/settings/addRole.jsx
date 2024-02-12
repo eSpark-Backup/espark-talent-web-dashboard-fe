@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-
 import { Box, Button, Grid, Typography } from '@mui/material';
 import AppTable from '../appTable/AppTable';
 import {
@@ -137,7 +136,7 @@ const Role = () => {
           >
             <Button
               type="submit"
-              sx={{ minWidth: '120px' }}
+              sx={{ minWidth: '120px', fontSize: '16px' }}
               variant="contained"
             >
               {SETTING?.save}

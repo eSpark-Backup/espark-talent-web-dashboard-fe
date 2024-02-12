@@ -112,6 +112,20 @@ const FormInput = ({
         break;
     }
   };
+  function handleCopy(textToCopy) {
+    const tempTextArea = document.createElement('textarea');
+    tempTextArea.value = textToCopy;
+
+    document.body.appendChild(tempTextArea);
+
+    tempTextArea.select();
+    tempTextArea.setSelectionRange(0, 99999);
+
+    document.execCommand('copy');
+
+    document.body.removeChild(tempTextArea);
+    console.log('Text copied: ' + textToCopy);
+  }
 
   return (
     <Grid
@@ -451,7 +465,7 @@ const FormInput = ({
                 htmlFor={`input-file-${title}`}
                 style={{
                   display: 'flex',
-                  justifyContent: 'center',
+                  justifyContent: 'flex-end',
                   alignItems: 'center',
                 }}
               >
@@ -494,6 +508,7 @@ const FormInput = ({
               value={type !== 'file' ? value : null}
               accept=".png"
             />
+
             {suffixIcon && (
               <label
                 htmlFor={`input-file-${title}`}
@@ -503,6 +518,7 @@ const FormInput = ({
                   justifyContent: 'center',
                   alignItems: 'center',
                 }}
+                onClick={handleCopy(title)}
               >
                 <Image
                   src={`/images/hiring/${suffixIcon}.svg`}

@@ -6,7 +6,7 @@ export const passwordformElement = [
   },
   {
     title: 'New password',
-    placeholder: 'Enter  new password',
+    placeholder: 'Enter new password',
     name: 'newPassword',
   },
   {

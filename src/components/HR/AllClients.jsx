@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import Input from '../dashboard/input';
 import Image from 'next/image';
 import ClientView from './ClientView';
+import { EMPLOYEE_DATA } from '@/src/constants/AllEmployee';
 
 const AllClients = () => {
   const router = useRouter();
@@ -31,7 +32,12 @@ const AllClients = () => {
         }}
       >
         <Typography
-          sx={{ color: '#171717', fontSize: '30px', fontWeight: '600' }}
+          sx={{
+            color: '#171717',
+            fontSize: '30px',
+            fontWeight: '600',
+            mr: '12px',
+          }}
         >
           Clients
         </Typography>
@@ -41,6 +47,7 @@ const AllClients = () => {
             width: '160px',
             color: '#FFF',
             textTransform: 'math-auto',
+            fontSize: '16px',
             '&:hover': {
               backgroundColor: '#029894',
               color: '#FFF',
@@ -49,7 +56,7 @@ const AllClients = () => {
           }}
           onClick={() => router.push('/hr/dashboard/clients/add-client')}
         >
-          Add client
+          {EMPLOYEE_DATA?.addClient}
         </Button>
       </Box>
       <Box sx={{ width: '100%' }}>
@@ -61,12 +68,12 @@ const AllClients = () => {
               paddingLeft: '0px',
             },
             [theme.breakpoints.up('md')]: {
-              paddingLeft: '20px',
+              paddingLeft: '60px',
             },
           }}
           spacing={3}
         >
-          <Grid item xs={12} md={6} lg={3}>
+          <Grid item xs={12} md={6} lg={2.5}>
             <Input
               value={id}
               width={'100%'}
@@ -76,7 +83,7 @@ const AllClients = () => {
               name={'id'}
             />
           </Grid>
-          <Grid item xs={12} md={6} lg={3}>
+          <Grid item xs={12} md={6} lg={2.5}>
             <Input
               value={name}
               width={'100%'}
@@ -86,7 +93,7 @@ const AllClients = () => {
               name={'name'}
             />
           </Grid>
-          <Grid item xs={12} md={6} lg={1}>
+          <Grid item xs={12} md={6} lg={0.5}>
             <Button
               onClick={() => setSearch(true)}
               style={{
