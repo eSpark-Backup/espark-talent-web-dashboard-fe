@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Grid, Tab, Tabs, Typography } from '@mui/material';
 import { Box, fontSize } from '@mui/system';
 
@@ -11,9 +11,11 @@ import AddAccountModal from '@/src/components/modals/addAccountModal';
 import { SETTING } from '@/src/constants/SettingHr';
 import { employeeProfileData } from '@/src/constants/employeeProfile';
 import Accounts from '@/src/components/settings/accounts';
+import { accountData } from '@/src/constants/data/tables/hr/account';
 
 const Page = () => {
   const [value, setValue] = useState('one');
+  const [accountDataState, setAccountDataState] = useState([]);
   const [isOpen, setIsOpen] = useState();
   const handleOpen = () => {
     setIsOpen(true);
@@ -23,6 +25,19 @@ const Page = () => {
   };
   const handleChange = (event, newValue) => {
     setValue(newValue);
+  };
+  useEffect(() => {
+    const tempData = accountData.map((data, index) => ({
+      ...data,
+      id: index + 1,
+    }));
+    setAccountDataState(tempData);
+  }, []);
+  const handleAddAccount = (data) => {
+    const tempData = [...accountDataState];
+    tempData.push(data);
+    setAccountDataState(tempData);
+    handleClose();
   };
   return (
     <>
@@ -118,7 +133,7 @@ const Page = () => {
             {value === employeeProfileData?.valueOne ? (
               <CompanySettings />
             ) : value === employeeProfileData?.valueTwo ? (
-              <Accounts />
+              <Accounts accountDataState={accountDataState} />
             ) : value === employeeProfileData?.valuethree ? (
               <Role />
             ) : value === employeeProfileData?.valueFour ? (
@@ -126,7 +141,11 @@ const Page = () => {
             ) : null}
           </Box>
           {isOpen && (
-            <AddAccountModal open={handleOpen} onClose={handleClose} />
+            <AddAccountModal
+              open={handleOpen}
+              onClose={handleClose}
+              handleAdd={handleAddAccount}
+            />
           )}
         </Grid>
       </Grid>

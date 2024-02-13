@@ -1,11 +1,14 @@
+import React, { useEffect, useState } from 'react';
+import { Box, Button, Grid, Modal, Typography } from '@mui/material';
+
 import { hiringRequestSchema } from '@/src/components/form/schemas/hiringRequestForm';
 import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { hringRequestForm } from '@/src/constants/data/forms/hiring-request';
-import { Box, Button, Grid, Modal, Typography } from '@mui/material';
 import { useFormik } from 'formik';
-import React from 'react';
+import { FORM_DATA } from '@/src/constants/form';
 
 const HiringRequestModal = ({ open, onClose }) => {
+  const [formData, setFormData] = useState({});
   const {
     handleSubmit,
     values,
@@ -23,7 +26,6 @@ const HiringRequestModal = ({ open, onClose }) => {
     enableReinitialize: true,
     onSubmit: (formValues) => {
       console.log({ formValues });
-      //   handleGoNext();
     },
     validateOnChange: false,
     validateOnBlur: false,
@@ -32,6 +34,12 @@ const HiringRequestModal = ({ open, onClose }) => {
     handleReset();
     onClose();
   };
+  const handleData = (name, value) => {
+    setFormData({ ...formData, [name]: value });
+  };
+  useEffect(() => {
+    console.log('form', formData);
+  }, [formData]);
   return (
     <Modal
       open={open}
@@ -138,6 +146,7 @@ const HiringRequestModal = ({ open, onClose }) => {
                       md={12}
                       lg={12}
                       fields={fields}
+                      handleData={handleData}
                     />
                   </Grid>
                   {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>}
@@ -150,7 +159,7 @@ const HiringRequestModal = ({ open, onClose }) => {
                 variant="contained"
                 type="submit"
               >
-                Submit
+                {FORM_DATA?.submit}
               </Button>
             </Grid>
           </Grid>

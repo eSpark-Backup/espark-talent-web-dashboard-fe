@@ -18,6 +18,7 @@ const EditEmergencyModal = ({ onClose, handleEmergencyModal }) => {
   const [formEmergencyContact, setFormEmergencyContact] = useState([]);
   const [formEmergencySecondaryContact, setFormEmergencySecondaryContact] =
     useState([]);
+  const [formData, setFormData] = useState({});
   useEffect(() => {
     setFormEmergencyContact(initialFormEmergencyContact);
     setFormEmergencySecondaryContact(initialFormEmergencySecondaryContact);
@@ -43,6 +44,12 @@ const EditEmergencyModal = ({ onClose, handleEmergencyModal }) => {
     }
     setShowSecondBoxSecondary((prev) => !prev);
   };
+  const handleData = (name, value) => {
+    setFormData({ ...formData, [name]: value });
+  };
+  useEffect(() => {
+    console.log('form', formData);
+  }, [formData]);
   const addPrimaryNewField = (formFields, setFormFields) => {
     const newField = {
       title: 'Phone',
@@ -133,6 +140,7 @@ const EditEmergencyModal = ({ onClose, handleEmergencyModal }) => {
                 md={12}
                 lg={12}
                 fields={fields}
+                handleData={handleData}
                 suffixIconOutside={
                   formIndex === clickedIndex
                     ? showSecondBox

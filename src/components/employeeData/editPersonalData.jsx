@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, Button, Grid, Modal, Typography } from '@mui/material';
 
 import { EDIT_MODAL } from '@/src/constants/employeeProfile';
@@ -8,6 +8,7 @@ import { personalDetailsForm } from '@/src/constants/data/forms/employee-persona
 import { employeePersonalDataSchema } from '../form/schemas/employeePersonalDetails';
 
 const EditPersonalModal = ({ onClose, handleEditProfileModal }) => {
+  const [formData, setFormData] = useState({});
   const {
     handleSubmit,
     values,
@@ -22,11 +23,17 @@ const EditPersonalModal = ({ onClose, handleEditProfileModal }) => {
     enableReinitialize: true,
     onSubmit: (formValues) => {
       console.log({ formValues });
-      //   handleGoNext();
     },
     validateOnChange: false,
     validateOnBlur: false,
   });
+  const handleData = (name, value) => {
+    setFormData({ ...formData, [name]: value });
+    //  setFormData(prevFormData => ({ ...prevFormData, [name]: value }));
+  };
+  useEffect(() => {
+    console.log('form', formData);
+  }, [formData]);
   return (
     <Modal
       open={handleEditProfileModal}
@@ -132,6 +139,7 @@ const EditPersonalModal = ({ onClose, handleEditProfileModal }) => {
                       md={12}
                       lg={12}
                       fields={fields}
+                      handleData={handleData}
                     />
                   </Grid>
                   {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>}

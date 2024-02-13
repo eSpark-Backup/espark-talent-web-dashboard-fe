@@ -1,6 +1,7 @@
-import { a11yProps } from '@/src/utils/tabs';
-import { Box, Button, Tab, Tabs } from '@mui/material';
 import React, { useState } from 'react';
+import { Box, Button, Tab, Tabs } from '@mui/material';
+
+import { a11yProps } from '@/src/utils/tabs';
 import AppTable from '../appTable/AppTable';
 import {
   leavesColumn,
@@ -10,6 +11,7 @@ import {
 } from '@/src/constants/data/tables/hr/timeAndLeaves';
 import TimeManagementModal from '@/app/hr/dashboard/clients/client-profile/TimeManagementModal';
 import LeaveManagementModal from '@/app/hr/dashboard/clients/client-profile/LeaveManagementModal';
+import { FORM_DATA } from '@/src/constants/form';
 
 const TimeAndLeaves = () => {
   const [currentTab, setCurrentTab] = useState({
@@ -103,7 +105,7 @@ const TimeAndLeaves = () => {
             variant="contained"
             onClick={handleOpenModal}
           >
-            Manage
+            {FORM_DATA?.manage}
           </Button>
         }
       </Box>
@@ -128,10 +130,6 @@ const TimeAndLeaves = () => {
         open={isOpenLeaveManagementModal}
         onClose={handleCloseLeaveManagementModal}
       />
-      {/* <AddContractModal
-        open={isOpenLeaveManagementModal}
-        onClose={handleCloseLeaveManagementModal}
-      /> */}
     </>
   );
 };

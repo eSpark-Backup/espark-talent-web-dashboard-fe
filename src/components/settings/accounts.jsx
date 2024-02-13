@@ -2,15 +2,12 @@ import React, { useState } from 'react';
 import { Box, Modal } from '@mui/material';
 
 import AppTable from '../appTable/AppTable';
-import {
-  accountColumn,
-  accountData,
-} from '@/src/constants/data/tables/hr/account';
+import { accountColumn } from '@/src/constants/data/tables/hr/account';
 import AppConfirmationMadal from '../modals/AppConfirmationMadal';
 import { CONTRACT_SIGNED } from '@/src/constants/contractSigned';
 import CredentialModal from '../modals/credentialModal';
 
-const Accounts = () => {
+const Accounts = ({ accountDataState }) => {
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
   const [modalData, setModalData] = useState({});
   const [open, setOpen] = useState(false);
@@ -42,7 +39,7 @@ const Accounts = () => {
     >
       <AppTable
         column={accountColumn}
-        data={accountData}
+        data={accountDataState}
         handleClickActionDelete={handleClickActionDelete}
         tableRowClass="app-table-row-contract"
         handleClickActionView={handleCrendentialModal}

@@ -52,6 +52,7 @@ const FormInput = ({
   countries,
   searchable,
   suffixIconInside,
+  handleData,
 }) => {
   const [isLoadingList, setIsLoadingList] = useState(false);
   const handleSelectItem = (item) => {
@@ -61,9 +62,9 @@ const FormInput = ({
     }
     setErrors({ ...tempErrors });
     setFieldValue(name, item);
+    handleData(name, item);
   };
   const handleChangeInput = (field, value) => {
-    console.log({ field, value });
     const tempErrors = { ...errors };
     if (value.length) {
       if (field === 'email') {
@@ -80,14 +81,21 @@ const FormInput = ({
     }
     setErrors({ ...tempErrors });
     setFieldValue?.(field, value);
+    handleData(field, value);
   };
+  // const handleImage = (event) => {
+  //   const file = event.target.files[0];
+  //   setImageUrl(URL.createObjectURL(file));
+  // };
   const handleChangeFileInput = (field, value) => {
+    console.log('test', name, value);
     const tempErrors = { ...errors };
     if (value?.name) {
       delete tempErrors[name];
     }
     setErrors({ ...tempErrors });
     setFieldValue?.(field, value);
+    handleData(field, value);
   };
 
   const handleClickCounter = (type, name, value) => {
@@ -98,6 +106,7 @@ const FormInput = ({
             break;
           default:
             setFieldValue(name, value - 1);
+            handleData(name, value - 1);
             break;
         }
         break;
@@ -108,6 +117,7 @@ const FormInput = ({
             break;
           default:
             setFieldValue(name, value + 1);
+            handleData(name, value + 1);
             break;
         }
         break;
@@ -585,6 +595,7 @@ const FormInput = ({
               </label>
             )}
           </Box>
+          {/* {imageUrl && <img src={imageUrl} />} */}
           {suffixIconOutside && (
             <Box
               src={`/icons/${suffixIconOutside}.svg`}
