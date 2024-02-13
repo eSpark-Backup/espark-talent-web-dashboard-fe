@@ -24,6 +24,7 @@ export const accountData = [
     email: 'hr@esparkconsultants.com',
     pic: '/images/users/Bilal.svg',
     action: ['Delete', 'View'],
+    password: '123@espark',
     actionStatus: true,
   },
   {
@@ -31,6 +32,7 @@ export const accountData = [
     email: 'finance@esparkconsultants.com',
     pic: '/images/users/Arman.svg',
     action: ['Delete', 'View'],
+    password: '123@espark',
     actionStatus: true,
   },
 ];

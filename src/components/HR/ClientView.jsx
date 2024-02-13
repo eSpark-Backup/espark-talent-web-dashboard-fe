@@ -260,16 +260,12 @@ const ClientView = ({ status, id, name, designation = '', search }) => {
                 <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                   <Box
                     sx={{
-                      width: '20%',
+                      width: '65px',
                       display: 'flex',
                       columnGap: '5px',
                       height: '20px',
                       justifyContent: 'center',
                       alignItems: 'center',
-                      // background: 'pink',
-                      // '@media (min-width: 1200px) and (max-width: 1500px)': {
-                      //   width: '60px',
-                      // },
                     }}
                   >
                     <Box
@@ -299,6 +295,14 @@ const ClientView = ({ status, id, name, designation = '', search }) => {
                       alignItems: 'center',
                       flexDirection: 'column',
                       rowGap: '5px',
+                      '@media (min-width: 1200px) and (max-width: 1450px)': {
+                        marginTop: '25px',
+                        mr: '35px',
+                      },
+                      '@media (min-width: 900px) and (max-width: 980px)': {
+                        marginTop: '25px',
+                        mr: '35px',
+                      },
                     }}
                   >
                     <Image
@@ -326,7 +330,11 @@ const ClientView = ({ status, id, name, designation = '', search }) => {
                       {eachItem.role}
                     </Typography>
                   </Box>
-                  <Box sx={{ width: '10%' }}>
+                  <Box
+                    sx={{
+                      width: '20px',
+                    }}
+                  >
                     <Image
                       width={24}
                       height={24}

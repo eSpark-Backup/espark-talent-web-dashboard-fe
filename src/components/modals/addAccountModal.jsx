@@ -65,7 +65,7 @@ const AddAccountModal = ({ open, onClose, handleAdd }) => {
         handleAdd({
           ...formValues,
           pic: resizedImageUrl,
-          action: ['Delete'],
+          action: ['Delete', 'View'],
           actionStatus: true,
           id: generateString(),
         });
@@ -197,7 +197,7 @@ const AddAccountModal = ({ open, onClose, handleAdd }) => {
                       handleData={handleData}
                     />
                   </Grid>
-                  {formIndex % 2 === 0 && <Grid item xs={12} lg={1.6}></Grid>}
+                  {/* {formIndex % 2 === 0 && <Grid item xs={12} lg={1.6}></Grid>} */}
                 </>
               )
             )}

@@ -270,8 +270,6 @@ const Page = () => {
                       label="Time & leaves"
                       disableRipple={true}
                     />
-                    {/* <Tab value={'six'} label="Contract" disableRipple={true} /> */}
-                    {/* maybe use in future */}
                   </Tabs>
                 </Box>
                 <Box

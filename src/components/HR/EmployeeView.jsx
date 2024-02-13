@@ -1,6 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-import { Grid, Menu, MenuItem, Typography } from '@mui/material';
+import { Grid, Menu, MenuItem, Typography, useMediaQuery } from '@mui/material';
 import { Box, useTheme } from '@mui/system';
 import Image from 'next/image';
 
@@ -30,7 +30,9 @@ const EmployeeView = ({ status, id, name, designation, search }) => {
     setIsOpen(false);
   };
   const theme = useTheme();
-
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'), {
+    defaultMatches: true,
+  });
   if ((id !== '' || name !== '' || designation !== '') && search) {
     const filter = allEmployees.filter((item) => {
       const idCondition = id.length === 0 || item.id === Number(id);
@@ -220,7 +222,7 @@ const EmployeeView = ({ status, id, name, designation, search }) => {
           },
         }}
         rowGap={3}
-        spacing={5}
+        spacing={isMobile ? 2 : 5}
       >
         {allEmployees
           ?.filter((eachItem) => {
@@ -251,27 +253,31 @@ const EmployeeView = ({ status, id, name, designation, search }) => {
                   router.push(`/hr/dashboard/employees/${eachItem?.id}`)
                 }
               >
-                <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                <Box
+                  sx={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                  }}
+                >
                   <Box
                     sx={{
-                      width: '20%',
+                      width: '65px',
                       display: 'flex',
-                      columnGap: '5px',
+                      columnGap: '3px',
                       height: '20px',
                       justifyContent: 'center',
                       alignItems: 'center',
                     }}
                   >
-                    <Box
-                      sx={{
+                    <span
+                      style={{
                         width: '5px',
                         height: '5px',
                         borderRadius: '50%',
                         backgroundColor:
                           eachItem.status === 'Active' ? '#068987' : '#F00',
                       }}
-                    ></Box>
-
+                    ></span>
                     <Typography
                       sx={{
                         color:
@@ -290,6 +296,14 @@ const EmployeeView = ({ status, id, name, designation, search }) => {
                       alignItems: 'center',
                       flexDirection: 'column',
                       rowGap: '5px',
+                      '@media (min-width: 1200px) and (max-width: 1450px)': {
+                        marginTop: '25px',
+                        mr: '35px',
+                      },
+                      '@media (min-width: 900px) and (max-width: 980px)': {
+                        marginTop: '25px',
+                        mr: '35px',
+                      },
                     }}
                   >
                     <Image

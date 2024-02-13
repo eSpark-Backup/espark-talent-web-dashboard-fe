@@ -7,7 +7,6 @@ export const basicInformationSchemaClient = Yup.object({
   joinOfDate: Yup.string().required('Required'),
   phoneNumber: Yup.string().required('Required'),
   email: Yup.string().email('Invalid email address').required('Required'),
-  country: Yup.string().required('Required'),
   image: Yup.mixed().required('Required'),
   companyName: Yup.string().required('Required'),
 });

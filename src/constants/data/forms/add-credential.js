@@ -1,16 +1,12 @@
 export const credentialForm = [
   {
     title: 'Email',
-    placeholder: 'hr@esparkconsultants.com',
-    value: 'hr@esparkconsultants.com',
-    name: 'email',
+    name: 'emailCredential',
     suffixIconInside: 'Copyy',
   },
   {
     title: 'Password',
-    placeholder: '123@espark',
-    value: "'123@espark",
-    name: 'password',
+    name: 'passwordCredential',
     suffixIconInside: 'Copyy',
   },
 ];

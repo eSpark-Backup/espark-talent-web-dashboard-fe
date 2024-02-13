@@ -1,5 +1,5 @@
-import React from 'react';
-import { Box, Button, Grid, Modal, Typography } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { Box, Button, Grid, Typography } from '@mui/material';
 
 import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { useFormik } from 'formik';
@@ -7,7 +7,16 @@ import { CREDENTIAL_FORM } from '@/src/constants/credential';
 import { credentialForm } from '@/src/constants/data/forms/add-credential';
 import { credentialFormSchema } from '../form/schemas/credential';
 
-const CredentialModal = ({ open, onClose }) => {
+const CredentialModal = ({ onClose, modalData }) => {
+  const [formData, setFormData] = useState(modalData);
+  const handleData = (name, value) => {
+    setFormData({ ...formData, [name]: value });
+  };
+  useEffect(() => {
+    console.log('form', formData);
+    console.log('modal', modalData);
+    setFormData(modalData);
+  }, [modalData]);
   const {
     handleSubmit,
     values,
@@ -23,6 +32,7 @@ const CredentialModal = ({ open, onClose }) => {
     enableReinitialize: true,
     onSubmit: (formValues) => {
       console.log({ formValues });
+      handleCloseModal();
     },
     validateOnChange: false,
     validateOnBlur: false,
@@ -132,6 +142,9 @@ const CredentialModal = ({ open, onClose }) => {
                     lg={12}
                     fields={fields}
                     suffixIconInside={suffixIconInside}
+                    handleData={handleData}
+                    readOnly={true}
+                    modalData={formData}
                   />
                 </Grid>
                 {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>}

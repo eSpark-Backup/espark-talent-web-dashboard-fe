@@ -7,15 +7,14 @@ import AppConfirmationMadal from '../modals/AppConfirmationMadal';
 import { CONTRACT_SIGNED } from '@/src/constants/contractSigned';
 import CredentialModal from '../modals/credentialModal';
 
-const Accounts = ({ accountDataState }) => {
+const Accounts = ({ accountDataState, handleAdd }) => {
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
   const [modalData, setModalData] = useState({});
   const [open, setOpen] = useState(false);
-  const handleCrendentialModal = (props) => {
-    console.log({ props });
-    const { item, row } = props;
-    setModalData({ item, ...row });
+  const handleCrendentialModal = (rowData) => {
+    setModalData(rowData);
     setOpen(true);
+    console.log('row', rowData);
   };
   const handleOpenModal = () => {
     setOpen(true);
@@ -67,6 +66,7 @@ const Accounts = ({ accountDataState }) => {
           modalData={modalData}
           onClose={handleClose}
           open={handleOpenModal}
+          handleAdd={handleAdd}
         />
       </Modal>
     </Box>

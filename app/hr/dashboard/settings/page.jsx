@@ -1,7 +1,7 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import { Button, Grid, Tab, Tabs, Typography } from '@mui/material';
-import { Box, fontSize } from '@mui/system';
+import { Box } from '@mui/system';
 
 import { settingTabs } from '@/src/constants/data/tabs/settingTabs';
 import CompanySettings from '@/src/components/settings/companySettings';
@@ -133,7 +133,10 @@ const Page = () => {
             {value === employeeProfileData?.valueOne ? (
               <CompanySettings />
             ) : value === employeeProfileData?.valueTwo ? (
-              <Accounts accountDataState={accountDataState} />
+              <Accounts
+                accountDataState={accountDataState}
+                handleAdd={handleAddAccount}
+              />
             ) : value === employeeProfileData?.valuethree ? (
               <Role />
             ) : value === employeeProfileData?.valueFour ? (

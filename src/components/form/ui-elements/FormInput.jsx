@@ -53,6 +53,8 @@ const FormInput = ({
   searchable,
   suffixIconInside,
   handleData,
+  readOnly,
+  modalData,
 }) => {
   const [isLoadingList, setIsLoadingList] = useState(false);
   const handleSelectItem = (item) => {
@@ -125,40 +127,11 @@ const FormInput = ({
         break;
     }
   };
-  // function handleCopy(textToCopy) {
-  //   const tempTextArea = document.createElement('textarea');
-  //   tempTextArea.value = textToCopy;
 
-  //   document.body.appendChild(tempTextArea);
-
-  //   tempTextArea.select();
-  //   tempTextArea.setSelectionRange(0, 99999);
-
-  //   document.execCommand('copy');
-
-  //   document.body.removeChild(tempTextArea);
-  //   console.log('Text copied: ' + textToCopy);
-  // }
-  // const [copyText, setCopyText] = useState('');
-
-  // const handleCopyText = (e) => {
-  //   setCopyText(e.target.value);
-  // };
-
-  // const copyToClipboard = () => {
-  //   copy(copyText);
-  //   alert(`You have copied "${copyText}"`);
-  // };
   const textRef = useRef();
-
-  //Function to add text to clipboard
   const copyToClipboard = () => {
-    // Text from the html element
     let copyText = textRef.current.value;
-    // Adding text value to clipboard using copy function
     let isCopy = copy(copyText);
-
-    //Dispalying notification
     if (isCopy) {
       toast.success('Copied to Clipboard');
     }
@@ -525,16 +498,28 @@ const FormInput = ({
                 </Box>
               </label>
             )}
+
             <input
               id={`input-file-${title}`}
               style={{
                 background: '#FFF',
                 display: type === 'file' && 'none',
               }}
+              // value={modalData?.row?.email || modalData?.row?.password}
+              value={
+                name === 'emailCredential'
+                  ? modalData?.row?.email || ''
+                  : name === 'passwordCredential'
+                  ? modalData?.row?.password || ''
+                  : '' || type !== 'file'
+                  ? value
+                  : null
+              }
               placeholder={placeholder}
               className="form-input-field"
               type={type}
               ref={textRef}
+              readOnly={readOnly}
               onChange={(e) => {
                 if (type === 'file') {
                   handleChangeFileInput(name, e?.currentTarget.files[0]);
@@ -542,7 +527,7 @@ const FormInput = ({
                   handleChangeInput(name, e?.target?.value);
                 }
               }}
-              value={type !== 'file' ? value : null}
+              // value={type !== 'file' ? value : null}
               accept=".png"
             />
             {suffixIcon && (

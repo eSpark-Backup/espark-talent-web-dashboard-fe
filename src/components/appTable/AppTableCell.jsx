@@ -427,7 +427,7 @@ export const renderCellContent = (
               '-'
             ) : (
               <Link
-                href="#"
+                href="/hr/dashboard/clients/client-profile"
                 style={{ textDecoration: 'underline', cursor: 'pointer' }}
               >
                 {row[toCamelCase(col?.title || col)]}

@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 
 export const credentialFormSchema = Yup.object({
-  email: Yup.string().required('Required'),
-  password: Yup.mixed().required('Required'),
+  emailCredential: Yup.string().required('Required'),
+  passwordCredential: Yup.mixed().required('Required'),
 });

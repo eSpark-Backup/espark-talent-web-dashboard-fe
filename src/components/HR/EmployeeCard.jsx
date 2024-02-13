@@ -24,13 +24,16 @@ const EmployeeCard = ({
           boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
           padding: '20px 15px 10px 15px',
           cursor: 'pointer',
+          '@media (min-width: 900px) and (max-width: 1480px)': {
+            minHeight: '250px',
+          },
         }}
         onClick={() => router.push(`/hr/dashboard/employees/${eachItem?.id}`)}
       >
         <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
           <Box
             sx={{
-              width: '20%',
+              width: '65px',
               display: 'flex',
               columnGap: '5px',
               height: '20px',
@@ -65,6 +68,14 @@ const EmployeeCard = ({
               alignItems: 'center',
               flexDirection: 'column',
               rowGap: '5px',
+              '@media (min-width: 1200px) and (max-width: 1450px)': {
+                marginTop: '25px',
+                mr: '35px',
+              },
+              '@media (min-width: 900px) and (max-width: 980px)': {
+                marginTop: '25px',
+                mr: '35px',
+              },
             }}
           >
             <Image src={'/icons/Employee.svg'} width={100} height={30} />

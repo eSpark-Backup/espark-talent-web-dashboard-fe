@@ -88,10 +88,6 @@ const Role = () => {
               '&::-webkit-scrollbar': {
                 width: '10px',
               },
-              '&::-webkit-scrollbar-button:start, &::-webkit-scrollbar-button:end, &::-moz-scrollbar-button:decrement, &::-moz-scrollbar-button:increment, &::-webkit-scrollbar-button:decrement, &::-webkit-scrollbar-button:increment':
-                {
-                  width: '0px',
-                },
               paddingBottom: '20px',
             }}
           >
