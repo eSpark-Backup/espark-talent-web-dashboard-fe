@@ -1,8 +1,10 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Grid, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import Image from 'next/image';
+import copy from 'copy-to-clipboard';
+import { toast } from 'react-toastify';
 
 import AppDropdown from '../../dashboard/appDropdown';
 import {
@@ -49,6 +51,7 @@ const FormInput = ({
   onClick,
   countries,
   searchable,
+  suffixIconInside,
 }) => {
   const [isLoadingList, setIsLoadingList] = useState(false);
   const handleSelectItem = (item) => {
@@ -112,21 +115,44 @@ const FormInput = ({
         break;
     }
   };
-  function handleCopy(textToCopy) {
-    const tempTextArea = document.createElement('textarea');
-    tempTextArea.value = textToCopy;
+  // function handleCopy(textToCopy) {
+  //   const tempTextArea = document.createElement('textarea');
+  //   tempTextArea.value = textToCopy;
 
-    document.body.appendChild(tempTextArea);
+  //   document.body.appendChild(tempTextArea);
 
-    tempTextArea.select();
-    tempTextArea.setSelectionRange(0, 99999);
+  //   tempTextArea.select();
+  //   tempTextArea.setSelectionRange(0, 99999);
 
-    document.execCommand('copy');
+  //   document.execCommand('copy');
 
-    document.body.removeChild(tempTextArea);
-    console.log('Text copied: ' + textToCopy);
-  }
+  //   document.body.removeChild(tempTextArea);
+  //   console.log('Text copied: ' + textToCopy);
+  // }
+  // const [copyText, setCopyText] = useState('');
 
+  // const handleCopyText = (e) => {
+  //   setCopyText(e.target.value);
+  // };
+
+  // const copyToClipboard = () => {
+  //   copy(copyText);
+  //   alert(`You have copied "${copyText}"`);
+  // };
+  const textRef = useRef();
+
+  //Function to add text to clipboard
+  const copyToClipboard = () => {
+    // Text from the html element
+    let copyText = textRef.current.value;
+    // Adding text value to clipboard using copy function
+    let isCopy = copy(copyText);
+
+    //Dispalying notification
+    if (isCopy) {
+      toast.success('Copied to Clipboard');
+    }
+  };
   return (
     <Grid
       item
@@ -498,6 +524,7 @@ const FormInput = ({
               placeholder={placeholder}
               className="form-input-field"
               type={type}
+              ref={textRef}
               onChange={(e) => {
                 if (type === 'file') {
                   handleChangeFileInput(name, e?.currentTarget.files[0]);
@@ -508,7 +535,6 @@ const FormInput = ({
               value={type !== 'file' ? value : null}
               accept=".png"
             />
-
             {suffixIcon && (
               <label
                 htmlFor={`input-file-${title}`}
@@ -517,8 +543,8 @@ const FormInput = ({
                   padding: '10px',
                   justifyContent: 'center',
                   alignItems: 'center',
+                  cursor: 'pointer',
                 }}
-                onClick={handleCopy(title)}
               >
                 <Image
                   src={`/images/hiring/${suffixIcon}.svg`}
@@ -528,6 +554,28 @@ const FormInput = ({
                 />
               </label>
             )}
+            {suffixIconInside && (
+              <>
+                <label
+                  // htmlFor={`input-file-${title}`}
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    cursor: 'pointer',
+                  }}
+                  onClick={copyToClipboard}
+                >
+                  <Image
+                    src={`/images/hiring/${suffixIconInside}.svg`}
+                    width={50}
+                    height={50}
+                    alt="Calendar"
+                  />
+                </label>
+              </>
+            )}
+
             {type === 'file' && (
               <label
                 className="file-upload-label"

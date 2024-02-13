@@ -101,6 +101,7 @@ const CredentialModal = ({ open, onClose }) => {
                 name,
                 nested,
                 fields,
+                suffixIconInside,
               },
               formIndex
             ) => (
@@ -130,6 +131,7 @@ const CredentialModal = ({ open, onClose }) => {
                     md={12}
                     lg={12}
                     fields={fields}
+                    suffixIconInside={suffixIconInside}
                   />
                 </Grid>
                 {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>}

@@ -21,7 +21,6 @@ const UploadInvoiceModal = ({ open, onClose, title }) => {
     enableReinitialize: true,
     onSubmit: (formValues) => {
       console.log({ formValues });
-      //   handleGoNext();
     },
     validateOnChange: false,
     validateOnBlur: false,
