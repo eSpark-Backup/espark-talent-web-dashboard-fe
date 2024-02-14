@@ -20,7 +20,7 @@ const DiscoverTalentPlatform = () => {
     >
       <Box
         sx={{
-          maxWidth: '680px',
+          maxWidth: '700px',
           '@media (min-width: 900px) and (max-width: 1350px)': {
             marginLeft: '30px',
           },

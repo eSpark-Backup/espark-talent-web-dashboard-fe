@@ -55,3 +55,11 @@ export const EMPLOYEE_TIMESHEET = [
     verticalLineColor: '#136E91',
   },
 ];
+
+export const TIME_REQUEST = {
+  manage:
+    "Manage your team member's time off requests. Remember 1 day = 8 working hours.",
+  link: '  Use the following link to check',
+  holiday: ' public holidays by country.',
+  downloadReport: 'Download Report',
+};

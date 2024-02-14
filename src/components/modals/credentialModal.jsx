@@ -5,7 +5,6 @@ import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { useFormik } from 'formik';
 import { CREDENTIAL_FORM } from '@/src/constants/credential';
 import { credentialForm } from '@/src/constants/data/forms/add-credential';
-import { credentialFormSchema } from '../form/schemas/credential';
 
 const CredentialModal = ({ onClose, modalData }) => {
   const [formData, setFormData] = useState(modalData);
@@ -28,7 +27,7 @@ const CredentialModal = ({ onClose, modalData }) => {
     handleReset,
   } = useFormik({
     initialValues: {},
-    validationSchema: credentialFormSchema,
+    validationSchema: '',
     enableReinitialize: true,
     onSubmit: (formValues) => {
       console.log({ formValues });

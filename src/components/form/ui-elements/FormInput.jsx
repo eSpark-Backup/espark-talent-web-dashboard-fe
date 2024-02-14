@@ -4,7 +4,6 @@ import { Grid, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import Image from 'next/image';
 import copy from 'copy-to-clipboard';
-import { toast } from 'react-toastify';
 
 import AppDropdown from '../../dashboard/appDropdown';
 import {
@@ -57,6 +56,11 @@ const FormInput = ({
   modalData,
 }) => {
   const [isLoadingList, setIsLoadingList] = useState(false);
+  const [isCopied, setIsCopied] = useState();
+  const [imageSrc, setImageSrc] = useState(
+    `/images/hiring/${suffixIconInside}.svg`
+  );
+
   const handleSelectItem = (item) => {
     const tempErrors = { ...errors };
     if (Object.hasOwnProperty.call(tempErrors, name)) {
@@ -130,12 +134,17 @@ const FormInput = ({
 
   const textRef = useRef();
   const copyToClipboard = () => {
-    let copyText = textRef.current.value;
-    let isCopy = copy(copyText);
+    const copyText = textRef.current.value;
+    const isCopy = copy(copyText);
     if (isCopy) {
-      toast.success('Copied to Clipboard');
+      setIsCopied(true);
+      setTimeout(() => {
+        setIsCopied(false);
+      }, 3000);
     }
+    setImageSrc(`/images/hiring/copy.svg`);
   };
+
   return (
     <Grid
       item
@@ -552,20 +561,21 @@ const FormInput = ({
             {suffixIconInside && (
               <>
                 <label
-                  // htmlFor={`input-file-${title}`}
+                  htmlFor={`input-file-${title}`}
                   style={{
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
                     cursor: 'pointer',
                   }}
-                  onClick={copyToClipboard}
                 >
                   <Image
-                    src={`/images/hiring/${suffixIconInside}.svg`}
+                    // src={`/images/hiring/${suffixIconInside}.svg`}
+                    src={imageSrc}
                     width={50}
                     height={50}
                     alt="Calendar"
+                    onClick={copyToClipboard}
                   />
                 </label>
               </>
@@ -601,6 +611,11 @@ const FormInput = ({
           )}
         </Box>
       )}
+      {
+        <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+          {isCopied && 'Copied!'}
+        </Box>
+      }
     </Grid>
   );
 };

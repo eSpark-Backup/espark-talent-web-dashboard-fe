@@ -116,7 +116,7 @@ const Dashboard = () => {
               marginBottom={'50px'}
             >
               <Box display={'flex'} flexDirection={'column'}>
-                <Typography variant="h3">Leaves request</Typography>
+                <Typography variant="h3">Leaves Requests</Typography>
                 <Box display={'flex'} flexDirection={'column'} mt={'20px'}>
                   <Typography
                     sx={{
@@ -128,7 +128,7 @@ const Dashboard = () => {
                     }}
                     variant="caption"
                   >
-                    Manage timesheet from one place.
+                    Manage Leaves from one place.
                   </Typography>
                 </Box>
               </Box>

@@ -163,6 +163,9 @@ const Dashboard = () => {
           </Box>
         </Box>
       </Grid>
+      <hr />
+      <br />
+      <br />
       <Grid container>
         <Box
           sx={{

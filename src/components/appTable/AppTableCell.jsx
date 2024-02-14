@@ -355,7 +355,7 @@ export const renderCellContent = (
     case 'Create':
     case 'Delete':
     case 'Download':
-      if (modulepermissionColumn.includes(col)) {
+      if (modulepermissionColumn?.includes(col)) {
         return renderActions(
           row,
           col,
@@ -368,8 +368,9 @@ export const renderCellContent = (
       } else {
         return renderDownloadButton(row, col, commonCellStyle);
       }
-    case 'Employee':
     case 'Client':
+    case 'Employee':
+      // if (policyData?.includes(col)) {
       return renderCheckActions(
         row,
         col,
@@ -379,6 +380,11 @@ export const renderCellContent = (
         rowIndex,
         handleClickActionDelete
       );
+
+    //  else {
+    //   return null;
+    // }
+
     case 'Action':
       return renderActions(
         row,
@@ -389,6 +395,7 @@ export const renderCellContent = (
         rowIndex,
         handleClickActionDelete
       );
+
     case 'Actions':
       return renderActions(
         row,

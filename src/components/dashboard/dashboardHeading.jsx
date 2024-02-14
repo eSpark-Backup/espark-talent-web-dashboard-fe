@@ -19,6 +19,7 @@ const DashboardHeading = ({ dashboardDescription }) => {
         sx={{
           fontSize: { xs: '20px', md: '14px' },
           fontWeight: 400,
+          color: '#595959',
         }}
       >
         {dashboardDescription}

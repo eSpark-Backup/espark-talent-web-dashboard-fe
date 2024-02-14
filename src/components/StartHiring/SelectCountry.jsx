@@ -26,7 +26,7 @@ const CountryDropdown = ({ SelectOpen, SelectClose }) => {
       sx={{
         flexWrap: { xs: 'wrap', lg: 'nowrap' },
       }}
-      gap={'10px'}
+      gap={'20px'}
     >
       <Grid item xs={12} lg={6} className="country-custom-dropdown">
         <Typography sx={{ marginLeft: '4px', mb: '10px' }}>

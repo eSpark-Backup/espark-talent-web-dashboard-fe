@@ -30,12 +30,18 @@
 .table td,
 .table th {
   text-align: center;
-  padding: 10px 0;
+  padding: 8px 0;
   color: #595959;
   /* flex: 1; */
   font-size: 12px;
 }
-
+.app-table-data {
+  text-align: center;
+  padding: 5px 0;
+  color: #595959;
+  /* flex: 1; */
+  font-size: 12px;
+}
 .app-table-row {
   background-color: #f6f6f6;
   margin-bottom: 10px;
@@ -49,16 +55,8 @@
   display: flex;
   align-items: center;
   margin-bottom: 20px;
-  border-bottom: 1px solid #f6f6f6;
+  border-bottom: 1px solid #e4e4e4;
 }
-/* .app-table-row-accounts {
-  background-color: #fff;
-  margin-bottom: 10px;
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-  border-bottom: 1px solid #f6f6f6;
-} */
 
 .empty-row {
   background-color: #fff;

@@ -15,7 +15,7 @@ const Resource = () => {
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'center',
-              gap: '20px',
+              gap: '100px',
               width: '100%',
             }}
           >

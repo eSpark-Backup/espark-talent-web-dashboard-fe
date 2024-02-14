@@ -251,6 +251,7 @@ const ClientView = ({ status, id, name, designation = '', search }) => {
                   cursor: 'pointer',
                   '@media (min-width: 900px) and (max-width: 1480px)': {
                     minHeight: '250px',
+                    width: 'calc(25%-33px)',
                   },
                 }}
                 onClick={() =>
@@ -260,12 +261,13 @@ const ClientView = ({ status, id, name, designation = '', search }) => {
                 <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                   <Box
                     sx={{
-                      width: '65px',
+                      // width: '65px',
                       display: 'flex',
                       columnGap: '5px',
                       height: '20px',
                       justifyContent: 'center',
                       alignItems: 'center',
+                      // background: 'skyblue',
                     }}
                   >
                     <Box
@@ -287,14 +289,16 @@ const ClientView = ({ status, id, name, designation = '', search }) => {
                       {eachItem.status}
                     </Typography>
                   </Box>
+
                   <Box
                     sx={{
-                      width: '60%',
+                      // width: '60%',
                       display: 'flex',
                       justifyContent: 'center',
                       alignItems: 'center',
                       flexDirection: 'column',
-                      rowGap: '5px',
+                      // background: 'gray',
+                      // rowGap: '5px',
                       '@media (min-width: 1200px) and (max-width: 1450px)': {
                         marginTop: '25px',
                         mr: '35px',
@@ -330,16 +334,32 @@ const ClientView = ({ status, id, name, designation = '', search }) => {
                       {eachItem.role}
                     </Typography>
                   </Box>
+
                   <Box
                     sx={{
-                      width: '20px',
+                      // display: 'flex',
+                      width: '30px',
+                      // marginLeft: '20px',
                     }}
                   >
+                    {/* <Box
+                      component="img"
+                      src="/icons/ellipse.svg"
+                      sx={{
+                        width: '20px',
+                        height: '20px',
+                        maxWidth: '100% ',
+                        // '@media (min-width: 900px) and (max-width: 1370px)': {
+                        //   width: '40px',
+                        // },
+                      }}
+                      onClick={handleClick}
+                    /> */}
                     <Image
-                      width={24}
-                      height={24}
+                      width={20}
+                      height={20}
                       src={`/icons/ellipse.svg`}
-                      style={{ cursor: 'pointer' }}
+                      style={{ cursor: 'pointer', maxWidth: '100%' }}
                       onClick={handleClick}
                     />
                     <Menu

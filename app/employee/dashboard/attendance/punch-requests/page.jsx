@@ -84,13 +84,7 @@ const Dashboard = () => {
             </Typography>
           </Box>
         </Box>
-        <Button
-          sx={{ marginX: '10px', minWidth: '120px' }}
-          variant="contained"
-          onClick={handleOpenModal}
-        >
-          Create
-        </Button>
+
         {openModal && (
           <Modal
             open={openModal}
@@ -275,6 +269,13 @@ const Dashboard = () => {
                         }
                       >
                         Filter
+                      </Button>
+                      <Button
+                        sx={{ marginX: '10px', minWidth: '120px' }}
+                        variant="contained"
+                        onClick={handleOpenModal}
+                      >
+                        Create
                       </Button>
                     </Box>
                   </Box>
