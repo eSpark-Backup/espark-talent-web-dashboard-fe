@@ -88,6 +88,9 @@ const Role = () => {
               '&::-webkit-scrollbar': {
                 width: '10px',
               },
+              '&::-webkit-scrollbar-button': {
+                display: 'none',
+              },
               paddingBottom: '20px',
             }}
           >

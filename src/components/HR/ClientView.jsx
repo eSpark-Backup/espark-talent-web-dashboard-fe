@@ -1,6 +1,6 @@
 'use client';
 import { allEmployees } from '@/src/constants/AllEmployee';
-import { Grid, Menu, MenuItem, Typography } from '@mui/material';
+import { Grid, Menu, MenuItem, Typography, useMediaQuery } from '@mui/material';
 import { Box, useTheme } from '@mui/system';
 import Image from 'next/image';
 import React, { useState } from 'react';
@@ -12,6 +12,9 @@ const ClientView = ({ status, id, name, designation = '', search }) => {
   const router = useRouter();
   const [anchorEl, setAnchorEl] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
+  const isBetween1400And1200 = useMediaQuery(
+    '(min-width: 1200px) and (max-width: 1400px)'
+  );
 
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -239,7 +242,14 @@ const ClientView = ({ status, id, name, designation = '', search }) => {
             }
           })
           .map((eachItem, index) => (
-            <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              md={4}
+              lg={isBetween1400And1200 ? 4 : 3}
+              key={index}
+            >
               <Box
                 sx={{
                   width: '100%',
@@ -251,7 +261,6 @@ const ClientView = ({ status, id, name, designation = '', search }) => {
                   cursor: 'pointer',
                   '@media (min-width: 900px) and (max-width: 1480px)': {
                     minHeight: '250px',
-                    width: 'calc(25%-33px)',
                   },
                 }}
                 onClick={() =>
@@ -337,24 +346,9 @@ const ClientView = ({ status, id, name, designation = '', search }) => {
 
                   <Box
                     sx={{
-                      // display: 'flex',
                       width: '30px',
-                      // marginLeft: '20px',
                     }}
                   >
-                    {/* <Box
-                      component="img"
-                      src="/icons/ellipse.svg"
-                      sx={{
-                        width: '20px',
-                        height: '20px',
-                        maxWidth: '100% ',
-                        // '@media (min-width: 900px) and (max-width: 1370px)': {
-                        //   width: '40px',
-                        // },
-                      }}
-                      onClick={handleClick}
-                    /> */}
                     <Image
                       width={20}
                       height={20}

@@ -56,7 +56,7 @@ const AppConfirmationMadal = ({
                 lineHeight: '17px',
                 letterSpacing: '0em',
                 textAlign: 'left',
-                '@media(min-width:280px) and (max-width:350px)': {
+                '@media(min-width:280px) and (max-width:390px)': {
                   fontSize: '11px',
                 },
               }}

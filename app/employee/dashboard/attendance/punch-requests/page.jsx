@@ -91,11 +91,11 @@ const Dashboard = () => {
             onClose={handleCloseModal}
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
+            data-aos="fade-down"
             sx={{
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              // height: { xs: '950px', md: '890px' },
             }}
           >
             <PunchRequestModal
@@ -304,6 +304,7 @@ const Dashboard = () => {
         onClose={handleClosePunch}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
+        data-aos="fade-down"
         sx={{
           display: 'flex',
           alignItems: 'center',

@@ -1,12 +1,13 @@
+import React from 'react';
 import Image from 'next/image';
-import AppCustomDropdown from '../dashboard/appCustomDropdown';
 import { Box, Typography } from '@mui/material';
+import Link from 'next/link';
+
+import AppCustomDropdown from '../dashboard/appCustomDropdown';
 import { toCamelCase } from '@/src/utils/stringModification';
 import { trackingStatusTypes } from '@/src/constants/data/tables/timeTracking';
 import AppTableInfoOptionsCell from './AppTableInfoOptionsCell';
-import Link from 'next/link';
 import { modulepermissionColumn } from '@/src/constants/data/tables/modulePermission';
-import React from 'react';
 
 const renderAssigneeCell = (row, col, commonCellStyle) => {
   const [avatar, name, subtitle] = row.assignee;
@@ -111,6 +112,7 @@ const renderActions = (
         />
       </td>
     );
+    // }
   }
   return (
     <td key={col.index} style={{ ...commonCellStyle, flex: col?.flex || 1 }}>
@@ -145,9 +147,41 @@ const renderCheckActions = (
   col,
   handleClickActionView,
   colIndex,
-  rowIndex
+  rowIndex,
+  commonCellStyle
 ) => {
-  if (row?.isModulePermissionData) {
+  if (row?.isPolicyData) {
+    if (row?.isModulePermissionData) {
+      return (
+        <td
+          key={colIndex}
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            fontSize: '12px',
+            flex: col?.flex || 1,
+          }}
+        >
+          <Image
+            onClick={() => {
+              handleClickActionView(row?.id, col || col?.title);
+            }}
+            style={{
+              margin: rowIndex === 1 && '0 5px',
+              cursor: 'pointer',
+            }}
+            width={30}
+            height={30}
+            alt="Icon"
+            src={`/icons/${
+              row[toCamelCase(col || col?.title)][2] === true
+                ? 'EnabledCheck'
+                : 'DisabledCheck'
+            }.svg`}
+          />
+        </td>
+      );
+    }
     return (
       <td
         key={colIndex}
@@ -160,51 +194,57 @@ const renderCheckActions = (
       >
         <Image
           onClick={() => {
-            handleClickActionView(row?.id, col || col?.title);
+            handleClickActionView(row?.id);
           }}
           style={{
             margin: rowIndex === 1 && '0 5px',
             cursor: 'pointer',
           }}
-          width={30}
-          height={30}
+          width={25}
+          height={25}
           alt="Icon"
           src={`/icons/${
-            row[toCamelCase(col || col?.title)][2] === true
-              ? 'EnabledCheck'
-              : 'DisabledCheck'
+            row?.isSelected ? row?.action[1] : row?.action[0]
           }.svg`}
+          // src={`/icons/${
+          //   (row?.isSelected && row?.action && row?.action[1]) ||
+          //   row?.action[0] ||
+          //   ''
+          // }.svg`}
         />
       </td>
     );
-  }
-  return (
-    <td
-      key={colIndex}
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        fontSize: '12px',
-        flex: col?.flex || 1,
-      }}
-    >
-      <Image
-        onClick={() => {
-          handleClickActionView(row?.id);
-        }}
+  } else {
+    return (
+      <td
+        key={col.index}
         style={{
-          margin: rowIndex === 1 && '0 5px',
-          cursor: 'pointer',
+          ...commonCellStyle,
+          flex: col?.flex || 1,
+          justifyContent: col?.textAlign || 'center',
         }}
-        width={25}
-        height={25}
-        alt="Icon"
-        src={`/icons/${row?.isSelected ? row?.action[1] : row?.action[0]}.svg`}
-      />
-    </td>
-  );
+      >
+        {col.title?.toLowerCase() === 'employee invoices' ||
+        col.title?.toLowerCase() === 'other invoices' ? (
+          row[toCamelCase(col?.title || col)] === null ? (
+            '-'
+          ) : (
+            <Link
+              href="/hr/dashboard/clients/client-profile"
+              style={{ textDecoration: 'underline', cursor: 'pointer' }}
+            >
+              {row[toCamelCase(col?.title || col)]}
+            </Link>
+          )
+        ) : row[toCamelCase(col?.title || col)] === null ? (
+          '-'
+        ) : (
+          row[toCamelCase(col?.title || col)]
+        )}
+      </td>
+    );
+  }
 };
-
 const renderAttendenceStatus = (statusType, index) => {
   const status = trackingStatusTypes?.find(
     ({ shortForm }) => shortForm === statusType
@@ -370,7 +410,6 @@ export const renderCellContent = (
       }
     case 'Client':
     case 'Employee':
-      // if (policyData?.includes(col)) {
       return renderCheckActions(
         row,
         col,
@@ -378,12 +417,9 @@ export const renderCellContent = (
         commonCellStyle,
         colIndex,
         rowIndex,
-        handleClickActionDelete
+        handleClickActionDelete,
+        commonCellStyle
       );
-
-    //  else {
-    //   return null;
-    // }
 
     case 'Action':
       return renderActions(

@@ -94,6 +94,7 @@ const AttendanceReport = () => {
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
+        data-aos="fade-down"
         sx={{
           display: 'flex',
           alignItems: 'center',

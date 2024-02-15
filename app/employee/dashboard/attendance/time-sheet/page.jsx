@@ -293,6 +293,7 @@ const Dashboard = () => {
         </Box>
       </Grid>
       <Modal
+        data-aos="fade-down"
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"

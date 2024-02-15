@@ -272,7 +272,7 @@ const Dashboard = () => {
                 <Box
                   sx={{
                     width: `${
-                      getPercentage('08:15:35') < 100
+                      getPercentage('08:15:35') < 35
                         ? getPercentage('08:15:35')
                         : 100
                     }%`,
@@ -282,7 +282,7 @@ const Dashboard = () => {
                 ></Box>
                 <Box
                   sx={{
-                    width: `${100 - getPercentage('08:15:35')}%`,
+                    width: `${130 - getPercentage('08:15:35')}%`,
                     background: '#F5F5F5',
                     height: '100%',
                   }}
@@ -694,7 +694,7 @@ const Dashboard = () => {
                 height: '70px',
                 borderRadius: '10px 10px 0px 0px',
                 borderBottom: '1px solid #E4E4E4',
-                background: '#FFF',
+                background: '#fff',
               }}
             >
               <Typography
@@ -717,7 +717,9 @@ const Dashboard = () => {
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-                paddingBottom: '60px',
+                paddingBottom: { xs: '100px', md: '60px' },
+                paddingTop: { xs: '46px', md: '0px' },
+                // paddingBottom: { xs: '46px', md: '0px' },
               }}
             >
               <Clock />

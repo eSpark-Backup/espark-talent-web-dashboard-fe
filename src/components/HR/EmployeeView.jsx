@@ -13,6 +13,9 @@ const EmployeeView = ({ status, id, name, designation, search }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const [isOpen, setIsOpen] = useState(false);
+  const isBetween1400And1200 = useMediaQuery(
+    '(min-width: 1200px) and (max-width: 1400px)'
+  );
   const router = useRouter();
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -235,7 +238,14 @@ const EmployeeView = ({ status, id, name, designation, search }) => {
             }
           })
           .map((eachItem, index) => (
-            <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              md={4}
+              lg={isBetween1400And1200 ? 4 : 3}
+              key={index}
+            >
               <Box
                 sx={{
                   width: '100%',
