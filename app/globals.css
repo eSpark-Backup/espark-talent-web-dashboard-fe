@@ -42,6 +42,9 @@
   /* flex: 1; */
   font-size: 12px;
 }
+  ::-webkit-scrollbar-button {
+    width: 0px;
+  }
 .app-table-row {
   background-color: #f6f6f6;
   margin-bottom: 10px;
@@ -114,7 +117,25 @@
   position: relative;
   cursor: pointer;
 }
+.scrollbar-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #f6f6f6 #d9d9d9;
+  scrollbar-gutter: both;
+}
 
+.scrollbar-container::-webkit-scrollbar {
+  width: 10px;
+}
+.scrollbar-container::-webkit-scrollbar-button:vertical:start:increment,
+.scrollbar-container::-webkit-scrollbar-button:vertical:end:decrement {
+  display: none !important;
+  width: 0px;
+  height: 0px;
+}
 .selected-dropdown::before {
   content: '';
   position: absolute;

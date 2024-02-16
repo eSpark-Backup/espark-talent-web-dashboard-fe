@@ -13,7 +13,7 @@ const PasswordSection = ({ User_Password, handleData }) => {
       >
         <Typography
           variant="body2"
-          sx={{ color: '#171717', fontWeight: '400' }}
+          sx={{ color: '#171717', fontWeight: '500' }}
         >
           {User_Password?.title}
         </Typography>

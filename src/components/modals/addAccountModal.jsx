@@ -60,7 +60,29 @@ const AddAccountModal = ({ open, onClose, handleAdd }) => {
         const context = canvas.getContext('2d');
         canvas.width = 30;
         canvas.height = 30;
-        context.drawImage(imageElement, 0, 0, 50, 50);
+        const borderRadiusPercentage = 50;
+        const borderRadius = (canvas.width * borderRadiusPercentage) / 100;
+        context.beginPath();
+        context.moveTo(borderRadius, 0);
+        context.arcTo(
+          canvas.width,
+          0,
+          canvas.width,
+          canvas.height,
+          borderRadius
+        );
+        context.arcTo(
+          canvas.width,
+          canvas.height,
+          0,
+          canvas.height,
+          borderRadius
+        );
+        context.arcTo(0, canvas.height, 0, 0, borderRadius);
+        context.arcTo(0, 0, canvas.width, 0, borderRadius);
+        context.closePath();
+        context.clip();
+        context.drawImage(imageElement, 0, 0, canvas.width, canvas.height);
         const resizedImageUrl = canvas.toDataURL();
         handleAdd({
           ...formValues,
@@ -71,7 +93,6 @@ const AddAccountModal = ({ open, onClose, handleAdd }) => {
         });
       };
     },
-
     validateOnChange: false,
     validateOnBlur: false,
   });

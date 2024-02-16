@@ -206,11 +206,6 @@ const renderCheckActions = (
           src={`/icons/${
             row?.isSelected ? row?.action[1] : row?.action[0]
           }.svg`}
-          // src={`/icons/${
-          //   (row?.isSelected && row?.action && row?.action[1]) ||
-          //   row?.action[0] ||
-          //   ''
-          // }.svg`}
         />
       </td>
     );
