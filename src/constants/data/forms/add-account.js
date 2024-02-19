@@ -1,12 +1,12 @@
 export const accountForm = [
   {
     title: 'Acount name',
-    placeholder: 'Enter  name',
-    name: 'accountName',
+    placeholder: 'Enter name',
+    name: 'accounts',
   },
   {
     title: 'Email',
-    placeholder: 'Enter  email',
+    placeholder: 'Enter email',
     name: 'email',
   },
   {

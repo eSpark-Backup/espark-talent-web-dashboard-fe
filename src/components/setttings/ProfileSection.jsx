@@ -1,10 +1,26 @@
 import * as React from 'react';
-
 import Box from '@mui/material/Box';
 import Image from 'next/image';
 import { Button, TextField, Typography } from '@mui/material';
 
-export default function ProfileSection({ Profile_Edit_Section, User_Detail }) {
+const ProfileSection = ({ Profile_Edit_Section, User_Detail, handleData }) => {
+  const fileInputRef = React.useRef(null);
+
+  const handleFileInputChange = (event) => {
+    // const file = event.target.files[0];
+    const name = event.target.name;
+    const file = event.target.files[0];
+    handleData(name, file);
+  };
+
+  const handleButtonClick = () => {
+    fileInputRef.current.click();
+  };
+  const handleChangeInput = (label, value) => {
+    const fieldName = `${label}`;
+    handleData(fieldName, value);
+  };
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Box sx={{ mb: 2 }}>
@@ -21,7 +37,15 @@ export default function ProfileSection({ Profile_Edit_Section, User_Detail }) {
             height={50}
             alt={Profile_Edit_Section?.alt}
           />
+          <input
+            type="file"
+            style={{ display: 'none' }}
+            ref={fileInputRef}
+            onChange={handleFileInputChange}
+          />
           <Button
+            type="file"
+            onClick={handleButtonClick}
             sx={{
               width: '160px',
               height: '40px',
@@ -108,6 +132,9 @@ export default function ProfileSection({ Profile_Edit_Section, User_Detail }) {
                       width: '100%',
                     },
                   }}
+                  onChange={(event) =>
+                    handleChangeInput(item?.label, event.target.value)
+                  }
                 />
               </Box>
               {item?.label !== 'Email' ? (
@@ -145,4 +172,5 @@ export default function ProfileSection({ Profile_Edit_Section, User_Detail }) {
       </Box>
     </Box>
   );
-}
+};
+export default ProfileSection;

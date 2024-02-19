@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, Button, Grid, Modal, Typography } from '@mui/material';
 import { useFormik } from 'formik';
 
@@ -8,6 +8,7 @@ import { assetForm } from '@/src/constants/data/forms/asset-form';
 import { assetFormSchema } from '../form/schemas/assetForm';
 
 const AssetForm = ({ onClose, open }) => {
+  const [formData, setFormData] = useState({});
   const {
     handleSubmit,
     values,
@@ -26,6 +27,12 @@ const AssetForm = ({ onClose, open }) => {
     validateOnChange: false,
     validateOnBlur: false,
   });
+  const handleData = (name, value) => {
+    setFormData({ ...formData, [name]: value });
+  };
+  useEffect(() => {
+    console.log('form', formData);
+  }, [formData]);
   return (
     <Modal
       open={open}
@@ -127,6 +134,7 @@ const AssetForm = ({ onClose, open }) => {
                       md={12}
                       lg={12}
                       fields={fields}
+                      handleData={handleData}
                     />
                   </Grid>
                   {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>}

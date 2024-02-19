@@ -1,7 +1,11 @@
 import React from 'react';
 import { Box, Button, TextField, Typography } from '@mui/material';
 
-const PasswordSection = ({ User_Password }) => {
+const PasswordSection = ({ User_Password, handleData }) => {
+  const handleChangeInput = (label, value) => {
+    const fieldName = `${label}`;
+    handleData(fieldName, value);
+  };
   return (
     <>
       <Box
@@ -40,6 +44,9 @@ const PasswordSection = ({ User_Password }) => {
                 '@media (max-width: 562px)': {
                   width: '100%',
                 },
+              }}
+              onChange={(event) => {
+                handleChangeInput(item?.label, event.target.value);
               }}
             />
           </Box>

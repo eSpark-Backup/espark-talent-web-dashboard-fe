@@ -38,7 +38,7 @@ export const contractFormHrPortal = [
   },
   {
     title: 'Employee ID',
-    placeholder: 'Enter client Id',
+    placeholder: 'Enter employee Id',
     name: 'employeeId',
   },
   {

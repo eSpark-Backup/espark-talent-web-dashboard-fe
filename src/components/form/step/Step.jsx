@@ -1,7 +1,9 @@
-import FormInput from '@/src/components/form/ui-elements/FormInput';
-import { Box, Button, Grid, Typography } from '@mui/material';
 import React from 'react';
+import { Box, Button, Grid, Typography } from '@mui/material';
+
+import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { useFormik } from 'formik';
+import { FORM_DATA } from '@/src/constants/form';
 
 const Step = ({
   handleGoPrev,
@@ -14,6 +16,7 @@ const Step = ({
   isLastStep,
   countries,
   mt,
+  handleData,
 }) => {
   const {
     handleSubmit,
@@ -49,6 +52,7 @@ const Step = ({
     console.log({ values, errors });
     handleGoPrev();
   };
+
   if (isMultiColumn)
     return (
       <form onSubmit={handleSubmit}>
@@ -128,6 +132,7 @@ const Step = ({
                             errors={errors}
                             setErrors={setErrors}
                             values={values}
+                            handleData={handleData}
                           />
                         )
                       )}
@@ -157,14 +162,14 @@ const Step = ({
                 }}
                 variant="outlined"
               >
-                Back
+                {FORM_DATA?.back}
               </Button>
               <Button
                 type="submit"
                 sx={{ minWidth: { xs: '100%', sm: '120px' } }}
                 variant="contained"
               >
-                Next
+                {FORM_DATA?.next}
               </Button>
             </Box>
           </Grid>
@@ -218,6 +223,7 @@ const Step = ({
               lg={col}
               countries={countries}
               searchable={searchable}
+              handleData={handleData}
             />
           )
         )}
@@ -265,6 +271,7 @@ const Step = ({
                 type="submit"
                 sx={{ minWidth: { xs: '100%', sm: '120px' } }}
                 variant="contained"
+                // onClick={handleData}
               >
                 {isLastStep ? 'Submit' : 'Next'}
               </Button>

@@ -1,11 +1,13 @@
+import React, { useEffect, useState } from 'react';
+import { Box, Button, Grid, Modal, Typography } from '@mui/material';
+
 import { uploadInvoiceFormSchema } from '@/src/components/form/schemas/uploadInvoice';
 import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { uploadInvoiceForm } from '@/src/constants/data/forms/upload-invoice';
-import { Box, Button, Grid, Modal, Typography } from '@mui/material';
 import { useFormik } from 'formik';
-import React from 'react';
 
 const UploadInvoiceModal = ({ open, onClose, title }) => {
+  const [formData, setFormData] = useState({});
   const {
     handleSubmit,
     values,
@@ -21,7 +23,6 @@ const UploadInvoiceModal = ({ open, onClose, title }) => {
     enableReinitialize: true,
     onSubmit: (formValues) => {
       console.log({ formValues });
-      //   handleGoNext();
     },
     validateOnChange: false,
     validateOnBlur: false,
@@ -30,6 +31,12 @@ const UploadInvoiceModal = ({ open, onClose, title }) => {
     handleReset();
     onClose();
   };
+  const handleData = (name, value) => {
+    setFormData({ ...formData, [name]: value });
+  };
+  useEffect(() => {
+    console.log('form', formData);
+  }, [formData]);
   return (
     <Modal
       open={open}
@@ -133,6 +140,7 @@ const UploadInvoiceModal = ({ open, onClose, title }) => {
                       nested={nested}
                       lg={12}
                       fields={fields}
+                      handleData={handleData}
                     />
                   </Grid>
                   {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>}

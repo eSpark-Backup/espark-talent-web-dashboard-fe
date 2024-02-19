@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
 import { Box } from '@mui/material';
+
 import AppTable from '../appTable/AppTable';
-import {
-  accountColumn,
-  accountData,
-} from '@/src/constants/data/tables/hr/account';
+import { accountColumn } from '@/src/constants/data/tables/hr/account';
 import AppConfirmationMadal from '../modals/AppConfirmationMadal';
 import { CONTRACT_SIGNED } from '@/src/constants/contractSigned';
 
-const Accounts = () => {
+const Accounts = ({ accountDataState }) => {
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
   const handleClickActionDelete = () => {
     setIsOpenDeleteModal(true);
@@ -26,7 +24,7 @@ const Accounts = () => {
     >
       <AppTable
         column={accountColumn}
-        data={accountData}
+        data={accountDataState}
         handleClickActionDelete={handleClickActionDelete}
       />
       <AppConfirmationMadal
