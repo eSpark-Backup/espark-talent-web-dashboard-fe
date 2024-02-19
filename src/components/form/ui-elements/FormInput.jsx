@@ -89,10 +89,7 @@ const FormInput = ({
     setFieldValue?.(field, value);
     handleData(field, value);
   };
-  // const handleImage = (event) => {
-  //   const file = event.target.files[0];
-  //   setImageUrl(URL.createObjectURL(file));
-  // };
+
   const handleChangeFileInput = (field, value) => {
     console.log('test', name, value);
     const tempErrors = { ...errors };
@@ -514,7 +511,6 @@ const FormInput = ({
                 background: '#FFF',
                 display: type === 'file' && 'none',
               }}
-              // value={modalData?.row?.email || modalData?.row?.password}
               value={
                 name === 'emailCredential'
                   ? modalData?.row?.email || ''
@@ -536,7 +532,6 @@ const FormInput = ({
                   handleChangeInput(name, e?.target?.value);
                 }
               }}
-              // value={type !== 'file' ? value : null}
               accept=".png"
             />
             {suffixIcon && (
@@ -570,7 +565,6 @@ const FormInput = ({
                   }}
                 >
                   <Image
-                    // src={`/images/hiring/${suffixIconInside}.svg`}
                     src={imageSrc}
                     width={50}
                     height={50}

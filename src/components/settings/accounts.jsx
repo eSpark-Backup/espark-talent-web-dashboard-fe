@@ -14,7 +14,6 @@ const Accounts = ({ accountDataState, handleAdd }) => {
   const handleCrendentialModal = (rowData) => {
     setModalData(rowData);
     setOpen(true);
-    console.log('row', rowData);
   };
   const handleOpenModal = () => {
     setOpen(true);

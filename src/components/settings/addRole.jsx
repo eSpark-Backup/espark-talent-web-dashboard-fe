@@ -116,8 +116,6 @@ const Role = () => {
             sx={{
               maxWidth: '100%',
               overflowX: 'auto',
-              scrollbarWidth: 'thin',
-              scrollbarColor: 'transparent transparent',
               '&::-webkit-scrollbar': {
                 display: 'none',
               },
@@ -126,7 +124,6 @@ const Role = () => {
             <AppTable
               column={modulepermissionColumn}
               data={modalStep1FormTableState}
-              minWidth="100%"
               handleClickActionView={handleSelectRow}
               noPagination
             />

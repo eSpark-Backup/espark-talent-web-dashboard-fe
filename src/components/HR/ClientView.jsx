@@ -1,12 +1,14 @@
 'use client';
-import { allEmployees } from '@/src/constants/AllEmployee';
+import React, { useState } from 'react';
+import Image from 'next/image';
 import { Grid, Menu, MenuItem, Typography, useMediaQuery } from '@mui/material';
 import { Box, useTheme } from '@mui/system';
-import Image from 'next/image';
-import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
+
+import { allEmployees } from '@/src/constants/AllEmployee';
 import AppConfirmationMadal from '../modals/AppConfirmationMadal';
 import { REMOVE_MODAL } from '@/src/constants/contractSigned';
+import { CLIENT_VIEW } from '@/src/constants/ClientProfile';
 
 const ClientView = ({ status, id, name, designation = '', search }) => {
   const router = useRouter();
@@ -193,7 +195,7 @@ const ClientView = ({ status, id, name, designation = '', search }) => {
                       },
                     }}
                   >
-                    No User Found
+                    {CLIENT_VIEW?.noUserFound}
                   </Typography>
                 )}
               </Grid>
@@ -213,7 +215,7 @@ const ClientView = ({ status, id, name, designation = '', search }) => {
             },
           }}
         >
-          No User Found
+          {CLIENT_VIEW?.noUserFound}
         </Typography>
       );
     }
@@ -270,13 +272,11 @@ const ClientView = ({ status, id, name, designation = '', search }) => {
                 <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                   <Box
                     sx={{
-                      // width: '65px',
                       display: 'flex',
                       columnGap: '5px',
                       height: '20px',
                       justifyContent: 'center',
                       alignItems: 'center',
-                      // background: 'skyblue',
                     }}
                   >
                     <Box
@@ -301,13 +301,10 @@ const ClientView = ({ status, id, name, designation = '', search }) => {
 
                   <Box
                     sx={{
-                      // width: '60%',
                       display: 'flex',
                       justifyContent: 'center',
                       alignItems: 'center',
                       flexDirection: 'column',
-                      // background: 'gray',
-                      // rowGap: '5px',
                       '@media (min-width: 1200px) and (max-width: 1450px)': {
                         marginTop: '25px',
                         mr: '35px',
@@ -378,14 +375,14 @@ const ClientView = ({ status, id, name, designation = '', search }) => {
                           router.push('/hr/dashboard/clients/add-client')
                         }
                       >
-                        Active
+                        {CLIENT_VIEW?.active}
                       </MenuItem>
                       <MenuItem
                         onClick={() =>
                           router.push('/hr/dashboard/clients/add-client')
                         }
                       >
-                        Inactive
+                        {CLIENT_VIEW?.inActive}
                       </MenuItem>
                     </Menu>
                   </Box>

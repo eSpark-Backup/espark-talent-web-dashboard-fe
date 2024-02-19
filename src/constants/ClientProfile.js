@@ -12,3 +12,9 @@ export const CLIENTPROFILE = {
   clientId: ' Client ID:',
   profile: ' Profile',
 };
+
+export const CLIENT_VIEW = {
+  noUserFound: 'No User Found',
+  active: ' Active',
+  inActive: 'Inactive',
+};

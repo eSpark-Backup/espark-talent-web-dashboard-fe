@@ -1,27 +1,27 @@
 export const modulepermissionColumn = [
   {
     title: 'Module permission',
-    flex: 2,
+    flex: 1,
   },
   {
     title: 'Write',
-    flex: 2,
+    flex: 1,
   },
   {
     title: 'Read',
-    flex: 2,
+    flex: 1,
   },
   {
     title: 'Create',
-    flex: 2,
+    flex: 1,
   },
   {
     title: 'Delete',
-    flex: 2,
+    flex: 1,
   },
   {
     title: 'Download',
-    flex: 2,
+    flex: 1,
   },
 ];
 

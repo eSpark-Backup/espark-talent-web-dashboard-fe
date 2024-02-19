@@ -7,31 +7,14 @@ import { accountInfoSchema } from '../form/schemas/addAccount';
 import { accountForm } from '@/src/constants/data/forms/add-account';
 import { SETTING } from '@/src/constants/SettingHr';
 import { FORM_DATA } from '@/src/constants/form';
+import { generateString } from '@/src/utils/genericAccountsId';
 
 const AddAccountModal = ({ open, onClose, handleAdd }) => {
   const [formData, setFormData] = useState({});
-  function generateString() {
-    const characters =
-      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    let result = '';
-    const sections = [4, 7, 2];
-    const totalLength = 15;
-    let currentLength = 0;
-
-    for (let i = 0; i < sections.length; i++) {
-      for (let j = 0; j < sections[i]; j++) {
-        result += characters.charAt(
-          Math.floor(Math.random() * characters.length)
-        );
-        currentLength++;
-      }
-      if (currentLength < totalLength) {
-        result += '-';
-        currentLength++;
-      }
-    }
-    return result;
-  }
+  const handleGenericString = () => {
+    const generateId = generateString();
+    return generateId;
+  };
   const {
     handleSubmit,
     values,
@@ -84,12 +67,13 @@ const AddAccountModal = ({ open, onClose, handleAdd }) => {
         context.clip();
         context.drawImage(imageElement, 0, 0, canvas.width, canvas.height);
         const resizedImageUrl = canvas.toDataURL();
+        const id = handleGenericString();
         handleAdd({
           ...formValues,
           pic: resizedImageUrl,
           action: ['Delete', 'View'],
           actionStatus: true,
-          id: generateString(),
+          id: id,
         });
       };
     },
@@ -218,7 +202,6 @@ const AddAccountModal = ({ open, onClose, handleAdd }) => {
                       handleData={handleData}
                     />
                   </Grid>
-                  {/* {formIndex % 2 === 0 && <Grid item xs={12} lg={1.6}></Grid>} */}
                 </>
               )
             )}
