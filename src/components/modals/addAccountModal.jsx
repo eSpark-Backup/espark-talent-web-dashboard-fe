@@ -8,6 +8,7 @@ import { accountForm } from '@/src/constants/data/forms/add-account';
 import { SETTING } from '@/src/constants/SettingHr';
 import { FORM_DATA } from '@/src/constants/form';
 import { generateString } from '@/src/utils/genericAccountsId';
+import { processImage } from '@/src/utils/imageUrl';
 
 const AddAccountModal = ({ open, onClose, handleAdd }) => {
   const [formData, setFormData] = useState({});
@@ -28,57 +29,20 @@ const AddAccountModal = ({ open, onClose, handleAdd }) => {
     initialValues: {},
     validationSchema: accountInfoSchema,
     enableReinitialize: true,
-    onSubmit: async (formValues) => {
-      console.log({ formValues });
-      let imageUrl = '';
-      if (formValues.upload) {
-        imageUrl = URL.createObjectURL(formValues.upload);
-      } else {
-        imageUrl = '/images/users/default-image.svg';
-      }
-      const imageElement = new Image();
-      imageElement.src = imageUrl;
-      imageElement.onload = () => {
-        const canvas = document.createElement('canvas');
-        const context = canvas.getContext('2d');
-        canvas.width = 30;
-        canvas.height = 30;
-        const borderRadiusPercentage = 50;
-        const borderRadius = (canvas.width * borderRadiusPercentage) / 100;
-        context.beginPath();
-        context.moveTo(borderRadius, 0);
-        context.arcTo(
-          canvas.width,
-          0,
-          canvas.width,
-          canvas.height,
-          borderRadius
-        );
-        context.arcTo(
-          canvas.width,
-          canvas.height,
-          0,
-          canvas.height,
-          borderRadius
-        );
-        context.arcTo(0, canvas.height, 0, 0, borderRadius);
-        context.arcTo(0, 0, canvas.width, 0, borderRadius);
-        context.closePath();
-        context.clip();
-        context.drawImage(imageElement, 0, 0, canvas.width, canvas.height);
-        const resizedImageUrl = canvas.toDataURL();
-        const id = handleGenericString();
-        handleAdd({
-          ...formValues,
-          pic: resizedImageUrl,
-          action: ['Delete', 'View'],
-          actionStatus: true,
-          id: id,
-        });
-      };
-    },
     validateOnChange: false,
     validateOnBlur: false,
+    onSubmit: async (formValues) => {
+      console.log({ formValues });
+      const resizedImageUrl = await processImage(formValues.upload);
+      const id = handleGenericString();
+      handleAdd({
+        ...formValues,
+        pic: resizedImageUrl,
+        action: ['Delete', 'View'],
+        actionStatus: true,
+        id: id,
+      });
+    },
   });
   const handleCloseModal = () => {
     handleReset();
