@@ -198,7 +198,18 @@ const Page = () => {
                 >
                   <Button
                     variant="contained"
-                    sx={{ maxWidth: { xs: '100%', md: '200px' } }}
+                    sx={{
+                      maxWidth: {
+                        xs: '100%',
+                        md: '200px',
+                        color: '#fff',
+                        background: '#029894',
+                        '&:hover': {
+                          color: '#fff',
+                          background: '#029894',
+                        },
+                      },
+                    }}
                   >
                     {employeeProfileData?.downloadResume}
                   </Button>

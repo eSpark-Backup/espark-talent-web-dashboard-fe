@@ -137,8 +137,16 @@ const Role = () => {
           >
             <Button
               type="submit"
-              sx={{ minWidth: '120px', fontSize: '16px' }}
-              variant="contained"
+              sx={{
+                minWidth: '120px',
+                fontSize: '16px',
+                backgroundColor: '#029894',
+                color: '#fff',
+                '&:hover': {
+                  backgroundColor: '#029894',
+                  color: '#fff',
+                },
+              }}
             >
               {SETTING?.save}
             </Button>

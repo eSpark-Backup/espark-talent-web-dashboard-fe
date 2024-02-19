@@ -9,5 +9,10 @@ export const PUNCH_IN = {
   save: 'Save',
   close: 'Close',
   view: 'View',
+  markCheckIn: 'Mark check in',
+  markCheckOut: 'Mark check out',
+  markBreakout: 'Mark break out',
+  checkIn: 'Check In',
+  checkOut: 'Check Out',
 };
 export const PUNCH_TYPE = ['Check in', 'Check out'];

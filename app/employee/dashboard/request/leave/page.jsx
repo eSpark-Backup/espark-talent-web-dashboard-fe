@@ -19,6 +19,7 @@ import LeaveViewModal from '@/app/client/dashboard/team/time-off/LeaveViewModal'
 import AppTable from '@/src/components/appTable/AppTable';
 import FilterModal from '@/src/components/FilterModal/filterModal';
 import AppConfirmationMadal from '@/src/components/modals/AppConfirmationMadal';
+import { REQUEST_LEAVE } from '@/src/constants/requestviewModal';
 
 const Dashboard = () => {
   const [open, setOpen] = useState(false);
@@ -128,7 +129,7 @@ const Dashboard = () => {
                     }}
                     variant="caption"
                   >
-                    Manage Leaves from one place.
+                    {REQUEST_LEAVE?.manageLeave}
                   </Typography>
                 </Box>
               </Box>
@@ -136,11 +137,18 @@ const Dashboard = () => {
                 sx={{
                   minWidth: { xs: '100px', md: '120px' },
                   marginBottom: '25px',
+                  marginX: '10px',
+                  color: '#fff',
+                  background: '#029894',
+                  '&:hover': {
+                    color: '#fff',
+                    background: '#029894',
+                  },
                 }}
                 variant="contained"
                 onClick={handleOpenModal}
               >
-                Create
+                {REQUEST_LEAVE?.create}
               </Button>
               {openModal && (
                 <Modal
@@ -187,7 +195,7 @@ const Dashboard = () => {
                     }}
                     variant="caption"
                   >
-                    Balance
+                    {REQUEST_LEAVE?.balance}
                   </Typography>
                   <Button
                     sx={{
@@ -208,7 +216,7 @@ const Dashboard = () => {
                       />
                     }
                   >
-                    Refresh
+                    {REQUEST_LEAVE?.refresh}
                   </Button>
                 </Box>
                 <AppTable
@@ -249,7 +257,7 @@ const Dashboard = () => {
                     color: '#595959',
                   }}
                 >
-                  Requests
+                  {REQUEST_LEAVE?.request}
                 </Typography>
               </Box>
             </Box>
@@ -361,7 +369,7 @@ const Dashboard = () => {
                           />
                         }
                       >
-                        Refresh
+                        {REQUEST_LEAVE?.refresh}
                       </Button>
                       <Button
                         sx={{
@@ -383,7 +391,7 @@ const Dashboard = () => {
                           />
                         }
                       >
-                        Filter
+                        {REQUEST_LEAVE?.filter}
                       </Button>
                     </Box>
                   </Box>

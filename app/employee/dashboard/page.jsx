@@ -9,14 +9,12 @@ import Clock from '@/src/components/AtttendanceSummary/Clock';
 import { Clock_Title } from '@/src/constants/employeeDashboard';
 import Image from 'next/image';
 import { DASHBOARD_DATA } from '@/public/images/dashboard/constants/Dashboard';
+import { PUNCH_IN } from '@/src/constants/punchIn/createPunch';
 
 const Dashboard = () => {
   function timeToSeconds(time) {
     console.log({ time });
-    // Split the input time into hours, minutes, and seconds
     const [hours, minutes, seconds] = time.split(':').map(Number);
-
-    // Calculate the total seconds
     const totalSeconds = hours * 3600 + minutes * 60 + seconds;
 
     return totalSeconds;
@@ -30,7 +28,6 @@ const Dashboard = () => {
   };
   const getPercentage1 = (time, totalHours = 9) => {
     const totalSeconds = totalHours * 3600;
-    // const currentSeconds = timeToSeconds(time);
     const spentPercentage = (time / totalSeconds) * 100;
     return Math.round(spentPercentage);
   };
@@ -94,7 +91,6 @@ const Dashboard = () => {
       title: 'Check out',
       time: '10:00 AM',
     },
-    // Add more items as needed
   ];
 
   return (
@@ -163,7 +159,7 @@ const Dashboard = () => {
                   lineHeight: 'normal',
                 }}
               >
-                Check in
+                {PUNCH_IN?.checkIn}
               </Typography>
 
               <Box display={'flex'} alignItems={'center'}>
@@ -218,7 +214,7 @@ const Dashboard = () => {
                   lineHeight: 'normal',
                 }}
               >
-                Check out
+                {PUNCH_IN?.checkOut}
               </Typography>
               <Box display={'flex'} alignItems={'center'}>
                 <Image
@@ -259,9 +255,7 @@ const Dashboard = () => {
               <Box
                 sx={{
                   height: '50px',
-                  // background:"#ccc",
                   mx: { xs: 3, sm: 3, lg: 3 },
-                  // my: '30px',
                   border: 'solid 1px #ccc',
                   borderRadius: '5px',
                   position: 'relative',
@@ -324,6 +318,10 @@ const Dashboard = () => {
                     p: '10px',
                     width: '100%',
                     height: '50px',
+                    '&:hover': {
+                      color: '#068987',
+                      background: '#fff',
+                    },
                   }}
                 >
                   <Typography
@@ -338,13 +336,12 @@ const Dashboard = () => {
                       textTransform: 'math-auto',
                     }}
                   >
-                    Mark check in
+                    {PUNCH_IN?.markCheckIn}
                   </Typography>
                 </Button>
               </Grid>
               <Grid item xs={12} md={6} lg={6} xl={6}>
                 <Button
-                  variant="contained"
                   sx={{
                     display: 'flex',
                     justifyContent: 'center',
@@ -352,6 +349,12 @@ const Dashboard = () => {
                     p: '10px',
                     width: '100%',
                     height: '50px',
+                    color: '#fff',
+                    background: '#068987',
+                    '&:hover': {
+                      color: '#fff',
+                      background: '#068987',
+                    },
                   }}
                 >
                   <Typography
@@ -366,7 +369,7 @@ const Dashboard = () => {
                       textTransform: 'math-auto',
                     }}
                   >
-                    Mark check out
+                    {PUNCH_IN?.markCheckOut}
                   </Typography>
                 </Button>
               </Grid>
@@ -375,13 +378,10 @@ const Dashboard = () => {
               <Box
                 sx={{
                   height: '50px',
-                  // background:"#ccc",
                   mx: { xs: 3, sm: 3, lg: 3 },
                   my: { xs: 0, md: '30px' },
-                  // border: "solid 1px #ccc",
                   borderRadius: '5px',
                   position: 'relative',
-                  // overflow: "hidden"
                 }}
                 display={'flex'}
               >
@@ -402,7 +402,8 @@ const Dashboard = () => {
                     lineHeight: 'normal',
                     textTransform: 'math-auto',
                     '&:hover': {
-                      color: '#fff',
+                      color: '#068987',
+                      background: '#fff',
                     },
                   }}
                 >
@@ -412,7 +413,7 @@ const Dashboard = () => {
                     width={20}
                     height={20}
                   />
-                  Mark break out
+                  {PUNCH_IN?.markBreakout}
                 </Button>
               </Box>
             </Box>

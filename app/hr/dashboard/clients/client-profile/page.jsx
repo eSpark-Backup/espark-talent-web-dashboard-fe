@@ -541,6 +541,12 @@ const AddEmployee = () => {
                             sx={{
                               my: { xs: '20px', md: 0 },
                               textTransform: 'math-auto',
+                              color: '#fff',
+                              background: '#029894',
+                              '&:hover': {
+                                color: '#fff',
+                                background: '#029894',
+                              },
                             }}
                           >
                             {CLIENTPROFILE?.addNewRequest}
@@ -552,6 +558,12 @@ const AddEmployee = () => {
                             sx={{
                               my: { xs: '20px', md: 0 },
                               textTransform: 'math-auto',
+                              color: '#fff',
+                              background: '#029894',
+                              '&:hover': {
+                                color: '#fff',
+                                background: '#029894',
+                              },
                             }}
                           >
                             {CLIENTPROFILE?.setNewInterview}
@@ -562,6 +574,12 @@ const AddEmployee = () => {
                             variant="contained"
                             sx={{
                               my: { xs: '20px', md: 0 },
+                              color: '#fff',
+                              background: '#029894',
+                              '&:hover': {
+                                color: '#fff',
+                                background: '#029894',
+                              },
                             }}
                           >
                             {CLIENTPROFILE?.addOnboard}
@@ -574,6 +592,12 @@ const AddEmployee = () => {
                         variant="contained"
                         sx={{
                           my: { xs: '20px', md: 0 },
+                          color: '#fff',
+                          background: '#029894',
+                          '&:hover': {
+                            color: '#fff',
+                            background: '#029894',
+                          },
                         }}
                       >
                         {CLIENTPROFILE?.addContract}
@@ -586,6 +610,12 @@ const AddEmployee = () => {
                           variant="contained"
                           sx={{
                             my: { xs: '20px', md: 0 },
+                            color: '#fff',
+                            background: '#029894',
+                            '&:hover': {
+                              color: '#fff',
+                              background: '#029894',
+                            },
                           }}
                         >
                           {CLIENTPROFILE?.uploadVoice}

@@ -101,6 +101,12 @@ const TimeAndLeaves = () => {
               minWidth: '160px',
               marginTop: { xs: '10px', md: '0px' },
               marginBottom: { xs: '10px', md: '0px' },
+              color: '#fff',
+              background: '#029894',
+              '&:hover': {
+                color: '#fff',
+                background: '#029894',
+              },
             }}
             variant="contained"
             onClick={handleOpenModal}

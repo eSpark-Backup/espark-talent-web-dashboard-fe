@@ -4,6 +4,7 @@ import { Box, Button, Grid, Typography } from '@mui/material';
 import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { useFormik } from 'formik';
 import { FORM_DATA } from '@/src/constants/form';
+import { SETTING } from '@/src/constants/SettingHr';
 
 const Step = ({
   handleGoPrev,
@@ -241,10 +242,20 @@ const Step = ({
             >
               <Button
                 type="submit"
-                sx={{ minWidth: '120px', marginTop: mt, fontSize: '16px' }}
+                sx={{
+                  minWidth: '120px',
+                  marginTop: mt,
+                  fontSize: '16px',
+                  backgroundColor: '#029894',
+                  color: '#fff',
+                  '&:hover': {
+                    backgroundColor: '#029894',
+                    color: '#fff',
+                  },
+                }}
                 variant="contained"
               >
-                Save
+                {SETTING?.save}
               </Button>
             </Box>
           </Grid>
@@ -269,13 +280,12 @@ const Step = ({
                 }}
                 variant="outlined"
               >
-                Back
+                {FORM_DATA?.back}
               </Button>
               <Button
                 type="submit"
                 sx={{ minWidth: { xs: '100%', sm: '120px' }, fontSize: '16px' }}
                 variant="contained"
-                // onClick={handleData}
               >
                 {isLastStep ? 'Submit' : 'Next'}
               </Button>

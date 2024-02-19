@@ -128,13 +128,19 @@ const ContractSigned = () => {
               {value === 1 && (
                 <Button
                   onClick={handleOpenContractModal}
-                  variant="contained"
+                  // variant="contained"
                   sx={{
                     width: '160px',
                     height: '40px',
                     my: { xs: '20px', md: 0 },
                     textTransform: 'math-auto',
                     fontSize: '16px',
+                    backgroundColor: '#029894',
+                    color: '#fff',
+                    '&:hover': {
+                      backgroundColor: '#029894',
+                      color: '#fff',
+                    },
                   }}
                 >
                   {CONTRACT_SIGNED?.addContract}
@@ -188,6 +194,12 @@ const ContractSigned = () => {
                                   my: { xs: '20px', md: 0 },
                                   fontSize: '16px',
                                   textTransform: 'math-auto',
+                                  backgroundColor: '#029894',
+                                  color: '#fff',
+                                  '&:hover': {
+                                    backgroundColor: '#029894',
+                                    color: '#fff',
+                                  },
                                 }}
                               >
                                 {CONTRACT_SIGNED?.addContract}

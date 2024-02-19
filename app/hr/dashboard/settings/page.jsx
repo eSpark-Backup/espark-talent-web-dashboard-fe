@@ -120,6 +120,12 @@ const Page = () => {
                         minWidth: '120px',
                         fontSize: '16px',
                         textTransform: 'math-auto',
+                        color: '#fff',
+                        background: '#029894',
+                        '&:hover': {
+                          color: '#fff',
+                          background: '#029894',
+                        },
                       }}
                       variant="contained"
                       onClick={handleOpen}

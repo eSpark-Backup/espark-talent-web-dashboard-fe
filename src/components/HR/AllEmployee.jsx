@@ -7,6 +7,7 @@ import Image from 'next/image';
 import EmployeeView from './EmployeeView';
 import { useRouter } from 'next/navigation';
 import EmployeeStatus from './ActiveEmployee';
+import { employeeProfileData } from '@/src/constants/employeeProfile';
 
 const AllEmployee = ({ fromClient, openModal }) => {
   const router = useRouter();
@@ -56,9 +57,20 @@ const AllEmployee = ({ fromClient, openModal }) => {
           <Button
             onClick={openModal}
             variant="contained"
-            sx={{ my: { xs: '20px', md: 0 } }}
+            sx={{
+              my: {
+                xs: '20px',
+                md: 0,
+                color: '#fff',
+                background: '#029894',
+                '&:hover': {
+                  color: '#fff',
+                  background: '#029894',
+                },
+              },
+            }}
           >
-            Add Employee
+            {employeeProfileData?.addEmployee}
           </Button>
         </Box>
         {value === 'one' ? (
@@ -101,7 +113,7 @@ const AllEmployee = ({ fromClient, openModal }) => {
         <Typography
           sx={{ color: '#171717', fontSize: '30px', fontWeight: '600' }}
         >
-          Employees
+          {employeeProfileData?.employees}
         </Typography>
         {value === 'one' && (
           <Button
@@ -118,7 +130,7 @@ const AllEmployee = ({ fromClient, openModal }) => {
             }}
             onClick={() => router.push('/hr/dashboard/employees/add-employee')}
           >
-            Add employee
+            {employeeProfileData?.addEmployee}
           </Button>
         )}
       </Box>
