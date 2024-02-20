@@ -16,10 +16,10 @@ import FlagIcon from '@/src/constants/Flag';
 const CountryDropdown = ({ SelectOpen, SelectClose }) => {
   const [selectedValue, setSelectedValue] = useState(COUNTRY_OPTIONS[2].label);
   const [isOpen, setIsOpen] = useState(false);
+
   const handleClick = () => {
     setIsOpen(!isOpen);
   };
-
   return (
     <Grid
       container
@@ -32,7 +32,6 @@ const CountryDropdown = ({ SelectOpen, SelectClose }) => {
         <Typography sx={{ marginLeft: '4px', mb: '10px' }}>
           {HIRING_FORM_DATA?.country}
         </Typography>
-
         <Select
           sx={{
             '&:focus': {
@@ -49,7 +48,22 @@ const CountryDropdown = ({ SelectOpen, SelectClose }) => {
                 marginRight: '10px',
               }}
             >
-              <Image
+              {isOpen ? (
+                <Image
+                  src={'/images/hiring/icon-down.svg'}
+                  width={25}
+                  height={25}
+                  alt="Dropdown"
+                />
+              ) : (
+                <Image
+                  src={'/icons/Dropdown.svg'}
+                  width={15}
+                  height={15}
+                  alt="Dropdown"
+                />
+              )}
+              {/* <Image
                 src={
                   isOpen
                     ? '/images/hiring/icon-down.svg'
@@ -58,12 +72,19 @@ const CountryDropdown = ({ SelectOpen, SelectClose }) => {
                 width={25}
                 height={25}
                 alt="Dropdown"
-                onClick={handleClick}
-              />
+                // onClick={handleClick}
+              /> */}
             </InputAdornment>
           )}
+          MenuProps={{
+            style: {
+              maxHeight: '300px',
+              maxWidth: { xs: '100%', md: '40%' },
+            },
+          }}
           onOpen={SelectOpen}
           onClose={SelectClose}
+          onClick={handleClick}
         >
           {COUNTRY_OPTIONS?.map((option) => (
             <MenuItem key={option?.value} value={option?.label}>

@@ -2,6 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
+.root {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.formControl {
+  margin: 8px;
+  min-width: 180px;
+}
+
+.menu {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
 .search-input:focus,
 .reason-text-area:focus {
   outline: none;
@@ -51,6 +66,7 @@
   display: flex;
   align-items: center;
   margin-bottom: 20px;
+  height: 40px;
 }
 .app-table-row-contract {
   background-color: #fff;

@@ -164,9 +164,6 @@ const Dashboard = () => {
                 justifyContent: { xs: 'flex-start', md: 'space-between' },
                 alignItems: { xs: 'flex-start', md: 'center' },
               }}
-              // display={'flex'}
-              // justifyContent={'space-between'}
-              // alignItems={'center'}
             >
               <Box display={'flex'} flexDirection={'column'}>
                 <Typography variant="h3">Time off Request</Typography>
@@ -178,6 +175,8 @@ const Dashboard = () => {
                       lineHeight: '17px',
                       letterSpacing: '0em',
                       textAlign: 'left',
+                      color: '#595959',
+                      marginBottom: '10px',
                     }}
                     variant="caption"
                   >
@@ -190,6 +189,7 @@ const Dashboard = () => {
                       lineHeight: '17px',
                       letterSpacing: '0em',
                       textAlign: 'left',
+                      color: '#595959',
                     }}
                     variant="caption"
                   >
@@ -200,7 +200,13 @@ const Dashboard = () => {
                       }}
                       href="/"
                     >
-                      <span style={{ color: 'black', fontWeight: 400 }}>
+                      <span
+                        style={{
+                          color: 'black',
+                          fontWeight: 400,
+                          fontSize: '14px',
+                        }}
+                      >
                         {' '}
                         {TIME_REQUEST?.holiday}
                       </span>
