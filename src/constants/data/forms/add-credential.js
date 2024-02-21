@@ -2,11 +2,11 @@ export const credentialForm = [
   {
     title: 'Email',
     name: 'emailCredential',
-    suffixIconInside: 'Copyy',
+    suffixIconInside: 'copyClipboard',
   },
   {
     title: 'Password',
     name: 'passwordCredential',
-    suffixIconInside: 'Copyy',
+    suffixIconInside: 'copyClipboard',
   },
 ];
