@@ -2,7 +2,7 @@
 import React from 'react';
 import { Grid, Box } from '@mui/material';
 
-import HiringForm from '@/src/components/StartHiring/HiringForm';
+import StartHiringForm from '@/src/components/StartHiring/StartHiringForm';
 
 const StartHiring = () => {
   return (
@@ -19,7 +19,7 @@ const StartHiring = () => {
               },
             }}
           >
-            <HiringForm />
+            <StartHiringForm />
           </Box>
         </Grid>
       </Grid>

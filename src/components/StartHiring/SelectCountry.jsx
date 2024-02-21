@@ -13,7 +13,7 @@ import SalaryRange from './SalaryRangle';
 import Image from 'next/image';
 import FlagIcon from '@/src/constants/Flag';
 
-const CountryDropdown = ({ SelectOpen, SelectClose }) => {
+const CountryDropdown = () => {
   const [selectedValue, setSelectedValue] = useState(COUNTRY_OPTIONS[2].label);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -63,17 +63,6 @@ const CountryDropdown = ({ SelectOpen, SelectClose }) => {
                   alt="Dropdown"
                 />
               )}
-              {/* <Image
-                src={
-                  isOpen
-                    ? '/images/hiring/icon-down.svg'
-                    : '/images/hiring/rightarrow.png'
-                }
-                width={25}
-                height={25}
-                alt="Dropdown"
-                // onClick={handleClick}
-              /> */}
             </InputAdornment>
           )}
           MenuProps={{
@@ -82,8 +71,7 @@ const CountryDropdown = ({ SelectOpen, SelectClose }) => {
               maxWidth: { xs: '100%', md: '40%' },
             },
           }}
-          onOpen={SelectOpen}
-          onClose={SelectClose}
+          open={isOpen}
           onClick={handleClick}
         >
           {COUNTRY_OPTIONS?.map((option) => (
