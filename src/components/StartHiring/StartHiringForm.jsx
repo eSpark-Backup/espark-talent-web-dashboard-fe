@@ -37,16 +37,12 @@ const StartHiringForm = () => {
   });
   useEffect(() => {
     const fetchData = async () => {
-      const data = await fetchCountriesList();
-      const formattedCountries = data
-        .map((country) => ({
-          title: country?.name?.common,
-          flag: country?.flags?.svg,
-        }))
-        .sort((countryA, countryB) =>
-          countryA.title < countryB.title ? -1 : 1
-        );
-      setCountries(formattedCountries);
+      try {
+        const formattedCountries = await fetchCountriesList();
+        setCountries(formattedCountries);
+      } catch (error) {
+        console.error('Error fetching countries:', error);
+      }
     };
     fetchData();
   }, []);
