@@ -13,7 +13,7 @@ const GenderInput = ({ open, SelectOpen, SelectClose }) => {
   return (
     <Grid
       container
-      gap={'10px'}
+      gap={'20px'}
       sx={{
         flexWrap: { xs: 'wrap', lg: 'nowrap' },
       }}

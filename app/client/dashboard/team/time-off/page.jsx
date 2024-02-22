@@ -26,6 +26,7 @@ import Link from 'next/link';
 import LeaveViewModal from './LeaveViewModal';
 import PunchViewModal from './PunchViewModal';
 import AppTable from '@/src/components/appTable/AppTable';
+import { TIME_REQUEST } from '@/src/constants/timeSheet';
 
 const Dashboard = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -163,9 +164,6 @@ const Dashboard = () => {
                 justifyContent: { xs: 'flex-start', md: 'space-between' },
                 alignItems: { xs: 'flex-start', md: 'center' },
               }}
-              // display={'flex'}
-              // justifyContent={'space-between'}
-              // alignItems={'center'}
             >
               <Box display={'flex'} flexDirection={'column'}>
                 <Typography variant="h3">Time off Request</Typography>
@@ -177,11 +175,12 @@ const Dashboard = () => {
                       lineHeight: '17px',
                       letterSpacing: '0em',
                       textAlign: 'left',
+                      color: '#595959',
+                      marginBottom: '10px',
                     }}
                     variant="caption"
                   >
-                    Manage your team member&apos;s time off requests. Remember 1
-                    day = 8 working hours.
+                    {TIME_REQUEST?.manage}
                   </Typography>
                   <Typography
                     sx={{
@@ -190,19 +189,26 @@ const Dashboard = () => {
                       lineHeight: '17px',
                       letterSpacing: '0em',
                       textAlign: 'left',
+                      color: '#595959',
                     }}
                     variant="caption"
                   >
-                    Use the following link to check{' '}
+                    {TIME_REQUEST?.link}{' '}
                     <Link
                       style={{
                         textDecoration: 'underline',
                       }}
                       href="/"
                     >
-                      <span style={{ color: '#000', fontWeight: 400 }}>
+                      <span
+                        style={{
+                          color: 'black',
+                          fontWeight: 400,
+                          fontSize: '14px',
+                        }}
+                      >
                         {' '}
-                        public holidays by country.
+                        {TIME_REQUEST?.holiday}
                       </span>
                     </Link>
                   </Typography>
@@ -221,7 +227,7 @@ const Dashboard = () => {
                   },
                 }}
               >
-                Download Report
+                {TIME_REQUEST?.downloadReport}
               </Button>
             </Box>
             <Box sx={{ width: '100%' }}>
@@ -293,17 +299,11 @@ const Dashboard = () => {
                                           md: '50px',
                                         },
                                         p: 0,
-                                        // width:"50px"
                                       }}
                                       label={
                                         <Box
                                           display={'flex'}
                                           alignItems={'center'}
-                                          // sx={{
-                                          //   p:0
-                                          //   // mr:{xs:"10px", sm:"20px",md:"50px"}
-                                          // }}
-                                          // gap={'23px'}
                                         >
                                           <Box
                                             sx={{
@@ -369,6 +369,7 @@ const Dashboard = () => {
                                 sx={{ mb: { xs: '10px', lg: 0 } }}
                               >
                                 <Input
+                                  placeHolder={'Search by name...'}
                                   setIsLoading={
                                     currentReqTypeTab === 'Leave Requests'
                                       ? setIsLoading
@@ -408,27 +409,6 @@ const Dashboard = () => {
                               >
                                 Refresh
                               </Button>
-                              {/* <Button
-                                sx={{
-                                  minWidth: '120px',
-                                  background: '#138A72',
-                                  color: '#fff',
-                                  '&:hover': {
-                                    background: '#138A72',
-                                  },
-                                }}
-                                startIcon={
-                                  <Image
-                                    width={18}
-                                    height={15}
-                                    alt="Refresh"
-                                    src={`/icons/Filter.svg`}
-                                    onClick={handleOpen}
-                                  />
-                                }
-                              >
-                                Filter
-                              </Button> */}
                             </Box>
                           </Box>
 
@@ -482,24 +462,6 @@ const Dashboard = () => {
                                   src={`/icons/Refresh.svg`}
                                 />
                               </Box>
-                              {/* <Box
-                                sx={{
-                                  background: '#029E9C',
-                                  width: '60px',
-                                  p: '5px',
-                                  display: 'flex',
-                                  justifyContent: 'center',
-                                  alignItems: 'center',
-                                  borderRadius: '5px',
-                                }}
-                              >
-                                <Image
-                                  width={15}
-                                  height={15}
-                                  alt="Refresh"
-                                  src={`/icons/Filter.svg`}
-                                />
-                              </Box> */}
                             </Box>
                           </Box>
                         </Box>

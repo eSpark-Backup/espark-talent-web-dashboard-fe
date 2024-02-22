@@ -7,7 +7,6 @@ const ProfileSection = ({ Profile_Edit_Section, User_Detail, handleData }) => {
   const fileInputRef = React.useRef(null);
 
   const handleFileInputChange = (event) => {
-    // const file = event.target.files[0];
     const name = event.target.name;
     const file = event.target.files[0];
     handleData(name, file);
@@ -25,8 +24,11 @@ const ProfileSection = ({ Profile_Edit_Section, User_Detail, handleData }) => {
     <Box sx={{ flexGrow: 1 }}>
       <Box sx={{ mb: 2 }}>
         <Typography
-          variant="body2"
-          sx={{ color: '#171717', fontWeight: '400' }}
+          sx={{
+            color: '#171717',
+            fontWeight: '500',
+            fontSize: '16px',
+          }}
         >
           {Profile_Edit_Section?.title}
         </Typography>
@@ -77,7 +79,7 @@ const ProfileSection = ({ Profile_Edit_Section, User_Detail, handleData }) => {
       >
         <Typography
           variant="body2"
-          sx={{ color: '#171717', fontWeight: '400' }}
+          sx={{ color: '#171717', fontWeight: '500' }}
         >
           {User_Detail?.title}
         </Typography>

@@ -1,8 +1,9 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Grid, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import Image from 'next/image';
+import copy from 'copy-to-clipboard';
 
 import AppDropdown from '../../dashboard/appDropdown';
 import {
@@ -49,9 +50,17 @@ const FormInput = ({
   onClick,
   countries,
   searchable,
+  suffixIconInside,
   handleData,
+  readOnly,
+  modalData,
 }) => {
   const [isLoadingList, setIsLoadingList] = useState(false);
+  const [isCopied, setIsCopied] = useState();
+  const [imageSrc, setImageSrc] = useState(
+    `/images/hiring/${suffixIconInside}.svg`
+  );
+
   const handleSelectItem = (item) => {
     const tempErrors = { ...errors };
     if (Object.hasOwnProperty.call(tempErrors, name)) {
@@ -80,10 +89,7 @@ const FormInput = ({
     setFieldValue?.(field, value);
     handleData(field, value);
   };
-  // const handleImage = (event) => {
-  //   const file = event.target.files[0];
-  //   setImageUrl(URL.createObjectURL(file));
-  // };
+
   const handleChangeFileInput = (field, value) => {
     console.log('test', name, value);
     const tempErrors = { ...errors };
@@ -121,6 +127,19 @@ const FormInput = ({
       default:
         break;
     }
+  };
+
+  const textRef = useRef();
+  const copyToClipboard = () => {
+    const copyText = textRef.current.value;
+    const isCopy = copy(copyText);
+    if (isCopy) {
+      setIsCopied(true);
+      setTimeout(() => {
+        setIsCopied(false);
+      }, 3000);
+    }
+    setImageSrc(`/images/hiring/copy.svg`);
   };
 
   return (
@@ -461,7 +480,7 @@ const FormInput = ({
                 htmlFor={`input-file-${title}`}
                 style={{
                   display: 'flex',
-                  justifyContent: 'center',
+                  justifyContent: 'flex-end',
                   alignItems: 'center',
                 }}
               >
@@ -485,16 +504,27 @@ const FormInput = ({
                 </Box>
               </label>
             )}
+
             <input
               id={`input-file-${title}`}
               style={{
                 background: '#FFF',
                 display: type === 'file' && 'none',
               }}
+              value={
+                name === 'emailCredential'
+                  ? modalData?.row?.email || ''
+                  : name === 'passwordCredential'
+                  ? modalData?.row?.password || ''
+                  : '' || type !== 'file'
+                  ? value
+                  : null
+              }
               placeholder={placeholder}
               className="form-input-field"
               type={type}
-              // onChange={handleImage}
+              ref={textRef}
+              readOnly={readOnly}
               onChange={(e) => {
                 if (type === 'file') {
                   handleChangeFileInput(name, e?.currentTarget.files[0]);
@@ -502,7 +532,6 @@ const FormInput = ({
                   handleChangeInput(name, e?.target?.value);
                 }
               }}
-              value={type !== 'file' ? value : null}
               accept=".png"
             />
             {suffixIcon && (
@@ -513,6 +542,7 @@ const FormInput = ({
                   padding: '10px',
                   justifyContent: 'center',
                   alignItems: 'center',
+                  cursor: 'pointer',
                 }}
               >
                 <Image
@@ -523,6 +553,28 @@ const FormInput = ({
                 />
               </label>
             )}
+            {suffixIconInside && (
+              <>
+                <label
+                  htmlFor={`input-file-${title}`}
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    cursor: 'pointer',
+                  }}
+                >
+                  <Image
+                    src={imageSrc}
+                    width={50}
+                    height={50}
+                    alt="Calendar"
+                    onClick={copyToClipboard}
+                  />
+                </label>
+              </>
+            )}
+
             {type === 'file' && (
               <label
                 className="file-upload-label"
@@ -553,6 +605,11 @@ const FormInput = ({
           )}
         </Box>
       )}
+      {
+        <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+          {isCopied && 'Copied!'}
+        </Box>
+      }
     </Grid>
   );
 };

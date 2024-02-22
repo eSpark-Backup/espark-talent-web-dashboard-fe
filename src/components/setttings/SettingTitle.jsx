@@ -9,7 +9,7 @@ const SettingTitle = ({ Setting_Data }) => {
       <Box
         sx={{
           textAlign: 'center',
-          width: { xs: '85%', sm: '80%' },
+          width: { xs: '85%', sm: '90%' },
           mx: 'auto',
           display: 'flex',
           flexDirection: 'column',

@@ -19,6 +19,7 @@ import LeaveViewModal from '@/app/client/dashboard/team/time-off/LeaveViewModal'
 import AppTable from '@/src/components/appTable/AppTable';
 import FilterModal from '@/src/components/FilterModal/filterModal';
 import AppConfirmationMadal from '@/src/components/modals/AppConfirmationMadal';
+import { REQUEST_LEAVE } from '@/src/constants/requestviewModal';
 
 const Dashboard = () => {
   const [open, setOpen] = useState(false);
@@ -116,7 +117,7 @@ const Dashboard = () => {
               marginBottom={'50px'}
             >
               <Box display={'flex'} flexDirection={'column'}>
-                <Typography variant="h3">Leaves request</Typography>
+                <Typography variant="h3">Leaves Requests</Typography>
                 <Box display={'flex'} flexDirection={'column'} mt={'20px'}>
                   <Typography
                     sx={{
@@ -128,7 +129,7 @@ const Dashboard = () => {
                     }}
                     variant="caption"
                   >
-                    Manage timesheet from one place.
+                    {REQUEST_LEAVE?.manageLeave}
                   </Typography>
                 </Box>
               </Box>
@@ -136,11 +137,18 @@ const Dashboard = () => {
                 sx={{
                   minWidth: { xs: '100px', md: '120px' },
                   marginBottom: '25px',
+                  marginX: '10px',
+                  color: '#fff',
+                  background: '#029894',
+                  '&:hover': {
+                    color: '#fff',
+                    background: '#029894',
+                  },
                 }}
                 variant="contained"
                 onClick={handleOpenModal}
               >
-                Create
+                {REQUEST_LEAVE?.create}
               </Button>
               {openModal && (
                 <Modal
@@ -149,7 +157,6 @@ const Dashboard = () => {
                   aria-labelledby="modal-modal-title"
                   aria-describedby="modal-modal-description"
                   sx={{
-                    // height: { xs: '850px', md: '900px' },
                     display: 'flex',
                     alignItems: 'center',
                   }}
@@ -188,7 +195,7 @@ const Dashboard = () => {
                     }}
                     variant="caption"
                   >
-                    Balance
+                    {REQUEST_LEAVE?.balance}
                   </Typography>
                   <Button
                     sx={{
@@ -209,7 +216,7 @@ const Dashboard = () => {
                       />
                     }
                   >
-                    Refresh
+                    {REQUEST_LEAVE?.refresh}
                   </Button>
                 </Box>
                 <AppTable
@@ -250,7 +257,7 @@ const Dashboard = () => {
                     color: '#595959',
                   }}
                 >
-                  Requests
+                  {REQUEST_LEAVE?.request}
                 </Typography>
               </Box>
             </Box>
@@ -362,7 +369,7 @@ const Dashboard = () => {
                           />
                         }
                       >
-                        Refresh
+                        {REQUEST_LEAVE?.refresh}
                       </Button>
                       <Button
                         sx={{
@@ -384,7 +391,7 @@ const Dashboard = () => {
                           />
                         }
                       >
-                        Filter
+                        {REQUEST_LEAVE?.filter}
                       </Button>
                     </Box>
                   </Box>
@@ -418,6 +425,7 @@ const Dashboard = () => {
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
+        data-aos="fade-down"
         sx={{
           display: 'flex',
           alignItems: 'center',

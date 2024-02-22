@@ -29,7 +29,6 @@ const EditPersonalModal = ({ onClose, handleEditProfileModal }) => {
   });
   const handleData = (name, value) => {
     setFormData({ ...formData, [name]: value });
-    //  setFormData(prevFormData => ({ ...prevFormData, [name]: value }));
   };
   useEffect(() => {
     console.log('form', formData);

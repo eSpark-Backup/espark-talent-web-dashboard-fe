@@ -70,27 +70,35 @@ const Page = () => {
                   onChange={handleChange}
                   aria-label="wrapped label tabs example"
                   variant="scrollable"
+                  sx={{}}
                 >
                   <Tab
                     value={employeeProfileData?.valueOne}
                     label={settingTabs?.companySettings}
                     wrapped
                     disableRipple={true}
+                    sx={{ fontSize: '14px', mr: 2 }}
                   />
                   <Tab
                     value={employeeProfileData?.valueTwo}
                     label={settingTabs?.accounts}
+                    wrapped
                     disableRipple={true}
+                    sx={{ fontSize: '14px', mr: 2 }}
                   />
                   <Tab
                     value={employeeProfileData?.valuethree}
                     label={settingTabs?.rolesAndPermission}
+                    wrapped
                     disableRipple={true}
+                    sx={{ fontSize: '14px', mr: 2 }}
                   />
                   <Tab
                     value={employeeProfileData?.valueFour}
                     label={settingTabs?.changePassword}
+                    wrapped
                     disableRipple={true}
+                    sx={{ fontSize: '14px', mr: 2 }}
                   />
                 </Tabs>
               </Box>
@@ -104,11 +112,21 @@ const Page = () => {
                   <Box
                     sx={{
                       display: 'flex',
-                      marginBottom: '10px',
+                      marginBottom: '7px',
                     }}
                   >
                     <Button
-                      sx={{ minWidth: '120px' }}
+                      sx={{
+                        minWidth: '120px',
+                        fontSize: '16px',
+                        textTransform: 'math-auto',
+                        color: '#fff',
+                        background: '#029894',
+                        '&:hover': {
+                          color: '#fff',
+                          background: '#029894',
+                        },
+                      }}
                       variant="contained"
                       onClick={handleOpen}
                     >
@@ -121,7 +139,10 @@ const Page = () => {
             {value === employeeProfileData?.valueOne ? (
               <CompanySettings />
             ) : value === employeeProfileData?.valueTwo ? (
-              <Accounts accountDataState={accountDataState} />
+              <Accounts
+                accountDataState={accountDataState}
+                handleAdd={handleAddAccount}
+              />
             ) : value === employeeProfileData?.valuethree ? (
               <Role />
             ) : value === employeeProfileData?.valueFour ? (

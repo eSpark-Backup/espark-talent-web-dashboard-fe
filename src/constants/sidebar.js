@@ -74,7 +74,6 @@ export const Client_Routes = [
     link: '#',
     sublinks: [
       { text: 'Settings', link: '/client/dashboard/organization/settings' },
-      { text: 'Reports', link: '/client/dashboard/organization/reports' },
     ],
   },
 ];

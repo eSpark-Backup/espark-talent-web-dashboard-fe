@@ -1,6 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-import { Grid, Menu, MenuItem, Typography } from '@mui/material';
+import { Grid, Menu, MenuItem, Typography, useMediaQuery } from '@mui/material';
 import { Box, useTheme } from '@mui/system';
 import Image from 'next/image';
 
@@ -13,6 +13,9 @@ const EmployeeView = ({ status, id, name, designation, search }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const [isOpen, setIsOpen] = useState(false);
+  const isBetween1400And1200 = useMediaQuery(
+    '(min-width: 1200px) and (max-width: 1400px)'
+  );
   const router = useRouter();
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -30,7 +33,9 @@ const EmployeeView = ({ status, id, name, designation, search }) => {
     setIsOpen(false);
   };
   const theme = useTheme();
-
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'), {
+    defaultMatches: true,
+  });
   if ((id !== '' || name !== '' || designation !== '') && search) {
     const filter = allEmployees.filter((item) => {
       const idCondition = id.length === 0 || item.id === Number(id);
@@ -220,7 +225,7 @@ const EmployeeView = ({ status, id, name, designation, search }) => {
           },
         }}
         rowGap={3}
-        spacing={3}
+        spacing={isMobile ? 2 : 5}
       >
         {allEmployees
           ?.filter((eachItem) => {
@@ -233,7 +238,14 @@ const EmployeeView = ({ status, id, name, designation, search }) => {
             }
           })
           .map((eachItem, index) => (
-            <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              md={4}
+              lg={isBetween1400And1200 ? 4 : 3}
+              key={index}
+            >
               <Box
                 sx={{
                   width: '100%',
@@ -243,32 +255,39 @@ const EmployeeView = ({ status, id, name, designation, search }) => {
                   boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
                   padding: '20px 15px 10px 15px',
                   cursor: 'pointer',
+                  '@media (min-width: 900px) and (max-width: 1480px)': {
+                    minHeight: '250px',
+                  },
                 }}
                 onClick={() =>
                   router.push(`/hr/dashboard/employees/${eachItem?.id}`)
                 }
               >
-                <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                <Box
+                  sx={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                  }}
+                >
                   <Box
                     sx={{
-                      width: '20%',
+                      width: '65px',
                       display: 'flex',
-                      columnGap: '5px',
+                      columnGap: '3px',
                       height: '20px',
                       justifyContent: 'center',
                       alignItems: 'center',
                     }}
                   >
-                    <Box
-                      sx={{
+                    <span
+                      style={{
                         width: '5px',
                         height: '5px',
                         borderRadius: '50%',
                         backgroundColor:
                           eachItem.status === 'Active' ? '#068987' : '#F00',
                       }}
-                    ></Box>
-
+                    ></span>
                     <Typography
                       sx={{
                         color:
@@ -287,6 +306,14 @@ const EmployeeView = ({ status, id, name, designation, search }) => {
                       alignItems: 'center',
                       flexDirection: 'column',
                       rowGap: '5px',
+                      '@media (min-width: 1200px) and (max-width: 1450px)': {
+                        marginTop: '25px',
+                        mr: '35px',
+                      },
+                      '@media (min-width: 900px) and (max-width: 980px)': {
+                        marginTop: '25px',
+                        mr: '35px',
+                      },
                     }}
                   >
                     <Image

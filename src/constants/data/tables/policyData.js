@@ -8,6 +8,7 @@ export const policyData = [
     client: ['DisabledCheck', 'EnabledCheck', false],
     isSelected: false,
     isModulePermissionData: true,
+    isPolicyData: true,
     id: 1,
   },
   {
@@ -18,6 +19,8 @@ export const policyData = [
     client: ['DisabledCheck', 'EnabledCheck', false],
     isSelected: false,
     isModulePermissionData: true,
+    isPolicyData: true,
+
     id: 2,
   },
   {
@@ -28,6 +31,8 @@ export const policyData = [
     client: ['DisabledCheck', 'EnabledCheck', false],
     isSelected: false,
     isModulePermissionData: true,
+    isPolicyData: true,
+
     id: 3,
   },
   {
@@ -38,6 +43,8 @@ export const policyData = [
     client: ['DisabledCheck', 'EnabledCheck', false],
     isSelected: false,
     isModulePermissionData: true,
+    isPolicyData: true,
+
     id: 4,
   },
   {
@@ -47,6 +54,8 @@ export const policyData = [
     employee: ['DisabledCheck', 'EnabledCheck', false],
     client: ['DisabledCheck', 'EnabledCheck', false],
     isModulePermissionData: true,
+    isPolicyData: true,
+
     isSelected: false,
     id: 5,
   },
@@ -58,6 +67,8 @@ export const policyData = [
     client: ['DisabledCheck', 'EnabledCheck', false],
     isSelected: false,
     isModulePermissionData: true,
+    isPolicyData: true,
+
     id: 6,
   },
 ];

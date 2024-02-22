@@ -1,17 +1,22 @@
 'use client';
-import { allEmployees } from '@/src/constants/AllEmployee';
-import { Grid, Menu, MenuItem, Typography } from '@mui/material';
-import { Box, useTheme } from '@mui/system';
-import Image from 'next/image';
 import React, { useState } from 'react';
+import Image from 'next/image';
+import { Grid, Menu, MenuItem, Typography, useMediaQuery } from '@mui/material';
+import { Box, useTheme } from '@mui/system';
 import { useRouter } from 'next/navigation';
+
+import { allEmployees } from '@/src/constants/AllEmployee';
 import AppConfirmationMadal from '../modals/AppConfirmationMadal';
 import { REMOVE_MODAL } from '@/src/constants/contractSigned';
+import { CLIENT_VIEW } from '@/src/constants/ClientProfile';
 
 const ClientView = ({ status, id, name, designation = '', search }) => {
   const router = useRouter();
   const [anchorEl, setAnchorEl] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
+  const isBetween1400And1200 = useMediaQuery(
+    '(min-width: 1200px) and (max-width: 1400px)'
+  );
 
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -190,7 +195,7 @@ const ClientView = ({ status, id, name, designation = '', search }) => {
                       },
                     }}
                   >
-                    No User Found
+                    {CLIENT_VIEW?.noUserFound}
                   </Typography>
                 )}
               </Grid>
@@ -206,11 +211,11 @@ const ClientView = ({ status, id, name, designation = '', search }) => {
           sx={{
             marginTop: '20px',
             [theme.breakpoints.up('md')]: {
-              paddingLeft: '20px',
+              paddingLeft: '60px',
             },
           }}
         >
-          No User Found
+          {CLIENT_VIEW?.noUserFound}
         </Typography>
       );
     }
@@ -222,11 +227,11 @@ const ClientView = ({ status, id, name, designation = '', search }) => {
         sx={{
           marginTop: '20px',
           [theme.breakpoints.up('md')]: {
-            paddingLeft: '20px',
+            paddingLeft: '60px',
           },
         }}
         rowGap={3}
-        spacing={3}
+        spacing={5}
       >
         {allEmployees
           ?.filter((eachItem) => {
@@ -239,7 +244,14 @@ const ClientView = ({ status, id, name, designation = '', search }) => {
             }
           })
           .map((eachItem, index) => (
-            <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              md={4}
+              lg={isBetween1400And1200 ? 4 : 3}
+              key={index}
+            >
               <Box
                 sx={{
                   width: '100%',
@@ -249,6 +261,9 @@ const ClientView = ({ status, id, name, designation = '', search }) => {
                   boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
                   padding: '20px 15px 10px 15px',
                   cursor: 'pointer',
+                  '@media (min-width: 900px) and (max-width: 1480px)': {
+                    minHeight: '250px',
+                  },
                 }}
                 onClick={() =>
                   router.push('/hr/dashboard/clients/client-profile')
@@ -257,7 +272,6 @@ const ClientView = ({ status, id, name, designation = '', search }) => {
                 <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                   <Box
                     sx={{
-                      width: '20%',
                       display: 'flex',
                       columnGap: '5px',
                       height: '20px',
@@ -278,19 +292,27 @@ const ClientView = ({ status, id, name, designation = '', search }) => {
                       sx={{
                         color:
                           eachItem.status === 'Active' ? '#068987' : '#F00',
+                        fontSize: '12px',
                       }}
                     >
                       {eachItem.status}
                     </Typography>
                   </Box>
+
                   <Box
                     sx={{
-                      width: '60%',
                       display: 'flex',
                       justifyContent: 'center',
                       alignItems: 'center',
                       flexDirection: 'column',
-                      rowGap: '5px',
+                      '@media (min-width: 1200px) and (max-width: 1450px)': {
+                        marginTop: '25px',
+                        mr: '35px',
+                      },
+                      '@media (min-width: 900px) and (max-width: 980px)': {
+                        marginTop: '25px',
+                        mr: '35px',
+                      },
                     }}
                   >
                     <Image
@@ -318,12 +340,17 @@ const ClientView = ({ status, id, name, designation = '', search }) => {
                       {eachItem.role}
                     </Typography>
                   </Box>
-                  <Box sx={{ width: '10%' }}>
+
+                  <Box
+                    sx={{
+                      width: '30px',
+                    }}
+                  >
                     <Image
-                      width={24}
-                      height={24}
+                      width={20}
+                      height={20}
                       src={`/icons/ellipse.svg`}
-                      style={{ cursor: 'pointer' }}
+                      style={{ cursor: 'pointer', maxWidth: '100%' }}
                       onClick={handleClick}
                     />
                     <Menu
@@ -348,14 +375,14 @@ const ClientView = ({ status, id, name, designation = '', search }) => {
                           router.push('/hr/dashboard/clients/add-client')
                         }
                       >
-                        Active
+                        {CLIENT_VIEW?.active}
                       </MenuItem>
                       <MenuItem
                         onClick={() =>
                           router.push('/hr/dashboard/clients/add-client')
                         }
                       >
-                        Inactive
+                        {CLIENT_VIEW?.inActive}
                       </MenuItem>
                     </Menu>
                   </Box>

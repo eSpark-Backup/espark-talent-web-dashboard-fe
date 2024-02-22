@@ -23,9 +23,7 @@ const AddContractModal = ({ open, onClose }) => {
     initialValues: {},
     validationSchema: contractFormSchema,
     enableReinitialize: true,
-    onSubmit: (formValues) => {
-      console.log({ formValues });
-    },
+    onSubmit: () => {},
     validateOnChange: false,
     validateOnBlur: false,
   });
@@ -35,11 +33,8 @@ const AddContractModal = ({ open, onClose }) => {
   };
   const handleData = (name, value) => {
     setFormData({ ...formData, [name]: value });
-    // setFormData(prevFormData => ({ ...prevFormData, [name]: value }));
   };
-  useEffect(() => {
-    console.log('form', formData);
-  }, [formData]);
+  useEffect(() => {}, [formData]);
   return (
     <Modal
       open={open}

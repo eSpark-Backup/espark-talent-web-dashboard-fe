@@ -94,6 +94,10 @@ const Dashboard = () => {
                   color: '#fff',
                   fontSize: '16px',
                   textTransform: 'math-auto',
+                  '&:hover': {
+                    background: '#029894',
+                    color: '#fff',
+                  },
                 }}
               >
                 {HIRING_FORM_DATA?.addnewHire}

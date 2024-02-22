@@ -13,7 +13,7 @@ export const SETTING = {
   add: 'Add',
   roleName: ' Role name',
   save: 'Save',
-  addAccount: 'Add Account',
+  addAccount: 'Add account',
   settings: 'Settings',
   companySetting: 'Company settings',
   account: 'Accounts',

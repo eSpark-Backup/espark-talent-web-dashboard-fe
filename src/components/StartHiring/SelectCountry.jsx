@@ -13,26 +13,25 @@ import SalaryRange from './SalaryRangle';
 import Image from 'next/image';
 import FlagIcon from '@/src/constants/Flag';
 
-const CountryDropdown = ({ SelectOpen, SelectClose }) => {
+const CountryDropdown = () => {
   const [selectedValue, setSelectedValue] = useState(COUNTRY_OPTIONS[2].label);
   const [isOpen, setIsOpen] = useState(false);
+
   const handleClick = () => {
     setIsOpen(!isOpen);
   };
-
   return (
     <Grid
       container
       sx={{
         flexWrap: { xs: 'wrap', lg: 'nowrap' },
       }}
-      gap={'10px'}
+      gap={'20px'}
     >
       <Grid item xs={12} lg={6} className="country-custom-dropdown">
         <Typography sx={{ marginLeft: '4px', mb: '10px' }}>
           {HIRING_FORM_DATA?.country}
         </Typography>
-
         <Select
           sx={{
             '&:focus': {
@@ -49,21 +48,31 @@ const CountryDropdown = ({ SelectOpen, SelectClose }) => {
                 marginRight: '10px',
               }}
             >
-              <Image
-                src={
-                  isOpen
-                    ? '/images/hiring/icon-down.svg'
-                    : '/images/hiring/rightarrow.png'
-                }
-                width={25}
-                height={25}
-                alt="Dropdown"
-                onClick={handleClick}
-              />
+              {isOpen ? (
+                <Image
+                  src={'/images/hiring/icon-down.svg'}
+                  width={25}
+                  height={25}
+                  alt="Dropdown"
+                />
+              ) : (
+                <Image
+                  src={'/icons/Dropdown.svg'}
+                  width={15}
+                  height={15}
+                  alt="Dropdown"
+                />
+              )}
             </InputAdornment>
           )}
-          onOpen={SelectOpen}
-          onClose={SelectClose}
+          MenuProps={{
+            style: {
+              maxHeight: '300px',
+              maxWidth: { xs: '100%', md: '40%' },
+            },
+          }}
+          open={isOpen}
+          onClick={handleClick}
         >
           {COUNTRY_OPTIONS?.map((option) => (
             <MenuItem key={option?.value} value={option?.label}>

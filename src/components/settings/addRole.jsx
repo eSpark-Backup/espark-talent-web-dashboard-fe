@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-
 import { Box, Button, Grid, Typography } from '@mui/material';
+
 import AppTable from '../appTable/AppTable';
 import {
   modulepermissionColumn,
@@ -13,6 +13,7 @@ import { toCamelCase } from '@/src/utils/stringModification';
 const Role = () => {
   const [modalStep1FormTableState, setModalStep1FormTableState] = useState([]);
   const [rolesData, setRolesData] = useState('');
+  const [selectedRole, setSelectedRole] = useState(null);
 
   useEffect(() => {
     setModalStep1FormTableState([...modulepermissionData]);
@@ -39,6 +40,9 @@ const Role = () => {
 
   const handleRoleChange = (key, val) => {
     setRolesData({ ...rolesData, [key]: val });
+    setSelectedRole((prevSelectedRole) =>
+      prevSelectedRole === key ? null : key
+    );
   };
   useEffect(() => {
     console.log('roles', rolesData);
@@ -77,34 +81,20 @@ const Role = () => {
           >
             {SETTING?.roles}
           </Typography>
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '15px',
-              overflowY: 'auto',
-              scrollbarWidth: 'thin',
-              scrollbarColor: '#F6F6F6 #D9D9D9',
-              scrollbarGutter: 'both',
-              '&::-webkit-scrollbar': {
-                width: '10px',
-              },
-              '&::-webkit-scrollbar-button:start, &::-webkit-scrollbar-button:end, &::-moz-scrollbar-button:decrement, &::-moz-scrollbar-button:increment, &::-webkit-scrollbar-button:decrement, &::-webkit-scrollbar-button:increment':
-                {
-                  width: '0px',
-                },
-              paddingBottom: '20px',
-            }}
-          >
+          <Box className="scrollbar-container" paddingBottom="20px">
             {ROLES.map((button, index) => (
               <Button
                 key={index}
                 sx={{
                   borderRadius: '5px',
-                  color: '#595959',
-                  background: ' #FFF',
+                  color: selectedRole === button.key ? 'teal' : '#595959',
+                  background: selectedRole === button.key ? '#FFF' : '#fff',
                   width: '95%',
                   padding: '8px',
+                  border:
+                    selectedRole === button.key
+                      ? '1px solid #029894'
+                      : '1px solid #fff',
                   '&:hover': {
                     border: ' 1px solid #029894',
                     color: 'teal',
@@ -126,8 +116,6 @@ const Role = () => {
             sx={{
               maxWidth: '100%',
               overflowX: 'auto',
-              scrollbarWidth: 'thin',
-              scrollbarColor: 'transparent transparent',
               '&::-webkit-scrollbar': {
                 display: 'none',
               },
@@ -136,7 +124,6 @@ const Role = () => {
             <AppTable
               column={modulepermissionColumn}
               data={modalStep1FormTableState}
-              minWidth="100%"
               handleClickActionView={handleSelectRow}
               noPagination
             />
@@ -150,8 +137,16 @@ const Role = () => {
           >
             <Button
               type="submit"
-              sx={{ minWidth: '120px' }}
-              variant="contained"
+              sx={{
+                minWidth: '120px',
+                fontSize: '16px',
+                backgroundColor: '#029894',
+                color: '#fff',
+                '&:hover': {
+                  backgroundColor: '#029894',
+                  color: '#fff',
+                },
+              }}
             >
               {SETTING?.save}
             </Button>

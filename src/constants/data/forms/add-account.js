@@ -10,6 +10,18 @@ export const accountForm = [
     name: 'email',
   },
   {
+    title: 'Password',
+    placeholder: 'Enter password',
+    name: 'password',
+    type: 'password',
+  },
+  {
+    title: 'Confirm password',
+    placeholder: 'Confirm password',
+    name: 'confirmPassword',
+    type: 'password',
+  },
+  {
     title: 'Upload',
     placeholder: 'Upload picture',
     prefixIcon: 'upload',

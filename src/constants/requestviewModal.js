@@ -53,3 +53,12 @@ export const USER_TYPES = {
   employee: 'Employee',
   hr: 'Hr',
 };
+export const REQUEST_LEAVE = {
+  manageLeave: ' Manage Leaves from one place.',
+  create: 'Create',
+  balance: ' Balance',
+  refresh: ' Refresh',
+  request: 'Requests',
+  filter: 'Filter',
+  manageTimesheet: 'Manage timesheet from one place.',
+};

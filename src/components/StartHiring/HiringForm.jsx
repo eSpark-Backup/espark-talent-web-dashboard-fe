@@ -61,13 +61,16 @@ const HiringForm = () => {
           <Box
             sx={{
               width: '100%',
-              padding: { xs: '10px', md: '8px' },
+              padding: { xs: '10px', md: '0px' },
+              display: 'flex',
+              gap: '20px',
+              flexDirection: 'column',
             }}
           >
             <Box>
               <JobTitle
                 title={HIRING_FORM_DATA?.jobTitle}
-                gap={'10px'}
+                gap={'20px'}
                 open={open}
                 SelectOpen={SelectOpen}
                 SelectClose={SelectClose}

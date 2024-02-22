@@ -7,31 +7,15 @@ import { accountInfoSchema } from '../form/schemas/addAccount';
 import { accountForm } from '@/src/constants/data/forms/add-account';
 import { SETTING } from '@/src/constants/SettingHr';
 import { FORM_DATA } from '@/src/constants/form';
+import { generateString } from '@/src/utils/genericAccountsId';
+import { processImage } from '@/src/utils/imageUrl';
 
 const AddAccountModal = ({ open, onClose, handleAdd }) => {
   const [formData, setFormData] = useState({});
-  function generateString() {
-    const characters =
-      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    let result = '';
-    const sections = [4, 7, 2];
-    const totalLength = 15;
-    let currentLength = 0;
-
-    for (let i = 0; i < sections.length; i++) {
-      for (let j = 0; j < sections[i]; j++) {
-        result += characters.charAt(
-          Math.floor(Math.random() * characters.length)
-        );
-        currentLength++;
-      }
-      if (currentLength < totalLength) {
-        result += '-';
-        currentLength++;
-      }
-    }
-    return result;
-  }
+  const handleGenericString = () => {
+    const generateId = generateString();
+    return generateId;
+  };
   const {
     handleSubmit,
     values,
@@ -45,35 +29,20 @@ const AddAccountModal = ({ open, onClose, handleAdd }) => {
     initialValues: {},
     validationSchema: accountInfoSchema,
     enableReinitialize: true,
-    onSubmit: async (formValues) => {
-      console.log({ formValues });
-      let imageUrl = '';
-      if (formValues.upload) {
-        imageUrl = URL.createObjectURL(formValues.upload);
-      } else {
-        imageUrl = '/images/users/default-image.svg';
-      }
-      const imageElement = new Image();
-      imageElement.src = imageUrl;
-      imageElement.onload = () => {
-        const canvas = document.createElement('canvas');
-        const context = canvas.getContext('2d');
-        canvas.width = 30;
-        canvas.height = 30;
-        context.drawImage(imageElement, 0, 0, 50, 50);
-        const resizedImageUrl = canvas.toDataURL();
-        handleAdd({
-          ...formValues,
-          pic: resizedImageUrl,
-          action: ['Delete'],
-          actionStatus: true,
-          id: generateString(),
-        });
-      };
-    },
-
     validateOnChange: false,
     validateOnBlur: false,
+    onSubmit: async (formValues) => {
+      console.log({ formValues });
+      const resizedImageUrl = await processImage(formValues.upload);
+      const id = handleGenericString();
+      handleAdd({
+        ...formValues,
+        pic: resizedImageUrl,
+        action: ['Delete', 'View'],
+        actionStatus: true,
+        id: id,
+      });
+    },
   });
   const handleCloseModal = () => {
     handleReset();
@@ -122,6 +91,7 @@ const AddAccountModal = ({ open, onClose, handleAdd }) => {
             sx={{
               fontSize: '25px',
               fontWeight: 600,
+              marginLeft: '8px',
             }}
           >
             {SETTING?.addAccount}
@@ -136,6 +106,7 @@ const AddAccountModal = ({ open, onClose, handleAdd }) => {
               width: '25px',
               height: '25px',
               cursor: 'pointer',
+              marginRight: '8px',
             }}
             onClick={handleCloseModal}
           >
@@ -146,7 +117,7 @@ const AddAccountModal = ({ open, onClose, handleAdd }) => {
           <Grid
             container
             sx={{
-              padding: { xs: '10px 20px', lg: '41px 100px' },
+              padding: { xs: '10px 20px', lg: '41px 80px' },
               display: 'flex',
             }}
           >
@@ -195,7 +166,6 @@ const AddAccountModal = ({ open, onClose, handleAdd }) => {
                       handleData={handleData}
                     />
                   </Grid>
-                  {/* {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>} */}
                 </>
               )
             )}

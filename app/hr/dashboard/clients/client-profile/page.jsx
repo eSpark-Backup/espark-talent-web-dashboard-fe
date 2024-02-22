@@ -477,14 +477,19 @@ const AddEmployee = () => {
               aria-label="basic tabs example"
               variant="scrollable"
             >
-              {clientProfileTabs?.map(({ label, prop }, index) => (
-                <Tab
-                  key={index}
-                  label={`${label}`}
-                  {...prop}
-                  disableRipple={true}
-                />
-              ))}
+              {clientProfileTabs?.map(
+                ({ label, prop }, index) => (
+                  console.log('test', clientProfileTabs),
+                  (
+                    <Tab
+                      key={index}
+                      label={`${label}`}
+                      {...prop}
+                      disableRipple={true}
+                    />
+                  )
+                )
+              )}
             </Tabs>
           </Box>
           {currentTab?.label !== 'Employees' && (
@@ -536,6 +541,12 @@ const AddEmployee = () => {
                             sx={{
                               my: { xs: '20px', md: 0 },
                               textTransform: 'math-auto',
+                              color: '#fff',
+                              background: '#029894',
+                              '&:hover': {
+                                color: '#fff',
+                                background: '#029894',
+                              },
                             }}
                           >
                             {CLIENTPROFILE?.addNewRequest}
@@ -547,6 +558,12 @@ const AddEmployee = () => {
                             sx={{
                               my: { xs: '20px', md: 0 },
                               textTransform: 'math-auto',
+                              color: '#fff',
+                              background: '#029894',
+                              '&:hover': {
+                                color: '#fff',
+                                background: '#029894',
+                              },
                             }}
                           >
                             {CLIENTPROFILE?.setNewInterview}
@@ -557,6 +574,12 @@ const AddEmployee = () => {
                             variant="contained"
                             sx={{
                               my: { xs: '20px', md: 0 },
+                              color: '#fff',
+                              background: '#029894',
+                              '&:hover': {
+                                color: '#fff',
+                                background: '#029894',
+                              },
                             }}
                           >
                             {CLIENTPROFILE?.addOnboard}
@@ -569,6 +592,12 @@ const AddEmployee = () => {
                         variant="contained"
                         sx={{
                           my: { xs: '20px', md: 0 },
+                          color: '#fff',
+                          background: '#029894',
+                          '&:hover': {
+                            color: '#fff',
+                            background: '#029894',
+                          },
                         }}
                       >
                         {CLIENTPROFILE?.addContract}
@@ -581,6 +610,12 @@ const AddEmployee = () => {
                           variant="contained"
                           sx={{
                             my: { xs: '20px', md: 0 },
+                            color: '#fff',
+                            background: '#029894',
+                            '&:hover': {
+                              color: '#fff',
+                              background: '#029894',
+                            },
                           }}
                         >
                           {CLIENTPROFILE?.uploadVoice}

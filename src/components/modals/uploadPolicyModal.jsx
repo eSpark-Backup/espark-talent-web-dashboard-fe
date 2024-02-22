@@ -75,6 +75,7 @@ const UploadPolicyModal = ({ open, onClose }) => {
             sx={{
               fontSize: '25px',
               fontWeight: 600,
+              marginLeft: '8px',
             }}
           >
             {UPLOAD_POLICY?.uploadPolicy}
@@ -89,6 +90,7 @@ const UploadPolicyModal = ({ open, onClose }) => {
               width: '25px',
               height: '25px',
               cursor: 'pointer',
+              marginRight: '8px',
             }}
             onClick={handleCloseModal}
           >
@@ -155,7 +157,7 @@ const UploadPolicyModal = ({ open, onClose }) => {
             )}
             <Grid item p={'0 10px'} xs={12}>
               <Button
-                sx={{ minWidth: '120px' }}
+                sx={{ minWidth: '120px', fontSize: '16px' }}
                 variant="contained"
                 type="submit"
               >

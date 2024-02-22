@@ -3,6 +3,7 @@ import React, { useMemo, useState } from 'react';
 import { Grid, Box, Typography, Button, Modal } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
+
 import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
 import { filterTableRowsWRTTab } from '@/src/utils/table';
 import Image from 'next/image';
@@ -14,6 +15,7 @@ import {
 } from '@/src/constants/data/tables/checkInOutRequestsData';
 import PunchRequestModal from './PunchRequestModal';
 import FilterModal from '@/src/components/FilterModal/filterModal';
+import { REQUEST_LEAVE } from '@/src/constants/requestviewModal';
 
 const Dashboard = () => {
   const checkInOutRequestDataState = useMemo(
@@ -80,28 +82,22 @@ const Dashboard = () => {
               }}
               variant="caption"
             >
-              Manage timesheet from one place.
+              {REQUEST_LEAVE?.manageTimesheet}
             </Typography>
           </Box>
         </Box>
-        <Button
-          sx={{ marginX: '10px', minWidth: '120px' }}
-          variant="contained"
-          onClick={handleOpenModal}
-        >
-          Create
-        </Button>
+
         {openModal && (
           <Modal
             open={openModal}
             onClose={handleCloseModal}
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
+            data-aos="fade-down"
             sx={{
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              // height: { xs: '950px', md: '890px' },
             }}
           >
             <PunchRequestModal
@@ -175,7 +171,6 @@ const Dashboard = () => {
                               sx={{
                                 mr: { xs: '10px', sm: '20px', md: '50px' },
                                 p: 0,
-                                // width:"50px"
                               }}
                               label={
                                 <Box display={'flex'} alignItems={'center'}>
@@ -253,7 +248,7 @@ const Dashboard = () => {
                           />
                         }
                       >
-                        Refresh
+                        {REQUEST_LEAVE?.refresh}
                       </Button>
                       <Button
                         sx={{
@@ -274,7 +269,22 @@ const Dashboard = () => {
                           />
                         }
                       >
-                        Filter
+                        {REQUEST_LEAVE?.filter}
+                      </Button>
+                      <Button
+                        sx={{
+                          marginX: '10px',
+                          minWidth: '120px',
+                          color: '#fff',
+                          background: '#029894',
+                          '&:hover': {
+                            color: '#fff',
+                            background: '#029894',
+                          },
+                        }}
+                        onClick={handleOpenModal}
+                      >
+                        {REQUEST_LEAVE?.create}
                       </Button>
                     </Box>
                   </Box>
@@ -303,6 +313,7 @@ const Dashboard = () => {
         onClose={handleClosePunch}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
+        data-aos="fade-down"
         sx={{
           display: 'flex',
           alignItems: 'center',
