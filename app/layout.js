@@ -6,9 +6,14 @@ import './globals.css';
 import CssBaseline from '@mui/material/CssBaseline';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter';
 import Box from '@mui/material/Box';
+import {
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
 
 import { Provider } from 'react-redux';
-import store from '@/src/redux/store';
+import { PersistGate } from 'redux-persist/integration/react';
+import { store, persistor } from '@/src/redux/store';
 
 import { ThemeProvider } from '@mui/material/styles';
 import { darkTheme, lightTheme } from './theme';
@@ -20,6 +25,7 @@ export default function RootLayout({ children }) {
   const toggleTheme = () => {
     setIsDarkTheme((prevTheme) => !prevTheme);
   };
+  const queryClient = new QueryClient()
   return (
     <html lang="en">
       <Head>
@@ -31,12 +37,16 @@ export default function RootLayout({ children }) {
       <AOSInit />
       <body>
         <Provider store={store}>
-          <AppRouterCacheProvider>
-            <ThemeProvider theme={currentTheme}>
-              <CssBaseline />
-              <Box toggleTheme={toggleTheme}>{children}</Box>
-            </ThemeProvider>
-          </AppRouterCacheProvider>
+          <PersistGate loading={null} persistor={persistor}>
+            <QueryClientProvider client={queryClient}>
+              <AppRouterCacheProvider>
+                <ThemeProvider theme={currentTheme}>
+                  <CssBaseline />
+                  <Box toggleTheme={toggleTheme}>{children}</Box>
+                </ThemeProvider>
+              </AppRouterCacheProvider>
+            </QueryClientProvider>
+          </PersistGate>
         </Provider>
       </body>
     </html>

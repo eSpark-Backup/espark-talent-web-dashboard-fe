@@ -12,8 +12,13 @@ import { FormControl, IconButton, OutlinedInput } from '@mui/material';
 import InputAdornment from '@mui/material/InputAdornment';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import { useMutation } from '@tanstack/react-query';
+import { api } from '@/src/services/apiService';
+import { login } from '../../redux/slices/authSlice';
+import { useDispatch } from 'react-redux';
 
 const AuthForm = ({ uiData, fields }) => {
+  const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState();
   const { title, checkText, forgotText, forgotLink } = uiData;
@@ -26,11 +31,20 @@ const AuthForm = ({ uiData, fields }) => {
     });
   };
   const router = useRouter();
+  const { data, mutate } = useMutation({
+    mutationFn: (formVals) => {
+      return api.login(formVals);
+    },
+    onSuccess: () => {
+      dispatch(login(data));
+    },
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData, 'formData');
-    router.push('client/dashboard');
+    mutate(formData);
+    // router.push('client/dashboard');
   };
   return (
     <>
@@ -82,7 +96,7 @@ const AuthForm = ({ uiData, fields }) => {
                         : 'password'
                       : null
                   }
-                  onChange={(e) => handleChange(field?.label, e.target.value)}
+                  onChange={(e) => handleChange(field?.type, e.target.value)}
                   endAdornment={
                     field.label == 'Password:' ? (
                       <InputAdornment position="end">
