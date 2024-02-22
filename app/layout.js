@@ -6,10 +6,7 @@ import './globals.css';
 import CssBaseline from '@mui/material/CssBaseline';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter';
 import Box from '@mui/material/Box';
-import {
-  QueryClient,
-  QueryClientProvider,
-} from '@tanstack/react-query'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
@@ -25,7 +22,7 @@ export default function RootLayout({ children }) {
   const toggleTheme = () => {
     setIsDarkTheme((prevTheme) => !prevTheme);
   };
-  const queryClient = new QueryClient()
+  const queryClient = new QueryClient();
   return (
     <html lang="en">
       <Head>

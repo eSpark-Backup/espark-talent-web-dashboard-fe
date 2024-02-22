@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useRouter } from 'next/navigation';
+// import { useRouter } from 'next/navigation';
 
 import Typography from '@mui/material/Typography';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -30,7 +30,7 @@ const AuthForm = ({ uiData, fields }) => {
       [key]: val,
     });
   };
-  const router = useRouter();
+  // const router = useRouter();
   const { data, mutate } = useMutation({
     mutationFn: (formVals) => {
       return api.login(formVals);
