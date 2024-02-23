@@ -1,8 +1,10 @@
+import { LOGIN } from './apiEndPoints';
+
 // ** Auth Endpoints
 const defaultConfig = {
   tokenType: 'Bearer',
   storageTokenKeyName: 'token',
   storageRefreshTokenKeyName: 'refreshToken',
-  loginEndpoint: '/login/',
+  loginEndpoint: LOGIN,
 };
 export default defaultConfig;
