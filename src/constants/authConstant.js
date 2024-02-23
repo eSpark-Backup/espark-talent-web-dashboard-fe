@@ -20,10 +20,12 @@ export const Auth_Fields = [
     label: 'Email:',
     placeHolder: 'Enter Email',
     type: 'email',
+    name: 'email',
   },
   {
     label: 'Password:',
     placeHolder: 'Enter Password',
     type: 'password',
+    name: 'password',
   },
 ];
