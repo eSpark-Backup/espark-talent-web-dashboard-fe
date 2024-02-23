@@ -22,7 +22,6 @@ import { useDispatch } from 'react-redux';
 const AuthForm = ({ uiData, fields }) => {
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
-  const [formData, setFormData] = useState();
   const { title, checkText, forgotText, forgotLink } = uiData;
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -45,7 +44,6 @@ const AuthForm = ({ uiData, fields }) => {
     validationSchema: AuthSchema,
     onSubmit: (values) => {
       try {
-        console.log('Form values:', values);
         mutate(values);
       } catch (error) {
         console.error('Error submitting form:', error);
