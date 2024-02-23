@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-// import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 import Typography from '@mui/material/Typography';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -18,6 +18,7 @@ import { useMutation } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import { login } from '../../redux/slices/authSlice';
 import { useDispatch } from 'react-redux';
+import { HR_ROLES } from '@/src/constants/data/roles';
 
 const AuthForm = ({ uiData, fields }) => {
   const dispatch = useDispatch();
@@ -26,13 +27,18 @@ const AuthForm = ({ uiData, fields }) => {
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
-  // const router = useRouter();
-  const { data, mutate } = useMutation({
+  const router = useRouter();
+  const { mutate } = useMutation({
     mutationFn: (formVals) => {
       return api.login(formVals);
     },
-    onSuccess: () => {
+    onSuccess: ({ data }) => {
       dispatch(login(data));
+      if (HR_ROLES.includes(data?.role)) {
+        router.push('hr/dashboard');
+      } else {
+        router.push('client/dashboard');
+      }
     },
   });
 
@@ -67,10 +73,6 @@ const AuthForm = ({ uiData, fields }) => {
         <Typography component="h3" variant="h3" sx={{ my: 2 }}>
           {title}
         </Typography>
-        {/* <Box sx={{ display: 'flex', gap: 0.7 }}>
-          <Typography>{text}</Typography>
-          <Link href={link}>{linkText}</Link>
-        </Box> */}
         <Box
           component="form"
           noValidate
