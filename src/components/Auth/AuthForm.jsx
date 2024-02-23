@@ -26,12 +26,7 @@ const AuthForm = ({ uiData, fields }) => {
   const { title, checkText, forgotText, forgotLink } = uiData;
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
-  // const handleChange = (key, val) => {
-  //   setFormData({
-  //     ...formData,
-  //     [key]: val,
-  //   });
-  // };
+
   // const router = useRouter();
   const { data, mutate } = useMutation({
     mutationFn: (formVals) => {
@@ -42,12 +37,6 @@ const AuthForm = ({ uiData, fields }) => {
     },
   });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(formData, 'formData');
-    mutate(formData);
-    // router.push('client/dashboard');
-  };
   const formik = useFormik({
     initialValues: {
       email: '',
