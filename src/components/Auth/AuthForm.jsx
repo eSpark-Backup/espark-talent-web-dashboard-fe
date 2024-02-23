@@ -26,12 +26,12 @@ const AuthForm = ({ uiData, fields }) => {
   const { title, checkText, forgotText, forgotLink } = uiData;
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
-  const handleChange = (key, val) => {
-    setFormData({
-      ...formData,
-      [key]: val,
-    });
-  };
+  // const handleChange = (key, val) => {
+  //   setFormData({
+  //     ...formData,
+  //     [key]: val,
+  //   });
+  // };
   // const router = useRouter();
   const { data, mutate } = useMutation({
     mutationFn: (formVals) => {
