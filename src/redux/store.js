@@ -6,6 +6,7 @@ import { combineReducers } from 'redux';
 import profileMenuSlice from './slices/profileMenuSlice';
 import workSpaceMenuSlice from './slices/workSpaceMenuSlice';
 import authSlice from './slices/authSlice';
+import { hrReducer } from './slices/hrSlices';
 
 const persistConfig = {
   key: 'root',
@@ -19,6 +20,7 @@ const persistedReducer = persistReducer(
     profileMenu: profileMenuSlice,
     workSpaceMenu: workSpaceMenuSlice,
     auth: authSlice,
+    hr: hrReducer,
   })
 );
 
