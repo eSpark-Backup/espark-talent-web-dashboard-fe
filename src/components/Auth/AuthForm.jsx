@@ -8,6 +8,8 @@ import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import { FormControl, IconButton, OutlinedInput } from '@mui/material';
+import { useFormik } from 'formik';
+import { AuthSchema } from '../form/schemas/loginAccount';
 
 import InputAdornment from '@mui/material/InputAdornment';
 import Visibility from '@mui/icons-material/Visibility';
@@ -46,6 +48,21 @@ const AuthForm = ({ uiData, fields }) => {
     mutate(formData);
     // router.push('client/dashboard');
   };
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+    },
+    validationSchema: AuthSchema,
+    onSubmit: (values) => {
+      try {
+        console.log('Form values:', values);
+        mutate(values);
+      } catch (error) {
+        console.error('Error submitting form:', error);
+      }
+    },
+  });
   return (
     <>
       <Box
@@ -70,7 +87,7 @@ const AuthForm = ({ uiData, fields }) => {
         <Box
           component="form"
           noValidate
-          onSubmit={handleSubmit}
+          onSubmit={formik.handleSubmit}
           sx={{ mt: 3, width: '100%' }}
         >
           {fields?.map((field, index) => (
@@ -90,15 +107,19 @@ const AuthForm = ({ uiData, fields }) => {
                   fullWidth
                   placeholder={field?.placeHolder}
                   type={
-                    field?.type && field?.type == 'password'
+                    field?.type && field?.type === 'password'
                       ? showPassword
                         ? 'text'
                         : 'password'
                       : null
                   }
-                  onChange={(e) => handleChange(field?.type, e.target.value)}
+                  value={formik.values[field?.type] || ''}
+                  name={field.name}
+                  onChange={(e) => formik.setFieldValue(field?.name, e.target.value)}
+                  onBlur={formik.handleBlur(field?.type)}
+                  error={formik.touched[field?.type] && Boolean(formik.errors[field?.type])}
                   endAdornment={
-                    field.label == 'Password:' ? (
+                    field.label === 'Password:' ? (
                       <InputAdornment position="end">
                         <IconButton
                           sx={{
@@ -118,6 +139,11 @@ const AuthForm = ({ uiData, fields }) => {
                     ) : null
                   }
                 />
+                {formik.touched[field?.type] && formik.errors[field?.type] && (
+                  <Typography variant="body2" color="error">
+                    {formik.errors[field?.type]}
+                  </Typography>
+                )}
               </FormControl>
             </Box>
           ))}
