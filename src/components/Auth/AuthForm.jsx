@@ -115,9 +115,14 @@ const AuthForm = ({ uiData, fields }) => {
                   }
                   value={formik.values[field?.type] || ''}
                   name={field.name}
-                  onChange={(e) => formik.setFieldValue(field?.name, e.target.value)}
+                  onChange={(e) =>
+                    formik.setFieldValue(field?.name, e.target.value)
+                  }
                   onBlur={formik.handleBlur(field?.type)}
-                  error={formik.touched[field?.type] && Boolean(formik.errors[field?.type])}
+                  error={
+                    formik.touched[field?.type] &&
+                    Boolean(formik.errors[field?.type])
+                  }
                   endAdornment={
                     field.label === 'Password:' ? (
                       <InputAdornment position="end">
