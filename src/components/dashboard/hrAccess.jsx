@@ -6,7 +6,7 @@ import StatusBox from '../AtttendanceSummary/StatusBox';
 import { useQuery } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import { HR_HOME } from '@/src/services/apiService/apiEndPoints';
-import { addHomeData } from '@/src/redux/slices/hrSlices/homeSlice';
+import { getHomeData } from '@/src/redux/slices/hrSlices/homeSlice';
 import { useDispatch } from 'react-redux';
 
 const HrAccess = ({ isHr }) => {
@@ -22,7 +22,7 @@ const HrAccess = ({ isHr }) => {
             count: respData?.data[item.name],
           })
         );
-        dispatch(addHomeData(respData?.data));
+        dispatch(getHomeData(respData?.data));
         return tempData;
       });
     },

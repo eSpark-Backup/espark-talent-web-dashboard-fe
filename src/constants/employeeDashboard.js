@@ -160,62 +160,173 @@ export const Summary_Boxes = [
 export const Leave_Summary_Boxes = [
   {
     title: 'Casual Leaves',
+    name: 'casual_leaves',
     subtitle: '(LRT-00001)',
     leaveType: [
-      { title: 'Total:', quantity: 12, circleColor: '' },
-      { title: 'Availed:', quantity: 0, circleColor: '#F16E61' },
-      { title: 'Pending:', quantity: 0, circleColor: '#F4B844' },
-      { title: 'Available:', quantity: 0, circleColor: '#136E91' },
+      { name: 'total', title: 'Total:', quantity: 12, circleColor: '' },
+      {
+        name: 'availed',
+        title: 'Availed:',
+        quantity: 0,
+        circleColor: '#F16E61',
+      },
+      {
+        name: 'balance',
+        title: 'Available:',
+        quantity: 0,
+        circleColor: '#136E91',
+      },
     ],
   },
   {
     title: 'Sick Leaves',
     subtitle: '(LRT-00002)',
+    name: 'sick_leaves',
     leaveType: [
-      { title: 'Total:', quantity: 8, circleColor: '' },
-      { title: 'Availed:', quantity: 0, circleColor: '#F16E61' },
-      { title: 'Pending:', quantity: 0, circleColor: '#F4B844' },
-      { title: 'Available:', quantity: 0, circleColor: '#136E91' },
+      { name: 'total', title: 'Total:', quantity: 8, circleColor: '' },
+      {
+        name: 'availed',
+        title: 'Availed:',
+        quantity: 0,
+        circleColor: '#F16E61',
+      },
+      {
+        name: 'balance',
+        title: 'Available:',
+        quantity: 0,
+        circleColor: '#136E91',
+      },
     ],
   },
   {
     title: 'Annual Leave',
     subtitle: '(LRT-00006)',
+    name: 'annual_leaves',
     leaveType: [
-      { title: 'Total:', quantity: 20, circleColor: '' },
-      { title: 'Availed:', quantity: 0, circleColor: '#F16E61' },
-      { title: 'Pending:', quantity: 0, circleColor: '#F4B844' },
-      { title: 'Available:', quantity: 0, circleColor: '#136E91' },
+      { name: 'total', title: 'Total:', quantity: 20, circleColor: '' },
+      {
+        name: 'availed',
+        title: 'Availed:',
+        quantity: 0,
+        circleColor: '#F16E61',
+      },
+      {
+        name: 'balance',
+        title: 'Available:',
+        quantity: 0,
+        circleColor: '#136E91',
+      },
     ],
   },
   {
     title: 'Unpaid Leaves',
     subtitle: '(LRT-00007)',
+    name: 'unpaid_leaves',
     leaveType: [
-      { title: 'Total:', quantity: 365, circleColor: '' },
-      { title: 'Availed:', quantity: 0, circleColor: '#F16E61' },
-      { title: 'Pending:', quantity: 0, circleColor: '#F4B844' },
-      { title: 'Available:', quantity: 0, circleColor: '#136E91' },
-    ],
-  },
-  {
-    title: 'Paternity Leaves',
-    subtitle: '(LRT-00004)',
-    leaveType: [
-      { title: 'Total:', quantity: 7, circleColor: '' },
-      { title: 'Availed:', quantity: 0, circleColor: '#F16E61' },
-      { title: 'Pending:', quantity: 0, circleColor: '#F4B844' },
-      { title: 'Available:', quantity: 0, circleColor: '#136E91' },
+      { name: 'total', title: 'Total:', quantity: 365, circleColor: '' },
+      {
+        name: 'availed',
+        title: 'Availed:',
+        quantity: 0,
+        circleColor: '#F16E61',
+      },
+      {
+        name: 'balance',
+        title: 'Available:',
+        quantity: 0,
+        circleColor: '#136E91',
+      },
     ],
   },
   {
     title: 'Hajj Leaves',
     subtitle: '(LRT-00005)',
+    name: 'hajj_leaves',
     leaveType: [
-      { title: 'Total:', quantity: 20, circleColor: '' },
-      { title: 'Availed:', quantity: 0, circleColor: '#F16E61' },
-      { title: 'Pending:', quantity: 0, circleColor: '#F4B844' },
-      { title: 'Available:', quantity: 0, circleColor: '#136E91' },
+      { name: 'total', title: 'Total:', quantity: 20, circleColor: '' },
+      {
+        name: 'availed',
+        title: 'Availed:',
+        quantity: 0,
+        circleColor: '#F16E61',
+      },
+      {
+        name: 'balance',
+        title: 'Available:',
+        quantity: 0,
+        circleColor: '#136E91',
+      },
     ],
+  },
+];
+
+export const Statistics_Data = [
+  {
+    title: 'Today',
+    hoursCompleted: '3.45',
+    totalHours: '8',
+    remainingBack: '#E6F4F4',
+    background: '#FEDB41',
+    name: 'today',
+  },
+  {
+    title: 'This week',
+    hoursCompleted: '28',
+    totalHours: '40',
+    remainingBack: '#E6F4F4',
+    background: '#F4B844',
+    name: 'this_week',
+  },
+  {
+    title: 'This month',
+    hoursCompleted: '90',
+    totalHours: '160',
+    remainingBack: '#E6F4F4',
+    background: '#2D9C98',
+    name: 'this_month',
+  },
+  {
+    title: 'Remaining',
+    hoursCompleted: '90',
+    totalHours: '160',
+    remainingBack: '#E6F4F4',
+    background: '#B24057',
+    name: 'remaining',
+  },
+  {
+    title: 'Overtime',
+    hoursCompleted: '4',
+    totalHours: '20',
+    remainingBack: '#E6F4F4',
+    background: '#338CB2',
+    name: 'overtime',
+  },
+];
+
+export const Timeline_Data = [
+  {
+    id: 1,
+    title: 'Check in',
+    time: '10:00 AM',
+    name: 'check_in',
+  },
+  {
+    id: 2,
+    title: 'Break at',
+    time: '10:00 AM',
+    description: 'Description of Event 2.',
+    name: 'break',
+  },
+  {
+    id: 3,
+    title: 'Resumed at',
+    time: '10:00 AM',
+    name: 'resume',
+  },
+  {
+    id: 3,
+    title: 'Check out',
+    time: '10:00 AM',
+    name: 'check_out',
   },
 ];

@@ -9,8 +9,14 @@ import { allEmployees } from '@/src/constants/AllEmployee';
 import AppConfirmationMadal from '../modals/AppConfirmationMadal';
 import { REMOVE_MODAL } from '@/src/constants/contractSigned';
 import { CLIENT_VIEW } from '@/src/constants/ClientProfile';
+// import { useQuery } from '@tanstack/react-query';
+// import { api } from '@/src/services/apiService';
+// import { HR_GET_CLIENTS } from '@/src/services/apiService/apiEndPoints';
+// import { getClientsData } from '@/src/redux/slices/hrSlices/clientSlice';
+// import { useDispatch } from 'react-redux';
 
 const ClientView = ({ status, id, name, designation = '', search }) => {
+  // const dispatch = useDispatch();
   const router = useRouter();
   const [anchorEl, setAnchorEl] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
@@ -220,6 +226,13 @@ const ClientView = ({ status, id, name, designation = '', search }) => {
       );
     }
   }
+  // const { data, isLoading } = useQuery({
+  //   staleTime: 10000,
+  //   queryFn: () => {
+  //     return api.getData(HR_GET_CLIENTS);
+  //   },
+  // });
+  // console.log({ data, isLoading });
   return (
     <>
       <Grid

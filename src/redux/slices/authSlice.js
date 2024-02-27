@@ -12,8 +12,21 @@ const authSlice = createSlice({
     logout: (state, action) => {
       state.userData = action.payload;
     },
+    getWorkSpace: (state, action) => {
+      state.userData = {
+        ...state.userData,
+        workSpace: action.payload,
+      };
+    },
+    getEmployeeDetails: (state, action) => {
+      state.userData = {
+        ...state.userData,
+        empDetails: action.payload,
+      };
+    },
   },
 });
 
-export const { login, logout } = authSlice.actions;
+export const { login, logout, getWorkSpace, getEmployeeDetails } =
+  authSlice.actions;
 export default authSlice.reducer;

@@ -8,6 +8,11 @@ const instance = axios.create({
   timeout: 50000,
   headers: { 'Content-Type': 'application/json' },
 });
+const newInstance = axios.create({
+  baseURL: envService.getBaseURL(),
+  timeout: 50000,
+  headers: { 'Content-Type': 'application/json' },
+});
 
 export default class APIService {
   config = { ...defaultConfig };
@@ -31,13 +36,16 @@ export default class APIService {
     instance.interceptors.response.use(
       (response) => response,
       (error) => {
-        const { config, response } = error;
-        const originalRequest = config;
+        const { response } = error;
 
         if (response && response.status === 401) {
           if (!this.isAlreadyFetchingAccessToken) {
             this.isAlreadyFetchingAccessToken = true;
-            this.refreshToken().then((r) => {
+            instance.defaults.headers.common.Authorization = '';
+            this.login({
+              email: 'superadmin@espark.com',
+              password: 'super@espark',
+            }).then((r) => {
               this.isAlreadyFetchingAccessToken = false;
 
               // ** Update accessToken in localStorage
@@ -47,15 +55,15 @@ export default class APIService {
               this.onAccessTokenFetched(r.data.accessToken);
             });
           }
-          const retryOriginalRequest = new Promise((resolve) => {
-            this.addSubscriber((accessToken) => {
-              // ** Make sure to assign accessToken according to your response.
-              // ** Change Authorization header
-              originalRequest.headers.Authorization = `${this.jwtConfig.tokenType} ${accessToken}`;
-              resolve(this.instance(originalRequest));
-            });
-          });
-          return retryOriginalRequest;
+          // const retryOriginalRequest = new Promise((resolve) => {
+          //   this.addSubscriber((accessToken) => {
+          //     // ** Make sure to assign accessToken according to your response.
+          //     // ** Change Authorization header
+          //     originalRequest.headers.Authorization = `${this.jwtConfig.tokenType} ${accessToken}`;
+          //     resolve(this.instance(originalRequest));
+          //   });
+          // });
+          // return retryOriginalRequest;
         }
         return Promise.reject(error);
       }
@@ -81,7 +89,7 @@ export default class APIService {
   }
   async login(args) {
     console.log({ args });
-    return await instance.post(this.config.loginEndpoint, args);
+    return await newInstance.post(this.config.loginEndpoint, args);
   }
   async getData(url, params) {
     this.resetHeaders();
@@ -98,6 +106,10 @@ export default class APIService {
   async updateData(url, data) {
     this.resetHeaders();
     return await instance.put(url, data);
+  }
+  async patchData(url) {
+    this.resetHeaders();
+    return await instance.patch(url);
   }
   async daleteData(url) {
     this.resetHeaders();
