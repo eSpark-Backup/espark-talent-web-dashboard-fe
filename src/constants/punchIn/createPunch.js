@@ -12,6 +12,7 @@ export const PUNCH_IN = {
   markCheckIn: 'Mark check in',
   markCheckOut: 'Mark check out',
   markBreakout: 'Mark break out',
+  markBreakin: 'Mark break in',
   checkIn: 'Check In',
   checkOut: 'Check Out',
 };

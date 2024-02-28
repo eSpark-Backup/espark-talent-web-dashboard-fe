@@ -8,6 +8,14 @@ import EmployeeView from './EmployeeView';
 import { useRouter } from 'next/navigation';
 import EmployeeStatus from './ActiveEmployee';
 import { employeeProfileData } from '@/src/constants/employeeProfile';
+import { useQuery } from '@tanstack/react-query';
+import { api } from '@/src/services/apiService';
+import {
+  // HR_GET_CLIENTS,
+  HR_GET_EMPLOYEES,
+} from '@/src/services/apiService/apiEndPoints';
+// import { getClientsData } from '@/src/redux/slices/hrSlices/clientSlice';
+// import { useDispatch } from 'react-redux';
 
 const AllEmployee = ({ fromClient, openModal }) => {
   const router = useRouter();
@@ -29,6 +37,13 @@ const AllEmployee = ({ fromClient, openModal }) => {
       setSearch(false);
     }
   }, [name, id, designation]);
+  const { data, isLoading } = useQuery({
+    staleTime: 10000,
+    queryFn: () => {
+      return api.getData(HR_GET_EMPLOYEES);
+    },
+  });
+  console.log({ data, isLoading });
 
   if (fromClient)
     return (

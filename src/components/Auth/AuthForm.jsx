@@ -18,7 +18,7 @@ import { useMutation } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import { login } from '../../redux/slices/authSlice';
 import { useDispatch } from 'react-redux';
-import { HR_ROLES } from '@/src/constants/data/roles';
+import { EMPLOYEE_ROLES, HR_ROLES } from '@/src/constants/data/roles';
 
 const AuthForm = ({ uiData, fields }) => {
   const dispatch = useDispatch();
@@ -29,16 +29,21 @@ const AuthForm = ({ uiData, fields }) => {
 
   const router = useRouter();
   const { mutate } = useMutation({
-    mutationFn: (formVals) => {
+    mutationFn: async (formVals) => {
       return api.login(formVals);
     },
     onSuccess: ({ data }) => {
       dispatch(login(data));
       if (HR_ROLES.includes(data?.role)) {
         router.push('hr/dashboard');
+      } else if (EMPLOYEE_ROLES.includes(data?.role)) {
+        router.push('employee/dashboard');
       } else {
         router.push('client/dashboard');
       }
+    },
+    onError: (err) => {
+      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
 
