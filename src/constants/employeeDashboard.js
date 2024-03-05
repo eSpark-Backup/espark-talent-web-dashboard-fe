@@ -57,103 +57,120 @@ export const Summary_Boxes = [
     count: `08`,
     horizontalLineColor: '#068987',
     backgroundColor: '#E6F4F4',
+    name: 'shifts',
   },
   {
     title: 'Expected minutes',
     count: `08`,
     horizontalLineColor: '#7A0916',
     backgroundColor: '#F5ECED',
+    name: 'expected_minutes'
   },
   {
     title: 'Worked minutes',
     count: `08`,
     horizontalLineColor: '#FFBE3B',
     backgroundColor: '#FFF8EB',
+    name: 'worked_minutes'
   },
   {
     title: 'Short minutes',
     count: `08`,
     horizontalLineColor: '#006C9C',
     backgroundColor: '#E0F6FA',
+    name: 'short_minutes'
   },
   {
     title: 'Leaves',
     count: `08`,
     horizontalLineColor: '#006C9C',
     backgroundColor: '#E0F6FA',
+    name: 'leaves'
   },
-  {
-    title: 'Travels',
-    count: `08`,
-    horizontalLineColor: '#7A0916',
-    backgroundColor: '#F5ECED',
-  },
+  // {
+  //   title: 'Travels',
+  //   count: `08`,
+  //   horizontalLineColor: '#7A0916',
+  //   backgroundColor: '#F5ECED',
+  //   name: ''
+  // },
 
   {
     title: 'Absents',
     count: `08`,
     horizontalLineColor: '#FFBE3B',
     backgroundColor: '#FFF8EB',
+    name: 'absents'
   },
   {
     title: 'Presents',
     count: `08`,
     horizontalLineColor: '#7A0916',
     backgroundColor: '#F5ECED',
+    name: 'presents'
   },
   {
     title: 'Missings',
     count: `08`,
     horizontalLineColor: '#068987',
     backgroundColor: '#E6F4F4',
+    name: 'missings'
   },
   {
     title: 'Days Off',
     count: `08`,
     horizontalLineColor: '#7A0916',
     backgroundColor: '#F5ECED',
+    name: 'days_off'
   },
-  {
-    title: 'Rest days',
-    count: `08`,
-    horizontalLineColor: '#FFBE3B',
-    backgroundColor: '#FFF8EB',
-  },
-  {
-    title: 'Rexations',
-    count: `08`,
-    horizontalLineColor: '#006C9C',
-    backgroundColor: '#E0F6FA',
-  },
-  {
-    title: 'Early left',
-    count: `08`,
-    horizontalLineColor: '#068987',
-    backgroundColor: '#E6F4F4',
-  },
+  // {
+  //   title: 'Rest days',
+  //   count: `08`,
+  //   horizontalLineColor: '#FFBE3B',
+  //   backgroundColor: '#FFF8EB',
+  //   name:''
+  // },
+  // {
+  //   title: 'Rexations',
+  //   count: `08`,
+  //   horizontalLineColor: '#006C9C',
+  //   backgroundColor: '#E0F6FA',
+  //   name:''
+  // },
+  // {
+  //   title: 'Early left',
+  //   count: `08`,
+  //   horizontalLineColor: '#068987',
+  //   backgroundColor: '#E6F4F4',
+  //   name:''
+  // },
   {
     title: 'Over time',
     count: `08`,
     horizontalLineColor: '#006C9C',
     backgroundColor: '#E0F6FA',
+    name: 'overtimes'
   },
   {
     title: 'Break minutes',
     count: `08`,
     horizontalLineColor: '#7A0916',
     backgroundColor: '#F5ECED',
+    name: 'break_minutes'
   },
   {
     title: 'Late arrival',
     count: `08`,
     horizontalLineColor: '#FFBE3B',
     backgroundColor: '#FFF8EB',
+    name: 'late_arrivals'
   },
   {
     title: 'Short duration',
     count: 15,
     horizontalLineColor: '#006C9C',
     backgroundColor: '#E0F6FA',
+    name: 'short_durations'
   },
 ];
 

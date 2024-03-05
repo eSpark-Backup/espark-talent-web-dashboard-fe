@@ -10,7 +10,7 @@ const PunchRequestModal = ({ createModal, modalData, handleClose }) => {
     setFormData({ ...formData, [name]: value });
   };
   useEffect(() => {
-    console.log('form', formData);
+    // console.log('form', formData);
   }, [formData]);
   return (
     <Box

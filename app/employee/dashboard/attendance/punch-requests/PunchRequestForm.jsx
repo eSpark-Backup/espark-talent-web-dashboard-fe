@@ -4,8 +4,53 @@ import { createPunchRequestForm } from '@/src/constants/data/forms/create-punch-
 import { Box, Button } from '@mui/material';
 import { useFormik } from 'formik';
 import { createPunchRequestSchema } from '../../../../../src/components/form/schemas/createPunchRequest';
+import { useSelector } from 'react-redux';
+import { api } from '@/src/services/apiService';
+import { EMP_PUNCH_REQUEST } from '@/src/services/apiService/apiEndPoints';
+import { useMutation } from '@tanstack/react-query';
+import dayjs from 'dayjs';
 
 const PunchRequestForm = ({ handleClose, handleData }) => {
+  const { punch_timings } = useSelector((state) => state?.emp?.home?.homeData);
+  const { workSpace } = useSelector((state) => state?.auth?.userData);
+  const pascalToSnake = (string) => {
+    // Replace spaces and dots with empty strings
+    const pascalCaseString = string.replace(/[\s.]+(?=[A-Z\s])/g, '');
+
+    // Replace each uppercase letter (except the first one) with its lowercase equivalent preceded by an underscore
+    const snakeCaseString = pascalCaseString.replace(
+      /[A-Z]/g,
+      (match, offset) =>
+        offset === 0 ? match.toLowerCase() : '_' + match.toLowerCase()
+    );
+
+    return snakeCaseString.split(' ').join('_');
+  };
+  const { mutate } = useMutation({
+    mutationFn: async (formVals) => {
+      // console.log({ formValues });
+      const formData = new FormData();
+      for (let key in formVals) {
+        formData.append(key, formVals[key]);
+      }
+      return api.postData(EMP_PUNCH_REQUEST, formData);
+    },
+    onSuccess: ({ data }) => {
+      console.log({ data });
+      handleClose();
+      // dispatch(login(data));
+      // if (HR_ROLES.includes(data?.role)) {
+      //   router.push('hr/dashboard');
+      // } else if (EMPLOYEE_ROLES.includes(data?.role)) {
+      //   router.push('employee/dashboard');
+      // } else {
+      //   router.push('client/dashboard');
+      // }
+    },
+    onError: (err) => {
+      console.log({ err: err.message, name: err.name, stack: err.stack });
+    },
+  });
   const {
     handleSubmit,
     values,
@@ -15,11 +60,22 @@ const PunchRequestForm = ({ handleClose, handleData }) => {
     setFieldError,
     setErrors,
   } = useFormik({
-    initialValues: {},
+    initialValues: {
+      expectedCheckIn: punch_timings?.check_in,
+      expectedCheckOut: punch_timings?.check_out,
+    },
     validationSchema: createPunchRequestSchema,
     enableReinitialize: true,
     onSubmit: (formValues) => {
       console.log({ formValues });
+      const revampFormValues = {
+        date: dayjs(formValues.date).format('YYYY-MM-DD'),
+        client_id: workSpace?.email,
+        punch_type: pascalToSnake(formValues?.punchType),
+        punch_time: dayjs(formValues?.punchTime).format('HH:mm:ss.SSSSSS'),
+        description: formValues?.description,
+      };
+      mutate(revampFormValues);
     },
     validateOnChange: false,
     validateOnBlur: false,

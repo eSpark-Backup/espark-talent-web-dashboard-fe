@@ -9,6 +9,7 @@ const StatusBox = ({
   backgroundColor,
   isHr,
   image,
+  value,
 }) => {
   return (
     <>
@@ -67,7 +68,7 @@ const StatusBox = ({
                 lineHeight: 'normal',
               }}
             >
-              {isHr ? title : count}
+              {isHr ? title : value}
             </Typography>
           </Box>
         </Box>

@@ -16,12 +16,46 @@ import {
 import PunchRequestModal from './PunchRequestModal';
 import FilterModal from '@/src/components/FilterModal/filterModal';
 import { REQUEST_LEAVE } from '@/src/constants/requestviewModal';
+import { useQuery } from '@tanstack/react-query';
+import { EMP_PUNCH_REQUEST } from '@/src/services/apiService/apiEndPoints';
+import { useDispatch, useSelector } from 'react-redux';
+import { api } from '@/src/services/apiService';
 
 const Dashboard = () => {
+  const { workSpace, empDetails } = useSelector(
+    (state) => state?.auth?.userData
+  );
+  const dispatch = useDispatch();
+  const { data, isLoading } = useQuery({
+    staleTime: 10000,
+    queryFn: () => {
+      return api
+        .getData(`${EMP_PUNCH_REQUEST}/?workspace=${workSpace?.email || ''}`)
+        .then(({ data }) => {
+          // dispatch(getEmpHomeData(data));
+          // dispatch(getWorkSpace(data?.workspaces?.[0]));
+          // dispatch(getEmployeeDetails(data?.employee_details));
+          return data;
+        })
+        .catch((err) => {
+          console.log({ err });
+        });
+    },
+  });
+  console.log({ data, isLoading });
   const checkInOutRequestDataState = useMemo(
     () => filterTableRowsWRTTab(employeeCheckInOutRequestData, { status: '' }),
     [employeeCheckInOutRequestData]
   );
+  const reformData = (dataArr) => {
+    const tempData = dataArr.map((item) => ({
+      description: item?.description,
+      actionTimeOffReqStatus: true,
+      actionStatus: true,
+      action: ['View'],
+    }));
+  };
+  console.log({ newTableData: reformData(data?.requests) });
   const [currentReqStatusTab, setcurrentReqStatusTab] = useState('All');
   const [currentReqStatusTabVal, setcurrentReqStatusTabVal] = useState(0);
   const [modalData, setModalData] = useState({});
@@ -130,7 +164,7 @@ const Dashboard = () => {
                 }}
                 textAlign={'center'}
               >
-                Bilal Khan - (eS-00020)
+                {empDetails?.employee_name} - ({empDetails?.employee_id})
               </Typography>
             </Box>
             <Box sx={{ width: '100%' }}>
@@ -163,7 +197,7 @@ const Dashboard = () => {
                       aria-label="basic tabs example"
                     >
                       {checkInOutStatusTabs?.map(
-                        ({ label, prop, background, color }, index) => {
+                        ({ label, prop, background, color, name }, index) => {
                           return (
                             <Tab
                               key={index}
@@ -193,12 +227,13 @@ const Dashboard = () => {
                                     alignItems={'center'}
                                   >
                                     {
-                                      filterTableRowsWRTTab(
-                                        checkInOutRequestDataState,
-                                        {
-                                          status: label === 'All' ? '' : label,
-                                        }
-                                      ).length
+                                      // filterTableRowsWRTTab(
+                                      //   checkInOutRequestDataState,
+                                      //   {
+                                      //     status: label === 'All' ? '' : label,
+                                      //   }
+                                      // ).length
+                                      data?.[name]
                                     }
                                   </Box>
                                   <Typography
@@ -302,6 +337,7 @@ const Dashboard = () => {
                 currentReqStatusTab,
                 column: employeeCheckInOutRequestColumn,
                 data: checkInOutRequestDataState,
+                // data: data?.requests,
                 handleClickActionView,
               })}
             </Box>

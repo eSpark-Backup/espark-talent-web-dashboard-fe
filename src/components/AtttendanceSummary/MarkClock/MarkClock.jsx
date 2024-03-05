@@ -19,6 +19,7 @@ const MarkClock = () => {
   // console.log({ homeData });
 
   const parseTime = (timeString) => {
+    console.log({ timeString });
     const [time, period] = timeString.split(' ');
     const [hours, minutes] = time.split(':');
     let hoursInt = parseInt(hours, 10);
@@ -219,7 +220,7 @@ const MarkClock = () => {
               fontWeight: 600,
               lineHeight: 'normal',
               mx: '10px',
-              minWidth: '69.66px',
+              // minWidth: '69.66px',
             }}
           >
             {homeData?.today_activity?.check_out}

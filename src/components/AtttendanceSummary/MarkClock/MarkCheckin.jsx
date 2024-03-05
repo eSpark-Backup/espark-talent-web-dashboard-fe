@@ -35,7 +35,7 @@ const MarkCheckIn = ({ setStartTime }) => {
   });
 
   const handleCheckIn = () => {
-    if (homeData?.today_activity?.check_in === '-') {
+    if (homeData?.today_activity?.check_in !== '-') {
       return;
     } else {
       const data = {
