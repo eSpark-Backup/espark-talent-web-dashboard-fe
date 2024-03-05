@@ -4,7 +4,10 @@ import { Box, Typography } from '@mui/material';
 import Link from 'next/link';
 
 import AppCustomDropdown from '../dashboard/appCustomDropdown';
-import { toCamelCase } from '@/src/utils/stringModification';
+import {
+  getCamelCapitalized,
+  toCamelCase,
+} from '@/src/utils/stringModification';
 import { trackingStatusTypes } from '@/src/constants/data/tables/timeTracking';
 import AppTableInfoOptionsCell from './AppTableInfoOptionsCell';
 import { modulepermissionColumn } from '@/src/constants/data/tables/modulePermission';
@@ -283,7 +286,8 @@ const renderStatusCell = (row, col, commonCellStyle, options) => {
     Enabled: getStatusStyle('#E6F5F4', '#068987', '#068987'),
   };
 
-  const statusStyle = statusMap[row.status] || statusMap.Default;
+  const statusStyle =
+    statusMap[getCamelCapitalized(row.status)] || statusMap.Default;
 
   if (row?.attendenceShortHand) {
     return (
@@ -299,7 +303,7 @@ const renderStatusCell = (row, col, commonCellStyle, options) => {
 
   return (
     <td key={col.index} style={{ ...commonCellStyle, flex: col?.flex || 1 }}>
-      <span style={statusStyle}>{row[toCamelCase(col?.title || col)]}</span>
+      <span style={statusStyle}>{getCamelCapitalized(row[col?.name])}</span>
     </td>
   );
 };
@@ -380,7 +384,8 @@ export const renderCellContent = (
   handleClickActionDelete,
   options
 ) => {
-  switch (col.title || col) {
+  // console.log({ col, row });
+  switch (col?.title || col || col?.name) {
     case 'Picture':
       return renderUserAvatar(row, col, commonCellStyle);
     case 'Assignee':
@@ -404,17 +409,17 @@ export const renderCellContent = (
         return renderDownloadButton(row, col, commonCellStyle);
       }
     case 'Client':
-    case 'Employee':
-      return renderCheckActions(
-        row,
-        col,
-        handleClickActionView,
-        commonCellStyle,
-        colIndex,
-        rowIndex,
-        handleClickActionDelete,
-        commonCellStyle
-      );
+    // case 'Employee':
+    //   return renderCheckActions(
+    //     row,
+    //     col,
+    //     handleClickActionView,
+    //     commonCellStyle,
+    //     colIndex,
+    //     rowIndex,
+    //     handleClickActionDelete,
+    //     commonCellStyle
+    //   );
 
     case 'Action':
       return renderActions(
@@ -461,20 +466,20 @@ export const renderCellContent = (
         >
           {col.title?.toLowerCase() === 'employee invoices' ||
           col.title?.toLowerCase() === 'other invoices' ? (
-            row[toCamelCase(col?.title || col)] === null ? (
+            row[col?.name] === null ? (
               '-'
             ) : (
               <Link
                 href="/hr/dashboard/clients/client-profile"
                 style={{ textDecoration: 'underline', cursor: 'pointer' }}
               >
-                {row[toCamelCase(col?.title || col)]}
+                {getCamelCapitalized(row[col?.name])}
               </Link>
             )
-          ) : row[toCamelCase(col?.title || col)] === null ? (
+          ) : row[col?.name] === null ? (
             '-'
           ) : (
-            row[toCamelCase(col?.title || col)]
+            getCamelCapitalized(row[col?.name])
           )}
         </td>
       );

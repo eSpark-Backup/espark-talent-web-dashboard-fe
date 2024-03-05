@@ -1,5 +1,5 @@
 'use client';
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Grid, Box, Typography, Button, Modal } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -43,19 +43,35 @@ const Dashboard = () => {
     },
   });
   console.log({ data, isLoading });
-  const checkInOutRequestDataState = useMemo(
-    () => filterTableRowsWRTTab(employeeCheckInOutRequestData, { status: '' }),
-    [employeeCheckInOutRequestData]
+  // const checkInOutRequestDataState = useMemo(
+  //   () => filterTableRowsWRTTab(employeeCheckInOutRequestData, { status: '' }),
+  //   [employeeCheckInOutRequestData]
+  // );
+  const [checkInOutRequestDataState, setCheckInOutRequestDataState] = useState(
+    []
   );
   const reformData = (dataArr) => {
-    const tempData = dataArr.map((item) => ({
-      description: item?.description,
-      actionTimeOffReqStatus: true,
-      actionStatus: true,
-      action: ['View'],
-    }));
+    if (dataArr.length) {
+      const tempData = dataArr.map((item) => ({
+        ...item,
+        description: item?.description,
+        actionTimeOffReqStatus: true,
+        actionStatus: true,
+        action: ['View'],
+      }));
+      return tempData;
+    }
+    return [];
   };
-  console.log({ newTableData: reformData(data?.requests) });
+  useEffect(() => {
+    if (data?.requests?.length) {
+      console.log({ newTableData: reformData(data?.requests) });
+      setCheckInOutRequestDataState(
+        filterTableRowsWRTTab(reformData(data?.requests), { status: '' })
+      );
+    }
+  }, [data]);
+
   const [currentReqStatusTab, setcurrentReqStatusTab] = useState('All');
   const [currentReqStatusTabVal, setcurrentReqStatusTabVal] = useState(0);
   const [modalData, setModalData] = useState({});

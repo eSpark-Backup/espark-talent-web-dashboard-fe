@@ -43,6 +43,7 @@ export const renderNestedTable = ({
   data,
   handleClickActionView,
 }) => {
+  console.log({ column, currentReqStatusTab });
   return (
     <CustomTabPanel
       value={currentReqStatusTabVal}
@@ -58,7 +59,10 @@ export const renderNestedTable = ({
           currentTab={currentReqStatusTab}
           column={column}
           data={filterTableRowsWRTTab(data, {
-            status: currentReqStatusTab === 'All' ? '' : currentReqStatusTab,
+            status:
+              currentReqStatusTab === 'All'
+                ? ''
+                : currentReqStatusTab.toLowerCase(),
           })}
           handleClickActionView={handleClickActionView}
         />

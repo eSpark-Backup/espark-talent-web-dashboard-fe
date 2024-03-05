@@ -36,22 +36,27 @@ export const employeeLeaveBalanceColumn = [
   {
     title: 'Leave type',
     flex: 2,
+    name: 'leave_type',
   },
   {
     title: 'Balance',
     flex: 2,
+    name: 'balance',
   },
   {
     title: 'Availed',
     flex: 2,
+    name: 'availed',
   },
   {
     title: 'Available',
     flex: 2,
+    name: 'available',
   },
   {
     title: 'Pending',
     flex: 2,
+    name: 'pending',
   },
 ];
 export const employeeLeaveRequestsData = [
@@ -214,42 +219,42 @@ export const employeeLeaveRequestsData = [
 ];
 export const employeeLeaveBalanceData = [
   {
-    leaveType: 'Casual leaves',
+    leave_type: 'Casual leaves',
     balance: '12',
     availed: '4',
     available: '8',
     pending: '0',
   },
   {
-    leaveType: 'Sick',
+    leave_type: 'Sick',
     balance: '8',
     availed: '4',
     available: '4',
     pending: '0',
   },
   {
-    leaveType: 'Annual leaves',
+    leave_type: 'Annual leaves',
     balance: '20',
     availed: '0',
     available: '10',
     pending: '0',
   },
   {
-    leaveType: 'Unpaid leaves',
+    leave_type: 'Unpaid leaves',
     balance: '365',
     availed: '0',
     available: '365',
     pending: '0',
   },
   {
-    leaveType: 'Paid leaves',
+    leave_type: 'Paid leaves',
     balance: '10',
     availed: '0',
     available: '10',
     pending: '0',
   },
   {
-    leaveType: 'Hajj',
+    leave_type: 'Hajj',
     balance: '20',
     availed: '0',
     available: '20',

@@ -16,3 +16,22 @@ export const toCamelCase = (inputString) => {
       .replace(regex, (match, chr) => chr.toUpperCase());
   }
 };
+
+export const getCamelCapitalized = (rawStr) => {
+  const finalArrStr = [];
+  let rawArryStr;
+  if (typeof rawStr === 'string') {
+    rawArryStr = rawStr?.split('_');
+  } else if (typeof rawStr === 'number') {
+    const toString = rawStr.toString();
+    rawArryStr = toString?.split('_');
+  } else {
+    rawArryStr = [];
+  }
+  for (let i = 0; i < rawArryStr.length; i++) {
+    const modStr = rawArryStr[i][0].toUpperCase() + rawArryStr[i].slice(1);
+    finalArrStr.push(modStr);
+  }
+
+  return finalArrStr.join(' ');
+};

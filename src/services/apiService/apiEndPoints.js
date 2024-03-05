@@ -14,3 +14,4 @@ export const HR_GET_EMPLOYEES = '/hr_emps/';
 export const EMP_HOME = '/emp_home/';
 export const EMP_TIME_SHEET = '/emp_timesheet/';
 export const EMP_PUNCH_REQUEST = '/emp_pr/';
+export const EMP_LEAVE_REQUEST = '/emp_lr/';

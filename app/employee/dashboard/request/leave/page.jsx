@@ -9,24 +9,25 @@ import Image from 'next/image';
 import { renderNestedTable } from './renderComponents';
 import { employeeRequestsTabs } from '@/src/constants/data/tabs/requestTabs';
 import {
-  employeeLeaveBalanceColumn,
-  employeeLeaveBalanceData,
   employeeLeaveRequestsColumn,
   employeeLeaveRequestsData,
 } from '@/src/constants/data/tables/requestsData';
 import LeaveRequestModal from './LeaveRequestModal';
 import LeaveViewModal from '@/app/client/dashboard/team/time-off/LeaveViewModal';
-import AppTable from '@/src/components/appTable/AppTable';
 import FilterModal from '@/src/components/FilterModal/filterModal';
 import AppConfirmationMadal from '@/src/components/modals/AppConfirmationMadal';
 import { REQUEST_LEAVE } from '@/src/constants/requestviewModal';
+import LeaveBalanceTable from './LeaveBalanceTable';
+import { useSelector } from 'react-redux';
 
 const Dashboard = () => {
+  const { data } = useSelector((state) => state?.emp?.leaveReq);
   const [open, setOpen] = useState(false);
   const [modalData, setModalData] = useState({});
   const [openModal, setOpenModal] = useState(false);
   const [showFilterModal, setShowFilterModal] = useState(false);
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
+
   const handleOpenModal = () => {
     setOpenModal(true);
   };
@@ -60,10 +61,6 @@ const Dashboard = () => {
     setShowFilterModal(false);
     setOpen(false);
   };
-  const leaveBalanceDataState = useMemo(
-    () => filterTableRowsWRTTab(employeeLeaveBalanceData, { status: '' }),
-    [employeeLeaveBalanceData]
-  );
   const leaveRequestDataState = useMemo(
     () => filterTableRowsWRTTab(employeeLeaveRequestsData, { status: '' }),
     [employeeLeaveRequestsData]
@@ -219,11 +216,7 @@ const Dashboard = () => {
                     {REQUEST_LEAVE?.refresh}
                   </Button>
                 </Box>
-                <AppTable
-                  column={employeeLeaveBalanceColumn}
-                  data={leaveBalanceDataState}
-                  noPagination
-                />
+                <LeaveBalanceTable />
               </Box>
             </Box>
           </div>
@@ -291,7 +284,7 @@ const Dashboard = () => {
                       aria-label="basic tabs example"
                     >
                       {employeeRequestsTabs?.map(
-                        ({ label, prop, color, background }, index) => {
+                        ({ label, prop, color, background, name }, index) => {
                           return (
                             <Tab
                               key={index}
@@ -317,12 +310,13 @@ const Dashboard = () => {
                                     alignItems={'center'}
                                   >
                                     {
-                                      filterTableRowsWRTTab(
-                                        employeeLeaveRequestsData,
-                                        {
-                                          status: label === 'All' ? '' : label,
-                                        }
-                                      ).length
+                                      // filterTableRowsWRTTab(
+                                      //   employeeLeaveRequestsData,
+                                      //   {
+                                      //     status: label === 'All' ? '' : label,
+                                      //   }
+                                      // ).length
+                                      data?.[name]
                                     }
                                   </Box>
                                   <Typography

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box, Button, Grid, Typography } from '@mui/material';
 import Image from 'next/image';
+import { getCamelCapitalized } from '@/src/utils/stringModification';
 
 const PunchRequestDataView = ({ modalData, handleClose }) => {
   const createPunchRequestViewData = [
@@ -15,7 +16,7 @@ const PunchRequestDataView = ({ modalData, handleClose }) => {
     },
     {
       title: 'Punch type',
-      value: modalData?.punchType,
+      value: getCamelCapitalized(modalData?.punch_type),
     },
     {
       title: 'Description',
