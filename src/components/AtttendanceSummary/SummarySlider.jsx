@@ -7,8 +7,12 @@ import 'swiper/css/pagination';
 import { FreeMode, Pagination } from 'swiper/modules';
 import StatusBox from './StatusBox';
 import { Summary_Slider_Breakpoints } from '@/src/constants/employeeDashboard';
+import { useSelector } from 'react-redux';
 
 const SummarySlider = ({ summaryBoxes }) => {
+  const { attendance_summary } = useSelector(
+    (state) => state?.emp?.home?.homeData
+  );
   return (
     <>
       <Swiper
@@ -25,6 +29,7 @@ const SummarySlider = ({ summaryBoxes }) => {
               horizontalLineColor={item?.horizontalLineColor}
               backgroundColor={item?.backgroundColor}
               image={item?.image}
+              value={attendance_summary?.[item?.name]}
             />
           </SwiperSlide>
         ))}

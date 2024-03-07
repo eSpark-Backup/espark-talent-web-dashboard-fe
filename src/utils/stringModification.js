@@ -16,3 +16,34 @@ export const toCamelCase = (inputString) => {
       .replace(regex, (match, chr) => chr.toUpperCase());
   }
 };
+
+export const getCamelCapitalized = (rawStr) => {
+  const finalArrStr = [];
+  let rawArryStr;
+  if (typeof rawStr === 'string') {
+    rawArryStr = rawStr?.split('_');
+  } else if (typeof rawStr === 'number') {
+    const toString = rawStr.toString();
+    rawArryStr = toString?.split('_');
+  } else {
+    rawArryStr = [];
+  }
+  for (let i = 0; i < rawArryStr.length; i++) {
+    const modStr = rawArryStr[i][0].toUpperCase() + rawArryStr[i].slice(1);
+    finalArrStr.push(modStr);
+  }
+
+  return finalArrStr.join(' ');
+};
+
+export const pascalToSnake = (string) => {
+  // Replace spaces and dots with empty strings
+  const pascalCaseString = string.replace(/[\s.]+(?=[A-Z\s])/g, '');
+
+  // Replace each uppercase letter (except the first one) with its lowercase equivalent preceded by an underscore
+  const snakeCaseString = pascalCaseString.replace(/[A-Z]/g, (match, offset) =>
+    offset === 0 ? match.toLowerCase() : '_' + match.toLowerCase()
+  );
+
+  return snakeCaseString.split(' ').join('_');
+};

@@ -7,7 +7,7 @@ import React from 'react';
 import dayjs from 'dayjs';
 import { useSelector } from 'react-redux';
 
-const MarkCheckIn = ({ setStartTime }) => {
+const MarkCheckIn = () => {
   const { workSpace } = useSelector((state) => state?.auth?.userData);
   const { homeData } = useSelector((state) => state?.emp?.home);
   const { mutate } = useMutation({
@@ -17,7 +17,6 @@ const MarkCheckIn = ({ setStartTime }) => {
       );
     },
     onSuccess: ({ data }) => {
-      setStartTime();
       console.log({ data });
       //   dispatch(login(data));
       //   if (HR_ROLES.includes(data?.role)) {
@@ -35,13 +34,12 @@ const MarkCheckIn = ({ setStartTime }) => {
   });
 
   const handleCheckIn = () => {
-    if (homeData?.today_activity?.check_in === '-') {
+    if (homeData?.today_activity?.check_in !== '-') {
       return;
     } else {
       const data = {
         check_in: dayjs().format('hh:mm A'),
       };
-      setStartTime(data?.check_in);
       mutate(data);
     }
   };

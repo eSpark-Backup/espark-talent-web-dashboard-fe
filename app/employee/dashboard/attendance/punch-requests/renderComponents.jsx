@@ -4,7 +4,7 @@ import React from 'react';
 import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
 // import AppTable from '@/src/components/dashboard/appTable';
 import { filterTableRowsWRTTab } from '@/src/utils/table';
-import AppTable from '@/src/components/appTable/AppTable';
+import AppTable from '@/src/components/appTableNew/AppTable';
 
 export const renderTrackingStatus = ({
   statusIndex,
@@ -43,6 +43,7 @@ export const renderNestedTable = ({
   data,
   handleClickActionView,
 }) => {
+  console.log({ column, currentReqStatusTab });
   return (
     <CustomTabPanel
       value={currentReqStatusTabVal}
@@ -58,7 +59,10 @@ export const renderNestedTable = ({
           currentTab={currentReqStatusTab}
           column={column}
           data={filterTableRowsWRTTab(data, {
-            status: currentReqStatusTab === 'All' ? '' : currentReqStatusTab,
+            status:
+              currentReqStatusTab === 'All'
+                ? ''
+                : currentReqStatusTab.toLowerCase(),
           })}
           handleClickActionView={handleClickActionView}
         />

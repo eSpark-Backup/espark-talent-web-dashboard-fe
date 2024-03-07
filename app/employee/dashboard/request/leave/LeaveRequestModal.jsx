@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Box, Typography } from '@mui/material';
 import LeaveRequestForm from './LeaveRequestForm';
 
@@ -7,9 +7,6 @@ const LeaveRequestModal = ({ handleClose }) => {
   const handleData = (name, value) => {
     setFormData({ ...formData, [name]: value });
   };
-  useEffect(() => {
-    console.log('form', formData);
-  }, [formData]);
   return (
     <Box
       sx={{

@@ -6,5 +6,5 @@ export const createPunchRequestSchema = Yup.object({
   expectedCheckOut: Yup.string(),
   punchType: Yup.string().required('Required'),
   punchTime: Yup.string().required('Required'),
-  description: Yup.string(),
+  description: Yup.string().required('Required'),
 });

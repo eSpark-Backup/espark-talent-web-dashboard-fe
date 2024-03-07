@@ -1,62 +1,91 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Grid, Box, Typography } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
-import { filterDataByKeyword } from '@/src/utils/search';
 import { changeTab } from '@/src/utils/tabs';
 import { empTabs } from '@/src/constants/data/tabs/empTabs';
-import { contractSignedData } from '@/src/constants/data/tables/contractSigned';
 import AppTable from '@/src/components/appTable/AppTable';
 import { contractSignedEmployeeTabs } from '@/src/constants/data/tabs/contractSignedTabs';
+import { useQuery } from '@tanstack/react-query';
+import {
+  EMP_COMPANY_CONTRACT,
+  EMP_OFFSHORE_CONTRACT,
+} from '@/src/services/apiService/apiEndPoints';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  fetchEmpClientContractSuccess,
+  fetchEmpContracts,
+  fetchEmpContractsFailed,
+  fetchEmpCompanyContractsSuccess,
+} from '@/src/redux/slices/employeeSlices/contractSlice';
+import { api } from '@/src/services/apiService';
 
 const ContractSigned = () => {
+  const dispatch = useDispatch();
+  const { workSpace } = useSelector((state) => state?.auth?.userData);
+  const { contracts, isLoading } = useSelector((state) => state?.emp?.contract);
   const [value, setValue] = useState(0);
   const [currentTab, setCurrentTab] = useState('Hiring Request');
-  const [isLoading, setIsLoading] = useState(true);
-  const [search, setSearch] = useState('');
-  const [empData, setEmpData] = useState(contractSignedData);
 
-  const fetchDataFake = async () => {
-    return true;
-  };
+  const companyContracts = useQuery({
+    queryFn: () => {
+      dispatch(fetchEmpContracts());
+      return api
+        .getData(EMP_COMPANY_CONTRACT)
+        .then(({ data }) => {
+          dispatch(fetchEmpCompanyContractsSuccess({ company: data }));
+          return data;
+        })
+        .catch((error) => {
+          console.log({ error });
+          dispatch(fetchEmpContractsFailed());
+        });
+    },
+  });
+  const clientContracts = useQuery({
+    queryFn: () => {
+      return api
+        .getData(
+          `${EMP_OFFSHORE_CONTRACT}/?workspace=${workSpace?.email || ''}`
+        )
+        .then(({ data }) => {
+          dispatch(fetchEmpClientContractSuccess({ offShores: data }));
+          return data;
+        })
+        .catch((error) => {
+          console.log({ error });
+          dispatch(fetchEmpContractsFailed());
+        });
+    },
+  });
 
-  useEffect(() => {
-    const fetchDataAsync = async () => {
-      try {
-        await fetchDataFake();
-      } finally {
-        setIsLoading(false);
-      }
-    };
+  console.log({ companyContracts, clientContracts });
 
-    fetchDataAsync();
-  }, []);
-  console.log(empData, setSearch);
+  // useEffect(() => {
+  //   const fetchDataAsync = async () => {
+  //     try {
+  //       await fetchDataFake();
+  //     } finally {
+  //       setIsLoading(false);
+  //     }
+  //   };
+
+  //   fetchDataAsync();
+  // }, []);
+  // console.log(empData, setSearch);
   const handleChange = (event, newValue) => {
+    console.log({ newValue });
     changeTab({
       isSingular: true,
       tabs: empTabs,
       event,
       newValue,
-      setSearch,
       setCurrentTab,
       setValue,
-      setData: setEmpData,
     });
   };
-
-  useEffect(() => {
-    const data = [...contractSignedData];
-    const timeoutId = setTimeout(() => {
-      filterDataByKeyword(data, search || '', setEmpData);
-      setIsLoading(false);
-    }, 500);
-    return () => {
-      clearTimeout(timeoutId);
-    };
-  }, [search, value]);
 
   return (
     <>
@@ -128,7 +157,11 @@ const ContractSigned = () => {
                       <AppTable
                         currentTab={currentTab}
                         column={tab?.columns}
-                        data={tab?.data}
+                        data={
+                          value === 0
+                            ? contracts?.company || []
+                            : contracts?.offShores || []
+                        }
                         tableRowClass="app-table-row-contract"
                       />
                     </Box>

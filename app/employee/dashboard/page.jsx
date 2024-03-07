@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { Box, Grid, Typography } from '@mui/material';
+import { Box, Grid } from '@mui/material';
 
 import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
 import AttendanceSummary from '@/src/components/AtttendanceSummary/AttendanceSummary';
@@ -23,8 +23,8 @@ import TodayActivity from '@/src/components/AtttendanceSummary/TodayActivity';
 const Dashboard = () => {
   const { workSpace } = useSelector((state) => state?.auth?.userData);
   const dispatch = useDispatch();
-  const { data, isLoading } = useQuery({
-    staleTime: 10000,
+  const { isLoading } = useQuery({
+    // staleTime: 10000,
     queryFn: () => {
       return api
         .getData(`${EMP_HOME}/?workspace=${workSpace?.email || ''}`)
@@ -36,46 +36,40 @@ const Dashboard = () => {
         });
     },
   });
-  console.log({ data, isLoading });
 
+  if (isLoading) return 'Loading...';
   return (
     <>
-      {!isLoading ? (
-        <Grid container spacing={5}>
-          <Grid item xs={12}>
-            <Box
-              sx={{
-                width: '100%',
-              }}
-            >
-              <DashboardHeading
-                dashboardDescription={DASHBOARD_DATA?.updates}
-              />
-            </Box>
-          </Grid>
-          <Grid item xs={12}>
-            <AttendanceSummary />
-          </Grid>
-          <Grid item xs={12} md={6} lg={6} xl={6}>
-            <MarkClock />
-          </Grid>
-          <Grid item xs={12} md={6} lg={6} xl={6}>
-            <LeaveSummary />
-          </Grid>
-          <Grid item xs={12} md={6} lg={6} xl={6}>
-            <Statistics />
-          </Grid>
-          <Grid item xs={12} md={6} lg={3} xl={3}>
-            <TodayActivity />
-          </Grid>
-
-          <Grid item xs={12} sm={12} md={12} lg={3} xl={3}>
-            <Clock />
-          </Grid>
+      <Grid container spacing={5}>
+        <Grid item xs={12}>
+          <Box
+            sx={{
+              width: '100%',
+            }}
+          >
+            <DashboardHeading dashboardDescription={DASHBOARD_DATA?.updates} />
+          </Box>
         </Grid>
-      ) : (
-        <Typography>Loading...</Typography>
-      )}
+        <Grid item xs={12}>
+          <AttendanceSummary />
+        </Grid>
+        <Grid item xs={12} md={6} lg={6} xl={6}>
+          <MarkClock />
+        </Grid>
+        <Grid item xs={12} md={6} lg={6} xl={6}>
+          <LeaveSummary />
+        </Grid>
+        <Grid item xs={12} md={6} lg={6} xl={6}>
+          <Statistics />
+        </Grid>
+        <Grid item xs={12} md={6} lg={3} xl={3}>
+          <TodayActivity />
+        </Grid>
+
+        <Grid item xs={12} sm={12} md={12} lg={3} xl={3}>
+          <Clock />
+        </Grid>
+      </Grid>
     </>
   );
 };

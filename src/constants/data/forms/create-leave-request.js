@@ -33,7 +33,7 @@ export const createLeaveRequestForm = [
     suffixIcon: 'CalendarOutline',
     type: 'date',
     required: true,
-    minDate: dayjs().subtract(1, 'day'),
+    minDate: dayjs().subtract(0, 'day'),
   },
   {
     title: 'End date',
@@ -64,6 +64,7 @@ export const createLeaveRequestForm = [
     name: 'attachment',
     type: 'file',
     suffixIcon: '',
+    required: true,
   },
   {
     title: 'Reason',

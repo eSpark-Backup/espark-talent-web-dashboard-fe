@@ -110,7 +110,7 @@ const TodayActivity = () => {
                       width={20}
                       height={20}
                     />{' '}
-                    {today_activity[name]}
+                    {today_activity?.[name]}
                   </Typography>
                 </Box>
               </Box>

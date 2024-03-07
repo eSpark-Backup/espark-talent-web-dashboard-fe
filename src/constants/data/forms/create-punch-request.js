@@ -51,5 +51,6 @@ export const createPunchRequestForm = [
     placeholder: 'Write your description',
     name: 'description',
     type: 'text-area',
+    required: true,
   },
 ];

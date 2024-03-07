@@ -25,10 +25,10 @@ export const changeTab = ({
   setValue(newValue);
 
   if (isSingular) {
-    setData(tabs[newValue].data);
+    setData?.(tabs[newValue].data);
   } else {
     const filterByVal = tab === 'All' ? '' : tab;
-    setData(
+    setData?.(
       filterTableRowsWRTTab(teamMembersData, { [filterBy]: filterByVal })
     );
   }

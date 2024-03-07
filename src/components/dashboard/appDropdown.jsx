@@ -117,10 +117,12 @@ const AppDropdown = ({
             alignItems={'center'}
             sx={{
               border: `solid 1px ${error ? 'red' : 'rgba(0, 0, 0, 0.23)'}`,
+              backgroundColor: disabled && '#f6f6f6',
               borderTopLeftRadius: '5px',
               borderTopRightRadius: '5px',
               borderBottomLeftRadius: !isOpenedDropdown && '5px',
               borderBottomRightRadius: !isOpenedDropdown && '5px',
+              cursor: 'no-drop',
               '&:hover': {
                 borderColor: 'teal',
               },

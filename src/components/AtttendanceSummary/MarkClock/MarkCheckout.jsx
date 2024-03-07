@@ -8,7 +8,7 @@ import { markCheckout } from '@/src/redux/slices/employeeSlices/empHomeSlice';
 import { EMP_HOME } from '@/src/services/apiService/apiEndPoints';
 import { useDispatch, useSelector } from 'react-redux';
 
-const MarkCheckOut = ({ setEndTime }) => {
+const MarkCheckOut = () => {
   const dispatch = useDispatch();
   const { workSpace } = useSelector((state) => state?.auth?.userData);
   const [time, setTime] = useState('');
@@ -30,7 +30,6 @@ const MarkCheckOut = ({ setEndTime }) => {
     const data = {
       time: dayjs().format('hh:mm A'),
     };
-    setEndTime(data?.time);
     setTime(data?.time);
     mutate(data);
     console.log({ data });

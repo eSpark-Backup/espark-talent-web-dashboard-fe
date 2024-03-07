@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Grid, Box, Typography, Button, Modal } from '@mui/material';
 import { renderTrackingStatus } from './renderComponents';
 import {
@@ -12,12 +12,38 @@ import { EMPLOYEE_TIMESHEET } from '@/src/constants/timeSheet';
 import AttendanceViewModal from './AttendanceViewModal';
 import AppTable from '@/src/components/appTable/AppTable';
 import FilterModal from '@/src/components/FilterModal/filterModal';
+import { useQuery } from '@tanstack/react-query';
+import { api } from '@/src/services/apiService';
+import { useDispatch, useSelector } from 'react-redux';
+import { EMP_TIME_SHEET } from '@/src/services/apiService/apiEndPoints';
+import {
+  getTimeSheetData,
+  getTimeSheetDataFailed,
+  getTimeSheetDataSuccess,
+} from '@/src/redux/slices/employeeSlices/timeSheetSlice';
 
 const Dashboard = () => {
-  const [isLoading, setIsLoading] = useState(true);
+  const { workSpace } = useSelector((state) => state?.auth?.userData);
+  const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const [modalData, setModalData] = useState({});
   const [showFilterModal, setShowFilterModal] = useState(false);
+  const { isLoading } = useQuery({
+    // staleTime: 10000,
+    queryFn: () => {
+      dispatch(getTimeSheetData());
+      return api
+        .getData(`${EMP_TIME_SHEET}/?workspace=${workSpace?.email || ''}`)
+        .then(({ data }) => {
+          dispatch(getTimeSheetDataSuccess(data));
+          return data;
+        })
+        .catch((error) => {
+          dispatch(getTimeSheetDataFailed());
+          console.log({ error });
+        });
+    },
+  });
   const handleOpenFilterModal = () => {
     setShowFilterModal(true);
   };
@@ -31,21 +57,6 @@ const Dashboard = () => {
     setModalData({ item, ...row });
     setOpen(true);
   };
-  const fetchDataFake = async () => {
-    return true;
-  };
-
-  useEffect(() => {
-    const fetchDataAsync = async () => {
-      try {
-        await fetchDataFake();
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchDataAsync();
-  }, []);
 
   return (
     <>

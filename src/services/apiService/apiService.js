@@ -6,7 +6,7 @@ const envService = new EnvironmentService();
 const instance = axios.create({
   baseURL: envService.getBaseURL(),
   timeout: 50000,
-  headers: { 'Content-Type': 'application/json' },
+  headers: { 'Content-Type': 'multipart/form-data' },
 });
 const newInstance = axios.create({
   baseURL: envService.getBaseURL(),
@@ -43,8 +43,8 @@ export default class APIService {
             this.isAlreadyFetchingAccessToken = true;
             instance.defaults.headers.common.Authorization = '';
             this.login({
-              email: 'superadmin@espark.com',
-              password: 'super@espark',
+              email: 'faisal@esparkconsultants.com',
+              password: '123456',
             }).then((r) => {
               this.isAlreadyFetchingAccessToken = false;
 
@@ -92,27 +92,27 @@ export default class APIService {
     return await newInstance.post(this.config.loginEndpoint, args);
   }
   async getData(url, params) {
-    this.resetHeaders();
+    // this.resetHeaders();
     return await instance.get(url, params);
   }
   async getSingleData(url, params) {
-    this.resetHeaders();
+    // this.resetHeaders();
     return await instance.get(url, params);
   }
   async postData(url, data) {
-    this.resetHeaders();
+    // this.resetHeaders();
     return await instance.post(url, data);
   }
   async updateData(url, data) {
-    this.resetHeaders();
+    // this.resetHeaders();
     return await instance.put(url, data);
   }
   async patchData(url) {
-    this.resetHeaders();
+    // this.resetHeaders();
     return await instance.patch(url);
   }
   async daleteData(url) {
-    this.resetHeaders();
+    // this.resetHeaders();
     return await instance.delete(url);
   }
   async uploadFile(url, data) {
