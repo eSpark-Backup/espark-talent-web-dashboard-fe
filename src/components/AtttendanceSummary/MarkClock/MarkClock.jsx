@@ -10,30 +10,28 @@ import { useEffect } from 'react';
 
 const MarkClock = () => {
   const { homeData } = useSelector((state) => state?.emp?.home);
-  const [startTime, setStartTime] = useState(
-    homeData?.today_activity?.check_in
-  );
   const [elapsedTimeString, setElapsedTimeString] = useState('00:00:00');
-  const [endTime, setEndTime] = useState(homeData?.today_activity?.check_out);
   const [percentage, setPercentage] = useState(0);
   // console.log({ homeData });
 
   const parseTime = (timeString) => {
     console.log({ timeString });
-    const [time, period] = timeString.split(' ');
-    const [hours, minutes] = time.split(':');
-    let hoursInt = parseInt(hours, 10);
-    if (period === 'PM' && hoursInt !== 12) {
-      hoursInt += 12;
+    if (timeString) {
+      const [time, period] = timeString.split(' ');
+      const [hours, minutes] = time.split(':');
+      let hoursInt = parseInt(hours, 10);
+      if (period === 'PM' && hoursInt !== 12) {
+        hoursInt += 12;
+      }
+      const currentDate = new Date();
+      return new Date(
+        currentDate.getFullYear(),
+        currentDate.getMonth(),
+        currentDate.getDate(),
+        hoursInt,
+        parseInt(minutes, 10)
+      );
     }
-    const currentDate = new Date();
-    return new Date(
-      currentDate.getFullYear(),
-      currentDate.getMonth(),
-      currentDate.getDate(),
-      hoursInt,
-      parseInt(minutes, 10)
-    );
   };
   const secondsToTime = (seconds) => {
     const hours = Math.floor(seconds / 3600);
@@ -46,8 +44,11 @@ const MarkClock = () => {
 
   useEffect(() => {
     let interval;
-    if (startTime !== '-' && endTime === '-') {
-      const start = parseTime(startTime);
+    if (
+      homeData?.today_activity?.check_in !== '-' &&
+      homeData?.today_activity?.check_out === '-'
+    ) {
+      const start = parseTime(homeData?.today_activity?.check_in);
       interval = setInterval(() => {
         const currentTime = new Date();
         const elapsedTime = (currentTime.getTime() - start.getTime()) / 1000;
@@ -60,41 +61,54 @@ const MarkClock = () => {
           setPercentage(calculatedPercentage);
         }
       }, 1000); // Update every second
-    } else if (startTime !== '-' && endTime !== '-') {
-      const start = parseTime(startTime);
-      const end = parseTime(endTime);
-      const elapsedTime = (end.getTime() - start.getTime()) / 1000;
-      const totalTime = 9 * 3600;
-      const calculatedPercentage = (elapsedTime / totalTime) * 100;
-      if (calculatedPercentage >= 100) {
-        setPercentage(100);
-      } else {
-        setPercentage(calculatedPercentage);
+    } else if (
+      homeData?.today_activity?.check_in !== '-' &&
+      homeData?.today_activity?.check_out !== '-'
+    ) {
+      const start = parseTime(homeData?.today_activity?.check_in);
+      const end = parseTime(homeData?.today_activity?.check_out);
+      if (start && end) {
+        const elapsedTime = (end.getTime() - start.getTime()) / 1000;
+        const totalTime = 9 * 3600;
+        const calculatedPercentage = (elapsedTime / totalTime) * 100;
+        if (calculatedPercentage >= 100) {
+          setPercentage(100);
+        } else {
+          setPercentage(calculatedPercentage);
+        }
       }
     }
 
     return () => clearInterval(interval);
-  }, [startTime, endTime]);
+  }, [homeData?.today_activity?.check_in, homeData?.today_activity?.check_out]);
   useEffect(() => {
     let interval;
-    if (startTime !== '-' && endTime === '-') {
-      const start = parseTime(startTime);
+    if (
+      homeData?.today_activity?.check_in !== '-' &&
+      homeData?.today_activity?.check_out === '-'
+    ) {
+      const start = parseTime(homeData?.today_activity?.check_in);
       interval = setInterval(() => {
         const currentTime = new Date();
         const elapsedTime = (currentTime.getTime() - start.getTime()) / 1000;
         const formattedTime = secondsToTime(elapsedTime);
         setElapsedTimeString(formattedTime);
       }, 1000); // Update every second
-    } else if (startTime !== '-' && endTime !== '-') {
-      const start = parseTime(startTime);
-      const end = parseTime(endTime);
-      const elapsedTime = (end.getTime() - start.getTime()) / 1000;
-      const formattedTime = secondsToTime(elapsedTime);
-      setElapsedTimeString(formattedTime);
+    } else if (
+      homeData?.today_activity?.check_in !== '-' &&
+      homeData?.today_activity?.check_out !== '-'
+    ) {
+      const start = parseTime(homeData?.today_activity?.check_in);
+      const end = parseTime(homeData?.today_activity?.check_out);
+      if (start && end) {
+        const elapsedTime = (end.getTime() - start.getTime()) / 1000;
+        const formattedTime = secondsToTime(elapsedTime);
+        setElapsedTimeString(formattedTime);
+      }
     }
 
     return () => clearInterval(interval);
-  }, [startTime]);
+  }, [homeData?.today_activity?.check_in, homeData]);
   // console.log({ percentage });
   return (
     <Box
@@ -292,8 +306,8 @@ const MarkClock = () => {
         }}
         display={'flex'}
       >
-        <MarkCheckIn setStartTime={setStartTime} />
-        <MarkCheckOut setEndTime={setEndTime} />
+        <MarkCheckIn />
+        <MarkCheckOut />
       </Grid>
       <MarkBreak />
     </Box>

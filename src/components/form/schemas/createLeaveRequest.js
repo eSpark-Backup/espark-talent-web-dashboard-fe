@@ -26,13 +26,13 @@
 import * as Yup from 'yup';
 
 export const createLeaveRequestSchema = Yup.object({
-  leaveType: Yup.string().required('Required'),
+  leaveType: Yup.mixed().required('Required'),
   startDate: Yup.date().required('Required'),
   endDate: Yup.date()
     .required('Required')
     .min(Yup.ref('startDate'), 'End date must be greater than start date'),
   count: Yup.string(),
   availableLeaves: Yup.string(),
-  attachment: Yup.mixed(),
+  attachment: Yup.mixed().required('Required'),
   reason: Yup.string().required('Required'),
 });

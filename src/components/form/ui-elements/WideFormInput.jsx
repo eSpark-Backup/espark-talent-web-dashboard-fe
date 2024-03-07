@@ -4,6 +4,7 @@ import {
   DesktopTimePicker,
   LocalizationProvider,
 } from '@mui/x-date-pickers';
+// import { DesktopDateRangePicker } from '@mui/x-date-pickers-pro/DateRangePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs';
 import Image from 'next/image';
@@ -100,7 +101,7 @@ const WideFormInput = ({
     if (values.startDate && values.endDate) {
       setFieldValue(
         'count',
-        getDaysDifference(values.startDate, values.endDate)
+        getDaysDifference(values.startDate, values.endDate) + 1
       );
     }
   }, [values]);
@@ -119,10 +120,13 @@ const WideFormInput = ({
             background: darkBack ? '#F6F6F6' : '#FFF',
             borderRadius: '5px',
             display: 'flex',
-            alignItems: { xs: 'flex-start', md: 'center' },
+            alignItems: {
+              xs: 'flex-start',
+              md: type === 'text-area' ? 'flex-start' : 'center',
+            },
             flexDirection: { xs: 'column', md: 'row' },
             gap: { xs: '10px', md: '0px' },
-            height: '50px',
+            height: type !== 'text-area' && '50px',
           }}
         >
           <Grid item xs={12} md={5}>
@@ -134,6 +138,7 @@ const WideFormInput = ({
                 fontWeight: 500,
                 lineHeight: 'normal',
                 paddingLeft: { xs: '0px', md: '20px' },
+                marginTop: { xs: '0px', md: type === 'text-area' && '5px' },
               }}
             >
               {title} {required && <span style={{ color: '#FF0000' }}>*</span>}
@@ -266,22 +271,24 @@ const WideFormInput = ({
                   )}
                 </>
               ) : type === 'text-area' ? (
-                <textarea
-                  className="reason-text-area"
-                  rows={3}
-                  style={{
-                    width: '100%',
-                    border: `1px solid ${error ? 'red' : '#E4E4E4'}`,
-                    borderRadius: '5px',
-                    background: '#f6f6f6',
-                  }}
-                  placeholder={placeholder}
-                  value={value}
-                  onChange={(e) => {
-                    handleChangeInput(name, `${e?.target?.value}`);
-                  }}
-                  disabled={disabled}
-                ></textarea>
+                <>
+                  <textarea
+                    className="reason-text-area"
+                    rows={3}
+                    style={{
+                      width: '100%',
+                      border: `1px solid ${error ? 'red' : '#E4E4E4'}`,
+                      borderRadius: '5px',
+                      background: '#f6f6f6',
+                    }}
+                    placeholder={placeholder}
+                    value={value}
+                    onChange={(e) => {
+                      handleChangeInput(name, `${e?.target?.value}`);
+                    }}
+                    disabled={disabled}
+                  ></textarea>
+                </>
               ) : type === 'file' ? (
                 <label
                   style={{
@@ -314,6 +321,7 @@ const WideFormInput = ({
                       </Typography>
                       <input
                         // onChange={handleUpload}
+                        name={name}
                         id="input-attachment"
                         type="file"
                         style={{ width: 0, height: 0, visibility: 'hidden' }}

@@ -29,7 +29,7 @@ const SummarySlider = ({ summaryBoxes }) => {
               horizontalLineColor={item?.horizontalLineColor}
               backgroundColor={item?.backgroundColor}
               image={item?.image}
-              value={attendance_summary[item?.name]}
+              value={attendance_summary?.[item?.name]}
             />
           </SwiperSlide>
         ))}

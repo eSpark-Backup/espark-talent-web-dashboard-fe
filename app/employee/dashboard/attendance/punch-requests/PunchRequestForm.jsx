@@ -9,28 +9,29 @@ import { api } from '@/src/services/apiService';
 import { EMP_PUNCH_REQUEST } from '@/src/services/apiService/apiEndPoints';
 import { useMutation } from '@tanstack/react-query';
 import dayjs from 'dayjs';
+import { pascalToSnake } from '@/src/utils/stringModification';
 
 const PunchRequestForm = ({ handleClose, handleData }) => {
   const { punch_timings } = useSelector((state) => state?.emp?.home?.homeData);
   const { workSpace } = useSelector((state) => state?.auth?.userData);
-  const pascalToSnake = (string) => {
-    // Replace spaces and dots with empty strings
-    const pascalCaseString = string.replace(/[\s.]+(?=[A-Z\s])/g, '');
+  // const pascalToSnake = (string) => {
+  //   // Replace spaces and dots with empty strings
+  //   const pascalCaseString = string.replace(/[\s.]+(?=[A-Z\s])/g, '');
 
-    // Replace each uppercase letter (except the first one) with its lowercase equivalent preceded by an underscore
-    const snakeCaseString = pascalCaseString.replace(
-      /[A-Z]/g,
-      (match, offset) =>
-        offset === 0 ? match.toLowerCase() : '_' + match.toLowerCase()
-    );
+  //   // Replace each uppercase letter (except the first one) with its lowercase equivalent preceded by an underscore
+  //   const snakeCaseString = pascalCaseString.replace(
+  //     /[A-Z]/g,
+  //     (match, offset) =>
+  //       offset === 0 ? match.toLowerCase() : '_' + match.toLowerCase()
+  //   );
 
-    return snakeCaseString.split(' ').join('_');
-  };
+  //   return snakeCaseString.split(' ').join('_');
+  // };
   const { mutate } = useMutation({
     mutationFn: async (formVals) => {
       // console.log({ formValues });
       const formData = new FormData();
-      for (let key in formVals) {
+      for (const key in formVals) {
         formData.append(key, formVals[key]);
       }
       return api.postData(EMP_PUNCH_REQUEST, formData);

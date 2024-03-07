@@ -126,7 +126,7 @@ const renderActions = (
               if (item === 'View') {
                 handleClickActionView({ row, item });
               } else if (item === 'Delete') {
-                handleClickActionDelete();
+                handleClickActionDelete(row?.id);
               }
               return;
             }}
@@ -145,104 +145,104 @@ const renderActions = (
     </td>
   );
 };
-const renderCheckActions = (
-  row,
-  col,
-  handleClickActionView,
-  colIndex,
-  rowIndex,
-  commonCellStyle
-) => {
-  if (row?.isPolicyData) {
-    if (row?.isModulePermissionData) {
-      return (
-        <td
-          key={colIndex}
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            fontSize: '12px',
-            flex: col?.flex || 1,
-          }}
-        >
-          <Image
-            onClick={() => {
-              handleClickActionView(row?.id, col || col?.title);
-            }}
-            style={{
-              margin: rowIndex === 1 && '0 5px',
-              cursor: 'pointer',
-            }}
-            width={30}
-            height={30}
-            alt="Icon"
-            src={`/icons/${
-              row[toCamelCase(col || col?.title)][2] === true
-                ? 'EnabledCheck'
-                : 'DisabledCheck'
-            }.svg`}
-          />
-        </td>
-      );
-    }
-    return (
-      <td
-        key={colIndex}
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          fontSize: '12px',
-          flex: col?.flex || 1,
-        }}
-      >
-        <Image
-          onClick={() => {
-            handleClickActionView(row?.id);
-          }}
-          style={{
-            margin: rowIndex === 1 && '0 5px',
-            cursor: 'pointer',
-          }}
-          width={25}
-          height={25}
-          alt="Icon"
-          src={`/icons/${
-            row?.isSelected ? row?.action[1] : row?.action[0]
-          }.svg`}
-        />
-      </td>
-    );
-  } else {
-    return (
-      <td
-        key={col.index}
-        style={{
-          ...commonCellStyle,
-          flex: col?.flex || 1,
-          justifyContent: col?.textAlign || 'center',
-        }}
-      >
-        {col.title?.toLowerCase() === 'employee invoices' ||
-        col.title?.toLowerCase() === 'other invoices' ? (
-          row[toCamelCase(col?.title || col)] === null ? (
-            '-'
-          ) : (
-            <Link
-              href="/hr/dashboard/clients/client-profile"
-              style={{ textDecoration: 'underline', cursor: 'pointer' }}
-            >
-              {row[toCamelCase(col?.title || col)]}
-            </Link>
-          )
-        ) : row[toCamelCase(col?.title || col)] === null ? (
-          '-'
-        ) : (
-          row[toCamelCase(col?.title || col)]
-        )}
-      </td>
-    );
-  }
-};
+// const renderCheckActions = (
+//   row,
+//   col,
+//   handleClickActionView,
+//   colIndex,
+//   rowIndex,
+//   commonCellStyle
+// ) => {
+//   if (row?.isPolicyData) {
+//     if (row?.isModulePermissionData) {
+//       return (
+//         <td
+//           key={colIndex}
+//           style={{
+//             display: 'flex',
+//             justifyContent: 'center',
+//             fontSize: '12px',
+//             flex: col?.flex || 1,
+//           }}
+//         >
+//           <Image
+//             onClick={() => {
+//               handleClickActionView(row?.id, col || col?.title);
+//             }}
+//             style={{
+//               margin: rowIndex === 1 && '0 5px',
+//               cursor: 'pointer',
+//             }}
+//             width={30}
+//             height={30}
+//             alt="Icon"
+//             src={`/icons/${
+//               row[toCamelCase(col || col?.title)][2] === true
+//                 ? 'EnabledCheck'
+//                 : 'DisabledCheck'
+//             }.svg`}
+//           />
+//         </td>
+//       );
+//     }
+//     return (
+//       <td
+//         key={colIndex}
+//         style={{
+//           display: 'flex',
+//           justifyContent: 'center',
+//           fontSize: '12px',
+//           flex: col?.flex || 1,
+//         }}
+//       >
+//         <Image
+//           onClick={() => {
+//             handleClickActionView(row?.id);
+//           }}
+//           style={{
+//             margin: rowIndex === 1 && '0 5px',
+//             cursor: 'pointer',
+//           }}
+//           width={25}
+//           height={25}
+//           alt="Icon"
+//           src={`/icons/${
+//             row?.isSelected ? row?.action[1] : row?.action[0]
+//           }.svg`}
+//         />
+//       </td>
+//     );
+//   } else {
+//     return (
+//       <td
+//         key={col.index}
+//         style={{
+//           ...commonCellStyle,
+//           flex: col?.flex || 1,
+//           justifyContent: col?.textAlign || 'center',
+//         }}
+//       >
+//         {col.title?.toLowerCase() === 'employee invoices' ||
+//         col.title?.toLowerCase() === 'other invoices' ? (
+//           row[toCamelCase(col?.title || col)] === null ? (
+//             '-'
+//           ) : (
+//             <Link
+//               href="/hr/dashboard/clients/client-profile"
+//               style={{ textDecoration: 'underline', cursor: 'pointer' }}
+//             >
+//               {row[toCamelCase(col?.title || col)]}
+//             </Link>
+//           )
+//         ) : row[toCamelCase(col?.title || col)] === null ? (
+//           '-'
+//         ) : (
+//           row[toCamelCase(col?.title || col)]
+//         )}
+//       </td>
+//     );
+//   }
+// };
 const renderAttendenceStatus = (statusType, index) => {
   const status = trackingStatusTypes?.find(
     ({ shortForm }) => shortForm === statusType
@@ -409,6 +409,7 @@ export const renderCellContent = (
         return renderDownloadButton(row, col, commonCellStyle);
       }
     case 'Client':
+      break;
     // case 'Employee':
     //   return renderCheckActions(
     //     row,

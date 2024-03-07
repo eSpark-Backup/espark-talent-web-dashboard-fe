@@ -2,34 +2,42 @@ export const employeeLeaveRequestsColumn = [
   {
     title: 'Employee ID',
     flex: 2,
+    name: 'employee_id',
   },
   {
     title: 'Employee name',
     flex: 2,
+    name: 'employee_name',
   },
   {
     title: 'Department',
     flex: 1,
+    name: 'department',
   },
   {
     title: 'Leave type',
     flex: 1.5,
+    name: 'leave_type',
   },
   {
     title: 'Count',
     flex: 1,
+    name: 'count',
   },
   {
     title: 'Requested at',
     flex: 2,
+    name: 'requested_at',
   },
   {
     title: 'Status',
     flex: 2,
+    name: 'status',
   },
   {
     title: 'Actions',
     flex: 2,
+    name: 'actions',
   },
 ];
 export const employeeLeaveBalanceColumn = [

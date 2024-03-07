@@ -64,28 +64,28 @@ export const Summary_Boxes = [
     count: `08`,
     horizontalLineColor: '#7A0916',
     backgroundColor: '#F5ECED',
-    name: 'expected_minutes'
+    name: 'expected_minutes',
   },
   {
     title: 'Worked minutes',
     count: `08`,
     horizontalLineColor: '#FFBE3B',
     backgroundColor: '#FFF8EB',
-    name: 'worked_minutes'
+    name: 'worked_minutes',
   },
   {
     title: 'Short minutes',
     count: `08`,
     horizontalLineColor: '#006C9C',
     backgroundColor: '#E0F6FA',
-    name: 'short_minutes'
+    name: 'short_minutes',
   },
   {
     title: 'Leaves',
     count: `08`,
     horizontalLineColor: '#006C9C',
     backgroundColor: '#E0F6FA',
-    name: 'leaves'
+    name: 'leaves',
   },
   // {
   //   title: 'Travels',
@@ -100,28 +100,28 @@ export const Summary_Boxes = [
     count: `08`,
     horizontalLineColor: '#FFBE3B',
     backgroundColor: '#FFF8EB',
-    name: 'absents'
+    name: 'absents',
   },
   {
     title: 'Presents',
     count: `08`,
     horizontalLineColor: '#7A0916',
     backgroundColor: '#F5ECED',
-    name: 'presents'
+    name: 'presents',
   },
   {
     title: 'Missings',
     count: `08`,
     horizontalLineColor: '#068987',
     backgroundColor: '#E6F4F4',
-    name: 'missings'
+    name: 'missings',
   },
   {
     title: 'Days Off',
     count: `08`,
     horizontalLineColor: '#7A0916',
     backgroundColor: '#F5ECED',
-    name: 'days_off'
+    name: 'days_off',
   },
   // {
   //   title: 'Rest days',
@@ -149,28 +149,28 @@ export const Summary_Boxes = [
     count: `08`,
     horizontalLineColor: '#006C9C',
     backgroundColor: '#E0F6FA',
-    name: 'overtimes'
+    name: 'overtimes',
   },
   {
     title: 'Break minutes',
     count: `08`,
     horizontalLineColor: '#7A0916',
     backgroundColor: '#F5ECED',
-    name: 'break_minutes'
+    name: 'break_minutes',
   },
   {
     title: 'Late arrival',
     count: `08`,
     horizontalLineColor: '#FFBE3B',
     backgroundColor: '#FFF8EB',
-    name: 'late_arrivals'
+    name: 'late_arrivals',
   },
   {
     title: 'Short duration',
     count: 15,
     horizontalLineColor: '#006C9C',
     backgroundColor: '#E0F6FA',
-    name: 'short_durations'
+    name: 'short_durations',
   },
 ];
 

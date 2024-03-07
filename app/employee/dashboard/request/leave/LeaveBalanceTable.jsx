@@ -1,29 +1,38 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import AppTable from '@/src/components/appTableNew/AppTable';
 import { employeeLeaveBalanceColumn } from '@/src/constants/data/tables/requestsData';
 import { useQuery } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import { EMP_LEAVE_REQUEST } from '@/src/services/apiService/apiEndPoints';
 import { useDispatch, useSelector } from 'react-redux';
-import { getEmpLeaveRequestData } from '@/src/redux/slices/employeeSlices/leaveRequestSlice';
+import {
+  getEmpLeaveRequestDataSuccess,
+  fetchEmpLeaveRequestData,
+  getEmpLeaveRequestDataFailed,
+} from '@/src/redux/slices/employeeSlices/leaveRequestSlice';
 
 const LeaveBalanceTable = () => {
   const dispatch = useDispatch();
   const { workSpace } = useSelector((state) => state?.auth?.userData);
   const { balance } = useSelector((state) => state?.emp?.leaveReq?.data);
   const query = useQuery({
-    staleTime: 10000,
+    // staleTime: 10000,
     queryFn: () => {
+      dispatch(fetchEmpLeaveRequestData());
       return api
         .getData(`${EMP_LEAVE_REQUEST}/?workspace=${workSpace?.email || ''}`)
         .then(({ data }) => {
           dispatch(
-            getEmpLeaveRequestData({
+            getEmpLeaveRequestDataSuccess({
               ...data,
               balance: reformData(data?.balance),
             })
           );
           return data;
+        })
+        .catch((err) => {
+          console.log({ err });
+          dispatch(getEmpLeaveRequestDataFailed());
         });
     },
   });

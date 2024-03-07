@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Grid, Box, Typography, Button, Modal } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -9,23 +9,19 @@ import { filterTableRowsWRTTab } from '@/src/utils/table';
 import Image from 'next/image';
 import { renderNestedTable } from './renderComponents';
 import { checkInOutStatusTabs } from '@/src/constants/data/tabs/checkInOutTabs';
-import {
-  employeeCheckInOutRequestColumn,
-  employeeCheckInOutRequestData,
-} from '@/src/constants/data/tables/checkInOutRequestsData';
+import { employeeCheckInOutRequestColumn } from '@/src/constants/data/tables/checkInOutRequestsData';
 import PunchRequestModal from './PunchRequestModal';
 import FilterModal from '@/src/components/FilterModal/filterModal';
 import { REQUEST_LEAVE } from '@/src/constants/requestviewModal';
 import { useQuery } from '@tanstack/react-query';
 import { EMP_PUNCH_REQUEST } from '@/src/services/apiService/apiEndPoints';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { api } from '@/src/services/apiService';
 
 const Dashboard = () => {
   const { workSpace, empDetails } = useSelector(
     (state) => state?.auth?.userData
   );
-  const dispatch = useDispatch();
   const { data, isLoading } = useQuery({
     staleTime: 10000,
     queryFn: () => {
@@ -43,10 +39,6 @@ const Dashboard = () => {
     },
   });
   console.log({ data, isLoading });
-  // const checkInOutRequestDataState = useMemo(
-  //   () => filterTableRowsWRTTab(employeeCheckInOutRequestData, { status: '' }),
-  //   [employeeCheckInOutRequestData]
-  // );
   const [checkInOutRequestDataState, setCheckInOutRequestDataState] = useState(
     []
   );

@@ -8,6 +8,7 @@ const AppConfirmationMadal = ({
   cancelButtonText,
   handleClose,
   isOpen,
+  handleConfirm,
 }) => {
   return (
     <Modal
@@ -80,7 +81,7 @@ const AppConfirmationMadal = ({
               {cancelButtonText}
             </Button>
             <Button
-              onClick={handleClose}
+              onClick={handleConfirm}
               sx={{
                 width: { xs: '100px', md: '120px' },
               }}

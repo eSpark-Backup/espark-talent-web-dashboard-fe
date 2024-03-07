@@ -2,11 +2,14 @@ import React, { useState } from 'react';
 import { Box, Button, Grid, Typography } from '@mui/material';
 import Image from 'next/image';
 import AppDropdown from '@/src/components/dashboard/appDropdown';
+import { getCamelCapitalized } from '@/src/utils/stringModification';
+import dayjs from 'dayjs';
+import weekOfYear from 'dayjs/plugin/weekOfYear';
 
 const LeaveViewModal = ({ modalData, handleClose, isEmployee }) => {
   const [isLoadingTitles, setIsLoadingTitles] = useState(false);
-  const [selectedJobTitle, setSelectedJobTitle] = useState(
-    modalData?.leaveType
+  const [selectedLeaveType, setSelectedLeaveType] = useState(
+    getCamelCapitalized(modalData?.leave_type)
   );
 
   return (
@@ -68,21 +71,11 @@ const LeaveViewModal = ({ modalData, handleClose, isEmployee }) => {
               <Grid item xs={12} md={6.5} sx={{ width: '100%' }}>
                 <AppDropdown
                   disabled
-                  data={[
-                    {
-                      label: 'Salary based',
-                    },
-                    {
-                      label: 'Hourly based',
-                    },
-                    {
-                      label: 'Project based',
-                    },
-                  ]}
+                  data={[]}
                   setIsLoadingList={setIsLoadingTitles}
                   isLoadingList={isLoadingTitles}
-                  selectedItem={selectedJobTitle}
-                  setSelectedItem={setSelectedJobTitle}
+                  selectedItem={selectedLeaveType}
+                  setSelectedItem={setSelectedLeaveType}
                   placeHolder="Select Leave Type"
                   padding="9px"
                 />
@@ -143,7 +136,7 @@ const LeaveViewModal = ({ modalData, handleClose, isEmployee }) => {
                       lineHeight: 'normal',
                     }}
                   >
-                    October 17,2023
+                    {dayjs(modalData?.start_date).format('MMMM DD,YYYY')}
                   </Typography>
                   <Image
                     src={'/icons/CalendarOutline.svg'}
@@ -209,7 +202,7 @@ const LeaveViewModal = ({ modalData, handleClose, isEmployee }) => {
                       lineHeight: 'normal',
                     }}
                   >
-                    October 17,2023
+                    {dayjs(modalData?.end_date).format('MMMM DD,YYYY')}
                   </Typography>
                   <Image
                     src={'/icons/CalendarOutline.svg'}
@@ -257,7 +250,9 @@ const LeaveViewModal = ({ modalData, handleClose, isEmployee }) => {
                     lineHeight: 'normal',
                   }}
                 >
-                  Oct 17,23 - Oct 17,23
+                  {`${dayjs(modalData?.start_date).format(
+                    'MMM DD,YY'
+                  )} - ${dayjs(modalData?.end_date).format('MMM DD,YY')}`}
                 </Typography>
               </Box>
               <Box
@@ -327,7 +322,9 @@ const LeaveViewModal = ({ modalData, handleClose, isEmployee }) => {
                     lineHeight: 'normal',
                   }}
                 >
-                  October week3
+                  {`October Week ${dayjs
+                    .extend(weekOfYear)(modalData?.start_date)
+                    .week()}`}
                 </Typography>
               </Box>
               <Box
@@ -342,6 +339,67 @@ const LeaveViewModal = ({ modalData, handleClose, isEmployee }) => {
                 }}
               >
                 <Box
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    flex: 1,
+                    maxWidth: '100%',
+                    overflowX: 'auto',
+                  }}
+                >
+                  {[...Array(modalData?.count * 1)].map((_, i) => (
+                    <Box
+                      key={i}
+                      sx={{
+                        border: 'solid 1px #ccc',
+                        m: '5px',
+                        flex: 1,
+                        borderRadius: '5px',
+                        overflow: 'hidden',
+                        background: '#ccc',
+                        minWidth: { xs: '91px', sm: '112px' },
+                      }}
+                      display={'flex'}
+                      justifyContent={'flex-end'}
+                      flexDirection={'column'}
+                    >
+                      <Box sx={{ my: '5px' }}>
+                        <Typography
+                          textAlign={'center'}
+                          sx={{
+                            color: '#595959',
+                            fontSize: { xs: '12px', lg: '14px' },
+                            fontStyle: 'normal',
+                            fontWeight: 500,
+                            lineHeight: 'normal',
+                            // backgroundColor: '#ccc',
+                          }}
+                        >
+                          {/* Tuesday */}
+                          {dayjs(modalData?.start_date)
+                            .add(i, 'day')
+                            .format('dddd')}
+                        </Typography>
+                      </Box>
+                      <Box sx={{ background: '#F6F6F6' }} p={'0 10px'}>
+                        <Typography
+                          sx={{
+                            color: '#595959',
+                            fontSize: { xs: '8px', lg: '10px' },
+                            fontStyle: 'normal',
+                            fontWeight: 500,
+                            lineHeight: 'normal',
+                            textAlign: { xs: 'center', md: 'left' },
+                            p: '8px 0',
+                          }}
+                        >
+                          10:00 AM-7:00 PM
+                        </Typography>
+                      </Box>
+                    </Box>
+                  ))}
+                </Box>
+                {/* <Box
                   sx={{
                     border: 'solid 1px #ccc',
                     m: '5px',
@@ -382,7 +440,7 @@ const LeaveViewModal = ({ modalData, handleClose, isEmployee }) => {
                       10:00 AM-7:00 PM
                     </Typography>
                   </Box>
-                </Box>
+                </Box> */}
               </Box>
             </Grid>
           </Grid>
@@ -624,7 +682,7 @@ const LeaveViewModal = ({ modalData, handleClose, isEmployee }) => {
                       lineHeight: 'normal',
                     }}
                   >
-                    Health issues
+                    {modalData?.reason}
                   </Typography>
                 </Box>
               </Grid>
