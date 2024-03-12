@@ -15,8 +15,9 @@ import Client from '@/src/components/employeeData/client';
 import Assets from '@/src/components/employeeData/assets';
 import AssetForm from '@/src/components/employeeData/assetModal';
 import { allEmployees } from '@/src/constants/AllEmployee';
-import FilterModal from '@/src/components/FilterModal/filterModal';
 import TimeAndLeaves from '@/src/components/employeeData/timeAndLeaves';
+import FilterFormModal from '@/src/components/FilterModal/filterForm';
+import { filterAttendanceForm } from '@/src/constants/data/forms/filter-form';
 
 const Page = () => {
   const [value, setValue] = useState('one');
@@ -56,6 +57,8 @@ const Page = () => {
     setEmergencyModal(false);
     setEditProfileModal(false);
     setAssetModal(false);
+  };
+  const handleClose = () => {
     setShowFilterModal(false);
   };
   const handleChange = (event, newValue) => {
@@ -344,10 +347,11 @@ const Page = () => {
                     </Box>
                   )}
                   {showFilterModal && (
-                    <FilterModal
+                    <FilterFormModal
                       open={handleOpenFilterModal}
-                      onClose={handleCloseModal}
+                      onClose={handleClose}
                       attendanceStatus
+                      filterForm={filterAttendanceForm}
                     />
                   )}
                   {value === employeeProfileData?.valueFour && (

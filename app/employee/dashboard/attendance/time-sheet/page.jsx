@@ -21,6 +21,8 @@ import {
   getTimeSheetDataFailed,
   getTimeSheetDataSuccess,
 } from '@/src/redux/slices/employeeSlices/timeSheetSlice';
+import FilterFormModal from '@/src/components/FilterModal/filterForm';
+import { filterAttendanceForm } from '@/src/constants/data/forms/filter-form';
 
 const Dashboard = () => {
   const { workSpace } = useSelector((state) => state?.auth?.userData);
@@ -275,10 +277,11 @@ const Dashboard = () => {
               </Box>
             </Box>
             {showFilterModal && (
-              <FilterModal
+              <FilterFormModal
                 open={handleOpenFilterModal}
                 onClose={handleClose}
                 attendanceStatus
+                filterForm={filterAttendanceForm}
               />
             )}
 

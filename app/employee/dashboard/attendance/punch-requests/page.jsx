@@ -11,7 +11,6 @@ import { renderNestedTable } from './renderComponents';
 import { checkInOutStatusTabs } from '@/src/constants/data/tabs/checkInOutTabs';
 import { employeeCheckInOutRequestColumn } from '@/src/constants/data/tables/checkInOutRequestsData';
 import PunchRequestModal from './PunchRequestModal';
-import FilterModal from '@/src/components/FilterModal/filterModal';
 import { REQUEST_LEAVE } from '@/src/constants/requestviewModal';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { EMP_PUNCH_REQUEST } from '@/src/services/apiService/apiEndPoints';
@@ -26,6 +25,8 @@ import {
   getEmpPunchRequestDataSuccess,
 } from '@/src/redux/slices/employeeSlices/punchRequestSlice';
 import AppConfirmationMadal from '@/src/components/modals/AppConfirmationMadal';
+import FilterFormModal from '@/src/components/FilterModal/filterForm';
+import { filterStatusForm } from '@/src/constants/data/forms/filter-form';
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -371,10 +372,11 @@ const Dashboard = () => {
                     </Box>
                   </Box>
                   {showFilterModal && (
-                    <FilterModal
+                    <FilterFormModal
                       open={handleOpenFilterModal}
                       onClose={handleClose}
                       clockinOut
+                      filterForm={filterStatusForm}
                     />
                   )}
                 </CustomTabPanel>

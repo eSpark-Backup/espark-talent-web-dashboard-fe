@@ -7,6 +7,8 @@ import Image from 'next/image';
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import LeaveRequestTable from './LeaveRequestTable';
+import FilterFormModal from '@/src/components/FilterModal/filterForm';
+import { filterLeaveForm } from '@/src/constants/data/forms/filter-form';
 
 const LeaveRequestTablesTabs = ({
   handleOpen,
@@ -172,10 +174,11 @@ const LeaveRequestTablesTabs = ({
             </Box>
           </Box>
           {showFilterModal && (
-            <FilterModal
+            <FilterFormModal
               open={handleOpenFilterModal}
               onClose={handleClose}
               leaveType
+              filterForm={filterLeaveForm}
             />
           )}
         </CustomTabPanel>

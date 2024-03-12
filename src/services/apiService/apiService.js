@@ -6,7 +6,7 @@ const envService = new EnvironmentService();
 const instance = axios.create({
   baseURL: envService.getBaseURL(),
   timeout: 50000,
-  headers: { 'Content-Type': 'application/json' },
+  headers: { 'Content-Type': 'multipart/form-data' },
 });
 const newInstance = axios.create({
   baseURL: envService.getBaseURL(),
