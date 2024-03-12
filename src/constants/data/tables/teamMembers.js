@@ -1,10 +1,34 @@
 export const teamMembersColumn = [
-  'Name',
-  'Employment term',
-  'Role/Department',
-  'Join date',
-  'Country',
-  'Benefits',
+  {
+    title: 'Name',
+    flex: 2,
+    name: 'name',
+  },
+  {
+    title: 'Employment term',
+    flex: 2,
+    name: 'employment_term',
+  },
+  {
+    title: 'Role/Department',
+    flex: 2,
+    name: 'role_department',
+  },
+  {
+    title: 'Pending',
+    flex: 2,
+    name: 'join_date',
+  },
+  {
+    title: 'Country',
+    flex: 2,
+    name: 'country',
+  },
+  {
+    title: 'Benefits',
+    flex: 2,
+    name: 'benefits',
+  },
 ];
 export const teamMembersData = [
   {

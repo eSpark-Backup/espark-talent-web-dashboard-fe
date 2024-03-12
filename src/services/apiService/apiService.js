@@ -6,7 +6,7 @@ const envService = new EnvironmentService();
 const instance = axios.create({
   baseURL: envService.getBaseURL(),
   timeout: 50000,
-  headers: { 'Content-Type': 'multipart/form-data' },
+  headers: { 'Content-Type': 'application/json' },
 });
 const newInstance = axios.create({
   baseURL: envService.getBaseURL(),
@@ -100,7 +100,8 @@ export default class APIService {
     return await instance.get(url, params);
   }
   async postData(url, data) {
-    // this.resetHeaders();
+    this.resetHeaders();
+    // this.updateHeadersForFormData();
     return await instance.post(url, data);
   }
   async updateData(url, data) {

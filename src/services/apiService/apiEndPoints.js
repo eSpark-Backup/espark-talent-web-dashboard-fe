@@ -18,3 +18,18 @@ export const EMP_LEAVE_REQUEST = '/emp_lr/';
 export const EMP_POLICIES = '/emp_policies//';
 export const EMP_COMPANY_CONTRACT = '/emp_compcontract/';
 export const EMP_OFFSHORE_CONTRACT = '/emp_offshcontract/';
+
+// Client
+
+//GET
+
+export const CLIENT_HOME = '/c_home/';
+export const CLIENT_HIRING_PROGRESS = '/c_hr/';
+export const CLIENT_INTERVIEW_SCHEDULE = '/c_is/';
+export const CLIENT_ONBOARDING = '/c_onboard/';
+export const CLIENT_START_HIRING = '/c_sh/';
+
+export const CLIENT_TEAM_MEMBER = '/c_team/';
+export const CLIENT_TIME_OFF = '/c_clockinout/';
+export const CLIENT_LEAVE_BALANCE = '/c_lb/';
+export const CLIENT_LEAVE_REQUEST = '/c_lr/';

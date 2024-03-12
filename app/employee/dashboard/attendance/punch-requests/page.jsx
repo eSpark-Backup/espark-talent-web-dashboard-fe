@@ -13,27 +13,38 @@ import { employeeCheckInOutRequestColumn } from '@/src/constants/data/tables/che
 import PunchRequestModal from './PunchRequestModal';
 import FilterModal from '@/src/components/FilterModal/filterModal';
 import { REQUEST_LEAVE } from '@/src/constants/requestviewModal';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { EMP_PUNCH_REQUEST } from '@/src/services/apiService/apiEndPoints';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { api } from '@/src/services/apiService';
+import {
+  deleteEmpPunchRequest,
+  deleteEmpPunchRequestSuccess,
+  deletePunchRequestDataFailed,
+  fetchEmpPunchRequestData,
+  getEmpPunchRequestDataFailed,
+  getEmpPunchRequestDataSuccess,
+} from '@/src/redux/slices/employeeSlices/punchRequestSlice';
+import AppConfirmationMadal from '@/src/components/modals/AppConfirmationMadal';
 
 const Dashboard = () => {
+  const dispatch = useDispatch();
   const { workSpace, empDetails } = useSelector(
     (state) => state?.auth?.userData
   );
-  const { data, isLoading } = useQuery({
+  const { data } = useSelector((state) => state?.emp?.punchReq);
+  const { isLoading } = useQuery({
     staleTime: 10000,
     queryFn: () => {
+      dispatch(fetchEmpPunchRequestData());
       return api
         .getData(`${EMP_PUNCH_REQUEST}/?workspace=${workSpace?.email || ''}`)
         .then(({ data }) => {
-          // dispatch(getEmpHomeData(data));
-          // dispatch(getWorkSpace(data?.workspaces?.[0]));
-          // dispatch(getEmployeeDetails(data?.employee_details));
+          dispatch(getEmpPunchRequestDataSuccess(data));
           return data;
         })
         .catch((err) => {
+          dispatch(getEmpPunchRequestDataFailed());
           console.log({ err });
         });
     },
@@ -49,7 +60,7 @@ const Dashboard = () => {
         description: item?.description,
         actionTimeOffReqStatus: true,
         actionStatus: true,
-        action: ['View'],
+        action: item?.status === 'pending' ? ['Delete', 'View'] : ['View'],
       }));
       return tempData;
     }
@@ -66,11 +77,29 @@ const Dashboard = () => {
 
   const [currentReqStatusTab, setcurrentReqStatusTab] = useState('All');
   const [currentReqStatusTabVal, setcurrentReqStatusTabVal] = useState(0);
+  const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
   const [modalData, setModalData] = useState({});
   const [openModal, setOpenModal] = useState(false);
   const [openPunch, setOpenPunch] = useState(false);
   const handleClosePunch = () => setOpenPunch(false);
   const [showFilterModal, setShowFilterModal] = useState(false);
+  const { mutate } = useMutation({
+    mutationFn: async (id) => {
+      dispatch(deleteEmpPunchRequest());
+      return api.daleteData(`${EMP_PUNCH_REQUEST}/?id=${id}`);
+    },
+    onSuccess: ({ data }) => {
+      console.log({ data });
+      dispatch(deleteEmpPunchRequestSuccess(modalData?.id));
+      handleCloseDeleteModal();
+      setModalData({});
+    },
+    onError: (err) => {
+      dispatch(deletePunchRequestDataFailed());
+      handleCloseDeleteModal();
+      console.log({ err: err.message, name: err.name, stack: err.stack });
+    },
+  });
   const handleOpenFilterModal = () => {
     setShowFilterModal(true);
   };
@@ -93,12 +122,22 @@ const Dashboard = () => {
     setModalData({ item, ...row });
     setOpenPunch(true);
   };
+  const handleClickActionDelete = (props) => {
+    setModalData({ id: props });
+    setIsOpenDeleteModal(true);
+  };
   const handleOpenModal = () => {
     setModalData({});
     setOpenModal(true);
   };
   const handleCloseModal = () => {
     setOpenModal(false);
+  };
+  const handleCloseDeleteModal = () => {
+    setIsOpenDeleteModal(false);
+  };
+  const handleConfirmDelete = () => {
+    mutate(modalData.id);
   };
 
   return (
@@ -347,6 +386,7 @@ const Dashboard = () => {
                 data: checkInOutRequestDataState,
                 // data: data?.requests,
                 handleClickActionView,
+                handleClickActionDelete,
               })}
             </Box>
           </div>
@@ -370,6 +410,15 @@ const Dashboard = () => {
           handleClose={handleClosePunch}
         />
       </Modal>
+      <AppConfirmationMadal
+        isOpen={isOpenDeleteModal}
+        title={'Delete'}
+        handleClose={handleCloseDeleteModal}
+        handleConfirm={handleConfirmDelete}
+        bodyText={'Are you sure you want to delete this request?'}
+        cancelButtonText={'Cancel'}
+        confirmButtonText={'Delete'}
+      />
     </>
   );
 };
