@@ -17,9 +17,10 @@ import {
 import LeaveRequestModal from './LeaveRequestModal';
 import LeaveViewModal from '@/app/client/dashboard/team/time-off/LeaveViewModal';
 import AppTable from '@/src/components/appTable/AppTable';
-import FilterModal from '@/src/components/FilterModal/filterModal';
 import AppConfirmationMadal from '@/src/components/modals/AppConfirmationMadal';
 import { REQUEST_LEAVE } from '@/src/constants/requestviewModal';
+import FilterFormModal from '@/src/components/FilterModal/filterForm';
+import { filterLeaveForm } from '@/src/constants/data/forms/filter-form';
 
 export const Dashboard = () => {
   const [open, setOpen] = useState(false);
@@ -396,10 +397,11 @@ export const Dashboard = () => {
                     </Box>
                   </Box>
                   {showFilterModal && (
-                    <FilterModal
+                    <FilterFormModal
                       open={handleOpenFilterModal}
                       onClose={handleClose}
                       leaveType
+                      filterForm={filterLeaveForm}
                     />
                   )}
                 </CustomTabPanel>

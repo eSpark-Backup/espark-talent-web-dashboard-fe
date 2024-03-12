@@ -54,13 +54,13 @@ const FormInput = ({
   handleData,
   readOnly,
   modalData,
+  fieldsName,
 }) => {
   const [isLoadingList, setIsLoadingList] = useState(false);
   const [isCopied, setIsCopied] = useState();
   const [imageSrc, setImageSrc] = useState(
     `/images/hiring/${suffixIconInside}.svg`
   );
-
   const handleSelectItem = (item) => {
     const tempErrors = { ...errors };
     if (Object.hasOwnProperty.call(tempErrors, name)) {
@@ -244,49 +244,6 @@ const FormInput = ({
             }}
           />
         </LocalizationProvider>
-      ) : type === 'time' ? (
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <DesktopTimePicker
-            className={[
-              error ? 'error-border' : 'no-error-border',
-              'form-date-picker-component',
-            ].join(' ')}
-            slots={{
-              openPickerIcon: () => (
-                <Image
-                  src={`/icons/ClockIcon.svg`}
-                  width={30}
-                  height={30}
-                  alt="calender"
-                />
-              ),
-            }}
-            placeholder={placeholder}
-            slotProps={{
-              textField: {
-                placeholder: placeholder,
-                sx: {
-                  '& input': {
-                    color: '#88888',
-                    padding: '9.95px 10px',
-                    width: '100%',
-                  },
-                },
-              },
-            }}
-            sx={{
-              width: '100%',
-              height: '40px',
-              '@media (min-width: 900px) and (max-width: 1400px)': {
-                width: '100%',
-              },
-            }}
-            value={value}
-            onChange={(e) => {
-              handleChangeInput(name, `${e?.$d}`);
-            }}
-          />
-        </LocalizationProvider>
       ) : type === 'date-and-time' ? (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DateTimePickerComponent
@@ -330,6 +287,102 @@ const FormInput = ({
             }}
           />
         </LocalizationProvider>
+      ) : type === 'time' ? (
+        <>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DesktopTimePicker
+              className={[
+                error ? 'error-border' : 'no-error-border',
+                'form-date-picker-component',
+              ].join(' ')}
+              slots={{
+                openPickerIcon: () => (
+                  <Image
+                    src={`/icons/ClockIcon.svg`}
+                    width={30}
+                    height={30}
+                    alt="calendar"
+                  />
+                ),
+              }}
+              placeholder={placeholder}
+              slotProps={{
+                textField: {
+                  placeholder: placeholder,
+                  sx: {
+                    '& input': {
+                      color: '#888888',
+                      padding: '9.95px 10px',
+                      width: '100%',
+                    },
+                  },
+                },
+              }}
+              sx={{
+                width: '100%',
+                height: '40px',
+                '@media (min-width: 900px) and (max-width: 1400px)': {
+                  width: '100%',
+                },
+              }}
+              value={value}
+              onChange={(e) => {
+                handleChangeInput(name, `${e?.$d}`);
+              }}
+            />
+          </LocalizationProvider>
+        </>
+      ) : type === 'timerow' ? (
+        <>
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            {fieldsName?.map((field, fieldIndex) => (
+              <>
+                {fieldIndex === 1 && (
+                  <Box
+                    key={`separator-${fieldIndex}`}
+                    sx={{
+                      width: '40px',
+                      height: '40px',
+                      background: '#E4E4E4',
+                    }}
+                  >
+                    <Typography sx={{ textAlign: 'center', marginTop: '10px' }}>
+                      -
+                    </Typography>
+                  </Box>
+                )}
+                <Box
+                  key={`box-${fieldIndex}`}
+                  sx={{
+                    border: `1px solid ${error ? 'red' : '#E4E4E4'}`,
+                    borderRadius: '5px',
+                    display: 'flex',
+                    overflow: 'hidden',
+                    height: '40px',
+                    width: '100%',
+                  }}
+                >
+                  <input
+                    style={{
+                      background: '#FFF',
+                      display: type === 'file' && 'none',
+                    }}
+                    placeholder={field.placeholder}
+                    className="form-input-field"
+                    type="time"
+                    onChange={(e) => {
+                      handleChangeInput(
+                        `${name}.${field.name}`,
+                        e?.target?.value
+                      );
+                    }}
+                    value={values[`${name}.${field.name}`]}
+                  />
+                </Box>
+              </>
+            ))}
+          </Box>
+        </>
       ) : type === 'input-range' ? (
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           {fields?.map((field, fieldIndex) => (
@@ -342,7 +395,7 @@ const FormInput = ({
                     height: '1px',
                     background: '#000',
                   }}
-                />
+                ></Box>
               )}
               <Box
                 sx={{

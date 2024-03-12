@@ -1,5 +1,4 @@
 import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
-import FilterModal from '@/src/components/FilterModal/filterModal';
 import { employeeRequestsTabs } from '@/src/constants/data/tabs/requestTabs';
 import { REQUEST_LEAVE } from '@/src/constants/requestviewModal';
 import { Box, Button, Tab, Tabs, Typography } from '@mui/material';
@@ -7,6 +6,8 @@ import Image from 'next/image';
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import LeaveRequestTable from './LeaveRequestTable';
+import FilterFormModal from '@/src/components/FilterModal/filterForm';
+import { filterLeaveForm } from '@/src/constants/data/forms/filter-form';
 
 const LeaveRequestTablesTabs = ({
   handleOpen,
@@ -21,7 +22,6 @@ const LeaveRequestTablesTabs = ({
 
   const handleClose = () => {
     setShowFilterModal(false);
-    // setOpen(false);
   };
 
   const handleChangeCurrReqStatusTab = (event, newValue, data) => {
@@ -172,10 +172,11 @@ const LeaveRequestTablesTabs = ({
             </Box>
           </Box>
           {showFilterModal && (
-            <FilterModal
+            <FilterFormModal
               open={handleOpenFilterModal}
               onClose={handleClose}
               leaveType
+              filterForm={filterLeaveForm}
             />
           )}
         </CustomTabPanel>

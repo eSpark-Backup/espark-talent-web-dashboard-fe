@@ -11,7 +11,6 @@ import Image from 'next/image';
 import { EMPLOYEE_TIMESHEET } from '@/src/constants/timeSheet';
 import AttendanceViewModal from './AttendanceViewModal';
 import AppTable from '@/src/components/appTable/AppTable';
-import FilterModal from '@/src/components/FilterModal/filterModal';
 import { useQuery } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import { useDispatch, useSelector } from 'react-redux';
@@ -21,6 +20,8 @@ import {
   getTimeSheetDataFailed,
   getTimeSheetDataSuccess,
 } from '@/src/redux/slices/employeeSlices/timeSheetSlice';
+import FilterFormModal from '@/src/components/FilterModal/filterForm';
+import { filterAttendanceForm } from '@/src/constants/data/forms/filter-form';
 
 const Dashboard = () => {
   const { workSpace } = useSelector((state) => state?.auth?.userData);
@@ -275,10 +276,11 @@ const Dashboard = () => {
               </Box>
             </Box>
             {showFilterModal && (
-              <FilterModal
+              <FilterFormModal
                 open={handleOpenFilterModal}
                 onClose={handleClose}
                 attendanceStatus
+                filterForm={filterAttendanceForm}
               />
             )}
 
