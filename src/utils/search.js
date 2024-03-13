@@ -20,7 +20,7 @@
 
 export const filterDataByKeyword = (data, keyword, setData) => {
   if (!data || data.length === 0) {
-    setData([]);
+    setData?.([]);
     return [];
   }
 
@@ -40,6 +40,6 @@ export const filterDataByKeyword = (data, keyword, setData) => {
     return false;
   });
 
-  setData(filteredData);
+  setData?.(filteredData);
   return filteredData;
 };

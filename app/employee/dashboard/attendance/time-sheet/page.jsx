@@ -11,7 +11,6 @@ import Image from 'next/image';
 import { EMPLOYEE_TIMESHEET } from '@/src/constants/timeSheet';
 import AttendanceViewModal from './AttendanceViewModal';
 import AppTable from '@/src/components/appTable/AppTable';
-import FilterModal from '@/src/components/FilterModal/filterModal';
 import { useQuery } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import { useDispatch, useSelector } from 'react-redux';

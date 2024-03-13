@@ -1,27 +1,13 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import { Grid, Box, Typography, Button, Modal } from '@mui/material';
-
-import Input from '@/src/components/dashboard/input';
-import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
-import { filterDataByKeyword } from '@/src/utils/search';
-import { filterTableRowsWRTTab } from '@/src/utils/table';
-import { leaveRequestsTab } from '@/src/constants/data/tabs/timeOffTabs';
+import { Grid, Box, Modal } from '@mui/material';
 import {
   checkInOutColumn,
-  checkInOutRequestData,
-  leaveBalanceColumn,
-  leaveBalanceData,
   leaveRequestsColumn,
-  leaveRequestsData,
 } from '@/src/constants/data/tables/timeOffRequest';
-import Image from 'next/image';
 import { renderNestedTable } from './renderComponents';
-import Link from 'next/link';
 import LeaveViewModal from './LeaveViewModal';
 import PunchViewModal from './PunchViewModal';
-import AppTable from '@/src/components/appTable/AppTable';
-import { TIME_REQUEST } from '@/src/constants/timeSheet';
 import { useQuery } from '@tanstack/react-query';
 import {
   CLIENT_LEAVE_BALANCE,
@@ -46,12 +32,6 @@ const Dashboard = () => {
   const { data, tabData } = useSelector((state) => state?.client?.timeOff);
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(true);
-  // const [search, setSearch] = useState('');
-  // const [searchLeaveRequest, setSearchLeaveRequest] = useState('');
-  // const [searchCheckInOutRequest, setSearchCheckInOutRequest] = useState('');
-  // const [leaveBalanceDataState, setLeaveBalanceDataState] = useState(
-  //   filterTableRowsWRTTab(leaveBalanceData, { status: '' })
-  // );
 
   const [open, setOpen] = useState(false);
   const [openPunch, setOpenPunch] = useState(false);
@@ -63,12 +43,6 @@ const Dashboard = () => {
     setOpen(false);
   };
   const handleClosePunch = () => setOpenPunch(false);
-  const [leaveRequestDataState, setLeaveRequestDataState] = useState(
-    filterTableRowsWRTTab(leaveRequestsData, { status: '' })
-  );
-  const [checkInOutRequestDataState, setCheckInOutRequestDataState] = useState(
-    filterTableRowsWRTTab(checkInOutRequestData, { status: '' })
-  );
   const [modalData, setModalData] = useState({});
 
   const fetchDataFake = async () => {

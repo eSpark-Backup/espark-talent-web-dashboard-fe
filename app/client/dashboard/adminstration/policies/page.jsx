@@ -9,7 +9,6 @@ import { useQuery } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import { CLIENT_POLICY } from '@/src/services/apiService/apiEndPoints';
 import {
-  fetchClientPoliciesRequest,
   fetchClientPoliciesRequestFailed,
   fetchClientPoliciesRequestSuccess,
 } from '@/src/redux/slices/clientSlices/policiesSlice';
@@ -17,7 +16,7 @@ import { useDispatch } from 'react-redux';
 
 const Policies = () => {
   const dispatch = useDispatch();
-  const clientPoliciesQuery = useQuery({
+  const { isLoading } = useQuery({
     staleTime: 10000,
     queryKey: ['policiesQuery'],
     queryFn: async () => {
@@ -56,7 +55,11 @@ const Policies = () => {
               alignItems: { xs: 'flex-start', md: 'center' },
             }}
           />
-          <PoliciesCard data={POLICIES_DATA?.items} />
+          {isLoading ? (
+            'Loading...'
+          ) : (
+            <PoliciesCard data={POLICIES_DATA?.items} />
+          )}
         </Box>
       </Grid>
     </>

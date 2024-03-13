@@ -9,14 +9,14 @@ import timeTrackingSlice from './timeTrackingSlice';
 import contratSignedSlice from './contratSignedSlice';
 
 const clientReducer = combineReducers({
-    hiringProgress: hiringProgressSlice,
-    home: homeSlice,
-    teamMembers: teamMembersSlice,
-    timeOff: timeOffSlice,
-    timeTracking: timeTrackingSlice,
-    invoicePayments: invoicePaymentsSlice,
-    policies: policiesSlice,
-    contract: contratSignedSlice
+  hiringProgress: hiringProgressSlice,
+  home: homeSlice,
+  teamMembers: teamMembersSlice,
+  timeOff: timeOffSlice,
+  timeTracking: timeTrackingSlice,
+  invoicePayments: invoicePaymentsSlice,
+  policies: policiesSlice,
+  contract: contratSignedSlice,
 });
 
 export { clientReducer };

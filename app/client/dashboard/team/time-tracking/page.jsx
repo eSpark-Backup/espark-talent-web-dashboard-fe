@@ -1,16 +1,13 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Grid, Box, Typography } from '@mui/material';
-import {
-  timeTrackingTableColumn,
-  timeTrackingTableData,
-} from '@/src/constants/data/tables/timeTracking';
+import { timeTrackingTableColumn } from '@/src/constants/data/tables/timeTracking';
 import Link from 'next/link';
 import AppSearchableDropdown from '@/src/components/dashboard/appSearchableDropdown';
 import AppCustomMonthYearPicker from '@/src/components/dashboard/appCustomMonthYearPicker';
 import AppTable from '@/src/components/appTableNew/AppTable';
 import { TIMETRACKING } from '@/src/constants/TimeTracking';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import { CLIENT_TIME_TRACKING } from '@/src/services/apiService/apiEndPoints';
 import {
@@ -40,24 +37,6 @@ const Dashboard = () => {
         });
     },
   });
-  const listItems = [
-    'Arman Khan',
-    'Bilal Ahmed Khan',
-    'Areeba Shakeel',
-    'Saad Zafar',
-    'Muhammad Ali',
-    'Sohaib-Xtreme',
-    'Faizan-ur-Rehman',
-    'Faisal Hanif',
-    'Faraz Shah',
-    'Abdul Rehman',
-    'Abdul Mannan',
-    'Hassan',
-    'Muzammil',
-    'Nauman',
-    'Abdullah Zaidi',
-  ];
-
   // const [isLoading, setIsLoading] = useState(true);
   const [isLoadingEmployee, setIsLoadingEmployee] = useState(false);
   const [selectedEmployee, setSelectedEmployee] = useState('');
@@ -160,22 +139,6 @@ const Dashboard = () => {
               </Grid>
             </Box>
             <br />
-            {/* <Box
-              marginY={'20px'}
-              display={'flex'}
-              flexWrap={'wrap'}
-              alignItems={'center'}
-            >
-              {trackingStatusTypes?.map(
-                ({ label, shortForm, background }, statusIndex) =>
-                  renderTrackingStatus({
-                    label,
-                    statusIndex,
-                    background,
-                    shortForm,
-                  })
-              )}
-            </Box> */}
             {isLoading ? (
               <Box>Loading...</Box>
             ) : (

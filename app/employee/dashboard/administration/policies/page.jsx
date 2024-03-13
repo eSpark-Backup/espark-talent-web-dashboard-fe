@@ -39,6 +39,8 @@ const Policies = () => {
     },
   });
 
+  console.log({ clientPoliciesQuery });
+
   return (
     <>
       <Grid container>

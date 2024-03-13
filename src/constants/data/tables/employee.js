@@ -36,42 +36,42 @@ export const employeeTableHiringRequestColumn = [
   {
     title: 'Job title',
     flex: 1,
-    name: 'job_title'
+    name: 'job_title',
   },
   {
     title: 'Role type',
     flex: 1,
-    name: 'role_type'
+    name: 'role_type',
   },
   {
     title: 'Gender',
     flex: 1,
-    name: 'gender'
+    name: 'gender',
   },
   {
     title: 'Employment term',
     flex: 1,
-    name: 'employment_term'
+    name: 'employment_term',
   },
   {
     title: 'Hiring starting date',
     flex: 1,
-    name: 'hiring_start_date'
+    name: 'hiring_start_date',
   },
   {
     title: 'Hiring ending date',
     flex: 1,
-    name: 'hiring_end_date'
+    name: 'hiring_end_date',
   },
   {
     title: 'Salary range',
     flex: 1,
-    name: 'salary_range'
+    name: 'salary_range',
   },
   {
     title: 'Action',
     flex: 1,
-    name: 'action'
+    name: 'action',
   },
 ];
 export const employeeTableOnboardingColumn = [

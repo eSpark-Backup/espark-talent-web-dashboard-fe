@@ -1,9 +1,6 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
 
-// import { DASHBOARD_DATA } from '@/src/constants/dashboard';
-import { useSelector } from 'react-redux';
-
 const DashboardHeading = ({ dashboardDescription, title }) => {
   console.log({ dashbaords: dashboardDescription });
   // const { empDetails } = useSelector((state) => state?.auth?.userData);

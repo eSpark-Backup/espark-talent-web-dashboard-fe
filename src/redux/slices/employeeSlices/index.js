@@ -12,7 +12,7 @@ const empReducer = combineReducers({
   contract: contractSlice,
   timeSheet: timeSheetSlice,
   punchReq: punchReqSlice,
-  policies: empPoliciesSlice
+  policies: empPoliciesSlice,
 });
 
 export { empReducer };

@@ -4,7 +4,6 @@ import { Typography, Box, Grid } from '@mui/material';
 
 import { COMPANY_ONBOARDING, HIRING_STATUS } from '@/src/constants/dashboard';
 import CompanyProfile from './companyProfile';
-import { ACTIVE_CLIENT } from '@/src/constants/data/client';
 import { useQuery } from '@tanstack/react-query';
 import { CLIENT_HOME } from '@/src/services/apiService/apiEndPoints';
 import { api } from '@/src/services/apiService';

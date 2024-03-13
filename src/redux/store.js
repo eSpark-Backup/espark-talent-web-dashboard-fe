@@ -24,7 +24,7 @@ const persistedReducer = persistReducer(
     auth: authSlice,
     hr: hrReducer,
     emp: empReducer,
-    client: clientReducer
+    client: clientReducer,
   })
 );
 

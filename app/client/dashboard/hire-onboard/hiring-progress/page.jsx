@@ -6,7 +6,6 @@ import Tab from '@mui/material/Tab';
 import Link from 'next/link';
 
 import Input from '@/src/components/dashboard/input';
-import { employeeTableDataHiringRequest } from '@/src/constants/data/tables/employee';
 import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
 import { filterDataByKeyword } from '@/src/utils/search';
 import { changeTab } from '@/src/utils/tabs';
@@ -24,10 +23,8 @@ import {
   deleteClientHiringRequest,
   deleteClientHiringRequestFailed,
   deleteClientHiringRequestSuccess,
-  fetchClientHiringRequests,
   fetchClientHiringRequestsFailed,
   fetchClientHiringRequestsSuccess,
-  fetchClientInterviewSchedules,
   fetchClientInterviewSchedulesFailed,
   fetchClientInterviewSchedulesSuccess,
   fetchClientOnboardingFailed,
@@ -43,7 +40,6 @@ const Dashboard = () => {
   const [currentTab, setCurrentTab] = useState('Hiring Request');
   const [isLoading, setIsLoading] = useState(true);
   const [search, setSearch] = useState('');
-  const [empData, setEmpData] = useState(employeeTableDataHiringRequest);
   const [modalData, setModalData] = useState({});
   const dispatch = useDispatch();
   const { data } = useSelector((state) => state?.client?.hiringProgress);
@@ -130,24 +126,7 @@ const Dashboard = () => {
       );
     }
   }, [data?.hiringRequests, data?.interviewSchedule, data?.onBoarding]);
-
-  // const fetchDataFake = async () => {
-  //   return true;
-  // };
-
   const handleClose = () => setIsOpen(false);
-
-  // useEffect(() => {
-  //   const fetchDataAsync = async () => {
-  //     try {
-  //       await fetchDataFake();
-  //     } finally {
-  //       setIsLoading(false);
-  //     }
-  //   };
-
-  //   fetchDataAsync();
-  // }, []);
 
   const handleChange = (event, newValue) => {
     changeTab({
@@ -158,14 +137,13 @@ const Dashboard = () => {
       setSearch,
       setCurrentTab,
       setValue,
-      setData: setEmpData,
     });
   };
 
   useEffect(() => {
     const data = empTabs[value].data;
     const timeoutId = setTimeout(() => {
-      filterDataByKeyword(data, search || '', setEmpData);
+      filterDataByKeyword(data, search || '');
       setIsLoading(false);
     }, 500);
     return () => {
@@ -185,12 +163,12 @@ const Dashboard = () => {
     onSuccess: ({ data }) => {
       console.log({ data });
       dispatch(deleteClientHiringRequestSuccess(modalData?.id));
-      handleCloseDeleteModal();
+      handleClose();
       setModalData({});
     },
     onError: (err) => {
       dispatch(deleteClientHiringRequestFailed());
-      handleCloseDeleteModal();
+      handleClose();
       console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
@@ -249,7 +227,7 @@ const Dashboard = () => {
                   },
                 }}
               >
-                {empTabs?.map(({ label, prop, data }, i) => (
+                {empTabs?.map(({ label, prop }, i) => (
                   <Tab
                     disableRipple={true}
                     key={i}

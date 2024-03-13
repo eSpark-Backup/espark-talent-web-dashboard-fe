@@ -41,12 +41,6 @@ const Dashboard = () => {
   const [isLoadingOthPay, setIsLoadingOthPay] = useState(true);
   const [search, setSearch] = useState('');
   const [searchOthPay, setSearchOthPay] = useState('');
-  const [invPayData, setInvPayData] = useState(
-    filterTableRowsWRTTab(invoicePaymentData, { paymentStatus: currentTab })
-  );
-  const [othPayData, setOthPayData] = useState(
-    filterTableRowsWRTTab(invoicePaymentData, { paymentStatus: currentTab })
-  );
 
   const pendingInvoice = useQuery({
     staleTime: 10000,
@@ -100,6 +94,8 @@ const Dashboard = () => {
     },
   });
 
+  console.log({ paidInvoice, pendingInvoice, processingInvoice });
+
   const fetchDataFake = async () => {
     return true;
   };
@@ -124,7 +120,6 @@ const Dashboard = () => {
       setSearch,
       setCurrentTab,
       setValue,
-      setData: setInvPayData,
       teamMembersData: invoicePaymentData,
       filterTableRowsWRTTab,
       filterBy: 'paymentStatus',
@@ -138,7 +133,7 @@ const Dashboard = () => {
       }),
     ];
     const timeoutId = setTimeout(() => {
-      filterDataByKeyword(data, search || '', setInvPayData);
+      filterDataByKeyword(data, search || '');
       setIsLoading(false);
     }, 500);
     return () => {
@@ -148,7 +143,7 @@ const Dashboard = () => {
   useEffect(() => {
     const data = [...filterTableRowsWRTTab(otherPaymentData)];
     const timeoutId = setTimeout(() => {
-      filterDataByKeyword(data, searchOthPay || '', setOthPayData);
+      filterDataByKeyword(data, searchOthPay || '');
       setIsLoadingOthPay(false);
     }, 500);
     return () => {

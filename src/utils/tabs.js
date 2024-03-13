@@ -58,10 +58,10 @@ export const changeActionStatusTab = ({
   setValue(newValue);
 
   if (isSingular) {
-    setData(tabs[newValue].data);
+    setData?.(tabs[newValue].data);
   } else {
     const filterByVal = tab === 'All' ? '' : tab;
-    setData(filterTableRowsWRTTab(teamMembersData, { filterByVal }));
+    setData?.(filterTableRowsWRTTab(teamMembersData, { filterByVal }));
   }
 };
 

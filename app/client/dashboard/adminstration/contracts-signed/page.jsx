@@ -1,11 +1,9 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Grid, Box, Typography } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
-import { filterDataByKeyword } from '@/src/utils/search';
-// import { contractSignedData } from '@/src/constants/data/tables/contractSigned';
 import { contractSignedTabs } from '@/src/constants/data/tabs/contractSignedTabs';
 import AppTable from '@/src/components/appTable/AppTable';
 import { useDispatch, useSelector } from 'react-redux';
@@ -29,9 +27,6 @@ const ContractSigned = () => {
   const dispatch = useDispatch();
   const [value, setValue] = useState(0);
   const [currentTab, setCurrentTab] = useState('Hiring Request');
-  // const [isLoading, setIsLoading] = useState(true);
-  const [search, setSearch] = useState('');
-  const [empData, setEmpData] = useState();
 
   const companyContractSignedQuery = useQuery({
     staleTime: 10000,
@@ -68,7 +63,7 @@ const ContractSigned = () => {
     },
   });
 
-  console.log(empData, setSearch);
+  console.log({ empContractSignedQuery, companyContractSignedQuery });
   const handleChange = (event, newValue) => {
     let tab = event?.target?.innerText.split(' ');
     if (tab.length > 1) {

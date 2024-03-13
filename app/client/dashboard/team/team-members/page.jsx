@@ -31,9 +31,6 @@ const Dashboard = () => {
   const [currentTab, setCurrentTab] = useState('All');
   const [isLoading, setIsLoading] = useState(true);
   const [search, setSearch] = useState('');
-  const [empData, setEmpData] = useState(
-    filterTableRowsWRTTab(teamMembersData, { memberStatus: '' })
-  );
   const temMembersQuery = useQuery({
     staleTime: 10000,
     queryKey: 'teamMembers',
@@ -73,7 +70,6 @@ const Dashboard = () => {
       setSearch,
       setCurrentTab,
       setValue,
-      setData: setEmpData,
       filterTableRowsWRTTab,
       teamMembersData,
       filterBy: 'memberStatus',
@@ -85,7 +81,7 @@ const Dashboard = () => {
       memberStatus: currentTab === 'All' ? '' : currentTab,
     });
     const timeoutId = setTimeout(() => {
-      filterDataByKeyword(data, search || '', setEmpData);
+      filterDataByKeyword(data, search || '');
       setIsLoading(false);
     }, 500);
     return () => {
