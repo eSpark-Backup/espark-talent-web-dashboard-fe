@@ -166,6 +166,23 @@ const formElementsStep3 = [
     placeholder: 'Enter company',
     name: 'company',
   },
+  {
+    title: 'Employement terms',
+    placeholder: 'Select employement terms',
+    type: 'select',
+    options: [
+      {
+        label: 'Salary based',
+      },
+      {
+        label: 'Hourly based',
+      },
+      {
+        label: 'Project based',
+      },
+    ],
+    name: 'employementTerms',
+  },
 ];
 const formElementsStep4 = [
   {

@@ -81,7 +81,7 @@ export const EDIT_MODAL = {
 
 export const employeeDataLabel = [
   { label: 'Employee name', value: 'John Doe' },
-  { label: 'Employee ID', value: '090078601' },
+  { label: 'Employment term', value: 'Salary based' },
   { label: 'Birth date', value: 'January 1, 1990' },
   { label: 'Gender', value: 'Male' },
   { label: 'Email', value: 'johndoe@123.com' },
