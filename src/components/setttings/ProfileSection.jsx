@@ -1,25 +1,19 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Image from 'next/image';
-import { Button, TextField, Typography } from '@mui/material';
+import { Button, Typography } from '@mui/material';
+import GeneralSettings from './GeneralSettings';
 
 const ProfileSection = ({ Profile_Edit_Section, User_Detail, handleData }) => {
   const fileInputRef = React.useRef(null);
-
   const handleFileInputChange = (event) => {
     const name = event.target.name;
     const file = event.target.files[0];
     handleData(name, file);
   };
-
   const handleButtonClick = () => {
     fileInputRef.current.click();
   };
-  const handleChangeInput = (label, value) => {
-    const fieldName = `${label}`;
-    handleData(fieldName, value);
-  };
-
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Box sx={{ mb: 2 }}>
@@ -44,6 +38,7 @@ const ProfileSection = ({ Profile_Edit_Section, User_Detail, handleData }) => {
             style={{ display: 'none' }}
             ref={fileInputRef}
             onChange={handleFileInputChange}
+            required
           />
           <Button
             type="file"
@@ -75,7 +70,13 @@ const ProfileSection = ({ Profile_Edit_Section, User_Detail, handleData }) => {
         </Box>
       </Box>
       <Box
-        sx={{ display: 'flex', flexDirection: 'column', gap: '20px', my: 3 }}
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '20px',
+          my: 3,
+          width: { xs: '100%', md: '80%' },
+        }}
       >
         <Typography
           variant="body2"
@@ -83,7 +84,8 @@ const ProfileSection = ({ Profile_Edit_Section, User_Detail, handleData }) => {
         >
           {User_Detail?.title}
         </Typography>
-        {User_Detail?.Fields?.map((item, index) => (
+        <GeneralSettings />
+        {/* {User_Detail?.Fields?.map((item, index) => (
           <Box component={'div'} key={index}>
             <Typography
               variant="body1"
@@ -170,7 +172,7 @@ const ProfileSection = ({ Profile_Edit_Section, User_Detail, handleData }) => {
               ) : null}
             </Box>
           </Box>
-        ))}
+        ))} */}
       </Box>
     </Box>
   );
