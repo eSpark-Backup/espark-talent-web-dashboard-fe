@@ -5,8 +5,35 @@ import { Grid, Box } from '@mui/material';
 import Heading from '@/src/components/global/Heading';
 import { POLICIES_DATA } from '@/src/constants/policies';
 import PoliciesCard from '@/src/components/policies/policiesCard';
+import { useQuery } from '@tanstack/react-query';
+import { api } from '@/src/services/apiService';
+import { CLIENT_POLICY } from '@/src/services/apiService/apiEndPoints';
+import {
+  fetchClientPoliciesRequest,
+  fetchClientPoliciesRequestFailed,
+  fetchClientPoliciesRequestSuccess,
+} from '@/src/redux/slices/clientSlices/policiesSlice';
+import { useDispatch } from 'react-redux';
 
 const Policies = () => {
+  const dispatch = useDispatch();
+  const clientPoliciesQuery = useQuery({
+    staleTime: 10000,
+    queryKey: ['policiesQuery'],
+    queryFn: async () => {
+      // dispatch(fetchClientPoliciesRequest());
+      return api
+        .getData(`${CLIENT_POLICY}`)
+        .then(({ data }) => {
+          dispatch(fetchClientPoliciesRequestSuccess(data || []));
+          return data;
+        })
+        .catch((err) => {
+          dispatch(fetchClientPoliciesRequestFailed());
+          console.log({ err });
+        });
+    },
+  });
   return (
     <>
       <Grid container>
