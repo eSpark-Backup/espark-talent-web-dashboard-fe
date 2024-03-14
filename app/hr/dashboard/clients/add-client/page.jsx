@@ -13,7 +13,6 @@ import { fetchCountriesList } from '@/src/utils/countryList';
 const AddEmployee = () => {
   const [countries, setCountries] = useState([]);
   const [currentStep, setCurrentStep] = useState(1);
-  const [formData, setFormData] = useState({});
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -33,12 +32,6 @@ const AddEmployee = () => {
     if (currentStep === 1) return;
     setCurrentStep((ps) => ps - 1);
   };
-  const handleData = (name, value) => {
-    setFormData({ ...formData, [name]: value });
-  };
-  useEffect(() => {
-    console.log('form', formData);
-  }, [formData]);
   return (
     <Box>
       <Breadcrumb root="clients" title="Clients /" currentPage="Add client" />
@@ -76,7 +69,6 @@ const AddEmployee = () => {
                   handleGoNext={handleGoNext}
                   handleGoPrev={handleGoPrev}
                   isLastStep={currentStep === formSteps?.length}
-                  handleData={handleData}
                   countries={countries}
                 />
               );

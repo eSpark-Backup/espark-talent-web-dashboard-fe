@@ -1,12 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Box, Typography } from '@mui/material';
 import LeaveRequestForm from './LeaveRequestForm';
 
 const LeaveRequestModal = ({ handleClose }) => {
-  const [formData, setFormData] = useState({});
-  const handleData = (name, value) => {
-    setFormData({ ...formData, [name]: value });
-  };
   return (
     <Box
       sx={{
@@ -31,7 +27,7 @@ const LeaveRequestModal = ({ handleClose }) => {
           Create leave request
         </Typography>
       </Box>
-      <LeaveRequestForm handleClose={handleClose} handleData={handleData} />
+      <LeaveRequestForm handleClose={handleClose} />
     </Box>
   );
 };

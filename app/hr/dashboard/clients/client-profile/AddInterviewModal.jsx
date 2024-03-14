@@ -4,10 +4,9 @@ import { addNewInterviewForm } from '@/src/constants/data/forms/add-new-intervie
 import { FORM_DATA } from '@/src/constants/form';
 import { Box, Button, Grid, Modal, Typography } from '@mui/material';
 import { useFormik } from 'formik';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 const AddInterviewModal = ({ open, onClose }) => {
-  const [formData, setFormData] = useState({});
   const {
     handleSubmit,
     values,
@@ -33,12 +32,6 @@ const AddInterviewModal = ({ open, onClose }) => {
     handleReset();
     onClose();
   };
-  const handleData = (name, value) => {
-    setFormData({ ...formData, [name]: value });
-  };
-  useEffect(() => {
-    console.log('form', formData);
-  }, [formData]);
   return (
     <Modal
       open={open}
@@ -145,7 +138,6 @@ const AddInterviewModal = ({ open, onClose }) => {
                       md={12}
                       lg={12}
                       fields={fields}
-                      handleData={handleData}
                     />
                   </Grid>
                   {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>}

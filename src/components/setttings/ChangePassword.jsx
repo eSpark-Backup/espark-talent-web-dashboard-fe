@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Box, Button, Grid, Typography } from '@mui/material';
 
 import FormInput from '@/src/components/form/ui-elements/FormInput';
@@ -8,13 +8,6 @@ import { changePasswordForm } from '@/src/constants/data/forms/change-password';
 import { User_Password } from '@/src/constants/profileEditData';
 
 const ChangePassword = () => {
-  const [formData, setFormData] = useState({});
-  const handleData = (name, value) => {
-    setFormData({ ...formData, [name]: value });
-  };
-  useEffect(() => {
-    console.log('form', formData);
-  }, [formData]);
   const {
     handleSubmit,
     values,
@@ -24,14 +17,7 @@ const ChangePassword = () => {
     setFieldError,
     setErrors,
   } = useFormik({
-    initialValues: {
-      annualLeaves: 0,
-      unpaidLeaves: 0,
-      paidLeaves: 0,
-      hajjLeaves: 0,
-      sickLeaves: 0,
-      casualLeaves: 0,
-    },
+    initialValues: {},
     validationSchema: changePasswordFormSchema,
     enableReinitialize: true,
     onSubmit: (formValues) => {
@@ -96,7 +82,6 @@ const ChangePassword = () => {
                     md={12}
                     lg={12}
                     fields={fields}
-                    handleData={handleData}
                   />
                 </Grid>
                 {formIndex % 1 === 0 && <Grid item xs={12} lg={6}></Grid>}

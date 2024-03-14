@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Box, Button, Grid } from '@mui/material';
 
 import FormInput from '@/src/components/form/ui-elements/FormInput';
@@ -8,13 +8,6 @@ import { generalSettingFormSchema } from '../form/schemas/generalDetails';
 import { settingForm } from '@/src/constants/data/forms/setting-form';
 
 const GeneralSettings = () => {
-  const [formData, setFormData] = useState({});
-  const handleData = (name, value) => {
-    setFormData({ ...formData, [name]: value });
-  };
-  useEffect(() => {
-    console.log('form', formData);
-  }, [formData]);
   const {
     handleSubmit,
     values,
@@ -24,14 +17,7 @@ const GeneralSettings = () => {
     setFieldError,
     setErrors,
   } = useFormik({
-    initialValues: {
-      annualLeaves: 0,
-      unpaidLeaves: 0,
-      paidLeaves: 0,
-      hajjLeaves: 0,
-      sickLeaves: 0,
-      casualLeaves: 0,
-    },
+    initialValues: {},
     validationSchema: generalSettingFormSchema,
     enableReinitialize: true,
     onSubmit: (formValues) => {
@@ -40,7 +26,9 @@ const GeneralSettings = () => {
     validateOnChange: false,
     validateOnBlur: false,
   });
-
+  const handleData = () => {
+    console.log('tetstst');
+  };
   return (
     <form onSubmit={handleSubmit}>
       <Grid sx={{ marginLeft: '-7px' }}>
@@ -94,7 +82,6 @@ const GeneralSettings = () => {
                       md={6}
                       lg={6}
                       fields={fields}
-                      handleData={handleData}
                     />
                   </Grid>
                 </>
@@ -120,6 +107,7 @@ const GeneralSettings = () => {
                     color: '#fff',
                   },
                 }}
+                onClick={handleData}
                 type="submit"
               >
                 {User_Password?.buttonText}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Box, Button, Grid, Modal, Typography } from '@mui/material';
 
 import FormInput from '@/src/components/form/ui-elements/FormInput';
@@ -11,7 +11,6 @@ import { generateString } from '@/src/utils/genericAccountsId';
 import { processImage } from '@/src/utils/imageUrl';
 
 const AddAccountModal = ({ open, onClose, handleAdd }) => {
-  const [formData, setFormData] = useState({});
   const handleGenericString = () => {
     const generateId = generateString();
     return generateId;
@@ -48,12 +47,6 @@ const AddAccountModal = ({ open, onClose, handleAdd }) => {
     handleReset();
     onClose();
   };
-  const handleData = (name, value) => {
-    setFormData({ ...formData, [name]: value });
-  };
-  useEffect(() => {
-    console.log('form', formData);
-  }, [formData]);
   return (
     <Modal
       open={open}
@@ -163,7 +156,6 @@ const AddAccountModal = ({ open, onClose, handleAdd }) => {
                       md={12}
                       lg={12}
                       fields={fields}
-                      handleData={handleData}
                     />
                   </Grid>
                 </>

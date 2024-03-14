@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Box, Grid, Modal, Typography } from '@mui/material';
 
 import { useFormik } from 'formik';
@@ -8,7 +8,6 @@ import { FILTER } from '@/src/constants/filter';
 import ResetButton from './resetButton';
 
 const FilterFormModal = ({ open, onClose, filterForm }) => {
-  const [formData, setFormData] = useState({});
   const {
     handleSubmit,
     values,
@@ -32,12 +31,6 @@ const FilterFormModal = ({ open, onClose, filterForm }) => {
     handleReset();
     onClose();
   };
-  const handleData = (name, value) => {
-    setFormData({ ...formData, [name]: value });
-  };
-  useEffect(() => {
-    console.log('form', formData);
-  }, [formData]);
   return (
     <Modal
       data-aos="fade-left"
@@ -174,8 +167,6 @@ const FilterFormModal = ({ open, onClose, filterForm }) => {
                           md={12}
                           lg={12}
                           fieldsName={fieldsName}
-                          handleData={handleData}
-                          filter
                         />
                       </Grid>
                     </>

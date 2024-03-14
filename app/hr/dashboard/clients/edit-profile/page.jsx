@@ -9,7 +9,6 @@ import { editClientSchema } from '@/src/components/form/schemas/editClient';
 
 const AddEmployee = () => {
   const [countries, setCountries] = useState([]);
-  const [formData, setFormData] = useState({});
   const fetchCountriesList = async () => {
     return await fetch(
       'https://restcountries.com/v3.1/all?fields=name,flags'
@@ -29,12 +28,6 @@ const AddEmployee = () => {
       setCountries(tempList);
     });
   }, []);
-  const handleData = (name, value) => {
-    setFormData({ ...formData, [name]: value });
-  };
-  useEffect(() => {
-    console.log('form', formData);
-  }, [formData]);
   return (
     <Box>
       <Breadcrumb root="clients" title="Clients /" currentPage="Edit client" />
@@ -64,7 +57,6 @@ const AddEmployee = () => {
           pmd="50px 95px"
           editProfile
           countries={countries}
-          handleData={handleData}
         />
       </Box>
     </Box>

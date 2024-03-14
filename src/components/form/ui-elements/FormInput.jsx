@@ -51,7 +51,6 @@ const FormInput = ({
   countries,
   searchable,
   suffixIconInside,
-  handleData,
   readOnly,
   modalData,
   fieldsName,
@@ -68,7 +67,6 @@ const FormInput = ({
     }
     setErrors({ ...tempErrors });
     setFieldValue(name, item);
-    handleData(name, item);
   };
   const handleChangeInput = (field, value) => {
     const tempErrors = { ...errors };
@@ -87,7 +85,6 @@ const FormInput = ({
     }
     setErrors({ ...tempErrors });
     setFieldValue?.(field, value);
-    handleData(field, value);
   };
 
   const handleChangeFileInput = (field, value) => {
@@ -98,7 +95,6 @@ const FormInput = ({
     }
     setErrors({ ...tempErrors });
     setFieldValue?.(field, value);
-    handleData(field, value);
   };
 
   const handleClickCounter = (type, name, value) => {
@@ -109,7 +105,6 @@ const FormInput = ({
             break;
           default:
             setFieldValue(name, value - 1);
-            handleData(name, value - 1);
             break;
         }
         break;
@@ -120,7 +115,6 @@ const FormInput = ({
             break;
           default:
             setFieldValue(name, value + 1);
-            handleData(name, value + 1);
             break;
         }
         break;

@@ -10,7 +10,6 @@ import React, { useEffect, useState } from 'react';
 
 const AddEmployeeModal = ({ open, onClose }) => {
   const [currentStep, setCurrentStep] = useState(1);
-  const [formData, setFormData] = useState({});
   const [isDisabledNext, setIsDisabledNext] = useState(true);
   const [modalStep1FormTableState, setModalStep1FormTableState] = useState([]);
   useEffect(() => {
@@ -27,12 +26,6 @@ const AddEmployeeModal = ({ open, onClose }) => {
     setModalStep1FormTableState(tempForm);
     setIsDisabledNext(false);
   };
-  const handleData = (name, value) => {
-    setFormData({ ...formData, [name]: value });
-  };
-  useEffect(() => {
-    console.log('form', formData);
-  }, [formData]);
   const {
     handleSubmit,
     values,
@@ -127,14 +120,7 @@ const AddEmployeeModal = ({ open, onClose }) => {
                 else if (form.length)
                   return (
                     <form onSubmit={handleSubmit} key={stepIndex}>
-                      <Grid
-                        container
-                        sx={
-                          {
-                            // padding: { xs: '10px 20px', lg: '41px 100px' },
-                          }
-                        }
-                      >
+                      <Grid container>
                         {form.map(
                           (
                             {
@@ -174,7 +160,6 @@ const AddEmployeeModal = ({ open, onClose }) => {
                                   nested={nested}
                                   lg={12}
                                   fields={fields}
-                                  handleData={handleData}
                                 />
                               </Grid>
                               {formIndex % 2 === 0 && (

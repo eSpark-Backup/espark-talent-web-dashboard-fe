@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Box } from '@mui/material';
 
 import ProfileSection from './ProfileSection';
@@ -12,13 +12,6 @@ import {
 import ChangePassword from './ChangePassword';
 
 const EditProfile = () => {
-  const [formData, setFormData] = useState({});
-  const handleData = (name, value) => {
-    setFormData({ ...formData, [name]: value });
-  };
-  useEffect(() => {
-    console.log('form', formData);
-  }, [formData]);
   return (
     <>
       <Box
@@ -44,7 +37,6 @@ const EditProfile = () => {
           <ProfileSection
             Profile_Edit_Section={Profile_Edit_Section}
             User_Detail={User_Detail}
-            handleData={handleData}
           />
           <ChangePassword />
         </Box>
