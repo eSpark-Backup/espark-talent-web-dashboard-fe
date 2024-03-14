@@ -1,37 +1,69 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Grid, Box, Typography } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
-import { filterDataByKeyword } from '@/src/utils/search';
-import { contractSignedData } from '@/src/constants/data/tables/contractSigned';
 import { contractSignedTabs } from '@/src/constants/data/tabs/contractSignedTabs';
 import AppTable from '@/src/components/appTable/AppTable';
+import { useDispatch, useSelector } from 'react-redux';
+import { useQuery } from '@tanstack/react-query';
+import { api } from '@/src/services/apiService';
+import {
+  CLIENT_COMPANY_CONTRACT,
+  CLIENT_EMPLOYEE_CONTRACT,
+} from '@/src/services/apiService/apiEndPoints';
+import {
+  fetchClientEmpContractRequest,
+  fetchClientEmpContractRequestFailed,
+  fetchClientEmpContractRequestSuccess,
+  fetchClientCompanyContractRequest,
+  fetchClientCompanyContractRequestFailed,
+  fetchClientCompanyContractRequestSuccess,
+} from '@/src/redux/slices/clientSlices/contratSignedSlice';
 
 const ContractSigned = () => {
+  const { data, isLoading } = useSelector((state) => state?.client?.contract);
+  const dispatch = useDispatch();
   const [value, setValue] = useState(0);
   const [currentTab, setCurrentTab] = useState('Hiring Request');
-  const [isLoading, setIsLoading] = useState(true);
-  const [search, setSearch] = useState('');
-  const [empData, setEmpData] = useState();
 
-  const fetchDataFake = async () => {
-    return true;
-  };
+  const companyContractSignedQuery = useQuery({
+    staleTime: 10000,
+    queryKey: ['company-contract-signed-query'],
+    queryFn: async () => {
+      dispatch(fetchClientCompanyContractRequest());
+      return api
+        .getData(`${CLIENT_COMPANY_CONTRACT}`)
+        .then(({ data }) => {
+          dispatch(fetchClientCompanyContractRequestSuccess(data || []));
+          return data;
+        })
+        .catch((err) => {
+          dispatch(fetchClientCompanyContractRequestFailed());
+          console.log({ err });
+        });
+    },
+  });
+  const empContractSignedQuery = useQuery({
+    staleTime: 10000,
+    queryKey: ['employee-contract-signed-query'],
+    queryFn: async () => {
+      dispatch(fetchClientEmpContractRequest());
+      return api
+        .getData(`${CLIENT_EMPLOYEE_CONTRACT}`)
+        .then(({ data }) => {
+          dispatch(fetchClientEmpContractRequestSuccess(data || []));
+          return data;
+        })
+        .catch((err) => {
+          dispatch(fetchClientEmpContractRequestFailed());
+          console.log({ err });
+        });
+    },
+  });
 
-  useEffect(() => {
-    const fetchDataAsync = async () => {
-      try {
-        await fetchDataFake();
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchDataAsync();
-  }, []);
-  console.log(empData, setSearch);
+  console.log({ empContractSignedQuery, companyContractSignedQuery });
   const handleChange = (event, newValue) => {
     let tab = event?.target?.innerText.split(' ');
     if (tab.length > 1) {
@@ -43,16 +75,6 @@ const ContractSigned = () => {
 
     setValue(newValue);
   };
-  useEffect(() => {
-    const data = [...contractSignedData];
-    const timeoutId = setTimeout(() => {
-      filterDataByKeyword(data, search || '', setEmpData);
-      setIsLoading(false);
-    }, 500);
-    return () => {
-      clearTimeout(timeoutId);
-    };
-  }, [search, value]);
 
   return (
     <>
@@ -125,7 +147,7 @@ const ContractSigned = () => {
                       <AppTable
                         currentTab={currentTab}
                         column={tab?.columns}
-                        data={tab?.data}
+                        data={value === 0 ? data?.company : data?.employee}
                         tableRowClass="app-table-row-contract"
                       />
                     </Box>

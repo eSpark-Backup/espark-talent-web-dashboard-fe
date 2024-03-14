@@ -14,15 +14,38 @@ import { changeTab } from '@/src/utils/tabs';
 import { teamTabs } from '@/src/constants/data/tabs/teamTabs';
 import { HIRING_FORM_DATA } from '@/src/constants/Hiring';
 import AppTable from '@/src/components/appTable/AppTable';
+import { useQuery } from '@tanstack/react-query';
+import { api } from '@/src/services/apiService';
+import { CLIENT_TEAM_MEMBER } from '@/src/services/apiService/apiEndPoints';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  fetchTeamMembersRequest,
+  fetchTeamMembersRequestFailed,
+  fetchTeamMembersRequestSuccess,
+} from '@/src/redux/slices/clientSlices/teamMembersSlice';
 
 const Dashboard = () => {
+  const { data } = useSelector((state) => state?.client?.teamMembers);
+  const dispatch = useDispatch();
   const [value, setValue] = useState(0);
   const [currentTab, setCurrentTab] = useState('All');
   const [isLoading, setIsLoading] = useState(true);
   const [search, setSearch] = useState('');
-  const [empData, setEmpData] = useState(
-    filterTableRowsWRTTab(teamMembersData, { memberStatus: '' })
-  );
+  const temMembersQuery = useQuery({
+    staleTime: 10000,
+    queryKey: 'teamMembers',
+    queryFn: async () => {
+      dispatch(fetchTeamMembersRequest());
+      const { data } = await api.getData(`${CLIENT_TEAM_MEMBER}/?status=all`);
+      dispatch(fetchTeamMembersRequestSuccess(data || []));
+      return data;
+    },
+  });
+  useEffect(() => {
+    if (temMembersQuery.isError) {
+      dispatch(fetchTeamMembersRequestFailed());
+    }
+  }, [temMembersQuery.isError]);
 
   const fetchDataFake = async () => {
     return true;
@@ -47,7 +70,6 @@ const Dashboard = () => {
       setSearch,
       setCurrentTab,
       setValue,
-      setData: setEmpData,
       filterTableRowsWRTTab,
       teamMembersData,
       filterBy: 'memberStatus',
@@ -59,7 +81,7 @@ const Dashboard = () => {
       memberStatus: currentTab === 'All' ? '' : currentTab,
     });
     const timeoutId = setTimeout(() => {
-      filterDataByKeyword(data, search || '', setEmpData);
+      filterDataByKeyword(data, search || '');
       setIsLoading(false);
     }, 500);
     return () => {
@@ -143,7 +165,7 @@ const Dashboard = () => {
                       <AppTable
                         currentTab={currentTab}
                         column={column}
-                        data={empData}
+                        data={data}
                       />
                     </Box>
                   )}

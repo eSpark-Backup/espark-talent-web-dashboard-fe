@@ -1,41 +1,37 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import { Grid, Box, Typography, Button, Modal } from '@mui/material';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-
-import Input from '@/src/components/dashboard/input';
-import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
-import { filterDataByKeyword } from '@/src/utils/search';
-import { filterTableRowsWRTTab } from '@/src/utils/table';
-import {
-  leaveRequestsTab,
-  requestsStatusTab,
-} from '@/src/constants/data/tabs/timeOffTabs';
+import { Grid, Box, Modal } from '@mui/material';
 import {
   checkInOutColumn,
-  checkInOutRequestData,
-  leaveBalanceColumn,
-  leaveBalanceData,
   leaveRequestsColumn,
-  leaveRequestsData,
 } from '@/src/constants/data/tables/timeOffRequest';
-import Image from 'next/image';
 import { renderNestedTable } from './renderComponents';
-import Link from 'next/link';
 import LeaveViewModal from './LeaveViewModal';
 import PunchViewModal from './PunchViewModal';
-import AppTable from '@/src/components/appTable/AppTable';
-import { TIME_REQUEST } from '@/src/constants/timeSheet';
+import { useQuery } from '@tanstack/react-query';
+import {
+  CLIENT_LEAVE_BALANCE,
+  CLIENT_LEAVE_REQUEST,
+  CLIENT_TIME_OFF,
+} from '@/src/services/apiService/apiEndPoints';
+import {
+  fetchLeaveBalanceRequestFailed,
+  fetchLeaveBalanceRequestSuccess,
+  fetchLeaveRequestsFailed,
+  fetchLeaveRequestsSuccess,
+  fetchTimeOffRequestFailed,
+  fetchTimeOffRequestSuccess,
+} from '@/src/redux/slices/clientSlices/timeOffSlice';
+import { api } from '@/src/services/apiService';
+import { useDispatch, useSelector } from 'react-redux';
+import TimeOffTabs from './TimeOffTabs';
+import RequestStatusTabs from './RequestStatusTabs';
+import PageHeader from './PageHeader';
 
 const Dashboard = () => {
+  const { data, tabData } = useSelector((state) => state?.client?.timeOff);
+  const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(true);
-  const [search, setSearch] = useState('');
-  const [searchLeaveRequest, setSearchLeaveRequest] = useState('');
-  const [searchCheckInOutRequest, setSearchCheckInOutRequest] = useState('');
-  const [leaveBalanceDataState, setLeaveBalanceDataState] = useState(
-    filterTableRowsWRTTab(leaveBalanceData, { status: '' })
-  );
 
   const [open, setOpen] = useState(false);
   const [openPunch, setOpenPunch] = useState(false);
@@ -47,34 +43,7 @@ const Dashboard = () => {
     setOpen(false);
   };
   const handleClosePunch = () => setOpenPunch(false);
-  const [leaveRequestDataState, setLeaveRequestDataState] = useState(
-    filterTableRowsWRTTab(leaveRequestsData, { status: '' })
-  );
-  const [checkInOutRequestDataState, setCheckInOutRequestDataState] = useState(
-    filterTableRowsWRTTab(checkInOutRequestData, { status: '' })
-  );
-  const [currentReqTypeTab, setcurrentReqTypeTab] = useState('Leave Requests');
-  const [currentReqTypeTabVal, setcurrentReqTypeTabVal] = useState(0);
-  const [currentReqStatusTab, setcurrentReqStatusTab] = useState('All');
-  const [currentReqStatusTabVal, setcurrentReqStatusTabVal] = useState(0);
   const [modalData, setModalData] = useState({});
-
-  const handleChangeCurrReqTypeTab = (event, newValue) => {
-    const tab = event?.target?.innerText;
-    setcurrentReqTypeTab(tab);
-
-    setcurrentReqTypeTabVal(newValue);
-  };
-  const handleChangeCurrReqStatusTab = (event, newValue, data) => {
-    let tab = event?.target?.innerText;
-    if (tab.includes('\n\n')) {
-      tab = tab.split('\n\n')[1];
-    } else if (!isNaN(+tab)) {
-      tab = data[newValue]?.label;
-    }
-    setcurrentReqStatusTab(tab);
-    setcurrentReqStatusTabVal(newValue);
-  };
 
   const fetchDataFake = async () => {
     return true;
@@ -91,45 +60,6 @@ const Dashboard = () => {
 
     fetchDataAsync();
   }, []);
-
-  useEffect(() => {
-    const data = filterTableRowsWRTTab(leaveBalanceData);
-    const timeoutId = setTimeout(() => {
-      filterDataByKeyword(data, search || '', setLeaveBalanceDataState);
-      setIsLoading(false);
-    }, 500);
-    return () => {
-      clearTimeout(timeoutId);
-    };
-  }, [search]);
-  useEffect(() => {
-    const data = filterTableRowsWRTTab(leaveRequestsData);
-    const timeoutId = setTimeout(() => {
-      filterDataByKeyword(
-        data,
-        searchLeaveRequest || '',
-        setLeaveRequestDataState
-      );
-      setIsLoading(false);
-    }, 500);
-    return () => {
-      clearTimeout(timeoutId);
-    };
-  }, [searchLeaveRequest]);
-  useEffect(() => {
-    const data = filterTableRowsWRTTab(checkInOutRequestData);
-    const timeoutId = setTimeout(() => {
-      filterDataByKeyword(
-        data,
-        searchCheckInOutRequest || '',
-        setCheckInOutRequestDataState
-      );
-      setIsLoading(false);
-    }, 500);
-    return () => {
-      clearTimeout(timeoutId);
-    };
-  }, [searchCheckInOutRequest]);
   const handleClickActionView = (props) => {
     const {
       item,
@@ -138,12 +68,54 @@ const Dashboard = () => {
     } = props;
     console.log({ item, row, status, count, leaveType, employeeName });
     setModalData({ item, ...row });
-    if (currentReqTypeTab === 'Leave Requests') {
+    if (tabData?.currentReqTypeTab === 'Leave Requests') {
       setOpen(true);
-    } else if (currentReqTypeTab === 'Clockin/Out Requests') {
+    } else if (tabData?.currentReqTypeTab === 'Clockin/Out Requests') {
       setOpenPunch(true);
     } else return;
   };
+  const leaveRequestQuery = useQuery({
+    staleTime: 10000,
+    queryKey: ['leaveRequests'],
+    queryFn: async () => {
+      const { data } = await api.getData(`${CLIENT_LEAVE_REQUEST}?status=all`);
+      dispatch(fetchLeaveRequestsSuccess(data || []));
+      return data;
+    },
+  });
+  const timeOffQuery = useQuery({
+    staleTime: 10000,
+    queryKey: ['timeOffRequests'],
+    queryFn: async () => {
+      const { data } = await api.getData(`${CLIENT_TIME_OFF}?status=all`);
+      dispatch(fetchTimeOffRequestSuccess(data || []));
+      return data;
+    },
+  });
+  const leaveBalanceQuery = useQuery({
+    staleTime: 10000,
+    queryKey: ['leaveBalanceRequests'],
+    queryFn: async () => {
+      const { data } = await api.getData(`${CLIENT_LEAVE_BALANCE}`);
+      dispatch(fetchLeaveBalanceRequestSuccess(data || []));
+      return data;
+    },
+  });
+  useEffect(() => {
+    if (timeOffQuery.isError) {
+      dispatch(fetchTimeOffRequestFailed());
+    }
+    if (leaveRequestQuery.isError) {
+      dispatch(fetchLeaveRequestsFailed());
+    }
+    if (leaveBalanceQuery.isError) {
+      dispatch(fetchLeaveBalanceRequestFailed());
+    }
+  }, [
+    timeOffQuery.isError,
+    leaveRequestQuery.isError,
+    leaveBalanceQuery.isError,
+  ]);
   return (
     <>
       <Grid container>
@@ -157,362 +129,26 @@ const Dashboard = () => {
           }}
         >
           <div>
-            <Box
-              sx={{
-                display: 'flex',
-                flexDirection: { xs: 'column', md: 'row' },
-                justifyContent: { xs: 'flex-start', md: 'space-between' },
-                alignItems: { xs: 'flex-start', md: 'center' },
-              }}
-            >
-              <Box display={'flex'} flexDirection={'column'}>
-                <Typography variant="h3">Time off Request</Typography>
-                <Box display={'flex'} flexDirection={'column'} marginY={'20px'}>
-                  <Typography
-                    sx={{
-                      fontSize: '14px',
-                      fontWeight: 400,
-                      lineHeight: '17px',
-                      letterSpacing: '0em',
-                      textAlign: 'left',
-                      color: '#595959',
-                      marginBottom: '10px',
-                    }}
-                    variant="caption"
-                  >
-                    {TIME_REQUEST?.manage}
-                  </Typography>
-                  <Typography
-                    sx={{
-                      fontSize: '14px',
-                      fontWeight: 400,
-                      lineHeight: '17px',
-                      letterSpacing: '0em',
-                      textAlign: 'left',
-                      color: '#595959',
-                    }}
-                    variant="caption"
-                  >
-                    {TIME_REQUEST?.link}{' '}
-                    <Link
-                      style={{
-                        textDecoration: 'underline',
-                      }}
-                      href="/"
-                    >
-                      <span
-                        style={{
-                          color: 'black',
-                          fontWeight: 400,
-                          fontSize: '14px',
-                        }}
-                      >
-                        {' '}
-                        {TIME_REQUEST?.holiday}
-                      </span>
-                    </Link>
-                  </Typography>
-                </Box>
-              </Box>
-              <Button
-                sx={{
-                  marginX: '10px',
-                  minWidth: '220px',
-                  color: '#029894',
-                  border: '1px solid #029894',
-                  fontSize: '16px',
-                  fontWeight: '600',
-                  '&:hover': {
-                    background: '#E6F5F4',
-                  },
-                }}
-              >
-                {TIME_REQUEST?.downloadReport}
-              </Button>
-            </Box>
+            <PageHeader />
             <Box sx={{ width: '100%' }}>
-              <Box
-                display={'flex'}
-                alignItems={'center'}
-                justifyContent={'space-between'}
-                sx={{ borderBottom: 1, borderColor: 'divider' }}
-              >
-                <Tabs
-                  value={currentReqTypeTabVal}
-                  onChange={handleChangeCurrReqTypeTab}
-                  aria-label="basic tabs example"
-                  variant="scrollable"
-                >
-                  {leaveRequestsTab?.map(({ label, prop }, index) => (
-                    <Tab
-                      key={index}
-                      label={`${label}`}
-                      {...prop}
-                      disableRipple={true}
-                    />
-                  ))}
-                </Tabs>
-              </Box>
-              <Box
-                sx={{
-                  marginTop: '10px',
-                  marginBottom: '20px',
-                  borderBottom:
-                    currentReqTypeTab !== 'Leave Balance' && 'solid 1px #ccc',
-                }}
-              >
-                {leaveRequestsTab?.map(({ hasNestedTabs }, index) => {
-                  return (
-                    <CustomTabPanel
-                      value={currentReqTypeTabVal}
-                      index={index}
-                      key={index}
-                    >
-                      {hasNestedTabs ? (
-                        <Box>
-                          <Box
-                            display={'flex'}
-                            justifyContent={'space-between'}
-                            alignItems={'center'}
-                          >
-                            <Tabs
-                              variant="scrollable"
-                              value={currentReqStatusTabVal}
-                              onChange={(ev, newVal) =>
-                                handleChangeCurrReqStatusTab(
-                                  ev,
-                                  newVal,
-                                  requestsStatusTab
-                                )
-                              }
-                              aria-label="basic tabs example"
-                            >
-                              {requestsStatusTab?.map(
-                                ({ label, prop, background, color }, index) => {
-                                  return (
-                                    <Tab
-                                      key={index}
-                                      sx={{
-                                        mr: {
-                                          xs: '10px',
-                                          sm: '20px',
-                                          md: '50px',
-                                        },
-                                        p: 0,
-                                      }}
-                                      label={
-                                        <Box
-                                          display={'flex'}
-                                          alignItems={'center'}
-                                        >
-                                          <Box
-                                            sx={{
-                                              width: '30px',
-                                              height: '30px',
-                                              background,
-                                              borderRadius: '5px',
-                                              marginRight: '10px',
-                                              color,
-                                              fontSize: '14px',
-                                              fontWeight: 600,
-                                              lineHeight: '19px',
-                                              letterSpacing: '0em',
-                                              textAlign: 'left',
-                                            }}
-                                            display={'flex'}
-                                            justifyContent={'center'}
-                                            alignItems={'center'}
-                                          >
-                                            {
-                                              filterTableRowsWRTTab(
-                                                currentReqTypeTab ===
-                                                  'Leave Requests'
-                                                  ? leaveRequestsData
-                                                  : checkInOutRequestData,
-                                                {
-                                                  status:
-                                                    label === 'All'
-                                                      ? ''
-                                                      : label,
-                                                }
-                                              ).length
-                                            }
-                                          </Box>
-                                          <Typography
-                                            variant="body1"
-                                            sx={{
-                                              color:
-                                                label === currentReqStatusTab &&
-                                                color,
-                                            }}
-                                          >
-                                            {label}
-                                          </Typography>
-                                        </Box>
-                                      }
-                                      {...prop}
-                                    />
-                                  );
-                                }
-                              )}
-                            </Tabs>
-                            <Box
-                              sx={{
-                                my: { xs: '10px', lg: 0 },
-                                display: { xs: 'none', md: 'flex' },
-                              }}
-                              maxWidth="100%"
-                              alignItems={'center'}
-                            >
-                              <Box
-                                maxWidth="100%"
-                                sx={{ mb: { xs: '10px', lg: 0 } }}
-                              >
-                                <Input
-                                  placeHolder={'Search by name...'}
-                                  setIsLoading={
-                                    currentReqTypeTab === 'Leave Requests'
-                                      ? setIsLoading
-                                      : setIsLoading
-                                  }
-                                  handleChange={
-                                    currentReqTypeTab === 'Leave Requests'
-                                      ? setSearchLeaveRequest
-                                      : setSearchCheckInOutRequest
-                                  }
-                                  value={
-                                    currentReqTypeTab === 'Leave Requests'
-                                      ? searchLeaveRequest
-                                      : searchCheckInOutRequest
-                                  }
-                                  prefixIcon="SearchIcon.svg"
-                                />
-                              </Box>
-                              <Button
-                                sx={{
-                                  marginX: '10px',
-                                  minWidth: '120px',
-                                  border: '1px solid #138A72',
-                                  color: '#138A72',
-                                  '&:hover:': {
-                                    background: '#fff',
-                                  },
-                                }}
-                                startIcon={
-                                  <Image
-                                    width={20}
-                                    height={22}
-                                    alt="Refresh"
-                                    src={`/icons/Refresh.svg`}
-                                  />
-                                }
-                              >
-                                Refresh
-                              </Button>
-                            </Box>
-                          </Box>
-
-                          <Box
-                            sx={{
-                              my: { xs: '10px', lg: 0 },
-                              display: { xs: 'flex', md: 'none' },
-                            }}
-                            maxWidth="100%"
-                            alignItems={'center'}
-                          >
-                            <Box
-                              maxWidth="100%"
-                              sx={{ mb: { xs: '10px', lg: 0 } }}
-                              display={'flex'}
-                            >
-                              <Input
-                                setIsLoading={
-                                  currentReqTypeTab === 'Leave Requests'
-                                    ? setIsLoading
-                                    : setIsLoading
-                                }
-                                handleChange={
-                                  currentReqTypeTab === 'Leave Requests'
-                                    ? setSearchLeaveRequest
-                                    : setSearchCheckInOutRequest
-                                }
-                                value={
-                                  currentReqTypeTab === 'Leave Requests'
-                                    ? searchLeaveRequest
-                                    : searchCheckInOutRequest
-                                }
-                                prefixIcon="SearchIcon.svg"
-                              />
-                              <Box
-                                sx={{
-                                  border: 'solid 1px #029E9C',
-                                  width: '60px',
-                                  p: '5px',
-                                  display: 'flex',
-                                  justifyContent: 'center',
-                                  alignItems: 'center',
-                                  borderRadius: '5px',
-                                  mx: '10px',
-                                }}
-                              >
-                                <Image
-                                  width={15}
-                                  height={15}
-                                  alt="Refresh"
-                                  src={`/icons/Refresh.svg`}
-                                />
-                              </Box>
-                            </Box>
-                          </Box>
-                        </Box>
-                      ) : (
-                        <>
-                          <Box marginY={'20px'}>
-                            <Input
-                              setIsLoading={setIsLoading}
-                              handleChange={setSearch}
-                              value={search}
-                              prefixIcon="SearchIcon.svg"
-                              suffixIcon="QuestionMarkIcon.svg"
-                            />
-                          </Box>
-                          {isLoading ? (
-                            <Typography>Loading ...</Typography>
-                          ) : (
-                            <Box
-                              sx={{
-                                maxWidth: '100%',
-                                overflowX: 'auto',
-                              }}
-                            >
-                              <AppTable
-                                column={leaveBalanceColumn}
-                                data={leaveBalanceDataState}
-                              />
-                            </Box>
-                          )}
-                        </>
-                      )}
-                    </CustomTabPanel>
-                  );
-                })}
-              </Box>
-              {(currentReqTypeTab === 'Leave Requests' ||
-                currentReqTypeTab === 'Clockin/Out Requests') &&
+              <TimeOffTabs />
+              <RequestStatusTabs />
+              {(tabData?.currentReqTypeTab === 'Leave Requests' ||
+                tabData?.currentReqTypeTab === 'Clockin/Out Requests') &&
                 renderNestedTable({
                   isLoading,
-                  currentReqStatusTabVal,
-                  currentReqStatusTab,
+                  currentReqStatusTabVal: tabData?.currentReqStatusTabVal,
+                  currentReqStatusTab: tabData?.currentReqStatusTab,
                   handleOpen,
                   column:
-                    currentReqTypeTab === 'Leave Requests'
+                    tabData?.currentReqTypeTab === 'Leave Requests'
                       ? leaveRequestsColumn
                       : checkInOutColumn,
                   data:
-                    currentReqTypeTab === 'Leave Requests'
-                      ? leaveRequestDataState
-                      : checkInOutRequestDataState,
-                  currentReqTypeTab,
+                    tabData?.currentReqTypeTab === 'Leave Requests'
+                      ? data?.leaveRequest
+                      : data?.clockInOutRequests,
+                  currentReqTypeTab: tabData?.currentReqTypeTab,
                   handleClickActionView,
                 })}
             </Box>

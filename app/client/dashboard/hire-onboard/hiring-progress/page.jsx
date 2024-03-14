@@ -6,14 +6,33 @@ import Tab from '@mui/material/Tab';
 import Link from 'next/link';
 
 import Input from '@/src/components/dashboard/input';
-import { employeeTableDataHiringRequest } from '@/src/constants/data/tables/employee';
 import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
 import { filterDataByKeyword } from '@/src/utils/search';
 import { changeTab } from '@/src/utils/tabs';
 import { empTabs } from '@/src/constants/data/tabs/empTabs';
 import { HIRING_FORM_DATA } from '@/src/constants/Hiring';
-import AppTable from '@/src/components/appTable/AppTable';
+import AppTable from '@/src/components/appTableNew/AppTable';
 import AppConfirmationMadal from '@/src/components/modals/AppConfirmationMadal';
+import { api } from '@/src/services/apiService';
+import {
+  CLIENT_HIRING_PROGRESS,
+  CLIENT_INTERVIEW_SCHEDULE,
+  CLIENT_ONBOARDING,
+} from '@/src/services/apiService/apiEndPoints';
+import {
+  deleteClientHiringRequest,
+  deleteClientHiringRequestFailed,
+  deleteClientHiringRequestSuccess,
+  fetchClientHiringRequestsFailed,
+  fetchClientHiringRequestsSuccess,
+  fetchClientInterviewSchedulesFailed,
+  fetchClientInterviewSchedulesSuccess,
+  fetchClientOnboardingFailed,
+  fetchClientOnboardingSuccess,
+} from '@/src/redux/slices/clientSlices/hiringProgressSlice';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { useDispatch, useSelector } from 'react-redux';
+import { filterTableRowsWRTTab } from '@/src/utils/table';
 
 const Dashboard = () => {
   const [value, setValue] = useState(0);
@@ -21,25 +40,93 @@ const Dashboard = () => {
   const [currentTab, setCurrentTab] = useState('Hiring Request');
   const [isLoading, setIsLoading] = useState(true);
   const [search, setSearch] = useState('');
-  const [empData, setEmpData] = useState(employeeTableDataHiringRequest);
+  const [modalData, setModalData] = useState({});
+  const dispatch = useDispatch();
+  const { data } = useSelector((state) => state?.client?.hiringProgress);
 
-  const fetchDataFake = async () => {
-    return true;
-  };
+  const [hiringRequestDataState, setHiringRequestDataState] = useState([]);
+  const [interviewScheduledDataState, setInterviewScheduledDataState] =
+    useState([]);
+  const [onBoardingDataState, setOnBoardingDataState] = useState([]);
 
-  const handleClose = () => setIsOpen(false);
+  const hiringRequestQuery = useQuery({
+    staleTime: 10000,
+    queryKey: 'hiringRequests',
+    queryFn: async () => {
+      const { data } = await api.getData(`${CLIENT_HIRING_PROGRESS}`);
+      dispatch(fetchClientHiringRequestsSuccess(data));
+      return data;
+    },
+  });
+
+  const interviewScheduledQuery = useQuery({
+    staleTime: 10000,
+    queryKey: 'interviewSchedules',
+    queryFn: async () => {
+      const { data } = await api.getData(`${CLIENT_INTERVIEW_SCHEDULE}`);
+      dispatch(fetchClientInterviewSchedulesSuccess(data || []));
+      return data;
+    },
+  });
+
+  const onBoardingQuery = useQuery({
+    staleTime: 10000,
+    queryKey: 'onBoarding',
+    queryFn: async () => {
+      const { data } = await api.getData(`${CLIENT_ONBOARDING}`);
+      dispatch(fetchClientOnboardingSuccess(data || []));
+      return data;
+    },
+  });
 
   useEffect(() => {
-    const fetchDataAsync = async () => {
-      try {
-        await fetchDataFake();
-      } finally {
-        setIsLoading(false);
-      }
-    };
+    if (hiringRequestQuery.isError) {
+      dispatch(fetchClientHiringRequestsFailed());
+    }
+    if (interviewScheduledQuery.isError) {
+      dispatch(fetchClientInterviewSchedulesFailed());
+    }
+    if (onBoardingQuery.isError) {
+      dispatch(fetchClientOnboardingFailed());
+    }
+  }, [
+    hiringRequestQuery.isError,
+    interviewScheduledQuery.isError,
+    onBoardingQuery.isError,
+  ]);
 
-    fetchDataAsync();
-  }, []);
+  const reformData = (dataArr) => {
+    if (dataArr.length) {
+      const tempData = dataArr.map((item) => ({
+        ...item,
+        salary_range: `${item.salary_range?.minimum} $ - ${item.salary_range?.maximum} $`,
+        action: ['Delete'],
+      }));
+      return tempData;
+    }
+    return [];
+  };
+  useEffect(() => {
+    if (data?.hiringRequests?.length) {
+      console.log({ newTableData: reformData(data?.hiringRequests) });
+      setHiringRequestDataState(
+        filterTableRowsWRTTab(reformData(data?.hiringRequests), {
+          status: '',
+        })
+      );
+      setInterviewScheduledDataState(
+        filterTableRowsWRTTab(reformData(data?.interviewSchedule), {
+          status: '',
+        })
+      );
+      setOnBoardingDataState(
+        filterTableRowsWRTTab(reformData(data?.onBoarding), {
+          status: '',
+        })
+      );
+    }
+  }, [data?.hiringRequests, data?.interviewSchedule, data?.onBoarding]);
+  const handleClose = () => setIsOpen(false);
 
   const handleChange = (event, newValue) => {
     changeTab({
@@ -50,14 +137,13 @@ const Dashboard = () => {
       setSearch,
       setCurrentTab,
       setValue,
-      setData: setEmpData,
     });
   };
 
   useEffect(() => {
     const data = empTabs[value].data;
     const timeoutId = setTimeout(() => {
-      filterDataByKeyword(data, search || '', setEmpData);
+      filterDataByKeyword(data, search || '');
       setIsLoading(false);
     }, 500);
     return () => {
@@ -65,7 +151,30 @@ const Dashboard = () => {
     };
   }, [search, value]);
 
-  const handleClickDelete = () => setIsOpen(true);
+  const handleClickDelete = (props) => {
+    setModalData({ id: props });
+    setIsOpen(true);
+  };
+  const { mutate } = useMutation({
+    mutationFn: async (id) => {
+      dispatch(deleteClientHiringRequest());
+      return api.daleteData(`${CLIENT_HIRING_PROGRESS}/?id=${id}`);
+    },
+    onSuccess: ({ data }) => {
+      console.log({ data });
+      dispatch(deleteClientHiringRequestSuccess(modalData?.id));
+      handleClose();
+      setModalData({});
+    },
+    onError: (err) => {
+      dispatch(deleteClientHiringRequestFailed());
+      handleClose();
+      console.log({ err: err.message, name: err.name, stack: err.stack });
+    },
+  });
+  const handleConfirmDelete = () => {
+    mutate(modalData.id);
+  };
 
   return (
     <>
@@ -118,11 +227,11 @@ const Dashboard = () => {
                   },
                 }}
               >
-                {empTabs?.map(({ label, prop, data }, i) => (
+                {empTabs?.map(({ label, prop }, i) => (
                   <Tab
                     disableRipple={true}
                     key={i}
-                    label={`${label} (${data?.length})`}
+                    label={`${label}`}
                     sx={{
                       '& .MuiTabs-indicator': {
                         backgroundColor: 'gray',
@@ -156,7 +265,13 @@ const Dashboard = () => {
                     <AppTable
                       currentTab={currentTab}
                       column={column}
-                      data={empData}
+                      data={
+                        value === 0
+                          ? hiringRequestDataState
+                          : value === 1
+                          ? interviewScheduledDataState
+                          : onBoardingDataState
+                      }
                       handleClickActionDelete={handleClickDelete}
                       options={
                         currentTab === 'Interview Schedule' && [
@@ -180,6 +295,7 @@ const Dashboard = () => {
         confirmButtonText={'Delete'}
         isOpen={isOpen}
         handleClose={handleClose}
+        handleConfirm={handleConfirmDelete}
       />
     </>
   );

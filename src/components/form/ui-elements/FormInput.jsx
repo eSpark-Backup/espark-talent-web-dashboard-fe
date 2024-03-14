@@ -69,6 +69,7 @@ const FormInput = ({
     setFieldValue(name, item);
   };
   const handleChangeInput = (field, value) => {
+    console.log({ field, value });
     const tempErrors = { ...errors };
     if (value.length) {
       if (field === 'email') {
@@ -365,10 +366,7 @@ const FormInput = ({
                     className="form-input-field"
                     type="time"
                     onChange={(e) => {
-                      handleChangeInput(
-                        `${name}.${field.name}`,
-                        e?.target?.value
-                      );
+                      handleChangeInput(`${field.name}`, e?.target?.value);
                     }}
                     value={values[`${name}.${field.name}`]}
                   />

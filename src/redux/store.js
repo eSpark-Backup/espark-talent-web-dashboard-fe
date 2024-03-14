@@ -8,6 +8,7 @@ import workSpaceMenuSlice from './slices/workSpaceMenuSlice';
 import authSlice from './slices/authSlice';
 import { hrReducer } from './slices/hrSlices';
 import { empReducer } from './slices/employeeSlices';
+import { clientReducer } from './slices/clientSlices';
 
 const persistConfig = {
   key: 'root',
@@ -23,6 +24,7 @@ const persistedReducer = persistReducer(
     auth: authSlice,
     hr: hrReducer,
     emp: empReducer,
+    client: clientReducer,
   })
 );
 

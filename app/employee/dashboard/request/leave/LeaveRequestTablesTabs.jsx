@@ -22,6 +22,7 @@ const LeaveRequestTablesTabs = ({
 
   const handleClose = () => {
     setShowFilterModal(false);
+    // setOpen(false);
   };
 
   const handleChangeCurrReqStatusTab = (event, newValue, data) => {

@@ -5,13 +5,12 @@ import { renderTrackingStatus } from './renderComponents';
 import {
   sheetStatusTypes,
   timeSheetTableColumn,
-  timeSheetTableData,
 } from '@/src/constants/data/tables/timeSheet';
 import Image from 'next/image';
 import { EMPLOYEE_TIMESHEET } from '@/src/constants/timeSheet';
 import AttendanceViewModal from './AttendanceViewModal';
-import AppTable from '@/src/components/appTable/AppTable';
-import { useQuery } from '@tanstack/react-query';
+import AppTable from '@/src/components/appTableNew/AppTable';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import { useDispatch, useSelector } from 'react-redux';
 import { EMP_TIME_SHEET } from '@/src/services/apiService/apiEndPoints';
@@ -22,9 +21,12 @@ import {
 } from '@/src/redux/slices/employeeSlices/timeSheetSlice';
 import FilterFormModal from '@/src/components/FilterModal/filterForm';
 import { filterAttendanceForm } from '@/src/constants/data/forms/filter-form';
+import dayjs from 'dayjs';
+import { getAttendenceShortHand } from '@/src/utils/helpers';
 
 const Dashboard = () => {
   const { workSpace } = useSelector((state) => state?.auth?.userData);
+  const { data } = useSelector((state) => state?.emp?.timeSheet);
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const [modalData, setModalData] = useState({});
@@ -34,15 +36,76 @@ const Dashboard = () => {
     queryFn: () => {
       dispatch(getTimeSheetData());
       return api
-        .getData(`${EMP_TIME_SHEET}/?workspace=${workSpace?.email || ''}`)
+        .getData(`${EMP_TIME_SHEET}?workspace=${workSpace?.email || ''}`)
         .then(({ data }) => {
-          dispatch(getTimeSheetDataSuccess(data));
+          const newData = Object.entries(data?.time_sheet?.record).map(
+            (item) => ({
+              ...item[1],
+              day: dayjs(item[0]).format('dddd'),
+              status: Object.entries(item[1]?.status)
+                .map((st) => {
+                  if (!st[1]) return;
+                  else return getAttendenceShortHand(st[0]);
+                })
+                .filter((el) => el !== undefined),
+              date: item[0],
+              action: ['View'],
+              attendenceShortHand: true,
+              actionStatus: true,
+            })
+          );
+          dispatch(
+            getTimeSheetDataSuccess({
+              ...data,
+              time_sheet: {
+                ...data.time_sheet,
+                record: newData,
+              },
+            })
+          );
           return data;
         })
         .catch((error) => {
           dispatch(getTimeSheetDataFailed());
           console.log({ error });
         });
+    },
+  });
+  const { mutate } = useMutation({
+    mutationFn: async () => {
+      dispatch(getTimeSheetData());
+      return api.getData(
+        `${EMP_TIME_SHEET}?workspace=${workSpace?.email || ''}`
+      );
+    },
+    onSuccess: ({ data }) => {
+      const newData = Object.entries(data?.time_sheet?.record).map((item) => ({
+        ...item[1],
+        day: dayjs(item[0]).format('dddd'),
+        status: Object.entries(item[1]?.status)
+          .map((st) => {
+            if (!st[1]) return;
+            else return getAttendenceShortHand(st[0]);
+          })
+          .filter((el) => el !== undefined),
+        date: item[0],
+        action: ['View'],
+        attendenceShortHand: true,
+        actionStatus: true,
+      }));
+      dispatch(
+        getTimeSheetDataSuccess({
+          ...data,
+          time_sheet: {
+            ...data.time_sheet,
+            record: newData,
+          },
+        })
+      );
+    },
+    onError: (err) => {
+      dispatch(getTimeSheetDataFailed());
+      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const handleOpenFilterModal = () => {
@@ -141,7 +204,8 @@ const Dashboard = () => {
                 </Box>
 
                 <Typography sx={{ marginRight: '6PX' }}>
-                  {Object.values(item)[1]}
+                  {/* {Object.values(item)[1]} */}
+                  {data?.time_sheet_summary?.[item?.name]}
                 </Typography>
               </Box>
             ))}
@@ -239,6 +303,7 @@ const Dashboard = () => {
                       background: '#fff',
                     },
                   }}
+                  onClick={() => mutate()}
                   startIcon={
                     <Image
                       width={20}
@@ -296,7 +361,7 @@ const Dashboard = () => {
                 >
                   <AppTable
                     column={timeSheetTableColumn}
-                    data={timeSheetTableData}
+                    data={data?.time_sheet?.record}
                     handleClickActionView={handleAttendanceModal}
                   />
                 </Box>

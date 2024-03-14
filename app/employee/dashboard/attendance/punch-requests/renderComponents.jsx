@@ -42,6 +42,7 @@ export const renderNestedTable = ({
   column,
   data,
   handleClickActionView,
+  handleClickActionDelete,
 }) => {
   console.log({ column, currentReqStatusTab });
   return (
@@ -65,6 +66,7 @@ export const renderNestedTable = ({
                 : currentReqStatusTab.toLowerCase(),
           })}
           handleClickActionView={handleClickActionView}
+          handleClickActionDelete={handleClickActionDelete}
         />
       </Box>
     </CustomTabPanel>

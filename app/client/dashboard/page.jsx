@@ -6,8 +6,10 @@ import OnBoarding from '@/src/components/dashboard/onBoarding';
 import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
 import DiscoverTalentPlatform from '@/src/components/dashboard/discoverTalent';
 import { DASHBOARD_DATA } from '@/public/images/dashboard/constants/Dashboard';
+import { useSelector } from 'react-redux';
 
 const Dashboard = () => {
+  const { empDetails } = useSelector((state) => state?.auth?.userData);
   return (
     <>
       <Grid container>
@@ -21,7 +23,10 @@ const Dashboard = () => {
               width: '100%',
             }}
           >
-            <DashboardHeading dashboardDescription={DASHBOARD_DATA?.updates} />
+            <DashboardHeading
+              title={empDetails?.employee_name || 'World'}
+              dashboardDescription={DASHBOARD_DATA?.updates}
+            />
 
             <Grid item xs={12}>
               <DiscoverTalentPlatform />

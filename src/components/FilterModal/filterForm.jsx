@@ -6,8 +6,63 @@ import FormInput from '../form/ui-elements/FormInput';
 import { filterModalSchema } from '../form/schemas/filterModal';
 import { FILTER } from '@/src/constants/filter';
 import ResetButton from './resetButton';
+import { api } from '@/src/services/apiService';
+import { EMP_TIME_SHEET } from '@/src/services/apiService/apiEndPoints';
+import {
+  getTimeSheetData,
+  getTimeSheetDataFailed,
+  getTimeSheetDataSuccess,
+} from '@/src/redux/slices/employeeSlices/timeSheetSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import dayjs from 'dayjs';
+import { useMutation } from '@tanstack/react-query';
+import { convertDateFormat, getAttendenceShortHand } from '@/src/utils/helpers';
 
 const FilterFormModal = ({ open, onClose, filterForm }) => {
+  const { workSpace } = useSelector((state) => state?.auth?.userData);
+  const dispatch = useDispatch();
+  const [formData, setFormData] = useState({});
+  const { mutate } = useMutation({
+    mutationFn: async (args) => {
+      console.log({ args });
+      dispatch(getTimeSheetData());
+      return api.getData(
+        `${EMP_TIME_SHEET}?workspace=${workSpace?.email || ''}&from=${
+          args.from
+        }&to=${args.to}`
+      );
+    },
+    onSuccess: ({ data }) => {
+      const newData = Object.entries(data?.time_sheet).map((item) => ({
+        ...item[1],
+        day: dayjs(convertDateFormat(item[0])).format('dddd'),
+        status: Object.entries(item[1]?.status)
+          .map((st) => {
+            if (!st[1]) return;
+            else return getAttendenceShortHand(st[0]);
+          })
+          .filter((el) => el !== undefined),
+        date: convertDateFormat(item[0]),
+        action: ['View'],
+        attendenceShortHand: true,
+        actionStatus: true,
+      }));
+      dispatch(
+        getTimeSheetDataSuccess({
+          ...data,
+          time_sheet: {
+            ...data.time_sheet,
+            record: newData,
+          },
+        })
+      );
+    },
+    onError: (err) => {
+      dispatch(getTimeSheetDataFailed());
+      console.log({ err });
+      console.log({ err: err.message, name: err.name, stack: err.stack });
+    },
+  });
   const {
     handleSubmit,
     values,
@@ -22,7 +77,18 @@ const FilterFormModal = ({ open, onClose, filterForm }) => {
     validationSchema: filterModalSchema,
     enableReinitialize: true,
     onSubmit: (formValues) => {
-      console.log({ formValues });
+      console.log({
+        formValues: {
+          from: dayjs(formValues?.from).format('YYYY-MM-DD'),
+          to: dayjs(formValues?.to).format('YYYY-MM-DD'),
+          fromOrig: formValues?.from,
+          toOrig: formValues?.to,
+        },
+      });
+      mutate({
+        from: dayjs(formValues?.from).format('YYYY-MM-DD'),
+        to: dayjs(formValues?.to).format('YYYY-MM-DD'),
+      });
     },
     validateOnChange: false,
     validateOnBlur: false,
@@ -176,6 +242,7 @@ const FilterFormModal = ({ open, onClose, filterForm }) => {
                   <ResetButton />
                 </Grid>
               </Grid>
+              {/* <button type="submit">Submit</button> */}
             </form>
           </Box>
         </Box>
