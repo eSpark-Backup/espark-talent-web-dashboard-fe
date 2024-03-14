@@ -26,7 +26,6 @@ const ChangePassword = () => {
     validateOnChange: false,
     validateOnBlur: false,
   });
-
   return (
     <Box
       sx={{

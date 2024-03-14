@@ -166,6 +166,7 @@ const FormInput = ({
           </Typography>
         </Box>
       )}
+
       {type === 'select' ? (
         <>
           {searchable ? (
@@ -349,7 +350,9 @@ const FormInput = ({
                 <Box
                   key={`box-${fieldIndex}`}
                   sx={{
-                    border: `1px solid ${error ? 'red' : '#E4E4E4'}`,
+                    border: `1px solid ${
+                      errors[field.name] ? 'red' : '#E4E4E4'
+                    }`,
                     borderRadius: '5px',
                     display: 'flex',
                     overflow: 'hidden',

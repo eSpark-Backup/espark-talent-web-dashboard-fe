@@ -3,7 +3,6 @@ import { Box, Grid, Modal, Typography } from '@mui/material';
 
 import { useFormik } from 'formik';
 import FormInput from '../form/ui-elements/FormInput';
-import { filterModalSchema } from '../form/schemas/filterModal';
 import { FILTER } from '@/src/constants/filter';
 import ResetButton from './resetButton';
 import { api } from '@/src/services/apiService';
@@ -17,11 +16,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import dayjs from 'dayjs';
 import { useMutation } from '@tanstack/react-query';
 import { convertDateFormat, getAttendenceShortHand } from '@/src/utils/helpers';
+import { filterModalSchema } from '../form/schemas/filterModal';
 
 const FilterFormModal = ({ open, onClose, filterForm }) => {
   const { workSpace } = useSelector((state) => state?.auth?.userData);
   const dispatch = useDispatch();
-  const [formData, setFormData] = useState({});
   const { mutate } = useMutation({
     mutationFn: async (args) => {
       console.log({ args });
@@ -77,14 +76,7 @@ const FilterFormModal = ({ open, onClose, filterForm }) => {
     validationSchema: filterModalSchema,
     enableReinitialize: true,
     onSubmit: (formValues) => {
-      console.log({
-        formValues: {
-          from: dayjs(formValues?.from).format('YYYY-MM-DD'),
-          to: dayjs(formValues?.to).format('YYYY-MM-DD'),
-          fromOrig: formValues?.from,
-          toOrig: formValues?.to,
-        },
-      });
+      console.log(formValues);
       mutate({
         from: dayjs(formValues?.from).format('YYYY-MM-DD'),
         to: dayjs(formValues?.to).format('YYYY-MM-DD'),
@@ -242,7 +234,6 @@ const FilterFormModal = ({ open, onClose, filterForm }) => {
                   <ResetButton />
                 </Grid>
               </Grid>
-              {/* <button type="submit">Submit</button> */}
             </form>
           </Box>
         </Box>

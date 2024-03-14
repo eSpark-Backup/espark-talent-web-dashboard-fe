@@ -84,7 +84,7 @@ export const filterAttendanceForm = [
   {
     title: 'Attendance Status',
     placeholder: 'Select',
-    name: 'status',
+    name: 'attendanceStatus',
     type: 'select',
     options: [
       {
