@@ -1,3 +1,5 @@
+import { trackingStatusTypes } from '../constants/data/tables/timeTracking';
+
 export const generateUniqueString = () => {
   let result = '';
   const characters =
@@ -13,4 +15,23 @@ export const generateUniqueString = () => {
   }
 
   return result;
+};
+
+export const getAttendenceShortHand = (title) => {
+  const val = trackingStatusTypes?.filter(({ label }) => label === title);
+  return val[0].shortForm;
+};
+
+export const convertDateFormat = (dateString) => {
+  var parts = dateString.split('-');
+
+  // Swap day and month parts
+  var temp = parts[0];
+  parts[0] = parts[1];
+  parts[1] = temp;
+
+  // Construct the new date string in the desired format
+  var newDateString = parts.join('-');
+
+  return newDateString;
 };
