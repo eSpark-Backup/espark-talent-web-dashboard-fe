@@ -1,11 +1,9 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
 
-// import { DASHBOARD_DATA } from '@/src/constants/dashboard';
-import { useSelector } from 'react-redux';
-
-const DashboardHeading = ({ dashboardDescription }) => {
-  const { empDetails } = useSelector((state) => state?.auth?.userData);
+const DashboardHeading = ({ dashboardDescription, title }) => {
+  console.log({ dashbaords: dashboardDescription });
+  // const { empDetails } = useSelector((state) => state?.auth?.userData);
   return (
     <Box>
       <Typography
@@ -14,7 +12,8 @@ const DashboardHeading = ({ dashboardDescription }) => {
           fontWeight: 600,
         }}
       >
-        {`Hello ${empDetails?.employee_name}`}
+        {`Hello ${title}`}
+        {/* Hello */}
       </Typography>
       <br />
       <Typography

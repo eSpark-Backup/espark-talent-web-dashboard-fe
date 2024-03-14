@@ -8,10 +8,22 @@ import { HiringForm } from '@/src/constants/data/forms/start-hiring';
 import { fetchCountriesList } from '@/src/utils/countryList';
 import { hiringFormSchema } from '../form/schemas/hiringForm';
 import { HIRING_FORM_DATA } from '@/src/constants/Hiring';
+import { api } from '@/src/services/apiService';
+import { CLIENT_START_HIRING } from '@/src/services/apiService/apiEndPoints';
+import {
+  createClientHiringRequest,
+  createClientHiringRequestFailed,
+  createClientHiringRequestSuccess,
+} from '@/src/redux/slices/clientSlices/hiringProgressSlice';
+import { useMutation } from '@tanstack/react-query';
+import { useDispatch } from 'react-redux';
+import { generateUniqueString } from '@/src/utils/helpers';
+import dayjs from 'dayjs';
 
 const StartHiringForm = () => {
   const [formData, setFormData] = useState({});
   const [countries, setCountries] = useState([]);
+  const dispatch = useDispatch();
   const {
     handleSubmit,
     values,
@@ -30,11 +42,68 @@ const StartHiringForm = () => {
     validationSchema: hiringFormSchema,
     enableReinitialize: true,
     onSubmit: (formValues) => {
-      console.log({ formValues });
+      // const formVals
+      const revampFormValues = {
+        job_title: formValues?.jobTitle,
+        role_type: formValues?.roleType,
+        gender: formValues?.gender,
+        employment_term: formValues?.employmentTerm,
+        salary_range: {
+          minimum: formValues?.salaryRange?.min,
+          maximum: formValues?.salaryRange?.max,
+        },
+        country: formValues?.country?.title,
+        hiring_start_date: dayjs(formValues?.hiringStartDate).format(
+          'YYYY-MM-DD'
+        ),
+        hiring_end_date: dayjs(formValues?.hiringEndDate).format('YYYY-MM-DD'),
+      };
+
+      mutate(revampFormValues);
     },
     validateOnChange: false,
     validateOnBlur: false,
   });
+  const getRevampedValues = (vals) => ({
+    job_title: vals?.jobTitle,
+    role_type: vals?.roleType,
+    gender: vals?.gender,
+    employment_term: vals?.employmentTerm,
+    salary_range: {
+      minimum: vals?.salaryRange?.min,
+      maximum: vals?.salaryRange?.max,
+    },
+    hiring_start_date: dayjs(vals?.hiringStartDate).format('YYYY-MM-DD'),
+    hiring_end_date: dayjs(vals?.hiringEndDate).format('YYYY-MM-DD'),
+  });
+  const { mutate } = useMutation({
+    mutationFn: async (formVals) => {
+      // console.log({ formVals });
+      // return {
+      //   data: [],
+      // };
+      dispatch(createClientHiringRequest());
+      // const formData = new FormData();
+      // for (const key in formVals) {
+      //   formData.append(key, formVals[key]);
+      // }
+      return api.postData(CLIENT_START_HIRING, formVals);
+    },
+    onSuccess: ({ data }) => {
+      console.log({ values, data });
+      dispatch(
+        createClientHiringRequestSuccess({
+          ...getRevampedValues(values),
+          id: generateUniqueString(),
+        })
+      );
+    },
+    onError: (err) => {
+      dispatch(createClientHiringRequestFailed());
+      console.log({ err: err.message, name: err.name, stack: err.stack });
+    },
+  });
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -49,9 +118,9 @@ const StartHiringForm = () => {
   const handleData = (name, value) => {
     setFormData({ ...formData, [name]: value });
   };
-  useEffect(() => {
-    console.log('form', formData);
-  }, [formData]);
+  // useEffect(() => {
+  //   console.log('form', formData);
+  // }, [formData]);
   return (
     <Grid item xs={12} sm={10} md={10} lg={8}>
       <Box

@@ -57,13 +57,41 @@ export const trackingStatusTypes = [
 ];
 
 export const timeTrackingTableColumn = [
-  'Date',
-  'Day',
-  'Check-in',
-  'Check-out',
-  'Hours worked',
-  'Overtime',
-  'Status',
+  {
+    title: 'Date',
+    flex: 2,
+    name: 'date',
+  },
+  {
+    title: 'Day',
+    flex: 2,
+    name: 'day',
+  },
+  {
+    title: 'Check-in',
+    flex: 2,
+    name: 'check_in',
+  },
+  {
+    title: 'Check-out',
+    flex: 2,
+    name: 'check_in',
+  },
+  {
+    title: 'Hours worked',
+    flex: 2,
+    name: 'hours_worked',
+  },
+  {
+    title: 'Overtime',
+    flex: 2,
+    name: 'overtime',
+  },
+  {
+    title: 'Status',
+    flex: 2,
+    name: 'status',
+  },
 ];
 
 export const timeTrackingTableData = [

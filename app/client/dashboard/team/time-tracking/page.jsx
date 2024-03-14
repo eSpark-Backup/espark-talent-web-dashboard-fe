@@ -1,54 +1,61 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Grid, Box, Typography } from '@mui/material';
-import {
-  timeTrackingTableColumn,
-  timeTrackingTableData,
-} from '@/src/constants/data/tables/timeTracking';
+import { timeTrackingTableColumn } from '@/src/constants/data/tables/timeTracking';
 import Link from 'next/link';
 import AppSearchableDropdown from '@/src/components/dashboard/appSearchableDropdown';
 import AppCustomMonthYearPicker from '@/src/components/dashboard/appCustomMonthYearPicker';
-import AppTable from '@/src/components/appTable/AppTable';
+import AppTable from '@/src/components/appTableNew/AppTable';
 import { TIMETRACKING } from '@/src/constants/TimeTracking';
+import { useQuery } from '@tanstack/react-query';
+import { api } from '@/src/services/apiService';
+import { CLIENT_TIME_TRACKING } from '@/src/services/apiService/apiEndPoints';
+import {
+  fetchTimeTrackingDataRequest,
+  fetchTimeTrackingDataRequestFailed,
+  fetchTimeTrackingDataRequestSuccess,
+} from '@/src/redux/slices/clientSlices/timeTrackingSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Dashboard = () => {
-  const listItems = [
-    'Arman Khan',
-    'Bilal Ahmed Khan',
-    'Areeba Shakeel',
-    'Saad Zafar',
-    'Muhammad Ali',
-    'Sohaib-Xtreme',
-    'Faizan-ur-Rehman',
-    'Faisal Hanif',
-    'Faraz Shah',
-    'Abdul Rehman',
-    'Abdul Mannan',
-    'Hassan',
-    'Muzammil',
-    'Nauman',
-    'Abdullah Zaidi',
-  ];
-
-  const [isLoading, setIsLoading] = useState(true);
+  const dispatch = useDispatch();
+  const { data } = useSelector((state) => state?.client?.timeTracking);
+  const { isLoading } = useQuery({
+    staleTime: 10000,
+    queryKey: ['timeTrackingQuery'],
+    queryFn: async () => {
+      dispatch(fetchTimeTrackingDataRequest());
+      return api
+        .getData(`${CLIENT_TIME_TRACKING}`)
+        .then(({ data }) => {
+          dispatch(fetchTimeTrackingDataRequestSuccess(data));
+          return data;
+        })
+        .catch((err) => {
+          dispatch(fetchTimeTrackingDataRequestFailed());
+          console.log({ err });
+        });
+    },
+  });
+  // const [isLoading, setIsLoading] = useState(true);
   const [isLoadingEmployee, setIsLoadingEmployee] = useState(false);
   const [selectedEmployee, setSelectedEmployee] = useState('');
 
-  const fetchDataFake = async () => {
-    return true;
-  };
+  // const fetchDataFake = async () => {
+  //   return true;
+  // };
 
-  useEffect(() => {
-    const fetchDataAsync = async () => {
-      try {
-        await fetchDataFake();
-      } finally {
-        setIsLoading(false);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchDataAsync = async () => {
+  //     try {
+  //       await fetchDataFake();
+  //     } finally {
+  //       setIsLoading(false);
+  //     }
+  //   };
 
-    fetchDataAsync();
-  }, []);
+  //   fetchDataAsync();
+  // }, []);
 
   return (
     <>
@@ -123,7 +130,7 @@ const Dashboard = () => {
                     setIsLoadingList={setIsLoadingEmployee}
                     isLoadingList={isLoadingEmployee}
                     selectedItem={selectedEmployee}
-                    data={listItems}
+                    data={data?.employees}
                     setSelectedItem={setSelectedEmployee}
                   />
 
@@ -132,22 +139,6 @@ const Dashboard = () => {
               </Grid>
             </Box>
             <br />
-            {/* <Box
-              marginY={'20px'}
-              display={'flex'}
-              flexWrap={'wrap'}
-              alignItems={'center'}
-            >
-              {trackingStatusTypes?.map(
-                ({ label, shortForm, background }, statusIndex) =>
-                  renderTrackingStatus({
-                    label,
-                    statusIndex,
-                    background,
-                    shortForm,
-                  })
-              )}
-            </Box> */}
             {isLoading ? (
               <Box>Loading...</Box>
             ) : (
@@ -161,7 +152,7 @@ const Dashboard = () => {
                   >
                     <AppTable
                       column={timeTrackingTableColumn}
-                      data={timeTrackingTableData}
+                      data={data?.time_sheet}
                     />
                   </Box>
                 ) : (

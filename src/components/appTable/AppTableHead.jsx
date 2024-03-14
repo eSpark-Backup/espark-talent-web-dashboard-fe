@@ -1,15 +1,14 @@
 import { Box } from '@mui/material';
-import React from 'react';
+import React, { Fragment } from 'react';
 
 const TableHead = ({ column }) => {
   return (
     <thead>
       <tr className="app-table-row">
         {column?.map((col, colIndex) => (
-          <>
+          <Fragment key={colIndex}>
             {col?.isIconTitle ? (
               <th
-                key={colIndex}
                 style={{
                   fontSize: '14px',
                   flex: col?.flex ? col?.flex : 1,
@@ -31,7 +30,7 @@ const TableHead = ({ column }) => {
                 {col?.title || col}
               </th>
             )}
-          </>
+          </Fragment>
         ))}
       </tr>
     </thead>

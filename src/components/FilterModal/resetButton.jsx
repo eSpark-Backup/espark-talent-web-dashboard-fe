@@ -41,6 +41,7 @@ const ResetButton = () => {
         {FILTER?.Reset}
       </Button>
       <Button
+        type="submit"
         variant="primary"
         sx={{
           width: { xs: '100px', sm: '120px' },

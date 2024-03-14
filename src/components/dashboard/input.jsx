@@ -8,7 +8,7 @@ const Input = ({
   suffixIcon,
   handleChange,
   value,
-  setIsLoading,
+  // setIsLoading,
   width,
   onKeyDown,
   autofocus,
@@ -56,7 +56,7 @@ const Input = ({
           ref={inputRef}
           value={value}
           onChange={(e) => {
-            setIsLoading?.(true);
+            // setIsLoading?.(true);
             handleChange?.(e?.target?.value);
           }}
           className="search-input"
@@ -89,7 +89,7 @@ Input.propTypes = {
   suffixIcon: PropTypes.string,
   handleChange: PropTypes.func,
   value: PropTypes.string,
-  setIsLoading: PropTypes.func,
+  // setIsLoading: PropTypes.func,
 };
 
 export default Input;

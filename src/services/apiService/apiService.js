@@ -100,7 +100,8 @@ export default class APIService {
     return await instance.get(url, params);
   }
   async postData(url, data) {
-    // this.resetHeaders();
+    this.resetHeaders();
+    // this.updateHeadersForFormData();
     return await instance.post(url, data);
   }
   async updateData(url, data) {

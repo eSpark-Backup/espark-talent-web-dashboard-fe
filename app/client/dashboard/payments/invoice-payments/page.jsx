@@ -16,20 +16,85 @@ import {
 } from '@/src/constants/data/tables/paymentData';
 import { filterTableRowsWRTTab } from '@/src/utils/table';
 import AppTable from '@/src/components/appTable/AppTable';
+import { useQuery } from '@tanstack/react-query';
+import { api } from '@/src/services/apiService';
+import { CLIENT_INVOICE_PAYMENTS } from '@/src/services/apiService/apiEndPoints';
+import {
+  fetchPaidInvoicePaymentsRequest,
+  fetchPaidInvoicePaymentsRequestFailed,
+  fetchPaidInvoicePaymentsRequestSuccess,
+  fetchPendingInvoicePaymentsRequest,
+  fetchPendingInvoicePaymentsRequestFailed,
+  fetchPendingInvoicePaymentsRequestSuccess,
+  fetchProcessingInvoicePaymentsRequest,
+  fetchProcessingInvoicePaymentsRequestFailed,
+  fetchProcessingInvoicePaymentsRequestSuccess,
+} from '@/src/redux/slices/clientSlices/invoicePaymentsSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Dashboard = () => {
+  const { data } = useSelector((state) => state?.client?.invoicePayments);
+  const dispatch = useDispatch();
   const [value, setValue] = useState(0);
   const [currentTab, setCurrentTab] = useState('Pending');
   const [isLoading, setIsLoading] = useState(true);
   const [isLoadingOthPay, setIsLoadingOthPay] = useState(true);
   const [search, setSearch] = useState('');
   const [searchOthPay, setSearchOthPay] = useState('');
-  const [invPayData, setInvPayData] = useState(
-    filterTableRowsWRTTab(invoicePaymentData, { paymentStatus: currentTab })
-  );
-  const [othPayData, setOthPayData] = useState(
-    filterTableRowsWRTTab(invoicePaymentData, { paymentStatus: currentTab })
-  );
+
+  const pendingInvoice = useQuery({
+    staleTime: 10000,
+    queryKey: ['pendingInvoicePayments'],
+    queryFn: async () => {
+      dispatch(fetchPendingInvoicePaymentsRequest());
+      return api
+        .getData(`${CLIENT_INVOICE_PAYMENTS}/?payment_status="Pending`)
+        .then(({ data }) => {
+          dispatch(fetchPendingInvoicePaymentsRequestSuccess(data || []));
+          return data;
+        })
+        .catch((err) => {
+          dispatch(fetchPendingInvoicePaymentsRequestFailed());
+          console.log({ err });
+        });
+    },
+  });
+  const processingInvoice = useQuery({
+    staleTime: 10000,
+    queryKey: ['processingInvoicePayments'],
+    queryFn: async () => {
+      dispatch(fetchProcessingInvoicePaymentsRequest());
+      return api
+        .getData(`${CLIENT_INVOICE_PAYMENTS}/?payment_status="Processing`)
+        .then(({ data }) => {
+          dispatch(fetchProcessingInvoicePaymentsRequestSuccess(data || []));
+          return data;
+        })
+        .catch((err) => {
+          dispatch(fetchProcessingInvoicePaymentsRequestFailed());
+          console.log({ err });
+        });
+    },
+  });
+  const paidInvoice = useQuery({
+    staleTime: 10000,
+    queryKey: ['paidInvoicePayments'],
+    queryFn: async () => {
+      dispatch(fetchPaidInvoicePaymentsRequest());
+      return api
+        .getData(`${CLIENT_INVOICE_PAYMENTS}/?payment_status="Paid`)
+        .then(({ data }) => {
+          dispatch(fetchPaidInvoicePaymentsRequestSuccess(data || []));
+          return data;
+        })
+        .catch((err) => {
+          dispatch(fetchPaidInvoicePaymentsRequestFailed());
+          console.log({ err });
+        });
+    },
+  });
+
+  console.log({ paidInvoice, pendingInvoice, processingInvoice });
 
   const fetchDataFake = async () => {
     return true;
@@ -55,7 +120,6 @@ const Dashboard = () => {
       setSearch,
       setCurrentTab,
       setValue,
-      setData: setInvPayData,
       teamMembersData: invoicePaymentData,
       filterTableRowsWRTTab,
       filterBy: 'paymentStatus',
@@ -69,7 +133,7 @@ const Dashboard = () => {
       }),
     ];
     const timeoutId = setTimeout(() => {
-      filterDataByKeyword(data, search || '', setInvPayData);
+      filterDataByKeyword(data, search || '');
       setIsLoading(false);
     }, 500);
     return () => {
@@ -79,7 +143,7 @@ const Dashboard = () => {
   useEffect(() => {
     const data = [...filterTableRowsWRTTab(otherPaymentData)];
     const timeoutId = setTimeout(() => {
-      filterDataByKeyword(data, searchOthPay || '', setOthPayData);
+      filterDataByKeyword(data, searchOthPay || '');
       setIsLoadingOthPay(false);
     }, 500);
     return () => {
@@ -155,7 +219,16 @@ const Dashboard = () => {
                       overflowX: 'auto',
                     }}
                   >
-                    <AppTable column={invoicePaymentColumn} data={invPayData} />
+                    <AppTable
+                      column={invoicePaymentColumn}
+                      data={
+                        value === 0
+                          ? data?.panding
+                          : value === 1
+                          ? data?.processing
+                          : data?.paid
+                      }
+                    />
                   </Box>
                 )}
               </CustomTabPanel>
@@ -204,7 +277,7 @@ const Dashboard = () => {
                   overflowX: 'auto',
                 }}
               >
-                <AppTable column={otherPaymentColumn} data={othPayData} />
+                <AppTable column={otherPaymentColumn} data={data?.pending} />
               </Box>
             )}
           </Box>

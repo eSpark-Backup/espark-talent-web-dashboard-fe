@@ -1,30 +1,118 @@
 export const leaveRequestsColumn = [
-  'Employee ID',
-  'Employee name',
-  'Country',
-  'Department',
-  'Leave type',
-  'Count',
-  'Requested at',
-  'Status',
-  'Actions',
+  {
+    title: 'Employee ID',
+    flex: 2,
+    name: 'employee_id',
+  },
+  {
+    title: 'Employee name',
+    flex: 2,
+    name: 'employee_name',
+  },
+  {
+    title: 'Country',
+    flex: 2,
+    name: 'country',
+  },
+  {
+    title: 'Department',
+    flex: 2,
+    name: 'department',
+  },
+  {
+    title: 'Leave type',
+    flex: 2,
+    name: 'leave_type',
+  },
+  {
+    title: 'Count',
+    flex: 2,
+    name: 'count',
+  },
+  {
+    title: 'Requested at',
+    flex: 2,
+    name: 'requested_at',
+  },
+  {
+    title: 'Status',
+    flex: 2,
+    name: 'status',
+  },
+  {
+    title: 'Actions',
+    flex: 2,
+    name: 'actions',
+  },
 ];
 export const leaveBalanceColumn = [
-  'Name',
-  'Casual Leaves',
-  'Sick leaves',
-  'Annual leaves',
-  'Taken',
-  'Balance',
+  {
+    title: 'Name',
+    flex: 2,
+    name: 'name',
+  },
+  {
+    title: 'Casual leaves',
+    flex: 2,
+    name: 'casual_leaves',
+  },
+  {
+    title: 'Sick leaves',
+    flex: 2,
+    name: 'sick_leaves',
+  },
+  {
+    title: 'Annual leaves',
+    flex: 2,
+    name: 'annual_leaves',
+  },
+  {
+    title: 'Taken',
+    flex: 2,
+    name: 'taken',
+  },
+  {
+    title: 'Balance',
+    flex: 2,
+    name: 'balance',
+  },
 ];
 export const checkInOutColumn = [
-  'ID',
-  'Employee',
-  'Date',
-  'Punch time',
-  'Punch type',
-  'Status',
-  'Actions',
+  {
+    title: 'ID',
+    flex: 2,
+    name: 'id',
+  },
+  {
+    title: 'Employee',
+    flex: 2,
+    name: 'employee',
+  },
+  {
+    title: 'Date',
+    flex: 2,
+    name: 'date',
+  },
+  {
+    title: 'Punch time',
+    flex: 2,
+    name: 'punch_time',
+  },
+  {
+    title: 'Punch type',
+    flex: 2,
+    name: 'punch_type',
+  },
+  {
+    title: 'Status',
+    flex: 2,
+    name: 'status',
+  },
+  {
+    title: 'Actions',
+    flex: 2,
+    name: 'actions',
+  },
 ];
 export const leaveRequestsData = [
   {
