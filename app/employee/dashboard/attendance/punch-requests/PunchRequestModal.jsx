@@ -1,14 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Box, Typography } from '@mui/material';
 
 import PunchRequestForm from '@/app/employee/dashboard/attendance/punch-requests/PunchRequestForm';
 import PunchRequestDataView from './PunchRequestFormView';
 
 const PunchRequestModal = ({ createModal, modalData, handleClose }) => {
-  const [formData, setFormData] = useState({});
-  const handleData = (name, value) => {
-    setFormData({ ...formData, [name]: value });
-  };
   useEffect(() => {
     console.log({ modalData });
   }, [modalData]);
@@ -46,13 +42,9 @@ const PunchRequestModal = ({ createModal, modalData, handleClose }) => {
         </Typography>
       </Box>
       {createModal ? (
-        <PunchRequestForm handleClose={handleClose} handleData={handleData} />
+        <PunchRequestForm handleClose={handleClose} />
       ) : (
-        <PunchRequestDataView
-          modalData={modalData}
-          handleClose={handleClose}
-          handleData={handleData}
-        />
+        <PunchRequestDataView modalData={modalData} handleClose={handleClose} />
       )}
     </Box>
   );

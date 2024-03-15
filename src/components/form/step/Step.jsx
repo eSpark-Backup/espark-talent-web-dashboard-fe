@@ -17,7 +17,6 @@ const Step = ({
   isLastStep,
   countries,
   mt,
-  handleData,
 }) => {
   const {
     handleSubmit,
@@ -132,7 +131,6 @@ const Step = ({
                             errors={errors}
                             setErrors={setErrors}
                             values={values}
-                            handleData={handleData}
                           />
                         )
                       )}
@@ -227,7 +225,6 @@ const Step = ({
               lg={col}
               countries={countries}
               searchable={searchable}
-              handleData={handleData}
             />
           )
         )}

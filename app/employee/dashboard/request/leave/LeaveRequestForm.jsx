@@ -17,7 +17,7 @@ import {
 } from '@/src/redux/slices/employeeSlices/leaveRequestSlice';
 import { generateUniqueString } from '@/src/utils/helpers';
 
-const LeaveRequestForm = ({ handleClose, handleData }) => {
+const LeaveRequestForm = ({ handleClose }) => {
   const dispatch = useDispatch();
   const { workSpace, empDetails } = useSelector(
     (state) => state?.auth?.userData
@@ -156,7 +156,6 @@ const LeaveRequestForm = ({ handleClose, handleData }) => {
                   values={values}
                   minDate={minDate}
                   searchable={searchable}
-                  handleData={handleData}
                 />
               );
             }

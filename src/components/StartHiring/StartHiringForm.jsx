@@ -21,7 +21,6 @@ import { generateUniqueString } from '@/src/utils/helpers';
 import dayjs from 'dayjs';
 
 const StartHiringForm = () => {
-  const [formData, setFormData] = useState({});
   const [countries, setCountries] = useState([]);
   const dispatch = useDispatch();
   const {
@@ -115,12 +114,6 @@ const StartHiringForm = () => {
     };
     fetchData();
   }, []);
-  const handleData = (name, value) => {
-    setFormData({ ...formData, [name]: value });
-  };
-  // useEffect(() => {
-  //   console.log('form', formData);
-  // }, [formData]);
   return (
     <Grid item xs={12} sm={10} md={10} lg={8}>
       <Box
@@ -205,7 +198,6 @@ const StartHiringForm = () => {
                       md={12}
                       lg={12}
                       fields={fields}
-                      handleData={handleData}
                       searchable={searchable}
                       countries={countries}
                     />

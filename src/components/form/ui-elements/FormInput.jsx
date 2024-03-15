@@ -51,7 +51,6 @@ const FormInput = ({
   countries,
   searchable,
   suffixIconInside,
-  handleData,
   readOnly,
   modalData,
   fieldsName,
@@ -68,7 +67,6 @@ const FormInput = ({
     }
     setErrors({ ...tempErrors });
     setFieldValue(name, item);
-    handleData(name, item);
   };
   const handleChangeInput = (field, value) => {
     console.log({ field, value });
@@ -88,7 +86,6 @@ const FormInput = ({
     }
     setErrors({ ...tempErrors });
     setFieldValue?.(field, value);
-    handleData(field, value);
   };
 
   const handleChangeFileInput = (field, value) => {
@@ -99,7 +96,6 @@ const FormInput = ({
     }
     setErrors({ ...tempErrors });
     setFieldValue?.(field, value);
-    handleData(field, value);
   };
 
   const handleClickCounter = (type, name, value) => {
@@ -110,7 +106,6 @@ const FormInput = ({
             break;
           default:
             setFieldValue(name, value - 1);
-            handleData(name, value - 1);
             break;
         }
         break;
@@ -121,7 +116,6 @@ const FormInput = ({
             break;
           default:
             setFieldValue(name, value + 1);
-            handleData(name, value + 1);
             break;
         }
         break;
@@ -172,6 +166,7 @@ const FormInput = ({
           </Typography>
         </Box>
       )}
+
       {type === 'select' ? (
         <>
           {searchable ? (
@@ -355,7 +350,9 @@ const FormInput = ({
                 <Box
                   key={`box-${fieldIndex}`}
                   sx={{
-                    border: `1px solid ${error ? 'red' : '#E4E4E4'}`,
+                    border: `1px solid ${
+                      errors[field.name] ? 'red' : '#E4E4E4'
+                    }`,
                     borderRadius: '5px',
                     display: 'flex',
                     overflow: 'hidden',

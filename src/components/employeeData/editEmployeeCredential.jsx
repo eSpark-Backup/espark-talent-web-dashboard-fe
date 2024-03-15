@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Box, Button, Grid, Modal, Typography } from '@mui/material';
 
 import { EDIT_MODAL } from '@/src/constants/employeeProfile';
@@ -26,13 +26,6 @@ const EditEmployeeCredential = ({ onClose, open }) => {
     validateOnChange: false,
     validateOnBlur: false,
   });
-  const [formData, setFormData] = useState({});
-  const handleData = (name, value) => {
-    setFormData({ ...formData, [name]: value });
-  };
-  useEffect(() => {
-    console.log('form', formData);
-  }, [formData]);
   return (
     <Modal
       open={open}
@@ -134,7 +127,6 @@ const EditEmployeeCredential = ({ onClose, open }) => {
                       md={12}
                       lg={12}
                       fields={fields}
-                      handleData={handleData}
                     />
                   </Grid>
                   {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>}
