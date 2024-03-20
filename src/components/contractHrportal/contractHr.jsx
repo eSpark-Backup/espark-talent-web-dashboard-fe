@@ -42,7 +42,6 @@ const AddContractHrPortalModal = ({
       console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
-  const [formData, setFormData] = useState({});
   const {
     handleSubmit,
     values,
@@ -181,7 +180,6 @@ const AddContractHrPortalModal = ({
                       md={12}
                       lg={12}
                       fields={fields}
-                      handleData={handleData}
                       accept={accept}
                     />
                   </Grid>

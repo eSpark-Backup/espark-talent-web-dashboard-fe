@@ -57,22 +57,23 @@ export default class APIService {
         const { response } = error;
 
         if (response && response.status === 401) {
-          if (!this.isAlreadyFetchingAccessToken) {
-            this.isAlreadyFetchingAccessToken = true;
-            instance.defaults.headers.common.Authorization = '';
-            this.login({
-              email: 'faisal@esparkconsultants.com',
-              password: '123456',
-            }).then((r) => {
-              this.isAlreadyFetchingAccessToken = false;
-              console.log({ r });
-              // ** Update accessToken in localStorage
-              this.setToken(r.data.token);
-              this.setRefreshToken(r.data.refreshToken);
+          localStorage.removeItem('persist:root');
+          // if (!this.isAlreadyFetchingAccessToken) {
+          //   this.isAlreadyFetchingAccessToken = true;
+          //   instance.defaults.headers.common.Authorization = '';
+          //   this.login({
+          //     email: 'faisal@esparkconsultants.com',
+          //     password: '123456',
+          //   }).then((r) => {
+          //     this.isAlreadyFetchingAccessToken = false;
+          //     console.log({ r });
+          //     // ** Update accessToken in localStorage
+          //     this.setToken(r.data.token);
+          //     this.setRefreshToken(r.data.refreshToken);
 
-              this.onAccessTokenFetched(r.data.accessToken);
-            });
-          }
+          //     this.onAccessTokenFetched(r.data.accessToken);
+          //   });
+          // }
           // const retryOriginalRequest = new Promise((resolve) => {
           //   this.addSubscriber((accessToken) => {
           //     // ** Make sure to assign accessToken according to your response.
@@ -92,22 +93,23 @@ export default class APIService {
         const { response } = error;
 
         if (response && response.status === 401) {
-          if (!this.isAlreadyFetchingAccessToken) {
-            this.isAlreadyFetchingAccessToken = true;
-            instance.defaults.headers.common.Authorization = '';
-            this.login({
-              email: 'faisal@esparkconsultants.com',
-              password: '123456',
-            }).then((r) => {
-              this.isAlreadyFetchingAccessToken = false;
-              console.log({ r });
-              // ** Update accessToken in localStorage
-              this.setToken(r.data.token);
-              this.setRefreshToken(r.data.refreshToken);
+          localStorage.removeItem('persist:root');
+          // if (!this.isAlreadyFetchingAccessToken) {
+          //   this.isAlreadyFetchingAccessToken = true;
+          //   instance.defaults.headers.common.Authorization = '';
+          //   this.login({
+          //     email: 'faisal@esparkconsultants.com',
+          //     password: '123456',
+          //   }).then((r) => {
+          //     this.isAlreadyFetchingAccessToken = false;
+          //     console.log({ r });
+          //     // ** Update accessToken in localStorage
+          //     this.setToken(r.data.token);
+          //     this.setRefreshToken(r.data.refreshToken);
 
-              this.onAccessTokenFetched(r.data.accessToken);
-            });
-          }
+          //     this.onAccessTokenFetched(r.data.accessToken);
+          //   });
+          // }
           // const retryOriginalRequest = new Promise((resolve) => {
           //   this.addSubscriber((accessToken) => {
           //     // ** Make sure to assign accessToken according to your response.

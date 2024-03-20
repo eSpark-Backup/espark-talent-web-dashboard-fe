@@ -18,7 +18,6 @@ const AddEmployee = () => {
   const dispatch = useDispatch();
   const [countries, setCountries] = useState([]);
   const [currentStep, setCurrentStep] = useState(1);
-  const [formData, setFormData] = useState({});
   const { addClientForm } = useSelector((state) => state.hr?.clients);
   useEffect(() => {
     const fetchData = async () => {
@@ -39,12 +38,7 @@ const AddEmployee = () => {
     if (currentStep === 1) return;
     setCurrentStep((ps) => ps - 1);
   };
-  const handleData = (name, value) => {
-    setFormData({ ...formData, [name]: value });
-  };
-  useEffect(() => {
-    console.log('form', formData);
-  }, [formData]);
+
   const defaultValues = {
     ...addClientForm,
     country: addClientForm?.country || {
