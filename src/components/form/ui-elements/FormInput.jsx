@@ -198,6 +198,7 @@ const FormInput = ({
           )}
         </>
       )}
+
       {type === 'select' ? (
         <>
           {searchable ? (

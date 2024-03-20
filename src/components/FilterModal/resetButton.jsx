@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 import { FILTER } from '@/src/constants/filter';
 
-const ResetButton = () => {
+const ResetButton = ({ onSubmit }) => {
   return (
     <Box
       sx={{
@@ -49,6 +49,7 @@ const ResetButton = () => {
           fontSize: '16px',
           fontWeight: 600,
         }}
+        onClick={onSubmit}
         startIcon={
           <Image
             width={20}

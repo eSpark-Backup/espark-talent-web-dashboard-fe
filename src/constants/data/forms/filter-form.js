@@ -47,13 +47,13 @@ export const filterStatusForm = [
     fieldsName: [
       {
         placeholder: '--:-- --',
-        name: 'checkinTime1',
+        name: 'checkinTimeFrom',
         type: 'time',
         suffixIcon: 'ClockIcon',
       },
       {
         placeholder: '--:-- --',
-        name: 'checkinTime2',
+        name: 'checkinTimeTo',
         type: 'time',
         suffixIcon: 'ClockIcon',
       },
@@ -66,13 +66,13 @@ export const filterStatusForm = [
     fieldsName: [
       {
         placeholder: '--:-- --',
-        name: 'checkoutTime1',
+        name: 'checkoutTimeFrom',
         type: 'time',
         suffixIcon: 'ClockIcon',
       },
       {
         placeholder: '--:-- --',
-        name: 'checkoutTime2',
+        name: 'checkoutTimeTo',
         type: 'time',
         suffixIcon: 'ClockIcon',
       },
@@ -84,7 +84,7 @@ export const filterAttendanceForm = [
   {
     title: 'Attendance Status',
     placeholder: 'Select',
-    name: 'status',
+    name: 'attendanceStatus',
     type: 'select',
     options: [
       {
@@ -130,13 +130,13 @@ export const filterAttendanceForm = [
     fieldsName: [
       {
         placeholder: '--:-- --',
-        name: 'checkinTime1',
+        name: 'checkinTimeFrom',
         type: 'time',
         suffixIcon: 'ClockIcon',
       },
       {
         placeholder: '--:-- --',
-        name: 'checkinTime2',
+        name: 'checkinTimeTo',
         type: 'time',
         suffixIcon: 'ClockIcon',
       },
@@ -149,13 +149,13 @@ export const filterAttendanceForm = [
     fieldsName: [
       {
         placeholder: '--:-- --',
-        name: 'checkoutTime1',
+        name: 'checkoutTimeFrom',
         type: 'time',
         suffixIcon: 'ClockIcon',
       },
       {
         placeholder: '--:-- --',
-        name: 'checkoutTime2',
+        name: 'checkoutTimeTo',
         type: 'time',
         suffixIcon: 'ClockIcon',
       },
@@ -233,13 +233,13 @@ export const filterLeaveForm = [
     fieldsName: [
       {
         placeholder: '--:-- --',
-        name: 'checkinTime1',
+        name: 'checkinTimeFrom',
         type: 'time',
         suffixIcon: 'ClockIcon',
       },
       {
         placeholder: '--:-- --',
-        name: 'checkinTime2',
+        name: 'checkinTimeTo',
         type: 'time',
         suffixIcon: 'ClockIcon',
       },
@@ -252,13 +252,13 @@ export const filterLeaveForm = [
     fieldsName: [
       {
         placeholder: '--:-- --',
-        name: 'checkoutTime1',
+        name: 'checkoutTimeFrom',
         type: 'time',
         suffixIcon: 'ClockIcon',
       },
       {
         placeholder: '--:-- --',
-        name: 'checkoutTime2',
+        name: 'checkoutTimeTo',
         type: 'time',
         suffixIcon: 'ClockIcon',
       },

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Box, Button, Grid, Modal, Typography } from '@mui/material';
 
 import { useFormik } from 'formik';
@@ -70,12 +70,6 @@ const AddContractHrPortalModal = ({
     handleReset();
     onClose();
   };
-  const handleData = (name, value) => {
-    setFormData({ ...formData, [name]: value });
-  };
-  useEffect(() => {
-    console.log('form', formData);
-  }, [formData]);
   return (
     <Modal
       open={open}

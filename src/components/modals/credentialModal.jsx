@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Box, Button, Grid, Typography } from '@mui/material';
 
 import FormInput from '@/src/components/form/ui-elements/FormInput';
@@ -7,14 +7,8 @@ import { CREDENTIAL_FORM } from '@/src/constants/credential';
 import { credentialForm } from '@/src/constants/data/forms/add-credential';
 
 const CredentialModal = ({ onClose, modalData }) => {
-  const [formData, setFormData] = useState(modalData);
-  const handleData = (name, value) => {
-    setFormData({ ...formData, [name]: value });
-  };
   useEffect(() => {
-    console.log('form', formData);
     console.log('modal', modalData);
-    setFormData(modalData);
   }, [modalData]);
   const {
     handleSubmit,
@@ -141,9 +135,7 @@ const CredentialModal = ({ onClose, modalData }) => {
                     lg={12}
                     fields={fields}
                     suffixIconInside={suffixIconInside}
-                    handleData={handleData}
                     readOnly={true}
-                    modalData={formData}
                   />
                 </Grid>
                 {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>}

@@ -116,7 +116,6 @@ const AddEmployee = () => {
                   handleGoNext={handleGoNext}
                   handleGoPrev={handleGoPrev}
                   isLastStep={currentStep === formSteps?.length}
-                  handleData={handleData}
                   countries={countries}
                   defaultValues={defaultValues}
                   dispatchFunction={dispatchFunction}

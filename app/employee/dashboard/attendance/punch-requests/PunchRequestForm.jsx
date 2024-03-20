@@ -11,7 +11,7 @@ import { useMutation } from '@tanstack/react-query';
 import dayjs from 'dayjs';
 import { pascalToSnake } from '@/src/utils/stringModification';
 
-const PunchRequestForm = ({ handleClose, handleData }) => {
+const PunchRequestForm = ({ handleClose }) => {
   const { punch_timings } = useSelector((state) => state?.emp?.home?.homeData);
   const { workSpace } = useSelector((state) => state?.auth?.userData);
   // const pascalToSnake = (string) => {
@@ -126,7 +126,6 @@ const PunchRequestForm = ({ handleClose, handleData }) => {
                   errors={errors}
                   setErrors={setErrors}
                   values={values}
-                  handleData={handleData}
                 />
               );
             }

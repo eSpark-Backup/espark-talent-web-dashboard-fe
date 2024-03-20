@@ -25,6 +25,7 @@ export const companyDetailsSchema = Yup.object({
   role: Yup.string().required('Required'),
   job_title: Yup.string().required('Required'),
   company: Yup.string().required('Required'),
+  employementTerms: Yup.string().required('Required'),
 });
 export const securitySchema = Yup.object({
   employee_id: Yup.string().required('Employee ID is required'),
