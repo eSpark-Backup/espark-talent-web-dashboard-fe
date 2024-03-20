@@ -80,20 +80,25 @@ export const EDIT_MODAL = {
 };
 
 export const employeeDataLabel = [
-  { label: 'Employee name', value: 'John Doe' },
-  { label: 'Employee ID', value: '090078601' },
-  { label: 'Birth date', value: 'January 1, 1990' },
-  { label: 'Gender', value: 'Male' },
-  { label: 'Email', value: 'johndoe@123.com' },
-  { label: 'Team', value: 'Web development' },
-  { label: 'Designation', value: 'Web developer' },
-  { label: 'Joining date', value: '26/01/23' },
-  { label: 'Marital status', value: 'Married' },
+  { label: 'Employee name', value: 'John Doe', name: 'employee_name' },
+  { label: 'Employee ID', value: '090078601', name: 'employee_id' },
+  { label: 'Birth date', value: 'January 1, 1990', name: 'dob', type: 'date' },
+  { label: 'Gender', value: 'Male', name: 'gender' },
+  { label: 'Email', value: 'johndoe@123.com', name: 'email' },
+  { label: 'Job title', value: 'Web developer', name: 'job_title' },
+  { label: 'Role', value: 'Senior', name: 'role' },
+  {
+    label: 'Joining date',
+    value: '26/01/23',
+    name: 'joining_date',
+    type: 'date',
+  },
+  { label: 'Marital status', value: 'Married', name: 'marital_status' },
 ];
 export const emergencyContact = [
-  { label: 'Name', value: 'John Doe' },
-  { label: 'Relationship', value: 'Father' },
-  { label: 'Phone', value: '03323883838' },
+  { label: 'Name', value: 'John Doe', name: 'name' },
+  { label: 'Relationship', value: 'Father', name: 'relation' },
+  { label: 'Phone', value: '03323883838', name: 'phone_number' },
 ];
 export const employeeProfileDetails = [
   {
@@ -151,22 +156,32 @@ export const ASSET_TABLECOLUMN = [
   {
     title: 'Gadget',
     flex: 2,
+    name: 'gadget',
   },
   {
     title: 'Asset ID',
     flex: 2,
+    name: 'asset_id',
   },
   {
     title: 'Assigned date',
     flex: 2,
+    name: 'assigned_date',
   },
   {
     title: 'Assignee',
     flex: 2,
+    name: 'assignee_name',
+  },
+  {
+    title: 'Assignee Email',
+    flex: 2,
+    name: 'assignee_email',
   },
   {
     title: 'Action',
     flex: 2,
+    name: 'action',
   },
 ];
 export const ASSET_TABLEDATA = [

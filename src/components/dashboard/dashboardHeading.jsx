@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Typography } from '@mui/material';
 
 const DashboardHeading = ({ dashboardDescription, title }) => {
-  console.log({ dashbaords: dashboardDescription });
+  // console.log({ dashbaords: dashboardDescription });
   // const { empDetails } = useSelector((state) => state?.auth?.userData);
   return (
     <Box>

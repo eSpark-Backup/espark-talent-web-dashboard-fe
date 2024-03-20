@@ -9,11 +9,17 @@ import Navigator from '@/src/components/form/step/Navigator';
 import Breadcrumb from '@/src/components/form/step/Breadcrumb';
 import { EMPLOYEE_DATA } from '@/src/constants/AllEmployee';
 import { fetchCountriesList } from '@/src/utils/countryList';
+import { useDispatch, useSelector } from 'react-redux';
+import { HR_ADD_ClIENT } from '@/src/services/apiService/apiEndPoints';
+import { addClientFormData } from '@/src/redux/slices/hrSlices/clientSlice';
+import dayjs from 'dayjs';
 
 const AddEmployee = () => {
+  const dispatch = useDispatch();
   const [countries, setCountries] = useState([]);
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState({});
+  const { addClientForm } = useSelector((state) => state.hr?.clients);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -39,6 +45,40 @@ const AddEmployee = () => {
   useEffect(() => {
     console.log('form', formData);
   }, [formData]);
+  const defaultValues = {
+    ...addClientForm,
+    country: addClientForm?.country || {
+      flag: 'https://flagcdn.com/pk.svg',
+      title: 'Pakistan',
+    },
+  };
+  const dispatchFunction = (values) => {
+    console.log({ values });
+    dispatch(
+      addClientFormData({
+        ...values,
+        join_date: dayjs(values.join_date).format('YYYY-MM-DD'),
+      })
+    );
+  };
+  const getFinalData = (values) => {
+    return {
+      first_name: values?.first_name,
+      last_name: values?.last_name,
+      address: values?.address,
+      join_date: values?.join_date,
+      phone_number: values?.phone_number,
+      email: values?.email,
+      image: values?.image,
+      company_name: values?.company_name,
+      client_id: values?.client_id,
+      password: values?.password,
+      confirm_password: values?.confirm_password,
+      country: values?.country.title,
+      // // ...values,
+      // // country: values.country.title,
+    };
+  };
   return (
     <Box>
       <Breadcrumb root="clients" title="Clients /" currentPage="Add client" />
@@ -78,6 +118,11 @@ const AddEmployee = () => {
                   isLastStep={currentStep === formSteps?.length}
                   handleData={handleData}
                   countries={countries}
+                  defaultValues={defaultValues}
+                  dispatchFunction={dispatchFunction}
+                  getFinalData={getFinalData}
+                  method="postData"
+                  endpoint={HR_ADD_ClIENT}
                 />
               );
             }

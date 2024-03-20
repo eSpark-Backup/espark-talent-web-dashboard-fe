@@ -2,22 +2,27 @@ export const leavesColumn = [
   {
     title: 'Leave type',
     flex: 1,
+    name: 'leave_type',
   },
   {
     title: 'Total',
-    flex: 1,
+    flex: 2,
+    name: 'total',
   },
   {
     title: 'Allot',
-    flex: 1,
+    flex: 2,
+    name: 'balance',
   },
   {
     title: 'Availed',
-    flex: 1,
+    flex: 2,
+    name: 'availed',
   },
   {
     title: 'Status',
     flex: 1,
+    name: 'status',
   },
 ];
 export const leavesData = [
@@ -27,6 +32,7 @@ export const leavesData = [
     allot: 4,
     availed: 4,
     status: 'Enabled',
+    name: 'casual_leaves',
   },
   {
     leaveType: 'Sick leaves',
@@ -34,6 +40,7 @@ export const leavesData = [
     allot: 4,
     availed: 4,
     status: 'Enabled',
+    name: 'sick_leaves',
   },
   {
     leaveType: 'Annual leaves',
@@ -41,6 +48,7 @@ export const leavesData = [
     allot: 0,
     availed: 0,
     status: 'Enabled',
+    name: 'annual_leaves',
   },
   {
     leaveType: 'Unpaid leaves',
@@ -48,6 +56,7 @@ export const leavesData = [
     allot: 0,
     availed: 0,
     status: 'Enabled',
+    name: 'unpaid_leaves',
   },
   {
     leaveType: 'Paid leaves',
@@ -55,6 +64,7 @@ export const leavesData = [
     allot: 0,
     availed: 0,
     status: 'Enabled',
+    name: 'paid_leaves',
   },
   {
     leaveType: 'Hajj leaves',
@@ -62,17 +72,20 @@ export const leavesData = [
     allot: 0,
     availed: 0,
     status: 'Enabled',
+    name: 'hajj_leaves',
   },
 ];
 export const timeColumn = [
   {
     title: 'Check in',
     flex: 1,
+    name: 'check_in',
   },
   {
     title: 'Check out',
     flex: 10,
     textAlign: 'left',
+    name: 'check_out',
   },
 ];
 export const timeData = [

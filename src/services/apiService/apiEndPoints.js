@@ -5,7 +5,18 @@ export const LOGIN = '/login/';
 //GET
 export const HR_HOME = '/hr_home/';
 export const HR_GET_CLIENTS = '/hr_clients/';
-export const HR_GET_EMPLOYEES = '/hr_emps/';
+export const HR_EMPLOYEES = '/hr_emps/';
+export const HR_ADD_EMPLOYEES = '/hr_add_emp/';
+export const HR_ADD_ClIENT = '/hr_add_client/';
+export const HR_GET_EMP_PROFILE = '/hr_emp_prof/';
+export const HR_GET_CLIENT_PROFILE = '/hr_client_prof/';
+export const HR_GET_EMP_ATTENDENCE = '/hr_empattendance/';
+export const HR_GET_EMP_TIME_AND_LEAVES = '/hr_emp_t&l/';
+export const HR_ADD_EMP_ASSET = '/hr_add_asset/';
+export const HR_UPDATE_EMP_INFO = '/hr_update_empinfo/';
+export const HR_UPDATE_EMP_CREDS = '/hr_update_empcred/';
+export const HR_COMPANY_CONTRACTS = '/hr_compcontract/';
+export const HR_OFF_SHORE_CONTRACTS = '/hr_offscontract/';
 
 // Employees
 

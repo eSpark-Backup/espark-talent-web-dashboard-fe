@@ -29,17 +29,17 @@ export const contractFormHrPortal = [
   {
     title: 'Contract name',
     placeholder: 'Enter contract name',
-    name: 'contractName',
+    name: 'contract_name',
   },
   {
     title: 'Client ID',
     placeholder: 'Enter client Id',
-    name: 'clientId',
+    name: 'client_id',
   },
   {
     title: 'Employee ID',
     placeholder: 'Enter employee Id',
-    name: 'employeeId',
+    name: 'employee_id',
   },
   {
     title: 'Date',
@@ -53,6 +53,7 @@ export const contractFormHrPortal = [
     placeholder: 'Upload contract',
     prefixIcon: 'upload',
     type: 'file',
-    name: 'upload',
+    name: 'contract_doc',
+    accept: '.pdf',
   },
 ];

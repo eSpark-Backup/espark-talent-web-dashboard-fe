@@ -2,8 +2,9 @@ import React from 'react';
 import { Box, Button, Grid, Typography } from '@mui/material';
 import EmployeeDetailRow from './EmployeeDetailRow';
 import EmployeeRequestDetailRow from './EmployeeRequestDetailRow';
+import dayjs from 'dayjs';
 
-const AttendanceViewModal = ({ modalData, handleClose }) => {
+const AttendanceViewModal = ({ modalData, empData, handleClose }) => {
   const fontSize = {
     '@media (min-width: 280px) and (max-width: 400px)': {
       fontSize: '12px',
@@ -11,25 +12,26 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
   };
   const employeeData = [
     [
-      ['Employee ID:', 'es-00020'],
-      ['Company:', 'eSpark talent'],
-      ['Branch:', 'Jauhar, Block 1'],
-      ['Job title:', 'Web developer'],
+      ['Employee ID:', 'es-00020', 'employee_id'],
+      ['Company:', 'eSpark talent', 'company'],
+      ['Branch:', 'Jauhar, Block 1', 'location'],
+      ['Job title:', 'Web developer', 'job_title'],
     ],
     [
-      ['Name:', 'Bilal Khan'],
-      ['Location:', 'Karachi, Pakistan'],
-      ['Department:', 'Software'],
-      ['Joining date:', 'Oct26,2021'],
+      ['Name:', 'Bilal Khan', 'employee_name'],
+      ['Location:', 'Karachi, Pakistan', 'location'],
+      ['Department:', 'Software', 'department'],
+      ['Joining date:', 'Oct26,2021', 'joining_date', 'date'],
     ],
   ];
   const attendanceData = [
-    ['Date:', 'November 1, 2023'],
-    ['Expected check in:', '10:00 AM'],
-    ['Check in time:', modalData?.checkIn],
-    ['Expected check out:', '07:00 PM'],
-    ['Check out time:', modalData?.checkOut],
+    ['Date:', 'November 1, 2023', 'date', 'date'],
+    ['Expected check in:', '10:00 AM', 'expect_check_in'],
+    ['Check in time:', modalData?.checkIn, 'check_in'],
+    ['Expected check out:', '07:00 PM', 'expect_check_out'],
+    ['Check out time:', modalData?.checkOut, 'check_out'],
   ];
+  console.log({ modalData, empData });
   return (
     <Box
       sx={{
@@ -97,7 +99,11 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
                         darkBack={!(rowIndex % 2)}
                         key={rowIndex}
                         label={row[0]}
-                        value={row[1]}
+                        value={
+                          row[3] === 'date'
+                            ? dayjs(empData[row[2]]).format('MMMDD, YYYY')
+                            : empData[row[2]]
+                        }
                         fontSize={fontSize}
                       />
                     ))}
@@ -118,7 +124,12 @@ const AttendanceViewModal = ({ modalData, handleClose }) => {
             darkBack={!(dataIndex % 2)}
             key={dataIndex}
             label={data[0]}
-            value={data[1]}
+            value={
+              data[3] === 'date'
+                ? dayjs(modalData[data[2]]).format('MMMM DD, YYYY') ||
+                  dayjs(empData[data[2]]).format('MMMM DD, YYYY')
+                : modalData[data[2]] || empData[data[2]]
+            }
           />
         ))}
       </Box>

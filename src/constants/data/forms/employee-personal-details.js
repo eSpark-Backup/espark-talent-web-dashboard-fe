@@ -4,19 +4,19 @@ export const personalDetailsForm = [
   {
     title: 'Employee name',
     placeholder: 'John Doe',
-    name: 'employeeName',
+    name: 'employee_name',
   },
   {
     title: 'Employee ID',
     placeholder: 'eS000020',
-    name: 'employeeId',
+    name: 'employee_id',
   },
   {
     title: 'Birth Date',
     placeholder: 'DD-MM-YYYY',
     suffixIcon: 'calender',
     type: 'date',
-    name: 'dateOfBirth',
+    name: 'dob',
   },
   {
     title: 'Gender',
@@ -32,36 +32,36 @@ export const personalDetailsForm = [
       },
     ],
   },
-  {
-    title: 'Email',
-    placeholder: 'Enter email',
-    name: 'email',
-  },
-  {
-    title: 'Team',
-    placeholder: 'johndoe@1123.com',
-    name: 'team',
-  },
+  // {
+  //   title: 'Email',
+  //   placeholder: 'Enter email',
+  //   name: 'email',
+  // },
+  // {
+  //   title: 'Team',
+  //   placeholder: 'johndoe@1123.com',
+  //   name: 'team',
+  // },
   {
     title: 'Job title',
     placeholder: 'Select job',
     type: 'select',
     nested: true,
     options: jobTitles,
-    name: 'jobTitle',
+    name: 'job_title',
   },
   {
     title: 'Joining Date',
     placeholder: 'DD-MM-YYYY',
     suffixIcon: 'calender',
     type: 'date',
-    name: 'dateOfJoining',
+    name: 'joining_date',
   },
 
   {
     title: 'Marital status',
     placeholder: 'Select',
-    name: 'maritalStatus',
+    name: 'marital_status',
     type: 'select',
     defaultValue: 'Married',
 

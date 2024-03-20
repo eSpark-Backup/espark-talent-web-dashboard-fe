@@ -1,9 +1,11 @@
 import * as Yup from 'yup';
 
 export const assetFormSchema = Yup.object({
-  gadgetName: Yup.string().required('Required'),
-  assetId: Yup.string().required('Required'),
-  dateOfBirth: Yup.string().required('Required'),
-  assetName: Yup.string().required('Required'),
-  email: Yup.string().email('Invalid email address').required('Required'),
+  gadget: Yup.string().required('Required'),
+  asset_id: Yup.string().required('Required'),
+  assigned_date: Yup.string().required('Required'),
+  assignee_name: Yup.string().required('Required'),
+  assignee_email: Yup.string()
+    .email('Invalid email address')
+    .required('Required'),
 });

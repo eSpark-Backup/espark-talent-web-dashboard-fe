@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Box, Button, Grid, Modal, Typography } from '@mui/material';
 import { useFormik } from 'formik';
 
@@ -6,9 +6,40 @@ import { EDIT_MODAL } from '@/src/constants/employeeProfile';
 import FormInput from '../form/ui-elements/FormInput';
 import { assetForm } from '@/src/constants/data/forms/asset-form';
 import { assetFormSchema } from '../form/schemas/assetForm';
+import { useMutation } from '@tanstack/react-query';
+import { HR_ADD_EMP_ASSET } from '@/src/services/apiService/apiEndPoints';
+import { api } from '@/src/services/apiService';
+import dayjs from 'dayjs';
+import { addEmpAsset } from '@/src/redux/slices/hrSlices/employeeSlice';
+import { useDispatch } from 'react-redux';
 
-const AssetForm = ({ onClose, open }) => {
-  const [formData, setFormData] = useState({});
+const AssetForm = ({ onClose, open, data }) => {
+  console.log({ data });
+  // const [formData, setFormData] = useState({});
+  const dispatch = useDispatch();
+  const { mutate } = useMutation({
+    mutationFn: async (data) => {
+      return api.postJSONData(`${HR_ADD_EMP_ASSET}`, data);
+    },
+    onSuccess: ({ data }) => {
+      console.log({ data, values });
+      const reformedData = {
+        ...values,
+        assignee: [
+          '/icons/AssigneeAvatar.svg',
+          values?.assignee_name,
+          values?.assignee_email,
+        ],
+        action: ['Delete'],
+      };
+      dispatch(addEmpAsset(reformedData));
+      onClose();
+    },
+    onError: (err) => {
+      // onClose();
+      console.log({ err: err.message, name: err.name, stack: err.stack });
+    },
+  });
   const {
     handleSubmit,
     values,
@@ -22,17 +53,19 @@ const AssetForm = ({ onClose, open }) => {
     validationSchema: assetFormSchema,
     enableReinitialize: true,
     onSubmit: (formValues) => {
-      console.log({ formValues });
+      const reformedData = {
+        ...formValues,
+        employee_id: data?.email,
+        assigned_date: dayjs(formValues.assigned_date).format(
+          'YYYY-MM-DDTHH:mm:ss.SSS[Z]'
+        ),
+      };
+      console.log({ reformedData });
+      mutate(reformedData);
     },
     validateOnChange: false,
     validateOnBlur: false,
   });
-  const handleData = (name, value) => {
-    setFormData({ ...formData, [name]: value });
-  };
-  useEffect(() => {
-    console.log('form', formData);
-  }, [formData]);
   return (
     <Modal
       open={open}
@@ -134,7 +167,7 @@ const AssetForm = ({ onClose, open }) => {
                       md={12}
                       lg={12}
                       fields={fields}
-                      handleData={handleData}
+                      // handleData={handleData}
                     />
                   </Grid>
                   {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Box, Button, Grid, Modal, Typography } from '@mui/material';
 
 import { EDIT_MODAL } from '@/src/constants/employeeProfile';
@@ -6,9 +6,28 @@ import { useFormik } from 'formik';
 import FormInput from '../form/ui-elements/FormInput';
 import { personalDetailsForm } from '@/src/constants/data/forms/employee-personal-details';
 import { employeePersonalDataSchema } from '../form/schemas/employeePersonalDetails';
+import { useMutation } from '@tanstack/react-query';
+import { api } from '@/src/services/apiService';
+import { HR_UPDATE_EMP_INFO } from '@/src/services/apiService/apiEndPoints';
+import { useParams } from 'next/navigation';
 
-const EditPersonalModal = ({ onClose, handleEditProfileModal }) => {
-  const [formData, setFormData] = useState({});
+const EditPersonalModal = ({ onClose, handleEditProfileModal, data }) => {
+  const params = useParams();
+  const { mutate } = useMutation({
+    mutationFn: async (data) => {
+      return api.updateJSONData(`${HR_UPDATE_EMP_INFO}/?id=${params.id}`, data);
+    },
+    onSuccess: ({ data }) => {
+      console.log({ data });
+      // dispatch(deleteClientHiringRequestSuccess(modalData?.id));
+      onClose();
+    },
+    onError: (err) => {
+      // dispatch(deleteClientHiringRequestFailed());
+      onClose();
+      console.log({ err: err.message, name: err.name, stack: err.stack });
+    },
+  });
   const {
     handleSubmit,
     values,
@@ -18,21 +37,28 @@ const EditPersonalModal = ({ onClose, handleEditProfileModal }) => {
     setFieldError,
     setErrors,
   } = useFormik({
-    initialValues: {},
+    initialValues: {
+      employee_name: data?.employee_name || '',
+      employee_id: data?.employee_id || '',
+      dob: data?.dob || '',
+      gender: data?.gender || '',
+      role: data?.role || '',
+      joining_date: data?.joining_date || '',
+      job_title: data?.job_title || '',
+      marital_status: data?.marital_status || '',
+    },
     validationSchema: employeePersonalDataSchema,
     enableReinitialize: true,
     onSubmit: (formValues) => {
       console.log({ formValues });
+      mutate(formValues);
     },
     validateOnChange: false,
     validateOnBlur: false,
   });
-  const handleData = (name, value) => {
-    setFormData({ ...formData, [name]: value });
-  };
   useEffect(() => {
-    console.log('form', formData);
-  }, [formData]);
+    console.log({ data });
+  }, []);
   return (
     <Modal
       open={handleEditProfileModal}
@@ -138,7 +164,6 @@ const EditPersonalModal = ({ onClose, handleEditProfileModal }) => {
                       md={12}
                       lg={12}
                       fields={fields}
-                      handleData={handleData}
                     />
                   </Grid>
                   {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>}

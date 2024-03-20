@@ -7,8 +7,27 @@ import {
 } from '@/src/constants/data/tables/hr/employeeProfileClient';
 import { a11yProps } from '@/src/utils/tabs';
 import AppTable from '../appTable/AppTable';
+import { useQuery } from '@tanstack/react-query';
+import { HR_GET_EMP_PROFILE } from '@/src/services/apiService/apiEndPoints';
+import { api } from '@/src/services/apiService';
+import { useParams } from 'next/navigation';
 
 const Client = () => {
+  const params = useParams();
+  const { data, isLoading } = useQuery({
+    staleTime: 10000,
+    queryKey: ['employee-get-client'],
+    queryFn: async () => {
+      return api
+        .getData(`${HR_GET_EMP_PROFILE}?id=${params.id}&tab=client`)
+        .then(({ data }) => {
+          return data || [];
+        })
+        .catch((err) => {
+          console.log({ err });
+        });
+    },
+  });
   const [currentTab, setCurrentTab] = useState({
     label: 'Active clients',
     val: 0,
@@ -38,6 +57,7 @@ const Client = () => {
       column: tabs[newValue].column,
     });
   };
+  if (isLoading) return 'Loading...';
   return (
     <>
       <Box
@@ -77,7 +97,7 @@ const Client = () => {
         <AppTable
           currentTab={currentTab}
           column={currentTab.column}
-          data={currentTab.data}
+          data={data}
           noPagination
         />
       </Box>

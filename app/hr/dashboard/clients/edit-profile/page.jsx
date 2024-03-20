@@ -6,10 +6,14 @@ import Step from '@/src/components/form/step/Step';
 import Breadcrumb from '@/src/components/form/step/Breadcrumb';
 import { clientEditForm } from '@/src/constants/data/forms/edit-client-info';
 import { editClientSchema } from '@/src/components/form/schemas/editClient';
+import { useSelector } from 'react-redux';
+import { api } from '@/src/services/apiService';
+import { HR_GET_CLIENT_PROFILE } from '@/src/services/apiService/apiEndPoints';
 
-const AddEmployee = () => {
+const EditClient = () => {
   const [countries, setCountries] = useState([]);
   const [formData, setFormData] = useState({});
+  const { currentClient } = useSelector((state) => state?.hr?.clients);
   const fetchCountriesList = async () => {
     return await fetch(
       'https://restcountries.com/v3.1/all?fields=name,flags'
@@ -35,6 +39,33 @@ const AddEmployee = () => {
   useEffect(() => {
     console.log('form', formData);
   }, [formData]);
+  const getCountry = (country) => {
+    return (
+      countries.find(({ title }) => title === country) || {
+        flag: 'https://flagcdn.com/pk.svg',
+        title: 'Pakistan',
+      }
+    );
+  };
+  const defaultValues = {
+    ...currentClient,
+    // country: addEmployeeForm?.country || {
+    //   flag: 'https://flagcdn.com/pk.svg',
+    //   title: 'Pakistan',
+    // },
+    country: getCountry(currentClient?.country),
+  };
+  const getFinalData = (values) => {
+    const final = {
+      ...values,
+      country: values.country?.title,
+    };
+    console.log({ values, final });
+    return final;
+  };
+  const mutationFunction = (values) => {
+    return api.updateData(HR_GET_CLIENT_PROFILE, values);
+  };
   return (
     <Box>
       <Breadcrumb root="clients" title="Clients /" currentPage="Edit client" />
@@ -65,10 +96,16 @@ const AddEmployee = () => {
           editProfile
           countries={countries}
           handleData={handleData}
+          defaultValues={defaultValues}
+          isLastStep={true}
+          getFinalData={getFinalData}
+          mutationFunction={mutationFunction}
+          method="updateData"
+          endpoint={`${HR_GET_CLIENT_PROFILE}?id=${currentClient.id}`}
         />
       </Box>
     </Box>
   );
 };
 
-export default AddEmployee;
+export default EditClient;

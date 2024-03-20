@@ -14,6 +14,7 @@ const Profile = ({
   handleEmergencyModal,
   showEmergencyModal,
   handleEditProfileModal,
+  data,
 }) => {
   return (
     <Box
@@ -67,6 +68,7 @@ const Profile = ({
               <EditPersonalModal
                 handleEditProfileModal={handleEditProfileModal}
                 onClose={handleCloseModal}
+                data={data}
               />
             )}
           </Box>
@@ -75,7 +77,7 @@ const Profile = ({
               display: 'flex',
             }}
           >
-            <PersonalInformation />
+            <PersonalInformation data={data} />
             <Box
               sx={{
                 display: { xs: 'none', md: 'flex' },
@@ -128,10 +130,11 @@ const Profile = ({
               <EditEmergencyModal
                 handleEmergencyModal={handleEmergencyModal}
                 onClose={handleCloseModal}
+                data={data}
               />
             )}
           </Box>
-          <EmergencyContact />
+          <EmergencyContact data={data} />
         </Box>
       </Box>
     </Box>

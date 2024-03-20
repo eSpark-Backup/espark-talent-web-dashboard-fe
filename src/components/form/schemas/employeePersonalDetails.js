@@ -1,13 +1,14 @@
 import * as Yup from 'yup';
 
 export const employeePersonalDataSchema = Yup.object({
-  employeeName: Yup.string().required('Required'),
-  employeeId: Yup.string().required('Required'),
-  dateOfBirth: Yup.string().required('Required'),
-  gender: Yup.string().required('Required'),
-  email: Yup.string().email('Invalid email address').required('Required'),
-  maritalStatus: Yup.string().required('Required'),
-  team: Yup.string().email('Invalid email address').required('Required'),
-  dateOfJoining: Yup.string().required('Required'),
-  jobTitle: Yup.string().required('Required'),
+  employee_name: Yup.string(),
+  employee_id: Yup.string(),
+  dob: Yup.string(),
+  gender: Yup.string(),
+  // email: Yup.string().email('Invalid email address'),
+  role: Yup.string(),
+  // team: Yup.string().email('Invalid email address'),
+  joining_date: Yup.string(),
+  job_title: Yup.string(),
+  marital_status: Yup.string(),
 });

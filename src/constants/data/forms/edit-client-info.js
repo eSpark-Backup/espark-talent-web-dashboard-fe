@@ -2,17 +2,17 @@ export const clientEditForm = [
   {
     title: 'First name',
     placeholder: 'Enter first name',
-    name: 'firstName',
+    name: 'first_name',
   },
   {
     title: 'Last name',
     placeholder: 'Enter first name',
-    name: 'lastName',
+    name: 'last_name',
   },
   {
     title: 'Company',
     placeholder: 'eSparkTalent',
-    name: 'company',
+    name: 'company_name',
   },
   {
     title: 'Email',
@@ -22,7 +22,7 @@ export const clientEditForm = [
   {
     title: 'Phone number',
     placeholder: 'Enter phone number',
-    name: 'phoneNumber',
+    name: 'phone_number',
   },
   {
     title: 'Join date',
@@ -46,7 +46,7 @@ export const clientEditForm = [
   {
     title: 'Picture',
     placeholder: 'john.png',
-    name: 'picture',
+    name: 'image',
     prefixIcon: 'upload',
     type: 'file',
   },

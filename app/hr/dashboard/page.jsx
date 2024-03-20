@@ -5,8 +5,10 @@ import { Box, Grid } from '@mui/material';
 import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
 import HrAccess from '@/src/components/dashboard/hrAccess';
 import { DASHBOARD_DATA } from '@/public/images/dashboard/constants/Dashboard';
+import { useSelector } from 'react-redux';
 
 const Dashboard = () => {
+  const { homeData } = useSelector((state) => state?.hr?.home);
   return (
     <>
       <Grid container spacing={3}>
@@ -17,6 +19,7 @@ const Dashboard = () => {
             }}
           >
             <DashboardHeading
+              title={homeData.user}
               dashboardDescription={DASHBOARD_DATA?.dashboard}
             />
           </Box>
