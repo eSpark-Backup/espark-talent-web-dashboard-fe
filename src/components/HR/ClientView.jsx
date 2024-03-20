@@ -15,7 +15,15 @@ import { CLIENT_VIEW } from '@/src/constants/ClientProfile';
 // import { getClientsData } from '@/src/redux/slices/hrSlices/clientSlice';
 // import { useDispatch } from 'react-redux';
 
-const ClientView = ({ status, id, name, designation = '', search }) => {
+const ClientView = ({
+  status,
+  id,
+  name,
+  designation = '',
+  search,
+  data,
+  isLoading,
+}) => {
   // const dispatch = useDispatch();
   const router = useRouter();
   const [anchorEl, setAnchorEl] = useState(null);
@@ -246,163 +254,170 @@ const ClientView = ({ status, id, name, designation = '', search }) => {
         rowGap={3}
         spacing={5}
       >
-        {allEmployees
-          ?.filter((eachItem) => {
-            if (status === 'All') {
-              return true;
-            } else if (status === 'Active') {
-              return eachItem.status === 'Active';
-            } else {
-              return eachItem.status === 'Inactive';
-            }
-          })
-          .map((eachItem, index) => (
-            <Grid
-              item
-              xs={12}
-              sm={6}
-              md={4}
-              lg={isBetween1400And1200 ? 4 : 3}
-              key={index}
-            >
-              <Box
-                sx={{
-                  width: '100%',
-                  minHeight: '200px',
-                  backgroundColor: '#F6F6F6',
-                  borderRadius: '5px',
-                  boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
-                  padding: '20px 15px 10px 15px',
-                  cursor: 'pointer',
-                  '@media (min-width: 900px) and (max-width: 1480px)': {
-                    minHeight: '250px',
-                  },
-                }}
-                onClick={() =>
-                  router.push('/hr/dashboard/clients/client-profile')
+        {isLoading
+          ? 'Loading...'
+          : data.length
+          ? data
+              ?.filter((eachItem) => {
+                if (status === 'All') {
+                  return true;
+                } else if (status === 'Active') {
+                  return eachItem.status === 'Active';
+                } else {
+                  return eachItem.status === 'Inactive';
                 }
-              >
-                <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+              })
+              .map((eachItem, index) => (
+                <Grid
+                  item
+                  xs={12}
+                  sm={6}
+                  md={4}
+                  lg={isBetween1400And1200 ? 4 : 3}
+                  key={index}
+                >
                   <Box
                     sx={{
-                      display: 'flex',
-                      columnGap: '5px',
-                      height: '20px',
-                      justifyContent: 'center',
-                      alignItems: 'center',
+                      width: '100%',
+                      minHeight: '200px',
+                      backgroundColor: '#F6F6F6',
+                      borderRadius: '5px',
+                      boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
+                      padding: '20px 15px 10px 15px',
+                      cursor: 'pointer',
+                      '@media (min-width: 900px) and (max-width: 1480px)': {
+                        minHeight: '250px',
+                      },
                     }}
+                    onClick={() =>
+                      router.push(`/hr/dashboard/clients/${eachItem.id}`)
+                    }
                   >
                     <Box
-                      sx={{
-                        width: '5px',
-                        height: '5px',
-                        borderRadius: '50%',
-                        backgroundColor:
-                          eachItem.status === 'Active' ? '#068987' : '#F00',
-                      }}
-                    ></Box>
-                    <Typography
-                      sx={{
-                        color:
-                          eachItem.status === 'Active' ? '#068987' : '#F00',
-                        fontSize: '12px',
-                      }}
+                      sx={{ display: 'flex', justifyContent: 'space-between' }}
                     >
-                      {eachItem.status}
-                    </Typography>
-                  </Box>
-
-                  <Box
-                    sx={{
-                      display: 'flex',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      flexDirection: 'column',
-                      '@media (min-width: 1200px) and (max-width: 1450px)': {
-                        marginTop: '25px',
-                        mr: '35px',
-                      },
-                      '@media (min-width: 900px) and (max-width: 980px)': {
-                        marginTop: '25px',
-                        mr: '35px',
-                      },
-                    }}
-                  >
-                    <Image
-                      src={'/icons/Employee.svg'}
-                      width={100}
-                      height={30}
-                    />
-                    <Typography
-                      sx={{
-                        color: '#171717',
-                        fontSize: '16px',
-                        fontWeight: '400',
-                        textAlign: 'center',
-                      }}
-                    >
-                      {eachItem.name}
-                    </Typography>
-                    <Typography
-                      sx={{
-                        color: '#595959',
-                        fontSize: '16px',
-                        textAlign: 'center',
-                      }}
-                    >
-                      {eachItem.role}
-                    </Typography>
-                  </Box>
-
-                  <Box
-                    sx={{
-                      width: '30px',
-                    }}
-                  >
-                    <Image
-                      width={20}
-                      height={20}
-                      src={`/icons/ellipse.svg`}
-                      style={{ cursor: 'pointer', maxWidth: '100%' }}
-                      onClick={handleClick}
-                    />
-                    <Menu
-                      id="demo-positioned-menu"
-                      aria-labelledby="demo-positioned-button"
-                      anchorEl={anchorEl}
-                      open={open}
-                      onClose={handleClose}
-                      anchorOrigin={{
-                        vertical: 'top',
-                        horizontal: 'left',
-                      }}
-                      transformOrigin={{
-                        vertical: 'top',
-                        horizontal: 'right',
-                      }}
-                      sx={{ marginTop: '20px' }}
-                    >
-                      <MenuItem onClick={handleOpenRemove}>Remove</MenuItem>
-                      <MenuItem
-                        onClick={() =>
-                          router.push('/hr/dashboard/clients/add-client')
-                        }
+                      <Box
+                        sx={{
+                          display: 'flex',
+                          columnGap: '5px',
+                          height: '20px',
+                          justifyContent: 'center',
+                          alignItems: 'center',
+                        }}
                       >
-                        {CLIENT_VIEW?.active}
-                      </MenuItem>
-                      <MenuItem
-                        onClick={() =>
-                          router.push('/hr/dashboard/clients/add-client')
-                        }
+                        <Box
+                          sx={{
+                            width: '5px',
+                            height: '5px',
+                            borderRadius: '50%',
+                            backgroundColor: eachItem.active
+                              ? '#068987'
+                              : '#F00',
+                          }}
+                        ></Box>
+                        <Typography
+                          sx={{
+                            color: eachItem.active ? '#068987' : '#F00',
+                            fontSize: '12px',
+                          }}
+                        >
+                          {eachItem.active ? 'Active' : 'Inactive'}
+                        </Typography>
+                      </Box>
+
+                      <Box
+                        sx={{
+                          display: 'flex',
+                          justifyContent: 'center',
+                          alignItems: 'center',
+                          flexDirection: 'column',
+                          '@media (min-width: 1200px) and (max-width: 1450px)':
+                            {
+                              marginTop: '25px',
+                              mr: '35px',
+                            },
+                          '@media (min-width: 900px) and (max-width: 980px)': {
+                            marginTop: '25px',
+                            mr: '35px',
+                          },
+                        }}
                       >
-                        {CLIENT_VIEW?.inActive}
-                      </MenuItem>
-                    </Menu>
+                        <Image
+                          src={'/icons/Employee.svg'}
+                          width={100}
+                          height={30}
+                        />
+                        <Typography
+                          sx={{
+                            color: '#171717',
+                            fontSize: '16px',
+                            fontWeight: '400',
+                            textAlign: 'center',
+                          }}
+                        >
+                          {eachItem.name}
+                        </Typography>
+                        <Typography
+                          sx={{
+                            color: '#595959',
+                            fontSize: '16px',
+                            textAlign: 'center',
+                          }}
+                        >
+                          {eachItem.company_name}
+                        </Typography>
+                      </Box>
+
+                      <Box
+                        sx={{
+                          width: '30px',
+                        }}
+                      >
+                        <Image
+                          width={20}
+                          height={20}
+                          src={`/icons/ellipse.svg`}
+                          style={{ cursor: 'pointer', maxWidth: '100%' }}
+                          onClick={handleClick}
+                        />
+                        <Menu
+                          id="demo-positioned-menu"
+                          aria-labelledby="demo-positioned-button"
+                          anchorEl={anchorEl}
+                          open={open}
+                          onClose={handleClose}
+                          anchorOrigin={{
+                            vertical: 'top',
+                            horizontal: 'left',
+                          }}
+                          transformOrigin={{
+                            vertical: 'top',
+                            horizontal: 'right',
+                          }}
+                          sx={{ marginTop: '20px' }}
+                        >
+                          <MenuItem onClick={handleOpenRemove}>Remove</MenuItem>
+                          <MenuItem
+                            onClick={() =>
+                              router.push('/hr/dashboard/clients/add-client')
+                            }
+                          >
+                            {CLIENT_VIEW?.active}
+                          </MenuItem>
+                          <MenuItem
+                            onClick={() =>
+                              router.push('/hr/dashboard/clients/add-client')
+                            }
+                          >
+                            {CLIENT_VIEW?.inActive}
+                          </MenuItem>
+                        </Menu>
+                      </Box>
+                    </Box>
                   </Box>
-                </Box>
-              </Box>
-            </Grid>
-          ))}
+                </Grid>
+              ))
+          : 'No Data Available'}
       </Grid>
       <AppConfirmationMadal
         title={REMOVE_MODAL?.remove}

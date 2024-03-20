@@ -1,12 +1,26 @@
 import * as Yup from 'yup';
 
-export const emergencyContactsSchema = Yup.object({
-  name1: Yup.string().required('Required'),
-  name2: Yup.string().required('Required'),
-  relation1: Yup.string().required('Required'),
-  relation2: Yup.string().required('Required'),
-  phoneNumber1: Yup.string().required('Required'),
-  phoneNumber2: Yup.string().required('Required'),
-  phoneNumber3: Yup.string(),
-  phoneNumber4: Yup.string(),
+export const emergency_contact_schema = Yup.object().shape({
+  emergency_contact: Yup.object().shape({
+    primary: Yup.object().shape({
+      name: Yup.string().required('Primary contact name is required'),
+      relation: Yup.string().required(
+        'Primary contact relationship is required'
+      ),
+      phone_number: Yup.number().required(
+        'Primary contact phone number is required'
+      ),
+      phone_number2: Yup.number(),
+    }),
+    secondary: Yup.object().shape({
+      name: Yup.string().required('Secondary contact name is required'),
+      relation: Yup.string().required(
+        'Secondary contact relationship is required'
+      ),
+      phone_number: Yup.number().required(
+        'Secondary contact phone number is required'
+      ),
+      phone_number2: Yup.number(),
+    }),
+  }),
 });

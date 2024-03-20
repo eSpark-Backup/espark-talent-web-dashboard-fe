@@ -1,36 +1,58 @@
-export const formEmergencyContact = [
+export const emergency_contact_form = [
   {
-    title: 'Name',
-    placeholder: 'John Doe',
-    name: 'name1',
+    contactTitle: 'Primary Contact',
+    type: 'primary',
+    fields: [
+      {
+        title: 'Name',
+        placeholder: 'John Doe',
+        name: 'name',
+      },
+      {
+        title: 'Relationship',
+        placeholder: 'Father',
+        name: 'relation',
+      },
+      {
+        title: 'Phone',
+        placeholder: '0330012373',
+        name: 'phone_number',
+        suffixIconOutside: 'plus',
+      },
+      {
+        title: 'Phone 2',
+        placeholder: '0330012373',
+        name: 'phone_number2',
+        suffixIconOutside: 'minus',
+      },
+    ],
   },
   {
-    title: 'Relationship',
-    placeholder: 'Father',
-    name: 'relation1',
-  },
-  {
-    title: 'Phone',
-    placeholder: '0330012372',
-    name: 'phoneNumber1',
-    suffixIconOutside: 'plus',
-  },
-];
-export const formEmergencySecondaryContact = [
-  {
-    title: 'Name',
-    placeholder: 'John Doe',
-    name: 'name2',
-  },
-  {
-    title: 'Relationship',
-    placeholder: 'Father',
-    name: 'relation2',
-  },
-  {
-    title: 'Phone',
-    placeholder: '0330012373',
-    name: 'phoneNumber2',
-    suffixIconOutside: 'plus',
+    contactTitle: 'Secondary Contact',
+    type: 'secondary',
+    fields: [
+      {
+        title: 'Name',
+        placeholder: 'John Doe',
+        name: 'name',
+      },
+      {
+        title: 'Relationship',
+        placeholder: 'Father',
+        name: 'relation',
+      },
+      {
+        title: 'Phone',
+        placeholder: '0330012373',
+        name: 'phone_number',
+        suffixIconOutside: 'plus',
+      },
+      {
+        title: 'Phone2',
+        placeholder: '0330012373',
+        name: 'phone_number2',
+        suffixIconOutside: 'minus',
+      },
+    ],
   },
 ];

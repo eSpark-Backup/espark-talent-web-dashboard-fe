@@ -11,12 +11,12 @@ const formElements = [
   {
     title: 'First name',
     placeholder: 'Enter first name',
-    name: 'firstName',
+    name: 'first_name',
   },
   {
     title: 'Last name',
     placeholder: 'Enter first name',
-    name: 'lastName',
+    name: 'last_name',
   },
   {
     title: 'Gender',
@@ -35,14 +35,14 @@ const formElements = [
   {
     title: 'Date of birth',
     placeholder: 'DD-MM-YYYY',
-    name: 'dateOfBirth',
+    name: 'dob',
     suffixIcon: 'calender',
     type: 'date',
   },
   {
     title: 'Phone number',
     placeholder: 'Enter phone number',
-    name: 'phoneNumber',
+    name: 'phone_number',
   },
   {
     title: 'Email',
@@ -52,7 +52,7 @@ const formElements = [
   {
     title: 'Marital status',
     placeholder: 'Select',
-    name: 'maritalStatus',
+    name: 'marital_status',
     type: 'select',
     options: [
       {
@@ -73,14 +73,15 @@ const formElements = [
   {
     title: 'Emergency Contact',
     placeholder: 'Enter phone number',
-    name: 'emergencyContact',
+    name: 'emergency_no',
   },
   {
     title: 'Upload resume',
     placeholder: 'Upload resume',
-    name: 'uploadResume',
+    name: 'resume',
     prefixIcon: 'upload',
     type: 'file',
+    accept: '.pdf',
   },
 ];
 export const formElementsStep2 = [
@@ -131,7 +132,7 @@ const formElementsStep3 = [
     placeholder: 'DD-MM-YYYY',
     suffixIcon: 'calender',
     type: 'date',
-    name: 'joinDate',
+    name: 'joining_date',
   },
   {
     title: 'Designation',
@@ -151,7 +152,7 @@ const formElementsStep3 = [
         label: 'Intern',
       },
     ],
-    name: 'designation',
+    name: 'role',
   },
   {
     title: 'Deparment',
@@ -159,7 +160,7 @@ const formElementsStep3 = [
     type: 'select',
     nested: true,
     options: jobTitles,
-    name: 'department',
+    name: 'job_title',
   },
   {
     title: 'Company',
@@ -188,7 +189,7 @@ const formElementsStep4 = [
   {
     title: 'Checkin time',
     placeholder: '--:-- --',
-    name: 'checkinTime',
+    name: 'check_in',
     type: 'time',
     col: 6,
     suffixIcon: 'ClockIcon',
@@ -196,7 +197,7 @@ const formElementsStep4 = [
   {
     title: 'Checkout time',
     placeholder: '--:-- --',
-    name: 'checkoutTime',
+    name: 'check_out',
     type: 'time',
     col: 6,
     suffixIcon: 'ClockIcon',
@@ -205,14 +206,14 @@ const formElementsStep4 = [
   {
     title: 'Casual Leaves',
     placeholder: 'Enter password',
-    name: 'casualLeaves',
+    name: 'casual_leaves',
     // col: 3,
     type: 'add-sub-counter',
   },
   {
     title: 'Sick Leaves',
     placeholder: '0',
-    name: 'sickLeaves',
+    name: 'sick_leaves',
     // col: 3,
     type: 'add-sub-counter',
     defaultValue: 0,
@@ -220,7 +221,7 @@ const formElementsStep4 = [
   {
     title: 'Annual Leaves',
     placeholder: '0',
-    name: 'annualLeaves',
+    name: 'annual_leaves',
     // col: 3,
     type: 'add-sub-counter',
     defaultValue: 0,
@@ -228,7 +229,7 @@ const formElementsStep4 = [
   {
     title: 'Hajj Leaves',
     placeholder: '0',
-    name: 'hajjLeaves',
+    name: 'hajj_leaves',
     // col: 3,
     type: 'add-sub-counter',
     defaultValue: 0,
@@ -236,7 +237,7 @@ const formElementsStep4 = [
   {
     title: 'Paid Leaves',
     placeholder: '0',
-    name: 'paidLeaves',
+    name: 'paid_leaves',
     // col: 3,
     type: 'add-sub-counter',
     defaultValue: 0,
@@ -244,7 +245,7 @@ const formElementsStep4 = [
   {
     title: 'Unpaid Leaves',
     placeholder: '0',
-    name: 'unpaidLeaves',
+    name: 'unpaid_leaves',
     // col: 3,
     type: 'add-sub-counter',
     defaultValue: 0,
@@ -254,7 +255,7 @@ const formElementsStep5 = [
   {
     title: 'Employee ID',
     placeholder: 'Enter employee id',
-    name: 'employeeId',
+    name: 'employee_id',
   },
   {
     title: 'Password',
@@ -265,7 +266,7 @@ const formElementsStep5 = [
   {
     title: 'Confirm password',
     placeholder: 'Confirm password',
-    name: 'confirmPassword',
+    name: 'confirm_password',
     type: 'password',
   },
 ];

@@ -3,66 +3,29 @@ import { Box, Button, Grid, Modal, Typography } from '@mui/material';
 import { useFormik } from 'formik';
 
 import { EDIT_MODAL } from '@/src/constants/employeeProfile';
-import {
-  formEmergencyContact as initialFormEmergencyContact,
-  formEmergencySecondaryContact as initialFormEmergencySecondaryContact,
-} from '@/src/constants/data/forms/emergency-contacts';
-import { emergencyContactsSchema } from '../form/schemas/emergencyContact';
+import { emergency_contact_form } from '@/src/constants/data/forms/emergency-contacts';
+import { emergency_contact_schema } from '../form/schemas/emergencyContact';
 import FormInput from '../form/ui-elements/FormInput';
+import { useMutation } from '@tanstack/react-query';
+import { api } from '@/src/services/apiService';
+import { HR_UPDATE_EMP_INFO } from '@/src/services/apiService/apiEndPoints';
+import { useParams } from 'next/navigation';
 
-const EditEmergencyModal = ({ onClose, handleEmergencyModal }) => {
-  const [showSecondBoxPrimary, setShowSecondBoxPrimary] = useState(false);
-  const [clickedIndexPrimary, setClickedIndexPrimary] = useState(null);
-  const [showSecondBoxSecondary, setShowSecondBoxSecondary] = useState(false);
-  const [clickedIndexSecondary, setClickedIndexSecondary] = useState(null);
-  const [formEmergencyContact, setFormEmergencyContact] = useState([]);
-  const [formEmergencySecondaryContact, setFormEmergencySecondaryContact] =
-    useState([]);
-  useEffect(() => {
-    setFormEmergencyContact(initialFormEmergencyContact);
-    setFormEmergencySecondaryContact(initialFormEmergencySecondaryContact);
-  }, []);
-  console.log(setClickedIndexPrimary);
-  console.log(setClickedIndexSecondary);
-  const handleToggleBoxPrimary = () => {
-    if (showSecondBoxPrimary) {
-      setFormEmergencyContact((prevFields) => prevFields.slice(0, -1));
-    } else {
-      addPrimaryNewField(formEmergencyContact, setFormEmergencyContact);
-    }
-    setShowSecondBoxPrimary((prev) => !prev);
-  };
-  const handleToggleBoxSecondary = () => {
-    if (showSecondBoxSecondary) {
-      setFormEmergencySecondaryContact((prevFields) => prevFields.slice(0, -1));
-    } else {
-      addSecondaryNewField(
-        formEmergencySecondaryContact,
-        setFormEmergencySecondaryContact
-      );
-    }
-    setShowSecondBoxSecondary((prev) => !prev);
-  };
-  const addPrimaryNewField = (formFields, setFormFields) => {
-    const newField = {
-      title: 'Phone',
-      placeholder: '0330012374',
-      name: 'phoneNumber3',
-      suffixIconOutside: 'minus',
-    };
-    console.log(formFields);
-    setFormFields((prevFields) => [...prevFields, newField]);
-  };
-  const addSecondaryNewField = (formFields, setFormFields) => {
-    const newField = {
-      title: 'Phone',
-      placeholder: '0330012379',
-      name: 'phoneNumber4',
-      suffixIconOutside: 'minus',
-    };
-    console.log(formFields);
-    setFormFields((prevFields) => [...prevFields, newField]);
-  };
+const EditEmergencyModal = ({ onClose, handleEmergencyModal, data }) => {
+  const params = useParams();
+  const { mutate } = useMutation({
+    mutationFn: async (data) => {
+      return api.updateJSONData(`${HR_UPDATE_EMP_INFO}/?id=${params.id}`, data);
+    },
+    onSuccess: ({ data }) => {
+      console.log({ data });
+      // onClose();
+    },
+    onError: (err) => {
+      // onClose();
+      console.log({ err: err.message, name: err.name, stack: err.stack });
+    },
+  });
   const {
     handleSubmit,
     values,
@@ -72,84 +35,50 @@ const EditEmergencyModal = ({ onClose, handleEmergencyModal }) => {
     setFieldError,
     setErrors,
   } = useFormik({
-    initialValues: {},
-    validationSchema: emergencyContactsSchema,
+    initialValues: {
+      emergency_contact: {
+        primary: {
+          name: data?.emergency_contact?.primary?.name || '',
+          relation: data?.emergency_contact?.primary?.relation || '',
+          phone_number: data?.emergency_contact?.primary?.phone_number || '',
+          phone_number2: data?.emergency_contact?.primary?.phone_number2 || '',
+        },
+        secondary: {
+          name: data?.emergency_contact?.secondary?.name || '',
+          relation: data?.emergency_contact?.secondary?.relation || '',
+          phone_number: data?.emergency_contact?.secondary?.phone_number || '',
+          phone_number2:
+            data?.emergency_contact?.secondary?.phone_number2 || '',
+        },
+      },
+    },
+    validationSchema: emergency_contact_schema,
     enableReinitialize: true,
     onSubmit: (formValues) => {
       console.log({ formValues });
+      mutate(formValues);
     },
     validateOnChange: false,
     validateOnBlur: false,
   });
-  const renderFormInputs = (
-    formFields,
-    showSecondBox,
-    clickedIndex,
-    handleToggleBox
-  ) => (
-    <>
-      {formFields.map(
-        (
-          {
-            label,
-            title,
-            placeholder,
-            errorText,
-            prefixIcon,
-            type,
-            suffixIcon,
-            options,
-            name,
-            nested,
-            fields,
-            suffixIconOutside,
-          },
-          formIndex
-        ) => (
-          <>
-            <Grid item xs={12} lg={10}>
-              <FormInput
-                key={formIndex}
-                label={label}
-                title={title}
-                placeholder={placeholder}
-                errorText={errorText}
-                prefixIcon={prefixIcon}
-                type={type}
-                suffixIcon={suffixIcon}
-                options={options}
-                name={name}
-                setFieldValue={setFieldValue}
-                value={values[name]}
-                error={errors[name]}
-                touched={touched}
-                setFieldError={setFieldError}
-                errors={errors}
-                setErrors={setErrors}
-                values={values}
-                nested={nested}
-                xs={12}
-                sm={12}
-                md={12}
-                lg={12}
-                fields={fields}
-                suffixIconOutside={
-                  formIndex === clickedIndex
-                    ? showSecondBox
-                      ? 'minus'
-                      : 'plus'
-                    : suffixIconOutside
-                }
-                onClick={() => handleToggleBox(formIndex)}
-              />
-            </Grid>
+  const [secPhoneList, setSecPhoneList] = useState([]);
+  const handleClickTogglePhoneNumber = (name, icon) => {
+    console.log({ name, icon });
+    if (icon === 'plus') {
+      if (secPhoneList.includes(`${name}2`)) return;
+      setSecPhoneList((prevState) => {
+        return [...prevState, `${name}2`];
+      });
+    } else if (icon === 'minus') {
+      setSecPhoneList((prevState) => {
+        return prevState.filter((str) => str !== name);
+      });
+    }
+  };
+  useEffect(() => {
+    console.log({ secPhoneList });
+  }, [secPhoneList]);
 
-            {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>}
-          </>
-        )
-      )}
-    </>
-  );
   return (
     <Modal
       open={handleEmergencyModal}
@@ -215,42 +144,75 @@ const EditEmergencyModal = ({ onClose, handleEmergencyModal }) => {
             }}
           >
             <Grid container>
-              <Grid item xs={12} md={6}>
-                <Typography
-                  sx={{
-                    fontSize: { xs: '14px', md: '16px' },
-                    fontWeight: 600,
-                    paddingBottom: '35px',
-                    marginLeft: '7px',
-                  }}
-                >
-                  {EDIT_MODAL?.primaryContact}
-                </Typography>
-                {renderFormInputs(
-                  formEmergencyContact,
-                  showSecondBoxPrimary,
-                  clickedIndexPrimary,
-                  handleToggleBoxPrimary
-                )}
-              </Grid>
-              <Grid item xs={12} md={6}>
-                <Typography
-                  sx={{
-                    fontSize: { xs: '14px', md: '16px' },
-                    fontWeight: 600,
-                    paddingBottom: '35px',
-                    marginLeft: '7px',
-                  }}
-                >
-                  {EDIT_MODAL?.secondaryContact}
-                </Typography>
-                {renderFormInputs(
-                  formEmergencySecondaryContact,
-                  showSecondBoxSecondary,
-                  clickedIndexSecondary,
-                  handleToggleBoxSecondary
-                )}
-              </Grid>
+              {emergency_contact_form.map(
+                ({ contactTitle, fields, type }, contactIndex) => (
+                  <Grid item xs={12} md={6} key={contactIndex}>
+                    <Typography
+                      sx={{
+                        fontSize: { xs: '14px', md: '16px' },
+                        fontWeight: 600,
+                        paddingBottom: '35px',
+                        marginLeft: '7px',
+                      }}
+                    >
+                      {contactTitle}
+                    </Typography>
+                    {fields?.map(
+                      (
+                        { title, placeholder, suffixIconOutside, name },
+                        fieldIndex
+                      ) => {
+                        return (
+                          <Grid item xs={12} lg={10} key={fieldIndex}>
+                            {(suffixIconOutside !== 'minus' ||
+                              (suffixIconOutside === 'minus' &&
+                                secPhoneList.includes(
+                                  `emergency_contact.${type}.${name}`
+                                ))) && (
+                              <FormInput
+                                title={title}
+                                placeholder={placeholder}
+                                name={`emergency_contact.${type}.${name}`}
+                                setFieldValue={setFieldValue}
+                                value={
+                                  values['emergency_contact']?.[type]?.[name] ||
+                                  ''
+                                }
+                                error={
+                                  errors['emergency_contact']?.[type]?.[name]
+                                }
+                                touched={
+                                  touched['emergency_contact']?.[type]?.[name]
+                                } // Access touched values by key
+                                setFieldError={setFieldError}
+                                errors={errors}
+                                setErrors={setErrors}
+                                values={values}
+                                xs={12}
+                                sm={12}
+                                md={12}
+                                lg={12}
+                                suffixIconOutside={
+                                  (suffixIconOutside !== 'plus' ||
+                                    (suffixIconOutside === 'plus' &&
+                                      !secPhoneList.includes(`${name}2`))) &&
+                                  suffixIconOutside
+                                }
+                                onClickTogglePhoneNumber={() =>
+                                  handleClickTogglePhoneNumber(
+                                    `emergency_contact.${type}.${name}`,
+                                    suffixIconOutside
+                                  )
+                                }
+                              />
+                            )}
+                          </Grid>
+                        );
+                      }
+                    )}
+                  </Grid>
+                )
+              )}
             </Grid>
             <Grid item p={'0 10px'} xs={12}>
               <Button

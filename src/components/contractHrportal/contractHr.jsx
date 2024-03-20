@@ -6,8 +6,42 @@ import { contractFormHrPortalSchema } from '../form/schemas/contractSignedForm';
 import { contractFormHrPortal } from '@/src/constants/data/forms/contract';
 import FormInput from '../form/ui-elements/FormInput';
 import { CONTRACT_SIGNED } from '@/src/constants/contractSigned';
+import { useMutation } from '@tanstack/react-query';
+import { addClientContract } from '@/src/redux/slices/hrSlices/contractSlice';
+import { useDispatch } from 'react-redux';
+import { api } from '@/src/services/apiService';
+import dayjs from 'dayjs';
 
-const AddContractHrPortalModal = ({ open, onClose }) => {
+const AddContractHrPortalModal = ({
+  open,
+  onClose,
+  contractType,
+  currentTab,
+  endPoint,
+}) => {
+  const dispatch = useDispatch();
+  const { mutate } = useMutation({
+    mutationFn: async (formVals) => {
+      let url;
+      if (currentTab === 0) {
+        url = `${endPoint}?status=${contractType}`;
+      } else {
+        url = `${endPoint}`;
+      }
+      const formData = new FormData();
+      for (const key in formVals) {
+        formData.append(key, formVals[key]);
+      }
+      return api.postData(`${url}`, formData);
+    },
+    onSuccess: ({ data }) => {
+      console.log({ data });
+      dispatch(addClientContract(values));
+    },
+    onError: (err) => {
+      console.log({ err: err.message, name: err.name, stack: err.stack });
+    },
+  });
   const {
     handleSubmit,
     values,
@@ -23,6 +57,10 @@ const AddContractHrPortalModal = ({ open, onClose }) => {
     enableReinitialize: true,
     onSubmit: (formValues) => {
       console.log({ formValues });
+      mutate({
+        ...formValues,
+        date: dayjs(formValues.date).format('YYYY-MM-DD'),
+      });
     },
     validateOnChange: false,
     validateOnBlur: false,
@@ -114,6 +152,7 @@ const AddContractHrPortalModal = ({ open, onClose }) => {
                   name,
                   nested,
                   fields,
+                  accept,
                 },
                 formIndex
               ) => (
@@ -141,6 +180,7 @@ const AddContractHrPortalModal = ({ open, onClose }) => {
                       md={12}
                       lg={12}
                       fields={fields}
+                      accept={accept}
                     />
                   </Grid>
                   {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>}

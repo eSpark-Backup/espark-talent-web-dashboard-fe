@@ -16,6 +16,7 @@ import {
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import AppSearchableDropdown from '../../dashboard/appSearchableDropdown';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import dayjs from 'dayjs';
 
 const DateTimePickerComponent = (props) => {
   const isXsScreen = useMediaQuery('(max-width:600px)');
@@ -47,13 +48,15 @@ const FormInput = ({
   setErrors,
   fields,
   suffixIconOutside,
-  onClick,
+  onClickTogglePhoneNumber,
   countries,
   searchable,
   suffixIconInside,
+  // handleData,
   readOnly,
   modalData,
   fieldsName,
+  accept = '.png',
 }) => {
   const [isLoadingList, setIsLoadingList] = useState(false);
   const [isCopied, setIsCopied] = useState();
@@ -67,9 +70,9 @@ const FormInput = ({
     }
     setErrors({ ...tempErrors });
     setFieldValue(name, item);
+    // handleData(name, item);
   };
   const handleChangeInput = (field, value) => {
-    console.log({ field, value });
     const tempErrors = { ...errors };
     if (value.length) {
       if (field === 'email') {
@@ -86,6 +89,7 @@ const FormInput = ({
     }
     setErrors({ ...tempErrors });
     setFieldValue?.(field, value);
+    // handleData(field, value);
   };
 
   const handleChangeFileInput = (field, value) => {
@@ -96,6 +100,7 @@ const FormInput = ({
     }
     setErrors({ ...tempErrors });
     setFieldValue?.(field, value);
+    // handleData(field, value);
   };
 
   const handleClickCounter = (type, name, value) => {
@@ -106,6 +111,7 @@ const FormInput = ({
             break;
           default:
             setFieldValue(name, value - 1);
+            // handleData(name, value - 1);
             break;
         }
         break;
@@ -116,6 +122,7 @@ const FormInput = ({
             break;
           default:
             setFieldValue(name, value + 1);
+            // handleData(name, value + 1);
             break;
         }
         break;
@@ -151,20 +158,45 @@ const FormInput = ({
       }}
     >
       {title && (
-        <Box>
-          <Typography
-            sx={{
-              color: error ? 'red' : '#595959',
-              fontSize: '14px',
-              fontStyle: 'normal',
-              fontWeight: 500,
-              lineHeight: 'normal',
-              mb: '10px',
-            }}
-          >
-            {title}
-          </Typography>
-        </Box>
+        <>
+          {type === 'timerow' ? (
+            <Box>
+              <Typography
+                sx={{
+                  color:
+                    errors['checkinTime1'] ||
+                    errors['checkinTime2'] ||
+                    errors['checkoutTime1'] ||
+                    errors['checkoutTime2']
+                      ? 'red'
+                      : '#595959',
+                  fontSize: '14px',
+                  fontStyle: 'normal',
+                  fontWeight: 500,
+                  lineHeight: 'normal',
+                  mb: '10px',
+                }}
+              >
+                {title}
+              </Typography>
+            </Box>
+          ) : (
+            <Box>
+              <Typography
+                sx={{
+                  color: error ? 'red' : '#595959',
+                  fontSize: '14px',
+                  fontStyle: 'normal',
+                  fontWeight: 500,
+                  lineHeight: 'normal',
+                  mb: '10px',
+                }}
+              >
+                {title}
+              </Typography>
+            </Box>
+          )}
+        </>
       )}
 
       {type === 'select' ? (
@@ -234,7 +266,7 @@ const FormInput = ({
                 width: '100%',
               },
             }}
-            value={value}
+            value={dayjs(value)}
             onChange={(e) => {
               handleChangeInput(name, `${e?.$d}`);
             }}
@@ -331,51 +363,56 @@ const FormInput = ({
       ) : type === 'timerow' ? (
         <>
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            {fieldsName?.map((field, fieldIndex) => (
-              <>
-                {fieldIndex === 1 && (
+            {fieldsName?.map((field, fieldIndex) => {
+              console.log({ error, errors });
+              return (
+                <>
+                  {fieldIndex === 1 && (
+                    <Box
+                      key={`separator-${fieldIndex}`}
+                      sx={{
+                        width: '40px',
+                        height: '40px',
+                        background: '#E4E4E4',
+                      }}
+                    >
+                      <Typography
+                        sx={{ textAlign: 'center', marginTop: '10px' }}
+                      >
+                        -
+                      </Typography>
+                    </Box>
+                  )}
                   <Box
-                    key={`separator-${fieldIndex}`}
+                    key={`box-${fieldIndex}`}
                     sx={{
-                      width: '40px',
+                      border: `1px solid ${
+                        errors[field.name] ? 'red' : '#E4E4E4'
+                      }`,
+                      borderRadius: '5px',
+                      display: 'flex',
+                      overflow: 'hidden',
                       height: '40px',
-                      background: '#E4E4E4',
+                      width: '100%',
                     }}
                   >
-                    <Typography sx={{ textAlign: 'center', marginTop: '10px' }}>
-                      -
-                    </Typography>
+                    <input
+                      style={{
+                        background: '#FFF',
+                        display: type === 'file' && 'none',
+                      }}
+                      placeholder={field.placeholder}
+                      className="form-input-field"
+                      type="time"
+                      onChange={(e) => {
+                        handleChangeInput(`${field.name}`, e?.target?.value);
+                      }}
+                      value={values[`${name}.${field.name}`]}
+                    />
                   </Box>
-                )}
-                <Box
-                  key={`box-${fieldIndex}`}
-                  sx={{
-                    border: `1px solid ${
-                      errors[field.name] ? 'red' : '#E4E4E4'
-                    }`,
-                    borderRadius: '5px',
-                    display: 'flex',
-                    overflow: 'hidden',
-                    height: '40px',
-                    width: '100%',
-                  }}
-                >
-                  <input
-                    style={{
-                      background: '#FFF',
-                      display: type === 'file' && 'none',
-                    }}
-                    placeholder={field.placeholder}
-                    className="form-input-field"
-                    type="time"
-                    onChange={(e) => {
-                      handleChangeInput(`${field.name}`, e?.target?.value);
-                    }}
-                    value={values[`${name}.${field.name}`]}
-                  />
-                </Box>
-              </>
-            ))}
+                </>
+              );
+            })}
           </Box>
         </>
       ) : type === 'input-range' ? (
@@ -552,7 +589,6 @@ const FormInput = ({
                 </Box>
               </label>
             )}
-
             <input
               id={`input-file-${title}`}
               style={{
@@ -580,7 +616,8 @@ const FormInput = ({
                   handleChangeInput(name, e?.target?.value);
                 }
               }}
-              accept=".png"
+              // accept={accept}
+              accept={accept}
             />
             {suffixIcon && (
               <label
@@ -648,7 +685,7 @@ const FormInput = ({
                   marginRight: '20px',
                 },
               }}
-              onClick={onClick}
+              onClick={onClickTogglePhoneNumber}
             ></Box>
           )}
         </Box>

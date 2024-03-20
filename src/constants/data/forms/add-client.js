@@ -7,17 +7,17 @@ const formElements = [
   {
     title: 'First name',
     placeholder: 'Enter first name',
-    name: 'firstName',
+    name: 'first_name',
   },
   {
     title: 'Last name',
     placeholder: 'Enter first name',
-    name: 'lastName',
+    name: 'last_name',
   },
   {
     title: 'Company name',
     placeholder: 'Enter company name',
-    name: 'companyName',
+    name: 'company_name',
   },
   {
     title: 'Email',
@@ -27,12 +27,12 @@ const formElements = [
   {
     title: 'Phone number',
     placeholder: 'Enter phone number',
-    name: 'phoneNumber',
+    name: 'phone_number',
   },
   {
     title: 'Join date',
     placeholder: 'DD-MM-YYYY',
-    name: 'joinOfDate',
+    name: 'join_date',
     suffixIcon: 'calender',
     type: 'date',
   },
@@ -58,9 +58,9 @@ const formElements = [
 ];
 const formElementsStep4 = [
   {
-    title: 'Employee ID',
-    placeholder: 'Enter employee id',
-    name: 'employeeId',
+    title: 'Client ID',
+    placeholder: 'Enter client id',
+    name: 'client_id',
   },
   {
     title: 'Password',
@@ -71,7 +71,7 @@ const formElementsStep4 = [
   {
     title: 'Confirm password',
     placeholder: 'Confirm password',
-    name: 'confirmPassword',
+    name: 'confirm_password',
     type: 'password',
   },
 ];

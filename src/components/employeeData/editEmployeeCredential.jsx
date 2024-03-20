@@ -6,8 +6,23 @@ import { useFormik } from 'formik';
 import FormInput from '../form/ui-elements/FormInput';
 import { formEmployeeCredential } from '@/src/constants/data/forms/employee-credential';
 import { editEmployeeCredentialSchema } from '../form/schemas/employeeCredential';
+import { useMutation } from '@tanstack/react-query';
+import { api } from '@/src/services/apiService';
+import { HR_UPDATE_EMP_CREDS } from '@/src/services/apiService/apiEndPoints';
 
 const EditEmployeeCredential = ({ onClose, open }) => {
+  const { mutate } = useMutation({
+    mutationFn: async (data) => {
+      return api.daleteData(`${HR_UPDATE_EMP_CREDS}`, data);
+    },
+    onSuccess: ({ data }) => {
+      console.log({ data });
+      onClose();
+    },
+    onError: (err) => {
+      console.log({ err: err.message, name: err.name, stack: err.stack });
+    },
+  });
   const {
     handleSubmit,
     values,
@@ -22,6 +37,7 @@ const EditEmployeeCredential = ({ onClose, open }) => {
     enableReinitialize: true,
     onSubmit: (formValues) => {
       console.log({ formValues });
+      mutate(formValues);
     },
     validateOnChange: false,
     validateOnBlur: false,

@@ -2,8 +2,9 @@ import React from 'react';
 import { Box, Typography } from '@mui/material';
 
 import { employeeDataLabel } from '@/src/constants/employeeProfile';
+import dayjs from 'dayjs';
 
-const PersonalInformation = () => {
+const PersonalInformation = ({ data }) => {
   return (
     <>
       <Box
@@ -44,7 +45,7 @@ const PersonalInformation = () => {
         </Box>
 
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
-          {employeeDataLabel?.map((data, index) => (
+          {employeeDataLabel?.map((empData, index) => (
             <Typography
               key={index}
               sx={{
@@ -56,7 +57,9 @@ const PersonalInformation = () => {
                 },
               }}
             >
-              {data?.value}
+              {empData?.type === 'date'
+                ? dayjs(data?.[empData?.name]).format('DD/MM/YYYY')
+                : data?.[empData?.name]}
             </Typography>
           ))}
         </Box>

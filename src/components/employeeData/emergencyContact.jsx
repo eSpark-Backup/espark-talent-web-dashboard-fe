@@ -6,7 +6,7 @@ import {
   employeeProfileData,
 } from '@/src/constants/employeeProfile';
 
-const EmergencyContact = () => {
+const EmergencyContact = ({ data }) => {
   return (
     <Box
       display={'flex'}
@@ -76,7 +76,7 @@ const EmergencyContact = () => {
               flexDirection: 'column',
             }}
           >
-            {emergencyContact?.map((data, index) => (
+            {emergencyContact?.map((contactData, index) => (
               <Typography
                 key={index}
                 sx={{
@@ -87,7 +87,8 @@ const EmergencyContact = () => {
                   },
                 }}
               >
-                {data?.value}
+                {/* {contactData?.value} */}
+                {data?.emergency_contact?.primary[contactData?.name]}
               </Typography>
             ))}
           </Box>
@@ -125,7 +126,7 @@ const EmergencyContact = () => {
               flexDirection: 'column',
             }}
           >
-            {emergencyContact?.map((data, index) => (
+            {emergencyContact?.map((contactData, index) => (
               <Typography
                 key={index}
                 sx={{
@@ -136,7 +137,7 @@ const EmergencyContact = () => {
                   },
                 }}
               >
-                {data?.label}
+                {contactData?.label}
               </Typography>
             ))}
           </Box>
@@ -147,7 +148,7 @@ const EmergencyContact = () => {
               flexDirection: 'column',
             }}
           >
-            {emergencyContact?.map((data, index) => (
+            {emergencyContact?.map((contactData, index) => (
               <Typography
                 key={index}
                 sx={{
@@ -158,7 +159,7 @@ const EmergencyContact = () => {
                   },
                 }}
               >
-                {data?.value}
+                {data?.emergency_contact?.secondary[contactData?.name]}
               </Typography>
             ))}
           </Box>

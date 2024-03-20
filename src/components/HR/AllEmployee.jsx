@@ -10,14 +10,16 @@ import EmployeeStatus from './ActiveEmployee';
 import { employeeProfileData } from '@/src/constants/employeeProfile';
 import { useQuery } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
+import { HR_EMPLOYEES } from '@/src/services/apiService/apiEndPoints';
+import { useDispatch } from 'react-redux';
 import {
-  // HR_GET_CLIENTS,
-  HR_GET_EMPLOYEES,
-} from '@/src/services/apiService/apiEndPoints';
-// import { getClientsData } from '@/src/redux/slices/hrSlices/clientSlice';
-// import { useDispatch } from 'react-redux';
+  getEmpData,
+  getEmpDataFailed,
+  getEmpDataSuccess,
+} from '@/src/redux/slices/hrSlices/employeeSlice';
 
 const AllEmployee = ({ fromClient, openModal }) => {
+  const dispatch = useDispatch();
   const router = useRouter();
   const [value, setValue] = useState('one');
   const handleChange = (event, newValue) => {
@@ -39,8 +41,24 @@ const AllEmployee = ({ fromClient, openModal }) => {
   }, [name, id, designation]);
   const { data, isLoading } = useQuery({
     staleTime: 10000,
+    queryKey: ['employeeQuery'],
     queryFn: () => {
-      return api.getData(HR_GET_EMPLOYEES);
+      dispatch(getEmpData());
+      console.log('Calling api');
+      return api
+        .getData(HR_EMPLOYEES)
+        .then(({ data }) => {
+          console.log({ data });
+          console.log('API Success');
+          dispatch(getEmpDataSuccess(data));
+          console.log('API Success1');
+          return data;
+        })
+        .catch((error) => {
+          console.log('API Failed');
+          dispatch(getEmpDataFailed());
+          console.log({ error });
+        });
     },
   });
   console.log({ data, isLoading });

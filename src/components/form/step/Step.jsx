@@ -5,6 +5,8 @@ import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { useFormik } from 'formik';
 import { FORM_DATA } from '@/src/constants/form';
 import { SETTING } from '@/src/constants/SettingHr';
+import { useMutation } from '@tanstack/react-query';
+import { api } from '@/src/services/apiService';
 
 const Step = ({
   handleGoPrev,
@@ -14,10 +16,38 @@ const Step = ({
   schema,
   pmd = '95px 90px',
   editProfile,
-  isLastStep,
   countries,
   mt,
+  isLastStep,
+  defaultValues,
+  getFinalData,
+  dispatchFunction,
+  method,
+  endpoint,
+  // handleData,
 }) => {
+  // const { addEmployeeForm } = useSelector((state) => state.hr?.employees);
+  const { mutate } = useMutation({
+    mutationFn: async (formVals) => {
+      console.log({ formVals });
+      const formDataVals = new FormData();
+      for (const key in formVals) {
+        formDataVals.append(key, formVals[key]);
+      }
+
+      // console.log({ formVals, formData });
+      // return {
+      //   data: {},
+      // };
+      return api[method](endpoint, formDataVals);
+    },
+    onSuccess: ({ data }) => {
+      console.log({ data });
+    },
+    onError: (err) => {
+      console.log({ err: err.message, name: err.name, stack: err.stack });
+    },
+  });
   const {
     handleSubmit,
     values,
@@ -28,22 +58,19 @@ const Step = ({
     setErrors,
   } = useFormik({
     initialValues: {
-      annualLeaves: 0,
-      unpaidLeaves: 0,
-      paidLeaves: 0,
-      hajjLeaves: 0,
-      sickLeaves: 0,
-      casualLeaves: 0,
-      country: {
-        flag: 'https://flagcdn.com/pk.svg',
-        title: 'Pakistan',
-      },
+      ...defaultValues,
     },
     validationSchema: schema,
     enableReinitialize: true,
     onSubmit: (formValues) => {
       console.log({ formValues });
-      handleGoNext();
+      dispatchFunction?.(formValues);
+      handleGoNext?.();
+      if (isLastStep) {
+        const newData = getFinalData({ ...defaultValues, ...formValues });
+        console.log({ fV: formValues, newData });
+        mutate(newData);
+      }
     },
     validateOnChange: false,
     validateOnBlur: false,
@@ -52,6 +79,9 @@ const Step = ({
     console.log({ values, errors });
     handleGoPrev();
   };
+  // useEffect(() => {
+  //   console.log({ defaultValues, values, errors });
+  // });
 
   if (isMultiColumn)
     return (
@@ -110,7 +140,7 @@ const Step = ({
                     >
                       {fields?.map(
                         (
-                          { title, placeholder, errorText, name },
+                          { title, placeholder, errorText, name, accept },
                           fieldIndex
                         ) => (
                           <FormInput
@@ -131,6 +161,8 @@ const Step = ({
                             errors={errors}
                             setErrors={setErrors}
                             values={values}
+                            // handleData={handleData}
+                            accept={accept}
                           />
                         )
                       )}
@@ -200,6 +232,7 @@ const Step = ({
               nested,
               col,
               searchable,
+              accept,
             },
             formIndex
           ) => (
@@ -225,6 +258,8 @@ const Step = ({
               lg={col}
               countries={countries}
               searchable={searchable}
+              // handleData={handleData}
+              accept={accept}
             />
           )
         )}

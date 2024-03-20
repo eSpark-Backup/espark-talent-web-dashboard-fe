@@ -1,57 +1,118 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Grid, Box, Typography, Button } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 
 import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
-import { filterDataByKeyword } from '@/src/utils/search';
-import { contractSignedOffshoreData } from '@/src/constants/data/tables/contractSigned';
 import { contractHrSignedTabs } from '@/src/constants/data/tabs/contractSignedTabs';
 import AppTable from '@/src/components/appTable/AppTable';
 import AppConfirmationMadal from '@/src/components/modals/AppConfirmationMadal';
 import AddContractHrPortalModal from '@/src/components/contractHrportal/contractHr';
 import { CONTRACT_SIGNED } from '@/src/constants/contractSigned';
 import { handleTabChange } from '@/src/utils/handleTab';
+import {
+  getClientsCompanyContractRequest,
+  getClientsCompanyContractRequestFailed,
+  getClientsCompanyContractRequestSuccess,
+  getOffShoreContractRequest,
+  getOffShoreContractRequestFailed,
+  getOffShoreContractRequestSuccess,
+} from '@/src/redux/slices/hrSlices/contractSlice';
+import { api } from '@/src/services/apiService';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import {
+  HR_COMPANY_CONTRACTS,
+  HR_OFF_SHORE_CONTRACTS,
+} from '@/src/services/apiService/apiEndPoints';
+import { useDispatch, useSelector } from 'react-redux';
 
 const ContractSigned = () => {
+  const dispatch = useDispatch();
   const [value, setValue] = useState(0);
   const [nestedValue, setNestedValue] = useState(0);
   const [isOpenContractModal, setIsOpenContractModal] = useState(false);
+  const { companyContract, offShoreContract } = useSelector(
+    (state) => state?.hr?.contracts
+  );
   const [currentTab, setCurrentTab] = useState();
-  const [isLoading, setIsLoading] = useState(true);
-  const [search, setSearch] = useState('');
-  const [empData, setEmpData] = useState();
+  // const [isLoading, setIsLoading] = useState(true);
+  // const [search, setSearch] = useState('');
+  // const [empData, setEmpData] = useState();
   const [isOpen, setIsOpen] = useState(false);
-  const fetchDataFake = async () => {
-    return true;
-  };
-  useEffect(() => {
-    const fetchDataAsync = async () => {
-      try {
-        await fetchDataFake();
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    fetchDataAsync();
-  }, []);
-  console.log(empData, setSearch);
+  const companyContractSignedQuery = useQuery({
+    staleTime: 10000,
+    queryKey: ['hr-company-contract-signed-query'],
+    queryFn: async () => {
+      dispatch(getClientsCompanyContractRequest());
+      return api
+        .getData(`${HR_COMPANY_CONTRACTS}?status=clients`)
+        .then(({ data }) => {
+          dispatch(getClientsCompanyContractRequestSuccess(data || []));
+          return data;
+        })
+        .catch((err) => {
+          dispatch(getClientsCompanyContractRequestFailed());
+          console.log({ err });
+        });
+    },
+  });
+  const offShoreContractSignedQuery = useQuery({
+    staleTime: 10000,
+    queryKey: ['off-shore-contract-signed-query'],
+    queryFn: async () => {
+      dispatch(getOffShoreContractRequest());
+      return api
+        .getData(`${HR_OFF_SHORE_CONTRACTS}`)
+        .then(({ data }) => {
+          dispatch(getOffShoreContractRequestSuccess(data || []));
+          return data;
+        })
+        .catch((err) => {
+          dispatch(getOffShoreContractRequestFailed());
+          console.log({ err });
+        });
+    },
+  });
+  const companyContractSignedMutation = useMutation({
+    mutationFn: async (status) => {
+      dispatch(getClientsCompanyContractRequest());
+      return api.getData(`${HR_COMPANY_CONTRACTS}?status=${status}`);
+    },
+    onSuccess: ({ data }) => {
+      console.log({ data });
+      dispatch(getClientsCompanyContractRequestSuccess(data || []));
+    },
+    onError: (err) => {
+      dispatch(getClientsCompanyContractRequestFailed());
+      console.log({ err: err.message, name: err.name, stack: err.stack });
+    },
+  });
+  // console.log(empData, setSearch);
+  console.log({
+    comp: companyContractSignedQuery.data,
+    offShore: offShoreContractSignedQuery.data,
+  });
   const handleChange = (event, newValue) => {
     handleTabChange(event, newValue, setCurrentTab, setValue, setNestedValue);
   };
-  useEffect(() => {
-    const data = [...contractSignedOffshoreData];
-    const timeoutId = setTimeout(() => {
-      filterDataByKeyword(data, search || '', setEmpData);
-      setIsLoading(false);
-    }, 500);
-    return () => {
-      clearTimeout(timeoutId);
-    };
-  }, [search, value]);
+  // useEffect(() => {
+  //   const data = [...contractSignedOffshoreData];
+  //   const timeoutId = setTimeout(() => {
+  //     filterDataByKeyword(data, search || '', setEmpData);
+  //     // setIsLoading(false);
+  //   }, 500);
+  //   return () => {
+  //     clearTimeout(timeoutId);
+  //   };
+  // }, [search, value]);
   const handleNestedChange = (event, newValue) => {
     setNestedValue(newValue);
+    if (newValue === 0) {
+      companyContractSignedMutation.mutate('clients');
+    } else {
+      companyContractSignedMutation.mutate('employees');
+    }
   };
   const handleClose = () => setIsOpen(false);
   const handleClickDelete = () => setIsOpen(true);
@@ -150,7 +211,8 @@ const ContractSigned = () => {
             <Box my={2}>
               {contractHrSignedTabs?.map((tab, i) => (
                 <CustomTabPanel value={value} key={i} index={i}>
-                  {isLoading ? (
+                  {companyContractSignedQuery?.isLoading ||
+                  offShoreContractSignedQuery.isLoading ? (
                     <Box>Loading...</Box>
                   ) : (
                     <Box>
@@ -214,7 +276,11 @@ const ContractSigned = () => {
                             <AppTable
                               currentTab={currentTab}
                               column={tab.nested[nestedValue].columns}
-                              data={tab.nested[nestedValue].data}
+                              data={
+                                value === 0
+                                  ? companyContract.clients
+                                  : JSON.parse(companyContract.employees)
+                              }
                               handleClickActionDelete={handleClickDelete}
                               noPagination
                               tableRowClass="app-table-row-contract"
@@ -224,7 +290,7 @@ const ContractSigned = () => {
                           <AppTable
                             currentTab={currentTab}
                             column={tab?.columns}
-                            data={tab?.data}
+                            data={offShoreContract}
                             handleClickActionDelete={handleClickDelete}
                             noPagination
                             tableRowClass="app-table-row-contract"
@@ -250,6 +316,9 @@ const ContractSigned = () => {
       <AddContractHrPortalModal
         open={isOpenContractModal}
         onClose={handleCloseContractModal}
+        contractType={nestedValue === 0 ? 'clients' : 'employees'}
+        endPoint={value === 0 ? HR_COMPANY_CONTRACTS : HR_OFF_SHORE_CONTRACTS}
+        currentTab={value}
       />
     </>
   );

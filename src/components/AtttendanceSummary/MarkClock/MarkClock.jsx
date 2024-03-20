@@ -15,7 +15,7 @@ const MarkClock = () => {
   // console.log({ homeData });
 
   const parseTime = (timeString) => {
-    console.log({ timeString });
+    // console.log({ timeString });
     if (timeString) {
       const [time, period] = timeString.split(' ');
       const [hours, minutes] = time.split(':');

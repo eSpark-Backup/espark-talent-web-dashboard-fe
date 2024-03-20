@@ -7,11 +7,12 @@ import Input from '../dashboard/input';
 import Image from 'next/image';
 import ClientView from './ClientView';
 import { EMPLOYEE_DATA } from '@/src/constants/AllEmployee';
+import { HR_GET_CLIENTS } from '@/src/services/apiService/apiEndPoints';
+import { api } from '@/src/services/apiService';
+import { useQuery } from '@tanstack/react-query';
 
 const AllClients = () => {
   const router = useRouter();
-  const [value, setValue] = useState('one');
-  console.log(setValue);
   const [id, setId] = useState('');
   const [name, setName] = useState('');
   const [search, setSearch] = useState(false);
@@ -21,6 +22,28 @@ const AllClients = () => {
       setSearch(false);
     }
   }, [name, id]);
+  const { data, isLoading } = useQuery({
+    staleTime: 10000,
+    queryKey: ['clientsQuery'],
+    queryFn: () => {
+      return api
+        .getData(HR_GET_CLIENTS)
+        .then(({ data }) => {
+          console.log({ data });
+          // console.log('API Success');
+          // dispatch(getEmpDataSuccess(data));
+          // console.log('API Success1');
+          return data || [];
+        })
+        .catch((error) => {
+          // console.log('API Failed');
+          // dispatch(getEmpDataFailed());
+          console.log({ error });
+        });
+    },
+  });
+  console.log({ data, isLoading });
+
   return (
     <>
       <Box
@@ -112,13 +135,21 @@ const AllClients = () => {
             </Button>
           </Grid>
         </Grid>
-        {value === 'one' ? (
+        <ClientView
+          search={search}
+          id={id}
+          name={name}
+          status={'All'}
+          data={data}
+          isLoading={isLoading}
+        />
+        {/* {value === 'one' ? (
           <ClientView search={search} id={id} name={name} status={'All'} />
         ) : value === 'two' ? (
           <ClientView status={'Active'} id={id} name={name} search={search} />
         ) : (
           <ClientView id={id} name={name} status={'Inactive'} search={search} />
-        )}
+        )} */}
       </Box>
     </>
   );

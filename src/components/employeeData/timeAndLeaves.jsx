@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Box, Button, Tab, Tabs } from '@mui/material';
 
 import { a11yProps } from '@/src/utils/tabs';
-import AppTable from '../appTable/AppTable';
+import AppTable from '../appTableNew/AppTable';
 import {
   leavesColumn,
   leavesData,
@@ -12,14 +12,89 @@ import {
 import TimeManagementModal from '@/app/hr/dashboard/clients/client-profile/TimeManagementModal';
 import LeaveManagementModal from '@/app/hr/dashboard/clients/client-profile/LeaveManagementModal';
 import { FORM_DATA } from '@/src/constants/form';
+import { useParams } from 'next/navigation';
+import { api } from '@/src/services/apiService';
+import { HR_GET_EMP_TIME_AND_LEAVES } from '@/src/services/apiService/apiEndPoints';
+import { useMutation, useQuery } from '@tanstack/react-query';
 
 const TimeAndLeaves = () => {
+  const params = useParams();
   const [currentTab, setCurrentTab] = useState({
     label: 'Time',
     val: 0,
     data: timeData,
     column: timeColumn,
   });
+  const [isLoadingMutation, setIsLoadingMutation] = useState(false);
+  const [tabData, setTabData] = useState([]);
+  const { isLoading } = useQuery({
+    staleTime: 10000,
+    queryKey: ['employee-time-profile'],
+    queryFn: async () => {
+      return api
+        .getData(`${HR_GET_EMP_TIME_AND_LEAVES}?id=${params.id}&tab=time`)
+        .then(({ data }) => {
+          console.log({ data });
+          setTabData(
+            [
+              {
+                ...data,
+              },
+            ] || []
+          );
+          return data || [];
+        })
+        .catch((err) => {
+          console.log({ err });
+        });
+    },
+  });
+  const reformData = (dataObj) => {
+    const arrayfiedData = Object.entries(dataObj);
+    const refinedData = [];
+    for (let i = 0; i < arrayfiedData.length; i++) {
+      const element = arrayfiedData[i];
+      if (i > 0) {
+        refinedData.push({
+          ...element[1],
+          leave_type: element[0],
+          total: +element[1].total,
+          availed: +element[1].availed,
+          balance: +element[1].balance,
+          status: element[1].status == 'enable' ? 'Enabled' : 'Disabled',
+        });
+      }
+    }
+    return refinedData;
+  };
+  const { mutate } = useMutation({
+    mutationFn: async (tab) => {
+      setIsLoadingMutation(true);
+      return api.getData(
+        `${HR_GET_EMP_TIME_AND_LEAVES}?id=${params.id}&tab=${tab.toLowerCase()}`
+      );
+    },
+    onSuccess: ({ data }) => {
+      console.log({ data });
+      setIsLoadingMutation(false);
+      if (currentTab.label === 'Time') {
+        console.log({ data });
+        setTabData([
+          {
+            ...data,
+          },
+        ]);
+      } else {
+        setTabData(reformData(data));
+      }
+      return data || [];
+    },
+    onError: (err) => {
+      setIsLoadingMutation(false);
+      console.log({ err: err.message, name: err.name, stack: err.stack });
+    },
+  });
+
   const [isOpenTimeManagementModal, setIsOpenTimeManagementModal] =
     useState(false);
   const [isOpenLeaveManagementModal, setIsOpenLeaveManagementModal] =
@@ -46,6 +121,7 @@ const TimeAndLeaves = () => {
       data: tabs[newValue].data,
       column: tabs[newValue].column,
     });
+    mutate(tabs[newValue].label.toLowerCase());
   };
   const handleOpenTimeManagementModal = () => {
     setIsOpenTimeManagementModal(true);
@@ -66,6 +142,8 @@ const TimeAndLeaves = () => {
       handleOpenLeaveManagementModal();
     }
   };
+  console.log({ tabData });
+  if (isLoading) return 'Loading...';
   return (
     <>
       <Box
@@ -121,12 +199,16 @@ const TimeAndLeaves = () => {
           overflowX: 'auto',
         }}
       >
-        <AppTable
-          currentTab={currentTab}
-          column={currentTab.column}
-          data={currentTab.data}
-          noPagination
-        />
+        {isLoadingMutation ? (
+          'Loading data...'
+        ) : (
+          <AppTable
+            currentTab={currentTab}
+            column={currentTab.column}
+            data={tabData}
+            noPagination
+          />
+        )}
       </Box>
       <TimeManagementModal
         open={isOpenTimeManagementModal}

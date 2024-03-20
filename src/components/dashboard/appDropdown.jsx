@@ -30,6 +30,25 @@ const AppDropdown = ({
     category: '',
     title: '',
   });
+  const findLabelByValue = (value) => {
+    for (let i = 0; i < data?.length; i++) {
+      const { label, children } = data[i];
+      if (children.includes(value)) {
+        return { label, index: i };
+      }
+    }
+    return { label: null, index: -1 }; // Return null if the value is not found in any children array
+  };
+  useEffect(() => {
+    if (nested) {
+      setJobTitle({
+        category: findLabelByValue(selectedItem).label,
+        title: selectedItem,
+      });
+      setCurrentHoverIndex(findLabelByValue(selectedItem).index);
+    }
+  }, [selectedItem]);
+
   const componentRef = useRef(null);
   const componentNestedRef = useRef(null);
 
@@ -87,6 +106,7 @@ const AppDropdown = ({
   const toggleComponentNested = () => {
     setIsOpenedDropdownNested((ps) => !ps);
   };
+  console.log({ selectedItem });
 
   return (
     <Grid
