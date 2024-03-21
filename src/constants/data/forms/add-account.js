@@ -2,7 +2,7 @@ export const accountForm = [
   {
     title: 'Acount name',
     placeholder: 'Enter name',
-    name: 'accounts',
+    name: 'account_name',
   },
   {
     title: 'Email',
@@ -18,7 +18,7 @@ export const accountForm = [
   {
     title: 'Confirm password',
     placeholder: 'Confirm password',
-    name: 'confirmPassword',
+    name: 'confirm_password',
     type: 'password',
   },
   {
@@ -26,6 +26,7 @@ export const accountForm = [
     placeholder: 'Upload picture',
     prefixIcon: 'upload',
     type: 'file',
-    name: 'upload',
+    name: 'image',
+    accept: '.png',
   },
 ];

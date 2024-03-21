@@ -7,13 +7,21 @@ import {
   modulepermissionData,
 } from '@/src/constants/data/tables/modulePermission';
 import RoleModal from './addRoleModal';
-import { ROLES, SETTING } from '@/src/constants/SettingHr';
+import {
+  // ROLES,
+  SETTING,
+} from '@/src/constants/SettingHr';
 import { toCamelCase } from '@/src/utils/stringModification';
+import { useSelector } from 'react-redux';
 
 const Role = () => {
+  const { accounts } = useSelector((state) => state?.hr?.settings);
   const [modalStep1FormTableState, setModalStep1FormTableState] = useState([]);
-  const [rolesData, setRolesData] = useState('');
+  const [rolesData, setRolesData] = useState({});
   const [selectedRole, setSelectedRole] = useState(null);
+  const [permissionData, setPermissionData] = useState([]);
+  const [selectedRolePermissionIndex, setSelectedRolePermissionIndex] =
+    useState({});
 
   useEffect(() => {
     setModalStep1FormTableState([...modulepermissionData]);
@@ -28,25 +36,49 @@ const Role = () => {
       !targetObject[[toCamelCase(column)]][2];
     tempForm[employeeIndex] = targetObject;
     setModalStep1FormTableState(tempForm);
+    // Updated
+    console.log({ employeeId, column });
+    const newTempForm = [...permissionData[selectedRolePermissionIndex].state];
+    console.log({ newTempForm });
+    // const newEmployeeIndex = newTempForm.findIndex(
+    //   (el) => el.id === employeeId
+    // );
   };
   const [open, setOpen] = useState(false);
-  const handleOpen = () => {
-    setOpen(true);
-  };
-  console.log(handleOpen);
+  // const handleOpen = () => {
+  //   setOpen(true);
+  // };
   const handleClose = () => {
     setOpen(!true);
   };
 
-  const handleRoleChange = (key, val) => {
-    setRolesData({ ...rolesData, [key]: val });
+  const handleRoleChange = (id, val) => {
+    setRolesData({ ...rolesData, [id]: val });
     setSelectedRole((prevSelectedRole) =>
-      prevSelectedRole === key ? null : key
+      prevSelectedRole === id ? null : id
     );
+    const selectedRoleIndex = permissionData.findIndex((el) => el.id === id);
+    setSelectedRolePermissionIndex(selectedRoleIndex);
   };
   useEffect(() => {
-    console.log('roles', rolesData);
+    console.log({
+      rolesData,
+      selectedRole,
+      selectedRolePermissionIndex,
+      permissionData,
+    });
   }, [rolesData]);
+
+  useEffect(() => {
+    const tempData = accounts.length
+      ? accounts.map((item) => ({
+          id: item.id,
+          title: item.account_name,
+          state: [...modulepermissionData],
+        }))
+      : [];
+    setPermissionData(tempData);
+  }, [accounts]);
 
   return (
     <>
@@ -82,17 +114,17 @@ const Role = () => {
             {SETTING?.roles}
           </Typography>
           <Box className="scrollbar-container" paddingBottom="20px">
-            {ROLES.map((button, index) => (
+            {accounts.map((button, index) => (
               <Button
                 key={index}
                 sx={{
                   borderRadius: '5px',
-                  color: selectedRole === button.key ? 'teal' : '#595959',
-                  background: selectedRole === button.key ? '#FFF' : '#fff',
+                  color: selectedRole === button.id ? 'teal' : '#595959',
+                  background: selectedRole === button.id ? '#FFF' : '#fff',
                   width: '95%',
                   padding: '8px',
                   border:
-                    selectedRole === button.key
+                    selectedRole === button.id
                       ? '1px solid #029894'
                       : '1px solid #fff',
                   '&:hover': {
@@ -102,10 +134,10 @@ const Role = () => {
                   },
                 }}
                 onClick={() => {
-                  handleRoleChange(button?.key, button?.label);
+                  handleRoleChange(button?.id, button?.account_name);
                 }}
               >
-                {button.label}
+                {button.account_name}
               </Button>
             ))}
           </Box>
@@ -123,7 +155,7 @@ const Role = () => {
           >
             <AppTable
               column={modulepermissionColumn}
-              data={modalStep1FormTableState}
+              data={permissionData[selectedRolePermissionIndex].state}
               handleClickActionView={handleSelectRow}
               noPagination
             />
@@ -136,7 +168,6 @@ const Role = () => {
             mt={'3px'}
           >
             <Button
-              type="submit"
               sx={{
                 minWidth: '120px',
                 fontSize: '16px',
@@ -147,6 +178,7 @@ const Role = () => {
                   color: '#fff',
                 },
               }}
+              onClick={() => console.log({ modalStep1FormTableState })}
             >
               {SETTING?.save}
             </Button>

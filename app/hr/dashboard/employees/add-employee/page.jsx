@@ -9,6 +9,7 @@ import Breadcrumb from '@/src/components/form/step/Breadcrumb';
 import { useDispatch, useSelector } from 'react-redux';
 import dayjs from 'dayjs';
 import { addEmployeeFormData } from '@/src/redux/slices/hrSlices/employeeSlice';
+import { HR_ADD_EMPLOYEES } from '@/src/services/apiService/apiEndPoints';
 
 const AddEmployee = () => {
   const dispatch = useDispatch();
@@ -123,6 +124,8 @@ const AddEmployee = () => {
                   defaultValues={defaultValues}
                   getFinalData={getFinalData}
                   dispatchFunction={dispatchFunction}
+                  method="postData"
+                  endpoint={HR_ADD_EMPLOYEES}
                 />
               );
             }

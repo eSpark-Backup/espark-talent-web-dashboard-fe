@@ -1,8 +1,10 @@
 import * as Yup from 'yup';
 
 export const companyInfoSchema = Yup.object({
-  companyName: Yup.string().required('Required'),
-  email: Yup.string().email('Invalid email address').required('Required'),
-  url: Yup.string().required('Required'),
-  upload: Yup.mixed().required('Required'),
+  company_name: Yup.string().required('Required'),
+  company_email: Yup.string()
+    .email('Invalid email address')
+    .required('Required'),
+  website_url: Yup.string().required('Required'),
+  image: Yup.mixed().required('Required'),
 });

@@ -2,19 +2,23 @@ export const accountColumn = [
   {
     title: 'Accounts',
     flex: 1,
+    name: 'account_name',
   },
   {
     title: 'Email',
     flex: 1,
+    name: 'email',
   },
   {
     title: 'Picture',
-    flex: 1,
     src: '/icons/UserIcon.svg',
+    flex: 1,
+    name: 'picture',
   },
   {
     title: 'Action',
     flex: 1,
+    name: 'action',
   },
 ];
 

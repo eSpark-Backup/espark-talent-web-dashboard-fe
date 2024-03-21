@@ -24,6 +24,8 @@ export const HR_CLIENT_EMPLOYEES = '/hr_clientemps/';
 export const HR_CLIENT_EMPLOYEE_INVOICE = '/hr_empinv/';
 export const HR_CLIENT_OTHER_INVOICE = '/hr_otherinv/';
 export const HR_POLICY = '/hr_policy/';
+export const HR_COMPANY_SETTINGS = '/hr_compsett/';
+export const HR_ACCOUNTS = '/hr_accounts/';
 
 // Employees
 

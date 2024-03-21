@@ -7,14 +7,41 @@ import { accountInfoSchema } from '../form/schemas/addAccount';
 import { accountForm } from '@/src/constants/data/forms/add-account';
 import { SETTING } from '@/src/constants/SettingHr';
 import { FORM_DATA } from '@/src/constants/form';
-import { generateString } from '@/src/utils/genericAccountsId';
-import { processImage } from '@/src/utils/imageUrl';
+// import { generateString } from '@/src/utils/genericAccountsId';
+// import { processImage } from '@/src/utils/imageUrl';
+import { useMutation } from '@tanstack/react-query';
+import { api } from '@/src/services/apiService';
+import { HR_ACCOUNTS } from '@/src/services/apiService/apiEndPoints';
 
-const AddAccountModal = ({ open, onClose, handleAdd }) => {
-  const handleGenericString = () => {
-    const generateId = generateString();
-    return generateId;
-  };
+const AddAccountModal = ({
+  open,
+  onClose,
+  // handleAdd
+}) => {
+  const { mutate } = useMutation({
+    mutationFn: async (formVals) => {
+      const formData = new FormData();
+      for (const key in formVals) {
+        formData.append(key, formVals[key]);
+      }
+      return api.postData(`${HR_ACCOUNTS}`, formData);
+    },
+    onSuccess: ({ data }) => {
+      console.log({ data });
+      // dispatch(deleteClientHiringRequestSuccess(modalData?.id));
+      // handleClose();
+      // setModalData({});
+    },
+    onError: (err) => {
+      // dispatch(deleteClientHiringRequestFailed());
+      // handleClose();
+      console.log({ err: err.message, name: err.name, stack: err.stack });
+    },
+  });
+  // const handleGenericString = () => {
+  //   const generateId = generateString();
+  //   return generateId;
+  // };
   const {
     handleSubmit,
     values,
@@ -32,15 +59,16 @@ const AddAccountModal = ({ open, onClose, handleAdd }) => {
     validateOnBlur: false,
     onSubmit: async (formValues) => {
       console.log({ formValues });
-      const resizedImageUrl = await processImage(formValues.upload);
-      const id = handleGenericString();
-      handleAdd({
-        ...formValues,
-        pic: resizedImageUrl,
-        action: ['Delete', 'View'],
-        actionStatus: true,
-        id: id,
-      });
+      // const resizedImageUrl = await processImage(formValues.upload);
+      // const id = handleGenericString();
+      // handleAdd({
+      //   ...formValues,
+      //   pic: resizedImageUrl,
+      //   action: ['Delete', 'View'],
+      //   actionStatus: true,
+      //   id: id,
+      // });
+      mutate(formValues);
     },
   });
   const handleCloseModal = () => {
@@ -127,6 +155,7 @@ const AddAccountModal = ({ open, onClose, handleAdd }) => {
                   name,
                   nested,
                   fields,
+                  accept,
                 },
                 formIndex
               ) => (
@@ -156,6 +185,7 @@ const AddAccountModal = ({ open, onClose, handleAdd }) => {
                       md={12}
                       lg={12}
                       fields={fields}
+                      accept={accept}
                     />
                   </Grid>
                 </>

@@ -1,13 +1,13 @@
 import * as Yup from 'yup';
 
 export const accountInfoSchema = Yup.object({
-  accounts: Yup.string().required('Required'),
+  account_name: Yup.string().required('Required'),
   email: Yup.string().email('Invalid email address').required('Required'),
   password: Yup.string()
     .required('Password is required')
     .min(6, 'Password must be at least 6 characters'),
-  confirmPassword: Yup.string()
+  confirm_password: Yup.string()
     .oneOf([Yup.ref('password'), null], 'Passwords must match')
     .required('Confirm Password is required'),
-  upload: Yup.mixed().required('Required'),
+  image: Yup.mixed().required('Required'),
 });

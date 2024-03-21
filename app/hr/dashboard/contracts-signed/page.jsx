@@ -279,7 +279,8 @@ const ContractSigned = () => {
                               data={
                                 value === 0
                                   ? companyContract.clients
-                                  : JSON.parse(companyContract.employees)
+                                  : // : JSON.parse(companyContract.employees)
+                                    []
                               }
                               handleClickActionDelete={handleClickDelete}
                               noPagination
@@ -290,7 +291,7 @@ const ContractSigned = () => {
                           <AppTable
                             currentTab={currentTab}
                             column={tab?.columns}
-                            data={offShoreContract}
+                            data={offShoreContract || []}
                             handleClickActionDelete={handleClickDelete}
                             noPagination
                             tableRowClass="app-table-row-contract"
