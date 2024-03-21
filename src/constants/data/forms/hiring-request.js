@@ -7,7 +7,7 @@ export const hringRequestForm = [
     type: 'select',
     nested: true,
     options: jobTitles,
-    name: 'jobTitle',
+    name: 'job_title',
   },
   {
     title: 'Role type',
@@ -27,7 +27,7 @@ export const hringRequestForm = [
         label: 'Intern',
       },
     ],
-    name: 'roleType',
+    name: 'role_type',
   },
   {
     title: 'Gender',
@@ -51,17 +51,17 @@ export const hringRequestForm = [
   {
     title: 'Salary range',
     placeholder: 'Enter first name',
-    name: 'salaryRange',
+    name: 'salary_range',
     type: 'input-range',
     fields: [
       {
         placeholder: '0',
-        name: 'min',
+        name: 'minimum',
         suffixIcon: '$',
       },
       {
         placeholder: '1',
-        name: 'max',
+        name: 'maximum',
         suffixIcon: '$',
       },
     ],
@@ -70,7 +70,7 @@ export const hringRequestForm = [
   {
     title: 'Employment term',
     placeholder: 'Select employment term',
-    name: 'employmentTerm',
+    name: 'employment_term',
     type: 'select',
     options: [
       {
@@ -89,13 +89,13 @@ export const hringRequestForm = [
     placeholder: 'DD-MM-YYYY',
     suffixIcon: 'calender',
     type: 'date',
-    name: 'hiringStartDate',
+    name: 'hiring_start_date',
   },
   {
     title: 'Hiring end date',
     placeholder: 'DD-MM-YYYY',
     suffixIcon: 'calender',
     type: 'date',
-    name: 'hiringEndDate',
+    name: 'hiring_end_date',
   },
 ];

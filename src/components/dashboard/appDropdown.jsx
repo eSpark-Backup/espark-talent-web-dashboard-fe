@@ -106,7 +106,6 @@ const AppDropdown = ({
   const toggleComponentNested = () => {
     setIsOpenedDropdownNested((ps) => !ps);
   };
-  console.log({ selectedItem });
 
   return (
     <Grid

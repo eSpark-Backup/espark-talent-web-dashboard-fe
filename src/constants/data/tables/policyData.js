@@ -1,7 +1,28 @@
-export const policyColumn = ['Policies', 'Employee', 'Client', 'Action'];
+export const policyColumn = [
+  {
+    title: 'Policy Name',
+    flex: 2,
+    name: 'policy_name',
+  },
+  {
+    title: 'Employee',
+    flex: 2,
+    name: 'employee',
+  },
+  {
+    title: 'Client',
+    flex: 2,
+    name: 'client',
+  },
+  {
+    title: 'Action',
+    flex: 2,
+    name: 'action',
+  },
+];
 export const policyData = [
   {
-    policies: 'Salary Based Employee Policy',
+    policy_name: 'Salary Based Employee Policy',
     action: ['Delete'],
     actionStatus: true,
     employee: ['DisabledCheck', 'EnabledCheck', false],
@@ -12,7 +33,7 @@ export const policyData = [
     id: 1,
   },
   {
-    policies: 'House Based Employee Policy',
+    policy_name: 'House Based Employee Policy',
     action: ['Delete'],
     actionStatus: true,
     employee: ['DisabledCheck', 'EnabledCheck', false],
@@ -24,7 +45,7 @@ export const policyData = [
     id: 2,
   },
   {
-    policies: 'Project Based Employee Policy',
+    policy_name: 'Project Based Employee Policy',
     action: ['Delete'],
     actionStatus: true,
     employee: ['DisabledCheck', 'EnabledCheck', false],
@@ -36,7 +57,7 @@ export const policyData = [
     id: 3,
   },
   {
-    policies: 'Employee Cost',
+    policy_name: 'Employee Cost',
     action: ['Delete'],
     actionStatus: true,
     employee: ['DisabledCheck', 'EnabledCheck', false],
@@ -48,7 +69,7 @@ export const policyData = [
     id: 4,
   },
   {
-    policies: 'Management Fees',
+    policy_name: 'Management Fees',
     action: ['Delete'],
     actionStatus: true,
     employee: ['DisabledCheck', 'EnabledCheck', false],
@@ -60,7 +81,7 @@ export const policyData = [
     id: 5,
   },
   {
-    policies: 'Employer Cost',
+    policy_name: 'Employer Cost',
     action: ['Delete'],
     actionStatus: true,
     employee: ['DisabledCheck', 'EnabledCheck', false],

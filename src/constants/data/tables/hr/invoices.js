@@ -2,60 +2,74 @@ export const invoicePaymentColumn = [
   {
     title: 'Employee ID',
     flex: 1,
+    name: 'employee_id',
   },
   {
     title: 'Invoice date',
     flex: 1,
+    name: 'invoice_date',
   },
   {
     title: 'Due date',
     flex: 1,
+    name: 'due_date',
   },
   {
     title: 'Invoice amount',
     flex: 1,
+    name: 'invoice_amount',
   },
   {
     title: 'Payment status',
     flex: 1,
+    name: 'payment_status',
   },
   {
     title: 'Download',
     flex: 1,
+    name: 'download',
   },
   {
     title: 'Action',
     flex: 1,
+    name: 'action',
   },
 ];
 export const otherPaymentColumn = [
   {
     title: 'Invoice reference',
     flex: 1,
+    name: 'invoice_reference',
   },
   {
     title: 'Invoice date',
     flex: 1,
+    name: 'invoice_date',
   },
   {
     title: 'Due date',
     flex: 1,
+    name: 'due_date',
   },
   {
     title: 'Invoice amount',
     flex: 1,
+    name: 'invoice_amount',
   },
   {
     title: 'Payment status',
     flex: 1,
+    name: 'payment_status',
   },
   {
     title: 'Download',
     flex: 1,
+    name: 'download',
   },
   {
     title: 'Action',
     flex: 1,
+    name: 'action',
   },
 ];
 

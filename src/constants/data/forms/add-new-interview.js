@@ -4,7 +4,7 @@ export const addNewInterviewForm = [
   {
     title: 'Employee name',
     placeholder: 'Enter name',
-    name: 'name',
+    name: 'employee_name',
   },
   {
     title: 'Gender',
@@ -26,7 +26,7 @@ export const addNewInterviewForm = [
     type: 'select',
     nested: true,
     options: jobTitles,
-    name: 'jobTitle',
+    name: 'job_title',
   },
   {
     title: 'Role type',
@@ -46,7 +46,7 @@ export const addNewInterviewForm = [
         label: 'Intern',
       },
     ],
-    name: 'roleType',
+    name: 'role_type',
   },
   {
     title: 'Employment term',
@@ -63,14 +63,14 @@ export const addNewInterviewForm = [
         label: 'Project based',
       },
     ],
-    name: 'employmentTerm',
+    name: 'employment_term',
   },
   {
     title: 'Interview date & time',
     placeholder: 'DD/MM/YYYY , 00:00 PST',
     suffixIcon: 'CalendarOutline',
     type: 'date-and-time',
-    name: 'interviewDateAndTime',
+    name: 'interview_date_time',
   },
   {
     title: 'Country',
