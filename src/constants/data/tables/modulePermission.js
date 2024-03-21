@@ -87,3 +87,41 @@ export const modulepermissionData = [
     isSelected: false,
   },
 ];
+
+export const modulePermissionDataSet = [
+  {
+    name: 'employee_perms',
+    read: true,
+    write: true,
+    delete: true,
+    download: true,
+  },
+  {
+    name: 'client_perms',
+    read: true,
+    write: true,
+    delete: true,
+    download: true,
+  },
+  {
+    name: 'leaves_perms',
+    read: true,
+    write: true,
+    delete: true,
+    download: true,
+  },
+  {
+    name: 'invoices_perms',
+    read: true,
+    write: true,
+    delete: true,
+    download: true,
+  },
+  {
+    name: 'policies_perms',
+    read: true,
+    write: true,
+    delete: true,
+    download: true,
+  },
+];

@@ -4,24 +4,25 @@ export const companyformElement = [
   {
     title: 'Company name',
     placeholder: 'Enter company name',
-    name: 'companyName',
+    name: 'company_name',
   },
   {
     title: 'Company Email',
     placeholder: 'Enter email',
-    name: 'email',
+    name: 'company_email',
   },
   {
     title: 'Website URL',
     placeholder: 'Enter url',
-    name: 'url',
+    name: 'website_url',
   },
   {
     title: 'Upload',
     placeholder: 'Upload picture',
     prefixIcon: 'upload',
     type: 'file',
-    name: 'upload',
+    name: 'image',
+    accept: '.png',
   },
 ];
 export const formSteps = [
