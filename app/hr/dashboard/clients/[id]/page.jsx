@@ -1,9 +1,9 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Typography, Tabs, Tab, Button } from '@mui/material';
 import { Box } from '@mui/system';
 import Breadcrumb from '@/src/components/form/step/Breadcrumb';
-import { clientProfileTabs } from '@/src/constants/data/tabs/hr/client-profile';
+// import { clientProfileTabs } from '@/src/constants/data/tabs/hr/client-profile';
 import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
 import { renderTable } from './renderComponents';
 import { filterTableRowsWRTTab } from '@/src/utils/table';
@@ -18,24 +18,60 @@ import AddOnboardModal from './AddOnboardModal';
 import { CLIENTPROFILE } from '@/src/constants/ClientProfile';
 import { useQuery } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
-import { HR_GET_CLIENT_PROFILE } from '@/src/services/apiService/apiEndPoints';
 import {
+  HR_CLIENT_EMPLOYEES,
+  HR_CLIENT_EMPLOYEE_INVOICE,
+  HR_CLIENT_EMP_HIRING_REQUEST,
+  HR_CLIENT_EMP_INTERVIEW_SCHEDULE,
+  HR_CLIENT_EMP_ON_BOARDING,
+  HR_CLIENT_OTHER_INVOICE,
+  HR_GET_CLIENT_PROFILE,
+} from '@/src/services/apiService/apiEndPoints';
+import {
+  getClientEmpInvoicePaid,
+  getClientEmpInvoicePending,
+  getClientEmpInvoiceProcessing,
+  getClientHiringRequest,
+  getClientInterviewSchedule,
+  getClientOnboarding,
+  getClientOthInvoicePaid,
+  getClientOthInvoicePending,
+  getClientOthInvoiceProcessing,
   getCurrentClientData,
   getCurrentClientDataFailed,
   getCurrentClientDataSuccess,
 } from '@/src/redux/slices/hrSlices/clientSlice';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import ClientProfileData from './ClientProfileData';
+import {
+  hiringRequestColumn,
+  interviewScheduleColumn,
+  onboardingColumn,
+} from '@/src/constants/data/tables/hr/hireOnBoard';
+import { a11yProps } from '@/src/utils/tabs';
+import {
+  invoicePaymentColumn,
+  otherPaymentColumn,
+} from '@/src/constants/data/tables/hr/invoices';
+import { getCamelCapitalized } from '@/src/utils/stringModification';
+import UploadOtherInvoiceModal from './UploadOtherInvoiceModal';
 
 const AddEmployee = () => {
   const params = useParams();
   const dispatch = useDispatch();
+  const {
+    hireAndOnBoard,
+    //  employees,
+    employeeInvoices,
+    otherInvoices,
+  } = useSelector((state) => state?.hr?.clients?.currentClientData);
+  const { email } = useSelector((state) => state?.hr?.clients?.currentClient);
   const { isLoading } = useQuery({
     staleTime: 1000,
     queryKey: ['hr-client-info-query'],
     queryFn: () => {
       dispatch(getCurrentClientData());
-      console.log('Calling api');
+      // console.log('Calling api');
       return api
         .getData(`${HR_GET_CLIENT_PROFILE}?id=${params.id}`)
         .then(({ data }) => {
@@ -52,6 +88,437 @@ const AddEmployee = () => {
         });
     },
   });
+
+  const ClientHiringReqQuery = useQuery({
+    staleTime: 1000,
+    queryKey: ['hr-client-hiring-req-query'],
+    queryFn: () => {
+      return api
+        .getData(`${HR_CLIENT_EMP_HIRING_REQUEST}?id=${params.id}`)
+        .then(({ data }) => {
+          const tempData = data?.length
+            ? data.map((item) => ({
+                ...item,
+                salary_range: `${item.salary_range.minimum}$ - ${item.salary_range.maximum}$`,
+                action: ['Delete'],
+              }))
+            : [];
+          dispatch(getClientHiringRequest(tempData));
+          return tempData;
+        })
+        .catch((error) => {
+          console.log({ error });
+        });
+    },
+  });
+  const ClientInterviewSchedule = useQuery({
+    staleTime: 1000,
+    queryKey: ['hr-interview-schedule-req-query'],
+    queryFn: () => {
+      console.log('Calling api');
+      return api
+        .getData(`${HR_CLIENT_EMP_INTERVIEW_SCHEDULE}?id=${params.id}`)
+        .then(({ data }) => {
+          dispatch(getClientInterviewSchedule(data || []));
+          return data;
+        })
+        .catch((error) => {
+          // console.log('API Failed');
+          // dispatch(getCurrentClientDataFailed());
+          console.log({ error });
+        });
+    },
+  });
+  const ClientOnBoarding = useQuery({
+    staleTime: 1000,
+    queryKey: ['hr-client-on-board-req-query'],
+    queryFn: () => {
+      // dispatch(getCurrentClientData());
+      // console.log('Calling api');
+      return api
+        .getData(`${HR_CLIENT_EMP_ON_BOARDING}?id=${params.id}`)
+        .then(({ data }) => {
+          // console.log({ data });
+          // console.log('API Success');
+          const tempData = data?.length
+            ? data.map((item) => ({
+                ...item,
+                dropdownStatus: true,
+                action: ['Delete'],
+              }))
+            : [];
+          dispatch(getClientOnboarding(tempData || []));
+          // console.log('API Success1');
+          return data;
+        })
+        .catch((error) => {
+          // console.log('API Failed');
+          // dispatch(getCurrentClientDataFailed());
+          console.log({ error });
+        });
+    },
+  });
+  const ClientEmployeesAll = useQuery({
+    staleTime: 1000,
+    queryKey: ['hr-clients-employees-all'],
+    queryFn: () => {
+      // dispatch(getCurrentClientData());
+      // console.log('Calling api');
+      return api
+        .getData(`${HR_CLIENT_EMPLOYEES}?c_email=${email}&tab=all`)
+        .then(({ data }) => {
+          // console.log({ data });
+          // console.log('API Success');
+          // dispatch(getCurrentClientDataSuccess(data));
+          // console.log('API Success1');
+          return data;
+        })
+        .catch((error) => {
+          // console.log('API Failed');
+          // dispatch(getCurrentClientDataFailed());
+          console.log({ error });
+        });
+    },
+  });
+  const ClientEmployeesActive = useQuery({
+    staleTime: 1000,
+    queryKey: ['hr-clients-employees-active'],
+    queryFn: () => {
+      // dispatch(getCurrentClientData());
+      // console.log('Calling api');
+      return api
+        .getData(`${HR_CLIENT_EMPLOYEES}?c_email=${email}&tab=active`)
+        .then(({ data }) => {
+          // console.log({ data });
+          // console.log('API Success');
+          // dispatch(getCurrentClientDataSuccess(data));
+          // console.log('API Success1');
+          return data;
+        })
+        .catch((error) => {
+          // console.log('API Failed');
+          // dispatch(getCurrentClientDataFailed());
+          console.log({ error });
+        });
+    },
+  });
+  const ClientEmployeesTerminated = useQuery({
+    staleTime: 1000,
+    queryKey: ['hr-clients-employees-terminated'],
+    queryFn: () => {
+      // dispatch(getCurrentClientData());
+      // console.log('Calling api');
+      return api
+        .getData(`${HR_CLIENT_EMPLOYEES}?c_email=${email}&tab=terminated`)
+        .then(({ data }) => {
+          // console.log({ data });
+          // console.log('API Success');
+          // dispatch(getCurrentClientDataSuccess(data));
+          // console.log('API Success1');
+          return data;
+        })
+        .catch((error) => {
+          // console.log('API Failed');
+          // dispatch(getCurrentClientDataFailed());
+          console.log({ error });
+        });
+    },
+  });
+  const EmployeeInvoicesPending = useQuery({
+    staleTime: 1000,
+    queryKey: ['hr-clients-employees-invoices-pending'],
+    queryFn: () => {
+      // dispatch(getCurrentClientData());
+      // console.log('Calling api');
+      return api
+        .getData(`${HR_CLIENT_EMPLOYEE_INVOICE}?client_id=${email}&tab=pending`)
+        .then(({ data }) => {
+          const tempData = data?.length
+            ? data.map((item) => ({
+                ...item,
+                dropdownStatus: true,
+                action: ['Delete'],
+                actionStatus: true,
+                download: 'Download',
+                payment_status: getCamelCapitalized(item.payment_status),
+              }))
+            : [];
+          dispatch(getClientEmpInvoicePending(tempData || []));
+          // console.log('API Success1');
+          return data;
+        })
+        .catch((error) => {
+          // console.log('API Failed');
+          // dispatch(getCurrentClientDataFailed());
+          console.log({ error });
+        });
+    },
+  });
+  const EmployeeInvoicesProcessing = useQuery({
+    staleTime: 1000,
+    queryKey: ['hr-clients-employees-invoices-processing'],
+    queryFn: () => {
+      // dispatch(getCurrentClientData());
+      // console.log('Calling api');
+      return api
+        .getData(
+          `${HR_CLIENT_EMPLOYEE_INVOICE}?client_id=${email}&tab=processing`
+        )
+        .then(({ data }) => {
+          // console.log({ data });
+          // console.log('API Success');
+          const tempData = data?.length
+            ? data.map((item) => ({
+                ...item,
+                dropdownStatus: true,
+                action: ['Delete'],
+                actionStatus: true,
+                download: 'Download',
+                payment_status: getCamelCapitalized(item.payment_status),
+              }))
+            : [];
+          dispatch(getClientEmpInvoiceProcessing(tempData || []));
+          // console.log('API Success1');
+          return data;
+        })
+        .catch((error) => {
+          // console.log('API Failed');
+          // dispatch(getCurrentClientDataFailed());
+          console.log({ error });
+        });
+    },
+  });
+  const EmployeeInvoicesPaid = useQuery({
+    staleTime: 1000,
+    queryKey: ['hr-clients-employees-invoices-paid'],
+    queryFn: () => {
+      // dispatch(getCurrentClientData());
+      // console.log('Calling api');
+      return api
+        .getData(`${HR_CLIENT_EMPLOYEE_INVOICE}?client_id=${email}&tab=paid`)
+        .then(({ data }) => {
+          // console.log({ data });
+          // console.log('API Success');
+          const tempData = data?.length
+            ? data.map((item) => ({
+                ...item,
+                dropdownStatus: true,
+                action: ['Delete'],
+                actionStatus: true,
+                download: 'Download',
+                payment_status: getCamelCapitalized(item.payment_status),
+              }))
+            : [];
+          dispatch(getClientEmpInvoicePaid(tempData || []));
+          // console.log('API Success1');
+          return data;
+        })
+        .catch((error) => {
+          // console.log('API Failed');
+          // dispatch(getCurrentClientDataFailed());
+          console.log({ error });
+        });
+    },
+  });
+  const OtherInvoicesPending = useQuery({
+    staleTime: 1000,
+    queryKey: ['hr-clients-other-invoices-pending'],
+    queryFn: () => {
+      // dispatch(getCurrentClientData());
+      // console.log('Calling api');
+      return api
+        .getData(`${HR_CLIENT_OTHER_INVOICE}?client_id=${email}&tab=pending`)
+        .then(({ data }) => {
+          const tempData =
+            data?.length &&
+            data.map((item) => ({
+              ...item,
+              dropdownStatus: true,
+              action: ['Delete'],
+              actionStatus: true,
+              download: 'Download',
+              payment_status: getCamelCapitalized(item.payment_status),
+            }));
+          console.log({ tempData });
+          dispatch(getClientOthInvoicePending(tempData || []));
+          // console.log('API Success1');
+          return data;
+        })
+        .catch((error) => {
+          // console.log('API Failed');
+          // dispatch(getCurrentClientDataFailed());
+          console.log({ error });
+        });
+    },
+  });
+  const OtherInvoicesProcessing = useQuery({
+    staleTime: 1000,
+    queryKey: ['hr-clients-other-invoices-processing'],
+    queryFn: () => {
+      // dispatch(getCurrentClientData());
+      // console.log('Calling api');
+      return api
+        .getData(`${HR_CLIENT_OTHER_INVOICE}?client_id=${email}&tab=processing`)
+        .then(({ data }) => {
+          // console.log({ data });
+          // console.log('API Success');
+          const tempData =
+            data?.length &&
+            data.map((item) => ({
+              ...item,
+              dropdownStatus: true,
+              action: ['Delete'],
+              actionStatus: true,
+              download: 'Download',
+              payment_status: getCamelCapitalized(item.payment_status),
+            }));
+          console.log({ tempData });
+          dispatch(getClientOthInvoiceProcessing(tempData || []));
+          // console.log('API Success1');
+          return data;
+        })
+        .catch((error) => {
+          // console.log('API Failed');
+          // dispatch(getCurrentClientDataFailed());
+          console.log({ error });
+        });
+    },
+  });
+  const OtherInvoicesPaid = useQuery({
+    staleTime: 1000,
+    queryKey: ['hr-clients-other-invoices-paid'],
+    queryFn: () => {
+      // dispatch(getCurrentClientData());
+      // console.log('Calling api');
+      return api
+        .getData(`${HR_CLIENT_OTHER_INVOICE}?client_id=${email}&tab=paid`)
+        .then(({ data }) => {
+          // console.log({ data });
+          // console.log('API Success');
+          const tempData =
+            data?.length &&
+            data.map((item) => ({
+              ...item,
+              dropdownStatus: true,
+              action: ['Delete'],
+              actionStatus: true,
+              download: 'Download',
+              payment_status: getCamelCapitalized(item.payment_status),
+            }));
+          dispatch(getClientOthInvoicePaid(tempData || []));
+          // console.log('API Success1');
+          return data;
+        })
+        .catch((error) => {
+          // console.log('API Failed');
+          // dispatch(getCurrentClientDataFailed());
+          console.log({ error });
+        });
+    },
+  });
+  const clientProfileTabs = [
+    {
+      label: 'Hire & onboard',
+      hasNestedTabs: true,
+      prop: a11yProps(0),
+      nestedTabs: [
+        {
+          prop: a11yProps(0),
+          label: 'Hiring request',
+          data: hireAndOnBoard.hiringRequest,
+          column: hiringRequestColumn,
+        },
+        {
+          prop: a11yProps(1),
+          label: 'Interview schedule',
+          data: hireAndOnBoard.interviewSchedule,
+          column: interviewScheduleColumn,
+        },
+        {
+          prop: a11yProps(2),
+          label: 'Onboarding',
+          data: hireAndOnBoard.onBoarding,
+          column: onboardingColumn,
+        },
+      ],
+      isTable: true,
+    },
+    {
+      label: 'Employees',
+      hasNestedTabs: true,
+      prop: a11yProps(1),
+      nestedTabs: [
+        {
+          prop: a11yProps(0),
+          label: 'All',
+          data: ClientEmployeesAll.data || [],
+        },
+        {
+          prop: a11yProps(1),
+          label: 'Active employees',
+          data: ClientEmployeesActive.data || [],
+        },
+        {
+          prop: a11yProps(2),
+          label: 'Terminated employees',
+          data: ClientEmployeesTerminated.data || [],
+        },
+      ],
+      isTable: false,
+    },
+    {
+      label: 'Employee invoices',
+      hasNestedTabs: true,
+      prop: a11yProps(3),
+      nestedTabs: [
+        {
+          prop: a11yProps(0),
+          label: 'Pending',
+          data: employeeInvoices?.pending,
+          column: invoicePaymentColumn,
+        },
+        {
+          prop: a11yProps(1),
+          label: 'Processing',
+          data: employeeInvoices?.processing,
+          column: invoicePaymentColumn,
+        },
+        {
+          prop: a11yProps(2),
+          label: 'Paid',
+          data: employeeInvoices?.paid,
+          column: invoicePaymentColumn,
+        },
+      ],
+      isTable: true,
+    },
+    {
+      label: 'Other invoices',
+      hasNestedTabs: true,
+      prop: a11yProps(4),
+      nestedTabs: [
+        {
+          prop: a11yProps(0),
+          label: 'Pending',
+          data: otherInvoices?.pending,
+          column: otherPaymentColumn,
+        },
+        {
+          prop: a11yProps(1),
+          label: 'Processing',
+          data: otherInvoices?.processing,
+          column: otherPaymentColumn,
+        },
+        {
+          prop: a11yProps(2),
+          label: 'Paid',
+          data: otherInvoices?.paid,
+          column: otherPaymentColumn,
+        },
+      ],
+      isTable: true,
+    },
+  ];
   const [isOpenHiringRequestModal, setIsOpenHiringRequestModal] =
     useState(false);
   const [isOpenAddInterviewModal, setIsOpenAddInterviewModal] = useState(false);
@@ -59,6 +526,8 @@ const AddEmployee = () => {
   const [isOpenContractModal, setIsOpenContractModal] = useState(false);
   const [showEditModal, setEditModal] = useState(false);
   const [isOpenUploadInvoiceModal, setIsOpenUploadInvoiceModal] =
+    useState(false);
+  const [isOpenUploadOthInvoiceModal, setIsOpenUploadOthInvoiceModal] =
     useState(false);
   const [isOpenAddClientModal, setIsOpenAddClientModal] = useState(false);
   const [currentTab, setCurrentTab] = useState({
@@ -70,9 +539,16 @@ const AddEmployee = () => {
     },
   });
   const [currentTabTable, setCurrentTabTable] = useState({
-    data: clientProfileTabs[0].nestedTabs[0].data,
+    data: hireAndOnBoard.hiringRequest,
     column: clientProfileTabs[0].nestedTabs[0].column,
   });
+
+  useEffect(() => {
+    setCurrentTabTable((ps) => ({
+      ...ps,
+      data: hireAndOnBoard.hiringRequest,
+    }));
+  }, [hireAndOnBoard.hiringRequest]);
   const handleChangeCurrentTab = (event, newValue) => {
     const current = clientProfileTabs[newValue];
     const { label, nestedTabs, data, column } = current;
@@ -87,26 +563,33 @@ const AddEmployee = () => {
         },
       };
     });
+    console.log({ label, nestedTabs, data, column, currentTab });
     if (data?.length) {
-      // console.log({data})
+      console.log({ data });
       const filteredData = filterTableRowsWRTTab(data, {
         paymentStatus: nestedTabs[0].label,
       });
       setCurrentTabTable({
-        data: filteredData,
+        data: filteredData || [],
         column,
       });
-    } else if (nestedTabs[0].data?.length) {
+    } else if (nestedTabs?.length) {
       setCurrentTabTable({
-        data: nestedTabs[0].data,
+        data: nestedTabs[0].data || [],
         column: nestedTabs[0].column,
       });
     } else {
       setCurrentTabTable({
         data: [],
-        column: [],
+        // column: [],
       });
     }
+    // if(nestedTabs.length) {
+    //   setCurrentTabTable({
+    //     data: nestedTabs[0].data || [],
+    //     column:nestedTabs[0].column,
+    //   });
+    // }
   };
   const handleChangeNestedTab = (event, newValue, data, rest) => {
     const current = data[newValue];
@@ -120,23 +603,40 @@ const AddEmployee = () => {
         },
       };
     });
-    if (current?.data?.length) {
+    // console.log({ event, newValue, data, rest, current, label });
+    // if (current?.data?.length) {
+    //   setCurrentTabTable({
+    //     data: current?.data || [],
+    //     column: current?.column,
+    //   });
+    // } else if (rest.data?.length) {
+    //   const filteredData = filterTableRowsWRTTab(rest.data, {
+    //     paymentStatus: current?.label,
+    //   });
+    //   setCurrentTabTable({
+    //     data: filteredData,
+    //     column: rest.column,
+    //   });
+    // } else {
+    //   setCurrentTabTable({
+    //     data: [],
+    //     column: [],
+    //   });
+    // }
+    console.log({ current });
+    if (current?.column?.length) {
+      console.log('currentData');
+      console.log({ event, newValue, data, rest, current });
       setCurrentTabTable({
-        data: current?.data,
+        data: current?.data || [],
         column: current?.column,
       });
-    } else if (rest.data?.length) {
-      const filteredData = filterTableRowsWRTTab(rest.data, {
-        paymentStatus: current?.label,
-      });
+    } else if (rest?.column?.length) {
+      console.log('restData');
+      console.log({ event, newValue, data, rest, current });
       setCurrentTabTable({
-        data: filteredData,
-        column: rest.column,
-      });
-    } else {
-      setCurrentTabTable({
-        data: [],
-        column: [],
+        data: rest?.data || [],
+        column: rest?.column,
       });
     }
   };
@@ -164,9 +664,9 @@ const AddEmployee = () => {
   const handleCloseAddOnboardModal = () => {
     setIsOpenAddOnboardModal(false);
   };
-  const handleOpenContractModal = () => {
-    setIsOpenContractModal(true);
-  };
+  // const handleOpenContractModal = () => {
+  //   setIsOpenContractModal(true);
+  // };
   const handleCloseContractModal = () => {
     setIsOpenContractModal(false);
   };
@@ -175,6 +675,12 @@ const AddEmployee = () => {
   };
   const handleCloseUploadInvoiceModal = () => {
     setIsOpenUploadInvoiceModal(false);
+  };
+  const handleOpenUploadOthInvoiceModal = () => {
+    setIsOpenUploadOthInvoiceModal(true);
+  };
+  const handleCloseUploadOthInvoiceModal = () => {
+    setIsOpenUploadOthInvoiceModal(false);
   };
   const handleOpenAddClientModal = () => {
     setIsOpenAddClientModal(true);
@@ -202,7 +708,16 @@ const AddEmployee = () => {
             {CLIENTPROFILE?.profile}
           </Typography>
         </Box>
-        {isLoading ? (
+        {isLoading ||
+        ClientOnBoarding.isLoading ||
+        ClientInterviewSchedule.isLoading ||
+        ClientHiringReqQuery.isLoading ||
+        EmployeeInvoicesPending.isLoading ||
+        EmployeeInvoicesProcessing.isLoading ||
+        EmployeeInvoicesPaid.isLoading ||
+        OtherInvoicesPending.isLoading ||
+        OtherInvoicesProcessing.isLoading ||
+        OtherInvoicesPaid.isLoading ? (
           'Loading...'
         ) : (
           <>
@@ -328,27 +843,48 @@ const AddEmployee = () => {
                               </Button>
                             )}
                           </>
-                        ) : currentTab?.label === 'Contract signed' ? (
-                          <Button
-                            onClick={handleOpenContractModal}
-                            variant="contained"
-                            sx={{
-                              my: { xs: '20px', md: 0 },
-                              color: '#fff',
-                              background: '#029894',
-                              '&:hover': {
-                                color: '#fff',
-                                background: '#029894',
-                              },
-                            }}
-                          >
-                            {CLIENTPROFILE?.addContract}
-                          </Button>
-                        ) : currentTab?.label === 'Employee invoices' ||
-                          currentTab?.label === 'Other invoices' ? (
+                        ) : // ) : currentTab?.label === 'Employee invoices' ||
+                        //   currentTab?.label === 'Other invoices' ? (
+                        //   currentTab?.nested.val === 0 ? (
+                        //     <Button
+                        //       onClick={handleOpenUploadInvoiceModal}
+                        //       variant="contained"
+                        //       sx={{
+                        //         my: { xs: '20px', md: 0 },
+                        //         color: '#fff',
+                        //         background: '#029894',
+                        //         '&:hover': {
+                        //           color: '#fff',
+                        //           background: '#029894',
+                        //         },
+                        //       }}
+                        //     >
+                        //       {CLIENTPROFILE?.uploadVoice}
+                        //     </Button>
+                        //   ) : null
+                        // ) : null}
+                        currentTab?.label === 'Employee invoices' ? (
                           currentTab?.nested.val === 0 ? (
                             <Button
                               onClick={handleOpenUploadInvoiceModal}
+                              variant="contained"
+                              sx={{
+                                my: { xs: '20px', md: 0 },
+                                color: '#fff',
+                                background: '#029894',
+                                '&:hover': {
+                                  color: '#fff',
+                                  background: '#029894',
+                                },
+                              }}
+                            >
+                              {CLIENTPROFILE?.uploadVoice}
+                            </Button>
+                          ) : null
+                        ) : currentTab?.label === 'Other invoices' ? (
+                          currentTab?.nested.val === 0 ? (
+                            <Button
+                              onClick={handleOpenUploadOthInvoiceModal}
                               variant="contained"
                               sx={{
                                 my: { xs: '20px', md: 0 },
@@ -372,6 +908,11 @@ const AddEmployee = () => {
               {renderTable({
                 currentTab: currentTab.label,
                 data: currentTabTable.data,
+                // data:
+                //   currentTab.label === 'Hire & onboard' &&
+                //   currentTab.nested.label === 'Hiring Request'
+                //     ? []
+                //     : currentTabTable.data,
                 column: currentTabTable.column,
                 openModal: handleOpenAddClientModal,
                 isOpen: isOpen,
@@ -403,6 +944,11 @@ const AddEmployee = () => {
         open={isOpenUploadInvoiceModal}
         onClose={handleCloseUploadInvoiceModal}
       />
+      <UploadOtherInvoiceModal
+        title="Other invoice form"
+        open={isOpenUploadOthInvoiceModal}
+        onClose={handleCloseUploadOthInvoiceModal}
+      />
       <AddEmployeeModal
         title="Employee invoice form"
         open={isOpenAddClientModal}
@@ -412,3 +958,5 @@ const AddEmployee = () => {
   );
 };
 export default AddEmployee;
+// 'https://waqarkhanzada.pythonanywhere.com/api/hr_empinv/?client_id=elon.musk@spacex.com.us&tab=pending'
+// 'https://waqarkhanzada.pythonanywhere.com/api/hr_empinv/?client_id=elon.musk%40spacex.com.us&tab=pending'

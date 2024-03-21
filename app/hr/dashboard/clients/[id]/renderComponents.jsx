@@ -1,7 +1,7 @@
-import AllEmployee from '@/src/components/HR/AllEmployee';
-import AppTable from '@/src/components/appTable/AppTable';
+import AppTable from '@/src/components/appTableNew/AppTable';
 import { Box } from '@mui/material';
 import AppConfirmationMadal from '@/src/components/modals/AppConfirmationMadal';
+import ClientEmployees from '@/src/components/HR/ClientEmployees';
 
 export const renderTable = ({
   currentTab,
@@ -35,5 +35,6 @@ export const renderTable = ({
         />
       </Box>
     );
-  } else return <AllEmployee openModal={openModal} fromClient />;
+  } else
+    return <ClientEmployees data={data} openModal={openModal} fromClient />;
 };

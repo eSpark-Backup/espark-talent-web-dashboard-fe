@@ -318,7 +318,7 @@ const renderDropdownCell = (row, col, commonCellStyle, options) => {
   return (
     <td key={col.index} style={{ ...commonCellStyle, flex: col?.flex || 1 }}>
       <AppCustomDropdown
-        col={col.title}
+        col={col.name || col.title}
         colIndex={col.index}
         row={row}
         options={dropdownOpts}

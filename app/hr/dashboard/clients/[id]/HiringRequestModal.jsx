@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Box, Button, Grid, Modal, Typography } from '@mui/material';
 
 import { hiringRequestSchema } from '@/src/components/form/schemas/hiringRequestForm';
@@ -6,9 +6,27 @@ import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { hringRequestForm } from '@/src/constants/data/forms/hiring-request';
 import { useFormik } from 'formik';
 import { FORM_DATA } from '@/src/constants/form';
+import { useSelector } from 'react-redux';
+import { useMutation } from '@tanstack/react-query';
+import { api } from '@/src/services/apiService';
+import { HR_CLIENT_EMP_HIRING_REQUEST } from '@/src/services/apiService/apiEndPoints';
+import dayjs from 'dayjs';
 
 const HiringRequestModal = ({ open, onClose }) => {
-  const [formData, setFormData] = useState({});
+  const { email } = useSelector((state) => state?.hr?.clients?.currentClient);
+  // const dispatch = useDispatch();
+  const { mutate } = useMutation({
+    mutationFn: async (formVals) => {
+      return api.postJSONData(`${HR_CLIENT_EMP_HIRING_REQUEST}`, formVals);
+    },
+    onSuccess: ({ data }) => {
+      console.log({ data });
+      // dispatch(addClientContract(values));
+    },
+    onError: (err) => {
+      console.log({ err: err.message, name: err.name, stack: err.stack });
+    },
+  });
   const {
     handleSubmit,
     values,
@@ -25,7 +43,15 @@ const HiringRequestModal = ({ open, onClose }) => {
     validationSchema: hiringRequestSchema,
     enableReinitialize: true,
     onSubmit: (formValues) => {
-      console.log({ formValues });
+      const finalData = {
+        ...formValues,
+        hiring_start_date: dayjs(formValues.hiring_start_date).format(
+          'YYYY-MM-DD'
+        ),
+        hiring_end_date: dayjs(formValues.hiring_end_date).format('YYYY-MM-DD'),
+        client_id: email,
+      };
+      mutate(finalData);
     },
     validateOnChange: false,
     validateOnBlur: false,
@@ -34,12 +60,7 @@ const HiringRequestModal = ({ open, onClose }) => {
     handleReset();
     onClose();
   };
-  const handleData = (name, value) => {
-    setFormData({ ...formData, [name]: value });
-  };
-  useEffect(() => {
-    console.log('form', formData);
-  }, [formData]);
+  // console.log({ values, errors });
   return (
     <Modal
       open={open}
@@ -146,7 +167,6 @@ const HiringRequestModal = ({ open, onClose }) => {
                       md={12}
                       lg={12}
                       fields={fields}
-                      handleData={handleData}
                     />
                   </Grid>
                   {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>}

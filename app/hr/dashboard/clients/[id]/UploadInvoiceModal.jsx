@@ -1,13 +1,33 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Box, Button, Grid, Modal, Typography } from '@mui/material';
 
 import { uploadInvoiceFormSchema } from '@/src/components/form/schemas/uploadInvoice';
 import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { uploadInvoiceForm } from '@/src/constants/data/forms/upload-invoice';
 import { useFormik } from 'formik';
+import { useSelector } from 'react-redux';
+import { useMutation } from '@tanstack/react-query';
+import { api } from '@/src/services/apiService';
+import { HR_CLIENT_EMPLOYEE_INVOICE } from '@/src/services/apiService/apiEndPoints';
+import dayjs from 'dayjs';
 
 const UploadInvoiceModal = ({ open, onClose, title }) => {
-  const [formData, setFormData] = useState({});
+  const { email } = useSelector((state) => state?.hr?.clients?.currentClient);
+  const { mutate } = useMutation({
+    mutationFn: async (formVals) => {
+      const formData = new FormData();
+      for (const key in formVals) {
+        formData.append(key, formVals[key]);
+      }
+      return api.postData(HR_CLIENT_EMPLOYEE_INVOICE, formData);
+    },
+    onSuccess: ({ data }) => {
+      console.log({ data });
+    },
+    onError: (err) => {
+      console.log({ err: err.message, name: err.name, stack: err.stack });
+    },
+  });
   const {
     handleSubmit,
     values,
@@ -22,7 +42,13 @@ const UploadInvoiceModal = ({ open, onClose, title }) => {
     validationSchema: uploadInvoiceFormSchema,
     enableReinitialize: true,
     onSubmit: (formValues) => {
-      console.log({ formValues });
+      const finalData = {
+        ...formValues,
+        due_date: dayjs(formValues.due_date).format('YYYY-MM-DD'),
+        invoice_date: dayjs(formValues.invoice_date).format('YYYY-MM-DD'),
+        client_id: email,
+      };
+      mutate(finalData);
     },
     validateOnChange: false,
     validateOnBlur: false,
@@ -31,12 +57,6 @@ const UploadInvoiceModal = ({ open, onClose, title }) => {
     handleReset();
     onClose();
   };
-  const handleData = (name, value) => {
-    setFormData({ ...formData, [name]: value });
-  };
-  useEffect(() => {
-    console.log('form', formData);
-  }, [formData]);
   return (
     <Modal
       open={open}
@@ -114,6 +134,7 @@ const UploadInvoiceModal = ({ open, onClose, title }) => {
                   name,
                   nested,
                   fields,
+                  accept,
                 },
                 formIndex
               ) => (
@@ -140,7 +161,7 @@ const UploadInvoiceModal = ({ open, onClose, title }) => {
                       nested={nested}
                       lg={12}
                       fields={fields}
-                      handleData={handleData}
+                      accept={accept}
                     />
                   </Grid>
                   {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>}

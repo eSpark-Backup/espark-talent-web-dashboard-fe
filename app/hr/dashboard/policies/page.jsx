@@ -1,39 +1,56 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Grid, Box, Button } from '@mui/material';
 
 import Heading from '@/src/components/global/Heading';
-import AppTable from '@/src/components/appTable/AppTable';
+import AppTable from '@/src/components/appTableNew/AppTable';
 import {
   policyColumn,
-  policyData,
+  // policyData,
 } from '@/src/constants/data/tables/policyData';
-import { toCamelCase } from '@/src/utils/stringModification';
+// import { toCamelCase } from '@/src/utils/stringModification';
 import UploadPolicyModal from '@/src/components/modals/uploadPolicyModal';
 import { POLICIES_DATA } from '@/src/constants/policies';
 import { CONTRACT_SIGNED } from '@/src/constants/contractSigned';
 import AppConfirmationMadal from '@/src/components/modals/AppConfirmationMadal';
+import { useQuery } from '@tanstack/react-query';
+import { api } from '@/src/services/apiService';
+import { HR_POLICY } from '@/src/services/apiService/apiEndPoints';
 
 const Policies = () => {
+  const { isLoading, data } = useQuery({
+    staleTime: 10000,
+    queryKey: ['hr-policy-query'],
+    queryFn: async () => {
+      return api
+        .getData(`${HR_POLICY}`)
+        .then(({ data }) => {
+          return data || [];
+        })
+        .catch((err) => {
+          console.log({ err });
+        });
+    },
+  });
   const [openUploadPolicy, setOpenUploadPolicy] = useState(false);
-  const [formTableState, setFormTableState] = useState([]);
+  // const [formTableState, setFormTableState] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
-  useEffect(() => {
-    setFormTableState([...policyData]);
-  }, [policyData]);
-  const handleSelectRow = (employeeId, column) => {
-    const tempForm = [...policyData];
-    const employeeIndex = tempForm.findIndex(
-      (employee) => employee.id === employeeId
-    );
-    const targetObject = {
-      ...tempForm[employeeIndex],
-    };
-    targetObject[[toCamelCase(column)]][2] =
-      !targetObject[[toCamelCase(column)]][2];
-    tempForm[employeeIndex] = targetObject;
-    setFormTableState(tempForm);
-  };
+  // useEffect(() => {
+  //   setFormTableState([...policyData]);
+  // }, [policyData]);
+  // const handleSelectRow = (employeeId, column) => {
+  //   const tempForm = [...policyData];
+  //   const employeeIndex = tempForm.findIndex(
+  //     (employee) => employee.id === employeeId
+  //   );
+  //   const targetObject = {
+  //     ...tempForm[employeeIndex],
+  //   };
+  //   targetObject[[toCamelCase(column)]][2] =
+  //     !targetObject[[toCamelCase(column)]][2];
+  //   tempForm[employeeIndex] = targetObject;
+  //   setFormTableState(tempForm);
+  // };
   const handleClickDelete = () => {
     setIsOpen(true);
   };
@@ -96,20 +113,24 @@ const Policies = () => {
               </Button>
             </Box>
           </Box>
-          <Box
-            sx={{
-              maxWidth: '100%',
-              overflowX: 'auto',
-            }}
-          >
-            <AppTable
-              column={policyColumn}
-              data={formTableState}
-              handleClickActionView={handleSelectRow}
-              handleClickActionDelete={handleClickDelete}
-              noPagination
-            />
-          </Box>
+          {isLoading ? (
+            'Loading...'
+          ) : (
+            <Box
+              sx={{
+                maxWidth: '100%',
+                overflowX: 'auto',
+              }}
+            >
+              <AppTable
+                column={policyColumn}
+                data={data}
+                // handleClickActionView={handleSelectRow}
+                handleClickActionDelete={handleClickDelete}
+                noPagination
+              />
+            </Box>
+          )}
         </Box>
       </Grid>
       {openUploadPolicy && (

@@ -2,12 +2,28 @@ import { addNewInterviewFormSchema } from '@/src/components/form/schemas/addNewI
 import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { addNewInterviewForm } from '@/src/constants/data/forms/add-new-interview';
 import { FORM_DATA } from '@/src/constants/form';
+import { api } from '@/src/services/apiService';
+import { HR_CLIENT_EMP_INTERVIEW_SCHEDULE } from '@/src/services/apiService/apiEndPoints';
 import { Box, Button, Grid, Modal, Typography } from '@mui/material';
+import { useMutation } from '@tanstack/react-query';
+import dayjs from 'dayjs';
 import { useFormik } from 'formik';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux';
 
 const AddInterviewModal = ({ open, onClose }) => {
-  const [formData, setFormData] = useState({});
+  const { email } = useSelector((state) => state?.hr?.clients?.currentClient);
+  const { mutate } = useMutation({
+    mutationFn: async (formVals) => {
+      return api.postJSONData(`${HR_CLIENT_EMP_INTERVIEW_SCHEDULE}`, formVals);
+    },
+    onSuccess: ({ data }) => {
+      console.log({ data });
+    },
+    onError: (err) => {
+      console.log({ err: err.message, name: err.name, stack: err.stack });
+    },
+  });
   const {
     handleSubmit,
     values,
@@ -24,7 +40,15 @@ const AddInterviewModal = ({ open, onClose }) => {
     validationSchema: addNewInterviewFormSchema,
     enableReinitialize: true,
     onSubmit: (formValues) => {
-      console.log({ formValues });
+      const finalData = {
+        ...formValues,
+        interview_date_time: dayjs(formValues.hiring_start_date).format(
+          'YYYY-MM-DDTHH:mm:ss.SSS[Z]'
+        ),
+        client_id: email,
+      };
+      console.log({ finalData });
+      mutate(finalData);
     },
     validateOnChange: false,
     validateOnBlur: false,
@@ -33,12 +57,6 @@ const AddInterviewModal = ({ open, onClose }) => {
     handleReset();
     onClose();
   };
-  const handleData = (name, value) => {
-    setFormData({ ...formData, [name]: value });
-  };
-  useEffect(() => {
-    console.log('form', formData);
-  }, [formData]);
   return (
     <Modal
       open={open}
@@ -145,7 +163,6 @@ const AddInterviewModal = ({ open, onClose }) => {
                       md={12}
                       lg={12}
                       fields={fields}
-                      handleData={handleData}
                     />
                   </Grid>
                   {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>}

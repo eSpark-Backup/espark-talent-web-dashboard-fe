@@ -4,7 +4,7 @@ export const addOnboardForm = [
   {
     title: 'Employee name',
     placeholder: 'Enter name',
-    name: 'name',
+    name: 'employee_name',
   },
   {
     title: 'Gender',
@@ -26,7 +26,7 @@ export const addOnboardForm = [
     type: 'select',
     nested: true,
     options: jobTitles,
-    name: 'jobTitle',
+    name: 'job_title',
   },
   {
     title: 'Role type',
@@ -46,7 +46,7 @@ export const addOnboardForm = [
         label: 'Intern',
       },
     ],
-    name: 'roleType',
+    name: 'role_type',
   },
   {
     title: 'Employment term',
@@ -63,14 +63,14 @@ export const addOnboardForm = [
         label: 'Project based',
       },
     ],
-    name: 'employmentTerm',
+    name: 'employment_term',
   },
   {
     title: 'Joining date',
     placeholder: 'DD/MM/YYYY',
     suffixIcon: 'calender',
     type: 'date',
-    name: 'joiningDate',
+    name: 'joining_date',
   },
   {
     title: 'Country',
@@ -80,7 +80,7 @@ export const addOnboardForm = [
   {
     title: 'Notice period',
     placeholder: 'Days',
-    name: 'noticePeriod',
+    name: 'notice_period',
   },
   {
     title: 'Salary',

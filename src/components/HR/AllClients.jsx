@@ -42,7 +42,7 @@ const AllClients = () => {
         });
     },
   });
-  console.log({ data, isLoading });
+  // console.log({ data, isLoading });
 
   return (
     <>

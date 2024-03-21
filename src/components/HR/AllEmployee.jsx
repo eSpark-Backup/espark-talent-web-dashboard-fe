@@ -44,18 +44,18 @@ const AllEmployee = ({ fromClient, openModal }) => {
     queryKey: ['employeeQuery'],
     queryFn: () => {
       dispatch(getEmpData());
-      console.log('Calling api');
+      // console.log('Calling api');
       return api
         .getData(HR_EMPLOYEES)
         .then(({ data }) => {
-          console.log({ data });
-          console.log('API Success');
+          // console.log({ data });
+          // console.log('API Success');
           dispatch(getEmpDataSuccess(data));
-          console.log('API Success1');
+          // console.log('API Success1');
           return data;
         })
         .catch((error) => {
-          console.log('API Failed');
+          // console.log('API Failed');
           dispatch(getEmpDataFailed());
           console.log({ error });
         });

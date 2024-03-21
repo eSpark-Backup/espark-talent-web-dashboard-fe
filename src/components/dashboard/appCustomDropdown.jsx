@@ -1,4 +1,4 @@
-import { toCamelCase } from '@/src/utils/stringModification';
+// import { toCamelCase } from '@/src/utils/stringModification';
 import { Box, Typography } from '@mui/material';
 import Image from 'next/image';
 import React, { useEffect, useRef, useState } from 'react';
@@ -16,7 +16,7 @@ const AppCustomDropdown = ({
   const [isOpen, setIsOpen] = useState(false);
   const [currentState, setCurrentState] = useState('');
   useEffect(() => {
-    setCurrentState(row[toCamelCase(col)]);
+    setCurrentState(row[col]);
   }, [row, col]);
 
   const componentRef = useRef(null);

@@ -17,6 +17,13 @@ export const HR_UPDATE_EMP_INFO = '/hr_update_empinfo/';
 export const HR_UPDATE_EMP_CREDS = '/hr_update_empcred/';
 export const HR_COMPANY_CONTRACTS = '/hr_compcontract/';
 export const HR_OFF_SHORE_CONTRACTS = '/hr_offscontract/';
+export const HR_CLIENT_EMP_HIRING_REQUEST = '/hr_start_hire/';
+export const HR_CLIENT_EMP_INTERVIEW_SCHEDULE = '/hr_is/';
+export const HR_CLIENT_EMP_ON_BOARDING = '/hr_onboarding/';
+export const HR_CLIENT_EMPLOYEES = '/hr_clientemps/';
+export const HR_CLIENT_EMPLOYEE_INVOICE = '/hr_empinv/';
+export const HR_CLIENT_OTHER_INVOICE = '/hr_otherinv/';
+export const HR_POLICY = '/hr_policy/';
 
 // Employees
 
