@@ -4,13 +4,24 @@ import contractSlice from './contractSlice';
 import employeeSlice from './employeeSlice';
 import homeSlice from './homeSlice';
 import settingsSlice from './settingsSlice';
+import { persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
-const hrReducer = combineReducers({
-  home: homeSlice,
-  clients: clientSlice,
-  employees: employeeSlice,
-  contracts: contractSlice,
-  settings: settingsSlice,
-});
+const persistConfig = {
+  key: 'home',
+  storage,
+  whitelist: ['home'],
+};
+
+const hrReducer = persistReducer(
+  persistConfig,
+  combineReducers({
+    home: homeSlice,
+    clients: clientSlice,
+    employees: employeeSlice,
+    contracts: contractSlice,
+    settings: settingsSlice,
+  })
+);
 
 export { hrReducer };

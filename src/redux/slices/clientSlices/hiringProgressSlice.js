@@ -25,7 +25,7 @@ const hiringProgressSlice = createSlice({
       state.isLoading = true;
     },
     fetchClientInterviewSchedulesSuccess: (state, action) => {
-      state.contracts.company = action?.payload?.company;
+      state.data.interviewSchedule = action?.payload;
       state.isLoading = false;
     },
     fetchClientInterviewSchedulesFailed: (state) => {
@@ -35,7 +35,7 @@ const hiringProgressSlice = createSlice({
       state.isLoading = true;
     },
     fetchClientOnboardingSuccess: (state, action) => {
-      state.contracts.company = action?.payload?.company;
+      state.data.onBoarding = action?.payload;
       state.isLoading = false;
     },
     fetchClientOnboardingFailed: (state) => {

@@ -42,7 +42,7 @@ const Page = () => {
 
   const params = useParams();
   const { isLoading } = useQuery({
-    staleTime: 10000,
+    staleTime: 1000,
     queryKey: ['employee-profile'],
     queryFn: async () => {
       dispatch(getCurrentEmpData());

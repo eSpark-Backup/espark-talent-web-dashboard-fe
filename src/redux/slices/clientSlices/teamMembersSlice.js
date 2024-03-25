@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const teamMemberSlice = createSlice({
   name: 'teamMemberSlice',
   initialState: {
-    data: {},
+    data: [],
     isLoading: false,
   },
   reducers: {

@@ -10,34 +10,34 @@ import Clock from '@/src/components/AtttendanceSummary/Clock';
 // import Image from 'next/image';
 import { DASHBOARD_DATA } from '@/public/images/dashboard/constants/Dashboard';
 // import { PUNCH_IN } from '@/src/constants/punchIn/createPunch';
-import { useQuery } from '@tanstack/react-query';
-import { api } from '@/src/services/apiService';
-import { EMP_HOME } from '@/src/services/apiService/apiEndPoints';
-import { useDispatch, useSelector } from 'react-redux';
-import { getEmpHomeData } from '@/src/redux/slices/employeeSlices/empHomeSlice';
-import { getEmployeeDetails, getWorkSpace } from '@/src/redux/slices/authSlice';
+// import { useQuery } from '@tanstack/react-query';
+// import { api } from '@/src/services/apiService';
+// import { EMP_HOME } from '@/src/services/apiService/apiEndPoints';
+import { useSelector } from 'react-redux';
+// import { getEmpHomeData } from '@/src/redux/slices/employeeSlices/empHomeSlice';
+// import { getEmployeeDetails, getWorkSpace } from '@/src/redux/slices/authSlice';
 import Statistics from '@/src/components/AtttendanceSummary/Statistics';
 import MarkClock from '@/src/components/AtttendanceSummary/MarkClock/MarkClock';
 import TodayActivity from '@/src/components/AtttendanceSummary/TodayActivity';
 
 const Dashboard = () => {
-  const { workSpace } = useSelector((state) => state?.auth?.userData);
-  const dispatch = useDispatch();
-  const { isLoading } = useQuery({
-    // staleTime: 10000,
-    queryFn: () => {
-      return api
-        .getData(`${EMP_HOME}/?workspace=${workSpace?.email || ''}`)
-        .then(({ data }) => {
-          dispatch(getEmpHomeData(data));
-          dispatch(getWorkSpace(data?.workspaces?.[0]));
-          dispatch(getEmployeeDetails(data?.employee_details));
-          return data;
-        });
-    },
-  });
+  const { empDetails } = useSelector((state) => state?.auth?.userData);
+  // const dispatch = useDispatch();
+  // const { isLoading } = useQuery({
+  //   // staleTime: 10000,
+  //   queryFn: () => {
+  //     return api
+  //       .getData(`${EMP_HOME}/?workspace=${workSpace?.email || ''}`)
+  //       .then(({ data }) => {
+  //         dispatch(getEmpHomeData(data));
+  //         dispatch(getWorkSpace(data?.workspaces?.[0]));
+  //         dispatch(getEmployeeDetails(data?.employee_details));
+  //         return data;
+  //       });
+  //   },
+  // });
 
-  if (isLoading) return 'Loading...';
+  // if (isLoading) return 'Loading...';
   return (
     <>
       <Grid container spacing={5}>
@@ -47,7 +47,10 @@ const Dashboard = () => {
               width: '100%',
             }}
           >
-            <DashboardHeading dashboardDescription={DASHBOARD_DATA?.updates} />
+            <DashboardHeading
+              title={empDetails?.employee_name}
+              dashboardDescription={DASHBOARD_DATA?.updates}
+            />
           </Box>
         </Grid>
         <Grid item xs={12}>

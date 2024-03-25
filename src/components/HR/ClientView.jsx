@@ -9,11 +9,15 @@ import { allEmployees } from '@/src/constants/AllEmployee';
 import AppConfirmationMadal from '../modals/AppConfirmationMadal';
 import { REMOVE_MODAL } from '@/src/constants/contractSigned';
 import { CLIENT_VIEW } from '@/src/constants/ClientProfile';
-// import { useQuery } from '@tanstack/react-query';
-// import { api } from '@/src/services/apiService';
-// import { HR_GET_CLIENTS } from '@/src/services/apiService/apiEndPoints';
-// import { getClientsData } from '@/src/redux/slices/hrSlices/clientSlice';
-// import { useDispatch } from 'react-redux';
+import { api } from '@/src/services/apiService';
+import { HR_GET_CLIENT_PROFILE } from '@/src/services/apiService/apiEndPoints';
+import {
+  getCurrentClientData,
+  getCurrentClientDataSuccess,
+} from '@/src/redux/slices/hrSlices/clientSlice';
+import { useMutation } from '@tanstack/react-query';
+import { fetchClientHomeDataRequestFailed } from '@/src/redux/slices/clientSlices/homeSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 const ClientView = ({
   status,
@@ -24,13 +28,33 @@ const ClientView = ({
   data,
   isLoading,
 }) => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const router = useRouter();
   const [anchorEl, setAnchorEl] = useState(null);
+  const [selectedEmployee, setSelectedEmployee] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
+  const clientInfoMutation = useMutation({
+    mutationFn: async (id) => {
+      dispatch(getCurrentClientData());
+      console.log({ mutationID: id });
+      return api.getData(`${HR_GET_CLIENT_PROFILE}?id=${id}`);
+    },
+    onSuccess: ({ data }) => {
+      console.log({ selectedEmployee, data });
+      dispatch(getCurrentClientDataSuccess(data));
+      router.push(`/hr/dashboard/clients/${selectedEmployee}`);
+      return data;
+    },
+    onError: (err) => {
+      dispatch(fetchClientHomeDataRequestFailed());
+      console.log({ err: err.message, name: err.name, stack: err.stack });
+    },
+  });
   const isBetween1400And1200 = useMediaQuery(
     '(min-width: 1200px) and (max-width: 1400px)'
   );
+  const { role } = useSelector((state) => state?.auth?.userData);
+  const { client_perms } = useSelector((state) => state?.hr?.home?.homeData);
 
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -193,7 +217,13 @@ const ClientView = ({
                           }}
                           sx={{ marginTop: '20px' }}
                         >
-                          <MenuItem onClick={handleOpenRemove}>Remove</MenuItem>
+                          {(role === 'super admin' ||
+                            (role !== 'super admin' &&
+                              client_perms?.[0]?.delete)) && (
+                            <MenuItem onClick={handleOpenRemove}>
+                              Remove
+                            </MenuItem>
+                          )}
                           <MenuItem onClick={handleClose}>Active</MenuItem>
                           <MenuItem onClick={handleClose}>Inactive</MenuItem>
                         </Menu>
@@ -234,13 +264,14 @@ const ClientView = ({
       );
     }
   }
-  // const { data, isLoading } = useQuery({
-  //   staleTime: 10000,
-  //   queryFn: () => {
-  //     return api.getData(HR_GET_CLIENTS);
-  //   },
-  // });
-  // console.log({ data, isLoading });
+
+  const handleClientClick = (id) => {
+    setSelectedEmployee(id);
+    clientInfoMutation.mutate(id);
+
+    // router.push(`/hr/dashboard/clients/${eachItem.id}`);
+  };
+
   return (
     <>
       <Grid
@@ -256,7 +287,7 @@ const ClientView = ({
       >
         {isLoading
           ? 'Loading...'
-          : data.length
+          : data?.length
           ? data
               ?.filter((eachItem) => {
                 if (status === 'All') {
@@ -289,9 +320,7 @@ const ClientView = ({
                         minHeight: '250px',
                       },
                     }}
-                    onClick={() =>
-                      router.push(`/hr/dashboard/clients/${eachItem.id}`)
-                    }
+                    onClick={() => handleClientClick(eachItem.id)}
                   >
                     <Box
                       sx={{ display: 'flex', justifyContent: 'space-between' }}
@@ -396,7 +425,13 @@ const ClientView = ({
                           }}
                           sx={{ marginTop: '20px' }}
                         >
-                          <MenuItem onClick={handleOpenRemove}>Remove</MenuItem>
+                          {(role === 'super admin' ||
+                            (role !== 'super admin' &&
+                              client_perms?.[0]?.delete)) && (
+                            <MenuItem onClick={handleOpenRemove}>
+                              Remove
+                            </MenuItem>
+                          )}
                           <MenuItem
                             onClick={() =>
                               router.push('/hr/dashboard/clients/add-client')

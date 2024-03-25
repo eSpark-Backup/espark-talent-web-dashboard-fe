@@ -54,7 +54,7 @@ const FormInput = ({
   suffixIconInside,
   // handleData,
   readOnly,
-  modalData,
+  withFlag,
   fieldsName,
   accept = '.png',
 }) => {
@@ -203,13 +203,13 @@ const FormInput = ({
         <>
           {searchable ? (
             <AppSearchableDropdown
-              data={countries}
+              data={countries || options}
               selectedItem={value}
               setSelectedItem={handleSelectItem}
               setIsLoadingList={setIsLoadingList}
               isLoadingList={isLoadingList}
               md={12}
-              withFlag
+              withFlag={withFlag}
               error={error}
             />
           ) : (
@@ -364,7 +364,6 @@ const FormInput = ({
         <>
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
             {fieldsName?.map((field, fieldIndex) => {
-              console.log({ error, errors });
               return (
                 <>
                   {fieldIndex === 1 && (
@@ -408,6 +407,7 @@ const FormInput = ({
                         handleChangeInput(`${field.name}`, e?.target?.value);
                       }}
                       value={values[`${name}.${field.name}`]}
+                      name={`${field.name}`}
                     />
                   </Box>
                 </>
@@ -596,13 +596,15 @@ const FormInput = ({
                 display: type === 'file' && 'none',
               }}
               value={
-                name === 'emailCredential'
-                  ? modalData?.row?.email || ''
-                  : name === 'passwordCredential'
-                  ? modalData?.row?.password || ''
-                  : '' || type !== 'file'
-                  ? value
-                  : null
+                // name === 'emailCredential'
+                //   ? modalData?.row?.email || ''
+                //   : name === 'passwordCredential'
+                //   ? modalData?.row?.password || ''
+                //   : '' || type !== 'file'
+                //   ? value
+                //   : null
+                // value
+                type === 'file' ? null : value
               }
               placeholder={placeholder}
               className="form-input-field"

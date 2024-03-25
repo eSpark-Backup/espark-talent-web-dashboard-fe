@@ -1,6 +1,11 @@
 import * as Yup from 'yup';
 
 export const filterModalSchema = Yup.object({
-  from: Yup.string().required('Required'),
-  to: Yup.string().required('Required'),
+  from: Yup.string().required('From date is required'),
+  to: Yup.string().required('To date is required'),
+  attendanceStatus: Yup.string(),
+  checkinTimeFrom: Yup.string().required('Checkin start time is required'),
+  checkinTimeTo: Yup.string().required('Checkin end time is required'),
+  checkoutTimeFrom: Yup.string().required('Checkout start time is required'),
+  checkoutTimeTo: Yup.string().required('Checkout end time is required'),
 });

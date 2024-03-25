@@ -9,7 +9,7 @@ import { DASHBOARD_DATA } from '@/public/images/dashboard/constants/Dashboard';
 import { useSelector } from 'react-redux';
 
 const Dashboard = () => {
-  const { empDetails } = useSelector((state) => state?.auth?.userData);
+  const { username } = useSelector((state) => state?.client?.home?.data);
   return (
     <>
       <Grid container>
@@ -24,7 +24,7 @@ const Dashboard = () => {
             }}
           >
             <DashboardHeading
-              title={empDetails?.employee_name || 'World'}
+              title={username || 'World'}
               dashboardDescription={DASHBOARD_DATA?.updates}
             />
 

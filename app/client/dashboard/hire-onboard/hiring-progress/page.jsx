@@ -64,6 +64,7 @@ const Dashboard = () => {
     queryKey: 'interviewSchedules',
     queryFn: async () => {
       const { data } = await api.getData(`${CLIENT_INTERVIEW_SCHEDULE}`);
+      console.log({ interviewSchedules: data });
       dispatch(fetchClientInterviewSchedulesSuccess(data || []));
       return data;
     },
@@ -96,7 +97,7 @@ const Dashboard = () => {
   ]);
 
   const reformData = (dataArr) => {
-    if (dataArr.length) {
+    if (dataArr?.length) {
       const tempData = dataArr.map((item) => ({
         ...item,
         salary_range: `${item.salary_range?.minimum} $ - ${item.salary_range?.maximum} $`,

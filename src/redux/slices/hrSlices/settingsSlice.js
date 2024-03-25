@@ -5,6 +5,8 @@ const settingsSlice = createSlice({
   initialState: {
     companySettings: {},
     accounts: [],
+    rolesDetails: [],
+    isLoadingRoleDetails: false,
   },
   reducers: {
     getCompSettingsData: (state, action) => {
@@ -13,8 +15,20 @@ const settingsSlice = createSlice({
     getAccountsData: (state, action) => {
       state.accounts = action.payload;
     },
+    getRolesDetailsRequest: (state) => {
+      state.isLoadingRoleDetails = true;
+    },
+    getRolesDetailsSuccess: (state, action) => {
+      state.rolesDetails = action.payload;
+      state.isLoadingRoleDetails = false;
+    },
   },
 });
 
-export const { getCompSettingsData, getAccountsData } = settingsSlice.actions;
+export const {
+  getCompSettingsData,
+  getAccountsData,
+  getRolesDetailsSuccess,
+  getRolesDetailsRequest,
+} = settingsSlice.actions;
 export default settingsSlice.reducer;

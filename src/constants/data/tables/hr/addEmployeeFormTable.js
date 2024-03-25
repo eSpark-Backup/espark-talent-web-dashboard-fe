@@ -1,29 +1,35 @@
 export const addEmployeeFormTableColumn = [
   {
     title: 'Picture',
-    flex: 1,
     isIconTitle: true,
     src: '/icons/UserIcon.svg',
+    flex: 1,
+    name: 'pic',
   },
   {
     title: 'Name',
     flex: 1,
+    name: 'name',
   },
   {
     title: 'ID',
     flex: 1,
+    name: 'id',
   },
   {
     title: 'Gender',
     flex: 1,
+    name: 'gender',
   },
   {
     title: 'Job title',
     flex: 1,
+    name: 'job_title',
   },
   {
     title: 'Action',
     flex: 1,
+    name: 'action',
   },
 ];
 export const addEmployeeFormTableData = [

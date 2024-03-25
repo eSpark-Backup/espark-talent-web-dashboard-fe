@@ -66,6 +66,10 @@ const AddEmployee = () => {
     otherInvoices,
   } = useSelector((state) => state?.hr?.clients?.currentClientData);
   const { email } = useSelector((state) => state?.hr?.clients?.currentClient);
+  const { client_perms, invoices_perms } = useSelector(
+    (state) => state?.hr?.home?.homeData
+  );
+  const { role } = useSelector((state) => state?.auth?.userData);
   const { isLoading } = useQuery({
     staleTime: 1000,
     queryKey: ['hr-client-info-query'],
@@ -100,7 +104,11 @@ const AddEmployee = () => {
             ? data.map((item) => ({
                 ...item,
                 salary_range: `${item.salary_range.minimum}$ - ${item.salary_range.maximum}$`,
-                action: ['Delete'],
+                action:
+                  role === 'super admin' ||
+                  (role !== 'super admin' && invoices_perms?.[0]?.write)
+                    ? ['Delete']
+                    : ['-'],
               }))
             : [];
           dispatch(getClientHiringRequest(tempData));
@@ -792,55 +800,73 @@ const AddEmployee = () => {
                         {currentTab?.label === 'Hire & onboard' ? (
                           <>
                             {currentTab?.nested.val === 0 ? (
-                              <Button
-                                onClick={handleOpenHiringRequestModal}
-                                variant="contained"
-                                sx={{
-                                  my: { xs: '20px', md: 0 },
-                                  textTransform: 'math-auto',
-                                  color: '#fff',
-                                  background: '#029894',
-                                  '&:hover': {
-                                    color: '#fff',
-                                    background: '#029894',
-                                  },
-                                }}
-                              >
-                                {CLIENTPROFILE?.addNewRequest}
-                              </Button>
+                              <>
+                                {(role === 'super admin' ||
+                                  (role !== 'super admin' &&
+                                    client_perms?.[0]?.write)) && (
+                                  <Button
+                                    onClick={handleOpenHiringRequestModal}
+                                    variant="contained"
+                                    sx={{
+                                      my: { xs: '20px', md: 0 },
+                                      textTransform: 'math-auto',
+                                      color: '#fff',
+                                      background: '#029894',
+                                      '&:hover': {
+                                        color: '#fff',
+                                        background: '#029894',
+                                      },
+                                    }}
+                                  >
+                                    {CLIENTPROFILE?.addNewRequest}
+                                  </Button>
+                                )}
+                              </>
                             ) : currentTab?.nested.val === 1 ? (
-                              <Button
-                                onClick={handleOpenAddInterviewModal}
-                                variant="contained"
-                                sx={{
-                                  my: { xs: '20px', md: 0 },
-                                  textTransform: 'math-auto',
-                                  color: '#fff',
-                                  background: '#029894',
-                                  '&:hover': {
-                                    color: '#fff',
-                                    background: '#029894',
-                                  },
-                                }}
-                              >
-                                {CLIENTPROFILE?.setNewInterview}
-                              </Button>
+                              <>
+                                {(role === 'super admin' ||
+                                  (role !== 'super admin' &&
+                                    client_perms?.[0]?.write)) && (
+                                  <Button
+                                    onClick={handleOpenAddInterviewModal}
+                                    variant="contained"
+                                    sx={{
+                                      my: { xs: '20px', md: 0 },
+                                      textTransform: 'math-auto',
+                                      color: '#fff',
+                                      background: '#029894',
+                                      '&:hover': {
+                                        color: '#fff',
+                                        background: '#029894',
+                                      },
+                                    }}
+                                  >
+                                    {CLIENTPROFILE?.setNewInterview}
+                                  </Button>
+                                )}
+                              </>
                             ) : (
-                              <Button
-                                onClick={handleOpenAddOnboardModal}
-                                variant="contained"
-                                sx={{
-                                  my: { xs: '20px', md: 0 },
-                                  color: '#fff',
-                                  background: '#029894',
-                                  '&:hover': {
-                                    color: '#fff',
-                                    background: '#029894',
-                                  },
-                                }}
-                              >
-                                {CLIENTPROFILE?.addOnboard}
-                              </Button>
+                              <>
+                                {(role === 'super admin' ||
+                                  (role !== 'super admin' &&
+                                    client_perms?.[0]?.write)) && (
+                                  <Button
+                                    onClick={handleOpenAddOnboardModal}
+                                    variant="contained"
+                                    sx={{
+                                      my: { xs: '20px', md: 0 },
+                                      color: '#fff',
+                                      background: '#029894',
+                                      '&:hover': {
+                                        color: '#fff',
+                                        background: '#029894',
+                                      },
+                                    }}
+                                  >
+                                    {CLIENTPROFILE?.addOnboard}
+                                  </Button>
+                                )}
+                              </>
                             )}
                           </>
                         ) : // ) : currentTab?.label === 'Employee invoices' ||
@@ -865,39 +891,51 @@ const AddEmployee = () => {
                         // ) : null}
                         currentTab?.label === 'Employee invoices' ? (
                           currentTab?.nested.val === 0 ? (
-                            <Button
-                              onClick={handleOpenUploadInvoiceModal}
-                              variant="contained"
-                              sx={{
-                                my: { xs: '20px', md: 0 },
-                                color: '#fff',
-                                background: '#029894',
-                                '&:hover': {
-                                  color: '#fff',
-                                  background: '#029894',
-                                },
-                              }}
-                            >
-                              {CLIENTPROFILE?.uploadVoice}
-                            </Button>
+                            <>
+                              {(role === 'super admin' ||
+                                (role !== 'super admin' &&
+                                  invoices_perms?.[0]?.write)) && (
+                                <Button
+                                  onClick={handleOpenUploadInvoiceModal}
+                                  variant="contained"
+                                  sx={{
+                                    my: { xs: '20px', md: 0 },
+                                    color: '#fff',
+                                    background: '#029894',
+                                    '&:hover': {
+                                      color: '#fff',
+                                      background: '#029894',
+                                    },
+                                  }}
+                                >
+                                  {CLIENTPROFILE?.uploadVoice}
+                                </Button>
+                              )}
+                            </>
                           ) : null
                         ) : currentTab?.label === 'Other invoices' ? (
                           currentTab?.nested.val === 0 ? (
-                            <Button
-                              onClick={handleOpenUploadOthInvoiceModal}
-                              variant="contained"
-                              sx={{
-                                my: { xs: '20px', md: 0 },
-                                color: '#fff',
-                                background: '#029894',
-                                '&:hover': {
-                                  color: '#fff',
-                                  background: '#029894',
-                                },
-                              }}
-                            >
-                              {CLIENTPROFILE?.uploadVoice}
-                            </Button>
+                            <>
+                              {(role === 'super admin' ||
+                                (role !== 'super admin' &&
+                                  invoices_perms?.[0]?.write)) && (
+                                <Button
+                                  onClick={handleOpenUploadOthInvoiceModal}
+                                  variant="contained"
+                                  sx={{
+                                    my: { xs: '20px', md: 0 },
+                                    color: '#fff',
+                                    background: '#029894',
+                                    '&:hover': {
+                                      color: '#fff',
+                                      background: '#029894',
+                                    },
+                                  }}
+                                >
+                                  {CLIENTPROFILE?.uploadVoice}
+                                </Button>
+                              )}
+                            </>
                           ) : null
                         ) : null}
                       </Box>

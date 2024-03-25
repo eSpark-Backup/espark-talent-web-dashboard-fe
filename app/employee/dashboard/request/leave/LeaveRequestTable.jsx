@@ -15,7 +15,7 @@ const LeaveRequestTable = ({
   const { data, isLoading } = useSelector((state) => state?.emp?.leaveReq);
   const [leaveRequestDataState, setLeaveRequestDataState] = useState([]);
   const reformData = (dataArr) => {
-    if (dataArr.length) {
+    if (dataArr?.length) {
       const tempData = dataArr.map((item) => ({
         ...item,
         actions: item?.status === 'pending' ? ['Delete', 'View'] : ['View'],
@@ -25,11 +25,9 @@ const LeaveRequestTable = ({
     return [];
   };
   useEffect(() => {
-    if (data?.requests?.length) {
-      setLeaveRequestDataState(
-        filterTableRowsWRTTab(reformData(data?.requests), { status: '' })
-      );
-    }
+    setLeaveRequestDataState(
+      filterTableRowsWRTTab(reformData(data?.requests), { status: '' })
+    );
   }, [data]);
   if (isLoading) return 'Loading...';
   return renderNestedTable({

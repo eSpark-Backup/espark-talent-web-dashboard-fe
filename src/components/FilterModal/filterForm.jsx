@@ -32,26 +32,75 @@ const FilterFormModal = ({ open, onClose, filterForm }) => {
       );
     },
     onSuccess: ({ data }) => {
-      const newData = Object.entries(data?.time_sheet).map((item) => ({
-        ...item[1],
-        day: dayjs(convertDateFormat(item[0])).format('dddd'),
-        status: Object.entries(item[1]?.status)
-          .map((st) => {
-            if (!st[1]) return;
-            else return getAttendenceShortHand(st[0]);
-          })
-          .filter((el) => el !== undefined),
-        date: convertDateFormat(item[0]),
-        action: ['View'],
-        attendenceShortHand: true,
-        actionStatus: true,
-      }));
+      console.log({ data });
+      const newData =
+        data === '' || !Object.keys(data?.time_sheet)?.length
+          ? []
+          : Object.entries(data?.time_sheet)?.map((item) => ({
+              ...item[1],
+              day: dayjs(convertDateFormat(item[0])).format('dddd'),
+              status: Object.entries(item[1]?.status)
+                .map((st) => {
+                  if (!st[1]) return;
+                  else return getAttendenceShortHand(st[0]);
+                })
+                .filter((el) => el !== undefined),
+              date: convertDateFormat(item[0]),
+              action: ['View'],
+              attendenceShortHand: true,
+              actionStatus: true,
+            }));
+      const newData1 =
+        data === '' || !Object.keys(data?.time_sheet)?.length
+          ? []
+          : Object.entries(data?.time_sheet)
+              .map((item) => ({
+                ...item[1],
+                day: dayjs(convertDateFormat(item[0])).format('dddd'),
+                status: Object.entries(item[1]?.status)
+                  .map((st) => {
+                    if (!st[1]) return;
+                    else return getAttendenceShortHand(st[0]);
+                  })
+                  .filter((el) => el !== undefined),
+                longStatus: Object.entries(item[1]?.status)
+                  .map((st) => {
+                    if (!st[1]) return;
+                    else return st[0];
+                  })
+                  .filter((el) => el !== undefined),
+                date: convertDateFormat(item[0]),
+                action: ['View'],
+                attendenceShortHand: true,
+                actionStatus: true,
+              }))
+              .filter((el) => {
+                if (values?.attendanceStatus) {
+                  return el.longStatus.includes(values?.attendanceStatus);
+                }
+                if (values?.checkinTimeFrom || values?.checkinTimeTo) {
+                  const checkInTime = dayjs(el.check_in, 'HH:mm');
+                  return checkInTime.isBetween(
+                    dayjs(values.checkinTimeFrom, 'HH:mm'),
+                    dayjs(values?.checkinTimeTo, 'HH:mm'),
+                    null,
+                    '[)'
+                  );
+                } else return el;
+              });
+
+      console.log({
+        newData1,
+        newData,
+        values,
+        data,
+      });
       dispatch(
         getTimeSheetDataSuccess({
           ...data,
           time_sheet: {
             ...data.time_sheet,
-            record: newData,
+            record: newData1,
           },
         })
       );

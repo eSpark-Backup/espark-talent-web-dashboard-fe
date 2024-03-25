@@ -6,32 +6,32 @@ import {
 } from '../tables/hr/addEmployeeFormTable';
 
 const form = [
-  {
-    title: 'Employee name',
-    placeholder: 'Enter name',
-    name: 'employeeName',
-  },
-  {
-    title: 'Gender',
-    placeholder: 'Select',
-    name: 'gender',
-    type: 'select',
-    options: [
-      {
-        label: 'Male',
-      },
-      {
-        label: 'Female',
-      },
-    ],
-  },
+  // {
+  //   title: 'Employee name',
+  //   placeholder: 'Enter name',
+  //   name: 'employeeName',
+  // },
+  // {
+  //   title: 'Gender',
+  //   placeholder: 'Select',
+  //   name: 'gender',
+  //   type: 'select',
+  //   options: [
+  //     {
+  //       label: 'Male',
+  //     },
+  //     {
+  //       label: 'Female',
+  //     },
+  //   ],
+  // },
   {
     title: 'Job title',
     placeholder: 'Select Job',
     type: 'select',
     nested: true,
     options: jobTitles,
-    name: 'jobTitle',
+    name: 'job_title',
   },
   {
     title: 'Role type',
@@ -51,7 +51,7 @@ const form = [
         label: 'Intern',
       },
     ],
-    name: 'roleType',
+    name: 'role_type',
   },
   {
     title: 'Employment term',
@@ -68,19 +68,24 @@ const form = [
         label: 'Project based',
       },
     ],
-    name: 'employmentTerm',
+    name: 'employment_term',
   },
   {
     title: 'Join date',
     placeholder: 'DD-MM-YYYY',
     suffixIcon: 'calender',
     type: 'date',
-    name: 'joinDate',
+    name: 'joining_date',
   },
   {
     title: 'Country',
     placeholder: 'Pakistan',
     name: 'country',
+  },
+  {
+    title: 'Salary',
+    placeholder: 'Enter salary',
+    name: 'salary',
   },
   {
     title: 'Benefits',

@@ -169,6 +169,7 @@ const StartHiringForm = () => {
                   nested,
                   fields,
                   searchable,
+                  withFlag,
                 },
                 formIndex
               ) => (
@@ -200,6 +201,7 @@ const StartHiringForm = () => {
                       fields={fields}
                       searchable={searchable}
                       countries={countries}
+                      withFlag={withFlag}
                     />
                   </Grid>
                 </>

@@ -7,6 +7,7 @@ import { CREDENTIAL_FORM } from '@/src/constants/credential';
 import { credentialForm } from '@/src/constants/data/forms/add-credential';
 
 const CredentialModal = ({ onClose, modalData }) => {
+  console.log({ modalData });
   useEffect(() => {
     console.log('modal', modalData);
   }, [modalData]);
@@ -20,12 +21,15 @@ const CredentialModal = ({ onClose, modalData }) => {
     setErrors,
     handleReset,
   } = useFormik({
-    initialValues: {},
+    initialValues: {
+      passwordCredential: modalData.row.password,
+      emailCredential: modalData.row.email,
+    },
     validationSchema: '',
     enableReinitialize: true,
     onSubmit: (formValues) => {
       console.log({ formValues });
-      handleCloseModal();
+      // handleCloseModal();
     },
     validateOnChange: false,
     validateOnBlur: false,
@@ -136,6 +140,7 @@ const CredentialModal = ({ onClose, modalData }) => {
                     fields={fields}
                     suffixIconInside={suffixIconInside}
                     readOnly={true}
+                    // modalData={modalData}
                   />
                 </Grid>
                 {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>}

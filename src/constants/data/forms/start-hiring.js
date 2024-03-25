@@ -80,6 +80,7 @@ export const HiringForm = [
     name: 'country',
     type: 'select',
     searchable: true,
+    withFlag: true,
   },
   {
     title: 'Salary range',

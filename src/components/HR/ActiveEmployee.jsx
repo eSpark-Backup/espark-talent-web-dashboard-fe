@@ -4,11 +4,10 @@ import { Grid } from '@mui/material';
 import { useTheme } from '@mui/system';
 
 import AppConfirmationMadal from '../modals/AppConfirmationMadal';
-import { allEmployees } from '@/src/constants/AllEmployee';
 import { TERMINATE_MODAL } from '@/src/constants/contractSigned';
 import EmployeeCard from './EmployeeCard';
 
-const EmployeeStatus = ({ status }) => {
+const EmployeeStatus = ({ empData }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const [isOpen, setIsOpen] = useState(false);
@@ -41,27 +40,19 @@ const EmployeeStatus = ({ status }) => {
         rowGap={3}
         spacing={3}
       >
-        {allEmployees
-          ?.filter((eachItem) => {
-            if (status === 'All') {
-              return true;
-            } else if (status === 'Active') {
-              return eachItem.status === 'Active';
-            } else {
-              return eachItem.status === 'Inactive';
-            }
-          })
-          .map((eachItem, index) => (
-            <EmployeeCard
-              key={index}
-              eachItem={eachItem}
-              handleClick={handleClick}
-              anchorEl={anchorEl}
-              open={open}
-              handleClose={handleClose}
-              handleOpenRemove={handleOpenRemove}
-            />
-          ))}
+        {empData.length
+          ? empData.map((eachItem, index) => (
+              <EmployeeCard
+                key={index}
+                eachItem={eachItem}
+                handleClick={handleClick}
+                anchorEl={anchorEl}
+                open={open}
+                handleClose={handleClose}
+                handleOpenRemove={handleOpenRemove}
+              />
+            ))
+          : 'No Record Found'}
       </Grid>
       <AppConfirmationMadal
         title={TERMINATE_MODAL?.terminate}

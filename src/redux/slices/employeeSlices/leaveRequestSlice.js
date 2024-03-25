@@ -14,6 +14,10 @@ const leaveRequestSlice = createSlice({
       state.data = { ...action.payload };
       state.isLoading = false;
     },
+    getEmpLeaveRequestFilteredDataSuccess: (state, action) => {
+      state.data = { ...state.data, ...action.payload };
+      state.isLoading = false;
+    },
     getEmpLeaveRequestDataFailed: (state) => {
       state.isLoading = false;
     },
@@ -56,5 +60,6 @@ export const {
   createEmpLeaveRequest,
   createEmpLeaveRequestSuccess,
   createEmpLeaveRequestFailed,
+  getEmpLeaveRequestFilteredDataSuccess,
 } = leaveRequestSlice.actions;
 export default leaveRequestSlice.reducer;

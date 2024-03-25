@@ -22,6 +22,7 @@ const LeaveBalanceTable = () => {
       return api
         .getData(`${EMP_LEAVE_REQUEST}/?workspace=${workSpace?.email || ''}`)
         .then(({ data }) => {
+          console.log({ data });
           dispatch(
             getEmpLeaveRequestDataSuccess({
               ...data,

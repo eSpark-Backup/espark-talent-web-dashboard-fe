@@ -6,7 +6,7 @@ import Tab from '@mui/material/Tab';
 import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
 import { changeTab } from '@/src/utils/tabs';
 import { empTabs } from '@/src/constants/data/tabs/empTabs';
-import AppTable from '@/src/components/appTable/AppTable';
+import AppTable from '@/src/components/appTableNew/AppTable';
 import { contractSignedEmployeeTabs } from '@/src/constants/data/tabs/contractSignedTabs';
 import { useQuery } from '@tanstack/react-query';
 import {
@@ -35,7 +35,9 @@ const ContractSigned = () => {
       return api
         .getData(EMP_COMPANY_CONTRACT)
         .then(({ data }) => {
-          dispatch(fetchEmpCompanyContractsSuccess({ company: data }));
+          const newData =
+            data?.map((item) => ({ ...item, download: 'Download' })) || [];
+          dispatch(fetchEmpCompanyContractsSuccess({ company: newData }));
           return data;
         })
         .catch((error) => {
@@ -51,7 +53,9 @@ const ContractSigned = () => {
           `${EMP_OFFSHORE_CONTRACT}/?workspace=${workSpace?.email || ''}`
         )
         .then(({ data }) => {
-          dispatch(fetchEmpClientContractSuccess({ offShores: data }));
+          const newData =
+            data?.map((item) => ({ ...item, download: 'Download' })) || [];
+          dispatch(fetchEmpClientContractSuccess({ offShores: newData }));
           return data;
         })
         .catch((error) => {

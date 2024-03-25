@@ -25,8 +25,10 @@ import {
   getEmpPunchRequestDataSuccess,
 } from '@/src/redux/slices/employeeSlices/punchRequestSlice';
 import AppConfirmationMadal from '@/src/components/modals/AppConfirmationMadal';
-import FilterFormModal from '@/src/components/FilterModal/filterForm';
-import { filterStatusForm } from '@/src/constants/data/forms/filter-form';
+// import FilterFormModal from '@/src/components/FilterModal/filterForm';
+// import { filterStatusForm } from '@/src/constants/data/forms/filter-form';
+import EmpPunchReqFilterFormModal from '@/src/components/FilterModal/empPunchReqFilterForm';
+import { empPunchReqfilterForm } from '@/src/constants/data/forms/emp-punch-req-modal-form';
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -55,7 +57,7 @@ const Dashboard = () => {
     []
   );
   const reformData = (dataArr) => {
-    if (dataArr.length) {
+    if (dataArr?.length) {
       const tempData = dataArr.map((item) => ({
         ...item,
         description: item?.description,
@@ -68,12 +70,9 @@ const Dashboard = () => {
     return [];
   };
   useEffect(() => {
-    if (data?.requests?.length) {
-      console.log({ newTableData: reformData(data?.requests) });
-      setCheckInOutRequestDataState(
-        filterTableRowsWRTTab(reformData(data?.requests), { status: '' })
-      );
-    }
+    setCheckInOutRequestDataState(
+      filterTableRowsWRTTab(reformData(data?.requests), { status: '' })
+    );
   }, [data]);
 
   const [currentReqStatusTab, setcurrentReqStatusTab] = useState('All');
@@ -98,6 +97,33 @@ const Dashboard = () => {
     onError: (err) => {
       dispatch(deletePunchRequestDataFailed());
       handleCloseDeleteModal();
+      console.log({ err: err.message, name: err.name, stack: err.stack });
+    },
+  });
+  const refreshMutation = useMutation({
+    mutationFn: async (args) => {
+      console.log({ args });
+      dispatch(fetchEmpPunchRequestData());
+      return api.getData(
+        `${EMP_PUNCH_REQUEST}?workspace=${workSpace?.email || ''}`
+      );
+    },
+    onSuccess: ({ data }) => {
+      dispatch(
+        getEmpPunchRequestDataSuccess(
+          data || {
+            requests: [],
+            pending: 0,
+            completed: 0,
+            rejected: 0,
+            all: 0,
+          }
+        )
+      );
+    },
+    onError: (err) => {
+      dispatch(getEmpPunchRequestDataFailed());
+      console.log({ err });
       console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
@@ -322,6 +348,7 @@ const Dashboard = () => {
                             background: '#fff',
                           },
                         }}
+                        onClick={() => refreshMutation.mutate()}
                         startIcon={
                           <Image
                             width={20}
@@ -372,11 +399,11 @@ const Dashboard = () => {
                     </Box>
                   </Box>
                   {showFilterModal && (
-                    <FilterFormModal
+                    <EmpPunchReqFilterFormModal
                       open={handleOpenFilterModal}
                       onClose={handleClose}
                       clockinOut
-                      filterForm={filterStatusForm}
+                      filterForm={empPunchReqfilterForm}
                     />
                   )}
                 </CustomTabPanel>

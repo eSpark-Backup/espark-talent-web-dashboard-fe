@@ -88,6 +88,38 @@ const renderActions = (
         </td>
       );
     }
+    if (row?.isNewModulePermission) {
+      // console.log({ row });
+      return (
+        <td
+          key={colIndex}
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            fontSize: '12px',
+            flex: col?.flex || 1,
+          }}
+        >
+          <Image
+            onClick={() => {
+              handleClickActionView(col || col?.name, row, col);
+            }}
+            style={{
+              margin: rowIndex === 1 && '0 5px',
+              cursor: 'pointer',
+            }}
+            width={30}
+            height={30}
+            alt="Icon"
+            src={`/icons/${
+              row[toCamelCase(col || col?.name)] === true
+                ? 'EnabledCheck'
+                : 'DisabledCheck'
+            }.svg`}
+          />
+        </td>
+      );
+    }
     return (
       <td
         key={colIndex}

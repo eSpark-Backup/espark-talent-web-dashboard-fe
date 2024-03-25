@@ -2,34 +2,42 @@ export const employeeTableInterviewScheduleColumn = [
   {
     title: 'Employee name',
     flex: 1,
+    name: 'employee_name',
   },
   {
     title: 'Gender',
     flex: 1,
+    name: 'gender',
   },
   {
     title: 'Job title',
     flex: 1,
+    name: 'job_title',
   },
   {
     title: 'Role type',
     flex: 1,
+    name: 'role_type',
   },
   {
     title: 'Employment term',
     flex: 1,
+    name: 'employment_term',
   },
   {
     title: 'Interview date & time',
     flex: 1,
+    name: 'interview_date_time',
   },
   {
     title: 'Country',
     flex: 1,
+    name: 'country',
   },
   {
     title: 'Status',
     flex: 1,
+    name: 'status',
   },
 ];
 export const employeeTableHiringRequestColumn = [
@@ -78,38 +86,47 @@ export const employeeTableOnboardingColumn = [
   {
     title: 'Employee name',
     flex: 1,
+    name: 'employee_name',
   },
   {
     title: 'Gender',
     flex: 1,
+    name: 'gender',
   },
   {
     title: 'Country',
     flex: 1,
+    name: 'country',
   },
   {
     title: 'Job title',
     flex: 1,
+    name: 'job_title',
   },
   {
     title: 'Role type',
     flex: 1,
+    name: 'role_type',
   },
   {
     title: 'Employment term',
     flex: 1,
+    name: 'employment_term',
   },
   {
     title: 'Joining date',
     flex: 1,
+    name: 'joining_date',
   },
   {
     title: 'Notice period',
     flex: 1,
+    name: 'notice_period',
   },
   {
     title: 'Salary',
     flex: 1,
+    name: 'salary',
   },
 ];
 export const employeeTableDataInterviewSchedule = [

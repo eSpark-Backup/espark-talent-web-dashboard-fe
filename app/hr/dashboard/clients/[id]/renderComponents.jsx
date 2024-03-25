@@ -36,5 +36,5 @@ export const renderTable = ({
       </Box>
     );
   } else
-    return <ClientEmployees data={data} openModal={openModal} fromClient />;
+    return <ClientEmployees empData={data} openModal={openModal} fromClient />;
 };

@@ -10,9 +10,12 @@ import { EMPLOYEE_DATA } from '@/src/constants/AllEmployee';
 import { HR_GET_CLIENTS } from '@/src/services/apiService/apiEndPoints';
 import { api } from '@/src/services/apiService';
 import { useQuery } from '@tanstack/react-query';
+import { useSelector } from 'react-redux';
 
 const AllClients = () => {
   const router = useRouter();
+  const { client_perms } = useSelector((state) => state?.hr?.home?.homeData);
+  const { role } = useSelector((state) => state?.auth?.userData);
   const [id, setId] = useState('');
   const [name, setName] = useState('');
   const [search, setSearch] = useState(false);
@@ -64,23 +67,26 @@ const AllClients = () => {
         >
           Clients
         </Typography>
-        <Button
-          sx={{
-            backgroundColor: '#029894',
-            width: '160px',
-            color: '#FFF',
-            textTransform: 'math-auto',
-            fontSize: '16px',
-            '&:hover': {
+        {(role === 'super admin' ||
+          (role !== 'super admin' && client_perms?.[0]?.write)) && (
+          <Button
+            sx={{
               backgroundColor: '#029894',
+              width: '160px',
               color: '#FFF',
-            },
-            marginTop: { xs: '25px', md: '0px' },
-          }}
-          onClick={() => router.push('/hr/dashboard/clients/add-client')}
-        >
-          {EMPLOYEE_DATA?.addClient}
-        </Button>
+              textTransform: 'math-auto',
+              fontSize: '16px',
+              '&:hover': {
+                backgroundColor: '#029894',
+                color: '#FFF',
+              },
+              marginTop: { xs: '25px', md: '0px' },
+            }}
+            onClick={() => router.push('/hr/dashboard/clients/add-client')}
+          >
+            {EMPLOYEE_DATA?.addClient}
+          </Button>
+        )}
       </Box>
       <Box sx={{ width: '100%' }}>
         <Grid

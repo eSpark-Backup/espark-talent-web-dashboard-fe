@@ -2,22 +2,22 @@ export const teamMembersColumn = [
   {
     title: 'Name',
     flex: 2,
-    name: 'name',
+    name: 'employee_name',
   },
   {
     title: 'Employment term',
     flex: 2,
     name: 'employment_term',
   },
+  // {
+  //   title: 'Role/Department',
+  //   flex: 2,
+  //   name: 'role_department',
+  // },
   {
-    title: 'Role/Department',
+    title: 'Joining Date',
     flex: 2,
-    name: 'role_department',
-  },
-  {
-    title: 'Pending',
-    flex: 2,
-    name: 'join_date',
+    name: 'joining_date',
   },
   {
     title: 'Country',

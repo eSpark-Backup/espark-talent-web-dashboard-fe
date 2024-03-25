@@ -13,7 +13,7 @@ import { filterTableRowsWRTTab } from '@/src/utils/table';
 import { changeTab } from '@/src/utils/tabs';
 import { teamTabs } from '@/src/constants/data/tabs/teamTabs';
 import { HIRING_FORM_DATA } from '@/src/constants/Hiring';
-import AppTable from '@/src/components/appTable/AppTable';
+import AppTable from '@/src/components/appTableNew/AppTable';
 import { useQuery } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import { CLIENT_TEAM_MEMBER } from '@/src/services/apiService/apiEndPoints';
@@ -128,7 +128,7 @@ const Dashboard = () => {
                   aria-label="basic tabs example"
                   variant="scrollable"
                 >
-                  {teamTabs?.map(({ label, prop, data }, i) => (
+                  {teamTabs?.map(({ label, prop }, i) => (
                     <Tab
                       key={i}
                       disableRipple={true}

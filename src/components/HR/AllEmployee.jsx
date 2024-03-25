@@ -11,7 +11,7 @@ import { employeeProfileData } from '@/src/constants/employeeProfile';
 import { useQuery } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import { HR_EMPLOYEES } from '@/src/services/apiService/apiEndPoints';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   getEmpData,
   getEmpDataFailed,
@@ -20,6 +20,8 @@ import {
 
 const AllEmployee = ({ fromClient, openModal }) => {
   const dispatch = useDispatch();
+  const { employee_perms } = useSelector((state) => state?.hr?.home?.homeData);
+  const { role } = useSelector((state) => state?.auth?.userData);
   const router = useRouter();
   const [value, setValue] = useState('one');
   const handleChange = (event, newValue) => {
@@ -149,22 +151,29 @@ const AllEmployee = ({ fromClient, openModal }) => {
           {employeeProfileData?.employees}
         </Typography>
         {value === 'one' && (
-          <Button
-            sx={{
-              backgroundColor: '#029894',
-              width: '160px',
-              color: '#FFF',
-              textTransform: 'math-auto',
-              '&:hover': {
-                backgroundColor: '#029894',
-                color: '#FFF',
-              },
-              marginTop: { xs: '25px', md: '0px' },
-            }}
-            onClick={() => router.push('/hr/dashboard/employees/add-employee')}
-          >
-            {employeeProfileData?.addEmployee}
-          </Button>
+          <>
+            {(role === 'super admin' ||
+              (role !== 'super admin' && employee_perms?.[0]?.write)) && (
+              <Button
+                sx={{
+                  backgroundColor: '#029894',
+                  width: '160px',
+                  color: '#FFF',
+                  textTransform: 'math-auto',
+                  '&:hover': {
+                    backgroundColor: '#029894',
+                    color: '#FFF',
+                  },
+                  marginTop: { xs: '25px', md: '0px' },
+                }}
+                onClick={() =>
+                  router.push('/hr/dashboard/employees/add-employee')
+                }
+              >
+                {employeeProfileData?.addEmployee}
+              </Button>
+            )}
+          </>
         )}
       </Box>
       <Box sx={{ width: '100%' }}>

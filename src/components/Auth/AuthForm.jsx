@@ -16,30 +16,99 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { useMutation } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
-import { login } from '../../redux/slices/authSlice';
-import { useDispatch } from 'react-redux';
-import { EMPLOYEE_ROLES, HR_ROLES } from '@/src/constants/data/roles';
+import {
+  getEmployeeDetails,
+  getWorkSpace,
+  login,
+} from '../../redux/slices/authSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { CLIENT_ROLES, EMPLOYEE_ROLES } from '@/src/constants/data/roles';
+import { getHomeData } from '@/src/redux/slices/hrSlices/homeSlice';
+import {
+  CLIENT_HOME,
+  EMP_HOME,
+  HR_HOME,
+} from '@/src/services/apiService/apiEndPoints';
+import { getEmpHomeData } from '@/src/redux/slices/employeeSlices/empHomeSlice';
+import {
+  fetchClientHomeDataRequest,
+  fetchClientHomeDataRequestFailed,
+  fetchClientHomeDataRequestSuccess,
+} from '@/src/redux/slices/clientSlices/homeSlice';
 
 const AuthForm = ({ uiData, fields }) => {
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
   const { title, checkText, forgotText, forgotLink } = uiData;
+  const { workSpace } = useSelector((state) => state?.auth?.userData);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   const router = useRouter();
+  const hrHomeMutation = useMutation({
+    mutationFn: async (url) => {
+      return api.getData(url);
+    },
+    onSuccess: ({ data }) => {
+      dispatch(getHomeData(data));
+      router.push('hr/dashboard');
+      return data;
+    },
+    onError: (err) => {
+      console.log({ err: err.message, name: err.name, stack: err.stack });
+    },
+  });
+  const clientHomeMutation = useMutation({
+    mutationFn: async (url) => {
+      dispatch(fetchClientHomeDataRequest());
+      return api.getData(url);
+    },
+    onSuccess: ({ data }) => {
+      dispatch(fetchClientHomeDataRequestSuccess(data));
+      router.push('client/dashboard');
+      return data;
+    },
+    onError: (err) => {
+      dispatch(fetchClientHomeDataRequestFailed());
+      console.log({ err: err.message, name: err.name, stack: err.stack });
+    },
+  });
+  const employeeHomeMutation = useMutation({
+    mutationFn: async (url) => {
+      return api.getData(`${url}/?workspace=${workSpace?.email || ''}`);
+    },
+    onSuccess: ({ data }) => {
+      // dispatch(getHomeData(data));
+      dispatch(getEmpHomeData(data));
+      dispatch(getWorkSpace(data?.workspaces?.[0]));
+      dispatch(getEmployeeDetails(data?.employee_details));
+      router.push('employee/dashboard');
+      return data;
+    },
+    onError: (err) => {
+      console.log({ err: err.message, name: err.name, stack: err.stack });
+    },
+  });
   const { mutate } = useMutation({
     mutationFn: async (formVals) => {
       return api.login(formVals);
     },
     onSuccess: ({ data }) => {
       dispatch(login(data));
-      if (HR_ROLES.includes(data?.role)) {
-        router.push('hr/dashboard');
+      console.log({ data });
+      if (CLIENT_ROLES.includes(data?.role)) {
+        setTimeout(() => {
+          clientHomeMutation.mutate(CLIENT_HOME);
+        }, 100);
+        // router.push('client/dashboard');
       } else if (EMPLOYEE_ROLES.includes(data?.role)) {
-        router.push('employee/dashboard');
+        setTimeout(() => {
+          employeeHomeMutation.mutate(EMP_HOME);
+        }, 100);
       } else {
-        router.push('client/dashboard');
+        setTimeout(() => {
+          hrHomeMutation.mutate(HR_HOME);
+        }, 100);
       }
     },
     onError: (err) => {

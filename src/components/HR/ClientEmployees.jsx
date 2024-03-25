@@ -13,7 +13,10 @@ import { api } from '@/src/services/apiService';
 import { HR_CLIENT_EMPLOYEES } from '@/src/services/apiService/apiEndPoints';
 import { useSelector } from 'react-redux';
 
-const ClientEmployees = ({ fromClient, openModal }) => {
+const ClientEmployees = ({ fromClient, openModal, empData }) => {
+  const { employee_perms } = useSelector((state) => state?.hr?.home?.homeData);
+  const { role } = useSelector((state) => state?.auth?.userData);
+  console.log({ empData });
   const { email } = useSelector((state) => state?.hr?.clients?.currentClient);
   const router = useRouter();
   const [value, setValue] = useState('one');
@@ -48,7 +51,7 @@ const ClientEmployees = ({ fromClient, openModal }) => {
           // console.log('API Success');
           // dispatch(getCurrentClientDataSuccess(data));
           // console.log('API Success1');
-          return data;
+          return data || [];
         })
         .catch((error) => {
           // console.log('API Failed');
@@ -70,7 +73,7 @@ const ClientEmployees = ({ fromClient, openModal }) => {
           // console.log('API Success');
           // dispatch(getCurrentClientDataSuccess(data));
           // console.log('API Success1');
-          return data;
+          return data || [];
         })
         .catch((error) => {
           // console.log('API Failed');
@@ -92,7 +95,7 @@ const ClientEmployees = ({ fromClient, openModal }) => {
           // console.log('API Success');
           // dispatch(getCurrentClientDataSuccess(data));
           // console.log('API Success1');
-          return data;
+          return data || [];
         })
         .catch((error) => {
           // console.log('API Failed');
@@ -127,24 +130,27 @@ const ClientEmployees = ({ fromClient, openModal }) => {
             <Tab value="two" label="Active employees" />
             <Tab value="three" label="Terminated employees" />
           </Tabs>
-          <Button
-            onClick={openModal}
-            variant="contained"
-            sx={{
-              my: {
-                xs: '20px',
-                md: 0,
-                color: '#fff',
-                background: '#029894',
-                '&:hover': {
+          {(role === 'super admin' ||
+            (role !== 'super admin' && employee_perms?.[0]?.write)) && (
+            <Button
+              onClick={openModal}
+              variant="contained"
+              sx={{
+                my: {
+                  xs: '20px',
+                  md: 0,
                   color: '#fff',
                   background: '#029894',
+                  '&:hover': {
+                    color: '#fff',
+                    background: '#029894',
+                  },
                 },
-              },
-            }}
-          >
-            {employeeProfileData?.addEmployee}
-          </Button>
+              }}
+            >
+              {employeeProfileData?.addEmployee}
+            </Button>
+          )}
         </Box>
         {ClientEmployeesAll.isLoading ||
         ClientEmployeesActive.isLoading ||
@@ -159,6 +165,7 @@ const ClientEmployees = ({ fromClient, openModal }) => {
                 name={name}
                 designation={designation}
                 status={'All'}
+                empData={ClientEmployeesAll.data}
               />
             ) : value === 'two' ? (
               <EmployeeStatus
@@ -167,6 +174,7 @@ const ClientEmployees = ({ fromClient, openModal }) => {
                 name={name}
                 designation={designation}
                 search={search}
+                empData={ClientEmployeesActive.data}
               />
             ) : (
               <EmployeeStatus
@@ -175,6 +183,7 @@ const ClientEmployees = ({ fromClient, openModal }) => {
                 designation={designation}
                 status={'Inactive'}
                 search={search}
+                empData={ClientEmployeesTerminated.data}
               />
             )}
           </>

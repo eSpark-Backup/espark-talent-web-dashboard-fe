@@ -2,26 +2,46 @@ export const contractSignedColumn = [
   {
     title: 'Contract name',
     flex: 2,
+    name: 'contract_name',
   },
   {
     title: 'Client ID',
     flex: 2,
+    name: 'client_id',
   },
   {
     title: 'Date',
     flex: 2,
+    name: 'date',
   },
   {
     title: 'Download',
     flex: 2,
+    name: 'download',
   },
 ];
 
 export const contractSignedEmployeeColumn = [
-  'Contract name',
-  'Employee ID',
-  'Date',
-  'Download',
+  {
+    title: 'Contract name',
+    flex: 2,
+    name: 'contract_name',
+  },
+  {
+    title: 'Employee ID',
+    flex: 2,
+    name: 'employee_id',
+  },
+  {
+    title: 'Date',
+    flex: 2,
+    name: 'date',
+  },
+  {
+    title: 'Download',
+    flex: 2,
+    name: 'download',
+  },
 ];
 export const contractSignedEmployeeData = [
   {

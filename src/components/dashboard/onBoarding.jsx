@@ -4,36 +4,28 @@ import { Typography, Box, Grid } from '@mui/material';
 
 import { COMPANY_ONBOARDING, HIRING_STATUS } from '@/src/constants/dashboard';
 import CompanyProfile from './companyProfile';
-import { useQuery } from '@tanstack/react-query';
-import { CLIENT_HOME } from '@/src/services/apiService/apiEndPoints';
-import { api } from '@/src/services/apiService';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  fetchClientHomeDataRequest,
-  fetchClientHomeDataRequestFailed,
-  fetchClientHomeDataRequestSuccess,
-} from '@/src/redux/slices/clientSlices/homeSlice';
+import { useSelector } from 'react-redux';
 
 const OnBoarding = () => {
   const { data } = useSelector((state) => state?.client?.home);
-  const dispatch = useDispatch();
-  const { isLoading } = useQuery({
-    // staleTime: 10000,
-    queryFn: () => {
-      dispatch(fetchClientHomeDataRequest());
-      return api
-        .getData(`${CLIENT_HOME}`)
-        .then(({ data }) => {
-          dispatch(fetchClientHomeDataRequestSuccess(data));
-          return data;
-        })
-        .catch((err) => {
-          dispatch(fetchClientHomeDataRequestFailed());
-          console.log({ err });
-        });
-    },
-  });
-  if (isLoading) return 'Loading...';
+  // const dispatch = useDispatch();
+  // const { isLoading } = useQuery({
+  //   // staleTime: 10000,
+  //   queryFn: () => {
+  //     dispatch(fetchClientHomeDataRequest());
+  //     return api
+  //       .getData(`${CLIENT_HOME}`)
+  //       .then(({ data }) => {
+  //         dispatch(fetchClientHomeDataRequestSuccess(data));
+  //         return data;
+  //       })
+  //       .catch((err) => {
+  //         dispatch(fetchClientHomeDataRequestFailed());
+  //         console.log({ err });
+  //       });
+  //   },
+  // });
+  // if (isLoading) return 'Loading...';
   return (
     <Grid container>
       <Box

@@ -28,6 +28,8 @@ const clientSlice = createSlice({
         paid: [],
       },
     },
+    outsourceableEmployees: [],
+    currentEmpToAddInClient: null,
   },
   reducers: {
     getClientsData: (state, action) => {
@@ -76,6 +78,12 @@ const clientSlice = createSlice({
     getClientOthInvoicePaid: (state, action) => {
       state.currentClientData.otherInvoices.paid = action.payload;
     },
+    getOutsourceableEmps: (state, action) => {
+      state.outsourceableEmployees = action.payload;
+    },
+    selectEmployeeToAdd: (state, action) => {
+      state.currentEmpToAddInClient = action.payload;
+    },
   },
 });
 
@@ -94,5 +102,7 @@ export const {
   getClientOthInvoicePending,
   getClientOthInvoiceProcessing,
   getClientOthInvoicePaid,
+  getOutsourceableEmps,
+  selectEmployeeToAdd,
 } = clientSlice.actions;
 export default clientSlice.reducer;

@@ -233,6 +233,7 @@ const Step = ({
               col,
               searchable,
               accept,
+              withFlag,
             },
             formIndex
           ) => (
@@ -257,6 +258,7 @@ const Step = ({
               nested={nested}
               lg={col}
               countries={countries}
+              withFlag={withFlag}
               searchable={searchable}
               // handleData={handleData}
               accept={accept}

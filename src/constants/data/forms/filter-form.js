@@ -167,7 +167,7 @@ export const filterLeaveForm = [
   {
     title: ' Leave Type',
     placeholder: 'Select',
-    name: 'leavestatus',
+    name: 'leaveType',
     type: 'select',
     options: [
       {
@@ -206,9 +206,6 @@ export const filterLeaveForm = [
       {
         label: 'Rejected',
       },
-      {
-        label: 'Cancelled',
-      },
     ],
     searchable: true,
   },
@@ -226,42 +223,42 @@ export const filterLeaveForm = [
     type: 'date',
     name: 'to',
   },
-  {
-    title: 'CheckIn Time',
-    type: 'timerow',
-    name: 'checkIn',
-    fieldsName: [
-      {
-        placeholder: '--:-- --',
-        name: 'checkinTimeFrom',
-        type: 'time',
-        suffixIcon: 'ClockIcon',
-      },
-      {
-        placeholder: '--:-- --',
-        name: 'checkinTimeTo',
-        type: 'time',
-        suffixIcon: 'ClockIcon',
-      },
-    ],
-  },
-  {
-    title: 'CheckOut Time',
-    type: 'timerow',
-    name: 'checkOut',
-    fieldsName: [
-      {
-        placeholder: '--:-- --',
-        name: 'checkoutTimeFrom',
-        type: 'time',
-        suffixIcon: 'ClockIcon',
-      },
-      {
-        placeholder: '--:-- --',
-        name: 'checkoutTimeTo',
-        type: 'time',
-        suffixIcon: 'ClockIcon',
-      },
-    ],
-  },
+  // {
+  //   title: 'CheckIn Time',
+  //   type: 'timerow',
+  //   name: 'checkIn',
+  //   fieldsName: [
+  //     {
+  //       placeholder: '--:-- --',
+  //       name: 'checkinTimeFrom',
+  //       type: 'time',
+  //       suffixIcon: 'ClockIcon',
+  //     },
+  //     {
+  //       placeholder: '--:-- --',
+  //       name: 'checkinTimeTo',
+  //       type: 'time',
+  //       suffixIcon: 'ClockIcon',
+  //     },
+  //   ],
+  // },
+  // {
+  //   title: 'CheckOut Time',
+  //   type: 'timerow',
+  //   name: 'checkOut',
+  //   fieldsName: [
+  //     {
+  //       placeholder: '--:-- --',
+  //       name: 'checkoutTimeFrom',
+  //       type: 'time',
+  //       suffixIcon: 'ClockIcon',
+  //     },
+  //     {
+  //       placeholder: '--:-- --',
+  //       name: 'checkoutTimeTo',
+  //       type: 'time',
+  //       suffixIcon: 'ClockIcon',
+  //     },
+  //   ],
+  // },
 ];

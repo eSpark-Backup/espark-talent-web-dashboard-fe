@@ -37,6 +37,7 @@ export const clientEditForm = [
     name: 'country',
     type: 'select',
     searchable: true,
+    withFlag: true,
   },
   {
     title: 'Address',
