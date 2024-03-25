@@ -17,7 +17,8 @@ import {
   handleProfileMenuOpen,
 } from '@/src/redux/slices/profileMenuSlice';
 import { handleworkSpaceMenuClose } from '@/src/redux/slices/workSpaceMenuSlice';
-
+import { logout } from '@/src/redux/slices/authSlice';
+import Cookie from 'js-cookie';
 export default function ProfilePopper({ button }) {
   const [openModal, setOpenModal] = React.useState(false);
   const [notificationPopup, setNotificationPopup] = React.useState(null);
@@ -43,10 +44,10 @@ export default function ProfilePopper({ button }) {
   };
 
   React.useEffect(() => {
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('mouseleave', handleClickOutside);
     setBondary(document.querySelector('#popperBoundary'));
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('mouseleave', handleClickOutside);
     };
   }, []);
 
@@ -66,7 +67,10 @@ export default function ProfilePopper({ button }) {
   };
 
   const handleLogout = () => {
-    router.push('/');
+    dispatch(logout());
+    Cookie.remove('token');
+    Cookie.remove('userType');
+    router.replace('/');
   };
 
   const open = Boolean(isOpen);

@@ -68,7 +68,6 @@ const Dashboard = () => {
         <Grid item xs={12} md={6} lg={3} xl={3}>
           <TodayActivity />
         </Grid>
-
         <Grid item xs={12} sm={12} md={12} lg={3} xl={3}>
           <Clock />
         </Grid>

@@ -9,8 +9,8 @@ const authSlice = createSlice({
     login: (state, action) => {
       state.userData = action.payload;
     },
-    logout: (state, action) => {
-      state.userData = action.payload;
+    logout: (state) => {
+      state.userData = {};
     },
     getWorkSpace: (state, action) => {
       state.userData = {

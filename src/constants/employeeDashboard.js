@@ -1,7 +1,7 @@
 export const Attendance_Summary_Title = 'Attendance Summary';
 export const Leave_Summary_Title = 'Leave Summary';
 export const Clock_Title = 'Clock';
-export const Clock_Dial = '/images/dashboard/clock-dial.svg';
+export const Clock_Dial = '/images/sidebar-icons/clock-dial.svg';
 export const Summary_Slider_Breakpoints = {
   300: {
     slidesPerView: 1,

@@ -44,8 +44,10 @@ const Sidebar = ({ userName }) => {
     paddingTop: windowHeight < 300 ? 0 : '15%',
     paddingBottom: windowHeight < 300 ? 0 : '15%',
   };
+
   const { employee_perms, client_perms, invoices_perms, policies_perms } =
-    useSelector((state) => state?.hr?.home?.homeData);
+    useSelector((state) => state?.hr?.home?.homeData || {});
+
   const employeePerms = {
     employee_perms,
     client_perms,

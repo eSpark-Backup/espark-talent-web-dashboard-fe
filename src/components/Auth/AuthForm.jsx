@@ -16,6 +16,8 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { useMutation } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
+import Cookie from 'js-cookie';
+
 import {
   getEmployeeDetails,
   getWorkSpace,
@@ -95,12 +97,13 @@ const AuthForm = ({ uiData, fields }) => {
     },
     onSuccess: ({ data }) => {
       dispatch(login(data));
+      Cookie.set('token', data?.token);
+      Cookie.set('userType', data?.role);
       console.log({ data });
       if (CLIENT_ROLES.includes(data?.role)) {
         setTimeout(() => {
           clientHomeMutation.mutate(CLIENT_HOME);
         }, 100);
-        // router.push('client/dashboard');
       } else if (EMPLOYEE_ROLES.includes(data?.role)) {
         setTimeout(() => {
           employeeHomeMutation.mutate(EMP_HOME);
