@@ -62,6 +62,17 @@ const employeeSlice = createSlice({
     getCurrentEmpDataFailed: (state) => {
       state.isLoading = false;
     },
+    deleteCurrentEmpData: (state) => {
+      state.isLoading = true;
+    },
+    deleteCurrentEmpDataSuccess: (state, action) => {
+      const tempData = state?.data?.filter((el) => el.id !== action.payload);
+      state.data = tempData;
+      state.isLoading = false;
+    },
+    deleteCurrentEmpDataFailed: (state) => {
+      state.isLoading = false;
+    },
   },
 });
 
@@ -80,5 +91,8 @@ export const {
   getCurrentEmpData,
   getCurrentEmpDataSuccess,
   getCurrentEmpDataFailed,
+  deleteCurrentEmpData,
+  deleteCurrentEmpDataSuccess,
+  deleteCurrentEmpDataFailed,
 } = employeeSlice.actions;
 export default employeeSlice.reducer;

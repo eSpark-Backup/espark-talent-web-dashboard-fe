@@ -158,6 +158,7 @@ const AttendanceReport = () => {
               if (index === currentTab.val)
                 return (
                   <AppTable
+                    key={index}
                     column={timeSheetTableColumn}
                     data={item?.emp_data?.time_sheet}
                     handleClickActionView={handleAttendanceModal}

@@ -270,8 +270,8 @@ const Dashboard = () => {
                         value === 0
                           ? hiringRequestDataState
                           : value === 1
-                          ? interviewScheduledDataState
-                          : onBoardingDataState
+                            ? interviewScheduledDataState
+                            : onBoardingDataState
                       }
                       handleClickActionDelete={handleClickDelete}
                       options={

@@ -60,3 +60,6 @@ export const CLIENT_INVOICE_PAYMENTS = '/c_invpay/';
 export const CLIENT_POLICY = '/c_policy/';
 export const CLIENT_COMPANY_CONTRACT = '/c_cmpcontract/';
 export const CLIENT_EMPLOYEE_CONTRACT = '/c_empcontract/';
+export const CLIENT_UPDATE_PASSWORD = '/c_updpass/';
+export const CLIENT_UPDATE_PIC = '/c_updpic/';
+export const CLIENT_UPDATE_COMPANY = '/c_upduser/';

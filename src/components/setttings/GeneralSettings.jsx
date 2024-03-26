@@ -1,13 +1,41 @@
 import React from 'react';
-import { Box, Button, Grid } from '@mui/material';
+import { Box, Button, Grid, Typography } from '@mui/material';
 
 import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { useFormik } from 'formik';
-import { User_Password } from '@/src/constants/profileEditData';
+import {
+  Profile_Edit_Section,
+  User_Detail,
+  User_Password,
+} from '@/src/constants/profileEditData';
 import { generalSettingFormSchema } from '../form/schemas/generalDetails';
 import { settingForm } from '@/src/constants/data/forms/setting-form';
+import Image from 'next/image';
+import {
+  CLIENT_UPDATE_COMPANY,
+  CLIENT_UPDATE_PIC,
+} from '@/src/services/apiService/apiEndPoints';
+import { api } from '@/src/services/apiService';
+import { useMutation } from '@tanstack/react-query';
 
 const GeneralSettings = () => {
+  const { mutate } = useMutation({
+    mutationFn: async (data) => {
+      return api
+        .postData(`${CLIENT_UPDATE_PIC}`, { picture: data.picture })
+        .then(() => {
+          return api.updateJSONData(CLIENT_UPDATE_COMPANY, {
+            company_name: data.companyName,
+          });
+        });
+    },
+    onSuccess: ({ data }) => {
+      console.log({ data });
+    },
+    onError: (err) => {
+      console.log({ err: err.message, name: err.name, stack: err.stack });
+    },
+  });
   const {
     handleSubmit,
     values,
@@ -22,100 +50,177 @@ const GeneralSettings = () => {
     enableReinitialize: true,
     onSubmit: (formValues) => {
       console.log({ formValues });
+      mutate(formValues);
     },
     validateOnChange: false,
     validateOnBlur: false,
   });
-  const handleData = () => {
-    console.log('tetstst');
+  const fileInputRef = React.useRef(null);
+  const handleFileInputChange = (event) => {
+    // const name = event.target.name;
+    const file = event.target.files[0];
+    setFieldValue('picture', file);
+    // handleData(name, file);
+  };
+  const handleButtonClick = () => {
+    fileInputRef.current.click();
   };
   return (
     <form onSubmit={handleSubmit}>
-      <Grid sx={{ marginLeft: '-7px' }}>
-        <Box
-          sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' } }}
+      <Box sx={{ mb: 2 }}>
+        <Typography
+          sx={{
+            color: '#171717',
+            fontWeight: '500',
+            fontSize: '16px',
+          }}
         >
-          <Box
+          {Profile_Edit_Section?.title}
+        </Typography>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mt: 2 }}>
+          <Image
+            src={Profile_Edit_Section?.profileAvatar}
+            width={50}
+            height={50}
+            alt={Profile_Edit_Section?.alt}
+          />
+          <input
+            type="file"
+            style={{ display: 'none' }}
+            ref={fileInputRef}
+            onChange={handleFileInputChange}
+            required
+            name="picture"
+          />
+          <Button
+            type="file"
+            onClick={handleButtonClick}
             sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              width: { xs: '100%', md: '65%' },
+              width: '160px',
+              height: '40px',
+              fontSize: { xs: '12px', md: '16px' },
+              whiteSpace: 'nowrap',
+              fontWeight: 600,
+              background: '#029894',
+              borderRadius: '5px',
+              color: '#fff',
+              '&:hover': {
+                background: '#029894',
+              },
             }}
+            startIcon={
+              <Image
+                src={Profile_Edit_Section?.buttonIcon}
+                width={24}
+                height={24}
+                alt={'upload'}
+              />
+            }
           >
-            {settingForm.map(
-              (
-                {
-                  title,
-                  placeholder,
-                  errorText,
-                  prefixIcon,
-                  type,
-                  suffixIcon,
-                  options,
-                  name,
-                  nested,
-                  fields,
-                },
-                formIndex
-              ) => (
-                <>
-                  <Grid item xs={12} lg={6}>
-                    <FormInput
-                      key={formIndex}
-                      title={title}
-                      placeholder={placeholder}
-                      errorText={errorText}
-                      prefixIcon={prefixIcon}
-                      type={type}
-                      suffixIcon={suffixIcon}
-                      options={options}
-                      name={name}
-                      setFieldValue={setFieldValue}
-                      value={values[name]}
-                      error={errors[name]}
-                      touched={touched}
-                      setFieldError={setFieldError}
-                      errors={errors}
-                      setErrors={setErrors}
-                      values={values}
-                      nested={nested}
-                      md={6}
-                      lg={6}
-                      fields={fields}
-                    />
-                  </Grid>
-                </>
-              )
-            )}
-          </Box>
-          <Grid item p={'0 10px'} xs={12} lg={6}>
+            {Profile_Edit_Section?.buttonText}
+          </Button>
+        </Box>
+      </Box>
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '20px',
+          my: 3,
+          width: { xs: '100%', md: '80%' },
+        }}
+      >
+        <Typography
+          variant="body2"
+          sx={{ color: '#171717', fontWeight: '500' }}
+        >
+          {User_Detail?.title}
+        </Typography>
+        <Grid sx={{ marginLeft: '-7px' }}>
+          <Box
+            sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' } }}
+          >
             <Box
               sx={{
                 display: 'flex',
-                justifyContent: { xs: 'flex-start', md: 'flex-end' },
-                paddingRight: { xs: '0', md: '15px' },
-                marginTop: { xs: '0px', md: '125px' },
+                flexDirection: 'column',
+                width: { xs: '100%', md: '65%' },
               }}
             >
-              <Button
+              {settingForm.map(
+                (
+                  {
+                    title,
+                    placeholder,
+                    errorText,
+                    prefixIcon,
+                    type,
+                    suffixIcon,
+                    options,
+                    name,
+                    nested,
+                    fields,
+                  },
+                  formIndex
+                ) => (
+                  <>
+                    <Grid item xs={12} lg={6}>
+                      <FormInput
+                        key={formIndex}
+                        title={title}
+                        placeholder={placeholder}
+                        errorText={errorText}
+                        prefixIcon={prefixIcon}
+                        type={type}
+                        suffixIcon={suffixIcon}
+                        options={options}
+                        name={name}
+                        setFieldValue={setFieldValue}
+                        value={values[name]}
+                        error={errors[name]}
+                        touched={touched}
+                        setFieldError={setFieldError}
+                        errors={errors}
+                        setErrors={setErrors}
+                        values={values}
+                        nested={nested}
+                        md={6}
+                        lg={6}
+                        fields={fields}
+                      />
+                    </Grid>
+                  </>
+                )
+              )}
+            </Box>
+            <Grid item p={'0 10px'} xs={12} lg={6}>
+              <Box
                 sx={{
-                  minWidth: '120px',
-                  background: '#888888',
-                  color: '#fff',
-                  '&:hover': {
+                  display: 'flex',
+                  justifyContent: { xs: 'flex-start', md: 'flex-end' },
+                  paddingRight: { xs: '0', md: '15px' },
+                  marginTop: { xs: '0px', md: '125px' },
+                }}
+              >
+                <Button
+                  sx={{
+                    minWidth: '120px',
                     background: '#888888',
                     color: '#fff',
-                  },
-                }}
-                onClick={handleData}
-                type="submit"
-              >
-                {User_Password?.buttonText}
-              </Button>
-            </Box>
-          </Grid>
-        </Box>
-      </Grid>
+                    '&:hover': {
+                      background: '#888888',
+                      color: '#fff',
+                    },
+                  }}
+                  type="submit"
+                >
+                  {User_Password?.buttonText}
+                </Button>
+              </Box>
+            </Grid>
+          </Box>
+        </Grid>
+      </Box>
     </form>
   );
 };

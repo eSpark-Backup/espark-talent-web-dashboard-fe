@@ -7,12 +7,42 @@ import Image from 'next/image';
 import AppConfirmationMadal from '../modals/AppConfirmationMadal';
 import { useRouter } from 'next/navigation';
 import { REMOVE_MODAL } from '@/src/constants/contractSigned';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useMutation } from '@tanstack/react-query';
+import { HR_EMPLOYEES } from '@/src/services/apiService/apiEndPoints';
+import {
+  deleteCurrentEmpData,
+  deleteCurrentEmpDataFailed,
+  deleteCurrentEmpDataSuccess,
+} from '@/src/redux/slices/hrSlices/employeeSlice';
+import { api } from '@/src/services/apiService';
 
 const EmployeeView = ({ status }) => {
+  const { data } = useSelector((state) => state?.hr?.employees);
   const [anchorEl, setAnchorEl] = useState(null);
+  const dispatch = useDispatch();
   const open = Boolean(anchorEl);
   const [isOpen, setIsOpen] = useState(false);
+  const [currentEmpId, setCurrentEmpId] = useState(null);
+  const { mutate } = useMutation({
+    mutationKey: ['delete-current-employee'],
+    mutationFn: async (id) => {
+      dispatch(deleteCurrentEmpData());
+      return api.daleteData(`${HR_EMPLOYEES}/?id=${id}`);
+    },
+    onSuccess: ({ data }) => {
+      console.log({ data });
+      dispatch(deleteCurrentEmpDataSuccess(currentEmpId));
+      handleClose();
+      setCurrentEmpId(null);
+    },
+    onError: (err) => {
+      dispatch(deleteCurrentEmpDataFailed());
+      handleClose();
+      console.log({ err: err.message, name: err.name, stack: err.stack });
+    },
+  });
+
   const isBetween1400And1200 = useMediaQuery(
     '(min-width: 1200px) and (max-width: 1400px)'
   );
@@ -21,16 +51,23 @@ const EmployeeView = ({ status }) => {
     setAnchorEl(event.currentTarget);
     event.stopPropagation();
   };
-  const handleOpenRemove = (event) => {
-    setIsOpen(true);
+  const handleOpenRemove = (event, item) => {
+    console.log({ event, item });
+    setCurrentEmpId(item.id);
     event.stopPropagation();
+    setIsOpen(true);
   };
   const handleClose = (event) => {
     event.stopPropagation();
+    setCurrentEmpId(null);
     setAnchorEl(null);
   };
   const handleCloseModal = () => {
     setIsOpen(false);
+  };
+  const handleConfirm = () => {
+    console.log({ currentEmpId });
+    mutate(currentEmpId);
   };
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'), {
@@ -215,7 +252,6 @@ const EmployeeView = ({ status }) => {
   //   }
   // }
 
-  const { data } = useSelector((state) => state?.hr?.employees);
   return (
     <>
       <Grid
@@ -367,7 +403,9 @@ const EmployeeView = ({ status }) => {
                       }}
                       sx={{ marginTop: '20px' }}
                     >
-                      <MenuItem onClick={handleOpenRemove}>Remove</MenuItem>
+                      <MenuItem onClick={(e) => handleOpenRemove(e, eachItem)}>
+                        Remove
+                      </MenuItem>
                     </Menu>
                   </Box>
                 </Box>
@@ -382,6 +420,7 @@ const EmployeeView = ({ status }) => {
         confirmButtonText={REMOVE_MODAL?.remove}
         isOpen={isOpen}
         handleClose={handleCloseModal}
+        handleConfirm={handleConfirm}
       />
     </>
   );

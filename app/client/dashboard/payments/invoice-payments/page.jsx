@@ -225,8 +225,8 @@ const Dashboard = () => {
                         value === 0
                           ? data?.panding
                           : value === 1
-                          ? data?.processing
-                          : data?.paid
+                            ? data?.processing
+                            : data?.paid
                       }
                     />
                   </Box>

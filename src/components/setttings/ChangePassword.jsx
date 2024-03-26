@@ -6,8 +6,22 @@ import { useFormik } from 'formik';
 import { changePasswordFormSchema } from '../form/schemas/changePassword';
 import { changePasswordForm } from '@/src/constants/data/forms/change-password';
 import { User_Password } from '@/src/constants/profileEditData';
+import { useMutation } from '@tanstack/react-query';
+import { CLIENT_UPDATE_PASSWORD } from '@/src/services/apiService/apiEndPoints';
+import { api } from '@/src/services/apiService';
 
 const ChangePassword = () => {
+  const { mutate } = useMutation({
+    mutationFn: async (data) => {
+      return api.updateJSONData(`${CLIENT_UPDATE_PASSWORD}`, data);
+    },
+    onSuccess: ({ data }) => {
+      console.log({ data });
+    },
+    onError: (err) => {
+      console.log({ err: err.message, name: err.name, stack: err.stack });
+    },
+  });
   const {
     handleSubmit,
     values,
@@ -22,6 +36,7 @@ const ChangePassword = () => {
     enableReinitialize: true,
     onSubmit: (formValues) => {
       console.log({ formValues });
+      mutate(formValues);
     },
     validateOnChange: false,
     validateOnBlur: false,

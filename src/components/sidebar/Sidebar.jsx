@@ -44,10 +44,8 @@ const Sidebar = ({ userName }) => {
     paddingTop: windowHeight < 300 ? 0 : '15%',
     paddingBottom: windowHeight < 300 ? 0 : '15%',
   };
-
   const { employee_perms, client_perms, invoices_perms, policies_perms } =
-    useSelector((state) => state?.hr?.home?.homeData || {});
-
+    useSelector((state) => state?.hr?.home?.homeData);
   const employeePerms = {
     employee_perms,
     client_perms,
@@ -85,6 +83,47 @@ const Sidebar = ({ userName }) => {
       return true;
     });
   };
+
+  // const { employee_perms, client_perms, invoices_perms, policies_perms } =
+  //   useSelector((state) => state?.hr?.home?.homeData || {});
+
+  // const employeePerms = {
+  //   employee_perms,
+  //   client_perms,
+  //   invoices_perms,
+  //   policies_perms,
+  // };
+
+  // const filteredRoutes = (routes) => {
+  //   return routes.filter((route) => {
+  //     // Check for employee permissions
+  //     if (
+  //       route.text === 'Employees' &&
+  //       !employeePerms?.employee_perms[0]?.read
+  //     ) {
+  //       return false; // Exclude 'Employees' route if read permission is false
+  //     }
+
+  //     // Check for other permissions (assuming properties exist in employeePerms)
+  //     const clientPerms = employeePerms?.client_perms[0]; // Assuming client permissions exist
+  //     if (route.text === 'Clients' && !clientPerms?.read) {
+  //       return false; // Exclude 'Clients' route if read permission is false
+  //     }
+
+  //     const invoicePerms = employeePerms.invoices_perms[0]; // Assuming invoice permissions exist
+  //     if (route.text === 'Invoices' && !invoicePerms?.read) {
+  //       return false; // Exclude 'Invoices' route if read permission is false
+  //     }
+
+  //     const policyPerms = employeePerms.policies_perms[0]; // Assuming policy permissions exist
+  //     if (route.text === 'Policies' && !policyPerms?.read) {
+  //       return false; // Exclude 'Policies' route if read permission is false
+  //     }
+
+  //     // Include the route if no permission check fails
+  //     return true;
+  //   });
+  // };
 
   const renderLinks = () => {
     const client = pathName.includes('/client/dashboard');

@@ -16,10 +16,10 @@ const SidebarLogo = () => {
             pathName.includes('/client/dashboard')
               ? '/client/dashboard'
               : null || pathName.includes('/employee/dashboard')
-              ? '/employee/dashboard'
-              : null || pathName.includes('/hr/dashboard')
-              ? '/hr/dashboard'
-              : null
+                ? '/employee/dashboard'
+                : null || pathName.includes('/hr/dashboard')
+                  ? '/hr/dashboard'
+                  : null
           }
         >
           <Image
