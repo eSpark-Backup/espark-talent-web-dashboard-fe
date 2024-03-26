@@ -68,9 +68,10 @@ export default function ProfilePopper({ button }) {
 
   const handleLogout = () => {
     dispatch(logout());
-    Cookie.remove('token');
-    Cookie.remove('userType');
-    router.replace('/');
+    Cookie?.remove('token');
+    Cookie?.remove('userType');
+    router?.replace('/');
+    location?.reload();
   };
 
   const open = Boolean(isOpen);

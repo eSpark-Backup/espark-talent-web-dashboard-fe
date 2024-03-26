@@ -1,43 +1,42 @@
 'use client';
 import React from 'react';
 import { Box, Grid } from '@mui/material';
+import { useDispatch, useSelector } from 'react-redux';
+import { useQuery } from '@tanstack/react-query';
 
 import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
 import AttendanceSummary from '@/src/components/AtttendanceSummary/AttendanceSummary';
 import LeaveSummary from '@/src/components/AtttendanceSummary/LeaveSummary';
 import Clock from '@/src/components/AtttendanceSummary/Clock';
-// import { Clock_Title } from '@/src/constants/employeeDashboard';
-// import Image from 'next/image';
-import { DASHBOARD_DATA } from '@/public/images/dashboard/constants/Dashboard';
-// import { PUNCH_IN } from '@/src/constants/punchIn/createPunch';
-// import { useQuery } from '@tanstack/react-query';
-// import { api } from '@/src/services/apiService';
-// import { EMP_HOME } from '@/src/services/apiService/apiEndPoints';
-import { useSelector } from 'react-redux';
-// import { getEmpHomeData } from '@/src/redux/slices/employeeSlices/empHomeSlice';
-// import { getEmployeeDetails, getWorkSpace } from '@/src/redux/slices/authSlice';
 import Statistics from '@/src/components/AtttendanceSummary/Statistics';
 import MarkClock from '@/src/components/AtttendanceSummary/MarkClock/MarkClock';
 import TodayActivity from '@/src/components/AtttendanceSummary/TodayActivity';
+import { getEmpHomeData } from '@/src/redux/slices/employeeSlices/empHomeSlice';
+import { getEmployeeDetails, getWorkSpace } from '@/src/redux/slices/authSlice';
+import { api } from '@/src/services/apiService';
+
+import { EMP_HOME } from '@/src/services/apiService/apiEndPoints';
+import { DASHBOARD_DATA } from '@/public/images/dashboard/constants/Dashboard';
 
 const Dashboard = () => {
   const { empDetails } = useSelector((state) => state?.auth?.userData);
-  // const dispatch = useDispatch();
-  // const { isLoading } = useQuery({
-  //   // staleTime: 10000,
-  //   queryFn: () => {
-  //     return api
-  //       .getData(`${EMP_HOME}/?workspace=${workSpace?.email || ''}`)
-  //       .then(({ data }) => {
-  //         dispatch(getEmpHomeData(data));
-  //         dispatch(getWorkSpace(data?.workspaces?.[0]));
-  //         dispatch(getEmployeeDetails(data?.employee_details));
-  //         return data;
-  //       });
-  //   },
-  // });
+  const dispatch = useDispatch();
+  const { workSpace } = useSelector((state) => state?.auth?.userData);
+  const { isLoading } = useQuery({
+    // staleTime: 10000,
+    queryFn: () => {
+      return api
+        .getData(`${EMP_HOME}/?workspace=${workSpace?.email || ''}`)
+        .then(({ data }) => {
+          dispatch(getEmpHomeData(data));
+          dispatch(getWorkSpace(data?.workspaces?.[0]));
+          dispatch(getEmployeeDetails(data?.employee_details));
+          return data;
+        });
+    },
+  });
 
-  // if (isLoading) return 'Loading...';
+  if (isLoading) return 'Loading...';
   return (
     <>
       <Grid container spacing={5}>

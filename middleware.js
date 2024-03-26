@@ -5,8 +5,8 @@ export default function middleware(req) {
   const userTypeCookie = req.cookies.get('userType');
   const loggedin = tokenCookie ? tokenCookie.value : null;
   const userType = userTypeCookie ? userTypeCookie.value : null;
-  const { pathname } = req.nextUrl;
 
+  const { pathname } = req.nextUrl;
   const dashboardRoutes = {
     hr: '/hr/dashboard',
     client: '/client/dashboard',
@@ -27,21 +27,19 @@ export default function middleware(req) {
       return NextResponse.redirect(new URL(dashboardRoutes[userType], req.url));
     }
   }
-
   if (userType) {
     if (
       userType !== 'client' &&
       loggedin &&
       userType !== 'employee' &&
       loggedin &&
-      pathname != dashboardRoutes?.hr
+      !pathname?.startsWith(dashboardRoutes?.hr)
     ) {
       return NextResponse.redirect(
         new URL(dashboardRoutes?.hr, req.url).toString()
       );
     }
   }
-
   return NextResponse.next();
 }
 
