@@ -64,7 +64,12 @@ const ResourceCard = ({ data }) => {
                     {item?.title}
                   </Typography>
                   <Typography
-                    sx={{ fontSize: '16px', fontWeight: 400, color: '#595959' }}
+                    sx={{
+                      fontSize: '16px',
+                      fontWeight: 400,
+                      color: '#595959',
+                      width: { xs: '80%', md: '100%' },
+                    }}
                   >
                     {item?.description}
                   </Typography>

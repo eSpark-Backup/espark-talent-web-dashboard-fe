@@ -174,9 +174,8 @@ const StartHiringForm = () => {
                 formIndex
               ) => (
                 <>
-                  <Grid item xs={12} lg={6}>
+                  <Grid item xs={12} lg={6} key={formIndex}>
                     <FormInput
-                      key={formIndex}
                       title={title}
                       placeholder={placeholder}
                       errorText={errorText}
@@ -201,6 +200,7 @@ const StartHiringForm = () => {
                       fields={fields}
                       searchable={searchable}
                       countries={countries}
+                      width={'100%'}
                       withFlag={withFlag}
                     />
                   </Grid>

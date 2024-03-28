@@ -189,7 +189,7 @@ const AppDropdown = ({
               />
             ) : (
               <Image
-                src={'/images/hiring/rightarrow.png'}
+                src={'/images/hiring/down-icon.svg'}
                 width={20}
                 height={20}
                 alt="Dropdown"

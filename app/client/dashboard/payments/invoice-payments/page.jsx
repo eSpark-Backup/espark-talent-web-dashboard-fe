@@ -168,7 +168,9 @@ const Dashboard = () => {
             justifyContent={'space-between'}
             alignItems={'center'}
           >
-            <Typography variant="h3">Invoice payments</Typography>
+            <Typography variant="h3" marginBottom={5}>
+              Invoice payments
+            </Typography>
           </Box>
           <Box sx={{ width: '100%' }}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
@@ -236,6 +238,7 @@ const Dashboard = () => {
           </Box>
         </Box>
       </Grid>
+      <br />
       <hr />
       <br />
       <br />

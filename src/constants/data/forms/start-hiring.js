@@ -10,7 +10,7 @@ export const HiringForm = [
     name: 'jobTitle',
   },
   {
-    title: 'Role type',
+    title: 'Role',
     placeholder: 'Select role',
     type: 'select',
     options: [

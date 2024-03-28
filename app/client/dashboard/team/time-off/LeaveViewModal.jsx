@@ -700,7 +700,14 @@ const LeaveViewModal = ({ modalData, handleClose, isEmployee }) => {
                 }}
               >
                 <Button
-                  sx={{ minWidth: { xs: '100px', md: '120px' } }}
+                  sx={{
+                    minWidth: {
+                      xs: '100px',
+                      md: '120px',
+                    },
+                    fontSize: '16px',
+                    fontWeight: 600,
+                  }}
                   onClick={handleClose}
                   variant="outlined"
                 >
@@ -708,7 +715,12 @@ const LeaveViewModal = ({ modalData, handleClose, isEmployee }) => {
                 </Button>
                 <Button
                   onClick={handleClose}
-                  sx={{ ml: '20px', minWidth: { xs: '100px', md: '120px' } }}
+                  sx={{
+                    ml: '20px',
+                    minWidth: { xs: '100px', md: '120px' },
+                    fontSize: '16px',
+                    fontWeight: 600,
+                  }}
                   variant="contained"
                 >
                   Approve

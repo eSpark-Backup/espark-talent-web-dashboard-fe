@@ -88,7 +88,10 @@ const Dashboard = () => {
       clearTimeout(timeoutId);
     };
   }, [search, currentTab]);
-
+  const ShowHireButton = (value) => {
+    if (value === undefined || value === null) return false;
+    return value === 0 || value === 1 || value === 3;
+  };
   return (
     <>
       <Grid container>
@@ -103,22 +106,27 @@ const Dashboard = () => {
         >
           <div>
             <Box
-              marginBottom={4}
+              marginBottom={10}
               display={'flex'}
               justifyContent={'space-between'}
               alignItems={'center'}
             >
               <Typography variant="h3">Team members</Typography>
-              <Link href={HIRING_FORM_DATA?.startHiringLink}>
-                <Button
-                  style={{
-                    background: '#029894',
-                  }}
-                  variant="contained"
-                >
-                  {HIRING_FORM_DATA?.newHire}
-                </Button>
-              </Link>
+              {ShowHireButton(value) && (
+                <Link href={HIRING_FORM_DATA?.startHiringLink}>
+                  <Button
+                    sx={{
+                      background: '#029894',
+                      fontSize: { xs: '14px', md: '16px' },
+                      fontWeight: 600,
+                      width: { xs: '100px', md: '120px' },
+                    }}
+                    variant="contained"
+                  >
+                    {HIRING_FORM_DATA?.newHire}
+                  </Button>
+                </Link>
+              )}
             </Box>
             <Box sx={{ width: '100%' }}>
               <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>

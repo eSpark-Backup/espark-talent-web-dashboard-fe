@@ -11,8 +11,8 @@ const PoliciesCard = ({ data }) => {
           display: 'flex',
           flexDirection: { xs: 'column', sm: 'column', md: 'row' },
           justifyContent: 'center',
-          // gap: 3,
           flexWrap: 'wrap',
+          paddingBottom: '80px',
           '@media (min-width: 1200px) and (max-width: 1379px)': {
             width: '100%',
           },

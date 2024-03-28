@@ -5,7 +5,7 @@ const DropdownRightArrow = (props) => {
   return (
     <Image
       {...props}
-      src="/images/hiring/rightarrow.svg"
+      src="/images/hiring/rightarrow.png"
       width={30}
       height={30}
       alt="rightarrow"

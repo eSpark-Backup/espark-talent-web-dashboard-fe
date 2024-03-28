@@ -21,7 +21,7 @@ const TimeOffTabs = () => {
       display={'flex'}
       alignItems={'center'}
       justifyContent={'space-between'}
-      sx={{ borderBottom: 1, borderColor: 'divider' }}
+      sx={{ borderBottom: 1, borderColor: 'divider', marginBottom: '40px' }}
     >
       <Tabs
         value={tabData?.currentReqTypeTabVal}
@@ -30,7 +30,13 @@ const TimeOffTabs = () => {
         variant="scrollable"
       >
         {leaveRequestsTab?.map(({ label, prop }, index) => (
-          <Tab key={index} label={`${label}`} {...prop} disableRipple={true} />
+          <Tab
+            key={index}
+            label={`${label}`}
+            {...prop}
+            disableRipple={true}
+            sx={{ textTransform: 'math-auto' }}
+          />
         ))}
       </Tabs>
     </Box>

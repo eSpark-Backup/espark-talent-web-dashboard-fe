@@ -46,8 +46,8 @@ const ChangePassword = () => {
       sx={{
         display: 'flex',
         flexDirection: 'column',
-        gap: '15px',
-        my: -2,
+        gap: '18px',
+        my: { xs: 3, md: -2 },
         width: { xs: '100%', md: '50%' },
       }}
     >
@@ -102,7 +102,7 @@ const ChangePassword = () => {
               </>
             )
           )}
-          <Grid item p={'0 10px'} xs={12}>
+          <Grid item p={'0 10px'} xs={12} marginTop={-1}>
             <Button
               sx={{
                 minWidth: '120px',

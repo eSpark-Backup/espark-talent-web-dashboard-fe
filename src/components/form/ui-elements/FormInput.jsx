@@ -32,6 +32,7 @@ const FormInput = ({
   md = 4,
   lg = 3,
   title,
+  width,
   placeholder,
   prefixIcon,
   type = 'text',
@@ -209,6 +210,7 @@ const FormInput = ({
               setIsLoadingList={setIsLoadingList}
               isLoadingList={isLoadingList}
               md={12}
+              width={width}
               withFlag={withFlag}
               error={error}
             />

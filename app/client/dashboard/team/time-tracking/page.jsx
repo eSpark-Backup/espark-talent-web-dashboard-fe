@@ -114,7 +114,15 @@ const Dashboard = () => {
             </Box>
           </Box>
           <Box sx={{ width: '100%' }}>
-            <Box display={'flex'} alignItems="center" sx={{ width: '100%' }}>
+            <Box
+              display={'flex'}
+              alignItems="center"
+              sx={{
+                width: '100%',
+                marginBottom: '15px',
+                marginTop: '15px',
+              }}
+            >
               <Grid container spacing={2}>
                 <Grid
                   display={'flex'}

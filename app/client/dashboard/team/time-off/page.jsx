@@ -4,6 +4,7 @@ import { Grid, Box, Modal } from '@mui/material';
 import {
   checkInOutColumn,
   leaveRequestsColumn,
+  leaveRequestsData,
 } from '@/src/constants/data/tables/timeOffRequest';
 import { renderNestedTable } from './renderComponents';
 import LeaveViewModal from './LeaveViewModal';
@@ -146,7 +147,7 @@ const Dashboard = () => {
                       : checkInOutColumn,
                   data:
                     tabData?.currentReqTypeTab === 'Leave Requests'
-                      ? data?.leaveRequest
+                      ? leaveRequestsData
                       : data?.clockInOutRequests,
                   currentReqTypeTab: tabData?.currentReqTypeTab,
                   handleClickActionView,

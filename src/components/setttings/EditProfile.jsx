@@ -19,10 +19,10 @@ const EditProfile = () => {
           mx: 'auto',
           minWidth: 'auto',
           maxWidth: { xs: 'auto', md: '750px' },
-          height: 'auto',
+          height: { xs: '1000px', md: '900px' },
           borderRadius: '10px',
           border: '1px solid #E4E4E4',
-          background: '#FFF',
+          background: '#fff',
           p: 4,
           '@media (min-width: 790px) and (max-width: 899px)': {
             maxWidth: '750px',
