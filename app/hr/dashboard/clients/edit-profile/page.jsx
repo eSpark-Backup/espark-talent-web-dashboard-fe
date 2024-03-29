@@ -7,7 +7,6 @@ import Breadcrumb from '@/src/components/form/step/Breadcrumb';
 import { clientEditForm } from '@/src/constants/data/forms/edit-client-info';
 import { editClientSchema } from '@/src/components/form/schemas/editClient';
 import { useSelector } from 'react-redux';
-import { api } from '@/src/services/apiService';
 import { HR_GET_CLIENT_PROFILE } from '@/src/services/apiService/apiEndPoints';
 
 const EditClient = () => {
@@ -63,9 +62,6 @@ const EditClient = () => {
     console.log({ values, final });
     return final;
   };
-  const mutationFunction = (values) => {
-    return api.updateData(HR_GET_CLIENT_PROFILE, values);
-  };
   return (
     <Box>
       <Breadcrumb root="clients" title="Clients /" currentPage="Edit client" />
@@ -99,7 +95,7 @@ const EditClient = () => {
           defaultValues={defaultValues}
           isLastStep={true}
           getFinalData={getFinalData}
-          mutationFunction={mutationFunction}
+          // mutationFunction={mutationFunction}
           method="updateData"
           endpoint={`${HR_GET_CLIENT_PROFILE}?id=${currentClient.id}`}
         />

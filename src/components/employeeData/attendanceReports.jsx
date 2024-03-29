@@ -15,6 +15,7 @@ import { api } from '@/src/services/apiService';
 import { useParams } from 'next/navigation';
 import dayjs from 'dayjs';
 import { convertDateFormat, getAttendenceShortHand } from '@/src/utils/helpers';
+import { Toast } from '../Toast/Toast';
 
 const AttendanceReport = () => {
   // const [isLoading, setIsLoading] = useState(true);
@@ -64,6 +65,7 @@ const AttendanceReport = () => {
           return data;
         })
         .catch((err) => {
+          Toast('error', err.message || 'Failed to get data');
           console.log({ err });
         });
     },
@@ -115,6 +117,7 @@ const AttendanceReport = () => {
           return tempData || [];
         })
         .catch((err) => {
+          Toast('error', err.message || 'Failed to get data');
           console.log({ err });
         });
     },

@@ -2,7 +2,7 @@ export const filterTableRowsWRTTab = (data, filters) => {
   if (!filters || Object.keys(filters).length === 0) {
     return data;
   } else {
-    return data?.filter((member) => {
+    const filteredData = data?.filter((member) => {
       return Object.keys(filters).every((key) => {
         const filterValue = filters[key];
 
@@ -20,5 +20,6 @@ export const filterTableRowsWRTTab = (data, filters) => {
         }
       });
     });
+    return filteredData;
   }
 };

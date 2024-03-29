@@ -7,6 +7,7 @@ import { api } from '@/src/services/apiService';
 import { markCheckout } from '@/src/redux/slices/employeeSlices/empHomeSlice';
 import { EMP_HOME } from '@/src/services/apiService/apiEndPoints';
 import { useDispatch, useSelector } from 'react-redux';
+import { Toast } from '../../Toast/Toast';
 
 const MarkCheckOut = () => {
   const dispatch = useDispatch();
@@ -18,10 +19,12 @@ const MarkCheckOut = () => {
       return api.patchData(url);
     },
     onSuccess: ({ data }) => {
+      Toast('success', 'Data updated successfully');
       console.log({ data });
       dispatch(markCheckout(time));
     },
     onError: (err) => {
+      Toast('error', err.message || 'Failed to update data');
       console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });

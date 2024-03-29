@@ -10,6 +10,7 @@ import { useMutation } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import { HR_UPDATE_EMP_INFO } from '@/src/services/apiService/apiEndPoints';
 import { useParams } from 'next/navigation';
+import { Toast } from '../Toast/Toast';
 
 const EditPersonalModal = ({ onClose, handleEditProfileModal, data }) => {
   const params = useParams();
@@ -18,11 +19,13 @@ const EditPersonalModal = ({ onClose, handleEditProfileModal, data }) => {
       return api.updateJSONData(`${HR_UPDATE_EMP_INFO}/?id=${params.id}`, data);
     },
     onSuccess: ({ data }) => {
+      Toast('success', 'Data updated successfully');
       console.log({ data });
       // dispatch(deleteClientHiringRequestSuccess(modalData?.id));
       onClose();
     },
     onError: (err) => {
+      Toast('error', err.message || 'Failed to update data');
       // dispatch(deleteClientHiringRequestFailed());
       onClose();
       console.log({ err: err.message, name: err.name, stack: err.stack });

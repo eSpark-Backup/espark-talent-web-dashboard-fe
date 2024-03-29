@@ -6,7 +6,6 @@ import Input from '../dashboard/input';
 import Image from 'next/image';
 import EmployeeView from './EmployeeView';
 import { useRouter } from 'next/navigation';
-import EmployeeStatus from './ActiveEmployee';
 import { employeeProfileData } from '@/src/constants/employeeProfile';
 import { useQuery } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
@@ -17,6 +16,8 @@ import {
   getEmpDataFailed,
   getEmpDataSuccess,
 } from '@/src/redux/slices/hrSlices/employeeSlice';
+import { Toast } from '../Toast/Toast';
+import EmployeeStatus from './ActiveEmployee';
 
 const AllEmployee = ({ fromClient, openModal }) => {
   const dispatch = useDispatch();
@@ -57,6 +58,7 @@ const AllEmployee = ({ fromClient, openModal }) => {
           return data;
         })
         .catch((error) => {
+          Toast('error', error.message || 'Failed to get data');
           // console.log('API Failed');
           dispatch(getEmpDataFailed());
           console.log({ error });

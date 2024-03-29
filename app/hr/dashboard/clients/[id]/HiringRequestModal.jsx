@@ -11,6 +11,7 @@ import { useMutation } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import { HR_CLIENT_EMP_HIRING_REQUEST } from '@/src/services/apiService/apiEndPoints';
 import dayjs from 'dayjs';
+import { Toast } from '@/src/components/Toast/Toast';
 
 const HiringRequestModal = ({ open, onClose }) => {
   const { email } = useSelector((state) => state?.hr?.clients?.currentClient);
@@ -20,10 +21,12 @@ const HiringRequestModal = ({ open, onClose }) => {
       return api.postJSONData(`${HR_CLIENT_EMP_HIRING_REQUEST}`, formVals);
     },
     onSuccess: ({ data }) => {
+      Toast('success', 'Data posted successfully');
       console.log({ data });
       // dispatch(addClientContract(values));
     },
     onError: (err) => {
+      Toast('error', err.message || 'Failed to post data');
       console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });

@@ -5,6 +5,7 @@ import { Button, Grid, Typography } from '@mui/material';
 import { useMutation } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import dayjs from 'dayjs';
+import { Toast } from '../../Toast/Toast';
 import { useDispatch, useSelector } from 'react-redux';
 import { marKCheckin } from '@/src/redux/slices/employeeSlices/empHomeSlice';
 
@@ -20,9 +21,11 @@ const MarkCheckIn = () => {
     },
     onSuccess: ({ data }) => {
       console.log({ data });
+      Toast('success', 'Data updated successfully');
       dispatch(marKCheckin(time));
     },
     onError: (err) => {
+      Toast('error', err.message || 'Failed to update data');
       console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });

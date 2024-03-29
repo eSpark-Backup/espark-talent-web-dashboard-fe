@@ -2,6 +2,7 @@ import AppTable from '@/src/components/appTableNew/AppTable';
 import { addEmployeModalFormSchema } from '@/src/components/form/schemas/addEmployeeModal';
 import Navigator from '@/src/components/form/step/Navigator';
 import FormInput from '@/src/components/form/ui-elements/FormInput';
+import { Toast } from '@/src/components/Toast/Toast';
 import { addEmployeeModalFormSteps } from '@/src/constants/data/forms/add-employee-modal';
 import { FORM_DATA } from '@/src/constants/form';
 import {
@@ -26,9 +27,11 @@ const AddEmployeeModal = ({ open, onClose }) => {
       );
     },
     onSuccess: ({ data }) => {
+      Toast('success', 'Data posted successfully');
       console.log({ data });
     },
     onError: (err) => {
+      Toast('error', err.message || 'Failed to post data');
       console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
@@ -77,6 +80,7 @@ const AddEmployeeModal = ({ open, onClose }) => {
           return tempData;
         })
         .catch((err) => {
+          Toast('error', err.message || 'Failed to get data');
           console.log({ err });
         });
     },

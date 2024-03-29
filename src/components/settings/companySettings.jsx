@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { HR_COMPANY_SETTINGS } from '@/src/services/apiService/apiEndPoints';
 import { getCompSettingsData } from '@/src/redux/slices/hrSlices/settingsSlice';
 import { api } from '@/src/services/apiService';
+import { Toast } from '../Toast/Toast';
 
 const CompanySettings = () => {
   const { companySettings } = useSelector((state) => state?.hr?.settings);
@@ -24,6 +25,7 @@ const CompanySettings = () => {
           return data;
         })
         .catch((err) => {
+          Toast('error', err.message || 'Failed to get data');
           console.log({ err });
         });
     },

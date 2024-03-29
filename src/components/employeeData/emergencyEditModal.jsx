@@ -10,6 +10,7 @@ import { useMutation } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import { HR_UPDATE_EMP_INFO } from '@/src/services/apiService/apiEndPoints';
 import { useParams } from 'next/navigation';
+import { Toast } from '../Toast/Toast';
 
 const EditEmergencyModal = ({ onClose, handleEmergencyModal, data }) => {
   const params = useParams();
@@ -18,10 +19,12 @@ const EditEmergencyModal = ({ onClose, handleEmergencyModal, data }) => {
       return api.updateJSONData(`${HR_UPDATE_EMP_INFO}/?id=${params.id}`, data);
     },
     onSuccess: ({ data }) => {
+      Toast('success', 'Data updated successfully');
       console.log({ data });
       // onClose();
     },
     onError: (err) => {
+      Toast('error', err.message || 'Failed to update data');
       // onClose();
       console.log({ err: err.message, name: err.name, stack: err.stack });
     },

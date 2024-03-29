@@ -17,6 +17,7 @@ import {
   deleteEmpLeaveRequestSuccess,
   deleteLeaveRequestDataFailed,
 } from '@/src/redux/slices/employeeSlices/leaveRequestSlice';
+import { Toast } from '@/src/components/Toast/Toast';
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -30,12 +31,14 @@ const Dashboard = () => {
       return api.daleteData(`${EMP_LEAVE_REQUEST}/?id=${id}`);
     },
     onSuccess: ({ data }) => {
+      Toast('success', 'Data deleted successfully');
       console.log({ data });
       dispatch(deleteEmpLeaveRequestSuccess(modalData?.id));
       handleCloseDeleteModal();
       setModalData({});
     },
     onError: (err) => {
+      Toast('error', err.message || 'Failed to delete data');
       dispatch(deleteLeaveRequestDataFailed(modalData?.id));
       handleCloseDeleteModal();
       console.log({ err: err.message, name: err.name, stack: err.stack });

@@ -11,6 +11,7 @@ import { useQuery } from '@tanstack/react-query';
 import { HR_GET_EMP_PROFILE } from '@/src/services/apiService/apiEndPoints';
 import { api } from '@/src/services/apiService';
 import { useParams } from 'next/navigation';
+import { Toast } from '../Toast/Toast';
 
 const Client = () => {
   const params = useParams();
@@ -24,6 +25,7 @@ const Client = () => {
           return data || [];
         })
         .catch((err) => {
+          Toast('error', err.message || 'Failed to get data');
           console.log({ err });
         });
     },

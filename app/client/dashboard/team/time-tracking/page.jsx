@@ -16,6 +16,7 @@ import {
   fetchTimeTrackingDataRequestSuccess,
 } from '@/src/redux/slices/clientSlices/timeTrackingSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { Toast } from '@/src/components/Toast/Toast';
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -32,6 +33,7 @@ const Dashboard = () => {
           return data;
         })
         .catch((err) => {
+          Toast('error', err.message || 'Failed to get data');
           dispatch(fetchTimeTrackingDataRequestFailed());
           console.log({ err });
         });

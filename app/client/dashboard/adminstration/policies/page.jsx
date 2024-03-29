@@ -13,6 +13,7 @@ import {
   fetchClientPoliciesRequestSuccess,
 } from '@/src/redux/slices/clientSlices/policiesSlice';
 import { useDispatch } from 'react-redux';
+import { Toast } from '@/src/components/Toast/Toast';
 
 const Policies = () => {
   const dispatch = useDispatch();
@@ -28,6 +29,7 @@ const Policies = () => {
           return data;
         })
         .catch((err) => {
+          Toast('error', err.message || 'Failed to get data');
           dispatch(fetchClientPoliciesRequestFailed());
           console.log({ err });
         });

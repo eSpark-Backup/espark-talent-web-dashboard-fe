@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Box, Pagination, Stack } from '@mui/material';
 import TableHead from './AppTableHead';
@@ -6,7 +6,7 @@ import AppTableBody from './AppTableBody';
 
 const AppTable = ({
   column,
-  data,
+  data = [],
   renderMessage,
   handleClick,
   renderMessageButton,
@@ -17,7 +17,18 @@ const AppTable = ({
   minWidth,
   options,
   tableRowClass,
+  hanldeInvLinkClick,
+  updateStatus,
 }) => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+  // Calculate the index range for the current page
+  const startIndex = !noPagination && (currentPage - 1) * itemsPerPage;
+  const endIndex = !noPagination && startIndex + itemsPerPage;
+
+  // Slice the data array to get the items for the current page
+  const currentPageData = !noPagination && data.slice(startIndex, endIndex);
+
   return (
     <>
       <table
@@ -27,7 +38,8 @@ const AppTable = ({
         <TableHead column={column} />
         <AppTableBody
           column={column}
-          data={data}
+          // data={data}
+          data={!noPagination ? currentPageData : data}
           renderMessage={renderMessage}
           handleClickActionView={handleClickActionView}
           handleClickRenderMessageButton={handleClickRenderMessageButton}
@@ -36,12 +48,21 @@ const AppTable = ({
           handleClickActionDelete={handleClickActionDelete}
           options={options}
           tableRowClass={tableRowClass}
+          hanldeInvLinkClick={hanldeInvLinkClick}
+          updateStatus={updateStatus}
         />
       </table>
       {!noPagination && (
         <Box my={'20px'} display="flex" justifyContent={'center'}>
           <Stack spacing={2}>
-            <Pagination count={10} variant="outlined" shape="rounded" />
+            <Pagination
+              count={Math.ceil(data?.length / itemsPerPage) || 1}
+              // count={10}
+              variant="outlined"
+              shape="rounded"
+              page={currentPage}
+              onChange={(event, page) => setCurrentPage(page)}
+            />
           </Stack>
         </Box>
       )}

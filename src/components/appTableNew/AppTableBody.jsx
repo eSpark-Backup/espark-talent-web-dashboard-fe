@@ -14,6 +14,8 @@ const AppTableBody = ({
   handleClickActionDelete,
   options,
   tableRowClass,
+  hanldeInvLinkClick,
+  updateStatus,
 }) => {
   const commonCellStyle = {
     display: 'flex',
@@ -47,7 +49,9 @@ const AppTableBody = ({
                   colIndex,
                   rowIndex,
                   handleClickActionDelete,
-                  options
+                  options,
+                  hanldeInvLinkClick,
+                  updateStatus
                 )}
               </Fragment>
             ))}

@@ -28,6 +28,7 @@ export const HR_COMPANY_SETTINGS = '/hr_compsett/';
 export const HR_ACCOUNTS = '/hr_accounts/';
 export const HR_ROLES_PERMISSIONS = '/hr_rnp/';
 export const HR_OUTSOURCEABLE_EMPS = '/hr_clientaddemp/';
+export const HR_INVOICES = '/hr_invoices/';
 
 // Employees
 

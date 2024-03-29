@@ -29,6 +29,7 @@ import AppConfirmationMadal from '@/src/components/modals/AppConfirmationMadal';
 // import { filterStatusForm } from '@/src/constants/data/forms/filter-form';
 import EmpPunchReqFilterFormModal from '@/src/components/FilterModal/empPunchReqFilterForm';
 import { empPunchReqfilterForm } from '@/src/constants/data/forms/emp-punch-req-modal-form';
+import { Toast } from '@/src/components/Toast/Toast';
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -43,16 +44,16 @@ const Dashboard = () => {
       return api
         .getData(`${EMP_PUNCH_REQUEST}/?workspace=${workSpace?.email || ''}`)
         .then(({ data }) => {
-          dispatch(getEmpPunchRequestDataSuccess(data));
+          dispatch(getEmpPunchRequestDataSuccess(data || []));
           return data;
         })
         .catch((err) => {
+          Toast('error', err.message || 'Failed to get data');
           dispatch(getEmpPunchRequestDataFailed());
           console.log({ err });
         });
     },
   });
-  console.log({ data, isLoading });
   const [checkInOutRequestDataState, setCheckInOutRequestDataState] = useState(
     []
   );
@@ -89,12 +90,14 @@ const Dashboard = () => {
       return api.daleteData(`${EMP_PUNCH_REQUEST}/?id=${id}`);
     },
     onSuccess: ({ data }) => {
+      Toast('success', 'Data deleted successfully');
       console.log({ data });
       dispatch(deleteEmpPunchRequestSuccess(modalData?.id));
       handleCloseDeleteModal();
       setModalData({});
     },
     onError: (err) => {
+      Toast('error', err.message || 'Failed to delete data');
       dispatch(deletePunchRequestDataFailed());
       handleCloseDeleteModal();
       console.log({ err: err.message, name: err.name, stack: err.stack });
@@ -166,7 +169,7 @@ const Dashboard = () => {
   const handleConfirmDelete = () => {
     mutate(modalData.id);
   };
-
+  if (isLoading) return 'Loading...';
   return (
     <>
       <Box

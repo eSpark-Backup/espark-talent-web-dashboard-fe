@@ -17,6 +17,7 @@ import { api } from '@/src/services/apiService';
 
 import { EMP_HOME } from '@/src/services/apiService/apiEndPoints';
 import { DASHBOARD_DATA } from '@/public/images/dashboard/constants/Dashboard';
+import { Toast } from '@/src/components/Toast/Toast';
 
 const Dashboard = () => {
   const { empDetails } = useSelector((state) => state?.auth?.userData);
@@ -32,6 +33,9 @@ const Dashboard = () => {
           dispatch(getWorkSpace(data?.workspaces?.[0]));
           dispatch(getEmployeeDetails(data?.employee_details));
           return data;
+        })
+        .catch((err) => {
+          Toast('error', err.message || 'Failed to get data');
         });
     },
   });

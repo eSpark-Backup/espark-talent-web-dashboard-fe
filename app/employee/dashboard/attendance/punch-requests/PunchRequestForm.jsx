@@ -10,6 +10,7 @@ import { EMP_PUNCH_REQUEST } from '@/src/services/apiService/apiEndPoints';
 import { useMutation } from '@tanstack/react-query';
 import dayjs from 'dayjs';
 import { pascalToSnake } from '@/src/utils/stringModification';
+import { Toast } from '@/src/components/Toast/Toast';
 
 const PunchRequestForm = ({ handleClose }) => {
   const { punch_timings } = useSelector((state) => state?.emp?.home?.homeData);
@@ -37,6 +38,7 @@ const PunchRequestForm = ({ handleClose }) => {
       return api.postData(EMP_PUNCH_REQUEST, formData);
     },
     onSuccess: ({ data }) => {
+      Toast('success', 'Data posted successfully');
       console.log({ data });
       handleClose();
       // dispatch(login(data));
@@ -49,6 +51,7 @@ const PunchRequestForm = ({ handleClose }) => {
       // }
     },
     onError: (err) => {
+      Toast('error', err.message || 'Failed to post data');
       console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });

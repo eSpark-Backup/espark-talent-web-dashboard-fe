@@ -16,6 +16,7 @@ import { useParams } from 'next/navigation';
 import { api } from '@/src/services/apiService';
 import { HR_GET_EMP_TIME_AND_LEAVES } from '@/src/services/apiService/apiEndPoints';
 import { useMutation, useQuery } from '@tanstack/react-query';
+import { Toast } from '../Toast/Toast';
 
 const TimeAndLeaves = () => {
   const params = useParams();
@@ -45,6 +46,7 @@ const TimeAndLeaves = () => {
           return data || [];
         })
         .catch((err) => {
+          Toast('error', err.message || 'Failed to get data');
           console.log({ err });
         });
     },

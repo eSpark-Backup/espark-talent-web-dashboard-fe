@@ -12,6 +12,7 @@ import { FORM_DATA } from '@/src/constants/form';
 import { useMutation } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import { HR_ACCOUNTS } from '@/src/services/apiService/apiEndPoints';
+import { Toast } from '../Toast/Toast';
 
 const AddAccountModal = ({
   open,
@@ -28,11 +29,13 @@ const AddAccountModal = ({
     },
     onSuccess: ({ data }) => {
       console.log({ data });
+      Toast('success', 'Data posted successfully');
       // dispatch(deleteClientHiringRequestSuccess(modalData?.id));
       // handleClose();
       // setModalData({});
     },
     onError: (err) => {
+      Toast('error', err.message || 'Failed to post data');
       // dispatch(deleteClientHiringRequestFailed());
       // handleClose();
       console.log({ err: err.message, name: err.name, stack: err.stack });

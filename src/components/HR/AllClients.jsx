@@ -11,6 +11,7 @@ import { HR_GET_CLIENTS } from '@/src/services/apiService/apiEndPoints';
 import { api } from '@/src/services/apiService';
 import { useQuery } from '@tanstack/react-query';
 import { useSelector } from 'react-redux';
+import { Toast } from '../Toast/Toast';
 
 const AllClients = () => {
   const router = useRouter();
@@ -39,6 +40,7 @@ const AllClients = () => {
           return data || [];
         })
         .catch((error) => {
+          Toast('error', error.message || 'Failed to get data');
           // console.log('API Failed');
           // dispatch(getEmpDataFailed());
           console.log({ error });

@@ -16,6 +16,7 @@ import AppConfirmationMadal from '@/src/components/modals/AppConfirmationMadal';
 import { useQuery } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import { HR_POLICY } from '@/src/services/apiService/apiEndPoints';
+import { Toast } from '@/src/components/Toast/Toast';
 
 const Policies = () => {
   const { isLoading, data } = useQuery({
@@ -28,6 +29,7 @@ const Policies = () => {
           return data || [];
         })
         .catch((err) => {
+          Toast('error', err.message || 'Failed to get data');
           console.log({ err });
         });
     },

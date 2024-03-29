@@ -11,6 +11,7 @@ import { addClientContract } from '@/src/redux/slices/hrSlices/contractSlice';
 import { useDispatch } from 'react-redux';
 import { api } from '@/src/services/apiService';
 import dayjs from 'dayjs';
+import { Toast } from '../Toast/Toast';
 
 const AddContractHrPortalModal = ({
   open,
@@ -35,10 +36,12 @@ const AddContractHrPortalModal = ({
       return api.postData(`${url}`, formData);
     },
     onSuccess: ({ data }) => {
+      Toast('success', 'Data posted successfully');
       console.log({ data });
       dispatch(addClientContract(values));
     },
     onError: (err) => {
+      Toast('error', err.message || 'Failed to post data');
       console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });

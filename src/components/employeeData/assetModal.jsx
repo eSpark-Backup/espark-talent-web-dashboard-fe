@@ -12,6 +12,7 @@ import { api } from '@/src/services/apiService';
 import dayjs from 'dayjs';
 import { addEmpAsset } from '@/src/redux/slices/hrSlices/employeeSlice';
 import { useDispatch } from 'react-redux';
+import { Toast } from '../Toast/Toast';
 
 const AssetForm = ({ onClose, open, data }) => {
   console.log({ data });
@@ -22,6 +23,7 @@ const AssetForm = ({ onClose, open, data }) => {
       return api.postJSONData(`${HR_ADD_EMP_ASSET}`, data);
     },
     onSuccess: ({ data }) => {
+      Toast('success', 'Data posted successfully');
       console.log({ data, values });
       const reformedData = {
         ...values,
@@ -36,6 +38,7 @@ const AssetForm = ({ onClose, open, data }) => {
       onClose();
     },
     onError: (err) => {
+      Toast('error', err.message || 'Failed to post data');
       // onClose();
       console.log({ err: err.message, name: err.name, stack: err.stack });
     },

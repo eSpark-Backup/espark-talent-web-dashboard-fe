@@ -4,6 +4,7 @@ import contractSlice from './contractSlice';
 import employeeSlice from './employeeSlice';
 import homeSlice from './homeSlice';
 import settingsSlice from './settingsSlice';
+import invoicesSlice from './invoices';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
@@ -21,6 +22,7 @@ const hrReducer = persistReducer(
     employees: employeeSlice,
     contracts: contractSlice,
     settings: settingsSlice,
+    invoices: invoicesSlice,
   })
 );
 

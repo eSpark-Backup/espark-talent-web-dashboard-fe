@@ -9,6 +9,7 @@ import { User_Password } from '@/src/constants/profileEditData';
 import { useMutation } from '@tanstack/react-query';
 import { CLIENT_UPDATE_PASSWORD } from '@/src/services/apiService/apiEndPoints';
 import { api } from '@/src/services/apiService';
+import { Toast } from '../Toast/Toast';
 
 const ChangePassword = () => {
   const { mutate } = useMutation({
@@ -16,9 +17,11 @@ const ChangePassword = () => {
       return api.updateJSONData(`${CLIENT_UPDATE_PASSWORD}`, data);
     },
     onSuccess: ({ data }) => {
+      Toast('success', 'Data updated successfully');
       console.log({ data });
     },
     onError: (err) => {
+      Toast('error', err.message || 'Failed to update data');
       console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });

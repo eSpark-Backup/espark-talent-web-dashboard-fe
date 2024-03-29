@@ -21,6 +21,7 @@ import {
   fetchClientCompanyContractRequestFailed,
   fetchClientCompanyContractRequestSuccess,
 } from '@/src/redux/slices/clientSlices/contratSignedSlice';
+import { Toast } from '@/src/components/Toast/Toast';
 
 const ContractSigned = () => {
   const { data, isLoading } = useSelector((state) => state?.client?.contract);
@@ -40,6 +41,7 @@ const ContractSigned = () => {
           return data;
         })
         .catch((err) => {
+          Toast('error', err.message || 'Failed to get data');
           dispatch(fetchClientCompanyContractRequestFailed());
           console.log({ err });
         });
@@ -57,6 +59,7 @@ const ContractSigned = () => {
           return data;
         })
         .catch((err) => {
+          Toast('error', err.message || 'Failed to get data');
           dispatch(fetchClientEmpContractRequestFailed());
           console.log({ err });
         });

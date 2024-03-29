@@ -27,6 +27,7 @@ import {
   getCurrentEmpDataFailed,
   getCurrentEmpDataSuccess,
 } from '@/src/redux/slices/hrSlices/employeeSlice';
+import { Toast } from '@/src/components/Toast/Toast';
 
 const Page = () => {
   const dispatch = useDispatch();
@@ -53,6 +54,7 @@ const Page = () => {
           return data;
         })
         .catch((err) => {
+          Toast('error', err.message || 'Failed to get data');
           dispatch(getCurrentEmpDataFailed());
           console.log({ err });
         });

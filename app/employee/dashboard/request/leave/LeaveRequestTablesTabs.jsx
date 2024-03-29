@@ -36,28 +36,6 @@ const LeaveRequestTablesTabs = ({
     // setOpen(false);
   };
 
-  // const query = useQuery({
-  //   // staleTime: 10000,
-  //   queryFn: () => {
-  //     dispatch(fetchEmpLeaveRequestData());
-  //     return api
-  //       .getData(`${EMP_LEAVE_REQUEST}/?workspace=${workSpace?.email || ''}`)
-  //       .then(({ data }) => {
-  //         console.log({ data });
-  //         dispatch(
-  //           getEmpLeaveRequestDataSuccess({
-  //             ...data,
-  //             balance: reformData(data?.balance),
-  //           })
-  //         );
-  //         return data;
-  //       })
-  //       .catch((err) => {
-  //         console.log({ err });
-  //         dispatch(getEmpLeaveRequestDataFailed());
-  //       });
-  //   },
-  // });
   const reformData = (dataObj) => {
     const arrayfiedData = Object.entries(dataObj);
     const refinedData = [];

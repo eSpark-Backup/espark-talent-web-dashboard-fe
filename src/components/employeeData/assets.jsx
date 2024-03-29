@@ -18,6 +18,7 @@ import {
   getEmpAssetRequest,
   getEmpAssetRequestSuccess,
 } from '@/src/redux/slices/hrSlices/employeeSlice';
+import { Toast } from '../Toast/Toast';
 
 const Assets = () => {
   const params = useParams();
@@ -46,6 +47,7 @@ const Assets = () => {
           return tempAssets || [];
         })
         .catch((err) => {
+          Toast('error', err.message || 'Failed to get data');
           dispatch(getEmpAssetRequestFailed());
           console.log({ err });
         });

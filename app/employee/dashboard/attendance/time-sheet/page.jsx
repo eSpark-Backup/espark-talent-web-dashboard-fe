@@ -23,6 +23,7 @@ import FilterFormModal from '@/src/components/FilterModal/filterForm';
 import { filterAttendanceForm } from '@/src/constants/data/forms/filter-form';
 import dayjs from 'dayjs';
 import { getAttendenceShortHand } from '@/src/utils/helpers';
+import { Toast } from '@/src/components/Toast/Toast';
 
 const Dashboard = () => {
   const { workSpace } = useSelector((state) => state?.auth?.userData);
@@ -31,6 +32,18 @@ const Dashboard = () => {
   const [open, setOpen] = useState(false);
   const [modalData, setModalData] = useState({});
   const [showFilterModal, setShowFilterModal] = useState(false);
+  function convertDateFormat(dateStr) {
+    // Split the date string into day, month, and year
+    var parts = dateStr.split('-');
+    var day = parts[0];
+    var month = parts[1];
+    var year = parts[2];
+
+    // Reorder the components to the new format
+    var newDateStr = month + '-' + day + '-' + year;
+
+    return newDateStr;
+  }
   const { isLoading } = useQuery({
     // staleTime: 10000,
     queryFn: () => {
@@ -41,14 +54,14 @@ const Dashboard = () => {
           const newData = Object.entries(data?.time_sheet?.record).map(
             (item) => ({
               ...item[1],
-              day: dayjs(item[0]).format('dddd'),
+              day: dayjs(convertDateFormat(item[0])).format('dddd'),
               status: Object.entries(item[1]?.status)
                 .map((st) => {
                   if (!st[1]) return;
                   else return getAttendenceShortHand(st[0]);
                 })
                 .filter((el) => el !== undefined),
-              date: item[0],
+              date: convertDateFormat(item[0]),
               action: ['View'],
               attendenceShortHand: true,
               actionStatus: true,
@@ -66,6 +79,7 @@ const Dashboard = () => {
           return data;
         })
         .catch((error) => {
+          Toast('error', error.message || 'Failed to get data');
           dispatch(getTimeSheetDataFailed());
           console.log({ error });
         });

@@ -11,6 +11,8 @@ export const renderTable = ({
   isOpen,
   handleClose,
   handleOpen,
+  handleConfirmDelete,
+  updateStatus,
 }) => {
   if (currentTab !== 'Employees') {
     return (
@@ -24,6 +26,7 @@ export const renderTable = ({
           data={data}
           column={column}
           handleClickActionDelete={handleOpen}
+          updateStatus={updateStatus}
         />
         <AppConfirmationMadal
           title={'Delete'}
@@ -31,6 +34,7 @@ export const renderTable = ({
           cancelButtonText={'Cancel'}
           confirmButtonText={'Delete'}
           handleClose={handleClose}
+          handleConfirm={handleConfirmDelete}
           isOpen={isOpen}
         />
       </Box>

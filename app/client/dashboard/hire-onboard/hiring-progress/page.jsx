@@ -33,6 +33,7 @@ import {
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { useDispatch, useSelector } from 'react-redux';
 import { filterTableRowsWRTTab } from '@/src/utils/table';
+import { Toast } from '@/src/components/Toast/Toast';
 
 const Dashboard = () => {
   const [value, setValue] = useState(0);
@@ -53,9 +54,14 @@ const Dashboard = () => {
     staleTime: 10000,
     queryKey: 'hiringRequests',
     queryFn: async () => {
-      const { data } = await api.getData(`${CLIENT_HIRING_PROGRESS}`);
-      dispatch(fetchClientHiringRequestsSuccess(data));
-      return data;
+      return await api
+        .getData(`${CLIENT_HIRING_PROGRESS}`)
+        .then(({ data }) => {
+          dispatch(fetchClientHiringRequestsSuccess(data));
+        })
+        .catch((err) => {
+          Toast('error', err.message || 'Failed to get data');
+        });
     },
   });
 
@@ -63,10 +69,15 @@ const Dashboard = () => {
     staleTime: 10000,
     queryKey: 'interviewSchedules',
     queryFn: async () => {
-      const { data } = await api.getData(`${CLIENT_INTERVIEW_SCHEDULE}`);
-      console.log({ interviewSchedules: data });
-      dispatch(fetchClientInterviewSchedulesSuccess(data || []));
-      return data;
+      return await api
+        .getData(`${CLIENT_INTERVIEW_SCHEDULE}`)
+        .then(({ data }) => {
+          console.log({ interviewSchedules: data });
+          dispatch(fetchClientInterviewSchedulesSuccess(data || []));
+        })
+        .catch((err) => {
+          Toast('error', err.message || 'Failed to get data');
+        });
     },
   });
 
@@ -74,9 +85,14 @@ const Dashboard = () => {
     staleTime: 10000,
     queryKey: 'onBoarding',
     queryFn: async () => {
-      const { data } = await api.getData(`${CLIENT_ONBOARDING}`);
-      dispatch(fetchClientOnboardingSuccess(data || []));
-      return data;
+      return await api
+        .getData(`${CLIENT_ONBOARDING}`)
+        .then(({ data }) => {
+          dispatch(fetchClientOnboardingSuccess(data || []));
+        })
+        .catch((err) => {
+          Toast('error', err.message || 'Failed to get data');
+        });
     },
   });
 
@@ -115,11 +131,15 @@ const Dashboard = () => {
           status: '',
         })
       );
+    }
+    if (data?.interviewSchedule?.length) {
       setInterviewScheduledDataState(
         filterTableRowsWRTTab(reformData(data?.interviewSchedule), {
           status: '',
         })
       );
+    }
+    if (data?.onBoarding) {
       setOnBoardingDataState(
         filterTableRowsWRTTab(reformData(data?.onBoarding), {
           status: '',
@@ -142,15 +162,28 @@ const Dashboard = () => {
   };
 
   useEffect(() => {
-    const data = empTabs[value].data;
+    const tempData =
+      value === 0
+        ? reformData(data.hiringRequests)
+        : value === 1
+          ? reformData(data.interviewSchedule)
+          : reformData(data.onBoarding);
     const timeoutId = setTimeout(() => {
-      filterDataByKeyword(data, search || '');
+      filterDataByKeyword(
+        tempData,
+        search || '',
+        value === 0
+          ? setHiringRequestDataState
+          : value === 1
+            ? setInterviewScheduledDataState
+            : setOnBoardingDataState
+      );
       setIsLoading(false);
     }, 500);
     return () => {
       clearTimeout(timeoutId);
     };
-  }, [search, value]);
+  }, [search, value, data]);
 
   const handleClickDelete = (props) => {
     setModalData({ id: props });
@@ -162,12 +195,14 @@ const Dashboard = () => {
       return api.daleteData(`${CLIENT_HIRING_PROGRESS}/?id=${id}`);
     },
     onSuccess: ({ data }) => {
+      Toast('success', 'Data deleted successfully');
       console.log({ data });
       dispatch(deleteClientHiringRequestSuccess(modalData?.id));
       handleClose();
       setModalData({});
     },
     onError: (err) => {
+      Toast('error', err.message || 'Failed to delete data');
       dispatch(deleteClientHiringRequestFailed());
       handleClose();
       console.log({ err: err.message, name: err.name, stack: err.stack });

@@ -31,7 +31,7 @@ const ClientView = ({
   const dispatch = useDispatch();
   const router = useRouter();
   const [anchorEl, setAnchorEl] = useState(null);
-  const [selectedEmployee, setSelectedEmployee] = useState(null);
+  const [selectedClient, setSelectedClient] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const clientInfoMutation = useMutation({
     mutationFn: async (id) => {
@@ -40,9 +40,9 @@ const ClientView = ({
       return api.getData(`${HR_GET_CLIENT_PROFILE}?id=${id}`);
     },
     onSuccess: ({ data }) => {
-      console.log({ selectedEmployee, data });
+      console.log({ selectedClient, data });
       dispatch(getCurrentClientDataSuccess(data));
-      router.push(`/hr/dashboard/clients/${selectedEmployee}`);
+      router.push(`/hr/dashboard/clients/${selectedClient}`);
       return data;
     },
     onError: (err) => {
@@ -266,7 +266,7 @@ const ClientView = ({
   }
 
   const handleClientClick = (id) => {
-    setSelectedEmployee(id);
+    setSelectedClient(id);
     clientInfoMutation.mutate(id);
 
     // router.push(`/hr/dashboard/clients/${eachItem.id}`);

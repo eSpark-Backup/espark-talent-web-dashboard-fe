@@ -31,6 +31,7 @@ import {
   fetchProcessingInvoicePaymentsRequestSuccess,
 } from '@/src/redux/slices/clientSlices/invoicePaymentsSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { Toast } from '@/src/components/Toast/Toast';
 
 const Dashboard = () => {
   const { data } = useSelector((state) => state?.client?.invoicePayments);
@@ -54,6 +55,7 @@ const Dashboard = () => {
           return data;
         })
         .catch((err) => {
+          Toast('error', err.message || 'Failed to get data');
           dispatch(fetchPendingInvoicePaymentsRequestFailed());
           console.log({ err });
         });
@@ -71,6 +73,7 @@ const Dashboard = () => {
           return data;
         })
         .catch((err) => {
+          Toast('error', err.message || 'Failed to get data');
           dispatch(fetchProcessingInvoicePaymentsRequestFailed());
           console.log({ err });
         });
@@ -88,6 +91,7 @@ const Dashboard = () => {
           return data;
         })
         .catch((err) => {
+          Toast('error', err.message || 'Failed to get data');
           dispatch(fetchPaidInvoicePaymentsRequestFailed());
           console.log({ err });
         });

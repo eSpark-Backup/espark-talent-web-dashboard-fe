@@ -11,6 +11,7 @@ import { useQuery } from '@tanstack/react-query';
 import { HR_ACCOUNTS } from '@/src/services/apiService/apiEndPoints';
 import { getAccountsData } from '@/src/redux/slices/hrSlices/settingsSlice';
 import { api } from '@/src/services/apiService';
+import { Toast } from '../Toast/Toast';
 
 const Accounts = ({
   // accountDataState,
@@ -36,6 +37,7 @@ const Accounts = ({
           return tempData || [];
         })
         .catch((err) => {
+          Toast('error', err.message || 'Failed to get data');
           console.log({ err });
         });
     },

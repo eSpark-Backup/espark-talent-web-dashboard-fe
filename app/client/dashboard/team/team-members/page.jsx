@@ -21,8 +21,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   fetchTeamMembersRequest,
   fetchTeamMembersRequestFailed,
-  fetchTeamMembersRequestSuccess,
+  fetchTeamMembersRequestActiveSuccess,
+  fetchTeamMembersRequestOnBoardSuccess,
+  fetchTeamMembersRequestTerminatedSuccess,
 } from '@/src/redux/slices/clientSlices/teamMembersSlice';
+import { Toast } from '@/src/components/Toast/Toast';
 
 const Dashboard = () => {
   const { data } = useSelector((state) => state?.client?.teamMembers);
@@ -31,21 +34,98 @@ const Dashboard = () => {
   const [currentTab, setCurrentTab] = useState('All');
   const [isLoading, setIsLoading] = useState(true);
   const [search, setSearch] = useState('');
-  const temMembersQuery = useQuery({
+  const [allTeamMembers, setAllTeamMembers] = useState([]);
+  const [activeTeamMembers, setActiveTeamMembers] = useState([]);
+  const [onBoardTeamMembers, setOnBoardTeamMembers] = useState([]);
+  const [terminatedTeamMembers, setTerminatedTeamMembers] = useState([]);
+  const temMembersQueryActive = useQuery({
     staleTime: 10000,
-    queryKey: 'teamMembers',
+    queryKey: ['team-members-active'],
     queryFn: async () => {
       dispatch(fetchTeamMembersRequest());
-      const { data } = await api.getData(`${CLIENT_TEAM_MEMBER}/?status=all`);
-      dispatch(fetchTeamMembersRequestSuccess(data || []));
-      return data;
+      return await api
+        .getData(`${CLIENT_TEAM_MEMBER}/?status=active`)
+        .then(({ data }) => {
+          const tempData = data?.length
+            ? data?.map((item) => ({
+                ...item,
+                status: 'Active',
+              }))
+            : [];
+          dispatch(fetchTeamMembersRequestActiveSuccess(tempData || []));
+        })
+        .catch((err) => {
+          Toast('error', err.message || 'Failed to get data');
+        });
+    },
+  });
+  const temMembersQueryOnBoard = useQuery({
+    staleTime: 10000,
+    queryKey: ['team-members-onboard'],
+    queryFn: async () => {
+      dispatch(fetchTeamMembersRequest());
+      return await api
+        .getData(`${CLIENT_TEAM_MEMBER}/?status=onboard`)
+        .then(({ data }) => {
+          const tempData = data?.length
+            ? data?.map((item) => ({
+                ...item,
+                status: 'onBoard',
+              }))
+            : [];
+          dispatch(fetchTeamMembersRequestOnBoardSuccess(tempData || []));
+        })
+        .catch((err) => {
+          Toast('error', err.message || 'Failed to get data');
+        });
+    },
+  });
+  const temMembersQueryTerminated = useQuery({
+    staleTime: 10000,
+    queryKey: ['team-members-terminated'],
+    queryFn: async () => {
+      dispatch(fetchTeamMembersRequest());
+      return await api
+        .getData(`${CLIENT_TEAM_MEMBER}/?status=terminated`)
+        .then(({ data }) => {
+          const tempData = data?.length
+            ? data?.map((item) => ({
+                ...item,
+                status: 'Terminated',
+              }))
+            : [];
+          dispatch(fetchTeamMembersRequestTerminatedSuccess(tempData || []));
+        })
+        .catch((err) => {
+          Toast('error', err.message || 'Failed to get data');
+        });
     },
   });
   useEffect(() => {
-    if (temMembersQuery.isError) {
+    if (
+      temMembersQueryActive.isError ||
+      temMembersQueryOnBoard.isError ||
+      temMembersQueryTerminated.isError
+    ) {
       dispatch(fetchTeamMembersRequestFailed());
     }
-  }, [temMembersQuery.isError]);
+  }, [
+    temMembersQueryActive.isError,
+    temMembersQueryOnBoard.isError,
+    temMembersQueryTerminated.isError,
+  ]);
+  useEffect(() => {
+    setAllTeamMembers([...data.active, ...data.onBoard, ...data.terminated]);
+    if (data?.active?.length) {
+      setActiveTeamMembers(data?.active);
+    }
+    if (data?.terminated?.length) {
+      setTerminatedTeamMembers(data?.active);
+    }
+    if (data?.onBoard?.length) {
+      setOnBoardTeamMembers(data?.onBoard);
+    }
+  }, [data.active, data.onboard, data.terminated]);
 
   const fetchDataFake = async () => {
     return true;
@@ -73,21 +153,44 @@ const Dashboard = () => {
       filterTableRowsWRTTab,
       teamMembersData,
       filterBy: 'memberStatus',
+      // isSingular: true,
+      // tabs: teamTabs,
+      // event,
+      // newValue,
+      // setSearch,
+      // setCurrentTab,
+      // setValue,
     });
   };
 
   useEffect(() => {
-    const data = filterTableRowsWRTTab(teamMembersData, {
-      memberStatus: currentTab === 'All' ? '' : currentTab,
-    });
+    const tempData =
+      value === 0
+        ? [...data.active, ...data.onBoard, ...data.terminated]
+        : value === 1
+          ? data.active
+          : value === 2
+            ? data.onBoard
+            : data.terminated;
     const timeoutId = setTimeout(() => {
-      filterDataByKeyword(data, search || '');
+      filterDataByKeyword(
+        tempData,
+        search || '',
+        value === 0
+          ? setAllTeamMembers
+          : value === 1
+            ? setActiveTeamMembers
+            : value === 2
+              ? setOnBoardTeamMembers
+              : setTerminatedTeamMembers,
+        data
+      );
       setIsLoading(false);
     }, 500);
     return () => {
       clearTimeout(timeoutId);
     };
-  }, [search, currentTab]);
+  }, [search, value, data]);
   const ShowHireButton = (value) => {
     if (value === undefined || value === null) return false;
     return value === 0 || value === 1 || value === 3;
@@ -141,9 +244,22 @@ const Dashboard = () => {
                       key={i}
                       disableRipple={true}
                       label={`${label} (${
-                        filterTableRowsWRTTab(data, {
-                          memberStatus: label === 'All' ? '' : label,
-                        }).length
+                        filterTableRowsWRTTab(
+                          i === 0
+                            ? [
+                                ...data.active,
+                                ...data.onBoard,
+                                ...data.terminated,
+                              ]
+                            : i === 1
+                              ? data.active
+                              : i === 2
+                                ? data.onBoard
+                                : data.terminated,
+                          {
+                            memberStatus: label === 'All' ? '' : label,
+                          }
+                        ).length
                       })`}
                       {...prop}
                     />
@@ -173,7 +289,15 @@ const Dashboard = () => {
                       <AppTable
                         currentTab={currentTab}
                         column={column}
-                        data={data}
+                        data={
+                          value === 0
+                            ? allTeamMembers
+                            : value === 1
+                              ? activeTeamMembers
+                              : value === 2
+                                ? onBoardTeamMembers
+                                : terminatedTeamMembers
+                        }
                       />
                     </Box>
                   )}

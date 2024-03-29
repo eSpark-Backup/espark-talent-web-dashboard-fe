@@ -17,6 +17,7 @@ import {
 } from '@/src/services/apiService/apiEndPoints';
 import { api } from '@/src/services/apiService';
 import { useMutation } from '@tanstack/react-query';
+import { Toast } from '../Toast/Toast';
 
 const GeneralSettings = () => {
   const { mutate } = useMutation({
@@ -24,6 +25,7 @@ const GeneralSettings = () => {
       return api
         .postData(`${CLIENT_UPDATE_PIC}`, { picture: data.picture })
         .then(() => {
+          Toast('success', 'Data posted successfully');
           return api.updateJSONData(CLIENT_UPDATE_COMPANY, {
             company_name: data.companyName,
           });
@@ -33,6 +35,7 @@ const GeneralSettings = () => {
       console.log({ data });
     },
     onError: (err) => {
+      Toast('error', err.message || 'Failed to post data');
       console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });

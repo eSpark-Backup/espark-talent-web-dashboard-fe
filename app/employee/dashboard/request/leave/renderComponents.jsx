@@ -28,7 +28,10 @@ export const renderNestedTable = ({
           currentTab={currentReqStatusTab}
           column={column}
           data={filterTableRowsWRTTab(data, {
-            status: currentReqStatusTab === 'All' ? '' : currentReqStatusTab,
+            status:
+              currentReqStatusTab === 'All'
+                ? ''
+                : currentReqStatusTab?.toLowerCase(),
           })}
           handleOpen={handleOpen}
           handleOpenConditionalModal={handleOpenConditionalModal}

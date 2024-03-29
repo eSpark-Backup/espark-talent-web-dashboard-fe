@@ -1,13 +1,19 @@
 import Sidebar from './Sidebar';
 import { Drawer, useMediaQuery } from '@mui/material';
-
-import { Active_User_Data } from '@/src/constants/data/userData';
+import { useSelector } from 'react-redux';
 
 export const SideNav = (props) => {
+  const { empDetails } = useSelector((state) => state?.auth?.userData);
+  const { username } = useSelector((state) => state?.client?.home?.data);
+  const { homeData } = useSelector((state) => state?.hr?.home);
   const { open, onClose } = props;
   const lgUp = useMediaQuery((theme) => theme.breakpoints.up('lg'));
 
-  const content = <Sidebar userName={Active_User_Data?.userName} />;
+  const content = (
+    <Sidebar
+      userName={empDetails?.employee_name || username || homeData.user}
+    />
+  );
 
   if (lgUp) {
     return (

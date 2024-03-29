@@ -12,6 +12,7 @@ import {
   markBreak,
   markResume,
 } from '@/src/redux/slices/employeeSlices/empHomeSlice';
+import { Toast } from '../../Toast/Toast';
 
 const MarkBreak = () => {
   const [time, setTime] = useState('');
@@ -42,6 +43,7 @@ const MarkBreak = () => {
       }
     },
     onError: (err) => {
+      Toast('error', err.message || 'Failed to update data');
       console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });

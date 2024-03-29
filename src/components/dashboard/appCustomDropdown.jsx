@@ -12,7 +12,9 @@ const AppCustomDropdown = ({
   colIndex,
   col,
   row,
+  networkCall,
 }) => {
+  // console.log({ options });
   const [isOpen, setIsOpen] = useState(false);
   const [currentState, setCurrentState] = useState('');
   useEffect(() => {
@@ -103,6 +105,7 @@ const AppCustomDropdown = ({
                     if (disabled) return;
                     else {
                       setCurrentState(label);
+                      networkCall?.(row, label);
                       setIsOpen(false);
                     }
                   }}

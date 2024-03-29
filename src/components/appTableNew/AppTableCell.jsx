@@ -1,7 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
 import { Box, Typography } from '@mui/material';
-import Link from 'next/link';
 
 import AppCustomDropdown from '../dashboard/appCustomDropdown';
 import {
@@ -158,7 +157,7 @@ const renderActions = (
               if (item === 'View') {
                 handleClickActionView({ row, item });
               } else if (item === 'Delete') {
-                handleClickActionDelete(row?.id);
+                handleClickActionDelete(row?.id, row);
               }
               return;
             }}
@@ -300,7 +299,7 @@ const renderAttendenceStatus = (statusType, index) => {
   );
 };
 
-const renderStatusCell = (row, col, commonCellStyle, options) => {
+const renderStatusCell = (row, col, commonCellStyle, options, updateStatus) => {
   const getStatusStyle = (backgroundColor, borderColor, color) => ({
     borderRadius: '30px',
     padding: '4px 0',
@@ -330,7 +329,7 @@ const renderStatusCell = (row, col, commonCellStyle, options) => {
       </td>
     );
   } else if (row?.dropdownStatus) {
-    return renderDropdownCell(row, col, commonCellStyle, options);
+    return renderDropdownCell(row, col, commonCellStyle, options, updateStatus);
   }
 
   return (
@@ -340,7 +339,13 @@ const renderStatusCell = (row, col, commonCellStyle, options) => {
   );
 };
 
-const renderDropdownCell = (row, col, commonCellStyle, options) => {
+const renderDropdownCell = (
+  row,
+  col,
+  commonCellStyle,
+  options,
+  updateStatus
+) => {
   const dropdownOpts = options || [
     { label: 'Pending' },
     { label: 'Processing' },
@@ -354,6 +359,7 @@ const renderDropdownCell = (row, col, commonCellStyle, options) => {
         colIndex={col.index}
         row={row}
         options={dropdownOpts}
+        networkCall={updateStatus}
       />
     </td>
   );
@@ -414,7 +420,9 @@ export const renderCellContent = (
   colIndex,
   rowIndex,
   handleClickActionDelete,
-  options
+  options,
+  hanldeInvLinkClick,
+  updateStatus
 ) => {
   // console.log({ col, row });
   switch (col?.title || col || col?.name) {
@@ -478,7 +486,7 @@ export const renderCellContent = (
     case 'Status':
       return renderStatusCell(row, col, commonCellStyle, options);
     case 'Payment status':
-      return renderDropdownCell(row, col, commonCellStyle);
+      return renderDropdownCell(row, col, commonCellStyle, '', updateStatus);
     case 'Team members':
       return renderInfoOptions(
         row,
@@ -496,18 +504,28 @@ export const renderCellContent = (
             flex: col?.flex || 1,
             justifyContent: col?.textAlign || 'center',
           }}
+          onClick={() => console.log({ row })}
         >
           {col.title?.toLowerCase() === 'employee invoices' ||
           col.title?.toLowerCase() === 'other invoices' ? (
             row[col?.name] === null ? (
               '-'
             ) : (
-              <Link
-                href="/hr/dashboard/clients/client-profile"
-                style={{ textDecoration: 'underline', cursor: 'pointer' }}
+              // <Link
+              //   href="/hr/dashboard/clients/client-profile"
+              //   style={{ textDecoration: 'underline', cursor: 'pointer' }}
+              // >
+              //   {getCamelCapitalized(row[col?.name])}
+              // </Link>
+              <Typography
+                sx={{
+                  textDecoration: 'underline',
+                  cursor: 'pointer',
+                }}
+                onClick={() => hanldeInvLinkClick(row)}
               >
                 {getCamelCapitalized(row[col?.name])}
-              </Link>
+              </Typography>
             )
           ) : row[col?.name] === null ? (
             '-'

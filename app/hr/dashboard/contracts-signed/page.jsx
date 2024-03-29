@@ -26,6 +26,7 @@ import {
   HR_OFF_SHORE_CONTRACTS,
 } from '@/src/services/apiService/apiEndPoints';
 import { useDispatch, useSelector } from 'react-redux';
+import { Toast } from '@/src/components/Toast/Toast';
 
 const ContractSigned = () => {
   const dispatch = useDispatch();
@@ -52,6 +53,7 @@ const ContractSigned = () => {
           return data;
         })
         .catch((err) => {
+          Toast('error', err.message || 'Failed to get data');
           dispatch(getClientsCompanyContractRequestFailed());
           console.log({ err });
         });
@@ -69,6 +71,7 @@ const ContractSigned = () => {
           return data;
         })
         .catch((err) => {
+          Toast('error', err.message || 'Failed to get data');
           dispatch(getOffShoreContractRequestFailed());
           console.log({ err });
         });

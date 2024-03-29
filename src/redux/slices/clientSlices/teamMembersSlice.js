@@ -3,15 +3,27 @@ import { createSlice } from '@reduxjs/toolkit';
 const teamMemberSlice = createSlice({
   name: 'teamMemberSlice',
   initialState: {
-    data: [],
+    data: {
+      active: [],
+      onBoard: [],
+      terminated: [],
+    },
     isLoading: false,
   },
   reducers: {
     fetchTeamMembersRequest: (state) => {
       state.isLoading = true;
     },
-    fetchTeamMembersRequestSuccess: (state, action) => {
-      state.data = action?.payload;
+    fetchTeamMembersRequestActiveSuccess: (state, action) => {
+      state.data.active = action?.payload;
+      state.isLoading = false;
+    },
+    fetchTeamMembersRequestTerminatedSuccess: (state, action) => {
+      state.data.terminated = action?.payload;
+      state.isLoading = false;
+    },
+    fetchTeamMembersRequestOnBoardSuccess: (state, action) => {
+      state.data.onBoard = action?.payload;
       state.isLoading = false;
     },
     fetchTeamMembersRequestFailed: (state) => {
@@ -22,7 +34,9 @@ const teamMemberSlice = createSlice({
 
 export const {
   fetchTeamMembersRequest,
-  fetchTeamMembersRequestSuccess,
+  fetchTeamMembersRequestActiveSuccess,
   fetchTeamMembersRequestFailed,
+  fetchTeamMembersRequestOnBoardSuccess,
+  fetchTeamMembersRequestTerminatedSuccess,
 } = teamMemberSlice.actions;
 export default teamMemberSlice.reducer;

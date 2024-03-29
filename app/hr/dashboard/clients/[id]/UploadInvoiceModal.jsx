@@ -10,6 +10,7 @@ import { useMutation } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import { HR_CLIENT_EMPLOYEE_INVOICE } from '@/src/services/apiService/apiEndPoints';
 import dayjs from 'dayjs';
+import { Toast } from '@/src/components/Toast/Toast';
 
 const UploadInvoiceModal = ({ open, onClose, title }) => {
   const { email } = useSelector((state) => state?.hr?.clients?.currentClient);
@@ -22,9 +23,11 @@ const UploadInvoiceModal = ({ open, onClose, title }) => {
       return api.postData(HR_CLIENT_EMPLOYEE_INVOICE, formData);
     },
     onSuccess: ({ data }) => {
+      Toast('success', 'Data posted successfully');
       console.log({ data });
     },
     onError: (err) => {
+      Toast('error', err.message || 'Failed to post data');
       console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });

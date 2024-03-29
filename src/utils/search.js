@@ -1,11 +1,11 @@
 'use client';
 
-// export const filterDataByKeyword = (data, keyword, setData) => {
+// export const filterDataByKeyword = (tempData, keyword, setData) => {
 //   if (keyword === '') {
-//     setData(data);
-//     return data;
+//     setData(tempData);
+//     return tempData;
 //   } else {
-//     const tempData = data.filter((employee) => {
+//     const tempData = tempData.filter((employee) => {
 //       const lowerKeyword = keyword.toLowerCase();
 //       return Object.values(employee).some(
 //         (value) =>
@@ -18,13 +18,14 @@
 //   }
 // };
 
-export const filterDataByKeyword = (data, keyword, setData) => {
-  if (!data || data.length === 0) {
+export const filterDataByKeyword = (tempData, keyword, setData, data) => {
+  console.log({ tempData, data });
+  if (!tempData || tempData.length === 0) {
     setData?.([]);
     return [];
   }
 
-  const filteredData = data.filter((item) => {
+  const filteredData = tempData.filter((item) => {
     if (typeof item === 'string') {
       // Handle array of strings
       const lowerKeyword = keyword.toLowerCase();

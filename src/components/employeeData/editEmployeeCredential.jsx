@@ -9,6 +9,7 @@ import { editEmployeeCredentialSchema } from '../form/schemas/employeeCredential
 import { useMutation } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import { HR_UPDATE_EMP_CREDS } from '@/src/services/apiService/apiEndPoints';
+import { Toast } from '../Toast/Toast';
 
 const EditEmployeeCredential = ({ onClose, open }) => {
   const { mutate } = useMutation({
@@ -16,10 +17,12 @@ const EditEmployeeCredential = ({ onClose, open }) => {
       return api.daleteData(`${HR_UPDATE_EMP_CREDS}`, data);
     },
     onSuccess: ({ data }) => {
+      Toast('success', 'Data deleted successfully');
       console.log({ data });
       onClose();
     },
     onError: (err) => {
+      Toast('error', err.message || 'Failed to delete data');
       console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });

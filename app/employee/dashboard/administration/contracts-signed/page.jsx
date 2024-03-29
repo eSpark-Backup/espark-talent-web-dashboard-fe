@@ -21,6 +21,7 @@ import {
   fetchEmpCompanyContractsSuccess,
 } from '@/src/redux/slices/employeeSlices/contractSlice';
 import { api } from '@/src/services/apiService';
+import { Toast } from '@/src/components/Toast/Toast';
 
 const ContractSigned = () => {
   const dispatch = useDispatch();
@@ -40,8 +41,9 @@ const ContractSigned = () => {
           dispatch(fetchEmpCompanyContractsSuccess({ company: newData }));
           return data;
         })
-        .catch((error) => {
-          console.log({ error });
+        .catch((err) => {
+          Toast('error', err.message || 'Failed to get data');
+          console.log({ err });
           dispatch(fetchEmpContractsFailed());
         });
     },
@@ -58,8 +60,9 @@ const ContractSigned = () => {
           dispatch(fetchEmpClientContractSuccess({ offShores: newData }));
           return data;
         })
-        .catch((error) => {
-          console.log({ error });
+        .catch((err) => {
+          Toast('error', err.message || 'Failed to get data');
+          console.log({ err });
           dispatch(fetchEmpContractsFailed());
         });
     },

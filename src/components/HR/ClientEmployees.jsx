@@ -12,6 +12,7 @@ import { useQuery } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import { HR_CLIENT_EMPLOYEES } from '@/src/services/apiService/apiEndPoints';
 import { useSelector } from 'react-redux';
+import { Toast } from '../Toast/Toast';
 
 const ClientEmployees = ({ fromClient, openModal, empData }) => {
   const { employee_perms } = useSelector((state) => state?.hr?.home?.homeData);
@@ -54,6 +55,7 @@ const ClientEmployees = ({ fromClient, openModal, empData }) => {
           return data || [];
         })
         .catch((error) => {
+          Toast('error', error.message || 'Failed to get data');
           // console.log('API Failed');
           // dispatch(getCurrentClientDataFailed());
           console.log({ error });
@@ -76,6 +78,7 @@ const ClientEmployees = ({ fromClient, openModal, empData }) => {
           return data || [];
         })
         .catch((error) => {
+          Toast('error', error.message || 'Failed to get data');
           // console.log('API Failed');
           // dispatch(getCurrentClientDataFailed());
           console.log({ error });
@@ -98,6 +101,7 @@ const ClientEmployees = ({ fromClient, openModal, empData }) => {
           return data || [];
         })
         .catch((error) => {
+          Toast('error', error.message || 'Failed to get data');
           // console.log('API Failed');
           // dispatch(getCurrentClientDataFailed());
           console.log({ error });

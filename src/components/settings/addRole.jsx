@@ -20,6 +20,7 @@ import {
   getRolesDetailsRequest,
   getRolesDetailsSuccess,
 } from '@/src/redux/slices/hrSlices/settingsSlice';
+import { Toast } from '../Toast/Toast';
 
 const Role = () => {
   const dispatch = useDispatch();
@@ -41,6 +42,7 @@ const Role = () => {
           return tempData || [];
         })
         .catch((err) => {
+          Toast('error', err.message || 'Failed to get data');
           console.log({ err });
         });
     },
@@ -56,6 +58,7 @@ const Role = () => {
           return data;
         })
         .catch((err) => {
+          Toast('error', err.message || 'Failed to get data');
           console.log({ err });
         });
     },
@@ -221,10 +224,12 @@ const Role = () => {
       );
     },
     onSuccess: ({ data }) => {
+      Toast('success', 'Data updated successfully');
       console.log({ data });
       // dispatch(deleteClientHiringRequestSuccess(modalData?.id));
     },
     onError: (err) => {
+      Toast('error', err.message || 'Failed to update data');
       // dispatch(deleteClientHiringRequestFailed());
       console.log({ err: err.message, name: err.name, stack: err.stack });
     },

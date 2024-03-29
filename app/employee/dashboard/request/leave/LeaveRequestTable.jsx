@@ -36,6 +36,7 @@ const LeaveRequestTable = ({
     handleOpen,
     column: employeeLeaveRequestsColumn,
     data: leaveRequestDataState,
+    // data: [],
     handleOpenConditionalModal: handleOpenModal,
     handleClickActionView: handleClickView,
     handleClickActionDelete: handleClickDelete,

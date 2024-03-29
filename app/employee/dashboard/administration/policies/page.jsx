@@ -14,6 +14,7 @@ import {
   fetchEmpPoliciesDataRequestFailed,
   fetchEmpPoliciesDataRequestSuccess,
 } from '@/src/redux/slices/employeeSlices/empPoliciesSlice';
+import { Toast } from '@/src/components/Toast/Toast';
 
 const Policies = () => {
   const dispatch = useDispatch();
@@ -33,6 +34,7 @@ const Policies = () => {
           return data;
         })
         .catch((err) => {
+          Toast('error', err.message || 'Failed to get data');
           dispatch(fetchEmpPoliciesDataRequestFailed());
           console.log({ err });
         });

@@ -19,6 +19,7 @@ import { useMutation } from '@tanstack/react-query';
 import { useDispatch } from 'react-redux';
 import { generateUniqueString } from '@/src/utils/helpers';
 import dayjs from 'dayjs';
+import { Toast } from '../Toast/Toast';
 
 const StartHiringForm = () => {
   const [countries, setCountries] = useState([]);
@@ -89,6 +90,7 @@ const StartHiringForm = () => {
       return api.postData(CLIENT_START_HIRING, formVals);
     },
     onSuccess: ({ data }) => {
+      Toast('success', 'Data posted successfully');
       console.log({ values, data });
       dispatch(
         createClientHiringRequestSuccess({
@@ -98,6 +100,7 @@ const StartHiringForm = () => {
       );
     },
     onError: (err) => {
+      Toast('error', err.message || 'Failed to post data');
       dispatch(createClientHiringRequestFailed());
       console.log({ err: err.message, name: err.name, stack: err.stack });
     },

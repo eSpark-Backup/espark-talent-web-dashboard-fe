@@ -44,7 +44,6 @@ export const renderNestedTable = ({
   handleClickActionView,
   handleClickActionDelete,
 }) => {
-  console.log({ column, currentReqStatusTab });
   return (
     <CustomTabPanel
       value={currentReqStatusTabVal}

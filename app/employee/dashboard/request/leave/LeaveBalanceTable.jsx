@@ -10,6 +10,7 @@ import {
   fetchEmpLeaveRequestData,
   getEmpLeaveRequestDataFailed,
 } from '@/src/redux/slices/employeeSlices/leaveRequestSlice';
+import { Toast } from '@/src/components/Toast/Toast';
 
 const LeaveBalanceTable = () => {
   const dispatch = useDispatch();
@@ -33,6 +34,7 @@ const LeaveBalanceTable = () => {
         })
         .catch((err) => {
           console.log({ err });
+          Toast('error', err.message || 'Failed to get data');
           dispatch(getEmpLeaveRequestDataFailed());
         });
     },

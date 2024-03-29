@@ -1,5 +1,6 @@
 import { addNewInterviewFormSchema } from '@/src/components/form/schemas/addNewInterviewForm';
 import FormInput from '@/src/components/form/ui-elements/FormInput';
+import { Toast } from '@/src/components/Toast/Toast';
 import { addNewInterviewForm } from '@/src/constants/data/forms/add-new-interview';
 import { FORM_DATA } from '@/src/constants/form';
 import { api } from '@/src/services/apiService';
@@ -18,9 +19,11 @@ const AddInterviewModal = ({ open, onClose }) => {
       return api.postJSONData(`${HR_CLIENT_EMP_INTERVIEW_SCHEDULE}`, formVals);
     },
     onSuccess: ({ data }) => {
+      Toast('success', 'Data posted successfully');
       console.log({ data });
     },
     onError: (err) => {
+      Toast('error', err.message || 'Failed to post data');
       console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });

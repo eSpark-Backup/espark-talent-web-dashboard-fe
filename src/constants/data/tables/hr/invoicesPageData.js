@@ -2,14 +2,17 @@ export const invoicePageColumn = [
   {
     title: 'Client name',
     flex: 1,
+    name: 'company_name',
   },
   {
     title: 'Employee invoices',
     flex: 1,
+    name: 'emp_inv_link',
   },
   {
     title: 'Other invoices',
     flex: 1,
+    name: 'oth_inv_link',
   },
 ];
 

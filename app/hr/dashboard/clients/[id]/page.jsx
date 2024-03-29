@@ -16,7 +16,7 @@ import AddInterviewModal from './AddInterviewModal';
 import AddOnboardModal from './AddOnboardModal';
 
 import { CLIENTPROFILE } from '@/src/constants/ClientProfile';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import {
   HR_CLIENT_EMPLOYEES,
@@ -28,6 +28,10 @@ import {
   HR_GET_CLIENT_PROFILE,
 } from '@/src/services/apiService/apiEndPoints';
 import {
+  deleteEmpInv,
+  deleteHiringRequest,
+  deleteOnBoarding,
+  deleteOthInv,
   getClientEmpInvoicePaid,
   getClientEmpInvoicePending,
   getClientEmpInvoiceProcessing,
@@ -40,6 +44,7 @@ import {
   getCurrentClientData,
   getCurrentClientDataFailed,
   getCurrentClientDataSuccess,
+  updateEmpInv,
 } from '@/src/redux/slices/hrSlices/clientSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import ClientProfileData from './ClientProfileData';
@@ -55,6 +60,7 @@ import {
 } from '@/src/constants/data/tables/hr/invoices';
 import { getCamelCapitalized } from '@/src/utils/stringModification';
 import UploadOtherInvoiceModal from './UploadOtherInvoiceModal';
+import { Toast } from '@/src/components/Toast/Toast';
 
 const AddEmployee = () => {
   const params = useParams();
@@ -85,10 +91,11 @@ const AddEmployee = () => {
           // console.log('API Success1');
           return data;
         })
-        .catch((error) => {
+        .catch((err) => {
           // console.log('API Failed');
           dispatch(getCurrentClientDataFailed());
-          console.log({ error });
+          Toast('error', err.message || 'Failed to get data');
+          console.log({ err });
         });
     },
   });
@@ -114,8 +121,9 @@ const AddEmployee = () => {
           dispatch(getClientHiringRequest(tempData));
           return tempData;
         })
-        .catch((error) => {
-          console.log({ error });
+        .catch((err) => {
+          Toast('error', err.message || 'Failed to get data');
+          console.log({ err });
         });
     },
   });
@@ -130,10 +138,11 @@ const AddEmployee = () => {
           dispatch(getClientInterviewSchedule(data || []));
           return data;
         })
-        .catch((error) => {
+        .catch((err) => {
           // console.log('API Failed');
           // dispatch(getCurrentClientDataFailed());
-          console.log({ error });
+          Toast('error', err.message || 'Failed to get data');
+          console.log({ err });
         });
     },
   });
@@ -159,10 +168,11 @@ const AddEmployee = () => {
           // console.log('API Success1');
           return data;
         })
-        .catch((error) => {
+        .catch((err) => {
           // console.log('API Failed');
           // dispatch(getCurrentClientDataFailed());
-          console.log({ error });
+          Toast('error', err.message || 'Failed to get data');
+          console.log({ err });
         });
     },
   });
@@ -181,10 +191,11 @@ const AddEmployee = () => {
           // console.log('API Success1');
           return data;
         })
-        .catch((error) => {
+        .catch((err) => {
           // console.log('API Failed');
           // dispatch(getCurrentClientDataFailed());
-          console.log({ error });
+          Toast('error', err.message || 'Failed to get data');
+          console.log({ err });
         });
     },
   });
@@ -203,10 +214,11 @@ const AddEmployee = () => {
           // console.log('API Success1');
           return data;
         })
-        .catch((error) => {
+        .catch((err) => {
           // console.log('API Failed');
           // dispatch(getCurrentClientDataFailed());
-          console.log({ error });
+          Toast('error', err.message || 'Failed to get data');
+          console.log({ err });
         });
     },
   });
@@ -225,10 +237,11 @@ const AddEmployee = () => {
           // console.log('API Success1');
           return data;
         })
-        .catch((error) => {
+        .catch((err) => {
           // console.log('API Failed');
           // dispatch(getCurrentClientDataFailed());
-          console.log({ error });
+          Toast('error', err.message || 'Failed to get data');
+          console.log({ err });
         });
     },
   });
@@ -255,10 +268,11 @@ const AddEmployee = () => {
           // console.log('API Success1');
           return data;
         })
-        .catch((error) => {
+        .catch((err) => {
           // console.log('API Failed');
           // dispatch(getCurrentClientDataFailed());
-          console.log({ error });
+          Toast('error', err.message || 'Failed to get data');
+          console.log({ err });
         });
     },
   });
@@ -289,10 +303,11 @@ const AddEmployee = () => {
           // console.log('API Success1');
           return data;
         })
-        .catch((error) => {
+        .catch((err) => {
           // console.log('API Failed');
           // dispatch(getCurrentClientDataFailed());
-          console.log({ error });
+          Toast('error', err.message || 'Failed to get data');
+          console.log({ err });
         });
     },
   });
@@ -321,10 +336,11 @@ const AddEmployee = () => {
           // console.log('API Success1');
           return data;
         })
-        .catch((error) => {
+        .catch((err) => {
           // console.log('API Failed');
           // dispatch(getCurrentClientDataFailed());
-          console.log({ error });
+          Toast('error', err.message || 'Failed to get data');
+          console.log({ err });
         });
     },
   });
@@ -352,10 +368,11 @@ const AddEmployee = () => {
           // console.log('API Success1');
           return data;
         })
-        .catch((error) => {
+        .catch((err) => {
           // console.log('API Failed');
           // dispatch(getCurrentClientDataFailed());
-          console.log({ error });
+          Toast('error', err.message || 'Failed to get data');
+          console.log({ err });
         });
     },
   });
@@ -385,10 +402,11 @@ const AddEmployee = () => {
           // console.log('API Success1');
           return data;
         })
-        .catch((error) => {
+        .catch((err) => {
           // console.log('API Failed');
           // dispatch(getCurrentClientDataFailed());
-          console.log({ error });
+          Toast('error', err.message || 'Failed to get data');
+          console.log({ err });
         });
     },
   });
@@ -417,10 +435,11 @@ const AddEmployee = () => {
           // console.log('API Success1');
           return data;
         })
-        .catch((error) => {
+        .catch((err) => {
           // console.log('API Failed');
           // dispatch(getCurrentClientDataFailed());
-          console.log({ error });
+          Toast('error', err.message || 'Failed to get data');
+          console.log({ err });
         });
     },
   });
@@ -611,26 +630,6 @@ const AddEmployee = () => {
         },
       };
     });
-    // console.log({ event, newValue, data, rest, current, label });
-    // if (current?.data?.length) {
-    //   setCurrentTabTable({
-    //     data: current?.data || [],
-    //     column: current?.column,
-    //   });
-    // } else if (rest.data?.length) {
-    //   const filteredData = filterTableRowsWRTTab(rest.data, {
-    //     paymentStatus: current?.label,
-    //   });
-    //   setCurrentTabTable({
-    //     data: filteredData,
-    //     column: rest.column,
-    //   });
-    // } else {
-    //   setCurrentTabTable({
-    //     data: [],
-    //     column: [],
-    //   });
-    // }
     console.log({ current });
     if (current?.column?.length) {
       console.log('currentData');
@@ -697,8 +696,161 @@ const AddEmployee = () => {
     setIsOpenAddClientModal(false);
   };
   const [isOpen, setIsOpen] = useState(false);
+  const [deleteRowID, setDeleteRowID] = useState(null);
+  const [deleteInvType, setDeleteInvType] = useState(null);
+  const [updateRowID, setUpdateRowID] = useState(null);
+  const [updateStatusType, setUpdateStatusType] = useState({
+    currentVal: null,
+    newVal: null,
+    currentInvData: null,
+  });
   const handleClose = () => setIsOpen(false);
-  const handleOpen = () => setIsOpen(true);
+  const handleOpen = (id, row) => {
+    console.log({ id, row });
+    setDeleteRowID(id);
+    if (currentTab?.label !== 'Hire & onboard') {
+      setDeleteInvType(row?.payment_status.toLowerCase());
+    }
+    setIsOpen(true);
+  };
+  const deleteStartHiringMutation = useMutation({
+    mutationFn: async (id) => {
+      return api.daleteData(`${HR_CLIENT_EMP_HIRING_REQUEST}/?id=${id}`);
+    },
+    onSuccess: ({ data }) => {
+      Toast('success', 'Data deleted successfully');
+      console.log({ data });
+      dispatch(deleteHiringRequest(deleteRowID));
+      setDeleteRowID(null);
+      handleClose();
+    },
+    onError: (err) => {
+      Toast('error', err.message || 'Failed to delete data');
+      handleClose();
+      console.log({ err: err.message, name: err.name, stack: err.stack });
+    },
+  });
+  const deleteOnBoardingMutation = useMutation({
+    mutationFn: async (id) => {
+      return api.daleteData(`${HR_CLIENT_EMP_ON_BOARDING}/?id=${id}`);
+    },
+    onSuccess: ({ data }) => {
+      Toast('success', 'Data deleted successfully');
+      console.log({ data });
+      dispatch(deleteOnBoarding(deleteRowID));
+      setDeleteRowID(null);
+      handleClose();
+    },
+    onError: (err) => {
+      Toast('error', err.message || 'Failed to delete data');
+      handleClose();
+      console.log({ err: err.message, name: err.name, stack: err.stack });
+    },
+  });
+  const deleteEmpInvMutation = useMutation({
+    mutationFn: async (id) => {
+      return api.daleteData(`${HR_CLIENT_EMPLOYEE_INVOICE}/?id=${id}`);
+    },
+    onSuccess: ({ data }) => {
+      Toast('success', 'Data deleted successfully');
+      console.log({ data });
+      dispatch(deleteEmpInv({ type: deleteInvType, id: deleteRowID }));
+      setDeleteRowID(null);
+      setDeleteInvType(null);
+      handleClose();
+    },
+    onError: (err) => {
+      Toast('error', err.message || 'Failed to delete data');
+      handleClose();
+      console.log({ err: err.message, name: err.name, stack: err.stack });
+    },
+  });
+  const deleteOthInvMutation = useMutation({
+    mutationFn: async (id) => {
+      return api.daleteData(`${HR_CLIENT_OTHER_INVOICE}/?id=${id}`);
+    },
+    onSuccess: ({ data }) => {
+      Toast('success', 'Data deleted successfully');
+      console.log({ data });
+      dispatch(deleteOthInv({ type: deleteInvType, id: deleteRowID }));
+      setDeleteRowID(null);
+      setDeleteInvType(null);
+      handleClose();
+    },
+    onError: (err) => {
+      Toast('error', err.message || 'Failed to delete data');
+      handleClose();
+      console.log({ err: err.message, name: err.name, stack: err.stack });
+    },
+  });
+  const updateEmpInvMutation = useMutation({
+    mutationFn: async (data) => {
+      const formData = new FormData();
+      for (const key in data.data) {
+        formData.append(key, data[key]);
+      }
+      return api.updateData(`${data?.url}/?id=${data?.id}`, formData);
+    },
+    onSuccess: ({ data }) => {
+      Toast('success', 'Data updated successfully');
+      console.log({ data });
+      dispatch(
+        updateEmpInv({
+          currentVal: updateStatusType.currentVal,
+          id: updateRowID,
+          newVal: updateStatusType.newVal,
+          data: updateStatusType?.currentInvData,
+        })
+      );
+      setDeleteRowID(null);
+      setUpdateStatusType({
+        currentInvData: null,
+        newVal: null,
+        currentVal: null,
+      });
+      handleClose();
+    },
+    onError: (err) => {
+      Toast('error', err.message || 'Failed to update data');
+      handleClose();
+      console.log({ err: err.message, name: err.name, stack: err.stack });
+    },
+  });
+  const handleConfirmDeleteHiringReq = () => {
+    console.log({ deleteRowID });
+    // deleteStartHiringMutation.mutate(deleteRowID);
+    if (currentTab?.label === 'Hire & onboard') {
+      if (currentTab?.nested.val === 0) {
+        deleteStartHiringMutation.mutate(deleteRowID);
+      } else {
+        deleteOnBoardingMutation.mutate(deleteRowID);
+      }
+    } else if (currentTab?.label === 'Employee invoices') {
+      deleteEmpInvMutation.mutate(deleteRowID);
+    } else {
+      deleteOthInvMutation.mutate(deleteRowID);
+    }
+  };
+  const handleConfirmUpdatePayStatus = (data, newVal) => {
+    console.log({ data, newVal });
+    setUpdateRowID(data.id);
+    setUpdateStatusType({
+      currentVal: data.payment_status,
+      newVal: newVal,
+      currentInvData: data,
+    });
+    const updData = {
+      payment_status: newVal.toLowerCase(),
+    };
+    updateEmpInvMutation.mutate({
+      id: data?.id,
+      data: updData,
+      url:
+        currentTab?.label === 'Employee invoices'
+          ? HR_CLIENT_EMPLOYEE_INVOICE
+          : HR_CLIENT_OTHER_INVOICE,
+    });
+  };
   return (
     <>
       <Box>
@@ -956,6 +1108,8 @@ const AddEmployee = () => {
                 isOpen: isOpen,
                 handleOpen,
                 handleClose,
+                handleConfirmDelete: handleConfirmDeleteHiringReq,
+                updateStatus: handleConfirmUpdatePayStatus,
               })}
             </Box>
           </>

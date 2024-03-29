@@ -28,6 +28,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import TimeOffTabs from './TimeOffTabs';
 import RequestStatusTabs from './RequestStatusTabs';
 import PageHeader from './PageHeader';
+import { Toast } from '@/src/components/Toast/Toast';
 
 const Dashboard = () => {
   const { data, tabData } = useSelector((state) => state?.client?.timeOff);
@@ -79,27 +80,42 @@ const Dashboard = () => {
     staleTime: 10000,
     queryKey: ['leaveRequests'],
     queryFn: async () => {
-      const { data } = await api.getData(`${CLIENT_LEAVE_REQUEST}?status=all`);
-      dispatch(fetchLeaveRequestsSuccess(data || []));
-      return data;
+      return await api
+        .getData(`${CLIENT_LEAVE_REQUEST}?status=all`)
+        .then(({ data }) => {
+          dispatch(fetchLeaveRequestsSuccess(data || []));
+        })
+        .catch((err) => {
+          Toast('error', err.message || 'Failed to get data');
+        });
     },
   });
   const timeOffQuery = useQuery({
     staleTime: 10000,
     queryKey: ['timeOffRequests'],
     queryFn: async () => {
-      const { data } = await api.getData(`${CLIENT_TIME_OFF}?status=all`);
-      dispatch(fetchTimeOffRequestSuccess(data || []));
-      return data;
+      return api
+        .getData(`${CLIENT_TIME_OFF}?status=all`)
+        .then(({ data }) => {
+          dispatch(fetchTimeOffRequestSuccess(data || []));
+        })
+        .catch((err) => {
+          Toast('error', err.message || 'Failed to get data');
+        });
     },
   });
   const leaveBalanceQuery = useQuery({
     staleTime: 10000,
     queryKey: ['leaveBalanceRequests'],
     queryFn: async () => {
-      const { data } = await api.getData(`${CLIENT_LEAVE_BALANCE}`);
-      dispatch(fetchLeaveBalanceRequestSuccess(data || []));
-      return data;
+      return await api
+        .getData(`${CLIENT_LEAVE_BALANCE}`)
+        .then(({ data }) => {
+          dispatch(fetchLeaveBalanceRequestSuccess(data || []));
+        })
+        .catch((err) => {
+          Toast('error', err.message || 'Failed to get data');
+        });
     },
   });
   useEffect(() => {

@@ -16,6 +16,7 @@ import {
   createEmpLeaveRequestSuccess,
 } from '@/src/redux/slices/employeeSlices/leaveRequestSlice';
 import { generateUniqueString } from '@/src/utils/helpers';
+import { Toast } from '@/src/components/Toast/Toast';
 
 const LeaveRequestForm = ({ handleClose }) => {
   const dispatch = useDispatch();
@@ -46,6 +47,7 @@ const LeaveRequestForm = ({ handleClose }) => {
       return api.postData(EMP_LEAVE_REQUEST, formData);
     },
     onSuccess: (data) => {
+      Toast('success', 'Data posted successfully');
       console.log({ data });
       dispatch(
         createEmpLeaveRequestSuccess({
@@ -56,6 +58,7 @@ const LeaveRequestForm = ({ handleClose }) => {
       handleClose();
     },
     onError: (err) => {
+      Toast('error', err.message || 'Failed to post data');
       dispatch(createEmpLeaveRequestFailed());
       console.log({ err: err.message, name: err.name, stack: err.stack });
     },

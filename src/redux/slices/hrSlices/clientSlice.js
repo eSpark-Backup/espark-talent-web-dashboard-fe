@@ -28,6 +28,7 @@ const clientSlice = createSlice({
         paid: [],
       },
     },
+    isLoading: false,
     outsourceableEmployees: [],
     currentEmpToAddInClient: null,
   },
@@ -84,6 +85,52 @@ const clientSlice = createSlice({
     selectEmployeeToAdd: (state, action) => {
       state.currentEmpToAddInClient = action.payload;
     },
+    deleteHiringRequest: (state, action) => {
+      const tempData =
+        state?.currentClientData?.hireAndOnBoard?.hiringRequest.filter(
+          (el) => el.id !== action.payload
+        );
+      state.currentClientData.hireAndOnBoard.hiringRequest = tempData;
+    },
+    deleteOnBoarding: (state, action) => {
+      const tempData =
+        state?.currentClientData?.hireAndOnBoard?.onBoarding.filter(
+          (el) => el.id !== action.payload
+        );
+      console.log({ tempData, id: action.payload });
+      state.currentClientData.hireAndOnBoard.onBoarding = tempData;
+    },
+    deleteEmpInv: (state, action) => {
+      const type = action.payload.type;
+      const tempData = state?.currentClientData?.employeeInvoices?.[
+        type
+      ].filter((el) => el.id !== action.payload.id);
+      console.log({ tempData, id: action.payload });
+      state.currentClientData.employeeInvoices[type] = tempData;
+    },
+    deleteOthInv: (state, action) => {
+      const type = action.payload.type;
+      const tempData = state?.currentClientData?.otherInvoices?.[type].filter(
+        (el) => el.id !== action.payload.id
+      );
+      console.log({ tempData, id: action.payload });
+      state.currentClientData.otherInvoices[type] = tempData;
+    },
+    updateEmpInv: (state, action) => {
+      const currentType = action.payload.currentVal.toLowerCase();
+      const newType = action.payload.newVal.toLowerCase();
+      const tempDataOld = state?.currentClientData?.otherInvoices?.[
+        currentType
+      ].filter((el) => el.id !== action.payload.id);
+      state.currentClientData.employeeInvoices[currentType] = tempDataOld;
+      state.currentClientData.employeeInvoices[newType] = [
+        ...state.currentClientData.employeeInvoices[newType],
+        {
+          ...action.payload.data,
+          payment_status: action.payload.newVal,
+        },
+      ];
+    },
   },
 });
 
@@ -104,5 +151,10 @@ export const {
   getClientOthInvoicePaid,
   getOutsourceableEmps,
   selectEmployeeToAdd,
+  deleteHiringRequest,
+  deleteOnBoarding,
+  deleteEmpInv,
+  deleteOthInv,
+  updateEmpInv,
 } = clientSlice.actions;
 export default clientSlice.reducer;

@@ -16,6 +16,7 @@ import {
   deleteCurrentEmpDataSuccess,
 } from '@/src/redux/slices/hrSlices/employeeSlice';
 import { api } from '@/src/services/apiService';
+import { Toast } from '../Toast/Toast';
 
 const EmployeeView = ({ status }) => {
   const { data } = useSelector((state) => state?.hr?.employees);
@@ -31,12 +32,14 @@ const EmployeeView = ({ status }) => {
       return api.daleteData(`${HR_EMPLOYEES}/?id=${id}`);
     },
     onSuccess: ({ data }) => {
+      Toast('success', 'Data deleted successfully');
       console.log({ data });
       dispatch(deleteCurrentEmpDataSuccess(currentEmpId));
       handleClose();
       setCurrentEmpId(null);
     },
     onError: (err) => {
+      Toast('error', err.message || 'Failed to delete data');
       dispatch(deleteCurrentEmpDataFailed());
       handleClose();
       console.log({ err: err.message, name: err.name, stack: err.stack });
