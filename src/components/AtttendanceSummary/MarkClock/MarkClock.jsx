@@ -12,10 +12,7 @@ const MarkClock = () => {
   const { homeData } = useSelector((state) => state?.emp?.home);
   const [elapsedTimeString, setElapsedTimeString] = useState('00:00:00');
   const [percentage, setPercentage] = useState(0);
-  // console.log({ homeData });
-
   const parseTime = (timeString) => {
-    // console.log({ timeString });
     if (timeString) {
       const [time, period] = timeString.split(' ');
       const [hours, minutes] = time.split(':');
@@ -41,7 +38,6 @@ const MarkClock = () => {
       minutes < 10 ? '0' + minutes : minutes
     }:${remainingSeconds < 10 ? '0' + remainingSeconds : remainingSeconds}`;
   };
-
   useEffect(() => {
     let interval;
     if (
@@ -52,7 +48,7 @@ const MarkClock = () => {
       interval = setInterval(() => {
         const currentTime = new Date();
         const elapsedTime = (currentTime.getTime() - start.getTime()) / 1000;
-        const totalTime = 9 * 3600; // 9 hours in seconds
+        const totalTime = 9 * 3600;
         const calculatedPercentage = (elapsedTime / totalTime) * 100;
         if (calculatedPercentage >= 100) {
           clearInterval(interval);
@@ -60,7 +56,7 @@ const MarkClock = () => {
         } else {
           setPercentage(calculatedPercentage);
         }
-      }, 1000); // Update every second
+      }, 1000);
     } else if (
       homeData?.today_activity?.check_in !== '-' &&
       homeData?.today_activity?.check_out !== '-'
@@ -93,7 +89,7 @@ const MarkClock = () => {
         const elapsedTime = (currentTime.getTime() - start.getTime()) / 1000;
         const formattedTime = secondsToTime(elapsedTime);
         setElapsedTimeString(formattedTime);
-      }, 1000); // Update every second
+      }, 1000);
     } else if (
       homeData?.today_activity?.check_in !== '-' &&
       homeData?.today_activity?.check_out !== '-'
@@ -109,7 +105,7 @@ const MarkClock = () => {
 
     return () => clearInterval(interval);
   }, [homeData?.today_activity?.check_in, homeData]);
-  // console.log({ percentage });
+  console.log({ percentage });
   return (
     <Box
       sx={{
@@ -234,7 +230,6 @@ const MarkClock = () => {
               fontWeight: 600,
               lineHeight: 'normal',
               mx: '10px',
-              // minWidth: '69.66px',
             }}
           >
             {homeData?.today_activity?.check_out}

@@ -15,6 +15,12 @@ import {
 
 const MarkBreak = () => {
   const [time, setTime] = useState('');
+  const [timerState, setTimerState] = useState({
+    startTime: null,
+    elapsedTime: 0,
+    timerActive: false,
+  });
+
   const dispatch = useDispatch();
   const { workSpace } = useSelector((state) => state?.auth?.userData);
   const { homeData } = useSelector((state) => state?.emp?.home);
@@ -39,7 +45,6 @@ const MarkBreak = () => {
       console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
-
   const handleToggleBreak = () => {
     if (
       homeData?.today_activity?.resume &&
@@ -50,9 +55,56 @@ const MarkBreak = () => {
       const data = {
         time: dayjs().format('hh:mm A'),
       };
+      if (timerState.timerActive) {
+        pauseTimer();
+      } else {
+        startTimer();
+      }
       setTime(data?.time);
       mutate(data);
     }
+  };
+  const startTimer = () => {
+    const startTime = new Date().getTime();
+
+    // Start interval to update elapsed time
+    const intervalId = setInterval(() => {
+      const currentTime = new Date().getTime();
+      const elapsedTime = currentTime - startTime;
+
+      // Update the timer state with the new elapsed time
+      setTimerState((prevState) => ({
+        ...prevState,
+        elapsedTime: elapsedTime,
+      }));
+    }, 1000);
+    setTimerState((prevState) => ({
+      ...prevState,
+      startTime: startTime,
+      intervalId: intervalId,
+      timerActive: true,
+    }));
+  };
+
+  const pauseTimer = () => {
+    clearInterval(timerState.intervalId);
+    const now = new Date().getTime();
+    const elapsed = now - timerState.startTime;
+    setTimerState((prevState) => ({
+      ...prevState,
+      elapsedTime: prevState.elapsedTime + elapsed,
+      timerActive: false,
+    }));
+  };
+
+  const formatTime = (milliseconds) => {
+    const totalSeconds = Math.floor(milliseconds / 1000);
+    const hours = Math.floor(totalSeconds / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
+    return `${hours.toString().padStart(2, '0')}:${minutes
+      .toString()
+      .padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
   };
   return (
     <Box sx={{ py: { xs: '30px', md: 0 } }}>
@@ -101,12 +153,14 @@ const MarkBreak = () => {
             height={20}
           />
           {homeData?.today_activity?.break === '-'
-            ? PUNCH_IN?.markBreakin
-            : PUNCH_IN?.markBreakout}
+            ? PUNCH_IN?.markBreakout
+            : PUNCH_IN?.markBreakin}
+          {timerState.timerActive && (
+            <span>&nbsp; {formatTime(timerState.elapsedTime)}</span>
+          )}
         </Button>
       </Box>
     </Box>
   );
 };
-
 export default MarkBreak;

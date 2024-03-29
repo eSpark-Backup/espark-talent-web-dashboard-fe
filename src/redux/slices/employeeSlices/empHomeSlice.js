@@ -14,7 +14,8 @@ const empHomeSlice = createSlice({
         ...state.homeData,
         today_activity: {
           ...state.homeData.today_activity,
-          break: action.check_in,
+          // break: action.check_in,
+          check_in: action.payload,
         },
       };
     },

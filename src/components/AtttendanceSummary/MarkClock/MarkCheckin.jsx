@@ -3,30 +3,24 @@ import { api } from '@/src/services/apiService';
 import { EMP_HOME } from '@/src/services/apiService/apiEndPoints';
 import { Button, Grid, Typography } from '@mui/material';
 import { useMutation } from '@tanstack/react-query';
-import React from 'react';
+import React, { useState } from 'react';
 import dayjs from 'dayjs';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { marKCheckin } from '@/src/redux/slices/employeeSlices/empHomeSlice';
 
 const MarkCheckIn = () => {
+  const dispatch = useDispatch();
+  const [time, setTime] = useState('');
   const { workSpace } = useSelector((state) => state?.auth?.userData);
   const { homeData } = useSelector((state) => state?.emp?.home);
   const { mutate } = useMutation({
     mutationFn: async (data) => {
-      return api.patchData(
-        `${EMP_HOME}/?workspace=${workSpace?.email}&check_in=${data.check_in}`
-      );
+      const url = `${EMP_HOME}/?workspace=${workSpace?.email}&check_in=${data.check_in}`;
+      return api.patchData(url);
     },
     onSuccess: ({ data }) => {
       console.log({ data });
-      //   dispatch(login(data));
-      //   if (HR_ROLES.includes(data?.role)) {
-      //     router.push('hr/dashboard');
-      //   } else if(EMPLOYEE_ROLES.includes(data?.role)) {
-      //     router.push('employee/dashboard');
-      //   }
-      //   else {
-      //     router.push('client/dashboard');
-      //   }
+      dispatch(marKCheckin(time));
     },
     onError: (err) => {
       console.log({ err: err.message, name: err.name, stack: err.stack });
@@ -40,6 +34,7 @@ const MarkCheckIn = () => {
       const data = {
         check_in: dayjs().format('hh:mm A'),
       };
+      setTime(data?.check_in);
       mutate(data);
     }
   };
@@ -54,15 +49,17 @@ const MarkCheckIn = () => {
           p: '10px',
           width: '100%',
           height: '50px',
-          cursor:
-            homeData?.today_activity?.check_in !== '-' ? 'no-drop' : 'pointer',
-          //   cursor: 'pointer',
+          cursor: 'pointer',
+          // cursor:
+          //   homeData?.today_activity?.check_in !== '-' ? 'no-drop' : 'pointer',
           '&:hover': {
             color: '#068987',
             background: '#fff',
           },
         }}
+        disabled={homeData?.today_activity?.check_in !== '-' ? true : false}
         // disabled={homeData?.today_activity?.check_in}
+        // disabled={disabled}
         onClick={handleCheckIn}
       >
         <Typography
