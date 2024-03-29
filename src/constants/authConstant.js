@@ -5,8 +5,7 @@ export const Auth_Signin = {
   linkText: 'Sign up',
   text: 'Need  an account?',
   checkText: 'Remember me',
-  forgotText: 'Forgot your password?',
-  forgotLink: '/forget',
+  havingTrouble: 'Having trouble?',
 };
 export const Auth_Signup = {
   title: 'Sign up',
@@ -29,3 +28,9 @@ export const Auth_Fields = [
     name: 'password',
   },
 ];
+
+export const Trouble_Modal = {
+  heading: 'Having trouble?',
+  description: `If you're experiencing difficulty logging in, don't hesitate to reach out to the admin at <a href="mailto:admin@esparktalent.com" style="color: #029894;">admin@esparktalent.com</a>. They will assist you with your credentials.`,
+  buttonText: 'Close',
+};

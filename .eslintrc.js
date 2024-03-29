@@ -20,7 +20,12 @@ module.exports = {
     es6: true,
   },
   rules: {
-    'prettier/prettier': ['error'],
+    'prettier/prettier': [
+      'error',
+      {
+        endOfLine: 'auto',
+      },
+    ],
     'prefer-const': ['error'],
     'no-undef': ['error', { typeof: true }],
   },

@@ -1,23 +1,20 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-
 import Typography from '@mui/material/Typography';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import { FormControl, IconButton, OutlinedInput } from '@mui/material';
-import { useFormik } from 'formik';
-import { AuthSchema } from '../form/schemas/loginAccount';
-
 import InputAdornment from '@mui/material/InputAdornment';
-import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import { useMutation } from '@tanstack/react-query';
-import { api } from '@/src/services/apiService';
+import Visibility from '@mui/icons-material/Visibility';
+import { useFormik } from 'formik';
 import Cookie from 'js-cookie';
 
+import { AuthSchema } from '../form/schemas/loginAccount';
+import { useMutation } from '@tanstack/react-query';
+import { api } from '@/src/services/apiService';
 import {
   getEmployeeDetails,
   getWorkSpace,
@@ -38,10 +35,10 @@ import {
   fetchClientHomeDataRequestSuccess,
 } from '@/src/redux/slices/clientSlices/homeSlice';
 
-const AuthForm = ({ uiData, fields }) => {
+const AuthForm = ({ uiData, fields, handleOpenTroubleModal }) => {
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
-  const { title, checkText, forgotText, forgotLink } = uiData;
+  const { title, checkText, havingTrouble } = uiData || {};
   const { workSpace } = useSelector((state) => state?.auth?.userData);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -139,21 +136,27 @@ const AuthForm = ({ uiData, fields }) => {
         sx={{
           backgroundColor: 'primary',
           display: 'flex',
-          height: '100%',
-          width: { xs: '80%', sm: '80%', md: '80%', lg: '55%' },
-          mx: 'auto',
+          maxWidth: '777px',
+          height: '100vh',
           flexDirection: 'column',
           justifyContent: 'center',
           alignItems: 'center',
+          mx: 'auto',
+          pr: { xs: 2.5, sm: 4.5 },
+          pl: { xs: 2.5, sm: 4.5, lg: 0 },
         }}
       >
-        <Typography component="h3" variant="h3" sx={{ my: 2 }}>
-          {title}
+        <Typography
+          component="h3"
+          variant="h3"
+          sx={{ my: 2, color: '#171717' }}
+        >
+          {title || ''}
         </Typography>
         <Box
           component="form"
           noValidate
-          onSubmit={formik.handleSubmit}
+          onSubmit={formik?.handleSubmit}
           sx={{ mt: 3, width: '100%' }}
         >
           {fields?.map((field, index) => (
@@ -165,10 +168,20 @@ const AuthForm = ({ uiData, fields }) => {
                 <OutlinedInput
                   sx={{
                     height: '40px',
-                    color: '#666',
+                    color: '#666666',
                     fontSize: '14px',
                     fontFamily: 400,
+                    '& fieldset': { border: '1px solid #E4E4E4' },
+                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                      border: '1px solid #E4E4E4',
+                    },
+                    '&:hover': {
+                      '& .MuiOutlinedInput-notchedOutline': {
+                        border: '1px solid #E4E4E4',
+                      },
+                    },
                   }}
+                  inputProps={{ style: { height: '8px' } }}
                   required
                   fullWidth
                   placeholder={field?.placeHolder}
@@ -184,15 +197,15 @@ const AuthForm = ({ uiData, fields }) => {
                   onChange={(e) =>
                     formik.setFieldValue(field?.name, e.target.value)
                   }
-                  onBlur={formik.handleBlur(field?.type)}
                   error={
-                    formik.touched[field?.type] &&
-                    Boolean(formik.errors[field?.type])
+                    formik?.touched[field?.type] &&
+                    Boolean(formik?.errors[field?.type])
                   }
                   endAdornment={
                     field.label === 'Password:' ? (
                       <InputAdornment position="end">
                         <IconButton
+                          disableRipple
                           sx={{
                             color: '#595959',
                             '&:hover': {
@@ -210,8 +223,12 @@ const AuthForm = ({ uiData, fields }) => {
                     ) : null
                   }
                 />
-                {formik.touched[field?.type] && formik.errors[field?.type] && (
-                  <Typography variant="body2" color="error">
+                {formik?.touched[field?.type] && formik.errors[field?.type] && (
+                  <Typography
+                    variant="body2"
+                    color="error"
+                    sx={{ fontSize: '12px', mt: 1 }}
+                  >
                     {formik.errors[field?.type]}
                   </Typography>
                 )}
@@ -225,6 +242,7 @@ const AuthForm = ({ uiData, fields }) => {
               display: 'flex',
               '@media (max-width: 400px)': {
                 flexDirection: { xs: 'column', sm: 'row' },
+                gap: 0.5,
               },
               alignItems: 'center',
               justifyContent: 'space-between',
@@ -252,28 +270,31 @@ const AuthForm = ({ uiData, fields }) => {
               }}
               control={
                 <Checkbox
+                  disableRipple
                   value="remember"
                   color="primary"
                   sx={{ border: '1px' }}
                 />
               }
-              label={checkText}
+              label={checkText || ''}
             />
-            <Link
-              href={forgotLink}
+            <Typography
+              onClick={handleOpenTroubleModal}
               variant="body1"
+              component={'h6'}
               sx={{
                 textDecoration: 'none',
                 color: '#666',
                 width: 'auto',
+                cursor: 'pointer',
                 '@media (max-width: 400px)': {
                   order: { xs: 1, sm: 2 },
                   width: '100%',
                 },
               }}
             >
-              {forgotText}
-            </Link>
+              {havingTrouble || ''}
+            </Typography>
           </Box>
           <Button
             type="submit"
@@ -282,7 +303,7 @@ const AuthForm = ({ uiData, fields }) => {
             color="primary"
             sx={{ mt: 3, mb: 2, fontSize: '16px', fontWeight: 600 }}
           >
-            {title}
+            {title || ''}
           </Button>
         </Box>
       </Box>
