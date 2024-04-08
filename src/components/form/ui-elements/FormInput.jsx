@@ -35,6 +35,7 @@ const FormInput = ({
   width,
   placeholder,
   prefixIcon,
+  dollarIcon,
   type = 'text',
   suffixIcon,
   options,
@@ -562,6 +563,35 @@ const FormInput = ({
               flex: 1,
             }}
           >
+            {dollarIcon && (
+              <label
+                htmlFor={`input-file-${title}`}
+                style={{
+                  display: 'flex',
+                  justifyContent: 'flex-end',
+                  alignItems: 'center',
+                }}
+              >
+                <Box
+                  sx={{
+                    display: 'flex',
+                    width: '40px',
+                    height: '40px',
+                    padding: '10px',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    background: type === 'file' && '#068987',
+                  }}
+                >
+                  <Image
+                    src={`/icons/${dollarIcon}.svg`}
+                    width={9}
+                    height={17}
+                    alt="Upload"
+                  />
+                </Box>
+              </label>
+            )}
             {prefixIcon && (
               <label
                 htmlFor={`input-file-${title}`}

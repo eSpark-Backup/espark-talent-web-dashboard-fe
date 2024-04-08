@@ -68,7 +68,7 @@ const ResourceCard = ({ data }) => {
                       fontSize: '16px',
                       fontWeight: 400,
                       color: '#595959',
-                      width: { xs: '80%', md: '100%' },
+                      width: { xs: '100%', md: '80%' },
                     }}
                   >
                     {item?.description}

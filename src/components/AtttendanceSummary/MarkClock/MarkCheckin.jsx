@@ -52,15 +52,14 @@ const MarkCheckIn = () => {
           p: '10px',
           width: '100%',
           height: '50px',
-          cursor: 'pointer',
-          // cursor:
-          //   homeData?.today_activity?.check_in !== '-' ? 'no-drop' : 'pointer',
+          cursor:
+            homeData?.today_activity?.check_in !== '-' ? 'no-drop' : 'pointer',
           '&:hover': {
             color: '#068987',
             background: '#fff',
           },
         }}
-        disabled={homeData?.today_activity?.check_in !== '-' ? true : false}
+        // disabled={homeData?.today_activity?.check_in !== '-' ? true : false}
         // disabled={homeData?.today_activity?.check_in}
         // disabled={disabled}
         onClick={handleCheckIn}

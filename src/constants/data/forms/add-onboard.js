@@ -85,7 +85,7 @@ export const addOnboardForm = [
   {
     title: 'Salary',
     name: 'salary',
-    prefixIcon: '$',
+    dollarIcon: '$',
   },
   {
     title: 'Benefits',

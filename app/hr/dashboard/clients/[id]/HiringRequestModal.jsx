@@ -55,6 +55,7 @@ const HiringRequestModal = ({ open, onClose }) => {
         client_id: email,
       };
       mutate(finalData);
+      handleCloseModal();
     },
     validateOnChange: false,
     validateOnBlur: false,
@@ -101,6 +102,7 @@ const HiringRequestModal = ({ open, onClose }) => {
             sx={{
               fontSize: '25px',
               fontWeight: 600,
+              ml: '10px',
             }}
           >
             Hiring request form

@@ -190,10 +190,7 @@ const Dashboard = () => {
                     label={`${label}`}
                     disableRipple={true}
                     {...prop}
-                    sx={{
-                      display: 'flex',
-                      gap: '15px',
-                    }}
+                    sx={{ mr: '20px', color: '#595959' }}
                   />
                 ))}
               </Tabs>
@@ -201,7 +198,12 @@ const Dashboard = () => {
 
             <Box my={4}>
               <Typography
-                sx={{ fontSize: '20px', fontWeight: 400, marginBottom: '20px' }}
+                sx={{
+                  fontSize: '20px',
+                  fontWeight: 400,
+                  marginBottom: '20px',
+                  color: '#171717',
+                }}
               >
                 Employee invoices
               </Typography>
@@ -261,7 +263,9 @@ const Dashboard = () => {
             justifyContent={'space-between'}
             alignItems={'center'}
           >
-            <Typography sx={{ fontSize: '20px', fontWeight: 400 }}>
+            <Typography
+              sx={{ fontSize: '20px', fontWeight: 400, color: '#171717' }}
+            >
               Other Payments
             </Typography>
           </Box>

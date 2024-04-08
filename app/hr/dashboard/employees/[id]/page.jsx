@@ -283,44 +283,57 @@ const Page = () => {
                     flexDirection: { xs: 'column', md: 'row' },
                   }}
                 >
-                  <Box>
-                    <Tabs
-                      value={value}
-                      onChange={handleChange}
-                      aria-label="wrapped label tabs example"
-                      variant="scrollable"
-                    >
-                      <Tab
-                        value={employeeProfileData?.valueOne}
-                        label={employeeProfileData?.profile}
-                        wrapped
-                        disableRipple={true}
-                      />
-                      <Tab
-                        value={employeeProfileData?.valueTwo}
-                        label={employeeProfileData?.client}
-                        disableRipple={true}
-                      />
-                      <Tab
-                        value={employeeProfileData?.valuethree}
-                        label={employeeProfileData?.attendanceReports}
-                        disableRipple={true}
-                      />
-                      <Tab
-                        value={employeeProfileData?.valueFour}
-                        label="Assets"
-                        disableRipple={true}
-                      />
-                      <Tab
-                        value={'five'}
-                        label="Time & leaves"
-                        disableRipple={true}
-                      />
-                    </Tabs>
-                  </Box>
+                  <Tabs
+                    value={value}
+                    onChange={handleChange}
+                    aria-label="wrapped label tabs example"
+                    variant="scrollable"
+                  >
+                    <Tab
+                      value={employeeProfileData?.valueOne}
+                      label={employeeProfileData?.profile}
+                      wrapped
+                      disableRipple={true}
+                      sx={{ marginRight: '15px', color: '#595959' }}
+                    />
+                    <Tab
+                      value={employeeProfileData?.valueTwo}
+                      label={employeeProfileData?.client}
+                      disableRipple={true}
+                      sx={{ marginRight: '20px', color: '#595959' }}
+                    />
+                    <Tab
+                      value={employeeProfileData?.valuethree}
+                      label={employeeProfileData?.attendanceReports}
+                      disableRipple={true}
+                      sx={{
+                        marginRight: '20px',
+                        textTransform: 'math-auto',
+                        color: '#595959',
+                      }}
+                    />
+                    <Tab
+                      value={employeeProfileData?.valueFour}
+                      label="Assets"
+                      disableRipple={true}
+                      sx={{ marginRight: '20px', color: '#595959' }}
+                    />
+                    <Tab
+                      value={'five'}
+                      label="Time & leaves"
+                      disableRipple={true}
+                      sx={{
+                        marginRight: '20px',
+                        textTransform: 'math-auto',
+                        color: '#595959',
+                      }}
+                    />
+                  </Tabs>
+
                   <Box
                     sx={{
                       display: 'flex',
+
                       marginTop: { xs: '20px', md: '0px' },
                     }}
                   >
@@ -413,27 +426,6 @@ const Page = () => {
                         )}
                       </>
                     )}
-                    {/* {value === 'six' && ( 
-                    <>
-                      <Button
-                        sx={{
-                          minWidth: '160px',
-                          background: '#029894',
-                          display: 'flex',
-                          color: '#fff',
-                          textTransform: 'math-auto',
-                          marginBottom: '10px',
-                          '&:hover': {
-                            background: '#029894',
-                          },
-                        }}
-                        onClick={handleOpenContractModal}
-                      >
-                        Add Contract
-                      </Button>
-                    </>
-                  )} */}{' '}
-                    {/* maybe use in future */}
                   </Box>
                 </Box>
                 {value === employeeProfileData?.valueOne ? (
@@ -454,10 +446,6 @@ const Page = () => {
                 ) : value === 'five' ? (
                   <TimeAndLeaves />
                 ) : (
-                  //       : value === 'six' ? (
-                  // <Contract />
-                  //       ) :                    {/* maybe use in future */}
-
                   <Assets />
                 )}
               </Box>

@@ -87,6 +87,7 @@ const Accounts = ({
         confirmButtonText={CONTRACT_SIGNED?.delete}
         isOpen={isOpenDeleteModal}
         handleClose={handleCloseDeleteModal}
+        width={'25%'}
       />
       <Modal
         open={open}

@@ -55,7 +55,7 @@ export const EDIT_MODAL = {
   phoneNo: '090078601',
   primaryContact: 'Primary Contact',
   secondaryContact: 'Secondary Contact',
-  editPersonalDetails: 'Edit personal details',
+  editPersonalDetails: 'Edit personal informations',
   employeeName: 'Employee name',
   birthDate: 'Birth Date',
   email: 'Email',

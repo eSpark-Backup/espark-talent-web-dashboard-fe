@@ -74,7 +74,7 @@ const GeneralSettings = () => {
         <Typography
           sx={{
             color: '#171717',
-            fontWeight: '500',
+            fontWeight: 400,
             fontSize: '16px',
           }}
         >
@@ -135,7 +135,7 @@ const GeneralSettings = () => {
       >
         <Typography
           variant="body2"
-          sx={{ color: '#171717', fontWeight: '500' }}
+          sx={{ color: '#171717', fontWeight: '400' }}
         >
           {User_Detail?.title}
         </Typography>

@@ -890,8 +890,12 @@ const AddEmployee = () => {
               <Box
                 display={'flex'}
                 alignItems={'center'}
-                justifyContent={'space-between'}
-                sx={{ borderBottom: 1, borderColor: 'divider', mt: '40px' }}
+                sx={{
+                  borderBottom: 1,
+                  borderColor: 'divider',
+                  mt: '40px',
+                  justifyContent: 'space-between',
+                }}
               >
                 <Tabs
                   value={currentTab.val}
@@ -905,6 +909,11 @@ const AddEmployee = () => {
                       label={`${label}`}
                       {...prop}
                       disableRipple={true}
+                      sx={{
+                        marginRight: '30px',
+                        color: '#595959',
+                        textTransform: 'math-auto',
+                      }}
                     />
                   ))}
                 </Tabs>
@@ -913,7 +922,7 @@ const AddEmployee = () => {
                 <Box
                   sx={{
                     marginTop: '10px',
-                    marginBottom: '20px',
+                    marginBottom: '40px',
                     borderBottom:
                       currentTab?.label !== 'Leave Balance' && 'solid 1px #ccc',
                   }}
@@ -927,7 +936,10 @@ const AddEmployee = () => {
                       <Box
                         sx={{
                           display: 'flex',
-                          justifyContent: 'space-between',
+                          justifyContent: {
+                            xs: 'flex-start',
+                            md: 'space-between',
+                          },
                           alignItems: { xs: 'flex-start', md: 'center' },
                           flexDirection: { xs: 'column', md: 'row' },
                         }}
@@ -938,6 +950,7 @@ const AddEmployee = () => {
                           onChange={(ev, newVal) =>
                             handleChangeNestedTab(ev, newVal, nestedTabs, rest)
                           }
+                          sx={{ width: { xs: '100%', md: '80%' } }}
                           aria-label="basic tabs example"
                         >
                           {nestedTabs?.map(({ label, prop }, nestedIndex) => (
@@ -946,6 +959,7 @@ const AddEmployee = () => {
                               label={`${label}`}
                               {...prop}
                               disableRipple={true}
+                              sx={{ marginRight: '30px', color: '#595959' }}
                             />
                           ))}
                         </Tabs>
@@ -964,6 +978,7 @@ const AddEmployee = () => {
                                       textTransform: 'math-auto',
                                       color: '#fff',
                                       background: '#029894',
+
                                       '&:hover': {
                                         color: '#fff',
                                         background: '#029894',
@@ -1021,27 +1036,7 @@ const AddEmployee = () => {
                               </>
                             )}
                           </>
-                        ) : // ) : currentTab?.label === 'Employee invoices' ||
-                        //   currentTab?.label === 'Other invoices' ? (
-                        //   currentTab?.nested.val === 0 ? (
-                        //     <Button
-                        //       onClick={handleOpenUploadInvoiceModal}
-                        //       variant="contained"
-                        //       sx={{
-                        //         my: { xs: '20px', md: 0 },
-                        //         color: '#fff',
-                        //         background: '#029894',
-                        //         '&:hover': {
-                        //           color: '#fff',
-                        //           background: '#029894',
-                        //         },
-                        //       }}
-                        //     >
-                        //       {CLIENTPROFILE?.uploadVoice}
-                        //     </Button>
-                        //   ) : null
-                        // ) : null}
-                        currentTab?.label === 'Employee invoices' ? (
+                        ) : currentTab?.label === 'Employee invoices' ? (
                           currentTab?.nested.val === 0 ? (
                             <>
                               {(role === 'super admin' ||
@@ -1058,6 +1053,10 @@ const AddEmployee = () => {
                                       color: '#fff',
                                       background: '#029894',
                                     },
+                                    // '@media (min-width: 280px) and (max-width: 600px)':
+                                    //   {
+                                    //     width: '50%',
+                                    //   },
                                   }}
                                 >
                                   {CLIENTPROFILE?.uploadVoice}

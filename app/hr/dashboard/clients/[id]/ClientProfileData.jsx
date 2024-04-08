@@ -86,6 +86,7 @@ const ClientProfileData = ({
               position: 'absolute',
               right: 0,
               bottom: 0,
+              cursor: 'pointer',
             }}
             src="/icons/EditIcon.svg"
             width={35}
@@ -189,7 +190,7 @@ const ClientProfileData = ({
         sx={{
           position: 'absolute',
           top: { xs: '5px', xl: '15px' },
-          right: { xs: '5px', xl: '54px' },
+          right: { xs: '5px', xl: '40px' },
           cursor: 'pointer',
         }}
         src="/icons/EditIcon.svg"

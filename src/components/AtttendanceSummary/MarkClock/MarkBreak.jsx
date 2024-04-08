@@ -68,13 +68,9 @@ const MarkBreak = () => {
   };
   const startTimer = () => {
     const startTime = new Date().getTime();
-
-    // Start interval to update elapsed time
     const intervalId = setInterval(() => {
       const currentTime = new Date().getTime();
       const elapsedTime = currentTime - startTime;
-
-      // Update the timer state with the new elapsed time
       setTimerState((prevState) => ({
         ...prevState,
         elapsedTime: elapsedTime,
@@ -87,7 +83,6 @@ const MarkBreak = () => {
       timerActive: true,
     }));
   };
-
   const pauseTimer = () => {
     clearInterval(timerState.intervalId);
     const now = new Date().getTime();
@@ -98,7 +93,6 @@ const MarkBreak = () => {
       timerActive: false,
     }));
   };
-
   const formatTime = (milliseconds) => {
     const totalSeconds = Math.floor(milliseconds / 1000);
     const hours = Math.floor(totalSeconds / 3600);

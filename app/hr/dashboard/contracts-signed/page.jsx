@@ -27,12 +27,18 @@ import {
 } from '@/src/services/apiService/apiEndPoints';
 import { useDispatch, useSelector } from 'react-redux';
 import { Toast } from '@/src/components/Toast/Toast';
+import AddContractModal from '../clients/[id]/AddContractModal';
+import EmployeeContractModal from '../clients/[id]/EmployeeContractModal';
 
 const ContractSigned = () => {
   const dispatch = useDispatch();
   const [value, setValue] = useState(0);
   const [nestedValue, setNestedValue] = useState(0);
   const [isOpenContractModal, setIsOpenContractModal] = useState(false);
+  const [isOpenAddContractModal, setIsOpenAddContractModal] = useState(false);
+  const [isOpenEmployeeContractModal, setIsOpenEmployeeContractModal] =
+    useState(false);
+
   const { companyContract, offShoreContract } = useSelector(
     (state) => state?.hr?.contracts
   );
@@ -99,6 +105,21 @@ const ContractSigned = () => {
   const handleChange = (event, newValue) => {
     handleTabChange(event, newValue, setCurrentTab, setValue, setNestedValue);
   };
+  const handleOpenContractModal = () => {
+    setIsOpenContractModal(true);
+  };
+  const handleOpenAddContratcModal = () => {
+    setIsOpenAddContractModal(true);
+  };
+  const handleCloseAddContratcModal = () => {
+    setIsOpenAddContractModal(false);
+  };
+  const handleOpenEmployeeContratcModal = () => {
+    setIsOpenEmployeeContractModal(true);
+  };
+  const handleCloseEmployeeContratcModal = () => {
+    setIsOpenEmployeeContractModal(false);
+  };
   // useEffect(() => {
   //   const data = [...contractSignedOffshoreData];
   //   const timeoutId = setTimeout(() => {
@@ -119,9 +140,9 @@ const ContractSigned = () => {
   };
   const handleClose = () => setIsOpen(false);
   const handleClickDelete = () => setIsOpen(true);
-  const handleOpenContractModal = () => {
-    setIsOpenContractModal(true);
-  };
+  // const handleOpenContractModal = () => {
+  //   setIsOpenContractModal(true);
+  // };
   const handleCloseContractModal = () => {
     setIsOpenContractModal(false);
   };
@@ -143,7 +164,7 @@ const ContractSigned = () => {
             alignItems={'center'}
           >
             <Box display={'flex'} flexDirection={'column'}>
-              <Typography variant="h3">Contract signed</Typography>
+              <Typography variant="h3">Contracts </Typography>
               <Box display={'flex'} flexDirection={'column'} marginY={'20px'}>
                 <Typography
                   sx={{
@@ -155,7 +176,7 @@ const ContractSigned = () => {
                   }}
                   variant="caption"
                 >
-                  {CONTRACT_SIGNED?.teamContract}
+                  {/* {CONTRACT_SIGNED?.teamContract} */}
                 </Typography>
               </Box>
             </Box>
@@ -168,6 +189,7 @@ const ContractSigned = () => {
                 borderColor: 'divider',
                 justifyContent: { xs: 'center', md: 'space-between' },
                 flexDirection: { xs: 'column', md: 'row' },
+                mb: '20px',
               }}
             >
               <Tabs
@@ -184,7 +206,7 @@ const ContractSigned = () => {
                     disableRipple={true}
                     sx={{
                       textTransform: 'math-auto',
-                      mr: '2px',
+                      mr: { xs: '0px', md: '20px' },
                     }}
                   />
                 ))}
@@ -230,7 +252,7 @@ const ContractSigned = () => {
                             flexDirection: { xs: 'column', md: 'row' },
                             borderBottom: 1,
                             borderColor: 'divider',
-                            mb: '30px',
+                            mb: '40px',
                           }}
                         >
                           <Tabs
@@ -243,7 +265,7 @@ const ContractSigned = () => {
                                 key={nestedIndex}
                                 {...nestedTab.prop}
                                 disableRipple={true}
-                                sx={{ mr: '4px' }}
+                                sx={{ mr: '20px' }}
                               />
                             ))}
                           </Tabs>
@@ -251,7 +273,11 @@ const ContractSigned = () => {
                             tab.nested[nestedValue]?.columns &&
                             tab.nested[nestedValue]?.data && (
                               <Button
-                                onClick={handleOpenContractModal}
+                                onClick={
+                                  nestedValue === 1
+                                    ? handleOpenEmployeeContratcModal
+                                    : handleOpenAddContratcModal
+                                }
                                 variant="contained"
                                 sx={{
                                   width: '160px',
@@ -316,6 +342,14 @@ const ContractSigned = () => {
         confirmButtonText={CONTRACT_SIGNED?.delete}
         isOpen={isOpen}
         handleClose={handleClose}
+      />
+      <AddContractModal
+        open={isOpenAddContractModal}
+        onClose={handleCloseAddContratcModal}
+      />
+      <EmployeeContractModal
+        open={isOpenEmployeeContractModal}
+        onClose={handleCloseEmployeeContratcModal}
       />
       <AddContractHrPortalModal
         open={isOpenContractModal}

@@ -5,8 +5,8 @@ export const contractForm = [
     name: 'contractName',
   },
   {
-    title: 'Email',
-    placeholder: 'Enter email',
+    title: 'Client ID',
+    placeholder: 'Enter client ID',
     name: 'email',
   },
   {
@@ -24,7 +24,32 @@ export const contractForm = [
     name: 'upload',
   },
 ];
-
+export const employeeContractForm = [
+  {
+    title: 'Contract name',
+    placeholder: 'Enter contract name',
+    name: 'contractName',
+  },
+  {
+    title: 'Employee ID',
+    placeholder: 'Enter employee ID',
+    name: 'email',
+  },
+  {
+    title: 'Date',
+    placeholder: 'DD-MM-YYYY',
+    suffixIcon: 'calender',
+    type: 'date',
+    name: 'date',
+  },
+  {
+    title: 'Upload',
+    placeholder: 'Upload contract',
+    prefixIcon: 'upload',
+    type: 'file',
+    name: 'upload',
+  },
+];
 export const contractFormHrPortal = [
   {
     title: 'Contract name',

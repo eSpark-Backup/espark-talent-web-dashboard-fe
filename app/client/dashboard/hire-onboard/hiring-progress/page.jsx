@@ -44,12 +44,10 @@ const Dashboard = () => {
   const [modalData, setModalData] = useState({});
   const dispatch = useDispatch();
   const { data } = useSelector((state) => state?.client?.hiringProgress);
-
   const [hiringRequestDataState, setHiringRequestDataState] = useState([]);
   const [interviewScheduledDataState, setInterviewScheduledDataState] =
     useState([]);
   const [onBoardingDataState, setOnBoardingDataState] = useState([]);
-
   const hiringRequestQuery = useQuery({
     staleTime: 10000,
     queryKey: 'hiringRequests',
@@ -225,7 +223,7 @@ const Dashboard = () => {
           }}
         >
           <Box
-            marginBottom={4}
+            marginBottom={6}
             display={'flex'}
             justifyContent={'space-between'}
             alignItems={'center'}
@@ -269,6 +267,8 @@ const Dashboard = () => {
                     key={i}
                     label={`${label}`}
                     sx={{
+                      mr: '30px',
+                      color: '#595959',
                       '& .MuiTabs-indicator': {
                         backgroundColor: 'gray',
                       },

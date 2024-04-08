@@ -106,6 +106,7 @@ const AddEmployee = () => {
                   currentStep={currentStep}
                   form={form}
                   schema={schema}
+                  countNo={countNo}
                   isMultiColumn={isMultiColumn}
                   handleGoNext={handleGoNext}
                   handleGoPrev={handleGoPrev}
@@ -116,6 +117,7 @@ const AddEmployee = () => {
                   getFinalData={getFinalData}
                   method="postData"
                   endpoint={HR_ADD_ClIENT}
+                  mt={25}
                 />
               );
             }

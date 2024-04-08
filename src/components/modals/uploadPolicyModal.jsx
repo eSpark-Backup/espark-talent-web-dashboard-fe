@@ -23,6 +23,7 @@ const UploadPolicyModal = ({ open, onClose }) => {
     enableReinitialize: true,
     onSubmit: (formValues) => {
       console.log({ formValues });
+      handleCloseModal();
     },
     validateOnChange: false,
     validateOnBlur: false,
@@ -87,14 +88,17 @@ const UploadPolicyModal = ({ open, onClose }) => {
             }}
             onClick={handleCloseModal}
           >
-            <Box component="img" src="/icons/Close.svg" sx={{}} />
+            <Box component="img" src="/icons/Close.svg" />
           </Box>
         </Box>
         <form onSubmit={handleSubmit}>
           <Grid
             container
             sx={{
-              padding: { xs: '10px 20px', lg: '41px 100px' },
+              padding: { xs: '10px 20px', lg: '41px 80px' },
+              '@media (min-width: 120px) and (max-width: 1600px)': {
+                p: '15px',
+              },
               display: 'flex',
               flexDirection: 'column',
             }}

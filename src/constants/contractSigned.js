@@ -10,7 +10,7 @@ export const CONTRACT_SIGNED = {
 
 export const REMOVE_MODAL = {
   remove: 'Remove',
-  warning: 'Are you sure you want to remove this?',
+  warning: 'Are you sure you want to remove this ?',
   cancel: 'Cancel',
 };
 export const TERMINATE_MODAL = {

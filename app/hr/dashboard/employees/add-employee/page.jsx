@@ -123,6 +123,7 @@ const AddEmployee = () => {
                   key={stepIndex}
                   isLastStep={currentStep === formSteps.length}
                   currentStep={currentStep}
+                  countNo={countNo}
                   form={form}
                   schema={schema}
                   isMultiColumn={isMultiColumn}

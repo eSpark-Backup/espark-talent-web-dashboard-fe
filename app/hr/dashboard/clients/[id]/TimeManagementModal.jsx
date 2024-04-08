@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Box, Button, Grid, Modal, Typography } from '@mui/material';
 
 import { timeManagementFormSchema } from '@/src/components/form/schemas/timeManagementModal';
@@ -8,7 +8,6 @@ import { useFormik } from 'formik';
 import { FORM_DATA } from '@/src/constants/form';
 
 const TimeManagementModal = ({ open, onClose }) => {
-  const [formData, setFormData] = useState({});
   const {
     handleSubmit,
     values,
@@ -24,16 +23,11 @@ const TimeManagementModal = ({ open, onClose }) => {
     enableReinitialize: true,
     onSubmit: (formValues) => {
       console.log({ formValues });
+      handleCloseModal();
     },
     validateOnChange: false,
     validateOnBlur: false,
   });
-  const handleData = (name, value) => {
-    setFormData({ ...formData, [name]: value });
-  };
-  useEffect(() => {
-    console.log('form', formData);
-  }, [formData]);
   const handleCloseModal = () => {
     handleReset();
     onClose();
@@ -142,7 +136,6 @@ const TimeManagementModal = ({ open, onClose }) => {
                       md={12}
                       lg={12}
                       fields={fields}
-                      handleData={handleData}
                     />
                   </Grid>
                   {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>}

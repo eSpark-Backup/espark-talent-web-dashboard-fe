@@ -38,10 +38,11 @@ const AllEmployee = ({ fromClient, openModal }) => {
   const theme = useTheme();
 
   useEffect(() => {
-    if (name === '' && id === '' && designation === '') {
+    if (name === '' && id === '' && designation === '' && company === '') {
       setSearch(false);
     }
-  }, [name, id, designation]);
+  }, [name, id, designation, company]);
+
   const { data, isLoading } = useQuery({
     staleTime: 10000,
     queryKey: ['employeeQuery'],
@@ -66,6 +67,23 @@ const AllEmployee = ({ fromClient, openModal }) => {
     },
   });
   console.log({ data, isLoading });
+  const handleSearch = () => {
+    const filteredData = data?.filter((item) => {
+      const nameMatch =
+        name === '' || item.name.toLowerCase().includes(name.toLowerCase());
+      const designationMatch =
+        designation === '' ||
+        item.designation.toLowerCase().includes(designation.toLowerCase());
+      const companyMatch =
+        company === '' ||
+        item.company.toLowerCase().includes(company.toLowerCase());
+      return nameMatch && designationMatch && companyMatch;
+    });
+    console.log('Search results:', filteredData);
+    return filteredData;
+  };
+  const filteredData = handleSearch();
+  console.log('test', data);
 
   if (fromClient)
     return (
@@ -110,30 +128,34 @@ const AllEmployee = ({ fromClient, openModal }) => {
             {employeeProfileData?.addEmployee}
           </Button>
         </Box>
-        {value === 'one' ? (
-          <EmployeeStatus
-            search={search}
-            id={id}
-            name={name}
-            designation={designation}
-            status={'All'}
-          />
-        ) : value === 'two' ? (
-          <EmployeeStatus
-            status={'Active'}
-            id={id}
-            name={name}
-            designation={designation}
-            search={search}
-          />
-        ) : (
-          <EmployeeStatus
-            id={id}
-            name={name}
-            designation={designation}
-            status={'Inactive'}
-            search={search}
-          />
+        {filteredData && filteredData.length > 0 && (
+          <>
+            {value === 'one' ? (
+              <EmployeeStatus
+                search={search}
+                id={id}
+                name={name}
+                designation={designation}
+                status={'All'}
+              />
+            ) : value === 'two' ? (
+              <EmployeeStatus
+                status={'Active'}
+                id={id}
+                name={name}
+                designation={designation}
+                search={search}
+              />
+            ) : (
+              <EmployeeStatus
+                id={id}
+                name={name}
+                designation={designation}
+                status={'Inactive'}
+                search={search}
+              />
+            )}
+          </>
         )}
       </>
     );
@@ -143,12 +165,18 @@ const AllEmployee = ({ fromClient, openModal }) => {
         sx={{
           display: 'flex',
           justifyContent: 'space-between',
-          padding: '30px',
+          padding: '12px',
           flexWrap: 'wrap',
+          paddingBottom: '40px',
         }}
       >
         <Typography
-          sx={{ color: '#171717', fontSize: '30px', fontWeight: '600' }}
+          sx={{
+            color: '#171717',
+            fontSize: '30px',
+            fontWeight: '600',
+            marginLeft: '-10px',
+          }}
         >
           {employeeProfileData?.employees}
         </Typography>
@@ -161,6 +189,7 @@ const AllEmployee = ({ fromClient, openModal }) => {
                   backgroundColor: '#029894',
                   width: '160px',
                   color: '#FFF',
+                  marginRight: '30px',
                   textTransform: 'math-auto',
                   '&:hover': {
                     backgroundColor: '#029894',
@@ -194,19 +223,31 @@ const AllEmployee = ({ fromClient, openModal }) => {
             aria-label="wrapped label tabs example"
             variant="scrollable"
           >
-            <Tab value="one" label="All" wrapped disableRipple={true} />
-            <Tab value="two" label="Active employees" disableRipple={true} />
+            <Tab
+              value="one"
+              label="All"
+              wrapped
+              disableRipple={true}
+              sx={{ mr: '20px', textTransform: 'math-auto' }}
+            />
+            <Tab
+              value="two"
+              label="Active employees"
+              disableRipple={true}
+              sx={{ mr: '20px', textTransform: 'math-auto' }}
+            />
             <Tab
               value="three"
               label="Inactive employees"
               disableRipple={true}
+              sx={{ mr: '20px', textTransform: 'math-auto' }}
             />
           </Tabs>
         </Box>
         <Grid
           container
           sx={{
-            marginTop: '20px',
+            marginBottom: '5px',
             [theme.breakpoints.down('md')]: {
               paddingLeft: '0px',
             },
@@ -258,12 +299,17 @@ const AllEmployee = ({ fromClient, openModal }) => {
           </Grid>
           <Grid item xs={12} md={6} lg={1}>
             <Button
-              onClick={() => setSearch(true)}
-              style={{
+              // onClick={() => setSearch(true)}
+              onClick={handleSearch}
+              sx={{
                 backgroundColor: '#029894',
                 color: '#FFF',
                 height: '40px',
-                width: '100%',
+                width: { xs: '100%', md: '50%' },
+                '&:hover': {
+                  backgroundColor: '#029894',
+                  color: '#FFF',
+                },
               }}
             >
               <Image
@@ -275,30 +321,37 @@ const AllEmployee = ({ fromClient, openModal }) => {
             </Button>
           </Grid>
         </Grid>
-        {value === 'one' ? (
-          <EmployeeView
-            search={search}
-            id={id}
-            name={name}
-            designation={designation}
-            status={'All'}
-          />
-        ) : value === 'two' ? (
-          <EmployeeView
-            status={'Active'}
-            id={id}
-            name={name}
-            designation={designation}
-            search={search}
-          />
-        ) : (
-          <EmployeeView
-            id={id}
-            name={name}
-            designation={designation}
-            status={'Inactive'}
-            search={search}
-          />
+        {filteredData && filteredData.length > 0 && (
+          <>
+            {value === 'one' ? (
+              <EmployeeView
+                search={search}
+                id={id}
+                name={name}
+                designation={designation}
+                status={'All'}
+                data={filteredData}
+              />
+            ) : value === 'two' ? (
+              <EmployeeView
+                status={'Active'}
+                id={id}
+                name={name}
+                designation={designation}
+                search={search}
+                data={filteredData}
+              />
+            ) : (
+              <EmployeeView
+                id={id}
+                name={name}
+                designation={designation}
+                status={'Inactive'}
+                search={search}
+                data={filteredData}
+              />
+            )}
+          </>
         )}
       </Box>
     </>

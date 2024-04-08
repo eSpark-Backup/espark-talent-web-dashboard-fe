@@ -124,6 +124,9 @@ const OnBoarding = () => {
                     display: 'flex',
                     flexDirection: 'column',
                     gap: '15px',
+                    '@media (min-width: 280px) and (max-width: 340px)': {
+                      mb: '11px',
+                    },
                   }}
                 >
                   <Typography

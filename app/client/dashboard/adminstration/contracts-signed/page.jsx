@@ -130,6 +130,8 @@ const ContractSigned = () => {
                     disableRipple={true}
                     sx={{
                       textTransform: 'math-auto',
+                      mr: '20px',
+                      color: '#595959',
                     }}
                   />
                 ))}
@@ -152,6 +154,7 @@ const ContractSigned = () => {
                         column={tab?.columns}
                         data={value === 0 ? data?.company : data?.employee}
                         tableRowClass="app-table-row-contract"
+                        noPagination
                       />
                     </Box>
                   )}

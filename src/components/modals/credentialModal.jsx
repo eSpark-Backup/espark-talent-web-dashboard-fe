@@ -83,14 +83,14 @@ const CredentialModal = ({ onClose, modalData }) => {
           }}
           onClick={handleCloseModal}
         >
-          <Box component="img" src="/icons/Close.svg" sx={{}} />
+          <Box component="img" src="/icons/Close.svg" />
         </Box>
       </Box>
       <form onSubmit={handleSubmit}>
         <Grid
           container
           sx={{
-            padding: { xs: '10px 20px', lg: '41px 100px' },
+            padding: { xs: '10px 20px', lg: '41px 80px' },
             display: 'flex',
             flexDirection: 'column',
           }}

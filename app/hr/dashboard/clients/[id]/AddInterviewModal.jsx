@@ -52,6 +52,7 @@ const AddInterviewModal = ({ open, onClose }) => {
       };
       console.log({ finalData });
       mutate(finalData);
+      handleCloseModal();
     },
     validateOnChange: false,
     validateOnBlur: false,

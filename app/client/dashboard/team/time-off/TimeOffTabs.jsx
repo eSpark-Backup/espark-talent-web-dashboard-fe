@@ -35,12 +35,11 @@ const TimeOffTabs = () => {
             label={`${label}`}
             {...prop}
             disableRipple={true}
-            sx={{ textTransform: 'math-auto' }}
+            sx={{ textTransform: 'math-auto', mr: '20px', color: '#595959' }}
           />
         ))}
       </Tabs>
     </Box>
   );
 };
-
 export default TimeOffTabs;

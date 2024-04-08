@@ -50,11 +50,11 @@ const ChangePassword = () => {
         display: 'flex',
         flexDirection: 'column',
         gap: '18px',
-        my: { xs: 3, md: -2 },
+        my: { xs: 3, md: -4 },
         width: { xs: '100%', md: '50%' },
       }}
     >
-      <Typography variant="body2" sx={{ color: '#171717', fontWeight: '500' }}>
+      <Typography variant="body2" sx={{ color: '#171717', fontWeight: '400' }}>
         {User_Password?.title}
       </Typography>
       <form onSubmit={handleSubmit}>
@@ -105,7 +105,7 @@ const ChangePassword = () => {
               </>
             )
           )}
-          <Grid item p={'0 10px'} xs={12} marginTop={-1}>
+          <Grid item p={'0 10px'} xs={12} marginTop={-2}>
             <Button
               sx={{
                 minWidth: '120px',

@@ -7,10 +7,17 @@ export const personalDetailsForm = [
     name: 'employee_name',
   },
   {
-    title: 'Employee ID',
-    placeholder: 'eS000020',
-    name: 'employee_id',
+    title: 'Joining Date',
+    placeholder: 'DD-MM-YYYY',
+    suffixIcon: 'calender',
+    type: 'date',
+    name: 'joining_date',
   },
+  // {
+  //   title: 'Employee ID',
+  //   placeholder: 'eS000020',
+  //   name: 'employee_id',
+  // },
   {
     title: 'Birth Date',
     placeholder: 'DD-MM-YYYY',
@@ -32,39 +39,12 @@ export const personalDetailsForm = [
       },
     ],
   },
-  // {
-  //   title: 'Email',
-  //   placeholder: 'Enter email',
-  //   name: 'email',
-  // },
-  // {
-  //   title: 'Team',
-  //   placeholder: 'johndoe@1123.com',
-  //   name: 'team',
-  // },
-  {
-    title: 'Job title',
-    placeholder: 'Select job',
-    type: 'select',
-    nested: true,
-    options: jobTitles,
-    name: 'job_title',
-  },
-  {
-    title: 'Joining Date',
-    placeholder: 'DD-MM-YYYY',
-    suffixIcon: 'calender',
-    type: 'date',
-    name: 'joining_date',
-  },
-
   {
     title: 'Marital status',
     placeholder: 'Select',
     name: 'marital_status',
     type: 'select',
     defaultValue: 'Married',
-
     options: [
       {
         label: 'Married',
@@ -73,5 +53,33 @@ export const personalDetailsForm = [
         label: 'Single',
       },
     ],
+  },
+  {
+    title: 'Role',
+    placeholder: 'Select role',
+    type: 'select',
+    options: [
+      {
+        label: 'Senior',
+      },
+      {
+        label: 'Intermediate',
+      },
+      {
+        label: 'Junior',
+      },
+      {
+        label: 'Intern',
+      },
+    ],
+    name: 'roleType',
+  },
+  {
+    title: 'Job title',
+    placeholder: 'Select job',
+    type: 'select',
+    nested: true,
+    options: jobTitles,
+    name: 'job_title',
   },
 ];

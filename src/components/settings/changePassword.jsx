@@ -12,8 +12,9 @@ const ChangePassword = () => {
         form={passwordformElement}
         schema={passwordChangeSchema}
         editProfile
-        mt="229px"
+        mt="180px"
         pmd="49px 10px"
+        gap="60px"
       />
     </Box>
   );

@@ -130,7 +130,6 @@ const StartHiringForm = () => {
           flexDirection: 'column',
           padding: { xs: '20px', sm: '20px', md: '20px 60px' },
           gap: '30px',
-
           '@media (min-width: 960px) and (max-width: 1590px)': {
             width: '120%',
           },
@@ -151,6 +150,7 @@ const StartHiringForm = () => {
               lineHeight: 'normal',
               width: '40px',
               p: '8px 0',
+              mb: '30px',
             }}
           >
             {HIRING_FORM_DATA?.hire}
@@ -216,10 +216,11 @@ const StartHiringForm = () => {
                   fontSize: '16px',
                   width: '100%',
                   padding: '10px',
-                  fontWeight: 400,
+                  fontWeight: 600,
                   background: '#fff',
                   color: '#029E9C',
                   border: '1px solid #029E9C',
+                  mt: '25px',
                   '&:hover': {
                     background: '#029E9C',
                     color: '#fff',

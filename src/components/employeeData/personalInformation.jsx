@@ -22,6 +22,7 @@ const PersonalInformation = ({ data }) => {
             marginRight: '80px',
             '@media (min-width: 900px) and (max-width: 1260px)': {
               marginRight: '20px',
+              gap: '2px',
             },
           }}
         >
@@ -44,7 +45,16 @@ const PersonalInformation = ({ data }) => {
           ))}
         </Box>
 
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '15px',
+            '@media (min-width: 900px) and (max-width: 1260px)': {
+              gap: '5px',
+            },
+          }}
+        >
           {employeeDataLabel?.map((empData, index) => (
             <Typography
               key={index}
@@ -55,6 +65,7 @@ const PersonalInformation = ({ data }) => {
                 '@media (min-width: 200px) and (max-width: 362px)': {
                   fontSize: '15px',
                 },
+                '@media (min-width: 1200px) and (max-width: 1300px)': {},
               }}
             >
               {empData?.type === 'date'

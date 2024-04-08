@@ -106,6 +106,7 @@ const AddEmployeeModal = ({ open, onClose }) => {
       };
       console.log({ formValues, finalData });
       mutate(finalData);
+      handleCloseModal();
     },
     validateOnChange: false,
     validateOnBlur: false,
@@ -138,7 +139,7 @@ const AddEmployeeModal = ({ open, onClose }) => {
           <Box
             sx={{
               bgcolor: '#fff',
-              width: { xs: '90%', sm: '90%', md: '66%' },
+              width: { xs: '100%', sm: '90%', md: '55%' },
               display: 'flex',
               flexDirection: 'column',
               borderRadius: '10px',

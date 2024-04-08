@@ -64,6 +64,7 @@ const AddContractHrPortalModal = ({
         ...formValues,
         date: dayjs(formValues.date).format('YYYY-MM-DD'),
       });
+      handleCloseModal();
     },
     validateOnChange: false,
     validateOnBlur: false,
@@ -87,7 +88,7 @@ const AddContractHrPortalModal = ({
       <Box
         sx={{
           bgcolor: '#fff',
-          width: { xs: '90%', sm: '90%', md: '50%' },
+          width: { xs: '90%', sm: '60%', md: '50%' },
           display: 'flex',
           flexDirection: 'column',
           borderRadius: '10px',
@@ -115,6 +116,7 @@ const AddContractHrPortalModal = ({
             sx={{
               fontSize: '25px',
               fontWeight: 600,
+              px: '10px',
             }}
           >
             {CONTRACT_SIGNED?.contractForm}
@@ -139,7 +141,7 @@ const AddContractHrPortalModal = ({
           <Grid
             container
             sx={{
-              padding: { xs: '10px 20px', md: '50px' },
+              padding: { xs: '30px 20px', lg: '50px 80px' },
             }}
           >
             {contractFormHrPortal?.map(
@@ -180,6 +182,8 @@ const AddContractHrPortalModal = ({
                       setErrors={setErrors}
                       values={values}
                       nested={nested}
+                      xs={12}
+                      sm={12}
                       md={12}
                       lg={12}
                       fields={fields}
@@ -192,7 +196,10 @@ const AddContractHrPortalModal = ({
             )}
             <Grid item p={'0 10px'} xs={12}>
               <Button
-                sx={{ minWidth: '120px', mt: '25px' }}
+                sx={{
+                  minWidth: '120px',
+                  mt: '25px',
+                }}
                 variant="contained"
                 type="submit"
               >

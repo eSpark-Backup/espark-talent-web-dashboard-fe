@@ -70,35 +70,38 @@ const Page = () => {
                   onChange={handleChange}
                   aria-label="wrapped label tabs example"
                   variant="scrollable"
-                  sx={{}}
                 >
                   <Tab
                     value={employeeProfileData?.valueOne}
                     label={settingTabs?.companySettings}
                     wrapped
                     disableRipple={true}
-                    sx={{ fontSize: '14px', mr: 2 }}
+                    sx={{ fontSize: '14px', mr: { xs: '0px', md: '30px' } }}
                   />
                   <Tab
                     value={employeeProfileData?.valueTwo}
                     label={settingTabs?.accounts}
                     wrapped
                     disableRipple={true}
-                    sx={{ fontSize: '14px', mr: 2 }}
+                    sx={{ fontSize: '14px', mr: { xs: '0px', md: '30px' } }}
                   />
                   <Tab
                     value={employeeProfileData?.valuethree}
                     label={settingTabs?.rolesAndPermission}
                     wrapped
                     disableRipple={true}
-                    sx={{ fontSize: '14px', mr: 2 }}
+                    sx={{
+                      fontSize: '14px',
+                      mr: { xs: '0px', md: '30px' },
+                      textTransform: 'math-auto',
+                    }}
                   />
                   <Tab
                     value={employeeProfileData?.valueFour}
                     label={settingTabs?.changePassword}
                     wrapped
                     disableRipple={true}
-                    sx={{ fontSize: '14px', mr: 2 }}
+                    sx={{ fontSize: '14px', mr: { xs: '0px', md: '30px' } }}
                   />
                 </Tabs>
               </Box>

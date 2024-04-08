@@ -66,7 +66,7 @@ const EditEmployeeCredential = ({ onClose, open }) => {
           borderRadius: '10px',
           boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
           position: 'absolute',
-          top: '10%',
+          top: '30%',
           maxHeight: '75%',
           '@media (min-width: 900px) and (max-width: 1440px)': {
             width: '70%',
@@ -100,6 +100,7 @@ const EditEmployeeCredential = ({ onClose, open }) => {
         <form onSubmit={handleSubmit}>
           <Grid
             container
+            spacing={2}
             sx={{
               padding: { xs: '10px 20px', lg: '41px 60px' },
             }}
@@ -121,7 +122,7 @@ const EditEmployeeCredential = ({ onClose, open }) => {
                 formIndex
               ) => (
                 <>
-                  <Grid item xs={12} lg={5}>
+                  <Grid item xs={12} lg={6}>
                     <FormInput
                       key={formIndex}
                       title={title}
@@ -148,7 +149,7 @@ const EditEmployeeCredential = ({ onClose, open }) => {
                       fields={fields}
                     />
                   </Grid>
-                  {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>}
+                  {/* {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>} */}
                 </>
               )
             )}

@@ -51,6 +51,7 @@ const AddOnboardModal = ({ open, onClose }) => {
       };
       console.log({ finalData });
       mutate(finalData);
+      handleCloseModal();
     },
     validateOnChange: false,
     validateOnBlur: false,
@@ -96,6 +97,7 @@ const AddOnboardModal = ({ open, onClose }) => {
             sx={{
               fontSize: '25px',
               fontWeight: 600,
+              ml: '10px',
             }}
           >
             {FORM_DATA?.onBoardingForm}
@@ -113,7 +115,7 @@ const AddOnboardModal = ({ open, onClose }) => {
             }}
             onClick={handleCloseModal}
           >
-            <Box component="img" src="/icons/Close.svg" sx={{}} />
+            <Box component="img" src="/icons/Close.svg" />
           </Box>
         </Box>
         <form onSubmit={handleSubmit}>
@@ -130,6 +132,7 @@ const AddOnboardModal = ({ open, onClose }) => {
                   placeholder,
                   errorText,
                   prefixIcon,
+                  dollarIcon,
                   type,
                   suffixIcon,
                   options,
@@ -147,6 +150,7 @@ const AddOnboardModal = ({ open, onClose }) => {
                       placeholder={placeholder}
                       errorText={errorText}
                       prefixIcon={prefixIcon}
+                      dollarIcon={dollarIcon}
                       type={type}
                       suffixIcon={suffixIcon}
                       options={options}

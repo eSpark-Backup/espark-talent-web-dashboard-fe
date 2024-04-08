@@ -55,7 +55,6 @@ const AddEmployee = () => {
       };
     });
     if (data?.length) {
-      // console.log({data})
       const filteredData = filterTableRowsWRTTab(data, {
         paymentStatus: nestedTabs[0].label,
       });
@@ -477,19 +476,15 @@ const AddEmployee = () => {
               aria-label="basic tabs example"
               variant="scrollable"
             >
-              {clientProfileTabs?.map(
-                ({ label, prop }, index) => (
-                  console.log('test', clientProfileTabs),
-                  (
-                    <Tab
-                      key={index}
-                      label={`${label}`}
-                      {...prop}
-                      disableRipple={true}
-                    />
-                  )
-                )
-              )}
+              {clientProfileTabs?.map(({ label, prop }, index) => (
+                <Tab
+                  key={index}
+                  label={`${label}`}
+                  {...prop}
+                  disableRipple={true}
+                  sx={{ marginRight: '50px' }}
+                />
+              ))}
             </Tabs>
           </Box>
           {currentTab?.label !== 'Employees' && (

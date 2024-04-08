@@ -68,6 +68,7 @@ const TimeManagementModal = ({ open, onClose }) => {
             sx={{
               fontSize: '25px',
               fontWeight: 600,
+              ml: '15px',
             }}
           >
             {FORM_DATA?.timeManagement}
@@ -147,7 +148,7 @@ const TimeManagementModal = ({ open, onClose }) => {
                 variant="contained"
                 type="submit"
               >
-                {FORM_DATA?.submit}
+                Save
               </Button>
             </Grid>
           </Grid>

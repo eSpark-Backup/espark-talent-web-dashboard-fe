@@ -13,6 +13,8 @@ const MarkCheckOut = () => {
   const dispatch = useDispatch();
   const { workSpace } = useSelector((state) => state?.auth?.userData);
   const [time, setTime] = useState('');
+  const { homeData } = useSelector((state) => state?.emp?.home);
+
   const { mutate } = useMutation({
     mutationFn: async (data) => {
       const url = `${EMP_HOME}/?workspace=${workSpace?.email}&check_out=${data.time}`;
@@ -47,11 +49,19 @@ const MarkCheckOut = () => {
           p: '10px',
           width: '100%',
           height: '50px',
-          color: '#fff',
-          background: '#068987',
+          color:
+            homeData?.today_activity?.check_out !== '-' ? '#B3B3B3' : '#FFF',
+          background:
+            homeData?.today_activity?.check_out !== '-' ? '#E4E4E4' : '#068987',
+          cursor:
+            homeData?.today_activity?.check_out !== '-' ? 'no-drop' : 'pointer',
           '&:hover': {
-            color: '#fff',
-            background: '#068987',
+            color:
+              homeData?.today_activity?.check_out !== '-' ? '#B3B3B3' : '#FFF',
+            background:
+              homeData?.today_activity?.check_out !== '-'
+                ? '#E4E4E4'
+                : '#068987',
           },
         }}
         onClick={handleCheckout}

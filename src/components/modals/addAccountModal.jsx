@@ -72,6 +72,7 @@ const AddAccountModal = ({
       //   id: id,
       // });
       mutate(formValues);
+      handleCloseModal();
     },
   });
   const handleCloseModal = () => {

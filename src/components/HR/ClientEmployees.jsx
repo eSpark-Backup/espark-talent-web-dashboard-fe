@@ -129,6 +129,7 @@ const ClientEmployees = ({ fromClient, openModal, empData }) => {
             onChange={handleChange}
             aria-label="wrapped label tabs example"
             variant="scrollable"
+            sx={{ width: { xs: '100%', md: '80%' } }}
           >
             <Tab value="one" label="All" wrapped />
             <Tab value="two" label="Active employees" />

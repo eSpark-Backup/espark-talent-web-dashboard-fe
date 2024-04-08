@@ -17,6 +17,7 @@ import { useQuery } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import { HR_POLICY } from '@/src/services/apiService/apiEndPoints';
 import { Toast } from '@/src/components/Toast/Toast';
+import { SETTING } from '@/src/constants/SettingHr';
 
 const Policies = () => {
   const { isLoading, data } = useQuery({
@@ -133,6 +134,22 @@ const Policies = () => {
               />
             </Box>
           )}
+          <Box mt={'-80px'}>
+            <Button
+              sx={{
+                minWidth: '120px',
+                fontSize: '16px',
+                backgroundColor: '#029894',
+                color: '#fff',
+                '&:hover': {
+                  backgroundColor: '#029894',
+                  color: '#fff',
+                },
+              }}
+            >
+              {SETTING?.save}
+            </Button>
+          </Box>
         </Box>
       </Grid>
       {openUploadPolicy && (

@@ -281,7 +281,7 @@ const Dashboard = () => {
                               disableRipple={true}
                               sx={{
                                 mr: { xs: '10px', sm: '20px', md: '50px' },
-                                p: 0,
+                                // p: 0,
                               }}
                               label={
                                 <Box display={'flex'} alignItems={'center'}>

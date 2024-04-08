@@ -20,6 +20,14 @@ const HrAccess = ({ isHr, data }) => {
           flexDirection: { xs: 'column', md: 'row' },
           gap: '40px',
           paddingLeft: { xs: '0px', md: '50px' },
+
+          '@media (min-width: 900px) and (max-width: 1310px)': {
+            flexWrap: 'wrap',
+            '& > div': {
+              flex: '0 0 calc(50% - 20px)',
+              maxWidth: 'calc(50% - 20px)',
+            },
+          },
         }}
       >
         {isHr &&

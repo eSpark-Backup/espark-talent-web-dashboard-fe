@@ -13,7 +13,7 @@ const StartHiring = () => {
             sx={{
               display: 'flex',
               justifyContent: 'center',
-              paddingTop: { xs: '80px', md: '30px' },
+              paddingTop: { xs: '50px', md: '15px' },
               '@media (min-width: 900px) and (max-width: 1240px)': {
                 paddingTop: '50px',
               },

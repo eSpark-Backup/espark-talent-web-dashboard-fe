@@ -155,7 +155,7 @@ const TimeAndLeaves = () => {
           justifyContent: 'space-between',
           alignItems: { xs: 'flex-start', sm: 'center' },
           borderBottom: 'solid 1px #ccc',
-          mb: '20px',
+          mb: '40px',
         }}
       >
         <Tabs
@@ -165,6 +165,7 @@ const TimeAndLeaves = () => {
           }}
           aria-label="basic tabs example"
           variant="scrollable"
+          sx={{ mt: '8px' }}
         >
           {tabs?.map(({ label, prop }, tabIndex) => (
             <Tab
@@ -172,6 +173,7 @@ const TimeAndLeaves = () => {
               label={`${label}`}
               {...prop}
               disableRipple={true}
+              sx={{ marginRight: '10px' }}
             />
           ))}
         </Tabs>

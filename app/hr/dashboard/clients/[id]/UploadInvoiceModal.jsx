@@ -52,6 +52,7 @@ const UploadInvoiceModal = ({ open, onClose, title }) => {
         client_id: email,
       };
       mutate(finalData);
+      handleCloseModal();
     },
     validateOnChange: false,
     validateOnBlur: false,
@@ -97,6 +98,7 @@ const UploadInvoiceModal = ({ open, onClose, title }) => {
             sx={{
               fontSize: '25px',
               fontWeight: 600,
+              ml: '10px',
             }}
           >
             {title || 'Other invoice form'}
@@ -114,7 +116,7 @@ const UploadInvoiceModal = ({ open, onClose, title }) => {
             }}
             onClick={handleCloseModal}
           >
-            <Box component="img" src="/icons/Close.svg" sx={{}} />
+            <Box component="img" src="/icons/Close.svg" />
           </Box>
         </Box>
         <form onSubmit={handleSubmit}>
@@ -131,6 +133,7 @@ const UploadInvoiceModal = ({ open, onClose, title }) => {
                   placeholder,
                   errorText,
                   prefixIcon,
+                  dollarIcon,
                   type,
                   suffixIcon,
                   options,
@@ -149,6 +152,7 @@ const UploadInvoiceModal = ({ open, onClose, title }) => {
                       placeholder={placeholder}
                       errorText={errorText}
                       prefixIcon={prefixIcon}
+                      dollarIcon={dollarIcon}
                       type={type}
                       suffixIcon={suffixIcon}
                       options={options}
@@ -162,6 +166,9 @@ const UploadInvoiceModal = ({ open, onClose, title }) => {
                       setErrors={setErrors}
                       values={values}
                       nested={nested}
+                      xs={12}
+                      sm={12}
+                      md={12}
                       lg={12}
                       fields={fields}
                       accept={accept}

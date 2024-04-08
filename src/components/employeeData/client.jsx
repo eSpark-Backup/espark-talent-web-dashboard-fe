@@ -69,7 +69,7 @@ const Client = () => {
           justifyContent: 'space-between',
           alignItems: 'center',
           borderBottom: 'solid 1px #ccc',
-          mb: '20px',
+          mb: '40px',
         }}
       >
         <Tabs
@@ -79,6 +79,7 @@ const Client = () => {
           }}
           aria-label="basic tabs example"
           variant="scrollable"
+          sx={{ mt: '8px' }}
         >
           {tabs?.map(({ label, prop }, tabIndex) => (
             <Tab
@@ -86,6 +87,7 @@ const Client = () => {
               label={`${label}`}
               {...prop}
               disableRipple={true}
+              sx={{ marginRight: '10px' }}
             />
           ))}
         </Tabs>

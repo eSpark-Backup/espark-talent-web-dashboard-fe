@@ -243,6 +243,7 @@ const Dashboard = () => {
                     <Tab
                       key={i}
                       disableRipple={true}
+                      sx={{ mr: '20px', color: '#595959' }}
                       label={`${label} (${
                         filterTableRowsWRTTab(
                           i === 0

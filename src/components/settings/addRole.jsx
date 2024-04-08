@@ -271,6 +271,7 @@ const Role = () => {
           <Grid
             item
             xs={12}
+            sm={6}
             md={2.5}
             sx={{
               display: 'flex',
@@ -281,6 +282,12 @@ const Role = () => {
               height: ' 520px',
               gap: '15px',
               marginTop: '17px',
+              '@media (min-width: 600px) and (max-width: 900px)': {
+                mx: 'auto',
+              },
+              '@media (min-width: 280px) and (max-width: 600px)': {
+                ml: '20px',
+              },
             }}
           >
             <Typography

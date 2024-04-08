@@ -83,6 +83,7 @@ const RequestStatusTabs = () => {
                                 sm: '20px',
                                 md: '50px',
                               },
+                              color: '#595959',
                               p: 0,
                             }}
                             label={

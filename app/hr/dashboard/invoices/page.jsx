@@ -1,7 +1,7 @@
 'use client';
 import { Button, Grid, Typography } from '@mui/material';
 import { Box, useTheme } from '@mui/system';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 
 import AppTable from '@/src/components/appTableNew/AppTable';
@@ -27,21 +27,21 @@ import { Toast } from '@/src/components/Toast/Toast';
 const Page = () => {
   const router = useRouter();
   const { data } = useSelector((state) => state.hr.invoices);
-  const [id, setId] = useState('');
   const [designation, setDesignation] = useState();
+  const [search, setSearch] = useState(false);
   const [selectedClient, setSelectedClient] = useState(null);
   const [isLoadingList, setIsLoadingList] = useState(false);
+  const [name, setName] = useState('');
+
   const theme = useTheme();
   const dispatch = useDispatch();
   const { isLoading } = useQuery({
     staleTime: 10000,
     queryKey: ['hr-invoices-query'],
     queryFn: async () => {
-      // dispatch(fetchClientPoliciesRequest());
       return api
         .getData(`${HR_INVOICES}`)
         .then(({ data }) => {
-          // console.log({ data });
           const tempData =
             data?.map((item) => ({
               ...item,
@@ -79,7 +79,19 @@ const Page = () => {
     setSelectedClient(row?.id);
     clientInfoMutation.mutate(row?.id);
   };
-
+  useEffect(() => {
+    if (name === '') {
+      setSearch(false);
+      console.log(search); //build required this
+    }
+  }, [name]);
+  const handleSearch = () => {
+    const filteredData = data?.filter((item) => {
+      return item.company_name.toLowerCase().includes(name.toLowerCase());
+    });
+    return filteredData;
+  };
+  const filteredData = handleSearch();
   return (
     <>
       {isLoading ? (
@@ -100,17 +112,17 @@ const Page = () => {
             }}
             spacing={3}
           >
-            <Grid item xs={12} md={6} lg={3}>
+            <Grid item xs={12} md={6} lg={2.5}>
               <Input
-                value={id}
+                value={name}
                 width={'100%'}
-                handleChange={(e) => setId(e)}
+                handleChange={(e) => setName(e)}
                 placeHolder={'Client name'}
                 prefixIcon={'/icons/searchIconWhite.svg'}
-                name={'id'}
+                name={'name'}
               />
             </Grid>
-            <Grid item xs={12} md={6} lg={3}>
+            <Grid item xs={12} md={6} lg={2.5}>
               <AppDropdown
                 selectedItem={designation}
                 setSelectedItem={setDesignation}
@@ -131,12 +143,20 @@ const Page = () => {
             </Grid>
             <Grid item xs={12} md={6} lg={1}>
               <Button
-                style={{
+                sx={{
                   backgroundColor: '#029894',
                   color: '#FFF',
                   height: '40px',
-                  width: '100%',
+                  width: { xs: '100%', md: '50%' },
+                  '@media (min-width: 900px) and (max-width: 1200px)': {
+                    width: '10%',
+                  },
+                  '&:hover': {
+                    backgroundColor: '#029894',
+                    color: '#FFF',
+                  },
                 }}
+                onClick={handleSearch}
               >
                 <Image
                   width={24}
@@ -154,16 +174,17 @@ const Page = () => {
               my: '20px',
             }}
           >
-            <AppTable
-              hanldeInvLinkClick={handleClickLink}
-              column={invoicePageColumn}
-              data={data}
-            />
+            {filteredData && filteredData.length > 0 && (
+              <AppTable
+                hanldeInvLinkClick={handleClickLink}
+                column={invoicePageColumn}
+                data={data}
+              />
+            )}
           </Box>
         </Box>
       )}
     </>
   );
 };
-
 export default Page;

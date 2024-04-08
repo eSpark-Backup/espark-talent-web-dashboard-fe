@@ -22,8 +22,9 @@ const StatusBox = ({
           background: `${backgroundColor}`,
           justifyContent: 'space-between',
           alignItems: 'center',
-          '@media (min-width: 900px) and (max-width: 1275px)': {
+          '@media (min-width: 900px) and (max-width: 1290px)': {
             height: isHr ? '120px' : '110px',
+            // width: isHr ? '200px' : '100%',
           },
         }}
       >

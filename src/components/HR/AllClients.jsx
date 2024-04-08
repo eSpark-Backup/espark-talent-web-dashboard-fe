@@ -20,12 +20,14 @@ const AllClients = () => {
   const [id, setId] = useState('');
   const [name, setName] = useState('');
   const [search, setSearch] = useState(false);
+
   const theme = useTheme();
   useEffect(() => {
     if (name === '' && id === '') {
       setSearch(false);
     }
   }, [name, id]);
+
   const { data, isLoading } = useQuery({
     staleTime: 10000,
     queryKey: ['clientsQuery'],
@@ -34,21 +36,24 @@ const AllClients = () => {
         .getData(HR_GET_CLIENTS)
         .then(({ data }) => {
           console.log({ data });
-          // console.log('API Success');
-          // dispatch(getEmpDataSuccess(data));
-          // console.log('API Success1');
           return data || [];
         })
         .catch((error) => {
           Toast('error', error.message || 'Failed to get data');
-          // console.log('API Failed');
-          // dispatch(getEmpDataFailed());
           console.log({ error });
         });
     },
   });
-  // console.log({ data, isLoading });
 
+  const handleSearch = () => {
+    const filteredData = data?.filter((item) => {
+      return item.name.toLowerCase().includes(name.toLowerCase());
+    });
+    console.log('Search results:', filteredData);
+    return filteredData;
+  };
+  const filteredData = handleSearch();
+  console.log('test', data);
   return (
     <>
       <Box
@@ -57,6 +62,7 @@ const AllClients = () => {
           justifyContent: 'space-between',
           padding: '30px',
           flexWrap: 'wrap',
+          marginTop: '20px',
         }}
       >
         <Typography
@@ -65,6 +71,7 @@ const AllClients = () => {
             fontSize: '30px',
             fontWeight: '600',
             mr: '12px',
+            // mt: '20px',
           }}
         >
           Clients
@@ -78,11 +85,15 @@ const AllClients = () => {
               color: '#FFF',
               textTransform: 'math-auto',
               fontSize: '16px',
+              height: '40px',
               '&:hover': {
                 backgroundColor: '#029894',
                 color: '#FFF',
               },
-              marginTop: { xs: '25px', md: '0px' },
+              '@media (min-width: 200px) and (max-width: 600px)': {
+                marginTop: '8px',
+              },
+              marginTop: { xs: '25px', sm: '5px', md: '0px' },
             }}
             onClick={() => router.push('/hr/dashboard/clients/add-client')}
           >
@@ -94,7 +105,7 @@ const AllClients = () => {
         <Grid
           container
           sx={{
-            marginTop: '20px',
+            marginTop: '-5px',
             [theme.breakpoints.down('md')]: {
               paddingLeft: '0px',
             },
@@ -104,7 +115,7 @@ const AllClients = () => {
           }}
           spacing={3}
         >
-          <Grid item xs={12} md={6} lg={2.5}>
+          <Grid item xs={12} md={6} lg={3}>
             <Input
               value={id}
               width={'100%'}
@@ -114,7 +125,7 @@ const AllClients = () => {
               name={'id'}
             />
           </Grid>
-          <Grid item xs={12} md={6} lg={2.5}>
+          <Grid item xs={12} md={6} lg={3}>
             <Input
               value={name}
               width={'100%'}
@@ -124,9 +135,9 @@ const AllClients = () => {
               name={'name'}
             />
           </Grid>
-          <Grid item xs={12} md={6} lg={0.5}>
+          <Grid item xs={12} md={1} lg={0.5}>
             <Button
-              onClick={() => setSearch(true)}
+              onClick={handleSearch}
               style={{
                 backgroundColor: '#029894',
                 color: '#FFF',
@@ -143,21 +154,16 @@ const AllClients = () => {
             </Button>
           </Grid>
         </Grid>
-        <ClientView
-          search={search}
-          id={id}
-          name={name}
-          status={'All'}
-          data={data}
-          isLoading={isLoading}
-        />
-        {/* {value === 'one' ? (
-          <ClientView search={search} id={id} name={name} status={'All'} />
-        ) : value === 'two' ? (
-          <ClientView status={'Active'} id={id} name={name} search={search} />
-        ) : (
-          <ClientView id={id} name={name} status={'Inactive'} search={search} />
-        )} */}
+        {filteredData && filteredData.length > 0 && (
+          <ClientView
+            search={search}
+            id={id}
+            name={name}
+            status={'All'}
+            data={filteredData}
+            isLoading={isLoading}
+          />
+        )}
       </Box>
     </>
   );

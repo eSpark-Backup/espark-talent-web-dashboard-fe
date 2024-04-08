@@ -18,15 +18,16 @@ const Step = ({
   editProfile,
   countries,
   mt,
+  gap,
+  midScreenGap,
   isLastStep,
+  countNo,
   defaultValues,
   getFinalData,
   dispatchFunction,
   method,
   endpoint,
-  // handleData,
 }) => {
-  // const { addEmployeeForm } = useSelector((state) => state.hr?.employees);
   const { mutate } = useMutation({
     mutationFn: async (formVals) => {
       console.log({ formVals });
@@ -34,11 +35,6 @@ const Step = ({
       for (const key in formVals) {
         formDataVals.append(key, formVals[key]);
       }
-
-      // console.log({ formVals, formData });
-      // return {
-      //   data: {},
-      // };
       return api[method](endpoint, formDataVals);
     },
     onSuccess: ({ data }) => {
@@ -48,6 +44,7 @@ const Step = ({
       console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
+
   const {
     handleSubmit,
     values,
@@ -79,9 +76,6 @@ const Step = ({
     console.log({ values, errors });
     handleGoPrev();
   };
-  // useEffect(() => {
-  //   console.log({ defaultValues, values, errors });
-  // });
 
   if (isMultiColumn)
     return (
@@ -90,6 +84,9 @@ const Step = ({
           container
           sx={{
             p: { xs: '20px', md: '95px 90px' },
+            '@media (min-width: 350px) and (max-width: 900px)': {
+              p: '40px',
+            },
           }}
         >
           <Grid container columnSpacing={'40px'} p={'0 10px'}>
@@ -103,7 +100,7 @@ const Step = ({
               >
                 <Box
                   sx={{
-                    border: 'solid 1px #ccc',
+                    border: 'solid 1px #E4E4E4',
                     borderTopLeftRadius: '10px',
                     borderTopRightRadius: '10px',
                     overflow: 'hidden',
@@ -161,7 +158,7 @@ const Step = ({
                             errors={errors}
                             setErrors={setErrors}
                             values={values}
-                            // handleData={handleData}
+                            width={'70%'}
                             accept={accept}
                           />
                         )
@@ -191,7 +188,7 @@ const Step = ({
                   mb: { xs: '20px', md: '0' },
                   fontSize: '16px',
                 }}
-                variant="outlined"
+                variant={countNo === 1 ? 'outlined' : 'contained'}
               >
                 {FORM_DATA?.back}
               </Button>
@@ -216,6 +213,11 @@ const Step = ({
         container
         sx={{
           p: { xs: '20px', md: pmd },
+          display: 'flex',
+          gap: gap ? gap : 0,
+          '@media (min-width: 280px) and (max-width: 1460px)': {
+            gap: midScreenGap ? midScreenGap : 0,
+          },
         }}
       >
         {form?.map(
@@ -260,7 +262,6 @@ const Step = ({
               countries={countries}
               withFlag={withFlag}
               searchable={searchable}
-              // handleData={handleData}
               accept={accept}
             />
           )
@@ -311,14 +312,19 @@ const Step = ({
                   minWidth: { xs: '100%', sm: '120px' },
                   mb: { xs: '20px', md: '0' },
                   fontSize: '16px',
+                  mt: { xs: '0px', md: countNo === 2 ? mt : '0px' },
                 }}
-                variant="outlined"
+                variant={countNo === 1 ? 'outlined' : 'contained'}
               >
                 {FORM_DATA?.back}
               </Button>
               <Button
                 type="submit"
-                sx={{ minWidth: { xs: '100%', sm: '120px' }, fontSize: '16px' }}
+                sx={{
+                  minWidth: { xs: '100%', sm: '120px' },
+                  fontSize: '16px',
+                  mt: { xs: '0px', md: countNo === 2 ? mt : '0px' },
+                }}
                 variant="contained"
               >
                 {isLastStep ? 'Submit' : 'Next'}

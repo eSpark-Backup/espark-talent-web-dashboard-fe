@@ -31,6 +31,11 @@ const UploadOtherInvoiceModal = ({ open, onClose, title }) => {
       console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
+  const handleCloseModal = () => {
+    handleReset();
+    onClose();
+  };
+
   const {
     handleSubmit,
     values,
@@ -52,14 +57,12 @@ const UploadOtherInvoiceModal = ({ open, onClose, title }) => {
         client_id: email,
       };
       mutate(finalData);
+      handleCloseModal();
     },
     validateOnChange: false,
     validateOnBlur: false,
   });
-  const handleCloseModal = () => {
-    handleReset();
-    onClose();
-  };
+
   return (
     <Modal
       open={open}
@@ -114,7 +117,7 @@ const UploadOtherInvoiceModal = ({ open, onClose, title }) => {
             }}
             onClick={handleCloseModal}
           >
-            <Box component="img" src="/icons/Close.svg" sx={{}} />
+            <Box component="img" src="/icons/Close.svg" />
           </Box>
         </Box>
         <form onSubmit={handleSubmit}>
@@ -131,6 +134,7 @@ const UploadOtherInvoiceModal = ({ open, onClose, title }) => {
                   placeholder,
                   errorText,
                   prefixIcon,
+                  dollarIcon,
                   type,
                   suffixIcon,
                   options,
@@ -149,6 +153,7 @@ const UploadOtherInvoiceModal = ({ open, onClose, title }) => {
                       placeholder={placeholder}
                       errorText={errorText}
                       prefixIcon={prefixIcon}
+                      dollarIcon={dollarIcon}
                       type={type}
                       suffixIcon={suffixIcon}
                       options={options}
@@ -162,6 +167,9 @@ const UploadOtherInvoiceModal = ({ open, onClose, title }) => {
                       setErrors={setErrors}
                       values={values}
                       nested={nested}
+                      xs={12}
+                      sm={12}
+                      md={12}
                       lg={12}
                       fields={fields}
                       accept={accept}

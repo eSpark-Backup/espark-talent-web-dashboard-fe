@@ -75,6 +75,7 @@ const LeaveManagementModal = ({ open, onClose }) => {
             sx={{
               fontSize: '25px',
               fontWeight: 600,
+              ml: '15px',
             }}
           >
             {FORM_DATA?.timeManagement}
@@ -154,7 +155,7 @@ const LeaveManagementModal = ({ open, onClose }) => {
                 variant="contained"
                 type="submit"
               >
-                {FORM_DATA?.submit}
+                Save
               </Button>
             </Grid>
           </Grid>

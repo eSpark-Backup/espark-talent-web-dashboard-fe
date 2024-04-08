@@ -23,7 +23,9 @@ const AddContractModal = ({ open, onClose }) => {
     initialValues: {},
     validationSchema: contractFormSchema,
     enableReinitialize: true,
-    onSubmit: () => {},
+    onSubmit: () => {
+      handleCloseModal();
+    },
     validateOnChange: false,
     validateOnBlur: false,
   });
@@ -50,7 +52,7 @@ const AddContractModal = ({ open, onClose }) => {
       <Box
         sx={{
           bgcolor: '#fff',
-          width: { xs: '90%', sm: '90%', md: '50%' },
+          width: { xs: '90%', sm: '90%', md: '43%' },
           display: 'flex',
           flexDirection: 'column',
           borderRadius: '10px',
@@ -77,6 +79,7 @@ const AddContractModal = ({ open, onClose }) => {
             sx={{
               fontSize: '25px',
               fontWeight: 600,
+              ml: '10px',
             }}
           >
             {CONTRACT_SIGNED?.contractForm}
@@ -94,14 +97,14 @@ const AddContractModal = ({ open, onClose }) => {
             }}
             onClick={handleCloseModal}
           >
-            <Box component="img" src="/icons/Close.svg" sx={{}} />
+            <Box component="img" src="/icons/Close.svg" />
           </Box>
         </Box>
         <form onSubmit={handleSubmit}>
           <Grid
             container
             sx={{
-              padding: { xs: '10px 20px', xl: '41px 100px' },
+              padding: { xs: '30px 20px', lg: '41px 60px' },
             }}
           >
             {contractForm.map(
@@ -141,6 +144,8 @@ const AddContractModal = ({ open, onClose }) => {
                       setErrors={setErrors}
                       values={values}
                       nested={nested}
+                      xs={12}
+                      sm={12}
                       md={12}
                       lg={12}
                       fields={fields}

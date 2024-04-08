@@ -7,7 +7,7 @@ import Image from 'next/image';
 import AppConfirmationMadal from '../modals/AppConfirmationMadal';
 import { useRouter } from 'next/navigation';
 import { REMOVE_MODAL } from '@/src/constants/contractSigned';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useMutation } from '@tanstack/react-query';
 import { HR_EMPLOYEES } from '@/src/services/apiService/apiEndPoints';
 import {
@@ -18,8 +18,8 @@ import {
 import { api } from '@/src/services/apiService';
 import { Toast } from '../Toast/Toast';
 
-const EmployeeView = ({ status }) => {
-  const { data } = useSelector((state) => state?.hr?.employees);
+const EmployeeView = ({ status, data }) => {
+  // const { data } = useSelector((state) => state?.hr?.employees);
   const [anchorEl, setAnchorEl] = useState(null);
   const dispatch = useDispatch();
   const open = Boolean(anchorEl);
@@ -293,10 +293,10 @@ const EmployeeView = ({ status }) => {
                   minHeight: '200px',
                   backgroundColor: '#F6F6F6',
                   borderRadius: '5px',
-                  boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
+                  boxShadow: '0px 0px 4px 0px rgba(0, 0, 0, 0.30)',
                   padding: '20px 15px 10px 15px',
                   cursor: 'pointer',
-                  '@media (min-width: 900px) and (max-width: 1480px)': {
+                  '@media (min-width: 900px) and (max-width: 1600px)': {
                     minHeight: '250px',
                   },
                 }}
@@ -347,12 +347,12 @@ const EmployeeView = ({ status }) => {
                       alignItems: 'center',
                       flexDirection: 'column',
                       rowGap: '5px',
-                      '@media (min-width: 1200px) and (max-width: 1450px)': {
-                        marginTop: '25px',
+                      '@media (min-width: 1200px) and (max-width: 1920px)': {
+                        marginTop: '10px',
                         mr: '35px',
                       },
-                      '@media (min-width: 900px) and (max-width: 980px)': {
-                        marginTop: '25px',
+                      '@media (min-width: 900px) and (max-width: 1200px)': {
+                        marginTop: '30px',
                         mr: '35px',
                       },
                     }}
@@ -404,7 +404,10 @@ const EmployeeView = ({ status }) => {
                         vertical: 'top',
                         horizontal: 'right',
                       }}
-                      sx={{ marginTop: '20px' }}
+                      sx={{
+                        marginTop: '30px',
+                        marginLeft: '20px',
+                      }}
                     >
                       <MenuItem onClick={(e) => handleOpenRemove(e, eachItem)}>
                         Remove
@@ -424,6 +427,7 @@ const EmployeeView = ({ status }) => {
         isOpen={isOpen}
         handleClose={handleCloseModal}
         handleConfirm={handleConfirm}
+        width={'25%'}
       />
     </>
   );

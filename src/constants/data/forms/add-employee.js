@@ -133,6 +133,7 @@ const formElementsStep3 = [
     suffixIcon: 'calender',
     type: 'date',
     name: 'joining_date',
+    col: 3,
   },
   {
     title: 'Designation',
