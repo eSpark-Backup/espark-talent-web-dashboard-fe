@@ -74,10 +74,11 @@ const ClientProfileData = ({
         >
           <Box
             component="img"
-            src="/icons/Employee.svg"
+            src={currentClient?.image_path}
             sx={{
               width: { xs: '70px', md: '100px' },
               height: { xs: '70px', md: '100px' },
+              borderRadius: '50%',
             }}
           />
           <Box

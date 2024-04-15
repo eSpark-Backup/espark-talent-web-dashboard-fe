@@ -14,7 +14,7 @@ import { Toast } from '../Toast/Toast';
 const EditEmployeeCredential = ({ onClose, open }) => {
   const { mutate } = useMutation({
     mutationFn: async (data) => {
-      return api.daleteData(`${HR_UPDATE_EMP_CREDS}`, data);
+      return api.updateJSONData(`${HR_UPDATE_EMP_CREDS}`, data);
     },
     onSuccess: ({ data }) => {
       Toast('success', 'Data deleted successfully');

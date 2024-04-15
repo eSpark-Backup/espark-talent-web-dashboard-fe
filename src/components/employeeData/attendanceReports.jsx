@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Modal, Tab, Tabs } from '@mui/material';
+import { Box, Modal, Tab, Tabs, Typography } from '@mui/material';
 
 import { timeSheetTableColumn } from '@/src/constants/data/tables/timeSheet';
 import AttendanceViewModal from '@/app/employee/dashboard/attendance/time-sheet/AttendanceViewModal';
@@ -122,6 +122,7 @@ const AttendanceReport = () => {
         });
     },
   });
+  console.log({ attendenceReportData: data });
   return (
     <>
       {isLoading ? (
@@ -134,44 +135,52 @@ const AttendanceReport = () => {
               overflowX: 'auto',
             }}
           >
-            <Tabs
-              value={currentTab.val}
-              onChange={(ev, newVal) => {
-                handleChangeTab(ev, newVal);
-              }}
-              aria-label="basic tabs example"
-              variant="scrollable"
-              sx={{
-                marginBottom: '20px',
-              }}
-            >
-              {data?.map((item, tabIndex) => {
-                console.log({ item });
-                return (
-                  <Tab
-                    key={tabIndex}
-                    label={`${item.client}`}
-                    // {...prop}
-                    disableRipple={true}
-                  />
-                );
-              })}
-            </Tabs>
-            {data?.map((item, index) => {
-              if (index === currentTab.val)
-                return (
-                  <AppTable
-                    key={index}
-                    column={timeSheetTableColumn}
-                    data={item?.emp_data?.time_sheet}
-                    handleClickActionView={handleAttendanceModal}
-                  />
-                );
-            })}
+            {data?.length ? (
+              <Tabs
+                value={currentTab.val}
+                onChange={(ev, newVal) => {
+                  handleChangeTab(ev, newVal);
+                }}
+                aria-label="basic tabs example"
+                variant="scrollable"
+                sx={{
+                  marginBottom: '20px',
+                }}
+              >
+                {data?.map((item, tabIndex) => {
+                  console.log({ item });
+                  return (
+                    <Tab
+                      key={tabIndex}
+                      label={`${item.client}`}
+                      // {...prop}
+                      disableRipple={true}
+                    />
+                  );
+                })}
+              </Tabs>
+            ) : null}
+            {data.length ? (
+              data?.map((item, index) => {
+                if (index === currentTab.val)
+                  return (
+                    <AppTable
+                      key={index}
+                      column={timeSheetTableColumn}
+                      data={item?.emp_data?.time_sheet}
+                      handleClickActionView={handleAttendanceModal}
+                    />
+                  );
+              })
+            ) : (
+              <Typography sx={{ my: '20px', textAlign: 'center' }} variant="h3">
+                No attendance record found!
+              </Typography>
+            )}
           </Box>
         </>
       )}
-      {data?.length && (
+      {data?.length ? (
         <Modal
           open={open}
           onClose={handleClose}
@@ -189,7 +198,7 @@ const AttendanceReport = () => {
             handleClose={handleClose}
           />
         </Modal>
-      )}
+      ) : null}
     </>
   );
 };

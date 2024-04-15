@@ -14,36 +14,54 @@ import LeaveManagementModal from '@/app/hr/dashboard/clients/client-profile/Leav
 import { FORM_DATA } from '@/src/constants/form';
 import { useParams } from 'next/navigation';
 import { api } from '@/src/services/apiService';
-import { HR_GET_EMP_TIME_AND_LEAVES } from '@/src/services/apiService/apiEndPoints';
+import { HR_EMP_TIME_AND_LEAVES } from '@/src/services/apiService/apiEndPoints';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { Toast } from '../Toast/Toast';
+import dayjs from 'dayjs';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  getHrEmpLeaves,
+  getHrEmpTime,
+} from '@/src/redux/slices/hrSlices/employeeSlice';
+import { useEffect } from 'react';
 
 const TimeAndLeaves = () => {
+  const dispatch = useDispatch();
+  const { time, leaves } = useSelector(
+    (state) => state?.hr?.employees?.timeAndLeaves
+  );
   const params = useParams();
   const [currentTab, setCurrentTab] = useState({
     label: 'Time',
     val: 0,
-    data: timeData,
+    data: [],
     column: timeColumn,
   });
+  useEffect(() => {
+    setCurrentTab({
+      label: 'Time',
+      val: 0,
+      data: time,
+      column: timeColumn,
+    });
+  }, [time]);
   const [isLoadingMutation, setIsLoadingMutation] = useState(false);
-  const [tabData, setTabData] = useState([]);
   const { isLoading } = useQuery({
     staleTime: 10000,
     queryKey: ['employee-time-profile'],
     queryFn: async () => {
       return api
-        .getData(`${HR_GET_EMP_TIME_AND_LEAVES}?id=${params.id}&tab=time`)
+        .getData(`${HR_EMP_TIME_AND_LEAVES}?id=${params.id}&tab=time`)
         .then(({ data }) => {
-          console.log({ data });
-          setTabData(
+          const tempData =
             [
               {
-                ...data,
+                check_in: dayjs(data?.check_in).format('hh:mm A'),
+                check_out: dayjs(data?.check_out).format('hh:mm A'),
               },
-            ] || []
-          );
-          return data || [];
+            ] || [];
+          dispatch(getHrEmpTime(tempData));
+          return tempData || [];
         })
         .catch((err) => {
           Toast('error', err.message || 'Failed to get data');
@@ -73,21 +91,25 @@ const TimeAndLeaves = () => {
     mutationFn: async (tab) => {
       setIsLoadingMutation(true);
       return api.getData(
-        `${HR_GET_EMP_TIME_AND_LEAVES}?id=${params.id}&tab=${tab.toLowerCase()}`
+        `${HR_EMP_TIME_AND_LEAVES}?id=${params.id}&tab=${tab.toLowerCase()}`
       );
     },
     onSuccess: ({ data }) => {
       console.log({ data });
       setIsLoadingMutation(false);
       if (currentTab.label === 'Time') {
-        console.log({ data });
-        setTabData([
-          {
-            ...data,
-          },
-        ]);
+        const tempData =
+          [
+            {
+              check_in: dayjs(data?.check_in).format('hh:mm A'),
+              check_out: dayjs(data?.check_out).format('hh:mm A'),
+            },
+          ] || [];
+        dispatch(getHrEmpTime(tempData));
       } else {
-        setTabData(reformData(data));
+        console.log({ reformed: reformData(data) });
+        dispatch(getHrEmpLeaves(reformData(data)));
+        // setTabData(reformData(data));
       }
       return data || [];
     },
@@ -120,7 +142,8 @@ const TimeAndLeaves = () => {
     setCurrentTab({
       label: tabs[newValue].label,
       val: newValue,
-      data: tabs[newValue].data,
+      // data: tabs[newValue].data,
+      data: newValue === 0 ? time : leaves,
       column: tabs[newValue].column,
     });
     mutate(tabs[newValue].label.toLowerCase());
@@ -144,7 +167,6 @@ const TimeAndLeaves = () => {
       handleOpenLeaveManagementModal();
     }
   };
-  console.log({ tabData });
   if (isLoading) return 'Loading...';
   return (
     <>
@@ -209,7 +231,7 @@ const TimeAndLeaves = () => {
           <AppTable
             currentTab={currentTab}
             column={currentTab.column}
-            data={tabData}
+            data={currentTab.val === 0 ? time : leaves}
             noPagination
           />
         )}

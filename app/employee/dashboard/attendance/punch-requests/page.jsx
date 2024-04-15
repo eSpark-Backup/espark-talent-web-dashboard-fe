@@ -39,12 +39,13 @@ const Dashboard = () => {
   );
   const { data } = useSelector((state) => state?.emp?.punchReq);
   const { isLoading } = useQuery({
-    staleTime: 10000,
+    // staleTime: 10000,
     queryFn: () => {
       dispatch(fetchEmpPunchRequestData());
       return api
         .getData(`${EMP_PUNCH_REQUEST}/?workspace=${workSpace?.email || ''}`)
         .then(({ data }) => {
+          console.log({ data });
           dispatch(getEmpPunchRequestDataSuccess(data || []));
           return data;
         })

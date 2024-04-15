@@ -8,11 +8,17 @@ import Navigator from '@/src/components/form/step/Navigator';
 import Breadcrumb from '@/src/components/form/step/Breadcrumb';
 import { useDispatch, useSelector } from 'react-redux';
 import dayjs from 'dayjs';
-import { addEmployeeFormData } from '@/src/redux/slices/hrSlices/employeeSlice';
+import {
+  addEmployeeFormData,
+  clearEmployeeFormData,
+} from '@/src/redux/slices/hrSlices/employeeSlice';
 import { HR_ADD_EMPLOYEES } from '@/src/services/apiService/apiEndPoints';
+import { useRouter } from 'next/navigation';
+import { Toast } from '@/src/components/Toast/Toast';
 
 const AddEmployee = () => {
   const dispatch = useDispatch();
+  const router = useRouter();
   const [currentStep, setCurrentStep] = useState(1);
   const { addEmployeeForm } = useSelector((state) => state.hr?.employees);
   // useEffect(() => {
@@ -87,6 +93,15 @@ const AddEmployee = () => {
   const dispatchFunction = (values) => {
     dispatch(addEmployeeFormData(values));
   };
+  const handleNavigate = () => {
+    router.push('/hr/dashboard/employees');
+  };
+  const clearForm = () => {
+    dispatch(clearEmployeeFormData());
+  };
+  const handleToast = () => {
+    Toast('success', 'Employee created successfully');
+  };
   return (
     <Box>
       <Breadcrumb title="Employees /" currentPage="Add employee" />
@@ -134,6 +149,9 @@ const AddEmployee = () => {
                   dispatchFunction={dispatchFunction}
                   method="postData"
                   endpoint={HR_ADD_EMPLOYEES}
+                  navigateFunc={handleNavigate}
+                  clearForm={clearForm}
+                  toast={handleToast}
                 />
               );
             }

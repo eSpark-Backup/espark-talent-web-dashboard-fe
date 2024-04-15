@@ -2,12 +2,12 @@ export const contractForm = [
   {
     title: 'Contract name',
     placeholder: 'Enter contract name',
-    name: 'contractName',
+    name: 'contract_name',
   },
   {
     title: 'Client ID',
     placeholder: 'Enter client ID',
-    name: 'email',
+    name: 'client_id',
   },
   {
     title: 'Date',
@@ -21,19 +21,20 @@ export const contractForm = [
     placeholder: 'Upload contract',
     prefixIcon: 'upload',
     type: 'file',
-    name: 'upload',
+    name: 'contract_doc',
+    accept: '.pdf',
   },
 ];
 export const employeeContractForm = [
   {
     title: 'Contract name',
     placeholder: 'Enter contract name',
-    name: 'contractName',
+    name: 'contract_name',
   },
   {
     title: 'Employee ID',
     placeholder: 'Enter employee ID',
-    name: 'email',
+    name: 'employee_id',
   },
   {
     title: 'Date',
@@ -47,7 +48,7 @@ export const employeeContractForm = [
     placeholder: 'Upload contract',
     prefixIcon: 'upload',
     type: 'file',
-    name: 'upload',
+    name: 'contract_doc',
   },
 ];
 export const contractFormHrPortal = [

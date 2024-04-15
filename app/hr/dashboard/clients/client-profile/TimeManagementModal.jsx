@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box, Button, Grid, Modal, Typography } from '@mui/material';
 
 import { timeManagementFormSchema } from '@/src/components/form/schemas/timeManagementModal';
@@ -6,8 +6,47 @@ import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { timeManagementForm } from '@/src/constants/data/forms/time-management-modal';
 import { useFormik } from 'formik';
 import { FORM_DATA } from '@/src/constants/form';
+import { useMutation } from '@tanstack/react-query';
+import { api } from '@/src/services/apiService';
+import { HR_EMP_TIME_AND_LEAVES } from '@/src/services/apiService/apiEndPoints';
+import { useDispatch, useSelector } from 'react-redux';
+import dayjs from 'dayjs';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
+import { useEffect } from 'react';
+import { Toast } from '@/src/components/Toast/Toast';
+import {
+  updateEmpTime,
+  updateEmpTimeRequest,
+} from '@/src/redux/slices/hrSlices/employeeSlice';
+dayjs.extend(customParseFormat);
 
 const TimeManagementModal = ({ open, onClose }) => {
+  const [check_in, setCheck_in] = useState(null);
+  const [check_out, setCheck_out] = useState(null);
+  const [newTimeArray, setNewTimeArray] = useState(null);
+  const { time } = useSelector((state) => state?.hr?.employees?.timeAndLeaves);
+  const { id } = useSelector((state) => state?.hr?.employees?.currentEmployee);
+  const dispatch = useDispatch();
+  const { mutate } = useMutation({
+    mutationFn: async (formVals) => {
+      dispatch(updateEmpTimeRequest());
+      return api.updateJSONData(
+        `${HR_EMP_TIME_AND_LEAVES}?id=${id}&tab=time`,
+        formVals
+      );
+    },
+    onSuccess: () => {
+      Toast('success', 'Time updates successfully');
+      dispatch(updateEmpTime(newTimeArray));
+      setNewTimeArray(null);
+      // setIsOpenSavePolicies(false);
+      onClose();
+    },
+    onError: (err) => {
+      Toast('error', err.message || 'Failed to post data');
+    },
+  });
+
   const {
     handleSubmit,
     values,
@@ -18,11 +57,23 @@ const TimeManagementModal = ({ open, onClose }) => {
     setErrors,
     handleReset,
   } = useFormik({
-    initialValues: {},
+    initialValues: {
+      check_in: time[0]['check_in'],
+      check_out: time[0]['check_out'],
+    },
     validationSchema: timeManagementFormSchema,
     enableReinitialize: true,
     onSubmit: (formValues) => {
-      console.log({ formValues });
+      setNewTimeArray([
+        {
+          check_in: dayjs(formValues.check_in).format('hh:mm a'),
+          check_out: dayjs(formValues.check_out).format('hh:mm a'),
+        },
+      ]);
+      mutate({
+        check_in: dayjs(formValues.check_in).format('hh:mm a'),
+        check_out: dayjs(formValues.check_out).format('hh:mm a'),
+      });
     },
     validateOnChange: false,
     validateOnBlur: false,
@@ -31,6 +82,26 @@ const TimeManagementModal = ({ open, onClose }) => {
     handleReset();
     onClose();
   };
+  function convert12to24(time12h) {
+    const [time, modifier] = time12h.split(' ');
+
+    let hours = time.split(':')[0];
+    const minutes = time.split(':')[1];
+
+    if (hours === '12') {
+      hours = '00';
+    }
+
+    if (modifier === 'PM') {
+      hours = parseInt(hours, 10) + 12;
+    }
+    return `${hours}:${minutes}`;
+  }
+  useEffect(() => {
+    setCheck_in(convert12to24(values['check_in']));
+    setCheck_out(convert12to24(values['check_out']));
+  }, [time]);
+
   return (
     <Modal
       open={open}
@@ -125,7 +196,10 @@ const TimeManagementModal = ({ open, onClose }) => {
                       options={options}
                       name={name}
                       setFieldValue={setFieldValue}
-                      value={values[name]}
+                      // value={dayjs(convert12to24(values[name]))}
+                      value={dayjs(
+                        `2000-01-01T${name === 'check_in' ? check_in : check_out}`
+                      )}
                       error={errors[name]}
                       touched={touched}
                       setFieldError={setFieldError}

@@ -56,8 +56,11 @@ export const personalDetailsForm = [
   },
   {
     title: 'Role',
-    placeholder: 'Select role',
+    placeholder: 'Select',
+    name: 'role',
     type: 'select',
+    defaultValue: 'Junior',
+
     options: [
       {
         label: 'Senior',
@@ -72,8 +75,17 @@ export const personalDetailsForm = [
         label: 'Intern',
       },
     ],
-    name: 'roleType',
   },
+  // {
+  //   title: 'Email',
+  //   placeholder: 'Enter email',
+  //   name: 'email',
+  // },
+  // {
+  //   title: 'Team',
+  //   placeholder: 'johndoe@1123.com',
+  //   name: 'team',
+  // },
   {
     title: 'Job title',
     placeholder: 'Select job',

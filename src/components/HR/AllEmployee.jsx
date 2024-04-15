@@ -56,7 +56,7 @@ const AllEmployee = ({ fromClient, openModal }) => {
           // console.log('API Success');
           dispatch(getEmpDataSuccess(data));
           // console.log('API Success1');
-          return data;
+          return data || [];
         })
         .catch((error) => {
           Toast('error', error.message || 'Failed to get data');
@@ -182,8 +182,8 @@ const AllEmployee = ({ fromClient, openModal }) => {
         </Typography>
         {value === 'one' && (
           <>
-            {(role === 'super admin' ||
-              (role !== 'super admin' && employee_perms?.[0]?.write)) && (
+            {(role === 'super_admin' ||
+              (role !== 'super_admin' && employee_perms?.[0]?.write)) && (
               <Button
                 sx={{
                   backgroundColor: '#029894',
@@ -318,6 +318,18 @@ const AllEmployee = ({ fromClient, openModal }) => {
                 alt="Refresh"
                 src={`/icons/searchIconWhite.svg`}
               />
+              {/* <Box
+                component={'img'}
+                sx={{
+                  height: '100px',
+                  width: '100px',
+                  background: '#fff',
+                  borderRadius: '50%',
+                  padding: '5px',
+                }}
+                alt="Employee"
+                src={data?.[0]?.image_path}
+              /> */}
             </Button>
           </Grid>
         </Grid>

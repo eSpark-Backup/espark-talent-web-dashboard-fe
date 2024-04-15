@@ -1,19 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box, Button, Grid, Modal, Typography } from '@mui/material';
 
 import { uploadOthInvoiceFormSchema } from '@/src/components/form/schemas/uploadInvoice';
 import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { uploadOtherInvoiceForm } from '@/src/constants/data/forms/upload-invoice';
 import { useFormik } from 'formik';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useMutation } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import { HR_CLIENT_OTHER_INVOICE } from '@/src/services/apiService/apiEndPoints';
 import dayjs from 'dayjs';
 import { Toast } from '@/src/components/Toast/Toast';
+import { addOthInvoice } from '@/src/redux/slices/hrSlices/clientSlice';
 
 const UploadOtherInvoiceModal = ({ open, onClose, title }) => {
+  const { invoices_perms } =
+    useSelector((state) => state?.hr?.home?.homeData) || {};
+  const dispatch = useDispatch();
   const { email } = useSelector((state) => state?.hr?.clients?.currentClient);
+  const { role } = useSelector((state) => state?.auth?.userData);
+  const [othInvoiceFormValues, setOthInvoiceFormValues] = useState(null);
   const { mutate } = useMutation({
     mutationFn: async (formVals) => {
       const formData = new FormData();
@@ -23,8 +29,24 @@ const UploadOtherInvoiceModal = ({ open, onClose, title }) => {
       return api.postData(HR_CLIENT_OTHER_INVOICE, formData);
     },
     onSuccess: ({ data }) => {
+      console.log({ data, othInvoiceFormValues });
       Toast('success', 'Data posted successfully');
-      console.log({ data });
+      dispatch(
+        addOthInvoice({
+          data: {
+            ...othInvoiceFormValues,
+            action:
+              role === 'super_admin' ||
+              (role !== 'super_admin' && invoices_perms?.[0]?.write)
+                ? ['Delete']
+                : ['-'],
+            id: data.id,
+            download: 'Download',
+          },
+          type: othInvoiceFormValues.payment_status,
+        })
+      );
+      setOthInvoiceFormValues(null);
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to post data');
@@ -56,6 +78,7 @@ const UploadOtherInvoiceModal = ({ open, onClose, title }) => {
         invoice_date: dayjs(formValues.invoice_date).format('YYYY-MM-DD'),
         client_id: email,
       };
+      setOthInvoiceFormValues(finalData);
       mutate(finalData);
       handleCloseModal();
     },

@@ -3,12 +3,12 @@ export const timeManagementForm = [
     title: 'Checkin time',
     placeholder: '--:-- --',
     type: 'time',
-    name: 'checkinTime',
+    name: 'check_in',
   },
   {
     title: 'Checkout time',
     placeholder: '--:-- --',
     type: 'time',
-    name: 'checkoutTime',
+    name: 'check_out',
   },
 ];

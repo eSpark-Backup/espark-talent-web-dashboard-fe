@@ -6,11 +6,16 @@ import { Toast } from '@/src/components/Toast/Toast';
 import { addEmployeeModalFormSteps } from '@/src/constants/data/forms/add-employee-modal';
 import { FORM_DATA } from '@/src/constants/form';
 import {
+  getClientAllEmps,
+  getClientAllEmpsRequest,
   getOutsourceableEmps,
   selectEmployeeToAdd,
 } from '@/src/redux/slices/hrSlices/clientSlice';
 import { api } from '@/src/services/apiService';
-import { HR_OUTSOURCEABLE_EMPS } from '@/src/services/apiService/apiEndPoints';
+import {
+  HR_CLIENT_EMPLOYEES,
+  HR_OUTSOURCEABLE_EMPS,
+} from '@/src/services/apiService/apiEndPoints';
 import { Box, Button, Grid, Modal } from '@mui/material';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import dayjs from 'dayjs';
@@ -19,6 +24,23 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 const AddEmployeeModal = ({ open, onClose }) => {
+  const { currentClient, outsourceableEmployees, currentEmpToAddInClient } =
+    useSelector((state) => state?.hr?.clients);
+  const { email } = currentClient;
+
+  const getClientEmpsMutation = useMutation({
+    mutationFn: async () => {
+      dispatch(getClientAllEmpsRequest());
+      return api.getData(`${HR_CLIENT_EMPLOYEES}?c_email=${email}&tab=all`);
+    },
+    onSuccess: ({ data }) => {
+      dispatch(getClientAllEmps(data));
+    },
+    onError: (err) => {
+      Toast('error', err.message || 'Failed to post data');
+      console.log({ err: err.message, name: err.name, stack: err.stack });
+    },
+  });
   const { mutate } = useMutation({
     mutationFn: async (formVals) => {
       return api.postJSONData(
@@ -28,6 +50,7 @@ const AddEmployeeModal = ({ open, onClose }) => {
     },
     onSuccess: ({ data }) => {
       Toast('success', 'Data posted successfully');
+      getClientEmpsMutation.mutate();
       console.log({ data });
     },
     onError: (err) => {
@@ -36,9 +59,6 @@ const AddEmployeeModal = ({ open, onClose }) => {
     },
   });
   const dispatch = useDispatch();
-  const { currentClient, outsourceableEmployees, currentEmpToAddInClient } =
-    useSelector((state) => state?.hr?.clients);
-  const { email } = currentClient;
   const [currentStep, setCurrentStep] = useState(1);
   const [isDisabledNext, setIsDisabledNext] = useState(true);
   const [modalStep1FormTableState, setModalStep1FormTableState] = useState([]);
@@ -49,7 +69,10 @@ const AddEmployeeModal = ({ open, onClose }) => {
   const handleSelectRow = (employeeId) => {
     dispatch(selectEmployeeToAdd(employeeId));
     console.log({ employeeId });
-    const tempForm = [...modalStep1FormTableState];
+    const tempForm = [...modalStep1FormTableState].map((item) => ({
+      ...item,
+      isSelected: false,
+    }));
     const employeeIndex = tempForm.findIndex((el) => el.id === employeeId);
     tempForm[employeeIndex] = {
       ...tempForm[employeeIndex],

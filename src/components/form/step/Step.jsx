@@ -27,6 +27,9 @@ const Step = ({
   dispatchFunction,
   method,
   endpoint,
+  clearForm,
+  navigateFunc,
+  toast,
 }) => {
   const { mutate } = useMutation({
     mutationFn: async (formVals) => {
@@ -39,6 +42,9 @@ const Step = ({
     },
     onSuccess: ({ data }) => {
       console.log({ data });
+      toast?.();
+      clearForm?.();
+      navigateFunc?.();
     },
     onError: (err) => {
       console.log({ err: err.message, name: err.name, stack: err.stack });

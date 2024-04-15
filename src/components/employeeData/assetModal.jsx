@@ -14,8 +14,7 @@ import { addEmpAsset } from '@/src/redux/slices/hrSlices/employeeSlice';
 import { useDispatch } from 'react-redux';
 import { Toast } from '../Toast/Toast';
 
-const AssetForm = ({ onClose, open, data }) => {
-  console.log({ data });
+const AssetForm = ({ onClose, open, empData }) => {
   // const [formData, setFormData] = useState({});
   const dispatch = useDispatch();
   const { mutate } = useMutation({
@@ -27,6 +26,7 @@ const AssetForm = ({ onClose, open, data }) => {
       console.log({ data, values });
       const reformedData = {
         ...values,
+        id: data?.id,
         assignee: [
           '/icons/AssigneeAvatar.svg',
           values?.assignee_name,
@@ -58,7 +58,7 @@ const AssetForm = ({ onClose, open, data }) => {
     onSubmit: (formValues) => {
       const reformedData = {
         ...formValues,
-        employee_id: data?.email,
+        employee_id: empData?.email,
         assigned_date: dayjs(formValues.assigned_date).format(
           'YYYY-MM-DDTHH:mm:ss.SSS[Z]'
         ),

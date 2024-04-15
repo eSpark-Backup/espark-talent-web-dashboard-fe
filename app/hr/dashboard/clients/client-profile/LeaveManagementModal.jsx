@@ -6,8 +6,80 @@ import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { leaveManagementForm } from '@/src/constants/data/forms/leave-management-modal';
 import { FORM_DATA } from '@/src/constants/form';
 import { useFormik } from 'formik';
+import { useDispatch, useSelector } from 'react-redux';
+import { useMutation } from '@tanstack/react-query';
+import { api } from '@/src/services/apiService';
+import { HR_EMP_TIME_AND_LEAVES } from '@/src/services/apiService/apiEndPoints';
+import { useState } from 'react';
+import {
+  updateEmpLeaves,
+  updateEmpLeavesRequest,
+} from '@/src/redux/slices/hrSlices/employeeSlice';
+import { Toast } from '@/src/components/Toast/Toast';
 
 const LeaveManagementModal = ({ open, onClose }) => {
+  const { leaves } = useSelector(
+    (state) => state?.hr?.employees?.timeAndLeaves
+  );
+  const { id } = useSelector((state) => state?.hr?.employees?.currentEmployee);
+  const [newLeavesArray, setNewLeavesArray] = useState(null);
+  const getLeave = (type) => {
+    const leaveIndex = leaves?.findIndex((e) => e?.leave_type === type);
+    return leaves?.[leaveIndex]?.total;
+  };
+  const dispatch = useDispatch();
+  const { mutate } = useMutation({
+    mutationFn: async (formVals) => {
+      dispatch(updateEmpLeavesRequest());
+      return api.updateJSONData(
+        `${HR_EMP_TIME_AND_LEAVES}?id=${id}&tab=leaves`,
+        formVals
+      );
+    },
+    onSuccess: () => {
+      Toast('success', 'Time updates successfully');
+      dispatch(updateEmpLeaves(newLeavesArray));
+      // setNewTimeArray(null);
+      // setIsOpenSavePolicies(false);
+      onClose();
+    },
+    onError: (err) => {
+      Toast('error', err.message || 'Failed to post data');
+      // console.log({ err: err.message, name: err.name, stack: err.stack });
+    },
+  });
+  const objectifiedData = (data, newVals) => {
+    const transformedData = {};
+
+    data.forEach((item) => {
+      transformedData[item.leave_type] = {
+        total: newVals[item.leave_type],
+        availed: item.availed,
+        balance: item.balance - (item.total - newVals[item.leave_type]),
+        status: item.status.toLowerCase() === 'enabled' ? 'enable' : 'disable',
+      };
+    });
+
+    return transformedData;
+  };
+  const reformData = (dataObj) => {
+    const arrayfiedData = Object.entries(dataObj);
+    const refinedData = [];
+    for (let i = 0; i < arrayfiedData.length; i++) {
+      const element = arrayfiedData[i];
+      if (i > 0) {
+        refinedData.push({
+          ...element[1],
+          leave_type: element[0],
+          total: +element[1].total,
+          availed: +element[1].availed,
+          balance: +element[1].balance,
+          status: element[1].status == 'enable' ? 'Enabled' : 'Disabled',
+        });
+      }
+    }
+    return refinedData;
+  };
   const {
     handleSubmit,
     values,
@@ -19,17 +91,23 @@ const LeaveManagementModal = ({ open, onClose }) => {
     handleReset,
   } = useFormik({
     initialValues: {
-      annualLeaves: 0,
-      unpaidLeaves: 0,
-      paidLeaves: 0,
-      hajjLeaves: 0,
-      sickLeaves: 0,
-      casualLeaves: 0,
+      annual_leaves: getLeave('annual_leaves'),
+      unpaid_leaves: getLeave('unpaid_leaves'),
+      paid_leaves: getLeave('paid_leaves'),
+      hajj_leaves: getLeave('hajj_leaves'),
+      sick_leaves: getLeave('sick_leaves'),
+      casual_leaves: getLeave('casual_leaves'),
     },
     validationSchema: leaveManagementFormSchema,
     enableReinitialize: true,
     onSubmit: (formValues) => {
-      console.log({ formValues });
+      console.log({
+        formValues,
+        leaves,
+        vals: objectifiedData(leaves, formValues),
+      });
+      setNewLeavesArray(reformData(objectifiedData(leaves, formValues)));
+      mutate(objectifiedData(leaves, formValues));
     },
     validateOnChange: false,
     validateOnBlur: false,
@@ -37,6 +115,10 @@ const LeaveManagementModal = ({ open, onClose }) => {
   const handleCloseModal = () => {
     handleReset();
     onClose();
+  };
+  const getMin = (name) => {
+    const leaveIndex = leaves?.findIndex((e) => e?.leave_type === name);
+    return leaves?.[leaveIndex]?.availed;
   };
   return (
     <Modal
@@ -78,7 +160,7 @@ const LeaveManagementModal = ({ open, onClose }) => {
               ml: '15px',
             }}
           >
-            {FORM_DATA?.timeManagement}
+            {FORM_DATA?.leaveManagement}
           </Typography>
           <Box
             sx={{
@@ -133,6 +215,7 @@ const LeaveManagementModal = ({ open, onClose }) => {
                       name={name}
                       setFieldValue={setFieldValue}
                       value={values[name]}
+                      // value={10}
                       error={errors[name]}
                       touched={touched}
                       setFieldError={setFieldError}
@@ -143,6 +226,7 @@ const LeaveManagementModal = ({ open, onClose }) => {
                       md={12}
                       lg={12}
                       fields={fields}
+                      min={getMin(name)}
                     />
                   </Grid>
                   {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>}

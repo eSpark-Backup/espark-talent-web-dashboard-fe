@@ -1,24 +1,69 @@
 import React, { useState } from 'react';
 import { Box, Button, Modal, Typography } from '@mui/material';
-import Image from 'next/image';
 
 import { EDIT_MODAL } from '@/src/constants/employeeProfile';
+import { useSelector } from 'react-redux';
+import { api } from '@/src/services/apiService';
+import { HR_UPDATE_EMP_IMAGE } from '@/src/services/apiService/apiEndPoints';
+import { useMutation } from '@tanstack/react-query';
+import { Toast } from '../Toast/Toast';
 
 const EditModal = ({ handleOpenModal, onClose }) => {
+  const { currentEmployee } = useSelector((state) => state?.hr?.employees);
   const [selectedFile, setSelectedFile] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null);
   console.log(selectedFile);
-  const handleFileChange = (event) => {
+  const { mutate } = useMutation({
+    mutationFn: async (formVals) => {
+      console.log({ formVals });
+      const formData = new FormData();
+      for (const key in formVals.data) {
+        formData.append(key, formVals.data[key]);
+      }
+      return api.updateData(
+        `${HR_UPDATE_EMP_IMAGE}/?id=${formVals.id}`,
+        formData
+      );
+    },
+    onSuccess: ({ data }) => {
+      Toast('success', 'Profile picture updated successfully');
+      console.log({ data });
+      onClose();
+    },
+    onError: (err) => {
+      Toast('error', err.message || 'Failed to delete data');
+      onClose();
+      console.log({ err: err.message, name: err.name, stack: err.stack });
+    },
+  });
+  const handleFileInputChange = (event) => {
     const file = event.target.files[0];
-    if (file && file.type.startsWith('image/')) {
-      setSelectedFile(file);
-    } else {
-      alert('Invalid file type. Please select an image.');
-      event.target.value = null;
+    setSelectedFile(file);
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result);
+      };
+      reader.readAsDataURL(file);
     }
   };
 
   const handleClick = () => {
+    // console.log({ selectedFile });
     document.getElementById('fileInput').click();
+  };
+  const handleSubmit = () => {
+    // console.log({ selectedFile, imagePreview });
+    mutate({
+      id: currentEmployee.id,
+      data: {
+        image: selectedFile,
+      },
+    });
+  };
+  const handleRemove = () => {
+    setSelectedFile(null);
+    setImagePreview(null);
   };
 
   return (
@@ -51,7 +96,7 @@ const EditModal = ({ handleOpenModal, onClose }) => {
               justifyContent: 'flex-end',
             }}
           >
-            <Image
+            <Box
               src={'/images/leave-request/close.svg'}
               width={25}
               height={25}
@@ -77,8 +122,9 @@ const EditModal = ({ handleOpenModal, onClose }) => {
             <Typography variant="h5" sx={{ textAlign: 'center' }}>
               {EDIT_MODAL?.editProfile}
             </Typography>
-            <Image
-              src={'/images/dashboard/employee.svg'}
+            <Box
+              component={'img'}
+              src={imagePreview ? imagePreview : currentEmployee?.image_path}
               width={100}
               height={100}
               alt="employee"
@@ -93,14 +139,15 @@ const EditModal = ({ handleOpenModal, onClose }) => {
               <Button
                 sx={{
                   borderRadius: '5px',
-                  border: '1px solid #595959',
+                  border: `1px solid ${selectedFile === null ? '#ccc' : '#595959'}`,
                   color: ' #595959',
                   width: { xs: '90px', sm: '120px' },
                   height: '40px',
                   fontSize: '16px',
                   fontWeight: 600,
                 }}
-                onClick={onClose}
+                disabled={selectedFile === null}
+                onClick={handleRemove}
               >
                 {EDIT_MODAL?.remove}
               </Button>
@@ -113,15 +160,15 @@ const EditModal = ({ handleOpenModal, onClose }) => {
                   fontWeight: 600,
                   cursor: 'pointer',
                 }}
-                onClick={handleClick}
+                onClick={selectedFile ? handleSubmit : handleClick}
               >
-                {EDIT_MODAL?.change}
+                {`${selectedFile ? 'Submit' : EDIT_MODAL?.change}`}
               </Button>
               <input
                 type="file"
                 id="fileInput"
                 style={{ display: 'none' }}
-                onChange={handleFileChange}
+                onChange={handleFileInputChange}
                 accept="image/*"
               />
             </Box>

@@ -15,7 +15,6 @@ import {
   createEmpLeaveRequestFailed,
   createEmpLeaveRequestSuccess,
 } from '@/src/redux/slices/employeeSlices/leaveRequestSlice';
-import { generateUniqueString } from '@/src/utils/helpers';
 import { Toast } from '@/src/components/Toast/Toast';
 
 const LeaveRequestForm = ({ handleClose }) => {
@@ -52,7 +51,8 @@ const LeaveRequestForm = ({ handleClose }) => {
       dispatch(
         createEmpLeaveRequestSuccess({
           ...getRevampedValues(values),
-          id: generateUniqueString(),
+          id: data.id,
+          department: '-',
         })
       );
       handleClose();

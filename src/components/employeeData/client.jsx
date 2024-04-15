@@ -6,7 +6,7 @@ import {
   activeClientsColumn,
 } from '@/src/constants/data/tables/hr/employeeProfileClient';
 import { a11yProps } from '@/src/utils/tabs';
-import AppTable from '../appTable/AppTable';
+import AppTable from '../appTableNew/AppTable';
 import { useQuery } from '@tanstack/react-query';
 import { HR_GET_EMP_PROFILE } from '@/src/services/apiService/apiEndPoints';
 import { api } from '@/src/services/apiService';
@@ -101,7 +101,9 @@ const Client = () => {
         <AppTable
           currentTab={currentTab}
           column={currentTab.column}
-          data={data}
+          data={
+            currentTab.val === 0 ? data.active_clients : data.terminated_clients
+          }
           noPagination
         />
       </Box>

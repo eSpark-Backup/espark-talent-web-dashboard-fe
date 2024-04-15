@@ -55,26 +55,32 @@ export const contractSignedOffshoreColumn = [
   {
     title: 'Contract name',
     flex: 1,
+    name: 'contract_name',
   },
   {
     title: 'Client ID',
     flex: 1,
+    name: 'client_id',
   },
   {
     title: 'Employee ID',
     flex: 1,
+    name: 'employee_id',
   },
   {
     title: 'Date',
     flex: 1,
+    name: 'date',
   },
   {
     title: 'Download',
     flex: 1,
+    name: 'download',
   },
   {
     title: 'Action',
     flex: 1,
+    name: 'action',
   },
 ];
 export const contractSignedOffshoreData = [

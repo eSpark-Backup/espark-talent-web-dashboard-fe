@@ -34,15 +34,17 @@ const Assets = () => {
       return api
         .getData(`${HR_GET_EMP_PROFILE}?id=${params.id}&tab=assets`)
         .then(({ data }) => {
-          const tempAssets = data?.map((item) => ({
-            ...item,
-            assignee: [
-              '/icons/AssigneeAvatar.svg',
-              item?.assignee_name,
-              item?.assignee_email,
-            ],
-            action: ['Delete'],
-          }));
+          const tempAssets = data?.length
+            ? data?.map((item) => ({
+                ...item,
+                assignee: [
+                  '/icons/AssigneeAvatar.svg',
+                  item?.assignee_name,
+                  item?.assignee_email,
+                ],
+                action: ['Delete'],
+              }))
+            : [];
           dispatch(getEmpAssetRequestSuccess(tempAssets));
           return tempAssets || [];
         })

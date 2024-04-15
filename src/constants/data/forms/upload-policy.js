@@ -2,13 +2,14 @@ export const uploadPolicyForm = [
   {
     title: 'Policy name',
     placeholder: 'Enter name',
-    name: 'policyName',
+    name: 'policy_name',
   },
   {
     title: 'Upload',
     placeholder: 'Upload policy',
     prefixIcon: 'upload',
     type: 'file',
-    name: 'upload',
+    name: 'policy_doc',
+    accept: '.pdf',
   },
 ];

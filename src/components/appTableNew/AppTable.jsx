@@ -22,6 +22,7 @@ const AppTable = ({
   hanldeInvLinkClick,
   updateStatus,
 }) => {
+  console.log({ column, data });
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
   // Calculate the index range for the current page

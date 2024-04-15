@@ -14,8 +14,6 @@ const clientSlice = createSlice({
       },
       employees: {
         all: [],
-        activeEmployees: [],
-        terminatedEmployees: [],
       },
       employeeInvoices: {
         pending: [],
@@ -29,6 +27,7 @@ const clientSlice = createSlice({
       },
     },
     isLoading: false,
+    isLoadingClientEmployees: false,
     outsourceableEmployees: [],
     currentEmpToAddInClient: null,
   },
@@ -116,12 +115,39 @@ const clientSlice = createSlice({
       console.log({ tempData, id: action.payload });
       state.currentClientData.otherInvoices[type] = tempData;
     },
-    updateEmpInv: (state, action) => {
+    updateOthInv: (state, action) => {
       const currentType = action.payload.currentVal.toLowerCase();
       const newType = action.payload.newVal.toLowerCase();
       const tempDataOld = state?.currentClientData?.otherInvoices?.[
         currentType
       ].filter((el) => el.id !== action.payload.id);
+      console.log({
+        tempDataOld,
+        currentType,
+        newType,
+        data: action.payload.data,
+      });
+      state.currentClientData.otherInvoices[currentType] = tempDataOld;
+      state.currentClientData.otherInvoices[newType] = [
+        ...state.currentClientData.otherInvoices[newType],
+        {
+          ...action.payload.data,
+          payment_status: action.payload.newVal,
+        },
+      ];
+    },
+    updateEmpInv: (state, action) => {
+      const currentType = action.payload.currentVal.toLowerCase();
+      const newType = action.payload.newVal.toLowerCase();
+      const tempDataOld = state?.currentClientData?.employeeInvoices?.[
+        currentType
+      ].filter((el) => el.id !== action.payload.id);
+      console.log({
+        tempDataOld,
+        currentType,
+        newType,
+        data: action.payload.data,
+      });
       state.currentClientData.employeeInvoices[currentType] = tempDataOld;
       state.currentClientData.employeeInvoices[newType] = [
         ...state.currentClientData.employeeInvoices[newType],
@@ -130,6 +156,54 @@ const clientSlice = createSlice({
           payment_status: action.payload.newVal,
         },
       ];
+    },
+    addHiringRequest: (state, action) => {
+      state.currentClientData.hireAndOnBoard.hiringRequest = [
+        ...state.currentClientData.hireAndOnBoard.hiringRequest,
+        action.payload,
+      ];
+    },
+    addInterviewSchedule: (state, action) => {
+      state.currentClientData.hireAndOnBoard.interviewSchedule = [
+        ...state.currentClientData.hireAndOnBoard.interviewSchedule,
+        action.payload,
+      ];
+    },
+    addOnBoard: (state, action) => {
+      state.currentClientData.hireAndOnBoard.onBoarding = [
+        ...state.currentClientData.hireAndOnBoard.onBoarding,
+        action.payload,
+      ];
+    },
+    addEmpInvoice: (state, action) => {
+      console.log({ action });
+      state.currentClientData.employeeInvoices[action.payload.type] = [
+        ...state.currentClientData.employeeInvoices[action.payload.type],
+        action.payload.data,
+      ];
+    },
+    addOthInvoice: (state, action) => {
+      console.log({ action });
+      state.currentClientData.otherInvoices[action.payload.type] = [
+        ...state.currentClientData.otherInvoices[action.payload.type],
+        action.payload.data,
+      ];
+    },
+    getClientAllEmpsRequest: (state) => {
+      state.isLoadingClientEmployees = true;
+    },
+    getClientAllEmps: (state, action) => {
+      state.currentClientData.employees.all = action.payload;
+      state.isLoadingClientEmployees = false;
+    },
+    updateClientEmpStatus: (state, action) => {
+      const empIndex = state.currentClientData.employees.all.findIndex(
+        (el) => el.id === action.payload.id
+      );
+      state.currentClientData.employees.all[empIndex] = {
+        ...state.currentClientData.employees.all[empIndex],
+        status: action.payload.status,
+      };
     },
   },
 });
@@ -155,6 +229,15 @@ export const {
   deleteOnBoarding,
   deleteEmpInv,
   deleteOthInv,
+  updateOthInv,
   updateEmpInv,
+  addHiringRequest,
+  addInterviewSchedule,
+  addOnBoard,
+  addEmpInvoice,
+  addOthInvoice,
+  getClientAllEmps,
+  updateClientEmpStatus,
+  getClientAllEmpsRequest,
 } = clientSlice.actions;
 export default clientSlice.reducer;

@@ -35,6 +35,7 @@ const RequestStatusTabs = () => {
       })
     );
   };
+  console.log({ dataLB: data?.leaveBalance });
 
   return (
     <Box

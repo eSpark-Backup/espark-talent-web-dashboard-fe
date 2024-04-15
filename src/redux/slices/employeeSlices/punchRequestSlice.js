@@ -34,10 +34,7 @@ const punchRequestSlice = createSlice({
       state.isLoading = true;
     },
     createEmpPunchRequestSuccess: (state, action) => {
-      // const tempData = state?.data?.requests.filter((el) => el.id !== action.payload)
-      const tempData = state?.data?.requests;
-      tempData.push(action.payload);
-      state.data.requests = tempData;
+      state.data.requests = [...state.data.requests, action.payload];
       state.isLoading = false;
     },
     createEmpPunchRequestFailed: (state) => {

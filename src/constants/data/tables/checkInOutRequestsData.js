@@ -5,7 +5,7 @@ export const employeeCheckInOutRequestColumn = [
     name: 'id',
   },
   {
-    title: 'Employee',
+    title: 'Employee Name',
     flex: 3,
     name: 'employee_name',
   },

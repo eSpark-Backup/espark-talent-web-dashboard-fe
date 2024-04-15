@@ -16,7 +16,7 @@ function stringAvatar(name) {
       mt: '6px',
       border: '1px solid #029E9C',
     },
-    children: `${name?.split(' ')[0][0]}${name.split(' ')?.[1]?.[0]}` || '',
+    children: `${name?.split(' ')[0][0]}${name?.split(' ')?.[1]?.[0]}` || '',
   };
 }
 

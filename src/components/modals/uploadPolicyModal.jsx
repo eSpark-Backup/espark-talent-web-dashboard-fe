@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box, Button, Grid, Modal, Typography } from '@mui/material';
 
 import FormInput from '@/src/components/form/ui-elements/FormInput';
@@ -6,8 +6,47 @@ import { useFormik } from 'formik';
 import { uploadPolicyFormSchema } from '../form/schemas/uploadPolicy';
 import { uploadPolicyForm } from '@/src/constants/data/forms/upload-policy';
 import { UPLOAD_POLICY } from '@/src/constants/uploadPolicy';
+import { useMutation } from '@tanstack/react-query';
+import { api } from '@/src/services/apiService';
+import { HR_POLICY } from '@/src/services/apiService/apiEndPoints';
+import { useDispatch } from 'react-redux';
+import { addPolicy } from '@/src/redux/slices/hrSlices/policy';
+import { Toast } from '../Toast/Toast';
 
 const UploadPolicyModal = ({ open, onClose }) => {
+  const [policyFormVal, setPolicyFormVal] = useState(null);
+  const dispatch = useDispatch();
+  const { mutate } = useMutation({
+    mutationFn: async (formVals) => {
+      const formData = new FormData();
+      for (const key in formVals) {
+        formData.append(key, formVals[key]);
+      }
+      return api.postData(HR_POLICY, formData);
+    },
+    onSuccess: (data) => {
+      Toast('success', 'Policy posted successfully');
+      dispatch(
+        addPolicy({
+          ...policyFormVal,
+          action: ['Delete'],
+          actionStatus: true,
+          employee: ['DisabledCheck', 'EnabledCheck', false],
+          client: ['DisabledCheck', 'EnabledCheck', false],
+          isSelected: false,
+          isModulePermissionData: true,
+          isPolicyData: true,
+          id: data.id,
+        })
+      );
+      console.log({ data });
+      onClose();
+    },
+    onError: (err) => {
+      Toast('error', err.message || 'Failed to post data');
+      console.log({ err: err.message, name: err.name, stack: err.stack });
+    },
+  });
   const {
     handleSubmit,
     values,
@@ -22,8 +61,8 @@ const UploadPolicyModal = ({ open, onClose }) => {
     validationSchema: uploadPolicyFormSchema,
     enableReinitialize: true,
     onSubmit: (formValues) => {
-      console.log({ formValues });
-      handleCloseModal();
+      setPolicyFormVal(formValues);
+      mutate(formValues);
     },
     validateOnChange: false,
     validateOnBlur: false,
@@ -116,6 +155,7 @@ const UploadPolicyModal = ({ open, onClose }) => {
                   name,
                   nested,
                   fields,
+                  accept,
                 },
                 formIndex
               ) => (
@@ -145,6 +185,7 @@ const UploadPolicyModal = ({ open, onClose }) => {
                       md={12}
                       lg={12}
                       fields={fields}
+                      accept={accept}
                     />
                   </Grid>
                   {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>}

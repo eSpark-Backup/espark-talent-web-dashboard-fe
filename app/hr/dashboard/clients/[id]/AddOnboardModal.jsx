@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box, Button, Grid, Modal, Typography } from '@mui/material';
 
 import { addOnboardFormSchema } from '@/src/components/form/schemas/addOnBoardForm';
@@ -6,22 +6,40 @@ import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { addOnboardForm } from '@/src/constants/data/forms/add-onboard';
 import { useFormik } from 'formik';
 import { FORM_DATA } from '@/src/constants/form';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useMutation } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import { HR_CLIENT_EMP_ON_BOARDING } from '@/src/services/apiService/apiEndPoints';
 import dayjs from 'dayjs';
 import { Toast } from '@/src/components/Toast/Toast';
+import { addOnBoard } from '@/src/redux/slices/hrSlices/clientSlice';
 
 const AddOnboardModal = ({ open, onClose }) => {
+  const { client_perms } =
+    useSelector((state) => state?.hr?.home?.homeData) || {};
+  const dispatch = useDispatch();
   const { email } = useSelector((state) => state?.hr?.clients?.currentClient);
+  const { role } = useSelector((state) => state?.auth?.userData);
+  const [onBoardFormValues, setOnBoardFormValues] = useState(null);
   const { mutate } = useMutation({
     mutationFn: async (formVals) => {
       return api.postJSONData(`${HR_CLIENT_EMP_ON_BOARDING}`, formVals);
     },
     onSuccess: ({ data }) => {
+      console.log({ data, onBoardFormValues });
+      dispatch(
+        addOnBoard({
+          ...onBoardFormValues,
+          id: data.id,
+          action:
+            role === 'super_admin' ||
+            (role !== 'super_admin' && client_perms?.[0]?.write)
+              ? ['Delete']
+              : ['-'],
+        })
+      );
+      setOnBoardFormValues(null);
       Toast('success', 'Data posted successfully');
-      console.log({ data });
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to post data');
@@ -50,6 +68,7 @@ const AddOnboardModal = ({ open, onClose }) => {
         client_id: email,
       };
       console.log({ finalData });
+      setOnBoardFormValues(finalData);
       mutate(finalData);
       handleCloseModal();
     },

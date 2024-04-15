@@ -2,31 +2,31 @@ export const leaveManagementForm = [
   {
     title: 'Casual leaves',
     type: 'add-sub-counter',
-    name: 'casualLeaves',
+    name: 'casual_leaves',
   },
   {
     title: 'Sick leaves',
     type: 'add-sub-counter',
-    name: 'sickLeaves',
+    name: 'sick_leaves',
   },
   {
     title: 'Annual leaves',
     type: 'add-sub-counter',
-    name: 'annualLeaves',
+    name: 'annual_leaves',
   },
   {
     title: 'Hajj leaves',
     type: 'add-sub-counter',
-    name: 'hajjLeaves',
+    name: 'hajj_leaves',
   },
   {
     title: 'Paid leaves',
     type: 'add-sub-counter',
-    name: 'paidLeaves',
+    name: 'paid_leaves',
   },
   {
     title: 'Unpaid leaves',
     type: 'add-sub-counter',
-    name: 'unpaidLeaves',
+    name: 'unpaid_leaves',
   },
 ];

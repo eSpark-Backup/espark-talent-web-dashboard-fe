@@ -2,22 +2,27 @@ export const activeClientsColumn = [
   {
     title: 'Client Name',
     flex: 1,
+    name: 'client_name',
   },
   {
     title: 'Client ID',
     flex: 1,
+    name: 'client_id',
   },
   {
     title: 'Job Title',
     flex: 1,
+    name: 'job_title',
   },
   {
     title: 'Employment Term',
     flex: 1,
+    name: 'employeement_term',
   },
   {
     title: 'Join Date',
     flex: 1,
+    name: 'join_date',
   },
 ];
 export const contractSignedColumn = [

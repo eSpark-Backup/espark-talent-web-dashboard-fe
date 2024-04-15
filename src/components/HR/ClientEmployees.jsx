@@ -11,13 +11,20 @@ import { employeeProfileData } from '@/src/constants/employeeProfile';
 import { useQuery } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import { HR_CLIENT_EMPLOYEES } from '@/src/services/apiService/apiEndPoints';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Toast } from '../Toast/Toast';
+import { getClientAllEmps } from '@/src/redux/slices/hrSlices/clientSlice';
 
-const ClientEmployees = ({ fromClient, openModal, empData }) => {
+const ClientEmployees = ({ fromClient, openModal }) => {
+  const { all } = useSelector(
+    (state) => state?.hr?.clients?.currentClientData?.employees
+  );
+  const { isLoadingClientEmployees } = useSelector(
+    (state) => state?.hr?.clients
+  );
+  const dispatch = useDispatch();
   const { employee_perms } = useSelector((state) => state?.hr?.home?.homeData);
   const { role } = useSelector((state) => state?.auth?.userData);
-  console.log({ empData });
   const { email } = useSelector((state) => state?.hr?.clients?.currentClient);
   const router = useRouter();
   const [value, setValue] = useState('one');
@@ -43,72 +50,22 @@ const ClientEmployees = ({ fromClient, openModal, empData }) => {
     staleTime: 1000,
     queryKey: ['hr-clients-employees-all'],
     queryFn: () => {
-      // dispatch(getCurrentClientData());
-      // console.log('Calling api');
       return api
         .getData(`${HR_CLIENT_EMPLOYEES}?c_email=${email}&tab=all`)
         .then(({ data }) => {
-          // console.log({ data });
-          // console.log('API Success');
-          // dispatch(getCurrentClientDataSuccess(data));
-          // console.log('API Success1');
+          dispatch(getClientAllEmps(data));
           return data || [];
         })
         .catch((error) => {
           Toast('error', error.message || 'Failed to get data');
-          // console.log('API Failed');
-          // dispatch(getCurrentClientDataFailed());
           console.log({ error });
         });
     },
   });
-  const ClientEmployeesActive = useQuery({
-    staleTime: 1000,
-    queryKey: ['hr-clients-employees-active'],
-    queryFn: () => {
-      // dispatch(getCurrentClientData());
-      // console.log('Calling api');
-      return api
-        .getData(`${HR_CLIENT_EMPLOYEES}?c_email=${email}&tab=active`)
-        .then(({ data }) => {
-          // console.log({ data });
-          // console.log('API Success');
-          // dispatch(getCurrentClientDataSuccess(data));
-          // console.log('API Success1');
-          return data || [];
-        })
-        .catch((error) => {
-          Toast('error', error.message || 'Failed to get data');
-          // console.log('API Failed');
-          // dispatch(getCurrentClientDataFailed());
-          console.log({ error });
-        });
-    },
-  });
-  const ClientEmployeesTerminated = useQuery({
-    staleTime: 1000,
-    queryKey: ['hr-clients-employees-terminated'],
-    queryFn: () => {
-      // dispatch(getCurrentClientData());
-      // console.log('Calling api');
-      return api
-        .getData(`${HR_CLIENT_EMPLOYEES}?c_email=${email}&tab=terminated`)
-        .then(({ data }) => {
-          // console.log({ data });
-          // console.log('API Success');
-          // dispatch(getCurrentClientDataSuccess(data));
-          // console.log('API Success1');
-          return data || [];
-        })
-        .catch((error) => {
-          Toast('error', error.message || 'Failed to get data');
-          // console.log('API Failed');
-          // dispatch(getCurrentClientDataFailed());
-          console.log({ error });
-        });
-    },
-  });
-  // console.log({ data, isLoading });
+  const getCurrentTabEmpData = (type) => {
+    if (!type) return all || [];
+    else return all.filter((el) => el.status === type) || [];
+  };
 
   if (fromClient)
     return (
@@ -135,8 +92,8 @@ const ClientEmployees = ({ fromClient, openModal, empData }) => {
             <Tab value="two" label="Active employees" />
             <Tab value="three" label="Terminated employees" />
           </Tabs>
-          {(role === 'super admin' ||
-            (role !== 'super admin' && employee_perms?.[0]?.write)) && (
+          {(role === 'super_admin' ||
+            (role !== 'super_admin' && employee_perms?.[0]?.write)) && (
             <Button
               onClick={openModal}
               variant="contained"
@@ -157,9 +114,7 @@ const ClientEmployees = ({ fromClient, openModal, empData }) => {
             </Button>
           )}
         </Box>
-        {ClientEmployeesAll.isLoading ||
-        ClientEmployeesActive.isLoading ||
-        ClientEmployeesTerminated.isLoading ? (
+        {ClientEmployeesAll.isLoading || isLoadingClientEmployees ? (
           'Loading...'
         ) : (
           <>
@@ -170,7 +125,7 @@ const ClientEmployees = ({ fromClient, openModal, empData }) => {
                 name={name}
                 designation={designation}
                 status={'All'}
-                empData={ClientEmployeesAll.data}
+                empData={getCurrentTabEmpData()}
               />
             ) : value === 'two' ? (
               <EmployeeStatus
@@ -179,7 +134,7 @@ const ClientEmployees = ({ fromClient, openModal, empData }) => {
                 name={name}
                 designation={designation}
                 search={search}
-                empData={ClientEmployeesActive.data}
+                empData={getCurrentTabEmpData('active')}
               />
             ) : (
               <EmployeeStatus
@@ -188,7 +143,7 @@ const ClientEmployees = ({ fromClient, openModal, empData }) => {
                 designation={designation}
                 status={'Inactive'}
                 search={search}
-                empData={ClientEmployeesTerminated.data}
+                empData={getCurrentTabEmpData('terminate')}
               />
             )}
           </>

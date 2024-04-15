@@ -1,20 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import WideFormInput from '../../../../../src/components/form/ui-elements/WideFormInput';
 import { createPunchRequestForm } from '@/src/constants/data/forms/create-punch-request';
 import { Box, Button } from '@mui/material';
 import { useFormik } from 'formik';
 import { createPunchRequestSchema } from '../../../../../src/components/form/schemas/createPunchRequest';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { api } from '@/src/services/apiService';
 import { EMP_PUNCH_REQUEST } from '@/src/services/apiService/apiEndPoints';
 import { useMutation } from '@tanstack/react-query';
 import dayjs from 'dayjs';
 import { pascalToSnake } from '@/src/utils/stringModification';
 import { Toast } from '@/src/components/Toast/Toast';
+import { createEmpPunchRequestSuccess } from '@/src/redux/slices/employeeSlices/punchRequestSlice';
 
 const PunchRequestForm = ({ handleClose }) => {
+  const [punchReqFormData, setPunchReqFormData] = useState(null);
   const { punch_timings } = useSelector((state) => state?.emp?.home?.homeData);
-  const { workSpace } = useSelector((state) => state?.auth?.userData);
+  const { workSpace, empDetails } = useSelector(
+    (state) => state?.auth?.userData
+  );
+  const dispatch = useDispatch();
   // const pascalToSnake = (string) => {
   //   // Replace spaces and dots with empty strings
   //   const pascalCaseString = string.replace(/[\s.]+(?=[A-Z\s])/g, '');
@@ -41,6 +46,17 @@ const PunchRequestForm = ({ handleClose }) => {
       Toast('success', 'Data posted successfully');
       console.log({ data });
       handleClose();
+      dispatch(
+        createEmpPunchRequestSuccess({
+          ...punchReqFormData,
+          actionTimeOffReqStatus: true,
+          actionStatus: true,
+          action: ['Delete', 'View'],
+          status: 'pending',
+          employee_name: empDetails?.employee_name,
+          id: data.id,
+        })
+      );
       // dispatch(login(data));
       // if (HR_ROLES.includes(data?.role)) {
       //   router.push('hr/dashboard');
@@ -65,8 +81,10 @@ const PunchRequestForm = ({ handleClose }) => {
     setErrors,
   } = useFormik({
     initialValues: {
-      expectedCheckIn: punch_timings?.check_in,
-      expectedCheckOut: punch_timings?.check_out,
+      // expectedCheckIn: punch_timings?.check_in,
+      // expectedCheckOut: punch_timings?.check_out,
+      expectedCheckIn: dayjs(punch_timings?.check_in).format('hh:mm A'),
+      expectedCheckOut: dayjs(punch_timings?.check_out).format('hh:mm A'),
     },
     validationSchema: createPunchRequestSchema,
     enableReinitialize: true,
@@ -76,10 +94,11 @@ const PunchRequestForm = ({ handleClose }) => {
         date: dayjs(formValues.date).format('YYYY-MM-DD'),
         client_id: workSpace?.email,
         punch_type: pascalToSnake(formValues?.punchType),
-        punch_time: dayjs(formValues?.punchTime).format('HH:mm:ss'),
+        punch_time: dayjs(formValues?.punchTime).format('hh:mm:ss'),
         description: formValues?.description,
       };
       console.log({ revampFormValues });
+      setPunchReqFormData(revampFormValues);
       mutate(revampFormValues);
     },
     validateOnChange: false,

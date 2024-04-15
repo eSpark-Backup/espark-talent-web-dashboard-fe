@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box, Button, Grid, Modal, Typography } from '@mui/material';
 
 import { hiringRequestSchema } from '@/src/components/form/schemas/hiringRequestForm';
@@ -6,28 +6,44 @@ import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { hringRequestForm } from '@/src/constants/data/forms/hiring-request';
 import { useFormik } from 'formik';
 import { FORM_DATA } from '@/src/constants/form';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useMutation } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import { HR_CLIENT_EMP_HIRING_REQUEST } from '@/src/services/apiService/apiEndPoints';
 import dayjs from 'dayjs';
 import { Toast } from '@/src/components/Toast/Toast';
+import { addHiringRequest } from '@/src/redux/slices/hrSlices/clientSlice';
 
 const HiringRequestModal = ({ open, onClose }) => {
+  const { client_perms } =
+    useSelector((state) => state?.hr?.home?.homeData) || {};
   const { email } = useSelector((state) => state?.hr?.clients?.currentClient);
-  // const dispatch = useDispatch();
+  const [hiringValues, setHiringValues] = useState(null);
+  const { role } = useSelector((state) => state?.auth?.userData);
+  const dispatch = useDispatch();
   const { mutate } = useMutation({
     mutationFn: async (formVals) => {
       return api.postJSONData(`${HR_CLIENT_EMP_HIRING_REQUEST}`, formVals);
     },
     onSuccess: ({ data }) => {
       Toast('success', 'Data posted successfully');
-      console.log({ data });
-      // dispatch(addClientContract(values));
+      console.log({ data, values, hiringValues });
+      dispatch(
+        addHiringRequest({
+          ...hiringValues,
+          id: data.id,
+          action:
+            role === 'super_admin' ||
+            (role !== 'super_admin' && client_perms?.[0]?.write)
+              ? ['Delete']
+              : ['-'],
+        })
+      );
+      setHiringValues(null);
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to post data');
-      console.log({ err: err.message, name: err.name, stack: err.stack });
+      console.log({ err, errm: err.message, name: err.name, stack: err.stack });
     },
   });
   const {
@@ -54,7 +70,11 @@ const HiringRequestModal = ({ open, onClose }) => {
         hiring_end_date: dayjs(formValues.hiring_end_date).format('YYYY-MM-DD'),
         client_id: email,
       };
-      mutate(finalData);
+      setHiringValues(finalData);
+      mutate({
+        ...finalData,
+        salary_range: `${finalData.salary_range.minimum}$ - ${finalData.salary_range.maximum}$`,
+      });
       handleCloseModal();
     },
     validateOnChange: false,

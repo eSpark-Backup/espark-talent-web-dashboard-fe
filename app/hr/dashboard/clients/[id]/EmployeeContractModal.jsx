@@ -1,14 +1,37 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Button, Grid, Modal, Typography } from '@mui/material';
 
-import { contractFormSchema } from '@/src/components/form/schemas/contractSignedForm';
+import { contractFormHrPortalSchema } from '@/src/components/form/schemas/contractSignedForm';
 import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { employeeContractForm } from '@/src/constants/data/forms/contract';
 import { useFormik } from 'formik';
 import { CONTRACT_SIGNED } from '@/src/constants/contractSigned';
 import { FORM_DATA } from '@/src/constants/form';
+import { useMutation } from '@tanstack/react-query';
+import { HR_COMPANY_CONTRACTS } from '@/src/services/apiService/apiEndPoints';
+import { Toast } from '@/src/components/Toast/Toast';
+import { api } from '@/src/services/apiService';
 
 const EmployeeContractModal = ({ open, onClose }) => {
+  const { mutate } = useMutation({
+    mutationFn: async (formVals) => {
+      // console.log({ formValues });
+      const formData = new FormData();
+      for (const key in formVals) {
+        formData.append(key, formVals[key]);
+      }
+      return api.postData(`${HR_COMPANY_CONTRACTS}?status=employees`, formData);
+    },
+    onSuccess: ({ data }) => {
+      Toast('success', 'Contract uploaded successfully');
+      console.log({ data });
+      onClose();
+    },
+    onError: (err) => {
+      Toast('error', err.message || 'Failed to post data');
+      console.log({ err: err.message, name: err.name, stack: err.stack });
+    },
+  });
   const [formData, setFormData] = useState({});
   const {
     handleSubmit,
@@ -21,10 +44,11 @@ const EmployeeContractModal = ({ open, onClose }) => {
     handleReset,
   } = useFormik({
     initialValues: {},
-    validationSchema: contractFormSchema,
+    validationSchema: contractFormHrPortalSchema,
     enableReinitialize: true,
-    onSubmit: () => {
-      handleCloseModal();
+    onSubmit: (formData) => {
+      mutate(formData);
+      // handleCloseModal();
     },
     validateOnChange: false,
     validateOnBlur: false,

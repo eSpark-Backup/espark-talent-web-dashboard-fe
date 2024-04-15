@@ -18,6 +18,7 @@ const EmployeeCard = ({
   handleClose,
   handleOpenRemove,
 }) => {
+  console.log({ eachItem });
   const router = useRouter();
   const isBetween1400And1200 = useMediaQuery(
     '(min-width: 1200px) and (max-width: 1400px)'
@@ -37,9 +38,17 @@ const EmployeeCard = ({
             minHeight: '250px',
           },
         }}
-        onClick={() => router.push(`/hr/dashboard/employees/${eachItem?.id}`)}
+        onClick={() =>
+          router.push(`/hr/dashboard/employees/${eachItem?.emp_pk}`)
+        }
       >
-        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-around',
+            position: 'relative',
+          }}
+        >
           <Box
             sx={{
               width: '65px',
@@ -48,6 +57,8 @@ const EmployeeCard = ({
               height: '20px',
               justifyContent: 'center',
               alignItems: 'center',
+              position: 'absolute',
+              left: 0,
             }}
           >
             <Box
@@ -56,13 +67,13 @@ const EmployeeCard = ({
                 height: '5px',
                 borderRadius: '50%',
                 backgroundColor:
-                  eachItem.status === 'Active' ? '#068987' : '#F00',
+                  eachItem.status === 'active' ? '#068987' : '#F00',
               }}
             ></Box>
 
             <Typography
               sx={{
-                color: eachItem.status === 'Active' ? '#068987' : '#F00',
+                color: eachItem.status === 'active' ? '#068987' : '#F00',
                 fontSize: '12px',
               }}
             >
@@ -87,7 +98,15 @@ const EmployeeCard = ({
               },
             }}
           >
-            <Image src={'/icons/Employee.svg'} width={100} height={30} />
+            <Box
+              component={'img'}
+              src={eachItem.image}
+              sx={{
+                // width: '150px',
+                borderRadius: '50%',
+                height: '100px',
+              }}
+            />
             <Typography
               sx={{
                 color: '#171717',
@@ -101,30 +120,39 @@ const EmployeeCard = ({
             <Typography
               sx={{ color: '#595959', fontSize: '16px', textAlign: 'center' }}
             >
-              {eachItem.role}
+              {eachItem.job_title}
             </Typography>
           </Box>
-          <Box sx={{ width: '10%' }}>
-            <Image
-              width={24}
-              height={24}
-              src={`/icons/ellipse.svg`}
-              style={{ cursor: 'pointer' }}
-              onClick={handleClick}
-            />
-            <Menu
-              id="demo-positioned-menu"
-              aria-labelledby="demo-positioned-button"
-              anchorEl={anchorEl}
-              open={open}
-              onClose={handleClose}
-              anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
-              transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-              sx={{ marginTop: '20px' }}
-            >
-              <MenuItem onClick={handleOpenRemove}>Terminated</MenuItem>
-            </Menu>
-          </Box>
+          {eachItem.status === 'active' ? (
+            <Box sx={{ width: '10%', position: 'absolute', right: '0px' }}>
+              <Image
+                width={24}
+                height={24}
+                src={`/icons/ellipse.svg`}
+                style={{ cursor: 'pointer' }}
+                onClick={handleClick}
+              />
+              <>
+                <Menu
+                  onClick={(e) => {
+                    e.stopPropagation();
+                  }}
+                  id="demo-positioned-menu"
+                  aria-labelledby="demo-positioned-button"
+                  anchorEl={anchorEl}
+                  open={open}
+                  onClose={handleClose}
+                  anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
+                  transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+                  sx={{ marginTop: '20px' }}
+                >
+                  <MenuItem onClick={(e) => handleOpenRemove(e, eachItem.id)}>
+                    Terminate
+                  </MenuItem>
+                </Menu>
+              </>
+            </Box>
+          ) : null}
         </Box>
       </Box>
     </Grid>

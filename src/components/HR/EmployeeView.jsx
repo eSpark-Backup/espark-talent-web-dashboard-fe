@@ -326,13 +326,17 @@ const EmployeeView = ({ status, data }) => {
                         height: '5px',
                         borderRadius: '50%',
                         backgroundColor:
-                          eachItem.status === 'Active' ? '#068987' : '#F00',
+                          eachItem.status === 'Active' || eachItem.active
+                            ? '#068987'
+                            : '#F00',
                       }}
                     ></span>
                     <Typography
                       sx={{
                         color:
-                          eachItem.status === 'Active' ? '#068987' : '#F00',
+                          eachItem.status === 'Active' || eachItem.active
+                            ? '#068987'
+                            : '#F00',
                         fontSize: '12px',
                       }}
                     >
@@ -357,10 +361,22 @@ const EmployeeView = ({ status, data }) => {
                       },
                     }}
                   >
-                    <Image
+                    {/* <Image
                       src={'/icons/Employee.svg'}
                       width={100}
                       height={30}
+                    /> */}
+                    <Box
+                      component={'img'}
+                      sx={{
+                        height: '100px',
+                        width: '100px',
+                        background: '#fff',
+                        borderRadius: '50%',
+                        padding: '5px',
+                      }}
+                      alt="Employee"
+                      src={eachItem.image_path}
                     />
                     <Typography
                       sx={{
@@ -379,7 +395,7 @@ const EmployeeView = ({ status, data }) => {
                         textAlign: 'center',
                       }}
                     >
-                      {eachItem.designation}
+                      {eachItem.job_title || eachItem.designation}
                     </Typography>
                   </Box>
                   <Box sx={{ width: '10%' }}>

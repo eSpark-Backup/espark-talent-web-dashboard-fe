@@ -1,6 +1,7 @@
 import axios from 'axios';
 import defaultConfig from './defaultConfig';
 import { EnvironmentService } from './environmentService';
+import Cookie from 'js-cookie';
 
 const envService = new EnvironmentService();
 const instance = axios.create({
@@ -57,32 +58,10 @@ export default class APIService {
         const { response } = error;
 
         if (response && response.status === 401) {
+          window.location.href = '/';
           localStorage.removeItem('persist:root');
-          // if (!this.isAlreadyFetchingAccessToken) {
-          //   this.isAlreadyFetchingAccessToken = true;
-          //   instance.defaults.headers.common.Authorization = '';
-          //   this.login({
-          //     email: 'faisal@esparkconsultants.com',
-          //     password: '123456',
-          //   }).then((r) => {
-          //     this.isAlreadyFetchingAccessToken = false;
-          //     console.log({ r });
-          //     // ** Update accessToken in localStorage
-          //     this.setToken(r.data.token);
-          //     this.setRefreshToken(r.data.refreshToken);
-
-          //     this.onAccessTokenFetched(r.data.accessToken);
-          //   });
-          // }
-          // const retryOriginalRequest = new Promise((resolve) => {
-          //   this.addSubscriber((accessToken) => {
-          //     // ** Make sure to assign accessToken according to your response.
-          //     // ** Change Authorization header
-          //     originalRequest.headers.Authorization = `${this.jwtConfig.tokenType} ${accessToken}`;
-          //     resolve(this.instance(originalRequest));
-          //   });
-          // });
-          // return retryOriginalRequest;
+          Cookie?.remove('token');
+          Cookie?.remove('userType');
         }
         return Promise.reject(error);
       }
@@ -93,32 +72,10 @@ export default class APIService {
         const { response } = error;
 
         if (response && response.status === 401) {
+          window.location.href = '/';
           localStorage.removeItem('persist:root');
-          // if (!this.isAlreadyFetchingAccessToken) {
-          //   this.isAlreadyFetchingAccessToken = true;
-          //   instance.defaults.headers.common.Authorization = '';
-          //   this.login({
-          //     email: 'faisal@esparkconsultants.com',
-          //     password: '123456',
-          //   }).then((r) => {
-          //     this.isAlreadyFetchingAccessToken = false;
-          //     console.log({ r });
-          //     // ** Update accessToken in localStorage
-          //     this.setToken(r.data.token);
-          //     this.setRefreshToken(r.data.refreshToken);
-
-          //     this.onAccessTokenFetched(r.data.accessToken);
-          //   });
-          // }
-          // const retryOriginalRequest = new Promise((resolve) => {
-          //   this.addSubscriber((accessToken) => {
-          //     // ** Make sure to assign accessToken according to your response.
-          //     // ** Change Authorization header
-          //     originalRequest.headers.Authorization = `${this.jwtConfig.tokenType} ${accessToken}`;
-          //     resolve(this.instance(originalRequest));
-          //   });
-          // });
-          // return retryOriginalRequest;
+          Cookie?.remove('token');
+          Cookie?.remove('userType');
         }
         return Promise.reject(error);
       }

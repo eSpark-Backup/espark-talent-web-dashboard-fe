@@ -7,11 +7,12 @@ import settingsSlice from './settingsSlice';
 import invoicesSlice from './invoices';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+import policiesSlice from './policy';
 
 const persistConfig = {
   key: 'home',
   storage,
-  whitelist: ['home'],
+  whitelist: ['home', 'clients', 'employees'],
 };
 
 const hrReducer = persistReducer(
@@ -23,6 +24,7 @@ const hrReducer = persistReducer(
     contracts: contractSlice,
     settings: settingsSlice,
     invoices: invoicesSlice,
+    policies: policiesSlice,
   })
 );
 

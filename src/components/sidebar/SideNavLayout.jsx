@@ -4,14 +4,14 @@ import { useSelector } from 'react-redux';
 
 export const SideNav = (props) => {
   const { empDetails } = useSelector((state) => state?.auth?.userData);
-  const { username } = useSelector((state) => state?.client?.home?.data);
+  const { data } = useSelector((state) => state?.client?.home);
   const { homeData } = useSelector((state) => state?.hr?.home);
   const { open, onClose } = props;
   const lgUp = useMediaQuery((theme) => theme.breakpoints.up('lg'));
 
   const content = (
     <Sidebar
-      userName={empDetails?.employee_name || username || homeData.user}
+      userName={empDetails?.employee_name || data?.username || homeData.user}
     />
   );
 

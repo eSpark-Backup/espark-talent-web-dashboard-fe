@@ -45,6 +45,7 @@ import {
   getCurrentClientDataFailed,
   getCurrentClientDataSuccess,
   updateEmpInv,
+  updateOthInv,
 } from '@/src/redux/slices/hrSlices/clientSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import ClientProfileData from './ClientProfileData';
@@ -85,10 +86,7 @@ const AddEmployee = () => {
       return api
         .getData(`${HR_GET_CLIENT_PROFILE}?id=${params.id}`)
         .then(({ data }) => {
-          // console.log({ data });
-          // console.log('API Success');
           dispatch(getCurrentClientDataSuccess(data));
-          // console.log('API Success1');
           return data;
         })
         .catch((err) => {
@@ -112,8 +110,8 @@ const AddEmployee = () => {
                 ...item,
                 salary_range: `${item.salary_range.minimum}$ - ${item.salary_range.maximum}$`,
                 action:
-                  role === 'super admin' ||
-                  (role !== 'super admin' && invoices_perms?.[0]?.write)
+                  role === 'super_admin' ||
+                  (role !== 'super_admin' && invoices_perms?.[0]?.write)
                     ? ['Delete']
                     : ['-'],
               }))
@@ -155,7 +153,6 @@ const AddEmployee = () => {
       return api
         .getData(`${HR_CLIENT_EMP_ON_BOARDING}?id=${params.id}`)
         .then(({ data }) => {
-          // console.log({ data });
           // console.log('API Success');
           const tempData = data?.length
             ? data.map((item) => ({
@@ -185,7 +182,6 @@ const AddEmployee = () => {
       return api
         .getData(`${HR_CLIENT_EMPLOYEES}?c_email=${email}&tab=all`)
         .then(({ data }) => {
-          // console.log({ data });
           // console.log('API Success');
           // dispatch(getCurrentClientDataSuccess(data));
           // console.log('API Success1');
@@ -208,7 +204,6 @@ const AddEmployee = () => {
       return api
         .getData(`${HR_CLIENT_EMPLOYEES}?c_email=${email}&tab=active`)
         .then(({ data }) => {
-          // console.log({ data });
           // console.log('API Success');
           // dispatch(getCurrentClientDataSuccess(data));
           // console.log('API Success1');
@@ -231,7 +226,6 @@ const AddEmployee = () => {
       return api
         .getData(`${HR_CLIENT_EMPLOYEES}?c_email=${email}&tab=terminated`)
         .then(({ data }) => {
-          // console.log({ data });
           // console.log('API Success');
           // dispatch(getCurrentClientDataSuccess(data));
           // console.log('API Success1');
@@ -280,15 +274,11 @@ const AddEmployee = () => {
     staleTime: 1000,
     queryKey: ['hr-clients-employees-invoices-processing'],
     queryFn: () => {
-      // dispatch(getCurrentClientData());
-      // console.log('Calling api');
       return api
         .getData(
           `${HR_CLIENT_EMPLOYEE_INVOICE}?client_id=${email}&tab=processing`
         )
         .then(({ data }) => {
-          // console.log({ data });
-          // console.log('API Success');
           const tempData = data?.length
             ? data.map((item) => ({
                 ...item,
@@ -320,7 +310,6 @@ const AddEmployee = () => {
       return api
         .getData(`${HR_CLIENT_EMPLOYEE_INVOICE}?client_id=${email}&tab=paid`)
         .then(({ data }) => {
-          // console.log({ data });
           // console.log('API Success');
           const tempData = data?.length
             ? data.map((item) => ({
@@ -363,7 +352,6 @@ const AddEmployee = () => {
               download: 'Download',
               payment_status: getCamelCapitalized(item.payment_status),
             }));
-          console.log({ tempData });
           dispatch(getClientOthInvoicePending(tempData || []));
           // console.log('API Success1');
           return data;
@@ -385,7 +373,6 @@ const AddEmployee = () => {
       return api
         .getData(`${HR_CLIENT_OTHER_INVOICE}?client_id=${email}&tab=processing`)
         .then(({ data }) => {
-          // console.log({ data });
           // console.log('API Success');
           const tempData =
             data?.length &&
@@ -419,7 +406,6 @@ const AddEmployee = () => {
       return api
         .getData(`${HR_CLIENT_OTHER_INVOICE}?client_id=${email}&tab=paid`)
         .then(({ data }) => {
-          // console.log({ data });
           // console.log('API Success');
           const tempData =
             data?.length &&
@@ -566,8 +552,8 @@ const AddEmployee = () => {
     },
   });
   const [currentTabTable, setCurrentTabTable] = useState({
-    data: hireAndOnBoard.hiringRequest,
-    column: clientProfileTabs[0].nestedTabs[0].column,
+    data: hireAndOnBoard?.hiringRequest,
+    column: clientProfileTabs?.[0].nestedTabs?.[0]?.column,
   });
 
   useEffect(() => {
@@ -592,7 +578,6 @@ const AddEmployee = () => {
     });
     console.log({ label, nestedTabs, data, column, currentTab });
     if (data?.length) {
-      console.log({ data });
       const filteredData = filterTableRowsWRTTab(data, {
         paymentStatus: nestedTabs[0].label,
       });
@@ -717,9 +702,8 @@ const AddEmployee = () => {
     mutationFn: async (id) => {
       return api.daleteData(`${HR_CLIENT_EMP_HIRING_REQUEST}/?id=${id}`);
     },
-    onSuccess: ({ data }) => {
+    onSuccess: () => {
       Toast('success', 'Data deleted successfully');
-      console.log({ data });
       dispatch(deleteHiringRequest(deleteRowID));
       setDeleteRowID(null);
       handleClose();
@@ -734,9 +718,8 @@ const AddEmployee = () => {
     mutationFn: async (id) => {
       return api.daleteData(`${HR_CLIENT_EMP_ON_BOARDING}/?id=${id}`);
     },
-    onSuccess: ({ data }) => {
+    onSuccess: () => {
       Toast('success', 'Data deleted successfully');
-      console.log({ data });
       dispatch(deleteOnBoarding(deleteRowID));
       setDeleteRowID(null);
       handleClose();
@@ -751,9 +734,8 @@ const AddEmployee = () => {
     mutationFn: async (id) => {
       return api.daleteData(`${HR_CLIENT_EMPLOYEE_INVOICE}/?id=${id}`);
     },
-    onSuccess: ({ data }) => {
+    onSuccess: () => {
       Toast('success', 'Data deleted successfully');
-      console.log({ data });
       dispatch(deleteEmpInv({ type: deleteInvType, id: deleteRowID }));
       setDeleteRowID(null);
       setDeleteInvType(null);
@@ -769,9 +751,8 @@ const AddEmployee = () => {
     mutationFn: async (id) => {
       return api.daleteData(`${HR_CLIENT_OTHER_INVOICE}/?id=${id}`);
     },
-    onSuccess: ({ data }) => {
+    onSuccess: () => {
       Toast('success', 'Data deleted successfully');
-      console.log({ data });
       dispatch(deleteOthInv({ type: deleteInvType, id: deleteRowID }));
       setDeleteRowID(null);
       setDeleteInvType(null);
@@ -787,21 +768,31 @@ const AddEmployee = () => {
     mutationFn: async (data) => {
       const formData = new FormData();
       for (const key in data.data) {
-        formData.append(key, data[key]);
+        formData.append(key, data.data[key]);
       }
       return api.updateData(`${data?.url}/?id=${data?.id}`, formData);
     },
-    onSuccess: ({ data }) => {
+    onSuccess: () => {
       Toast('success', 'Data updated successfully');
-      console.log({ data });
-      dispatch(
-        updateEmpInv({
-          currentVal: updateStatusType.currentVal,
-          id: updateRowID,
-          newVal: updateStatusType.newVal,
-          data: updateStatusType?.currentInvData,
-        })
-      );
+      if (currentTab?.label === 'Employee invoices') {
+        dispatch(
+          updateEmpInv({
+            currentVal: updateStatusType.currentVal,
+            id: updateRowID,
+            newVal: updateStatusType.newVal,
+            data: updateStatusType?.currentInvData,
+          })
+        );
+      } else {
+        dispatch(
+          updateOthInv({
+            currentVal: updateStatusType.currentVal,
+            id: updateRowID,
+            newVal: updateStatusType.newVal,
+            data: updateStatusType?.currentInvData,
+          })
+        );
+      }
       setDeleteRowID(null);
       setUpdateStatusType({
         currentInvData: null,
@@ -840,7 +831,7 @@ const AddEmployee = () => {
       currentInvData: data,
     });
     const updData = {
-      payment_status: newVal.toLowerCase(),
+      payment_status: newVal?.toLowerCase(),
     };
     updateEmpInvMutation.mutate({
       id: data?.id,
@@ -850,6 +841,33 @@ const AddEmployee = () => {
           ? HR_CLIENT_EMPLOYEE_INVOICE
           : HR_CLIENT_OTHER_INVOICE,
     });
+  };
+  const getCurrentTabData = () => {
+    if (currentTab?.label === 'Hire & onboard') {
+      if (currentTab?.nested.val === 0) {
+        return hireAndOnBoard?.hiringRequest || [];
+      } else if (currentTab?.nested.val === 1) {
+        return hireAndOnBoard?.interviewSchedule || [];
+      } else {
+        return hireAndOnBoard?.onBoarding || [];
+      }
+    } else if (currentTab?.label === 'Employee invoices') {
+      if (currentTab?.nested.val === 0) {
+        return employeeInvoices?.pending || [];
+      } else if (currentTab?.nested.val === 1) {
+        return employeeInvoices?.processing || [];
+      } else {
+        return employeeInvoices?.paid || [];
+      }
+    } else {
+      if (currentTab?.nested.val === 0) {
+        return otherInvoices?.pending || [];
+      } else if (currentTab?.nested.val === 1) {
+        return otherInvoices?.processing || [];
+      } else {
+        return otherInvoices?.paid || [];
+      }
+    }
   };
   return (
     <>
@@ -877,7 +895,8 @@ const AddEmployee = () => {
         EmployeeInvoicesPaid.isLoading ||
         OtherInvoicesPending.isLoading ||
         OtherInvoicesProcessing.isLoading ||
-        OtherInvoicesPaid.isLoading ? (
+        OtherInvoicesPaid.isLoading ||
+        updateEmpInvMutation.isPending ? (
           'Loading...'
         ) : (
           <>
@@ -967,8 +986,8 @@ const AddEmployee = () => {
                           <>
                             {currentTab?.nested.val === 0 ? (
                               <>
-                                {(role === 'super admin' ||
-                                  (role !== 'super admin' &&
+                                {(role === 'super_admin' ||
+                                  (role !== 'super_admin' &&
                                     client_perms?.[0]?.write)) && (
                                   <Button
                                     onClick={handleOpenHiringRequestModal}
@@ -991,8 +1010,8 @@ const AddEmployee = () => {
                               </>
                             ) : currentTab?.nested.val === 1 ? (
                               <>
-                                {(role === 'super admin' ||
-                                  (role !== 'super admin' &&
+                                {(role === 'super_admin' ||
+                                  (role !== 'super_admin' &&
                                     client_perms?.[0]?.write)) && (
                                   <Button
                                     onClick={handleOpenAddInterviewModal}
@@ -1014,8 +1033,8 @@ const AddEmployee = () => {
                               </>
                             ) : (
                               <>
-                                {(role === 'super admin' ||
-                                  (role !== 'super admin' &&
+                                {(role === 'super_admin' ||
+                                  (role !== 'super_admin' &&
                                     client_perms?.[0]?.write)) && (
                                   <Button
                                     onClick={handleOpenAddOnboardModal}
@@ -1039,8 +1058,8 @@ const AddEmployee = () => {
                         ) : currentTab?.label === 'Employee invoices' ? (
                           currentTab?.nested.val === 0 ? (
                             <>
-                              {(role === 'super admin' ||
-                                (role !== 'super admin' &&
+                              {(role === 'super_admin' ||
+                                (role !== 'super_admin' &&
                                   invoices_perms?.[0]?.write)) && (
                                 <Button
                                   onClick={handleOpenUploadInvoiceModal}
@@ -1067,8 +1086,8 @@ const AddEmployee = () => {
                         ) : currentTab?.label === 'Other invoices' ? (
                           currentTab?.nested.val === 0 ? (
                             <>
-                              {(role === 'super admin' ||
-                                (role !== 'super admin' &&
+                              {(role === 'super_admin' ||
+                                (role !== 'super_admin' &&
                                   invoices_perms?.[0]?.write)) && (
                                 <Button
                                   onClick={handleOpenUploadOthInvoiceModal}
@@ -1096,7 +1115,8 @@ const AddEmployee = () => {
               )}
               {renderTable({
                 currentTab: currentTab.label,
-                data: currentTabTable.data,
+                data: getCurrentTabData(),
+                // data: currentTabTable.data,
                 // data:
                 //   currentTab.label === 'Hire & onboard' &&
                 //   currentTab.nested.label === 'Hiring Request'
@@ -1149,5 +1169,3 @@ const AddEmployee = () => {
   );
 };
 export default AddEmployee;
-// 'https://waqarkhanzada.pythonanywhere.com/api/hr_empinv/?client_id=elon.musk@spacex.com.us&tab=pending'
-// 'https://waqarkhanzada.pythonanywhere.com/api/hr_empinv/?client_id=elon.musk%40spacex.com.us&tab=pending'

@@ -59,6 +59,7 @@ const FormInput = ({
   withFlag,
   fieldsName,
   accept = '.png',
+  min,
 }) => {
   const [isLoadingList, setIsLoadingList] = useState(false);
   const [isCopied, setIsCopied] = useState();
@@ -75,6 +76,7 @@ const FormInput = ({
     // handleData(name, item);
   };
   const handleChangeInput = (field, value) => {
+    console.log({ value });
     const tempErrors = { ...errors };
     if (value.length) {
       if (field === 'email') {
@@ -105,11 +107,11 @@ const FormInput = ({
     // handleData(field, value);
   };
 
-  const handleClickCounter = (type, name, value) => {
+  const handleClickCounter = (type, name, value, min) => {
     switch (type) {
       case 'Sub':
         switch (value) {
-          case 0:
+          case min || 0:
             break;
           default:
             setFieldValue(name, value - 1);
@@ -357,6 +359,11 @@ const FormInput = ({
                 },
               }}
               value={value}
+              // value={dayjs('2022-04-17T22:00')}
+              // value={dayjs('2000-01-01T22:00')}
+              // value={dayjs(convert12to24(value))}
+              // value={'10:00 PM'}
+              // defaultValue={new Date()}
               onChange={(e) => {
                 handleChangeInput(name, `${e?.$d}`);
               }}
@@ -498,14 +505,14 @@ const FormInput = ({
             sx={{
               width: '30px',
               height: '30px',
-              background: value === 0 ? '#888888' : '#068987',
+              background: value === min || 0 ? '#888888' : '#068987',
               borderRadius: '5px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               cursor: 'pointer',
             }}
-            onClick={() => handleClickCounter('Sub', name, value)}
+            onClick={() => handleClickCounter('Sub', name, value, min)}
           >
             <Box
               component={'img'}

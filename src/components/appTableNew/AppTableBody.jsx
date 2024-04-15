@@ -24,49 +24,51 @@ const AppTableBody = ({
   };
 
   return (
-    <tbody>
-      {renderMessage ? (
-        <TableHiddenBody
-          renderMessage={renderMessage}
-          handleClickRenderMessageButton={handleClickRenderMessageButton}
-          renderMessageButton={renderMessageButton}
-        />
-      ) : data?.length ? (
-        data.map((row, rowIndex) => (
-          <tr
-            className={tableRowClass ? tableRowClass : 'app-table-row'}
-            key={rowIndex}
-          >
-            {column?.map((col, colIndex) => (
-              <Fragment key={colIndex}>
-                {renderCellContent(
-                  row,
-                  col,
-                  handleClickActionView,
-                  commonCellStyle,
-                  handleClick,
-                  handleClickRenderMessageButton,
-                  colIndex,
-                  rowIndex,
-                  handleClickActionDelete,
-                  options,
-                  hanldeInvLinkClick,
-                  updateStatus
-                )}
-              </Fragment>
-            ))}
+    <>
+      <tbody>
+        {renderMessage ? (
+          <TableHiddenBody
+            renderMessage={renderMessage}
+            handleClickRenderMessageButton={handleClickRenderMessageButton}
+            renderMessageButton={renderMessageButton}
+          />
+        ) : data?.length ? (
+          data.map((row, rowIndex) => (
+            <tr
+              className={tableRowClass ? tableRowClass : 'app-table-row'}
+              key={rowIndex}
+            >
+              {column?.map((col, colIndex) => (
+                <Fragment key={colIndex}>
+                  {renderCellContent(
+                    row,
+                    col,
+                    handleClickActionView,
+                    commonCellStyle,
+                    handleClick,
+                    handleClickRenderMessageButton,
+                    colIndex,
+                    rowIndex,
+                    handleClickActionDelete,
+                    options,
+                    hanldeInvLinkClick,
+                    updateStatus
+                  )}
+                </Fragment>
+              ))}
+            </tr>
+          ))
+        ) : (
+          <tr>
+            <td className="app-table-row" colSpan={column?.length}>
+              <Typography variant="caption" sx={{ width: '100%' }}>
+                No Records Found
+              </Typography>
+            </td>
           </tr>
-        ))
-      ) : (
-        <tr>
-          <td className="app-table-row" colSpan={column?.length}>
-            <Typography variant="caption" sx={{ width: '100%' }}>
-              No Records Found
-            </Typography>
-          </td>
-        </tr>
-      )}
-    </tbody>
+        )}
+      </tbody>
+    </>
   );
 };
 

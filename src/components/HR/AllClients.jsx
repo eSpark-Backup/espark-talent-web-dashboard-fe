@@ -76,8 +76,8 @@ const AllClients = () => {
         >
           Clients
         </Typography>
-        {(role === 'super admin' ||
-          (role !== 'super admin' && client_perms?.[0]?.write)) && (
+        {(role === 'super_admin' ||
+          (role !== 'super_admin' && client_perms?.[0]?.write)) && (
           <Button
             sx={{
               backgroundColor: '#029894',

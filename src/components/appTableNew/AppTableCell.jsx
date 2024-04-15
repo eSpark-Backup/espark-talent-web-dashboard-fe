@@ -10,6 +10,7 @@ import {
 import { trackingStatusTypes } from '@/src/constants/data/tables/timeTracking';
 import AppTableInfoOptionsCell from './AppTableInfoOptionsCell';
 import { modulepermissionColumn } from '@/src/constants/data/tables/modulePermission';
+import Link from 'next/link';
 
 const renderAssigneeCell = (row, col, commonCellStyle) => {
   const [avatar, name, subtitle] = row.assignee;
@@ -42,7 +43,11 @@ const renderUserAvatar = (row, col, commonCellStyle) => {
         flex: col?.flex || 1,
       }}
     >
-      <Box component="img" src={row?.pic} />
+      <Box
+        component="img"
+        src={row?.image}
+        sx={{ width: '30px', height: '30px', borderRadius: '50%' }}
+      />
     </td>
   );
 };
@@ -88,7 +93,6 @@ const renderActions = (
       );
     }
     if (row?.isNewModulePermission) {
-      // console.log({ row });
       return (
         <td
           key={colIndex}
@@ -176,104 +180,104 @@ const renderActions = (
     </td>
   );
 };
-// const renderCheckActions = (
-//   row,
-//   col,
-//   handleClickActionView,
-//   colIndex,
-//   rowIndex,
-//   commonCellStyle
-// ) => {
-//   if (row?.isPolicyData) {
-//     if (row?.isModulePermissionData) {
-//       return (
-//         <td
-//           key={colIndex}
-//           style={{
-//             display: 'flex',
-//             justifyContent: 'center',
-//             fontSize: '12px',
-//             flex: col?.flex || 1,
-//           }}
-//         >
-//           <Image
-//             onClick={() => {
-//               handleClickActionView(row?.id, col || col?.title);
-//             }}
-//             style={{
-//               margin: rowIndex === 1 && '0 5px',
-//               cursor: 'pointer',
-//             }}
-//             width={30}
-//             height={30}
-//             alt="Icon"
-//             src={`/icons/${
-//               row[toCamelCase(col || col?.title)][2] === true
-//                 ? 'EnabledCheck'
-//                 : 'DisabledCheck'
-//             }.svg`}
-//           />
-//         </td>
-//       );
-//     }
-//     return (
-//       <td
-//         key={colIndex}
-//         style={{
-//           display: 'flex',
-//           justifyContent: 'center',
-//           fontSize: '12px',
-//           flex: col?.flex || 1,
-//         }}
-//       >
-//         <Image
-//           onClick={() => {
-//             handleClickActionView(row?.id);
-//           }}
-//           style={{
-//             margin: rowIndex === 1 && '0 5px',
-//             cursor: 'pointer',
-//           }}
-//           width={25}
-//           height={25}
-//           alt="Icon"
-//           src={`/icons/${
-//             row?.isSelected ? row?.action[1] : row?.action[0]
-//           }.svg`}
-//         />
-//       </td>
-//     );
-//   } else {
-//     return (
-//       <td
-//         key={col.index}
-//         style={{
-//           ...commonCellStyle,
-//           flex: col?.flex || 1,
-//           justifyContent: col?.textAlign || 'center',
-//         }}
-//       >
-//         {col.title?.toLowerCase() === 'employee invoices' ||
-//         col.title?.toLowerCase() === 'other invoices' ? (
-//           row[toCamelCase(col?.title || col)] === null ? (
-//             '-'
-//           ) : (
-//             <Link
-//               href="/hr/dashboard/clients/client-profile"
-//               style={{ textDecoration: 'underline', cursor: 'pointer' }}
-//             >
-//               {row[toCamelCase(col?.title || col)]}
-//             </Link>
-//           )
-//         ) : row[toCamelCase(col?.title || col)] === null ? (
-//           '-'
-//         ) : (
-//           row[toCamelCase(col?.title || col)]
-//         )}
-//       </td>
-//     );
-//   }
-// };
+const renderCheckActions = (
+  row,
+  col,
+  handleClickActionView,
+  colIndex,
+  rowIndex,
+  commonCellStyle
+) => {
+  if (row?.isPolicyData) {
+    if (row?.isModulePermissionData) {
+      return (
+        <td
+          key={colIndex}
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            fontSize: '12px',
+            flex: col?.flex || 1,
+          }}
+        >
+          <Image
+            onClick={() => {
+              handleClickActionView?.(row?.id, col || col?.title, row);
+            }}
+            style={{
+              margin: rowIndex === 1 && '0 5px',
+              cursor: 'pointer',
+            }}
+            width={30}
+            height={30}
+            alt="Icon"
+            src={`/icons/${
+              row[toCamelCase(col || col?.title)][2] === true
+                ? 'EnabledCheck'
+                : 'DisabledCheck'
+            }.svg`}
+          />
+        </td>
+      );
+    }
+    return (
+      <td
+        key={colIndex}
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          fontSize: '12px',
+          flex: col?.flex || 1,
+        }}
+      >
+        <Image
+          onClick={() => {
+            handleClickActionView(row?.id);
+          }}
+          style={{
+            margin: rowIndex === 1 && '0 5px',
+            cursor: 'pointer',
+          }}
+          width={25}
+          height={25}
+          alt="Icon"
+          src={`/icons/${
+            row?.isSelected ? row?.action[1] : row?.action[0]
+          }.svg`}
+        />
+      </td>
+    );
+  } else {
+    return (
+      <td
+        key={col.index}
+        style={{
+          ...commonCellStyle,
+          flex: col?.flex || 1,
+          justifyContent: col?.textAlign || 'center',
+        }}
+      >
+        {col.title?.toLowerCase() === 'employee invoices' ||
+        col.title?.toLowerCase() === 'other invoices' ? (
+          row[toCamelCase(col?.title || col)] === null ? (
+            '-'
+          ) : (
+            <Link
+              href="/hr/dashboard/clients/client-profile"
+              style={{ textDecoration: 'underline', cursor: 'pointer' }}
+            >
+              {row[toCamelCase(col?.title || col)]}
+            </Link>
+          )
+        ) : row[toCamelCase(col?.title || col)] === null ? (
+          '-'
+        ) : (
+          row[toCamelCase(col?.title || col)]
+        )}
+      </td>
+    );
+  }
+};
 const renderAttendenceStatus = (statusType, index) => {
   const status = trackingStatusTypes?.find(
     ({ shortForm }) => shortForm === statusType
@@ -368,7 +372,9 @@ const renderDropdownCell = (
 const renderDownloadButton = (row, col, commonCellStyle) => {
   return (
     <td key={col.index} style={{ ...commonCellStyle, flex: col?.flex || 1 }}>
-      <span
+      <a
+        target={'_blank'}
+        href={row?.invoice || row?.contract_doc}
         style={{
           borderRadius: '30px',
           padding: '5px 0',
@@ -381,7 +387,7 @@ const renderDownloadButton = (row, col, commonCellStyle) => {
         }}
       >
         {row[toCamelCase(col || col?.title)]}
-      </span>
+      </a>
     </td>
   );
 };
@@ -426,7 +432,6 @@ export const renderCellContent = (
   hanldeInvLinkClick,
   updateStatus
 ) => {
-  // console.log({ col, row });
   switch (col?.title || col || col?.name) {
     case 'Picture':
       return renderUserAvatar(row, col, commonCellStyle);
@@ -451,18 +456,27 @@ export const renderCellContent = (
         return renderDownloadButton(row, col, commonCellStyle);
       }
     case 'Client':
-      break;
-    // case 'Employee':
-    //   return renderCheckActions(
-    //     row,
-    //     col,
-    //     handleClickActionView,
-    //     commonCellStyle,
-    //     colIndex,
-    //     rowIndex,
-    //     handleClickActionDelete,
-    //     commonCellStyle
-    //   );
+      return renderCheckActions(
+        row,
+        col,
+        handleClickActionView,
+        commonCellStyle,
+        colIndex,
+        rowIndex,
+        handleClickActionDelete,
+        commonCellStyle
+      );
+    case 'Employee':
+      return renderCheckActions(
+        row,
+        col,
+        handleClickActionView,
+        commonCellStyle,
+        colIndex,
+        rowIndex,
+        handleClickActionDelete,
+        commonCellStyle
+      );
 
     case 'Action':
       return renderActions(

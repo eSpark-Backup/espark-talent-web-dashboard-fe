@@ -28,6 +28,7 @@ const ClientView = ({
   data,
   isLoading,
 }) => {
+  console.log({ data });
   const dispatch = useDispatch();
   const router = useRouter();
   const [anchorEl, setAnchorEl] = useState(null);
@@ -217,8 +218,8 @@ const ClientView = ({
                           }}
                           sx={{ marginTop: '20px' }}
                         >
-                          {(role === 'super admin' ||
-                            (role !== 'super admin' &&
+                          {(role === 'super_admin' ||
+                            (role !== 'super_admin' &&
                               client_perms?.[0]?.delete)) && (
                             <MenuItem onClick={handleOpenRemove}>
                               Remove
@@ -375,10 +376,24 @@ const ClientView = ({
                               },
                           }}
                         >
-                          <Image
-                            src={'/icons/Employee.svg'}
+                          {/* <img
+                            src={data?.[0]?.image_path}
                             width={100}
                             height={30}
+                          /> */}
+                          <Box
+                            component={'img'}
+                            sx={{
+                              // height: '100px',
+                              // width: '100px',
+                              width: { xs: '70px', md: '100px' },
+                              height: { xs: '70px', md: '100px' },
+                              background: '#fff',
+                              borderRadius: '50%',
+                              padding: '5px',
+                            }}
+                            alt="Client"
+                            src={eachItem?.image_path}
                           />
                           <Typography
                             sx={{
@@ -429,8 +444,8 @@ const ClientView = ({
                             }}
                             sx={{ marginTop: '20px' }}
                           >
-                            {(role === 'super admin' ||
-                              (role !== 'super admin' &&
+                            {(role === 'super_admin' ||
+                              (role !== 'super_admin' &&
                                 client_perms?.[0]?.delete)) && (
                               <MenuItem onClick={handleOpenRemove}>
                                 Remove

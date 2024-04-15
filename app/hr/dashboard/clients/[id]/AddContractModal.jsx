@@ -7,8 +7,31 @@ import { contractForm } from '@/src/constants/data/forms/contract';
 import { useFormik } from 'formik';
 import { CONTRACT_SIGNED } from '@/src/constants/contractSigned';
 import { FORM_DATA } from '@/src/constants/form';
+import { useMutation } from '@tanstack/react-query';
+import { api } from '@/src/services/apiService';
+import { HR_COMPANY_CONTRACTS } from '@/src/services/apiService/apiEndPoints';
+import { Toast } from '@/src/components/Toast/Toast';
 
 const AddContractModal = ({ open, onClose }) => {
+  const { mutate } = useMutation({
+    mutationFn: async (formVals) => {
+      // console.log({ formValues });
+      const formData = new FormData();
+      for (const key in formVals) {
+        formData.append(key, formVals[key]);
+      }
+      return api.postData(`${HR_COMPANY_CONTRACTS}?status=client`, formData);
+    },
+    onSuccess: ({ data }) => {
+      Toast('success', 'Contract uploaded successfully');
+      console.log({ data });
+      onClose();
+    },
+    onError: (err) => {
+      Toast('error', err.message || 'Failed to post data');
+      console.log({ err: err.message, name: err.name, stack: err.stack });
+    },
+  });
   const [formData, setFormData] = useState({});
   const {
     handleSubmit,
@@ -23,8 +46,10 @@ const AddContractModal = ({ open, onClose }) => {
     initialValues: {},
     validationSchema: contractFormSchema,
     enableReinitialize: true,
-    onSubmit: () => {
-      handleCloseModal();
+    onSubmit: (formData) => {
+      console.log({ formData });
+      mutate(formData);
+      // handleCloseModal();
     },
     validateOnChange: false,
     validateOnBlur: false,
@@ -120,6 +145,7 @@ const AddContractModal = ({ open, onClose }) => {
                   name,
                   nested,
                   fields,
+                  accept,
                 },
                 formIndex
               ) => (
@@ -150,6 +176,7 @@ const AddContractModal = ({ open, onClose }) => {
                       lg={12}
                       fields={fields}
                       handleData={handleData}
+                      accept={accept}
                     />
                   </Grid>
                   {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>}

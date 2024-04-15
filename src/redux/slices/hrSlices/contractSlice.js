@@ -35,7 +35,7 @@ const contractSlice = createSlice({
       state.isLoading = true;
     },
     getOffShoreContractRequestSuccess: (state, action) => {
-      state.companyContract.employes = action.payload;
+      state.offShoreContract = action.payload;
       state.isLoading = false;
     },
     getOffShoreContractRequestFailed: (state) => {
@@ -46,6 +46,9 @@ const contractSlice = createSlice({
         ...state.companyContract.clients,
         action.payload,
       ];
+    },
+    addOffShoreContract: (state, action) => {
+      state.offShoreContract = [...state.offShoreContract, action.payload];
     },
   },
 });
@@ -61,5 +64,6 @@ export const {
   getOffShoreContractRequestSuccess,
   getOffShoreContractRequestFailed,
   addClientContract,
+  addOffShoreContract,
 } = contractSlice.actions;
 export default contractSlice.reducer;

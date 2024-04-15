@@ -49,7 +49,7 @@ export const leaveBalanceColumn = [
   {
     title: 'Name',
     flex: 2,
-    name: 'name',
+    name: 'employee_name',
   },
   {
     title: 'Casual leaves',

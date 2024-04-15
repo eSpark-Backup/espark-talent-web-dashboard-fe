@@ -3,24 +3,35 @@ import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { Toast } from '@/src/components/Toast/Toast';
 import { addNewInterviewForm } from '@/src/constants/data/forms/add-new-interview';
 import { FORM_DATA } from '@/src/constants/form';
+import { addInterviewSchedule } from '@/src/redux/slices/hrSlices/clientSlice';
 import { api } from '@/src/services/apiService';
 import { HR_CLIENT_EMP_INTERVIEW_SCHEDULE } from '@/src/services/apiService/apiEndPoints';
 import { Box, Button, Grid, Modal, Typography } from '@mui/material';
 import { useMutation } from '@tanstack/react-query';
 import dayjs from 'dayjs';
 import { useFormik } from 'formik';
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 const AddInterviewModal = ({ open, onClose }) => {
+  const dispatch = useDispatch();
   const { email } = useSelector((state) => state?.hr?.clients?.currentClient);
+  const [interviewFormValues, setInterviewFormValues] = useState(null);
   const { mutate } = useMutation({
     mutationFn: async (formVals) => {
       return api.postJSONData(`${HR_CLIENT_EMP_INTERVIEW_SCHEDULE}`, formVals);
     },
     onSuccess: ({ data }) => {
+      console.log({ data, interviewFormValues });
       Toast('success', 'Data posted successfully');
-      console.log({ data });
+      dispatch(
+        addInterviewSchedule({
+          ...interviewFormValues,
+          id: data.id,
+          status: 'pending',
+        })
+      );
+      setInterviewFormValues(null);
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to post data');
@@ -51,6 +62,7 @@ const AddInterviewModal = ({ open, onClose }) => {
         client_id: email,
       };
       console.log({ finalData });
+      setInterviewFormValues(finalData);
       mutate(finalData);
       handleCloseModal();
     },

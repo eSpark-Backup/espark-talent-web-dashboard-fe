@@ -6,7 +6,7 @@ import Tab from '@mui/material/Tab';
 
 import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
 import { contractHrSignedTabs } from '@/src/constants/data/tabs/contractSignedTabs';
-import AppTable from '@/src/components/appTable/AppTable';
+import AppTable from '@/src/components/appTableNew/AppTable';
 import AppConfirmationMadal from '@/src/components/modals/AppConfirmationMadal';
 import AddContractHrPortalModal from '@/src/components/contractHrportal/contractHr';
 import { CONTRACT_SIGNED } from '@/src/constants/contractSigned';
@@ -55,6 +55,7 @@ const ContractSigned = () => {
       return api
         .getData(`${HR_COMPANY_CONTRACTS}?status=clients`)
         .then(({ data }) => {
+          console.log({ offcon: data });
           dispatch(getClientsCompanyContractRequestSuccess(data || []));
           return data;
         })
@@ -73,8 +74,17 @@ const ContractSigned = () => {
       return api
         .getData(`${HR_OFF_SHORE_CONTRACTS}`)
         .then(({ data }) => {
-          dispatch(getOffShoreContractRequestSuccess(data || []));
-          return data;
+          console.log({ offshcon: data });
+          const tempData = data.length
+            ? data?.map((item) => ({
+                ...item,
+                download: 'Download',
+                actionStatus: true,
+                action: ['Delete'],
+              }))
+            : [];
+          dispatch(getOffShoreContractRequestSuccess(tempData || []));
+          return tempData;
         })
         .catch((err) => {
           Toast('error', err.message || 'Failed to get data');
@@ -354,8 +364,7 @@ const ContractSigned = () => {
       <AddContractHrPortalModal
         open={isOpenContractModal}
         onClose={handleCloseContractModal}
-        contractType={nestedValue === 0 ? 'clients' : 'employees'}
-        endPoint={value === 0 ? HR_COMPANY_CONTRACTS : HR_OFF_SHORE_CONTRACTS}
+        endPoint={HR_OFF_SHORE_CONTRACTS}
         currentTab={value}
       />
     </>

@@ -13,21 +13,45 @@ import UploadPolicyModal from '@/src/components/modals/uploadPolicyModal';
 import { POLICIES_DATA } from '@/src/constants/policies';
 import { CONTRACT_SIGNED } from '@/src/constants/contractSigned';
 import AppConfirmationMadal from '@/src/components/modals/AppConfirmationMadal';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
-import { HR_POLICY } from '@/src/services/apiService/apiEndPoints';
+import {
+  HR_POLICY,
+  HR_POLICY_EDIT,
+} from '@/src/services/apiService/apiEndPoints';
 import { Toast } from '@/src/components/Toast/Toast';
 import { SETTING } from '@/src/constants/SettingHr';
+import {
+  getPolicyData,
+  updatePolicyValue,
+} from '@/src/redux/slices/hrSlices/policy';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Policies = () => {
-  const { isLoading, data } = useQuery({
+  const dispatch = useDispatch();
+  const { policies } = useSelector((state) => state?.hr?.policies);
+  const { isLoading } = useQuery({
     staleTime: 10000,
     queryKey: ['hr-policy-query'],
     queryFn: async () => {
       return api
         .getData(`${HR_POLICY}`)
         .then(({ data }) => {
-          return data || [];
+          const tempData = data.length
+            ? data.map((item) => ({
+                ...item,
+                action: ['Delete'],
+                actionStatus: true,
+                employee: ['DisabledCheck', 'EnabledCheck', item.employee],
+                client: ['DisabledCheck', 'EnabledCheck', item.client],
+                isSelected: false,
+                isModulePermissionData: true,
+                isPolicyData: true,
+              }))
+            : [];
+          console.log({ tempData, data });
+          dispatch(getPolicyData(tempData));
+          return tempData || [];
         })
         .catch((err) => {
           Toast('error', err.message || 'Failed to get data');
@@ -35,25 +59,48 @@ const Policies = () => {
         });
     },
   });
+  const { mutate } = useMutation({
+    mutationFn: async (formVals) => {
+      return api.updateJSONData(HR_POLICY_EDIT, formVals);
+    },
+    onSuccess: () => {
+      Toast('success', 'Policies updates successfully');
+      setIsOpenSavePolicies(false);
+      handleClose?.();
+    },
+    onError: (err) => {
+      Toast('error', err.message || 'Failed to post data');
+      console.log({ err: err.message, name: err.name, stack: err.stack });
+    },
+  });
   const [openUploadPolicy, setOpenUploadPolicy] = useState(false);
   // const [formTableState, setFormTableState] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
+  const [isOpenSavePolicies, setIsOpenSavePolicies] = useState(false);
   // useEffect(() => {
   //   setFormTableState([...policyData]);
   // }, [policyData]);
-  // const handleSelectRow = (employeeId, column) => {
-  //   const tempForm = [...policyData];
-  //   const employeeIndex = tempForm.findIndex(
-  //     (employee) => employee.id === employeeId
-  //   );
-  //   const targetObject = {
-  //     ...tempForm[employeeIndex],
-  //   };
-  //   targetObject[[toCamelCase(column)]][2] =
-  //     !targetObject[[toCamelCase(column)]][2];
-  //   tempForm[employeeIndex] = targetObject;
-  //   setFormTableState(tempForm);
-  // };
+  const handleSelectRow = (id, column, row) => {
+    console.log({ id, column, row });
+    dispatch(
+      updatePolicyValue({
+        id,
+        key: column.name,
+        value: !row[column.name][2],
+      })
+    );
+    // const tempForm = [...policyData];
+    // const employeeIndex = tempForm.findIndex(
+    //   (employee) => employee.id === employeeId
+    // );
+    // const targetObject = {
+    //   ...tempForm[employeeIndex],
+    // };
+    // targetObject[[toCamelCase(column)]][2] =
+    //   !targetObject[[toCamelCase(column)]][2];
+    // tempForm[employeeIndex] = targetObject;
+    // setFormTableState(tempForm);
+  };
   const handleClickDelete = () => {
     setIsOpen(true);
   };
@@ -63,6 +110,14 @@ const Policies = () => {
   const handleClose = () => {
     setOpenUploadPolicy(false);
     setIsOpen(false);
+  };
+  const handleSavePolicies = () => {
+    const tempData = policies.map((item) => ({
+      id: item.id,
+      employee: item.employee[2],
+      client: item.client[2],
+    }));
+    mutate(tempData);
   };
   return (
     <>
@@ -127,8 +182,8 @@ const Policies = () => {
             >
               <AppTable
                 column={policyColumn}
-                data={data}
-                // handleClickActionView={handleSelectRow}
+                data={policies}
+                handleClickActionView={handleSelectRow}
                 handleClickActionDelete={handleClickDelete}
                 noPagination
               />
@@ -146,6 +201,7 @@ const Policies = () => {
                   color: '#fff',
                 },
               }}
+              onClick={() => setIsOpenSavePolicies(true)}
             >
               {SETTING?.save}
             </Button>
@@ -162,6 +218,15 @@ const Policies = () => {
         confirmButtonText={CONTRACT_SIGNED?.delete}
         isOpen={isOpen}
         handleClose={handleClose}
+      />
+      <AppConfirmationMadal
+        title={'Save Policies'}
+        bodyText={'Are you sure you want to update the policies?'}
+        cancelButtonText={'Cancel'}
+        confirmButtonText={'Save'}
+        isOpen={isOpenSavePolicies}
+        handleClose={() => setIsOpenSavePolicies(false)}
+        handleConfirm={handleSavePolicies}
       />
     </>
   );

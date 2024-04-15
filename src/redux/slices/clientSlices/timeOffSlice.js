@@ -5,7 +5,7 @@ const timeOffSlice = createSlice({
   initialState: {
     data: {
       leaveRequest: [],
-      leaveBalace: [],
+      leaveBalance: [],
       clockInOutRequests: [],
     },
     tabData: {
@@ -43,7 +43,7 @@ const timeOffSlice = createSlice({
       state.isLoadingLeaveBalance = true;
     },
     fetchLeaveBalanceRequestSuccess: (state, action) => {
-      state.data.leaveBalace = action?.payload;
+      state.data.leaveBalance = action?.payload;
       state.isLoadingLeaveBalance = false;
     },
     fetchLeaveBalanceRequestFailed: (state) => {

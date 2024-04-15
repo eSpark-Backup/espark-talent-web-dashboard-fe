@@ -177,8 +177,9 @@ const Page = () => {
                       sx={{
                         width: { xs: '150px', md: '100px' },
                         height: { xs: '150px', md: '100px' },
+                        borderRadius: '50%',
                       }}
-                      src="/images/dashboard/employee.svg"
+                      src={currentEmployee?.image_path}
                       component={'img'}
                     />
                     <Image
@@ -245,6 +246,9 @@ const Page = () => {
                           },
                         },
                       }}
+                      onClick={() =>
+                        window.open(currentEmployee?.resume_path, '_blank')
+                      }
                     >
                       {employeeProfileData?.downloadResume}
                     </Button>
@@ -421,7 +425,7 @@ const Page = () => {
                           <AssetForm
                             open={handleAssetModal}
                             onClose={handleCloseModal}
-                            data={currentEmployee}
+                            empData={currentEmployee}
                           />
                         )}
                       </>
@@ -440,7 +444,9 @@ const Page = () => {
                     data={currentEmployee}
                   />
                 ) : value === employeeProfileData?.valueTwo ? (
-                  <Client />
+                  <>
+                    <Client />
+                  </>
                 ) : value === employeeProfileData?.valuethree ? (
                   <AttendanceReport employeeData={currentEmployee} />
                 ) : value === 'five' ? (

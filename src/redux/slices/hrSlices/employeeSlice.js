@@ -9,6 +9,14 @@ const employeeSlice = createSlice({
     assets: [],
     attendance: [],
     currentEmployee: {},
+    currentEmployeeClients: {
+      active: [],
+      inActive: [],
+    },
+    timeAndLeaves: {
+      time: [],
+      leaves: [],
+    },
   },
   reducers: {
     getEmpData: (state) => {
@@ -26,6 +34,9 @@ const employeeSlice = createSlice({
         ...state.addEmployeeForm,
         ...action.payload,
       };
+    },
+    clearEmployeeFormData: (state) => {
+      state.addEmployeeForm = {};
     },
     getEmpAssetRequest: (state) => {
       state.isLoading = true;
@@ -73,6 +84,28 @@ const employeeSlice = createSlice({
     deleteCurrentEmpDataFailed: (state) => {
       state.isLoading = false;
     },
+    getHrEmpTime: (state, action) => {
+      state.timeAndLeaves.time = action.payload;
+      state.isLoading = false;
+    },
+    getHrEmpLeaves: (state, action) => {
+      state.timeAndLeaves.leaves = action.payload;
+      state.isLoading = false;
+    },
+    updateEmpTimeRequest: (state) => {
+      state.isLoading = true;
+    },
+    updateEmpTime: (state, action) => {
+      state.timeAndLeaves.time = action.payload;
+      state.isLoading = false;
+    },
+    updateEmpLeavesRequest: (state) => {
+      state.isLoading = true;
+    },
+    updateEmpLeaves: (state, action) => {
+      state.timeAndLeaves.leaves = action.payload;
+      state.isLoading = false;
+    },
   },
 });
 
@@ -94,5 +127,12 @@ export const {
   deleteCurrentEmpData,
   deleteCurrentEmpDataSuccess,
   deleteCurrentEmpDataFailed,
+  getHrEmpTime,
+  getHrEmpLeaves,
+  clearEmployeeFormData,
+  updateEmpTimeRequest,
+  updateEmpTime,
+  updateEmpLeavesRequest,
+  updateEmpLeaves,
 } = employeeSlice.actions;
 export default employeeSlice.reducer;

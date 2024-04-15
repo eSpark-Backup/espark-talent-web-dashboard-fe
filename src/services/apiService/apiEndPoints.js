@@ -11,7 +11,7 @@ export const HR_ADD_ClIENT = '/hr_add_client/';
 export const HR_GET_EMP_PROFILE = '/hr_emp_prof/';
 export const HR_GET_CLIENT_PROFILE = '/hr_client_prof/';
 export const HR_GET_EMP_ATTENDENCE = '/hr_empattendance/';
-export const HR_GET_EMP_TIME_AND_LEAVES = '/hr_emp_t&l/';
+export const HR_EMP_TIME_AND_LEAVES = '/hr_emp_t&l/';
 export const HR_ADD_EMP_ASSET = '/hr_add_asset/';
 export const HR_UPDATE_EMP_INFO = '/hr_update_empinfo/';
 export const HR_UPDATE_EMP_CREDS = '/hr_update_empcred/';
@@ -24,11 +24,13 @@ export const HR_CLIENT_EMPLOYEES = '/hr_clientemps/';
 export const HR_CLIENT_EMPLOYEE_INVOICE = '/hr_empinv/';
 export const HR_CLIENT_OTHER_INVOICE = '/hr_otherinv/';
 export const HR_POLICY = '/hr_policy/';
+export const HR_POLICY_EDIT = '/hr_policy_edit/';
 export const HR_COMPANY_SETTINGS = '/hr_compsett/';
 export const HR_ACCOUNTS = '/hr_accounts/';
 export const HR_ROLES_PERMISSIONS = '/hr_rnp/';
 export const HR_OUTSOURCEABLE_EMPS = '/hr_clientaddemp/';
 export const HR_INVOICES = '/hr_invoices/';
+export const HR_UPDATE_EMP_IMAGE = '/hr_update_empimg/';
 
 // Employees
 

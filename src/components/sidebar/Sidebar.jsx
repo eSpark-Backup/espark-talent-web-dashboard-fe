@@ -60,23 +60,23 @@ const Sidebar = ({ userName }) => {
       // Check for employee permissions
       if (
         route.text === 'Employees' &&
-        !employeePerms?.employee_perms[0]?.read
+        !employeePerms?.employee_perms?.[0]?.read
       ) {
         return false; // Exclude 'Employees' route if read permission is false
       }
 
       // Check for other permissions (assuming properties exist in employeePerms)
-      const clientPerms = employeePerms?.client_perms[0]; // Assuming client permissions exist
+      const clientPerms = employeePerms?.client_perms?.[0]; // Assuming client permissions exist
       if (route.text === 'Clients' && !clientPerms?.read) {
         return false; // Exclude 'Clients' route if read permission is false
       }
 
-      const invoicePerms = employeePerms.invoices_perms[0]; // Assuming invoice permissions exist
+      const invoicePerms = employeePerms.invoices_perms?.[0]; // Assuming invoice permissions exist
       if (route.text === 'Invoices' && !invoicePerms?.read) {
         return false; // Exclude 'Invoices' route if read permission is false
       }
 
-      const policyPerms = employeePerms.policies_perms[0]; // Assuming policy permissions exist
+      const policyPerms = employeePerms.policies_perms?.[0]; // Assuming policy permissions exist
       if (route.text === 'Policies' && !policyPerms?.read) {
         return false; // Exclude 'Policies' route if read permission is false
       }
@@ -101,23 +101,23 @@ const Sidebar = ({ userName }) => {
   //     // Check for employee permissions
   //     if (
   //       route.text === 'Employees' &&
-  //       !employeePerms?.employee_perms[0]?.read
+  //       !employeePerms?.employee_perms?.[0]?.read
   //     ) {
   //       return false; // Exclude 'Employees' route if read permission is false
   //     }
 
   //     // Check for other permissions (assuming properties exist in employeePerms)
-  //     const clientPerms = employeePerms?.client_perms[0]; // Assuming client permissions exist
+  //     const clientPerms = employeePerms?.client_perms?.[0]; // Assuming client permissions exist
   //     if (route.text === 'Clients' && !clientPerms?.read) {
   //       return false; // Exclude 'Clients' route if read permission is false
   //     }
 
-  //     const invoicePerms = employeePerms.invoices_perms[0]; // Assuming invoice permissions exist
+  //     const invoicePerms = employeePerms.invoices_perms?.[0]; // Assuming invoice permissions exist
   //     if (route.text === 'Invoices' && !invoicePerms?.read) {
   //       return false; // Exclude 'Invoices' route if read permission is false
   //     }
 
-  //     const policyPerms = employeePerms.policies_perms[0]; // Assuming policy permissions exist
+  //     const policyPerms = employeePerms.policies_perms?.[0]; // Assuming policy permissions exist
   //     if (route.text === 'Policies' && !policyPerms?.read) {
   //       return false; // Exclude 'Policies' route if read permission is false
   //     }
@@ -136,7 +136,7 @@ const Sidebar = ({ userName }) => {
     } else if (employee) {
       return Employee_Routes;
     } else if (hr) {
-      if (role === 'super admin') {
+      if (role === 'super_admin') {
         return Hr_Routes;
       } else {
         const withoutSettings = Hr_Routes.filter(
