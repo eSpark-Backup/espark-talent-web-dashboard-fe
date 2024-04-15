@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { Box, Grid, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { PUNCH_IN } from '@/src/constants/punchIn/createPunch';
 import MarkCheckIn from './MarkCheckin';
 import MarkCheckOut from './MarkCheckout';
@@ -8,7 +8,14 @@ import MarkBreak from './MarkBreak';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
 
-const MarkClock = () => {
+const MarkClock = ({ data }) => {
+  const {
+    title,
+    clock_icon,
+    expected_start_time,
+    expected_end_time,
+    break_out_icon,
+  } = data || {};
   const { homeData } = useSelector((state) => state?.emp?.home);
   const [elapsedTimeString, setElapsedTimeString] = useState('00:00:00');
   const [percentage, setPercentage] = useState(0);
@@ -119,7 +126,7 @@ const MarkClock = () => {
         sx={{
           px: 4,
           py: 2.5,
-          height: '70px',
+          minHeight: '70px',
           borderRadius: '10px 10px 0px 0px',
           borderBottom: '1px solid #E4E4E4',
           background: '#FFF',
@@ -127,20 +134,23 @@ const MarkClock = () => {
       >
         <Typography
           sx={{
-            fontSize: { xs: '12px', md: '25px' },
+            fontSize: { xs: '20px', md: '23px', lg: '25px' },
+            textAlign: { xs: 'center', sm: 'left' },
             fontWeight: 600,
             color: '#171717',
             fontStyle: 'normal',
             lineHeight: 'normal',
           }}
         >
-          Mark clock in/ clock out
+          {title || ''}
         </Typography>
       </Box>
       <Box
         sx={{
           px: { xs: 3, sm: 3, lg: 3 },
-          pt: 3,
+          flexDirection: { xs: 'column', sm: 'row' },
+          rowGap: { xs: 0.7, sm: 0 },
+          pt: 4.2,
           pb: 3,
           width: '100%',
           justifyContent: 'space-between',
@@ -151,7 +161,7 @@ const MarkClock = () => {
         <Typography
           sx={{
             color: '#595959',
-            fontSize: { xs: '14px', md: '20px' },
+            fontSize: { xs: '17px', sm: '20px' },
             fontStyle: 'normal',
             fontWeight: 400,
             lineHeight: 'normal',
@@ -161,17 +171,12 @@ const MarkClock = () => {
         </Typography>
 
         <Box display={'flex'} alignItems={'center'}>
-          <Image
-            src="/icons/ClockIcon.svg"
-            width={25}
-            height={25}
-            alt="Clock"
-          />
+          <Image src={clock_icon || ''} width={25} height={25} alt="Clock" />
           <Typography
             sx={{
               color: '#171717',
               textAlign: 'center',
-              fontSize: { xs: '12px', md: '16px' },
+              fontSize: { xs: '14px', sm: '16px' },
               fontStyle: 'normal',
               fontWeight: 600,
               lineHeight: 'normal',
@@ -184,13 +189,13 @@ const MarkClock = () => {
             sx={{
               color: '#595959',
               textAlign: 'center',
-              fontSize: { xs: '10px', md: '14px' },
+              fontSize: { xs: '13px', sm: '14px' },
               fontStyle: 'normal',
               fontWeight: 400,
               lineHeight: 'normal',
             }}
           >
-            Exp: 10:00 AM
+            {expected_start_time || ''}
           </Typography>
         </Box>
       </Box>
@@ -198,6 +203,8 @@ const MarkClock = () => {
         sx={{
           px: { xs: 3, sm: 3, lg: 3 },
           width: '100%',
+          flexDirection: { xs: 'column', sm: 'row' },
+          rowGap: { xs: 0.7, sm: 0 },
           justifyContent: 'space-between',
           alignItems: 'center',
         }}
@@ -206,7 +213,7 @@ const MarkClock = () => {
         <Typography
           sx={{
             color: '#595959',
-            fontSize: { xs: '14px', md: '20px' },
+            fontSize: { xs: '17px', sm: '20px' },
             fontStyle: 'normal',
             fontWeight: 400,
             lineHeight: 'normal',
@@ -215,17 +222,12 @@ const MarkClock = () => {
           {PUNCH_IN?.checkOut}
         </Typography>
         <Box display={'flex'} alignItems={'center'}>
-          <Image
-            src="/icons/ClockIcon.svg"
-            width={25}
-            height={25}
-            alt="Clock"
-          />
+          <Image src={clock_icon || ''} width={25} height={25} alt="Clock" />
           <Typography
             sx={{
               color: '#171717',
               textAlign: 'center',
-              fontSize: { xs: '12px', md: '16px' },
+              fontSize: { xs: '14px', sm: '16px' },
               fontStyle: 'normal',
               fontWeight: 600,
               lineHeight: 'normal',
@@ -238,22 +240,22 @@ const MarkClock = () => {
             sx={{
               color: '#595959',
               textAlign: 'center',
-              fontSize: { xs: '10px', md: '14px' },
+              fontSize: { xs: '13px', sm: '14px' },
               fontStyle: 'normal',
               fontWeight: 400,
               lineHeight: 'normal',
             }}
           >
-            Exp: 07:00 AM
+            {expected_end_time || ''}
           </Typography>
         </Box>
       </Box>
-      <Box sx={{ py: '30px' }}>
+      <Box sx={{ py: '23px' }}>
         <Box
           sx={{
-            height: '50px',
+            height: '40px',
             mx: { xs: 3, sm: 3, lg: 3 },
-            border: 'solid 1px #ccc',
+            border: 'solid 1px #E4E4E4',
             borderRadius: '5px',
             position: 'relative',
             overflow: 'hidden',
@@ -291,10 +293,10 @@ const MarkClock = () => {
           </Typography>
         </Box>
       </Box>
-      <Grid
-        gap={'10px'}
+      <Box
+        gap={'20px'}
         sx={{
-          height: '50px',
+          flexDirection: { xs: 'column', sm: 'row' },
           mx: { xs: 3, sm: 3, lg: 3 },
           borderRadius: '5px',
           position: 'relative',
@@ -303,8 +305,8 @@ const MarkClock = () => {
       >
         <MarkCheckIn />
         <MarkCheckOut />
-      </Grid>
-      <MarkBreak />
+      </Box>
+      <MarkBreak icon={break_out_icon} />
     </Box>
   );
 };

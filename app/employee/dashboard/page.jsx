@@ -17,6 +17,10 @@ import { api } from '@/src/services/apiService';
 
 import { EMP_HOME } from '@/src/services/apiService/apiEndPoints';
 import { DASHBOARD_DATA } from '@/public/images/dashboard/constants/Dashboard';
+import {
+  Attendance_Summary_Title,
+  Mark_CLock_Title,
+} from '@/src/constants/employeeDashboard';
 import { Toast } from '@/src/components/Toast/Toast';
 
 const Dashboard = () => {
@@ -51,30 +55,60 @@ const Dashboard = () => {
             }}
           >
             <DashboardHeading
-              title={empDetails?.employee_name}
+              title={`Hello ${empDetails?.employee_name}`}
               dashboardDescription={DASHBOARD_DATA?.updates}
             />
           </Box>
         </Grid>
         <Grid item xs={12}>
-          <AttendanceSummary />
+          <AttendanceSummary title={Attendance_Summary_Title} />
         </Grid>
         <Grid item xs={12} md={6} lg={6} xl={6}>
-          <MarkClock />
+          <MarkClock data={Mark_CLock_Title} />
         </Grid>
         <Grid item xs={12} md={6} lg={6} xl={6}>
           <LeaveSummary />
         </Grid>
-        <Grid item xs={12} md={6} lg={6} xl={6}>
-          <Statistics />
-        </Grid>
-        <Grid item xs={12} md={6} lg={3} xl={3}>
-          <TodayActivity />
-        </Grid>
-        <Grid item xs={12} sm={12} md={12} lg={3} xl={3}>
-          <Clock />
-        </Grid>
       </Grid>
+      <Box
+        sx={{
+          width: 'auto',
+          display: 'flex',
+          flexDirection: 'row',
+          gap: 5,
+          mt: 5,
+          '@media (max-width: 1599px)': {
+            flexWrap: 'wrap',
+          },
+        }}
+      >
+        <Box
+          sx={{
+            width: '100%',
+            display: 'flex',
+            flexDirection: 'row',
+            gap: 5,
+            flexWrap: { xs: 'wrap', md: 'nowrap' },
+          }}
+        >
+          <Box sx={{ width: { xs: '100%', md: 'calc(100% - 355px)' } }}>
+            <Statistics />
+          </Box>
+          <Box sx={{ width: { xs: '100%', md: '355px' } }}>
+            <TodayActivity />
+          </Box>
+        </Box>
+        <Box
+          sx={{
+            width: '440px',
+            '@media (max-width: 1599px)': {
+              width: '100%',
+            },
+          }}
+        >
+          <Clock />
+        </Box>
+      </Box>
     </>
   );
 };

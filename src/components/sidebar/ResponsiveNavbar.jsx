@@ -14,6 +14,10 @@ import { WORK_SPACE_ICON } from '@/src/constants/sidebar';
 import WorkSpaceIcon from './WorkSpaceIcon';
 
 export default function ResponsiveNavbar({ userName, openSidebar }) {
+  const [profileMenu, setProfileMenu] = React.useState(null);
+  const [workspace, setWorkspace] = React.useState(null);
+  const [notification, setNotification] = React.useState(null);
+
   const pathName = usePathname();
   const employee = pathName.includes('/employee/dashboard');
 
@@ -65,6 +69,10 @@ export default function ResponsiveNavbar({ userName, openSidebar }) {
                   }}
                 >
                   <WorkSpacePopper
+                    workspace={workspace}
+                    setWorkspace={setWorkspace}
+                    setProfileMenu={setProfileMenu}
+                    setNotification={setNotification}
                     button={<WorkSpaceIcon image={WORK_SPACE_ICON} />}
                   />
                 </Box>
@@ -72,6 +80,11 @@ export default function ResponsiveNavbar({ userName, openSidebar }) {
               <Box sx={{ display: 'flex' }}>
                 <SidebarGlobalIcon />
                 <ProfilePopper
+                  profileMenu={profileMenu}
+                  setProfileMenu={setProfileMenu}
+                  setWorkspace={setWorkspace}
+                  notification={notification}
+                  setNotification={setNotification}
                   button={<SidebarUserAvatar userName={userName} />}
                 />
               </Box>

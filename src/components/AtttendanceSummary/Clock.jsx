@@ -4,11 +4,6 @@ import { Clock_Title } from '@/src/constants/employeeDashboard';
 import { Clock_Dial } from '@/src/constants/employeeDashboard';
 
 const Clock = () => {
-  const fontSize = {
-    '@media (min-width: 1200px) and (max-width: 1300px)': {
-      fontSize: '12px',
-    },
-  };
   const [currentDate, setCurrentDate] = useState({
     hours: '',
     minutes: '',
@@ -54,9 +49,8 @@ const Clock = () => {
       <Box
         sx={{
           mx: { xs: 'auto', md: 0 },
-          // width: { xs: 'auto', md: '300px' },
-          // height: '430px',
-          height: '100%',
+          maxWidth: 'auto',
+          height: '470px',
           borderRadius: '10px',
           background: '#fff',
           boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
@@ -74,7 +68,8 @@ const Clock = () => {
         >
           <Typography
             sx={{
-              fontSize: { xs: '18px', md: '25px' },
+              fontSize: { xs: '20px', md: '23px', lg: '25px' },
+              textAlign: { xs: 'center', sm: 'left' },
               fontWeight: 600,
               color: '#171717',
               fontStyle: 'normal',
@@ -86,39 +81,25 @@ const Clock = () => {
         </Box>
         <Box
           sx={{
-            px: { xs: 3, sm: 3, lg: 3 },
+            // px: { xs: 3, sm: 3, lg: 3 },
             width: '100%',
-            height: '100%',
+            height: '400px',
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            paddingBottom: { xs: '100px', md: '60px' },
-            paddingTop: { xs: '46px', md: '0px' },
-            // paddingBottom: { xs: '46px', md: '0px' },
+            // paddingTop: { xs: '46px', md: '0px' },
           }}
         >
           <Box
             sx={{
               mx: 'auto',
-              width: { xs: '240px', sm: '240px' },
-              height: { xs: '240px', sm: '240px' },
+              width: { xs: '220px', sm: '240px' },
+              height: { xs: '220px', sm: '240px' },
               backgroundColor: '#F6F7F8',
               backgroundImage: `url(${Clock_Dial})`,
               backgroundPosition: 'center',
-              backgroundSize: 'cover',
-              '@media (min-width: 280px) and (max-width: 320px)': {
-                backgroundImage: 'none',
-              },
-              '@media (min-width: 1300px) and (max-width: 1500px)': {
-                width: '250px',
-                height: '180px',
-                backgroundImage: 'none',
-              },
-              '@media (min-width: 1200px) and (max-width: 1300px)': {
-                width: '270px',
-                height: '160px',
-                backgroundImage: 'none',
-              },
+              backgroundSize: '100%',
+              backgroundRepeat: 'no-repeat',
               borderRadius: { xs: '80%', md: '100%' },
             }}
           >
@@ -136,19 +117,8 @@ const Clock = () => {
               <Typography sx={{ fontSize: '16px', fontWeight: 400 }}>
                 {currentDate?.day}
               </Typography>
-              <Typography
-                variant="h4"
-                sx={{
-                  '@media (min-width: 1200px) and (max-width: 1300px)': {
-                    fontSize: '20px',
-                  },
-                }}
-              >
-                {currentDate?.hours}
-              </Typography>
-              <Typography
-                sx={{ fontSize: '16px', fontWeight: 400, ...fontSize }}
-              >
+              <Typography variant="h4">{currentDate?.hours}</Typography>
+              <Typography sx={{ fontSize: '16px', fontWeight: 400 }}>
                 {currentDate?.month}
                 <Typography
                   component={'span'}
@@ -156,15 +126,12 @@ const Clock = () => {
                     ml: 0.5,
                     fontSize: '16px',
                     fontWeight: 400,
-                    ...fontSize,
                   }}
                 >
                   {currentDate?.date},{currentDate?.year}
                 </Typography>
               </Typography>
-              <Typography
-                sx={{ fontSize: '16px', fontWeight: 400, ...fontSize }}
-              >
+              <Typography sx={{ fontSize: '16px', fontWeight: 400 }}>
                 {currentDate?.city}
               </Typography>
             </Box>

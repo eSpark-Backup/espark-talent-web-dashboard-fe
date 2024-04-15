@@ -11,50 +11,31 @@ import { NOTIFICATION_TITLE, profileMenuData } from '@/src/constants/sidebar';
 import { NOTIFICATION_DATA } from '@/src/constants/data/userData';
 import SignoutModal from '../signoutmodal/signoutModal';
 import DotBadge from '../sidebar/SidebarProfileBadge';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  handleProfileMenuClose,
-  handleProfileMenuOpen,
-} from '@/src/redux/slices/profileMenuSlice';
-import { handleworkSpaceMenuClose } from '@/src/redux/slices/workSpaceMenuSlice';
+import { useDispatch } from 'react-redux';
 import { logout } from '@/src/redux/slices/authSlice';
 import Cookie from 'js-cookie';
-export default function ProfilePopper({ button }) {
-  const [openModal, setOpenModal] = React.useState(false);
-  const [notificationPopup, setNotificationPopup] = React.useState(null);
-  const [bondary, setBondary] = React.useState(null);
+import { useMediaQuery } from '@mui/material';
+
+export default function ProfilePopper({
+  button,
+  profileMenu,
+  setProfileMenu,
+  setWorkspace,
+  notification,
+  setNotification,
+}) {
+  const profilePopupRef = React.useRef(null);
   const notificationPopupRef = React.useRef(null);
-  const router = useRouter();
-  const isOpen = useSelector((state) => state?.profileMenu?.isOpen);
   const dispatch = useDispatch();
 
   const handleClick = (event) => {
-    dispatch(handleProfileMenuOpen(isOpen ? null : event.currentTarget));
-    dispatch(handleworkSpaceMenuClose(null));
-    setNotificationPopup(null);
+    setProfileMenu(event?.currentTarget);
+    setWorkspace(null);
   };
-
-  const handleClickOutside = (event) => {
-    if (
-      notificationPopupRef?.current &&
-      !notificationPopupRef?.current?.contains(event.target)
-    ) {
-      setNotificationPopup(null);
-    }
-  };
-
-  React.useEffect(() => {
-    document.addEventListener('mouseleave', handleClickOutside);
-    setBondary(document.querySelector('#popperBoundary'));
-    return () => {
-      document.removeEventListener('mouseleave', handleClickOutside);
-    };
-  }, []);
 
   const handleNotification = (event, key) => {
-    dispatch(handleProfileMenuClose(null));
     if (key == 'Notification') {
-      setNotificationPopup(notificationPopup ? null : event.currentTarget);
+      setNotification(notification ? null : event.currentTarget);
     } else if (key == 'Sign out') {
       setOpenModal(true);
     } else {
@@ -62,9 +43,60 @@ export default function ProfilePopper({ button }) {
     }
   };
 
-  const handlePopoverClose = () => {
-    setNotificationPopup(null);
+  const open = Boolean(profileMenu);
+  const id = open ? 'simple-popper' : undefined;
+
+  const Notification_open = Boolean(notification);
+  const Notification_id = Notification_open ? 'simple-popper' : undefined;
+
+  const handleClickOutside = (event) => {
+    if (
+      profilePopupRef?.current &&
+      !profilePopupRef?.current?.contains(event.target)
+    ) {
+      setProfileMenu(null);
+    }
   };
+
+  const handleClickOutsideNotification = (event) => {
+    if (
+      notificationPopupRef?.current &&
+      !notificationPopupRef?.current?.contains(event.target)
+    ) {
+      setNotification(null);
+    }
+  };
+
+  React.useEffect(() => {
+    document.addEventListener('mouseleave', handleClickOutsideNotification);
+    return () => {
+      document.removeEventListener(
+        'mouseleave',
+        handleClickOutsideNotification
+      );
+    };
+  }, []);
+
+  React.useEffect(() => {
+    document.addEventListener('mouseleave', handleClickOutside);
+    return () => {
+      document.removeEventListener('mouseleave', handleClickOutside);
+    };
+  }, []);
+
+  const handleClose = () => {
+    setProfileMenu(null);
+    setNotification(null);
+  };
+
+  const handleCloseNotification = () => {
+    setNotification(null);
+    setProfileMenu(null);
+  };
+
+  const [openModal, setOpenModal] = React.useState(false);
+
+  const router = useRouter();
 
   const handleLogout = () => {
     dispatch(logout());
@@ -74,18 +106,15 @@ export default function ProfilePopper({ button }) {
     location?.reload();
   };
 
-  const open = Boolean(isOpen);
-  const id = open ? 'simple-popper-1' : undefined;
-
-  const notifiactionOpen = Boolean(notificationPopup);
-  const notificationId = notifiactionOpen ? 'simple-popper-2' : undefined;
+  const isLargeScreen = useMediaQuery('(min-width:1200px)');
+  const profile_placement = isLargeScreen ? 'right-start' : 'left-start';
 
   return (
     <div>
       <button
         aria-describedby={id}
         type="button"
-        onClick={handleClick}
+        onMouseEnter={(event) => handleClick(event)}
         style={{ width: '100%', height: '100%' }}
       >
         {button}
@@ -97,10 +126,12 @@ export default function ProfilePopper({ button }) {
       />
       <Popper
         id={id}
-        open={open}
-        anchorEl={isOpen}
-        placement={'right-start'}
-        onMouseLeave={handlePopoverClose}
+        open={profileMenu}
+        ref={profilePopupRef}
+        onClose={handleClose}
+        onMouseLeave={notification == null ? handleClose : null}
+        anchorEl={profileMenu}
+        placement={profile_placement}
         sx={{ position: 'relative', zIndex: 505 }}
       >
         <Box
@@ -120,6 +151,9 @@ export default function ProfilePopper({ button }) {
             right: { xs: 0, lg: 'auto' },
             marginRight: { xs: 0, lg: 0 },
             marginTop: { xs: 8, lg: 1 },
+            '@media(max-width:1200px)': {
+              marginRight: -4,
+            },
           }}
         >
           {profileMenuData?.map((item, i) => (
@@ -132,8 +166,8 @@ export default function ProfilePopper({ button }) {
                 '&: hover': { backgroundColor: 'transparent' },
               }}
             >
-              <Box sx={{ display: 'flex', gap: 1.1 }}>
-                <Box sx={{ display: 'flex', gap: 0.5 }}>
+              <Box sx={{ display: 'flex', gap: 1.7 }}>
+                <Box sx={{ display: 'flex', gap: 1 }}>
                   <Box sx={{ marginTop: -1.2 }}>
                     {item?.text == 'Notification' && <DotBadge color={'red'} />}
                   </Box>
@@ -156,19 +190,20 @@ export default function ProfilePopper({ button }) {
       </Popper>
 
       <Popper
-        id={notificationId}
-        open={notifiactionOpen}
-        anchorEl={notificationPopupRef?.current}
-        modifiers={[
-          {
-            name: 'preventOverflow',
-            options: {
-              boundary: `${bondary}`,
-            },
-          },
-        ]}
-        placement={'right-start'}
-        sx={{ position: 'relative', zIndex: 505 }}
+        id={Notification_id}
+        open={Notification_open}
+        ref={notificationPopupRef}
+        onMouseLeave={handleCloseNotification}
+        anchorEl={notification}
+        anchorOrigin={{
+          vertical: 'center',
+          horizontal: 'center',
+        }}
+        transformOrigin={{
+          vertical: 'center',
+          horizontal: 'center',
+        }}
+        sx={{ position: 'relative', zIndex: 506 }}
       >
         <Box
           ref={notificationPopupRef}
@@ -178,21 +213,16 @@ export default function ProfilePopper({ button }) {
             background: '#FFF',
             boxShadow: '0px 0px 80px 0px rgba(0, 0, 0, 0.20)',
             display: 'flex',
-            width: '350px',
+            maxWidth: { xs: '270px', sm: '350px' },
             minHeight: 'auto',
             maxHeight: '410px',
             flexDirection: 'column',
             alignItems: 'flex-start',
-            position: 'fixed',
-            marginLeft: { xs: 1, lg: 36 },
-            right: { xs: 0, lg: 'auto' },
-            marginTop: { xs: 9, lg: 1 },
-            marginRight: { xs: 1.5, lg: 'auto' },
-            '@media (max-width: 374px)': {
-              right: 0,
-              left: 0,
-              width: '310px',
-              mx: 'auto',
+            marginLeft: { xs: 1, lg: 16 },
+            marginTop: { xs: 9, lg: -6.5 },
+            '@media(max-width:1200px)': {
+              marginTop: -7,
+              marginRight: 0.7,
             },
           }}
         >

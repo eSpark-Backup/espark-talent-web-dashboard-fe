@@ -9,15 +9,14 @@ const ResetButton = ({ onSubmit }) => {
     <Box
       sx={{
         display: 'flex',
-        paddingTop: { xs: '0px', md: '100px' },
+        paddingTop: '20px',
         justifyContent: 'center',
         gap: '15px',
-        paddingBottom: { xs: '50px', md: '0px' },
       }}
     >
       <Button
         sx={{
-          width: { xs: '100px', sm: '120px' },
+          width: { xs: '105px', sm: '120px' },
           height: '40px',
           fontSize: '16px',
           fontWeight: 600,
@@ -44,7 +43,7 @@ const ResetButton = ({ onSubmit }) => {
         type="submit"
         variant="primary"
         sx={{
-          width: { xs: '100px', sm: '120px' },
+          width: { xs: '105px', sm: '120px' },
           height: '40px',
           fontSize: '16px',
           fontWeight: 600,

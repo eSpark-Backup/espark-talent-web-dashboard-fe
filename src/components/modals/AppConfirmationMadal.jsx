@@ -9,7 +9,6 @@ const AppConfirmationMadal = ({
   handleClose,
   isOpen,
   handleConfirm,
-  width,
 }) => {
   return (
     <Modal
@@ -27,17 +26,13 @@ const AppConfirmationMadal = ({
         <Box
           sx={{
             bgcolor: '#fff',
-            width: {
-              xs: '90%',
-              sm: '60%',
-              md: '40%',
-              lg: width ? width : '30%',
-            },
+            maxWidth: '450px',
+            minHeight: '250px',
+            width: '92%',
             display: 'flex',
             flexDirection: 'column',
-            borderRadius: '10px',
+            borderRadius: '5px',
             boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
-            maxHeight: '90%',
             overflowY: 'auto',
             padding: '38px 0',
             '@media (min-width: 1200px) and (max-width: 1360px)': {

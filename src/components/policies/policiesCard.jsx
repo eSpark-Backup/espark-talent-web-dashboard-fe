@@ -8,15 +8,19 @@ const PoliciesCard = ({ data }) => {
     <>
       <Box
         sx={{
-          display: 'flex',
-          flexDirection: { xs: 'column', sm: 'column', md: 'row' },
-          justifyContent: 'center',
-          flexWrap: 'wrap',
-          paddingBottom: '80px',
-          '@media (min-width: 1200px) and (max-width: 1379px)': {
-            width: '100%',
+          display: 'grid',
+          maxWidth: '900px',
+          gridTemplateRows: 'repeat(2, 1fr)',
+          gridTemplateColumns: 'repeat(2, 1fr)',
+          '@media (min-width: 280px) and (max-width: 768px)': {
+            gridTemplateRows: 'repeat(1, 1fr)',
+            gridTemplateColumns: 'repeat(1, 1fr)',
+            mx: 0,
           },
-          width: { xs: '100%', md: '100%', lg: '90%' },
+          justifyContent: { xs: 'start', lg: 'center' },
+          columnGap: 3.5,
+          rowGap: 3.5,
+          flexWrap: 'wrap',
           mx: 'auto',
         }}
       >
@@ -25,12 +29,7 @@ const PoliciesCard = ({ data }) => {
             key={item.id}
             sx={{
               display: 'flex',
-              justifyContent: 'center',
-              padding: { sm: 0, md: '25px' },
-              mb: { xs: '25px', md: '0' },
-              '@media (min-width: 900px) and (max-width: 1280px)': {
-                padding: '15px',
-              },
+              justifyContent: { xs: 'start', lg: 'center' },
             }}
           >
             <DownloadPolicies

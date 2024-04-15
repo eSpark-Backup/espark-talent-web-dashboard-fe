@@ -4,7 +4,7 @@ import { Box, Typography } from '@mui/material';
 import SummarySlider from './SummarySlider';
 import { Summary_Boxes } from '@/src/constants/employeeDashboard';
 
-const AttendanceSummary = () => {
+const AttendanceSummary = ({ title }) => {
   return (
     <>
       <Box
@@ -26,9 +26,13 @@ const AttendanceSummary = () => {
           }}
         >
           <Typography
-            sx={{ fontSize: { xs: '18px', md: '25px' }, fontWeight: 600 }}
+            sx={{
+              fontSize: { xs: '20px', md: '23px', lg: '25px' },
+              fontWeight: 600,
+              textAlign: { xs: 'center', sm: 'left' },
+            }}
           >
-            Attendance Summary
+            {title || ''}
           </Typography>
         </Box>
         <Box

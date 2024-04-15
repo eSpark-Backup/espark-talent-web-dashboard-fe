@@ -13,7 +13,8 @@ const PunchRequestModal = ({ createModal, modalData, handleClose }) => {
       sx={{
         mx: 'auto',
         bgcolor: '#fff',
-        width: { xs: '90%', sm: '90%', md: '77.084%' },
+        maxWidth: '1480px',
+        width: '95%',
         display: 'flex',
         flexDirection: 'column',
         borderRadius: '10px',
@@ -27,10 +28,13 @@ const PunchRequestModal = ({ createModal, modalData, handleClose }) => {
         },
       }}
     >
-      <Box sx={{ borderBottom: '1px solid #E4E4E4', p: 2 }}>
+      <Box
+        sx={{ width: '100%', borderBottom: '1px solid #E4E4E4', p: 2, px: 3 }}
+      >
         <Typography
           sx={{
-            fontSize: '25px',
+            textAlign: { xs: 'center', sm: 'start' },
+            fontSize: { xs: '23px', sm: '25px' },
             fontWeight: '600',
           }}
         >

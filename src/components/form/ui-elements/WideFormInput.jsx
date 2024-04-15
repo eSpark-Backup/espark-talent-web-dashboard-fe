@@ -1,4 +1,4 @@
-import { Box, Grid, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import {
   DesktopDatePicker,
   DesktopTimePicker,
@@ -109,23 +109,22 @@ const WideFormInput = ({
           padding: '5px 10px',
         }}
       >
-        <Grid
-          container
-          p={'5px 5px 5px 20px'}
+        <Box
           sx={{
             background: darkBack ? '#F6F6F6' : '#FFF',
+            p: { xs: '0', md: '0px 0px 5px 0px', lg: '5px 5px 5px 20px' },
             borderRadius: '5px',
             display: 'flex',
             alignItems: {
               xs: 'flex-start',
-              md: type === 'text-area' ? 'flex-start' : 'center',
+              lg: type === 'text-area' ? 'start' : 'center',
             },
-            flexDirection: { xs: 'column', md: 'row' },
-            gap: { xs: '10px', md: '0px' },
-            height: type !== 'text-area' && '50px',
+            flexDirection: { xs: 'column', lg: 'row' },
+            gap: { xs: '12px', md: '0px' },
+            height: { xs: 'auto', lg: type !== 'text-area' && '50px' },
           }}
         >
-          <Grid item xs={12} md={5}>
+          <Box sx={{ width: { xs: '100%', lg: 'calc(100% - 778px)' } }}>
             <Typography
               sx={{
                 color: '#171717',
@@ -133,14 +132,15 @@ const WideFormInput = ({
                 fontStyle: 'normal',
                 fontWeight: 500,
                 lineHeight: 'normal',
-                paddingLeft: { xs: '0px', md: '20px' },
+                paddingLeft: { xs: '0px', lg: '20px' },
                 marginTop: { xs: '0px', md: type === 'text-area' && '5px' },
+                mb: { xs: 0, md: 1.2, lg: 0 },
               }}
             >
               {title} {required && <span style={{ color: '#FF0000' }}>*</span>}
             </Typography>
-          </Grid>
-          <Grid item xs={12} md={7} sx={{ width: '100%' }}>
+          </Box>
+          <Box sx={{ width: { xs: '100%', lg: '778px' } }}>
             <Box
               display={'flex'}
               justifyContent={'space-between'}
@@ -361,8 +361,8 @@ const WideFormInput = ({
                 </Box>
               ) : null}
             </Box>
-          </Grid>
-        </Grid>
+          </Box>
+        </Box>
       </Box>
     </Box>
   );

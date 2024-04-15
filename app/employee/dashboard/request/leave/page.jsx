@@ -17,6 +17,7 @@ import {
   deleteEmpLeaveRequestSuccess,
   deleteLeaveRequestDataFailed,
 } from '@/src/redux/slices/employeeSlices/leaveRequestSlice';
+import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
 import { Toast } from '@/src/components/Toast/Toast';
 
 const Dashboard = () => {
@@ -25,6 +26,7 @@ const Dashboard = () => {
   const [modalData, setModalData] = useState({});
   const [openModal, setOpenModal] = useState(false);
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
+
   const { mutate } = useMutation({
     mutationFn: async (id) => {
       dispatch(deleteEmpLeaveRequest());
@@ -66,15 +68,7 @@ const Dashboard = () => {
         reason,
       },
     } = props;
-    console.log({
-      // item,
-      // row,
-      // status,
-      // count,
-      // leaveType,
-      // employeeName,
-      ...props,
-    });
+
     setModalData({
       status,
       employeeName,
@@ -132,33 +126,22 @@ const Dashboard = () => {
         >
           <div>
             <Box
-              display={'flex'}
-              justifyContent={'space-between'}
-              alignItems={'center'}
-              marginBottom={'50px'}
+              sx={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: { xs: 'center', sm: 'center', md: 'end' },
+                flexDirection: { xs: 'column', sm: 'row' },
+                marginBottom: '35px',
+                rowGap: 1.5,
+              }}
             >
-              <Box display={'flex'} flexDirection={'column'}>
-                <Typography variant="h3">Leaves Requests</Typography>
-                <Box display={'flex'} flexDirection={'column'} mt={'20px'}>
-                  <Typography
-                    sx={{
-                      fontSize: '14px',
-                      fontWeight: 400,
-                      letterSpacing: '0em',
-                      textAlign: 'left',
-                      color: '#595959',
-                    }}
-                    variant="caption"
-                  >
-                    {REQUEST_LEAVE?.manageLeave}
-                  </Typography>
-                </Box>
-              </Box>
+              <DashboardHeading
+                title={'Leaves Requests'}
+                dashboardDescription={REQUEST_LEAVE?.manageLeave || ''}
+              />
               <Button
                 sx={{
                   minWidth: { xs: '100px', md: '120px' },
-                  marginBottom: '25px',
-                  marginX: '10px',
                   color: '#fff',
                   background: '#029894',
                   '&:hover': {
@@ -190,7 +173,7 @@ const Dashboard = () => {
             <Box sx={{ width: '100%' }}>
               <Box
                 sx={{
-                  marginTop: '10px',
+                  // marginTop: '10px',
                   marginBottom: '20px',
                   maxWidth: '100%',
                   overflowX: 'auto',
@@ -198,11 +181,14 @@ const Dashboard = () => {
               >
                 <Box
                   sx={{
+                    minWidth: '700px',
+                    width: '100%',
+                    overflowX: 'auto',
                     mb: '26px',
                     display: 'flex',
-                    flexDirection: { xs: 'column', md: 'row' },
+                    flexDirection: { xs: 'row', md: 'row' },
                     justifyContent: 'space-between',
-                    alignItems: { xs: 'flex-start', md: 'center' },
+                    alignItems: { xs: 'center', md: 'center' },
                   }}
                 >
                   <Typography
@@ -220,7 +206,7 @@ const Dashboard = () => {
                   </Typography>
                   <Button
                     sx={{
-                      mt: { xs: '20px', md: 0 },
+                      mt: { xs: '0', md: 0 },
                       minWidth: '120px',
                       border: '1px solid #138A72',
                       color: '#138A72',
@@ -263,15 +249,15 @@ const Dashboard = () => {
               justifyContent={'space-between'}
               alignItems={'center'}
             >
-              <Box display={'flex'} flexDirection={'column'}>
+              <Box sx={{ width: '100%', mb: { xs: 0.8, md: 0 } }}>
                 <Typography
                   sx={{
                     fontSize: '30px',
                     fontWeight: 400,
                     lineHeight: '36px',
                     letterSpacing: '0em',
-                    textAlign: 'left',
                     color: '#595959',
+                    textAlign: { xs: 'center', sm: 'start' },
                   }}
                 >
                   {REQUEST_LEAVE?.request}

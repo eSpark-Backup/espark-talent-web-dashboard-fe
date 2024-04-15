@@ -116,7 +116,7 @@ const LeaveRequestForm = ({ handleClose }) => {
       <Box>
         <Box
           sx={{
-            padding: '28px',
+            padding: { xs: '20px', sm: '26px', md: '28px' },
           }}
         >
           {createLeaveRequestForm?.map(
@@ -167,13 +167,16 @@ const LeaveRequestForm = ({ handleClose }) => {
       </Box>
       <Box
         display={'flex'}
-        justifyContent={'flex-end'}
-        sx={{ padding: '20px 40px', marginBottom: '15px' }}
+        sx={{
+          padding: '20px 40px',
+          marginBottom: '15px',
+          justifyContent: { xs: 'center', sm: 'flex-end' },
+        }}
       >
         <Button
           onClick={handleClose}
           sx={{
-            ml: '20px',
+            ml: { xs: 0, sm: '20px' },
             width: '120px',
             border: '1px solid #029894',
             background: '#FFF',

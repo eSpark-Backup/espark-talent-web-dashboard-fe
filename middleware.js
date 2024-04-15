@@ -5,18 +5,15 @@ export default function middleware(req) {
   const userTypeCookie = req.cookies.get('userType');
   const loggedin = tokenCookie ? tokenCookie.value : null;
   const userType = userTypeCookie ? userTypeCookie.value : null;
-
   const { pathname } = req.nextUrl;
   const dashboardRoutes = {
     hr: '/hr/dashboard',
     client: '/client/dashboard',
     employee: '/employee/dashboard',
   };
-
   if (userType == null && pathname != '/') {
     return NextResponse?.redirect(new URL('/', req?.url)?.toString());
   }
-
   if (
     loggedin &&
     userType &&

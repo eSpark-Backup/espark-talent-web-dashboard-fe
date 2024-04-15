@@ -17,7 +17,8 @@ const LeaveViewModal = ({ modalData, handleClose, isEmployee }) => {
       <Box
         sx={{
           bgcolor: '#fff',
-          width: { xs: '90%', sm: '90%', md: '77.084%' },
+          maxWidth: '1480px',
+          width: '95%',
           display: 'flex',
           flexDirection: 'column',
           borderRadius: '10px',
@@ -26,9 +27,10 @@ const LeaveViewModal = ({ modalData, handleClose, isEmployee }) => {
           overflowY: 'auto',
         }}
       >
-        <Box sx={{ borderBottom: '1px solid #E4E4E4', p: 2 }}>
+        <Box sx={{ borderBottom: '1px solid #E4E4E4', py: 2, px: 2.8 }}>
           <Typography
             sx={{
+              textAlign: { xs: 'center', sm: 'start' },
               fontSize: '25px',
               fontWeight: 600,
             }}
@@ -44,8 +46,11 @@ const LeaveViewModal = ({ modalData, handleClose, isEmployee }) => {
           >
             <Grid
               container
-              p={'5px 5px 5px 20px'}
               sx={{
+                p: {
+                  xs: '12px',
+                  md: '5px 5px 5px 20px',
+                },
                 background: '#F6F6F6',
                 borderRadius: '5px',
                 display: 'flex',
@@ -91,8 +96,11 @@ const LeaveViewModal = ({ modalData, handleClose, isEmployee }) => {
           >
             <Grid
               container
-              p={'5px 5px 5px 20px'}
               sx={{
+                p: {
+                  xs: '12px',
+                  md: '5px 5px 5px 20px',
+                },
                 background: '#fff',
                 borderRadius: '5px',
                 display: 'flex',
@@ -157,8 +165,11 @@ const LeaveViewModal = ({ modalData, handleClose, isEmployee }) => {
           >
             <Grid
               container
-              p={'5px 5px 5px 20px'}
               sx={{
+                p: {
+                  xs: '12px',
+                  md: '5px 5px 5px 20px',
+                },
                 background: '#F6F6F6',
                 borderRadius: '5px',
                 display: 'flex',
@@ -276,7 +287,7 @@ const LeaveViewModal = ({ modalData, handleClose, isEmployee }) => {
                     my: '9px',
                   }}
                 />
-                <Box ml={'5px'}>
+                <Box ml={'5px'} pb={'5px'}>
                   <Typography
                     sx={{
                       color: '#595959',
@@ -354,9 +365,9 @@ const LeaveViewModal = ({ modalData, handleClose, isEmployee }) => {
                         border: 'solid 1px #ccc',
                         m: '5px',
                         flex: 1,
-                        borderRadius: '5px',
+                        // borderRadius: '5px',
                         overflow: 'hidden',
-                        background: '#ccc',
+                        background: '#fff',
                         minWidth: { xs: '91px', sm: '112px' },
                       }}
                       display={'flex'}
@@ -453,8 +464,11 @@ const LeaveViewModal = ({ modalData, handleClose, isEmployee }) => {
           >
             <Grid
               container
-              p={'5px 5px 5px 20px'}
               sx={{
+                p: {
+                  xs: '12px',
+                  md: '5px 5px 5px 20px',
+                },
                 background: '#F6F6F6',
                 borderRadius: '5px',
                 display: 'flex',
@@ -514,8 +528,11 @@ const LeaveViewModal = ({ modalData, handleClose, isEmployee }) => {
             {!isEmployee && (
               <Grid
                 container
-                p={'5px 5px 5px 20px'}
                 sx={{
+                  p: {
+                    xs: '12px',
+                    md: '5px 5px 5px 20px',
+                  },
                   background: '#fff',
                   borderRadius: '5px',
                   display: 'flex',
@@ -576,8 +593,11 @@ const LeaveViewModal = ({ modalData, handleClose, isEmployee }) => {
             {!isEmployee && (
               <Grid
                 container
-                p={'5px 5px 5px 20px'}
                 sx={{
+                  p: {
+                    xs: '12px',
+                    md: '5px 5px 5px 20px',
+                  },
                   background: '#F6F6F6',
                   borderRadius: '5px',
                   display: 'flex',
@@ -637,8 +657,11 @@ const LeaveViewModal = ({ modalData, handleClose, isEmployee }) => {
           >
             <Grid
               container
-              p={'5px 5px 5px 20px'}
               sx={{
+                p: {
+                  xs: '12px',
+                  md: '5px 5px 5px 20px',
+                },
                 background: '#fff',
                 borderRadius: '5px',
                 display: 'flex',
@@ -687,8 +710,32 @@ const LeaveViewModal = ({ modalData, handleClose, isEmployee }) => {
                 </Box>
               </Grid>
             </Grid>
+            <Box
+              sx={{
+                display: 'flex',
+                width: '100%',
+                justifyContent: 'flex-end',
+                py: 2,
+                pr: 0.5,
+              }}
+            >
+              <Button
+                type="submit"
+                variant="primary"
+                sx={{
+                  width: { xs: '105px', sm: '120px' },
+                  height: '40px',
+                  fontSize: '16px',
+                  fontWeight: 600,
+                }}
+                onClick={handleClose}
+              >
+                {'Close'}
+              </Button>
+            </Box>
           </Box>
         </Box>
+
         {!isEmployee && (
           <>
             {modalData?.status === 'Pending' ? (

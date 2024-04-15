@@ -11,16 +11,17 @@ const DownloadPolicies = ({
   return (
     <Box
       sx={{
+        maxWidth: { xs: '100%', lg: '400px' },
+        width: '100%',
+        minHeight: '300px',
         display: 'flex',
         border: '1px solid #E4E4E4',
         borderRadius: '10px',
         flexDirection: 'column',
+        alignItems: { xs: 'center', sm: 'flex-start' },
+        textAlign: { xs: 'center', sm: 'start' },
         padding: '40px 28px',
         gap: '23px',
-        '@media (min-width:1200px) and (max-width:1300px)': {
-          width: '350px',
-        },
-        width: { xs: '100%', sm: '100%', md: '350px', lg: '400px' },
       }}
     >
       <Image src={image} width={50} height={50} alt={reportHeading} />

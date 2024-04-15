@@ -36,8 +36,8 @@ const PunchRequestDataView = ({ modalData, handleClose }) => {
             >
               <Grid
                 container
-                p={'5px 5px 5px 20px'}
                 sx={{
+                  p: { xs: '0px 0px 5px 0px', md: '5px 5px 5px 20px' },
                   background: !(dataIndex % 2) ? '#F6F6F6' : '#FFF',
                   borderRadius: '5px',
                   display: 'flex',
@@ -143,8 +143,8 @@ const PunchRequestDataView = ({ modalData, handleClose }) => {
           <Button
             onClick={handleClose}
             sx={{
-              ml: '20px',
-              width: '120px',
+              ml: { xs: 0, md: '20px' },
+              width: { xs: '100%', md: '120px' },
               '&:hover': {
                 background: '#029894',
               },

@@ -12,9 +12,10 @@ const Statistics = () => {
   };
   return (
     <>
-      {Object.keys(homeData).length && (
+      {Object?.keys(homeData)?.length && (
         <Box
           sx={{
+            maxWidth: 'auto',
             height: '470px',
             borderRadius: '10px',
             background: '#FFF',
@@ -33,7 +34,8 @@ const Statistics = () => {
           >
             <Typography
               sx={{
-                fontSize: '25px',
+                fontSize: { xs: '20px', md: '23px', lg: '25px' },
+                textAlign: { xs: 'center', sm: 'left' },
                 fontWeight: 600,
               }}
             >

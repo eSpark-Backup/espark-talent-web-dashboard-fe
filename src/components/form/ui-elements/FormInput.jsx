@@ -172,7 +172,7 @@ const FormInput = ({
                     errors['checkoutTime2']
                       ? 'red'
                       : '#595959',
-                  fontSize: '14px',
+                  fontSize: '16px',
                   fontStyle: 'normal',
                   fontWeight: 500,
                   lineHeight: 'normal',
@@ -187,7 +187,7 @@ const FormInput = ({
               <Typography
                 sx={{
                   color: error ? 'red' : '#595959',
-                  fontSize: '14px',
+                  fontSize: '16px',
                   fontStyle: 'normal',
                   fontWeight: 500,
                   lineHeight: 'normal',
@@ -257,7 +257,7 @@ const FormInput = ({
                   '& input': {
                     color: '#88888',
                     padding: '9.95px 10px',
-                    width: '100%',
+                    width: '85%',
                   },
                 },
               },
@@ -365,7 +365,14 @@ const FormInput = ({
         </>
       ) : type === 'timerow' ? (
         <>
-          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              flexDirection: { xs: 'column', sm: 'row' },
+              rowGap: 2,
+            }}
+          >
             {fieldsName?.map((field, fieldIndex) => {
               return (
                 <>
@@ -373,16 +380,15 @@ const FormInput = ({
                     <Box
                       key={`separator-${fieldIndex}`}
                       sx={{
-                        width: '40px',
+                        width: '70px',
                         height: '40px',
                         background: '#E4E4E4',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        display: { xs: 'none', sm: 'flex' },
                       }}
                     >
-                      <Typography
-                        sx={{ textAlign: 'center', marginTop: '10px' }}
-                      >
-                        -
-                      </Typography>
+                      <Typography sx={{ textAlign: 'center' }}>-</Typography>
                     </Box>
                   )}
                   <Box

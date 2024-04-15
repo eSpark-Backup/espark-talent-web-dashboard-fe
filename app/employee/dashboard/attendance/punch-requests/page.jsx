@@ -29,6 +29,7 @@ import AppConfirmationMadal from '@/src/components/modals/AppConfirmationMadal';
 // import { filterStatusForm } from '@/src/constants/data/forms/filter-form';
 import EmpPunchReqFilterFormModal from '@/src/components/FilterModal/empPunchReqFilterForm';
 import { empPunchReqfilterForm } from '@/src/constants/data/forms/emp-punch-req-modal-form';
+import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
 import { Toast } from '@/src/components/Toast/Toast';
 
 const Dashboard = () => {
@@ -173,29 +174,22 @@ const Dashboard = () => {
   return (
     <>
       <Box
-        display={'flex'}
-        justifyContent={'space-between'}
-        alignItems={'center'}
-        marginBottom={'50px'}
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          mb: { xs: '20px', sm: '50px' },
+        }}
       >
-        <Box display={'flex'} flexDirection={'column'}>
-          <Typography fontSize={{ xs: '20px', md: '30px' }} fontWeight={600}>
-            Punch request
-          </Typography>
-          <Box display={'flex'} flexDirection={'column'} mt={'20px'}>
-            <Typography
-              sx={{
-                fontSize: '14px',
-                fontWeight: 400,
-                letterSpacing: '0em',
-                textAlign: 'left',
-                color: '#595959',
-              }}
-              variant="caption"
-            >
-              {REQUEST_LEAVE?.manageTimesheet}
-            </Typography>
-          </Box>
+        <Box
+          sx={{
+            width: '100%',
+          }}
+        >
+          <DashboardHeading
+            title={'Punch request'}
+            dashboardDescription={REQUEST_LEAVE?.manageTimesheet}
+          />
         </Box>
 
         {openModal && (
@@ -219,7 +213,7 @@ const Dashboard = () => {
           </Modal>
         )}
       </Box>
-      <Grid container spacing={3}>
+      <Grid container>
         <Box
           sx={{
             display: 'flex',
@@ -230,10 +224,10 @@ const Dashboard = () => {
           }}
         >
           <div>
-            <Box my={'20px'}>
+            <Box sx={{ xs: '0px', sm: '20px' }}>
               <Typography
                 sx={{
-                  fontSize: '30px',
+                  fontSize: { xs: '24px', sm: '28px', md: '30px' },
                   fontWeight: 400,
                   lineHeight: '36px',
                   letterSpacing: '0em',
@@ -241,26 +235,32 @@ const Dashboard = () => {
                 }}
                 textAlign={'center'}
               >
-                {empDetails?.employee_name} - ({empDetails?.employee_id})
+                {`${empDetails?.employee_name} -`}{' '}
+                <Box
+                  component={'br'}
+                  sx={{ display: { xs: 'flex', sm: 'none' } }}
+                />{' '}
+                ({empDetails?.employee_id})
               </Typography>
             </Box>
-            <Box sx={{ width: '100%' }}>
-              <Box
-                sx={{
-                  marginTop: '10px',
-                  marginBottom: '20px',
-                  borderBottom: 'solid 1px #ccc',
-                }}
-              >
-                <CustomTabPanel value={0} index={0} key={0}>
-                  <Box
-                    display={'flex'}
-                    justifyContent={'space-between'}
-                    flexWrap={'wrap'}
-                    alignItems={'center'}
-                    marginTop={5}
-                    px={'10px'}
-                  >
+            <Box
+              sx={{
+                marginTop: '20px',
+                marginBottom: '30px',
+                borderBottom: 'solid 1px #ccc',
+              }}
+            >
+              <CustomTabPanel value={0} index={0} key={0}>
+                <Box
+                  sx={{
+                    maxWidth: '1480px',
+                    overflowX: 'auto',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                  }}
+                >
+                  <Box sx={{ width: '800px' }}>
                     <Tabs
                       variant="scrollable"
                       value={currentReqStatusTabVal}
@@ -280,13 +280,14 @@ const Dashboard = () => {
                               key={index}
                               disableRipple={true}
                               sx={{
-                                mr: { xs: '10px', sm: '20px', md: '50px' },
-                                // p: 0,
+                                p: 0,
+                                mr: index == 0 ? '20px' : '40px',
                               }}
                               label={
                                 <Box display={'flex'} alignItems={'center'}>
                                   <Box
                                     sx={{
+                                      ml: index == 0 ? -3 : 0,
                                       width: 30,
                                       height: 30,
                                       background,
@@ -330,97 +331,94 @@ const Dashboard = () => {
                         }
                       )}
                     </Tabs>
-                    <Box
-                      display={'flex'}
-                      alignItems={'center'}
+                  </Box>
+                  <Box
+                    maxWidth={'auto'}
+                    display={'flex'}
+                    alignItems={'center'}
+                    sx={{
+                      pb: 0.8,
+                    }}
+                  >
+                    <Button
                       sx={{
-                        pt: { xs: '10px', md: 0 },
-                        '@media (min-width: 900px) and (max-width: 950px)': {
-                          pt: '15px',
+                        marginX: '10px',
+                        minWidth: '120px',
+                        border: '1px solid #138A72',
+                        color: '#138A72',
+                        '&:hover:': {
+                          background: '#fff',
                         },
-                        pb: '10px',
                       }}
+                      onClick={() => refreshMutation.mutate()}
+                      startIcon={
+                        <Image
+                          width={20}
+                          height={22}
+                          alt="Refresh"
+                          src={`/icons/Refresh.svg`}
+                        />
+                      }
                     >
-                      <Button
-                        sx={{
-                          marginX: '10px',
-                          minWidth: '120px',
-                          border: '1px solid #138A72',
-                          color: '#138A72',
-                          '&:hover:': {
-                            background: '#fff',
-                          },
-                        }}
-                        onClick={() => refreshMutation.mutate()}
-                        startIcon={
-                          <Image
-                            width={20}
-                            height={22}
-                            alt="Refresh"
-                            src={`/icons/Refresh.svg`}
-                          />
-                        }
-                      >
-                        {REQUEST_LEAVE?.refresh}
-                      </Button>
-                      <Button
-                        sx={{
-                          minWidth: '120px',
+                      {REQUEST_LEAVE?.refresh}
+                    </Button>
+                    <Button
+                      sx={{
+                        minWidth: '120px',
+                        background: '#138A72',
+                        color: '#fff',
+                        '&:hover': {
                           background: '#138A72',
-                          color: '#fff',
-                          '&:hover': {
-                            background: '#138A72',
-                          },
-                        }}
-                        onClick={handleOpenFilterModal}
-                        startIcon={
-                          <Image
-                            width={18}
-                            height={15}
-                            alt="Refresh"
-                            src={`/icons/Filter.svg`}
-                          />
-                        }
-                      >
-                        {REQUEST_LEAVE?.filter}
-                      </Button>
-                      <Button
-                        sx={{
-                          marginX: '10px',
-                          minWidth: '120px',
+                        },
+                      }}
+                      onClick={handleOpenFilterModal}
+                      startIcon={
+                        <Image
+                          width={18}
+                          height={15}
+                          alt="Refresh"
+                          src={`/icons/Filter.svg`}
+                        />
+                      }
+                    >
+                      {REQUEST_LEAVE?.filter}
+                    </Button>
+                    <Button
+                      sx={{
+                        marginX: '10px',
+                        minWidth: '120px',
+                        color: '#fff',
+                        background: '#029894',
+                        '&:hover': {
                           color: '#fff',
                           background: '#029894',
-                          '&:hover': {
-                            color: '#fff',
-                            background: '#029894',
-                          },
-                        }}
-                        onClick={handleOpenModal}
-                      >
-                        {REQUEST_LEAVE?.create}
-                      </Button>
-                    </Box>
+                        },
+                      }}
+                      onClick={handleOpenModal}
+                    >
+                      {REQUEST_LEAVE?.create}
+                    </Button>
                   </Box>
-                  {showFilterModal && (
-                    <EmpPunchReqFilterFormModal
-                      open={handleOpenFilterModal}
-                      onClose={handleClose}
-                      clockinOut
-                      filterForm={empPunchReqfilterForm}
-                    />
-                  )}
-                </CustomTabPanel>
-              </Box>
-              {renderNestedTable({
-                currentReqStatusTabVal,
-                currentReqStatusTab,
-                column: employeeCheckInOutRequestColumn,
-                data: checkInOutRequestDataState,
-                // data: data?.requests,
-                handleClickActionView,
-                handleClickActionDelete,
-              })}
+                </Box>
+                {showFilterModal && (
+                  <EmpPunchReqFilterFormModal
+                    open={handleOpenFilterModal}
+                    onClose={handleClose}
+                    clockinOut
+                    filterForm={empPunchReqfilterForm}
+                  />
+                )}
+              </CustomTabPanel>
             </Box>
+            {renderNestedTable({
+              currentReqStatusTabVal,
+              currentReqStatusTab,
+              column: employeeCheckInOutRequestColumn,
+              data: checkInOutRequestDataState,
+              // data: data?.requests,
+              handleClickActionView,
+              handleClickActionDelete,
+            })}
           </div>
         </Box>
       </Grid>

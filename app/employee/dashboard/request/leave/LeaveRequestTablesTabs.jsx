@@ -88,92 +88,104 @@ const LeaveRequestTablesTabs = ({
     setShowFilterModal(true);
   };
 
-  if (isLoading) return 'Loading...';
+  if (isLoading) return <Typography sx={{ mt: 3 }}>Loading...</Typography>;
 
   return (
     <Box sx={{ width: '100%' }}>
       <Box
         sx={{
-          marginTop: '10px',
-          marginBottom: '20px',
+          marginTop: '20px',
+          marginBottom: '30px',
           borderBottom: 'solid 1px #ccc',
         }}
       >
         <CustomTabPanel value={0} index={0} key={0}>
           <Box
-            display={'flex'}
-            justifyContent={'space-between'}
-            flexWrap={'wrap'}
-            alignItems={'center'}
-            marginTop={5}
-            px={'10px'}
+            sx={{
+              maxWidth: '1480px',
+              overflowX: 'auto',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+            }}
           >
-            <Tabs
-              variant="scrollable"
-              value={currentReqStatusTabVal}
-              onChange={(ev, newVal) =>
-                handleChangeCurrReqStatusTab(ev, newVal, employeeRequestsTabs)
-              }
-              aria-label="basic tabs example"
-            >
-              {employeeRequestsTabs?.map(
-                ({ label, prop, color, background, name }, index) => {
-                  return (
-                    <Tab
-                      key={index}
-                      disableRipple={true}
-                      label={
-                        <Box display={'flex'} alignItems={'center'}>
-                          <Box
-                            sx={{
-                              width: 30,
-                              height: 30,
-                              background,
-                              borderRadius: '5px',
-                              marginRight: '10px',
-                              color,
-                              fontSize: '14px',
-                              fontWeight: 600,
-                              lineHeight: '19px',
-                              letterSpacing: '0em',
-                              textAlign: 'left',
-                            }}
-                            display={'flex'}
-                            justifyContent={'center'}
-                            alignItems={'center'}
-                          >
-                            {
-                              // filterTableRowsWRTTab(
-                              //   employeeLeaveRequestsData,
-                              //   {
-                              //     status: label === 'All' ? '' : label,
-                              //   }
-                              // ).length
-                              data?.[name]
-                            }
-                          </Box>
-                          <Typography
-                            variant="body1"
-                            sx={{
-                              color: label === currentReqStatusTab && color,
-                            }}
-                          >
-                            {label}
-                          </Typography>
-                        </Box>
-                      }
-                      {...prop}
-                    />
-                  );
-                }
-              )}
-            </Tabs>
             <Box
+              sx={{
+                width: '800px',
+              }}
+            >
+              <Tabs
+                variant="scrollable"
+                value={currentReqStatusTabVal}
+                onChange={(ev, newVal) =>
+                  handleChangeCurrReqStatusTab(ev, newVal, employeeRequestsTabs)
+                }
+                aria-label="basic tabs example"
+              >
+                {employeeRequestsTabs?.map(
+                  ({ label, prop, background, color, name }, index) => {
+                    return (
+                      <Tab
+                        key={index}
+                        disableRipple={true}
+                        sx={{
+                          p: 0,
+                          mr: index == 0 ? '20px' : '40px',
+                        }}
+                        label={
+                          <Box display={'flex'} alignItems={'center'}>
+                            <Box
+                              sx={{
+                                ml: index == 0 ? -3 : 0,
+                                width: 30,
+                                height: 30,
+                                background,
+                                borderRadius: '5px',
+                                marginRight: '10px',
+                                color,
+                                fontSize: '14px',
+                                fontWeight: 600,
+                                lineHeight: '19px',
+                                letterSpacing: '0em',
+                                textAlign: 'left',
+                              }}
+                              display={'flex'}
+                              justifyContent={'center'}
+                              alignItems={'center'}
+                            >
+                              {
+                                // filterTableRowsWRTTab(
+                                //   employeeLeaveRequestsData,
+                                //   {
+                                //     status: label === 'All' ? '' : label,
+                                //   }
+                                // ).length
+                                data?.[name]
+                              }
+                            </Box>
+                            <Typography
+                              variant="body1"
+                              sx={{
+                                color: label === currentReqStatusTab && color,
+                              }}
+                            >
+                              {label}
+                            </Typography>
+                          </Box>
+                        }
+                        {...prop}
+                      />
+                    );
+                  }
+                )}
+              </Tabs>
+            </Box>
+            <Box
+              maxWidth={'auto'}
               display={'flex'}
               alignItems={'center'}
               sx={{
-                pt: { xs: '10px', md: 0 },
-                pb: '10px',
+                pb: 0.8,
               }}
             >
               <Button

@@ -110,6 +110,7 @@ const AppDropdown = ({
   return (
     <Grid
       sx={{
+        width: '100%',
         position: 'relative',
         background,
         // mb: '10px',

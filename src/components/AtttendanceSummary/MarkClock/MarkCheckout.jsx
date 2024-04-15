@@ -74,7 +74,6 @@ const MarkCheckOut = () => {
             fontStyle: 'normal',
             fontWeight: 400,
             lineHeight: 'normal',
-            ml: '10px',
             textTransform: 'math-auto',
           }}
         >

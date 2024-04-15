@@ -28,6 +28,7 @@ const Heading = ({ title, description, containerStyles }) => {
           color: '#595959',
           fontStyle: 'normal',
           lineHeight: 'normal',
+          textAlign: 'center',
         }}
       >
         {description}

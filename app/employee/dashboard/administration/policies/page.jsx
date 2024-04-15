@@ -48,12 +48,12 @@ const Policies = () => {
       <Grid container>
         <Box
           sx={{
+            width: '100%',
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
             paddingTop: '10px',
-            gap: '80px',
-            width: '100%',
+            gap: { xs: '40px', sm: '60px', md: '80px' },
           }}
         >
           <Heading
@@ -62,7 +62,7 @@ const Policies = () => {
             containerStyles={{
               display: 'flex',
               flexDirection: 'column',
-              alignItems: { xs: 'flex-start', md: 'center' },
+              alignItems: { xs: 'center', md: 'center' },
             }}
           />
           <PoliciesCard data={filteredItems} />

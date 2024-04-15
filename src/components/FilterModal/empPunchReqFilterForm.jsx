@@ -96,22 +96,18 @@ const EmpPunchReqFilterFormModal = ({ open, onClose, filterForm }) => {
       <Box
         sx={{
           bgcolor: '#fff',
-          width: { xs: '90%', md: '20%' },
+          width: { xs: '300px', sm: '330px', md: '350px' },
           display: 'flex',
           flexDirection: 'column',
           borderRadius: '10px',
           boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
-          height: { xs: '600px', md: '900px' },
+          height: '93%',
           borderTopLeftRadius: '10px',
           borderTopRightRadius: '0px',
           position: 'absolute',
-          top: '2%',
           right: '0px',
-          '@media (min-width: 900px) and (max-width: 1500px)': {
-            width: '30%',
-          },
-          '@media (min-width: 600px) and (max-width: 900px)': {
-            width: '45%',
+          '@media (min-width: 270px) and (max-width: 320px)': {
+            width: '260px',
           },
         }}
       >
@@ -163,7 +159,8 @@ const EmpPunchReqFilterFormModal = ({ open, onClose, filterForm }) => {
         >
           <Box
             sx={{
-              padding: '15px',
+              py: '22px',
+              px: '8px',
               display: 'flex',
               flexDirection: 'column',
               gap: { xs: '20px', md: '20px' },

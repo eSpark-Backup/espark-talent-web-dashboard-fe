@@ -23,6 +23,7 @@ import FilterFormModal from '@/src/components/FilterModal/filterForm';
 import { filterAttendanceForm } from '@/src/constants/data/forms/filter-form';
 import dayjs from 'dayjs';
 import { getAttendenceShortHand } from '@/src/utils/helpers';
+import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
 import { Toast } from '@/src/components/Toast/Toast';
 
 const Dashboard = () => {
@@ -148,28 +149,14 @@ const Dashboard = () => {
           }}
         >
           <Box
-            display={'flex'}
-            justifyContent={'space-between'}
-            alignItems={'center'}
-            marginBottom={'50px'}
+            sx={{
+              width: '100%',
+            }}
           >
-            <Box display={'flex'} flexDirection={'column'}>
-              <Typography variant="h3">Time sheet</Typography>
-              <Box display={'flex'} flexDirection={'column'} mt={'20px'}>
-                <Typography
-                  sx={{
-                    fontSize: '14px',
-                    fontWeight: 400,
-                    letterSpacing: '0em',
-                    textAlign: 'left',
-                    color: '#595959',
-                  }}
-                  variant="caption"
-                >
-                  Manage timesheet from one place.
-                </Typography>
-              </Box>
-            </Box>
+            <DashboardHeading
+              title={'Time sheet'}
+              dashboardDescription={'Manage timesheet from one place.'}
+            />
           </Box>
 
           <Box
@@ -177,13 +164,16 @@ const Dashboard = () => {
               boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.25)',
               borderRadius: '10px',
               width: '100%',
+              mt: '40px',
               background: '#FAFAFA',
               padding: '20px',
-              gap: '15px',
+              rowGap: '8px',
+              columnGap: '17px',
               flexDirection: 'column',
               display: 'grid',
               gridTemplateColumns: {
-                xs: 'repeat(2, 1fr)',
+                xs: 'repeat(1, 1fr)',
+                sm: 'repeat(2, 1fr)',
                 md: 'repeat(3, 1fr)',
                 lg: 'repeat(4, 1fr)',
               },
@@ -217,7 +207,13 @@ const Dashboard = () => {
                   <Typography>{Object.values(item)[0]}</Typography>
                 </Box>
 
-                <Typography sx={{ marginRight: '6PX' }}>
+                <Typography
+                  sx={{
+                    marginRight: '12px',
+                    fontSize: '14px',
+                    fontWeight: 400,
+                  }}
+                >
                   {/* {Object.values(item)[1]} */}
                   {data?.time_sheet_summary?.[item?.name]}
                 </Typography>
@@ -226,10 +222,10 @@ const Dashboard = () => {
           </Box>
 
           <Box sx={{ width: '100%' }}>
-            <Box marginTop={'20px'}>
+            <Box marginTop={'35px'}>
               <Typography
                 sx={{
-                  fontSize: '30px',
+                  fontSize: { xs: '24px', sm: '28px', md: '30px' },
                   fontWeight: 400,
                   lineHeight: '36px',
                   letterSpacing: '0em',
@@ -237,22 +233,41 @@ const Dashboard = () => {
                 }}
                 textAlign={'center'}
               >
-                Bilal Khan - (eS-00020)
+                Bilal Khan -{' '}
+                <Box
+                  component={'br'}
+                  sx={{ display: { xs: 'flex', sm: 'none' } }}
+                />{' '}
+                (eS-00020)
               </Typography>
             </Box>
+
+            {showFilterModal && (
+              <FilterFormModal
+                open={handleOpenFilterModal}
+                onClose={handleClose}
+                attendanceStatus
+                filterForm={filterAttendanceForm}
+              />
+            )}
             <Box
-              display={'flex'}
-              justifyContent={'space-between'}
-              alignItems={'flex-end'}
-              flexWrap={'wrap'}
-              // my={"30px"}
-              sx={{ my: '20px' }}
+              sx={{
+                maxWidth: '1480px',
+                overflowX: 'auto',
+                display: 'flex',
+                alignItems: 'center',
+                py: '20px',
+                justifyContent: 'space-between',
+              }}
             >
               <Box
-                // sx={{mt:{xs:'30px',md:0}}}
-                display={'flex'}
-                flexWrap={'wrap'}
-                alignItems={'center'}
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: 2,
+                  mr: 4,
+                }}
               >
                 {sheetStatusTypes?.map(
                   ({ label, shortForm, background }, statusIndex) =>
@@ -264,53 +279,13 @@ const Dashboard = () => {
                     })
                 )}
               </Box>
-
-              <Box sx={{ mt: '20px' }} display={'flex'} alignItems={'center'}>
-                <Box
-                  sx={{
-                    border: 'solid 1px #029E9C',
-                    width: '35px',
-                    height: '35px',
-                    p: '5px',
-                    display: { xs: 'flex', md: 'none' },
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    borderRadius: '5px',
-                    m: '10px 10px 10px 0',
-                  }}
-                >
-                  <Image
-                    width={15}
-                    height={15}
-                    alt="Refresh"
-                    src={`/icons/Refresh.svg`}
-                  />
-                </Box>
-                <Box
-                  sx={{
-                    background: '#029E9C',
-                    display: { xs: 'flex', md: 'none' },
-                    width: '35px',
-                    height: '35px',
-                    p: '5px',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    borderRadius: '5px',
-                  }}
-                  onClick={handleOpenFilterModal}
-                >
-                  <Image
-                    width={15}
-                    height={15}
-                    alt="Refresh"
-                    src={`/icons/Filter.svg`}
-                  />
-                </Box>
+              <Box sx={{ mt: '5px' }} display={'flex'} alignItems={'center'}>
                 <Button
+                  disableRipple
                   sx={{
                     marginX: '10px',
                     minWidth: '120px',
-                    display: { xs: 'none', md: 'flex' },
+                    display: { xs: 'flex', md: 'flex' },
                     border: '1px solid #138A72',
                     color: '#138A72',
                     '&:hover:': {
@@ -330,10 +305,11 @@ const Dashboard = () => {
                   Refresh
                 </Button>
                 <Button
+                  disableRipple
                   sx={{
                     minWidth: '120px',
                     background: '#138A72',
-                    display: { xs: 'none', md: 'flex' },
+                    display: { xs: 'flex', md: 'flex' },
                     color: '#fff',
                     '&:hover': {
                       background: '#138A72',
@@ -354,22 +330,13 @@ const Dashboard = () => {
                 </Button>
               </Box>
             </Box>
-            {showFilterModal && (
-              <FilterFormModal
-                open={handleOpenFilterModal}
-                onClose={handleClose}
-                attendanceStatus
-                filterForm={filterAttendanceForm}
-              />
-            )}
-
             {isLoading ? (
               <Box>Loading...</Box>
             ) : (
               <>
                 <Box
                   sx={{
-                    maxWidth: '100%',
+                    maxWidth: '1480px',
                     overflowX: 'auto',
                   }}
                 >

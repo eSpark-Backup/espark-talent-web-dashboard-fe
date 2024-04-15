@@ -308,6 +308,7 @@ const renderStatusCell = (row, col, commonCellStyle, options, updateStatus) => {
     background: backgroundColor,
     border: `solid 1px ${borderColor}`,
     color: color,
+    cursor: 'pointer',
   });
 
   const statusMap = {
@@ -376,6 +377,7 @@ const renderDownloadButton = (row, col, commonCellStyle) => {
           background: '#E6F5F4',
           border: 'solid 1px #068987',
           color: '#068987',
+          cursor: 'pointer',
         }}
       >
         {row[toCamelCase(col || col?.title)]}

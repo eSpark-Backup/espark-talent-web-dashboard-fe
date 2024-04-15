@@ -78,7 +78,7 @@ const StatusBox = ({
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            marginRight: '10px',
+            marginRight: '25px',
           }}
         >
           {isHr ? (

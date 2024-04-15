@@ -347,3 +347,11 @@ export const Timeline_Data = [
     name: 'check_out',
   },
 ];
+export const Mark_CLock_Title = {
+  title: 'Mark clock in/ clock out',
+  clock_icon: '/icons/ClockIcon.svg',
+  expected_start_time: 'Exp: 10:00 AM',
+  expected_end_time: 'Exp: 07:00 PM',
+  default_time: '--:-- --',
+  break_out_icon: '/icons/TeaIcon1.svg',
+};

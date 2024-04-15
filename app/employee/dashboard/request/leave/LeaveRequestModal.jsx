@@ -8,7 +8,8 @@ const LeaveRequestModal = ({ handleClose }) => {
       sx={{
         mx: 'auto',
         bgcolor: '#fff',
-        width: { xs: '90%', sm: '90%', md: '77.084%' },
+        width: '95%',
+        maxWidth: '1480px',
         display: 'flex',
         flexDirection: 'column',
         borderRadius: '10px',
@@ -20,6 +21,7 @@ const LeaveRequestModal = ({ handleClose }) => {
       <Box sx={{ borderBottom: '1px solid #E4E4E4', p: 2 }}>
         <Typography
           sx={{
+            textAlign: { xs: 'center', sm: 'start' },
             fontSize: '25px',
             fontWeight: '600',
           }}

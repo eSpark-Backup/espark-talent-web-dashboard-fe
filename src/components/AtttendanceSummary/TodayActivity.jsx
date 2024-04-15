@@ -10,8 +10,8 @@ const TodayActivity = () => {
   return (
     <Box
       sx={{
+        maxWidth: 'auto',
         mx: { xs: 'auto', md: 0 },
-        width: { xs: 'auto', md: 'auto' },
         height: '470px',
         borderRadius: '10px',
         background: '#FFF',
@@ -30,14 +30,9 @@ const TodayActivity = () => {
       >
         <Typography
           sx={{
-            fontSize: '25px',
+            fontSize: { xs: '20px', md: '23px', lg: '25px' },
+            textAlign: { xs: 'center', sm: 'left' },
             fontWeight: 600,
-            '@media (min-width: 1300px) and (max-width: 1430px)': {
-              fontSize: '20px',
-            },
-            '@media (min-width: 900px) and (max-width: 1300px)': {
-              fontSize: '18px',
-            },
           }}
         >
           Today Activity
@@ -53,7 +48,7 @@ const TodayActivity = () => {
         }}
       >
         <Box>
-          {Timeline_Data.map(({ title, name }, index) => (
+          {Timeline_Data?.map(({ title, name }, index) => (
             <Box
               key={index}
               display={'flex'}
@@ -62,8 +57,8 @@ const TodayActivity = () => {
             >
               <Box
                 sx={{
-                  width: '25px',
-                  height: '25px',
+                  width: '20px',
+                  height: '20px',
                   border: 'solid 2px #068987',
                   borderRadius: '50%',
                   position: 'relative',
@@ -118,7 +113,7 @@ const TodayActivity = () => {
                 sx={{
                   width: '2px',
                   height: '60px',
-                  background: '#ccc',
+                  background: '#000000',
                 }}
               ></Box>
             </Box>

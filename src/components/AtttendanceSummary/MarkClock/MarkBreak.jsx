@@ -14,7 +14,7 @@ import {
 } from '@/src/redux/slices/employeeSlices/empHomeSlice';
 import { Toast } from '../../Toast/Toast';
 
-const MarkBreak = () => {
+const MarkBreak = ({ icon }) => {
   const [time, setTime] = useState('');
   const [timerState, setTimerState] = useState({
     startTime: null,
@@ -103,12 +103,12 @@ const MarkBreak = () => {
       .padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
   };
   return (
-    <Box sx={{ py: { xs: '30px', md: 0 } }}>
+    <Box sx={{ py: { xs: '23px', md: 0 } }}>
       <Box
         sx={{
           height: '50px',
           mx: { xs: 3, sm: 3, lg: 3 },
-          my: { xs: 0, md: '30px' },
+          my: { xs: 0, md: '23px' },
           borderRadius: '5px',
           position: 'relative',
         }}
@@ -143,7 +143,7 @@ const MarkBreak = () => {
           onClick={handleToggleBreak}
         >
           <Image
-            src="/icons/TeaIcon1.svg"
+            src={icon || ''}
             style={{ marginRight: '10px' }}
             width={20}
             height={20}

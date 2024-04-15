@@ -63,7 +63,12 @@ const LeaveBalanceTable = () => {
   // }, [data]);
   if (query?.isLoading) return 'Loading...';
   return (
-    <AppTable column={employeeLeaveBalanceColumn} data={balance} noPagination />
+    <AppTable
+      column={employeeLeaveBalanceColumn}
+      data={balance}
+      noPagination
+      minWidth={'700px'}
+    />
   );
 };
 

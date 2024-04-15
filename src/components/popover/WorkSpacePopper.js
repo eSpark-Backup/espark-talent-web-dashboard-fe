@@ -6,52 +6,43 @@ import { MenuItem, Typography } from '@mui/material';
 import Image from 'next/image';
 
 import { Work_Space_Menu_Data } from '@/src/constants/sidebar';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  handleworkSpaceMenuClose,
-  handleworkSpaceMenuOpen,
-} from '@/src/redux/slices/workSpaceMenuSlice';
-import { handleProfileMenuClose } from '@/src/redux/slices/profileMenuSlice';
-
-export default function WorkSpacePopper({ button }) {
-  const isOpen = useSelector((state) => state?.workSpaceMenu?.isOpen);
-  const dispatch = useDispatch();
-  // const notificationPopupRef = React.useRef(null);
+export default function WorkSpacePopper({
+  button,
+  workspace,
+  setWorkspace,
+  setProfileMenu,
+  setNotification,
+}) {
+  const workspacePopupRef = React.useRef(null);
 
   const handleClick = (event) => {
-    dispatch(handleworkSpaceMenuOpen(isOpen ? null : event.currentTarget));
-    dispatch(handleProfileMenuClose(null));
+    setWorkspace(event?.currentTarget);
+    setProfileMenu(null);
+    setNotification(null);
   };
 
-  // const [bondary, setBondary] = React.useState(null);
-  //
-  //   const handleClickOutside = (event) => {
-  //     if (
-  //       notificationPopupRef?.current &&
-  //       !notificationPopupRef?.current?.contains(event.target)
-  //     ) {
-  //     }
-  //   };
+  const open = Boolean(workspace);
+  const id = open ? 'simple-popper' : undefined;
 
-  //   React.useEffect(() => {
-  //     document.addEventListener('mousedown', handleClickOutside);
-  //     setBondary(document.querySelector('#popperBoundary'));
-  //     return () => {
-  //       document.removeEventListener('mousedown', handleClickOutside);
-  //     };
-  //   }, []);
-
-  const handleWorkSpace = () => {
-    null;
-    // add click functionality here
+  const handleClickOutside = (event) => {
+    if (
+      workspacePopupRef?.current &&
+      !workspacePopupRef?.current?.contains(event.target)
+    ) {
+      setWorkspace(null);
+    }
   };
 
-  const handlePopoverClose = () => {
-    dispatch(handleworkSpaceMenuClose(null));
-  };
+  React.useEffect(() => {
+    document.addEventListener('mouseleave', handleClickOutside);
+    return () => {
+      document.removeEventListener('mouseleave', handleClickOutside);
+    };
+  }, []);
 
-  const open = Boolean(isOpen);
-  const id = open ? 'simple-popper-1' : undefined;
+  const handleClose = () => {
+    setWorkspace(null);
+  };
 
   return (
     <div>
@@ -59,6 +50,7 @@ export default function WorkSpacePopper({ button }) {
         aria-describedby={id}
         type="button"
         onClick={handleClick}
+        onMouseEnter={handleClick}
         style={{ width: '100%', height: '100%' }}
       >
         {button}
@@ -66,9 +58,10 @@ export default function WorkSpacePopper({ button }) {
       <Popper
         id={id}
         open={open}
-        anchorEl={isOpen}
+        ref={workspacePopupRef}
+        onMouseLeave={handleClose}
+        anchorEl={workspace}
         placement={'right-start'}
-        onMouseLeave={handlePopoverClose}
         sx={{ position: 'relative', zIndex: 505 }}
       >
         <Box
@@ -88,12 +81,15 @@ export default function WorkSpacePopper({ button }) {
             right: { xs: 0, lg: 'auto' },
             marginRight: { xs: 0, lg: 0 },
             marginTop: { xs: 8, lg: 1 },
+            '@media(max-width:1200px)': {
+              marginRight: -9,
+            },
           }}
         >
           {Work_Space_Menu_Data?.map((item, i) => (
             <MenuItem
               key={i}
-              onClick={handleWorkSpace}
+              // onClick={handleWorkSpace}
               sx={{
                 width: '100%',
                 py: 1.1,

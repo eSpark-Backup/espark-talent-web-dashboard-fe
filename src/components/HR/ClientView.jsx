@@ -215,7 +215,7 @@ const ClientView = ({
                             vertical: 'top',
                             horizontal: 'right',
                           }}
-                          sx={{ marginTop: '30px' }}
+                          sx={{ marginTop: '20px' }}
                         >
                           {(role === 'super admin' ||
                             (role !== 'super admin' &&
@@ -368,9 +368,9 @@ const ClientView = ({
                                 marginTop: '25px',
                                 mr: '35px',
                               },
-                            '@media (min-width: 900px) and (max-width: 1200px)':
+                            '@media (min-width: 900px) and (max-width: 980px)':
                               {
-                                marginTop: '30px',
+                                marginTop: '25px',
                                 mr: '35px',
                               },
                           }}
@@ -427,7 +427,7 @@ const ClientView = ({
                               vertical: 'top',
                               horizontal: 'right',
                             }}
-                            sx={{ marginTop: '25px', marginLeft: '18px' }}
+                            sx={{ marginTop: '20px' }}
                           >
                             {(role === 'super admin' ||
                               (role !== 'super admin' &&

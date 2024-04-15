@@ -25,8 +25,10 @@ const Sidebar = ({ userName }) => {
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('lg'));
   const [windowHeight, setWindowHeight] = React.useState(window.innerHeight);
   const employee = pathName.includes('/employee/dashboard');
-
   const { role } = useSelector((state) => state?.auth?.userData);
+  const [profileMenu, setProfileMenu] = React.useState(null);
+  const [workspace, setWorkspace] = React.useState(null);
+  const [notification, setNotification] = React.useState(null);
 
   React.useEffect(() => {
     const handleResize = () => {
@@ -169,7 +171,14 @@ const Sidebar = ({ userName }) => {
           {isSmallScreen ? (
             <SidebarActiveUser userName={userName} />
           ) : (
-            <ProfilePopper button={<SidebarActiveUser userName={userName} />} />
+            <ProfilePopper
+              profileMenu={profileMenu}
+              setProfileMenu={setProfileMenu}
+              notification={notification}
+              setNotification={setNotification}
+              setWorkspace={setWorkspace}
+              button={<SidebarActiveUser userName={userName} />}
+            />
           )}
         </Box>
 
@@ -188,6 +197,10 @@ const Sidebar = ({ userName }) => {
               />
             ) : (
               <WorkSpacePopper
+                workspace={workspace}
+                setWorkspace={setWorkspace}
+                setProfileMenu={setProfileMenu}
+                setNotification={setNotification}
                 button={
                   <SidebarWorkSpace
                     title={WORK_SPACE_TITLE}
