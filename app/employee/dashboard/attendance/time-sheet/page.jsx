@@ -1,6 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import { Grid, Box, Typography, Button, Modal } from '@mui/material';
+
 import { renderTrackingStatus } from './renderComponents';
 import {
   sheetStatusTypes,
@@ -83,6 +84,7 @@ const Dashboard = () => {
           Toast('error', error.message || 'Failed to get data');
           dispatch(getTimeSheetDataFailed());
           console.log({ error });
+          console.log({ isLoading });
         });
     },
   });
@@ -330,24 +332,28 @@ const Dashboard = () => {
                 </Button>
               </Box>
             </Box>
-            {isLoading ? (
-              <Box>Loading...</Box>
-            ) : (
-              <>
-                <Box
-                  sx={{
-                    maxWidth: '1480px',
-                    overflowX: 'auto',
-                  }}
-                >
-                  <AppTable
-                    column={timeSheetTableColumn}
-                    data={data?.time_sheet?.record}
-                    handleClickActionView={handleAttendanceModal}
-                  />
-                </Box>
-              </>
+            {showFilterModal && (
+              <FilterFormModal
+                open={handleOpenFilterModal}
+                onClose={handleClose}
+                attendanceStatus
+                filterForm={filterAttendanceForm}
+              />
             )}
+            <>
+              <Box
+                sx={{
+                  maxWidth: '100%',
+                  overflowX: 'auto',
+                }}
+              >
+                <AppTable
+                  column={timeSheetTableColumn}
+                  data={data?.time_sheet?.record}
+                  handleClickActionView={handleAttendanceModal}
+                />
+              </Box>
+            </>
           </Box>
         </Box>
       </Grid>

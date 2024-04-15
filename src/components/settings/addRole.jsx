@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Button, Grid, Typography } from '@mui/material';
+import Skeleton from '@mui/material/Skeleton';
 
 import AppTable from '../appTableNew/AppTable';
 import { modulepermissionColumn } from '@/src/constants/data/tables/modulePermission';
@@ -260,7 +261,12 @@ const Role = () => {
       {getRolesDetailsQuery.isLoading ||
       companyAccountsQuery.isLoading ||
       isLoadingRoleDetails ? (
-        'Loading...'
+        <Skeleton
+          animation="wave"
+          width={'100%'}
+          height={40}
+          sx={{ background: '#F6F6F6' }}
+        />
       ) : (
         <Grid
           container

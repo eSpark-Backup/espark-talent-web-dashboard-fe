@@ -1,5 +1,6 @@
 import React from 'react';
 import AppTable from '@/src/components/appTableNew/AppTable';
+
 import { employeeLeaveBalanceColumn } from '@/src/constants/data/tables/requestsData';
 import { useQuery } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
@@ -33,7 +34,7 @@ const LeaveBalanceTable = () => {
           return data;
         })
         .catch((err) => {
-          console.log({ err });
+          console.log({ err, query });
           Toast('error', err.message || 'Failed to get data');
           dispatch(getEmpLeaveRequestDataFailed());
         });
@@ -61,7 +62,7 @@ const LeaveBalanceTable = () => {
   //     setLeaveBalanceDataState(reformData(balance));
   //   }
   // }, [data]);
-  if (query?.isLoading) return 'Loading...';
+
   return (
     <AppTable
       column={employeeLeaveBalanceColumn}

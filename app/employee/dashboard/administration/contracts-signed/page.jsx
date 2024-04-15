@@ -45,6 +45,7 @@ const ContractSigned = () => {
         .catch((err) => {
           Toast('error', err.message || 'Failed to get data');
           console.log({ err });
+          console.log({ isLoading });
           dispatch(fetchEmpContractsFailed());
         });
     },
@@ -143,28 +144,24 @@ const ContractSigned = () => {
             <Box my={4}>
               {contractSignedEmployeeTabs?.map((tab, i) => (
                 <CustomTabPanel value={value} key={i} index={i}>
-                  {isLoading ? (
-                    <Box>Loading...</Box>
-                  ) : (
-                    <Box
-                      sx={{
-                        maxWidth: '100%',
-                        overflowX: 'auto',
-                      }}
-                    >
-                      <AppTable
-                        currentTab={currentTab}
-                        column={tab?.columns}
-                        data={
-                          value === 0
-                            ? contracts?.company || []
-                            : contracts?.offShores || []
-                        }
-                        tableRowClass="app-table-row-contract"
-                        minWidth={'700px'}
-                      />
-                    </Box>
-                  )}
+                  <Box
+                    sx={{
+                      maxWidth: '100%',
+                      overflowX: 'auto',
+                    }}
+                  >
+                    <AppTable
+                      currentTab={currentTab}
+                      column={tab?.columns}
+                      data={
+                        value === 0
+                          ? contracts?.company || []
+                          : contracts?.offShores || []
+                      }
+                      tableRowClass="app-table-row-contract"
+                      minWidth={'700px'}
+                    />
+                  </Box>
                 </CustomTabPanel>
               ))}
             </Box>

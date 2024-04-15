@@ -78,7 +78,7 @@ const Dashboard = () => {
         });
     },
   });
-
+  console.log({ isLoading });
   const onBoardingQuery = useQuery({
     staleTime: 10000,
     queryKey: 'onBoarding',
@@ -289,36 +289,32 @@ const Dashboard = () => {
             </Box>
             {empTabs?.map(({ column }, i) => (
               <CustomTabPanel value={value} key={i} index={i}>
-                {isLoading ? (
-                  <Box>Loading...</Box>
-                ) : (
-                  <Box
-                    sx={{
-                      maxWidth: '100%',
-                      overflowX: 'auto',
-                    }}
-                  >
-                    <AppTable
-                      currentTab={currentTab}
-                      column={column}
-                      data={
-                        value === 0
-                          ? hiringRequestDataState
-                          : value === 1
-                            ? interviewScheduledDataState
-                            : onBoardingDataState
-                      }
-                      handleClickActionDelete={handleClickDelete}
-                      options={
-                        currentTab === 'Interview Schedule' && [
-                          { label: 'Short listed' },
-                          { label: 'Pending' },
-                          { label: 'Rejected' },
-                        ]
-                      }
-                    />
-                  </Box>
-                )}
+                <Box
+                  sx={{
+                    maxWidth: '100%',
+                    overflowX: 'auto',
+                  }}
+                >
+                  <AppTable
+                    currentTab={currentTab}
+                    column={column}
+                    data={
+                      value === 0
+                        ? hiringRequestDataState
+                        : value === 1
+                          ? interviewScheduledDataState
+                          : onBoardingDataState
+                    }
+                    handleClickActionDelete={handleClickDelete}
+                    options={
+                      currentTab === 'Interview Schedule' && [
+                        { label: 'Short listed' },
+                        { label: 'Pending' },
+                        { label: 'Rejected' },
+                      ]
+                    }
+                  />
+                </Box>
               </CustomTabPanel>
             ))}
           </Box>

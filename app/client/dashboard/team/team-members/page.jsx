@@ -80,6 +80,7 @@ const Dashboard = () => {
         });
     },
   });
+  console.log({ isLoading });
   const temMembersQueryTerminated = useQuery({
     staleTime: 10000,
     queryKey: ['team-members-terminated'],
@@ -278,30 +279,26 @@ const Dashboard = () => {
               </Box>
               {teamTabs?.map(({ column }, i) => (
                 <CustomTabPanel value={value} key={i} index={i}>
-                  {isLoading ? (
-                    <div>Loading...</div>
-                  ) : (
-                    <Box
-                      sx={{
-                        maxWidth: '100%',
-                        overflowX: 'auto',
-                      }}
-                    >
-                      <AppTable
-                        currentTab={currentTab}
-                        column={column}
-                        data={
-                          value === 0
-                            ? allTeamMembers
-                            : value === 1
-                              ? activeTeamMembers
-                              : value === 2
-                                ? onBoardTeamMembers
-                                : terminatedTeamMembers
-                        }
-                      />
-                    </Box>
-                  )}
+                  <Box
+                    sx={{
+                      maxWidth: '100%',
+                      overflowX: 'auto',
+                    }}
+                  >
+                    <AppTable
+                      currentTab={currentTab}
+                      column={column}
+                      data={
+                        value === 0
+                          ? allTeamMembers
+                          : value === 1
+                            ? activeTeamMembers
+                            : value === 2
+                              ? onBoardTeamMembers
+                              : terminatedTeamMembers
+                      }
+                    />
+                  </Box>
                 </CustomTabPanel>
               ))}
             </Box>

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Box, Button, Tab, Tabs } from '@mui/material';
-
 import { a11yProps } from '@/src/utils/tabs';
 import AppTable from '../appTableNew/AppTable';
 import {
@@ -66,6 +65,7 @@ const TimeAndLeaves = () => {
         .catch((err) => {
           Toast('error', err.message || 'Failed to get data');
           console.log({ err });
+          console.log({ isLoading, isLoadingMutation });
         });
     },
   });
@@ -167,7 +167,6 @@ const TimeAndLeaves = () => {
       handleOpenLeaveManagementModal();
     }
   };
-  if (isLoading) return 'Loading...';
   return (
     <>
       <Box
@@ -225,16 +224,12 @@ const TimeAndLeaves = () => {
           overflowX: 'auto',
         }}
       >
-        {isLoadingMutation ? (
-          'Loading data...'
-        ) : (
-          <AppTable
-            currentTab={currentTab}
-            column={currentTab.column}
-            data={currentTab.val === 0 ? time : leaves}
-            noPagination
-          />
-        )}
+        <AppTable
+          currentTab={currentTab}
+          column={currentTab.column}
+          data={currentTab.val === 0 ? time : leaves}
+          noPagination
+        />
       </Box>
       <TimeManagementModal
         open={isOpenTimeManagementModal}

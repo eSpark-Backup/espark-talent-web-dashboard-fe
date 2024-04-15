@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Grid, Box, Typography, Modal, Button } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
+
 import Input from '@/src/components/dashboard/input';
 import { employeeTableDataHiringRequest } from '@/src/constants/data/tables/employee';
 import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
@@ -93,6 +94,7 @@ const TeamManagement = () => {
   const handleClickRenderMessageButton = () => {
     setIsOpenAddMemberModal(true);
   };
+  console.log({ isLoading });
 
   const style = {
     position: 'absolute',
@@ -172,27 +174,23 @@ const TeamManagement = () => {
             </Box>
             {empTabs?.map((_, i) => (
               <CustomTabPanel value={value} key={i} index={i}>
-                {isLoading ? (
-                  <Box>Loading...</Box>
-                ) : (
-                  <Box
-                    sx={{
-                      maxWidth: '100%',
-                      overflowX: 'auto',
-                    }}
-                  >
-                    <AppTable
-                      currentTab={currentTab}
-                      column={teamManagementColumn}
-                      testData={empData}
-                      data={teamManagementData}
-                      handleClick={handleViewDetails}
-                      handleClickRenderMessageButton={
-                        handleClickRenderMessageButton
-                      }
-                    />
-                  </Box>
-                )}
+                <Box
+                  sx={{
+                    maxWidth: '100%',
+                    overflowX: 'auto',
+                  }}
+                >
+                  <AppTable
+                    currentTab={currentTab}
+                    column={teamManagementColumn}
+                    testData={empData}
+                    data={teamManagementData}
+                    handleClick={handleViewDetails}
+                    handleClickRenderMessageButton={
+                      handleClickRenderMessageButton
+                    }
+                  />
+                </Box>
               </CustomTabPanel>
             ))}
           </Box>

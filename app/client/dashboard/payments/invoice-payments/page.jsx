@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Grid, Box, Typography } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
+
 import Input from '@/src/components/dashboard/input';
 import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
 import { filterDataByKeyword } from '@/src/utils/search';
@@ -79,6 +80,7 @@ const Dashboard = () => {
         });
     },
   });
+  console.log({ isLoading, isLoadingOthPay });
   const paidInvoice = useQuery({
     staleTime: 10000,
     queryKey: ['paidInvoicePayments'],
@@ -218,27 +220,23 @@ const Dashboard = () => {
             </Box>
             {paymentStatusTabs?.map((_, i) => (
               <CustomTabPanel value={value} key={i} index={i}>
-                {isLoading ? (
-                  <Box>Loading...</Box>
-                ) : (
-                  <Box
-                    sx={{
-                      maxWidth: '100%',
-                      overflowX: 'auto',
-                    }}
-                  >
-                    <AppTable
-                      column={invoicePaymentColumn}
-                      data={
-                        value === 0
-                          ? data?.panding
-                          : value === 1
-                            ? data?.processing
-                            : data?.paid
-                      }
-                    />
-                  </Box>
-                )}
+                <Box
+                  sx={{
+                    maxWidth: '100%',
+                    overflowX: 'auto',
+                  }}
+                >
+                  <AppTable
+                    column={invoicePaymentColumn}
+                    data={
+                      value === 0
+                        ? data?.panding
+                        : value === 1
+                          ? data?.processing
+                          : data?.paid
+                    }
+                  />
+                </Box>
               </CustomTabPanel>
             ))}
           </Box>
@@ -279,18 +277,14 @@ const Dashboard = () => {
                 suffixIcon="QuestionMarkIcon.svg"
               />
             </Box>
-            {isLoadingOthPay ? (
-              <Box>Loading...</Box>
-            ) : (
-              <Box
-                sx={{
-                  maxWidth: '100%',
-                  overflowX: 'auto',
-                }}
-              >
-                <AppTable column={otherPaymentColumn} data={data?.pending} />
-              </Box>
-            )}
+            <Box
+              sx={{
+                maxWidth: '100%',
+                overflowX: 'auto',
+              }}
+            >
+              <AppTable column={otherPaymentColumn} data={data?.pending} />
+            </Box>
           </Box>
         </Box>
       </Grid>

@@ -58,8 +58,8 @@ const TimeManagementModal = ({ open, onClose }) => {
     handleReset,
   } = useFormik({
     initialValues: {
-      check_in: time[0]['check_in'],
-      check_out: time[0]['check_out'],
+      check_in: time?.[0]?.['check_in'],
+      check_out: time?.[0]?.['check_out'],
     },
     validationSchema: timeManagementFormSchema,
     enableReinitialize: true,
@@ -83,7 +83,7 @@ const TimeManagementModal = ({ open, onClose }) => {
     onClose();
   };
   function convert12to24(time12h) {
-    const [time, modifier] = time12h.split(' ');
+    const [time, modifier] = time12h?.split(' ') || {};
 
     let hours = time.split(':')[0];
     const minutes = time.split(':')[1];

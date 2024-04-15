@@ -246,99 +246,101 @@ const ContractSigned = () => {
             <Box my={2}>
               {contractHrSignedTabs?.map((tab, i) => (
                 <CustomTabPanel value={value} key={i} index={i}>
-                  {companyContractSignedQuery?.isLoading ||
+                  {/* {companyContractSignedQuery?.isLoading ||
                   offShoreContractSignedQuery.isLoading ? (
-                    <Box>Loading...</Box>
-                  ) : (
-                    <Box>
-                      {value !== 1 && (
-                        <Box
-                          sx={{
-                            display: 'flex',
-                            justifyContent: {
-                              xs: 'center',
-                              md: 'space-between',
-                            },
-                            flexDirection: { xs: 'column', md: 'row' },
-                            borderBottom: 1,
-                            borderColor: 'divider',
-                            mb: '40px',
-                          }}
-                        >
-                          <Tabs
-                            value={nestedValue}
-                            onChange={handleNestedChange}
-                          >
-                            {tab?.nested?.map((nestedTab, nestedIndex) => (
-                              <Tab
-                                label={nestedTab.label}
-                                key={nestedIndex}
-                                {...nestedTab.prop}
-                                disableRipple={true}
-                                sx={{ mr: '20px' }}
-                              />
-                            ))}
-                          </Tabs>
-                          {tab?.nested &&
-                            tab.nested[nestedValue]?.columns &&
-                            tab.nested[nestedValue]?.data && (
-                              <Button
-                                onClick={
-                                  nestedValue === 1
-                                    ? handleOpenEmployeeContratcModal
-                                    : handleOpenAddContratcModal
-                                }
-                                variant="contained"
-                                sx={{
-                                  width: '160px',
-                                  height: '40px',
-                                  my: { xs: '20px', md: 0 },
-                                  fontSize: '16px',
-                                  textTransform: 'math-auto',
-                                  backgroundColor: '#029894',
-                                  color: '#fff',
-                                  '&:hover': {
-                                    backgroundColor: '#029894',
-                                    color: '#fff',
-                                  },
-                                }}
-                              >
-                                {CONTRACT_SIGNED?.addContract}
-                              </Button>
-                            )}
-                        </Box>
-                      )}
-                      <Box sx={{ maxWidth: '100%', overflow: 'auto' }}>
+                    <Skeleton
+                      animation="wave"
+                      width={'100%'}
+                      height={40}
+                      sx={{ background: '#F6F6F6' }}
+                    />
+                  ) : ( */}
+                  <Box>
+                    {value !== 1 && (
+                      <Box
+                        sx={{
+                          display: 'flex',
+                          justifyContent: {
+                            xs: 'center',
+                            md: 'space-between',
+                          },
+                          flexDirection: { xs: 'column', md: 'row' },
+                          borderBottom: 1,
+                          borderColor: 'divider',
+                          mb: '30px',
+                        }}
+                      >
+                        <Tabs value={nestedValue} onChange={handleNestedChange}>
+                          {tab?.nested?.map((nestedTab, nestedIndex) => (
+                            <Tab
+                              label={nestedTab.label}
+                              key={nestedIndex}
+                              {...nestedTab.prop}
+                              disableRipple={true}
+                              sx={{ mr: '4px' }}
+                            />
+                          ))}
+                        </Tabs>
                         {tab?.nested &&
                           tab.nested[nestedValue]?.columns &&
                           tab.nested[nestedValue]?.data && (
-                            <AppTable
-                              currentTab={currentTab}
-                              column={tab.nested[nestedValue].columns}
-                              data={
-                                value === 0
-                                  ? companyContract.clients
-                                  : // : JSON.parse(companyContract.employees)
-                                    []
+                            <Button
+                              onClick={
+                                nestedValue === 0
+                                  ? handleOpenAddContratcModal
+                                  : handleOpenEmployeeContratcModal
                               }
-                              handleClickActionDelete={handleClickDelete}
-                              noPagination
-                              tableRowClass="app-table-row-contract"
-                            />
+                              variant="contained"
+                              sx={{
+                                width: '160px',
+                                height: '40px',
+                                my: { xs: '20px', md: 0 },
+                                fontSize: '16px',
+                                textTransform: 'math-auto',
+                                backgroundColor: '#029894',
+                                color: '#fff',
+                                '&:hover': {
+                                  backgroundColor: '#029894',
+                                  color: '#fff',
+                                },
+                              }}
+                            >
+                              {CONTRACT_SIGNED?.addContract}
+                            </Button>
                           )}
-                        {value !== 0 && (
+                      </Box>
+                    )}
+                    <Box sx={{ maxWidth: '100%', overflow: 'auto' }}>
+                      {tab?.nested &&
+                        tab.nested[nestedValue]?.columns &&
+                        tab.nested[nestedValue]?.data && (
                           <AppTable
                             currentTab={currentTab}
-                            column={tab?.columns}
-                            data={offShoreContract || []}
+                            column={tab.nested[nestedValue].columns}
+                            data={
+                              value === 0
+                                ? companyContract.clients
+                                : // : JSON.parse(companyContract.employees)
+                                  []
+                            }
                             handleClickActionDelete={handleClickDelete}
                             noPagination
                             tableRowClass="app-table-row-contract"
                           />
                         )}
-                      </Box>
+                      {value !== 0 && (
+                        <AppTable
+                          currentTab={currentTab}
+                          column={tab?.columns}
+                          data={offShoreContract || []}
+                          handleClickActionDelete={handleClickDelete}
+                          noPagination
+                          tableRowClass="app-table-row-contract"
+                        />
+                      )}
                     </Box>
-                  )}
+                  </Box>
+                  {/* )} */}
                 </CustomTabPanel>
               ))}
             </Box>

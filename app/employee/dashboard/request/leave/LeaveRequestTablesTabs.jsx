@@ -52,6 +52,7 @@ const LeaveRequestTablesTabs = ({
     }
     return refinedData;
   };
+  console.log({ isLoading });
   const refreshMutation = useMutation({
     mutationFn: async () => {
       dispatch(fetchEmpLeaveRequestData());
@@ -87,9 +88,6 @@ const LeaveRequestTablesTabs = ({
   const handleOpenFilterModal = () => {
     setShowFilterModal(true);
   };
-
-  if (isLoading) return <Typography sx={{ mt: 3 }}>Loading...</Typography>;
-
   return (
     <Box sx={{ width: '100%' }}>
       <Box

@@ -250,21 +250,18 @@ const RequestStatusTabs = () => {
                     suffixIcon="QuestionMarkIcon.svg"
                   />
                 </Box>
-                {tabData?.isLoadingLeaveBalance ? (
-                  <Typography>Loading ...</Typography>
-                ) : (
-                  <Box
-                    sx={{
-                      maxWidth: '100%',
-                      overflowX: 'auto',
-                    }}
-                  >
-                    <AppTable
-                      column={leaveBalanceColumn}
-                      data={data?.leaveBalance}
-                    />
-                  </Box>
-                )}
+
+                <Box
+                  sx={{
+                    maxWidth: '100%',
+                    overflowX: 'auto',
+                  }}
+                >
+                  <AppTable
+                    column={leaveBalanceColumn}
+                    data={data?.leaveBalance}
+                  />
+                </Box>
               </>
             )}
           </CustomTabPanel>

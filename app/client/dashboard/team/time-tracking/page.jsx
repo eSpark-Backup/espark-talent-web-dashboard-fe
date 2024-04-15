@@ -1,8 +1,9 @@
 'use client';
 import React, { useState } from 'react';
 import { Grid, Box, Typography } from '@mui/material';
-import { timeTrackingTableColumn } from '@/src/constants/data/tables/timeTracking';
 import Link from 'next/link';
+
+import { timeTrackingTableColumn } from '@/src/constants/data/tables/timeTracking';
 import AppSearchableDropdown from '@/src/components/dashboard/appSearchableDropdown';
 import AppCustomMonthYearPicker from '@/src/components/dashboard/appCustomMonthYearPicker';
 import AppTable from '@/src/components/appTableNew/AppTable';
@@ -36,10 +37,10 @@ const Dashboard = () => {
           Toast('error', err.message || 'Failed to get data');
           dispatch(fetchTimeTrackingDataRequestFailed());
           console.log({ err });
+          console.log({ isLoading });
         });
     },
   });
-  // const [isLoading, setIsLoading] = useState(true);
   const [isLoadingEmployee, setIsLoadingEmployee] = useState(false);
   const [selectedEmployee, setSelectedEmployee] = useState('');
 
@@ -149,37 +150,34 @@ const Dashboard = () => {
               </Grid>
             </Box>
             <br />
-            {isLoading ? (
-              <Box>Loading...</Box>
-            ) : (
-              <>
-                {selectedEmployee ? (
-                  <Box
-                    sx={{
-                      maxWidth: '100%',
-                      overflowX: 'auto',
-                    }}
-                  >
-                    <AppTable
-                      column={timeTrackingTableColumn}
-                      data={data?.time_sheet}
-                    />
-                  </Box>
-                ) : (
-                  <Box
-                    sx={{
-                      maxWidth: '100%',
-                      overflowX: 'auto',
-                    }}
-                  >
-                    <AppTable
-                      column={timeTrackingTableColumn}
-                      renderMessage="Select employee to see there data"
-                    />
-                  </Box>
-                )}
-              </>
-            )}
+
+            <>
+              {selectedEmployee ? (
+                <Box
+                  sx={{
+                    maxWidth: '100%',
+                    overflowX: 'auto',
+                  }}
+                >
+                  <AppTable
+                    column={timeTrackingTableColumn}
+                    data={data?.time_sheet}
+                  />
+                </Box>
+              ) : (
+                <Box
+                  sx={{
+                    maxWidth: '100%',
+                    overflowX: 'auto',
+                  }}
+                >
+                  <AppTable
+                    column={timeTrackingTableColumn}
+                    renderMessage="Select employee to see there data"
+                  />
+                </Box>
+              )}
+            </>
           </Box>
         </Box>
       </Grid>

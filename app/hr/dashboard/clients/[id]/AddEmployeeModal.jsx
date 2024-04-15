@@ -1,3 +1,4 @@
+import Skeleton from '@mui/material/Skeleton';
 import AppTable from '@/src/components/appTableNew/AppTable';
 import { addEmployeModalFormSchema } from '@/src/components/form/schemas/addEmployeeModal';
 import Navigator from '@/src/components/form/step/Navigator';
@@ -146,7 +147,12 @@ const AddEmployeeModal = ({ open, onClose }) => {
   return (
     <>
       {isLoading ? (
-        'Loading...'
+        <Skeleton
+          animation="wave"
+          width={'100%'}
+          height={40}
+          sx={{ background: '#F6F6F6' }}
+        />
       ) : (
         <Modal
           open={open}

@@ -50,6 +50,7 @@ const Client = () => {
       column: activeClientsColumn,
     },
   ];
+  console.log({ isLoading });
   const handleChangeTab = (event, newValue, rest) => {
     console.log({ event, newValue, rest });
     setCurrentTab({
@@ -59,7 +60,6 @@ const Client = () => {
       column: tabs[newValue].column,
     });
   };
-  if (isLoading) return 'Loading...';
   return (
     <>
       <Box
@@ -102,7 +102,9 @@ const Client = () => {
           currentTab={currentTab}
           column={currentTab.column}
           data={
-            currentTab.val === 0 ? data.active_clients : data.terminated_clients
+            currentTab.val === 0
+              ? data?.active_clients
+              : data?.terminated_clients
           }
           noPagination
         />

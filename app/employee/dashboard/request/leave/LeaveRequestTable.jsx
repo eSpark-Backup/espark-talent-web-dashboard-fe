@@ -1,3 +1,4 @@
+import Skeleton from '@mui/material/Skeleton';
 import { employeeLeaveRequestsColumn } from '@/src/constants/data/tables/requestsData';
 import { filterTableRowsWRTTab } from '@/src/utils/table';
 import { useEffect, useState } from 'react';
@@ -29,7 +30,16 @@ const LeaveRequestTable = ({
       filterTableRowsWRTTab(reformData(data?.requests), { status: '' })
     );
   }, [data]);
-  if (isLoading) return 'Loading...';
+  if (isLoading) {
+    return (
+      <Skeleton
+        animation="wave"
+        width={'100%'}
+        height={40}
+        sx={{ background: '#F6F6F6' }}
+      />
+    );
+  }
   return renderNestedTable({
     currentReqStatusTabVal: tabVal,
     currentReqStatusTab: tab,

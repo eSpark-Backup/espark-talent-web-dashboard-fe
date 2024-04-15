@@ -2,6 +2,7 @@ import React, { Fragment, useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Box, Grid, Typography } from '@mui/material';
 import Image from 'next/image';
+import Skeleton from '@mui/material/Skeleton';
 import { filterDataByKeyword } from '@/src/utils/search';
 
 const AppDropdown = ({
@@ -215,7 +216,12 @@ const AppDropdown = ({
               <Box>
                 {isLoadingList ? (
                   <Box p={'15px'}>
-                    <Typography>Loading...</Typography>
+                    <Skeleton
+                      animation="wave"
+                      width={'100%'}
+                      height={40}
+                      sx={{ background: '#F6F6F6' }}
+                    />
                   </Box>
                 ) : listData?.length ? (
                   listData?.map(({ label, children }, index) => (
@@ -408,7 +414,12 @@ const AppDropdown = ({
               <Box>
                 {isLoadingList ? (
                   <Box p={'15px'}>
-                    <Typography>Loading...</Typography>
+                    <Skeleton
+                      animation="wave"
+                      width={'100%'}
+                      height={40}
+                      sx={{ background: '#F6F6F6' }}
+                    />
                   </Box>
                 ) : listData?.length ? (
                   <Box>

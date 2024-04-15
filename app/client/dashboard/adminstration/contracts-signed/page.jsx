@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Grid, Box, Typography } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
+
 import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
 import { contractSignedTabs } from '@/src/constants/data/tabs/contractSignedTabs';
 import AppTable from '@/src/components/appTable/AppTable';
@@ -66,7 +67,11 @@ const ContractSigned = () => {
     },
   });
 
-  console.log({ empContractSignedQuery, companyContractSignedQuery });
+  console.log({
+    empContractSignedQuery,
+    companyContractSignedQuery,
+    isLoading,
+  });
   const handleChange = (event, newValue) => {
     let tab = event?.target?.innerText.split(' ');
     if (tab.length > 1) {
@@ -140,24 +145,19 @@ const ContractSigned = () => {
             <Box my={4}>
               {contractSignedTabs?.map((tab, i) => (
                 <CustomTabPanel value={value} key={i} index={i}>
-                  {isLoading ? (
-                    <Box>Loading...</Box>
-                  ) : (
-                    <Box
-                      sx={{
-                        maxWidth: '100%',
-                        overflowX: 'auto',
-                      }}
-                    >
-                      <AppTable
-                        currentTab={currentTab}
-                        column={tab?.columns}
-                        data={value === 0 ? data?.company : data?.employee}
-                        tableRowClass="app-table-row-contract"
-                        noPagination
-                      />
-                    </Box>
-                  )}
+                  <Box
+                    sx={{
+                      maxWidth: '100%',
+                      overflowX: 'auto',
+                    }}
+                  >
+                    <AppTable
+                      currentTab={currentTab}
+                      column={tab?.columns}
+                      data={value === 0 ? data?.company : data?.employee}
+                      tableRowClass="app-table-row-contract"
+                    />
+                  </Box>
                 </CustomTabPanel>
               ))}
             </Box>

@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import { Box } from '@mui/material';
 
-import {
-  ASSET_TABLECOLUMN,
-  employeeProfileData,
-} from '@/src/constants/employeeProfile';
+import { ASSET_TABLECOLUMN } from '@/src/constants/employeeProfile';
 import AppTable from '../appTableNew/AppTable';
 import AppConfirmationMadal from '../modals/AppConfirmationMadal';
 import { CONTRACT_SIGNED } from '@/src/constants/contractSigned';
@@ -52,6 +49,7 @@ const Assets = () => {
           Toast('error', err.message || 'Failed to get data');
           dispatch(getEmpAssetRequestFailed());
           console.log({ err });
+          console.log({ isLoading });
         });
     },
   });
@@ -65,24 +63,20 @@ const Assets = () => {
 
   return (
     <>
-      {isLoading ? (
-        <Box>{employeeProfileData?.loading}</Box>
-      ) : (
-        <>
-          <Box
-            sx={{
-              maxWidth: '100%',
-              overflowX: 'auto',
-            }}
-          >
-            <AppTable
-              column={ASSET_TABLECOLUMN}
-              data={assets}
-              handleClickActionDelete={handleClickDelete}
-            />
-          </Box>
-        </>
-      )}
+      <>
+        <Box
+          sx={{
+            maxWidth: '100%',
+            overflowX: 'auto',
+          }}
+        >
+          <AppTable
+            column={ASSET_TABLECOLUMN}
+            data={assets}
+            handleClickActionDelete={handleClickDelete}
+          />
+        </Box>
+      </>
       <AppConfirmationMadal
         title={CONTRACT_SIGNED?.delete}
         bodyText={CONTRACT_SIGNED?.warning}

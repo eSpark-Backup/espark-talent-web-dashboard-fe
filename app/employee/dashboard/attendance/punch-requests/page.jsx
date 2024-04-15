@@ -53,6 +53,7 @@ const Dashboard = () => {
           Toast('error', err.message || 'Failed to get data');
           dispatch(getEmpPunchRequestDataFailed());
           console.log({ err });
+          console.log({ isLoading });
         });
     },
   });
@@ -171,7 +172,6 @@ const Dashboard = () => {
   const handleConfirmDelete = () => {
     mutate(modalData.id);
   };
-  if (isLoading) return 'Loading...';
   return (
     <>
       <Box

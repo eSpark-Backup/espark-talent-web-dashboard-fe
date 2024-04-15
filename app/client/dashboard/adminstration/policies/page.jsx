@@ -1,6 +1,7 @@
 'use client';
 import React from 'react';
 import { Grid, Box } from '@mui/material';
+import Skeleton from '@mui/material/Skeleton';
 
 import Heading from '@/src/components/global/Heading';
 import { POLICIES_DATA } from '@/src/constants/policies';
@@ -58,7 +59,12 @@ const Policies = () => {
             }}
           />
           {isLoading ? (
-            'Loading...'
+            <Skeleton
+              animation="wave"
+              width={'100%'}
+              height={40}
+              sx={{ background: '#F6F6F6' }}
+            />
           ) : (
             <PoliciesCard data={POLICIES_DATA?.items} />
           )}

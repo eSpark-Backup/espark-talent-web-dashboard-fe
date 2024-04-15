@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Box, Grid, Typography } from '@mui/material';
 import Image from 'next/image';
 import Input from './input';
+import Skeleton from '@mui/material/Skeleton';
 import { filterDataByKeyword } from '@/src/utils/search';
 
 const AppSearchableDropdown = ({
@@ -223,7 +224,12 @@ const AppSearchableDropdown = ({
             >
               {isLoadingList ? (
                 <Box p={'10px'}>
-                  <Typography>Loading...</Typography>
+                  <Skeleton
+                    animation="wave"
+                    width={'100%'}
+                    height={40}
+                    sx={{ background: '#F6F6F6' }}
+                  />
                 </Box>
               ) : listData?.length ? (
                 listData?.map((item, index) => {

@@ -1,7 +1,8 @@
 import React from 'react';
+import Skeleton from '@mui/material/Skeleton';
+import { Box } from '@mui/system';
 
 import { companyformElement } from '@/src/constants/data/forms/company-info';
-import { Box } from '@mui/system';
 import { companyInfoSchema } from '../form/schemas/companyInfo';
 import Step from '../form/step/Step';
 import { useQuery } from '@tanstack/react-query';
@@ -39,7 +40,12 @@ const CompanySettings = () => {
   return (
     <Box>
       {isLoading ? (
-        'Loading ...'
+        <Skeleton
+          animation="wave"
+          width={'100%'}
+          height={40}
+          sx={{ background: '#F6F6F6' }}
+        />
       ) : (
         <Step
           form={companyformElement}

@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { Box, Button, Grid, Tab, Tabs, Typography } from '@mui/material';
 import Image from 'next/image';
+import Skeleton from '@mui/material/Skeleton';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 
@@ -104,7 +105,12 @@ const Page = () => {
     <>
       {
         isLoading ? (
-          'Loading'
+          <Skeleton
+            animation="wave"
+            width={'100%'}
+            height={40}
+            sx={{ background: '#F6F6F6' }}
+          />
         ) : (
           <Grid container>
             <Grid

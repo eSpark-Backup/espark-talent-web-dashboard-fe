@@ -56,6 +56,7 @@ const Policies = () => {
         .catch((err) => {
           Toast('error', err.message || 'Failed to get data');
           console.log({ err });
+          console.log({ isLoading });
         });
     },
   });
@@ -171,24 +172,20 @@ const Policies = () => {
               </Button>
             </Box>
           </Box>
-          {isLoading ? (
-            'Loading...'
-          ) : (
-            <Box
-              sx={{
-                maxWidth: '100%',
-                overflowX: 'auto',
-              }}
-            >
-              <AppTable
-                column={policyColumn}
-                data={policies}
-                handleClickActionView={handleSelectRow}
-                handleClickActionDelete={handleClickDelete}
-                noPagination
-              />
-            </Box>
-          )}
+          <Box
+            sx={{
+              maxWidth: '100%',
+              overflowX: 'auto',
+            }}
+          >
+            <AppTable
+              column={policyColumn}
+              data={policies}
+              handleClickActionView={handleSelectRow}
+              handleClickActionDelete={handleClickDelete}
+              noPagination
+            />
+          </Box>
           <Box mt={'-80px'}>
             <Button
               sx={{

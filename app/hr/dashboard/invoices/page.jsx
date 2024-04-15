@@ -1,7 +1,7 @@
 'use client';
+import React, { useState, useEffect } from 'react';
 import { Button, Grid, Typography } from '@mui/material';
 import { Box, useTheme } from '@mui/system';
-import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 
 import AppTable from '@/src/components/appTableNew/AppTable';
@@ -42,6 +42,7 @@ const Page = () => {
       return api
         .getData(`${HR_INVOICES}`)
         .then(({ data }) => {
+          console.log({ isLoading });
           const tempData =
             data?.map((item) => ({
               ...item,
@@ -94,79 +95,69 @@ const Page = () => {
   const filteredData = handleSearch();
   return (
     <>
-      {isLoading ? (
-        'Loading...'
-      ) : (
-        <Box sx={{ width: '100%' }}>
-          <Typography variant="h3">Invoices</Typography>
-          <Grid
-            container
-            sx={{
-              marginTop: '20px',
-              [theme.breakpoints.down('md')]: {
-                paddingLeft: '0px',
-              },
-              [theme.breakpoints.up('md')]: {
-                paddingLeft: '20px',
-              },
-            }}
-            spacing={3}
-          >
-            <Grid item xs={12} md={6} lg={2.5}>
-              <Input
-                value={name}
-                width={'100%'}
-                handleChange={(e) => setName(e)}
-                placeHolder={'Client name'}
-                prefixIcon={'/icons/searchIconWhite.svg'}
-                name={'name'}
-              />
-            </Grid>
-            <Grid item xs={12} md={6} lg={2.5}>
-              <AppDropdown
-                selectedItem={designation}
-                setSelectedItem={setDesignation}
-                lg={12}
-                type="select"
-                placeHolder={'Select status'}
-                data={[
-                  {
-                    label: 'Active',
-                  },
-                  {
-                    label: 'Inactive',
-                  },
-                ]}
-                isLoadingList={isLoadingList}
-                setIsLoadingList={setIsLoadingList}
-              />
-            </Grid>
-            <Grid item xs={12} md={6} lg={1}>
-              <Button
-                sx={{
-                  backgroundColor: '#029894',
-                  color: '#FFF',
-                  height: '40px',
-                  width: { xs: '100%', md: '50%' },
-                  '@media (min-width: 900px) and (max-width: 1200px)': {
-                    width: '10%',
-                  },
-                  '&:hover': {
-                    backgroundColor: '#029894',
-                    color: '#FFF',
-                  },
-                }}
-                onClick={handleSearch}
-              >
-                <Image
-                  width={24}
-                  height={24}
-                  alt="Refresh"
-                  src={`/icons/searchIconWhite.svg`}
-                />
-              </Button>
-            </Grid>
+      <Box sx={{ width: '100%' }}>
+        <Typography variant="h3">Invoices</Typography>
+        <Grid
+          container
+          sx={{
+            marginTop: '20px',
+            [theme.breakpoints.down('md')]: {
+              paddingLeft: '0px',
+            },
+            [theme.breakpoints.up('md')]: {
+              paddingLeft: '20px',
+            },
+          }}
+          spacing={3}
+        >
+          <Grid item xs={12} md={6} lg={3}>
+            <Input
+              value={name}
+              width={'100%'}
+              handleChange={(e) => setName(e)}
+              placeHolder={'Client name'}
+              prefixIcon={'/icons/searchIconWhite.svg'}
+              name={'id'}
+            />
           </Grid>
+          <Grid item xs={12} md={6} lg={3}>
+            <AppDropdown
+              selectedItem={designation}
+              setSelectedItem={setDesignation}
+              lg={12}
+              type="select"
+              placeHolder={'Select status'}
+              data={[
+                {
+                  label: 'Active',
+                },
+                {
+                  label: 'Inactive',
+                },
+              ]}
+              isLoadingList={isLoadingList}
+              setIsLoadingList={setIsLoadingList}
+            />
+          </Grid>
+          <Grid item xs={12} md={6} lg={1}>
+            <Button
+              style={{
+                backgroundColor: '#029894',
+                color: '#FFF',
+                height: '40px',
+                width: '100%',
+              }}
+            >
+              <Image
+                width={24}
+                height={24}
+                alt="Refresh"
+                src={`/icons/searchIconWhite.svg`}
+              />
+            </Button>
+          </Grid>
+        </Grid>
+        {filteredData && filteredData.length > 0 && (
           <Box
             sx={{
               maxWidth: '100%',
@@ -174,16 +165,14 @@ const Page = () => {
               my: '20px',
             }}
           >
-            {filteredData && filteredData.length > 0 && (
-              <AppTable
-                hanldeInvLinkClick={handleClickLink}
-                column={invoicePageColumn}
-                data={data}
-              />
-            )}
+            <AppTable
+              hanldeInvLinkClick={handleClickLink}
+              column={invoicePageColumn}
+              data={data}
+            />
           </Box>
-        </Box>
-      )}
+        )}
+      </Box>
     </>
   );
 };

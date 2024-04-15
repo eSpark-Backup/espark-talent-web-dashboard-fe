@@ -1,6 +1,7 @@
 'use client';
 import React from 'react';
 import { Box, Grid } from '@mui/material';
+import Skeleton from '@mui/material/Skeleton';
 import { useDispatch, useSelector } from 'react-redux';
 import { useQuery } from '@tanstack/react-query';
 
@@ -44,7 +45,16 @@ const Dashboard = () => {
     },
   });
 
-  if (isLoading) return 'Loading...';
+  if (isLoading) {
+    return (
+      <Skeleton
+        animation="wave"
+        width={'100%'}
+        height={40}
+        sx={{ background: '#F6F6F6' }}
+      />
+    );
+  }
   return (
     <>
       <Grid container spacing={5}>

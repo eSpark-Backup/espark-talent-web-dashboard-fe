@@ -39,6 +39,7 @@ const Accounts = ({
         .catch((err) => {
           Toast('error', err.message || 'Failed to get data');
           console.log({ err });
+          console.log({ isLoading });
         });
     },
   });
@@ -69,17 +70,13 @@ const Accounts = ({
         marginTop: '40px',
       }}
     >
-      {isLoading ? (
-        'Loading...'
-      ) : (
-        <AppTable
-          column={accountColumn}
-          data={accounts}
-          handleClickActionDelete={handleClickActionDelete}
-          tableRowClass="app-table-row-contract"
-          handleClickActionView={handleCrendentialModal}
-        />
-      )}
+      <AppTable
+        column={accountColumn}
+        data={accounts}
+        handleClickActionDelete={handleClickActionDelete}
+        tableRowClass="app-table-row-contract"
+        handleClickActionView={handleCrendentialModal}
+      />
       <AppConfirmationMadal
         title={CONTRACT_SIGNED?.delete}
         bodyText={CONTRACT_SIGNED?.warning}
