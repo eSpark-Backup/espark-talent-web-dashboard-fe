@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Grid, Box } from '@mui/material';
 
 import OnBoarding from '@/src/components/dashboard/onBoarding';
@@ -10,6 +10,13 @@ import { useSelector } from 'react-redux';
 
 const Dashboard = () => {
   const { username } = useSelector((state) => state?.client?.home?.data);
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    const delay = setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+    return () => clearTimeout(delay);
+  }, []);
   return (
     <>
       <Grid container>
@@ -26,13 +33,14 @@ const Dashboard = () => {
             <DashboardHeading
               title={username || 'World'}
               dashboardDescription={DASHBOARD_DATA?.updates}
+              isLoading={isLoading}
             />
 
             <Grid item xs={12}>
-              <DiscoverTalentPlatform />
+              <DiscoverTalentPlatform isLoading={isLoading} />
             </Grid>
             <Grid item xs={12}>
-              <OnBoarding />
+              <OnBoarding isLoading={isLoading} />
             </Grid>
           </Box>
         </Grid>

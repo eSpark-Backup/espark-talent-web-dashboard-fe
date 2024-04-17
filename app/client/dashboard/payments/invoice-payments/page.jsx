@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Grid, Box, Typography } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
+import Skeleton from '@mui/material/Skeleton';
 
 import Input from '@/src/components/dashboard/input';
 import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
@@ -199,16 +200,25 @@ const Dashboard = () => {
             </Box>
 
             <Box my={4}>
-              <Typography
-                sx={{
-                  fontSize: '20px',
-                  fontWeight: 400,
-                  marginBottom: '20px',
-                  color: '#171717',
-                }}
-              >
-                Employee invoices
-              </Typography>
+              {isLoading ? (
+                <Skeleton
+                  variant="text"
+                  width={'200px'}
+                  height={30}
+                  sx={{ background: '#F6F6F6', fontSize: '2.5rem' }}
+                />
+              ) : (
+                <Typography
+                  sx={{
+                    fontSize: '20px',
+                    fontWeight: 400,
+                    marginBottom: '20px',
+                    color: '#171717',
+                  }}
+                >
+                  Employee invoices
+                </Typography>
+              )}
 
               <Input
                 setIsLoading={setIsLoading}
@@ -261,11 +271,24 @@ const Dashboard = () => {
             justifyContent={'space-between'}
             alignItems={'center'}
           >
-            <Typography
-              sx={{ fontSize: '20px', fontWeight: 400, color: '#171717' }}
-            >
-              Other Payments
-            </Typography>
+            {isLoading ? (
+              <Skeleton
+                variant="text"
+                width={'200px'}
+                height={30}
+                sx={{
+                  background: '#F6F6F6',
+                  fontSize: '2.5rem',
+                  marginTop: '20px',
+                }}
+              />
+            ) : (
+              <Typography
+                sx={{ fontSize: '20px', fontWeight: 400, color: '#171717' }}
+              >
+                Other Payments
+              </Typography>
+            )}
           </Box>
           <Box sx={{ width: '100%' }}>
             <Box my={4}>

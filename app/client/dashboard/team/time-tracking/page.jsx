@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { Grid, Box, Typography } from '@mui/material';
 import Link from 'next/link';
+import Skeleton from '@mui/material/Skeleton';
 
 import { timeTrackingTableColumn } from '@/src/constants/data/tables/timeTracking';
 import AppSearchableDropdown from '@/src/components/dashboard/appSearchableDropdown';
@@ -173,7 +174,18 @@ const Dashboard = () => {
                 >
                   <AppTable
                     column={timeTrackingTableColumn}
-                    renderMessage="Select employee to see there data"
+                    renderMessage={
+                      isLoading ? (
+                        <Skeleton
+                          variant="text"
+                          width={'400px'}
+                          height={40}
+                          sx={{ background: '#F6F6F6', fontSize: '2.5rem' }}
+                        />
+                      ) : (
+                        'Select employee to see their data'
+                      )
+                    }
                   />
                 </Box>
               )}

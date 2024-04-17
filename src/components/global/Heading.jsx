@@ -1,8 +1,27 @@
 import React from 'react';
-import { Box, Typography } from '@mui/material';
+import { Box, Stack, Typography } from '@mui/material';
+import Skeleton from '@mui/material/Skeleton';
 
-const Heading = ({ title, description, containerStyles }) => {
-  return (
+const Heading = ({ title, description, containerStyles, isLoading }) => {
+  return isLoading ? (
+    <Stack
+      sx={{
+        ...containerStyles,
+        width: { xs: '100%', md: '100%' },
+      }}
+    >
+      <Skeleton
+        variant="text"
+        height={30}
+        sx={{ background: '#F6F6F6', width: { xs: '40%', md: '10%' } }}
+      />
+      <Skeleton
+        variant="text"
+        height={40}
+        sx={{ background: '#F6F6F6', width: { xs: '40%', md: '25%' } }}
+      />
+    </Stack>
+  ) : (
     <Box
       sx={{
         ...containerStyles,

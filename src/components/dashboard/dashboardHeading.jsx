@@ -1,10 +1,17 @@
 import React from 'react';
-import { Box, Typography } from '@mui/material';
+import { Box, Stack, Typography } from '@mui/material';
+import Skeleton from '@mui/material/Skeleton';
 
-const DashboardHeading = ({ dashboardDescription, title }) => {
+const DashboardHeading = ({ dashboardDescription, title, isLoading }) => {
   // console.log({ dashbaords: dashboardDescription });
   // const { empDetails } = useSelector((state) => state?.auth?.userData);
-  return (
+
+  return isLoading ? (
+    <Stack spacing={1.5} sx={{ width: { xs: '100%', md: '200px' } }}>
+      <Skeleton variant="text" sx={{ fontSize: '1rem' }} />
+      <Skeleton variant="text" sx={{ fontSize: '1.4rem' }} />
+    </Stack>
+  ) : (
     <Box
       sx={{
         display: 'flex',

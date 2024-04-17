@@ -1,3 +1,4 @@
+import Skeleton from '@mui/material/Skeleton';
 import AppTable from '@/src/components/appTableNew/AppTable';
 import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
 import Input from '@/src/components/dashboard/input';
@@ -10,7 +11,7 @@ import { updateCurrentReqStatusTab } from '@/src/redux/slices/clientSlices/timeO
 import { filterTableRowsWRTTab } from '@/src/utils/table';
 import { Box, Button, Tab, Tabs, Typography } from '@mui/material';
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 const RequestStatusTabs = () => {
@@ -18,6 +19,7 @@ const RequestStatusTabs = () => {
   const [searchLeaveRequest, setSearchLeaveRequest] = useState('');
   const [search, setSearch] = useState('');
   const [searchCheckInOutRequest, setSearchCheckInOutRequest] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
   const dispatch = useDispatch();
   const handleChangeCurrReqStatusTab = (event, newValue, data) => {
     let tab = event?.target?.innerText;
@@ -36,7 +38,12 @@ const RequestStatusTabs = () => {
     );
   };
   console.log({ dataLB: data?.leaveBalance });
-
+  useEffect(() => {
+    const delay = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+    return () => clearTimeout(delay);
+  }, []);
   return (
     <Box
       sx={{
@@ -89,36 +96,48 @@ const RequestStatusTabs = () => {
                             }}
                             label={
                               <Box display={'flex'} alignItems={'center'}>
-                                <Box
-                                  sx={{
-                                    width: '30px',
-                                    height: '30px',
-                                    background,
-                                    borderRadius: '5px',
-                                    marginRight: '10px',
-                                    color,
-                                    fontSize: '14px',
-                                    fontWeight: 600,
-                                    lineHeight: '19px',
-                                    letterSpacing: '0em',
-                                    textAlign: 'left',
-                                  }}
-                                  display={'flex'}
-                                  justifyContent={'center'}
-                                  alignItems={'center'}
-                                >
-                                  {
-                                    filterTableRowsWRTTab(
-                                      tabData?.currentReqTypeTab ===
-                                        'Leave Requests'
-                                        ? data?.leaveRequest
-                                        : data?.clockInOutRequests,
-                                      {
-                                        status: label === 'All' ? '' : label,
-                                      }
-                                    ).length
-                                  }
-                                </Box>
+                                {isLoading ? (
+                                  <Skeleton
+                                    variant="text"
+                                    sx={{
+                                      width: 30,
+                                      height: 40,
+                                      mr: 1,
+                                      ml: index == 0 ? -3 : 0,
+                                    }}
+                                  />
+                                ) : (
+                                  <Box
+                                    sx={{
+                                      width: '30px',
+                                      height: '30px',
+                                      background,
+                                      borderRadius: '5px',
+                                      marginRight: '10px',
+                                      color,
+                                      fontSize: '14px',
+                                      fontWeight: 600,
+                                      lineHeight: '19px',
+                                      letterSpacing: '0em',
+                                      textAlign: 'left',
+                                    }}
+                                    display={'flex'}
+                                    justifyContent={'center'}
+                                    alignItems={'center'}
+                                  >
+                                    {
+                                      filterTableRowsWRTTab(
+                                        tabData?.currentReqTypeTab ===
+                                          'Leave Requests'
+                                          ? data?.leaveRequest
+                                          : data?.clockInOutRequests,
+                                        {
+                                          status: label === 'All' ? '' : label,
+                                        }
+                                      ).length
+                                    }
+                                  </Box>
+                                )}
                                 <Typography
                                   variant="body1"
                                   sx={{

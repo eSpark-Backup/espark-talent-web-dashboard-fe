@@ -1,12 +1,13 @@
 'use client';
 import React from 'react';
-import { Typography, Box, Grid } from '@mui/material';
+import { Typography, Box, Grid, Stack } from '@mui/material';
+import Skeleton from '@mui/material/Skeleton';
 
 import { COMPANY_ONBOARDING, HIRING_STATUS } from '@/src/constants/dashboard';
 import CompanyProfile from './companyProfile';
 import { useSelector } from 'react-redux';
 
-const OnBoarding = () => {
+const OnBoarding = ({ isLoading }) => {
   const { data } = useSelector((state) => state?.client?.home);
   // const dispatch = useDispatch();
   // const { isLoading } = useQuery({
@@ -26,7 +27,116 @@ const OnBoarding = () => {
   //   },
   // });
   // if (isLoading) return 'Loading...';
-  return (
+  return isLoading ? (
+    <Stack
+      direction={{ xs: 'column', sm: 'column', md: 'row' }}
+      gap="12px"
+      width="100%"
+      justifyContent="space-between"
+    >
+      <Stack
+        sx={{
+          height: { xs: '270px', md: '200px' },
+          borderRadius: '10px',
+          background: '#FFF',
+          boxShadow: '0px 0px 10px 0px rgba(0, 0, 0, 0.30)',
+          display: 'flex',
+          padding: '18px',
+          '@media (min-width: 900px) and (max-width: 1350px)': {
+            height: '250px',
+          },
+          width: { xs: '100%', md: '50%' },
+        }}
+      >
+        <Stack
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'flex-start',
+            gap: '10px',
+            width: '90%',
+            padding: '15px',
+          }}
+        >
+          <Skeleton
+            variant="text"
+            sx={{ width: { xs: '80%', md: '70%' }, height: '20px' }}
+          />
+          <Skeleton
+            variant="text"
+            sx={{ width: { xs: '80%', md: '100%' }, height: '20px' }}
+          />
+          <Skeleton
+            variant="text"
+            sx={{ width: { xs: '80%', md: '100%' }, height: '20px' }}
+          />
+        </Stack>
+      </Stack>
+      <Stack
+        sx={{
+          display: 'flex',
+          height: { xs: '270px', md: '200px' },
+          borderRadius: '10px',
+          background: '#fff',
+          boxShadow: '0px 0px 10px 0px rgba(0, 0, 0, 0.30)',
+          padding: '18px',
+          '@media (min-width: 900px) and (max-width: 1350px)': {
+            height: '250px',
+          },
+          width: { xs: '100%', md: '50%' },
+        }}
+      >
+        <Stack
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'flex-start',
+            padding: '20px',
+            width: '90%',
+            gap: '15px',
+          }}
+        >
+          <Skeleton variant="text" width="150px" />
+          <Stack
+            direction="row"
+            justifyContent="space-between"
+            alignItems="center"
+          >
+            <Stack
+              sx={{ display: 'flex', flexDirection: 'column', gap: '15px' }}
+            >
+              <Skeleton
+                variant="text"
+                sx={{
+                  width: { xs: '90px', md: '150px' },
+                  height: '20px',
+                }}
+              />
+              <Skeleton
+                variant="text"
+                sx={{
+                  width: { xs: '90px', md: '150px' },
+                  height: '20px',
+                }}
+              />
+            </Stack>
+            <Stack
+              sx={{ display: 'flex', flexDirection: 'column', gap: '15px' }}
+            >
+              <Skeleton
+                variant="text"
+                sx={{ width: { xs: '90px', md: '150px' }, height: '20px' }}
+              />
+              <Skeleton
+                variant="text"
+                sx={{ width: { xs: '90px', md: '150px' }, height: '20px' }}
+              />
+            </Stack>
+          </Stack>
+        </Stack>
+      </Stack>
+    </Stack>
+  ) : (
     <Grid container>
       <Box
         sx={{
