@@ -30,6 +30,7 @@ const LeaveRequestTable = ({
       filterTableRowsWRTTab(reformData(data?.requests), { status: '' })
     );
   }, [data]);
+
   if (isLoading) {
     return (
       <Skeleton
@@ -50,6 +51,7 @@ const LeaveRequestTable = ({
     handleOpenConditionalModal: handleOpenModal,
     handleClickActionView: handleClickView,
     handleClickActionDelete: handleClickDelete,
+    isLoading,
   });
 };
 

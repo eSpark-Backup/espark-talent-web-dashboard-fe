@@ -3,9 +3,12 @@ import { Box, Typography } from '@mui/material';
 import Image from 'next/image';
 import React from 'react';
 import { useSelector } from 'react-redux';
+import Stack from '@mui/material/Stack';
+import Skeleton from '@mui/material/Skeleton';
 
-const TodayActivity = () => {
-  const { today_activity } = useSelector((state) => state?.emp?.home?.homeData);
+const TodayActivity = ({ isLoading }) => {
+  const { today_activity } =
+    useSelector((state) => state?.emp?.home?.homeData) || {};
 
   return (
     <Box
@@ -66,48 +69,63 @@ const TodayActivity = () => {
                 display={'flex'}
                 alignItems={'center'}
               >
-                <Box
-                  sx={{
-                    position: 'absolute',
-                    left: '40px',
-                    width: '150px',
-                    top: 0,
-                  }}
-                  display={'flex'}
-                  flexDirection={'column'}
-                >
-                  <Typography
+                {isLoading ? (
+                  <Stack
+                    spacing={0.5}
                     sx={{
-                      color: '#171717',
-                      fontSize: '16px',
-                      fontStyle: 'normal',
-                      fontWeight: 400,
-                      lineHeight: 'normal',
+                      position: 'absolute',
+                      left: '40px',
+                      width: '150px',
+                      top: 0,
                     }}
                   >
-                    {title}
-                  </Typography>
-                  <Typography
+                    <Skeleton variant="text" width={90} height={30} />
+                    <Skeleton variant="text" width={20} height={30} />
+                  </Stack>
+                ) : (
+                  <Box
                     sx={{
-                      color: '#595959',
-                      fontSize: '14px',
-                      fontStyle: 'normal',
-                      fontWeight: 400,
-                      lineHeight: 'normal',
-                      display: 'flex',
-                      marginTop: '10px',
-                      alignItems: 'center',
-                      gap: '5px',
+                      position: 'absolute',
+                      left: '40px',
+                      width: '150px',
+                      top: 0,
                     }}
+                    display={'flex'}
+                    flexDirection={'column'}
                   >
-                    <Image
-                      src={'/icons/ClockIcon.svg'}
-                      width={20}
-                      height={20}
-                    />{' '}
-                    {today_activity?.[name]}
-                  </Typography>
-                </Box>
+                    <Typography
+                      sx={{
+                        color: '#171717',
+                        fontSize: '16px',
+                        fontStyle: 'normal',
+                        fontWeight: 400,
+                        lineHeight: 'normal',
+                      }}
+                    >
+                      {title}
+                    </Typography>
+                    <Typography
+                      sx={{
+                        color: '#595959',
+                        fontSize: '14px',
+                        fontStyle: 'normal',
+                        fontWeight: 400,
+                        lineHeight: 'normal',
+                        display: 'flex',
+                        marginTop: '10px',
+                        alignItems: 'center',
+                        gap: '5px',
+                      }}
+                    >
+                      <Image
+                        src={'/icons/ClockIcon.svg'}
+                        width={20}
+                        height={20}
+                      />{' '}
+                      {today_activity?.[name]}
+                    </Typography>
+                  </Box>
+                )}
               </Box>
               <Box
                 sx={{

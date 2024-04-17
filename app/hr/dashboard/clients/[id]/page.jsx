@@ -62,6 +62,7 @@ import {
 import { getCamelCapitalized } from '@/src/utils/stringModification';
 import UploadOtherInvoiceModal from './UploadOtherInvoiceModal';
 import { Toast } from '@/src/components/Toast/Toast';
+import ProfileEditSkeleton from '@/src/components/HR/ProfileEditSkeleton';
 
 const AddEmployee = () => {
   const params = useParams();
@@ -869,6 +870,18 @@ const AddEmployee = () => {
       }
     }
   };
+
+  console.log(
+    ClientHiringReqQuery,
+    ClientInterviewSchedule,
+    ClientOnBoarding,
+    EmployeeInvoicesPending,
+    EmployeeInvoicesProcessing,
+    EmployeeInvoicesPaid,
+    OtherInvoicesPending,
+    OtherInvoicesProcessing,
+    OtherInvoicesPaid
+  );
   return (
     <>
       <Box>
@@ -886,253 +899,244 @@ const AddEmployee = () => {
             {CLIENTPROFILE?.profile}
           </Typography>
         </Box>
-        {isLoading ||
-        ClientOnBoarding.isLoading ||
-        ClientInterviewSchedule.isLoading ||
-        ClientHiringReqQuery.isLoading ||
-        EmployeeInvoicesPending.isLoading ||
-        EmployeeInvoicesProcessing.isLoading ||
-        EmployeeInvoicesPaid.isLoading ||
-        OtherInvoicesPending.isLoading ||
-        OtherInvoicesProcessing.isLoading ||
-        OtherInvoicesPaid.isLoading ||
-        updateEmpInvMutation.isPending ? (
-          'Loading...'
-        ) : (
-          <>
+        <>
+          {isLoading ? (
+            <ProfileEditSkeleton isClient={true} />
+          ) : (
             <ClientProfileData
+              isLoading={isLoading}
               handleCloseModal={handleCloseModal}
               handleOpenModal={handleOpenModal}
               showEditModal={showEditModal}
             />
-            <Box sx={{ width: '100%' }}>
+          )}
+          <Box sx={{ width: '100%' }}>
+            <Box
+              display={'flex'}
+              alignItems={'center'}
+              sx={{
+                borderBottom: 1,
+                borderColor: 'divider',
+                mt: '40px',
+                justifyContent: 'space-between',
+              }}
+            >
+              <Tabs
+                value={currentTab.val}
+                onChange={handleChangeCurrentTab}
+                aria-label="basic tabs example"
+                variant="scrollable"
+              >
+                {clientProfileTabs?.map(({ label, prop }, index) => (
+                  <Tab
+                    key={index}
+                    label={`${label}`}
+                    {...prop}
+                    disableRipple={true}
+                    sx={{
+                      marginRight: '30px',
+                      color: '#595959',
+                      textTransform: 'math-auto',
+                    }}
+                  />
+                ))}
+              </Tabs>
+            </Box>
+            {currentTab?.label !== 'Employees' && (
               <Box
-                display={'flex'}
-                alignItems={'center'}
                 sx={{
-                  borderBottom: 1,
-                  borderColor: 'divider',
-                  mt: '40px',
-                  justifyContent: 'space-between',
+                  marginTop: '10px',
+                  marginBottom: '40px',
+                  borderBottom:
+                    currentTab?.label !== 'Leave Balance' && 'solid 1px #ccc',
                 }}
               >
-                <Tabs
-                  value={currentTab.val}
-                  onChange={handleChangeCurrentTab}
-                  aria-label="basic tabs example"
-                  variant="scrollable"
-                >
-                  {clientProfileTabs?.map(({ label, prop }, index) => (
-                    <Tab
-                      key={index}
-                      label={`${label}`}
-                      {...prop}
-                      disableRipple={true}
+                {clientProfileTabs?.map(({ nestedTabs, ...rest }, index) => (
+                  <CustomTabPanel
+                    value={currentTab.val}
+                    index={index}
+                    key={index}
+                  >
+                    <Box
                       sx={{
-                        marginRight: '30px',
-                        color: '#595959',
-                        textTransform: 'math-auto',
+                        display: 'flex',
+                        justifyContent: {
+                          xs: 'flex-start',
+                          md: 'space-between',
+                        },
+                        alignItems: { xs: 'flex-start', md: 'center' },
+                        flexDirection: { xs: 'column', md: 'row' },
                       }}
-                    />
-                  ))}
-                </Tabs>
-              </Box>
-              {currentTab?.label !== 'Employees' && (
-                <Box
-                  sx={{
-                    marginTop: '10px',
-                    marginBottom: '40px',
-                    borderBottom:
-                      currentTab?.label !== 'Leave Balance' && 'solid 1px #ccc',
-                  }}
-                >
-                  {clientProfileTabs?.map(({ nestedTabs, ...rest }, index) => (
-                    <CustomTabPanel
-                      value={currentTab.val}
-                      index={index}
-                      key={index}
                     >
-                      <Box
-                        sx={{
-                          display: 'flex',
-                          justifyContent: {
-                            xs: 'flex-start',
-                            md: 'space-between',
-                          },
-                          alignItems: { xs: 'flex-start', md: 'center' },
-                          flexDirection: { xs: 'column', md: 'row' },
-                        }}
+                      <Tabs
+                        variant="scrollable"
+                        value={currentTab.nested.val}
+                        onChange={(ev, newVal) =>
+                          handleChangeNestedTab(ev, newVal, nestedTabs, rest)
+                        }
+                        sx={{ width: { xs: '100%', md: '80%' } }}
+                        aria-label="basic tabs example"
                       >
-                        <Tabs
-                          variant="scrollable"
-                          value={currentTab.nested.val}
-                          onChange={(ev, newVal) =>
-                            handleChangeNestedTab(ev, newVal, nestedTabs, rest)
-                          }
-                          sx={{ width: { xs: '100%', md: '80%' } }}
-                          aria-label="basic tabs example"
-                        >
-                          {nestedTabs?.map(({ label, prop }, nestedIndex) => (
-                            <Tab
-                              key={nestedIndex}
-                              label={`${label}`}
-                              {...prop}
-                              disableRipple={true}
-                              sx={{ marginRight: '30px', color: '#595959' }}
-                            />
-                          ))}
-                        </Tabs>
-                        {currentTab?.label === 'Hire & onboard' ? (
-                          <>
-                            {currentTab?.nested.val === 0 ? (
-                              <>
-                                {(role === 'super_admin' ||
-                                  (role !== 'super_admin' &&
-                                    client_perms?.[0]?.write)) && (
-                                  <Button
-                                    onClick={handleOpenHiringRequestModal}
-                                    variant="contained"
-                                    sx={{
-                                      my: { xs: '20px', md: 0 },
-                                      textTransform: 'math-auto',
-                                      color: '#fff',
-                                      background: '#029894',
+                        {nestedTabs?.map(({ label, prop }, nestedIndex) => (
+                          <Tab
+                            key={nestedIndex}
+                            label={`${label}`}
+                            {...prop}
+                            disableRipple={true}
+                            sx={{ marginRight: '30px', color: '#595959' }}
+                          />
+                        ))}
+                      </Tabs>
+                      {currentTab?.label === 'Hire & onboard' ? (
+                        <>
+                          {currentTab?.nested.val === 0 ? (
+                            <>
+                              {(role === 'super_admin' ||
+                                (role !== 'super_admin' &&
+                                  client_perms?.[0]?.write)) && (
+                                <Button
+                                  onClick={handleOpenHiringRequestModal}
+                                  variant="contained"
+                                  sx={{
+                                    my: { xs: '20px', md: 0 },
+                                    textTransform: 'math-auto',
+                                    color: '#fff',
+                                    background: '#029894',
 
-                                      '&:hover': {
-                                        color: '#fff',
-                                        background: '#029894',
-                                      },
-                                    }}
-                                  >
-                                    {CLIENTPROFILE?.addNewRequest}
-                                  </Button>
-                                )}
-                              </>
-                            ) : currentTab?.nested.val === 1 ? (
-                              <>
-                                {(role === 'super_admin' ||
-                                  (role !== 'super_admin' &&
-                                    client_perms?.[0]?.write)) && (
-                                  <Button
-                                    onClick={handleOpenAddInterviewModal}
-                                    variant="contained"
-                                    sx={{
-                                      my: { xs: '20px', md: 0 },
-                                      textTransform: 'math-auto',
+                                    '&:hover': {
                                       color: '#fff',
                                       background: '#029894',
-                                      '&:hover': {
-                                        color: '#fff',
-                                        background: '#029894',
-                                      },
-                                    }}
-                                  >
-                                    {CLIENTPROFILE?.setNewInterview}
-                                  </Button>
-                                )}
-                              </>
-                            ) : (
-                              <>
-                                {(role === 'super_admin' ||
-                                  (role !== 'super_admin' &&
-                                    client_perms?.[0]?.write)) && (
-                                  <Button
-                                    onClick={handleOpenAddOnboardModal}
-                                    variant="contained"
-                                    sx={{
-                                      my: { xs: '20px', md: 0 },
+                                    },
+                                  }}
+                                >
+                                  {CLIENTPROFILE?.addNewRequest}
+                                </Button>
+                              )}
+                            </>
+                          ) : currentTab?.nested.val === 1 ? (
+                            <>
+                              {(role === 'super_admin' ||
+                                (role !== 'super_admin' &&
+                                  client_perms?.[0]?.write)) && (
+                                <Button
+                                  onClick={handleOpenAddInterviewModal}
+                                  variant="contained"
+                                  sx={{
+                                    my: { xs: '20px', md: 0 },
+                                    textTransform: 'math-auto',
+                                    color: '#fff',
+                                    background: '#029894',
+                                    '&:hover': {
                                       color: '#fff',
                                       background: '#029894',
-                                      '&:hover': {
-                                        color: '#fff',
-                                        background: '#029894',
-                                      },
-                                    }}
-                                  >
-                                    {CLIENTPROFILE?.addOnboard}
-                                  </Button>
-                                )}
-                              </>
+                                    },
+                                  }}
+                                >
+                                  {CLIENTPROFILE?.setNewInterview}
+                                </Button>
+                              )}
+                            </>
+                          ) : (
+                            <>
+                              {(role === 'super_admin' ||
+                                (role !== 'super_admin' &&
+                                  client_perms?.[0]?.write)) && (
+                                <Button
+                                  onClick={handleOpenAddOnboardModal}
+                                  variant="contained"
+                                  sx={{
+                                    my: { xs: '20px', md: 0 },
+                                    color: '#fff',
+                                    background: '#029894',
+                                    '&:hover': {
+                                      color: '#fff',
+                                      background: '#029894',
+                                    },
+                                  }}
+                                >
+                                  {CLIENTPROFILE?.addOnboard}
+                                </Button>
+                              )}
+                            </>
+                          )}
+                        </>
+                      ) : currentTab?.label === 'Employee invoices' ? (
+                        currentTab?.nested.val === 0 ? (
+                          <>
+                            {(role === 'super_admin' ||
+                              (role !== 'super_admin' &&
+                                invoices_perms?.[0]?.write)) && (
+                              <Button
+                                onClick={handleOpenUploadInvoiceModal}
+                                variant="contained"
+                                sx={{
+                                  my: { xs: '20px', md: 0 },
+                                  color: '#fff',
+                                  background: '#029894',
+                                  '&:hover': {
+                                    color: '#fff',
+                                    background: '#029894',
+                                  },
+                                  // '@media (min-width: 280px) and (max-width: 600px)':
+                                  //   {
+                                  //     width: '50%',
+                                  //   },
+                                }}
+                              >
+                                {CLIENTPROFILE?.uploadVoice}
+                              </Button>
                             )}
                           </>
-                        ) : currentTab?.label === 'Employee invoices' ? (
-                          currentTab?.nested.val === 0 ? (
-                            <>
-                              {(role === 'super_admin' ||
-                                (role !== 'super_admin' &&
-                                  invoices_perms?.[0]?.write)) && (
-                                <Button
-                                  onClick={handleOpenUploadInvoiceModal}
-                                  variant="contained"
-                                  sx={{
-                                    my: { xs: '20px', md: 0 },
+                        ) : null
+                      ) : currentTab?.label === 'Other invoices' ? (
+                        currentTab?.nested.val === 0 ? (
+                          <>
+                            {(role === 'super_admin' ||
+                              (role !== 'super_admin' &&
+                                invoices_perms?.[0]?.write)) && (
+                              <Button
+                                onClick={handleOpenUploadOthInvoiceModal}
+                                variant="contained"
+                                sx={{
+                                  my: { xs: '20px', md: 0 },
+                                  color: '#fff',
+                                  background: '#029894',
+                                  '&:hover': {
                                     color: '#fff',
                                     background: '#029894',
-                                    '&:hover': {
-                                      color: '#fff',
-                                      background: '#029894',
-                                    },
-                                    // '@media (min-width: 280px) and (max-width: 600px)':
-                                    //   {
-                                    //     width: '50%',
-                                    //   },
-                                  }}
-                                >
-                                  {CLIENTPROFILE?.uploadVoice}
-                                </Button>
-                              )}
-                            </>
-                          ) : null
-                        ) : currentTab?.label === 'Other invoices' ? (
-                          currentTab?.nested.val === 0 ? (
-                            <>
-                              {(role === 'super_admin' ||
-                                (role !== 'super_admin' &&
-                                  invoices_perms?.[0]?.write)) && (
-                                <Button
-                                  onClick={handleOpenUploadOthInvoiceModal}
-                                  variant="contained"
-                                  sx={{
-                                    my: { xs: '20px', md: 0 },
-                                    color: '#fff',
-                                    background: '#029894',
-                                    '&:hover': {
-                                      color: '#fff',
-                                      background: '#029894',
-                                    },
-                                  }}
-                                >
-                                  {CLIENTPROFILE?.uploadVoice}
-                                </Button>
-                              )}
-                            </>
-                          ) : null
-                        ) : null}
-                      </Box>
-                    </CustomTabPanel>
-                  ))}
-                </Box>
-              )}
-              {renderTable({
-                currentTab: currentTab.label,
-                data: getCurrentTabData(),
-                // data: currentTabTable.data,
-                // data:
-                //   currentTab.label === 'Hire & onboard' &&
-                //   currentTab.nested.label === 'Hiring Request'
-                //     ? []
-                //     : currentTabTable.data,
-                column: currentTabTable.column,
-                openModal: handleOpenAddClientModal,
-                isOpen: isOpen,
-                handleOpen,
-                handleClose,
-                handleConfirmDelete: handleConfirmDeleteHiringReq,
-                updateStatus: handleConfirmUpdatePayStatus,
-              })}
-            </Box>
-          </>
-        )}
+                                  },
+                                }}
+                              >
+                                {CLIENTPROFILE?.uploadVoice}
+                              </Button>
+                            )}
+                          </>
+                        ) : null
+                      ) : null}
+                    </Box>
+                  </CustomTabPanel>
+                ))}
+              </Box>
+            )}
+            {renderTable({
+              currentTab: currentTab.label,
+              data: getCurrentTabData(),
+              // data: currentTabTable.data,
+              // data:
+              //   currentTab.label === 'Hire & onboard' &&
+              //   currentTab.nested.label === 'Hiring Request'
+              //     ? []
+              //     : currentTabTable.data,
+              column: currentTabTable.column,
+              openModal: handleOpenAddClientModal,
+              isOpen: isOpen,
+              handleOpen,
+              handleClose,
+              handleConfirmDelete: handleConfirmDeleteHiringReq,
+              updateStatus: handleConfirmUpdatePayStatus,
+            })}
+          </Box>
+        </>
       </Box>
       <HiringRequestModal
         open={isOpenHiringRequestModal}

@@ -1,7 +1,6 @@
 'use client';
 import React from 'react';
 import { Box, Grid } from '@mui/material';
-import Skeleton from '@mui/material/Skeleton';
 import { useDispatch, useSelector } from 'react-redux';
 import { useQuery } from '@tanstack/react-query';
 
@@ -45,16 +44,6 @@ const Dashboard = () => {
     },
   });
 
-  if (isLoading) {
-    return (
-      <Skeleton
-        animation="wave"
-        width={'100%'}
-        height={40}
-        sx={{ background: '#F6F6F6' }}
-      />
-    );
-  }
   return (
     <>
       <Grid container spacing={5}>
@@ -65,19 +54,23 @@ const Dashboard = () => {
             }}
           >
             <DashboardHeading
+              isLoading={isLoading}
               title={`Hello ${empDetails?.employee_name}`}
               dashboardDescription={DASHBOARD_DATA?.updates}
             />
           </Box>
         </Grid>
         <Grid item xs={12}>
-          <AttendanceSummary title={Attendance_Summary_Title} />
+          <AttendanceSummary
+            title={Attendance_Summary_Title}
+            isLoading={isLoading}
+          />
         </Grid>
         <Grid item xs={12} md={6} lg={6} xl={6}>
-          <MarkClock data={Mark_CLock_Title} />
+          <MarkClock data={Mark_CLock_Title} isLoading={isLoading} />
         </Grid>
         <Grid item xs={12} md={6} lg={6} xl={6}>
-          <LeaveSummary />
+          <LeaveSummary isLoading={isLoading} />
         </Grid>
       </Grid>
       <Box
@@ -102,10 +95,10 @@ const Dashboard = () => {
           }}
         >
           <Box sx={{ width: { xs: '100%', md: 'calc(100% - 355px)' } }}>
-            <Statistics />
+            <Statistics isLoading={isLoading} />
           </Box>
           <Box sx={{ width: { xs: '100%', md: '355px' } }}>
-            <TodayActivity />
+            <TodayActivity isLoading={isLoading} />
           </Box>
         </Box>
         <Box

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
 import { DASHBOARD_HEADER } from '@/src/constants/dashboard';
+import Link from 'next/link';
 
 const TopNavNavbar = () => {
   return (
@@ -16,31 +17,35 @@ const TopNavNavbar = () => {
         fill: '#029E9C',
       }}
     >
-      <Typography
-        sx={{
-          color: '#FFF',
-          fontSize: '14px',
-          fontStyle: 'normal',
-          fontWeight: 500,
-          lineHeight: 'normal',
-          width: '430px',
-        }}
+      <Link
+        href={`${DASHBOARD_HEADER?.link || '#'}`}
+        target={`${DASHBOARD_HEADER?.target || ''}`}
       >
-        {DASHBOARD_HEADER.globalHiring}
-        <span
-          style={{
+        <Typography
+          sx={{
             color: '#FFF',
-
             fontSize: '14px',
+            fontStyle: 'normal',
             fontWeight: 500,
-            textDecoration: 'underline',
-            cursor: 'pointer',
+            lineHeight: 'normal',
+            width: '430px',
           }}
         >
-          {' '}
-          {DASHBOARD_HEADER.callUs}
-        </span>
-      </Typography>
+          {DASHBOARD_HEADER?.globalHiring || ''}
+          <span
+            style={{
+              marginLeft: '5px',
+              color: '#FFF',
+              fontSize: '14px',
+              fontWeight: 500,
+              textDecoration: 'underline',
+              cursor: 'pointer',
+            }}
+          >
+            {DASHBOARD_HEADER?.callUs || ''}
+          </span>
+        </Typography>
+      </Link>
     </Box>
   );
 };

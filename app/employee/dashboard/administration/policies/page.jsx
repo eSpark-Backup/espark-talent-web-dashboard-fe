@@ -22,7 +22,7 @@ const Policies = () => {
     (item) => item.id !== 4 && item.id !== 5
   );
 
-  const clientPoliciesQuery = useQuery({
+  const { clientPoliciesQuery, isLoading } = useQuery({
     staleTime: 10000,
     queryKey: ['policiesQuery'],
     queryFn: async () => {
@@ -65,7 +65,7 @@ const Policies = () => {
               alignItems: { xs: 'center', md: 'center' },
             }}
           />
-          <PoliciesCard data={filteredItems} />
+          <PoliciesCard data={filteredItems} isLoading={isLoading} />
           {/* <PoliciesCard data={POLICIES_DATA?.items} /> */}
         </Box>
       </Grid>

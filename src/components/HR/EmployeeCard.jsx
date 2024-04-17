@@ -1,17 +1,11 @@
 import React from 'react';
-import {
-  Box,
-  Grid,
-  Menu,
-  MenuItem,
-  Typography,
-  useMediaQuery,
-} from '@mui/material';
+import { Box, Grid, Menu, MenuItem, Typography } from '@mui/material';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
 const EmployeeCard = ({
   eachItem,
+  breakPoint,
   handleClick,
   anchorEl,
   open,
@@ -20,11 +14,9 @@ const EmployeeCard = ({
 }) => {
   console.log({ eachItem });
   const router = useRouter();
-  const isBetween1400And1200 = useMediaQuery(
-    '(min-width: 1200px) and (max-width: 1400px)'
-  );
+
   return (
-    <Grid item xs={12} sm={6} md={4} lg={isBetween1400And1200 ? 4 : 3}>
+    <Grid item xs={12} sm={6} md={4} lg={breakPoint ? 4 : 3}>
       <Box
         sx={{
           width: '100%',

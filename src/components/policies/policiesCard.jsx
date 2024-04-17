@@ -29,6 +29,7 @@ const PoliciesCard = ({ data, isLoading }) => {
           <Box
             key={item.id}
             sx={{
+              width: '100%',
               display: 'flex',
               justifyContent: { xs: 'start', lg: 'center' },
             }}

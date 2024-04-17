@@ -22,7 +22,10 @@ import {
 } from '../../redux/slices/authSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { CLIENT_ROLES, EMPLOYEE_ROLES } from '@/src/constants/data/roles';
-import { getHomeData } from '@/src/redux/slices/hrSlices/homeSlice';
+import {
+  getHomeData,
+  getHomeDataRequest,
+} from '@/src/redux/slices/hrSlices/homeSlice';
 import {
   CLIENT_HOME,
   EMP_HOME,
@@ -46,6 +49,7 @@ const AuthForm = ({ uiData, fields, handleOpenTroubleModal }) => {
   const router = useRouter();
   const hrHomeMutation = useMutation({
     mutationFn: async (url) => {
+      dispatch(getHomeDataRequest());
       return api.getData(url);
     },
     onSuccess: ({ data }) => {

@@ -62,7 +62,7 @@ const AllEmployee = ({ fromClient, openModal }) => {
           Toast('error', error.message || 'Failed to get data');
           // console.log('API Failed');
           dispatch(getEmpDataFailed());
-          console.log({ error });
+          // console.log({ error });
         });
     },
   });
@@ -137,6 +137,7 @@ const AllEmployee = ({ fromClient, openModal }) => {
                 name={name}
                 designation={designation}
                 status={'All'}
+                isLoading={isLoading}
               />
             ) : value === 'two' ? (
               <EmployeeStatus
@@ -145,6 +146,7 @@ const AllEmployee = ({ fromClient, openModal }) => {
                 name={name}
                 designation={designation}
                 search={search}
+                isLoading={isLoading}
               />
             ) : (
               <EmployeeStatus
@@ -153,6 +155,7 @@ const AllEmployee = ({ fromClient, openModal }) => {
                 designation={designation}
                 status={'Inactive'}
                 search={search}
+                isLoading={isLoading}
               />
             )}
           </>
@@ -343,6 +346,7 @@ const AllEmployee = ({ fromClient, openModal }) => {
                 designation={designation}
                 status={'All'}
                 data={filteredData}
+                isLoading={isLoading}
               />
             ) : value === 'two' ? (
               <EmployeeView
@@ -352,6 +356,7 @@ const AllEmployee = ({ fromClient, openModal }) => {
                 designation={designation}
                 search={search}
                 data={filteredData}
+                isLoading={isLoading}
               />
             ) : (
               <EmployeeView
@@ -361,6 +366,7 @@ const AllEmployee = ({ fromClient, openModal }) => {
                 status={'Inactive'}
                 search={search}
                 data={filteredData}
+                isLoading={isLoading}
               />
             )}
           </>

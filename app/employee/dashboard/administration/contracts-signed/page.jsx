@@ -151,6 +151,7 @@ const ContractSigned = () => {
                     }}
                   >
                     <AppTable
+                      isLoading={isLoading}
                       currentTab={currentTab}
                       column={tab?.columns}
                       data={

@@ -12,6 +12,7 @@ export const renderNestedTable = ({
   handleOpenConditionalModal,
   handleClickActionView,
   handleClickActionDelete,
+  isLoading,
 }) => {
   return (
     <CustomTabPanel
@@ -25,6 +26,7 @@ export const renderNestedTable = ({
         }}
       >
         <AppTable
+          isLoading={isLoading}
           currentTab={currentReqStatusTab}
           column={column}
           data={filterTableRowsWRTTab(data, {

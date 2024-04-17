@@ -7,44 +7,60 @@ import {
   Leave_Summary_Title,
 } from '@/src/constants/employeeDashboard';
 import { useSelector } from 'react-redux';
+import Stack from '@mui/material/Stack';
 
-const LeaveSummary = () => {
-  const { homeData } = useSelector((state) => state?.emp?.home);
+const LeaveSummary = ({ isLoading }) => {
+  const { homeData } = useSelector((state) => state?.emp?.home) || {};
 
   return (
     <>
-      {Object.keys(homeData).length ? (
+      <Box
+        sx={{
+          height: { xs: 'auto', md: '430px' },
+          borderRadius: '10px',
+          background: '#FFF',
+          boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
+        }}
+      >
         <Box
           sx={{
-            height: { xs: 'auto', md: '430px' },
-            borderRadius: '10px',
+            px: 4,
+            py: 2.5,
+            height: '70px',
+            borderRadius: '10px 10px 0px 0px',
+            borderBottom: '1px solid #E4E4E4',
             background: '#FFF',
-            boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
           }}
         >
-          <Box
+          <Typography
             sx={{
-              px: 4,
-              py: 2.5,
-              height: '70px',
-              borderRadius: '10px 10px 0px 0px',
-              borderBottom: '1px solid #E4E4E4',
-              background: '#FFF',
+              fontSize: { xs: '20px', md: '23px', lg: '25px' },
+              textAlign: { xs: 'center', sm: 'left' },
+              fontWeight: 600,
+              color: '#171717',
+              fontStyle: 'normal',
+              lineHeight: 'normal',
             }}
           >
-            <Typography
-              sx={{
-                fontSize: { xs: '20px', md: '23px', lg: '25px' },
-                textAlign: { xs: 'center', sm: 'left' },
-                fontWeight: 600,
-                color: '#171717',
-                fontStyle: 'normal',
-                lineHeight: 'normal',
-              }}
-            >
-              {Leave_Summary_Title}
-            </Typography>
-          </Box>
+            {Leave_Summary_Title}
+          </Typography>
+        </Box>
+        {isLoading ? (
+          <Stack
+            p={5}
+            height={'80%'}
+            alignItems={'center'}
+            justifyContent={'center'}
+          >
+            <Box
+              component={'img'}
+              src="/icons/no-record-found.svg"
+              width={'auto'}
+              height={'auto'}
+              alt="arrow"
+            />
+          </Stack>
+        ) : (
           <Box
             sx={{
               px: { xs: 3, sm: '18px' },
@@ -198,8 +214,8 @@ const LeaveSummary = () => {
                 </Box>
               ))}
           </Box>
-        </Box>
-      ) : null}
+        )}
+      </Box>
     </>
   );
 };

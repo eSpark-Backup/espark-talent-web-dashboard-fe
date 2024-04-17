@@ -31,6 +31,7 @@ import EmpPunchReqFilterFormModal from '@/src/components/FilterModal/empPunchReq
 import { empPunchReqfilterForm } from '@/src/constants/data/forms/emp-punch-req-modal-form';
 import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
 import { Toast } from '@/src/components/Toast/Toast';
+import Skeleton from '@mui/material/Skeleton';
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -172,6 +173,7 @@ const Dashboard = () => {
   const handleConfirmDelete = () => {
     mutate(modalData.id);
   };
+
   return (
     <>
       <Box
@@ -226,23 +228,30 @@ const Dashboard = () => {
         >
           <div>
             <Box sx={{ xs: '0px', sm: '20px' }}>
-              <Typography
-                sx={{
-                  fontSize: { xs: '24px', sm: '28px', md: '30px' },
-                  fontWeight: 400,
-                  lineHeight: '36px',
-                  letterSpacing: '0em',
-                  color: '#595959',
-                }}
-                textAlign={'center'}
-              >
-                {`${empDetails?.employee_name} -`}{' '}
-                <Box
-                  component={'br'}
-                  sx={{ display: { xs: 'flex', sm: 'none' } }}
-                />{' '}
-                ({empDetails?.employee_id})
-              </Typography>
+              {isLoading ? (
+                <Skeleton
+                  variant="text"
+                  sx={{ width: '30%', height: 30, mr: 1, mx: 'auto' }}
+                />
+              ) : (
+                <Typography
+                  sx={{
+                    fontSize: { xs: '24px', sm: '28px', md: '30px' },
+                    fontWeight: 400,
+                    lineHeight: '36px',
+                    letterSpacing: '0em',
+                    color: '#595959',
+                  }}
+                  textAlign={'center'}
+                >
+                  {`${empDetails?.employee_name} -`}{' '}
+                  <Box
+                    component={'br'}
+                    sx={{ display: { xs: 'flex', sm: 'none' } }}
+                  />{' '}
+                  ({empDetails?.employee_id})
+                </Typography>
+              )}
             </Box>
             <Box
               sx={{
@@ -286,40 +295,55 @@ const Dashboard = () => {
                               }}
                               label={
                                 <Box display={'flex'} alignItems={'center'}>
-                                  <Box
-                                    sx={{
-                                      ml: index == 0 ? -3 : 0,
-                                      width: 30,
-                                      height: 30,
-                                      background,
-                                      borderRadius: '5px',
-                                      marginRight: '10px',
-                                      color,
-                                      fontSize: '14px',
-                                      fontWeight: 600,
-                                      lineHeight: '19px',
-                                      letterSpacing: '0em',
-                                      textAlign: 'left',
-                                    }}
-                                    display={'flex'}
-                                    justifyContent={'center'}
-                                    alignItems={'center'}
-                                  >
-                                    {
-                                      // filterTableRowsWRTTab(
-                                      //   checkInOutRequestDataState,
-                                      //   {
-                                      //     status: label === 'All' ? '' : label,
-                                      //   }
-                                      // ).length
-                                      data?.[name]
-                                    }
-                                  </Box>
+                                  {isLoading ? (
+                                    <Skeleton
+                                      variant="text"
+                                      sx={{
+                                        width: 30,
+                                        height: 40,
+                                        mr: 1,
+                                        ml: index == 0 ? -3 : 0,
+                                      }}
+                                    />
+                                  ) : (
+                                    <Box
+                                      sx={{
+                                        ml: index == 0 ? -3 : 0,
+                                        width: 30,
+                                        height: 30,
+                                        background,
+                                        borderRadius: '5px',
+                                        marginRight: '10px',
+                                        color,
+                                        fontSize: '14px',
+                                        fontWeight: 600,
+                                        lineHeight: '19px',
+                                        letterSpacing: '0em',
+                                        textAlign: 'left',
+                                      }}
+                                      display={'flex'}
+                                      justifyContent={'center'}
+                                      alignItems={'center'}
+                                    >
+                                      {
+                                        // filterTableRowsWRTTab(
+                                        //   checkInOutRequestDataState,
+                                        //   {
+                                        //     status: label === 'All' ? '' : label,
+                                        //   }
+                                        // ).length
+                                        data?.[name]
+                                      }
+                                    </Box>
+                                  )}
                                   <Typography
                                     variant="body1"
                                     sx={{
                                       color:
-                                        label === currentReqStatusTab && color,
+                                        label === currentReqStatusTab &&
+                                        color &&
+                                        isLoading &&
+                                        'gray',
                                     }}
                                   >
                                     {label}

@@ -27,4 +27,6 @@ export const DASHBOARD_DATA = {
 export const DASHBOARD_HEADER = {
   globalHiring: 'Need help getting started with global hiring?',
   callUs: 'Book a call with us',
+  link: 'https://www.esparktalent.com/book-a-demo',
+  target: 'blank',
 };

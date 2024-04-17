@@ -7,6 +7,7 @@ import EditEmergencyModal from './emergencyEditModal';
 import EditPersonalModal from './editPersonalData';
 import PersonalInformation from './personalInformation';
 import EmergencyContact from './emergencyContact';
+import { Stack } from '@mui/system';
 
 const Profile = ({
   showEditProfilelModal,
@@ -15,6 +16,7 @@ const Profile = ({
   showEmergencyModal,
   handleEditProfileModal,
   data,
+  isLoading,
 }) => {
   return (
     <Box
@@ -39,55 +41,74 @@ const Profile = ({
           },
         }}
       >
-        <Box sx={{ width: '100%' }}>
-          <Box
+        {isLoading ? (
+          <Stack
             sx={{
-              display: 'flex',
-              justifyContent: 'space-between',
+              width: '100%',
+              height: '100%',
+              justifyContent: 'center',
+              alignItems: 'center',
             }}
           >
-            <Typography
-              sx={{
-                fontSize: '20px',
-                fontWeight: 600,
-              }}
-            >
-              {employeeProfileData?.personalInformation}
-            </Typography>
-            <Image
-              src={'/images/dashboard/hr/edit.svg'}
-              width={35}
-              height={35}
-              alt="edit"
-              onClick={handleEditProfileModal}
-              style={{
-                marginBottom: '15px',
-              }}
+            <Box
+              component={'img'}
+              src="/icons/no-record-found.svg"
+              width={'auto'}
+              height={'auto'}
+              alt="arrow"
             />
-            {showEditProfilelModal && (
-              <EditPersonalModal
-                handleEditProfileModal={handleEditProfileModal}
-                onClose={handleCloseModal}
-                data={data}
-              />
-            )}
-          </Box>
-          <Box
-            sx={{
-              display: 'flex',
-            }}
-          >
-            <PersonalInformation data={data} />
+          </Stack>
+        ) : (
+          <Box sx={{ width: '100%' }}>
             <Box
               sx={{
-                display: { xs: 'none', md: 'flex' },
-                '@media (min-width: 900px) and (max-width: 920px)': {
-                  display: 'none',
-                },
+                display: 'flex',
+                justifyContent: 'space-between',
               }}
-            ></Box>
+            >
+              <Typography
+                sx={{
+                  fontSize: '20px',
+                  fontWeight: 600,
+                }}
+              >
+                {employeeProfileData?.personalInformation}
+              </Typography>
+              <Image
+                src={'/images/dashboard/hr/edit.svg'}
+                width={35}
+                height={35}
+                alt="edit"
+                onClick={handleEditProfileModal}
+                style={{
+                  marginBottom: '15px',
+                }}
+              />
+              {showEditProfilelModal && (
+                <EditPersonalModal
+                  handleEditProfileModal={handleEditProfileModal}
+                  onClose={handleCloseModal}
+                  data={data}
+                />
+              )}
+            </Box>
+            <Box
+              sx={{
+                display: 'flex',
+              }}
+            >
+              <PersonalInformation data={data} />
+              <Box
+                sx={{
+                  display: { xs: 'none', md: 'flex' },
+                  '@media (min-width: 900px) and (max-width: 920px)': {
+                    display: 'none',
+                  },
+                }}
+              ></Box>
+            </Box>
           </Box>
-        </Box>
+        )}
       </Box>
       <Box
         sx={{
@@ -100,42 +121,61 @@ const Profile = ({
           padding: '20px',
         }}
       >
-        <Box sx={{ width: '100%' }}>
-          <Box
+        {isLoading ? (
+          <Stack
             sx={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              paddingLeft: '36px',
+              width: '100%',
+              height: '100%',
+              justifyContent: 'center',
+              alignItems: 'center',
             }}
           >
-            <Typography
+            <Box
+              component={'img'}
+              src="/icons/no-record-found.svg"
+              width={'auto'}
+              height={'auto'}
+              alt="arrow"
+            />
+          </Stack>
+        ) : (
+          <Box sx={{ width: '100%' }}>
+            <Box
               sx={{
-                fontSize: '20px',
-                fontWeight: 600,
+                display: 'flex',
+                justifyContent: 'space-between',
+                paddingLeft: '36px',
               }}
             >
-              {employeeProfileData?.emergencyContact}
-            </Typography>
-            <Image
-              src={'/images/dashboard/hr/edit.svg'}
-              width={35}
-              height={35}
-              alt="edit"
-              onClick={handleEmergencyModal}
-              style={{
-                marginBottom: '15px',
-              }}
-            />
-            {showEmergencyModal && (
-              <EditEmergencyModal
-                handleEmergencyModal={handleEmergencyModal}
-                onClose={handleCloseModal}
-                data={data}
+              <Typography
+                sx={{
+                  fontSize: '20px',
+                  fontWeight: 600,
+                }}
+              >
+                {employeeProfileData?.emergencyContact}
+              </Typography>
+              <Image
+                src={'/images/dashboard/hr/edit.svg'}
+                width={35}
+                height={35}
+                alt="edit"
+                onClick={handleEmergencyModal}
+                style={{
+                  marginBottom: '15px',
+                }}
               />
-            )}
+              {showEmergencyModal && (
+                <EditEmergencyModal
+                  handleEmergencyModal={handleEmergencyModal}
+                  onClose={handleCloseModal}
+                  data={data}
+                />
+              )}
+            </Box>
+            <EmergencyContact data={data} />
           </Box>
-          <EmergencyContact data={data} />
-        </Box>
+        )}
       </Box>
     </Box>
   );

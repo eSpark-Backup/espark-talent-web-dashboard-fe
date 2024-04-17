@@ -7,8 +7,9 @@ import MarkCheckOut from './MarkCheckout';
 import MarkBreak from './MarkBreak';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import Stack from '@mui/material/Stack';
 
-const MarkClock = ({ data }) => {
+const MarkClock = ({ data, isLoading }) => {
   const {
     title,
     clock_icon,
@@ -112,7 +113,7 @@ const MarkClock = ({ data }) => {
 
     return () => clearInterval(interval);
   }, [homeData?.today_activity?.check_in, homeData]);
-  console.log({ percentage });
+
   return (
     <Box
       sx={{
@@ -145,168 +146,197 @@ const MarkClock = ({ data }) => {
           {title || ''}
         </Typography>
       </Box>
-      <Box
-        sx={{
-          px: { xs: 3, sm: 3, lg: 3 },
-          flexDirection: { xs: 'column', sm: 'row' },
-          rowGap: { xs: 0.7, sm: 0 },
-          pt: 4.2,
-          pb: 3,
-          width: '100%',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-        }}
-        display={'flex'}
-      >
-        <Typography
-          sx={{
-            color: '#595959',
-            fontSize: { xs: '17px', sm: '20px' },
-            fontStyle: 'normal',
-            fontWeight: 400,
-            lineHeight: 'normal',
-          }}
+      {isLoading ? (
+        <Stack
+          p={5}
+          height={'80%'}
+          alignItems={'center'}
+          justifyContent={'center'}
         >
-          {PUNCH_IN?.checkIn}
-        </Typography>
+          <Box
+            component={'img'}
+            src="/icons/no-record-found.svg"
+            width={'auto'}
+            height={'auto'}
+            alt="arrow"
+          />
+        </Stack>
+      ) : (
+        <Box>
+          <Box
+            sx={{
+              px: { xs: 3, sm: 3, lg: 3 },
+              flexDirection: { xs: 'column', sm: 'row' },
+              rowGap: { xs: 0.7, sm: 0 },
+              pt: 4.2,
+              pb: 3,
+              width: '100%',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+            }}
+            display={'flex'}
+          >
+            <Typography
+              sx={{
+                color: '#595959',
+                fontSize: { xs: '17px', sm: '20px' },
+                fontStyle: 'normal',
+                fontWeight: 400,
+                lineHeight: 'normal',
+              }}
+            >
+              {PUNCH_IN?.checkIn}
+            </Typography>
 
-        <Box display={'flex'} alignItems={'center'}>
-          <Image src={clock_icon || ''} width={25} height={25} alt="Clock" />
-          <Typography
-            sx={{
-              color: '#171717',
-              textAlign: 'center',
-              fontSize: { xs: '14px', sm: '16px' },
-              fontStyle: 'normal',
-              fontWeight: 600,
-              lineHeight: 'normal',
-              mx: '10px',
-            }}
-          >
-            {homeData?.today_activity?.check_in}
-          </Typography>
-          <Typography
-            sx={{
-              color: '#595959',
-              textAlign: 'center',
-              fontSize: { xs: '13px', sm: '14px' },
-              fontStyle: 'normal',
-              fontWeight: 400,
-              lineHeight: 'normal',
-            }}
-          >
-            {expected_start_time || ''}
-          </Typography>
-        </Box>
-      </Box>
-      <Box
-        sx={{
-          px: { xs: 3, sm: 3, lg: 3 },
-          width: '100%',
-          flexDirection: { xs: 'column', sm: 'row' },
-          rowGap: { xs: 0.7, sm: 0 },
-          justifyContent: 'space-between',
-          alignItems: 'center',
-        }}
-        display={'flex'}
-      >
-        <Typography
-          sx={{
-            color: '#595959',
-            fontSize: { xs: '17px', sm: '20px' },
-            fontStyle: 'normal',
-            fontWeight: 400,
-            lineHeight: 'normal',
-          }}
-        >
-          {PUNCH_IN?.checkOut}
-        </Typography>
-        <Box display={'flex'} alignItems={'center'}>
-          <Image src={clock_icon || ''} width={25} height={25} alt="Clock" />
-          <Typography
-            sx={{
-              color: '#171717',
-              textAlign: 'center',
-              fontSize: { xs: '14px', sm: '16px' },
-              fontStyle: 'normal',
-              fontWeight: 600,
-              lineHeight: 'normal',
-              mx: '10px',
-            }}
-          >
-            {homeData?.today_activity?.check_out}
-          </Typography>
-          <Typography
-            sx={{
-              color: '#595959',
-              textAlign: 'center',
-              fontSize: { xs: '13px', sm: '14px' },
-              fontStyle: 'normal',
-              fontWeight: 400,
-              lineHeight: 'normal',
-            }}
-          >
-            {expected_end_time || ''}
-          </Typography>
-        </Box>
-      </Box>
-      <Box sx={{ py: '23px' }}>
-        <Box
-          sx={{
-            height: '40px',
-            mx: { xs: 3, sm: 3, lg: 3 },
-            border: 'solid 1px #E4E4E4',
-            borderRadius: '5px',
-            position: 'relative',
-            overflow: 'hidden',
-          }}
-          display={'flex'}
-        >
+            <Box display={'flex'} alignItems={'center'}>
+              <Image
+                src={clock_icon || ''}
+                width={25}
+                height={25}
+                alt="Clock"
+              />
+              <Typography
+                sx={{
+                  color: '#171717',
+                  textAlign: 'center',
+                  fontSize: { xs: '14px', sm: '16px' },
+                  fontStyle: 'normal',
+                  fontWeight: 600,
+                  lineHeight: 'normal',
+                  mx: '10px',
+                }}
+              >
+                {homeData?.today_activity?.check_in}
+              </Typography>
+              <Typography
+                sx={{
+                  color: '#595959',
+                  textAlign: 'center',
+                  fontSize: { xs: '13px', sm: '14px' },
+                  fontStyle: 'normal',
+                  fontWeight: 400,
+                  lineHeight: 'normal',
+                }}
+              >
+                {expected_start_time || ''}
+              </Typography>
+            </Box>
+          </Box>
           <Box
             sx={{
-              width: `${percentage}%`,
-              background: '#E6F4F4',
-              height: '100%',
+              px: { xs: 3, sm: 3, lg: 3 },
+              width: '100%',
+              flexDirection: { xs: 'column', sm: 'row' },
+              rowGap: { xs: 0.7, sm: 0 },
+              justifyContent: 'space-between',
+              alignItems: 'center',
             }}
-          ></Box>
-          <Box
-            sx={{
-              width: `${100 - percentage}%`,
-              background: '#F5F5F5',
-              height: '100%',
-            }}
-          ></Box>
-          <Typography
-            sx={{
-              position: 'absolute',
-              left: 'calc(50% - 24px)',
-              top: 'calc(50% - 8px)',
-              color: '#595959',
-              textAlign: 'center',
-              fontSize: '14px',
-              fontStyle: 'normal',
-              fontWeight: 600,
-              lineHeight: 'normal',
-            }}
+            display={'flex'}
           >
-            {elapsedTimeString}
-          </Typography>
+            <Typography
+              sx={{
+                color: '#595959',
+                fontSize: { xs: '17px', sm: '20px' },
+                fontStyle: 'normal',
+                fontWeight: 400,
+                lineHeight: 'normal',
+              }}
+            >
+              {PUNCH_IN?.checkOut}
+            </Typography>
+            <Box display={'flex'} alignItems={'center'}>
+              <Image
+                src={clock_icon || ''}
+                width={25}
+                height={25}
+                alt="Clock"
+              />
+              <Typography
+                sx={{
+                  color: '#171717',
+                  textAlign: 'center',
+                  fontSize: { xs: '14px', sm: '16px' },
+                  fontStyle: 'normal',
+                  fontWeight: 600,
+                  lineHeight: 'normal',
+                  mx: '10px',
+                }}
+              >
+                {homeData?.today_activity?.check_out}
+              </Typography>
+              <Typography
+                sx={{
+                  color: '#595959',
+                  textAlign: 'center',
+                  fontSize: { xs: '13px', sm: '14px' },
+                  fontStyle: 'normal',
+                  fontWeight: 400,
+                  lineHeight: 'normal',
+                }}
+              >
+                {expected_end_time || ''}
+              </Typography>
+            </Box>
+          </Box>
+          <Box sx={{ py: '23px' }}>
+            <Box
+              sx={{
+                height: '40px',
+                mx: { xs: 3, sm: 3, lg: 3 },
+                border: 'solid 1px #E4E4E4',
+                borderRadius: '5px',
+                position: 'relative',
+                overflow: 'hidden',
+              }}
+              display={'flex'}
+            >
+              <Box
+                sx={{
+                  width: `${percentage}%`,
+                  background: '#E6F4F4',
+                  height: '100%',
+                }}
+              ></Box>
+              <Box
+                sx={{
+                  width: `${100 - percentage}%`,
+                  background: '#F5F5F5',
+                  height: '100%',
+                }}
+              ></Box>
+              <Typography
+                sx={{
+                  position: 'absolute',
+                  left: 'calc(50% - 24px)',
+                  top: 'calc(50% - 8px)',
+                  color: '#595959',
+                  textAlign: 'center',
+                  fontSize: '14px',
+                  fontStyle: 'normal',
+                  fontWeight: 600,
+                  lineHeight: 'normal',
+                }}
+              >
+                {elapsedTimeString}
+              </Typography>
+            </Box>
+          </Box>
+          <Box
+            gap={'20px'}
+            sx={{
+              flexDirection: { xs: 'column', sm: 'row' },
+              mx: { xs: 3, sm: 3, lg: 3 },
+              borderRadius: '5px',
+              position: 'relative',
+            }}
+            display={'flex'}
+          >
+            <MarkCheckIn />
+            <MarkCheckOut />
+          </Box>
+          <MarkBreak icon={break_out_icon} />
         </Box>
-      </Box>
-      <Box
-        gap={'20px'}
-        sx={{
-          flexDirection: { xs: 'column', sm: 'row' },
-          mx: { xs: 3, sm: 3, lg: 3 },
-          borderRadius: '5px',
-          position: 'relative',
-        }}
-        display={'flex'}
-      >
-        <MarkCheckIn />
-        <MarkCheckOut />
-      </Box>
-      <MarkBreak icon={break_out_icon} />
+      )}
     </Box>
   );
 };

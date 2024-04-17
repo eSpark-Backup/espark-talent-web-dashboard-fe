@@ -15,6 +15,8 @@ import {
   getEmpLeaveRequestDataSuccess,
 } from '@/src/redux/slices/employeeSlices/leaveRequestSlice';
 import { useMutation } from '@tanstack/react-query';
+import Skeleton from '@mui/material/Skeleton';
+
 import { EMP_LEAVE_REQUEST } from '@/src/services/apiService/apiEndPoints';
 import { api } from '@/src/services/apiService';
 
@@ -30,7 +32,6 @@ const LeaveRequestTablesTabs = ({
   const [currentReqStatusTab, setcurrentReqStatusTab] = useState('All');
   const [currentReqStatusTabVal, setcurrentReqStatusTabVal] = useState(0);
   const [showFilterModal, setShowFilterModal] = useState(false);
-
   const handleClose = () => {
     setShowFilterModal(false);
     // setOpen(false);
@@ -88,6 +89,7 @@ const LeaveRequestTablesTabs = ({
   const handleOpenFilterModal = () => {
     setShowFilterModal(true);
   };
+
   return (
     <Box sx={{ width: '100%' }}>
       <Box
@@ -132,39 +134,56 @@ const LeaveRequestTablesTabs = ({
                         }}
                         label={
                           <Box display={'flex'} alignItems={'center'}>
-                            <Box
-                              sx={{
-                                ml: index == 0 ? -3 : 0,
-                                width: 30,
-                                height: 30,
-                                background,
-                                borderRadius: '5px',
-                                marginRight: '10px',
-                                color,
-                                fontSize: '14px',
-                                fontWeight: 600,
-                                lineHeight: '19px',
-                                letterSpacing: '0em',
-                                textAlign: 'left',
-                              }}
-                              display={'flex'}
-                              justifyContent={'center'}
-                              alignItems={'center'}
-                            >
-                              {
-                                // filterTableRowsWRTTab(
-                                //   employeeLeaveRequestsData,
-                                //   {
-                                //     status: label === 'All' ? '' : label,
-                                //   }
-                                // ).length
-                                data?.[name]
-                              }
-                            </Box>
+                            {isLoading ? (
+                              <Skeleton
+                                variant="text"
+                                sx={{
+                                  width: 30,
+                                  height: 40,
+                                  mr: 1,
+                                  ml: index == 0 ? -3 : 0,
+                                }}
+                              />
+                            ) : (
+                              <Box
+                                sx={{
+                                  ml: index == 0 ? -3 : 0,
+                                  width: 30,
+                                  height: 30,
+                                  background,
+                                  borderRadius: '5px',
+                                  marginRight: '10px',
+                                  color,
+                                  fontSize: '14px',
+                                  fontWeight: 600,
+                                  lineHeight: '19px',
+                                  letterSpacing: '0em',
+                                  textAlign: 'left',
+                                }}
+                                display={'flex'}
+                                justifyContent={'center'}
+                                alignItems={'center'}
+                              >
+                                {
+                                  // filterTableRowsWRTTab(
+                                  //   employeeLeaveRequestsData,
+                                  //   {
+                                  //     status: label === 'All' ? '' : label,
+                                  //   }
+                                  // ).length
+                                  data?.[name]
+                                }
+                              </Box>
+                            )}
                             <Typography
                               variant="body1"
                               sx={{
-                                color: label === currentReqStatusTab && color,
+                                color:
+                                  label === currentReqStatusTab &&
+                                  color &&
+                                  color &&
+                                  isLoading &&
+                                  'gray',
                               }}
                             >
                               {label}

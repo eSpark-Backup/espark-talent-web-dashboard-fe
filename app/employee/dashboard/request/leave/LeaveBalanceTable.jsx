@@ -17,7 +17,7 @@ const LeaveBalanceTable = () => {
   const dispatch = useDispatch();
   const { workSpace } = useSelector((state) => state?.auth?.userData);
   const { balance } = useSelector((state) => state?.emp?.leaveReq?.data);
-  const query = useQuery({
+  const { isLoading } = useQuery({
     // staleTime: 10000,
     queryFn: () => {
       dispatch(fetchEmpLeaveRequestData());
@@ -34,7 +34,7 @@ const LeaveBalanceTable = () => {
           return data;
         })
         .catch((err) => {
-          console.log({ err, query });
+          console.log({ err });
           Toast('error', err.message || 'Failed to get data');
           dispatch(getEmpLeaveRequestDataFailed());
         });
@@ -65,6 +65,7 @@ const LeaveBalanceTable = () => {
 
   return (
     <AppTable
+      isLoading={isLoading}
       column={employeeLeaveBalanceColumn}
       data={balance}
       noPagination

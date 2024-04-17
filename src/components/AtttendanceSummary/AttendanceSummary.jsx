@@ -4,7 +4,7 @@ import { Box, Typography } from '@mui/material';
 import SummarySlider from './SummarySlider';
 import { Summary_Boxes } from '@/src/constants/employeeDashboard';
 
-const AttendanceSummary = ({ title }) => {
+const AttendanceSummary = ({ title, isLoading }) => {
   return (
     <>
       <Box
@@ -44,7 +44,7 @@ const AttendanceSummary = ({ title }) => {
             alignItems: 'center',
           }}
         >
-          <SummarySlider summaryBoxes={Summary_Boxes} />
+          <SummarySlider summaryBoxes={Summary_Boxes} isLoading={isLoading} />
         </Box>
       </Box>
     </>

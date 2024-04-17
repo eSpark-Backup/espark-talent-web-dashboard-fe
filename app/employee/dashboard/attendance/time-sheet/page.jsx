@@ -26,6 +26,7 @@ import dayjs from 'dayjs';
 import { getAttendenceShortHand } from '@/src/utils/helpers';
 import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
 import { Toast } from '@/src/components/Toast/Toast';
+import Skeleton from '@mui/material/Skeleton';
 
 const Dashboard = () => {
   const { workSpace } = useSelector((state) => state?.auth?.userData);
@@ -208,40 +209,50 @@ const Dashboard = () => {
                   ></div>
                   <Typography>{Object.values(item)[0]}</Typography>
                 </Box>
-
-                <Typography
-                  sx={{
-                    marginRight: '12px',
-                    fontSize: '14px',
-                    fontWeight: 400,
-                  }}
-                >
-                  {/* {Object.values(item)[1]} */}
-                  {data?.time_sheet_summary?.[item?.name]}
-                </Typography>
+                {isLoading ? (
+                  <Skeleton variant="text" sx={{ width: 40, mr: 1 }} />
+                ) : (
+                  <Typography
+                    sx={{
+                      marginRight: '12px',
+                      fontSize: '14px',
+                      fontWeight: 400,
+                    }}
+                  >
+                    {/* {Object.values(item)[1]} */}
+                    {data?.time_sheet_summary?.[item?.name]}
+                  </Typography>
+                )}
               </Box>
             ))}
           </Box>
 
           <Box sx={{ width: '100%' }}>
             <Box marginTop={'35px'}>
-              <Typography
-                sx={{
-                  fontSize: { xs: '24px', sm: '28px', md: '30px' },
-                  fontWeight: 400,
-                  lineHeight: '36px',
-                  letterSpacing: '0em',
-                  color: '#595959',
-                }}
-                textAlign={'center'}
-              >
-                Bilal Khan -{' '}
-                <Box
-                  component={'br'}
-                  sx={{ display: { xs: 'flex', sm: 'none' } }}
-                />{' '}
-                (eS-00020)
-              </Typography>
+              {isLoading ? (
+                <Skeleton
+                  variant="text"
+                  sx={{ width: '30%', height: 30, mr: 1, mx: 'auto' }}
+                />
+              ) : (
+                <Typography
+                  sx={{
+                    fontSize: { xs: '24px', sm: '28px', md: '30px' },
+                    fontWeight: 400,
+                    lineHeight: '36px',
+                    letterSpacing: '0em',
+                    color: '#595959',
+                  }}
+                  textAlign={'center'}
+                >
+                  Bilal Khan -{' '}
+                  <Box
+                    component={'br'}
+                    sx={{ display: { xs: 'flex', sm: 'none' } }}
+                  />{' '}
+                  (eS-00020)
+                </Typography>
+              )}
             </Box>
 
             {showFilterModal && (

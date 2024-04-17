@@ -16,7 +16,7 @@ const Dashboard = () => {
     }));
     return tempData;
   };
-  const { homeData } = useSelector((state) => state?.hr?.home);
+  const { homeData, isLoading } = useSelector((state) => state?.hr?.home);
 
   return (
     <>
@@ -28,13 +28,14 @@ const Dashboard = () => {
             }}
           >
             <DashboardHeading
+              isLoading={isLoading}
               title={homeData.user}
               dashboardDescription={DASHBOARD_DATA?.dashboard}
             />
           </Box>
         </Grid>
         <Grid item xs={12}>
-          <HrAccess isHr={true} data={getData()} />
+          <HrAccess isHr={true} data={getData()} isLoading={isLoading} />
         </Grid>
       </Grid>
     </>

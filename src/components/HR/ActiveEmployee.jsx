@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import { Grid } from '@mui/material';
-import { useTheme } from '@mui/system';
+import { useMediaQuery, useTheme } from '@mui/system';
 
 import AppConfirmationMadal from '../modals/AppConfirmationMadal';
 import { TERMINATE_MODAL } from '@/src/constants/contractSigned';
@@ -12,14 +12,20 @@ import { HR_CLIENT_EMPLOYEES } from '@/src/services/apiService/apiEndPoints';
 import { updateClientEmpStatus } from '@/src/redux/slices/hrSlices/clientSlice';
 import { Toast } from '../Toast/Toast';
 import { useDispatch } from 'react-redux';
+import EmployeeCardSkeleton from './EmployeeCardSkeleton';
 
-const EmployeeStatus = ({ empData }) => {
+const EmployeeStatus = ({ empData, isLoading }) => {
   const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = useState(null);
   const [empId, setEmpId] = useState(null);
   const [empStatus, setEmpStatus] = useState(null);
   const open = Boolean(anchorEl);
   const [isOpen, setIsOpen] = useState(false);
+
+  const isBetween1400And1200 = useMediaQuery(
+    '(min-width: 1200px) and (max-width: 1400px)'
+  );
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
     event.stopPropagation();
@@ -73,17 +79,25 @@ const EmployeeStatus = ({ empData }) => {
         spacing={3}
       >
         {empData.length
-          ? empData.map((eachItem, index) => (
-              <EmployeeCard
-                key={index}
-                eachItem={eachItem}
-                handleClick={handleClick}
-                anchorEl={anchorEl}
-                open={open}
-                handleClose={handleClose}
-                handleOpenRemove={handleOpenRemove}
-              />
-            ))
+          ? empData.map((eachItem, index) =>
+              isLoading ? (
+                <EmployeeCardSkeleton
+                  key={index}
+                  breakPoint={isBetween1400And1200}
+                />
+              ) : (
+                <EmployeeCard
+                  key={index}
+                  eachItem={eachItem}
+                  breakPoint={isBetween1400And1200}
+                  handleClick={handleClick}
+                  anchorEl={anchorEl}
+                  open={open}
+                  handleClose={handleClose}
+                  handleOpenRemove={handleOpenRemove}
+                />
+              )
+            )
           : 'No Record Found'}
       </Grid>
       <AppConfirmationMadal
