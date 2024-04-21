@@ -87,33 +87,34 @@ const MarkClock = ({ data, isLoading }) => {
   }, [homeData?.today_activity?.check_in, homeData?.today_activity?.check_out]);
   useEffect(() => {
     let interval;
+    let elapsedSeconds = 0;
+    const storedElapsedSeconds = localStorage.getItem('elapsedSeconds');
+    if (storedElapsedSeconds) {
+      elapsedSeconds = parseInt(storedElapsedSeconds);
+    }
     if (
       homeData?.today_activity?.check_in !== '-' &&
       homeData?.today_activity?.check_out === '-'
     ) {
       const start = parseTime(homeData?.today_activity?.check_in);
+      console.log(start);
       interval = setInterval(() => {
-        const currentTime = new Date();
-        const elapsedTime = (currentTime.getTime() - start.getTime()) / 1000;
-        const formattedTime = secondsToTime(elapsedTime);
+        elapsedSeconds++;
+        const formattedTime = secondsToTime(elapsedSeconds);
         setElapsedTimeString(formattedTime);
+        localStorage.setItem('elapsedSeconds', elapsedSeconds.toString());
       }, 1000);
     } else if (
       homeData?.today_activity?.check_in !== '-' &&
       homeData?.today_activity?.check_out !== '-'
     ) {
-      const start = parseTime(homeData?.today_activity?.check_in);
-      const end = parseTime(homeData?.today_activity?.check_out);
-      if (start && end) {
-        const elapsedTime = (end.getTime() - start.getTime()) / 1000;
-        const formattedTime = secondsToTime(elapsedTime);
-        setElapsedTimeString(formattedTime);
-      }
+    } else {
+      setElapsedTimeString('00:00:00');
+      clearInterval(interval);
+      localStorage.removeItem('elapsedSeconds');
     }
-
     return () => clearInterval(interval);
-  }, [homeData?.today_activity?.check_in, homeData]);
-
+  }, [homeData?.today_activity?.check_in, homeData?.today_activity?.check_out]);
   return (
     <Box
       sx={{
