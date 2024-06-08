@@ -20,7 +20,6 @@ const LeaveViewModal = ({
   const [selectedLeaveType, setSelectedLeaveType] = useState(
     getCamelCapitalized(modalData?.leave_type)
   );
-  const { data } = useSelector((state) => state?.client?.home);
   const { homeData } = useSelector((state) => state?.emp?.home);
   const preetyTime = (time) => {
     if (dayjs(time).format('hh:mm A') === 'Invalid Date') {
@@ -136,6 +135,7 @@ const LeaveViewModal = ({
                   setSelectedItem={setSelectedLeaveType}
                   placeHolder="Select Leave Type"
                   padding="9px"
+                  mb={'0px'}
                 />
               </Grid>
             </Grid>
@@ -342,10 +342,13 @@ const LeaveViewModal = ({
                   }}
                 >
                   <Avatar
-                    src={data?.client_image}
+                    alt={modalData?.employee_name}
+                    src={modalData?.employee_image || '/default-avatar.png'}
                     width={50}
                     height={50}
-                    alt={'profile'}
+                    onError={(e) => {
+                      e.target.src = '/default-avatar.png';
+                    }}
                   />
                 </Box>
                 <Box ml={'5px'} pb={'5px'}>
@@ -358,7 +361,7 @@ const LeaveViewModal = ({
                       lineHeight: 'normal',
                     }}
                   >
-                    {modalData?.employeeName}
+                    {modalData?.employee_name}
                   </Typography>
                   <Typography
                     sx={{

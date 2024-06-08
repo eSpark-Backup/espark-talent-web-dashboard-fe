@@ -264,6 +264,7 @@ const AppSearchableDropdown = ({
                           sx={{
                             display: 'flex',
                             alignItems: 'center',
+                            cursor: 'pointer',
                           }}
                         >
                           <Box

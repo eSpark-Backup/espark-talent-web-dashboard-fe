@@ -125,7 +125,6 @@ const GeneralSettings = () => {
   const handleButtonClick = () => {
     fileInputRef.current.click();
   };
-  console.log({ values, errors });
 
   return (
     <>
@@ -144,7 +143,6 @@ const GeneralSettings = () => {
             src={imageFile || data?.client_image}
             width={50}
             height={50}
-            alt={Profile_Edit_Section?.alt}
           />
           <input
             type="file"
@@ -154,7 +152,6 @@ const GeneralSettings = () => {
             required
             name="picture"
           />
-
           <Button
             type="file"
             onClick={handleButtonClick}

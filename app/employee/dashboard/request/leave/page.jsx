@@ -88,7 +88,7 @@ const Dashboard = () => {
     setModalData({
       id,
       status,
-      employeeName: employee_name,
+      employee_name: employee_name,
       employee_id,
       count,
       leave_type,
