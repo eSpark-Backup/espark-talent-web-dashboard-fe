@@ -15,12 +15,24 @@ module.exports = {
     'jsx-a11y',
     'tailwindcss',
   ],
+  env: {
+    browser: true,
+    es6: true,
+  },
   rules: {
-    'prettier/prettier': ['error'],
+    'prettier/prettier': [
+      'error',
+      {
+        endOfLine: 'auto',
+      },
+    ],
     'prefer-const': ['error'],
+    'no-undef': ['error', { typeof: true }],
+  },
+  globals: {
+    Set: true,
   },
   parserOptions: {
-    parser: 'babel-eslint',
     ecmaVersion: 6,
     sourceType: 'module',
     ecmaFeatures: {
