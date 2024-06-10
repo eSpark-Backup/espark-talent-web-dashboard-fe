@@ -327,8 +327,12 @@ const Dashboard = () => {
                 onClick={handleDownloadReport}
                 disabled={
                   isPending ||
-                  clockInOutDataState?.length === 0 ||
-                  leaveRequestDataState?.length === 0
+                  !tabData ||
+                  !tabData.currentReqTypeTab ||
+                  (tabData.currentReqTypeTab === 'Leave Requests' &&
+                    !leaveRequestDataState.length) ||
+                  (tabData.currentReqTypeTab === 'Clockin/out Requests' &&
+                    !clockInOutDataState.length)
                 }
               >
                 {isPending ? (
