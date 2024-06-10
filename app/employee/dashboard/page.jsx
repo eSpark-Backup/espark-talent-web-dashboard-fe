@@ -16,7 +16,7 @@ import { getEmployeeDetails, getWorkSpace } from '@/src/redux/slices/authSlice';
 import { api } from '@/src/services/apiService';
 
 import { EMP_HOME } from '@/src/services/apiService/apiEndPoints';
-import { DASHBOARD_DATA } from '@/public/images/dashboard/constants/Dashboard';
+import { DASHBOARD_DATA } from '@/src/constants/dashboard';
 import {
   Attendance_Summary_Title,
   Mark_CLock_Title,
