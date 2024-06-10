@@ -5,7 +5,7 @@ import { Grid, Box, Stack, Skeleton } from '@mui/material';
 import OnBoarding from '@/src/components/dashboard/onBoarding';
 import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
 import DiscoverTalentPlatform from '@/src/components/dashboard/discoverTalent';
-import { DASHBOARD_DATA } from '@/public/images/dashboard/constants/Dashboard';
+import { DASHBOARD_DATA } from '@/src/constants/dashboard';
 import { useDispatch, useSelector } from 'react-redux';
 import { api } from '@/src/services/apiService';
 import {

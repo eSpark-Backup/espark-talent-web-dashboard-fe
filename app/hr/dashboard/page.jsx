@@ -4,7 +4,7 @@ import { Box, Grid, Skeleton, Stack } from '@mui/material';
 
 import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
 import HrAccess from '@/src/components/dashboard/hrAccess';
-import { DASHBOARD_DATA } from '@/public/images/dashboard/constants/Dashboard';
+import { DASHBOARD_DATA } from '@/src/constants/dashboard';
 import { useDispatch, useSelector } from 'react-redux';
 import { Summary_Boxes } from '@/src/constants/data/hrDashboard';
 import { useMutation } from '@tanstack/react-query';

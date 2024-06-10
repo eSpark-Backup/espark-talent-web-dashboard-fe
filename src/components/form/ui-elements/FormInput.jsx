@@ -395,6 +395,9 @@ const FormInput = ({
               }}
               placeholder={placeholder}
               slotProps={{
+                openPickerButton: {
+                  disableRipple: true,
+                },
                 textField: {
                   placeholder: placeholder,
                   sx: {
@@ -402,6 +405,10 @@ const FormInput = ({
                       color: '#888888',
                       padding: '9.95px 10px',
                       width: '100%',
+                    },
+                    '& .MuiIconButton-edgeEnd': {
+                      backgroundColor: 'none !important',
+                      background: 'none !important',
                     },
                   },
                 },

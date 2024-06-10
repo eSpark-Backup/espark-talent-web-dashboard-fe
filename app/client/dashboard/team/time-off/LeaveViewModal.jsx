@@ -59,6 +59,7 @@ const LeaveViewModal = ({
 
   //   return { leaveDays, offDays };
   // }
+
   const countOfWeekends = countWeekendsHandler(
     modalData.start_date,
     modalData.end_date
@@ -343,7 +344,11 @@ const LeaveViewModal = ({
                 >
                   <Avatar
                     alt={modalData?.employee_name}
-                    src={modalData?.employee_image || '/default-avatar.png'}
+                    src={
+                      homeData?.employee_details?.image ||
+                      modalData?.employee_image ||
+                      '/default-avatar.png'
+                    }
                     width={50}
                     height={50}
                     onError={(e) => {
