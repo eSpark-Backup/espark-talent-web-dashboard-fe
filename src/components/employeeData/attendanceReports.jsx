@@ -19,7 +19,7 @@ import AttendanceViewModal from '@/app/hr/dashboard/employees/[id]/AttendanceVie
 import { useDispatch, useSelector } from 'react-redux';
 import { getAttendanceRequestSuccess } from '@/src/redux/slices/hrSlices/employeeSlice';
 
-const AttendanceReport = () => {
+const AttendanceReport = ({ employeeData }) => {
   // const [isLoading, setIsLoading] = useState(true);
   const dispatch = useDispatch();
   const { attendance } = useSelector((state) => state?.hr?.employees);
@@ -130,7 +130,7 @@ const AttendanceReport = () => {
         });
     },
   });
-  // console.log({ attendenceReportData: data });
+
   return (
     <>
       {isLoading ? (
@@ -212,6 +212,7 @@ const AttendanceReport = () => {
             modalData={modalData}
             empData={data[currentTab.val]?.emp_data?.employee_details}
             handleClose={handleClose}
+            image={employeeData?.image_path}
           />
         </Modal>
       ) : null}

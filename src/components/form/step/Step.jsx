@@ -36,6 +36,8 @@ const Step = ({
   marginRight,
   onSave,
   btnSave,
+  fontSize,
+  miniFontSize,
 }) => {
   const { mutate, isPending } = useMutation({
     mutationFn: async (formVals) => {
@@ -271,6 +273,7 @@ const Step = ({
   return (
     <form onSubmit={handleSubmit}>
       <Grid
+        spacing={0}
         container
         sx={{
           p: { xs: '20px', md: pmd },
@@ -334,6 +337,8 @@ const Step = ({
               filelabel={filelabel}
               marginLeft={marginLeft}
               marginRight={marginRight}
+              fontSize={fontSize}
+              miniFontSize={miniFontSize}
             />
           )
         )}

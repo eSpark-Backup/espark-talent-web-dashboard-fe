@@ -93,6 +93,8 @@ const CompanySettings = () => {
             endpoint={HR_COMPANY_SETTINGS}
             toast={handleToast}
             onSave={handleSave}
+            fontSize={'8px'}
+            miniFontSize={'7px'}
           />
         </>
       )}

@@ -87,6 +87,7 @@ const Page = () => {
                     disableRipple={true}
                     sx={{
                       fontSize: '14px',
+                      textTransform: 'math-auto',
                       mr: { xs: '0px', md: '30px' },
                       color: '#595959',
                       '&.Mui-selected': {

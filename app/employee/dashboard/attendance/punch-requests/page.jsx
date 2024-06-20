@@ -199,8 +199,8 @@ const Dashboard = () => {
           }}
         >
           <DashboardHeading
-            title={'Punch request'}
-            dashboardDescription={REQUEST_LEAVE?.manageTimesheet}
+            title={'Punch requests'}
+            dashboardDescription={REQUEST_LEAVE?.managePunchrequest}
           />
         </Box>
 

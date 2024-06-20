@@ -181,7 +181,9 @@ export default function WorkSpacePopper({
                   currentWorkSpace?.email === item.email
                     ? '#CDECF3'
                     : 'transparent',
-                boxShadow: 'inset 0px -1px 0px #E4E4E4',
+                // boxShadow: 'inset 0px -1px 0px ',
+                borderBottom: '1px solid #E4E4E4',
+
                 '&: hover': {
                   backgroundColor: '#CDECF3',
                   border: '1px solid #068987',

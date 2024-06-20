@@ -183,6 +183,7 @@ const MarkClock = ({ data, isLoading }) => {
                 fontStyle: 'normal',
                 fontWeight: 400,
                 lineHeight: 'normal',
+                maxWidth: '200px',
               }}
             >
               {PUNCH_IN?.checkIn}
@@ -203,11 +204,12 @@ const MarkClock = ({ data, isLoading }) => {
                   fontStyle: 'normal',
                   fontWeight: 600,
                   lineHeight: 'normal',
+                  minWidth: '80px',
                   mx:
                     convertTimeFormat(homeData?.today_activity?.check_in) ===
                     '--:-- --'
                       ? '18px'
-                      : '10px',
+                      : '18px',
                 }}
               >
                 {convertTimeFormat(homeData?.today_activity?.check_in)}
@@ -244,6 +246,7 @@ const MarkClock = ({ data, isLoading }) => {
                 fontStyle: 'normal',
                 fontWeight: 400,
                 lineHeight: 'normal',
+                maxWidth: '200px',
               }}
             >
               {PUNCH_IN?.checkOut}
@@ -263,11 +266,12 @@ const MarkClock = ({ data, isLoading }) => {
                   fontStyle: 'normal',
                   fontWeight: 600,
                   lineHeight: 'normal',
+                  minWidth: '80px',
                   mx:
                     convertTimeFormat(homeData?.today_activity?.check_out) ===
                     '--:-- --'
                       ? '18px'
-                      : '7px',
+                      : '18px',
                 }}
               >
                 {convertTimeFormat(homeData?.today_activity?.check_out)}

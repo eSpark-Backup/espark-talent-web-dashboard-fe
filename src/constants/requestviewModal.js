@@ -61,4 +61,5 @@ export const REQUEST_LEAVE = {
   request: 'Requests',
   filter: 'Filter',
   manageTimesheet: 'Manage timesheet from one place.',
+  managePunchrequest: 'Manage punch request from one place.',
 };

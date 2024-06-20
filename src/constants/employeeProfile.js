@@ -174,11 +174,6 @@ export const ASSET_TABLECOLUMN = [
     name: 'assignee_name',
   },
   {
-    title: 'Assignee Email',
-    flex: 2,
-    name: 'assignee_email',
-  },
-  {
     title: 'Action',
     flex: 2,
     name: 'action',

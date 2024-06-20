@@ -437,10 +437,22 @@ const Dashboard = () => {
                     column={invoicePaymentColumn}
                     data={
                       value === 0
-                        ? empInvPendingDataState
+                        ? empInvPendingDataState.filter(
+                            (item) =>
+                              item?.inv_type?.toLowerCase() ==
+                              'employee_invoice'
+                          )
                         : value === 1
-                          ? empInvProcessingDataState
-                          : empInvPaidDataState
+                          ? empInvProcessingDataState.filter(
+                              (item) =>
+                                item?.inv_type?.toLowerCase() ==
+                                'employee_invoice'
+                            )
+                          : empInvPaidDataState.filter(
+                              (item) =>
+                                item?.inv_type?.toLowerCase() ==
+                                'employee_invoice'
+                            )
                     }
                     updateStatus={updateInvoiceStatus}
                     handleClickDownload={(id) =>

@@ -303,7 +303,29 @@ const AddEmployeeModal = ({ open, onClose }) => {
                                 </>
                               )
                             )}
-                            <Grid item p={'0 10px'} xs={12}>
+                            <Grid
+                              item
+                              p={'0 10px'}
+                              xs={12}
+                              sx={{
+                                display: 'flex',
+                                justifyContent: 'space-between',
+                              }}
+                            >
+                              <Button
+                                variant="outlined"
+                                sx={{
+                                  minWidth: '120px',
+                                  color: 'teal',
+                                  '&:hover': {
+                                    background: '#fff',
+                                    color: 'teal',
+                                  },
+                                }}
+                                onClick={() => setCurrentStep((ps) => ps - 1)}
+                              >
+                                Back
+                              </Button>
                               <Button
                                 sx={{ minWidth: '120px' }}
                                 variant="contained"

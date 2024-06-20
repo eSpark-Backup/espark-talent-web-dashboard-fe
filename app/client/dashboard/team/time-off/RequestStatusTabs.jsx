@@ -27,6 +27,9 @@ const RequestStatusTabs = ({
   const [search, setSearch] = useState('');
   const [searchCheckInOutRequest, setSearchCheckInOutRequest] = useState('');
   const [isLoading, setIsLoading] = useState(true);
+  const filterData = data?.leaveBalance?.filter((item) =>
+    item?.employee_name?.toLowerCase()?.includes(search?.toLowerCase())
+  );
   const dispatch = useDispatch();
   const handleChangeCurrReqStatusTab = (event, newValue, data) => {
     let tab = event?.target?.innerText;
@@ -321,7 +324,7 @@ const RequestStatusTabs = ({
                 >
                   <AppTable
                     column={leaveBalanceColumn}
-                    data={data?.leaveBalance}
+                    data={filterData}
                     isLoading={isLoading}
                   />
                 </Box>

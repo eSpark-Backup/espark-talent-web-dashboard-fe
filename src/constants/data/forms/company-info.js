@@ -8,7 +8,7 @@ export const companyformElement = [
     col: 2.5,
   },
   {
-    title: 'Company Email',
+    title: 'Company email',
     placeholder: 'Enter email',
     name: 'company_email',
     col: 2.5,

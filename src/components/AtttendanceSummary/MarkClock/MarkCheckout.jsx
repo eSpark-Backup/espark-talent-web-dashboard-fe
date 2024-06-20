@@ -1,6 +1,6 @@
 import { PUNCH_IN } from '@/src/constants/punchIn/createPunch';
 import { Button, Grid, Typography } from '@mui/material';
-import React from 'react';
+import React, { useState } from 'react';
 import dayjs from 'dayjs';
 import { useMutation } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
@@ -8,9 +8,11 @@ import { markCheckout } from '@/src/redux/slices/employeeSlices/empHomeSlice';
 import { EMP_HOME } from '@/src/services/apiService/apiEndPoints';
 import { useDispatch, useSelector } from 'react-redux';
 import { Toast } from '../../Toast/Toast';
+import AppConfirmationMadal from '../../modals/AppConfirmationMadal';
 
 const MarkCheckOut = () => {
   const dispatch = useDispatch();
+  const [isOpenWarnignModal, setIsOpenWarningModal] = useState(false);
 
   const { currentWorkSpace } = useSelector((state) => state?.emp?.home);
   // const [time, setTime] = useState('');
@@ -39,6 +41,7 @@ const MarkCheckOut = () => {
     // setTime(data?.time);
     mutate(data);
     console.log({ data });
+    setIsOpenWarningModal(false);
   };
   const canCheckout = () => {
     // Case 1: User has not checked in
@@ -71,6 +74,15 @@ const MarkCheckOut = () => {
   };
   return (
     <Grid item xs={12} md={6} lg={6} xl={6}>
+      <AppConfirmationMadal
+        isOpen={isOpenWarnignModal}
+        title={'Warning'}
+        handleClose={() => setIsOpenWarningModal(false)}
+        handleConfirm={handleCheckout}
+        bodyText={'Are you sure you want to perform this action?'}
+        cancelButtonText={'No'}
+        confirmButtonText={'Yes'}
+      />
       <Button
         sx={{
           display: 'flex',
@@ -94,7 +106,7 @@ const MarkCheckOut = () => {
           },
         }}
         disabled={!canCheckout()}
-        onClick={handleCheckout}
+        onClick={() => setIsOpenWarningModal(true)}
       >
         <Typography
           sx={{

@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import './globals.css';
@@ -13,15 +13,10 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { store, persistor } from '@/src/redux/store';
 
 import { ThemeProvider } from '@mui/material/styles';
-import { darkTheme, lightTheme } from './theme';
+import { lightTheme } from './theme';
 import { AOSInit } from '@/src/components/aosint';
 
 export default function RootLayout({ children }) {
-  const [isDarkTheme, setIsDarkTheme] = useState(false);
-  const currentTheme = isDarkTheme ? darkTheme : lightTheme;
-  const toggleTheme = () => {
-    setIsDarkTheme((prevTheme) => !prevTheme);
-  };
   const queryClient = new QueryClient();
   return (
     <html lang="en">
@@ -37,9 +32,9 @@ export default function RootLayout({ children }) {
           <PersistGate loading={null} persistor={persistor}>
             <QueryClientProvider client={queryClient}>
               <AppRouterCacheProvider>
-                <ThemeProvider theme={currentTheme}>
+                <ThemeProvider theme={lightTheme}>
                   <CssBaseline />
-                  <Box toggleTheme={toggleTheme}>{children}</Box>
+                  <Box>{children}</Box>
                 </ThemeProvider>
               </AppRouterCacheProvider>
               <ReactQueryDevtools initialIsOpen={false} />

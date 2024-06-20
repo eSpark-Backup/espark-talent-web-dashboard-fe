@@ -142,9 +142,6 @@ const WideFormInput = ({
 
   const shouldDisableDate = (date) => {
     const day = date.day();
-    if (title == 'Start date') {
-      return day === 0 || day === 6;
-    }
     if (title == 'End date') {
       return (
         date.isBefore(start, 'day') ||
@@ -153,6 +150,7 @@ const WideFormInput = ({
         day === 6
       );
     }
+    return day === 0 || day === 6;
   };
 
   return (
@@ -228,6 +226,21 @@ const WideFormInput = ({
                       actionBar: () => (
                         <ActionBarComponent onClose={handleCloseDatePicker} />
                       ),
+                    }}
+                    slotProps={{
+                      openPickerButton: {
+                        disableRipple: true,
+                      },
+                      textField: {
+                        placeholder: placeholder,
+                        sx: {
+                          width: '100%',
+                          '& .MuiIconButton-edgeEnd': {
+                            backgroundColor: 'none !important',
+                            background: 'none !important',
+                          },
+                        },
+                      },
                     }}
                     sx={{
                       width: '100%',

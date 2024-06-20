@@ -38,17 +38,16 @@ const Layout = ({ children }) => {
   const [child, setChild] = useState(false);
 
   const handlePathnameChange = useCallback(() => {
-    if (openNav) {
-      setOpenNav(false);
-    }
-  }, [openNav]);
+    setOpenNav(false);
+  }, []);
 
   useEffect(() => {
     handlePathnameChange();
-  }, [pathname]);
+  }, [pathname, handlePathnameChange]);
 
   useEffect(() => {
     setChild(!child);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
