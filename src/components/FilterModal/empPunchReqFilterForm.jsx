@@ -27,8 +27,7 @@ const EmpPunchReqFilterFormModal = ({ open, onClose, filterForm }) => {
     mutationFn: async (args) => {
       dispatch(fetchEmpPunchRequestData());
       return api.getData(
-        `${EMP_PUNCH_REQUEST}?workspace=${
-          currentWorkSpace?.email || ''
+        `${EMP_PUNCH_REQUEST}?workspace=${currentWorkSpace?.email || ''
         }&tab=${args.status.toLowerCase()}&from=${args.from}&to=${args.to}`
       );
     },
@@ -95,7 +94,7 @@ const EmpPunchReqFilterFormModal = ({ open, onClose, filterForm }) => {
     mutationFn: async () => {
       // dispatch(getTimeSheetData());
       return api.getData(
-        `${EMP_PUNCH_REQUEST}/?workspace=${currentWorkSpace?.email || ''}`
+        `${EMP_PUNCH_REQUEST}?workspace=${currentWorkSpace?.email || ''}`
       );
     },
     onSuccess: ({ data }) => {

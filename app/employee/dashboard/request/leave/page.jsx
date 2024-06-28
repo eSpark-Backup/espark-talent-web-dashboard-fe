@@ -43,7 +43,7 @@ const Dashboard = () => {
   const { mutate, isPending } = useMutation({
     mutationFn: async (id) => {
       dispatch(deleteEmpLeaveRequest());
-      return api.daleteData(`${EMP_LEAVE_REQUEST}/?id=${id}`);
+      return api.daleteData(`${EMP_LEAVE_REQUEST}?id=${id}`);
     },
     onSuccess: ({ data }) => {
       Toast('success', 'Data deleted successfully');
@@ -152,7 +152,7 @@ const Dashboard = () => {
     mutationFn: async () => {
       dispatch(fetchEmpLeaveRequestData());
       return api.getData(
-        `${EMP_LEAVE_REQUEST}/?workspace=${currentWorkSpace?.email || ''}`
+        `${EMP_LEAVE_REQUEST}?workspace=${currentWorkSpace?.email || ''}`
       );
     },
     onSuccess: ({ data }) => {
@@ -161,11 +161,11 @@ const Dashboard = () => {
         balance: reformData(data?.balance),
         requests: data?.requests?.length
           ? data?.requests?.map((item) => ({
-              ...item,
-              requested_at: dayjs(item?.requested_at).format(
-                'YYYY-MM-DD hh:mm A'
-              ),
-            }))
+            ...item,
+            requested_at: dayjs(item?.requested_at).format(
+              'YYYY-MM-DD hh:mm A'
+            ),
+          }))
           : [],
       };
       dispatch(getEmpLeaveRequestDataSuccess(tempData));
@@ -342,8 +342,8 @@ const Dashboard = () => {
               handleClickView={handleClickActionView}
               handleClickDelete={handleClickActionDelete}
               viewClicked={viewClicked}
-              // showFilterModal={showFilterModal}
-              // setShowFilterModal={setShowFilterModal}
+            // showFilterModal={showFilterModal}
+            // setShowFilterModal={setShowFilterModal}
             />
           </div>
         </Box>

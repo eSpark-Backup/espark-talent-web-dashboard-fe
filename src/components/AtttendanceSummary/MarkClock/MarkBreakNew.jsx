@@ -52,9 +52,9 @@ const MarkBreak = ({ icon }) => {
 
   const { mutate } = useMutation({
     mutationFn: async (data) => {
-      let url = `${EMP_HOME}/?workspace=${currentWorkSpace?.email}&break=${data.time}`;
+      let url = `${EMP_HOME}?workspace=${currentWorkSpace?.email}&break=${data.time}`;
       if (homeData?.today_activity?.break !== '-') {
-        url = `${EMP_HOME}/?workspace=${currentWorkSpace?.email}&resume=${data.time}`;
+        url = `${EMP_HOME}?workspace=${currentWorkSpace?.email}&resume=${data.time}`;
       }
       return api.patchData(url);
     },
@@ -172,7 +172,7 @@ const MarkBreak = ({ icon }) => {
             alt="TeaIcon"
           />
           {homeData?.today_activity?.break === '-' ||
-          !homeData?.today_activity?.break
+            !homeData?.today_activity?.break
             ? PUNCH_IN?.markBreakin
             : PUNCH_IN?.markBreakout}
           {(homeData?.today_activity?.break !== '-' ||

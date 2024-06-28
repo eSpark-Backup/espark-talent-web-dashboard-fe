@@ -16,7 +16,7 @@ const MarkCheckIn = () => {
   const { homeData } = useSelector((state) => state?.emp?.home);
   const { mutate } = useMutation({
     mutationFn: async (data) => {
-      const url = `${EMP_HOME}/?workspace=${currentWorkSpace?.email}&check_in=${data.check_in}`;
+      const url = `${EMP_HOME}?workspace=${currentWorkSpace?.email}&check_in=${data.check_in}`;
       return api.patchData(url);
     },
     onSuccess: ({ data }) => {
@@ -75,9 +75,8 @@ const MarkCheckIn = () => {
         sx={{
           border: '1px solid #E4E4E4',
           display: 'flex',
-          backgroundColor: `${
-            homeData?.today_activity?.check_in !== '-' && '#dddd'
-          }`,
+          backgroundColor: `${homeData?.today_activity?.check_in !== '-' && '#dddd'
+            }`,
           justifyContent: 'center',
           alignItems: 'center',
           p: '10px',

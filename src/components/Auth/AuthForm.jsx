@@ -87,7 +87,7 @@ const AuthForm = ({ uiData, fields, handleOpenTroubleModal }) => {
   });
   const employeeHomeMutation = useMutation({
     mutationFn: async (url) => {
-      return api.getData(`${url}/?workspace=${currentWorkSpace?.email || ''}`);
+      return api.getData(`${url}?workspace=${currentWorkSpace?.email || ''}`);
     },
     onSuccess: ({ data }) => {
       // dispatch(getHomeData(data));
@@ -352,10 +352,10 @@ const AuthForm = ({ uiData, fields, handleOpenTroubleModal }) => {
               fontWeight: 600,
               backgroundColor: (theme) =>
                 isPending ||
-                isLoggingIn ||
-                hrHomeMutation.isPending ||
-                clientHomeMutation.isPending ||
-                employeeHomeMutation.isPending
+                  isLoggingIn ||
+                  hrHomeMutation.isPending ||
+                  clientHomeMutation.isPending ||
+                  employeeHomeMutation.isPending
                   ? theme.palette.action.disabledBackground
                   : '#029894',
             }}
@@ -368,10 +368,10 @@ const AuthForm = ({ uiData, fields, handleOpenTroubleModal }) => {
             }
           >
             {isPending ||
-            isLoggingIn ||
-            hrHomeMutation.isPending ||
-            clientHomeMutation.isPending ||
-            employeeHomeMutation.isPending ? (
+              isLoggingIn ||
+              hrHomeMutation.isPending ||
+              clientHomeMutation.isPending ||
+              employeeHomeMutation.isPending ? (
               <CircularProgress size={26} color="secondary" />
             ) : (
               `${title || ''}`

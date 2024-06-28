@@ -20,7 +20,7 @@ const MarkCheckOut = () => {
 
   const { mutate } = useMutation({
     mutationFn: async (data) => {
-      const url = `${EMP_HOME}/?workspace=${currentWorkSpace?.email}&check_out=${data.time}`;
+      const url = `${EMP_HOME}?workspace=${currentWorkSpace?.email}&check_out=${data.time}`;
       return api.patchData(url);
     },
     onSuccess: ({ data }) => {

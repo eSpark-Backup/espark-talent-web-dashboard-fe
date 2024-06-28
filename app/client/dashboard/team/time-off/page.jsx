@@ -101,7 +101,7 @@ const Dashboard = () => {
   const updateRequestMutation = useMutation({
     mutationFn: async (data) => {
       return api.updateJSONData(
-        `${data?.endpoint}/?id=${data?.id}`,
+        `${data?.endpoint}?id=${data?.id}`,
         data?.data
       );
     },

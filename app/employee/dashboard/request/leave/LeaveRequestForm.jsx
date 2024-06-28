@@ -62,7 +62,7 @@ const LeaveRequestForm = ({ handleClose }) => {
     mutationFn: async () => {
       dispatch(fetchEmpLeaveRequestData());
       return api.getData(
-        `${EMP_LEAVE_REQUEST}/?workspace=${currentWorkSpace?.email || ''}`
+        `${EMP_LEAVE_REQUEST}?workspace=${currentWorkSpace?.email || ''}`
       );
     },
     onSuccess: ({ data }) => {
@@ -71,11 +71,11 @@ const LeaveRequestForm = ({ handleClose }) => {
         balance: reformData(data?.balance),
         requests: data?.requests?.length
           ? data?.requests?.map((item) => ({
-              ...item,
-              requested_at: dayjs(item?.requested_at).format(
-                'YYYY-MM-DD hh:mm A'
-              ),
-            }))
+            ...item,
+            requested_at: dayjs(item?.requested_at).format(
+              'YYYY-MM-DD hh:mm A'
+            ),
+          }))
           : [],
       };
       dispatch(getEmpLeaveRequestDataSuccess(tempData));

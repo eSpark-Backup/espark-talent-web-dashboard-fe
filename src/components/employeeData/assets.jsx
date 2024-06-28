@@ -30,7 +30,7 @@ const Assets = () => {
   const { mutate, isPending } = useMutation({
     mutationFn: async (id) => {
       // dispatch(deleteClientHiringRequest());
-      return api.daleteData(`${HR_ADD_EMP_ASSET}/?id=${id}`);
+      return api.daleteData(`${HR_ADD_EMP_ASSET}?id=${id}`);
     },
     onSuccess: () => {
       Toast('success', 'Asset deleted successfully');
@@ -59,13 +59,13 @@ const Assets = () => {
         .then(({ data }) => {
           const tempAssets = data?.length
             ? data?.map((item) => ({
-                ...item,
-                assigned_date: dayjs(item.assigned_date).format(
-                  'YYYY-MM-DD h:m A'
-                ),
-                assignee: [item?.assignee_name, item?.assignee_email],
-                action: ['Delete'],
-              }))
+              ...item,
+              assigned_date: dayjs(item.assigned_date).format(
+                'YYYY-MM-DD h:m A'
+              ),
+              assignee: [item?.assignee_name, item?.assignee_email],
+              action: ['Delete'],
+            }))
             : [];
           dispatch(getEmpAssetRequestSuccess(tempAssets));
           return tempAssets || [];

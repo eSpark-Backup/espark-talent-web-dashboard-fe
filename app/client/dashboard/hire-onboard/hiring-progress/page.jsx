@@ -230,7 +230,7 @@ const Dashboard = () => {
   const { mutate, isPending } = useMutation({
     mutationFn: async (id) => {
       dispatch(deleteClientHiringRequest());
-      return api.daleteData(`${CLIENT_HIRING_PROGRESS}/?id=${id}`);
+      return api.daleteData(`${CLIENT_HIRING_PROGRESS}?id=${id}`);
     },
     onSuccess: () => {
       Toast('success', 'Data deleted successfully');

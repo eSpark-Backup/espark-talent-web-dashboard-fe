@@ -38,7 +38,7 @@ const EmployeeView = ({ status, data, isLoading }) => {
     mutationKey: ['delete-current-employee'],
     mutationFn: async (id) => {
       dispatch(deleteCurrentEmpData());
-      return api.daleteData(`${HR_EMPLOYEES}/?id=${id}`);
+      return api.daleteData(`${HR_EMPLOYEES}?id=${id}`);
     },
     onSuccess: ({ data }) => {
       Toast('success', 'Data deleted successfully');
@@ -131,20 +131,20 @@ const EmployeeView = ({ status, data, isLoading }) => {
             >
               {(role === 'super_admin' ||
                 (role !== 'super_admin' && employee_perms?.[0]?.delete)) && (
-                <MenuItem
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleOpenRemove(e, eachItem);
-                  }}
-                  sx={{
-                    textAlign: 'center',
-                    fontWeight: 500,
-                    backgroundColor: '#fff !important',
-                  }}
-                >
-                  Remove
-                </MenuItem>
-              )}
+                  <MenuItem
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleOpenRemove(e, eachItem);
+                    }}
+                    sx={{
+                      textAlign: 'center',
+                      fontWeight: 500,
+                      backgroundColor: '#fff !important',
+                    }}
+                  >
+                    Remove
+                  </MenuItem>
+                )}
             </Menu>
           </Box>
         </Box>
