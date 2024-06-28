@@ -113,7 +113,6 @@ const Dashboard = () => {
       );
     },
     onSuccess: (response) => {
-      console.log({ data: response?.data });
       const tempData = {
         employees: [...data.employees],
         time_sheet:
@@ -121,7 +120,6 @@ const Dashboard = () => {
             ? reformTimeSheet(response?.data?.time_sheet)
             : [],
       };
-      console.log({ tempData });
       dispatch(fetchTimeTrackingDataRequestSuccess(tempData));
     },
     onError: (err) => {

@@ -24,13 +24,15 @@ const AppSearchableDropdown = ({
   const [pointedElement, setPointedElement] = useState();
 
   useEffect(() => {
-    setListData([...data]);
-    setPointedElement(selectedItem);
+    if (Array.isArray(data)) {
+      setListData([...data]);
+      setPointedElement(selectedItem);
+    }
   }, [data, selectedItem]);
 
   const componentRef = useRef(null);
   useEffect(() => {
-    const tempData = [...data];
+    const tempData = data != null ? [...data] : [];
     const timeoutId = setTimeout(() => {
       filterDataByKeyword(tempData, searchItem.trim() || '', setListData);
       setIsLoadingList(false);
