@@ -62,7 +62,7 @@ const Dashboard = () => {
     queryFn: async () => {
       dispatch(fetchTeamMembersRequest());
       return await api
-        .getData(`${CLIENT_TEAM_MEMBER}/?status=active`)
+        .getData(`${CLIENT_TEAM_MEMBER}?status=active`)
         .then(({ data }) => {
           const tempData =
             data !== ''
@@ -89,7 +89,7 @@ const Dashboard = () => {
     queryFn: async () => {
       dispatch(fetchTeamMembersRequest());
       return await api
-        .getData(`${CLIENT_TEAM_MEMBER}/?status=onboard`)
+        .getData(`${CLIENT_TEAM_MEMBER}?status=onboard`)
         .then(({ data }) => {
           const tempData =
             data !== ''
@@ -112,7 +112,7 @@ const Dashboard = () => {
     queryFn: async () => {
       dispatch(fetchTeamMembersRequest());
       return await api
-        .getData(`${CLIENT_TEAM_MEMBER}/?status=terminated`)
+        .getData(`${CLIENT_TEAM_MEMBER}?status=terminated`)
         .then(({ data }) => {
           const tempData =
             data !== ''

@@ -3,7 +3,7 @@ export const CLIENTPROFILE = {
   addNewRequest: 'Add new request',
   addOnboard: 'Add Onboard',
   addContract: 'Add contract',
-  uploadVoice: 'Upload invoices',
+  uploadVoice: 'Upload invoice',
   joinDate: 'Join date:',
   email: ' Email:',
   phone: 'Phone:',

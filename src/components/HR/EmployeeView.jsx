@@ -38,7 +38,7 @@ const EmployeeView = ({ status, data, isLoading }) => {
     mutationKey: ['delete-current-employee'],
     mutationFn: async (id) => {
       dispatch(deleteCurrentEmpData());
-      return api.daleteData(`${HR_EMPLOYEES}/?id=${id}`);
+      return api.daleteData(`${HR_EMPLOYEES}?id=${id}`);
     },
     onSuccess: ({ data }) => {
       Toast('success', 'Data deleted successfully');

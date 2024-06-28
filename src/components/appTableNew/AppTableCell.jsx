@@ -12,18 +12,30 @@ import AppTableInfoOptionsCell from './AppTableInfoOptionsCell';
 import { modulepermissionColumn } from '@/src/constants/data/tables/modulePermission';
 import Link from 'next/link';
 
-const renderAssigneeCell = (row, col, commonCellStyle) => {
+const renderAssigneeCell = (row, col) => {
   const [name, subtitle] = row.assignee;
   return (
-    <td key={col.index} style={{ ...commonCellStyle, flex: col?.flex || 1 }}>
-      <Box sx={{ display: 'flex' }}>
-        <Box ml={'5px'}>
-          <Typography sx={{ fontSize: '12px', fontWeight: '400' }}>
+    <td key={col.index} style={{ flex: col?.flex || 1 }}>
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'flex-start',
+          mx: 'auto',
+          width: '30%',
+        }}
+      >
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+          }}
+        >
+          <Typography
+            sx={{ fontSize: '12px', fontWeight: '400', textAlign: 'left' }}
+          >
             {name}
           </Typography>
-          <Typography
-            sx={{ fontSize: '10px', fontWeight: '300', textAlign: 'left' }}
-          >
+          <Typography sx={{ fontSize: '10px', fontWeight: '300' }}>
             {subtitle}
           </Typography>
         </Box>

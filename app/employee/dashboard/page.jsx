@@ -33,7 +33,7 @@ const Dashboard = () => {
     refetchOnWindowFocus: false,
     queryFn: () => {
       return api
-        .getData(`${EMP_HOME}/?workspace=${currentWorkSpace?.email || ''}`)
+        .getData(`${EMP_HOME}?workspace=${currentWorkSpace?.email || ''}`)
         .then(({ data }) => {
           dispatch(getEmpHomeData(data));
           dispatch(getWorkSpace(data?.workspaces?.[0]));

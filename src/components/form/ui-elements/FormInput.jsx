@@ -66,6 +66,8 @@ const FormInput = ({
   filelabel,
   handleJobTitleClick,
   handleJobTitleSelect,
+  fontSize,
+  miniFontSize,
 }) => {
   const [isLoadingList, setIsLoadingList] = useState(false);
   const [isCopied, setIsCopied] = useState();
@@ -213,7 +215,19 @@ const FormInput = ({
                 }}
               ></Typography>
               {filelabel && (
-                <Typography sx={{ fontSize: '10px', ml: '5px' }}>
+                <Typography
+                  sx={{
+                    fontSize: '10px',
+                    ml: '5px',
+
+                    '@media (min-width: 1210px) and (max-width: 1370px)': {
+                      fontSize: fontSize,
+                    },
+                    '@media (min-width: 1200px) and (max-width: 1210px)': {
+                      fontSize: miniFontSize,
+                    },
+                  }}
+                >
                   {filelabel}
                 </Typography>
               )}
@@ -291,7 +305,7 @@ const FormInput = ({
                     placeholder: placeholder,
                     sx: {
                       '& input': {
-                        color: '#88888',
+                        color: '#888888',
                         padding: '9.95px 10px',
                         width: '99%',
                       },

@@ -47,7 +47,7 @@ const EditPersonalModal = ({ onClose, handleEditProfileModal, data }) => {
         joining_date: dayjs(data?.joining_date).format('YYYY-MM-DD'),
       };
       return api.updateJSONData(
-        `${HR_UPDATE_EMP_INFO}/?id=${params.id}`,
+        `${HR_UPDATE_EMP_INFO}?id=${params.id}`,
         updatedData
       );
     },

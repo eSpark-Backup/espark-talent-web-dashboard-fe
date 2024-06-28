@@ -15,7 +15,7 @@ export const teamMembersColumn = [
     name: 'job_title',
   },
   {
-    title: 'Join Date',
+    title: 'Join date',
     flex: 2,
     name: 'joining_date',
   },

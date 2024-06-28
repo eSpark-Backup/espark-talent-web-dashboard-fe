@@ -79,9 +79,9 @@ export const leaveBalanceColumn = [
 ];
 export const checkInOutColumn = [
   {
-    title: 'ID',
+    title: 'Employee ID',
     flex: 2,
-    name: 'id',
+    name: 'employee_id',
   },
   {
     title: 'Employee name',

@@ -100,10 +100,7 @@ const Dashboard = () => {
   };
   const updateRequestMutation = useMutation({
     mutationFn: async (data) => {
-      return api.updateJSONData(
-        `${data?.endpoint}/?id=${data?.id}`,
-        data?.data
-      );
+      return api.updateJSONData(`${data?.endpoint}?id=${data?.id}`, data?.data);
     },
     onSuccess: ({ data }) => {
       console.log({ data });
@@ -316,7 +313,17 @@ const Dashboard = () => {
                 sx={{
                   minWidth: { xs: '100%', sm: '220px' },
                   color: '#029894',
-                  border: '1px solid #029894',
+                  border: `1px solid ${
+                    isPending ||
+                    !tabData ||
+                    !tabData.currentReqTypeTab ||
+                    (tabData.currentReqTypeTab === 'Leave Requests' &&
+                      !leaveRequestDataState.length) ||
+                    (tabData.currentReqTypeTab === 'Clockin/out Requests' &&
+                      !clockInOutDataState.length)
+                      ? '#ccc'
+                      : '#029894'
+                  }`,
                   fontSize: '16px',
                   fontWeight: '600',
                   mt: '10px',

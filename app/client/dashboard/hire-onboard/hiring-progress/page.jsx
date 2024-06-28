@@ -179,26 +179,48 @@ const Dashboard = () => {
   };
 
   useEffect(() => {
-    const tempData =
-      value === 0
-        ? reformData(data.hiringRequests)
-        : value === 1
-          ? reformData(data.interviewSchedule)
-          : reformData(data.onBoarding);
-    const timeoutId = setTimeout(() => {
-      filterDataByKeyword(
-        tempData,
-        search || '',
+    if (search) {
+      const tempData =
         value === 0
-          ? setHiringRequestDataState
+          ? reformData(data?.hiringRequests)
           : value === 1
-            ? setInterviewScheduledDataState
-            : setOnBoardingDataState
-      );
-    }, 500);
-    return () => {
-      clearTimeout(timeoutId);
-    };
+            ? reformData(data?.interviewSchedule)
+            : reformData(data?.onBoarding);
+      const timeoutId = setTimeout(() => {
+        filterDataByKeyword(
+          tempData,
+          search || '',
+          value === 0
+            ? setHiringRequestDataState
+            : value === 1
+              ? setInterviewScheduledDataState
+              : setOnBoardingDataState
+        );
+      }, 500);
+      return () => {
+        clearTimeout(timeoutId);
+      };
+    } else {
+      if (value === 0) {
+        setHiringRequestDataState(
+          filterTableRowsWRTTab(reformData(data?.hiringRequests), {
+            status: '',
+          })
+        );
+      } else if (value === 1) {
+        setInterviewScheduledDataState(
+          filterTableRowsWRTTab(reformData(data?.interviewSchedule), {
+            status: '',
+          })
+        );
+      } else {
+        setOnBoardingDataState(
+          filterTableRowsWRTTab(reformData(data?.onBoarding), {
+            status: '',
+          })
+        );
+      }
+    }
   }, [search, value, data]);
 
   const handleClickDelete = (props) => {
@@ -208,7 +230,7 @@ const Dashboard = () => {
   const { mutate, isPending } = useMutation({
     mutationFn: async (id) => {
       dispatch(deleteClientHiringRequest());
-      return api.daleteData(`${CLIENT_HIRING_PROGRESS}/?id=${id}`);
+      return api.daleteData(`${CLIENT_HIRING_PROGRESS}?id=${id}`);
     },
     onSuccess: () => {
       Toast('success', 'Data deleted successfully');

@@ -733,7 +733,7 @@ const AddEmployee = () => {
   };
   const deleteStartHiringMutation = useMutation({
     mutationFn: async (id) => {
-      return api.daleteData(`${HR_CLIENT_EMP_HIRING_REQUEST}/?id=${id}`);
+      return api.daleteData(`${HR_CLIENT_EMP_HIRING_REQUEST}?id=${id}`);
     },
     onSuccess: () => {
       Toast('success', 'Data deleted successfully');
@@ -749,7 +749,7 @@ const AddEmployee = () => {
   });
   const deleteInterviewMutation = useMutation({
     mutationFn: async (id) => {
-      return api.daleteData(`${HR_CLIENT_EMP_INTERVIEW_SCHEDULE}/?id=${id}`);
+      return api.daleteData(`${HR_CLIENT_EMP_INTERVIEW_SCHEDULE}?id=${id}`);
     },
     onSuccess: () => {
       Toast('success', 'Data deleted successfully');
@@ -765,7 +765,7 @@ const AddEmployee = () => {
   });
   const deleteOnBoardingMutation = useMutation({
     mutationFn: async (id) => {
-      return api.daleteData(`${HR_CLIENT_EMP_ON_BOARDING}/?id=${id}`);
+      return api.daleteData(`${HR_CLIENT_EMP_ON_BOARDING}?id=${id}`);
     },
     onSuccess: () => {
       Toast('success', 'Data deleted successfully');
@@ -781,7 +781,7 @@ const AddEmployee = () => {
   });
   const deleteEmpInvMutation = useMutation({
     mutationFn: async (id) => {
-      return api.daleteData(`${HR_CLIENT_EMPLOYEE_INVOICE}/?id=${id}`);
+      return api.daleteData(`${HR_CLIENT_EMPLOYEE_INVOICE}?id=${id}`);
     },
     onSuccess: () => {
       Toast('success', 'Data deleted successfully');
@@ -798,7 +798,7 @@ const AddEmployee = () => {
   });
   const deleteOthInvMutation = useMutation({
     mutationFn: async (id) => {
-      return api.daleteData(`${HR_CLIENT_OTHER_INVOICE}/?id=${id}`);
+      return api.daleteData(`${HR_CLIENT_OTHER_INVOICE}?id=${id}`);
     },
     onSuccess: () => {
       Toast('success', 'Data deleted successfully');
@@ -819,7 +819,7 @@ const AddEmployee = () => {
       for (const key in data.data) {
         formData.append(key, data.data[key]);
       }
-      return api.updateData(`${data?.url}/?id=${data?.id}`, formData);
+      return api.updateData(`${data?.url}?id=${data?.id}`, formData);
     },
     onSuccess: () => {
       Toast('success', 'Data updated successfully');

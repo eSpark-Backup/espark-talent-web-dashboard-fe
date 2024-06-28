@@ -52,7 +52,7 @@ const Dashboard = () => {
       dispatch(fetchEmpPunchRequestData());
       return api
         .getData(
-          `${EMP_PUNCH_REQUEST}/?workspace=${currentWorkSpace?.email || ''}`
+          `${EMP_PUNCH_REQUEST}?workspace=${currentWorkSpace?.email || ''}`
         )
         .then(({ data }) => {
           dispatch(getEmpPunchRequestDataSuccess(data || []));
@@ -100,7 +100,7 @@ const Dashboard = () => {
   const { mutate, isPending } = useMutation({
     mutationFn: async (id) => {
       dispatch(deleteEmpPunchRequest());
-      return api.daleteData(`${EMP_PUNCH_REQUEST}/?id=${id}`);
+      return api.daleteData(`${EMP_PUNCH_REQUEST}?id=${id}`);
     },
     onSuccess: ({ data }) => {
       Toast('success', 'Data deleted successfully');
@@ -199,8 +199,8 @@ const Dashboard = () => {
           }}
         >
           <DashboardHeading
-            title={'Punch request'}
-            dashboardDescription={REQUEST_LEAVE?.manageTimesheet}
+            title={'Punch requests'}
+            dashboardDescription={REQUEST_LEAVE?.managePunchrequest}
           />
         </Box>
 

@@ -87,7 +87,7 @@ const AuthForm = ({ uiData, fields, handleOpenTroubleModal }) => {
   });
   const employeeHomeMutation = useMutation({
     mutationFn: async (url) => {
-      return api.getData(`${url}/?workspace=${currentWorkSpace?.email || ''}`);
+      return api.getData(`${url}?workspace=${currentWorkSpace?.email || ''}`);
     },
     onSuccess: ({ data }) => {
       // dispatch(getHomeData(data));

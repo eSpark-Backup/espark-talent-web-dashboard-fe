@@ -25,7 +25,7 @@ const EditEmergencyModal = ({ onClose, handleEmergencyModal, data }) => {
 
   const { mutate, isPending } = useMutation({
     mutationFn: async (data) => {
-      return api.updateJSONData(`${HR_UPDATE_EMP_INFO}/?id=${params.id}`, data);
+      return api.updateJSONData(`${HR_UPDATE_EMP_INFO}?id=${params.id}`, data);
     },
     onSuccess: async ({ data }) => {
       Toast('success', 'Data updated successfully');

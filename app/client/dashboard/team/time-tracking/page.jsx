@@ -125,7 +125,7 @@ const Dashboard = () => {
       dispatch(fetchTimeTrackingDataRequestSuccess(tempData));
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to get data');
+      Toast('error', err?.message || 'Failed to get data');
       dispatch(fetchTimeTrackingDataRequestFailed());
       console.log({ err });
     },
@@ -163,7 +163,7 @@ const Dashboard = () => {
       Toast('error', err.message || 'File not downloaded');
       // dispatch(getTimeSheetDataFailed());
       console.log({ err });
-      console.log({ err: err.message, name: err.name, stack: err.stack });
+      console.log({ err: err?.message, name: err?.name, stack: err?.stack });
     },
   });
   const handleDownloadReport = () => {
@@ -201,7 +201,7 @@ const Dashboard = () => {
               sx={{
                 minWidth: { xs: '100%', sm: '220px' },
                 color: '#029894',
-                border: `1px solid ${attendenceReportDownloadMutation.isPending ? '#ccc' : '#029894'}`,
+                border: `1px solid ${attendenceReportDownloadMutation.isPending || !selectedEmployee || !data?.time_sheet?.length ? '#ccc' : '#029894'}`,
                 fontSize: '16px',
                 fontWeight: '600',
                 mt: '10px',
@@ -212,7 +212,7 @@ const Dashboard = () => {
                 },
               }}
               onClick={handleDownloadReport}
-              disabled={!selectedEmployee}
+              disabled={!selectedEmployee || !data?.time_sheet?.length}
             >
               {attendenceReportDownloadMutation.isPending ? (
                 <CircularProgress size={26} color="secondary" />

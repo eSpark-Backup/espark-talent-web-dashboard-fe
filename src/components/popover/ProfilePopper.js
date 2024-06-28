@@ -62,7 +62,7 @@ export default function ProfilePopper({
   });
 
   const handleNotification = (event, key) => {
-    if (key == 'Notification') {
+    if (key == 'Notifications') {
       setNotification(notification ? null : event?.currentTarget);
     } else if (key == 'Sign out') {
       setOpenModal(true);
@@ -206,12 +206,17 @@ export default function ProfilePopper({
                 width: '100%',
                 py: 1.1,
                 '&: hover': { backgroundColor: 'transparent' },
+                ...(item?.text === 'Notifications' && {
+                  borderBottom: '1px solid #E4E4E4',
+                }),
               }}
             >
               <Box sx={{ display: 'flex', gap: 1.7, px: 2 }}>
                 <Box sx={{ display: 'flex', gap: 0.1 }}>
                   <Box sx={{ marginTop: -1.2 }}>
-                    {item?.text == 'Notification' && <DotBadge color={'red'} />}
+                    {item?.text == 'Notifications' && (
+                      <DotBadge color={'red'} />
+                    )}
                   </Box>
                   <Image width={20} height={20} src={item?.icon} alt="icon" />
                 </Box>

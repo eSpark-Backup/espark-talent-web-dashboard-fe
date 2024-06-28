@@ -98,7 +98,7 @@ const LeaveReqFilterFormModal = ({ open, onClose, filterForm }) => {
     mutationFn: async () => {
       // dispatch(fetchEmpLeaveRequestData());
       return api.getData(
-        `${EMP_LEAVE_REQUEST}/?workspace=${currentWorkSpace?.email || ''}`
+        `${EMP_LEAVE_REQUEST}?workspace=${currentWorkSpace?.email || ''}`
       );
     },
     onSuccess: ({ data }) => {

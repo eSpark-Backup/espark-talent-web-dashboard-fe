@@ -16,8 +16,22 @@ const EmployeeCard = ({
 }) => {
   const { client_perms } = useSelector((state) => state?.hr?.home?.homeData);
   const { role } = useSelector((state) => state?.auth?.userData);
-
   const router = useRouter();
+  const isActive =
+    eachItem?.status?.toLowerCase() === 'active' || eachItem?.active;
+  const isTerminated = eachItem?.status?.toLowerCase() === 'terminate';
+  let statusColor;
+  let statusText;
+  if (isActive) {
+    statusColor = '#068987';
+    statusText = 'Active';
+  } else if (isTerminated) {
+    statusColor = '#068987';
+    statusText = 'Terminated';
+  } else {
+    statusColor = '#F00';
+    statusText = 'Inactive';
+  }
 
   return (
     <Grid item xs={12} sm={6} md={4} lg={breakPoint ? 4 : 3}>
@@ -46,22 +60,16 @@ const EmployeeCard = ({
                   width: '5px',
                   height: '5px',
                   borderRadius: '50%',
-                  backgroundColor:
-                    eachItem.status === 'Active' || eachItem.active
-                      ? '#068987'
-                      : '#F00',
+                  backgroundColor: statusColor,
                 }}
               ></Typography>
               <Typography
                 sx={{
-                  color:
-                    eachItem.status === 'Active' || eachItem.active
-                      ? '#068987'
-                      : '#F00',
+                  color: statusColor,
                   fontSize: '12px',
                 }}
               >
-                {eachItem.active ? 'Active' : 'Inactive'}
+                {statusText}
               </Typography>
             </Box>
             <Box>

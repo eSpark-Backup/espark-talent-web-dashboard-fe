@@ -95,7 +95,7 @@ const EmpPunchReqFilterFormModal = ({ open, onClose, filterForm }) => {
     mutationFn: async () => {
       // dispatch(getTimeSheetData());
       return api.getData(
-        `${EMP_PUNCH_REQUEST}/?workspace=${currentWorkSpace?.email || ''}`
+        `${EMP_PUNCH_REQUEST}?workspace=${currentWorkSpace?.email || ''}`
       );
     },
     onSuccess: ({ data }) => {

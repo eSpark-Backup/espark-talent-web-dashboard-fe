@@ -53,7 +53,7 @@ export const uploadInvoiceForm = [
 ];
 export const uploadOtherInvoiceForm = [
   {
-    title: 'Invoice Reference',
+    title: 'Invoice reference',
     placeholder: 'Invoice Reference',
     name: 'invoice_reference',
   },

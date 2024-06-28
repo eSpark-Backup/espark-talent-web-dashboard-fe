@@ -16,7 +16,7 @@ const MarkCheckIn = () => {
   const { homeData } = useSelector((state) => state?.emp?.home);
   const { mutate } = useMutation({
     mutationFn: async (data) => {
-      const url = `${EMP_HOME}/?workspace=${currentWorkSpace?.email}&check_in=${data.check_in}`;
+      const url = `${EMP_HOME}?workspace=${currentWorkSpace?.email}&check_in=${data.check_in}`;
       return api.patchData(url);
     },
     onSuccess: ({ data }) => {

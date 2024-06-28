@@ -64,7 +64,6 @@ const Page = () => {
   const [showAssetModal, setAssetModal] = useState(false);
   const [showFilterModal, setShowFilterModal] = useState(false);
   // const [isOpenContractModal, setIsOpenContractModal] = useState(false);
-
   const params = useParams();
   const { isLoading } = useQuery({
     staleTime: 1000,
@@ -385,6 +384,7 @@ const Page = () => {
                       variant="contained"
                       sx={{
                         width: '200px',
+                        textTransform: 'math-auto',
                         maxWidth: {
                           xs: '100%',
                           md: '200px',
@@ -420,6 +420,7 @@ const Page = () => {
                         maxWidth: { xs: '100%', md: '200px' },
                         borderRadius: '5px',
                         border: '1px solid #029894',
+                        textTransform: 'math-auto',
                       }}
                       onClick={handleCredentialModal}
                     >

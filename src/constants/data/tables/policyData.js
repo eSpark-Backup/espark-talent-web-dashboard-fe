@@ -1,6 +1,6 @@
 export const policyColumn = [
   {
-    title: 'Policy Name',
+    title: 'Policies',
     flex: 2,
     name: 'policy_name',
   },

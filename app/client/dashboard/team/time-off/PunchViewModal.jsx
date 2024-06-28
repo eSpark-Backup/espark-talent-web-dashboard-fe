@@ -16,7 +16,7 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
   const { mutate, isPending } = useMutation({
     mutationFn: async (data) => {
       return api.updateJSONData(
-        `${CLIENT_TIME_OFF}/?id=${data?.id}`,
+        `${CLIENT_TIME_OFF}?id=${data?.id}`,
         data?.data
       );
     },

@@ -30,7 +30,7 @@ const Assets = () => {
   const { mutate, isPending } = useMutation({
     mutationFn: async (id) => {
       // dispatch(deleteClientHiringRequest());
-      return api.daleteData(`${HR_ADD_EMP_ASSET}/?id=${id}`);
+      return api.daleteData(`${HR_ADD_EMP_ASSET}?id=${id}`);
     },
     onSuccess: () => {
       Toast('success', 'Asset deleted successfully');

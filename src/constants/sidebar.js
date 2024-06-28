@@ -78,7 +78,7 @@ export const Client_Routes = [
   },
 ];
 export const profileMenuData = [
-  { icon: '/images/sidebar-icons/notification.svg', text: 'Notification' },
+  { icon: '/images/sidebar-icons/notification.svg', text: 'Notifications' },
   { icon: '/images/sidebar-icons/signout.svg', text: 'Sign out' },
 ];
 

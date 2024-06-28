@@ -33,7 +33,7 @@ const EditModal = ({ handleOpenModal, onClose, isClient }) => {
         formData.append(key, formVals.data[key]);
       }
       return api.updateData(
-        `${isClient ? HR_GET_CLIENT_PROFILE : HR_UPDATE_EMP_IMAGE}/?id=${formVals.id}`,
+        `${isClient ? HR_GET_CLIENT_PROFILE : HR_UPDATE_EMP_IMAGE}?id=${formVals.id}`,
         formData
       );
     },

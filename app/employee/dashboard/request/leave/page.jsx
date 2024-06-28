@@ -43,7 +43,7 @@ const Dashboard = () => {
   const { mutate, isPending } = useMutation({
     mutationFn: async (id) => {
       dispatch(deleteEmpLeaveRequest());
-      return api.daleteData(`${EMP_LEAVE_REQUEST}/?id=${id}`);
+      return api.daleteData(`${EMP_LEAVE_REQUEST}?id=${id}`);
     },
     onSuccess: ({ data }) => {
       Toast('success', 'Data deleted successfully');
@@ -152,7 +152,7 @@ const Dashboard = () => {
     mutationFn: async () => {
       dispatch(fetchEmpLeaveRequestData());
       return api.getData(
-        `${EMP_LEAVE_REQUEST}/?workspace=${currentWorkSpace?.email || ''}`
+        `${EMP_LEAVE_REQUEST}?workspace=${currentWorkSpace?.email || ''}`
       );
     },
     onSuccess: ({ data }) => {

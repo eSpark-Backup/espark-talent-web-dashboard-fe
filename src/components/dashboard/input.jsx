@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { Box, Tooltip } from '@mui/material';
 import PropTypes from 'prop-types';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 
 const Input = ({
   prefixIcon,
@@ -17,6 +18,8 @@ const Input = ({
   tooltip,
 }) => {
   const inputRef = useRef(null);
+  const pathName = usePathname();
+  const addClient = pathName.includes('/hr/dashboard/clients/add-client');
 
   useEffect(() => {
     if (autofocus) {
@@ -36,7 +39,11 @@ const Input = ({
         display={'flex'}
         flex={1}
         alignItems={'center'}
-        sx={{ border: 'solid 1px #ccc' }}
+        sx={
+          addClient
+            ? { borderBottom: 'solid 1px #ccc', borderRadius: '0px' }
+            : { border: 'solid 1px #ccc' }
+        }
         padding={1}
         borderRadius={1}
         width={'100%'}

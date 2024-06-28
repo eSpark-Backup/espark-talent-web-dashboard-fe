@@ -1,10 +1,10 @@
 import React from 'react';
-import { Box, Button, Grid, Typography } from '@mui/material';
+import { Avatar, Box, Button, Grid, Typography } from '@mui/material';
 import EmployeeDetailRow from './EmployeeDetailRow';
 import EmployeeRequestDetailRow from './EmployeeRequestDetailRow';
 import dayjs from 'dayjs';
 
-const AttendanceViewModal = ({ modalData, empData, handleClose }) => {
+const AttendanceViewModal = ({ modalData, empData, handleClose, image }) => {
   function formatDate(inputDate) {
     // Split the date string into day, month, and year
     var parts = inputDate.split('-');
@@ -40,7 +40,7 @@ const AttendanceViewModal = ({ modalData, empData, handleClose }) => {
     ['Expected check out:', '07:00 PM', 'expect_check_out'],
     ['Check out time:', modalData?.checkOut, 'check_out'],
   ];
-  console.log({ modalData, empData });
+
   return (
     <Box
       sx={{
@@ -87,16 +87,25 @@ const AttendanceViewModal = ({ modalData, empData, handleClose }) => {
                 width: '176px',
                 height: '176px',
                 borderRadius: '50%',
+                padding: '5px',
                 background: '#f6f6f6',
-                marginBottom: { xs: '15px', md: '0px' },
-                '@media (min-width: 900px) and (max-width: 1370px)': {
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  marginBottom: '15px',
-                },
               }}
-            />
+            >
+              <Avatar
+                sx={{
+                  width: '100%',
+                  height: '100%',
+                  marginBottom: { xs: '15px', md: '0px' },
+                  '@media (min-width: 900px) and (max-width: 1370px)': {
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    marginBottom: '15px',
+                  },
+                }}
+                src={image || ''}
+              />
+            </Box>
           </Grid>
           <Grid item xs={12} md={9.75}>
             <Grid container columnSpacing={'40px'}>
