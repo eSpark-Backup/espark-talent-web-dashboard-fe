@@ -115,7 +115,7 @@ const Dashboard = () => {
     onSuccess: (response) => {
       console.log({ data: response?.data });
       const tempData = {
-        employees: [...data.employees],
+        employees: [...data?.employees],
         time_sheet:
           response?.data && Object.keys(response?.data?.time_sheet)?.length
             ? reformTimeSheet(response?.data?.time_sheet)
