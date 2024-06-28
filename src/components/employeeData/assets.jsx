@@ -59,13 +59,13 @@ const Assets = () => {
         .then(({ data }) => {
           const tempAssets = data?.length
             ? data?.map((item) => ({
-              ...item,
-              assigned_date: dayjs(item.assigned_date).format(
-                'YYYY-MM-DD h:m A'
-              ),
-              assignee: [item?.assignee_name, item?.assignee_email],
-              action: ['Delete'],
-            }))
+                ...item,
+                assigned_date: dayjs(item.assigned_date).format(
+                  'YYYY-MM-DD h:m A'
+                ),
+                assignee: [item?.assignee_name, item?.assignee_email],
+                action: ['Delete'],
+              }))
             : [];
           dispatch(getEmpAssetRequestSuccess(tempAssets));
           return tempAssets || [];

@@ -161,11 +161,11 @@ const Dashboard = () => {
         balance: reformData(data?.balance),
         requests: data?.requests?.length
           ? data?.requests?.map((item) => ({
-            ...item,
-            requested_at: dayjs(item?.requested_at).format(
-              'YYYY-MM-DD hh:mm A'
-            ),
-          }))
+              ...item,
+              requested_at: dayjs(item?.requested_at).format(
+                'YYYY-MM-DD hh:mm A'
+              ),
+            }))
           : [],
       };
       dispatch(getEmpLeaveRequestDataSuccess(tempData));
@@ -342,8 +342,8 @@ const Dashboard = () => {
               handleClickView={handleClickActionView}
               handleClickDelete={handleClickActionDelete}
               viewClicked={viewClicked}
-            // showFilterModal={showFilterModal}
-            // setShowFilterModal={setShowFilterModal}
+              // showFilterModal={showFilterModal}
+              // setShowFilterModal={setShowFilterModal}
             />
           </div>
         </Box>

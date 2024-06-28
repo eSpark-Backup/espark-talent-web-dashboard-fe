@@ -75,8 +75,9 @@ const MarkCheckIn = () => {
         sx={{
           border: '1px solid #E4E4E4',
           display: 'flex',
-          backgroundColor: `${homeData?.today_activity?.check_in !== '-' && '#dddd'
-            }`,
+          backgroundColor: `${
+            homeData?.today_activity?.check_in !== '-' && '#dddd'
+          }`,
           justifyContent: 'center',
           alignItems: 'center',
           p: '10px',

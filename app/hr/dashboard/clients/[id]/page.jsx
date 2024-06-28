@@ -111,10 +111,10 @@ const AddEmployee = () => {
           const tempData =
             data !== ''
               ? data?.map((item) => ({
-                ...item,
-                salary_range: `${item.salary_range.minimum}$ - ${item.salary_range.maximum}$`,
-                action: ['Delete'],
-              }))
+                  ...item,
+                  salary_range: `${item.salary_range.minimum}$ - ${item.salary_range.maximum}$`,
+                  action: ['Delete'],
+                }))
               : [];
           dispatch(getClientHiringRequest(tempData));
           return tempData;
@@ -137,12 +137,12 @@ const AddEmployee = () => {
           const tempData =
             data !== ''
               ? [...data]?.map((item) => ({
-                ...item,
-                action: ['Delete'],
-                interview_date_time: dayjs(item?.interview_date_time).format(
-                  'YYYY-MM-DD hh:mm A'
-                ),
-              }))
+                  ...item,
+                  action: ['Delete'],
+                  interview_date_time: dayjs(item?.interview_date_time).format(
+                    'YYYY-MM-DD hh:mm A'
+                  ),
+                }))
               : [];
           dispatch(getClientInterviewSchedule(tempData || []));
           return tempData;
@@ -164,10 +164,10 @@ const AddEmployee = () => {
           const tempData =
             data !== ''
               ? [...data]?.map((item) => ({
-                ...item,
-                dropdownStatus: true,
-                action: ['Delete'],
-              }))
+                  ...item,
+                  dropdownStatus: true,
+                  action: ['Delete'],
+                }))
               : [];
           dispatch(getClientOnboarding(tempData || []));
           return data;
@@ -236,13 +236,13 @@ const AddEmployee = () => {
         .then(({ data }) => {
           const tempData = data?.length
             ? data?.map((item) => ({
-              ...item,
-              dropdownStatus: true,
-              action: ['Delete'],
-              actionStatus: true,
-              download: 'Download',
-              payment_status: getCamelCapitalized(item.payment_status),
-            }))
+                ...item,
+                dropdownStatus: true,
+                action: ['Delete'],
+                actionStatus: true,
+                download: 'Download',
+                payment_status: getCamelCapitalized(item.payment_status),
+              }))
             : [];
           dispatch(getClientEmpInvoicePending(tempData || []));
           return data;
@@ -265,13 +265,13 @@ const AddEmployee = () => {
         .then(({ data }) => {
           const tempData = data?.length
             ? data?.map((item) => ({
-              ...item,
-              dropdownStatus: true,
-              action: ['Delete'],
-              actionStatus: true,
-              download: 'Download',
-              payment_status: getCamelCapitalized(item.payment_status),
-            }))
+                ...item,
+                dropdownStatus: true,
+                action: ['Delete'],
+                actionStatus: true,
+                download: 'Download',
+                payment_status: getCamelCapitalized(item.payment_status),
+              }))
             : [];
           dispatch(getClientEmpInvoiceProcessing(tempData || []));
           return data;
@@ -292,13 +292,13 @@ const AddEmployee = () => {
         .then(({ data }) => {
           const tempData = data?.length
             ? data?.map((item) => ({
-              ...item,
-              dropdownStatus: true,
-              action: ['Delete'],
-              actionStatus: true,
-              download: 'Download',
-              payment_status: getCamelCapitalized(item.payment_status),
-            }))
+                ...item,
+                dropdownStatus: true,
+                action: ['Delete'],
+                actionStatus: true,
+                download: 'Download',
+                payment_status: getCamelCapitalized(item.payment_status),
+              }))
             : [];
           dispatch(getClientEmpInvoicePaid(tempData || []));
           return data;
@@ -962,15 +962,15 @@ const AddEmployee = () => {
   return (
     <>
       {isFetching ||
-        ClientHiringReqQuery.isFetching ||
-        ClientInterviewSchedule.isFetching ||
-        ClientOnBoarding.isFetching ||
-        EmployeeInvoicesPending.isFetching ||
-        EmployeeInvoicesProcessing.isFetching ||
-        EmployeeInvoicesPaid.isFetching ||
-        OtherInvoicesPending.isFetching ||
-        OtherInvoicesProcessing.isFetching ||
-        OtherInvoicesPaid.isFetching ? (
+      ClientHiringReqQuery.isFetching ||
+      ClientInterviewSchedule.isFetching ||
+      ClientOnBoarding.isFetching ||
+      EmployeeInvoicesPending.isFetching ||
+      EmployeeInvoicesProcessing.isFetching ||
+      EmployeeInvoicesPaid.isFetching ||
+      OtherInvoicesPending.isFetching ||
+      OtherInvoicesProcessing.isFetching ||
+      OtherInvoicesPaid.isFetching ? (
         <ProfileEditSkeleton isClient={true} />
       ) : (
         <Box>
@@ -995,15 +995,15 @@ const AddEmployee = () => {
           </Box>
           <>
             {isLoading ||
-              ClientHiringReqQuery.isLoading ||
-              ClientInterviewSchedule.isLoading ||
-              ClientOnBoarding.isLoading ||
-              EmployeeInvoicesPending.isLoading ||
-              EmployeeInvoicesProcessing.isLoading ||
-              EmployeeInvoicesPaid.isLoading ||
-              OtherInvoicesPending.isLoading ||
-              OtherInvoicesProcessing.isLoading ||
-              OtherInvoicesPaid.isLoading ? (
+            ClientHiringReqQuery.isLoading ||
+            ClientInterviewSchedule.isLoading ||
+            ClientOnBoarding.isLoading ||
+            EmployeeInvoicesPending.isLoading ||
+            EmployeeInvoicesProcessing.isLoading ||
+            EmployeeInvoicesPaid.isLoading ||
+            OtherInvoicesPending.isLoading ||
+            OtherInvoicesProcessing.isLoading ||
+            OtherInvoicesPaid.isLoading ? (
               <ProfileEditSkeleton isClient={true} />
             ) : (
               <ClientProfileData
@@ -1110,69 +1110,69 @@ const AddEmployee = () => {
                                 {(role === 'super_admin' ||
                                   (role !== 'super_admin' &&
                                     client_perms?.[0]?.write)) && (
-                                    <Button
-                                      onClick={handleOpenHiringRequestModal}
-                                      variant="contained"
-                                      sx={{
-                                        my: { xs: '20px', md: 0 },
-                                        textTransform: 'math-auto',
+                                  <Button
+                                    onClick={handleOpenHiringRequestModal}
+                                    variant="contained"
+                                    sx={{
+                                      my: { xs: '20px', md: 0 },
+                                      textTransform: 'math-auto',
+                                      color: '#fff',
+                                      background: '#029894',
+
+                                      '&:hover': {
                                         color: '#fff',
                                         background: '#029894',
-
-                                        '&:hover': {
-                                          color: '#fff',
-                                          background: '#029894',
-                                        },
-                                      }}
-                                    >
-                                      {CLIENTPROFILE?.addNewRequest}
-                                    </Button>
-                                  )}
+                                      },
+                                    }}
+                                  >
+                                    {CLIENTPROFILE?.addNewRequest}
+                                  </Button>
+                                )}
                               </>
                             ) : currentTab?.nested.val === 1 ? (
                               <>
                                 {(role === 'super_admin' ||
                                   (role !== 'super_admin' &&
                                     client_perms?.[0]?.write)) && (
-                                    <Button
-                                      onClick={handleOpenAddInterviewModal}
-                                      variant="contained"
-                                      sx={{
-                                        my: { xs: '20px', md: 0 },
-                                        textTransform: 'math-auto',
+                                  <Button
+                                    onClick={handleOpenAddInterviewModal}
+                                    variant="contained"
+                                    sx={{
+                                      my: { xs: '20px', md: 0 },
+                                      textTransform: 'math-auto',
+                                      color: '#fff',
+                                      background: '#029894',
+                                      '&:hover': {
                                         color: '#fff',
                                         background: '#029894',
-                                        '&:hover': {
-                                          color: '#fff',
-                                          background: '#029894',
-                                        },
-                                      }}
-                                    >
-                                      {CLIENTPROFILE?.setNewInterview}
-                                    </Button>
-                                  )}
+                                      },
+                                    }}
+                                  >
+                                    {CLIENTPROFILE?.setNewInterview}
+                                  </Button>
+                                )}
                               </>
                             ) : (
                               <>
                                 {(role === 'super_admin' ||
                                   (role !== 'super_admin' &&
                                     client_perms?.[0]?.write)) && (
-                                    <Button
-                                      onClick={handleOpenAddOnboardModal}
-                                      variant="contained"
-                                      sx={{
-                                        my: { xs: '20px', md: 0 },
+                                  <Button
+                                    onClick={handleOpenAddOnboardModal}
+                                    variant="contained"
+                                    sx={{
+                                      my: { xs: '20px', md: 0 },
+                                      color: '#fff',
+                                      background: '#029894',
+                                      '&:hover': {
                                         color: '#fff',
                                         background: '#029894',
-                                        '&:hover': {
-                                          color: '#fff',
-                                          background: '#029894',
-                                        },
-                                      }}
-                                    >
-                                      {CLIENTPROFILE?.addOnboard}
-                                    </Button>
-                                  )}
+                                      },
+                                    }}
+                                  >
+                                    {CLIENTPROFILE?.addOnboard}
+                                  </Button>
+                                )}
                               </>
                             )}
                           </>
@@ -1182,26 +1182,26 @@ const AddEmployee = () => {
                               {(role === 'super_admin' ||
                                 (role !== 'super_admin' &&
                                   invoices_perms?.[0]?.write)) && (
-                                  <Button
-                                    onClick={handleOpenUploadInvoiceModal}
-                                    disabled={
-                                      !ClientEmployeesAll.data ||
-                                      ClientEmployeesAll.data.length === 0
-                                    }
-                                    variant="contained"
-                                    sx={{
-                                      my: { xs: '20px', md: 0 },
+                                <Button
+                                  onClick={handleOpenUploadInvoiceModal}
+                                  disabled={
+                                    !ClientEmployeesAll.data ||
+                                    ClientEmployeesAll.data.length === 0
+                                  }
+                                  variant="contained"
+                                  sx={{
+                                    my: { xs: '20px', md: 0 },
+                                    color: '#fff',
+                                    background: '#029894',
+                                    '&:hover': {
                                       color: '#fff',
                                       background: '#029894',
-                                      '&:hover': {
-                                        color: '#fff',
-                                        background: '#029894',
-                                      },
-                                    }}
-                                  >
-                                    {CLIENTPROFILE?.uploadVoice}
-                                  </Button>
-                                )}
+                                    },
+                                  }}
+                                >
+                                  {CLIENTPROFILE?.uploadVoice}
+                                </Button>
+                              )}
                             </>
                           ) : null
                         ) : currentTab?.label === 'Other invoices' ? (
@@ -1210,22 +1210,22 @@ const AddEmployee = () => {
                               {(role === 'super_admin' ||
                                 (role !== 'super_admin' &&
                                   invoices_perms?.[0]?.write)) && (
-                                  <Button
-                                    onClick={handleOpenUploadOthInvoiceModal}
-                                    variant="contained"
-                                    sx={{
-                                      my: { xs: '20px', md: 0 },
+                                <Button
+                                  onClick={handleOpenUploadOthInvoiceModal}
+                                  variant="contained"
+                                  sx={{
+                                    my: { xs: '20px', md: 0 },
+                                    color: '#fff',
+                                    background: '#029894',
+                                    '&:hover': {
                                       color: '#fff',
                                       background: '#029894',
-                                      '&:hover': {
-                                        color: '#fff',
-                                        background: '#029894',
-                                      },
-                                    }}
-                                  >
-                                    {CLIENTPROFILE?.uploadVoice}
-                                  </Button>
-                                )}
+                                    },
+                                  }}
+                                >
+                                  {CLIENTPROFILE?.uploadVoice}
+                                </Button>
+                              )}
                             </>
                           ) : null
                         ) : null}

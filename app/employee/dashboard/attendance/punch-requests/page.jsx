@@ -238,8 +238,8 @@ const Dashboard = () => {
           <div>
             <Box sx={{ xs: '0px', sm: '20px' }}>
               {isLoading ||
-                !empDetails?.employee_name ||
-                !empDetails?.employee_id ? (
+              !empDetails?.employee_name ||
+              !empDetails?.employee_id ? (
                 <Skeleton
                   variant="text"
                   sx={{ width: '30%', height: 30, mr: 1, mx: 'auto' }}

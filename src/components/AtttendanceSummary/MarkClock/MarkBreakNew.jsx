@@ -172,7 +172,7 @@ const MarkBreak = ({ icon }) => {
             alt="TeaIcon"
           />
           {homeData?.today_activity?.break === '-' ||
-            !homeData?.today_activity?.break
+          !homeData?.today_activity?.break
             ? PUNCH_IN?.markBreakin
             : PUNCH_IN?.markBreakout}
           {(homeData?.today_activity?.break !== '-' ||

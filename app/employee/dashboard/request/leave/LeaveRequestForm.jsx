@@ -71,11 +71,11 @@ const LeaveRequestForm = ({ handleClose }) => {
         balance: reformData(data?.balance),
         requests: data?.requests?.length
           ? data?.requests?.map((item) => ({
-            ...item,
-            requested_at: dayjs(item?.requested_at).format(
-              'YYYY-MM-DD hh:mm A'
-            ),
-          }))
+              ...item,
+              requested_at: dayjs(item?.requested_at).format(
+                'YYYY-MM-DD hh:mm A'
+              ),
+            }))
           : [],
       };
       dispatch(getEmpLeaveRequestDataSuccess(tempData));

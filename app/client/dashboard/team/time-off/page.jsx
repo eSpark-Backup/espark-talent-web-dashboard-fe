@@ -100,10 +100,7 @@ const Dashboard = () => {
   };
   const updateRequestMutation = useMutation({
     mutationFn: async (data) => {
-      return api.updateJSONData(
-        `${data?.endpoint}?id=${data?.id}`,
-        data?.data
-      );
+      return api.updateJSONData(`${data?.endpoint}?id=${data?.id}`, data?.data);
     },
     onSuccess: ({ data }) => {
       console.log({ data });

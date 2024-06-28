@@ -67,13 +67,13 @@ const Dashboard = () => {
           const tempData =
             data !== ''
               ? data?.map((item) => ({
-                ...item,
-                benefits:
-                  typeof item.benefits === 'string'
-                    ? item.benefits
-                    : extractBenefits(item.benefits),
-                status: 'Active',
-              }))
+                  ...item,
+                  benefits:
+                    typeof item.benefits === 'string'
+                      ? item.benefits
+                      : extractBenefits(item.benefits),
+                  status: 'Active',
+                }))
               : [];
           dispatch(fetchTeamMembersRequestActiveSuccess(tempData || []));
         })
@@ -94,9 +94,9 @@ const Dashboard = () => {
           const tempData =
             data !== ''
               ? data?.map((item) => ({
-                ...item,
-                status: 'onBoard',
-              }))
+                  ...item,
+                  status: 'onBoard',
+                }))
               : [];
           dispatch(fetchTeamMembersRequestOnBoardSuccess(tempData || []));
         })
@@ -117,9 +117,9 @@ const Dashboard = () => {
           const tempData =
             data !== ''
               ? data?.map((item) => ({
-                ...item,
-                status: 'Terminated',
-              }))
+                  ...item,
+                  status: 'Terminated',
+                }))
               : [];
           dispatch(fetchTeamMembersRequestTerminatedSuccess(tempData || []));
         })
@@ -266,25 +266,26 @@ const Dashboard = () => {
                           color: '#068987',
                         },
                       }}
-                      label={`${label} (${filterTableRowsWRTTab(
-                        i === 0
-                          ? [
-                            ...data.active,
-                            ...data.onBoard,
-                            ...data.terminated,
-                          ]
-                          : i === 1
-                            ? data.active
-                            : i === 2
-                              ? data.onBoard
-                              : data.terminated,
-                        {
-                          memberStatus: label === 'All' ? '' : label,
-                        }
-                      ).length
-                        })`}
+                      label={`${label} (${
+                        filterTableRowsWRTTab(
+                          i === 0
+                            ? [
+                                ...data.active,
+                                ...data.onBoard,
+                                ...data.terminated,
+                              ]
+                            : i === 1
+                              ? data.active
+                              : i === 2
+                                ? data.onBoard
+                                : data.terminated,
+                          {
+                            memberStatus: label === 'All' ? '' : label,
+                          }
+                        ).length
+                      })`}
                       {...prop}
-                    // value={label}
+                      // value={label}
                     />
                   ))}
                 </Tabs>

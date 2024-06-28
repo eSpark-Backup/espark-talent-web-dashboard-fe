@@ -30,7 +30,8 @@ const LeaveReqFilterFormModal = ({ open, onClose, filterForm }) => {
       console.log({ args });
       dispatch(getTimeSheetData());
       return api.getData(
-        `${EMP_LEAVE_REQUEST}?workspace=${currentWorkSpace?.email || ''
+        `${EMP_LEAVE_REQUEST}?workspace=${
+          currentWorkSpace?.email || ''
         }&tab=${values?.status?.toLowerCase()}&from=${args.from}&to=${args.to}`
       );
     },
@@ -40,14 +41,14 @@ const LeaveReqFilterFormModal = ({ open, onClose, filterForm }) => {
         data === '' || !data?.requests?.length
           ? []
           : data?.requests.filter((el) => {
-            if (values?.leaveType) {
-              // return el.leaveType.includes(values?.attendanceStatus);
-              // return el.leaveType.includes(values?.attendanceStatus);
-              return values?.leaveType
-                ?.toLowerCase()
-                ?.includes(el?.leave_type);
-            } else return el;
-          });
+              if (values?.leaveType) {
+                // return el.leaveType.includes(values?.attendanceStatus);
+                // return el.leaveType.includes(values?.attendanceStatus);
+                return values?.leaveType
+                  ?.toLowerCase()
+                  ?.includes(el?.leave_type);
+              } else return el;
+            });
 
       console.log({
         newData1,
@@ -106,11 +107,11 @@ const LeaveReqFilterFormModal = ({ open, onClose, filterForm }) => {
         balance: reformData(data?.balance),
         requests: data?.requests?.length
           ? data?.requests?.map((item) => ({
-            ...item,
-            requested_at: dayjs(item?.requested_at).format(
-              'YYYY-MM-DD hh:mm A'
-            ),
-          }))
+              ...item,
+              requested_at: dayjs(item?.requested_at).format(
+                'YYYY-MM-DD hh:mm A'
+              ),
+            }))
           : [],
       };
       dispatch(getEmpLeaveRequestDataSuccess(tempData));

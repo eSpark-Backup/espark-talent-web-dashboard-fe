@@ -107,7 +107,7 @@ const MarkBreak = ({ icon }) => {
   const startTimer = () => {
     const startTime = new Date(
       `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()} ` +
-      currentBreakTime
+        currentBreakTime
     ).getTime();
     const intervalId = setInterval(() => {
       const currentTime = new Date().getTime();
@@ -213,7 +213,7 @@ const MarkBreak = ({ icon }) => {
             height={20}
           />
           {homeData?.today_activity?.break === '-' ||
-            !homeData?.today_activity?.break
+          !homeData?.today_activity?.break
             ? PUNCH_IN?.markBreakin
             : PUNCH_IN?.markBreakout}
           {timerState.timerActive && (

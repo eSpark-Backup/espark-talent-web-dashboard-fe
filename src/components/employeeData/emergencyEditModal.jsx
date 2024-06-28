@@ -188,43 +188,43 @@ const EditEmergencyModal = ({ onClose, handleEmergencyModal, data }) => {
                                 secPhoneList.includes(
                                   `emergency_contact.${type}.${name}`
                                 ))) && (
-                                <FormInput
-                                  title={title}
-                                  placeholder={placeholder}
-                                  name={`emergency_contact.${type}.${name}`}
-                                  setFieldValue={setFieldValue}
-                                  value={
-                                    values['emergency_contact']?.[type]?.[name] ||
-                                    ''
-                                  }
-                                  error={
-                                    errors['emergency_contact']?.[type]?.[name]
-                                  }
-                                  touched={
-                                    touched['emergency_contact']?.[type]?.[name]
-                                  } // Access touched values by key
-                                  setFieldError={setFieldError}
-                                  errors={errors}
-                                  setErrors={setErrors}
-                                  values={values}
-                                  xs={12}
-                                  sm={12}
-                                  md={12}
-                                  lg={12}
-                                  suffixIconOutside={
-                                    (suffixIconOutside !== 'plus' ||
-                                      (suffixIconOutside === 'plus' &&
-                                        !secPhoneList.includes(`${name}2`))) &&
+                              <FormInput
+                                title={title}
+                                placeholder={placeholder}
+                                name={`emergency_contact.${type}.${name}`}
+                                setFieldValue={setFieldValue}
+                                value={
+                                  values['emergency_contact']?.[type]?.[name] ||
+                                  ''
+                                }
+                                error={
+                                  errors['emergency_contact']?.[type]?.[name]
+                                }
+                                touched={
+                                  touched['emergency_contact']?.[type]?.[name]
+                                } // Access touched values by key
+                                setFieldError={setFieldError}
+                                errors={errors}
+                                setErrors={setErrors}
+                                values={values}
+                                xs={12}
+                                sm={12}
+                                md={12}
+                                lg={12}
+                                suffixIconOutside={
+                                  (suffixIconOutside !== 'plus' ||
+                                    (suffixIconOutside === 'plus' &&
+                                      !secPhoneList.includes(`${name}2`))) &&
+                                  suffixIconOutside
+                                }
+                                onClickTogglePhoneNumber={() =>
+                                  handleClickTogglePhoneNumber(
+                                    `emergency_contact.${type}.${name}`,
                                     suffixIconOutside
-                                  }
-                                  onClickTogglePhoneNumber={() =>
-                                    handleClickTogglePhoneNumber(
-                                      `emergency_contact.${type}.${name}`,
-                                      suffixIconOutside
-                                    )
-                                  }
-                                />
-                              )}
+                                  )
+                                }
+                              />
+                            )}
                           </Grid>
                         );
                       }
