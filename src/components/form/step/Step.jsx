@@ -63,18 +63,20 @@ const Step = ({
         responseValues.length > 0 ? responseValues[0] : null;
 
       if (firstResponseValue) {
+        const formattedErrors = formatErrors(err?.response?.data);
+
         if (['/hr_add_emp/', '/hr_add_client/'].includes(endpoint)) {
           if (
             Array.isArray(firstResponseValue) &&
             firstResponseValue.length > 0
           ) {
-            errToast = firstResponseValue[0];
+            errToast = formattedErrors;
           } else {
             errToast = firstResponseValue;
           }
         } else {
           errToast = Array.isArray(firstResponseValue)
-            ? firstResponseValue[0]
+            ? formattedErrors
             : firstResponseValue;
         }
       } else {
@@ -91,6 +93,21 @@ const Step = ({
       }
     },
   });
+
+  const formatErrors = (error) => {
+    return Object.keys(error)
+      .map((key) => {
+        // Replace underscores with spaces and capitalize each word
+        const formattedKey = key
+          .replace(/_/g, ' ')
+          .replace(/\b\w/g, (char) => char.toUpperCase());
+        // Join all error messages for the key
+        const errorMessage = error[key].join(', ');
+        // Return the formatted error message with bold key
+        return `<strong>${formattedKey}:</strong> ${errorMessage}`;
+      })
+      .join('<br>');
+  };
 
   const {
     handleSubmit,
