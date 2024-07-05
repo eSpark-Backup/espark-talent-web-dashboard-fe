@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "cross-env PORT=${PORT:-3005} next dev",
+    "dev": "next dev",
     "build": "next build",
-    "start": "cross-env PORT=${PORT:-3005} next start",
+    "start": "next start",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "npx prettier --check '**/*.{js,jsx}' --ignore-path .gitignore",
