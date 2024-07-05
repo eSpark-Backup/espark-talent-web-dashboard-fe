@@ -138,19 +138,24 @@ const AppSearchableDropdown = ({
                 alignItems: 'center',
               }}
             >
-              <Box
-                component={'img'}
-                alt={selectedItem?.titme}
-                src={selectedItem?.flag}
-                sx={{
-                  width: '35px',
-                  height: '20px',
-                  mr: '20px',
-                }}
-              />
-              <Box>
-                <Typography>{selectedItem?.title}</Typography>
-              </Box>
+              {selectedItem?.title && (
+                <Box
+                  component={'img'}
+                  alt={selectedItem?.titme}
+                  src={selectedItem?.flag}
+                  sx={{
+                    width: '35px',
+                    height: '20px',
+                    mr: '20px',
+                  }}
+                />
+              )}
+              <Box></Box>
+              <Typography
+                sx={{ color: selectedItem?.title ? '#000' : '#838383' }}
+              >
+                {selectedItem?.title || placeholder}
+              </Typography>
             </Box>
           ) : (
             <Typography sx={{ color: selectedItem ? '#000' : '#838383' }}>

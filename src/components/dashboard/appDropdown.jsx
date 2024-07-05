@@ -18,6 +18,7 @@ const AppDropdown = ({
   mb,
   error,
   isForm,
+  selectWithType,
   background = '#FFF',
   handleJobTitleClick,
   handleJobTitleSelect,
@@ -418,38 +419,42 @@ const AppDropdown = ({
             }}
             p={'10.5px'}
           >
-            {!!placeHolder && !jobTitle?.title && !selectedItem ? (
-              <Typography
-                sx={{
-                  color: '#838383',
-                  fontSize: '14px',
-                  fontStyle: 'normal',
-                  fontWeight: 400,
-                  wordBreak: 'break-word',
-                  lineHeight: 'normal',
-                  overflow: 'hidden', // Hide any overflowing content
-                  textOverflow: 'ellipsis', // Show an ellipsis (...) if text overflows
-                  whiteSpace: 'nowrap',
-                }}
-              >
-                {placeHolder}
-              </Typography>
-            ) : (
-              <Typography
-                sx={{
-                  color: '#595959',
-                  fontSize: '14px',
-                  fontStyle: 'normal',
-                  fontWeight: 500,
-                  lineHeight: 'normal',
-                  textOverflow: 'ellipsis',
-                  whiteSpace: 'nowrap',
-                  overflow: 'hidden',
-                  maxWidth: '300px',
-                }}
-              >
-                {nested ? jobTitle?.title : selectedItem}
-              </Typography>
+            {!!placeHolder && (
+              <Box>
+                {selectWithType ? (
+                  <input
+                    placeholder={placeHolder}
+                    className="form-input-field"
+                    style={{
+                      position: 'absolute',
+                      background: 'transparent',
+                      top: 0,
+                      bottom: 0,
+                      paddingLeft: 0,
+                    }}
+                    onChange={(e) => {
+                      setSelectedItem(e.target.value);
+                    }}
+                    value={nested ? jobTitle?.title : selectedItem}
+                  />
+                ) : (
+                  <Typography
+                    sx={{
+                      color: '#838383',
+                      fontSize: '14px',
+                      fontStyle: 'normal',
+                      fontWeight: 400,
+                      wordBreak: 'break-word',
+                      lineHeight: 'normal',
+                      overflow: 'hidden', // Hide any overflowing content
+                      textOverflow: 'ellipsis', // Show an ellipsis (...) if text overflows
+                      whiteSpace: 'nowrap',
+                    }}
+                  >
+                    {placeHolder}
+                  </Typography>
+                )}
+              </Box>
             )}
             {isOpenedDropdownNested ? (
               <Image

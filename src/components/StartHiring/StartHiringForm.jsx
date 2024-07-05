@@ -36,10 +36,6 @@ const StartHiringForm = () => {
     initialValues: {
       hiringStartDate: null,
       hiringEndDate: null,
-      country: {
-        flag: 'https://flagcdn.com/pk.svg',
-        title: 'Pakistan',
-      },
     },
     validationSchema: hiringFormSchema,
     enableReinitialize: true,
@@ -159,6 +155,7 @@ const StartHiringForm = () => {
                 options,
                 name,
                 nested,
+                selectWithType,
                 fields,
                 searchable,
                 withFlag,
@@ -201,6 +198,7 @@ const StartHiringForm = () => {
                     searchable={searchable}
                     countries={countriesList}
                     width={'100%'}
+                    selectWithType={selectWithType}
                     withFlag={withFlag}
                     marginLeft={{
                       '@media (min-width: 600px) and (max-width: 1200px)': {
