@@ -55,6 +55,7 @@ const FormInput = ({
   countries,
   searchable,
   suffixIconInside,
+  selectWithType,
   readOnly,
   withFlag,
   fieldsName,
@@ -262,6 +263,7 @@ const FormInput = ({
               isLoadingList={isLoadingList}
               setIsLoadingList={setIsLoadingList}
               nested={nested}
+              selectWithType={selectWithType}
               mb={'0px'}
               error={error}
               isForm

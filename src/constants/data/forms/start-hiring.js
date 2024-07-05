@@ -8,6 +8,7 @@ export const HiringForm = [
     nested: true,
     options: jobTitles,
     name: 'jobTitle',
+    selectWithType: true,
   },
   {
     title: 'Role',
@@ -40,6 +41,9 @@ export const HiringForm = [
       },
       {
         label: 'Female',
+      },
+      {
+        label: 'Not specific',
       },
     ],
   },
@@ -76,11 +80,49 @@ export const HiringForm = [
   },
   {
     title: 'Country',
-    placeholder: 'Select',
+    placeholder: 'Select country',
     name: 'country',
     type: 'select',
     searchable: true,
     withFlag: true,
+  },
+  {
+    title: 'Salary Currency',
+    placeholder: 'Select currency',
+    name: 'salary_currency',
+    type: 'select',
+    options: [
+      {
+        label: '$ U.S. dollar',
+      },
+      {
+        label: '€ Euro',
+      },
+      {
+        label: '¥ Japanese yen',
+      },
+      {
+        label: '£ Sterling',
+      },
+      {
+        label: 'Renminbi',
+      },
+      {
+        label: 'Autralian dollar',
+      },
+      {
+        label: 'Canadian dollar',
+      },
+      {
+        label: 'Swiss franc',
+      },
+      {
+        label: 'PKR',
+      },
+      {
+        label: 'INR',
+      },
+    ],
   },
   {
     title: 'Salary range',
@@ -89,14 +131,14 @@ export const HiringForm = [
     type: 'input-range',
     fields: [
       {
-        placeholder: '0.00',
+        placeholder: 'to',
         name: 'minimum',
-        suffixIcon: '$',
+        // suffixIcon: '$',
       },
       {
-        placeholder: '0.00',
+        placeholder: 'from',
         name: 'maximum',
-        suffixIcon: '$',
+        // suffixIcon: '$',
       },
     ],
   },

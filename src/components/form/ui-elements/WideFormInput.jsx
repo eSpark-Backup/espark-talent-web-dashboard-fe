@@ -46,7 +46,12 @@ const WideFormInput = ({
     const min = parseInt(arr[1]);
     return { hour, min };
   }
+  function convertTo24HourFormat(time) {
+    const parsedTime = dayjs(time, ['h:mm A', 'H:mm']);
+    const time24HourFormat = parsedTime.format('HH:mm');
 
+    return time24HourFormat;
+  }
   const handleSelectItem = (item) => {
     const tempErrors = { ...errors };
     if (Object.hasOwnProperty.call(tempErrors, name)) {
@@ -55,8 +60,12 @@ const WideFormInput = ({
     setErrors({ ...tempErrors });
     setFieldValue(name, item);
     if (values.expectedCheckIn || values.expectedCheckOut) {
-      const expectedCheckIn = getTimeComponents(values.expectedCheckIn);
-      const expectedCheckOut = getTimeComponents(values.expectedCheckOut);
+      const expectedCheckIn = getTimeComponents(
+        convertTo24HourFormat(values.expectedCheckIn)
+      );
+      const expectedCheckOut = getTimeComponents(
+        convertTo24HourFormat(values.expectedCheckOut)
+      );
       const checkOutTime = new Date();
       const checkInTime = new Date();
 
