@@ -1,11 +1,38 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 .root {
   display: flex;
   flex-wrap: wrap;
 }
+
+/* AFTER TAILWIND CSS REMOVED */
+
+*,
+:after,
+:before {
+  box-sizing: border-box;
+  border: 0 solid #e5e7eb;
+}
+
+fieldset {
+  margin: 0;
+}
+
+fieldset,
+legend {
+  padding: 0;
+}
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+/* AFTER TAILWIND CSS REMOVED */
 
 .formControl {
   margin: 8px;

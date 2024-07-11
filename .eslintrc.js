@@ -4,7 +4,6 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
     'plugin:jsx-a11y/recommended',
-    'plugin:tailwindcss/recommended',
     'next',
     'prettier',
   ],
@@ -13,7 +12,6 @@ module.exports = {
     'react',
     'react-hooks',
     'jsx-a11y',
-    'tailwindcss',
   ],
   env: {
     browser: true,
