@@ -20,6 +20,7 @@ import { HR_CLIENT_EMP_HIRING_REQUEST } from '@/src/services/apiService/apiEndPo
 import dayjs from 'dayjs';
 import { Toast } from '@/src/components/Toast/Toast';
 import { addHiringRequest } from '@/src/redux/slices/hrSlices/clientSlice';
+import { countriesList } from '@/src/constants/countries';
 
 const HiringRequestModal = ({ open, onClose }) => {
   const { client_perms } =
@@ -75,6 +76,8 @@ const HiringRequestModal = ({ open, onClose }) => {
     onSubmit: (formValues) => {
       const finalData = {
         ...formValues,
+        gender:
+          formValues?.gender == 'Not specific' ? 'nonspec' : formValues?.gender,
         hiring_start_date: dayjs(formValues.hiring_start_date).format(
           'YYYY-MM-DD'
         ),
@@ -83,6 +86,7 @@ const HiringRequestModal = ({ open, onClose }) => {
         salary_range: {
           minimum: formValues?.salary_range.minimum,
           maximum: formValues?.salary_range.maximum,
+          currency: formValues?.salary_currency,
         },
       };
       setHiringValues(finalData);
@@ -179,10 +183,13 @@ const HiringRequestModal = ({ open, onClose }) => {
                   prefixIcon,
                   type,
                   suffixIcon,
+                  selectWithType,
                   options,
                   name,
                   nested,
                   fields,
+                  searchable,
+                  withFlag,
                 },
                 formIndex
               ) => (
@@ -197,6 +204,10 @@ const HiringRequestModal = ({ open, onClose }) => {
                       suffixIcon={suffixIcon}
                       options={options}
                       name={name}
+                      searchable={searchable}
+                      countries={countriesList}
+                      withFlag={withFlag}
+                      selectWithType={selectWithType}
                       setFieldValue={setFieldValue}
                       value={values[name]}
                       error={errors[name]}

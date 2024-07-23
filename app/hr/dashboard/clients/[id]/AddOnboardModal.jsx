@@ -13,6 +13,7 @@ import { HR_CLIENT_EMP_ON_BOARDING } from '@/src/services/apiService/apiEndPoint
 import dayjs from 'dayjs';
 import { Toast } from '@/src/components/Toast/Toast';
 import { addOnBoard } from '@/src/redux/slices/hrSlices/clientSlice';
+import { countriesList } from '@/src/constants/countries';
 
 const AddOnboardModal = ({ open, onClose }) => {
   const { client_perms } =
@@ -64,6 +65,9 @@ const AddOnboardModal = ({ open, onClose }) => {
     onSubmit: (formValues) => {
       const finalData = {
         ...formValues,
+        gender:
+          formValues?.gender == 'Not specific' ? 'nonspec' : formValues?.gender,
+        country: formValues?.country.title,
         joining_date: dayjs(formValues.joining_date).format('YYYY-MM-DD'),
         client_id: email,
       };
@@ -158,7 +162,10 @@ const AddOnboardModal = ({ open, onClose }) => {
                   options,
                   name,
                   nested,
+                  selectWithType,
                   fields,
+                  searchable,
+                  withFlag,
                 },
                 formIndex
               ) => (
@@ -174,6 +181,10 @@ const AddOnboardModal = ({ open, onClose }) => {
                       suffixIcon={suffixIcon}
                       options={options}
                       name={name}
+                      searchable={searchable}
+                      countries={countriesList}
+                      selectWithType={selectWithType}
+                      withFlag={withFlag}
                       setFieldValue={setFieldValue}
                       value={values[name]}
                       error={errors[name]}

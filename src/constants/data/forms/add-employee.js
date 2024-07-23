@@ -30,6 +30,9 @@ const formElements = [
       {
         label: 'Female',
       },
+      {
+        label: 'Not specific',
+      },
     ],
   },
   {
@@ -165,6 +168,7 @@ const formElementsStep3 = [
     nested: true,
     options: jobTitles,
     name: 'job_title',
+    selectWithType: true,
   },
   {
     title: 'Company',

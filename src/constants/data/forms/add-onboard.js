@@ -18,6 +18,9 @@ export const addOnboardForm = [
       {
         label: 'Female',
       },
+      {
+        label: 'Not specific',
+      },
     ],
   },
   {
@@ -27,6 +30,7 @@ export const addOnboardForm = [
     nested: true,
     options: jobTitles,
     name: 'job_title',
+    selectWithType: true,
   },
   {
     title: 'Role type',
@@ -74,8 +78,11 @@ export const addOnboardForm = [
   },
   {
     title: 'Country',
-    placeholder: 'Pakistan',
+    placeholder: 'Select country',
     name: 'country',
+    type: 'select',
+    searchable: true,
+    withFlag: true,
   },
   {
     title: 'Notice period',
@@ -83,9 +90,47 @@ export const addOnboardForm = [
     name: 'notice_period',
   },
   {
+    title: 'Salary Currency',
+    placeholder: 'Select currency',
+    name: 'salary_currency',
+    type: 'select',
+    options: [
+      {
+        label: '$ U.S. dollar',
+      },
+      {
+        label: '€ Euro',
+      },
+      {
+        label: '¥ Japanese yen',
+      },
+      {
+        label: '£ Sterling',
+      },
+      {
+        label: 'Renminbi',
+      },
+      {
+        label: 'Autralian dollar',
+      },
+      {
+        label: 'Canadian dollar',
+      },
+      {
+        label: 'Swiss franc',
+      },
+      {
+        label: 'PKR',
+      },
+      {
+        label: 'INR',
+      },
+    ],
+  },
+  {
     title: 'Salary',
     name: 'salary',
-    dollarIcon: '$',
+    // dollarIcon: '$',
   },
   {
     title: 'Benefits',

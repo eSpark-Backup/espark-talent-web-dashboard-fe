@@ -32,6 +32,7 @@ const form = [
     nested: true,
     options: jobTitles,
     name: 'job_title',
+    selectWithType: true,
   },
   {
     title: 'Role type',
@@ -79,8 +80,11 @@ const form = [
   },
   {
     title: 'Country',
-    placeholder: 'Pakistan',
+    placeholder: 'Select country',
     name: 'country',
+    type: 'select',
+    searchable: true,
+    withFlag: true,
   },
   {
     title: 'Salary',

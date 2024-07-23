@@ -8,5 +8,5 @@ export const addNewInterviewFormSchema = Yup.object({
   role_type: Yup.string().required('Role Type is required'),
   employment_term: Yup.string().required('Employement term is required'),
   interview_date_time: Yup.string().required('Interview date & time required'),
-  country: Yup.string().required('Country is required'),
+  country: Yup.object().required('Country is required'),
 });

@@ -23,6 +23,7 @@ import dayjs from 'dayjs';
 import { useFormik } from 'formik';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { countriesList } from '@/src/constants/countries';
 
 const AddEmployeeModal = ({ open, onClose }) => {
   const { currentClient, outsourceableEmployees, currentEmpToAddInClient } =
@@ -269,7 +270,10 @@ const AddEmployeeModal = ({ open, onClose }) => {
                                   options,
                                   name,
                                   nested,
+                                  selectWithType,
                                   fields,
+                                  searchable,
+                                  withFlag,
                                 },
                                 formIndex
                               ) => (
@@ -284,6 +288,10 @@ const AddEmployeeModal = ({ open, onClose }) => {
                                       suffixIcon={suffixIcon}
                                       options={options}
                                       name={name}
+                                      selectWithType={selectWithType}
+                                      searchable={searchable}
+                                      withFlag={withFlag}
+                                      countries={countriesList}
                                       setFieldValue={setFieldValue}
                                       value={values[name]}
                                       error={errors[name]}

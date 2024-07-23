@@ -4,7 +4,7 @@ export const hiringRequestSchema = Yup.object({
   job_title: Yup.string().required('Job title is required'),
   role_type: Yup.string().required('Role type is required'),
   gender: Yup.string().required('Gender is required'),
-  country: Yup.string().required('Country is required'),
+  country: Yup.object().required('Country is required'),
   salary_range: Yup.object()
     .shape({
       minimum: Yup.number()

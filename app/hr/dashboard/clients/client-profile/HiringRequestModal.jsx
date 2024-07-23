@@ -109,6 +109,7 @@ const HiringRequestModal = ({ open, onClose }) => {
                   options,
                   name,
                   nested,
+                  selectWithType,
                   fields,
                 },
                 formIndex
@@ -124,6 +125,7 @@ const HiringRequestModal = ({ open, onClose }) => {
                       suffixIcon={suffixIcon}
                       options={options}
                       name={name}
+                      selectWithType={selectWithType}
                       setFieldValue={setFieldValue}
                       value={values[name]}
                       error={errors[name]}

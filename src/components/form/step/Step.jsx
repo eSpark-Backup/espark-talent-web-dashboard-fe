@@ -128,7 +128,14 @@ const Step = ({
       dispatchFunction?.(formValues);
       handleGoNext?.();
       if (isLastStep) {
-        const newData = getFinalData({ ...defaultValues, ...formValues });
+        const newData = getFinalData({
+          ...defaultValues,
+          ...formValues,
+          gender:
+            formValues?.gender == 'Not specific'
+              ? 'nonspec'
+              : formValues?.gender,
+        });
         console.log({ fV: formValues, newData });
         mutate(newData);
       }

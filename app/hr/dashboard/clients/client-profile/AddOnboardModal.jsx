@@ -114,6 +114,7 @@ const AddOnboardModal = ({ open, onClose }) => {
                   options,
                   name,
                   nested,
+                  selectWithType,
                   fields,
                 },
                 formIndex
@@ -129,6 +130,7 @@ const AddOnboardModal = ({ open, onClose }) => {
                       suffixIcon={suffixIcon}
                       options={options}
                       name={name}
+                      selectWithType={selectWithType}
                       setFieldValue={setFieldValue}
                       value={values[name]}
                       error={errors[name]}
