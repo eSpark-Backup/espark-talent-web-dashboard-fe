@@ -36,6 +36,8 @@ import { Toast } from '@/src/components/Toast/Toast';
 import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
 import { useRouter } from 'next/navigation';
 import dayjs from 'dayjs';
+import { hasSymbol } from '@/src/utils/symbolChecker';
+import { genderType } from '@/src/utils/genderType';
 
 const Dashboard = () => {
   const [value, setValue] = useState(0);
@@ -132,11 +134,17 @@ const Dashboard = () => {
 
   const reformData = (dataArr) => {
     if (dataArr?.length) {
-      const tempData = dataArr?.map((item) => ({
-        ...item,
-        salary_range: `${item.salary_range?.minimum} $ - ${item.salary_range?.maximum} $`,
-        action: ['Delete'],
-      }));
+      const tempData = dataArr?.map((item) => {
+        const symbol = item?.salary_range?.currency?.split(' ')[0];
+
+        return {
+          ...item,
+          salary_range: `${item.salary_range?.minimum} ${hasSymbol(symbol) ? symbol : ''} - ${item.salary_range?.maximum} ${hasSymbol(symbol) ? symbol : ''}`,
+          currency: item?.salary_range?.currency || '',
+          gender: genderType(item?.gender),
+          action: ['Delete'],
+        };
+      });
       return tempData;
     }
     return [];

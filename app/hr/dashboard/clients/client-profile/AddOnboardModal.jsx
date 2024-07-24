@@ -19,7 +19,6 @@ const AddOnboardModal = ({ open, onClose }) => {
     handleReset,
   } = useFormik({
     initialValues: {
-      country: 'Pakistan',
       benefits: {
         life_insurance_card: false,
         medical_card: false,

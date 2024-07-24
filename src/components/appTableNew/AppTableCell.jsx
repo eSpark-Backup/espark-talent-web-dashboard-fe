@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import Image from 'next/image';
-import { Avatar, Box, Typography } from '@mui/material';
+import { Avatar, Box, Tooltip, Typography } from '@mui/material';
 
 import AppCustomDropdown from '../dashboard/appCustomDropdown';
 import {
@@ -630,6 +630,8 @@ export const renderCellContent = (
             )
           ) : row[col?.name] === null ? (
             '-'
+          ) : col.title === 'Salary range' ? (
+            <Tooltip title={row?.currency}>{row[col?.name]}</Tooltip>
           ) : (
             getCamelCapitalized(row[col?.name])
           )}

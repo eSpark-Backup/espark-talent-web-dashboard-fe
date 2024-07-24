@@ -36,10 +36,7 @@ const AddEmployee = () => {
   const defaultValues = {
     ...addClientForm,
     join_date: addClientForm?.join_date || null,
-    country: addClientForm?.country || {
-      flag: 'https://flagcdn.com/pk.svg',
-      title: 'Pakistan',
-    },
+    country: addClientForm?.country,
   };
   const dispatchFunction = (values) => {
     console.log({ values });

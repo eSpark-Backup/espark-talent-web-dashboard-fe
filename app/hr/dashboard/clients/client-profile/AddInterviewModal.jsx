@@ -17,9 +17,7 @@ const AddInterviewModal = ({ open, onClose }) => {
     setErrors,
     handleReset,
   } = useFormik({
-    initialValues: {
-      country: 'Pakistan',
-    },
+    initialValues: {},
     validationSchema: addNewInterviewFormSchema,
     enableReinitialize: true,
     onSubmit: (formValues) => {

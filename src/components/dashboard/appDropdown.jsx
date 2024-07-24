@@ -23,6 +23,7 @@ const AppDropdown = ({
   handleJobTitleClick,
   handleJobTitleSelect,
 }) => {
+  console.log(error);
   const [isOpenedDropdown, setIsOpenedDropdown] = useState(false);
   const [isOpenedDropdownNested, setIsOpenedDropdownNested] = useState(false);
   const [listData, setListData] = useState([...data]);
@@ -407,7 +408,7 @@ const AppDropdown = ({
             display={'flex'}
             justifyContent={'space-between'}
             sx={{
-              border: 'solid 1px rgba(0, 0, 0, 0.23)',
+              border: `solid 1px ${error ? 'red' : 'rgba(0, 0, 0, 0.23)'}`,
               borderTopLeftRadius: '5px',
               borderTopRightRadius: '5px',
               borderBottomLeftRadius: !isOpenedDropdownNested && '5px',

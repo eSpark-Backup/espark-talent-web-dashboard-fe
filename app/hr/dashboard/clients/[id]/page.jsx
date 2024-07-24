@@ -68,6 +68,8 @@ import UploadOtherInvoiceModal from './UploadOtherInvoiceModal';
 import { Toast } from '@/src/components/Toast/Toast';
 import ProfileEditSkeleton from '@/src/components/HR/ProfileEditSkeleton';
 import dayjs from 'dayjs';
+import { hasSymbol } from '@/src/utils/symbolChecker';
+import { genderType } from '@/src/utils/genderType';
 
 const AddEmployee = () => {
   const params = useParams();
@@ -110,11 +112,17 @@ const AddEmployee = () => {
         .then(({ data }) => {
           const tempData =
             data !== ''
-              ? data?.map((item) => ({
-                  ...item,
-                  salary_range: `${item.salary_range.minimum}$ - ${item.salary_range.maximum}$`,
-                  action: ['Delete'],
-                }))
+              ? data?.map((item) => {
+                  const symbol = item?.salary_range?.currency?.split(' ')[0];
+
+                  return {
+                    ...item,
+                    salary_range: `${item.salary_range.minimum}${hasSymbol(symbol) ? symbol : ''} - ${item.salary_range.maximum}${hasSymbol(symbol) ? symbol : ''}`,
+                    currency: item?.salary_range?.currency || '',
+                    gender: genderType(item?.gender),
+                    action: ['Delete'],
+                  };
+                })
               : [];
           dispatch(getClientHiringRequest(tempData));
           return tempData;
@@ -142,8 +150,10 @@ const AddEmployee = () => {
                   interview_date_time: dayjs(item?.interview_date_time).format(
                     'YYYY-MM-DD hh:mm A'
                   ),
+                  gender: genderType(item?.gender),
                 }))
               : [];
+
           dispatch(getClientInterviewSchedule(tempData || []));
           return tempData;
         })
@@ -166,6 +176,7 @@ const AddEmployee = () => {
               ? [...data]?.map((item) => ({
                   ...item,
                   dropdownStatus: true,
+                  gender: genderType(item?.gender),
                   action: ['Delete'],
                 }))
               : [];

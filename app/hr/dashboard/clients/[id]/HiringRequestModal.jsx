@@ -67,7 +67,6 @@ const HiringRequestModal = ({ open, onClose }) => {
     handleReset,
   } = useFormik({
     initialValues: {
-      country: 'Pakistan',
       hiring_end_date: null,
       hiring_start_date: null,
     },
@@ -88,7 +87,9 @@ const HiringRequestModal = ({ open, onClose }) => {
           maximum: formValues?.salary_range.maximum,
           currency: formValues?.salary_currency,
         },
+        country: formValues?.country?.title,
       };
+
       setHiringValues(finalData);
       mutate({
         ...finalData,

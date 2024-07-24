@@ -57,9 +57,7 @@ const AddOnboardModal = ({ open, onClose }) => {
     setErrors,
     handleReset,
   } = useFormik({
-    initialValues: {
-      country: 'Pakistan',
-    },
+    initialValues: {},
     validationSchema: addOnboardFormSchema,
     enableReinitialize: true,
     onSubmit: (formValues) => {

@@ -11,5 +11,6 @@ export const addOnboardFormSchema = Yup.object({
   country: Yup.object().required('Country is required'),
   notice_period: Yup.string().required('Notice period is Required'),
   salary: Yup.string().required('Salary is required'),
+  salary_currency: Yup.string().required('Currency is required'),
   benefits: Yup.mixed(),
 });
