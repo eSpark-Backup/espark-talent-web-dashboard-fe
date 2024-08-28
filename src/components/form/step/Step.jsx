@@ -328,6 +328,7 @@ const Step = ({
               max,
               disabled,
               filelabel,
+              selectWithType,
             },
             formIndex
           ) => (
@@ -363,6 +364,7 @@ const Step = ({
               marginRight={marginRight}
               fontSize={fontSize}
               miniFontSize={miniFontSize}
+              selectWithType={selectWithType}
             />
           )
         )}

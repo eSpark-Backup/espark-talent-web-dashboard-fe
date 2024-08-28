@@ -21,6 +21,8 @@ import dayjs from 'dayjs';
 import { Toast } from '@/src/components/Toast/Toast';
 import { addHiringRequest } from '@/src/redux/slices/hrSlices/clientSlice';
 import { countriesList } from '@/src/constants/countries';
+import { hasSymbol } from '@/src/utils/symbolChecker';
+import { genderType } from '@/src/utils/genderType';
 
 const HiringRequestModal = ({ open, onClose }) => {
   const { client_perms } =
@@ -35,12 +37,15 @@ const HiringRequestModal = ({ open, onClose }) => {
     },
     onSuccess: ({ data }) => {
       Toast('success', 'Data posted successfully');
-      console.log({ data, values, hiringValues });
+
+      const symbol = hiringValues?.salary_range?.currency?.split(' ')[0];
+
       dispatch(
         addHiringRequest({
           ...hiringValues,
-          salary_range: `${hiringValues?.salary_range?.minimum}$ - ${hiringValues?.salary_range?.maximum}$`,
+          salary_range: `${hiringValues.salary_range.minimum} ${hasSymbol(symbol) ? symbol : ''} - ${hiringValues.salary_range.maximum} ${hasSymbol(symbol) ? symbol : ''}`,
           id: data.id,
+          gender: genderType(hiringValues?.gender),
           action:
             role === 'super_admin' ||
             (role !== 'super_admin' && client_perms?.[0]?.write)

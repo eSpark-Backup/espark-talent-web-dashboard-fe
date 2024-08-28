@@ -23,7 +23,6 @@ const AppDropdown = ({
   handleJobTitleClick,
   handleJobTitleSelect,
 }) => {
-  console.log(error);
   const [isOpenedDropdown, setIsOpenedDropdown] = useState(false);
   const [isOpenedDropdownNested, setIsOpenedDropdownNested] = useState(false);
   const [listData, setListData] = useState([...data]);
@@ -432,6 +431,7 @@ const AppDropdown = ({
                       top: 0,
                       bottom: 0,
                       paddingLeft: 0,
+                      paddingRight: '45px',
                     }}
                     onChange={(e) => {
                       setSelectedItem(e.target.value);

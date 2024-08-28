@@ -34,7 +34,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { filterTableRowsWRTTab } from '@/src/utils/table';
 import { Toast } from '@/src/components/Toast/Toast';
 import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import dayjs from 'dayjs';
 import { hasSymbol } from '@/src/utils/symbolChecker';
 import { genderType } from '@/src/utils/genderType';
@@ -52,6 +52,9 @@ const Dashboard = () => {
     useState([]);
   const [onBoardingDataState, setOnBoardingDataState] = useState([]);
   const router = useRouter();
+
+  const searchParams = useSearchParams();
+  const activePrams = searchParams.get('param');
 
   const hiringRequestQuery = useQuery({
     staleTime: 10000,
@@ -135,12 +138,15 @@ const Dashboard = () => {
   const reformData = (dataArr) => {
     if (dataArr?.length) {
       const tempData = dataArr?.map((item) => {
-        const symbol = item?.salary_range?.currency?.split(' ')[0];
+        const symbol = item?.salary_currency
+          ? item?.salary_currency?.split(' ')[0]
+          : item?.salary_range?.currency?.split(' ')[0];
 
         return {
           ...item,
           salary_range: `${item.salary_range?.minimum} ${hasSymbol(symbol) ? symbol : ''} - ${item.salary_range?.maximum} ${hasSymbol(symbol) ? symbol : ''}`,
-          currency: item?.salary_range?.currency || '',
+          salary: `${item.salary} ${hasSymbol(symbol) ? symbol : ''}`,
+          currency: item?.salary_range?.currency || item?.salary_currency || '',
           gender: genderType(item?.gender),
           action: ['Delete'],
         };
@@ -285,6 +291,20 @@ const Dashboard = () => {
     };
     updateInterviewScheduleStatus.mutate(tempData);
   };
+
+  useEffect(() => {
+    if (activePrams === 'hiring_request') {
+      setValue(0);
+    }
+    if (activePrams === 'interview_schedule') {
+      setValue(1);
+    }
+    if (activePrams === 'onboarding') {
+      setValue(2);
+    }
+
+    setCurrentTab(activePrams);
+  }, [activePrams]);
 
   return (
     <>

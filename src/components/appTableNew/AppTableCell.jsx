@@ -6,6 +6,7 @@ import AppCustomDropdown from '../dashboard/appCustomDropdown';
 import {
   getCamelCapitalized,
   toCamelCase,
+  truncateText,
 } from '@/src/utils/stringModification';
 import { trackingStatusTypes } from '@/src/constants/data/tables/timeTracking';
 import AppTableInfoOptionsCell from './AppTableInfoOptionsCell';
@@ -628,10 +629,16 @@ export const renderCellContent = (
                 {getCamelCapitalized(row[col?.name])}
               </Typography>
             )
-          ) : row[col?.name] === null ? (
+          ) : row[col?.name] === null || row[col?.name] === undefined ? (
             '-'
-          ) : col.title === 'Salary range' ? (
-            <Tooltip title={row?.currency}>{row[col?.name]}</Tooltip>
+          ) : col.title === 'Salary range' || col.title === 'Salary' ? (
+            <Tooltip title={row?.currency || row?.salary_currency}>
+              {row[col?.name]}
+            </Tooltip>
+          ) : col.name === 'job_title' && row[col?.name]?.length > 22 ? (
+            <Tooltip title={row[col?.name]}>
+              {truncateText(row[col?.name], 22)}
+            </Tooltip>
           ) : (
             getCamelCapitalized(row[col?.name])
           )}

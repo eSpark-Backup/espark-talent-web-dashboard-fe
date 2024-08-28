@@ -1,7 +1,10 @@
 import * as Yup from 'yup';
 
 export const hiringRequestSchema = Yup.object({
-  job_title: Yup.string().required('Job title is required'),
+  job_title: Yup.string()
+    .required('Job title is required')
+    .min(3, 'Job title must be at least 3 characters long') // Minimum length
+    .max(30, 'Job title cannot exceed 30 characters'), // Maximum length
   role_type: Yup.string().required('Role type is required'),
   gender: Yup.string().required('Gender is required'),
   country: Yup.object().required('Country is required'),

@@ -14,6 +14,7 @@ import dayjs from 'dayjs';
 import { Toast } from '@/src/components/Toast/Toast';
 import { addOnBoard } from '@/src/redux/slices/hrSlices/clientSlice';
 import { countriesList } from '@/src/constants/countries';
+import { hasSymbol } from '@/src/utils/symbolChecker';
 
 const AddOnboardModal = ({ open, onClose }) => {
   const { client_perms } =
@@ -27,10 +28,12 @@ const AddOnboardModal = ({ open, onClose }) => {
       return api.postJSONData(`${HR_CLIENT_EMP_ON_BOARDING}`, formVals);
     },
     onSuccess: ({ data }) => {
-      console.log({ data, onBoardFormValues });
+      const symbol = onBoardFormValues?.salary_currency?.split(' ')[0];
+
       dispatch(
         addOnBoard({
           ...onBoardFormValues,
+          salary: `${onBoardFormValues.salary} ${hasSymbol(symbol) ? symbol : ''}`,
           id: data.id,
           action:
             role === 'super_admin' ||

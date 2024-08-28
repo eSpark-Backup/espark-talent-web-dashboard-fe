@@ -70,6 +70,7 @@ import ProfileEditSkeleton from '@/src/components/HR/ProfileEditSkeleton';
 import dayjs from 'dayjs';
 import { hasSymbol } from '@/src/utils/symbolChecker';
 import { genderType } from '@/src/utils/genderType';
+import { clientProfileTabsHandler } from '@/src/utils/clientProfileTabHandler';
 
 const AddEmployee = () => {
   const params = useParams();
@@ -173,12 +174,18 @@ const AddEmployee = () => {
         .then(({ data }) => {
           const tempData =
             data !== ''
-              ? [...data]?.map((item) => ({
-                  ...item,
-                  dropdownStatus: true,
-                  gender: genderType(item?.gender),
-                  action: ['Delete'],
-                }))
+              ? [...data]?.map((item) => {
+                  const symbol = item?.salary_currency?.split(' ')[0];
+
+                  return {
+                    ...item,
+                    salary: `${item.salary} ${hasSymbol(symbol) ? symbol : ''}`,
+                    salary_currency: item?.salary_currency || '',
+                    dropdownStatus: true,
+                    gender: genderType(item?.gender),
+                    action: ['Delete'],
+                  };
+                })
               : [];
           dispatch(getClientOnboarding(tempData || []));
           return data;
@@ -559,52 +566,52 @@ const AddEmployee = () => {
   });
 
   useEffect(() => {
-    if (search === 'employee_invoices') {
-      const colData = clientProfileTabs.find(
-        (tab) => tab.label === 'Employee invoices'
+    if (search === 'hiring_request') {
+      clientProfileTabsHandler(
+        clientProfileTabs,
+        clientProfileTabs[0]?.label,
+        clientProfileTabs[0]?.nestedTabs[0]?.label,
+        setCurrentTab,
+        hireAndOnBoard.hiringRequest,
+        processColumns,
+        hiringRequestColumn,
+        setCurrentTabTable,
+        0,
+        0
       );
-      setCurrentTab((ps) => {
-        return {
-          ...ps,
-          label: 'Employee invoices',
-          val: 2,
-          nested: {
-            label: 'Pending',
-            data: employeeInvoices?.pending,
-            column: processColumns(invoicePaymentColumn),
-            val: 0,
-          },
-        };
-      });
-      setCurrentTabTable((ps) => ({
-        ...ps,
-        data: employeeInvoices.pending,
-        column: colData?.nestedTabs?.[0]?.column,
-      }));
+    } else if (search === 'employee_invoices') {
+      clientProfileTabsHandler(
+        clientProfileTabs,
+        clientProfileTabs[2]?.label,
+        clientProfileTabs[2]?.nestedTabs[0]?.label,
+        setCurrentTab,
+        employeeInvoices?.pending,
+        processColumns,
+        invoicePaymentColumn,
+        setCurrentTabTable,
+        2,
+        0
+      );
     } else if (search === 'other_invoices') {
-      const colData = clientProfileTabs.find(
-        (tab) => tab.label === 'Other invoices'
+      clientProfileTabsHandler(
+        clientProfileTabs,
+        clientProfileTabs[3]?.label,
+        clientProfileTabs[3]?.nestedTabs[0]?.label,
+        setCurrentTab,
+        otherInvoices?.pending,
+        processColumns,
+        otherPaymentColumn,
+        setCurrentTabTable,
+        3,
+        0
       );
-      setCurrentTab((ps) => {
-        return {
-          ...ps,
-          label: 'Other invoices',
-          val: 3,
-          nested: {
-            label: 'Pending',
-            data: otherInvoices?.pending,
-            column: processColumns(otherPaymentColumn),
-            val: 0,
-          },
-        };
-      });
-      setCurrentTabTable((ps) => ({
-        ...ps,
-        data: otherInvoices.pending,
-        column: colData?.nestedTabs?.[0]?.column,
-      }));
     }
-  }, [employeeInvoices?.pending, otherInvoices?.pending, search]);
+  }, [
+    employeeInvoices?.pending,
+    otherInvoices?.pending,
+    hireAndOnBoard,
+    search,
+  ]);
   const [currentTabTable, setCurrentTabTable] = useState({
     data: hireAndOnBoard?.hiringRequest,
     column: clientProfileTabs?.[0].nestedTabs?.[0]?.column,

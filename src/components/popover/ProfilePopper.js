@@ -26,6 +26,7 @@ import { restructureNotificationData } from '@/src/utils/helpers';
 import { getNotifications } from '@/src/redux/slices/notificationSlice';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
+import { notificationCases } from '@/src/utils/notificationCases';
 dayjs.extend(relativeTime);
 
 export default function ProfilePopper({
@@ -43,6 +44,7 @@ export default function ProfilePopper({
   const [openModal, setOpenModal] = React.useState(false);
   const [isFetchingNotifications, setIsFetchingNotifications] =
     React.useState(false);
+  const userType = Cookie.get('userType');
 
   const handleClick = (event) => {
     setProfileMenu(profileMenu ? null : event?.currentTarget);
@@ -214,7 +216,7 @@ export default function ProfilePopper({
               <Box sx={{ display: 'flex', gap: 1.7, px: 2 }}>
                 <Box sx={{ display: 'flex', gap: 0.1 }}>
                   <Box sx={{ marginTop: -1.2 }}>
-                    {item?.text == 'Notifications' && (
+                    {item?.text == 'Notifications' && data?.length && (
                       <DotBadge color={'red'} />
                     )}
                   </Box>
@@ -333,6 +335,10 @@ export default function ProfilePopper({
                             py: 3,
                             pl: { xs: 2.5, sm: 3.5 },
                             borderBottom: '1px solid #E4E4E4',
+                            cursor: 'pointer',
+                          }}
+                          onClick={() => {
+                            notificationCases(userType, notification);
                           }}
                         >
                           <Box>

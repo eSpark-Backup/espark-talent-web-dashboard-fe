@@ -139,8 +139,9 @@ const AddEmployeeModal = ({ open, onClose }) => {
         ...formValues,
         id: currentEmpToAddInClient,
         joining_date: dayjs(formValues.joining_date).format('YYYY-MM-DD'),
+        country: formValues.country.title,
       };
-      console.log({ formValues, finalData });
+
       mutate(finalData);
     },
     validateOnChange: false,

@@ -92,6 +92,44 @@ const form = [
     name: 'salary',
   },
   {
+    title: 'Salary Currency',
+    placeholder: 'Select currency',
+    name: 'salary_currency',
+    type: 'select',
+    options: [
+      {
+        label: '$ U.S. dollar',
+      },
+      {
+        label: '€ Euro',
+      },
+      {
+        label: '¥ Japanese yen',
+      },
+      {
+        label: '£ Sterling',
+      },
+      {
+        label: 'Renminbi',
+      },
+      {
+        label: 'Autralian dollar',
+      },
+      {
+        label: 'Canadian dollar',
+      },
+      {
+        label: 'Swiss franc',
+      },
+      {
+        label: 'PKR',
+      },
+      {
+        label: 'INR',
+      },
+    ],
+  },
+  {
     title: 'Benefits',
     placeholder: 'Enter benefits',
     name: 'benefits',
