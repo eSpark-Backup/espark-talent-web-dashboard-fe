@@ -128,7 +128,14 @@ const Step = ({
       dispatchFunction?.(formValues);
       handleGoNext?.();
       if (isLastStep) {
-        const newData = getFinalData({ ...defaultValues, ...formValues });
+        const newData = getFinalData({
+          ...defaultValues,
+          ...formValues,
+          gender:
+            formValues?.gender == 'Not specific'
+              ? 'nonspec'
+              : formValues?.gender,
+        });
         console.log({ fV: formValues, newData });
         mutate(newData);
       }
@@ -321,6 +328,7 @@ const Step = ({
               max,
               disabled,
               filelabel,
+              selectWithType,
             },
             formIndex
           ) => (
@@ -356,6 +364,7 @@ const Step = ({
               marginRight={marginRight}
               fontSize={fontSize}
               miniFontSize={miniFontSize}
+              selectWithType={selectWithType}
             />
           )
         )}

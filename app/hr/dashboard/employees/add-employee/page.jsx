@@ -47,10 +47,7 @@ const AddEmployee = () => {
     hajj_leaves: addEmployeeForm?.hajj_leaves || 0,
     sick_leaves: addEmployeeForm?.sick_leaves || 0,
     casual_leaves: addEmployeeForm?.casual_leaves || 0,
-    country: addEmployeeForm?.country || {
-      flag: 'https://flagcdn.com/pk.svg',
-      title: 'Pakistan',
-    },
+    country: addEmployeeForm?.country,
   };
   const getFinalData = (values) => ({
     first_name: values.first_name,

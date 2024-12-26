@@ -1,12 +1,37 @@
 import { leaveRequestsTab } from '@/src/constants/data/tabs/timeOffTabs';
 import { updateCurrentReqTypeTab } from '@/src/redux/slices/clientSlices/timeOffSlice';
 import { Box, Tab, Tabs } from '@mui/material';
-import React from 'react';
+import { useSearchParams } from 'next/navigation';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 const TimeOffTabs = () => {
   const { tabData } = useSelector((state) => state?.client?.timeOff);
   const dispatch = useDispatch();
+  const searchParams = useSearchParams();
+
+  const search = searchParams.get('param');
+
+  useEffect(() => {
+    if (search === 'leave_request') {
+      dispatch(
+        updateCurrentReqTypeTab({
+          tab: 'Leave Requests',
+          val: 0,
+        })
+      );
+    }
+
+    if (search === 'punch_request') {
+      dispatch(
+        updateCurrentReqTypeTab({
+          tab: 'Clockin/out Requests',
+          val: 2,
+        })
+      );
+    }
+  }, [search]);
+
   const handleChangeCurrReqTypeTab = (event, newValue) => {
     const tab = event?.target?.innerText;
     dispatch(
@@ -16,6 +41,7 @@ const TimeOffTabs = () => {
       })
     );
   };
+
   return (
     <Box
       display={'flex'}

@@ -44,11 +44,13 @@ const StartHiringForm = () => {
       const revampFormValues = {
         job_title: formValues?.jobTitle,
         role_type: formValues?.roleType,
-        gender: formValues?.gender,
+        gender:
+          formValues?.gender == 'Not specific' ? 'nonspec' : formValues?.gender,
         employment_term: formValues?.employmentTerm,
         salary_range: {
           minimum: formValues?.salary_range?.minimum,
           maximum: formValues?.salary_range?.maximum,
+          currency: formValues?.salary_currency,
         },
         country: formValues?.country?.title,
         hiring_start_date: dayjs(formValues?.hiringStartDate).format(

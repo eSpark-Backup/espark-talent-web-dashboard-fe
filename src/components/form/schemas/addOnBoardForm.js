@@ -4,12 +4,16 @@ import { dojValidation, nameValidation } from './validations';
 export const addOnboardFormSchema = Yup.object({
   employee_name: nameValidation,
   gender: Yup.string().required('Gender is required'),
-  job_title: Yup.string().required('Job title is required'),
+  job_title: Yup.string()
+    .required('Job title is required')
+    .min(3, 'Job title must be at least 3 characters long') // Minimum length
+    .max(30, 'Job title cannot exceed 30 characters'), // Maximum length
   role_type: Yup.string().required('Role type is Required'),
   employment_term: Yup.string().required('Employement term is required'),
   joining_date: dojValidation,
-  country: Yup.string().required('Country is required'),
+  country: Yup.object().required('Country is required'),
   notice_period: Yup.string().required('Notice period is Required'),
   salary: Yup.string().required('Salary is required'),
+  salary_currency: Yup.string().required('Currency is required'),
   benefits: Yup.mixed(),
 });

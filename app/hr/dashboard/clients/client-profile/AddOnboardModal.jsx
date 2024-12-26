@@ -19,7 +19,6 @@ const AddOnboardModal = ({ open, onClose }) => {
     handleReset,
   } = useFormik({
     initialValues: {
-      country: 'Pakistan',
       benefits: {
         life_insurance_card: false,
         medical_card: false,
@@ -114,6 +113,7 @@ const AddOnboardModal = ({ open, onClose }) => {
                   options,
                   name,
                   nested,
+                  selectWithType,
                   fields,
                 },
                 formIndex
@@ -129,6 +129,7 @@ const AddOnboardModal = ({ open, onClose }) => {
                       suffixIcon={suffixIcon}
                       options={options}
                       name={name}
+                      selectWithType={selectWithType}
                       setFieldValue={setFieldValue}
                       value={values[name]}
                       error={errors[name]}

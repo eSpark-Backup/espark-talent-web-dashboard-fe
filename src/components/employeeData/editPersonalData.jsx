@@ -91,7 +91,11 @@ const EditPersonalModal = ({ onClose, handleEditProfileModal, data }) => {
     enableReinitialize: true,
     onSubmit: (formValues) => {
       console.log({ formValues });
-      handleUpdate(formValues);
+      handleUpdate({
+        ...formValues,
+        gender:
+          formValues?.gender == 'Not specific' ? 'nonspec' : formValues?.gender,
+      });
     },
     validateOnChange: false,
     validateOnBlur: false,
@@ -186,6 +190,7 @@ const EditPersonalModal = ({ onClose, handleEditProfileModal, data }) => {
                   options,
                   name,
                   nested,
+                  selectWithType,
                   fields,
                 },
                 formIndex
@@ -201,6 +206,7 @@ const EditPersonalModal = ({ onClose, handleEditProfileModal, data }) => {
                       suffixIcon={suffixIcon}
                       options={options}
                       name={name}
+                      selectWithType={selectWithType}
                       setFieldValue={setFieldValue}
                       value={values[name]}
                       error={errors[name]}

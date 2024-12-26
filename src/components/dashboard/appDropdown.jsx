@@ -407,7 +407,7 @@ const AppDropdown = ({
             display={'flex'}
             justifyContent={'space-between'}
             sx={{
-              border: 'solid 1px rgba(0, 0, 0, 0.23)',
+              border: `solid 1px ${error ? 'red' : 'rgba(0, 0, 0, 0.23)'}`,
               borderTopLeftRadius: '5px',
               borderTopRightRadius: '5px',
               borderBottomLeftRadius: !isOpenedDropdownNested && '5px',
@@ -431,6 +431,7 @@ const AppDropdown = ({
                       top: 0,
                       bottom: 0,
                       paddingLeft: 0,
+                      paddingRight: '45px',
                     }}
                     onChange={(e) => {
                       setSelectedItem(e.target.value);

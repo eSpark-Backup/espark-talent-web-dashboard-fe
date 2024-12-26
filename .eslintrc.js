@@ -7,12 +7,7 @@ module.exports = {
     'next',
     'prettier',
   ],
-  plugins: [
-    'eslint-plugin-prettier',
-    'react',
-    'react-hooks',
-    'jsx-a11y',
-  ],
+  plugins: ['eslint-plugin-prettier', 'react', 'react-hooks', 'jsx-a11y'],
   env: {
     browser: true,
     es6: true,
