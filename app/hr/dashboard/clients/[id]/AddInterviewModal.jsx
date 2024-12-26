@@ -1,6 +1,7 @@
 import { addNewInterviewFormSchema } from '@/src/components/form/schemas/addNewInterviewForm';
 import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { Toast } from '@/src/components/Toast/Toast';
+import { countriesList } from '@/src/constants/countries';
 import { addNewInterviewForm } from '@/src/constants/data/forms/add-new-interview';
 import { FORM_DATA } from '@/src/constants/form';
 import { addInterviewSchedule } from '@/src/redux/slices/hrSlices/clientSlice';
@@ -57,14 +58,15 @@ const AddInterviewModal = ({ open, onClose }) => {
     setErrors,
     handleReset,
   } = useFormik({
-    initialValues: {
-      country: 'Pakistan',
-    },
+    initialValues: {},
     validationSchema: addNewInterviewFormSchema,
     enableReinitialize: true,
     onSubmit: (formValues) => {
       const finalData = {
         ...formValues,
+        gender:
+          formValues?.gender == 'Not specific' ? 'nonspec' : formValues?.gender,
+        country: formValues?.country.title,
         interview_date_time: dayjs(formValues.hiring_start_date).format(
           'YYYY-MM-DDTHH:mm:ss.SSS[Z]'
         ),
@@ -158,7 +160,10 @@ const AddInterviewModal = ({ open, onClose }) => {
                   options,
                   name,
                   nested,
+                  selectWithType,
                   fields,
+                  searchable,
+                  withFlag,
                 },
                 formIndex
               ) => (
@@ -173,6 +178,7 @@ const AddInterviewModal = ({ open, onClose }) => {
                       suffixIcon={suffixIcon}
                       options={options}
                       name={name}
+                      selectWithType={selectWithType}
                       setFieldValue={setFieldValue}
                       value={values[name]}
                       error={errors[name]}
@@ -181,6 +187,9 @@ const AddInterviewModal = ({ open, onClose }) => {
                       errors={errors}
                       setErrors={setErrors}
                       values={values}
+                      searchable={searchable}
+                      withFlag={withFlag}
+                      countries={countriesList}
                       nested={nested}
                       xs={12}
                       sm={12}

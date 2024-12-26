@@ -83,6 +83,16 @@ export const timeTrackingTableColumn = [
     name: 'hours_worked',
   },
   {
+    title: 'Break',
+    flex: 2,
+    name: 'break',
+  },
+  {
+    title: 'Resume',
+    flex: 2,
+    name: 'resume',
+  },
+  {
     title: 'Overtime',
     flex: 2,
     name: 'overtime',

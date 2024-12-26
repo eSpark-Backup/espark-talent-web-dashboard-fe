@@ -37,7 +37,10 @@ export const emergencyContactSchema = Yup.object({
 export const companyDetailsSchema = Yup.object({
   joining_date: dojValidation,
   role: Yup.string().required('Role is required'),
-  job_title: Yup.string().required('Job Title is required'),
+  job_title: Yup.string()
+    .required('Job title is required')
+    .min(3, 'Job title must be at least 3 characters long') // Minimum length
+    .max(30, 'Job title cannot exceed 30 characters'), // Maximum length
   company: Yup.string().required('Company is required'),
   employementTerms: Yup.string().required('Employement terms is required'),
 });

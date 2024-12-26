@@ -20,6 +20,9 @@ import { HR_CLIENT_EMP_HIRING_REQUEST } from '@/src/services/apiService/apiEndPo
 import dayjs from 'dayjs';
 import { Toast } from '@/src/components/Toast/Toast';
 import { addHiringRequest } from '@/src/redux/slices/hrSlices/clientSlice';
+import { countriesList } from '@/src/constants/countries';
+import { hasSymbol } from '@/src/utils/symbolChecker';
+import { genderType } from '@/src/utils/genderType';
 
 const HiringRequestModal = ({ open, onClose }) => {
   const { client_perms } =
@@ -34,12 +37,15 @@ const HiringRequestModal = ({ open, onClose }) => {
     },
     onSuccess: ({ data }) => {
       Toast('success', 'Data posted successfully');
-      console.log({ data, values, hiringValues });
+
+      const symbol = hiringValues?.salary_range?.currency?.split(' ')[0];
+
       dispatch(
         addHiringRequest({
           ...hiringValues,
-          salary_range: `${hiringValues?.salary_range?.minimum}$ - ${hiringValues?.salary_range?.maximum}$`,
+          salary_range: `${hiringValues.salary_range.minimum} ${hasSymbol(symbol) ? symbol : ''} - ${hiringValues.salary_range.maximum} ${hasSymbol(symbol) ? symbol : ''}`,
           id: data.id,
+          gender: genderType(hiringValues?.gender),
           action:
             role === 'super_admin' ||
             (role !== 'super_admin' && client_perms?.[0]?.write)
@@ -66,7 +72,6 @@ const HiringRequestModal = ({ open, onClose }) => {
     handleReset,
   } = useFormik({
     initialValues: {
-      country: 'Pakistan',
       hiring_end_date: null,
       hiring_start_date: null,
     },
@@ -75,6 +80,8 @@ const HiringRequestModal = ({ open, onClose }) => {
     onSubmit: (formValues) => {
       const finalData = {
         ...formValues,
+        gender:
+          formValues?.gender == 'Not specific' ? 'nonspec' : formValues?.gender,
         hiring_start_date: dayjs(formValues.hiring_start_date).format(
           'YYYY-MM-DD'
         ),
@@ -83,8 +90,11 @@ const HiringRequestModal = ({ open, onClose }) => {
         salary_range: {
           minimum: formValues?.salary_range.minimum,
           maximum: formValues?.salary_range.maximum,
+          currency: formValues?.salary_currency,
         },
+        country: formValues?.country?.title,
       };
+
       setHiringValues(finalData);
       mutate({
         ...finalData,
@@ -179,10 +189,13 @@ const HiringRequestModal = ({ open, onClose }) => {
                   prefixIcon,
                   type,
                   suffixIcon,
+                  selectWithType,
                   options,
                   name,
                   nested,
                   fields,
+                  searchable,
+                  withFlag,
                 },
                 formIndex
               ) => (
@@ -197,6 +210,10 @@ const HiringRequestModal = ({ open, onClose }) => {
                       suffixIcon={suffixIcon}
                       options={options}
                       name={name}
+                      searchable={searchable}
+                      countries={countriesList}
+                      withFlag={withFlag}
+                      selectWithType={selectWithType}
                       setFieldValue={setFieldValue}
                       value={values[name]}
                       error={errors[name]}

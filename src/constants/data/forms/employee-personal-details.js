@@ -33,6 +33,9 @@ export const personalDetailsForm = [
       {
         label: 'Female',
       },
+      {
+        label: 'Not specific',
+      },
     ],
   },
   {
@@ -79,5 +82,6 @@ export const personalDetailsForm = [
     nested: true,
     options: jobTitles,
     name: 'job_title',
+    selectWithType: true,
   },
 ];

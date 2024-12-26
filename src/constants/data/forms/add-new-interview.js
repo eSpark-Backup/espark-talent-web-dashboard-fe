@@ -18,6 +18,9 @@ export const addNewInterviewForm = [
       {
         label: 'Female',
       },
+      {
+        label: 'Not specific',
+      },
     ],
   },
   {
@@ -27,6 +30,7 @@ export const addNewInterviewForm = [
     nested: true,
     options: jobTitles,
     name: 'job_title',
+    selectWithType: true,
   },
   {
     title: 'Role type',
@@ -74,7 +78,10 @@ export const addNewInterviewForm = [
   },
   {
     title: 'Country',
-    placeholder: 'Pakistan',
+    placeholder: 'Select country',
     name: 'country',
+    type: 'select',
+    searchable: true,
+    withFlag: true,
   },
 ];

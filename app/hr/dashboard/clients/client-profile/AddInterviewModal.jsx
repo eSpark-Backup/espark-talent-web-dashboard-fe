@@ -17,9 +17,7 @@ const AddInterviewModal = ({ open, onClose }) => {
     setErrors,
     handleReset,
   } = useFormik({
-    initialValues: {
-      country: 'Pakistan',
-    },
+    initialValues: {},
     validationSchema: addNewInterviewFormSchema,
     enableReinitialize: true,
     onSubmit: (formValues) => {
@@ -108,6 +106,7 @@ const AddInterviewModal = ({ open, onClose }) => {
                   options,
                   name,
                   nested,
+                  selectWithType,
                   fields,
                 },
                 formIndex
@@ -123,6 +122,7 @@ const AddInterviewModal = ({ open, onClose }) => {
                       suffixIcon={suffixIcon}
                       options={options}
                       name={name}
+                      selectWithType={selectWithType}
                       setFieldValue={setFieldValue}
                       value={values[name]}
                       error={errors[name]}

@@ -280,7 +280,7 @@ const AppSearchableDropdown = ({
                             src={item?.flag}
                             sx={{
                               width: '35px',
-                              height: '20px',
+                              // height: '20px',
                               mr: '20px',
                             }}
                           />

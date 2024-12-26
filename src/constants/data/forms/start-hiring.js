@@ -131,12 +131,12 @@ export const HiringForm = [
     type: 'input-range',
     fields: [
       {
-        placeholder: 'to',
+        placeholder: 'from',
         name: 'minimum',
         // suffixIcon: '$',
       },
       {
-        placeholder: 'from',
+        placeholder: 'to',
         name: 'maximum',
         // suffixIcon: '$',
       },

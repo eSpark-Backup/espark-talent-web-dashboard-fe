@@ -1,1196 +1,978 @@
 export const countriesList = [
   {
     title: 'Afghanistan',
-    flag: 'https://flagcdn.com/af.svg',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AF.svg',
   },
   {
     title: 'Albania',
-    flag: 'https://flagcdn.com/al.svg',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AL.svg',
   },
   {
     title: 'Algeria',
-    flag: 'https://flagcdn.com/dz.svg',
-  },
-  {
-    title: 'Andorra',
-    flag: 'https://flagcdn.com/ad.svg',
-  },
-  {
-    title: 'Angola',
-    flag: 'https://flagcdn.com/ao.svg',
-  },
-  {
-    title: 'Antigua and Barbuda',
-    flag: 'https://flagcdn.com/ag.svg',
-  },
-  {
-    title: 'Argentina',
-    flag: 'https://flagcdn.com/ar.svg',
-  },
-  {
-    title: 'Armenia',
-    flag: 'https://flagcdn.com/am.svg',
-  },
-  {
-    title: 'Australia',
-    flag: 'https://flagcdn.com/au.svg',
-  },
-  {
-    title: 'Austria',
-    flag: 'https://flagcdn.com/at.svg',
-  },
-  {
-    title: 'Azerbaijan',
-    flag: 'https://flagcdn.com/az.svg',
-  },
-  {
-    title: 'United Arab Emirates',
-    flag: 'https://flagcdn.com/ae.svg',
-  },
-  {
-    title: 'Anguilla',
-    flag: 'https://flagcdn.com/ai.svg',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/DZ.svg',
   },
   {
     title: 'American Samoa',
-    flag: 'https://flagcdn.com/as.svg',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AS.svg',
   },
   {
-    title: 'Bosnia and Herzegovina',
-    flag: 'https://flagcdn.com/ba.svg',
+    title: 'Andorra',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AD.svg',
   },
   {
-    title: 'Barbados',
-    flag: 'https://flagcdn.com/bb.svg',
+    title: 'Angola',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AO.svg',
   },
   {
-    title: 'Bangladesh',
-    flag: 'https://flagcdn.com/bd.svg',
+    title: 'Anguilla',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AI.svg',
   },
   {
-    title: 'Belgium',
-    flag: 'https://flagcdn.com/be.svg',
+    title: 'Antarctica',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AQ.svg',
   },
   {
-    title: 'Burkina Faso',
-    flag: 'https://flagcdn.com/bf.svg',
+    title: 'Antigua and Barbuda',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AG.svg',
   },
   {
-    title: 'Bulgaria',
-    flag: 'https://flagcdn.com/bg.svg',
+    title: 'Argentina',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AR.svg',
   },
   {
-    title: 'Bahrain',
-    flag: 'https://flagcdn.com/bh.svg',
+    title: 'Armenia',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AM.svg',
   },
   {
-    title: 'Burundi',
-    flag: 'https://flagcdn.com/bi.svg',
+    title: 'Aruba',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AW.svg',
   },
   {
-    title: 'Benin',
-    flag: 'https://flagcdn.com/bj.svg',
+    title: 'Australia',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AU.svg',
   },
   {
-    title: 'Saint Barthélemy',
-    flag: 'https://flagcdn.com/bl.svg',
+    title: 'Austria',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AT.svg',
   },
   {
-    title: 'Bermuda',
-    flag: 'https://flagcdn.com/bm.svg',
-  },
-  {
-    title: 'Brunei',
-    flag: 'https://flagcdn.com/bn.svg',
-  },
-  {
-    title: 'Bolivia',
-    flag: 'https://flagcdn.com/bo.svg',
-  },
-  {
-    title: 'Caribbean Netherlands',
-    flag: 'https://flagcdn.com/bq.svg',
-  },
-  {
-    title: 'Brazil',
-    flag: 'https://flagcdn.com/br.svg',
+    title: 'Azerbaijan',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AZ.svg',
   },
   {
     title: 'Bahamas',
-    flag: 'https://flagcdn.com/bs.svg',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BS.svg',
   },
   {
-    title: 'Bhutan',
-    flag: 'https://flagcdn.com/bt.svg',
+    title: 'Bahrain',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BH.svg',
   },
   {
-    title: 'Bouvet Island',
-    flag: 'https://flagcdn.com/bv.svg',
+    title: 'Bangladesh',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BD.svg',
   },
   {
-    title: 'Botswana',
-    flag: 'https://flagcdn.com/bw.svg',
+    title: 'Barbados',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BB.svg',
+  },
+  {
+    title: 'Belarus',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BY.svg',
+  },
+  {
+    title: 'Belgium',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BE.svg',
   },
   {
     title: 'Belize',
-    flag: 'https://flagcdn.com/bz.svg',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BZ.svg',
   },
   {
-    title: 'Canada',
-    flag: 'https://flagcdn.com/ca.svg',
+    title: 'Benin',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BJ.svg',
   },
   {
-    title: 'Central African Republic',
-    flag: 'https://flagcdn.com/cf.svg',
+    title: 'Bermuda',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BM.svg',
   },
   {
-    title: 'Switzerland',
-    flag: 'https://flagcdn.com/ch.svg',
+    title: 'Bhutan',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BT.svg',
   },
   {
-    title: 'Cook Islands',
-    flag: 'https://flagcdn.com/ck.svg',
+    title: 'Bolivia, Plurinational State of',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BO.svg',
   },
   {
-    title: 'Chile',
-    flag: 'https://flagcdn.com/cl.svg',
+    title: 'Bosnia and Herzegovina',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BA.svg',
   },
   {
-    title: 'Cameroon',
-    flag: 'https://flagcdn.com/cm.svg',
+    title: 'Botswana',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BW.svg',
   },
   {
-    title: 'China',
-    flag: 'https://flagcdn.com/cn.svg',
+    title: 'Brazil',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BR.svg',
   },
   {
-    title: 'Colombia',
-    flag: 'https://flagcdn.com/co.svg',
+    title: 'British Indian Ocean Territory',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/IO.svg',
   },
   {
-    title: 'Costa Rica',
-    flag: 'https://flagcdn.com/cr.svg',
+    title: 'Brunei Darussalam',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BN.svg',
   },
   {
-    title: 'Cuba',
-    flag: 'https://flagcdn.com/cu.svg',
+    title: 'Bulgaria',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BG.svg',
   },
   {
-    title: 'Cape Verde',
-    flag: 'https://flagcdn.com/cv.svg',
+    title: 'Burkina Faso',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BF.svg',
   },
   {
-    title: 'Curaçao',
-    flag: 'https://flagcdn.com/cw.svg',
-  },
-  {
-    title: 'Christmas Island',
-    flag: 'https://flagcdn.com/cx.svg',
-  },
-  {
-    title: 'Cyprus',
-    flag: 'https://flagcdn.com/cy.svg',
-  },
-  {
-    title: 'Czechia',
-    flag: 'https://flagcdn.com/cz.svg',
-  },
-  {
-    title: 'Germany',
-    flag: 'https://flagcdn.com/bd.svg',
-  },
-  {
-    title: 'Denmark',
-    flag: 'https://flagcdn.com/dk.svg',
-  },
-  {
-    title: 'Djibouti',
-    flag: 'https://flagcdn.com/dj.svg',
-  },
-  {
-    title: 'Dominica',
-    flag: 'https://flagcdn.com/dm.svg',
-  },
-  {
-    title: 'Dominican Republic',
-    flag: 'https://flagcdn.com/do.svg',
-  },
-  {
-    title: 'Ecuador',
-    flag: 'https://flagcdn.com/ec.svg',
-  },
-  {
-    title: 'Estonia',
-    flag: 'https://flagcdn.com/ee.svg',
-  },
-  {
-    title: 'Egypt',
-    flag: 'https://flagcdn.com/eg.svg',
-  },
-  {
-    title: 'Western Sahara',
-    flag: 'https://flagcdn.com/eh.svg',
-  },
-  {
-    title: 'Eritrea',
-    flag: 'https://flagcdn.com/er.svg',
-  },
-  {
-    title: 'Spain',
-    flag: 'https://flagcdn.com/es.svg',
-  },
-  {
-    title: 'Ethiopia',
-    flag: 'https://flagcdn.com/et.svg',
-  },
-  {
-    title: 'European Union',
-    flag: 'https://flagcdn.com/eu.svg',
-  },
-  {
-    title: 'Finland',
-    flag: 'https://flagcdn.com/fi.svg',
-  },
-  {
-    title: 'Fiji',
-    flag: 'https://flagcdn.com/fj.svg',
-  },
-  {
-    title: 'Falkland Islands',
-    flag: 'https://flagcdn.com/fk.svg',
-  },
-  {
-    title: 'Micronesia',
-    flag: 'https://flagcdn.com/fm.svg',
-  },
-  {
-    title: 'Faroe Islands',
-    flag: 'https://flagcdn.com/fo.svg',
-  },
-  {
-    title: 'France',
-    flag: 'https://flagcdn.com/fr.svg',
-  },
-  {
-    title: 'Gabon',
-    flag: 'https://flagcdn.com/ga.svg',
-  },
-  {
-    title: 'United Kingdom',
-    flag: 'https://flagcdn.com/gb.svg',
-  },
-  {
-    title: 'England',
-    flag: 'https://flagcdn.com/gb-eng.svg',
-  },
-
-  {
-    title: 'Gabon',
-    flag: 'https://flagcdn.com/ga.svg',
-  },
-
-  {
-    title: 'Iran',
-    flag: 'https://flagcdn.com/ir.svg',
-  },
-  //
-  {
-    title: 'Northern Ireland',
-    flag: 'https://flagcdn.com/gb-nir.svg',
-  },
-  {
-    title: 'Scotland',
-    flag: 'https://flagcdn.com/gb-sct.svg',
-  },
-  {
-    title: 'Egypt',
-    flag: 'https://flagcdn.com/eg.svg',
-  },
-  {
-    title: 'Western Sahara',
-    flag: 'https://flagcdn.com/eh.svg',
-  },
-  {
-    title: 'Wales',
-    flag: 'https://flagcdn.com/gb-wls.svg',
-  },
-  {
-    title: 'Grenada',
-    flag: 'https://flagcdn.com/gd.svg',
-  },
-  {
-    title: 'Georgia',
-    flag: 'https://flagcdn.com/ge.svg',
-  },
-  {
-    title: 'French Guiana',
-    flag: 'https://flagcdn.com/gf.svg',
-  },
-  {
-    title: 'Guernsey',
-    flag: 'https://flagcdn.com/gg.svg',
-  },
-  {
-    title: 'Ghana',
-    flag: 'https://flagcdn.com/gh.svg',
-  },
-  {
-    title: 'Gibraltar',
-    flag: 'https://flagcdn.com/gi.svg',
-  },
-  {
-    title: 'Greenland',
-    flag: 'https://flagcdn.com/gl.svg',
-  },
-  {
-    title: 'Gambia',
-    flag: 'https://flagcdn.com/gm.svg',
-  },
-  {
-    title: 'Guinea',
-    flag: 'https://flagcdn.com/gn.svg',
-  },
-  {
-    title: 'Guadeloupe',
-    flag: 'https://flagcdn.com/gp.svg',
-  },
-  {
-    title: 'Equatorial Guinea',
-    flag: 'https://flagcdn.com/gq.svg',
-  },
-  {
-    title: 'Greece',
-    flag: 'https://flagcdn.com/gr.svg',
-  },
-
-  {
-    title: 'South Georgia',
-    flag: 'https://flagcdn.com/gs.svg',
-  },
-  {
-    title: 'Guatemala',
-    flag: 'https://flagcdn.com/gt.svg',
-  },
-  {
-    title: 'Guam',
-    flag: 'https://flagcdn.com/gu.svg',
-  },
-  {
-    title: 'Guinea-Bissau',
-    flag: 'https://flagcdn.com/gw.svg',
-  },
-  {
-    title: 'Guyana',
-    flag: 'https://flagcdn.com/gy.svg',
-  },
-  {
-    title: 'Hong Kong',
-    flag: 'https://flagcdn.com/hk.svg',
-  },
-  {
-    title: 'Honduras',
-    flag: 'https://flagcdn.com/hn.svg',
-  },
-  {
-    title: 'Croatia',
-    flag: 'https://flagcdn.com/hr.svg',
-  },
-
-  {
-    title: 'Hungary',
-    flag: 'https://flagcdn.com/hu.svg',
-  },
-  {
-    title: 'Haiti',
-    flag: 'https://flagcdn.com/ht.svg',
-  },
-  {
-    title: 'Ireland',
-    flag: 'https://flagcdn.com/ie.svg',
-  },
-  {
-    title: 'Indonesia',
-    flag: 'https://flagcdn.com/id.svg',
-  },
-  {
-    title: 'Isle of Man',
-    flag: 'https://flagcdn.com/im.svg',
-  },
-  {
-    title: 'India',
-    flag: 'https://flagcdn.com/in.svg',
-  },
-  {
-    title: 'Iraq',
-    flag: 'https://flagcdn.com/iq.svg',
-  },
-  {
-    title: 'Iceland',
-    flag: 'https://flagcdn.com/is.svg',
-  },
-  {
-    title: 'Ireland',
-    flag: 'https://flagcdn.com/ie.svg',
-  },
-
-  {
-    title: 'Italy',
-    flag: 'https://flagcdn.com/it.svg',
-  },
-  {
-    title: 'Jersey',
-    flag: 'https://flagcdn.com/je.svg',
-  },
-  {
-    title: 'Jordan',
-    flag: 'https://flagcdn.com/jo.svg',
-  },
-  {
-    title: 'Japan',
-    flag: 'https://flagcdn.com/jp.svg',
-  },
-  {
-    title: 'Kenya',
-    flag: 'https://flagcdn.com/ke.svg',
-  },
-  {
-    title: 'Kyrgyzstan',
-    flag: 'https://flagcdn.com/kg.svg',
+    title: 'Burundi',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BI.svg',
   },
   {
     title: 'Cambodia',
-    flag: 'https://flagcdn.com/kh.svg',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/KH.svg',
   },
   {
-    title: 'Kiribati',
-    flag: 'https://flagcdn.com/ki.svg',
+    title: 'Cameroon',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CM.svg',
   },
   {
-    title: 'Comoros',
-    flag: 'https://flagcdn.com/km.svg',
+    title: 'Canada',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CA.svg',
   },
   {
-    title: 'North Korea',
-    flag: 'https://flagcdn.com/kp.svg',
-  },
-  {
-    title: 'Kuwait',
-    flag: 'https://flagcdn.com/kw.svg',
+    title: 'Cape Verde',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CV.svg',
   },
   {
     title: 'Cayman Islands',
-    flag: 'https://flagcdn.com/ky.svg',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/KY.svg',
   },
   {
-    title: 'Kazakhstan',
-    flag: 'https://flagcdn.com/kz.svg',
-  },
-  {
-    title: 'Kiribati',
-    flag: 'https://flagcdn.com/ki.svg',
-  },
-  {
-    title: 'South Korea',
-    flag: 'https://flagcdn.com/kr.svg',
-  },
-  {
-    title: 'Laos',
-    flag: 'https://flagcdn.com/la.svg',
-  },
-  {
-    title: 'Lebanon',
-    flag: 'https://flagcdn.com/lb.svg',
-  },
-  {
-    title: 'Saint Lucia',
-    flag: 'https://flagcdn.com/lc.svg',
-  },
-  {
-    title: 'Liechtenstein',
-    flag: 'https://flagcdn.com/li.svg',
-  },
-  {
-    title: 'Sri Lanka',
-    flag: 'https://flagcdn.com/lk.svg',
-  },
-  {
-    title: 'Liberia',
-    flag: 'https://flagcdn.com/lr.svg',
-  },
-  {
-    title: 'Lesotho',
-    flag: 'https://flagcdn.com/ls.svg',
-  },
-  {
-    title: 'Lithuania',
-    flag: 'https://flagcdn.com/lt.svg',
-  },
-  {
-    title: 'Luxembourg',
-    flag: 'https://flagcdn.com/lu.svg',
-  },
-  {
-    title: 'Latvia',
-    flag: 'https://flagcdn.com/lv.svg',
-  },
-  {
-    title: 'Libya',
-    flag: 'https://flagcdn.com/ly.svg',
-  },
-  {
-    title: 'Morocco',
-    flag: 'https://flagcdn.com/ma.svg',
-  },
-  {
-    title: 'Monaco',
-    flag: 'https://flagcdn.com/mc.svg',
-  },
-  {
-    title: 'Moldova',
-    flag: 'https://flagcdn.com/md.svg',
-  },
-  {
-    title: 'Montenegro',
-    flag: 'https://flagcdn.com/me.svg',
-  },
-  {
-    title: 'Saint Martin',
-    flag: 'https://flagcdn.com/mf.svg',
-  },
-  {
-    title: 'Madagascar',
-    flag: 'https://flagcdn.com/mg.svg',
-  },
-  {
-    title: 'Marshall Islands',
-    flag: 'https://flagcdn.com/mh.svg',
-  },
-  {
-    title: 'North Macedonia',
-    flag: 'https://flagcdn.com/mk.svg',
-  },
-  {
-    title: 'Mali',
-    flag: 'https://flagcdn.com/ml.svg',
-  },
-  {
-    title: 'Myanmar',
-    flag: 'https://flagcdn.com/mm.svg',
-  },
-  {
-    title: 'Mongolia',
-    flag: 'https://flagcdn.com/mn.svg',
-  },
-  {
-    title: 'Macau',
-    flag: 'https://flagcdn.com/mo.svg',
-  },
-  {
-    title: 'Northern Mariana Islands',
-    flag: 'https://flagcdn.com/mp.svg',
-  },
-  {
-    title: 'Martinique',
-    flag: 'https://flagcdn.com/mq.svg',
-  },
-  {
-    title: 'Montserrat',
-    flag: 'https://flagcdn.com/ms.svg',
-  },
-  {
-    title: 'Malta',
-    flag: 'https://flagcdn.com/mt.svg',
-  },
-  {
-    title: 'Mauritius',
-    flag: 'https://flagcdn.com/mu.svg',
-  },
-  {
-    title: 'Maldives',
-    flag: 'https://flagcdn.com/mv.svg',
-  },
-  {
-    title: 'Malawi',
-    flag: 'https://flagcdn.com/mw.svg',
-  },
-  {
-    title: 'Mexico',
-    flag: 'https://flagcdn.com/mx.svg',
-  },
-  {
-    title: 'Malaysia',
-    flag: 'https://flagcdn.com/my.svg',
-  },
-  {
-    title: 'Mozambique',
-    flag: 'https://flagcdn.com/mz.svg',
-  },
-  {
-    title: 'Namibia',
-    flag: 'https://flagcdn.com/na.svg',
-  },
-  {
-    title: 'New Caledonia',
-    flag: 'https://flagcdn.com/nc.svg',
-  },
-  {
-    title: 'Niger',
-    flag: 'https://flagcdn.com/ne.svg',
-  },
-  {
-    title: 'Norfolk Island',
-    flag: 'https://flagcdn.com/nf.svg',
-  },
-  {
-    title: 'Nigeria',
-    flag: 'https://flagcdn.com/ng.svg',
-  },
-  {
-    title: 'Nicaragua',
-    flag: 'https://flagcdn.com/ni.svg',
-  },
-  {
-    title: 'Netherlands',
-    flag: 'https://flagcdn.com/nl.svg',
-  },
-  {
-    title: 'Norway',
-    flag: 'https://flagcdn.com/no.svg',
-  },
-  {
-    title: 'Nepal',
-    flag: 'https://flagcdn.com/np.svg',
-  },
-  {
-    title: 'Nauru',
-    flag: 'https://flagcdn.com/nr.svg',
-  },
-  {
-    title: 'Niue',
-    flag: 'https://flagcdn.com/nu.svg',
-  },
-  {
-    title: 'New Zealand',
-    flag: 'https://flagcdn.com/nz.svg',
-  },
-  {
-    title: 'Oman',
-    flag: 'https://flagcdn.com/om.svg',
-  },
-  {
-    title: 'Panama',
-    flag: 'https://flagcdn.com/pa.svg',
-  },
-  {
-    title: 'Peru',
-    flag: 'https://flagcdn.com/pe.svg',
-  },
-  {
-    title: 'French Polynesia',
-    flag: 'https://flagcdn.com/pf.svg',
-  },
-  {
-    title: 'Papua New Guinea',
-    flag: 'https://flagcdn.com/pg.svg',
-  },
-  {
-    title: 'Philippines',
-    flag: 'https://flagcdn.com/ph.svg',
-  },
-  {
-    title: 'Pakistan',
-    flag: 'https://flagcdn.com/pk.svg',
-  },
-  {
-    title: 'Poland',
-    flag: 'https://flagcdn.com/pl.svg',
-  },
-  {
-    title: 'Saint Pierre and Miquelon',
-    flag: 'https://flagcdn.com/pm.svg',
-  },
-  {
-    title: 'Pitcairn Islands',
-    flag: 'https://flagcdn.com/pn.svg',
-  },
-  {
-    title: 'Puerto Rico',
-    flag: 'https://flagcdn.com/pr.svg',
-  },
-  {
-    title: 'Palestine',
-    flag: 'https://flagcdn.com/ps.svg',
-  },
-  {
-    title: 'Portugal',
-    flag: 'https://flagcdn.com/pt.svg',
-  },
-  {
-    title: 'Palau',
-    flag: 'https://flagcdn.com/pw.svg',
-  },
-  {
-    title: 'Paraguay',
-    flag: 'https://flagcdn.com/py.svg',
-  },
-  {
-    title: 'Qatar',
-    flag: 'https://flagcdn.com/qa.svg',
-  },
-  {
-    title: 'Réunion',
-    flag: 'https://flagcdn.com/re.svg',
-  },
-  {
-    title: 'Romania',
-    flag: 'https://flagcdn.com/ro.svg',
-  },
-  {
-    title: 'Serbia',
-    flag: 'https://flagcdn.com/rs.svg',
-  },
-  {
-    title: 'Russia',
-    flag: 'https://flagcdn.com/ru.svg',
-  },
-  {
-    title: 'Rwanda',
-    flag: 'https://flagcdn.com/rw.svg',
-  },
-  {
-    title: 'Saudi Arabia',
-    flag: 'https://flagcdn.com/sa.svg',
-  },
-  {
-    title: 'Solomon Islands',
-    flag: 'https://flagcdn.com/sb.svg',
-  },
-  {
-    title: 'Seychelles',
-    flag: 'https://flagcdn.com/sc.svg',
-  },
-  {
-    title: 'Sudan',
-    flag: 'https://flagcdn.com/sd.svg',
-  },
-  {
-    title: 'Sweden',
-    flag: 'https://flagcdn.com/se.svg',
-  },
-  {
-    title: 'Singapore',
-    flag: 'https://flagcdn.com/sg.svg',
-  },
-  {
-    title: 'Saint Helena, Ascension and Tristan da Cunha',
-    flag: 'https://flagcdn.com/sh.svg',
-  },
-  {
-    title: 'Slovenia',
-    flag: 'https://flagcdn.com/si.svg',
-  },
-  {
-    title: 'Svalbard and Jan Mayen',
-    flag: 'https://flagcdn.com/sj.svg',
-  },
-  {
-    title: 'Slovakia',
-    flag: 'https://flagcdn.com/sk.svg',
-  },
-  {
-    title: 'Sierra Leone',
-    flag: 'https://flagcdn.com/sl.svg',
-  },
-  {
-    title: 'San Marino',
-    flag: 'https://flagcdn.com/sm.svg',
-  },
-  {
-    title: 'Senegal',
-    flag: 'https://flagcdn.com/sn.svg',
-  },
-  {
-    title: 'Somalia',
-    flag: 'https://flagcdn.com/so.svg',
-  },
-  {
-    title: 'Suriname',
-    flag: 'https://flagcdn.com/sr.svg',
-  },
-  {
-    title: 'South Sudan',
-    flag: 'https://flagcdn.com/ss.svg',
-  },
-  {
-    title: 'São Tomé and Príncipe',
-    flag: 'https://flagcdn.com/st.svg',
-  },
-  {
-    title: 'El Salvador',
-    flag: 'https://flagcdn.com/sv.svg',
-  },
-  {
-    title: 'Sint Maarten',
-    flag: 'https://flagcdn.com/sx.svg',
-  },
-  {
-    title: 'Syria',
-    flag: 'https://flagcdn.com/sy.svg',
-  },
-  {
-    title: 'Eswatini (Swaziland)',
-    flag: 'https://flagcdn.com/sz.svg',
-  },
-  {
-    title: 'Turks and Caicos Islands',
-    flag: 'https://flagcdn.com/tc.svg',
+    title: 'Central African Republic',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CF.svg',
   },
   {
     title: 'Chad',
-    flag: 'https://flagcdn.com/td.svg',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TD.svg',
   },
   {
-    title: 'French Southern and Antarctic Lands',
-    flag: 'https://flagcdn.com/tf.svg',
+    title: 'Chile',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CL.svg',
   },
   {
-    title: 'Togo',
-    flag: 'https://flagcdn.com/tg.svg',
+    title: 'China',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CN.svg',
   },
   {
-    title: 'Thailand',
-    flag: 'https://flagcdn.com/th.svg',
+    title: 'Christmas Island',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CX.svg',
   },
   {
-    title: 'Tajikistan',
-    flag: 'https://flagcdn.com/tj.svg',
+    title: 'Cocos (Keeling) Islands',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CC.svg',
   },
   {
-    title: 'Tokelau',
-    flag: 'https://flagcdn.com/tk.svg',
+    title: 'Colombia',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CO.svg',
   },
   {
-    title: 'Timor-Leste',
-    flag: 'https://flagcdn.com/tl.svg',
+    title: 'Comoros',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/KM.svg',
   },
   {
-    title: 'Turkmenistan',
-    flag: 'https://flagcdn.com/tm.svg',
+    title: 'Congo',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CG.svg',
   },
   {
-    title: 'Tunisia',
-    flag: 'https://flagcdn.com/tn.svg',
+    title: 'Congo, the Democratic Republic of the',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CD.svg',
   },
   {
-    title: 'Tonga',
-    flag: 'https://flagcdn.com/to.svg',
+    title: 'Cook Islands',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CK.svg',
   },
   {
-    title: 'Turkey',
-    flag: 'https://flagcdn.com/tr.svg',
+    title: 'Costa Rica',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CR.svg',
   },
   {
-    title: 'Trinidad and Tobago',
-    flag: 'https://flagcdn.com/tt.svg',
+    title: 'Croatia',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/HR.svg',
   },
   {
-    title: 'Tuvalu',
-    flag: 'https://flagcdn.com/tv.svg',
+    title: 'Cuba',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CU.svg',
   },
   {
-    title: 'Taiwan',
-    flag: 'https://flagcdn.com/tw.svg',
+    title: 'Curaçao',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CW.svg',
   },
   {
-    title: 'Tanzania',
-    flag: 'https://flagcdn.com/tz.svg',
+    title: 'Cyprus',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CY.svg',
   },
   {
-    title: 'Ukraine',
-    flag: 'https://flagcdn.com/ua.svg',
+    title: 'Czech Republic',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CZ.svg',
   },
   {
-    title: 'Uganda',
-    flag: 'https://flagcdn.com/ug.svg',
+    title: "Côte d'Ivoire",
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CI.svg',
   },
   {
-    title: 'United States Minor Outlying Islands',
-    flag: 'https://flagcdn.com/um.svg',
+    title: 'Denmark',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/DK.svg',
   },
   {
-    title: 'United Nations',
-    flag: 'https://flagcdn.com/un.svg',
+    title: 'Djibouti',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/DJ.svg',
   },
   {
-    title: 'United States',
-    flag: 'https://flagcdn.com/us.svg',
+    title: 'Dominica',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/DM.svg',
   },
   {
-    title: 'Alaska',
-    flag: 'https://flagcdn.com/us-ak.svg',
+    title: 'Dominican Republic',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/DO.svg',
   },
   {
-    title: 'Alabama',
-    flag: 'https://flagcdn.com/us-al.svg',
+    title: 'Ecuador',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/EC.svg',
   },
   {
-    title: 'Arkansas',
-    flag: 'https://flagcdn.com/us-ar.svg',
+    title: 'Egypt',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/EG.svg',
   },
   {
-    title: 'Arizona',
-    flag: 'https://flagcdn.com/us-az.svg',
+    title: 'El Salvador',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SV.svg',
   },
   {
-    title: 'California',
-    flag: 'https://flagcdn.com/us-ca.svg',
+    title: 'Equatorial Guinea',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GQ.svg',
   },
   {
-    title: 'Colorado',
-    flag: 'https://flagcdn.com/us-co.svg',
+    title: 'Eritrea',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/ER.svg',
   },
   {
-    title: 'Connecticut',
-    flag: 'https://flagcdn.com/us-ct.svg',
+    title: 'Estonia',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/EE.svg',
   },
   {
-    title: 'Delaware',
-    flag: 'https://flagcdn.com/us-de.svg',
+    title: 'Ethiopia',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/ET.svg',
   },
   {
-    title: 'Florida',
-    flag: 'https://flagcdn.com/us-fl.svg',
+    title: 'Falkland Islands (Malvinas)',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/FK.svg',
+  },
+  {
+    title: 'Faroe Islands',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/FO.svg',
+  },
+  {
+    title: 'Fiji',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/FJ.svg',
+  },
+  {
+    title: 'Finland',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/FI.svg',
+  },
+  {
+    title: 'France',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/FR.svg',
+  },
+  {
+    title: 'French Guiana',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GF.svg',
+  },
+  {
+    title: 'French Polynesia',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PF.svg',
+  },
+  {
+    title: 'French Southern Territories',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TF.svg',
+  },
+  {
+    title: 'Gabon',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GA.svg',
+  },
+  {
+    title: 'Gambia',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GM.svg',
   },
   {
     title: 'Georgia',
-    flag: 'https://flagcdn.com/us-ga.svg',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GE.svg',
   },
   {
-    title: 'Hawaii',
-    flag: 'https://flagcdn.com/us-hi.svg',
+    title: 'Germany',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/DE.svg',
   },
   {
-    title: 'Iowa',
-    flag: 'https://flagcdn.com/us-ia.svg',
+    title: 'Ghana',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GH.svg',
   },
   {
-    title: 'Idaho',
-    flag: 'https://flagcdn.com/us-id.svg',
+    title: 'Gibraltar',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GI.svg',
   },
   {
-    title: 'Illinois',
-    flag: 'https://flagcdn.com/us-il.svg',
+    title: 'Greece',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GR.svg',
   },
   {
-    title: 'Indiana',
-    flag: 'https://flagcdn.com/us-in.svg',
+    title: 'Greenland',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GL.svg',
   },
   {
-    title: 'Kansas',
-    flag: 'https://flagcdn.com/us-ks.svg',
+    title: 'Grenada',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GD.svg',
   },
   {
-    title: 'Kentucky',
-    flag: 'https://flagcdn.com/us-ky.svg',
+    title: 'Guadeloupe',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GP.svg',
   },
   {
-    title: 'Louisiana',
-    flag: 'https://flagcdn.com/us-la.svg',
+    title: 'Guam',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GU.svg',
   },
   {
-    title: 'Massachusetts',
-    flag: 'https://flagcdn.com/us-ma.svg',
+    title: 'Guatemala',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GT.svg',
   },
   {
-    title: 'Maryland',
-    flag: 'https://flagcdn.com/us-md.svg',
+    title: 'Guernsey',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GG.svg',
   },
   {
-    title: 'Maine',
-    flag: 'https://flagcdn.com/us-me.svg',
+    title: 'Guinea',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GN.svg',
   },
   {
-    title: 'Michigan',
-    flag: 'https://flagcdn.com/us-mi.svg',
+    title: 'Guinea-Bissau',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GW.svg',
   },
   {
-    title: 'Minnesota',
-    flag: 'https://flagcdn.com/us-mn.svg',
+    title: 'Guyana',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GY.svg',
   },
   {
-    title: 'Missouri',
-    flag: 'https://flagcdn.com/us-mo.svg',
+    title: 'Haiti',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/HT.svg',
   },
   {
-    title: 'Mississippi',
-    flag: 'https://flagcdn.com/us-ms.svg',
+    title: 'Holy See (Vatican City State)',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/VA.svg',
   },
   {
-    title: 'Montana',
-    flag: 'https://flagcdn.com/us-mt.svg',
+    title: 'Honduras',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/HN.svg',
   },
   {
-    title: 'North Carolina',
-    flag: 'https://flagcdn.com/us-nc.svg',
+    title: 'Hong Kong',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/HK.svg',
   },
   {
-    title: 'North Dakota',
-    flag: 'https://flagcdn.com/us-nd.svg',
+    title: 'Hungary',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/HU.svg',
   },
   {
-    title: 'Nebraska',
-    flag: 'https://flagcdn.com/us-ne.svg',
+    title: 'Iceland',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/IS.svg',
   },
   {
-    title: 'New Hampshire',
-    flag: 'https://flagcdn.com/us-nh.svg',
+    title: 'India',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/IN.svg',
   },
   {
-    title: 'New Jersey',
-    flag: 'https://flagcdn.com/us-nj.svg',
+    title: 'Indonesia',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/ID.svg',
   },
   {
-    title: 'New Mexico',
-    flag: 'https://flagcdn.com/us-nm.svg',
+    title: 'Iran, Islamic Republic of',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/IR.svg',
   },
   {
-    title: 'Nevada',
-    flag: 'https://flagcdn.com/us-nv.svg',
+    title: 'Iraq',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/IQ.svg',
   },
   {
-    title: 'New York',
-    flag: 'https://flagcdn.com/us-ny.svg',
+    title: 'Ireland',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/IE.svg',
   },
   {
-    title: 'Ohio',
-    flag: 'https://flagcdn.com/us-oh.svg',
+    title: 'Isle of Man',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/IM.svg',
   },
   {
-    title: 'Oklahoma',
-    flag: 'https://flagcdn.com/us-ok.svg',
+    title: 'Israel',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/IL.svg',
   },
   {
-    title: 'Oregon',
-    flag: 'https://flagcdn.com/us-or.svg',
+    title: 'Italy',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/IT.svg',
   },
   {
-    title: 'Pennsylvania',
-    flag: 'https://flagcdn.com/us-pa.svg',
+    title: 'Jamaica',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/JM.svg',
   },
   {
-    title: 'Rhode Island',
-    flag: 'https://flagcdn.com/us-ri.svg',
+    title: 'Japan',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/JP.svg',
   },
   {
-    title: 'South Carolina',
-    flag: 'https://flagcdn.com/us-sc.svg',
+    title: 'Jersey',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/JE.svg',
   },
   {
-    title: 'South Dakota',
-    flag: 'https://flagcdn.com/us-sd.svg',
+    title: 'Jordan',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/JO.svg',
   },
   {
-    title: 'Tennessee',
-    flag: 'https://flagcdn.com/us-tn.svg',
+    title: 'Kazakhstan',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/KZ.svg',
   },
   {
-    title: 'Texas',
-    flag: 'https://flagcdn.com/us-tx.svg',
+    title: 'Kenya',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/KE.svg',
   },
   {
-    title: 'Utah',
-    flag: 'https://flagcdn.com/us-ut.svg',
+    title: 'Kiribati',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/KI.svg',
   },
   {
-    title: 'Virginia',
-    flag: 'https://flagcdn.com/us-va.svg',
+    title: "Korea, Democratic People's Republic of",
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/KP.svg',
   },
   {
-    title: 'Vermont',
-    flag: 'https://flagcdn.com/us-vt.svg',
+    title: 'Korea, Republic of',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/KR.svg',
   },
   {
-    title: 'Washington',
-    flag: 'https://flagcdn.com/us-wa.svg',
+    title: 'Kuwait',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/KW.svg',
   },
   {
-    title: 'Wisconsin',
-    flag: 'https://flagcdn.com/us-wi.svg',
+    title: 'Kyrgyzstan',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/KG.svg',
   },
   {
-    title: 'West Virginia',
-    flag: 'https://flagcdn.com/us-wv.svg',
+    title: "Lao People's Democratic Republic",
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/LA.svg',
   },
   {
-    title: 'Wyoming',
-    flag: 'https://flagcdn.com/us-wy.svg',
+    title: 'Latvia',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/LV.svg',
   },
   {
-    title: 'Uruguay',
-    flag: 'https://flagcdn.com/uy.svg',
+    title: 'Lebanon',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/LB.svg',
   },
   {
-    title: 'Uzbekistan',
-    flag: 'https://flagcdn.com/uz.svg',
+    title: 'Lesotho',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/LS.svg',
   },
   {
-    title: 'Vatican City (Holy See)',
-    flag: 'https://flagcdn.com/va.svg',
+    title: 'Liberia',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/LR.svg',
   },
   {
-    title: 'Saint Vincent and the Grenadines',
-    flag: 'https://flagcdn.com/vc.svg',
+    title: 'Libya',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/LY.svg',
   },
   {
-    title: 'Venezuela',
-    flag: 'https://flagcdn.com/ve.svg',
+    title: 'Liechtenstein',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/LI.svg',
   },
   {
-    title: 'British Virgin Islands',
-    flag: 'https://flagcdn.com/vg.svg',
+    title: 'Lithuania',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/LT.svg',
   },
   {
-    title: 'United States Virgin Islands',
-    flag: 'https://flagcdn.com/vi.svg',
+    title: 'Luxembourg',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/LU.svg',
   },
   {
-    title: 'Vietnam',
-    flag: 'https://flagcdn.com/vn.svg',
+    title: 'Macao',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MO.svg',
   },
   {
-    title: 'Vanuatu',
-    flag: 'https://flagcdn.com/vu.svg',
+    title: 'Macedonia, the Former Yugoslav Republic of',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MK.svg',
   },
   {
-    title: 'Wallis and Futuna',
-    flag: 'https://flagcdn.com/wf.svg',
+    title: 'Madagascar',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MG.svg',
   },
   {
-    title: 'Samoa',
-    flag: 'https://flagcdn.com/ws.svg',
+    title: 'Malawi',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MW.svg',
   },
   {
-    title: 'Kosovo',
-    flag: 'https://flagcdn.com/xk.svg',
+    title: 'Malaysia',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MY.svg',
   },
   {
-    title: 'Yemen',
-    flag: 'https://flagcdn.com/ye.svg',
+    title: 'Maldives',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MV.svg',
+  },
+  {
+    title: 'Mali',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/ML.svg',
+  },
+  {
+    title: 'Malta',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MT.svg',
+  },
+  {
+    title: 'Marshall Islands',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MH.svg',
+  },
+  {
+    title: 'Martinique',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MQ.svg',
+  },
+  {
+    title: 'Mauritania',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MR.svg',
+  },
+  {
+    title: 'Mauritius',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MU.svg',
   },
   {
     title: 'Mayotte',
-    flag: 'https://flagcdn.com/yt.svg',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/YT.svg',
+  },
+  {
+    title: 'Mexico',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MX.svg',
+  },
+  {
+    title: 'Micronesia, Federated States of',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/FM.svg',
+  },
+  {
+    title: 'Moldova, Republic of',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MD.svg',
+  },
+  {
+    title: 'Monaco',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MC.svg',
+  },
+  {
+    title: 'Mongolia',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MN.svg',
+  },
+  {
+    title: 'Montenegro',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/ME.svg',
+  },
+  {
+    title: 'Montserrat',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MS.svg',
+  },
+  {
+    title: 'Morocco',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MA.svg',
+  },
+  {
+    title: 'Mozambique',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MZ.svg',
+  },
+  {
+    title: 'Myanmar',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MM.svg',
+  },
+  {
+    title: 'Namibia',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/NA.svg',
+  },
+  {
+    title: 'Nauru',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/NR.svg',
+  },
+  {
+    title: 'Nepal',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/NP.svg',
+  },
+  {
+    title: 'Netherlands',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/NL.svg',
+  },
+  {
+    title: 'New Caledonia',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/NC.svg',
+  },
+  {
+    title: 'New Zealand',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/NZ.svg',
+  },
+  {
+    title: 'Nicaragua',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/NI.svg',
+  },
+  {
+    title: 'Niger',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/NE.svg',
+  },
+  {
+    title: 'Nigeria',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/NG.svg',
+  },
+  {
+    title: 'Niue',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/NU.svg',
+  },
+  {
+    title: 'Norfolk Island',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/NF.svg',
+  },
+  {
+    title: 'Northern Mariana Islands',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MP.svg',
+  },
+  {
+    title: 'Norway',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/NO.svg',
+  },
+  {
+    title: 'Oman',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/OM.svg',
+  },
+  {
+    title: 'Pakistan',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PK.svg',
+  },
+  {
+    title: 'Palau',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PW.svg',
+  },
+  {
+    title: 'Palestine, State of',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PS.svg',
+  },
+  {
+    title: 'Panama',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PA.svg',
+  },
+  {
+    title: 'Papua New Guinea',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PG.svg',
+  },
+  {
+    title: 'Paraguay',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PY.svg',
+  },
+  {
+    title: 'Peru',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PE.svg',
+  },
+  {
+    title: 'Philippines',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PH.svg',
+  },
+  {
+    title: 'Pitcairn',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PN.svg',
+  },
+  {
+    title: 'Poland',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PL.svg',
+  },
+  {
+    title: 'Portugal',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PT.svg',
+  },
+  {
+    title: 'Puerto Rico',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PR.svg',
+  },
+  {
+    title: 'Qatar',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/QA.svg',
+  },
+  {
+    title: 'Romania',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/RO.svg',
+  },
+  {
+    title: 'Russian Federation',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/RU.svg',
+  },
+  {
+    title: 'Rwanda',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/RW.svg',
+  },
+  {
+    title: 'Réunion',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/RE.svg',
+  },
+  {
+    title: 'Saint Barthélemy',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BL.svg',
+  },
+  {
+    title: 'Saint Helena, Ascension and Tristan da Cunha',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SH.svg',
+  },
+  {
+    title: 'Saint Kitts and Nevis',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/KN.svg',
+  },
+  {
+    title: 'Saint Lucia',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/LC.svg',
+  },
+  {
+    title: 'Saint Martin (French part)',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MF.svg',
+  },
+  {
+    title: 'Saint Pierre and Miquelon',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PM.svg',
+  },
+  {
+    title: 'Saint Vincent and the Grenadines',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/VC.svg',
+  },
+  {
+    title: 'Samoa',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/WS.svg',
+  },
+  {
+    title: 'San Marino',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SM.svg',
+  },
+  {
+    title: 'Sao Tome and Principe',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/ST.svg',
+  },
+  {
+    title: 'Saudi Arabia',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SA.svg',
+  },
+  {
+    title: 'Senegal',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SN.svg',
+  },
+  {
+    title: 'Serbia',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/RS.svg',
+  },
+  {
+    title: 'Seychelles',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SC.svg',
+  },
+  {
+    title: 'Sierra Leone',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SL.svg',
+  },
+  {
+    title: 'Singapore',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SG.svg',
+  },
+  {
+    title: 'Sint Maarten (Dutch part)',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SX.svg',
+  },
+  {
+    title: 'Slovakia',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SK.svg',
+  },
+  {
+    title: 'Slovenia',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SI.svg',
+  },
+  {
+    title: 'Solomon Islands',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SB.svg',
+  },
+  {
+    title: 'Somalia',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SO.svg',
   },
   {
     title: 'South Africa',
-    flag: 'https://flagcdn.com/za.svg',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/ZA.svg',
+  },
+  {
+    title: 'South Georgia and the South Sandwich Islands',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GS.svg',
+  },
+  {
+    title: 'South Sudan',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SS.svg',
+  },
+  {
+    title: 'Spain',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/ES.svg',
+  },
+  {
+    title: 'Sri Lanka',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/LK.svg',
+  },
+  {
+    title: 'Sudan',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SD.svg',
+  },
+  {
+    title: 'Suriname',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SR.svg',
+  },
+  {
+    title: 'Svalbard and Jan Mayen',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SJ.svg',
+  },
+  {
+    title: 'Swaziland',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SZ.svg',
+  },
+  {
+    title: 'Sweden',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SE.svg',
+  },
+  {
+    title: 'Switzerland',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CH.svg',
+  },
+  {
+    title: 'Syrian Arab Republic',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SY.svg',
+  },
+  {
+    title: 'Taiwan, Province of China',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TW.svg',
+  },
+  {
+    title: 'Tajikistan',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TJ.svg',
+  },
+  {
+    title: 'Tanzania, United Republic of',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TZ.svg',
+  },
+  {
+    title: 'Thailand',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TH.svg',
+  },
+  {
+    title: 'Timor-Leste',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TL.svg',
+  },
+  {
+    title: 'Togo',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TG.svg',
+  },
+  {
+    title: 'Tokelau',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TK.svg',
+  },
+  {
+    title: 'Tonga',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TO.svg',
+  },
+  {
+    title: 'Trinidad and Tobago',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TT.svg',
+  },
+  {
+    title: 'Tunisia',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TN.svg',
+  },
+  {
+    title: 'Turkey',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TR.svg',
+  },
+  {
+    title: 'Turkmenistan',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TM.svg',
+  },
+  {
+    title: 'Turks and Caicos Islands',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TC.svg',
+  },
+  {
+    title: 'Tuvalu',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TV.svg',
+  },
+  {
+    title: 'Uganda',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/UG.svg',
+  },
+  {
+    title: 'Ukraine',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/UA.svg',
+  },
+  {
+    title: 'United Arab Emirates',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AE.svg',
+  },
+  {
+    title: 'United Kingdom',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/GB.svg',
+  },
+  {
+    title: 'United States',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/US.svg',
+  },
+  {
+    title: 'Uruguay',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/UY.svg',
+  },
+  {
+    title: 'Uzbekistan',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/UZ.svg',
+  },
+  {
+    title: 'Vanuatu',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/VU.svg',
+  },
+  {
+    title: 'Venezuela, Bolivarian Republic of',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/VE.svg',
+  },
+  {
+    title: 'Viet Nam',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/VN.svg',
+  },
+  {
+    title: 'Virgin Islands, British',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/VG.svg',
+  },
+  {
+    title: 'Virgin Islands, U.S.',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/VI.svg',
+  },
+  {
+    title: 'Wallis and Futuna',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/WF.svg',
+  },
+  {
+    title: 'Yemen',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/YE.svg',
   },
   {
     title: 'Zambia',
-    flag: 'https://flagcdn.com/zm.svg',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/ZM.svg',
   },
   {
     title: 'Zimbabwe',
-    flag: 'https://flagcdn.com/zw.svg',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/ZW.svg',
+  },
+  {
+    title: 'Åland Islands',
+    flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AX.svg',
   },
 ];

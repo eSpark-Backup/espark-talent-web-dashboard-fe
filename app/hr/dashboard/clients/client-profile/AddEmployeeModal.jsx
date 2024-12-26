@@ -2,6 +2,7 @@ import AppTable from '@/src/components/appTable/AppTable';
 import { addEmployeModalFormSchema } from '@/src/components/form/schemas/addEmployeeModal';
 import Navigator from '@/src/components/form/step/Navigator';
 import FormInput from '@/src/components/form/ui-elements/FormInput';
+import { countriesList } from '@/src/constants/countries';
 import { addEmployeeModalFormSteps } from '@/src/constants/data/forms/add-employee-modal';
 import { FORM_DATA } from '@/src/constants/form';
 import { Box, Button, Grid, Modal } from '@mui/material';
@@ -134,6 +135,8 @@ const AddEmployeeModal = ({ open, onClose }) => {
                               name,
                               nested,
                               fields,
+                              searchable,
+                              withFlag,
                             },
                             formIndex
                           ) => (
@@ -148,6 +151,9 @@ const AddEmployeeModal = ({ open, onClose }) => {
                                   suffixIcon={suffixIcon}
                                   options={options}
                                   name={name}
+                                  searchable={searchable}
+                                  withFlag={withFlag}
+                                  countries={countriesList}
                                   setFieldValue={setFieldValue}
                                   value={values[name]}
                                   error={errors[name]}
