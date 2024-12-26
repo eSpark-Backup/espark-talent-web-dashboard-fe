@@ -102,7 +102,7 @@ jobs:
           echo "PORT: ${{ secrets.PORT }}" >> .env
           echo "HOST: ${{ secrets.HOST }}" >> .env
           echo "NODE_ENV: ${{ secrets.NODE_ENV }}" >> .env
-          echo "NEXT_PUBLIC_BASE_URL: ${{ secrets.NEXT_PUBLIC_BASE_URL }}" >> .env
+          echo "NEXT_PUBLIC_BASE_URL: ${{ secrets.DEV_NEXT_PUBLIC_BASE_URL }}" >> .env
 
     - name: Build, tag, and push image to Amazon ECR
       id: build-publish
