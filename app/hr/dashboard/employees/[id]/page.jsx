@@ -29,7 +29,7 @@ import AssetForm from '@/src/components/employeeData/assetModal';
 import TimeAndLeaves from '@/src/components/employeeData/timeAndLeaves';
 import FilterFormModal from '@/src/components/FilterModal/filterForm';
 import { filterAttendanceForm } from '@/src/constants/data/forms/filter-form';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import {
   DOWNLOAD_EMP_RESUME,
   HR_GET_EMP_ATTENDENCE,
@@ -48,31 +48,62 @@ import { Toast } from '@/src/components/Toast/Toast';
 import ProfileEditSkeleton from '@/src/components/HR/ProfileEditSkeleton';
 import { useRouter } from 'next/navigation';
 import { getTimeSheet } from '@/src/utils/getTimeSheet';
+import Benefits from '@/src/components/employeeData/benefits';
+import Letters from '@/src/components/employeeData/letters';
+import Salary from '@/src/components/employeeData/salary';
+import Requests from '@/src/components/employeeData/requests';
+import BenefitForm from '@/src/components/employeeData/benefitModal';
+import LetterForm from '@/src/components/employeeData/letterModal';
+import SalaryForm from '@/src/components/employeeData/salaryModal';
+import AppCustomMonthYearPicker from '@/src/components/dashboard/appCustomMonthYearPicker';
 
 const Page = () => {
   const router = useRouter();
   const { employee_perms } = useSelector((state) => state?.hr?.home?.homeData);
   const { role } = useSelector((state) => state?.auth?.userData);
-
+  const months = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
+  const date = new Date();
   const dispatch = useDispatch();
-  const { currentEmployee } = useSelector((state) => state?.hr?.employees);
+  const queryClient = useQueryClient();
+  const { currentEmployee } =
+    useSelector((state) => state?.hr?.employees) || {};
   const [value, setValue] = useState('one');
   const [showEditModal, setEditModal] = useState(false);
   const [showEmergencyModal, setEmergencyModal] = useState(false);
   const [showCredentialModal, setCredentialModal] = useState(false);
   const [showEditProfilelModal, setEditProfileModal] = useState(false);
+  const [showEditOfficialModal, setEditOfficialModal] = useState(false);
   const [showAssetModal, setAssetModal] = useState(false);
+  const [showLetterModal, setLetterModal] = useState(false);
+  const [showBenefitModal, setBenefitModal] = useState(false);
   const [showFilterModal, setShowFilterModal] = useState(false);
-  // const [isOpenContractModal, setIsOpenContractModal] = useState(false);
+  const [timeTracking, setTimeTracking] = useState({
+    month: months[date.getMonth()],
+    year: date.getFullYear(),
+  });
   const params = useParams();
+
   const { isLoading } = useQuery({
     staleTime: 1000,
     refetchOnWindowFocus: false,
-    queryKey: ['employee-profile'],
+    queryKey: ['employee-profile', params?.id],
     queryFn: async () => {
       dispatch(getCurrentEmpData());
       return api
-        .getData(`${HR_GET_EMP_PROFILE}?id=${params.id}`)
+        .getData(`${HR_GET_EMP_PROFILE}?id=${params?.id}`)
         .then(({ data }) => {
           dispatch(getCurrentEmpDataSuccess(data));
           return data;
@@ -85,7 +116,6 @@ const Page = () => {
     },
   });
 
-  // const employeeData = getEmployeeData(id, allEmployees);
   const handleOpenModal = () => {
     setEditModal(true);
   };
@@ -98,18 +128,30 @@ const Page = () => {
   const handleAssetModal = () => {
     setAssetModal(true);
   };
+  const handleLetterModal = () => {
+    setLetterModal(true);
+  };
+  const handleBenefitModal = () => {
+    setBenefitModal(true);
+  };
   const handleEmergencyModal = () => {
     setEmergencyModal(true);
   };
   const handleEditProfileModal = () => {
     setEditProfileModal(true);
   };
+  const handleEditOfficialModal = () => {
+    setEditOfficialModal(true);
+  };
   const handleCloseModal = () => {
     setEditModal(false);
     setCredentialModal(false);
     setEmergencyModal(false);
     setEditProfileModal(false);
+    setEditOfficialModal(false);
     setAssetModal(false);
+    setLetterModal(false);
+    setBenefitModal(false);
   };
   const handleClose = () => {
     setShowFilterModal(false);
@@ -145,40 +187,31 @@ const Page = () => {
         },
       });
     }
-    // console.log({ tempData });
     dispatch(getAttendanceRequestSuccess(tempData));
   };
-  // const handleOpenContractModal = () => {
-  //   setIsOpenContractModal(true);
-  // };
-  // const handleCloseContractModal = () => {
-  //   setIsOpenContractModal(false);
-  // }; may be use in future
+
   const resetMutation = useMutation({
     mutationFn: async () => {
-      // dispatch(getTimeSheetData());
       return api.getData(
         `${HR_GET_EMP_ATTENDENCE}?e_email=${currentEmployee?.email}`
       );
     },
     onSuccess: ({ data }) => {
       dispatchFunction?.(data);
+      queryClient.invalidateQueries(['hr-employee-attendence']);
     },
     onError: (err) => {
-      // dispatch(getTimeSheetDataFailed());
       console.log({ err });
       console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const downloadResumeMutation = useMutation({
     mutationFn: async () => {
-      // dispatch(getTimeSheetData());
       return api.downloadFile(
         `${DOWNLOAD_EMP_RESUME}?id=${currentEmployee?.id}`
       );
     },
     onSuccess: ({ data }) => {
-      // console.log({ data });
       const url = window.URL.createObjectURL(new Blob([data]));
       const link = document.createElement('a');
       link.href = url;
@@ -187,12 +220,10 @@ const Page = () => {
       link.click();
       link.parentNode.removeChild(link);
 
-      // dispatchFunction?.(data);
       Toast('success', 'File downloaded');
     },
     onError: (err) => {
       Toast('error', err.message || 'File not downloaded');
-      // dispatch(getTimeSheetDataFailed());
       console.log({ err });
       console.log({ err: err.message, name: err.name, stack: err.stack });
     },
@@ -231,10 +262,20 @@ const Page = () => {
               }}
             />
             <Link href={`/hr/dashboard/employees`}>
-              <Typography> {employeeProfileData?.employees} /</Typography>
+              <Typography
+                sx={{
+                  color: '#595959',
+                  fontSize: '14px',
+                  fontWeight: '400',
+                }}
+              >
+                {employeeProfileData?.employees} /
+              </Typography>
             </Link>
             <Typography
               sx={{
+                color: '#595959',
+                fontSize: '14px',
                 fontWeight: '600',
               }}
             >
@@ -312,7 +353,7 @@ const Page = () => {
                     />
                   )}
                 </Box>
-                {currentEmployee?.employee_name ? (
+                {currentEmployee?.first_name ? (
                   <Box
                     sx={{
                       textAlign: { xs: 'center', md: 'start' },
@@ -328,22 +369,31 @@ const Page = () => {
                             lg: '25px',
                           },
                           fontWeight: 500,
+                          textTransform: 'capitalize',
+                          color: '#171717',
                         }}
                       >
-                        {currentEmployee?.employee_name}
+                        {currentEmployee?.first_name}{' '}
+                        {currentEmployee?.last_name}
                       </Typography>
                       <Typography
                         sx={{
                           fontSize: { xs: '13px', sm: '14px', md: '16px' },
-                          fontWeight: 400,
+                          fontWeight: 500,
+                          color: '#595959',
                         }}
                       >
-                        {`Employee ID: ${currentEmployee?.employee_id}`}
+                        {`Employee ID: `}
+                        <span style={{ fontWeight: 600 }}>
+                          {currentEmployee?.employee_id}
+                        </span>
                       </Typography>
                       <Typography
                         sx={{
                           fontSize: { xs: '13px', sm: '14px', md: '16px' },
-                          fontWeight: 400,
+                          fontWeight: 500,
+                          textTransform: 'capitalize',
+                          color: '#595959',
                         }}
                       >
                         {currentEmployee?.job_title}
@@ -438,230 +488,419 @@ const Page = () => {
               onClose={handleCloseModal}
             />
           )}
-
-          <Box sx={{ width: '100%' }}>
-            <Box
-              sx={{
-                borderBottom: 1,
-                borderColor: 'divider',
-                marginBottom:
-                  value === employeeProfileData?.valueTwo ||
-                  value === employeeProfileData?.valuethree ||
-                  value === 'five'
-                    ? '0px'
-                    : '40px',
-                display: 'flex',
-                justifyContent: { xs: 'center', md: 'space-between' },
-                flexDirection: { xs: 'column', md: 'row' },
-              }}
-            >
-              <Tabs
-                value={value}
-                onChange={handleChange}
-                aria-label="wrapped label tabs example"
-                variant="scrollable"
-                TabIndicatorProps={{ style: { backgroundColor: '#068987' } }}
-              >
-                <Tab
-                  value={employeeProfileData?.valueOne}
-                  label={employeeProfileData?.profile}
-                  wrapped
-                  disableRipple={true}
-                  sx={{
-                    marginRight: '15px',
-                    color: '#595959',
-                    '&.Mui-selected': {
-                      color: '#068987',
-                    },
-                  }}
-                />
-                <Tab
-                  value={employeeProfileData?.valueTwo}
-                  label={employeeProfileData?.client}
-                  disableRipple={true}
-                  sx={{
-                    marginRight: '20px',
-                    color: '#595959',
-                    '&.Mui-selected': {
-                      color: '#068987',
-                    },
-                  }}
-                />
-                <Tab
-                  value={employeeProfileData?.valuethree}
-                  label={employeeProfileData?.attendanceReports}
-                  disableRipple={true}
-                  sx={{
-                    marginRight: '20px',
-                    textTransform: 'math-auto',
-                    color: '#595959',
-                    '&.Mui-selected': {
-                      color: '#068987',
-                    },
-                  }}
-                />
-                <Tab
-                  value={employeeProfileData?.valueFour}
-                  label="Assets"
-                  disableRipple={true}
-                  sx={{
-                    marginRight: '20px',
-                    color: '#595959',
-                    '&.Mui-selected': {
-                      color: '#068987',
-                    },
-                  }}
-                />
-                <Tab
-                  value={'five'}
-                  label="Time & leaves"
-                  disableRipple={true}
-                  sx={{
-                    marginRight: '20px',
-                    textTransform: 'math-auto',
-                    color: '#595959',
-                    '&.Mui-selected': {
-                      color: '#068987',
-                    },
-                  }}
-                />
-              </Tabs>
-
+          <Box>
+            <Box sx={{ width: '100%' }}>
               <Box
                 sx={{
+                  borderBottom: 1,
+                  borderColor: 'divider',
                   display: 'flex',
-                  marginTop: { xs: '20px', md: '0px' },
+                  justifyContent: { xs: 'center', md: 'space-between' },
+                  flexDirection: { xs: 'column', md: 'row' },
                 }}
               >
-                {value === employeeProfileData?.valuethree && (
-                  <Box
+                <Tabs
+                  value={value}
+                  onChange={handleChange}
+                  aria-label="wrapped label tabs example"
+                  variant="scrollable"
+                  TabIndicatorProps={{ style: { backgroundColor: '#068987' } }}
+                >
+                  <Tab
+                    value={employeeProfileData?.valueOne}
+                    label={employeeProfileData?.profile}
+                    wrapped
+                    disableRipple={true}
                     sx={{
-                      display: 'flex',
-                      marginBottom: '10px',
+                      marginRight: '15px',
+                      color: '#595959',
+                      '&.Mui-selected': {
+                        color: '#068987',
+                      },
                     }}
-                  >
-                    <Button
-                      sx={{
-                        marginX: '10px',
-                        minWidth: '120px',
-                        display: 'flex',
-                        border: '1px solid #138A72',
-                        color: '#138A72',
-                        backgroundColor: resetMutation.isPending && '#ccc',
-                        '&:hover:': {
-                          background: '#fff',
-                        },
-                      }}
-                      startIcon={
-                        !resetMutation.isPending && (
-                          <Image
-                            width={20}
-                            height={22}
-                            alt="Refresh"
-                            src={`/icons/Refresh.svg`}
-                          />
-                        )
-                      }
-                      onClick={handleRefresh}
-                    >
-                      {resetMutation.isPending ? (
-                        <CircularProgress size={26} color="secondary" />
-                      ) : (
-                        employeeProfileData?.refreshBtn
-                      )}
-                    </Button>
-                    <Button
-                      sx={{
-                        minWidth: '120px',
-                        background: '#138A72',
-                        display: 'flex',
-                        color: '#fff',
-                        '&:hover': {
-                          background: '#138A72',
-                        },
-                      }}
-                      onClick={handleOpenFilterModal}
-                      startIcon={
-                        <Image
-                          width={18}
-                          height={15}
-                          alt="Refresh"
-                          src={`/icons/Filter.svg`}
-                          onClick={handleOpenFilterModal}
-                        />
-                      }
-                    >
-                      {employeeProfileData?.filterBtn}
-                    </Button>
-                  </Box>
-                )}
-
-                {showFilterModal && (
-                  <FilterFormModal
-                    open={handleOpenFilterModal}
-                    onClose={handleClose}
-                    attendanceStatus
-                    filterForm={filterAttendanceForm}
-                    url={`${HR_GET_EMP_ATTENDENCE}?e_email=${currentEmployee?.email}`}
-                    dispatchFunction={dispatchFunction}
                   />
-                )}
-                {value === employeeProfileData?.valueFour && (
-                  <>
-                    {(role === 'super_admin' ||
-                      (role !== 'super_admin' &&
-                        employee_perms?.[0]?.write)) && (
+                  <Tab
+                    value={employeeProfileData?.valueTwo}
+                    label={employeeProfileData?.client}
+                    disableRipple={true}
+                    sx={{
+                      marginRight: '20px',
+                      color: '#595959',
+                      '&.Mui-selected': {
+                        color: '#068987',
+                      },
+                    }}
+                  />
+                  <Tab
+                    value={employeeProfileData?.valuethree}
+                    label={employeeProfileData?.attendanceReports}
+                    disableRipple={true}
+                    sx={{
+                      marginRight: '20px',
+                      textTransform: 'math-auto',
+                      color: '#595959',
+                      '&.Mui-selected': {
+                        color: '#068987',
+                      },
+                    }}
+                  />
+                  <Tab
+                    value={employeeProfileData?.valueFour}
+                    label="Assets"
+                    disableRipple={true}
+                    sx={{
+                      marginRight: '20px',
+                      color: '#595959',
+                      '&.Mui-selected': {
+                        color: '#068987',
+                      },
+                    }}
+                  />
+                  <Tab
+                    value={employeeProfileData?.valueFive}
+                    label="Time & leaves"
+                    disableRipple={true}
+                    sx={{
+                      marginRight: '20px',
+                      textTransform: 'math-auto',
+                      color: '#595959',
+                      '&.Mui-selected': {
+                        color: '#068987',
+                      },
+                    }}
+                  />
+                  <Tab
+                    value={employeeProfileData?.valueSix}
+                    label="Benefits"
+                    disableRipple={true}
+                    sx={{
+                      marginRight: '20px',
+                      textTransform: 'math-auto',
+                      color: '#595959',
+                      '&.Mui-selected': {
+                        color: '#068987',
+                      },
+                    }}
+                  />
+                  <Tab
+                    value={employeeProfileData?.valueSeven}
+                    label="Letters"
+                    disableRipple={true}
+                    sx={{
+                      marginRight: '20px',
+                      textTransform: 'math-auto',
+                      color: '#595959',
+                      '&.Mui-selected': {
+                        color: '#068987',
+                      },
+                    }}
+                  />
+                  <Tab
+                    value={employeeProfileData?.valueEight}
+                    label="Salary"
+                    disableRipple={true}
+                    sx={{
+                      marginRight: '20px',
+                      textTransform: 'math-auto',
+                      color: '#595959',
+                      '&.Mui-selected': {
+                        color: '#068987',
+                      },
+                    }}
+                  />
+                  <Tab
+                    value={employeeProfileData?.valueNine}
+                    label="Requests"
+                    disableRipple={true}
+                    sx={{
+                      marginRight: '20px',
+                      textTransform: 'math-auto',
+                      color: '#595959',
+                      '&.Mui-selected': {
+                        color: '#068987',
+                      },
+                    }}
+                  />
+                </Tabs>
+
+                <Box
+                  sx={{
+                    display: 'flex',
+                    marginTop: { xs: '20px', md: '0px' },
+                  }}
+                >
+                  {value === employeeProfileData?.valuethree && (
+                    <Box
+                      sx={{
+                        display: 'flex',
+                        marginBottom: '10px',
+                      }}
+                    >
                       <Button
+                        disableRipple
                         sx={{
-                          minWidth: '160px',
-                          background: '#029894',
+                          marginX: '10px',
+                          minWidth: '120px',
                           display: 'flex',
-                          color: '#fff',
-                          textTransform: 'math-auto',
-                          marginBottom: '10px',
-                          '&:hover': {
-                            background: '#029894',
+                          border: '1px solid #138A72',
+                          color: '#138A72',
+                          backgroundColor: '#fff',
+                          '&:hover:': {
+                            background: '#fff',
                           },
                         }}
-                        onClick={handleAssetModal}
+                        startIcon={
+                          !resetMutation.isPending && (
+                            <Image
+                              width={20}
+                              height={22}
+                              alt="Refresh"
+                              src={`/icons/Refresh.svg`}
+                            />
+                          )
+                        }
+                        onClick={handleRefresh}
                       >
-                        {employeeProfileData?.addAsset}
+                        {resetMutation.isPending ? (
+                          <CircularProgress
+                            size={26}
+                            sx={{ color: '#138A72' }}
+                          />
+                        ) : (
+                          employeeProfileData?.refreshBtn
+                        )}
                       </Button>
-                    )}
-                    {showAssetModal && (
-                      <AssetForm
-                        open={handleAssetModal}
-                        onClose={handleCloseModal}
-                        empData={currentEmployee}
-                      />
-                    )}
-                  </>
-                )}
+                      <Button
+                        sx={{
+                          minWidth: '120px',
+                          background: '#138A72',
+                          display: 'flex',
+                          color: '#fff',
+                          '&:hover': {
+                            background: '#138A72',
+                          },
+                        }}
+                        onClick={handleOpenFilterModal}
+                        startIcon={
+                          <Image
+                            width={18}
+                            height={15}
+                            alt="Refresh"
+                            src={`/icons/Filter.svg`}
+                            onClick={handleOpenFilterModal}
+                          />
+                        }
+                      >
+                        {employeeProfileData?.filterBtn}
+                      </Button>
+                    </Box>
+                  )}
+
+                  {showFilterModal && (
+                    <FilterFormModal
+                      open={handleOpenFilterModal}
+                      onClose={handleClose}
+                      attendanceStatus
+                      filterForm={filterAttendanceForm}
+                      url={`${HR_GET_EMP_ATTENDENCE}?e_email=${currentEmployee?.email}`}
+                      dispatchFunction={dispatchFunction}
+                    />
+                  )}
+                  {value === employeeProfileData?.valueFour && (
+                    <>
+                      {(role === 'super_admin' ||
+                        (role !== 'super_admin' &&
+                          employee_perms?.[0]?.write)) && (
+                        <Button
+                          sx={{
+                            minWidth: '160px',
+                            background: '#029894',
+                            display: 'flex',
+                            color: '#fff',
+                            textTransform: 'math-auto',
+                            marginBottom: '10px',
+                            '&:hover': {
+                              background: '#029894',
+                            },
+                          }}
+                          onClick={handleAssetModal}
+                        >
+                          {employeeProfileData?.addAsset}
+                        </Button>
+                      )}
+                      {showAssetModal && (
+                        <AssetForm
+                          open={handleAssetModal}
+                          onClose={handleCloseModal}
+                          empData={currentEmployee}
+                        />
+                      )}
+                    </>
+                  )}
+
+                  {value === employeeProfileData?.valueSix && (
+                    <>
+                      {(role === 'super_admin' ||
+                        (role !== 'super_admin' &&
+                          employee_perms?.[0]?.write)) && (
+                        <Button
+                          sx={{
+                            minWidth: '160px',
+                            maxWidth: '160px',
+                            width: '160px',
+                            height: '42px',
+                            background: '#029894',
+                            display: 'flex',
+                            color: '#fff',
+                            textTransform: 'math-auto',
+                            marginBottom: '10px',
+                            '&:hover': {
+                              background: '#029894',
+                            },
+                          }}
+                          onClick={handleBenefitModal}
+                        >
+                          {employeeProfileData?.addBenefit}
+                        </Button>
+                      )}
+                      {showBenefitModal && (
+                        <BenefitForm
+                          open={handleBenefitModal}
+                          onClose={handleCloseModal}
+                          empData={currentEmployee}
+                        />
+                      )}
+                    </>
+                  )}
+
+                  {value === employeeProfileData?.valueSeven && (
+                    <>
+                      {(role === 'super_admin' ||
+                        (role !== 'super_admin' &&
+                          employee_perms?.[0]?.write)) && (
+                        <Button
+                          sx={{
+                            minWidth: '160px',
+                            maxWidth: '160px',
+                            width: '160px',
+                            height: '42px',
+                            background: '#029894',
+                            display: 'flex',
+                            color: '#fff',
+                            textTransform: 'math-auto',
+                            marginBottom: '10px',
+                            '&:hover': {
+                              background: '#029894',
+                            },
+                          }}
+                          onClick={handleLetterModal}
+                        >
+                          {employeeProfileData?.addLetter}
+                        </Button>
+                      )}
+                      {showLetterModal && (
+                        <LetterForm
+                          open={handleLetterModal}
+                          onClose={handleCloseModal}
+                          empData={currentEmployee}
+                        />
+                      )}
+                    </>
+                  )}
+
+                  {value === employeeProfileData?.valueEight && (
+                    <>
+                      {(role === 'super_admin' ||
+                        (role !== 'super_admin' &&
+                          employee_perms?.[0]?.write)) && (
+                        <Box
+                          sx={{
+                            display: 'flex',
+                            alignItems: { xs: 'start', sm: 'center' },
+                            justifyContent: 'space-between',
+                            gap: 1.5,
+                            mb: 1,
+                            flexDirection: { xs: 'column', sm: 'row' },
+                          }}
+                        >
+                          {console.log(timeTracking, 'timeTracking')}
+                          <Box sx={{ order: { xs: 1, sm: 0 } }}>
+                            <AppCustomMonthYearPicker
+                              timeTracking={timeTracking}
+                              setTimeTracking={setTimeTracking}
+                            />
+                          </Box>
+                          <Button
+                            sx={{
+                              order: { xs: 0, sm: 1 },
+                              minWidth: '160px',
+                              maxWidth: '160px',
+                              width: '160px',
+                              height: '42px',
+                              background: '#029894',
+                              display: 'flex',
+                              color: '#fff',
+                              textTransform: 'math-auto',
+                              '&:hover': {
+                                background: '#029894',
+                              },
+                            }}
+                            onClick={handleLetterModal}
+                          >
+                            {employeeProfileData?.addSalary}
+                          </Button>
+                        </Box>
+                      )}
+                      {showLetterModal && (
+                        <SalaryForm
+                          open={handleLetterModal}
+                          onClose={handleCloseModal}
+                          empData={currentEmployee}
+                        />
+                      )}
+                    </>
+                  )}
+
+                  {value === employeeProfileData?.valueNine && <></>}
+                </Box>
               </Box>
             </Box>
-            {value === employeeProfileData?.valueOne ? (
-              <Profile
-                isLoading={isLoading}
-                handleOpenModal={handleOpenModal}
-                showEditModal={showEditModal}
-                handleCloseModal={handleCloseModal}
-                handleEmergencyModal={handleEmergencyModal}
-                showEmergencyModal={showEmergencyModal}
-                handleEditProfileModal={handleEditProfileModal}
-                showEditProfilelModal={showEditProfilelModal}
-                data={currentEmployee}
-              />
-            ) : value === employeeProfileData?.valueTwo ? (
-              <>
-                <Client />
-              </>
-            ) : value === employeeProfileData?.valuethree ? (
-              <AttendanceReport employeeData={currentEmployee} />
-            ) : value === 'five' ? (
-              <TimeAndLeaves />
-            ) : (
-              <Assets />
-            )}
+            {console.log({ currentEmployee })}
+            <Box sx={{ width: '100%' }}>
+              {value === employeeProfileData?.valueOne ? (
+                <Profile
+                  isLoading={isLoading}
+                  handleOpenModal={handleOpenModal}
+                  showEditModal={showEditModal}
+                  handleCloseModal={handleCloseModal}
+                  handleEmergencyModal={handleEmergencyModal}
+                  showEmergencyModal={showEmergencyModal}
+                  handleEditProfileModal={handleEditProfileModal}
+                  showEditProfilelModal={showEditProfilelModal}
+                  handleEditOfficialModal={handleEditOfficialModal}
+                  showEditOfficialModal={showEditOfficialModal}
+                  data={currentEmployee}
+                />
+              ) : value === employeeProfileData?.valueTwo ? (
+                <>
+                  <Client />
+                </>
+              ) : value === employeeProfileData?.valuethree ? (
+                <AttendanceReport employeeData={currentEmployee} />
+              ) : value === employeeProfileData?.valueFive ? (
+                <TimeAndLeaves />
+              ) : value === employeeProfileData?.valueFour ? (
+                <Assets />
+              ) : value === employeeProfileData?.valueSix ? (
+                <Benefits />
+              ) : value === employeeProfileData?.valueSeven ? (
+                <Letters />
+              ) : value === employeeProfileData?.valueEight ? (
+                <Salary timeTracking={timeTracking} />
+              ) : value === employeeProfileData?.valueNine ? (
+                <Requests empData={currentEmployee} />
+              ) : null}
+            </Box>
           </Box>
         </Grid>
       </Grid>

@@ -22,7 +22,6 @@ import { useDispatch } from 'react-redux';
 import { Toast } from '../Toast/Toast';
 
 const AssetForm = ({ onClose, open, empData }) => {
-  // const [formData, setFormData] = useState({});
   const dispatch = useDispatch();
   const { mutate, isPending } = useMutation({
     mutationFn: async (data) => {
@@ -34,7 +33,9 @@ const AssetForm = ({ onClose, open, empData }) => {
       const reformedData = {
         ...values,
         id: data?.id,
-        assigned_date: dayjs(values.assigned_date).format('YYYY-MM-DD h:m A'),
+        assigned_date: dayjs(values?.assigned_date)?.format(
+          'MMMM D, YYYY h:m A'
+        ),
         assignee: [values?.assignee_name, values?.assignee_email],
         action: ['Delete'],
       };
@@ -43,7 +44,6 @@ const AssetForm = ({ onClose, open, empData }) => {
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to post data');
-      // onClose();
       console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
@@ -88,7 +88,6 @@ const AssetForm = ({ onClose, open, empData }) => {
       <Box
         sx={{
           bgcolor: '#fff',
-          // width: { xs: '90%', md: '40%' },
           maxWidth: '850px',
           width: '95%',
           display: 'flex',
@@ -125,6 +124,7 @@ const AssetForm = ({ onClose, open, empData }) => {
             src="/images/leave-request/close.svg"
             component={'img'}
             onClick={onClose}
+            sx={{ cursor: 'pointer' }}
           />
         </Box>
         <form onSubmit={handleSubmit}>
@@ -175,7 +175,6 @@ const AssetForm = ({ onClose, open, empData }) => {
                       md={12}
                       lg={12}
                       fields={fields}
-                      // handleData={handleData}
                     />
                   </Grid>
                   {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>}

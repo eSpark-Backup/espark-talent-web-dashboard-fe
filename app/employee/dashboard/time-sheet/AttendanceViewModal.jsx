@@ -8,7 +8,6 @@ const AttendanceViewModal = ({ modalData, empData, handleClose }) => {
   function formatDate(inputDate) {
     // Split the date string into day, month, and year
     var parts = inputDate.split('-');
-
     // Reorder the parts to form the new date format
     var formattedDate = parts[1] + '-' + parts[0] + '-' + parts[2];
     const newDate = dayjs(formattedDate).format('MMMM DD, YYYY');
@@ -31,9 +30,10 @@ const AttendanceViewModal = ({ modalData, empData, handleClose }) => {
     ],
     [
       ['Name:', 'Bilal Khan', 'employee_name'],
+      ['Joining date:', 'Oct26,2021', 'joining_date', 'date'],
+      ['Role:', 'junior', 'role'],
       // ['Location:', 'Karachi, Pakistan', 'location'],
       // ['Department:', 'Software', 'department'],
-      ['Joining date:', 'Oct26,2021', 'joining_date', 'date'],
     ],
   ];
   const attendanceData = [
@@ -72,11 +72,12 @@ const AttendanceViewModal = ({ modalData, empData, handleClose }) => {
           Attendance view
         </Typography>
       </Box>
-      <Box p={'40px'}>
+      <Box sx={{ p: { xs: '20px', sm: '30px', md: '40px' } }}>
         <Grid
           container
           display={'flex'}
           flexDirection={'row'}
+          rowSpacing={3}
           sx={{
             '@media (min-width: 900px) and (max-width: 1370px)': {
               flexDirection: 'column',
@@ -109,7 +110,7 @@ const AttendanceViewModal = ({ modalData, empData, handleClose }) => {
               />
             </Box>
           </Grid>
-          <Grid item xs={12} md={9.75}>
+          <Grid item xs={12} lg={9.75}>
             <Grid container columnSpacing={'40px'}>
               {employeeData?.map((item, empIndex) => {
                 return (
@@ -134,13 +135,8 @@ const AttendanceViewModal = ({ modalData, empData, handleClose }) => {
           </Grid>
         </Grid>
       </Box>
-      <Box
-        sx={{
-          padding: '20px',
-        }}
-      >
+      <Box sx={{ p: { xs: '0px', sm: '10px', md: '20px' } }}>
         {attendanceData?.map((data, dataIndex) => {
-          console.log({ modalData, data });
           return (
             <EmployeeRequestDetailRow
               darkBack={!(dataIndex % 2)}

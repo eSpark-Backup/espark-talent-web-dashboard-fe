@@ -8,7 +8,6 @@ const EmployeeDetailRow = ({ fontSize, darkBack, label, value }) => {
         background: darkBack ? '#F6F6F6' : '#fff',
         padding: '10px',
         borderRadius: '5px',
-        maxWidth: '550px',
       }}
     >
       <Grid container>

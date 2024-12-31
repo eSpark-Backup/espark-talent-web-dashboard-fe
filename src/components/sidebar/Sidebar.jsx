@@ -205,7 +205,7 @@ const Sidebar = ({ userName }) => {
                 }
                 sx={{
                   display: { xs: 'none', md: 'flex' },
-                  '@media (min-width: 900px) and (max-width: 1200px)': {
+                  '@media (min-width: 0px) and (max-width: 1199px)': {
                     display: 'none',
                   },
                 }}

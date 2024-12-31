@@ -29,39 +29,35 @@ const Assets = () => {
   const dispatch = useDispatch();
   const { mutate, isPending } = useMutation({
     mutationFn: async (id) => {
-      // dispatch(deleteClientHiringRequest());
       return api.daleteData(`${HR_ADD_EMP_ASSET}?id=${id}`);
     },
     onSuccess: () => {
       Toast('success', 'Asset deleted successfully');
-      // dispatch(deleteClientHiringRequestSuccess(modalData?.id));
       handleClose();
       dispatch(deleteEmpAsset(deletingAssetId));
       setDeletingAssetId(null);
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to delete data');
-      // dispatch(deleteClientHiringRequestFailed());
     },
   });
   const params = useParams();
-  // const [isLoading, setIsLoading] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
   const { assets } = useSelector((state) => state?.hr?.employees);
   const { isLoading } = useQuery({
     staleTime: 10000,
     refetchOnWindowFocus: false,
-    queryKey: ['hr-employee-get-asset'],
+    queryKey: ['hr-employee-get-asset', params?.id],
     queryFn: async () => {
       dispatch(getEmpAssetRequest());
       return api
-        .getData(`${HR_GET_EMP_PROFILE}?id=${params.id}&tab=assets`)
+        .getData(`${HR_GET_EMP_PROFILE}?id=${params?.id}&tab=assets`)
         .then(({ data }) => {
           const tempAssets = data?.length
             ? data?.map((item) => ({
                 ...item,
-                assigned_date: dayjs(item.assigned_date).format(
-                  'YYYY-MM-DD h:m A'
+                assigned_date: dayjs(item?.assigned_date)?.format(
+                  'MMMM D, YYYY h:m A'
                 ),
                 assignee: [item?.assignee_name, item?.assignee_email],
                 action: ['Delete'],
@@ -106,6 +102,7 @@ const Assets = () => {
           sx={{
             maxWidth: '100%',
             overflowX: 'auto',
+            mt: '40px',
           }}
         >
           <AppTable

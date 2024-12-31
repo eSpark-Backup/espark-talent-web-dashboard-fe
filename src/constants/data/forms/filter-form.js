@@ -262,3 +262,38 @@ export const filterLeaveForm = [
   //   ],
   // },
 ];
+
+export const filterWFHForm = [
+  {
+    title: ' Status',
+    placeholder: 'Select Status',
+    name: 'status',
+    type: 'select',
+    options: [
+      {
+        label: 'Pending',
+      },
+      {
+        label: 'Completed',
+      },
+      {
+        label: 'Rejected',
+      },
+    ],
+    searchable: true,
+  },
+  {
+    title: 'From',
+    placeholder: 'DD-MM-YYYY',
+    suffixIcon: 'calender',
+    type: 'date',
+    name: 'from',
+  },
+  {
+    title: 'To',
+    placeholder: 'DD-MM-YYYY',
+    suffixIcon: 'calender',
+    type: 'date',
+    name: 'to',
+  },
+];

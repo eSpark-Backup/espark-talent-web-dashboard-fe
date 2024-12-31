@@ -40,7 +40,7 @@ import { Toast } from '@/src/components/Toast/Toast';
 import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
 import { TIME_REQUEST } from '@/src/constants/timeSheet';
 import dayjs from 'dayjs';
-import PunchRequestDataView from '@/app/employee/dashboard/attendance/punch-requests/PunchRequestFormView';
+import PunchRequestDataView from '@/app/employee/dashboard/request/punch-requests/PunchRequestFormView';
 
 const Dashboard = () => {
   const { data, tabData } = useSelector((state) => state?.client?.timeOff);
@@ -171,7 +171,7 @@ const Dashboard = () => {
                   ...item,
                   actionStatus: true,
                   requested_at: dayjs(item?.requested_at).format(
-                    'YYYY-MM-DD hh:mm a'
+                    'MMMM D, YYYY hh:mm A'
                   ),
                   actions: [
                     item?.status === 'pending' ? 'Reject' : null,

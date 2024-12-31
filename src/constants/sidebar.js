@@ -96,18 +96,9 @@ export const Employee_Routes = [
   },
   {
     icon: '/images/sidebar-icons/attendance.svg',
-    text: 'Attendance',
-    link: '#',
-    sublinks: [
-      {
-        text: 'Time Sheet',
-        link: '/employee/dashboard/attendance/time-sheet',
-      },
-      {
-        text: 'Punch requests',
-        link: '/employee/dashboard/attendance/punch-requests',
-      },
-    ],
+    text: 'Time Sheet',
+    link: '/employee/dashboard/time-sheet',
+    sublinks: null,
   },
   {
     icon: '/images/sidebar-icons/request.svg',
@@ -117,6 +108,14 @@ export const Employee_Routes = [
       {
         text: 'Leave',
         link: '/employee/dashboard/request/leave',
+      },
+      {
+        text: 'WFH Request',
+        link: '/employee/dashboard/request/work-from-home',
+      },
+      {
+        text: 'Punch requests',
+        link: '/employee/dashboard/request/punch-requests',
       },
     ],
   },
@@ -134,6 +133,16 @@ export const Employee_Routes = [
         link: '/employee/dashboard/administration/contracts-signed',
       },
     ],
+  },
+  {
+    icon: '/images/sidebar-icons/dashboard.svg',
+    text: 'Benefits',
+    link: '/employee/dashboard/benefits',
+  },
+  {
+    icon: '/images/sidebar-icons/dashboard.svg',
+    text: 'Letters',
+    link: '/employee/dashboard/letters',
   },
 ];
 

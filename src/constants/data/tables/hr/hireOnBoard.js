@@ -82,6 +82,16 @@ export const hiringRequestColumn = [
     name: 'salary_range',
   },
   {
+    title: 'Job Description',
+    flex: 1,
+    name: 'job_description',
+  },
+  {
+    title: 'Comments',
+    flex: 1,
+    name: 'description',
+  },
+  {
     title: 'Action',
     flex: 1,
     name: 'action',

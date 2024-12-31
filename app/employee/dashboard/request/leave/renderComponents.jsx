@@ -14,6 +14,7 @@ export const renderNestedTable = ({
   handleClickActionDelete,
   isLoading,
   viewClicked,
+  minWidth,
 }) => {
   return (
     <CustomTabPanel
@@ -27,6 +28,7 @@ export const renderNestedTable = ({
         }}
       >
         <AppTable
+          minWidth={minWidth}
           isLoading={isLoading}
           currentTab={currentReqStatusTab}
           column={column}

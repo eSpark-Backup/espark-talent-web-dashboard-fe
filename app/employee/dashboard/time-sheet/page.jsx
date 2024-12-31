@@ -35,6 +35,7 @@ import { getTimeSheet } from '@/src/utils/getTimeSheet';
 import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
 import { Toast } from '@/src/components/Toast/Toast';
 import Skeleton from '@mui/material/Skeleton';
+import { calculateExpectedTime } from '@/src/utils/calculateExpectedTime';
 
 const Dashboard = () => {
   const { currentWorkSpace } = useSelector((state) => state?.emp?.home);
@@ -59,7 +60,6 @@ const Dashboard = () => {
     return newDateStr;
   }
   const { isLoading } = useQuery({
-    // staleTime: 10000,
     refetchOnWindowFocus: false,
     queryFn: async () => {
       dispatch(getTimeSheetData());
@@ -76,11 +76,18 @@ const Dashboard = () => {
                       if (!st[1]) return;
                       else return getAttendenceShortHand(st[0]);
                     })
-                    .filter((el) => el !== undefined),
+                    ?.filter((el) => el !== undefined),
                   date: convertDateFormat(item[0]),
                   action: ['View'],
                   attendenceShortHand: true,
                   actionStatus: true,
+                  expected_hours: calculateExpectedTime({
+                    employee_details: {
+                      company: data?.employee_details?.company,
+                      expect_check_in: data?.time_sheet?.expect_check_in,
+                      expect_check_out: data?.time_sheet?.expect_check_out,
+                    },
+                  }),
                 }))
               : [];
           dispatch(
@@ -109,7 +116,31 @@ const Dashboard = () => {
       );
     },
     onSuccess: ({ data }) => {
-      dispatchFunction(data);
+      const newData =
+        data !== '' && Object.entries(data?.time_sheet?.record).length
+          ? Object.entries(data?.time_sheet?.record)?.map((item) => ({
+              ...item[1],
+              day: dayjs(convertDateFormat(item[0])).format('dddd'),
+              status: Object.entries(item[1]?.status)
+                ?.map((st) => {
+                  if (!st[1]) return;
+                  else return getAttendenceShortHand(st[0]);
+                })
+                ?.filter((el) => el !== undefined),
+              date: convertDateFormat(item[0]),
+              action: ['View'],
+              attendenceShortHand: true,
+              actionStatus: true,
+              expected_hours: calculateExpectedTime({
+                employee_details: {
+                  company: data?.employee_details?.company,
+                  expect_check_in: data?.time_sheet?.expect_check_in,
+                  expect_check_out: data?.time_sheet?.expect_check_out,
+                },
+              }),
+            }))
+          : [];
+      dispatchFunction(newData);
     },
     onError: (err) => {
       dispatch(getTimeSheetDataFailed());
@@ -264,7 +295,6 @@ const Dashboard = () => {
                       color: '#595959',
                     }}
                   >
-                    {/* {Object.values(item)[1]} */}
                     {data?.time_sheet_summary?.[item?.name] || 0}
                   </Typography>
                 )}
@@ -348,9 +378,9 @@ const Dashboard = () => {
                     marginX: '10px',
                     minWidth: '120px',
                     display: { xs: 'flex', md: 'flex' },
-                    border: `1px solid ${isPending ? '#ccc' : '#138A72'}`,
-                    backgroundColor: isPending && '#ccc',
-                    color: !isPending && '#138A72',
+                    border: `1px solid #138A72`,
+                    backgroundColor: '#fff',
+                    color: '#138A72',
                     '&:hover:': {
                       background: isPending ? '#ccc' : '#fff',
                     },
@@ -368,7 +398,7 @@ const Dashboard = () => {
                   }
                 >
                   {isPending ? (
-                    <CircularProgress size={26} color="secondary" />
+                    <CircularProgress size={26} sx={{ color: '#138A72' }} />
                   ) : (
                     'Refresh'
                   )}
@@ -399,14 +429,6 @@ const Dashboard = () => {
                 </Button>
               </Box>
             </Box>
-            {/* {showFilterModal && (
-              <FilterFormModal
-                open={handleOpenFilterModal}
-                onClose={handleClose}
-                attendanceStatus
-                filterForm={filterAttendanceForm}
-              />
-            )} */}
             <>
               <Box
                 sx={{
@@ -415,8 +437,24 @@ const Dashboard = () => {
                 }}
               >
                 <AppTable
+                  minWidth={'1450px'}
                   column={timeSheetTableColumn}
-                  data={data?.time_sheet?.record}
+                  data={data?.time_sheet?.record?.map((row) => ({
+                    ...row,
+                    date: dayjs(row?.date, 'DD-MM-YYYY')?.format(
+                      'D MMMM, YYYY'
+                    ),
+                    check_in: row?.check_in
+                      ? dayjs(row?.check_in, 'HH:mm')?.isValid()
+                        ? dayjs(row?.check_in, 'HH:mm')?.format('hh:mm A')
+                        : '-'
+                      : '-',
+                    check_out: row?.check_out
+                      ? dayjs(row?.check_out, 'HH:mm')?.isValid()
+                        ? dayjs(row?.check_out, 'HH:mm')?.format('hh:mm A')
+                        : '-'
+                      : '-',
+                  }))}
                   handleClickActionView={handleAttendanceModal}
                   isLoading={isLoading}
                 />
@@ -440,8 +478,9 @@ const Dashboard = () => {
           empData={{
             ...employee_details,
             ...currentWorkSpace,
-            expect_check_in: punch_timings.check_in,
-            expect_check_out: punch_timings.check_out,
+            role: data?.employee_details?.role_type || '',
+            expect_check_in: punch_timings?.check_in,
+            expect_check_out: punch_timings?.check_out,
           }}
           modalData={modalData}
           handleClose={handleClose}

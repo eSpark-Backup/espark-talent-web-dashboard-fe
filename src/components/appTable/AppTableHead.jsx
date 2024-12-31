@@ -27,7 +27,7 @@ const TableHead = ({ column }) => {
                   textAlign: col?.textAlign || 'center',
                 }}
               >
-                {col?.title || col}
+                {(col?.title || col)?.replace(/_/g, ' ')}
               </th>
             )}
           </Fragment>

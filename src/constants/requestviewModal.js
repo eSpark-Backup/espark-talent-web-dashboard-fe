@@ -62,4 +62,5 @@ export const REQUEST_LEAVE = {
   filter: 'Filter',
   manageTimesheet: 'Manage timesheet from one place.',
   managePunchrequest: 'Manage punch request from one place.',
+  manageWFHrequest: 'Manage work from home from one place.',
 };

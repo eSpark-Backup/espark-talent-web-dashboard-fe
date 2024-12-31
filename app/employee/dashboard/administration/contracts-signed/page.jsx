@@ -57,6 +57,7 @@ const ContractSigned = () => {
         });
     },
   });
+
   const clientContracts = useQuery({
     refetchOnWindowFocus: false,
     queryKey: ['fetch-emp-off-shore-contracts'],

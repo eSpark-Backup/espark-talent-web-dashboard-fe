@@ -12,8 +12,8 @@ const EmployeeRequestDetailRow = ({ darkBack, label, value }) => {
       >
         <Grid
           container
-          p={'5px 5px 5px 20px'}
           sx={{
+            p: { xs: '5px 5px 5px 10px', md: '5px 5px 5px 20px' },
             background: darkBack ? '#F6F6F6' : '#FFF',
             borderRadius: '5px',
             display: 'flex',

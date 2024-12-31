@@ -9,6 +9,7 @@ const PunchRequestDataView = ({
   handleApproveRequest,
   handleRejectRequest,
   isEmployee,
+  handleConfirmDelete,
 }) => {
   const createPunchRequestViewData = [
     {
@@ -39,7 +40,11 @@ const PunchRequestDataView = ({
   };
 
   return (
-    <Box p={'28px'}>
+    <Box
+      sx={{
+        padding: { xs: '20px 15px', sm: '26px', md: '28px' },
+      }}
+    >
       {createPunchRequestViewData?.map(
         ({ title, value, suffixIcon }, dataIndex) => (
           <Box key={dataIndex}>
@@ -98,6 +103,7 @@ const PunchRequestDataView = ({
                         fontWeight: 500,
                         lineHeight: 'normal',
                         minHeight: title === 'Description' && '90px',
+                        textTransform: 'capitalize',
                       }}
                     >
                       {value}
@@ -117,20 +123,12 @@ const PunchRequestDataView = ({
           </Box>
         )
       )}
-      {modalData?.status === 'completed' ? (
+      {isEmployee && modalData?.status === 'completed' ? (
         <Box
           display={'flex'}
           justifyContent={'flex-end'}
           sx={{ padding: '20px' }}
         >
-          <Button
-            sx={{ minWidth: '120px' }}
-            onClick={handleClose}
-            variant="outlined"
-            disabled
-          >
-            Approved
-          </Button>
           <Button
             sx={{
               ml: '20px',
@@ -147,7 +145,7 @@ const PunchRequestDataView = ({
             close
           </Button>
         </Box>
-      ) : modalData?.status === 'rejected' ? (
+      ) : !isEmployee && modalData?.status === 'completed' ? (
         <Box
           display={'flex'}
           justifyContent={'flex-end'}
@@ -156,7 +154,6 @@ const PunchRequestDataView = ({
           <Button
             type="submit"
             variant="outlined"
-            disabled
             sx={{
               width: { xs: '105px', sm: '120px' },
               height: '40px',
@@ -167,6 +164,13 @@ const PunchRequestDataView = ({
           >
             Declined
           </Button>
+        </Box>
+      ) : isEmployee && modalData?.status === 'rejected' ? (
+        <Box
+          display={'flex'}
+          justifyContent={'flex-end'}
+          sx={{ padding: '20px' }}
+        >
           <Button
             sx={{
               ml: '20px',
@@ -181,6 +185,63 @@ const PunchRequestDataView = ({
             variant="outlined"
           >
             close
+          </Button>
+        </Box>
+      ) : !isEmployee && modalData?.status === 'rejected' ? (
+        <Box
+          display={'flex'}
+          justifyContent={'flex-end'}
+          sx={{ padding: '20px' }}
+        >
+          <Button
+            type="submit"
+            variant="outlined"
+            sx={{
+              width: { xs: '105px', sm: '120px' },
+              height: '40px',
+              fontSize: '16px',
+              fontWeight: 600,
+            }}
+            onClick={handleClose}
+          >
+            Declined
+          </Button>
+        </Box>
+      ) : isEmployee && modalData?.status === 'pending' ? (
+        <Box
+          display={'flex'}
+          justifyContent={'flex-end'}
+          sx={{ padding: '20px' }}
+        >
+          <Button
+            sx={{
+              ml: '20px',
+              minWidth: {
+                xs: '100px',
+                md: '120px',
+              },
+              fontSize: '16px',
+              fontWeight: 600,
+            }}
+            onClick={handleClose}
+            variant="outlined"
+          >
+            close
+          </Button>
+          <Button
+            onClick={() => {
+              handleConfirmDelete(modalData?.id);
+              handleClose();
+            }}
+            sx={{
+              ml: '20px',
+              minWidth: { xs: '100px', md: '120px' },
+              fontSize: '16px',
+              fontWeight: 600,
+            }}
+            variant="contained"
+          >
+            Delete request
           </Button>
         </Box>
       ) : !isEmployee && modalData?.status === 'pending' ? (
@@ -198,7 +259,8 @@ const PunchRequestDataView = ({
                 background: '#029894',
               },
             }}
-            variant="contained"
+            type="submit"
+            variant="outlined"
           >
             Decline
           </Button>

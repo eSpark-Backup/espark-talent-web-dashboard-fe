@@ -77,6 +77,16 @@ export const employeeTableHiringRequestColumn = [
     name: 'salary_range',
   },
   {
+    title: 'Job_description',
+    flex: 1,
+    name: 'job_description',
+  },
+  {
+    title: 'Comments',
+    flex: 1,
+    name: 'comments',
+  },
+  {
     title: 'Action',
     flex: 1,
     name: 'action',
@@ -212,6 +222,7 @@ export const employeeTableDataHiringRequest = [
     hiringStartingDate: '07-October-2021',
     hiringEndingDate: '07-October-2021',
     salaryRange: '1,000 $ - 1,200 $',
+    download: 'Download',
     action: ['Delete'],
     actionStatus: true,
   },
@@ -224,6 +235,7 @@ export const employeeTableDataHiringRequest = [
     hiringEndingDate: '28-February-2021',
     salaryRange: '1,000 $ - 1,200 $',
     action: ['Delete'],
+    download: 'Download',
     actionStatus: true,
   },
   {

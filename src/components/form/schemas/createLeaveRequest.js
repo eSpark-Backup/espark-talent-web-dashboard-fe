@@ -36,3 +36,11 @@ export const createLeaveRequestSchema = Yup.object({
   attachment: Yup.mixed().required('Attachment is required'),
   reason: Yup.string().required('Reason is required'),
 });
+
+export const createWFHRequestSchema = Yup.object({
+  startDate: Yup.date().required('Start date is required'),
+  endDate: Yup.date().required('End date is required'),
+  // .min(Yup.ref('startDate'), 'End date must be greater than start date'),
+  count: Yup.string(),
+  reason: Yup.string().required('Reason is required'),
+});

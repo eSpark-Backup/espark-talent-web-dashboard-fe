@@ -14,6 +14,7 @@ const AppTable = ({
   renderMessageButton,
   handleClickRenderMessageButton,
   handleClickActionView,
+  handleEditImage,
   viewClicked,
   handleClickActionDelete,
   noPagination,
@@ -49,9 +50,9 @@ const AppTable = ({
   useEffect(() => {
     const updatePageData = () => {
       if (!noPagination) {
-        const newPageData = data.slice(startIndex, endIndex);
+        const newPageData = data?.slice(startIndex, endIndex);
         setCurrPageData((prevPageData) => {
-          if (JSON.stringify(prevPageData) !== JSON.stringify(newPageData)) {
+          if (JSON?.stringify(prevPageData) !== JSON?.stringify(newPageData)) {
             return newPageData;
           }
           return prevPageData;
@@ -80,10 +81,10 @@ const AppTable = ({
         <TableHead column={column} commonRowStyle={commonRowStyle} />
         <AppTableBody
           column={column}
-          // data={data}
           data={!noPagination ? currPageData : data}
           renderMessage={renderMessage}
           handleClickActionView={handleClickActionView}
+          handleEditImage={handleEditImage}
           handleClickRenderMessageButton={handleClickRenderMessageButton}
           renderMessageButton={renderMessageButton}
           handleClick={handleClick}
@@ -101,11 +102,15 @@ const AppTable = ({
         />
       </table>
       {!noPagination && (
-        <Box my={'20px'} display="flex" justifyContent={'center'}>
+        <Box
+          my={'20px'}
+          sx={{ width: '100%', minWidth: minWidth && minWidth }}
+          display="flex"
+          justifyContent={'center'}
+        >
           <Stack spacing={2}>
             <Pagination
-              count={Math.ceil(data?.length / itemsPerPage) || 1}
-              // count={10}
+              count={Math?.ceil(data?.length / itemsPerPage) || 1}
               variant="outlined"
               shape="rounded"
               page={currentPage}

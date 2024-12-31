@@ -211,6 +211,7 @@ const MarkBreak = ({ icon }) => {
             style={{ marginRight: '10px' }}
             width={20}
             height={20}
+            alt="Icons"
           />
           {homeData?.today_activity?.break === '-' ||
           !homeData?.today_activity?.break

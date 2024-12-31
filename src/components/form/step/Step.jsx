@@ -214,14 +214,7 @@ const Step = ({
                     >
                       {fields?.map(
                         (
-                          {
-                            title,
-                            placeholder,
-                            errorText,
-                            name,
-                            accept,
-                            disabled,
-                          },
+                          { title, placeholder, errorText, name, accept },
                           fieldIndex
                         ) => (
                           <FormInput
@@ -244,7 +237,16 @@ const Step = ({
                             values={values}
                             width={'70%'}
                             accept={accept}
-                            disabled={disabled}
+                            disabled={
+                              (name == 'starting_date' &&
+                                (values.job_status == 'Part-Time' ||
+                                  values.job_status == 'Permanent')) ||
+                              (name == 'ending_date' &&
+                                (values.job_status == 'Part-Time' ||
+                                  values.job_status == 'Permanent'))
+                                ? true
+                                : false
+                            }
                             marginLeft={marginLeft}
                             marginRight={marginRight}
                           />
@@ -326,7 +328,6 @@ const Step = ({
               withFlag,
               min,
               max,
-              disabled,
               filelabel,
               selectWithType,
             },
@@ -358,7 +359,16 @@ const Step = ({
               accept={accept}
               min={min}
               max={max}
-              disabled={disabled}
+              disabled={
+                (name == 'starting_date' &&
+                  (values.job_status == 'Part-Time' ||
+                    values.job_status == 'Permanent')) ||
+                (name == 'ending_date' &&
+                  (values.job_status == 'Part-Time' ||
+                    values.job_status == 'Permanent'))
+                  ? true
+                  : false
+              }
               filelabel={filelabel}
               marginLeft={marginLeft}
               marginRight={marginRight}
@@ -446,7 +456,6 @@ const Step = ({
                 ) : (
                   'Submit'
                 )}
-                {/* {isLastStep ? 'Submit' : 'Next'} */}
               </Button>
             </Box>
           </Grid>

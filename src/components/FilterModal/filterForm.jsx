@@ -14,10 +14,11 @@ import {
 } from '@/src/redux/slices/employeeSlices/timeSheetSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import dayjs from 'dayjs';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { convertDateFormat, getAttendenceShortHand } from '@/src/utils/helpers';
 import { filterModalSchema } from '../form/schemas/filterModal';
 import { onCheckDateValidation } from '@/src/utils/onCheckDateValidation';
+import { calculateExpectedTime } from '@/src/utils/calculateExpectedTime';
 
 const FilterFormModal = ({
   open,
@@ -29,6 +30,7 @@ const FilterFormModal = ({
   const [filterFormValues, setfilterFormValues] = useState(null);
   const { currentWorkSpace } = useSelector((state) => state?.emp?.home);
   const dispatch = useDispatch();
+  const queryClient = useQueryClient();
   // function isWithinRange(timeStr, startTimeStr, endTimeStr) {
   //   const time = new Date('1970-01-01 ' + timeStr);
   //   const startTime = new Date('1970-01-01 ' + startTimeStr);
@@ -97,6 +99,13 @@ const FilterFormModal = ({
                   action: ['View'],
                   attendenceShortHand: true,
                   actionStatus: true,
+                  expected_hours: calculateExpectedTime({
+                    employee_details: {
+                      company: data?.employee_details?.company,
+                      expect_check_in: data?.time_sheet?.expect_check_in,
+                      expect_check_out: data?.time_sheet?.expect_check_out,
+                    },
+                  }),
                 }))
                 .filter((el) => {
                   if (values?.attendanceStatus) {
@@ -169,6 +178,7 @@ const FilterFormModal = ({
           filterFormValues?.checkIn,
           filterFormValues?.checkOut
         );
+        queryClient.invalidateQueries(['']);
       } else {
         // const newData =
         //   data === '' || !Object.keys(data?.time_sheet)?.length

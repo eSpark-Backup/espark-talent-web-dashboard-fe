@@ -132,6 +132,7 @@ const ContractSigned = () => {
       console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
+
   const downloadContract = (id) => {
     downloadContractMutation.mutate(id);
   };

@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Box, Grid, Typography } from '@mui/material';
 import Image from 'next/image';
 
-const AppCustomMonthYearPicker = ({ setTimeTracking }) => {
+const AppCustomMonthYearPicker = ({ timeTracking, setTimeTracking }) => {
   const months = [
     'January',
     'February',
@@ -55,7 +55,6 @@ const AppCustomMonthYearPicker = ({ setTimeTracking }) => {
     };
 
     document.addEventListener('click', handleClickOutside);
-
     return () => {
       document.removeEventListener('click', handleClickOutside);
     };
@@ -91,7 +90,7 @@ const AppCustomMonthYearPicker = ({ setTimeTracking }) => {
             height={25}
           />
           <Typography ml={'14px'} mt={0} color={'#595959'}>
-            {`${months[selectedDate.getMonth()]} ${selectedDate.getFullYear()}`}
+            {timeTracking?.month} {timeTracking?.year}
           </Typography>
         </Box>
         {isOpenCalendar && (

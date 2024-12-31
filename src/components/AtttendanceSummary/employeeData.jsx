@@ -9,7 +9,12 @@ const EmployeeData = () => {
   return (
     <>
       <Box>
-        <Image src="/images/attendance/avatar.svg" width={176} height={176} />
+        <Image
+          src="/images/attendance/avatar.svg"
+          width={176}
+          height={176}
+          alt="Avatar"
+        />
       </Box>
       <Box sx={{ width: '40%' }}>
         <EmployeeId />

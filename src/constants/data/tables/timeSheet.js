@@ -73,6 +73,11 @@ export const timeSheetTableColumn = [
     name: 'resume',
   },
   {
+    title: 'Expected hours',
+    flex: 2,
+    name: 'expected_hours',
+  },
+  {
     title: 'Overtime hours',
     flex: 2,
     name: 'overtime',

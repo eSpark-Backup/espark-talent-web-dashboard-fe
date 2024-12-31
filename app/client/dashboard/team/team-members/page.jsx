@@ -27,6 +27,7 @@ import {
 import { Toast } from '@/src/components/Toast/Toast';
 import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
 import { useRouter } from 'next/navigation';
+import dayjs from 'dayjs';
 
 const Dashboard = () => {
   const { data } = useSelector((state) => state?.client?.teamMembers);
@@ -40,21 +41,6 @@ const Dashboard = () => {
   const [terminatedTeamMembers, setTerminatedTeamMembers] = useState([]);
   const router = useRouter();
 
-  function extractBenefits(data) {
-    const result = [];
-
-    if (data.life_insurance_card) {
-      result.push('Life insurance');
-    }
-    if (data.medical_card) {
-      result.push('Medical');
-    }
-    if (data.fuel_card) {
-      result.push('Fuel');
-    }
-
-    return result.join(', ');
-  }
   const temMembersQueryActive = useQuery({
     staleTime: 10000,
     refetchOnWindowFocus: false,
@@ -68,10 +54,9 @@ const Dashboard = () => {
             data !== ''
               ? data?.map((item) => ({
                   ...item,
-                  benefits:
-                    typeof item.benefits === 'string'
-                      ? item.benefits
-                      : extractBenefits(item.benefits),
+                  joining_date: dayjs(item?.joining_date).format(
+                    'DD-MMMM-YYYY'
+                  ),
                   status: 'Active',
                 }))
               : [];

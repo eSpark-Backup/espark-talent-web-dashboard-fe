@@ -161,7 +161,7 @@ const FormInput = ({
     const fieldName = `${name}.${item.name}`;
     setFieldValue(fieldName, checked);
   };
-
+  console.log(disabled, 'disabledTest=', name, 'value=', value);
   return (
     <Grid
       item
@@ -273,12 +273,18 @@ const FormInput = ({
           )}
         </>
       ) : type === 'date' ? (
-        <>
+        <Box
+          style={{
+            cursor: disabled && 'no-drop',
+            opacity: disabled ? 0.4 : 1, // Visual cue for disabled state
+          }}
+        >
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
               <DesktopDatePicker
                 className={[
                   error ? 'error-border' : 'no-error-border',
+                  disabled ? 'date-picker-disabled' : 'date-picker-enabled', // Class for disabled state
                   'form-date-picker-component',
                 ].join(' ')}
                 slots={{
@@ -288,20 +294,27 @@ const FormInput = ({
                       src="/images/hiring/calender.svg"
                       width={30}
                       height={30}
-                      alt="calender"
+                      alt="calendar"
                       className="calendar-icon"
                       sx={{
                         mx: 'auto',
                         marginRight: '3px',
+                        opacity: disabled ? 0.5 : 1, // Dim the icon when disabled
                       }}
                     />
                   ),
                 }}
                 format={placeholder}
+                disabled={disabled}
+                style={{
+                  cursor: disabled && 'no-drop',
+                  opacity: disabled ? 0.4 : 1, // Visual cue for disabled state
+                }}
                 placeholder={placeholder}
                 slotProps={{
                   openPickerButton: {
                     disableRipple: true,
+                    'aria-disabled': disabled, // Accessibility enhancement
                   },
                   textField: {
                     placeholder: placeholder,
@@ -316,6 +329,7 @@ const FormInput = ({
                         background: 'none !important',
                       },
                     },
+                    disabled: disabled, // Ensure text field is also disabled
                   },
                 }}
                 sx={{
@@ -324,8 +338,9 @@ const FormInput = ({
                   '@media (min-width: 900px) and (max-width: 1400px)': {
                     width: '100%',
                   },
+                  cursor: disabled && 'no-drop',
+                  opacity: disabled ? 0.5 : 1, // Additional visual cue for disabled state
                 }}
-                // value={value}
                 maxDate={
                   name === 'from'
                     ? values['to']
@@ -347,52 +362,64 @@ const FormInput = ({
               />
             </Box>
           </LocalizationProvider>
-        </>
+        </Box>
       ) : type === 'date-and-time' ? (
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <DateTimePickerComponent
-            className={[
-              error ? 'error-border' : 'no-error-border',
-              'form-date-picker-component',
-            ].join(' ')}
-            slots={{
-              openPickerIcon: () => (
-                <Image
-                  src={`/icons/${suffixIcon}.svg`}
-                  width={30}
-                  height={30}
-                  alt="calender"
-                />
-              ),
-            }}
-            placeholder={placeholder}
-            slotProps={{
-              textField: {
-                placeholder: placeholder,
-                sx: {
-                  '& input': {
-                    color: '#88888',
-                    padding: '9.95px 10px',
-                    width: '100%',
+        <Box
+          style={{
+            cursor: disabled && 'no-drop',
+            opacity: disabled ? 0.4 : 1, // Visual cue for disabled state
+          }}
+        >
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DateTimePickerComponent
+              className={[
+                error ? 'error-border' : 'no-error-border',
+                'form-date-picker-component',
+              ].join(' ')}
+              slots={{
+                openPickerIcon: () => (
+                  <Image
+                    src={`/icons/${suffixIcon}.svg`}
+                    width={30}
+                    height={30}
+                    alt="calender"
+                  />
+                ),
+              }}
+              placeholder={placeholder}
+              slotProps={{
+                textField: {
+                  placeholder: placeholder,
+                  sx: {
+                    '& input': {
+                      color: '#88888',
+                      padding: '9.95px 10px',
+                      width: '100%',
+                    },
                   },
                 },
-              },
-            }}
-            sx={{
-              width: '100%',
-              height: '40px',
-              '@media (min-width: 900px) and (max-width: 1400px)': {
+              }}
+              sx={{
                 width: '100%',
-              },
-            }}
-            value={value}
-            onChange={(e) => {
-              handleChangeInput(name, `${e?.$d}`);
-            }}
-          />
-        </LocalizationProvider>
+                height: '40px',
+                '@media (min-width: 900px) and (max-width: 1400px)': {
+                  width: '100%',
+                },
+              }}
+              value={value}
+              onChange={(e) => {
+                handleChangeInput(name, `${e?.$d}`);
+              }}
+            />
+          </LocalizationProvider>
+        </Box>
       ) : type === 'time' ? (
-        <>
+        <Box
+          style={{
+            cursor: disabled && 'no-drop',
+            opacity: disabled ? 0.4 : 1, // Visual cue for disabled state
+          }}
+        >
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DesktopTimePicker
               className={[
@@ -447,7 +474,7 @@ const FormInput = ({
               }}
             />
           </LocalizationProvider>
-        </>
+        </Box>
       ) : type === 'timerow' ? (
         <>
           <Box
@@ -497,6 +524,7 @@ const FormInput = ({
                       placeholder={field.placeholder}
                       className="form-input-field"
                       type="time"
+                      disabled={disabled}
                       onChange={(e) => {
                         setValues({
                           ...values,
@@ -586,6 +614,7 @@ const FormInput = ({
                   placeholder={field.placeholder}
                   className="form-input-field"
                   type={type}
+                  disabled={disabled}
                   onChange={(e) => {
                     handleChangeInput(
                       `${name}.${field.name}`,
@@ -693,6 +722,7 @@ const FormInput = ({
                 id={`${item.title}`}
                 checked={values?.[name]?.[item.name]}
                 onChange={(e) => handleSelectCheckbox(e, item)}
+                disabled={disabled}
               />
               <label style={{ marginLeft: '10px' }} htmlFor={`${item.title}`}>
                 {item.title}

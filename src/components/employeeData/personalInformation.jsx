@@ -1,14 +1,14 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
 
-import { employeeDataLabel } from '@/src/constants/employeeProfile';
+import { employeePersonalDataLabel } from '@/src/constants/employeeProfile';
 import dayjs from 'dayjs';
 
 const PersonalInformation = ({ data }) => {
   return (
     <>
       <Box>
-        {employeeDataLabel?.map((empData, index) => (
+        {employeePersonalDataLabel?.map((empData, index) => (
           <>
             <Typography
               component={'span'}
@@ -29,6 +29,7 @@ const PersonalInformation = ({ data }) => {
               <Typography
                 sx={{
                   width: { xs: '150px', sm: '150px' },
+                  minWidth: { xs: '150px', sm: '150px' },
                   fontSize: {
                     xs: '12px',
                     sm: '13px',
@@ -57,6 +58,12 @@ const PersonalInformation = ({ data }) => {
                   },
                   color: '#171717',
                   fontWeight: 400,
+                  wordBreak: 'break-all',
+                  whiteSpace: 'normal',
+                  overflowWrap: 'break-word',
+                  textTransform: data?.[empData?.name]?.includes('@')
+                    ? 'lowercase'
+                    : 'capitalize',
                 }}
               >
                 {empData?.type === 'date'

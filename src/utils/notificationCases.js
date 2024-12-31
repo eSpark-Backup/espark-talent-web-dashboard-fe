@@ -97,7 +97,7 @@ const handleEmployeeNotifications = (notification, userType) => {
   const commonUrl = `${userType}/dashboard`;
 
   const routes = {
-    'Punch Request': 'attendance/punch-requests',
+    'Punch Request': 'request/punch-requests',
     'Leave Request': 'request/leave',
     Policy: 'administration/policies',
     'Company Contracts': 'administration/contracts-signed',

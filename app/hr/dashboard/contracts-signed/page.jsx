@@ -52,6 +52,7 @@ const ContractSigned = () => {
   // const [search, setSearch] = useState('');
   // const [empData, setEmpData] = useState();
   const [isOpen, setIsOpen] = useState(false);
+
   const offShoreContractSignedQuery = useQuery({
     staleTime: 10000,
     refetchOnWindowFocus: false,

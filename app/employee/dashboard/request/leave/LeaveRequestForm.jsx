@@ -33,7 +33,7 @@ const LeaveRequestForm = ({ handleClose }) => {
     employee_name: empDetails?.employee_name,
     department: empDetails?.job_title,
     leave_type: vals?.leaveType?.label.split(' ')[0].toLowerCase(),
-    requested_at: dayjs().format('YYYY-MM-DD hh:mm A'),
+    requested_at: dayjs().format('MMMM D, YYYY hh:mm A'),
     count: vals?.count,
     status: 'pending',
     start_date: dayjs(vals?.startDate).format('YYYY-MM-DD'),
@@ -73,7 +73,7 @@ const LeaveRequestForm = ({ handleClose }) => {
           ? data?.requests?.map((item) => ({
               ...item,
               requested_at: dayjs(item?.requested_at).format(
-                'YYYY-MM-DD hh:mm A'
+                'MMMM D, YYYY hh:mm A'
               ),
             }))
           : [],
@@ -134,6 +134,9 @@ const LeaveRequestForm = ({ handleClose }) => {
         leave_type: formValues?.leaveType?.label.split(' ')[0].toLowerCase(),
         start_date: dayjs(formValues?.startDate).format('YYYY-MM-DD'),
         end_date: dayjs(formValues?.endDate).format('YYYY-MM-DD'),
+        requested_at: dayjs(formValues?.requested_at).format(
+          'MMMM D, YYYY hh:mm A'
+        ),
         reason: formValues?.reason,
         attachment: formValues?.attachment,
         count: formValues?.count,
@@ -181,7 +184,7 @@ const LeaveRequestForm = ({ handleClose }) => {
       <Box>
         <Box
           sx={{
-            padding: { xs: '20px', sm: '26px', md: '28px' },
+            padding: { xs: '20px 10px', sm: '26px', md: '28px' },
           }}
         >
           {createLeaveRequestForm?.map(

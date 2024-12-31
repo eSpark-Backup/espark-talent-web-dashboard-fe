@@ -6,7 +6,6 @@ import {
   leavesColumn,
   leavesData,
   timeColumn,
-  timeData,
 } from '@/src/constants/data/tables/hr/timeAndLeaves';
 import TimeManagementModal from '@/app/hr/dashboard/clients/client-profile/TimeManagementModal';
 import LeaveManagementModal from '@/app/hr/dashboard/clients/client-profile/LeaveManagementModal';
@@ -30,10 +29,8 @@ const TimeAndLeaves = () => {
 
   const { id } = useSelector((state) => state?.hr?.employees?.currentEmployee);
   const dispatch = useDispatch();
-  const { time, leaves } = useSelector(
-    (state) => state?.hr?.employees?.timeAndLeaves
-  );
-  console.log({ leaves });
+  const { time, leaves } =
+    useSelector((state) => state?.hr?.employees?.timeAndLeaves) || {};
   const params = useParams();
   const [currentTab, setCurrentTab] = useState({
     label: 'Time',
@@ -48,32 +45,30 @@ const TimeAndLeaves = () => {
       data: time,
       column: timeColumn,
     });
-  }, [time]);
+  }, []);
   const [isLoadingMutation, setIsLoadingMutation] = useState(false);
+
   const preetyTime = (time) => {
-    if (dayjs(time).format('hh:mm A') === 'Invalid Date') {
+    if (dayjs(time)?.format('hh:mm A') === 'Invalid Date') {
       return time;
     } else {
-      return dayjs(time).format('hh:mm A');
+      return dayjs(time)?.format('hh:mm A');
     }
   };
-  const { isLoading } = useQuery({
+  const { data: timeData, isLoading } = useQuery({
     staleTime: 10000,
     refetchOnWindowFocus: false,
-    queryKey: ['employee-time-profile'],
+    queryKey: ['employee-time-profile', params?.id],
     queryFn: async () => {
       return api
-        .getData(`${HR_EMP_TIME_AND_LEAVES}?id=${params.id}&tab=time`)
+        .getData(`${HR_EMP_TIME_AND_LEAVES}?id=${params?.id}&tab=time`)
         .then(({ data }) => {
-          const tempData =
-            [
-              {
-                // check_in: dayjs(data?.check_in).format('hh:mm A'),
-                // check_out: dayjs(data?.check_out).format('hh:mm A'),
-                check_in: preetyTime(data?.check_in),
-                check_out: preetyTime(data?.check_out),
-              },
-            ] || [];
+          const tempData = [
+            {
+              check_in: preetyTime(data?.check_in),
+              check_out: preetyTime(data?.check_out),
+            },
+          ];
           dispatch(getHrEmpTime(tempData));
           return tempData || [];
         })
@@ -126,7 +121,6 @@ const TimeAndLeaves = () => {
       } else {
         console.log({ reformed: reformData(data) });
         dispatch(getHrEmpLeaves(reformData(data)));
-        // setTabData(reformData(data));
       }
       return data || [];
     },
@@ -148,7 +142,6 @@ const TimeAndLeaves = () => {
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to post data');
-      // console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
 
@@ -175,7 +168,6 @@ const TimeAndLeaves = () => {
     setCurrentTab({
       label: tabs[newValue].label,
       val: newValue,
-      // data: tabs[newValue].data,
       data: newValue === 0 ? time : leaves,
       column: tabs[newValue].column,
     });
@@ -200,7 +192,7 @@ const TimeAndLeaves = () => {
       handleOpenLeaveManagementModal();
     }
   };
-  if (isLoading) return 'Loading...';
+
   const handleUpdateLeaveStatus = (data) => {
     const tempData = {
       [data.leave_type]: {
@@ -226,7 +218,7 @@ const TimeAndLeaves = () => {
         }}
       >
         <Tabs
-          value={currentTab.val}
+          value={currentTab?.val}
           onChange={(ev, newVal) => {
             handleChangeTab(ev, newVal);
           }}
@@ -281,7 +273,7 @@ const TimeAndLeaves = () => {
           minWidth={'1480px'}
           currentTab={currentTab}
           column={currentTab.column}
-          data={currentTab.val === 0 ? time : leaves}
+          data={currentTab?.val === 0 ? time : leaves}
           noPagination
           updateLeaveStatus={handleUpdateLeaveStatus}
           isLoading={isLoading}

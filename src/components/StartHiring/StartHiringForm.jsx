@@ -36,74 +36,77 @@ const StartHiringForm = () => {
     initialValues: {
       hiringStartDate: null,
       hiringEndDate: null,
+      comments: null,
+      job_description: null,
     },
     validationSchema: hiringFormSchema,
     enableReinitialize: true,
     onSubmit: (formValues) => {
-      // const formVals
       const revampFormValues = {
         job_title: formValues?.jobTitle,
         role_type: formValues?.roleType,
         gender:
-          formValues?.gender == 'Not specific' ? 'nonspec' : formValues?.gender,
+          formValues?.gender === 'Not specific'
+            ? 'nonspec'
+            : formValues?.gender,
         employment_term: formValues?.employmentTerm,
-        salary_range: {
+        comments: formValues?.comments || null,
+        job_description: formValues?.job_description,
+        salary_range: JSON.stringify({
           minimum: formValues?.salary_range?.minimum,
           maximum: formValues?.salary_range?.maximum,
-          currency: formValues?.salary_currency,
-        },
+        }),
         country: formValues?.country?.title,
+        salary_currency: formValues?.salary_currency,
         hiring_start_date: dayjs(formValues?.hiringStartDate).format(
           'YYYY-MM-DD'
         ),
         hiring_end_date: dayjs(formValues?.hiringEndDate).format('YYYY-MM-DD'),
       };
-
+      console.log(formValues, 'mmm');
       mutate(revampFormValues);
     },
     validateOnChange: false,
     validateOnBlur: false,
   });
-  const getRevampedValues = (vals) => ({
-    job_title: vals?.jobTitle,
-    role_type: vals?.roleType,
-    gender: vals?.gender,
-    employment_term: vals?.employmentTerm,
-    salary_range: {
-      minimum: vals?.salary_range?.minimum,
-      maximum: vals?.salary_range?.maximum,
-    },
-    hiring_start_date: dayjs(vals?.hiringStartDate).format('YYYY-MM-DD'),
-    hiring_end_date: dayjs(vals?.hiringEndDate).format('YYYY-MM-DD'),
-  });
+  const getRevampedValues = (vals) => {
+    return {
+      job_title: vals?.jobTitle,
+      role_type: vals?.roleType,
+      gender: vals?.gender === 'Not specific' ? 'nonspec' : vals?.gender,
+      employment_term: vals?.employmentTerm,
+      job_description: vals?.job_description,
+      comments: vals?.comments || null,
+      country: vals?.country?.title,
+      salary_range: {
+        minimum: vals?.salary_range?.minimum,
+        maximum: vals?.salary_range?.maximum,
+      },
+      hiring_start_date: dayjs(vals?.hiringStartDate).format('YYYY-MM-DD'),
+      hiring_end_date: dayjs(vals?.hiringEndDate).format('YYYY-MM-DD'),
+    };
+  };
+
   const { mutate, isPending } = useMutation({
     mutationFn: async (formVals) => {
-      // console.log({ formVals });
-      // return {
-      //   data: [],
-      // };
       dispatch(createClientHiringRequest());
-      // const formData = new FormData();
-      // for (const key in formVals) {
-      //   formData.append(key, formVals[key]);
-      // }
-      return api.postJSONData(CLIENT_START_HIRING, formVals);
+      return api.postData(CLIENT_START_HIRING, formVals);
     },
-    onSuccess: ({ data }) => {
+    onSuccess: () => {
       Toast('success', 'Data posted successfully');
-      console.log({ values, data });
       dispatch(
         createClientHiringRequestSuccess({
           ...getRevampedValues(values),
           id: generateUniqueString(),
         })
       );
+
       router.push(`/client/dashboard/hire-onboard/hiring-progress`);
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to post data');
       dispatch(createClientHiringRequestFailed());
-      console.log({ err: err.message, name: err.name, stack: err.stack });
+      console.error({ err: err.message, name: err.name, stack: err.stack });
     },
   });
 

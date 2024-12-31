@@ -18,10 +18,10 @@ const Client = () => {
   const { data, isLoading } = useQuery({
     staleTime: 10000,
     refetchOnWindowFocus: false,
-    queryKey: ['employee-get-client'],
+    queryKey: ['employee-get-client', params?.id],
     queryFn: async () => {
       return api
-        .getData(`${HR_GET_EMP_PROFILE}?id=${params.id}&tab=client`)
+        .getData(`${HR_GET_EMP_PROFILE}?id=${params?.id}&tab=client`)
         .then(({ data }) => {
           return data || [];
         })

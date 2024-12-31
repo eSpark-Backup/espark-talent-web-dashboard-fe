@@ -394,7 +394,7 @@ const Dashboard = () => {
                       sx={{
                         marginX: '10px',
                         minWidth: '120px',
-                        border: `1px solid ${refreshMutation.isPending ? '#ccc' : '#138A72'}`,
+                        border: `1px solid #138A72`,
                         color: '#138A72',
                         background: refreshMutation.isPending && '#ccc',
                         '&:hover:': {
@@ -403,6 +403,7 @@ const Dashboard = () => {
                             : '#fff',
                         },
                       }}
+                      disableRipple
                       onClick={() => refreshMutation.mutate()}
                       startIcon={
                         !refreshMutation.isPending && (
@@ -416,7 +417,7 @@ const Dashboard = () => {
                       }
                     >
                       {refreshMutation.isPending ? (
-                        <CircularProgress size={26} color="secondary" />
+                        <CircularProgress size={26} sx={{ color: '#138A72' }} />
                       ) : (
                         REQUEST_LEAVE?.refresh
                       )}
@@ -470,11 +471,11 @@ const Dashboard = () => {
               </CustomTabPanel>
             </Box>
             {renderNestedTable({
+              minWidth: '1400px',
               currentReqStatusTabVal,
               currentReqStatusTab,
               column: employeeCheckInOutRequestColumn,
               data: checkInOutRequestDataState,
-              // data: data?.requests,
               viewClicked,
               handleClickActionView,
               handleClickActionDelete,
@@ -493,12 +494,12 @@ const Dashboard = () => {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          // height: { xs: '950px', md: '890px' },
         }}
       >
         <PunchRequestModal
           modalData={modalData}
           handleClose={handleClosePunch}
+          handleConfirmDelete={handleConfirmDelete}
         />
       </Modal>
       <AppConfirmationMadal

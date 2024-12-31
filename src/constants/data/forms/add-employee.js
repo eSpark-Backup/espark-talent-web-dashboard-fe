@@ -30,9 +30,6 @@ const formElements = [
       {
         label: 'Female',
       },
-      {
-        label: 'Not specific',
-      },
     ],
   },
   {
@@ -48,9 +45,14 @@ const formElements = [
     name: 'phone_number',
   },
   {
-    title: 'Email',
-    placeholder: 'Enter email',
+    title: 'Company Email',
+    placeholder: 'Enter company email',
     name: 'email',
+  },
+  {
+    title: 'Personal Email',
+    placeholder: 'Enter company email',
+    name: 'personal_email',
   },
   {
     title: 'Marital status',
@@ -175,22 +177,42 @@ const formElementsStep3 = [
     placeholder: 'Enter company',
     name: 'company',
   },
+
   {
-    title: 'Employement terms',
-    placeholder: 'Select employement terms',
+    title: 'Job Status',
+    placeholder: 'Select employement Status',
     type: 'select',
     options: [
       {
-        label: 'Salary based',
+        label: 'Internship',
       },
       {
-        label: 'Hourly based',
+        label: 'Probation',
       },
       {
-        label: 'Project based',
+        label: 'Part-Time',
+      },
+      {
+        label: 'Permanent',
       },
     ],
-    name: 'employementTerms',
+    name: 'job_status',
+  },
+  {
+    title: 'Starting date',
+    placeholder: 'DD-MM-YYYY',
+    suffixIcon: 'calender',
+    type: 'date',
+    name: 'starting_date',
+    col: 3,
+  },
+  {
+    title: 'Ending date',
+    placeholder: 'DD-MM-YYYY',
+    suffixIcon: 'calender',
+    type: 'date',
+    name: 'ending_date',
+    col: 3,
   },
 ];
 const formElementsStep4 = [

@@ -48,6 +48,7 @@ const renderActions = (
   row,
   col,
   handleClickActionView,
+  handleEditImage,
   commonCellStyle,
   colIndex,
   rowIndex,
@@ -76,11 +77,15 @@ const renderActions = (
             width={30}
             height={30}
             alt="Icon"
-            src={`/icons/${
-              row[toCamelCase(col || col?.title)][2] === true
-                ? 'EnabledCheck'
-                : 'DisabledCheck'
-            }.svg`}
+            src={
+              handleEditImage
+                ? handleEditImage
+                : `/icons/${
+                    row[toCamelCase(col || col?.title)][2] === true
+                      ? 'EnabledCheck'
+                      : 'DisabledCheck'
+                  }.svg`
+            }
           />
         </td>
       );
@@ -106,9 +111,13 @@ const renderActions = (
           width={25}
           height={25}
           alt="Icon"
-          src={`/icons/${
-            row?.isSelected ? row?.action[1] : row?.action[0]
-          }.svg`}
+          src={
+            handleEditImage
+              ? handleEditImage
+              : `/icons/${
+                  row?.isSelected ? row?.action[1] : row?.action[0]
+                }.svg`
+          }
         />
       </td>
     );
@@ -135,7 +144,11 @@ const renderActions = (
             width={25}
             height={25}
             alt="Icon"
-            src={`/icons/${item}.svg`}
+            src={
+              handleEditImage && item == 'View'
+                ? handleEditImage
+                : `/icons/${item}.svg`
+            }
           />
         ))}
       </>
@@ -146,6 +159,7 @@ const renderCheckActions = (
   row,
   col,
   handleClickActionView,
+  handleEditImage,
   colIndex,
   rowIndex,
   commonCellStyle
@@ -173,11 +187,15 @@ const renderCheckActions = (
             width={30}
             height={30}
             alt="Icon"
-            src={`/icons/${
-              row[toCamelCase(col || col?.title)][2] === true
-                ? 'EnabledCheck'
-                : 'DisabledCheck'
-            }.svg`}
+            src={
+              handleEditImage
+                ? handleEditImage
+                : `/icons/${
+                    row[toCamelCase(col || col?.title)][2] === true
+                      ? 'EnabledCheck'
+                      : 'DisabledCheck'
+                  }.svg`
+            }
           />
         </td>
       );
@@ -203,9 +221,13 @@ const renderCheckActions = (
           width={25}
           height={25}
           alt="Icon"
-          src={`/icons/${
-            row?.isSelected ? row?.action[1] : row?.action[0]
-          }.svg`}
+          src={
+            handleEditImage
+              ? handleEditImage
+              : `/icons/${
+                  row?.isSelected ? row?.action[1] : row?.action[0]
+                }.svg`
+          }
         />
       </td>
     );
@@ -372,6 +394,7 @@ export const renderCellContent = (
   row,
   col,
   handleClickActionView,
+  handleEditImage,
   commonCellStyle,
   handleClick,
   handleClickRenderMessageButton,
@@ -395,6 +418,7 @@ export const renderCellContent = (
           row,
           col,
           handleClickActionView,
+          handleEditImage,
           commonCellStyle,
           colIndex,
           rowIndex,
@@ -409,6 +433,7 @@ export const renderCellContent = (
         row,
         col,
         handleClickActionView,
+        handleEditImage,
         commonCellStyle,
         colIndex,
         rowIndex,
@@ -421,6 +446,7 @@ export const renderCellContent = (
         row,
         col,
         handleClickActionView,
+        handleEditImage,
         commonCellStyle,
         colIndex,
         rowIndex,
@@ -432,6 +458,7 @@ export const renderCellContent = (
         row,
         col,
         handleClickActionView,
+        handleEditImage,
         commonCellStyle,
         colIndex,
         rowIndex,

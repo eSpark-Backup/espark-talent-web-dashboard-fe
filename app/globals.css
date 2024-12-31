@@ -113,6 +113,32 @@ a {
   border-bottom: 1px solid #e4e4e4;
 }
 
+.app-table-row-letter {
+  background-color: #fff;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #e4e4e4;
+}
+.app-table-row-salary {
+  background-color: #fff;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #e4e4e4;
+}
+
+.app-table-row-benefit {
+  background-color: #fff;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #e4e4e4;
+}
+
 .empty-row {
   background-color: #fff;
   height: 20px;
@@ -391,4 +417,7 @@ body {
   to {
     transform: rotate(360deg);
   }
+}
+.Mui-disabled {
+  cursor: no-drop;
 }

@@ -101,7 +101,7 @@ export default function ResponsiveNavbar({ openSidebar }) {
                 />
               </Box>
             )}
-            <Box sx={{ display: 'flex' }}>
+            <Box sx={{ display: 'flex', backgroundColor: 'transparent' }}>
               <SidebarGlobalIcon company_img={companyImage} />
               <ProfilePopper
                 profileMenu={profileMenu}

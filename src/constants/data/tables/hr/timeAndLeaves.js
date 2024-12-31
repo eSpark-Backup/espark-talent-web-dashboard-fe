@@ -1,7 +1,7 @@
 export const leavesColumn = [
   {
     title: 'Leave type',
-    flex: 1,
+    flex: 1.6,
     name: 'leave_type',
   },
   {
@@ -21,7 +21,7 @@ export const leavesColumn = [
   },
   {
     title: 'Status',
-    flex: 1,
+    flex: 2,
     name: 'status',
   },
 ];
@@ -78,12 +78,12 @@ export const leavesData = [
 export const timeColumn = [
   {
     title: 'Check in',
-    flex: 1.3,
+    flex: 1,
     name: 'check_in',
   },
   {
     title: 'Check out',
-    flex: 5,
+    flex: 6,
     textAlign: 'left',
     name: 'check_out',
   },

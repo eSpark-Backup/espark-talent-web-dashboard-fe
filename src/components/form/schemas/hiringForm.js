@@ -35,8 +35,30 @@ export const hiringFormSchema = Yup.object({
       'End date must be greater than start date',
       function (endDate) {
         const { hiringStartDate } = this.parent;
-        if (!hiringStartDate || !endDate) return true; // If any date is missing, skip validation
+        if (!hiringStartDate || !endDate) return true;
         return new Date(endDate) >= new Date(hiringStartDate);
       }
+    ),
+  comments: Yup.string()
+    .nullable()
+    .notRequired()
+    .test(
+      'is-not-just-spaces',
+      'Comments cannot be just spaces',
+      (value) => !value || value.trim().length > 0
+    )
+    .min(5, 'Comments should be at least 5 characters long')
+    .max(500, 'Comments cannot exceed 500 characters'),
+  job_description: Yup.mixed()
+    .required('Job description is required')
+    .test(
+      'fileFormat',
+      'Only PDF files are allowed',
+      (value) => value && value.type === 'application/pdf'
+    )
+    .test(
+      'fileSize',
+      'File size should not exceed 2MB',
+      (value) => value && value.size <= 2 * 1024 * 1024 // Validates file size <= 2MB
     ),
 });

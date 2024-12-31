@@ -1067,6 +1067,7 @@ const AddEmployee = () => {
                   ))}
                 </Tabs>
               </Box>
+
               {currentTab?.label !== 'Employees' && (
                 <Box
                   sx={{
@@ -1252,6 +1253,7 @@ const AddEmployee = () => {
                   ))}
                 </Box>
               )}
+
               {renderTable({
                 isLoading:
                   isLoading ||

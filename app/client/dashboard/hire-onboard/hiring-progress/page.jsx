@@ -17,6 +17,7 @@ import {
   CLIENT_HIRING_PROGRESS,
   CLIENT_INTERVIEW_SCHEDULE,
   CLIENT_ONBOARDING,
+  DOWNLOAD_CLIENT_JOB_DESCRIPTION,
 } from '@/src/services/apiService/apiEndPoints';
 import {
   deleteClientHiringRequest,
@@ -64,7 +65,19 @@ const Dashboard = () => {
       return await api
         .getData(`${CLIENT_HIRING_PROGRESS}`)
         .then(({ data }) => {
-          dispatch(fetchClientHiringRequestsSuccess(data));
+          const tempData =
+            data === ''
+              ? []
+              : data?.map((item) => ({
+                  ...item,
+                  hiring_start_date: dayjs(item?.hiring_start_date).format(
+                    'DD-MMMM-YYYY'
+                  ),
+                  hiring_end_date: dayjs(item?.hiring_end_date).format(
+                    'DD-MMMM-YYYY'
+                  ),
+                }));
+          dispatch(fetchClientHiringRequestsSuccess(tempData));
         })
         .catch((err) => {
           Toast('error', err.message || 'Failed to get data');
@@ -93,7 +106,7 @@ const Dashboard = () => {
                   status: returnStatusVal(item?.status),
                   dropdownStatus: true,
                   interview_date_time: dayjs(item?.interview_date_time).format(
-                    'YYYY-MM-DD hh:mm A'
+                    'DD-MMMM-YYYY hh:mm A'
                   ),
                 }));
           dispatch(fetchClientInterviewSchedulesSuccess(tempData));
@@ -111,7 +124,16 @@ const Dashboard = () => {
       return await api
         .getData(`${CLIENT_ONBOARDING}`)
         .then(({ data }) => {
-          dispatch(fetchClientOnboardingSuccess(data));
+          const tempData =
+            data === ''
+              ? []
+              : data?.map((item) => ({
+                  ...item,
+                  joining_date: dayjs(item?.joining_date).format(
+                    'DD-MMMM-YYYY'
+                  ),
+                }));
+          dispatch(fetchClientOnboardingSuccess(tempData));
         })
         .catch((err) => {
           Toast('error', err.message || 'Failed to get data');
@@ -149,6 +171,7 @@ const Dashboard = () => {
           currency: item?.salary_range?.currency || item?.salary_currency || '',
           gender: genderType(item?.gender),
           action: ['Delete'],
+          jobDescription: 'Download',
         };
       });
       return tempData;
@@ -306,6 +329,35 @@ const Dashboard = () => {
     setCurrentTab(activePrams);
   }, [activePrams]);
 
+  const resolveURL = (id) => {
+    return `${DOWNLOAD_CLIENT_JOB_DESCRIPTION}?id=${id}`;
+  };
+
+  const downloadContractMutation = useMutation({
+    mutationFn: async (id) => {
+      return api.downloadFile(resolveURL(id));
+    },
+    onSuccess: ({ data }) => {
+      const url = window.URL.createObjectURL(new Blob([data]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', 'job_description.pdf');
+      document.body.appendChild(link);
+      link.click();
+      link.parentNode.removeChild(link);
+
+      Toast('success', 'File downloaded');
+    },
+    onError: (err) => {
+      Toast('error', err.message || 'File not downloaded');
+      console.log({ err });
+    },
+  });
+
+  const downloadContract = (id) => {
+    downloadContractMutation.mutate(id);
+  };
+
   return (
     <>
       <Grid container>
@@ -318,32 +370,6 @@ const Dashboard = () => {
             width: '100%',
           }}
         >
-          {/* <Box
-            marginBottom={6}
-            display={'flex'}
-            justifyContent={'space-between'}
-            alignItems={'center'}
-          >
-            <Typography variant="h3">Hire a team member</Typography>
-            <Link href={HIRING_FORM_DATA?.startHiringLink}>
-              <Button
-                sx={{
-                  background: '#029894',
-                  width: { xs: '120px', md: '160px' },
-                  color: '#fff',
-                  fontSize: '16px',
-                  textTransform: 'math-auto',
-                  '&:hover': {
-                    background: '#029894',
-                    color: '#fff',
-                  },
-                }}
-              >
-                {HIRING_FORM_DATA?.addnewHire}
-              </Button>
-            </Link>
-          </Box> */}
-
           <Box
             sx={{
               width: '100%',
@@ -427,6 +453,7 @@ const Dashboard = () => {
                   }}
                 >
                   <AppTable
+                    handleClickDownload={downloadContract}
                     minWidth={'1400px'}
                     currentTab={currentTab}
                     column={column}

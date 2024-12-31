@@ -97,9 +97,72 @@ const RequestStatusTabs = ({
                 <Box
                   display={'flex'}
                   justifyContent={'space-between'}
-                  alignItems={'center'}
+                  alignItems={{ xs: 'start', lg: 'center' }}
+                  flexDirection={{ xs: 'column', lg: 'row' }}
                 >
+                  <Box
+                    sx={{
+                      width: '100%',
+                      my: { xs: '10px', lg: 0 },
+                      display: { xs: 'flex', lg: 'none' },
+                      order: { xs: 0, lg: 1 },
+                    }}
+                    maxWidth="100%"
+                    alignItems={'center'}
+                  >
+                    <Box
+                      maxWidth="100%"
+                      sx={{ mb: { xs: '10px', lg: 0 } }}
+                      display={'flex'}
+                    >
+                      <Input
+                        //   setIsLoading={
+                        //     tabData?.currentReqTypeTab === 'Leave Requests'
+                        //       ? setIsLoading
+                        //       : setIsLoading
+                        //   }
+                        handleChange={
+                          tabData?.currentReqTypeTab === 'Leave Requests'
+                            ? setSearchLeaveRequest
+                            : setSearchCheckInOutRequest
+                        }
+                        value={
+                          tabData?.currentReqTypeTab === 'Leave Requests'
+                            ? searchLeaveRequest
+                            : searchCheckInOutRequest
+                        }
+                        prefixIcon="SearchIcon.svg"
+                      />
+                      <Box
+                        sx={{
+                          border: 'solid 1px #029E9C',
+                          width: '60px',
+                          p: '5px',
+                          display: 'flex',
+                          justifyContent: 'center',
+                          alignItems: 'center',
+                          borderRadius: '5px',
+                          mx: '10px',
+                        }}
+                        onClick={handleRefresh}
+                      >
+                        <Image
+                          width={15}
+                          height={15}
+                          alt="Refresh"
+                          src={`${(currentTab === 'Leave Requests' && refreshLeaveRequest.isPending) || (currentTab !== 'Leave Requests' && refreshClockInRequest.isPending) ? '/icons/Refresh-Disabled.svg' : '/icons/Refresh.svg'}`}
+                          className={`${((currentTab === 'Leave Requests' && refreshLeaveRequest.isPending) || (currentTab !== 'Leave Requests' && refreshClockInRequest.isPending)) && 'icon-refresh-play'}`}
+                        />
+                      </Box>
+                    </Box>
+                  </Box>
                   <Tabs
+                    sx={{
+                      display: { xs: 'flex' },
+                      order: { xs: 1, lg: 0 },
+                      overflowX: 'auto',
+                      minWidth: '500px',
+                    }}
                     variant="scrollable"
                     value={tabData?.currentReqStatusTabVal}
                     onChange={(ev, newVal) =>
@@ -118,6 +181,7 @@ const RequestStatusTabs = ({
                       ({ label, prop, background, color }, index) => {
                         return (
                           <Tab
+                            disableRipple
                             key={index}
                             sx={{
                               mr: {
@@ -195,14 +259,15 @@ const RequestStatusTabs = ({
                   </Tabs>
                   <Box
                     sx={{
-                      my: { xs: '10px', lg: 0 },
-                      display: { xs: 'none', md: 'flex' },
+                      my: { xs: 0, lg: 0 },
+                      display: { xs: 'none', lg: 'flex' },
                     }}
                     maxWidth="100%"
                     alignItems={'center'}
                   >
-                    <Box maxWidth="100%" sx={{ mb: { xs: '10px', lg: 0 } }}>
+                    <Box maxWidth="100%" sx={{ mb: { xs: 0.7 } }}>
                       <Input
+                        width={{ xs: '100%', lg: 250, xl: 400 }}
                         placeHolder={'Search by name...'}
                         // setIsLoading={setIsLoading}
                         handleChange={
@@ -220,6 +285,7 @@ const RequestStatusTabs = ({
                     </Box>
                     <Button
                       sx={{
+                        mb: { xs: 0.7 },
                         marginX: '10px',
                         minWidth: '120px',
                         border: `1px solid ${(currentTab === 'Leave Requests' && refreshLeaveRequest.isPending) || (currentTab !== 'Leave Requests' && refreshClockInRequest.isPending) ? '#ccc' : '#138A72'}`,
@@ -245,61 +311,6 @@ const RequestStatusTabs = ({
                     >
                       Refresh
                     </Button>
-                  </Box>
-                </Box>
-
-                <Box
-                  sx={{
-                    my: { xs: '10px', lg: 0 },
-                    display: { xs: 'flex', md: 'none' },
-                  }}
-                  maxWidth="100%"
-                  alignItems={'center'}
-                >
-                  <Box
-                    maxWidth="100%"
-                    sx={{ mb: { xs: '10px', lg: 0 } }}
-                    display={'flex'}
-                  >
-                    <Input
-                      //   setIsLoading={
-                      //     tabData?.currentReqTypeTab === 'Leave Requests'
-                      //       ? setIsLoading
-                      //       : setIsLoading
-                      //   }
-                      handleChange={
-                        tabData?.currentReqTypeTab === 'Leave Requests'
-                          ? setSearchLeaveRequest
-                          : setSearchCheckInOutRequest
-                      }
-                      value={
-                        tabData?.currentReqTypeTab === 'Leave Requests'
-                          ? searchLeaveRequest
-                          : searchCheckInOutRequest
-                      }
-                      prefixIcon="SearchIcon.svg"
-                    />
-                    <Box
-                      sx={{
-                        border: 'solid 1px #029E9C',
-                        width: '60px',
-                        p: '5px',
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        borderRadius: '5px',
-                        mx: '10px',
-                      }}
-                      onClick={handleRefresh}
-                    >
-                      <Image
-                        width={15}
-                        height={15}
-                        alt="Refresh"
-                        src={`${(currentTab === 'Leave Requests' && refreshLeaveRequest.isPending) || (currentTab !== 'Leave Requests' && refreshClockInRequest.isPending) ? '/icons/Refresh-Disabled.svg' : '/icons/Refresh.svg'}`}
-                        className={`${((currentTab === 'Leave Requests' && refreshLeaveRequest.isPending) || (currentTab !== 'Leave Requests' && refreshClockInRequest.isPending)) && 'icon-refresh-play'}`}
-                      />
-                    </Box>
                   </Box>
                 </Box>
               </Box>

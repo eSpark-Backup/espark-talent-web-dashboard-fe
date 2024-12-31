@@ -78,13 +78,11 @@ const EditPersonalModal = ({ onClose, handleEditProfileModal, data }) => {
     setErrors,
   } = useFormik({
     initialValues: {
-      employee_name: data?.employee_name || '',
-      employee_id: data?.employee_id || '',
+      first_name: data?.first_name || '',
+      last_name: data?.last_name || '',
       dob: data?.dob || '',
       gender: data?.gender || '',
-      role: data?.role || '',
-      joining_date: data?.joining_date || '',
-      job_title: data?.job_title || '',
+      personal_email: data?.personal_email || '',
       marital_status: data?.marital_status || '',
     },
     validationSchema: employeePersonalDataSchema,
@@ -93,8 +91,6 @@ const EditPersonalModal = ({ onClose, handleEditProfileModal, data }) => {
       console.log({ formValues });
       handleUpdate({
         ...formValues,
-        gender:
-          formValues?.gender == 'Not specific' ? 'nonspec' : formValues?.gender,
       });
     },
     validateOnChange: false,

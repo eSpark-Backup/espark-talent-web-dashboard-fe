@@ -19,7 +19,7 @@ const AppConfirmationMadal = ({
 }) => {
   return (
     <Modal
-      open={isOpen}
+      open={Boolean(isOpen)}
       onClose={handleClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"

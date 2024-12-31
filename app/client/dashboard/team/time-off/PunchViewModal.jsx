@@ -65,6 +65,7 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
         boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
         maxHeight: '80%',
         overflowY: 'auto',
+        pb: '50px',
       }}
     >
       <Box sx={{ borderBottom: '1px solid #E4E4E4', p: 2 }}>

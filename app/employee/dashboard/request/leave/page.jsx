@@ -279,6 +279,7 @@ const Dashboard = () => {
                         background: '#fff',
                       },
                     }}
+                    disableRipple
                     onClick={() => refreshMutation.mutate()}
                     startIcon={
                       !refreshMutation.isPending && (
@@ -292,7 +293,7 @@ const Dashboard = () => {
                     }
                   >
                     {refreshMutation.isPending ? (
-                      <CircularProgress size={26} color="secondary" />
+                      <CircularProgress size={26} sx={{ color: '#138A72' }} />
                     ) : (
                       REQUEST_LEAVE?.refresh
                     )}

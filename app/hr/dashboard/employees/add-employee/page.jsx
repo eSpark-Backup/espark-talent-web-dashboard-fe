@@ -21,7 +21,7 @@ const AddEmployee = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const [currentStep, setCurrentStep] = useState(1);
-  const { addEmployeeForm } = useSelector((state) => state.hr?.employees);
+  const { addEmployeeForm } = useSelector((state) => state?.hr?.employees);
   // useEffect(() => {
   //   if (employee_perms[0].write) return;
   //   else {
@@ -50,51 +50,55 @@ const AddEmployee = () => {
     country: addEmployeeForm?.country,
   };
   const getFinalData = (values) => ({
-    first_name: values.first_name,
-    last_name: values.last_name,
-    gender: values.gender,
-    dob: dayjs(values.dob).format('YYYY-MM-DD'),
-    phone_number: values.phone_number,
-    email: values.email.trim().toLowerCase(),
-    marital_status: values.marital_status,
-    image: values.image,
-    emergency_no: values.emergency_no,
-    resume: values.resume,
-    emergency_contact: JSON.stringify({
+    first_name: values?.first_name,
+    last_name: values?.last_name,
+    gender: values?.gender,
+    dob: dayjs(values?.dob)?.format('YYYY-MM-DD'),
+    phone_number: values?.phone_number,
+    personal_email: values?.personal_email?.trim()?.toLowerCase(),
+    email: values?.email?.trim()?.toLowerCase(),
+    marital_status: values?.marital_status,
+    image: values?.image,
+    emergency_no: values?.emergency_no,
+    resume: values?.resume,
+    emergency_contact: JSON?.stringify({
       primary: {
-        name: values.name1,
-        relation: values.relation1,
-        phone_number: values.phoneNumber1,
+        name: values?.name1,
+        relation: values?.relation1,
+        phone_number: values?.phoneNumber1,
       },
       secondary: {
-        name: values.name2,
-        relation: values.relation2,
-        phone_number: values.phoneNumber2,
+        name: values?.name2,
+        relation: values?.relation2,
+        phone_number: values?.phoneNumber2,
       },
     }),
-    joining_date: dayjs(values.joining_date).format('YYYY-MM-DD'),
-    role: values.role,
-    job_title: values.job_title,
-    company: values.company,
-    employee_id: values.employee_id,
-    password: values.password,
-    confirm_password: values.confirm_password,
+    joining_date: dayjs(values?.joining_date)?.format('YYYY-MM-DD'),
+    ending_date: dayjs(values?.ending_date)?.format('YYYY-MM-DD'),
+    starting_date: dayjs(values?.starting_date)?.format('YYYY-MM-DD'),
+    job_status: values?.job_status,
+    role: values?.role,
+    job_title: values?.job_title,
+    company: values?.company,
+    employee_id: values?.employee_id,
+    password: values?.password,
+    confirm_password: values?.confirm_password,
     punch_timings: JSON.stringify({
-      check_in: dayjs(values.check_in).format('hh:mm A'),
-      check_out: dayjs(values.check_out).format('hh:mm A'),
+      check_in: dayjs(values?.check_in)?.format('hh:mm A'),
+      check_out: dayjs(values?.check_out)?.format('hh:mm A'),
     }),
-    casual_leaves: values.casual_leaves,
-    sick_leaves: values.sick_leaves,
-    annual_leaves: values.annual_leaves,
-    hajj_leaves: values.hajj_leaves,
-    paid_leaves: values.paid_leaves,
-    unpaid_leaves: values.unpaid_leaves,
+    casual_leaves: values?.casual_leaves,
+    sick_leaves: values?.sick_leaves,
+    annual_leaves: values?.annual_leaves,
+    hajj_leaves: values?.hajj_leaves,
+    paid_leaves: values?.paid_leaves,
+    unpaid_leaves: values?.unpaid_leaves,
   });
   const dispatchFunction = (values) => {
     dispatch(addEmployeeFormData(values));
   };
   const handleNavigate = () => {
-    router.push('/hr/dashboard/employees');
+    router?.push('/hr/dashboard/employees');
   };
   const clearForm = () => {
     dispatch(clearEmployeeFormData());

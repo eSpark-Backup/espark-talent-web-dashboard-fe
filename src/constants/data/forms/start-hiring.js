@@ -142,4 +142,20 @@ export const HiringForm = [
       },
     ],
   },
+  {
+    title: 'Job Description',
+    placeholder: 'Upload File',
+    prefixIcon: 'upload',
+    type: 'file',
+    name: 'job_description',
+    filelabel: 'Accept .pdf file only',
+    accept: '.pdf',
+    col: 2.5,
+  },
+  {
+    title: 'Comments',
+    placeholder: 'Write here..',
+    type: 'text',
+    name: 'comments',
+  },
 ];

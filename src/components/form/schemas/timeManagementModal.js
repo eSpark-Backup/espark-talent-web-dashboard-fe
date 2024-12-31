@@ -1,13 +1,24 @@
 import * as Yup from 'yup';
+import dayjs from 'dayjs';
 
-const timeFormatRegex =
-  /^(Mon|Tue|Wed|Thu|Fri|Sat|Sun) (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \d{2} \d{4} \d{2}:\d{2}:\d{2} GMT[+-]\d{4} \([\w\s]+\)$/;
-
-const customTimeValidator = Yup.string()
-  .required('Required')
-  .matches(timeFormatRegex, 'Invalid time format');
-
-export const timeManagementFormSchema = Yup.object({
-  check_in: customTimeValidator,
-  check_out: customTimeValidator,
+export const validationSchema = Yup.object({
+  check_in: Yup.string()
+    .matches(/^([0-9]{2}):([0-9]{2})$/, 'Invalid time format')
+    .required('Check-In time is required'),
+  check_out: Yup.string()
+    .matches(/^([0-9]{2}):([0-9]{2})$/, 'Invalid time format')
+    .required('Check-Out time is required')
+    .test(
+      'checkOut-after-checkIn',
+      'Check-Out time must be after Check-In time',
+      function (value) {
+        const { check_in } = this.parent;
+        if (check_in && value) {
+          const checkInTime = dayjs(check_in, 'HH:mm');
+          const checkOutTime = dayjs(value, 'HH:mm');
+          return checkOutTime.isAfter(checkInTime);
+        }
+        return true;
+      }
+    ),
 });

@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react';
 import { Box, Typography } from '@mui/material';
 
-import PunchRequestForm from '@/app/employee/dashboard/attendance/punch-requests/PunchRequestForm';
-import PunchRequestDataView from './PunchRequestFormView';
+import WFHRequestForm from './WFHRequestForm';
+import WFHRequestDataView from './WFHRequestDataView';
 
-const PunchRequestModal = ({ createModal, modalData, handleClose }) => {
-  useEffect(() => {
-    console.log({ modalData });
-  }, [modalData]);
+const WFHRequestModal = ({ createModal, modalData, handleClose }) => {
+  useEffect(() => {}, [modalData]);
+
   return (
     <Box
       sx={{
@@ -39,16 +38,16 @@ const PunchRequestModal = ({ createModal, modalData, handleClose }) => {
           }}
         >
           {createModal ? (
-            <div>Create punch request</div>
+            <div>Create WFH request</div>
           ) : (
-            <div>Punch request view</div>
+            <div>WFH request view</div>
           )}
         </Typography>
       </Box>
       {createModal ? (
-        <PunchRequestForm handleClose={handleClose} />
+        <WFHRequestForm handleClose={handleClose} />
       ) : (
-        <PunchRequestDataView
+        <WFHRequestDataView
           modalData={modalData}
           handleClose={handleClose}
           isEmployee
@@ -58,4 +57,4 @@ const PunchRequestModal = ({ createModal, modalData, handleClose }) => {
   );
 };
 
-export default PunchRequestModal;
+export default WFHRequestModal;

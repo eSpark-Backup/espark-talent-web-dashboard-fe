@@ -160,7 +160,11 @@ export default function ProfilePopper({
         aria-describedby={id}
         type="button"
         onMouseEnter={(event) => handleClick(event)}
-        style={{ width: '100%', height: '100%' }}
+        style={{
+          width: '100%',
+          height: '100%',
+          backgroundColor: 'transparent',
+        }}
       >
         {button}
       </button>
@@ -216,7 +220,7 @@ export default function ProfilePopper({
               <Box sx={{ display: 'flex', gap: 1.7, px: 2 }}>
                 <Box sx={{ display: 'flex', gap: 0.1 }}>
                   <Box sx={{ marginTop: -1.2 }}>
-                    {item?.text == 'Notifications' && data?.length && (
+                    {item?.text == 'Notifications' && data?.length !== 0 && (
                       <DotBadge color={'red'} />
                     )}
                   </Box>
@@ -237,6 +241,7 @@ export default function ProfilePopper({
           ))}
         </Box>
       </Popper>
+
       <Popper
         id={Notification_id}
         open={Notification_open}
@@ -390,9 +395,6 @@ export default function ProfilePopper({
                                 color: '#595959',
                               }}
                             >
-                              {/* {notification?.time} */}
-
-                              {/* {dayjs(notification?.time).fromNow()} */}
                               {getTimePassedFromNow(
                                 notification?.date,
                                 notification?.time

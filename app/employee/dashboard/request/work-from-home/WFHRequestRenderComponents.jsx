@@ -1,46 +1,16 @@
-import { Box, Typography } from '@mui/material';
-import React from 'react';
-
-import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
-// import AppTable from '@/src/components/dashboard/appTable';
-import { filterTableRowsWRTTab } from '@/src/utils/table';
 import AppTable from '@/src/components/appTableNew/AppTable';
+import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
+import { filterTableRowsWRTTab } from '@/src/utils/table';
+import { Box } from '@mui/material';
 
-export const renderTrackingStatus = ({
-  statusIndex,
-  label,
-  background,
-  shortForm,
-}) => {
-  return (
-    <Box display={'flex'} alignItems={'center'} key={statusIndex}>
-      <Box
-        sx={{
-          width: '30px',
-          height: '30px',
-          borderRadius: '50%',
-          background,
-          color: '#fff',
-        }}
-        display={'flex'}
-        fontSize={'12px'}
-        justifyContent={'center'}
-        alignItems={'center'}
-      >
-        {shortForm}
-      </Box>
-      <Typography variant="caption" marginX={'10px'}>
-        {label}
-      </Typography>
-    </Box>
-  );
-};
-
-export const renderNestedTable = ({
+export const WFHRequestRenderComponents = ({
+  minWidth,
   currentReqStatusTabVal,
   currentReqStatusTab,
   column,
   data,
+  handleOpen,
+  handleOpenConditionalModal,
   handleClickActionView,
   handleClickActionDelete,
   isLoading,
@@ -58,17 +28,21 @@ export const renderNestedTable = ({
         }}
       >
         <AppTable
+          minWidth={minWidth}
+          isLoading={isLoading}
           currentTab={currentReqStatusTab}
           column={column}
           data={filterTableRowsWRTTab(data, {
             status:
               currentReqStatusTab === 'All'
                 ? ''
-                : currentReqStatusTab.toLowerCase(),
+                : currentReqStatusTab?.toLowerCase(),
           })}
+          handleOpen={handleOpen}
+          handleOpenConditionalModal={handleOpenConditionalModal}
           handleClickActionView={handleClickActionView}
           handleClickActionDelete={handleClickActionDelete}
-          isLoading={isLoading}
+          // commonRowStyle={commonRowStyle}
           viewClicked={viewClicked}
         />
       </Box>

@@ -153,48 +153,48 @@ export default class APIService {
     // localStorage.setItem(this.config.storageTokenKeyName, value);
   }
   setRefreshToken(value) {
-    localStorage.setItem(this.config.storageRefreshTokenKeyName, value);
+    localStorage?.setItem(this?.config?.storageRefreshTokenKeyName, value);
   }
   async login(args) {
     // console.log({ args });
-    return await newInstance.post(this.config.loginEndpoint, args);
+    return await newInstance?.post(this?.config?.loginEndpoint, args);
   }
   async getData(url, params) {
     // this.resetHeaders();
-    return await instance.get(url, params);
+    return await instance?.get(url, params);
   }
   async getSingleData(url, params) {
     // this.resetHeaders();
-    return await instance.get(url, params);
+    return await instance?.get(url, params);
   }
   async postData(url, data) {
-    return await instance.post(url, data);
+    return await instance?.post(url, data);
   }
   async postJSONData(url, data) {
-    return await jsonInstance.post(url, data);
+    return await jsonInstance?.post(url, data);
   }
   async updateData(url, data) {
     // this.resetHeaders();
-    return await instance.patch(url, data);
+    return await instance?.patch(url, data);
   }
   async updateJSONData(url, data) {
     // this.resetHeaders();
-    return await jsonInstance.patch(url, data);
+    return await jsonInstance?.patch(url, data);
   }
   async patchData(url) {
     // this.resetHeaders();
-    return await instance.patch(url);
+    return await instance?.patch(url);
   }
   async daleteData(url) {
     // this.resetHeaders();
-    return await instance.delete(url);
+    return await instance?.delete(url);
   }
   async uploadFile(url, data) {
     this.updateHeadersForFormData();
-    return await instance.post(url, data);
+    return await instance?.post(url, data);
   }
   async downloadFile(url) {
-    return await fileInstance.get(url);
+    return await fileInstance?.get(url);
   }
   updateHeadersForFormData() {
     instance.defaults.headers.common['Content-Type'] = 'multipart/form-data';

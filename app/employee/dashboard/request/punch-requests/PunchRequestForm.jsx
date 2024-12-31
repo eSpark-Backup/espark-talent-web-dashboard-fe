@@ -56,14 +56,6 @@ const PunchRequestForm = ({ handleClose }) => {
           id: data.id,
         })
       );
-      // dispatch(login(data));
-      // if (HR_ROLES.includes(data?.role)) {
-      //   router.push('hr/dashboard');
-      // } else if (EMPLOYEE_ROLES.includes(data?.role)) {
-      //   router.push('employee/dashboard');
-      // } else {
-      //   router.push('client/dashboard');
-      // }
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to post data');
@@ -115,7 +107,7 @@ const PunchRequestForm = ({ handleClose }) => {
       <Box>
         <Box
           sx={{
-            padding: { xs: '20px', sm: '26px', md: '28px' },
+            padding: { xs: '15px', sm: '26px', md: '28px' },
           }}
         >
           {createPunchRequestForm?.map(
