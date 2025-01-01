@@ -293,14 +293,6 @@ const Dashboard = () => {
                           checkInOutStatusTabs
                         )
                       }
-                      sx={{
-                        '@media (min-width: 1200px) and (max-width: 1300px)': {
-                          mb: '3px',
-                        },
-                        '@media (min-width: 280px) and (max-width: 1100px)': {
-                          mb: '3px',
-                        },
-                      }}
                       aria-label="basic tabs example"
                       TabIndicatorProps={{
                         style: { backgroundColor: '#068987' },
