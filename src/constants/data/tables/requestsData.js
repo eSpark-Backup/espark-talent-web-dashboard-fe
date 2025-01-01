@@ -26,7 +26,7 @@ export const employeeLeaveRequestsColumn = [
   },
   {
     title: 'Requested at',
-    flex: 2,
+    flex: 2.5,
     name: 'requested_at',
   },
   {

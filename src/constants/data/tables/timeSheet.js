@@ -54,12 +54,12 @@ export const timeSheetTableColumn = [
   },
   {
     title: 'Check-out',
-    flex: 2,
+    flex: 2.5,
     name: 'check_out',
   },
   {
     title: 'Hours worked',
-    flex: 2,
+    flex: 3,
     name: 'hours_worked',
   },
   {
@@ -74,12 +74,12 @@ export const timeSheetTableColumn = [
   },
   {
     title: 'Expected hours',
-    flex: 2,
+    flex: 3,
     name: 'expected_hours',
   },
   {
     title: 'Overtime hours',
-    flex: 2,
+    flex: 3,
     name: 'overtime',
   },
   {

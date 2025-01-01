@@ -44,34 +44,44 @@ const Request = () => {
     refetchOnWindowFocus: false,
     queryKey: ['hr-employee-get-leave-request', currentEmployee?.email],
     queryFn: async () => {
-      dispatch(getEmpRequest());
-      return api
-        .getData(`${HR_LEAVE_REQUEST}?emp_email=${currentEmployee?.email}`)
-        .then(({ data }) => {
-          const tempRequest =
-            data === '' || !data.length
-              ? []
-              : data?.map((item) => ({
-                  ...item,
-                  actionStatus: true,
-                  requested_at: dayjs(item?.requested_at).format(
-                    'MMMM D, YYYY hh:mm A'
-                  ),
-                  actions: ['View'],
-                }));
-          dispatch(
-            getEmpRequestSuccess({
-              type: 'leave',
-              data: tempRequest,
-            })
-          );
-          return tempRequest || [];
-        })
-        .catch((err) => {
-          Toast('error', err.message || 'Failed to get data');
-          dispatch(getEmpRequestFailed());
-          console.log({ err });
-        });
+      try {
+        if (!currentEmployee?.email) {
+          // Toast('error', 'Employee email is required!');
+          return [];
+        }
+
+        dispatch(getEmpRequest());
+
+        const { data } = await api.getData(
+          `${HR_LEAVE_REQUEST}?emp_email=${currentEmployee?.email}`
+        );
+
+        const tempRequest =
+          data === '' || !data.length
+            ? []
+            : data.map((item) => ({
+                ...item,
+                actionStatus: true,
+                requested_at: dayjs(item?.requested_at).format(
+                  'MMMM D, YYYY hh:mm A'
+                ),
+                actions: ['View'],
+              }));
+
+        dispatch(
+          getEmpRequestSuccess({
+            type: 'leave',
+            data: tempRequest,
+          })
+        );
+
+        return tempRequest || [];
+      } catch (err) {
+        Toast('error', err.message || 'Failed to get data');
+        dispatch(getEmpRequestFailed());
+        console.log({ err });
+        return [];
+      }
     },
   });
 
@@ -271,7 +281,7 @@ const Request = () => {
                 }}
               >
                 {renderTable({
-                  minWidth: '1350px',
+                  minWidth: '1200px',
                   column: tab?.columns,
                   currentTab: currentTab,
                   data: currentTab?.includes('Leave')

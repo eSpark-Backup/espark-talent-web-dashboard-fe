@@ -224,7 +224,7 @@ const AttendanceReport = ({ employeeData }) => {
                 return (
                   <AppTable
                     key={index}
-                    minWidth={'1450px'}
+                    minWidth={'1200px'}
                     column={attendanceReportTableColumn}
                     data={formattedTimeSheet}
                     handleClickActionView={handleAttendanceModal}

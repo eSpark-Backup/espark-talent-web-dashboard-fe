@@ -48,12 +48,12 @@ const LeaveRequestTable = ({
     );
   }
   return renderNestedTable({
-    minWidth: '1450px',
+    minWidth: '1200px',
     currentReqStatusTabVal: tabVal,
     currentReqStatusTab: tab,
     handleOpen,
     column: employeeLeaveRequestsColumn,
-    data: leaveRequestDataState,
+    data: leaveRequestDataState || [],
     // data: [],
     handleOpenConditionalModal: handleOpenModal,
     handleClickActionView: handleClickView,

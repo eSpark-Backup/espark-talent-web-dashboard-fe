@@ -437,7 +437,7 @@ const Dashboard = () => {
                 }}
               >
                 <AppTable
-                  minWidth={'1450px'}
+                  minWidth={'1200px'}
                   column={timeSheetTableColumn}
                   data={data?.time_sheet?.record?.map((row) => ({
                     ...row,

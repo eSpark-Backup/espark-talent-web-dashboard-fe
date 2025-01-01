@@ -84,7 +84,7 @@ const AllEmployee = ({ fromClient, openModal }) => {
               item.employee_id.toLowerCase().includes(id.toLowerCase());
             return nameMatch && designationMatch && companyMatch && idMatch;
           });
-    return filteredData;
+    return filteredData || [];
   };
 
   useEffect(() => {

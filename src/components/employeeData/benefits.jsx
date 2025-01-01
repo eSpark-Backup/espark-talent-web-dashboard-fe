@@ -36,25 +36,31 @@ const Benefits = () => {
     refetchOnWindowFocus: false,
     queryKey: ['hr-employee-get-benefit', currentEmployee?.email],
     queryFn: async () => {
-      dispatch(getEmpBenefitRequest());
-      return api
-        .getData(`${HR_EMP_BENEFIT}?emp_email=${currentEmployee?.email}`)
-        .then(({ data }) => {
-          const tempBenefits = data?.length
-            ? data?.map((item) => ({
-                ...item,
-                issue_date: dayjs(item?.issue_date)?.format('MMMM D, YYYY'),
-                action: ['Delete', 'View'],
-              }))
-            : [];
-          dispatch(getEmpBenefitRequestSuccess(tempBenefits));
-          return tempBenefits || [];
-        })
-        .catch((err) => {
-          Toast('error', err.message || 'Failed to get data');
+      try {
+        if (!currentEmployee?.email) {
+          // Toast('error', 'Employee email is required!');
           dispatch(getEmpBenefitRequestFailed());
-          console.log({ err });
-        });
+          return [];
+        }
+        dispatch(getEmpBenefitRequest());
+        const { data } = await api.getData(
+          `${HR_EMP_BENEFIT}?emp_email=${currentEmployee.email}`
+        );
+        const tempBenefits = data?.length
+          ? data.map((item) => ({
+              ...item,
+              issue_date: dayjs(item?.issue_date)?.format('MMMM D, YYYY'),
+              action: ['Delete', 'View'],
+            }))
+          : [];
+        dispatch(getEmpBenefitRequestSuccess(tempBenefits));
+        return tempBenefits || [];
+      } catch (err) {
+        Toast('error', err.message || 'Failed to get data');
+        dispatch(getEmpBenefitRequestFailed());
+        console.log({ err });
+        return [];
+      }
     },
   });
 
@@ -114,7 +120,7 @@ const Benefits = () => {
         >
           <AppTable
             column={processColumns()}
-            data={data}
+            data={data || []}
             handleClickActionDelete={handleClickDelete}
             handleClickActionView={handleEdit}
             handleEditImage={'/icons/EditIcon.svg'}

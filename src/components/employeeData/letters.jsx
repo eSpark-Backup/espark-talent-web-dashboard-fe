@@ -39,27 +39,33 @@ const Letters = () => {
     refetchOnWindowFocus: false,
     queryKey: ['hr-employee-get-letter', currentEmployee?.email],
     queryFn: async () => {
-      dispatch(getEmpLetterRequest());
-      return api
-        .getData(`${HR_EMP_LETTER}?email=${currentEmployee?.email}`)
-        .then(({ data }) => {
-          const tempLetters =
-            data === '' || !data.length
-              ? []
-              : data?.map((item) => ({
-                  ...item,
-                  download: 'Download',
-                  issue_date: dayjs(item?.issue_date)?.format('MMMM D, YYYY'),
-                  action: ['Delete', 'View'],
-                }));
-          dispatch(getEmpLetterRequestSuccess(tempLetters));
-          return tempLetters || [];
-        })
-        .catch((err) => {
-          Toast('error', err.message || 'Failed to get data');
+      try {
+        if (!currentEmployee?.email) {
+          // Toast('error', 'Employee email is required!');
           dispatch(getEmpLetterRequestFailed());
-          console.log({ err });
-        });
+          return [];
+        }
+        dispatch(getEmpLetterRequest());
+        const { data } = await api.getData(
+          `${HR_EMP_LETTER}?email=${currentEmployee.email}`
+        );
+        const tempLetters =
+          data === '' || !data.length
+            ? []
+            : data.map((item) => ({
+                ...item,
+                download: 'Download',
+                issue_date: dayjs(item?.issue_date)?.format('MMMM D, YYYY'),
+                action: ['Delete', 'View'],
+              }));
+        dispatch(getEmpLetterRequestSuccess(tempLetters));
+        return tempLetters || [];
+      } catch (err) {
+        Toast('error', err.message || 'Failed to get data');
+        dispatch(getEmpLetterRequestFailed());
+        console.error(err);
+        return [];
+      }
     },
   });
 
@@ -145,7 +151,7 @@ const Letters = () => {
         >
           <AppTable
             column={processColumns()}
-            data={letters}
+            data={letters || []}
             handleClickActionDelete={handleClickDelete}
             handleClickDownload={downloadLetter}
             handleClickActionView={handleEdit}

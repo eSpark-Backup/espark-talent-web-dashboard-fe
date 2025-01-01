@@ -106,6 +106,7 @@ const Assets = () => {
           }}
         >
           <AppTable
+            minWidth={'1200px'}
             column={processColumns()}
             data={assets}
             handleClickActionDelete={handleClickDelete}

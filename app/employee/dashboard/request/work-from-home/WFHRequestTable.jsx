@@ -54,7 +54,7 @@ const WFHRequestTable = ({
     currentReqStatusTab: tab,
     handleOpen,
     column: employeeWFHRequestsColumn,
-    data: leaveRequestDataState,
+    data: leaveRequestDataState || [],
     handleOpenConditionalModal: handleOpenModal,
     handleClickActionView: handleClickView,
     handleClickActionDelete: handleClickDelete,

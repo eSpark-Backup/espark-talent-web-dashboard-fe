@@ -265,10 +265,13 @@ const EmployeeView = ({ status, data, isLoading }) => {
                         fontSize: '16px',
                         fontWeight: '400',
                         textAlign: 'center',
-                        textWrap: 'nowrap',
+                        whiteSpace: 'nowrap',
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                        maxWidth: '160px',
                       }}
                     >
-                      {eachItem.name}
+                      {eachItem?.name}
                     </Typography>
                     <Typography
                       sx={{
@@ -276,6 +279,9 @@ const EmployeeView = ({ status, data, isLoading }) => {
                         fontSize: '16px',
                         textAlign: 'center',
                         textWrap: 'nowrap',
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                        maxWidth: '160px',
                       }}
                     >
                       {eachItem.job_title || eachItem.designation}

@@ -120,6 +120,7 @@ const EditSalaryForm = ({ onClose, open, selectedId }) => {
           left: '50%',
           transform: 'translate(-50%, -50%)',
           maxHeight: '90%',
+          overflowY: 'auto',
           '@media (min-width: 900px) and (max-width: 1440px)': {
             width: '70%',
           },

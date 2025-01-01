@@ -106,6 +106,7 @@ const Client = () => {
         }}
       >
         <AppTable
+          minWidth={'1200px'}
           currentTab={currentTab}
           column={currentTab.column}
           data={

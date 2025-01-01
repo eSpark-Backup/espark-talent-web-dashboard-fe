@@ -96,6 +96,7 @@ const EditBenefitForm = ({ onClose, open, selectedId }) => {
         display: 'flex',
         justifyContent: 'center',
         mx: 'auto',
+        height: 'auto',
       }}
     >
       <Box
@@ -168,6 +169,11 @@ const EditBenefitForm = ({ onClose, open, selectedId }) => {
                 <>
                   <Grid item xs={12} lg={5} key={formIndex}>
                     <FormInput
+                      disabled={
+                        name === 'card_id' || name === 'description'
+                          ? false
+                          : true
+                      }
                       title={title}
                       placeholder={placeholder}
                       errorText={errorText}

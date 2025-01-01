@@ -257,8 +257,8 @@ const Page = () => {
               alt="left"
               style={{ cursor: 'pointer' }}
               onClick={() => {
-                dispatch(removeCurrentEmployee());
                 router.back();
+                dispatch(removeCurrentEmployee());
               }}
             />
             <Link href={`/hr/dashboard/employees`}>

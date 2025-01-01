@@ -107,6 +107,7 @@ const Salary = ({ timeTracking }) => {
     <>
       <Box sx={{ maxWidth: '100%', overflowX: 'auto', mt: '40px' }}>
         <AppTable
+          minWidth={'1200px'}
           column={processColumns()}
           data={salaryData}
           isLoading={isLoading}

@@ -41,6 +41,7 @@ export const salaryForm = [
     title: 'Date',
     name: 'date',
     type: 'date',
+    placeholder: 'DD-MM-YYYY',
   },
   {
     title: 'Pay Slip',

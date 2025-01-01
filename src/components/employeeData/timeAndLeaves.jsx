@@ -103,7 +103,7 @@ const TimeAndLeaves = () => {
       console.log({ tab });
       setIsLoadingMutation(true);
       return api.getData(
-        `${HR_EMP_TIME_AND_LEAVES}?id=${params.id}&tab=${tab.toLowerCase()}`
+        `${HR_EMP_TIME_AND_LEAVES}?id=${params?.id}&tab=${tab?.toLowerCase()}`
       );
     },
     onSuccess: ({ data }) => {
@@ -270,7 +270,7 @@ const TimeAndLeaves = () => {
         }}
       >
         <AppTable
-          minWidth={'1480px'}
+          minWidth={'1200px'}
           currentTab={currentTab}
           column={currentTab.column}
           data={currentTab?.val === 0 ? time : leaves}

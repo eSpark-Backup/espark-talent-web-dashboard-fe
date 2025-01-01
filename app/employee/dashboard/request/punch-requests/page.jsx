@@ -471,11 +471,11 @@ const Dashboard = () => {
               </CustomTabPanel>
             </Box>
             {renderNestedTable({
-              minWidth: '1400px',
+              minWidth: '1200px',
               currentReqStatusTabVal,
               currentReqStatusTab,
               column: employeeCheckInOutRequestColumn,
-              data: checkInOutRequestDataState,
+              data: checkInOutRequestDataState || [],
               viewClicked,
               handleClickActionView,
               handleClickActionDelete,
@@ -497,7 +497,7 @@ const Dashboard = () => {
         }}
       >
         <PunchRequestModal
-          modalData={modalData}
+          modalData={modalData || {}}
           handleClose={handleClosePunch}
           handleConfirmDelete={handleConfirmDelete}
         />

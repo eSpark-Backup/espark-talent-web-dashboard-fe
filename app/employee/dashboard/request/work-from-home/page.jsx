@@ -202,7 +202,10 @@ const Dashboard = () => {
           justifyContent: 'center',
         }}
       >
-        <WFHRequestModal modalData={modalData} handleClose={handleClose} />
+        <WFHRequestModal
+          modalData={modalData || {}}
+          handleClose={handleClose}
+        />
       </Modal>
       <AppConfirmationMadal
         isOpen={isOpenDeleteModal}

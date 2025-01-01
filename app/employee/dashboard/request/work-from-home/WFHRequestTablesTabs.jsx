@@ -302,7 +302,7 @@ const WFHRequestTablesTabs = ({
         </CustomTabPanel>
       </Box>
       <WFHRequestTable
-        minWidth={'1400px'}
+        minWidth={'1200px'}
         tabVal={currentReqStatusTabVal}
         tab={currentReqStatusTab}
         handleOpen={handleOpen}
@@ -310,7 +310,7 @@ const WFHRequestTablesTabs = ({
         handleClickView={handleClickView}
         viewClicked={viewClicked}
         handleClickDelete={handleClickDelete}
-        leaveRequestDataState={leaveRequestDataState}
+        leaveRequestDataState={leaveRequestDataState || []}
         setLeaveRequestDataState={setLeaveRequestDataState}
         commonRowStyle={commonRowStyle}
       />

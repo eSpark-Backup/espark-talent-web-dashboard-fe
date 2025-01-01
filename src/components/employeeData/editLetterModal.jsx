@@ -172,6 +172,9 @@ const EditLetterForm = ({ onClose, open, selectedId }) => {
                 <>
                   <Grid item xs={12} lg={5} key={formIndex}>
                     <FormInput
+                      disabled={
+                        name === 'reason' || name === 'letter' ? false : true
+                      }
                       title={title}
                       placeholder={placeholder}
                       errorText={errorText}
