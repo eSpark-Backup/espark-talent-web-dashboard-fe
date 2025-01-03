@@ -46,6 +46,7 @@ const CompanyProfile = () => {
         }}
       >
         <Button
+          disableRipple
           sx={{
             color: '#595959',
 
@@ -60,9 +61,9 @@ const CompanyProfile = () => {
           {COMPANY_ONBOARDING.startHiring}
         </Button>
         <Button
+          disableRipple
           sx={{
             color: '#595959',
-
             fontSize: '14px',
             fontWeight: 300,
             textTransform: 'capitalize',

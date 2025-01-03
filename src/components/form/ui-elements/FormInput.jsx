@@ -161,7 +161,6 @@ const FormInput = ({
     const fieldName = `${name}.${item.name}`;
     setFieldValue(fieldName, checked);
   };
-  console.log(disabled, 'disabledTest=', name, 'value=', value);
   return (
     <Grid
       item
@@ -575,73 +574,111 @@ const FormInput = ({
           }}
         >
           {fields?.map((field, fieldIndex) => (
-            <>
-              {fieldIndex === 1 && (
-                <Box
-                  key={`box-${fieldIndex}`}
-                  sx={{
-                    mx: '10px',
-                    width: '10px',
-                    height: '1px',
-                    background: '#000',
-                    '@media (max-width: 500px)': {
-                      display: 'none',
-                    },
-                  }}
-                ></Box>
-              )}
+            <Box
+              sx={{ width: '100%', display: 'block' }}
+              key={`box-${fieldIndex}`}
+            >
               <Box
-                key={fieldIndex}
                 sx={{
                   width: '100%',
-                  border: `${
-                    error && (error?.minimum || error?.maximum)
-                      ? 'red'
-                      : '#E4E4E4'
-                  } 1px solid`,
-                  borderRadius: '5px',
                   display: 'flex',
-                  overflow: 'hidden',
-                  height: '40px',
+                  alignItems: 'center',
+                  flexDirection: 'row',
+                  '@media (max-width: 500px)': {
+                    flexDirection: 'column',
+                    rowGap: 2,
+                  },
                 }}
               >
-                <input
-                  style={{
-                    width: '100%',
-                    background: '#FFF',
-                    display: type === 'file' && 'none',
-                  }}
-                  placeholder={field.placeholder}
-                  className="form-input-field"
-                  type={type}
-                  disabled={disabled}
-                  onChange={(e) => {
-                    handleChangeInput(
-                      `${name}.${field.name}`,
-                      e?.target?.value
-                    );
-                  }}
-                  value={values[`${name}.${field.name}`]}
-                />
-                {field.suffixIcon && (
+                {fieldIndex === 1 && (
                   <Box
                     sx={{
-                      display: 'flex',
-                      padding: '10px',
-                      justifyContent: 'center',
-                      alignItems: 'center',
+                      mx: '10px',
+                      width: '10px',
+                      height: '1px',
+                      background: '#000',
+                      '@media (max-width: 500px)': {
+                        display: 'none',
+                      },
                     }}
-                  >
-                    <Image
-                      src={`/icons/${field.suffixIcon}.svg`}
-                      width={17}
-                      height={17}
-                      alt="Calendar"
-                    />
-                  </Box>
+                  ></Box>
                 )}
+                <Box
+                  key={fieldIndex}
+                  sx={{
+                    width: '100%',
+                    border: `${
+                      error && (error?.minimum || error?.maximum)
+                        ? 'red'
+                        : '#E4E4E4'
+                    } 1px solid`,
+                    borderRadius: '5px',
+                    display: 'flex',
+                    overflow: 'hidden',
+                    height: '40px',
+                  }}
+                >
+                  <input
+                    style={{
+                      width: '100%',
+                      background: '#FFF',
+                      display: type === 'file' && 'none',
+                    }}
+                    placeholder={field.placeholder}
+                    className="form-input-field"
+                    type={'number'}
+                    disabled={disabled}
+                    onChange={(e) => {
+                      handleChangeInput(
+                        `${name}.${field.name}`,
+                        e?.target?.value
+                      );
+                    }}
+                    value={values[`${name}.${field.name}`]}
+                  />
+                  {field.suffixIcon && (
+                    <Box
+                      sx={{
+                        display: 'flex',
+                        padding: '10px',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                      }}
+                    >
+                      <Image
+                        src={`/icons/${field.suffixIcon}.svg`}
+                        width={17}
+                        height={17}
+                        alt="Calendar"
+                      />
+                    </Box>
+                  )}
+                </Box>
               </Box>
-            </>
+              {error?.minimum && fieldIndex === 0 && (
+                <Box
+                  sx={{
+                    fontSize: '12px',
+                    color: 'red',
+                    display: 'block',
+                    mt: 0.4,
+                    ml: '3px',
+                  }}
+                >{`${error?.minimum}`}</Box>
+              )}
+              {error?.maximum && fieldIndex === 1 && (
+                <Box
+                  sx={{
+                    fontSize: '12px',
+                    color: 'red',
+                    display: 'block',
+                    mt: 0.4,
+                    ml: '31px',
+                    '@media (max-width: 500px)': { ml: '0px' },
+                  }}
+                >{`${error?.maximum}`}</Box>
+              )}
+            </Box>
           ))}
         </Box>
       ) : type === 'add-sub-counter' ? (
@@ -937,23 +974,15 @@ const FormInput = ({
       <>
         {error &&
         typeof error === 'object' &&
-        (error?.maximum || error?.minimum) ? (
-          <Box style={{ color: 'red' }}>
-            <Box
-              sx={{
-                display: 'flex',
-                gap: { xs: '80px', sm: '170px', md: '45px' },
-              }}
-            >
-              {error?.minimum && <Box>{error?.minimum}</Box>}
-              {error?.maximum && <Box>{error?.maximum}</Box>}
-            </Box>
-          </Box>
-        ) : (
-          error &&
-          !error?.from &&
-          !error?.to && <div style={{ color: 'red' }}>{error}</div>
-        )}
+        (error?.maximum || error?.minimum)
+          ? null
+          : error &&
+            !error?.from &&
+            !error?.to && (
+              <Box sx={{ fontSize: '12px', mt: 0.4, color: 'red' }}>
+                {error}
+              </Box>
+            )}
       </>
 
       {

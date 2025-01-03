@@ -21,6 +21,7 @@ import dayjs from 'dayjs';
 import { Toast } from '../Toast/Toast';
 import { useRouter } from 'next/navigation';
 import { countriesList } from '@/src/constants/countries';
+
 const StartHiringForm = () => {
   const router = useRouter();
   const dispatch = useDispatch();
@@ -124,7 +125,7 @@ const StartHiringForm = () => {
         px: { xs: '5px', sm: '20px', md: '20px 60px' },
         gap: { xs: '10px', md: '30px' },
         '@media (min-width: 750px)': {
-          height: '900px',
+          minHeight: '900px',
         },
       }}
     >
