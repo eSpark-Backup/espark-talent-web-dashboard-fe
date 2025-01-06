@@ -62,7 +62,6 @@ const Dashboard = () => {
     setOpen(true);
   };
   const handleClose = () => {
-    console.log({ modalData });
     setOpen(false);
   };
   const handleClosePunch = () => setOpenPunch(false);
@@ -361,7 +360,7 @@ const Dashboard = () => {
               {(tabData?.currentReqTypeTab === 'Leave Requests' ||
                 tabData?.currentReqTypeTab === 'Clockin/out Requests') &&
                 renderNestedTable({
-                  minWidth: '1450px',
+                  minWidth: '1250px',
                   isLoading,
                   currentReqStatusTabVal: tabData?.currentReqStatusTabVal,
                   currentReqStatusTab: tabData?.currentReqStatusTab,

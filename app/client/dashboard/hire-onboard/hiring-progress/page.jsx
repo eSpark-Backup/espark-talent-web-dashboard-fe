@@ -105,7 +105,7 @@ const Dashboard = () => {
                   ...item,
                   status: returnStatusVal(item?.status),
                   dropdownStatus: true,
-                  interview_date_time: dayjs(item?.interview_date_time).format(
+                  interview_date_time: dayjs(item?.interview_date_time)?.format(
                     'DD-MMMM-YYYY hh:mm A'
                   ),
                 }));
@@ -129,7 +129,7 @@ const Dashboard = () => {
               ? []
               : data?.map((item) => ({
                   ...item,
-                  joining_date: dayjs(item?.joining_date).format(
+                  joining_date: dayjs(item?.joining_date)?.format(
                     'DD-MMMM-YYYY'
                   ),
                 }));
@@ -454,7 +454,7 @@ const Dashboard = () => {
                 >
                   <AppTable
                     handleClickDownload={downloadContract}
-                    minWidth={'1400px'}
+                    minWidth={'1250px'}
                     currentTab={currentTab}
                     column={column}
                     data={

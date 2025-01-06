@@ -453,7 +453,6 @@ const renderDownloadButton = (
           cursor: 'pointer',
         }}
       >
-        {console.log(col?.title, 'chk')}
         {row[toCamelCase(col || col?.title)]?.replace(/_/g, ' ')}
       </button>
     </td>

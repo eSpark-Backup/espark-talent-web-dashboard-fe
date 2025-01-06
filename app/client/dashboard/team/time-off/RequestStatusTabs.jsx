@@ -9,7 +9,7 @@ import {
 } from '@/src/constants/data/tabs/timeOffTabs';
 import { updateCurrentReqStatusTab } from '@/src/redux/slices/clientSlices/timeOffSlice';
 import { filterTableRowsWRTTab } from '@/src/utils/table';
-import { Box, Button, Tab, Tabs, Typography } from '@mui/material';
+import { Box, Tab, Tabs, Typography } from '@mui/material';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -78,7 +78,6 @@ const RequestStatusTabs = ({
   return (
     <Box
       sx={{
-        // backgroundColor: '#ccc',
         marginTop: '10px',
         marginBottom: '20px',
         borderBottom:
@@ -116,11 +115,6 @@ const RequestStatusTabs = ({
                       display={'flex'}
                     >
                       <Input
-                        //   setIsLoading={
-                        //     tabData?.currentReqTypeTab === 'Leave Requests'
-                        //       ? setIsLoading
-                        //       : setIsLoading
-                        //   }
                         handleChange={
                           tabData?.currentReqTypeTab === 'Leave Requests'
                             ? setSearchLeaveRequest
@@ -185,8 +179,7 @@ const RequestStatusTabs = ({
                             key={index}
                             sx={{
                               mr: {
-                                xs: '10px',
-                                sm: '20px',
+                                xs: '40px',
                                 md: '50px',
                               },
                               color: '#595959',
@@ -257,7 +250,7 @@ const RequestStatusTabs = ({
                       }
                     )}
                   </Tabs>
-                  <Box
+                  {/* <Box
                     sx={{
                       my: { xs: 0, lg: 0 },
                       display: { xs: 'none', lg: 'flex' },
@@ -269,7 +262,6 @@ const RequestStatusTabs = ({
                       <Input
                         width={{ xs: '100%', lg: 250, xl: 400 }}
                         placeHolder={'Search by name...'}
-                        // setIsLoading={setIsLoading}
                         handleChange={
                           tabData?.currentReqTypeTab === 'Leave Requests'
                             ? setSearchLeaveRequest
@@ -311,7 +303,7 @@ const RequestStatusTabs = ({
                     >
                       Refresh
                     </Button>
-                  </Box>
+                  </Box> */}
                 </Box>
               </Box>
             ) : (
@@ -349,3 +341,31 @@ const RequestStatusTabs = ({
 };
 
 export default RequestStatusTabs;
+
+{
+  /* <>
+  <Box marginY={'20px'}>
+    <Input
+      // setIsLoading={setIsLoading}
+      handleChange={setSearch}
+      value={search}
+      prefixIcon="SearchIcon.svg"
+      suffixIcon="QuestionMarkIcon.svg"
+      tooltip="Enter the relevant field type and easily filter the relevant data to search"
+    />
+  </Box>
+
+  <Box
+    sx={{
+      maxWidth: '100%',
+      overflowX: 'auto',
+    }}
+  >
+    <AppTable
+      column={leaveBalanceColumn}
+      data={filterData}
+      isLoading={isLoading}
+    />
+  </Box>
+</> */
+}
