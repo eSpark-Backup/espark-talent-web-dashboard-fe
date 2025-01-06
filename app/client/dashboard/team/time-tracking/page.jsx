@@ -51,6 +51,7 @@ const Dashboard = () => {
     month: months[date.getMonth()],
     year: date.getFullYear(),
   });
+
   const { isLoading } = useQuery({
     staleTime: 1000,
     refetchOnWindowFocus: false,
@@ -248,7 +249,10 @@ const Dashboard = () => {
                     setSelectedItem={setSelectedEmployee}
                   />
 
-                  <AppCustomMonthYearPicker setTimeTracking={setTimeTracking} />
+                  <AppCustomMonthYearPicker
+                    timeTracking={timeTracking}
+                    setTimeTracking={setTimeTracking}
+                  />
                 </Grid>
               </Grid>
             </Box>
@@ -290,15 +294,11 @@ const Dashboard = () => {
                     overflowX: 'auto',
                   }}
                 >
-                  {isPending || isLoading ? (
-                    'Loading Data'
-                  ) : (
-                    <AppTable
-                      column={timeTrackingTableColumn}
-                      data={data?.time_sheet}
-                      isLoading={isLoading}
-                    />
-                  )}
+                  <AppTable
+                    column={timeTrackingTableColumn}
+                    data={data?.time_sheet}
+                    isLoading={isLoading || isPending}
+                  />
                 </Box>
               ) : (
                 <Box

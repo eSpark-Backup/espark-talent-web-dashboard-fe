@@ -823,7 +823,6 @@ const Page = () => {
                             flexDirection: { xs: 'column', sm: 'row' },
                           }}
                         >
-                          {console.log(timeTracking, 'timeTracking')}
                           <Box sx={{ order: { xs: 1, sm: 0 } }}>
                             <AppCustomMonthYearPicker
                               timeTracking={timeTracking}

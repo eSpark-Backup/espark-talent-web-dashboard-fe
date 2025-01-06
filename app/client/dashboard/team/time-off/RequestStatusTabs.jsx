@@ -9,7 +9,7 @@ import {
 } from '@/src/constants/data/tabs/timeOffTabs';
 import { updateCurrentReqStatusTab } from '@/src/redux/slices/clientSlices/timeOffSlice';
 import { filterTableRowsWRTTab } from '@/src/utils/table';
-import { Box, Tab, Tabs, Typography } from '@mui/material';
+import { Box, Button, Tab, Tabs, Typography } from '@mui/material';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -98,6 +98,9 @@ const RequestStatusTabs = ({
                   justifyContent={'space-between'}
                   alignItems={{ xs: 'start', lg: 'center' }}
                   flexDirection={{ xs: 'column', lg: 'row' }}
+                  sx={{
+                    overflowX: 'auto',
+                  }}
                 >
                   <Box
                     sx={{
@@ -152,10 +155,8 @@ const RequestStatusTabs = ({
                   </Box>
                   <Tabs
                     sx={{
-                      display: { xs: 'flex' },
+                      display: { xs: 'none', md: 'flex' },
                       order: { xs: 1, lg: 0 },
-                      overflowX: 'auto',
-                      minWidth: '500px',
                     }}
                     variant="scrollable"
                     value={tabData?.currentReqStatusTabVal}
@@ -250,7 +251,7 @@ const RequestStatusTabs = ({
                       }
                     )}
                   </Tabs>
-                  {/* <Box
+                  <Box
                     sx={{
                       my: { xs: 0, lg: 0 },
                       display: { xs: 'none', lg: 'flex' },
@@ -286,10 +287,6 @@ const RequestStatusTabs = ({
                           background: '#fff',
                         },
                       }}
-                      // onClick={() => {
-                      //   setSearchLeaveRequest('');
-                      //   setSearchCheckInOutRequest('');
-                      // }}
                       startIcon={
                         <Image
                           width={20}
@@ -303,14 +300,108 @@ const RequestStatusTabs = ({
                     >
                       Refresh
                     </Button>
-                  </Box> */}
+                  </Box>
                 </Box>
+
+                <Tabs
+                  sx={{
+                    display: { xs: 'flex', md: 'none' },
+                    order: { xs: 1, lg: 0 },
+                  }}
+                  variant="scrollable"
+                  value={tabData?.currentReqStatusTabVal}
+                  onChange={(ev, newVal) =>
+                    handleChangeCurrReqStatusTab(ev, newVal, requestsStatusTab)
+                  }
+                  aria-label="basic tabs example"
+                  TabIndicatorProps={{
+                    style: { backgroundColor: '#068987' },
+                  }}
+                >
+                  {requestsStatusTab?.map(
+                    ({ label, prop, background, color }, index) => {
+                      return (
+                        <Tab
+                          disableRipple
+                          key={index}
+                          sx={{
+                            mr: {
+                              xs: '40px',
+                              md: '50px',
+                            },
+                            color: '#595959',
+                            p: 0,
+                          }}
+                          label={
+                            <Box display={'flex'} alignItems={'center'}>
+                              {isLoading ? (
+                                <Skeleton
+                                  variant="text"
+                                  sx={{
+                                    width: 30,
+                                    height: 40,
+                                    mr: 1,
+                                    ml: index == 0 ? -3 : 0,
+                                  }}
+                                />
+                              ) : (
+                                <Box
+                                  sx={{
+                                    width: '30px',
+                                    height: '30px',
+                                    background,
+                                    borderRadius: '5px',
+                                    marginRight: '10px',
+                                    color,
+                                    fontSize: '14px',
+                                    fontWeight: 600,
+                                    lineHeight: '19px',
+                                    letterSpacing: '0em',
+                                    textAlign: 'left',
+                                  }}
+                                  display={'flex'}
+                                  justifyContent={'center'}
+                                  alignItems={'center'}
+                                >
+                                  {
+                                    filterTableRowsWRTTab(
+                                      tabData?.currentReqTypeTab ===
+                                        'Leave Requests'
+                                        ? data?.leaveRequest
+                                        : data?.clockInOutRequests,
+                                      {
+                                        status: label === 'All' ? '' : label,
+                                      }
+                                    ).length
+                                  }
+                                </Box>
+                              )}
+                              <Typography
+                                variant="body1"
+                                sx={{
+                                  color:
+                                    label === tabData?.currentReqStatusTab
+                                      ? '#068987'
+                                      : isLoading
+                                        ? 'gray'
+                                        : '#595959',
+                                }}
+                              >
+                                {label}
+                              </Typography>
+                            </Box>
+                          }
+                          {...prop}
+                        />
+                      );
+                    }
+                  )}
+                </Tabs>
               </Box>
             ) : (
               <>
                 <Box marginY={'20px'}>
                   <Input
-                    // setIsLoading={setIsLoading}
                     handleChange={setSearch}
                     value={search}
                     prefixIcon="SearchIcon.svg"
@@ -326,6 +417,7 @@ const RequestStatusTabs = ({
                   }}
                 >
                   <AppTable
+                    minWidth={'1250px'}
                     column={leaveBalanceColumn}
                     data={filterData}
                     isLoading={isLoading}
@@ -341,31 +433,3 @@ const RequestStatusTabs = ({
 };
 
 export default RequestStatusTabs;
-
-{
-  /* <>
-  <Box marginY={'20px'}>
-    <Input
-      // setIsLoading={setIsLoading}
-      handleChange={setSearch}
-      value={search}
-      prefixIcon="SearchIcon.svg"
-      suffixIcon="QuestionMarkIcon.svg"
-      tooltip="Enter the relevant field type and easily filter the relevant data to search"
-    />
-  </Box>
-
-  <Box
-    sx={{
-      maxWidth: '100%',
-      overflowX: 'auto',
-    }}
-  >
-    <AppTable
-      column={leaveBalanceColumn}
-      data={filterData}
-      isLoading={isLoading}
-    />
-  </Box>
-</> */
-}

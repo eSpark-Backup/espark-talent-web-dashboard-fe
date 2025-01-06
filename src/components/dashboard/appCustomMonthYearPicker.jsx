@@ -89,6 +89,7 @@ const AppCustomMonthYearPicker = ({ timeTracking, setTimeTracking }) => {
             width={25}
             height={25}
           />
+          {console.log(timeTracking, 'timeTracking')}
           <Typography ml={'14px'} mt={0} color={'#595959'}>
             {timeTracking?.month} {timeTracking?.year}
           </Typography>
