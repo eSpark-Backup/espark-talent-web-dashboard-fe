@@ -6,32 +6,24 @@ const TableHead = ({ column, commonRowStyle }) => {
     <thead>
       <tr className="app-table-row" style={{ ...commonRowStyle }}>
         {column?.map((col, colIndex) => (
-          <>
+          <th
+            key={colIndex}
+            style={{
+              fontSize: '14px',
+              flex: col?.flex ? col?.flex : 1,
+              display: col?.isIconTitle ? 'flex' : 'block',
+              justifyContent: col?.isIconTitle ? 'center' : 'initial',
+              textAlign: col?.isIconTitle
+                ? 'center'
+                : col?.textAlign || 'center',
+            }}
+          >
             {col?.isIconTitle ? (
-              <th
-                key={colIndex}
-                style={{
-                  fontSize: '14px',
-                  flex: col?.flex ? col?.flex : 1,
-                  display: 'flex',
-                  justifyContent: 'center',
-                }}
-              >
-                <Box component="img" src={col.src} alt="Profile Pic" />
-              </th>
+              <Box component="img" src={col.src} alt="Profile Pic" />
             ) : (
-              <th
-                key={colIndex}
-                style={{
-                  fontSize: '14px',
-                  flex: col?.flex ? col?.flex : 1,
-                  textAlign: col?.textAlign || 'center',
-                }}
-              >
-                {(col?.title || col)?.replace(/_/g, ' ')}
-              </th>
+              (col?.title || col)?.replace(/_/g, ' ')
             )}
-          </>
+          </th>
         ))}
       </tr>
     </thead>

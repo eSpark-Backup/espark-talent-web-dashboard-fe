@@ -67,7 +67,7 @@ const Client = () => {
           display: 'flex',
           flexDirection: { xs: 'column', md: 'row' },
           justifyContent: 'space-between',
-          alignItems: 'center',
+          alignItems: { xs: 'flex-start', md: 'center' },
           borderBottom: 'solid 1px #ccc',
           mb: '40px',
         }}

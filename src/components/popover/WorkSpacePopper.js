@@ -122,7 +122,7 @@ export default function WorkSpacePopper({
                 position: 'fixed',
                 marginLeft: { xs: 'auto', lg: 0.8 },
                 right: { xs: '30px', lg: 'auto' },
-                marginRight: { xs: 0, lg: 0 },
+                marginRight: { xs: -4, lg: 0 },
                 marginTop: { xs: 8, lg: 1 },
               }}
             >

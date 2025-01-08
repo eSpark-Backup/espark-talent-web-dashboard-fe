@@ -103,31 +103,33 @@ export default function ResponsiveNavbar({ openSidebar }) {
             )}
             <Box sx={{ display: 'flex', backgroundColor: 'transparent' }}>
               <SidebarGlobalIcon company_img={companyImage} />
-              <ProfilePopper
-                profileMenu={profileMenu}
-                setProfileMenu={setProfileMenu}
-                setWorkspace={setWorkspace}
-                notification={notification}
-                setNotification={setNotification}
-                button={
-                  <SidebarUserAvatar
-                    userImage={
-                      userData?.role === 'employee'
-                        ? userData?.empDetails?.image
-                        : userData?.role === 'client'
-                          ? data?.client_image
-                          : homeData?.user_image?.[0]
-                    }
-                    userName={
-                      role === 'client'
-                        ? data?.username
-                        : role === 'employee'
-                          ? empDetails?.employee_name
-                          : homeData?.user
-                    }
-                  />
-                }
-              />
+              <Box sx={{ ml: -0.9 }}>
+                <ProfilePopper
+                  profileMenu={profileMenu}
+                  setProfileMenu={setProfileMenu}
+                  setWorkspace={setWorkspace}
+                  notification={notification}
+                  setNotification={setNotification}
+                  button={
+                    <SidebarUserAvatar
+                      userImage={
+                        userData?.role === 'employee'
+                          ? userData?.empDetails?.image
+                          : userData?.role === 'client'
+                            ? data?.client_image
+                            : homeData?.user_image?.[0]
+                      }
+                      userName={
+                        role === 'client'
+                          ? data?.username
+                          : role === 'employee'
+                            ? empDetails?.employee_name
+                            : homeData?.user
+                      }
+                    />
+                  }
+                />
+              </Box>
             </Box>
           </Box>
         </Box>

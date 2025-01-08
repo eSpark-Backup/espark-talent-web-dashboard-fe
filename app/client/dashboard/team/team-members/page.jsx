@@ -293,6 +293,7 @@ const Dashboard = () => {
                     }}
                   >
                     <AppTable
+                      minWidth={'1250px'}
                       currentTab={currentTab}
                       column={column}
                       data={

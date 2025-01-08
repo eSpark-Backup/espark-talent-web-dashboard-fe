@@ -191,6 +191,7 @@ const ContractSigned = () => {
                     }}
                   >
                     <AppTable
+                      minWidth={'1250px'}
                       currentTab={currentTab}
                       column={tab?.columns}
                       data={value === 0 ? data?.company : data?.employee}

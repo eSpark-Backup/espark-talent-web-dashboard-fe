@@ -295,6 +295,7 @@ const Dashboard = () => {
                   }}
                 >
                   <AppTable
+                    minWidth={'1250px'}
                     column={timeTrackingTableColumn}
                     data={data?.time_sheet}
                     isLoading={isLoading || isPending}
@@ -308,6 +309,7 @@ const Dashboard = () => {
                   }}
                 >
                   <AppTable
+                    minWidth={'1250px'}
                     column={timeTrackingTableColumn}
                     renderMessage={
                       isLoading ? (

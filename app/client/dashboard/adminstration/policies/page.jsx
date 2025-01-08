@@ -46,7 +46,7 @@ const Policies = () => {
             fontFamily: 'sans-serif',
           }}
         >
-          Policy Data is not available.
+          Policy data is not available
         </Typography>
       </Box>
     );

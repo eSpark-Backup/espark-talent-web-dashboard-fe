@@ -434,6 +434,7 @@ const Dashboard = () => {
                   }}
                 >
                   <AppTable
+                    minWidth={'1250px'}
                     column={invoicePaymentColumn}
                     data={
                       value === 0
@@ -521,6 +522,7 @@ const Dashboard = () => {
               }}
             >
               <AppTable
+                minWidth={'1250px'}
                 column={otherPaymentColumn}
                 data={othInvDataState}
                 // data={getOtherInvData()}

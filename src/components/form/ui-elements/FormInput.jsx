@@ -207,7 +207,7 @@ const FormInput = ({
                   fontWeight: 500,
                   lineHeight: 'normal',
                   '@media (min-width: 1200px) and (max-width: 1250px)': {
-                    fontSize: '11.9px',
+                    fontSize: '14px',
                   },
                 }}
                 dangerouslySetInnerHTML={{
@@ -957,11 +957,11 @@ const FormInput = ({
                     width: { xs: '20px', md: '30px' },
                     height: { xs: '20px', md: '30px' },
                     position: 'absolute',
-                    right: { xs: '-20px', md: '-40px' },
+                    right: { xs: '-25px', md: '-40px' },
                     '@media (min-width: 900px) and (max-width: 1200px)': {
-                      width: '20px',
-                      height: '20px',
-                      marginRight: '20px',
+                      width: '22px',
+                      height: '22px',
+                      marginRight: '7px',
                     },
                   }}
                 />
