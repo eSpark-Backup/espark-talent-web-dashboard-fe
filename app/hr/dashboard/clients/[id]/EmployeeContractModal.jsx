@@ -47,7 +47,6 @@ const EmployeeContractModal = ({ open, onClose }) => {
   const dispatch = useDispatch();
   const { mutate, isPending } = useMutation({
     mutationFn: async (formVals) => {
-      // console.log({ formValues });
       const formData = new FormData();
       for (const key in formVals) {
         formData.append(key, formVals[key]);
@@ -59,7 +58,6 @@ const EmployeeContractModal = ({ open, onClose }) => {
       companyContractSignedMutation.mutate('employees');
       setFormData(null);
       resetForm();
-      console.log({ data });
       onClose();
     },
     onError: (err) => {
@@ -84,10 +82,8 @@ const EmployeeContractModal = ({ open, onClose }) => {
     validationSchema: contractFormHrPortalSchema,
     enableReinitialize: true,
     onSubmit: (formData) => {
-      console.log({ formData });
       setFormData(formData);
       mutate({ ...formData, date: dayjs(formData.date).format('YYYY-MM-DD') });
-      // handleCloseModal();
     },
     validateOnChange: false,
     validateOnBlur: false,
@@ -188,7 +184,7 @@ const EmployeeContractModal = ({ open, onClose }) => {
                 },
                 formIndex
               ) => (
-                <>
+                <React.Fragment key={formIndex}>
                   <Grid item xs={12} md={12} lg={5} key={formIndex}>
                     <FormInput
                       title={title}
@@ -219,7 +215,7 @@ const EmployeeContractModal = ({ open, onClose }) => {
                     />
                   </Grid>
                   {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>}
-                </>
+                </React.Fragment>
               )
             )}
             <Grid item p={'0 10px'} xs={12}>

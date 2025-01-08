@@ -7,7 +7,6 @@ import { CREDENTIAL_FORM } from '@/src/constants/credential';
 import { credentialForm } from '@/src/constants/data/forms/add-credential';
 
 const CredentialModal = ({ onClose, modalData }) => {
-  console.log({ modalData });
   const [isLoading, setisLoading] = useState(false);
   const Loading = () => {
     setisLoading(true);
@@ -35,7 +34,6 @@ const CredentialModal = ({ onClose, modalData }) => {
     validationSchema: '',
     enableReinitialize: true,
     onSubmit: (formValues) => {
-      console.log({ formValues });
       Loading();
     },
     validateOnChange: false,
@@ -48,7 +46,6 @@ const CredentialModal = ({ onClose, modalData }) => {
     <Box
       sx={{
         bgcolor: '#fff',
-        // width: { xs: '90%', sm: '90%', md: '25%' },
         maxWidth: '500px',
         width: '95%',
         display: 'flex',
@@ -147,7 +144,6 @@ const CredentialModal = ({ onClose, modalData }) => {
                     fields={fields}
                     suffixIconInside={suffixIconInside}
                     readOnly={true}
-                    // modalData={modalData}
                   />
                 </Grid>
                 {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>}

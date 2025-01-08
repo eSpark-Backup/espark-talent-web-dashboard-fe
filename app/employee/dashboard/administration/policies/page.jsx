@@ -84,7 +84,6 @@ const Policies = () => {
             data={filteredItems}
             isLoading={isLoading}
           />
-          {/* <PoliciesCard data={POLICIES_DATA?.items} /> */}
         </Box>
       </Grid>
     </>

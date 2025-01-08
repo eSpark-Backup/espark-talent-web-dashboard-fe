@@ -130,6 +130,5 @@ export const addOnboardForm = [
   {
     title: 'Salary',
     name: 'salary',
-    // dollarIcon: '$',
   },
 ];

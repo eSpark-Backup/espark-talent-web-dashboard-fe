@@ -46,7 +46,6 @@ const UploadPolicyModal = ({ open, onClose }) => {
           id: data.id,
         })
       );
-      console.log({ data });
       onClose();
     },
     onError: (err) => {
@@ -93,7 +92,6 @@ const UploadPolicyModal = ({ open, onClose }) => {
       <Box
         sx={{
           bgcolor: '#fff',
-          // width: { xs: '90%', sm: '90%', md: '25%' },
           maxWidth: '500px',
           width: '95%',
           display: 'flex',
@@ -169,7 +167,7 @@ const UploadPolicyModal = ({ open, onClose }) => {
                 },
                 formIndex
               ) => (
-                <>
+                <React.Fragment key={formIndex}>
                   <Grid item xs={12} lg={12} key={formIndex}>
                     <FormInput
                       title={title}
@@ -199,7 +197,7 @@ const UploadPolicyModal = ({ open, onClose }) => {
                     />
                   </Grid>
                   {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>}
-                </>
+                </React.Fragment>
               )
             )}
             <Grid item p={'0 10px'} xs={12}>

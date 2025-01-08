@@ -141,7 +141,7 @@ const AddEmployeeModal = ({ open, onClose }) => {
                             formIndex
                           ) => (
                             <>
-                              <Grid item xs={12} lg={5} key={formIndex}>
+                              <Grid item xs={12} lg={5}>
                                 <FormInput
                                   title={title}
                                   placeholder={placeholder}

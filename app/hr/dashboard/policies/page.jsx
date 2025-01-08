@@ -4,11 +4,7 @@ import { Grid, Box, Button } from '@mui/material';
 
 import Heading from '@/src/components/global/Heading';
 import AppTable from '@/src/components/appTableNew/AppTable';
-import {
-  policyColumn,
-  // policyData,
-} from '@/src/constants/data/tables/policyData';
-// import { toCamelCase } from '@/src/utils/stringModification';
+import { policyColumn } from '@/src/constants/data/tables/policyData';
 import UploadPolicyModal from '@/src/components/modals/uploadPolicyModal';
 import { POLICIES_DATA } from '@/src/constants/policies';
 import { CONTRACT_SIGNED } from '@/src/constants/contractSigned';
@@ -95,12 +91,8 @@ const Policies = () => {
   });
   const [openUploadPolicy, setOpenUploadPolicy] = useState(false);
   const [deletingPolicyId, setDeletingPolicyId] = useState(null);
-  // const [formTableState, setFormTableState] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenSavePolicies, setIsOpenSavePolicies] = useState(false);
-  // useEffect(() => {
-  //   setFormTableState([...policyData]);
-  // }, [policyData]);
   const handleSelectRow = (id, column, row) => {
     if (
       role === 'super_admin' ||
@@ -115,19 +107,7 @@ const Policies = () => {
       );
     } else {
       return false;
-      // alert('hi');
     }
-    // const tempForm = [...policyData];
-    // const employeeIndex = tempForm.findIndex(
-    //   (employee) => employee.id === employeeId
-    // );
-    // const targetObject = {
-    //   ...tempForm[employeeIndex],
-    // };
-    // targetObject[[toCamelCase(column)]][2] =
-    //   !targetObject[[toCamelCase(column)]][2];
-    // tempForm[employeeIndex] = targetObject;
-    // setFormTableState(tempForm);
   };
   const handleClickDelete = (id) => {
     setDeletingPolicyId(id);

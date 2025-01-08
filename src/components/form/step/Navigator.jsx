@@ -87,7 +87,6 @@ const Navigator = ({
                     },
                     '@media (min-width: 300px) and (max-width: 400px)': {
                       fontSize: '8px',
-                      // width: '60px',
                     },
                     '@media (min-width: 270px) and (max-width: 300px)': {
                       fontSize: '7px',

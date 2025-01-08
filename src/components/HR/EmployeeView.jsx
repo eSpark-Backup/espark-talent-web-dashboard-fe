@@ -42,7 +42,6 @@ const EmployeeView = ({ status, data, isLoading }) => {
     },
     onSuccess: ({ data }) => {
       Toast('success', 'Data deleted successfully');
-      console.log({ data });
       dispatch(deleteCurrentEmpDataSuccess(currentEmpId));
       handleCloseModal();
       setCurrentEmpId(null);
@@ -68,7 +67,6 @@ const EmployeeView = ({ status, data, isLoading }) => {
   const handleOpenRemove = (event, item) => {
     setCurrentEmpId(item.id);
     event?.stopPropagation();
-    console.log({ id: item.id });
     setIsOpen(true);
   };
   const handleCloseModal = () => {

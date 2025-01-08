@@ -100,36 +100,34 @@ const ChangePassword = () => {
             },
             formIndex
           ) => (
-            <>
-              <Grid item xs={12} md={4} lg={lgGridSize} key={formIndex}>
-                <FormInput
-                  title={title}
-                  placeholder={placeholder}
-                  errorText={errorText}
-                  prefixIcon={prefixIcon}
-                  type={type}
-                  suffixIcon={suffixIcon}
-                  options={options}
-                  name={name}
-                  setFieldValue={setFieldValue}
-                  value={values[name]}
-                  error={errors[name]}
-                  touched={touched}
-                  setFieldError={setFieldError}
-                  errors={errors}
-                  setErrors={setErrors}
-                  values={values}
-                  nested={nested}
-                  xs={12}
-                  sm={12}
-                  md={12}
-                  lg={12}
-                  fields={fields}
-                  accept={accept}
-                  filelabel={filelabel}
-                />
-              </Grid>
-            </>
+            <Grid item xs={12} md={4} lg={lgGridSize} key={formIndex}>
+              <FormInput
+                title={title}
+                placeholder={placeholder}
+                errorText={errorText}
+                prefixIcon={prefixIcon}
+                type={type}
+                suffixIcon={suffixIcon}
+                options={options}
+                name={name}
+                setFieldValue={setFieldValue}
+                value={values[name]}
+                error={errors[name]}
+                touched={touched}
+                setFieldError={setFieldError}
+                errors={errors}
+                setErrors={setErrors}
+                values={values}
+                nested={nested}
+                xs={12}
+                sm={12}
+                md={12}
+                lg={12}
+                fields={fields}
+                accept={accept}
+                filelabel={filelabel}
+              />
+            </Grid>
           )
         )}
         <Grid item xs={12}>

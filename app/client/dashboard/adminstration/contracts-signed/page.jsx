@@ -85,10 +85,6 @@ const ContractSigned = () => {
         });
     },
   });
-  console.log({
-    empContractSignedQuery,
-    companyContractSignedQuery,
-  });
   const handleChange = (event, newValue) => {
     let tab = event?.target?.innerText.split(' ');
     if (tab.length > 1) {
@@ -122,12 +118,10 @@ const ContractSigned = () => {
       link.click();
       link.parentNode.removeChild(link);
 
-      // dispatchFunction?.(data);
       Toast('success', 'File downloaded');
     },
     onError: (err) => {
       Toast('error', err.message || 'File not downloaded');
-      // dispatch(getTimeSheetDataFailed());
       console.log({ err });
       console.log({ err: err.message, name: err.name, stack: err.stack });
     },

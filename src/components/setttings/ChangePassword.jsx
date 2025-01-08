@@ -18,7 +18,6 @@ const ChangePassword = () => {
     },
     onSuccess: ({ data }) => {
       Toast('success', 'Data updated successfully');
-      console.log({ data });
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to update data');
@@ -38,7 +37,6 @@ const ChangePassword = () => {
     validationSchema: changePasswordFormSchema,
     enableReinitialize: true,
     onSubmit: (formValues) => {
-      console.log({ formValues });
       mutate(formValues);
     },
     validateOnChange: false,
@@ -77,8 +75,8 @@ const ChangePassword = () => {
               },
               formIndex
             ) => (
-              <>
-                <Grid item xs={12} lg={6} key={formIndex}>
+              <React.Fragment key={formIndex}>
+                <Grid item xs={12} lg={6}>
                   <FormInput
                     title={title}
                     placeholder={placeholder}
@@ -105,7 +103,7 @@ const ChangePassword = () => {
                   />
                 </Grid>
                 {formIndex % 1 === 0 && <Grid item xs={12} lg={6}></Grid>}
-              </>
+              </React.Fragment>
             )
           )}
           <Grid item p={'0 10px'} xs={12} marginTop={-2}>

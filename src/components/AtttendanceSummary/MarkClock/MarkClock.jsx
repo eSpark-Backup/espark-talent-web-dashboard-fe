@@ -329,7 +329,6 @@ const MarkClock = ({ data, isLoading }) => {
                   lineHeight: 'normal',
                 }}
               >
-                {/* {elapsedTimeString} */}
                 {timer}
               </Typography>
             </Box>

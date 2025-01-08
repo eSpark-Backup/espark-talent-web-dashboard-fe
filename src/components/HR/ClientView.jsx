@@ -45,11 +45,9 @@ const ClientView = ({ status, id, data, isLoading }) => {
   const clientInfoMutation = useMutation({
     mutationFn: async (id) => {
       dispatch(getCurrentClientData());
-      console.log({ mutationID: id });
       return api.getData(`${HR_GET_CLIENT_PROFILE}?id=${id}`);
     },
     onSuccess: ({ data }) => {
-      console.log({ selectedClient, data });
       dispatch(getCurrentClientDataSuccess(data));
       router.push(`/hr/dashboard/clients/${selectedClient}`);
       return data;
@@ -62,45 +60,34 @@ const ClientView = ({ status, id, data, isLoading }) => {
 
   const clientUpdateStatusMutation = useMutation({
     mutationFn: async (data) => {
-      // dispatch(getCurrentClientData());
-      console.log({ mutationID: id });
       return api.updateJSONData(`${HR_GET_CLIENTS}?id=${data?.id}`, data?.data);
     },
     onSuccess: ({ data }) => {
-      console.log({ selectedClient, data });
       Toast('success', 'Status updated successfully');
       dispatch(updateClientStatus(currentEmpIdStatus.id));
       handleCloseChangeStatusModal();
       setCurrentEmpIdStatus(null);
       setOpen(null);
-      // dispatch(getCurrentClientDataSuccess(data));
-      // router.push(`/hr/dashboard/clients/${selectedClient}`);
       return data;
     },
     onError: (err) => {
-      // dispatch(fetchClientHomeDataRequestFailed());
       Toast('error', err?.message || 'Failed to update status');
       console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const clientDeleteMutation = useMutation({
     mutationFn: async (id) => {
-      // dispatch(getCurrentClientData());
       return api.daleteData(`${HR_GET_CLIENTS}?id=${id}`);
     },
     onSuccess: ({ data }) => {
-      console.log({ selectedClient, data });
       Toast('success', 'Client deleted successfully');
       dispatch(deleteClient(currentDeletingClient));
       setOpen(null);
       setCurrentDeletingClient(null);
       handleCloseModal();
-      // dispatch(getCurrentClientDataSuccess(data));
-      // router.push(`/hr/dashboard/clients/${selectedClient}`);
       return data;
     },
     onError: (err) => {
-      // dispatch(fetchClientHomeDataRequestFailed());
       Toast('error', err?.message || 'Failed to update status');
       console.log({ err: err.message, name: err.name, stack: err.stack });
     },
@@ -114,7 +101,6 @@ const ClientView = ({ status, id, data, isLoading }) => {
   const { role } = useSelector((state) => state?.auth?.userData);
   const { client_perms } = useSelector((state) => state?.hr?.home?.homeData);
 
-  // const open = Boolean(anchorEl);
   const handleClick = (event, id) => {
     event.stopPropagation();
     setAnchorEl(event.currentTarget);
@@ -152,8 +138,6 @@ const ClientView = ({ status, id, data, isLoading }) => {
   const handleClientClick = (id) => {
     setSelectedClient(id);
     clientInfoMutation.mutate(id);
-
-    // router.push(`/hr/dashboard/clients/${eachItem.id}`);
   };
 
   const handleReturnOptions = (eachItem) => {
@@ -195,20 +179,12 @@ const ClientView = ({ status, id, data, isLoading }) => {
                 vertical: 'top',
                 horizontal: 'right',
               }}
-              // MenuListProps={{
-              //   'aria-labelledby': 'basic-button',
-              // }}
-              // sx={{
-              //   position: 'absolute',
-              //   right: 0,
-              // }}
             >
               {(role === 'super_admin' ||
                 (role !== 'super_admin' && client_perms?.[0]?.delete)) && (
                 <MenuItem
                   onClick={(e) => handleOpenRemove(e, eachItem.id)}
                   sx={{ backgroundColor: '#fff !important' }}
-                  // sx={{ textAlign: 'center', fontWeight: 500 }}
                 >
                   Remove
                 </MenuItem>
@@ -223,7 +199,6 @@ const ClientView = ({ status, id, data, isLoading }) => {
                       eachItem?.active
                     );
                   }}
-                  // sx={{ textAlign: 'center', fontWeight: 500 }}
                 >
                   {eachItem?.active
                     ? CLIENT_VIEW?.inActive

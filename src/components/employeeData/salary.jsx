@@ -100,7 +100,7 @@ const Salary = ({ timeTracking }) => {
       (role !== 'super_admin' && currentEmployee?.permissions?.delete)
     )
       return SALARY_TABLECOLUMN;
-    return SALARY_TABLECOLUMN.filter((col) => col.name !== 'action');
+    return SALARY_TABLECOLUMN.filter((col) => col?.name !== 'action');
   }
 
   return (

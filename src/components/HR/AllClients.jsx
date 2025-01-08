@@ -36,7 +36,6 @@ const AllClients = () => {
       return api
         .getData(HR_GET_CLIENTS)
         .then(({ data }) => {
-          console.log({ data });
           dispatch(getClientsData(data));
           return data || [];
         })

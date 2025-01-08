@@ -16,10 +16,7 @@ import {
 import { api } from '@/src/services/apiService';
 import { Toast } from '../Toast/Toast';
 
-const Accounts = ({
-  // accountDataState,
-  handleAdd,
-}) => {
+const Accounts = ({ handleAdd }) => {
   const { accounts } = useSelector((state) => state?.hr?.settings);
   const [deletingAccountId, setDeletingAccountId] = useState(null);
   const dispatch = useDispatch();

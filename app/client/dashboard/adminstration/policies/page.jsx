@@ -22,7 +22,6 @@ const Policies = () => {
     refetchOnWindowFocus: false,
     queryKey: ['policiesQuery'],
     queryFn: async () => {
-      // dispatch(fetchClientPoliciesRequest());
       return api
         .getData(`${CLIENT_POLICY}`)
         .then(({ data }) => {

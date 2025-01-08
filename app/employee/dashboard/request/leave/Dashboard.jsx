@@ -458,7 +458,6 @@ export const Dashboard = () => {
         bodyText={'Are you sure you want to delete this request?'}
         cancelButtonText={'Cancel'}
         confirmButtonText={'Delete'}
-        // isLoading={isPending}
       />
     </>
   );

@@ -122,10 +122,7 @@ const SidebarAccordion = ({ sidebarLinks }) => {
                           }`,
                         }}
                       >
-                        <span
-                          style={{ width: '100%', height: '100%' }}
-                          // href={`${eachItem?.link}`}
-                        >
+                        <span style={{ width: '100%', height: '100%' }}>
                           <Typography
                             variant="body1"
                             sx={{

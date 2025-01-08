@@ -25,7 +25,6 @@ const PageHeader = () => {
       return api.downloadFile(resolveURL());
     },
     onSuccess: ({ data }) => {
-      console.log({ data });
       const url = window.URL.createObjectURL(new Blob([data]));
       const link = document.createElement('a');
       link.href = url;
@@ -34,12 +33,10 @@ const PageHeader = () => {
       link.click();
       link.parentNode.removeChild(link);
 
-      // dispatchFunction?.(data);
       Toast('success', 'File downloaded');
     },
     onError: (err) => {
       Toast('error', err.message || 'File not downloaded');
-      // dispatch(getTimeSheetDataFailed());
       console.log({ err });
       console.log({ err: err.message, name: err.name, stack: err.stack });
     },
@@ -73,36 +70,6 @@ const PageHeader = () => {
           >
             {TIME_REQUEST?.manage}
           </Typography>
-          {/* <Typography
-            sx={{
-              fontSize: '14px',
-              fontWeight: 400,
-              lineHeight: '17px',
-              letterSpacing: '0em',
-              textAlign: 'left',
-              color: '#595959',
-            }}
-            variant="caption"
-          >
-            {TIME_REQUEST?.link}{' '}
-            <Link
-              style={{
-                textDecoration: 'underline',
-              }}
-              href="/"
-            >
-              <span
-                style={{
-                  color: 'black',
-                  fontWeight: 400,
-                  fontSize: '14px',
-                }}
-              >
-                {' '}
-                {TIME_REQUEST?.holiday}
-              </span>
-            </Link>
-          </Typography> */}
         </Box>
       </Box>
       <Button

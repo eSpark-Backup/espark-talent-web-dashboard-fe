@@ -40,13 +40,10 @@ const Benefits = () => {
         .catch((err) => {
           Toast('error', err.message || 'Failed to get data');
           console.log({ err });
-          console.log({ isLoading });
           dispatch(fetchEmpBenefitsFailed());
         });
     },
   });
-
-  console.log({ benefits });
 
   return (
     <>

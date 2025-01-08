@@ -53,7 +53,6 @@ const Dashboard = () => {
               <DashboardHeading
                 title={`Hello ${username},` || 'World'}
                 dashboardDescription={DASHBOARD_DATA?.updates}
-                // isLoading={isLoading}
               />
             ) : (
               <Stack spacing={1.5} sx={{ width: { xs: '100%', md: '200px' } }}>
@@ -63,9 +62,7 @@ const Dashboard = () => {
             )}
 
             <Grid item xs={12}>
-              <DiscoverTalentPlatform
-              //  isLoading={isLoading}
-              />
+              <DiscoverTalentPlatform />
             </Grid>
             <Grid item xs={12}>
               <OnBoarding />

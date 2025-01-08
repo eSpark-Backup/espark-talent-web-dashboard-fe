@@ -102,12 +102,10 @@ export const hringRequestForm = [
       {
         placeholder: 'from',
         name: 'minimum',
-        // suffixIcon: '$',
       },
       {
         placeholder: 'to',
         name: 'maximum',
-        // suffixIcon: '$',
       },
     ],
   },

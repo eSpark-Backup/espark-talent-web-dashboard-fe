@@ -28,26 +28,18 @@ const WFHReqFilterFormModal = ({ open, onClose, filterForm }) => {
 
   const { mutate, isPending } = useMutation({
     mutationFn: async (args) => {
-      console.log({ args });
       dispatch(getTimeSheetData());
       return api.getData(
         `${EMP_WFH_REQUEST}?tab=${values?.status?.toLowerCase()}&from=${args.from}&to=${args.to}`
       );
     },
     onSuccess: ({ data }) => {
-      console.log({ data });
       const newData1 =
         data === '' || !data?.requests?.length
           ? []
           : data?.requests.filter((el) => {
               return el;
             });
-
-      console.log({
-        newData1,
-        values,
-        data,
-      });
 
       const updateRequestAtTime = newData1?.map((item) => {
         return {

@@ -38,7 +38,6 @@ const Benefits = () => {
     queryFn: async () => {
       try {
         if (!currentEmployee?.email) {
-          // Toast('error', 'Employee email is required!');
           dispatch(getEmpBenefitRequestFailed());
           return [];
         }
@@ -110,24 +109,22 @@ const Benefits = () => {
 
   return (
     <>
-      <>
-        <Box
-          sx={{
-            maxWidth: '100%',
-            overflowX: 'auto',
-            mt: '35px',
-          }}
-        >
-          <AppTable
-            column={processColumns()}
-            data={data || []}
-            handleClickActionDelete={handleClickDelete}
-            handleClickActionView={handleEdit}
-            handleEditImage={'/icons/EditIcon.svg'}
-            isLoading={isLoading}
-          />
-        </Box>
-      </>
+      <Box
+        sx={{
+          maxWidth: '100%',
+          overflowX: 'auto',
+          mt: '35px',
+        }}
+      >
+        <AppTable
+          column={processColumns()}
+          data={data || []}
+          handleClickActionDelete={handleClickDelete}
+          handleClickActionView={handleEdit}
+          handleEditImage={'/icons/EditIcon.svg'}
+          isLoading={isLoading}
+        />
+      </Box>
       {showEditModal && (
         <EditBenefitForm
           open={showEditModal}

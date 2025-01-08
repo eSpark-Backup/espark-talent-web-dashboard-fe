@@ -145,102 +145,98 @@ const AttendanceReport = ({ employeeData }) => {
 
   return (
     <>
-      <>
-        <Box
-          sx={{
-            maxWidth: '100%',
-            overflowX: 'auto',
-            mt: !data?.length ? '40px' : null,
-          }}
-        >
-          {data?.length ? (
-            <Box
-              sx={{
-                display: 'flex',
-                flexDirection: { xs: 'column', md: 'row' },
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                borderBottom: 'solid 1px #ccc',
-                mb: '40px',
+      <Box
+        sx={{
+          maxWidth: '100%',
+          overflowX: 'auto',
+          mt: !data?.length ? '40px' : null,
+        }}
+      >
+        {data?.length ? (
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: { xs: 'column', md: 'row' },
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              borderBottom: 'solid 1px #ccc',
+              mb: '40px',
+            }}
+          >
+            <Tabs
+              value={currentTab?.val}
+              onChange={(ev, newVal) => {
+                handleChangeTab(ev, newVal);
               }}
+              aria-label="basic tabs example"
+              variant="scrollable"
+              sx={{
+                mt: '8px',
+              }}
+              TabIndicatorProps={{ style: { backgroundColor: '#068987' } }}
             >
-              <Tabs
-                value={currentTab?.val}
-                onChange={(ev, newVal) => {
-                  handleChangeTab(ev, newVal);
-                }}
-                aria-label="basic tabs example"
-                variant="scrollable"
-                sx={{
-                  mt: '8px',
-                }}
-                TabIndicatorProps={{ style: { backgroundColor: '#068987' } }}
-              >
-                {data?.map((item, tabIndex) => {
-                  return (
-                    <Tab
-                      key={tabIndex}
-                      label={`${item?.client}`}
-                      disableRipple={true}
-                      sx={{
-                        textTransform: 'none',
-                        color: '#595959',
-                        '&.Mui-selected': {
-                          color: '#068987',
-                        },
-                      }}
-                    />
-                  );
-                })}
-              </Tabs>
-            </Box>
-          ) : null}
-          {attendance?.length ? (
-            attendance?.map((item, index) => {
-              if (index === currentTab.val) {
-                const formattedTimeSheet = item?.emp_data?.time_sheet?.map(
-                  (row) => ({
-                    ...row,
-                    expected_hours: calculateExpectedTime(
-                      item?.emp_data,
-                      currentTab
-                    ),
-                    date: dayjs(row?.date, 'DD-MM-YYYY')?.format(
-                      'D MMMM, YYYY'
-                    ),
-                    check_in: row?.check_in
-                      ? dayjs(row?.check_in, 'HH:mm')?.isValid()
-                        ? dayjs(row?.check_in, 'HH:mm')?.format('hh:mm A')
-                        : '-'
-                      : '-',
-                    check_out: row?.check_out
-                      ? dayjs(row?.check_out, 'HH:mm')?.isValid()
-                        ? dayjs(row?.check_out, 'HH:mm')?.format('hh:mm A')
-                        : '-'
-                      : '-',
-                  })
-                );
-
+              {data?.map((item, tabIndex) => {
                 return (
-                  <AppTable
-                    key={index}
-                    minWidth={'1200px'}
-                    column={attendanceReportTableColumn}
-                    data={formattedTimeSheet}
-                    handleClickActionView={handleAttendanceModal}
-                    isLoading={isLoading}
+                  <Tab
+                    key={tabIndex}
+                    label={`${item?.client}`}
+                    disableRipple={true}
+                    sx={{
+                      textTransform: 'none',
+                      color: '#595959',
+                      '&.Mui-selected': {
+                        color: '#068987',
+                      },
+                    }}
                   />
                 );
-              }
-              return null;
-            })
-          ) : (
-            <Typography sx={{ my: '45px', textAlign: 'center' }} variant="h3">
-              No attendance record found!
-            </Typography>
-          )}
-        </Box>
-      </>
+              })}
+            </Tabs>
+          </Box>
+        ) : null}
+        {attendance?.length ? (
+          attendance?.map((item, index) => {
+            if (index === currentTab.val) {
+              const formattedTimeSheet = item?.emp_data?.time_sheet?.map(
+                (row) => ({
+                  ...row,
+                  expected_hours: calculateExpectedTime(
+                    item?.emp_data,
+                    currentTab
+                  ),
+                  date: dayjs(row?.date, 'DD-MM-YYYY')?.format('D MMMM, YYYY'),
+                  check_in: row?.check_in
+                    ? dayjs(row?.check_in, 'HH:mm')?.isValid()
+                      ? dayjs(row?.check_in, 'HH:mm')?.format('hh:mm A')
+                      : '-'
+                    : '-',
+                  check_out: row?.check_out
+                    ? dayjs(row?.check_out, 'HH:mm')?.isValid()
+                      ? dayjs(row?.check_out, 'HH:mm')?.format('hh:mm A')
+                      : '-'
+                    : '-',
+                })
+              );
+
+              return (
+                <AppTable
+                  key={index}
+                  minWidth={'1200px'}
+                  column={attendanceReportTableColumn}
+                  data={formattedTimeSheet}
+                  handleClickActionView={handleAttendanceModal}
+                  isLoading={isLoading}
+                />
+              );
+            }
+            return null;
+          })
+        ) : (
+          <Typography sx={{ my: '45px', textAlign: 'center' }} variant="h3">
+            No attendance record found!
+          </Typography>
+        )}
+      </Box>
       {data?.length ? (
         <Modal
           open={open}

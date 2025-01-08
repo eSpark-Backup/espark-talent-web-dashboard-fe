@@ -27,7 +27,6 @@ const EditModal = ({ handleOpenModal, onClose, isClient }) => {
   const [imagePreview, setImagePreview] = useState(null);
   const { mutate, isPending } = useMutation({
     mutationFn: async (formVals) => {
-      console.log({ formVals });
       const formData = new FormData();
       for (const key in formVals.data) {
         formData.append(key, formVals.data[key]);
@@ -44,7 +43,6 @@ const EditModal = ({ handleOpenModal, onClose, isClient }) => {
       } else {
         dispatch(updateCurrentEmployeeImage(data?.image));
       }
-      console.log({ data });
       onClose();
     },
     onError: (err) => {
@@ -66,11 +64,9 @@ const EditModal = ({ handleOpenModal, onClose, isClient }) => {
   };
 
   const handleClick = () => {
-    // console.log({ selectedFile });
     document.getElementById('fileInput').click();
   };
   const handleSubmit = () => {
-    // console.log({ selectedFile, imagePreview });
     mutate({
       id: isClient ? currentClient.id : currentEmployee.id,
       data: {
@@ -78,10 +74,6 @@ const EditModal = ({ handleOpenModal, onClose, isClient }) => {
       },
     });
   };
-  // const handleRemove = () => {
-  //   setSelectedFile(null);
-  //   setImagePreview(null);
-  // };
 
   return (
     <Box>

@@ -37,7 +37,6 @@ const EmployeeName = () => {
         }}
       >
         <Typography>{ATTENDANCE_DATA?.department} :</Typography>
-        {/* <Typography>{EMPLOYEE_DATA?.department}</Typography> */}
       </Box>
       <Box
         sx={{
@@ -48,7 +47,6 @@ const EmployeeName = () => {
         }}
       >
         <Typography>{ATTENDANCE_DATA?.joiningDate}:</Typography>
-        {/* <Typography>{EMPLOYEE_DATA?.joiningDate}</Typography> */}
       </Box>
     </>
   );

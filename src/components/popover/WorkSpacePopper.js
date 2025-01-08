@@ -122,52 +122,6 @@ export default function WorkSpacePopper({
             marginTop: { xs: 8, lg: 1 },
           }}
         >
-          {/* <Box
-          sx={{
-            borderRadius: '5px',
-            border: '1px solid #068987',
-            background: '#fff',
-            boxShadow: '0px 0px 80px 0px rgba(0, 0, 0, 0.20)',
-            display: 'flex',
-            width: '220px',
-
-            // minHeight: 'auto',
-            maxHeight: '200px',
-            height: 'auto',
-
-            maxHeight: workspaces.length > 1 ? '180px' : '230px',
-            overflowY: workspaces.length > 1 ? 'auto' : 'scroll',
-            '&::-webkit-scrollbar-thumb': {
-              backgroundColor: 'gray',
-              borderRadius: '5px',
-            },
-            '&::-webkit-scrollbar-track': {
-              backgroundColor: '#fff',
-              borderRadius: '5px',
-              // height: '4px',
-            },
-            scrollbarWidth: 'thin',
-            scrollbarColor: 'gray',
-            '&::-webkit-scrollbar': {
-              display: workspaces.length > 1 ? 'none' : 'scroll',
-              width: '5px',
-            },
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'flex-start',
-            position: 'fixed',
-            marginLeft: { xs: 'auto', lg: 0.8 },
-            right: { xs: '30px', lg: 'auto' },
-            marginRight: { xs: 0, lg: 0 },
-            marginTop: { xs: 8, lg: 1 },
-            '@media(max-width:1200px)': {
-              marginRight: -9,
-            },
-            '@media(min-width:900px)-@media(max-width:1200px)': {
-              marginRight: -9,
-            },
-          }}
-        > */}
           {workspaces?.map((item, i) => (
             <MenuItem
               key={i}
@@ -176,12 +130,10 @@ export default function WorkSpacePopper({
                 width: '100%',
                 py: 1.1,
                 p: 1.5,
-                // background: 'transparent',
                 backgroundColor:
                   currentWorkSpace?.email === item.email
                     ? '#CDECF3'
                     : 'transparent',
-                // boxShadow: 'inset 0px -1px 0px ',
                 borderBottom: '1px solid #E4E4E4',
 
                 '&: hover': {

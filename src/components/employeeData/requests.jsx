@@ -46,7 +46,6 @@ const Request = () => {
     queryFn: async () => {
       try {
         if (!currentEmployee?.email) {
-          // Toast('error', 'Employee email is required!');
           return [];
         }
 
@@ -84,8 +83,6 @@ const Request = () => {
       }
     },
   });
-
-  console.log({ selectedID });
 
   const { data: punchData, isLoading: punchLoading } = useQuery({
     staleTime: 10000,
@@ -161,7 +158,6 @@ const Request = () => {
 
   const updateRequestMutation = useMutation({
     mutationFn: async (data) => {
-      console.log(data, 'ccc');
       return api.updateData(`${data?.endpoint}?id=${data?.id}`, data?.data);
     },
     onSuccess: () => {
@@ -199,7 +195,6 @@ const Request = () => {
     }
     setCurrentTab(tab);
     setValue(newValue);
-    console.log(tab, 'tab');
   };
   const handleOpenLeaveModal = () => {
     setOpenLeave(true);

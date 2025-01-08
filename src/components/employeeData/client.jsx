@@ -52,7 +52,6 @@ const Client = () => {
     },
   ];
   const handleChangeTab = (event, newValue, rest) => {
-    console.log({ event, newValue, rest });
     setCurrentTab({
       label: tabs[newValue].label,
       val: newValue,

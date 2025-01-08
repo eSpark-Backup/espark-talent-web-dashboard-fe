@@ -149,13 +149,6 @@ const Dashboard = () => {
       filterTableRowsWRTTab,
       teamMembersData,
       filterBy: 'memberStatus',
-      // isSingular: true,
-      // tabs: teamTabs,
-      // event,
-      // newValue,
-      // setSearch,
-      // setCurrentTab,
-      // setValue,
     });
   };
 
@@ -270,7 +263,6 @@ const Dashboard = () => {
                         ).length
                       })`}
                       {...prop}
-                      // value={label}
                     />
                   ))}
                 </Tabs>

@@ -133,12 +133,10 @@ export const HiringForm = [
       {
         placeholder: 'from',
         name: 'minimum',
-        // suffixIcon: '$',
       },
       {
         placeholder: 'to',
         name: 'maximum',
-        // suffixIcon: '$',
       },
     ],
   },

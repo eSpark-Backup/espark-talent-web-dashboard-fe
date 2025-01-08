@@ -21,11 +21,9 @@ import Profile from '@/src/components/employeeData/profile';
 import AttendanceReport from '@/src/components/employeeData/attendanceReports';
 import EditEmployeeCredential from '@/src/components/employeeData/editEmployeeCredential';
 import EditModal from '@/src/components/employeeData/editModal';
-// import { getEmployeeData } from '@/src/utils/employeeProfile';
 import Client from '@/src/components/employeeData/client';
 import Assets from '@/src/components/employeeData/assets';
 import AssetForm from '@/src/components/employeeData/assetModal';
-// import { allEmployees } from '@/src/constants/AllEmployee';
 import TimeAndLeaves from '@/src/components/employeeData/timeAndLeaves';
 import FilterFormModal from '@/src/components/FilterModal/filterForm';
 import { filterAttendanceForm } from '@/src/constants/data/forms/filter-form';
@@ -450,9 +448,6 @@ const Page = () => {
                           },
                         },
                       }}
-                      // onClick={() =>
-                      //   window.open(currentEmployee?.resume_path, '_blank')
-                      // }
                       onClick={handleDownloadResume}
                     >
                       {downloadResumeMutation?.isPending ? (
@@ -823,7 +818,6 @@ const Page = () => {
                             flexDirection: { xs: 'column', sm: 'row' },
                           }}
                         >
-                          {console.log(timeTracking, 'timeTracking')}
                           <Box sx={{ order: { xs: 1, sm: 0 } }}>
                             <AppCustomMonthYearPicker
                               timeTracking={timeTracking}
@@ -865,7 +859,6 @@ const Page = () => {
                 </Box>
               </Box>
             </Box>
-            {console.log({ currentEmployee })}
             <Box sx={{ width: '100%' }}>
               {value === employeeProfileData?.valueOne ? (
                 <Profile

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-// import AppDropdown from '@/src/components/dashboard/appDropdown';
 import { Box, Button, CircularProgress, Grid, Typography } from '@mui/material';
 import Image from 'next/image';
 import { useMutation } from '@tanstack/react-query';
@@ -21,7 +20,6 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
       );
     },
     onSuccess: ({ data }) => {
-      console.log({ data });
       Toast('success', 'Request updated successfully');
       dispatch(updateTimeOffRequests(updatingLeaveRequest));
       setUpdatingLeaveRequest(null);
@@ -56,7 +54,6 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
     <Box
       sx={{
         bgcolor: '#fff',
-        // width: { xs: '90%', sm: '90%', md: '77.084%' },
         maxWidth: '1480px',
         width: '95%',
         display: 'flex',

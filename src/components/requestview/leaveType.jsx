@@ -12,7 +12,6 @@ import { LEAVE_TYPE, REQUESTVIEW_DATA } from '@/src/constants/requestviewModal';
 
 const LeaveType = ({ isViewingClient, leaveType }) => {
   const [selectedValue, setSelectedValue] = useState();
-  console.log(setSelectedValue);
 
   return (
     <Box

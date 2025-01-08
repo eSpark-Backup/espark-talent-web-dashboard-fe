@@ -22,12 +22,6 @@ const AddEmployee = () => {
   const router = useRouter();
   const [currentStep, setCurrentStep] = useState(1);
   const { addEmployeeForm } = useSelector((state) => state?.hr?.employees);
-  // useEffect(() => {
-  //   if (employee_perms[0].write) return;
-  //   else {
-  //     router.push('/hr/dashboard/employees');
-  //   }
-  // }, [employee_perms]);
 
   const handleGoNext = () => {
     if (currentStep === formSteps.length) return;

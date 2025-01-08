@@ -81,13 +81,11 @@ const Clock = () => {
         </Box>
         <Box
           sx={{
-            // px: { xs: 3, sm: 3, lg: 3 },
             width: '100%',
             height: '400px',
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            // paddingTop: { xs: '46px', md: '0px' },
           }}
         >
           <Box

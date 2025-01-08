@@ -8,8 +8,6 @@ const SidebarWorkSpace = ({ title, image }) => {
   return (
     <>
       <Box
-        // disableRipple
-        // component={'button'}
         sx={{
           width: '100%',
           height: '48px',

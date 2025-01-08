@@ -16,7 +16,7 @@ import Link from 'next/link';
 const renderAssigneeCell = (row, col) => {
   const [name, subtitle] = row.assignee;
   return (
-    <td key={col.index} style={{ flex: col?.flex || 1 }}>
+    <td key={col?.index} style={{ flex: col?.flex || 1 }}>
       <Box
         sx={{
           display: 'flex',
@@ -47,7 +47,7 @@ const renderAssigneeCell = (row, col) => {
 const renderUserAvatar = (row, col, commonCellStyle) => {
   return (
     <td
-      key={col.index}
+      key={col?.index}
       style={{
         ...commonCellStyle,
         flex: col?.flex || 1,
@@ -174,10 +174,9 @@ const renderActions = (
         />
       </td>
     );
-    // }
   }
   return (
-    <td key={col.index} style={{ ...commonCellStyle, flex: col?.flex || 1 }}>
+    <td key={col?.index} style={{ ...commonCellStyle, flex: col?.flex || 1 }}>
       <>
         {row[toCamelCase(col || col?.title)]
           ?.filter((item) => item !== null)
@@ -293,15 +292,15 @@ const renderCheckActions = (
   } else {
     return (
       <td
-        key={col.index}
+        key={col?.index}
         style={{
           ...commonCellStyle,
           flex: col?.flex || 1,
           justifyContent: col?.textAlign || 'center',
         }}
       >
-        {col.title?.toLowerCase() === 'employee invoices' ||
-        col.title?.toLowerCase() === 'other invoices' ? (
+        {col?.title?.toLowerCase() === 'employee invoices' ||
+        col?.title?.toLowerCase() === 'other invoices' ? (
           row[toCamelCase(col?.title || col)] === null ? (
             '-'
           ) : (
@@ -353,7 +352,6 @@ const renderStatusCell = (
   options,
   updateStatus,
   updateLeaveStatus
-  // isUpdatingLeave
 ) => {
   const getStatusStyle = (backgroundColor, borderColor, color) => ({
     borderRadius: '30px',
@@ -378,7 +376,7 @@ const renderStatusCell = (
 
   if (row?.attendenceShortHand) {
     return (
-      <td key={col.index} style={{ ...commonCellStyle, flex: col?.flex || 1 }}>
+      <td key={col?.index} style={{ ...commonCellStyle, flex: col?.flex || 1 }}>
         {row[toCamelCase(col || col?.title)]?.map((item, index) =>
           renderAttendenceStatus(item, index)
         )}
@@ -389,7 +387,7 @@ const renderStatusCell = (
   } else if (row?.isLeaveUpdateStatus) {
     return (
       <td
-        key={col.index}
+        key={col?.index}
         style={{ ...commonCellStyle, flex: col?.flex || 1 }}
         onClick={() => updateLeaveStatus(row)}
       >
@@ -399,7 +397,7 @@ const renderStatusCell = (
   }
 
   return (
-    <td key={col.index} style={{ ...commonCellStyle, flex: col?.flex || 1 }}>
+    <td key={col?.index} style={{ ...commonCellStyle, flex: col?.flex || 1 }}>
       <span style={statusStyle}>{getCamelCapitalized(row[col?.name])}</span>
     </td>
   );
@@ -419,10 +417,10 @@ const renderDropdownCell = (
   ];
 
   return (
-    <td key={col.index} style={{ ...commonCellStyle, flex: col?.flex || 1 }}>
+    <td key={col?.index} style={{ ...commonCellStyle, flex: col?.flex || 1 }}>
       <AppCustomDropdown
-        col={col.name || col.title}
-        colIndex={col.index}
+        col={col?.name || col?.title}
+        colIndex={col?.index}
         row={row}
         options={dropdownOpts}
         networkCall={updateStatus}
@@ -437,7 +435,7 @@ const renderDownloadButton = (
   handleClickDownload
 ) => {
   return (
-    <td key={col.index} style={{ ...commonCellStyle, flex: col?.flex || 1 }}>
+    <td key={col?.index} style={{ ...commonCellStyle, flex: col?.flex || 1 }}>
       <button
         onClick={() => {
           handleClickDownload(row?.id);
@@ -453,7 +451,6 @@ const renderDownloadButton = (
           cursor: 'pointer',
         }}
       >
-        {console.log(col?.title, 'chk')}
         {row[toCamelCase(col || col?.title)]?.replace(/_/g, ' ')}
       </button>
     </td>
@@ -469,7 +466,7 @@ const renderInfoOptions = (
 ) => {
   return (
     <td
-      key={col.index}
+      key={col?.index}
       style={{
         ...commonCellStyle,
         flex: col?.flex || 1,
@@ -507,16 +504,16 @@ export const renderCellContent = (
   handleClickDownload
 ) => {
   if (
-    col.title === 'Employee ID' ||
-    col.title === 'Client ID' ||
-    col.title === 'Asset ID' ||
-    col.title === 'Email' ||
-    col.title === 'Assignee Email'
+    col?.title === 'Employee ID' ||
+    col?.title === 'Client ID' ||
+    col?.title === 'Asset ID' ||
+    col?.title === 'Email' ||
+    col?.title === 'Assignee Email'
   ) {
-    const data = row[col.name.toLowerCase()];
+    const data = row[col?.name.toLowerCase()];
     return (
       <td
-        key={col.index}
+        key={col?.index}
         style={{
           flex: col?.flex || 1,
         }}
@@ -634,25 +631,18 @@ export const renderCellContent = (
     default:
       return (
         <td
-          key={col.index}
+          key={col?.index}
           style={{
             ...commonCellStyle,
             flex: col?.flex || 1,
             justifyContent: col?.textAlign || 'center',
           }}
-          onClick={() => console.log({ row })}
         >
-          {col.title?.toLowerCase() === 'employee invoices' ||
-          col.title?.toLowerCase() === 'other invoices' ? (
+          {col?.title?.toLowerCase() === 'employee invoices' ||
+          col?.title?.toLowerCase() === 'other invoices' ? (
             row[col?.name] === null ? (
               '-'
             ) : (
-              // <Link
-              //   href="/hr/dashboard/clients/client-profile"
-              //   style={{ textDecoration: 'underline', cursor: 'pointer' }}
-              // >
-              //   {getCamelCapitalized(row[col?.name])}
-              // </Link>
               <Typography
                 sx={{
                   textDecoration: 'underline',
@@ -666,13 +656,13 @@ export const renderCellContent = (
             )
           ) : row[col?.name] === null || row[col?.name] === undefined ? (
             '-'
-          ) : col.title === 'Salary range' || col.title === 'Salary' ? (
+          ) : col?.title === 'Salary range' || col?.title === 'Salary' ? (
             <Tooltip title={row?.currency || row?.salary_currency}>
-              {row[col?.name]}
+              <span>{row[col?.name]}</span>
             </Tooltip>
-          ) : col.name === 'job_title' && row[col?.name]?.length > 22 ? (
+          ) : col?.name === 'job_title' && row[col?.name]?.length > 22 ? (
             <Tooltip title={row[col?.name]}>
-              {truncateText(row[col?.name], 22)}
+              <span>{truncateText(row[col?.name], 22)}</span>
             </Tooltip>
           ) : (
             getCamelCapitalized(row[col?.name])

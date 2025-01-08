@@ -15,7 +15,6 @@ const MarkCheckOut = () => {
   const [isOpenWarnignModal, setIsOpenWarningModal] = useState(false);
 
   const { currentWorkSpace } = useSelector((state) => state?.emp?.home);
-  // const [time, setTime] = useState('');
   const { homeData } = useSelector((state) => state?.emp?.home);
 
   const { mutate } = useMutation({
@@ -25,7 +24,6 @@ const MarkCheckOut = () => {
     },
     onSuccess: ({ data }) => {
       Toast('success', 'Data updated successfully');
-      console.log({ data });
       dispatch(markCheckout(dayjs().format('hh:mm:ss A')));
     },
     onError: (err) => {
@@ -38,9 +36,7 @@ const MarkCheckOut = () => {
     const data = {
       time: dayjs().format('hh:mm:ss A'),
     };
-    // setTime(data?.time);
     mutate(data);
-    console.log({ data });
     setIsOpenWarningModal(false);
   };
   const canCheckout = () => {

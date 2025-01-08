@@ -8,7 +8,6 @@ const OfficialInformation = ({ data }) => {
   return (
     <>
       <Box>
-        {console.log(data, 'data')}
         {employeeOfficialDataLabel
           ?.filter(
             (empData) =>

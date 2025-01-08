@@ -25,7 +25,6 @@ const EditEmployeeCredential = ({ onClose, open }) => {
     },
     onSuccess: ({ data }) => {
       Toast('success', 'Data deleted successfully');
-      console.log({ data });
       onClose();
     },
     onError: (err) => {
@@ -46,7 +45,6 @@ const EditEmployeeCredential = ({ onClose, open }) => {
     validationSchema: editEmployeeCredentialSchema,
     enableReinitialize: true,
     onSubmit: (formValues) => {
-      console.log({ formValues });
       mutate(formValues);
     },
     validateOnChange: false,
@@ -67,7 +65,6 @@ const EditEmployeeCredential = ({ onClose, open }) => {
       <Box
         sx={{
           bgcolor: '#fff',
-          // width: { xs: '90%', md: '40%' },
           maxWidth: '812px',
           width: '95%',
           display: 'flex',
@@ -77,9 +74,6 @@ const EditEmployeeCredential = ({ onClose, open }) => {
           position: 'absolute',
           top: '30%',
           maxHeight: '75%',
-          // '@media (min-width: 900px) and (max-width: 1440px)': {
-          //   width: '70%',
-          // },
         }}
       >
         <Box
@@ -130,35 +124,32 @@ const EditEmployeeCredential = ({ onClose, open }) => {
                 },
                 formIndex
               ) => (
-                <>
-                  <Grid item xs={12} lg={6} key={formIndex}>
-                    <FormInput
-                      title={title}
-                      placeholder={placeholder}
-                      errorText={errorText}
-                      prefixIcon={prefixIcon}
-                      type={type}
-                      suffixIcon={suffixIcon}
-                      options={options}
-                      name={name}
-                      setFieldValue={setFieldValue}
-                      value={values[name]}
-                      error={errors[name]}
-                      touched={touched}
-                      setFieldError={setFieldError}
-                      errors={errors}
-                      setErrors={setErrors}
-                      values={values}
-                      nested={nested}
-                      xs={12}
-                      sm={12}
-                      md={12}
-                      lg={12}
-                      fields={fields}
-                    />
-                  </Grid>
-                  {/* {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>} */}
-                </>
+                <Grid item xs={12} lg={6} key={formIndex}>
+                  <FormInput
+                    title={title}
+                    placeholder={placeholder}
+                    errorText={errorText}
+                    prefixIcon={prefixIcon}
+                    type={type}
+                    suffixIcon={suffixIcon}
+                    options={options}
+                    name={name}
+                    setFieldValue={setFieldValue}
+                    value={values[name]}
+                    error={errors[name]}
+                    touched={touched}
+                    setFieldError={setFieldError}
+                    errors={errors}
+                    setErrors={setErrors}
+                    values={values}
+                    nested={nested}
+                    xs={12}
+                    sm={12}
+                    md={12}
+                    lg={12}
+                    fields={fields}
+                  />
+                </Grid>
               )
             )}
             <Grid

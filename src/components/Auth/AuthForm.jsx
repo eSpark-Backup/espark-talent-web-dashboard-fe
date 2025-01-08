@@ -90,7 +90,6 @@ const AuthForm = ({ uiData, fields, handleOpenTroubleModal }) => {
       return api.getData(`${url}?workspace=${currentWorkSpace?.email || ''}`);
     },
     onSuccess: ({ data }) => {
-      // dispatch(getHomeData(data));
       dispatch(getEmpHomeData(data));
       dispatch(getWorkSpace(data?.workspaces?.[0]));
       dispatch(addCurrentWorkSpace(data?.workspaces?.[0]));
@@ -111,7 +110,6 @@ const AuthForm = ({ uiData, fields, handleOpenTroubleModal }) => {
       dispatch(login(data));
       Cookie.set('token', data?.token);
       Cookie.set('userType', data?.role);
-      console.log({ data });
       if (CLIENT_ROLES.includes(data?.role)) {
         setTimeout(() => {
           clientHomeMutation.mutate(CLIENT_HOME);
@@ -129,12 +127,6 @@ const AuthForm = ({ uiData, fields, handleOpenTroubleModal }) => {
     onError: (err) => {
       setIsLoggingIn(false);
       Toast('error', err?.response?.data?.error || 'Failed to logging in');
-      console.log({
-        error: err?.response?.data?.error,
-        err: err.message,
-        name: err.name,
-        stack: err.stack,
-      });
     },
   });
 

@@ -32,7 +32,6 @@ const Dashboard = () => {
     },
     onSuccess: ({ data }) => {
       Toast('success', 'Data deleted successfully');
-      console.log({ data });
       dispatch(deleteEmpWfhRequestSuccess(modalData?.id));
       handleCloseDeleteModal();
       setModalData({});

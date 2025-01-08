@@ -42,7 +42,6 @@ export const renderNestedTable = ({
           handleOpenConditionalModal={handleOpenConditionalModal}
           handleClickActionView={handleClickActionView}
           handleClickActionDelete={handleClickActionDelete}
-          // commonRowStyle={commonRowStyle}
           viewClicked={viewClicked}
         />
       </Box>

@@ -46,13 +46,10 @@ const LeaveManagementModal = ({ open, onClose }) => {
     onSuccess: () => {
       Toast('success', 'Leaves updates successfully');
       dispatch(updateEmpLeaves(newLeavesArray));
-      // setNewTimeArray(null);
-      // setIsOpenSavePolicies(false);
       onClose();
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to post data');
-      // console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const objectifiedData = (data, newVals) => {
@@ -83,7 +80,6 @@ const LeaveManagementModal = ({ open, onClose }) => {
         status: element[1].status == 'enable' ? 'Enabled' : 'Disabled',
       });
     }
-    console.log({ arrayfiedData, dataObj, refinedData });
     return refinedData;
   };
   const {
@@ -107,12 +103,6 @@ const LeaveManagementModal = ({ open, onClose }) => {
     validationSchema: leaveManagementFormSchema,
     enableReinitialize: true,
     onSubmit: (formValues) => {
-      console.log({
-        formValues,
-        leaves,
-        vals: objectifiedData(leaves, formValues),
-        reformed: reformData(objectifiedData(leaves, formValues)),
-      });
       setNewLeavesArray(reformData(objectifiedData(leaves, formValues)));
       mutate(objectifiedData(leaves, formValues));
     },
@@ -142,7 +132,6 @@ const LeaveManagementModal = ({ open, onClose }) => {
       <Box
         sx={{
           bgcolor: '#fff',
-          // width: { xs: '90%', sm: '90%', md: '50%' },
           maxWidth: '1000px',
           width: '95%',
           display: 'flex',
@@ -211,8 +200,8 @@ const LeaveManagementModal = ({ open, onClose }) => {
                 },
                 formIndex
               ) => (
-                <>
-                  <Grid item xs={12} lg={5} key={formIndex}>
+                <React.Fragment key={formIndex}>
+                  <Grid item xs={12} lg={5}>
                     <FormInput
                       max={max}
                       title={title}
@@ -240,7 +229,7 @@ const LeaveManagementModal = ({ open, onClose }) => {
                     />
                   </Grid>
                   {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>}
-                </>
+                </React.Fragment>
               )
             )}
             <Grid item p={'0 10px'} xs={12}>

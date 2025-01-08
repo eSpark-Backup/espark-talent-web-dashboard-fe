@@ -106,8 +106,6 @@ const WFHRequestTablesTabs = ({
     },
   });
 
-  console.log({ wfhRequestData: data });
-
   return (
     <Box sx={{ width: '100%' }}>
       <Box
@@ -188,7 +186,6 @@ const WFHRequestTablesTabs = ({
                                   filterTableRowsWRTTab(leaveRequestDataState, {
                                     status: label === 'All' ? '' : label,
                                   }).length
-                                  // data?.[name]
                                 }
                               </Box>
                             )}
@@ -295,7 +292,6 @@ const WFHRequestTablesTabs = ({
             <WFHReqFilterFormModal
               open={handleOpenFilterModal}
               onClose={handleClose}
-              // leaveType
               filterForm={filterWFHForm}
             />
           )}

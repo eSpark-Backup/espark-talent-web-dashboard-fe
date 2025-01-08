@@ -59,7 +59,6 @@ const MarkBreak = ({ icon }) => {
       return api.patchData(url);
     },
     onSuccess: ({ data }) => {
-      console.log({ data });
       if (
         !homeData?.today_activity?.break ||
         homeData?.today_activity?.break === '-'
@@ -158,10 +157,6 @@ const MarkBreak = ({ icon }) => {
             },
           }}
           onClick={handleToggleBreak}
-          // disabled={
-          //   homeData?.today_activity?.check_in === '-' ||
-          //   homeData?.today_activity?.check_out !== '-'
-          // }
           disabled={!isValidBreakButton()}
         >
           <Image

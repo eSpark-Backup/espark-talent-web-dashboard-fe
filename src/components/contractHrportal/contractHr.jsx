@@ -31,11 +31,9 @@ const AddContractHrPortalModal = ({ open, onClose, endPoint }) => {
         formData.append(key, formVals[key]);
       }
       return api.postData(`${url}`, formData);
-      // return [];
     },
     onSuccess: ({ data }) => {
       Toast('success', 'Contract posted successfully');
-      console.log({ data, values, contractFormValues });
       dispatch(
         addOffShoreContract({
           ...contractFormValues,
@@ -69,7 +67,6 @@ const AddContractHrPortalModal = ({ open, onClose, endPoint }) => {
     validationSchema: OffShContractFormHrPortalSchema,
     enableReinitialize: true,
     onSubmit: (formValues) => {
-      console.log({ formValues });
       const tempVals = {
         ...formValues,
         date: dayjs(formValues.date).format('YYYY-MM-DD'),
@@ -175,8 +172,8 @@ const AddContractHrPortalModal = ({ open, onClose, endPoint }) => {
                 },
                 formIndex
               ) => (
-                <>
-                  <Grid item xs={12} lg={5} key={formIndex}>
+                <React.Fragment key={formIndex}>
+                  <Grid item xs={12} lg={5}>
                     <FormInput
                       title={title}
                       placeholder={placeholder}
@@ -205,7 +202,7 @@ const AddContractHrPortalModal = ({ open, onClose, endPoint }) => {
                     />
                   </Grid>
                   {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>}
-                </>
+                </React.Fragment>
               )
             )}
             <Grid item p={'0 10px'} xs={12}>

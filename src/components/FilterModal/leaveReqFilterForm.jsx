@@ -27,7 +27,6 @@ const LeaveReqFilterFormModal = ({ open, onClose, filterForm }) => {
   const dispatch = useDispatch();
   const { mutate, isPending } = useMutation({
     mutationFn: async (args) => {
-      console.log({ args });
       dispatch(getTimeSheetData());
       return api.getData(
         `${EMP_LEAVE_REQUEST}?workspace=${
@@ -36,25 +35,16 @@ const LeaveReqFilterFormModal = ({ open, onClose, filterForm }) => {
       );
     },
     onSuccess: ({ data }) => {
-      console.log({ data });
       const newData1 =
         data === '' || !data?.requests?.length
           ? []
           : data?.requests.filter((el) => {
               if (values?.leaveType) {
-                // return el.leaveType.includes(values?.attendanceStatus);
-                // return el.leaveType.includes(values?.attendanceStatus);
                 return values?.leaveType
                   ?.toLowerCase()
                   ?.includes(el?.leave_type);
               } else return el;
             });
-
-      console.log({
-        newData1,
-        values,
-        data,
-      });
 
       const updateRequestAtTime = newData1?.map((item) => {
         return {
@@ -82,7 +72,6 @@ const LeaveReqFilterFormModal = ({ open, onClose, filterForm }) => {
     const refinedData = [];
     for (let i = 0; i < arrayfiedData.length; i++) {
       const element = arrayfiedData[i];
-      console.log({ element });
       if (i > 0) {
         refinedData.push({
           leave_type: element[0],
@@ -96,7 +85,6 @@ const LeaveReqFilterFormModal = ({ open, onClose, filterForm }) => {
   };
   const resetMutation = useMutation({
     mutationFn: async () => {
-      // dispatch(fetchEmpLeaveRequestData());
       return api.getData(
         `${EMP_LEAVE_REQUEST}?workspace=${currentWorkSpace?.email || ''}`
       );
@@ -270,8 +258,6 @@ const LeaveReqFilterFormModal = ({ open, onClose, filterForm }) => {
                       name,
                       nested,
                       fieldsName,
-
-                      // searchable,
                     },
                     formIndex
                   ) => (
@@ -295,7 +281,6 @@ const LeaveReqFilterFormModal = ({ open, onClose, filterForm }) => {
                           setErrors={setErrors}
                           values={values}
                           nested={nested}
-                          // searchable={searchable}
                           sm={12}
                           md={12}
                           lg={12}
@@ -307,7 +292,6 @@ const LeaveReqFilterFormModal = ({ open, onClose, filterForm }) => {
                 )}
                 <Grid item p={'0 10px'} xs={12}>
                   <ResetButton
-                    // handleReset={() => resetMutation.mutate()}
                     handleReset={handleClickReset}
                     isLoadingSubmit={isPending}
                   />

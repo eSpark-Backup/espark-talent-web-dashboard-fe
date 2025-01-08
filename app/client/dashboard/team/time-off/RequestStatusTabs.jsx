@@ -78,7 +78,6 @@ const RequestStatusTabs = ({
   return (
     <Box
       sx={{
-        // backgroundColor: '#ccc',
         marginTop: '10px',
         marginBottom: '20px',
         borderBottom:
@@ -116,11 +115,6 @@ const RequestStatusTabs = ({
                       display={'flex'}
                     >
                       <Input
-                        //   setIsLoading={
-                        //     tabData?.currentReqTypeTab === 'Leave Requests'
-                        //       ? setIsLoading
-                        //       : setIsLoading
-                        //   }
                         handleChange={
                           tabData?.currentReqTypeTab === 'Leave Requests'
                             ? setSearchLeaveRequest
@@ -269,7 +263,6 @@ const RequestStatusTabs = ({
                       <Input
                         width={{ xs: '100%', lg: 250, xl: 400 }}
                         placeHolder={'Search by name...'}
-                        // setIsLoading={setIsLoading}
                         handleChange={
                           tabData?.currentReqTypeTab === 'Leave Requests'
                             ? setSearchLeaveRequest
@@ -294,10 +287,6 @@ const RequestStatusTabs = ({
                           background: '#fff',
                         },
                       }}
-                      // onClick={() => {
-                      //   setSearchLeaveRequest('');
-                      //   setSearchCheckInOutRequest('');
-                      // }}
                       startIcon={
                         <Image
                           width={20}
@@ -318,7 +307,6 @@ const RequestStatusTabs = ({
               <>
                 <Box marginY={'20px'}>
                   <Input
-                    // setIsLoading={setIsLoading}
                     handleChange={setSearch}
                     value={search}
                     prefixIcon="SearchIcon.svg"

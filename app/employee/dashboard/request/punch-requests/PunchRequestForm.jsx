@@ -20,19 +20,6 @@ const PunchRequestForm = ({ handleClose }) => {
   const { currentWorkSpace } = useSelector((state) => state?.emp?.home);
 
   const dispatch = useDispatch();
-  // const pascalToSnake = (string) => {
-  //   // Replace spaces and dots with empty strings
-  //   const pascalCaseString = string.replace(/[\s.]+(?=[A-Z\s])/g, '');
-
-  //   // Replace each uppercase letter (except the first one) with its lowercase equivalent preceded by an underscore
-  //   const snakeCaseString = pascalCaseString.replace(
-  //     /[A-Z]/g,
-  //     (match, offset) =>
-  //       offset === 0 ? match.toLowerCase() : '_' + match.toLowerCase()
-  //   );
-
-  //   return snakeCaseString.split(' ').join('_');
-  // };
   const { mutate, isPending } = useMutation({
     mutationFn: async (formVals) => {
       const formData = new FormData();
@@ -43,7 +30,6 @@ const PunchRequestForm = ({ handleClose }) => {
     },
     onSuccess: ({ data }) => {
       Toast('success', 'Data posted successfully');
-      console.log({ data });
       handleClose();
       dispatch(
         createEmpPunchRequestSuccess({
@@ -86,7 +72,6 @@ const PunchRequestForm = ({ handleClose }) => {
     validationSchema: createPunchRequestSchema,
     enableReinitialize: true,
     onSubmit: (formValues) => {
-      console.log({ formValues });
       const revampFormValues = {
         date: dayjs(formValues.date).format('YYYY-MM-DD'),
         client_id: currentWorkSpace?.email,
@@ -94,7 +79,6 @@ const PunchRequestForm = ({ handleClose }) => {
         punch_time: dayjs(formValues?.punchTime).format('hh:mm:ss A'),
         description: formValues?.description,
       };
-      console.log({ revampFormValues });
       setPunchReqFormData(revampFormValues);
       mutate(revampFormValues);
     },
@@ -166,7 +150,6 @@ const PunchRequestForm = ({ handleClose }) => {
         <Button
           onClick={handleClose}
           sx={{
-            // ml: '20px',
             width: '120px',
             border: '1px solid #029894',
             background: '#FFF',
@@ -175,7 +158,6 @@ const PunchRequestForm = ({ handleClose }) => {
           Cancel
         </Button>
         <Button
-          // onClick={handleClose}
           sx={{
             ml: '20px',
             width: '120px',

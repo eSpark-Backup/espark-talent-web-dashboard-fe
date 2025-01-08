@@ -38,7 +38,6 @@ const EditClient = () => {
       country: values.country?.title,
       join_date: dayjs(values?.join_date).format('YYYY-MM-DD'),
     };
-    console.log({ values, final });
     return final;
   };
 
@@ -75,7 +74,6 @@ const EditClient = () => {
           defaultValues={defaultValues}
           isLastStep={true}
           getFinalData={getFinalData}
-          // mutationFunction={mutationFunction}
           method="updateData"
           endpoint={`${HR_GET_CLIENT_PROFILE}?id=${currentClient.id}`}
           marginLeft={{

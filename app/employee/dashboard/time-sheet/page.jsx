@@ -155,7 +155,6 @@ const Dashboard = () => {
     setOpen(false);
   };
   const handleAttendanceModal = (props) => {
-    console.log({ props });
     const { item, row } = props;
     setModalData({ item, ...row });
     setOpen(true);

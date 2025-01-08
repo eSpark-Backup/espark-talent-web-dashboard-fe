@@ -17,12 +17,9 @@ const LeaveDatePicker = ({ label }) => {
   const handleClose = () => setOpen(false);
   const handleOpenModal = () => setOpenModal(true);
   const [selectedDate, setSelectedDate] = useState(null);
-  console.log(handleOpenModal);
   const handleDateChange = (date) => {
     setSelectedDate(date);
     if (date.isBefore(dayjs(), 'day')) {
-      console.log(open);
-      console.log('Selected date is before the current date');
       setOpenModal(true);
     } else {
       setOpen(false);

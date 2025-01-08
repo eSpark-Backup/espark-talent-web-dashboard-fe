@@ -11,7 +11,6 @@ const AttachDoc = () => {
   };
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
-    console.log('Selected file:', selectedFile);
   };
   return (
     <TextField

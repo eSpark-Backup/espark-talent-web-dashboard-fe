@@ -31,10 +31,6 @@ export const Client_Routes = [
     link: '#',
     sublinks: [
       { text: 'Team members', link: '/client/dashboard/team/team-members' },
-      // {
-      //   text: 'Team Management',
-      //   link: '/dashboard/client/team/team-management',
-      // },
       { text: 'Time off', link: '/client/dashboard/team/time-off' },
       { text: 'Time tracking', link: '/client/dashboard/team/time-tracking' },
     ],

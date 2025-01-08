@@ -75,7 +75,6 @@ const Assets = () => {
   });
 
   const handleClickDelete = (a, b) => {
-    console.log({ a, b });
     setDeletingAssetId(b?.id);
     setIsOpen(true);
   };
@@ -97,23 +96,22 @@ const Assets = () => {
 
   return (
     <>
-      <>
-        <Box
-          sx={{
-            maxWidth: '100%',
-            overflowX: 'auto',
-            mt: '40px',
-          }}
-        >
-          <AppTable
-            minWidth={'1200px'}
-            column={processColumns()}
-            data={assets}
-            handleClickActionDelete={handleClickDelete}
-            isLoading={isLoading}
-          />
-        </Box>
-      </>
+      <Box
+        sx={{
+          maxWidth: '100%',
+          overflowX: 'auto',
+          mt: '40px',
+        }}
+      >
+        <AppTable
+          minWidth={'1200px'}
+          column={processColumns()}
+          data={assets}
+          handleClickActionDelete={handleClickDelete}
+          isLoading={isLoading}
+        />
+      </Box>
+
       <AppConfirmationMadal
         title={CONTRACT_SIGNED?.delete}
         bodyText={`Are you sure you want to delete asset?`}

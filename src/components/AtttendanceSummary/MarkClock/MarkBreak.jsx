@@ -69,7 +69,6 @@ const MarkBreak = ({ icon }) => {
       return api.patchData(url);
     },
     onSuccess: ({ data }) => {
-      console.log({ data });
       if (
         !homeData?.today_activity?.break ||
         homeData?.today_activity?.break === '-'
@@ -112,11 +111,6 @@ const MarkBreak = ({ icon }) => {
     const intervalId = setInterval(() => {
       const currentTime = new Date().getTime();
       const elapsedTime = currentTime - startTime;
-      // console.log({
-      //   elapsedTime,
-      //   currentTime,
-      //   startTime,
-      // });
 
       setTimerState((prevState) => ({
         ...prevState,
@@ -160,8 +154,6 @@ const MarkBreak = ({ icon }) => {
       currentBreakTime
     ) {
       startTimer();
-      // startTime().then(() => {
-      // });
     }
   }, [currentBreakTime]);
 
@@ -200,10 +192,6 @@ const MarkBreak = ({ icon }) => {
             },
           }}
           onClick={handleToggleBreak}
-          // disabled={
-          //   homeData?.today_activity?.check_in === '-' ||
-          //   homeData?.today_activity?.check_out !== '-'
-          // }
           disabled={!isValidBreakButton()}
         >
           <Image

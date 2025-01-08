@@ -73,7 +73,6 @@ const Dashboard = () => {
     queryKey: ['pendingInvoicePayments'],
     queryFn: async () => {
       dispatch(fetchPendingInvoicePaymentsRequest());
-      // dispatch(fetchOtherPendingInvoicePaymentsRequest());
       return api
         .getData(`${CLIENT_INVOICE_PAYMENTS}?payment_status=pending`)
         .then(({ data }) => {
@@ -104,7 +103,6 @@ const Dashboard = () => {
         .catch((err) => {
           Toast('error', err.message || 'Failed to get data');
           dispatch(fetchPendingInvoicePaymentsRequestFailed());
-          // dispatch(fetchOtherPendingInvoicePaymentsRequestFailed());
           console.log({ err });
         });
     },
@@ -115,11 +113,9 @@ const Dashboard = () => {
     queryKey: ['processingInvoicePayments'],
     queryFn: async () => {
       dispatch(fetchProcessingInvoicePaymentsRequest());
-      // dispatch(fetchOtherProcessingInvoicePaymentsRequest());
       return api
         .getData(`${CLIENT_INVOICE_PAYMENTS}?payment_status=processing`)
         .then(({ data }) => {
-          console.log({ processData: data });
           const tempData =
             data === ''
               ? []
@@ -147,7 +143,6 @@ const Dashboard = () => {
         .catch((err) => {
           Toast('error', err.message || 'Failed to get data');
           dispatch(fetchProcessingInvoicePaymentsRequestFailed());
-          // dispatch(fetchOtherProcessingInvoicePaymentsRequestFailed());
           console.log({ err });
         });
     },
@@ -158,7 +153,6 @@ const Dashboard = () => {
     queryKey: ['paidInvoicePayments'],
     queryFn: async () => {
       dispatch(fetchPaidInvoicePaymentsRequest());
-      // dispatch(fetchOtherPaidInvoicePaymentsRequest());
       return api
         .getData(`${CLIENT_INVOICE_PAYMENTS}?payment_status=paid`)
         .then(({ data }) => {
@@ -187,7 +181,6 @@ const Dashboard = () => {
         .catch((err) => {
           Toast('error', err.message || 'Failed to get data');
           dispatch(fetchPaidInvoicePaymentsRequestFailed());
-          // dispatch(fetchOtherPaidInvoicePaymentsRequestFailed());
           console.log({ err });
         });
     },
@@ -330,7 +323,6 @@ const Dashboard = () => {
       return api.downloadFile(`${data.url}?id=${data.id}`);
     },
     onSuccess: ({ data }) => {
-      console.log({ data });
       const url = window.URL.createObjectURL(new Blob([data]));
       const link = document.createElement('a');
       link.href = url;
@@ -523,7 +515,6 @@ const Dashboard = () => {
               <AppTable
                 column={otherPaymentColumn}
                 data={othInvDataState}
-                // data={getOtherInvData()}
                 updateStatus={updateInvoiceStatus}
                 handleClickDownload={(id) =>
                   downloadInvoice(id, DOWNLOAD_OTH_INV)

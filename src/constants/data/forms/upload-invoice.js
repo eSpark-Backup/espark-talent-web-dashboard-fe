@@ -33,23 +33,6 @@ export const uploadInvoiceForm = [
     accept: '.pdf',
     filelabel: 'Accept .pdf file only',
   },
-  // {
-  //   title: 'Payment Status',
-  //   placeholder: 'Status',
-  //   name: 'payment_status',
-  //   type: 'select',
-  //   options: [
-  //     {
-  //       label: 'pending',
-  //     },
-  //     {
-  //       label: 'processing',
-  //     },
-  //     {
-  //       label: 'paid',
-  //     },
-  //   ],
-  // },
 ];
 export const uploadOtherInvoiceForm = [
   {
@@ -113,7 +96,6 @@ export const uploadOtherInvoiceForm = [
     title: 'Invoice amount',
     placeholder: '',
     name: 'invoice_amount',
-    // dollarIcon: '$',
   },
   {
     title: 'Upload',
@@ -124,21 +106,4 @@ export const uploadOtherInvoiceForm = [
     accept: '.pdf',
     filelabel: 'Accept .pdf file only',
   },
-  // {
-  //   title: 'Payment Status',
-  //   placeholder: 'Status',
-  //   name: 'payment_status',
-  //   type: 'select',
-  //   options: [
-  //     {
-  //       label: 'pending',
-  //     },
-  //     {
-  //       label: 'processing',
-  //     },
-  //     {
-  //       label: 'paid',
-  //     },
-  //   ],
-  // },
 ];

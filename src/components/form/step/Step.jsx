@@ -41,7 +41,6 @@ const Step = ({
 }) => {
   const { mutate, isPending } = useMutation({
     mutationFn: async (formVals) => {
-      console.log({ formVals });
       const formDataVals = new FormData();
       for (const key in formVals) {
         formDataVals.append(key, formVals[key]);
@@ -49,7 +48,6 @@ const Step = ({
       return api[method](endpoint, formDataVals);
     },
     onSuccess: ({ data }) => {
-      console.log({ data });
       setCurrentStep?.(0);
       toast?.();
       clearForm?.();
@@ -82,12 +80,6 @@ const Step = ({
       } else {
         errToast = 'An unknown error occurred';
       }
-      console.log({
-        errorDetails: err,
-        errorMessage: err.message,
-        errorName: err.name,
-        errorStack: err.stack,
-      });
       if (errToast) {
         errorToast(errToast);
       }
@@ -124,7 +116,6 @@ const Step = ({
     validationSchema: schema,
     enableReinitialize: true,
     onSubmit: (formValues) => {
-      console.log({ formValues });
       dispatchFunction?.(formValues);
       handleGoNext?.();
       if (isLastStep) {
@@ -136,7 +127,6 @@ const Step = ({
               ? 'nonspec'
               : formValues?.gender,
         });
-        console.log({ fV: formValues, newData });
         mutate(newData);
       }
       btnSave(formValues);
@@ -145,14 +135,9 @@ const Step = ({
     validateOnBlur: false,
   });
   const handeClickBack = () => {
-    console.log({ values, errors });
     dispatchFunction?.(values);
     handleGoPrev();
   };
-
-  {
-    console.log({ errors, values });
-  }
 
   if (isMultiColumn)
     return (

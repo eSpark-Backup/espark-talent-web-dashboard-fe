@@ -29,7 +29,6 @@ const EditEmergencyModal = ({ onClose, handleEmergencyModal, data }) => {
     },
     onSuccess: async ({ data }) => {
       Toast('success', 'Data updated successfully');
-      console.log({ data });
       onClose();
       await queryClient.invalidateQueries('employee-profile');
     },
@@ -72,7 +71,6 @@ const EditEmergencyModal = ({ onClose, handleEmergencyModal, data }) => {
     validationSchema: emergency_contact_schema,
     enableReinitialize: true,
     onSubmit: (formValues) => {
-      console.log({ formValues });
       handleUpdate(formValues);
     },
     validateOnChange: false,
@@ -80,7 +78,6 @@ const EditEmergencyModal = ({ onClose, handleEmergencyModal, data }) => {
   });
   const [secPhoneList, setSecPhoneList] = useState([]);
   const handleClickTogglePhoneNumber = (name, icon) => {
-    console.log({ name, icon });
     if (icon === 'plus') {
       if (secPhoneList.includes(`${name}2`)) return;
       setSecPhoneList((prevState) => {
@@ -111,7 +108,6 @@ const EditEmergencyModal = ({ onClose, handleEmergencyModal, data }) => {
       <Box
         sx={{
           bgcolor: '#fff',
-          // width: { xs: '90%', sm: '90%', md: '50%' },
           maxWidth: '1000px',
           width: '95%',
           display: 'flex',

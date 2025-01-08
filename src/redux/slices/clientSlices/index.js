@@ -30,15 +30,4 @@ const clientReducer = persistReducer(
   })
 );
 
-// const clientReducer = combineReducers({
-//   hiringProgress: hiringProgressSlice,
-//   home: homeSlice,
-//   teamMembers: teamMembersSlice,
-//   timeOff: timeOffSlice,
-//   timeTracking: timeTrackingSlice,
-//   invoicePayments: invoicePaymentsSlice,
-//   policies: policiesSlice,
-//   contract: contratSignedSlice,
-// });
-
 export { clientReducer };

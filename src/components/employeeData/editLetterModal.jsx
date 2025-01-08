@@ -31,7 +31,6 @@ const EditLetterForm = ({ onClose, open, selectedId }) => {
     },
     onSuccess: async ({ data }) => {
       Toast('success', 'Data updated successfully');
-      console.log({ data, values });
       const reformedData = {
         ...values,
         id: selectedId?.row?.id,
@@ -62,14 +61,12 @@ const EditLetterForm = ({ onClose, open, selectedId }) => {
     onSubmit: (formValues) => {
       const { issue_date, email, objective, ...filteredFormValues } =
         formValues;
-      console.log(issue_date, email, objective);
       const reformedData = {
         ...filteredFormValues,
         id: selectedId?.row?.id,
         letter: values.letter,
         reason: values.reason,
       };
-      console.log({ formValues, reformedData });
       mutate(reformedData);
     },
     validateOnChange: false,
@@ -86,7 +83,6 @@ const EditLetterForm = ({ onClose, open, selectedId }) => {
       setFieldValue('email', filteredLetter.email);
       setFieldValue('issue_date', filteredLetter.issue_date);
       setFieldValue('reason', filteredLetter.reason);
-      // setFieldValue('download', filteredLetter.download);
     }
   }, [letters]);
 
@@ -169,8 +165,8 @@ const EditLetterForm = ({ onClose, open, selectedId }) => {
                 },
                 formIndex
               ) => (
-                <>
-                  <Grid item xs={12} lg={5} key={formIndex}>
+                <React.Fragment key={formIndex}>
+                  <Grid item xs={12} lg={5}>
                     <FormInput
                       disabled={
                         name === 'reason' || name === 'letter' ? false : true
@@ -200,7 +196,7 @@ const EditLetterForm = ({ onClose, open, selectedId }) => {
                     />
                   </Grid>
                   {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>}
-                </>
+                </React.Fragment>
               )
             )}
             <Grid item p={'0 10px'} xs={12}>

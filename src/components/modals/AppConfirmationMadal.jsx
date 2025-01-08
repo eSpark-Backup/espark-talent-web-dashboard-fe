@@ -42,9 +42,6 @@ const AppConfirmationMadal = ({
             boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
             overflowY: 'auto',
             padding: '38px 0',
-            // '@media (min-width: 1200px) and (max-width: 1360px)': {
-            //   width: '35%',
-            // },
           }}
         >
           <Box display={'flex'} justifyContent="center">

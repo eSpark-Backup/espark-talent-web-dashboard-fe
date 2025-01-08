@@ -6,7 +6,7 @@ const TableHead = ({ column, commonRowStyle }) => {
     <thead>
       <tr className="app-table-row" style={{ ...commonRowStyle }}>
         {column?.map((col, colIndex) => (
-          <>
+          <React.Fragment key={colIndex}>
             {col?.isIconTitle ? (
               <th
                 key={colIndex}
@@ -17,7 +17,7 @@ const TableHead = ({ column, commonRowStyle }) => {
                   justifyContent: 'center',
                 }}
               >
-                <Box component="img" src={col.src} alt="Profile Pic" />
+                <Box component="img" src={col?.src} alt="Profile Pic" />
               </th>
             ) : (
               <th
@@ -31,7 +31,7 @@ const TableHead = ({ column, commonRowStyle }) => {
                 {(col?.title || col)?.replace(/_/g, ' ')}
               </th>
             )}
-          </>
+          </React.Fragment>
         ))}
       </tr>
     </thead>

@@ -8,7 +8,6 @@ import Image from 'next/image';
 
 import SidebarUserAvatar from '../sidebar/SidebarUserAvatar';
 import { NOTIFICATION_TITLE, profileMenuData } from '@/src/constants/sidebar';
-// import { NOTIFICATION_DATA } from '@/src/constants/data/userData';
 import SignoutModal from '../signoutmodal/signoutModal';
 import DotBadge from '../sidebar/SidebarProfileBadge';
 import { useDispatch, useSelector } from 'react-redux';
@@ -53,13 +52,19 @@ export default function ProfilePopper({
 
   const { refetch } = useQuery({
     queryKey: ['get-notifications'],
-    queryFn: () => {
-      setIsFetchingNotifications(true);
-      api.getData(GET_NOTIFICATIONS).then(({ data }) => {
-        dispatch(getNotifications(data !== '' ? data : []));
+    queryFn: async () => {
+      try {
+        setIsFetchingNotifications(true);
+        const { data } = await api.getData(GET_NOTIFICATIONS);
+        // Dispatch the fetched notifications or an empty array if no data
+        dispatch(getNotifications(data || []));
         setIsFetchingNotifications(false);
-        return data;
-      });
+        return data || []; // Ensure the function always returns a value
+      } catch (error) {
+        console.error('Error fetching notifications:', error);
+        setIsFetchingNotifications(false);
+        return []; // Return an empty array on error
+      }
     },
   });
 
@@ -307,43 +312,117 @@ export default function ProfilePopper({
             {restructureNotificationData(data)?.length > 0 ? (
               <>
                 {restructureNotificationData(data)?.map((item, index) => (
-                  <>
-                    <Box component={'div'} key={index}>
+                  <Box component={'div'} key={index}>
+                    <Box
+                      sx={{
+                        width: '100%',
+                        background: '#F5F5F5',
+                        py: 1.6,
+                        px: 2.5,
+                        borderTop: '1px solid #E4E4E4',
+                        borderBottom: '1px solid #E4E4E4',
+                        '@media(max-width: 1200px)': {
+                          width: '99.5%',
+                        },
+                      }}
+                    >
+                      <Typography
+                        variant="body1"
+                        sx={{ fontWeight: 600, color: '#595959' }}
+                      >
+                        {item?.day}
+                      </Typography>
+                    </Box>
+                    {item?.data?.map((notification, index) => (
                       <Box
+                        key={index}
                         sx={{
-                          width: '100%',
-                          background: '#F5F5F5',
-                          py: 1.6,
-                          px: 2.5,
-                          borderTop: '1px solid #E4E4E4',
+                          width: '99%',
+                          display: { xs: 'none', sm: 'flex' },
+                          flexDirection: { xs: 'row', sm: 'row' },
+                          gap: { xs: 1, sm: 2 },
+                          py: 3,
+                          pl: { xs: 2.5, sm: 3.5 },
                           borderBottom: '1px solid #E4E4E4',
-                          '@media(max-width: 1200px)': {
-                            width: '99.5%',
-                          },
+                          cursor: 'pointer',
+                        }}
+                        onClick={() => {
+                          notificationCases(userType, notification);
                         }}
                       >
-                        <Typography
-                          variant="body1"
-                          sx={{ fontWeight: 600, color: '#595959' }}
-                        >
-                          {item?.day}
-                        </Typography>
-                      </Box>
-                      {item?.data?.map((notification, index) => (
+                        <Box>
+                          <SidebarUserAvatar
+                            userName={notification?.userName}
+                          />
+                        </Box>
                         <Box
-                          key={index}
                           sx={{
-                            width: '99%',
-                            display: { xs: 'none', sm: 'flex' },
-                            flexDirection: { xs: 'row', sm: 'row' },
-                            gap: { xs: 1, sm: 2 },
-                            py: 3,
-                            pl: { xs: 2.5, sm: 3.5 },
-                            borderBottom: '1px solid #E4E4E4',
-                            cursor: 'pointer',
+                            maxWidth: '180px',
+                            minWidth: '180px',
+                            display: 'flex',
+                            flexDirection: 'column',
                           }}
-                          onClick={() => {
-                            notificationCases(userType, notification);
+                        >
+                          <Typography
+                            variant="body1"
+                            sx={{
+                              fontWeight: 600,
+                              color: '#595959',
+                              pb: 0.5,
+                              maxWidth: '220px',
+                              overflow: 'hidden',
+                              textOverflow: 'ellipsis',
+                              whiteSpace: 'nowrap',
+                            }}
+                          >
+                            {notification?.type}
+                          </Typography>
+                          <Typography
+                            sx={{
+                              fontSize: '12px',
+                              fontWeight: 400,
+                              color: '#595959',
+                              display: '-webkit-box',
+                              WebkitBoxOrient: 'vertical',
+                              WebkitLineClamp: 3,
+                              overflow: 'hidden',
+                            }}
+                          >
+                            {notification?.description}
+                          </Typography>
+                        </Box>
+                        <Box>
+                          <Typography
+                            sx={{
+                              fontSize: '12px',
+                              fontWeight: 400,
+                              color: '#595959',
+                            }}
+                          >
+                            {getTimePassedFromNow(
+                              notification?.date,
+                              notification?.time
+                            )}
+                          </Typography>
+                        </Box>
+                      </Box>
+                    ))}
+                    {item?.data?.map((notification, index) => (
+                      <Box
+                        key={index}
+                        sx={{
+                          width: '100%',
+                          display: { xs: 'block', sm: 'none' },
+                          py: 3,
+                          borderBottom: '1px solid #E4E4E4',
+                        }}
+                      >
+                        <Box
+                          sx={{
+                            width: '100%',
+                            display: 'flex',
+                            pl: 3.5,
+                            gap: 1.5,
                           }}
                         >
                           <Box>
@@ -365,7 +444,7 @@ export default function ProfilePopper({
                                 fontWeight: 600,
                                 color: '#595959',
                                 pb: 0.5,
-                                maxWidth: '220px',
+                                maxWidth: '160px',
                                 overflow: 'hidden',
                                 textOverflow: 'ellipsis',
                                 whiteSpace: 'nowrap',
@@ -375,109 +454,33 @@ export default function ProfilePopper({
                             </Typography>
                             <Typography
                               sx={{
-                                fontSize: '12px',
-                                fontWeight: 400,
-                                color: '#595959',
-                                display: '-webkit-box',
-                                WebkitBoxOrient: 'vertical',
-                                WebkitLineClamp: 3,
-                                overflow: 'hidden',
-                              }}
-                            >
-                              {notification?.description}
-                            </Typography>
-                          </Box>
-                          <Box>
-                            <Typography
-                              sx={{
-                                fontSize: '12px',
+                                fontSize: '11px',
                                 fontWeight: 400,
                                 color: '#595959',
                               }}
                             >
-                              {getTimePassedFromNow(
-                                notification?.date,
-                                notification?.time
-                              )}
+                              {notification?.time}
                             </Typography>
                           </Box>
                         </Box>
-                      ))}
-                      {item?.data?.map((notification, index) => (
-                        <Box
-                          key={index}
-                          sx={{
-                            width: '100%',
-                            display: { xs: 'block', sm: 'none' },
-                            py: 3,
-                            borderBottom: '1px solid #E4E4E4',
-                          }}
-                        >
-                          <Box
+                        <Box sx={{ px: 3, pt: 1 }}>
+                          <Typography
                             sx={{
-                              width: '100%',
-                              display: 'flex',
-                              pl: 3.5,
-                              gap: 1.5,
+                              fontSize: '12px',
+                              fontWeight: 400,
+                              color: '#595959',
+                              display: '-webkit-box',
+                              WebkitBoxOrient: 'vertical',
+                              WebkitLineClamp: 3,
+                              overflow: 'hidden',
                             }}
                           >
-                            <Box>
-                              <SidebarUserAvatar
-                                userName={notification?.userName}
-                              />
-                            </Box>
-                            <Box
-                              sx={{
-                                maxWidth: '180px',
-                                minWidth: '180px',
-                                display: 'flex',
-                                flexDirection: 'column',
-                              }}
-                            >
-                              <Typography
-                                variant="body1"
-                                sx={{
-                                  fontWeight: 600,
-                                  color: '#595959',
-                                  pb: 0.5,
-                                  maxWidth: '160px',
-                                  overflow: 'hidden',
-                                  textOverflow: 'ellipsis',
-                                  whiteSpace: 'nowrap',
-                                }}
-                              >
-                                {notification?.type}
-                              </Typography>
-                              <Typography
-                                sx={{
-                                  fontSize: '11px',
-                                  fontWeight: 400,
-                                  color: '#595959',
-                                }}
-                              >
-                                {notification?.time}
-                              </Typography>
-                            </Box>
-                          </Box>
-                          <Box sx={{ px: 3, pt: 1 }}>
-                            <Typography
-                              sx={{
-                                fontSize: '12px',
-                                fontWeight: 400,
-                                color: '#595959',
-                                display: '-webkit-box',
-                                WebkitBoxOrient: 'vertical',
-                                WebkitLineClamp: 3,
-                                overflow: 'hidden',
-                              }}
-                            >
-                              {notification?.description}
-                            </Typography>
-                          </Box>
+                            {notification?.description}
+                          </Typography>
                         </Box>
-                      ))}
-                    </Box>
-                  </>
+                      </Box>
+                    ))}
+                  </Box>
                 ))}
               </>
             ) : (

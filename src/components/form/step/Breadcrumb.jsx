@@ -2,12 +2,9 @@ import { Box, Typography } from '@mui/material';
 import Image from 'next/image';
 import React from 'react';
 import { useRouter } from 'next/navigation';
-// import { removeActiveClientAndData } from '@/src/redux/slices/hrSlices/clientSlice';
-// import { useDispatch } from 'react-redux';
 
 const Breadcrumb = ({ title, currentPage, root, dispatchFunction }) => {
   const router = useRouter();
-  // const dispatch = useDispatch();
   return (
     <Box
       display={'flex'}

@@ -11,7 +11,6 @@ export const SideNav = (props) => {
 
   const content = (
     <Sidebar
-      // userName={empDetails?.employee_name || data?.username || homeData.user}
       userName={
         role === 'client'
           ? data?.username

@@ -139,7 +139,6 @@ const AddEmployee = () => {
     refetchOnWindowFocus: false,
     queryKey: ['hr-interview-schedule-req-query'],
     queryFn: () => {
-      console.log('Calling api');
       return api
         .getData(`${HR_CLIENT_EMP_INTERVIEW_SCHEDULE}?id=${params.id}`)
         .then(({ data }) => {
@@ -372,7 +371,6 @@ const AddEmployee = () => {
               download: 'Download',
               payment_status: getCamelCapitalized(item.payment_status),
             }));
-          console.log({ tempData });
           dispatch(getClientOthInvoiceProcessing(tempData || []));
           return data;
         })
@@ -637,7 +635,6 @@ const AddEmployee = () => {
         },
       };
     });
-    console.log({ label, nestedTabs, data, column, currentTab });
     if (data?.length) {
       const filteredData = filterTableRowsWRTTab(data, {
         paymentStatus: nestedTabs[0].label,
@@ -669,17 +666,12 @@ const AddEmployee = () => {
         },
       };
     });
-    console.log({ current });
     if (current?.column?.length) {
-      console.log('currentData');
-      console.log({ event, newValue, data, rest, current });
       setCurrentTabTable({
         data: current?.data || [],
         column: current?.column,
       });
     } else if (rest?.column?.length) {
-      console.log('restData');
-      console.log({ event, newValue, data, rest, current });
       setCurrentTabTable({
         data: rest?.data || [],
         column: rest?.column,
@@ -742,7 +734,6 @@ const AddEmployee = () => {
   });
   const handleClose = () => setIsOpen(false);
   const handleOpen = (id, row) => {
-    console.log({ id, row });
     setDeleteRowID(id);
     if (currentTab?.label !== 'Hire & onboard') {
       setDeleteInvType(row?.payment_status.toLowerCase());
@@ -875,7 +866,6 @@ const AddEmployee = () => {
     },
   });
   const handleConfirmDeleteHiringReq = () => {
-    console.log({ deleteRowID });
     if (currentTab?.label === 'Hire & onboard') {
       if (currentTab?.nested.val === 0) {
         deleteStartHiringMutation.mutate(deleteRowID);
@@ -891,7 +881,6 @@ const AddEmployee = () => {
     }
   };
   const handleConfirmUpdatePayStatus = (data, newVal) => {
-    console.log({ data, newVal });
     setUpdateRowID(data.id);
     setUpdateStatusType({
       currentVal: data.payment_status,
@@ -954,7 +943,6 @@ const AddEmployee = () => {
       return api.downloadFile(resolveURL(id));
     },
     onSuccess: ({ data }) => {
-      console.log({ data });
       const url = window.URL.createObjectURL(new Blob([data]));
       const link = document.createElement('a');
       link.href = url;
@@ -962,13 +950,10 @@ const AddEmployee = () => {
       document.body.appendChild(link);
       link.click();
       link.parentNode.removeChild(link);
-
-      // dispatchFunction?.(data);
       Toast('success', 'File downloaded');
     },
     onError: (err) => {
       Toast('error', err.message || 'File not downloaded');
-      // dispatch(getTimeSheetDataFailed());
       console.log({ err });
       console.log({ err: err.message, name: err.name, stack: err.stack });
     },

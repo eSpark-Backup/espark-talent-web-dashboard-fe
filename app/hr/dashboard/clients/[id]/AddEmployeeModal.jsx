@@ -55,11 +55,9 @@ const AddEmployeeModal = ({ open, onClose }) => {
       setCurrentStep(1);
       handleCloseModal();
       getClientEmpsMutation.mutate();
-      console.log({ data });
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to post data');
-      // console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const dispatch = useDispatch();
@@ -72,7 +70,6 @@ const AddEmployeeModal = ({ open, onClose }) => {
 
   const handleSelectRow = (employeeId) => {
     dispatch(selectEmployeeToAdd(employeeId));
-    console.log({ employeeId });
     const tempForm = [...modalStep1FormTableState]?.map((item) => ({
       ...item,
       isSelected: false,
@@ -82,7 +79,6 @@ const AddEmployeeModal = ({ open, onClose }) => {
       ...tempForm[employeeIndex],
       isSelected: !tempForm[employeeIndex].isSelected,
     };
-    console.log({ employeeIndex, tempForm, slctd: tempForm[employeeIndex] });
     setModalStep1FormTableState(tempForm);
     setIsDisabledNext(false);
   };
@@ -149,7 +145,6 @@ const AddEmployeeModal = ({ open, onClose }) => {
   });
   const handleCloseModal = () => {
     handleReset();
-    // setCurrentStep(2);
     onClose();
   };
   const handleSelectEmployee = () => {
@@ -239,7 +234,6 @@ const AddEmployeeModal = ({ open, onClose }) => {
                               disabled={isDisabledNext}
                               variant="contained"
                               sx={{ minWidth: '120px' }}
-                              // onClick={() => setCurrentStep((ps) => ps + 1)}
                               onClick={handleSelectEmployee}
                             >
                               {FORM_DATA?.add}
@@ -278,38 +272,36 @@ const AddEmployeeModal = ({ open, onClose }) => {
                                 },
                                 formIndex
                               ) => (
-                                <>
-                                  <Grid item xs={12} lg={5.5} key={formIndex}>
-                                    <FormInput
-                                      title={title}
-                                      placeholder={placeholder}
-                                      errorText={errorText}
-                                      prefixIcon={prefixIcon}
-                                      type={type}
-                                      suffixIcon={suffixIcon}
-                                      options={options}
-                                      name={name}
-                                      selectWithType={selectWithType}
-                                      searchable={searchable}
-                                      withFlag={withFlag}
-                                      countries={countriesList}
-                                      setFieldValue={setFieldValue}
-                                      value={values[name]}
-                                      error={errors[name]}
-                                      touched={touched}
-                                      setFieldError={setFieldError}
-                                      errors={errors}
-                                      setErrors={setErrors}
-                                      values={values}
-                                      nested={nested}
-                                      xs={12}
-                                      sm={12}
-                                      md={12}
-                                      lg={12}
-                                      fields={fields}
-                                    />
-                                  </Grid>
-                                </>
+                                <Grid item xs={12} lg={5.5} key={formIndex}>
+                                  <FormInput
+                                    title={title}
+                                    placeholder={placeholder}
+                                    errorText={errorText}
+                                    prefixIcon={prefixIcon}
+                                    type={type}
+                                    suffixIcon={suffixIcon}
+                                    options={options}
+                                    name={name}
+                                    selectWithType={selectWithType}
+                                    searchable={searchable}
+                                    withFlag={withFlag}
+                                    countries={countriesList}
+                                    setFieldValue={setFieldValue}
+                                    value={values[name]}
+                                    error={errors[name]}
+                                    touched={touched}
+                                    setFieldError={setFieldError}
+                                    errors={errors}
+                                    setErrors={setErrors}
+                                    values={values}
+                                    nested={nested}
+                                    xs={12}
+                                    sm={12}
+                                    md={12}
+                                    lg={12}
+                                    fields={fields}
+                                  />
+                                </Grid>
                               )
                             )}
                             <Grid

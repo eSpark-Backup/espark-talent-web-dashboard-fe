@@ -4,7 +4,6 @@ import {
   DesktopTimePicker,
   LocalizationProvider,
 } from '@mui/x-date-pickers';
-// import { DesktopDateRangePicker } from '@mui/x-date-pickers-pro/DateRangePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs';
 import Image from 'next/image';
@@ -254,7 +253,6 @@ const WideFormInput = ({
                     sx={{
                       width: '100%',
                       borderRadius: '50%',
-                      // backgroundColor: '#888',
                     }}
                     value={value && dayjs(value)}
                     onChange={(e) => {
@@ -298,7 +296,6 @@ const WideFormInput = ({
                     />
                   ) : (
                     <DesktopTimePicker
-                      // className="custom-date-time-picker"
                       className={[
                         error && 'error-border',
                         'custom-date-time-picker',
@@ -321,7 +318,7 @@ const WideFormInput = ({
                   {searchable ? (
                     <AppSearchableDropdown
                       data={options}
-                      selectedItem={value}
+                      selectedItem={value || ''}
                       setSelectedItem={handleSelectItem}
                       setIsLoadingList={setIsLoadingList}
                       isLoadingList={isLoadingList}
@@ -334,7 +331,7 @@ const WideFormInput = ({
                     <AppDropdown
                       data={options}
                       placeHolder={'Select'}
-                      selectedItem={value}
+                      selectedItem={value || ''}
                       setSelectedItem={handleSelectItem}
                       isLoadingList={isLoadingList}
                       setIsLoadingList={setIsLoadingList}
@@ -397,7 +394,6 @@ const WideFormInput = ({
                         {values?.[name]?.name || 'Upload File'}
                       </Typography>
                       <input
-                        // onChange={handleUpload}
                         name={name}
                         id="input-attachment"
                         type="file"

@@ -19,7 +19,6 @@ const EmployeeStatus = ({ empData, isFetching }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [empId, setEmpId] = useState(null);
   const [empStatus, setEmpStatus] = useState(null);
-  // const open = Boolean(anchorEl);
   const [open, setOpen] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
 

@@ -75,7 +75,6 @@ const TimeAndLeaves = () => {
         .catch((err) => {
           Toast('error', err.message || 'Failed to get data');
           console.log({ err });
-          console.log({ isLoadingMutation });
         });
     },
   });
@@ -100,14 +99,12 @@ const TimeAndLeaves = () => {
   };
   const { mutate } = useMutation({
     mutationFn: async (tab) => {
-      console.log({ tab });
       setIsLoadingMutation(true);
       return api.getData(
         `${HR_EMP_TIME_AND_LEAVES}?id=${params?.id}&tab=${tab?.toLowerCase()}`
       );
     },
     onSuccess: ({ data }) => {
-      console.log({ data });
       setIsLoadingMutation(false);
       if (currentTab.label === 'Time') {
         const tempData =
@@ -119,7 +116,6 @@ const TimeAndLeaves = () => {
           ] || [];
         dispatch(getHrEmpTime(tempData));
       } else {
-        console.log({ reformed: reformData(data) });
         dispatch(getHrEmpLeaves(reformData(data)));
       }
       return data || [];
@@ -164,7 +160,6 @@ const TimeAndLeaves = () => {
     },
   ];
   const handleChangeTab = (event, newValue, rest) => {
-    console.log({ event, newValue, rest });
     setCurrentTab({
       label: tabs[newValue].label,
       val: newValue,

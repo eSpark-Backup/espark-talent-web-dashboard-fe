@@ -12,7 +12,7 @@ import { modulepermissionColumn } from '@/src/constants/data/tables/modulePermis
 const renderAssigneeCell = (row, col, commonCellStyle) => {
   const [avatar, name, subtitle] = row.assignee;
   return (
-    <td key={col.index} style={{ ...commonCellStyle, flex: col?.flex || 1 }}>
+    <td key={col?.index} style={{ ...commonCellStyle, flex: col?.flex || 1 }}>
       <Box sx={{ display: 'flex' }}>
         <Box>
           <Box component="img" alt="Avatar" src={avatar} />
@@ -34,7 +34,7 @@ const renderAssigneeCell = (row, col, commonCellStyle) => {
 const renderUserAvatar = (row, col, commonCellStyle) => {
   return (
     <td
-      key={col.index}
+      key={col?.index}
       style={{
         ...commonCellStyle,
         flex: col?.flex || 1,
@@ -121,10 +121,9 @@ const renderActions = (
         />
       </td>
     );
-    // }
   }
   return (
-    <td key={col.index} style={{ ...commonCellStyle, flex: col?.flex || 1 }}>
+    <td key={col?.index} style={{ ...commonCellStyle, flex: col?.flex || 1 }}>
       <>
         {row[toCamelCase(col || col?.title)]?.map((item, rowIndex) => (
           <Image
@@ -234,15 +233,15 @@ const renderCheckActions = (
   } else {
     return (
       <td
-        key={col.index}
+        key={col?.index}
         style={{
           ...commonCellStyle,
           flex: col?.flex || 1,
           justifyContent: col?.textAlign || 'center',
         }}
       >
-        {col.title?.toLowerCase() === 'employee invoices' ||
-        col.title?.toLowerCase() === 'other invoices' ? (
+        {col?.title?.toLowerCase() === 'employee invoices' ||
+        col?.title?.toLowerCase() === 'other invoices' ? (
           row[toCamelCase(col?.title || col)] === null ? (
             '-'
           ) : (
@@ -309,7 +308,7 @@ const renderStatusCell = (row, col, commonCellStyle, options) => {
 
   if (row?.attendenceShortHand) {
     return (
-      <td key={col.index} style={{ ...commonCellStyle, flex: col?.flex || 1 }}>
+      <td key={col?.index} style={{ ...commonCellStyle, flex: col?.flex || 1 }}>
         {row[toCamelCase(col || col?.title)]?.map((item, index) =>
           renderAttendenceStatus(item, index)
         )}
@@ -320,7 +319,7 @@ const renderStatusCell = (row, col, commonCellStyle, options) => {
   }
 
   return (
-    <td key={col.index} style={{ ...commonCellStyle, flex: col?.flex || 1 }}>
+    <td key={col?.index} style={{ ...commonCellStyle, flex: col?.flex || 1 }}>
       <span style={statusStyle}>{row[toCamelCase(col?.title || col)]}</span>
     </td>
   );
@@ -334,10 +333,10 @@ const renderDropdownCell = (row, col, commonCellStyle, options) => {
   ];
 
   return (
-    <td key={col.index} style={{ ...commonCellStyle, flex: col?.flex || 1 }}>
+    <td key={col?.index} style={{ ...commonCellStyle, flex: col?.flex || 1 }}>
       <AppCustomDropdown
-        col={col.title}
-        colIndex={col.index}
+        col={col?.title}
+        colIndex={col?.index}
         row={row}
         options={dropdownOpts}
       />
@@ -346,7 +345,7 @@ const renderDropdownCell = (row, col, commonCellStyle, options) => {
 };
 const renderDownloadButton = (row, col, commonCellStyle) => {
   return (
-    <td key={col.index} style={{ ...commonCellStyle, flex: col?.flex || 1 }}>
+    <td key={col?.index} style={{ ...commonCellStyle, flex: col?.flex || 1 }}>
       <span
         style={{
           borderRadius: '30px',
@@ -372,7 +371,7 @@ const renderInfoOptions = (
 ) => {
   return (
     <td
-      key={col.index}
+      key={col?.index}
       style={{
         ...commonCellStyle,
         flex: col?.flex || 1,
@@ -403,7 +402,7 @@ export const renderCellContent = (
   handleClickActionDelete,
   options
 ) => {
-  switch (col.title || col) {
+  switch (col?.title || col) {
     case 'Picture':
       return renderUserAvatar(row, col, commonCellStyle);
     case 'Assignee':
@@ -479,15 +478,15 @@ export const renderCellContent = (
     default:
       return (
         <td
-          key={col.index}
+          key={col?.index}
           style={{
             ...commonCellStyle,
             flex: col?.flex || 1,
             justifyContent: col?.textAlign || 'center',
           }}
         >
-          {col.title?.toLowerCase() === 'employee invoices' ||
-          col.title?.toLowerCase() === 'other invoices' ? (
+          {col?.title?.toLowerCase() === 'employee invoices' ||
+          col?.title?.toLowerCase() === 'other invoices' ? (
             row[toCamelCase(col?.title || col)] === null ? (
               '-'
             ) : (

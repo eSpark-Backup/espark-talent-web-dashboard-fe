@@ -31,11 +31,6 @@ const AppCustomMonthYearPicker = ({ timeTracking, setTimeTracking }) => {
   };
 
   const handleMonthChange = (newMonth) => {
-    console.log({
-      newMonth,
-      currentYear,
-      date: new Date(currentYear, newMonth, 1),
-    });
     setSelectedDate(new Date(currentYear, newMonth, 1));
     setTimeTracking({
       month: months[newMonth],

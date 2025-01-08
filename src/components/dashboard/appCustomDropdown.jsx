@@ -1,4 +1,3 @@
-// import { toCamelCase } from '@/src/utils/stringModification';
 import { Box, Typography } from '@mui/material';
 import Image from 'next/image';
 import React, { useEffect, useRef, useState } from 'react';
@@ -14,7 +13,6 @@ const AppCustomDropdown = ({
   row,
   networkCall,
 }) => {
-  // console.log({ options });
   const [isOpen, setIsOpen] = useState(false);
   const [currentState, setCurrentState] = useState('');
   function capitalizeFirstLetter(str) {

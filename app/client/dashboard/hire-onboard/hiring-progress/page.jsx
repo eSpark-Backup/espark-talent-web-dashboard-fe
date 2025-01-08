@@ -52,6 +52,7 @@ const Dashboard = () => {
   const [interviewScheduledDataState, setInterviewScheduledDataState] =
     useState([]);
   const [onBoardingDataState, setOnBoardingDataState] = useState([]);
+  const { c_email } = useSelector((state) => state?.client?.home?.data);
   const router = useRouter();
 
   const searchParams = useSearchParams();
@@ -60,7 +61,7 @@ const Dashboard = () => {
   const hiringRequestQuery = useQuery({
     staleTime: 10000,
     refetchOnWindowFocus: false,
-    queryKey: 'hiringRequests',
+    queryKey: ['hiringRequests'],
     queryFn: async () => {
       return await api
         .getData(`${CLIENT_HIRING_PROGRESS}`)
@@ -93,7 +94,7 @@ const Dashboard = () => {
   const interviewScheduledQuery = useQuery({
     staleTime: 10000,
     refetchOnWindowFocus: false,
-    queryKey: 'interviewSchedules',
+    queryKey: ['interviewSchedules', c_email],
     queryFn: async () => {
       return await api
         .getData(`${CLIENT_INTERVIEW_SCHEDULE}`)
@@ -119,7 +120,7 @@ const Dashboard = () => {
   const onBoardingQuery = useQuery({
     staleTime: 10000,
     refetchOnWindowFocus: false,
-    queryKey: 'onBoarding',
+    queryKey: ['onBoarding', c_email],
     queryFn: async () => {
       return await api
         .getData(`${CLIENT_ONBOARDING}`)

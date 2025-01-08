@@ -13,8 +13,6 @@ const WorkSpaceIcon = ({ image }) => {
           height: '100%',
           maxWidth: '120px',
           marginTop: '-4px',
-          // marginBottom: '30px',
-          // padding: '20px',
           marginRight: '7px',
           marginLeft: '10px',
         }}

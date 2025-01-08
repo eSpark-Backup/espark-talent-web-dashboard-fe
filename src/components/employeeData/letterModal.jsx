@@ -29,7 +29,6 @@ const LetterForm = ({ onClose, open, empData }) => {
     },
     onSuccess: async ({ data }) => {
       Toast('success', 'Data posted successfully');
-      console.log('API Success Response:', data);
 
       const reformedData = {
         ...values,
@@ -39,7 +38,6 @@ const LetterForm = ({ onClose, open, empData }) => {
         email: values.email,
         issue_date: dayjs(values.issue_date).format('YYYY-MM-DD'),
         reason: values.reason,
-        // action: ['Delete', 'View'],
         download: values.download,
       };
       await queryClient.invalidateQueries(['hr-employee-get-letter']);

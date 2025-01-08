@@ -47,7 +47,6 @@ const Dashboard = () => {
     },
     onSuccess: ({ data }) => {
       Toast('success', 'Data deleted successfully');
-      console.log({ data });
       dispatch(deleteEmpLeaveRequestSuccess(modalData?.id));
       handleCloseDeleteModal();
       setModalData({});
@@ -135,12 +134,10 @@ const Dashboard = () => {
     const refinedData = [];
     for (let i = 0; i < arrayfiedData.length; i++) {
       const element = arrayfiedData[i];
-      console.log({ element });
       if (i > 0) {
         refinedData.push({
           leave_type: element[0],
           pending: +element[1].total - +element[1].balance,
-          // requested_at:element[1],
           available: +element[1].total - +element[1].balance,
           ...element[1],
         });
@@ -238,7 +235,6 @@ const Dashboard = () => {
             <Box sx={{ width: '100%' }}>
               <Box
                 sx={{
-                  // marginTop: '10px',
                   marginBottom: '20px',
                   maxWidth: '100%',
                   overflowX: 'auto',
@@ -343,8 +339,6 @@ const Dashboard = () => {
               handleClickView={handleClickActionView}
               handleClickDelete={handleClickActionDelete}
               viewClicked={viewClicked}
-              // showFilterModal={showFilterModal}
-              // setShowFilterModal={setShowFilterModal}
             />
           </div>
         </Box>
