@@ -862,7 +862,7 @@ const FormInput = ({
                   //   ? value
                   //   : null
                   // value
-                  type === 'file' ? null : value
+                  type === 'file' ? '' : value
                 }
                 disabled={disabled}
                 placeholder={placeholder}
@@ -938,7 +938,7 @@ const FormInput = ({
                   width: { xs: '20px', md: '30px' },
                   height: { xs: '20px', md: '30px' },
                   position: 'absolute',
-                  right: { xs: '-30px', md: '-40px' },
+                  right: { xs: '-30px', md: '-50px', lg: '-40px' },
                   '@media (min-width: 900px) and (max-width: 1200px)': {
                     width: '20px',
                     height: '20px',

@@ -50,6 +50,7 @@ const OfficialInformation = ({ data }) => {
                   fontWeight: 400,
                   '@media (max-width: 499px)': {
                     width: 'auto',
+                    textAlign: 'center',
                   },
                 }}
               >

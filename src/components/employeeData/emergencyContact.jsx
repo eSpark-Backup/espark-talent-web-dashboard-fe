@@ -74,7 +74,6 @@ const EmergencyContact = ({ data }) => {
                 }}
               >
                 <Typography
-                  key={index}
                   sx={{
                     width: { xs: '120px', sm: '120px' },
                     fontSize: {
@@ -93,7 +92,6 @@ const EmergencyContact = ({ data }) => {
                   {item?.label}
                 </Typography>
                 <Typography
-                  key={index}
                   sx={{
                     fontSize: {
                       xs: '12px',
@@ -169,7 +167,6 @@ const EmergencyContact = ({ data }) => {
                 }}
               >
                 <Typography
-                  key={index}
                   sx={{
                     width: { xs: '120px', sm: '120px' },
                     fontSize: {
@@ -188,7 +185,6 @@ const EmergencyContact = ({ data }) => {
                   {contactData?.label}
                 </Typography>
                 <Typography
-                  key={index}
                   sx={{
                     fontSize: {
                       xs: '12px',

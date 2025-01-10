@@ -173,8 +173,9 @@ const EditOfficialModal = ({ onClose, handleEditProfileModal, data }) => {
           borderRadius: '10px',
           border: 'none',
           boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
-          minHeight: '630px',
-          height: 'auto',
+          maxHeight: '630px',
+          overflowY: 'auto',
+          height: '95%',
           '&.MuiBox-root': {
             border: 'none',
             outline: 'none',

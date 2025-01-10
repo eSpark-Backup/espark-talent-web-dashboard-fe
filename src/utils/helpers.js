@@ -20,7 +20,7 @@ export const generateUniqueString = () => {
 
 export const getAttendenceShortHand = (title) => {
   const val = trackingStatusTypes?.filter(({ label }) => label === title);
-  return val[0].shortForm;
+  return val[0]?.shortForm;
 };
 
 export const convertDateFormat = (dateString) => {

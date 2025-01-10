@@ -6,12 +6,8 @@ import dayjs from 'dayjs';
 
 const AttendanceViewModal = ({ modalData, empData, handleClose, image }) => {
   function formatDate(inputDate) {
-    // Split the date string into day, month, and year
     var parts = inputDate.split('-');
-
-    // Reorder the parts to form the new date format
     var formattedDate = parts[1] + '-' + parts[0] + '-' + parts[2];
-
     return formattedDate;
   }
   const fontSize = {
@@ -46,15 +42,16 @@ const AttendanceViewModal = ({ modalData, empData, handleClose, image }) => {
   return (
     <Box
       sx={{
-        mx: 'auto',
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
         bgcolor: '#fff',
-        width: { xs: '90%', sm: '90%', md: '77.084%' },
-        display: 'flex',
-        flexDirection: 'column',
-        borderRadius: '10px',
-        boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
-        maxHeight: '80%',
+        maxHeight: '95%',
         overflow: 'auto',
+        borderRadius: '10px',
+        width: { xs: '90%', sm: '90%', md: '77.084%' },
+        boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
         scrollbarWidth: 'thin',
         scrollbarColor: 'transparent transparent',
         '&::-webkit-scrollbar': {

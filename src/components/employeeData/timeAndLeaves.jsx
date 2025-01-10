@@ -224,7 +224,7 @@ const TimeAndLeaves = () => {
           }}
           aria-label="basic tabs example"
           variant="scrollable"
-          sx={{ mt: '8px' }}
+          sx={{ mt: '8px', order: { xs: 1, sm: 0 } }}
         >
           {tabs?.map(({ label, prop }, tabIndex) => (
             <Tab
@@ -244,23 +244,31 @@ const TimeAndLeaves = () => {
         </Tabs>
         {(role === 'super_admin' ||
           (role !== 'super_admin' && employee_perms?.[0].write)) && (
-          <Button
+          <Box
             sx={{
-              minWidth: '160px',
-              marginTop: { xs: '10px', md: '0px' },
-              marginBottom: { xs: '10px', md: '0px' },
-              color: '#fff',
-              background: '#029894',
-              '&:hover': {
+              width: { xs: '100%', sm: 'auto' },
+              borderBottom: { xs: 'solid 1px #ccc', sm: 'none' },
+            }}
+          >
+            <Button
+              sx={{
+                minWidth: '160px',
+                marginTop: { xs: '10px', md: '0px' },
+                marginBottom: { xs: '10px', sm: '5px', md: '0px' },
                 color: '#fff',
                 background: '#029894',
-              },
-            }}
-            variant="contained"
-            onClick={handleOpenModal}
-          >
-            {FORM_DATA?.manage}
-          </Button>
+                order: { xs: 0, sm: 0 },
+                '&:hover': {
+                  color: '#fff',
+                  background: '#029894',
+                },
+              }}
+              variant="contained"
+              onClick={handleOpenModal}
+            >
+              {FORM_DATA?.manage}
+            </Button>
+          </Box>
         )}
       </Box>
       <Box

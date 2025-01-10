@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Modal, Tab, Tabs, Typography } from '@mui/material';
+import { Box, Modal, Tab, Tabs } from '@mui/material';
 import AppTable from '../appTableNew/AppTable';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import {
@@ -145,7 +145,13 @@ const AttendanceReport = ({ employeeData }) => {
           borderColor: 'divider',
         }}
       >
-        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+        <Box
+          sx={{
+            display: data?.length ? 'flex' : 'none',
+            borderBottom: 1,
+            borderColor: 'divider',
+          }}
+        >
           {data?.length ? (
             <Tabs
               value={currentTab}
@@ -169,17 +175,13 @@ const AttendanceReport = ({ employeeData }) => {
                 />
               ))}
             </Tabs>
-          ) : (
-            <Typography sx={{ my: '45px', textAlign: 'center' }} variant="h3">
-              No attendance record found!
-            </Typography>
-          )}
+          ) : null}
         </Box>
         <Box sx={{ width: '100%', mt: '40px', overflowX: 'auto' }}>
           <AppTable
             minWidth={'1200px'}
             column={attendanceReportTableColumn}
-            data={formattedTimeSheet}
+            data={formattedTimeSheet || ['No attendance record found!']}
             handleClickActionView={handleAttendanceModal}
             isLoading={isLoading}
           />
