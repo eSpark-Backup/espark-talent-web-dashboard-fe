@@ -234,12 +234,11 @@ const Role = () => {
         data.state
       );
     },
-    onSuccess: ({ data }) => {
+    onSuccess: () => {
       Toast('success', 'Data updated successfully');
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to update data');
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   function convertArrayToObject(array) {

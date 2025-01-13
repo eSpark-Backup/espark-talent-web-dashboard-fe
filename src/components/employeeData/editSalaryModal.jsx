@@ -29,7 +29,7 @@ const EditSalaryForm = ({ onClose, open, selectedId }) => {
     mutationFn: async (data) => {
       return api.updateData(`${HR_EMP_SALARY}?id=${data?.id}`, data);
     },
-    onSuccess: ({ data }) => {
+    onSuccess: () => {
       Toast('success', 'Data updated successfully');
       const reformedData = {
         ...values,
@@ -43,7 +43,6 @@ const EditSalaryForm = ({ onClose, open, selectedId }) => {
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to update data');
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
 

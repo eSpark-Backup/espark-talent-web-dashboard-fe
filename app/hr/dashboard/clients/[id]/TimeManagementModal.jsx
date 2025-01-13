@@ -21,7 +21,7 @@ const TimeManagementModal = ({ open, onClose }) => {
     initialValues: {},
     validationSchema: timeManagementFormSchema,
     enableReinitialize: true,
-    onSubmit: (formValues) => {
+    onSubmit: () => {
       handleCloseModal();
     },
     validateOnChange: false,

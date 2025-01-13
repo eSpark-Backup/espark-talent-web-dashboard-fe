@@ -40,7 +40,6 @@ const AddEmployeeModal = ({ open, onClose }) => {
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to post data');
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const { mutate, isPending } = useMutation({
@@ -50,7 +49,7 @@ const AddEmployeeModal = ({ open, onClose }) => {
         formVals
       );
     },
-    onSuccess: ({ data }) => {
+    onSuccess: () => {
       Toast('success', 'Data posted successfully');
       setCurrentStep(1);
       handleCloseModal();

@@ -71,7 +71,6 @@ const Policies = () => {
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to post data');
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const deletePolicyMutation = useMutation({
@@ -86,7 +85,6 @@ const Policies = () => {
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to delete policy');
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const [openUploadPolicy, setOpenUploadPolicy] = useState(false);

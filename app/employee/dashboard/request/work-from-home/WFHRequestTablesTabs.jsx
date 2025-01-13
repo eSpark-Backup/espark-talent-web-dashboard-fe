@@ -17,6 +17,7 @@ import { filterWFHForm } from '@/src/constants/data/forms/filter-form';
 
 import Skeleton from '@mui/material/Skeleton';
 import { api } from '@/src/services/apiService';
+import { Toast } from '@/src/components/Toast/Toast';
 import { filterTableRowsWRTTab } from '@/src/utils/table';
 import WFHReqFilterFormModal from '@/src/components/FilterModal/WFHReqFilterFormModal';
 import WFHRequestTable from './WFHRequestTable';
@@ -84,8 +85,8 @@ const WFHRequestTablesTabs = ({
       return data;
     },
     onError: (err) => {
+      Toast('error', err.message || 'Failed to update data');
       dispatch(getEmpWfhRequestDataFailed());
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
 
@@ -105,7 +106,7 @@ const WFHRequestTablesTabs = ({
         });
     },
   });
-
+  console.log(data, 'data');
   return (
     <Box sx={{ width: '100%' }}>
       <Box

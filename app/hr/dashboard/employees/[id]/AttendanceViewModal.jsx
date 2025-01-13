@@ -115,19 +115,17 @@ const AttendanceViewModal = ({ modalData, empData, handleClose, image }) => {
                 return (
                   <Grid item xs={12} md={6} key={empIndex}>
                     {item?.map((row, rowIndex) => (
-                      <>
-                        <EmployeeDetailRow
-                          darkBack={!(rowIndex % 2)}
-                          key={rowIndex}
-                          label={row[0]}
-                          value={
-                            row[3] === 'date'
-                              ? dayjs(empData[row[2]]).format('MMM DD, YYYY')
-                              : empData[row[2]]
-                          }
-                          fontSize={fontSize}
-                        />
-                      </>
+                      <EmployeeDetailRow
+                        darkBack={!(rowIndex % 2)}
+                        key={rowIndex}
+                        label={row[0]}
+                        value={
+                          row[3] === 'date'
+                            ? dayjs(empData[row[2]]).format('MMM DD, YYYY')
+                            : empData[row[2]]
+                        }
+                        fontSize={fontSize}
+                      />
                     ))}
                   </Grid>
                 );

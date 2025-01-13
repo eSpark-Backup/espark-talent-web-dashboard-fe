@@ -32,7 +32,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import EmployeeCardSkeleton from './EmployeeCardSkeleton';
 import { Toast } from '../Toast/Toast';
 
-const ClientView = ({ status, id, data, isLoading }) => {
+const ClientView = ({ status, data, isLoading }) => {
   const dispatch = useDispatch();
   const router = useRouter();
   const [anchorEl, setAnchorEl] = useState(null);
@@ -54,7 +54,7 @@ const ClientView = ({ status, id, data, isLoading }) => {
     },
     onError: (err) => {
       dispatch(fetchClientHomeDataRequestFailed());
-      console.log({ err: err.message, name: err.name, stack: err.stack });
+      Toast('error', err.message || 'Failed to update data');
     },
   });
 
@@ -72,7 +72,6 @@ const ClientView = ({ status, id, data, isLoading }) => {
     },
     onError: (err) => {
       Toast('error', err?.message || 'Failed to update status');
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const clientDeleteMutation = useMutation({
@@ -89,7 +88,6 @@ const ClientView = ({ status, id, data, isLoading }) => {
     },
     onError: (err) => {
       Toast('error', err?.message || 'Failed to update status');
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const handleConfirmDelete = () => {

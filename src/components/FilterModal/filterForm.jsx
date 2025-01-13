@@ -132,7 +132,6 @@ const FilterFormModal = ({
     onError: (err) => {
       dispatch(getTimeSheetDataFailed());
       console.log({ err });
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const resetMutation = useMutation({
@@ -228,7 +227,6 @@ const FilterFormModal = ({
     onError: (err) => {
       dispatch(getTimeSheetDataFailed());
       console.log({ err });
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const {

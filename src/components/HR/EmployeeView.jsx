@@ -40,7 +40,7 @@ const EmployeeView = ({ status, data, isLoading }) => {
       dispatch(deleteCurrentEmpData());
       return api.daleteData(`${HR_EMPLOYEES}?id=${id}`);
     },
-    onSuccess: ({ data }) => {
+    onSuccess: () => {
       Toast('success', 'Data deleted successfully');
       dispatch(deleteCurrentEmpDataSuccess(currentEmpId));
       handleCloseModal();
@@ -51,7 +51,6 @@ const EmployeeView = ({ status, data, isLoading }) => {
     onError: (err) => {
       Toast('error', err.message || 'Failed to delete data');
       dispatch(deleteCurrentEmpDataFailed());
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
 

@@ -143,8 +143,8 @@ const Dashboard = () => {
       dispatchFunction(newData);
     },
     onError: (err) => {
+      Toast('error', err.message || 'Failed to update data');
       dispatch(getTimeSheetDataFailed());
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const handleOpenFilterModal = () => {

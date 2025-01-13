@@ -35,6 +35,7 @@ const CredentialModal = ({ onClose, modalData }) => {
     enableReinitialize: true,
     onSubmit: (formValues) => {
       Loading();
+      console.log(formValues);
     },
     validateOnChange: false,
     validateOnBlur: false,

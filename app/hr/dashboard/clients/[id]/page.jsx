@@ -753,7 +753,6 @@ const AddEmployee = () => {
     onError: (err) => {
       Toast('error', err.message || 'Failed to delete data');
       handleClose();
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const deleteInterviewMutation = useMutation({
@@ -769,7 +768,6 @@ const AddEmployee = () => {
     onError: (err) => {
       Toast('error', err.message || 'Failed to delete data');
       handleClose();
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const deleteOnBoardingMutation = useMutation({
@@ -785,7 +783,6 @@ const AddEmployee = () => {
     onError: (err) => {
       Toast('error', err.message || 'Failed to delete data');
       handleClose();
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const deleteEmpInvMutation = useMutation({
@@ -802,7 +799,6 @@ const AddEmployee = () => {
     onError: (err) => {
       Toast('error', err.message || 'Failed to delete data');
       handleClose();
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const deleteOthInvMutation = useMutation({
@@ -819,7 +815,6 @@ const AddEmployee = () => {
     onError: (err) => {
       Toast('error', err.message || 'Failed to delete data');
       handleClose();
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const updateEmpInvMutation = useMutation({
@@ -862,7 +857,6 @@ const AddEmployee = () => {
     onError: (err) => {
       Toast('error', err.message || 'Failed to update data');
       handleClose();
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const handleConfirmDeleteHiringReq = () => {
@@ -955,7 +949,6 @@ const AddEmployee = () => {
     onError: (err) => {
       Toast('error', err.message || 'File not downloaded');
       console.log({ err });
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const downloadInvoice = (id) => {

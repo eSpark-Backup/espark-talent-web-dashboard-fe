@@ -17,12 +17,15 @@ const LeaveDatePicker = ({ label }) => {
   const handleClose = () => setOpen(false);
   const handleOpenModal = () => setOpenModal(true);
   const [selectedDate, setSelectedDate] = useState(null);
+  console.log(handleOpenModal, 'handleOpenModal');
   const handleDateChange = (date) => {
     setSelectedDate(date);
     if (date.isBefore(dayjs(), 'day')) {
       setOpenModal(true);
+      console.log(open, 'isModalOpen');
     } else {
       setOpen(false);
+      console.log(open, 'isModalOpen');
     }
   };
   const handleCurrentView = (view) => {

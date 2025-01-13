@@ -58,6 +58,7 @@ const Client = () => {
       data: tabs[newValue].data,
       column: tabs[newValue].column,
     });
+    console.log(event, rest);
   };
   return (
     <>

@@ -68,7 +68,7 @@ const MarkBreak = ({ icon }) => {
       }
       return api.patchData(url);
     },
-    onSuccess: ({ data }) => {
+    onSuccess: () => {
       if (
         !homeData?.today_activity?.break ||
         homeData?.today_activity?.break === '-'
@@ -81,7 +81,6 @@ const MarkBreak = ({ icon }) => {
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to update data');
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const handleToggleBreak = () => {

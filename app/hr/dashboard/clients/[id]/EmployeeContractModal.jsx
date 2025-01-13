@@ -40,7 +40,7 @@ const EmployeeContractModal = ({ open, onClose }) => {
       dispatch(getEmployeesCompanyContractRequestSuccess(tempData));
     },
     onError: (err) => {
-      console.log({ err: err.message, name: err.name, stack: err.stack });
+      Toast('error', err.message || 'Failed to update data');
     },
   });
   const [formData, setFormData] = useState(null);
@@ -53,7 +53,7 @@ const EmployeeContractModal = ({ open, onClose }) => {
       }
       return api.postData(`${HR_COMPANY_CONTRACTS}?status=employee`, formData);
     },
-    onSuccess: ({ data }) => {
+    onSuccess: () => {
       Toast('success', 'Contract uploaded successfully');
       companyContractSignedMutation.mutate('employees');
       setFormData(null);
@@ -62,7 +62,6 @@ const EmployeeContractModal = ({ open, onClose }) => {
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to post data');
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const {

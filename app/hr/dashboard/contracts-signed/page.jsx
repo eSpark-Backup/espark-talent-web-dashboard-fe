@@ -128,8 +128,8 @@ const ContractSigned = () => {
       }
     },
     onError: (err) => {
+      Toast('error', err.message || 'Failed to update data');
       dispatch(getClientsCompanyContractRequestFailed());
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const offShoreContractMutation = useMutation({
@@ -150,8 +150,8 @@ const ContractSigned = () => {
       dispatch(getOffShoreContractRequestSuccess(tempData || []));
     },
     onError: (err) => {
+      Toast('error', err.message || 'Failed to update data');
       dispatch(getOffShoreContractRequestFailed());
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const handleChange = (event, newValue) => {
@@ -217,7 +217,6 @@ const ContractSigned = () => {
     onError: (err) => {
       Toast('error', err.message || 'Failed to delete data');
       handleClose();
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const resolveURL = (id) => {
@@ -251,7 +250,6 @@ const ContractSigned = () => {
     onError: (err) => {
       Toast('error', err.message || 'File not downloaded');
       console.log({ err });
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const handleConfirmDelete = () => mutate(deletingContractId);

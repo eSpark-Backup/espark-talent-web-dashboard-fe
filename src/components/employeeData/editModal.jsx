@@ -48,7 +48,6 @@ const EditModal = ({ handleOpenModal, onClose, isClient }) => {
     onError: (err) => {
       Toast('error', err.message || 'Failed to delete data');
       onClose();
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const handleFileInputChange = (event) => {

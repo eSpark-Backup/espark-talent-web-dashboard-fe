@@ -56,7 +56,6 @@ const Accounts = ({ handleAdd }) => {
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to delete account');
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);

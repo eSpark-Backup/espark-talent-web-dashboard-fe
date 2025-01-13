@@ -6,6 +6,7 @@ import FormInput from '../form/ui-elements/FormInput';
 import { FILTER } from '@/src/constants/filter';
 import ResetButton from './resetButton';
 import { api } from '@/src/services/apiService';
+import { Toast } from '@/src/components/Toast/Toast';
 import { EMP_LEAVE_REQUEST } from '@/src/services/apiService/apiEndPoints';
 import {
   getTimeSheetData,
@@ -63,7 +64,6 @@ const LeaveReqFilterFormModal = ({ open, onClose, filterForm }) => {
     onError: (err) => {
       dispatch(getTimeSheetDataFailed());
       console.log({ err });
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
 
@@ -107,7 +107,7 @@ const LeaveReqFilterFormModal = ({ open, onClose, filterForm }) => {
     },
     onError: (err) => {
       dispatch(getEmpLeaveRequestDataFailed());
-      console.log({ err: err.message, name: err.name, stack: err.stack });
+      Toast('error', err.message || 'Failed to update data');
     },
   });
   const {

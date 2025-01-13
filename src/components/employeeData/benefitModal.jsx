@@ -45,7 +45,6 @@ const BenefitForm = ({ onClose, open, empData }) => {
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to post data');
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const {

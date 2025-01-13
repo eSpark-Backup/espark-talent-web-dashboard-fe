@@ -98,7 +98,7 @@ const Dashboard = () => {
       dispatch(deleteEmpPunchRequest());
       return api.daleteData(`${EMP_PUNCH_REQUEST}?id=${id}`);
     },
-    onSuccess: ({ data }) => {
+    onSuccess: () => {
       Toast('success', 'Data deleted successfully');
       dispatch(deleteEmpPunchRequestSuccess(modalData?.id));
       handleCloseDeleteModal();
@@ -108,11 +108,10 @@ const Dashboard = () => {
       Toast('error', err.message || 'Failed to delete data');
       dispatch(deletePunchRequestDataFailed());
       handleCloseDeleteModal();
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const refreshMutation = useMutation({
-    mutationFn: async (args) => {
+    mutationFn: async () => {
       dispatch(fetchEmpPunchRequestData());
       return api.getData(
         `${EMP_PUNCH_REQUEST}?workspace=${currentWorkSpace?.email || ''}`

@@ -99,7 +99,6 @@ const StartHiringForm = () => {
           id: generateUniqueString(),
         })
       );
-
       router.push(`/client/dashboard/hire-onboard/hiring-progress`);
     },
     onError: (err) => {

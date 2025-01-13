@@ -73,8 +73,8 @@ const Page = () => {
       return data;
     },
     onError: (err) => {
+      Toast('error', err.message || 'Failed to update data');
       dispatch(getCurrentClientDataFailed());
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
 

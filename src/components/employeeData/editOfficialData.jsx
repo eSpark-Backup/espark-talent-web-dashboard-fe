@@ -63,14 +63,13 @@ const EditOfficialModal = ({ onClose, handleEditProfileModal, data }) => {
         updatedData
       );
     },
-    onSuccess: async ({ data }) => {
+    onSuccess: async () => {
       Toast('success', 'Data updated successfully');
       onClose();
       await queryClient.invalidateQueries('employee-profile');
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to update data');
-      console.log({ err: err.message, name: err.name, stack: err.stack });
       onClose();
     },
   });

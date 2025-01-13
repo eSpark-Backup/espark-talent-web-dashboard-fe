@@ -19,7 +19,7 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
         data?.data
       );
     },
-    onSuccess: ({ data }) => {
+    onSuccess: () => {
       Toast('success', 'Request updated successfully');
       dispatch(updateTimeOffRequests(updatingLeaveRequest));
       setUpdatingLeaveRequest(null);

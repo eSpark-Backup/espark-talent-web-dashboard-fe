@@ -32,13 +32,12 @@ const PageHeader = () => {
       document.body.appendChild(link);
       link.click();
       link.parentNode.removeChild(link);
-
       Toast('success', 'File downloaded');
+      console.log(data, 'data');
     },
     onError: (err) => {
       Toast('error', err.message || 'File not downloaded');
       console.log({ err });
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const handleDownloadReport = () => {

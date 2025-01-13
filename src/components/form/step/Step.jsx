@@ -47,7 +47,7 @@ const Step = ({
       }
       return api[method](endpoint, formDataVals);
     },
-    onSuccess: ({ data }) => {
+    onSuccess: () => {
       setCurrentStep?.(0);
       toast?.();
       clearForm?.();

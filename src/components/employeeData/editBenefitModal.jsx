@@ -31,7 +31,7 @@ const EditBenefitForm = ({ onClose, open, selectedId }) => {
         data
       );
     },
-    onSuccess: async ({ data }) => {
+    onSuccess: async () => {
       Toast('success', 'Data updated successfully');
       const reformedData = {
         card_id: values.card_id,
@@ -43,7 +43,6 @@ const EditBenefitForm = ({ onClose, open, selectedId }) => {
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to update data');
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
 
@@ -62,6 +61,7 @@ const EditBenefitForm = ({ onClose, open, selectedId }) => {
     onSubmit: (formValues) => {
       const { benefit, employee_id, id, issue_date, ...filteredFormValues } =
         formValues;
+      console.log(benefit, employee_id, id, issue_date);
       const reformedData = {
         ...filteredFormValues,
       };

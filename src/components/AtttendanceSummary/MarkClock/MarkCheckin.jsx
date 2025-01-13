@@ -18,7 +18,7 @@ const MarkCheckIn = () => {
       const url = `${EMP_HOME}?workspace=${currentWorkSpace?.email}&check_in=${data.check_in}`;
       return api.patchData(url);
     },
-    onSuccess: ({ data }) => {
+    onSuccess: () => {
       Toast('success', 'Data updated successfully');
       dispatch(
         marKCheckin({
@@ -28,7 +28,6 @@ const MarkCheckIn = () => {
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to update data');
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
 

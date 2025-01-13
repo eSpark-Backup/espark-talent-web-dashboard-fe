@@ -47,6 +47,7 @@ const TimeAndLeaves = () => {
     });
   }, []);
   const [isLoadingMutation, setIsLoadingMutation] = useState(false);
+  console.log(isLoadingMutation, 'isLoadingMutation');
 
   const preetyTime = (time) => {
     if (dayjs(time)?.format('hh:mm A') === 'Invalid Date') {
@@ -122,7 +123,7 @@ const TimeAndLeaves = () => {
     },
     onError: (err) => {
       setIsLoadingMutation(false);
-      console.log({ err: err.message, name: err.name, stack: err.stack });
+      Toast('error', err.message || 'Failed to update data');
     },
   });
   const updateLeaveStatusMutation = useMutation({
@@ -167,6 +168,8 @@ const TimeAndLeaves = () => {
       column: tabs[newValue].column,
     });
     mutate(tabs[newValue].label.toLowerCase());
+    console.log(rest, 'rest');
+    console.log(event, 'event');
   };
   const handleOpenTimeManagementModal = () => {
     setIsOpenTimeManagementModal(true);

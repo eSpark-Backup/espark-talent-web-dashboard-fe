@@ -23,13 +23,12 @@ const EditEmployeeCredential = ({ onClose, open }) => {
         ...data,
       });
     },
-    onSuccess: ({ data }) => {
+    onSuccess: () => {
       Toast('success', 'Data deleted successfully');
       onClose();
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to delete data');
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const {

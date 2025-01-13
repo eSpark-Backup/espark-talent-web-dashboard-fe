@@ -89,6 +89,7 @@ const Dashboard = () => {
       row,
       row: { status, employeeName, count, leaveType },
     } = props;
+    console.log(status, employeeName, count, leaveType);
     setModalData({ item, ...row });
     if (tabData?.currentReqTypeTab === 'Leave Requests') {
       setOpen(true);
@@ -100,7 +101,7 @@ const Dashboard = () => {
     mutationFn: async (data) => {
       return api.updateJSONData(`${data?.endpoint}?id=${data?.id}`, data?.data);
     },
-    onSuccess: ({ data }) => {
+    onSuccess: () => {
       Toast('success', 'Request updated successfully');
       if (tabData?.currentReqTypeTab === 'Leave Requests') {
         dispatch(updateLeaveRequest(updatingLeaveRequest));
@@ -268,7 +269,6 @@ const Dashboard = () => {
     onError: (err) => {
       Toast('error', err.message || 'File not downloaded');
       console.log({ err });
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const handleDownloadReport = () => {

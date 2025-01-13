@@ -84,7 +84,6 @@ const LeaveRequestForm = ({ handleClose }) => {
     onError: (err) => {
       console.log(err.message, 'error invoked');
       dispatch(getEmpLeaveRequestDataFailed());
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const { mutate, isPending } = useMutation({

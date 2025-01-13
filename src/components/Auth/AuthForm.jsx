@@ -67,7 +67,7 @@ const AuthForm = ({ uiData, fields, handleOpenTroubleModal }) => {
       return data;
     },
     onError: (err) => {
-      console.log({ err: err.message, name: err.name, stack: err.stack });
+      Toast('error', err.message || 'Failed to update data');
     },
   });
   const clientHomeMutation = useMutation({
@@ -81,8 +81,8 @@ const AuthForm = ({ uiData, fields, handleOpenTroubleModal }) => {
       return data;
     },
     onError: (err) => {
+      Toast('error', err.message || 'Failed to update data');
       dispatch(fetchClientHomeDataRequestFailed());
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const employeeHomeMutation = useMutation({
@@ -98,7 +98,7 @@ const AuthForm = ({ uiData, fields, handleOpenTroubleModal }) => {
       return data;
     },
     onError: (err) => {
-      console.log({ err: err.message, name: err.name, stack: err.stack });
+      Toast('error', err.message || 'Failed to update data');
     },
   });
   const { mutate, isPending } = useMutation({
@@ -139,8 +139,8 @@ const AuthForm = ({ uiData, fields, handleOpenTroubleModal }) => {
     onSubmit: (values) => {
       try {
         if (rememberMe) {
-          localStorage.setItem('email', values.email);
-          localStorage.setItem('password', values.password);
+          localStorage?.setItem('email', values.email);
+          localStorage?.setItem('password', values.password);
         }
         mutate(values);
       } catch (error) {

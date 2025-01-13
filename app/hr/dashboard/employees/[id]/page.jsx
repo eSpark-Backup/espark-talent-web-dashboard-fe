@@ -200,7 +200,6 @@ const Page = () => {
     },
     onError: (err) => {
       console.log({ err });
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const downloadResumeMutation = useMutation({
@@ -223,7 +222,6 @@ const Page = () => {
     onError: (err) => {
       Toast('error', err.message || 'File not downloaded');
       console.log({ err });
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const handleRefresh = () => {

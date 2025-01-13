@@ -144,6 +144,9 @@ export default class APIService {
         token: value,
       },
     };
+    // Save the updated token back to localStorage
+    parsedToken.auth = JSON.stringify(newParsed);
+    localStorage?.setItem('persist:root', JSON.stringify(parsedToken));
   }
   setRefreshToken(value) {
     localStorage?.setItem(this?.config?.storageRefreshTokenKeyName, value);

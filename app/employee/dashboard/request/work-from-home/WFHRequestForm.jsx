@@ -56,7 +56,6 @@ const WFHRequestForm = ({ handleClose }) => {
     onError: (err) => {
       console.log(err.message, 'error invoked');
       dispatch(getEmpWfhRequestDataFailed());
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
 

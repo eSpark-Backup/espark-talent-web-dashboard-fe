@@ -117,7 +117,6 @@ const ContractSigned = () => {
     onError: (err) => {
       Toast('error', err.message || 'File not downloaded');
       console.log({ err });
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const downloadContract = (id) => {
