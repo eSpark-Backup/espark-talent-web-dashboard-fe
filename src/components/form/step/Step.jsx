@@ -7,6 +7,7 @@ import { FORM_DATA } from '@/src/constants/form';
 import { SETTING } from '@/src/constants/SettingHr';
 import { useMutation } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
+import { usePathname } from 'next/navigation';
 
 const Step = ({
   handleGoPrev,
@@ -39,6 +40,9 @@ const Step = ({
   fontSize,
   miniFontSize,
 }) => {
+  const pathname = usePathname();
+  console.log(pathname, 'pathname');
+
   const { mutate, isPending } = useMutation({
     mutationFn: async (formVals) => {
       console.log({ formVals });
@@ -149,10 +153,6 @@ const Step = ({
     dispatchFunction?.(values);
     handleGoPrev();
   };
-
-  {
-    console.log({ errors, values });
-  }
 
   if (isMultiColumn)
     return (
@@ -363,6 +363,8 @@ const Step = ({
                 (name == 'starting_date' &&
                   (values.job_status == 'Part-Time' ||
                     values.job_status == 'Permanent')) ||
+                (pathname == '/hr/dashboard/clients/edit-profile' &&
+                  name == 'email') ||
                 (name == 'ending_date' &&
                   (values.job_status == 'Part-Time' ||
                     values.job_status == 'Permanent'))

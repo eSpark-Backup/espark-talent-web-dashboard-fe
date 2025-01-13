@@ -61,9 +61,6 @@ const clientSlice = createSlice({
         ...action.payload,
       };
     },
-    getClientHiringRequest: (state, action) => {
-      state.currentClientData.hireAndOnBoard.hiringRequest = action.payload;
-    },
     getClientInterviewSchedule: (state, action) => {
       state.currentClientData.hireAndOnBoard.interviewSchedule = action.payload;
     },
@@ -93,13 +90,6 @@ const clientSlice = createSlice({
     },
     selectEmployeeToAdd: (state, action) => {
       state.currentEmpToAddInClient = action.payload;
-    },
-    deleteHiringRequest: (state, action) => {
-      const tempData =
-        state?.currentClientData?.hireAndOnBoard?.hiringRequest.filter(
-          (el) => el.id !== action.payload
-        );
-      state.currentClientData.hireAndOnBoard.hiringRequest = tempData;
     },
     deleteInterSchedule: (state, action) => {
       const tempData =
@@ -172,12 +162,6 @@ const clientSlice = createSlice({
           ...action.payload.data,
           payment_status: action.payload.newVal,
         },
-      ];
-    },
-    addHiringRequest: (state, action) => {
-      state.currentClientData.hireAndOnBoard.hiringRequest = [
-        ...state.currentClientData.hireAndOnBoard.hiringRequest,
-        action.payload,
       ];
     },
     addInterviewSchedule: (state, action) => {
@@ -281,17 +265,35 @@ const clientSlice = createSlice({
     removeClientFormData: (state) => {
       state.addClientForm = {};
     },
+    getClientHiringRequest: (state, action) => {
+      state.currentClientData.hireAndOnBoard.hiringRequest = action.payload;
+    },
+    addHiringRequest: (state, action) => {
+      state.currentClientData.hireAndOnBoard.hiringRequest = [
+        ...state.currentClientData.hireAndOnBoard.hiringRequest,
+        action.payload,
+      ];
+    },
+    deleteHiringRequest: (state, action) => {
+      const tempData =
+        state?.currentClientData?.hireAndOnBoard?.hiringRequest.filter(
+          (el) => el.id !== action.payload
+        );
+      state.currentClientData.hireAndOnBoard.hiringRequest = tempData;
+    },
   },
 });
 
 export const {
+  getClientHiringRequest,
+  deleteHiringRequest,
+  addHiringRequest,
   getClientsData,
   updateClientStatus,
   getCurrentClientData,
   getCurrentClientDataSuccess,
   getCurrentClientDataFailed,
   addClientFormData,
-  getClientHiringRequest,
   getClientInterviewSchedule,
   getClientOnboarding,
   getClientEmpInvoicePending,
@@ -302,14 +304,12 @@ export const {
   getClientOthInvoicePaid,
   getOutsourceableEmps,
   selectEmployeeToAdd,
-  deleteHiringRequest,
   deleteInterSchedule,
   deleteOnBoarding,
   deleteEmpInv,
   deleteOthInv,
   updateOthInv,
   updateEmpInv,
-  addHiringRequest,
   addInterviewSchedule,
   addOnBoard,
   addEmpInvoice,

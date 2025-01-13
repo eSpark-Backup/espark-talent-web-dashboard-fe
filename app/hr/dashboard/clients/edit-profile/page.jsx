@@ -15,10 +15,12 @@ const EditClient = () => {
   const [formData, setFormData] = useState({});
   const { currentClient } = useSelector((state) => state?.hr?.clients);
   const handleData = (name, value) => {
-    setFormData({ ...formData, [name]: value });
+    const { email, ...restData } = formData;
+    setFormData({ ...restData, [name]: value });
   };
+  console.log(formData);
   useEffect(() => {
-    console.log('form', formData);
+    console.log('formData', formData);
   }, [formData]);
   const getCountry = (country) => {
     return (
@@ -33,15 +35,16 @@ const EditClient = () => {
     country: getCountry(currentClient?.country),
   };
   const getFinalData = (values) => {
+    const { email,gender, ...rest } = values; // Destructure and exclude email
     const final = {
-      ...values,
+      ...rest,
       country: values.country?.title,
       join_date: dayjs(values?.join_date).format('YYYY-MM-DD'),
     };
     console.log({ values, final });
     return final;
   };
-
+  
   return (
     <Box>
       <Breadcrumb root="clients" title="Clients /" currentPage="Edit client" />

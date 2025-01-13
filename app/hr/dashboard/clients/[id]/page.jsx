@@ -13,8 +13,8 @@ import UploadInvoiceModal from './UploadInvoiceModal';
 import AddEmployeeModal from './AddEmployeeModal';
 import AddInterviewModal from './AddInterviewModal';
 import AddOnboardModal from './AddOnboardModal';
-import { useSearchParams } from 'next/navigation';
 
+import { useSearchParams } from 'next/navigation';
 import { CLIENTPROFILE } from '@/src/constants/ClientProfile';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
@@ -28,17 +28,18 @@ import {
   HR_CLIENT_EMP_ON_BOARDING,
   HR_CLIENT_OTHER_INVOICE,
   HR_GET_CLIENT_PROFILE,
+  DOWNLOAD_CLIENT_JOB_DESCRIPTION,
 } from '@/src/services/apiService/apiEndPoints';
 import {
   deleteEmpInv,
   deleteHiringRequest,
+  getClientHiringRequest,
   deleteInterSchedule,
   deleteOnBoarding,
   deleteOthInv,
   getClientEmpInvoicePaid,
   getClientEmpInvoicePending,
   getClientEmpInvoiceProcessing,
-  getClientHiringRequest,
   getClientInterviewSchedule,
   getClientOnboarding,
   getClientOthInvoicePaid,
@@ -71,6 +72,7 @@ import dayjs from 'dayjs';
 import { hasSymbol } from '@/src/utils/symbolChecker';
 import { genderType } from '@/src/utils/genderType';
 import { clientProfileTabsHandler } from '@/src/utils/clientProfileTabHandler';
+import AppTable from '@/src/components/appTable/AppTable';
 
 const AddEmployee = () => {
   const params = useParams();
@@ -122,6 +124,8 @@ const AddEmployee = () => {
                     currency: item?.salary_range?.currency || '',
                     gender: genderType(item?.gender),
                     action: ['Delete'],
+                    jobDescription: 'Download',
+                    comments: `${(item.comments = item.comments.length > 20 ? item.comments.substring(0, 20) + '…' : item.comments)}`,
                   };
                 })
               : [];
@@ -942,7 +946,9 @@ const AddEmployee = () => {
   };
   const resolveURL = (id) => {
     let url;
-    if (currentTab.val === 2) {
+    if (currentTab.val === 0) {
+      url = `${DOWNLOAD_CLIENT_JOB_DESCRIPTION}?id=${id}`;
+    } else if (currentTab.val === 2) {
       url = `${DOWNLOAD_EMP_INV}?id=${id}`;
     } else {
       url = `${DOWNLOAD_OTH_INV}?id=${id}`;
@@ -1253,7 +1259,6 @@ const AddEmployee = () => {
                   ))}
                 </Box>
               )}
-
               {renderTable({
                 isLoading:
                   isLoading ||
