@@ -1,31 +1,37 @@
-import { Box, Typography } from '@mui/material';
-import Image from 'next/image';
 import React from 'react';
+import Image from 'next/image';
+import { Box, Typography } from '@mui/material';
 import { useRouter } from 'next/navigation';
-// import { removeActiveClientAndData } from '@/src/redux/slices/hrSlices/clientSlice';
-// import { useDispatch } from 'react-redux';
 
 const Breadcrumb = ({ title, currentPage, root, dispatchFunction }) => {
   const router = useRouter();
-  // const dispatch = useDispatch();
+
+  const handleBack = (e) => {
+    e.preventDefault();
+    dispatchFunction?.();
+    router.back();
+  };
+
+  const handleRootNavigation = (e) => {
+    e.preventDefault();
+    router.push(`/hr/dashboard/${root || 'employees'}`);
+  };
+
   return (
     <Box
-      display={'flex'}
-      alignItems={'center'}
-      mb={'36px'}
+      display="flex"
+      alignItems="center"
+      mb="36px"
       sx={{ cursor: 'pointer' }}
     >
       <Image
-        src={'/icons/Back.svg'}
+        src="/icons/Back.svg"
         alt="Back"
         width={10}
         height={10}
-        onClick={() => {
-          dispatchFunction?.();
-          router.back();
-        }}
+        onClick={handleBack}
       />
-      <Box display={'flex'} alignItems={'center'} ml={'10px'}>
+      <Box display="flex" alignItems="center" ml="10px">
         <Typography
           sx={{
             color: '#595959',
@@ -34,7 +40,7 @@ const Breadcrumb = ({ title, currentPage, root, dispatchFunction }) => {
             fontWeight: 400,
             lineHeight: 'normal',
           }}
-          onClick={() => router.push(`/hr/dashboard/${root || 'employees'}`)}
+          onClick={handleRootNavigation}
         >
           {title}
         </Typography>

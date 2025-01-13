@@ -1,7 +1,6 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import {
-  Avatar,
   Box,
   Button,
   CircularProgress,
@@ -327,14 +326,18 @@ const Page = () => {
                 }}
               >
                 <Box sx={{ position: 'relative', display: 'inline-block' }}>
-                  <Avatar
-                    sx={{
-                      width: '100px',
-                      height: '100px',
-                      borderRadius: '50%',
-                    }}
-                    src={currentEmployee?.image_path}
-                  />
+                  <Box sx={{ width: '100px', height: '100px' }}>
+                    <Box
+                      component={'img'}
+                      src={currentEmployee?.image_path}
+                      sx={{
+                        height: '100%',
+                        width: '100%',
+                        objectFit: 'contain',
+                        borderRadius: '50%',
+                      }}
+                    />
+                  </Box>
                   {(role === 'super_admin' ||
                     (role !== 'super_admin' && employee_perms?.[0]?.write)) && (
                     <Image

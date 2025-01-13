@@ -51,6 +51,7 @@ export const websiteValidation = Yup.string()
     return urlRegex.test(value);
   });
 export const nameValidation = Yup.string()
+  .transform((value) => value.replace(/\s+/g, '')) // Removes all spaces before validation
   .matches(nameRegExp, 'Name is not valid')
   .required('Name is required')
   .min(2, 'Name is too short - should be 2 chars minimum.')

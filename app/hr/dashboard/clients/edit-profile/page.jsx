@@ -17,8 +17,8 @@ const EditClient = () => {
   const handleData = (name, value) => {
     const { email, ...restData } = formData;
     setFormData({ ...restData, [name]: value });
+    console.log(formData, email);
   };
-  console.log(formData);
   useEffect(() => {
     console.log('formData', formData);
   }, [formData]);
@@ -35,16 +35,16 @@ const EditClient = () => {
     country: getCountry(currentClient?.country),
   };
   const getFinalData = (values) => {
-    const { email,gender, ...rest } = values; // Destructure and exclude email
+    const { email, gender, ...rest } = values; // Destructure and exclude email
+    console.log({ values, final, email, gender });
     const final = {
       ...rest,
       country: values.country?.title,
       join_date: dayjs(values?.join_date).format('YYYY-MM-DD'),
     };
-    console.log({ values, final });
     return final;
   };
-  
+
   return (
     <Box>
       <Breadcrumb root="clients" title="Clients /" currentPage="Edit client" />

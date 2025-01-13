@@ -339,7 +339,7 @@ const ClientView = ({ status, id, data, isLoading }) => {
                             height: '100px',
                             width: '100px',
                             borderRadius: '50%',
-                            padding: '5px',
+                            objectFit: 'cover',
                           }}
                           src={eachItem?.image_path}
                         />

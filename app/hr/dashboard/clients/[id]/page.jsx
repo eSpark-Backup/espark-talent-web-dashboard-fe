@@ -72,7 +72,6 @@ import dayjs from 'dayjs';
 import { hasSymbol } from '@/src/utils/symbolChecker';
 import { genderType } from '@/src/utils/genderType';
 import { clientProfileTabsHandler } from '@/src/utils/clientProfileTabHandler';
-import AppTable from '@/src/components/appTable/AppTable';
 
 const AddEmployee = () => {
   const params = useParams();
@@ -125,7 +124,7 @@ const AddEmployee = () => {
                     gender: genderType(item?.gender),
                     action: ['Delete'],
                     jobDescription: 'Download',
-                    comments: `${(item.comments = item.comments.length > 20 ? item.comments.substring(0, 20) + '…' : item.comments)}`,
+                    comments: `${(item.comments = item?.comments?.length > 20 ? item?.comments?.substring(0, 20) + '…' : item?.comments)}`,
                   };
                 })
               : [];

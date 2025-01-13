@@ -48,6 +48,7 @@ a {
 .reason-text-area:focus {
   outline: none;
 }
+
 .reason-text-area {
   padding: 5px 10px;
 }
@@ -57,6 +58,7 @@ a {
   border-spacing: 0px 4px;
   margin-bottom: 20px;
 }
+
 .table-min-width {
   min-width: 1024px;
 }
@@ -77,6 +79,7 @@ a {
   /* flex: 1; */
   font-size: 12px;
 }
+
 .app-table-data {
   text-align: center;
   padding: 5px 0;
@@ -84,9 +87,11 @@ a {
   /* flex: 1; */
   font-size: 12px;
 }
+
 ::-webkit-scrollbar-button {
   width: 0px;
 }
+
 .app-table-row {
   background-color: #f6f6f6;
   margin-bottom: 10px;
@@ -95,6 +100,7 @@ a {
   margin-bottom: 20px;
   height: 40px;
 }
+
 .app-table-row-empl {
   background-color: #f6f6f6;
   margin-bottom: 10px;
@@ -104,6 +110,7 @@ a {
   height: 40px;
   border-radius: 5px;
 }
+
 .app-table-row-contract {
   background-color: #fff;
   margin-bottom: 10px;
@@ -121,6 +128,7 @@ a {
   margin-bottom: 20px;
   border-bottom: 1px solid #e4e4e4;
 }
+
 .app-table-row-salary {
   background-color: #fff;
   margin-bottom: 10px;
@@ -171,6 +179,7 @@ a {
   width: 2px;
   background-color: #068987;
 }
+
 .list-item-box.last-item::before {
   border-bottom-left-radius: 90px;
 }
@@ -196,14 +205,17 @@ a {
   position: relative;
   cursor: pointer;
 }
+
 .calendar-icon {
   @media (min-width: 700px) and (max-width: 1200px) {
     margin-left: 70px;
   }
+
   @media (min-width: 500px) and (max-width: 700px) {
     margin-left: 40px;
   }
 }
+
 .scrollbar-container {
   display: flex;
   flex-direction: column;
@@ -214,12 +226,14 @@ a {
 .scrollbar-container::-webkit-scrollbar {
   width: 12px;
 }
+
 .scrollbar-container::-webkit-scrollbar-track {
   background-color: #d9d9d9;
   border-radius: 10px;
   margin-top: -30px;
   margin-bottom: -10px;
 }
+
 .scrollbar-container::-webkit-scrollbar-thumb {
   background: #f6f6f6;
   border-radius: 10px;
@@ -341,11 +355,11 @@ body {
   margin-right: 5px;
 }
 
-.text-field-custom > div {
+.text-field-custom>div {
   flex: 1;
 }
 
-.custom-date-time-picker > div > input {
+.custom-date-time-picker>div>input {
   padding: 8.5px !important;
   color: #595959;
   font-size: 16px;
@@ -354,7 +368,7 @@ body {
   line-height: normal;
 }
 
-.date-picker-component > div > input::placeholder {
+.date-picker-component>div>input::placeholder {
   color: #888 !important;
   opacity: 1 !important;
   font-size: 14px;
@@ -363,25 +377,29 @@ body {
   line-height: normal;
 }
 
-.country-custom-dropdown > div > div {
+.country-custom-dropdown>div>div {
   padding: 7px 0 7px 15px;
 }
 
-.text-field-custom > div > input {
+.text-field-custom>div>input {
   padding: 5px 15px;
 }
+
 .form-input-field {
   width: 100%;
   padding: 10px;
   min-height: 40px;
 }
+
 .form-input-field:disabled {
   background: #eee !important;
   cursor: no-drop;
 }
+
 .form-input-field:focus {
   outline: none;
 }
+
 .form-input-field::placeholder,
 .file-upload-label {
   color: #888;
@@ -390,6 +408,7 @@ body {
   font-weight: 400;
   line-height: normal;
 }
+
 .file-upload-label {
   width: 100%;
   display: flex;
@@ -397,27 +416,46 @@ body {
   align-items: center;
   padding-left: 10px;
 }
+
 .form-date-picker-component {
   width: 100%;
 }
+
 .no-error-border fieldset {
   border: solid 1px #ccc !important;
 }
+
 .error-border fieldset {
   border: solid 1px red !important;
   /* border-radius: 7px; */
 }
+
 .icon-refresh-play {
   animation: spin 0.5s linear infinite;
 }
+
 @keyframes spin {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
+
 .Mui-disabled {
   cursor: no-drop;
+}
+
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
+  appearance: textfield;
 }

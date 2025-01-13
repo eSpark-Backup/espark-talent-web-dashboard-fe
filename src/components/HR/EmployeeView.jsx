@@ -1,13 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-import {
-  Avatar,
-  Grid,
-  Menu,
-  MenuItem,
-  Typography,
-  useMediaQuery,
-} from '@mui/material';
+import { Grid, Menu, MenuItem, Typography, useMediaQuery } from '@mui/material';
 import { Box, useTheme } from '@mui/system';
 import Image from 'next/image';
 
@@ -250,15 +243,18 @@ const EmployeeView = ({ status, data, isLoading }) => {
                       gap: 0.5,
                     }}
                   >
-                    <Avatar
-                      sx={{
-                        height: '100px',
-                        width: '100px',
-                        borderRadius: '50%',
-                        padding: '5px',
-                      }}
-                      src={eachItem.image_path}
-                    />
+                    <Box sx={{ width: '100px', height: '100px' }}>
+                      <Box
+                        component={'img'}
+                        src={eachItem?.image_path}
+                        sx={{
+                          height: '100%',
+                          width: '100%',
+                          objectFit: 'contain',
+                          borderRadius: '50%',
+                        }}
+                      />
+                    </Box>
                     <Typography
                       sx={{
                         color: '#171717',

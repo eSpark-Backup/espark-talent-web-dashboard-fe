@@ -55,13 +55,17 @@ const EditModal = ({ handleOpenModal, onClose, isClient }) => {
   });
   const handleFileInputChange = (event) => {
     const file = event.target.files[0];
-    setSelectedFile(file);
-    if (file) {
+
+    if (file && file.type === 'image/jpeg') {
+      setSelectedFile(file);
+
       const reader = new FileReader();
       reader.onloadend = () => {
         setImagePreview(reader.result);
       };
       reader.readAsDataURL(file);
+    } else {
+      alert('Only .jpg files are allowed.');
     }
   };
 
@@ -139,19 +143,23 @@ const EditModal = ({ handleOpenModal, onClose, isClient }) => {
             <Typography variant="h5" sx={{ textAlign: 'center' }}>
               {EDIT_MODAL?.editProfile}
             </Typography>
-            <Box
-              component={'img'}
-              src={
-                imagePreview
-                  ? imagePreview
-                  : isClient
+            <Box sx={{ width: '100px', height: '100px' }}>
+              <Box
+                component={'img'}
+                src={
+                  imagePreview ||
+                  (isClient
                     ? currentClient?.image_path
-                    : currentEmployee?.image_path
-              }
-              width={100}
-              height={100}
-              alt="employee"
-            />
+                    : currentEmployee?.image_path)
+                }
+                sx={{
+                  height: '100%',
+                  width: '100%',
+                  objectFit: 'contain',
+                  borderRadius: '50%',
+                }}
+              />
+            </Box>
             <Box
               sx={{
                 display: 'flex',

@@ -11,7 +11,6 @@ import dayjs from 'dayjs';
 import {
   addEmployeeFormData,
   clearEmployeeFormData,
-  removeAddEmpForm,
 } from '@/src/redux/slices/hrSlices/employeeSlice';
 import { HR_ADD_EMPLOYEES } from '@/src/services/apiService/apiEndPoints';
 import { useRouter } from 'next/navigation';
@@ -109,17 +108,10 @@ const AddEmployee = () => {
   const handleErrorToast = (msg) => {
     Toast('error', msg || 'Failed to create employee');
   };
-  const handleDispatch = () => {
-    dispatch(removeAddEmpForm());
-  };
 
   return (
     <Box>
-      <Breadcrumb
-        dispatchFunction={handleDispatch}
-        title="Employees /"
-        currentPage="Add employee"
-      />
+      <Breadcrumb title="Employees /" currentPage="Add employee" />
       <Box mb={'40px'}>
         <Typography
           sx={{
