@@ -199,6 +199,7 @@ const StartHiringForm = () => {
                     xs={12}
                     sm={12}
                     md={12}
+                    accept=".pdf"
                     lg={12}
                     fields={fields}
                     searchable={searchable}

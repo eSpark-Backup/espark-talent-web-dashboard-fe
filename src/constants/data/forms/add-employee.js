@@ -43,6 +43,7 @@ const formElements = [
     title: 'Phone number',
     placeholder: 'Enter phone number',
     name: 'phone_number',
+    type: 'number',
   },
   {
     title: 'Company Email',
@@ -81,6 +82,7 @@ const formElements = [
     title: 'Emergency Contact',
     placeholder: 'Enter phone number',
     name: 'emergency_no',
+    type: 'number',
   },
   {
     title: 'Upload resume',

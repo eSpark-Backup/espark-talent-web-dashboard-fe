@@ -33,7 +33,7 @@ const HiringRequestModal = ({ open, onClose }) => {
   const dispatch = useDispatch();
   const { mutate, isPending } = useMutation({
     mutationFn: async (formVals) => {
-      return api.postJSONData(`${HR_CLIENT_EMP_HIRING_REQUEST}`, formVals);
+      return api.postData(`${HR_CLIENT_EMP_HIRING_REQUEST}`, formVals);
     },
     onSuccess: ({ data }) => {
       Toast('success', 'Data posted successfully');
@@ -61,6 +61,7 @@ const HiringRequestModal = ({ open, onClose }) => {
       console.log({ err, errm: err.message, name: err.name, stack: err.stack });
     },
   });
+
   const {
     handleSubmit,
     values,
@@ -78,8 +79,12 @@ const HiringRequestModal = ({ open, onClose }) => {
     validationSchema: hiringRequestSchema,
     enableReinitialize: true,
     onSubmit: (formValues) => {
+      console.log(formValues, 'formValues');
+
       const finalData = {
         ...formValues,
+        description: 'ok',
+        job_description: formValues?.job_description,
         gender:
           formValues?.gender == 'Not specific' ? 'nonspec' : formValues?.gender,
         hiring_start_date: dayjs(formValues.hiring_start_date).format(
@@ -87,22 +92,17 @@ const HiringRequestModal = ({ open, onClose }) => {
         ),
         hiring_end_date: dayjs(formValues.hiring_end_date).format('YYYY-MM-DD'),
         client_id: email,
-        salary_range: {
-          minimum: formValues?.salary_range.minimum,
-          maximum: formValues?.salary_range.maximum,
-          currency: formValues?.salary_currency,
-        },
+        salary_currency: formValues?.salary_currency,
+        salary_range: JSON.stringify({
+          minimum: formValues?.salary_range?.minimum,
+          maximum: formValues?.salary_range?.maximum,
+        }),
         country: formValues?.country?.title,
       };
 
       setHiringValues(finalData);
       mutate({
         ...finalData,
-        // salary_range: `${finalData.salary_range.minimum}$ - ${finalData.salary_range.maximum}$`,
-        // salary_range: {
-        //   minimum: finalData.salary_range.minimum,
-        //   maximum: finalData.salary_range.maximum,
-        // },
       });
     },
     validateOnChange: false,
@@ -217,6 +217,7 @@ const HiringRequestModal = ({ open, onClose }) => {
                       setFieldValue={setFieldValue}
                       value={values[name]}
                       error={errors[name]}
+                      accept=".pdf"
                       touched={touched}
                       setFieldError={setFieldError}
                       errors={errors}

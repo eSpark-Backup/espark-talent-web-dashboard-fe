@@ -157,6 +157,6 @@ export const hringRequestForm = [
     title: 'Comments',
     placeholder: 'Write here..',
     type: 'text',
-    name: 'description',
+    name: 'comments',
   },
 ];
