@@ -390,7 +390,7 @@ const WfhViewModal = ({
                     variant="outlined"
                     disabled
                   >
-                    Declined
+                    Closed
                   </Button>
                   <Button
                     type="submit"
@@ -491,7 +491,7 @@ const WfhViewModal = ({
                     variant="outlined"
                     disabled
                   >
-                    Declined
+                    Closed
                   </Button>
                   <Button
                     type="submit"

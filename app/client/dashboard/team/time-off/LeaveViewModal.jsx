@@ -885,7 +885,7 @@ const LeaveViewModal = forwardRef(
                       variant="outlined"
                       // disabled
                     >
-                      Declined
+                      Closed
                     </Button>
                   </Box>
                 ) : isEmployee && modalData?.status === 'reject' ? (
@@ -993,7 +993,7 @@ const LeaveViewModal = forwardRef(
                       variant="outlined"
                       disabled
                     >
-                      Declined
+                      Closed
                     </Button>
                     <Button
                       type="submit"

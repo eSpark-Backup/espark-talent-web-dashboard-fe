@@ -1376,7 +1376,7 @@ const AddEmployee = () => {
         onClose={handleCloseUploadOthInvoiceModal}
       />
       <AddEmployeeModal
-        title="Employee invoice form"
+        title="Employee Employee form"
         open={isOpenAddClientModal}
         onClose={handleCloseAddClientModal}
       />

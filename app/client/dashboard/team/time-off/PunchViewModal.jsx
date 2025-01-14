@@ -380,7 +380,7 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
             onClick={handleClose}
             variant="outlined"
           >
-            Declined
+            Closed
           </Button>
         </Box>
       ) : null}

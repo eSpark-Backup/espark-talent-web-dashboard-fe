@@ -50,8 +50,8 @@ const Dashboard = () => {
   function convertDateFormat(dateStr) {
     // Split the date string into day, month, and year
     var parts = dateStr.split('-');
-    var day = parts[0];
-    var month = parts[1];
+    var day = parts[1];
+    var month = parts[0];
     var year = parts[2];
 
     // Reorder the components to the new format

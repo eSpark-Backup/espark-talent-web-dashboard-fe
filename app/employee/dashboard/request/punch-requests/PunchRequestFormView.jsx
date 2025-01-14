@@ -204,7 +204,7 @@ const PunchRequestDataView = ({
             }}
             onClick={handleClose}
           >
-            Declined
+            Closed
           </Button>
         </Box>
       ) : isEmployee && modalData?.status === 'pending' ? (

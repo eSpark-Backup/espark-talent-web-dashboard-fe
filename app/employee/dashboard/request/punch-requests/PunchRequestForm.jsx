@@ -88,7 +88,7 @@ const PunchRequestForm = ({ handleClose }) => {
     onSubmit: (formValues) => {
       console.log({ formValues });
       const revampFormValues = {
-        date: dayjs(formValues.date).format('YYYY-MM-DD'),
+        date: dayjs(formValues.date).format('YYYY-MMMM-DD'),
         client_id: currentWorkSpace?.email,
         punch_type: pascalToSnake(formValues?.punchType),
         punch_time: dayjs(formValues?.punchTime).format('hh:mm:ss A'),

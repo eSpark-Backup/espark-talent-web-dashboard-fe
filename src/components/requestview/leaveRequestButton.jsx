@@ -58,7 +58,7 @@ const LeaveRequestButtons = ({
               }}
               onClick={onClose}
             >
-              Declined
+              Closed
             </Button>
           ) : isCompletedModal ? (
             <Box sx={{}}>

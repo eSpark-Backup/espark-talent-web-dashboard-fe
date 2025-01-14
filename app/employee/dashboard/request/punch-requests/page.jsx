@@ -39,6 +39,7 @@ import { empPunchReqfilterForm } from '@/src/constants/data/forms/emp-punch-req-
 import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
 import { Toast } from '@/src/components/Toast/Toast';
 import Skeleton from '@mui/material/Skeleton';
+import dayjs from 'dayjs';
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -76,6 +77,7 @@ const Dashboard = () => {
         description: item?.description,
         actionTimeOffReqStatus: true,
         actionStatus: true,
+        punch_time: dayjs(item?.punchTime).format('hh:mm A'),
         action: item?.status === 'pending' ? ['Delete', 'View'] : ['View'],
       }));
       return tempData;
