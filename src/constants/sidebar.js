@@ -106,11 +106,11 @@ export const Employee_Routes = [
     link: '#',
     sublinks: [
       {
-        text: 'Leave',
+        text: 'Leave requests',
         link: '/employee/dashboard/request/leave',
       },
       {
-        text: 'WFH Request',
+        text: 'WFH requests',
         link: '/employee/dashboard/request/work-from-home',
       },
       {
