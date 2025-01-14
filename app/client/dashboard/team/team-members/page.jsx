@@ -80,6 +80,9 @@ const Dashboard = () => {
             data !== ''
               ? data?.map((item) => ({
                   ...item,
+                  joining_date: dayjs(item?.joining_date).format(
+                    'DD-MMMM-YYYY'
+                  ),
                   status: 'onBoard',
                 }))
               : [];
@@ -103,6 +106,9 @@ const Dashboard = () => {
             data !== ''
               ? data?.map((item) => ({
                   ...item,
+                  joining_date: dayjs(item?.joining_date).format(
+                    'DD-MMMM-YYYY'
+                  ),
                   status: 'Terminated',
                 }))
               : [];

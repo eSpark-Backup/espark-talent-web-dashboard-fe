@@ -2,7 +2,7 @@ import { PUNCH_IN } from '@/src/constants/punchIn/createPunch';
 import { Button, Grid, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import dayjs from 'dayjs';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import { markCheckout } from '@/src/redux/slices/employeeSlices/empHomeSlice';
 import { EMP_HOME } from '@/src/services/apiService/apiEndPoints';
@@ -13,10 +13,10 @@ import AppConfirmationMadal from '../../modals/AppConfirmationMadal';
 const MarkCheckOut = () => {
   const dispatch = useDispatch();
   const [isOpenWarnignModal, setIsOpenWarningModal] = useState(false);
-
   const { currentWorkSpace } = useSelector((state) => state?.emp?.home);
   // const [time, setTime] = useState('');
   const { homeData } = useSelector((state) => state?.emp?.home);
+  const clientQuery = useQueryClient();
 
   const { mutate } = useMutation({
     mutationFn: async (data) => {
@@ -27,6 +27,7 @@ const MarkCheckOut = () => {
       Toast('success', 'Data updated successfully');
       console.log({ data });
       dispatch(markCheckout(dayjs().format('hh:mm:ss A')));
+      clientQuery?.invalidateQueries(['get-emp-home']);
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to update data');

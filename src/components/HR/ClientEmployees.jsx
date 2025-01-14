@@ -181,7 +181,7 @@ const ClientEmployees = ({ fromClient, openModal }) => {
                 designation={designation}
                 status={'Inactive'}
                 search={search}
-                empData={getCurrentTabEmpData('terminate')}
+                empData={getCurrentTabEmpData('terminated')}
                 isFetching={ClientEmployeesAll.isFetching}
               />
             )}

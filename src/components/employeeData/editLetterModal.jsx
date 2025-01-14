@@ -197,6 +197,7 @@ const EditLetterForm = ({ onClose, open, selectedId }) => {
                       md={12}
                       lg={12}
                       fields={fields}
+                      accept=".pdf"
                     />
                   </Grid>
                   {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>}

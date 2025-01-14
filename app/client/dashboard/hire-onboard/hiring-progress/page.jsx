@@ -30,7 +30,7 @@ import {
   fetchClientOnboardingFailed,
   fetchClientOnboardingSuccess,
 } from '@/src/redux/slices/clientSlices/hiringProgressSlice';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useDispatch, useSelector } from 'react-redux';
 import { filterTableRowsWRTTab } from '@/src/utils/table';
 import { Toast } from '@/src/components/Toast/Toast';
@@ -57,6 +57,7 @@ const Dashboard = () => {
 
   const searchParams = useSearchParams();
   const activePrams = searchParams.get('param');
+  const clientQuery = useQueryClient();
 
   const hiringRequestQuery = useQuery({
     staleTime: 10000,
@@ -295,6 +296,7 @@ const Dashboard = () => {
     },
     onSuccess: () => {
       Toast('success', 'Status updated successfully');
+      clientQuery?.invalidateQueries(['interviewSchedules']);
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to delete data');

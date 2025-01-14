@@ -248,7 +248,6 @@ const Dashboard = () => {
                     data={data?.employees}
                     setSelectedItem={setSelectedEmployee}
                   />
-
                   <AppCustomMonthYearPicker
                     timeTracking={timeTracking}
                     setTimeTracking={setTimeTracking}

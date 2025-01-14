@@ -23,6 +23,7 @@ export const uploadInvoiceForm = [
     placeholder: '',
     name: 'invoice_amount',
     dollarIcon: '$',
+    type: 'number',
   },
   {
     title: 'Upload',

@@ -19,7 +19,7 @@ const EmployeeCard = ({
   const router = useRouter();
   const isActive =
     eachItem?.status?.toLowerCase() === 'active' || eachItem?.active;
-  const isTerminated = eachItem?.status?.toLowerCase() === 'terminate';
+  const isTerminated = eachItem?.status?.toLowerCase() === 'terminated';
   let statusColor;
   let statusText;
   if (isActive) {

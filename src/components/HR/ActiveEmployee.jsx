@@ -34,7 +34,7 @@ const EmployeeStatus = ({ empData, isFetching }) => {
   };
   const handleOpenRemove = (event, id) => {
     setEmpId(id);
-    setEmpStatus('terminate');
+    setEmpStatus('terminated');
     setIsOpen(true);
     event.stopPropagation();
   };
