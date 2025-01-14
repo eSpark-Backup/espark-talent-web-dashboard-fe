@@ -68,7 +68,6 @@ const AddEmployeeModal = ({ open, onClose }) => {
   const [modalStep1FormTableState, setModalStep1FormTableState] = useState([]);
   useEffect(() => {
     setModalStep1FormTableState(outsourceableEmployees);
-    console.log(modalStep1FormTableState,"modalStep1FormTableState");
     
   }, [outsourceableEmployees]);
 

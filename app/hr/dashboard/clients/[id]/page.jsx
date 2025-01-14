@@ -765,6 +765,7 @@ const AddEmployee = () => {
     currentInvData: null,
   });
   const handleClose = () => setIsOpen(false);
+  
   const handleOpen = (id, row) => {
     console.log({ id, row });
     setDeleteRowID(id);
@@ -1329,6 +1330,7 @@ const AddEmployee = () => {
                 handleOpen,
                 handleClose,
                 minWidth: '1450px',
+                handleClickActionDelete:handleOpen,
                 handleConfirmDelete: handleConfirmDeleteHiringReq,
                 updateStatus: handleConfirmUpdatePayStatus,
                 isPending:

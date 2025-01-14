@@ -18,6 +18,7 @@ export const renderTable = ({
   isLoading,
   minWidth,
   handleClickActionView,
+  handleClickActionDelete,
   rejectReq,
   approveReq,
   viewClicked,
@@ -38,7 +39,7 @@ export const renderTable = ({
           data={data}
           handleOpen={handleOpen}
           handleClickDownload={handleClickDownload}
-          handleClickActionDelete={handleConfirmDelete}
+          handleClickActionDelete={handleClickActionDelete}
           handleClickActionView={handleClickActionView}
           rejectReq={rejectReq}
           approveReq={approveReq}
