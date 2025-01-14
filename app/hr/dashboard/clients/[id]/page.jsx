@@ -107,7 +107,7 @@ const AddEmployee = () => {
   const ClientHiringReqQuery = useQuery({
     staleTime: 100000,
     refetchOnWindowFocus: false,
-    queryKey: ['hr-client-hiring-req-query'],
+    queryKey: ['hr-client-hiring-req-query', email],
     queryFn: () => {
       return api
         .getData(`${HR_CLIENT_EMP_HIRING_REQUEST}?id=${params.id}`)
@@ -119,9 +119,15 @@ const AddEmployee = () => {
 
                   return {
                     ...item,
-                    salary_range: `${item.salary_range.minimum}${hasSymbol(symbol) ? symbol : ''} - ${item.salary_range.maximum}${hasSymbol(symbol) ? symbol : ''}`,
+                    salary_range: `${item.salary_range.minimum}${hasSymbol(symbol) ? symbol : ' '} - ${item.salary_range.maximum}${hasSymbol(symbol) ? symbol : ''}`,
                     currency: item?.salary_range?.currency || '',
                     gender: genderType(item?.gender),
+                    hiring_start_date: dayjs(item.hiring_start_date).format(
+                      'DD-MMMM-YYYY'
+                    ),
+                    hiring_end_date: dayjs(item.hiring_end_date).format(
+                      'DD-MMMM-YYYY'
+                    ),
                     action: ['Delete'],
                     jobDescription: 'Download',
                     comments: `${(item.comments = item?.comments?.length > 20 ? item?.comments?.substring(0, 20) + '…' : item?.comments)}`,
@@ -140,7 +146,7 @@ const AddEmployee = () => {
   const ClientInterviewSchedule = useQuery({
     staleTime: 100000,
     refetchOnWindowFocus: false,
-    queryKey: ['hr-interview-schedule-req-query'],
+    queryKey: ['hr-interview-schedule-req-query', email],
     queryFn: () => {
       console.log('Calling api');
       return api
@@ -152,7 +158,7 @@ const AddEmployee = () => {
                   ...item,
                   action: ['Delete'],
                   interview_date_time: dayjs(item?.interview_date_time).format(
-                    'YYYY-MM-DD hh:mm A'
+                    'DD-MMMM-YYYY hh:mm A'
                   ),
                   gender: genderType(item?.gender),
                 }))
@@ -170,7 +176,7 @@ const AddEmployee = () => {
   const ClientOnBoarding = useQuery({
     staleTime: 100000,
     refetchOnWindowFocus: false,
-    queryKey: ['hr-client-on-board-req-query'],
+    queryKey: ['hr-client-on-board-req-query', email],
     queryFn: () => {
       return api
         .getData(`${HR_CLIENT_EMP_ON_BOARDING}?id=${params.id}`)
@@ -184,6 +190,9 @@ const AddEmployee = () => {
                     ...item,
                     salary: `${item.salary} ${hasSymbol(symbol) ? symbol : ''}`,
                     salary_currency: item?.salary_currency || '',
+                    joining_date: dayjs(item?.joining_date).format(
+                      'DD-MMMM-YYYY'
+                    ),
                     dropdownStatus: true,
                     gender: genderType(item?.gender),
                     action: ['Delete'],
@@ -202,7 +211,7 @@ const AddEmployee = () => {
   const ClientEmployeesAll = useQuery({
     staleTime: 100000,
     refetchOnWindowFocus: false,
-    queryKey: ['hr-clients-employees-all'],
+    queryKey: ['hr-clients-employees-all', email],
     queryFn: () => {
       return api
         .getData(`${HR_CLIENT_EMPLOYEES}?c_email=${email}&tab=all`)
@@ -218,7 +227,7 @@ const AddEmployee = () => {
   const ClientEmployeesActive = useQuery({
     staleTime: 100000,
     refetchOnWindowFocus: false,
-    queryKey: ['hr-clients-employees-active'],
+    queryKey: ['hr-clients-employees-active', email],
     queryFn: () => {
       return api
         .getData(`${HR_CLIENT_EMPLOYEES}?c_email=${email}&tab=active`)
@@ -234,7 +243,7 @@ const AddEmployee = () => {
   const ClientEmployeesTerminated = useQuery({
     staleTime: 100000,
     refetchOnWindowFocus: false,
-    queryKey: ['hr-clients-employees-terminated'],
+    queryKey: ['hr-clients-employees-terminated', email],
     queryFn: () => {
       return api
         .getData(`${HR_CLIENT_EMPLOYEES}?c_email=${email}&tab=terminated`)
@@ -250,7 +259,7 @@ const AddEmployee = () => {
   const EmployeeInvoicesPending = useQuery({
     staleTime: 100000,
     refetchOnWindowFocus: false,
-    queryKey: ['hr-clients-employees-invoices-pending'],
+    queryKey: ['hr-clients-employees-invoices-pending', email],
     queryFn: () => {
       return api
         .getData(`${HR_CLIENT_EMPLOYEE_INVOICE}?client_id=${email}&tab=pending`)
@@ -259,6 +268,8 @@ const AddEmployee = () => {
             ? data?.map((item) => ({
                 ...item,
                 dropdownStatus: true,
+                due_date: dayjs(item.due_date).format('DD-MMMM-YYYY'),
+                invoice_date: dayjs(item.invoice_date).format('DD-MMMM-YYYY'),
                 action: ['Delete'],
                 actionStatus: true,
                 download: 'Download',
@@ -277,7 +288,7 @@ const AddEmployee = () => {
   const EmployeeInvoicesProcessing = useQuery({
     staleTime: 100000,
     refetchOnWindowFocus: false,
-    queryKey: ['hr-clients-employees-invoices-processing'],
+    queryKey: ['hr-clients-employees-invoices-processing', email],
     queryFn: () => {
       return api
         .getData(
@@ -288,6 +299,8 @@ const AddEmployee = () => {
             ? data?.map((item) => ({
                 ...item,
                 dropdownStatus: true,
+                due_date: dayjs(item.due_date).format('DD-MMMM-YYYY'),
+                invoice_date: dayjs(item.invoice_date).format('DD-MMMM-YYYY'),
                 action: ['Delete'],
                 actionStatus: true,
                 download: 'Download',
@@ -306,7 +319,7 @@ const AddEmployee = () => {
   const EmployeeInvoicesPaid = useQuery({
     staleTime: 100000,
     refetchOnWindowFocus: false,
-    queryKey: ['hr-clients-employees-invoices-paid'],
+    queryKey: ['hr-clients-employees-invoices-paid', email],
     queryFn: () => {
       return api
         .getData(`${HR_CLIENT_EMPLOYEE_INVOICE}?client_id=${email}&tab=paid`)
@@ -315,6 +328,8 @@ const AddEmployee = () => {
             ? data?.map((item) => ({
                 ...item,
                 dropdownStatus: true,
+                due_date: dayjs(item.due_date).format('DD-MMMM-YYYY'),
+                invoice_date: dayjs(item.invoice_date).format('DD-MMMM-YYYY'),
                 action: ['Delete'],
                 actionStatus: true,
                 download: 'Download',
@@ -333,7 +348,7 @@ const AddEmployee = () => {
   const OtherInvoicesPending = useQuery({
     staleTime: 100000,
     refetchOnWindowFocus: false,
-    queryKey: ['hr-clients-other-invoices-pending'],
+    queryKey: ['hr-clients-other-invoices-pending', email],
     queryFn: () => {
       return api
         .getData(`${HR_CLIENT_OTHER_INVOICE}?client_id=${email}&tab=pending`)
@@ -343,6 +358,8 @@ const AddEmployee = () => {
             data?.map((item) => ({
               ...item,
               dropdownStatus: true,
+              due_date: dayjs(item.due_date).format('DD-MMMM-YYYY'),
+              invoice_date: dayjs(item.invoice_date).format('DD-MMMM-YYYY'),
               action: ['Delete'],
               actionStatus: true,
               download: 'Download',
@@ -360,7 +377,7 @@ const AddEmployee = () => {
   const OtherInvoicesProcessing = useQuery({
     staleTime: 100000,
     refetchOnWindowFocus: false,
-    queryKey: ['hr-clients-other-invoices-processing'],
+    queryKey: ['hr-clients-other-invoices-processing', email],
     queryFn: () => {
       return api
         .getData(`${HR_CLIENT_OTHER_INVOICE}?client_id=${email}&tab=processing`)
@@ -370,6 +387,8 @@ const AddEmployee = () => {
             data?.map((item) => ({
               ...item,
               dropdownStatus: true,
+              due_date: dayjs(item.due_date).format('DD-MMMM-YYYY'),
+              invoice_date: dayjs(item.invoice_date).format('DD-MMMM-YYYY'),
               action: ['Delete'],
               actionStatus: true,
               download: 'Download',
@@ -388,7 +407,7 @@ const AddEmployee = () => {
   const OtherInvoicesPaid = useQuery({
     staleTime: 100000,
     refetchOnWindowFocus: false,
-    queryKey: ['hr-clients-other-invoices-paid'],
+    queryKey: ['hr-clients-other-invoices-paid', email],
     queryFn: () => {
       return api
         .getData(`${HR_CLIENT_OTHER_INVOICE}?client_id=${email}&tab=paid`)
@@ -398,6 +417,8 @@ const AddEmployee = () => {
             data?.map((item) => ({
               ...item,
               dropdownStatus: true,
+              due_date: dayjs(item.due_date).format('DD-MMMM-YYYY'),
+              invoice_date: dayjs(item.invoice_date).format('DD-MMMM-YYYY'),
               action: ['Delete'],
               actionStatus: true,
               download: 'Download',

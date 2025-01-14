@@ -12,6 +12,7 @@ export const renderTable = ({
   handleClose,
   handleOpen,
   handleConfirmDelete,
+  handleClickDownload,
   updateStatus,
   isPending,
   isLoading,
@@ -36,6 +37,8 @@ export const renderTable = ({
           column={column}
           data={data}
           handleOpen={handleOpen}
+          handleClickDownload={handleClickDownload}
+          handleClickActionDelete={handleConfirmDelete}
           handleClickActionView={handleClickActionView}
           rejectReq={rejectReq}
           approveReq={approveReq}
