@@ -115,24 +115,24 @@ const AddEmployee = () => {
           const tempData =
             data !== ''
               ? data?.map((item) => {
-                  const symbol = item?.salary_range?.currency?.split(' ')[0];
+                const symbol = item?.salary_range?.currency?.split(' ')[0];
 
-                  return {
-                    ...item,
-                    salary_range: `${item.salary_range.minimum}${hasSymbol(symbol) ? symbol : ' '} - ${item.salary_range.maximum}${hasSymbol(symbol) ? symbol : ''}`,
-                    currency: item?.salary_range?.currency || '',
-                    gender: genderType(item?.gender),
-                    hiring_start_date: dayjs(item.hiring_start_date).format(
-                      'DD-MMMM-YYYY'
-                    ),
-                    hiring_end_date: dayjs(item.hiring_end_date).format(
-                      'DD-MMMM-YYYY'
-                    ),
-                    action: ['Delete'],
-                    jobDescription: 'Download',
-                    comments: `${(item.comments = item?.comments?.length > 20 ? item?.comments?.substring(0, 20) + '…' : item?.comments)}`,
-                  };
-                })
+                return {
+                  ...item,
+                  salary_range: `${item.salary_range.minimum}${hasSymbol(symbol) ? symbol : ' '} - ${item.salary_range.maximum}${hasSymbol(symbol) ? symbol : ''}`,
+                  currency: item?.salary_range?.currency || '',
+                  gender: genderType(item?.gender),
+                  hiring_start_date: dayjs(item.hiring_start_date).format(
+                    'DD-MMMM-YYYY'
+                  ),
+                  hiring_end_date: dayjs(item.hiring_end_date).format(
+                    'DD-MMMM-YYYY'
+                  ),
+                  action: ['Delete'],
+                  jobDescription: 'Download',
+                  comments: `${(item.comments = item?.comments?.length > 20 ? item?.comments?.substring(0, 20) + '…' : item?.comments)}`,
+                };
+              })
               : [];
           dispatch(getClientHiringRequest(tempData));
           return tempData;
@@ -155,13 +155,13 @@ const AddEmployee = () => {
           const tempData =
             data !== ''
               ? [...data]?.map((item) => ({
-                  ...item,
-                  action: ['Delete'],
-                  interview_date_time: dayjs(item?.interview_date_time).format(
-                    'DD-MMMM-YYYY hh:mm A'
-                  ),
-                  gender: genderType(item?.gender),
-                }))
+                ...item,
+                action: ['Delete'],
+                interview_date_time: dayjs(item?.interview_date_time).format(
+                  'DD-MMMM-YYYY hh:mm A'
+                ),
+                gender: genderType(item?.gender),
+              }))
               : [];
 
           dispatch(getClientInterviewSchedule(tempData || []));
@@ -184,20 +184,20 @@ const AddEmployee = () => {
           const tempData =
             data !== ''
               ? [...data]?.map((item) => {
-                  const symbol = item?.salary_currency?.split(' ')[0];
+                const symbol = item?.salary_currency?.split(' ')[0];
 
-                  return {
-                    ...item,
-                    salary: `${item.salary} ${hasSymbol(symbol) ? symbol : ''}`,
-                    salary_currency: item?.salary_currency || '',
-                    joining_date: dayjs(item?.joining_date).format(
-                      'DD-MMMM-YYYY'
-                    ),
-                    dropdownStatus: true,
-                    gender: genderType(item?.gender),
-                    action: ['Delete'],
-                  };
-                })
+                return {
+                  ...item,
+                  salary: `${item.salary} ${hasSymbol(symbol) ? symbol : ''}`,
+                  salary_currency: item?.salary_currency || '',
+                  joining_date: dayjs(item?.joining_date).format(
+                    'DD-MMMM-YYYY'
+                  ),
+                  dropdownStatus: true,
+                  gender: genderType(item?.gender),
+                  action: ['Delete'],
+                };
+              })
               : [];
           dispatch(getClientOnboarding(tempData || []));
           return data;
@@ -266,15 +266,15 @@ const AddEmployee = () => {
         .then(({ data }) => {
           const tempData = data?.length
             ? data?.map((item) => ({
-                ...item,
-                dropdownStatus: true,
-                due_date: dayjs(item.due_date).format('DD-MMMM-YYYY'),
-                invoice_date: dayjs(item.invoice_date).format('DD-MMMM-YYYY'),
-                action: ['Delete'],
-                actionStatus: true,
-                download: 'Download',
-                payment_status: getCamelCapitalized(item.payment_status),
-              }))
+              ...item,
+              dropdownStatus: true,
+              due_date: dayjs(item.due_date).format('DD-MMMM-YYYY'),
+              invoice_date: dayjs(item.invoice_date).format('DD-MMMM-YYYY'),
+              action: ['Delete'],
+              actionStatus: true,
+              download: 'Download',
+              payment_status: getCamelCapitalized(item.payment_status),
+            }))
             : [];
           dispatch(getClientEmpInvoicePending(tempData || []));
           return data;
@@ -297,15 +297,15 @@ const AddEmployee = () => {
         .then(({ data }) => {
           const tempData = data?.length
             ? data?.map((item) => ({
-                ...item,
-                dropdownStatus: true,
-                due_date: dayjs(item.due_date).format('DD-MMMM-YYYY'),
-                invoice_date: dayjs(item.invoice_date).format('DD-MMMM-YYYY'),
-                action: ['Delete'],
-                actionStatus: true,
-                download: 'Download',
-                payment_status: getCamelCapitalized(item.payment_status),
-              }))
+              ...item,
+              dropdownStatus: true,
+              due_date: dayjs(item.due_date).format('DD-MMMM-YYYY'),
+              invoice_date: dayjs(item.invoice_date).format('DD-MMMM-YYYY'),
+              action: ['Delete'],
+              actionStatus: true,
+              download: 'Download',
+              payment_status: getCamelCapitalized(item.payment_status),
+            }))
             : [];
           dispatch(getClientEmpInvoiceProcessing(tempData || []));
           return data;
@@ -326,15 +326,15 @@ const AddEmployee = () => {
         .then(({ data }) => {
           const tempData = data?.length
             ? data?.map((item) => ({
-                ...item,
-                dropdownStatus: true,
-                due_date: dayjs(item.due_date).format('DD-MMMM-YYYY'),
-                invoice_date: dayjs(item.invoice_date).format('DD-MMMM-YYYY'),
-                action: ['Delete'],
-                actionStatus: true,
-                download: 'Download',
-                payment_status: getCamelCapitalized(item.payment_status),
-              }))
+              ...item,
+              dropdownStatus: true,
+              due_date: dayjs(item.due_date).format('DD-MMMM-YYYY'),
+              invoice_date: dayjs(item.invoice_date).format('DD-MMMM-YYYY'),
+              action: ['Delete'],
+              actionStatus: true,
+              download: 'Download',
+              payment_status: getCamelCapitalized(item.payment_status),
+            }))
             : [];
           dispatch(getClientEmpInvoicePaid(tempData || []));
           return data;
@@ -899,8 +899,8 @@ const AddEmployee = () => {
     },
   });
   const handleConfirmDeleteHiringReq = () => {
-    console.log({ deleteRowID });
     if (currentTab?.label === 'Hire & onboard') {
+    console.log(deleteRowID,"deleteRowID");
       if (currentTab?.nested.val === 0) {
         deleteStartHiringMutation.mutate(deleteRowID);
       } else if (currentTab?.nested.val === 1) {
@@ -999,22 +999,52 @@ const AddEmployee = () => {
       console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
+  const downloadJSMutation = useMutation({
+    mutationFn: async (id) => {
+      return api.downloadFile(resolveURL(id));
+    },
+    onSuccess: ({ data }) => {
+      console.log({ data });
+      const url = window.URL.createObjectURL(new Blob([data]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', 'job_description.pdf');
+      document.body.appendChild(link);
+      link.click();
+      link.parentNode.removeChild(link);
+
+      Toast('success', 'File downloaded');
+    },
+    onError: (err) => {
+      Toast('error', err.message || 'File not downloaded');
+      // dispatch(getTimeSheetDataFailed());
+      console.log({ err });
+      console.log({ err: err.message, name: err.name, stack: err.stack });
+    },
+  });
   const downloadInvoice = (id) => {
     downloadInvoiceMutation.mutate(id);
+  };
+  const downloadJD = (id) => {
+    downloadJSMutation.mutate(id);
+  };
+  const downlaodfile = (id) => {
+    if (currentTab.val === 0) {return downloadJD(id);}
+    else {return downloadInvoice(id);}
   };
 
   return (
     <>
       {isFetching ||
-      ClientHiringReqQuery.isFetching ||
-      ClientInterviewSchedule.isFetching ||
-      ClientOnBoarding.isFetching ||
-      EmployeeInvoicesPending.isFetching ||
-      EmployeeInvoicesProcessing.isFetching ||
-      EmployeeInvoicesPaid.isFetching ||
-      OtherInvoicesPending.isFetching ||
-      OtherInvoicesProcessing.isFetching ||
-      OtherInvoicesPaid.isFetching ? (
+        ClientHiringReqQuery.isFetching ||
+        ClientInterviewSchedule.isFetching ||
+        ClientOnBoarding.isFetching ||
+        EmployeeInvoicesPending.isFetching ||
+        EmployeeInvoicesProcessing.isFetching ||
+        EmployeeInvoicesPaid.isFetching ||
+        OtherInvoicesPending.isFetching ||
+        OtherInvoicesProcessing.isFetching ||
+        OtherInvoicesPaid.isFetching ? (
         <ProfileEditSkeleton isClient={true} />
       ) : (
         <Box>
@@ -1039,15 +1069,15 @@ const AddEmployee = () => {
           </Box>
           <>
             {isLoading ||
-            ClientHiringReqQuery.isLoading ||
-            ClientInterviewSchedule.isLoading ||
-            ClientOnBoarding.isLoading ||
-            EmployeeInvoicesPending.isLoading ||
-            EmployeeInvoicesProcessing.isLoading ||
-            EmployeeInvoicesPaid.isLoading ||
-            OtherInvoicesPending.isLoading ||
-            OtherInvoicesProcessing.isLoading ||
-            OtherInvoicesPaid.isLoading ? (
+              ClientHiringReqQuery.isLoading ||
+              ClientInterviewSchedule.isLoading ||
+              ClientOnBoarding.isLoading ||
+              EmployeeInvoicesPending.isLoading ||
+              EmployeeInvoicesProcessing.isLoading ||
+              EmployeeInvoicesPaid.isLoading ||
+              OtherInvoicesPending.isLoading ||
+              OtherInvoicesProcessing.isLoading ||
+              OtherInvoicesPaid.isLoading ? (
               <ProfileEditSkeleton isClient={true} />
             ) : (
               <ClientProfileData
@@ -1155,69 +1185,69 @@ const AddEmployee = () => {
                                 {(role === 'super_admin' ||
                                   (role !== 'super_admin' &&
                                     client_perms?.[0]?.write)) && (
-                                  <Button
-                                    onClick={handleOpenHiringRequestModal}
-                                    variant="contained"
-                                    sx={{
-                                      my: { xs: '20px', md: 0 },
-                                      textTransform: 'math-auto',
-                                      color: '#fff',
-                                      background: '#029894',
-
-                                      '&:hover': {
+                                    <Button
+                                      onClick={handleOpenHiringRequestModal}
+                                      variant="contained"
+                                      sx={{
+                                        my: { xs: '20px', md: 0 },
+                                        textTransform: 'math-auto',
                                         color: '#fff',
                                         background: '#029894',
-                                      },
-                                    }}
-                                  >
-                                    {CLIENTPROFILE?.addNewRequest}
-                                  </Button>
-                                )}
+
+                                        '&:hover': {
+                                          color: '#fff',
+                                          background: '#029894',
+                                        },
+                                      }}
+                                    >
+                                      {CLIENTPROFILE?.addNewRequest}
+                                    </Button>
+                                  )}
                               </>
                             ) : currentTab?.nested.val === 1 ? (
                               <>
                                 {(role === 'super_admin' ||
                                   (role !== 'super_admin' &&
                                     client_perms?.[0]?.write)) && (
-                                  <Button
-                                    onClick={handleOpenAddInterviewModal}
-                                    variant="contained"
-                                    sx={{
-                                      my: { xs: '20px', md: 0 },
-                                      textTransform: 'math-auto',
-                                      color: '#fff',
-                                      background: '#029894',
-                                      '&:hover': {
+                                    <Button
+                                      onClick={handleOpenAddInterviewModal}
+                                      variant="contained"
+                                      sx={{
+                                        my: { xs: '20px', md: 0 },
+                                        textTransform: 'math-auto',
                                         color: '#fff',
                                         background: '#029894',
-                                      },
-                                    }}
-                                  >
-                                    {CLIENTPROFILE?.setNewInterview}
-                                  </Button>
-                                )}
+                                        '&:hover': {
+                                          color: '#fff',
+                                          background: '#029894',
+                                        },
+                                      }}
+                                    >
+                                      {CLIENTPROFILE?.setNewInterview}
+                                    </Button>
+                                  )}
                               </>
                             ) : (
                               <>
                                 {(role === 'super_admin' ||
                                   (role !== 'super_admin' &&
                                     client_perms?.[0]?.write)) && (
-                                  <Button
-                                    onClick={handleOpenAddOnboardModal}
-                                    variant="contained"
-                                    sx={{
-                                      my: { xs: '20px', md: 0 },
-                                      color: '#fff',
-                                      background: '#029894',
-                                      '&:hover': {
+                                    <Button
+                                      onClick={handleOpenAddOnboardModal}
+                                      variant="contained"
+                                      sx={{
+                                        my: { xs: '20px', md: 0 },
                                         color: '#fff',
                                         background: '#029894',
-                                      },
-                                    }}
-                                  >
-                                    {CLIENTPROFILE?.addOnboard}
-                                  </Button>
-                                )}
+                                        '&:hover': {
+                                          color: '#fff',
+                                          background: '#029894',
+                                        },
+                                      }}
+                                    >
+                                      {CLIENTPROFILE?.addOnboard}
+                                    </Button>
+                                  )}
                               </>
                             )}
                           </>
@@ -1227,26 +1257,26 @@ const AddEmployee = () => {
                               {(role === 'super_admin' ||
                                 (role !== 'super_admin' &&
                                   invoices_perms?.[0]?.write)) && (
-                                <Button
-                                  onClick={handleOpenUploadInvoiceModal}
-                                  disabled={
-                                    !ClientEmployeesAll.data ||
-                                    ClientEmployeesAll.data.length === 0
-                                  }
-                                  variant="contained"
-                                  sx={{
-                                    my: { xs: '20px', md: 0 },
-                                    color: '#fff',
-                                    background: '#029894',
-                                    '&:hover': {
+                                  <Button
+                                    onClick={handleOpenUploadInvoiceModal}
+                                    disabled={
+                                      !ClientEmployeesAll.data ||
+                                      ClientEmployeesAll.data.length === 0
+                                    }
+                                    variant="contained"
+                                    sx={{
+                                      my: { xs: '20px', md: 0 },
                                       color: '#fff',
                                       background: '#029894',
-                                    },
-                                  }}
-                                >
-                                  {CLIENTPROFILE?.uploadVoice}
-                                </Button>
-                              )}
+                                      '&:hover': {
+                                        color: '#fff',
+                                        background: '#029894',
+                                      },
+                                    }}
+                                  >
+                                    {CLIENTPROFILE?.uploadVoice}
+                                  </Button>
+                                )}
                             </>
                           ) : null
                         ) : currentTab?.label === 'Other invoices' ? (
@@ -1255,22 +1285,22 @@ const AddEmployee = () => {
                               {(role === 'super_admin' ||
                                 (role !== 'super_admin' &&
                                   invoices_perms?.[0]?.write)) && (
-                                <Button
-                                  onClick={handleOpenUploadOthInvoiceModal}
-                                  variant="contained"
-                                  sx={{
-                                    my: { xs: '20px', md: 0 },
-                                    color: '#fff',
-                                    background: '#029894',
-                                    '&:hover': {
+                                  <Button
+                                    onClick={handleOpenUploadOthInvoiceModal}
+                                    variant="contained"
+                                    sx={{
+                                      my: { xs: '20px', md: 0 },
                                       color: '#fff',
                                       background: '#029894',
-                                    },
-                                  }}
-                                >
-                                  {CLIENTPROFILE?.uploadVoice}
-                                </Button>
-                              )}
+                                      '&:hover': {
+                                        color: '#fff',
+                                        background: '#029894',
+                                      },
+                                    }}
+                                  >
+                                    {CLIENTPROFILE?.uploadVoice}
+                                  </Button>
+                                )}
                             </>
                           ) : null
                         ) : null}
@@ -1307,7 +1337,7 @@ const AddEmployee = () => {
                   deleteOnBoardingMutation.isPending ||
                   deleteEmpInvMutation.isPending ||
                   deleteOthInvMutation.isPending,
-                handleClickDownload: downloadInvoice,
+                handleClickDownload: downlaodfile,
               })}
             </Box>
           </>
