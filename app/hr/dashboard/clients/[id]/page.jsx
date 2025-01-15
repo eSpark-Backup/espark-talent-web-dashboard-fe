@@ -192,6 +192,7 @@ const AddEmployee = () => {
                   joining_date: dayjs(item?.joining_date).format(
                     'DD-MMMM-YYYY'
                   ),
+                  notice_period: `${item?.notice_period} ${item?.notice_period === 1 ? 'day' : 'days'}`,
                   dropdownStatus: true,
                   gender: genderType(item?.gender),
                   action: ['Delete'],
@@ -949,6 +950,7 @@ const AddEmployee = () => {
             hiring_start_date: dayjs(item.hiring_start_date).format('DD-MMMM-YYYY'),
             hiring_end_date: dayjs(item.hiring_end_date).format('DD-MMMM-YYYY'),
             jobDescription: 'Download',
+            notice_period: `${item?.notice_period} ${item?.notice_period === 1 ? 'day' : 'days'}`,
             comments: item?.comments && item.comments.length > 20 ? item.comments.substring(0, 20) + '…' : item.comments
           };
         }) || []

@@ -262,7 +262,7 @@ const PunchRequestDataView = ({
             type="submit"
             variant="outlined"
           >
-            Decline
+            Close
           </Button>
           <Button
             onClick={approveRequestAndClose}

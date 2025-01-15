@@ -335,7 +335,7 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
             {isPending && !isApprovedClicked ? (
               <CircularProgress size={26} color="secondary" />
             ) : (
-              'Decline'
+              'Close'
             )}
           </Button>
           <Button

@@ -183,7 +183,7 @@ const WFHRequestDataView = ({
             }}
             variant="contained"
           >
-            Decline
+            Close
           </Button>
           <Button
             onClick={approveRequestAndClose}

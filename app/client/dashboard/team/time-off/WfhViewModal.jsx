@@ -427,7 +427,7 @@ const WfhViewModal = ({
                     onClick={handleRejectRequestAndClose}
                     variant="outlined"
                   >
-                    Decline
+                    Close
                   </Button>
                   <Button
                     onClick={approveRequestAndClose}
@@ -558,7 +558,7 @@ const WfhViewModal = ({
                   onClick={handleClose}
                   variant="outlined"
                 >
-                  Decline
+                  Close
                 </Button>
                 <Button
                   onClick={handleClose}
