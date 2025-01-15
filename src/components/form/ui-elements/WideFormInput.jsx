@@ -32,9 +32,9 @@ const WideFormInput = ({
   setErrors,
   values,
   minDate,
+  maxDate,
   searchable,
   nested,
-  maxDate,
 }) => {
   const [isOpenDatePicker, setIsOpenDatePicker] = useState(false);
   const [isLoadingList, setIsLoadingList] = useState(false);
@@ -144,17 +144,17 @@ const WideFormInput = ({
     }
   }, [values]);
 
-  const endWithWeekend = start.add(
-    values.availableLeaves - 1 + countOfWeekends || 0,
-    'day'
-  );
+  // const endWithWeekend = start.add(
+  //   values.availableLeaves - 1 + countOfWeekends || 0,
+  //   'day'
+  // );
 
   const shouldDisableDate = (date) => {
     const day = date.day();
     if (title == 'End date') {
       return (
-        date.isBefore(start, 'day') ||
-        date.isAfter(endWithWeekend, 'day') ||
+        // date.isBefore(start, 'day') ||
+        // date.isAfter(endWithWeekend, 'day') ||
         day === 0 ||
         day === 6
       );

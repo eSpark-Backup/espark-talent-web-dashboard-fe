@@ -131,6 +131,7 @@ const WFHRequestForm = ({ handleClose }) => {
                 required,
                 hideSuffix,
                 minDate,
+                maxDate,
                 searchable,
               },
               formIndex
@@ -155,6 +156,7 @@ const WFHRequestForm = ({ handleClose }) => {
                   setErrors={setErrors}
                   values={values}
                   minDate={minDate}
+                  maxDate={maxDate}
                   searchable={searchable}
                 />
               );

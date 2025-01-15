@@ -35,34 +35,10 @@ const DatePickerBox = ({ dateKey, placeholder }) => {
             '@media (min-width: 900px) and (max-width: 1400px)': {
               width: '100%',
             },
-            // '& .MuiInputLabel-root': {
-            //   color: '#88888',
-            // },
           }}
         />
       </LocalizationProvider>
-      {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <DesktopDatePicker
-                  className="custom-date-time-picker"
-                  open={isOpenDatePicker}
-                  slots={{
-                    openPickerIcon: () => (
-                      <Image
-                        src={'/icons/CalendarOutline.svg'}
-                        width={20}
-                        height={20}
-                        alt="Date"
-                        onClick={() => setIsOpenDatePicker((ps) => !ps)}
-                      />
-                    ),
-                    actionBar: () => (
-                      <ActionBarComponent onClose={handleCloseDatePicker} />
-                    ),
-                  }}
-                  sx={{ width: '100%', borderRadius: '50%' }}
-                  defaultValue={dayjs('2022-04-17')}
-                />
-              </LocalizationProvider> */}
+      
     </>
   );
 };
