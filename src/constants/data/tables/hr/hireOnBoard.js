@@ -63,17 +63,17 @@ export const hiringRequestColumn = [
   },
   {
     title: 'Employment term',
-    flex: 1,
+    flex: 1.5,
     name: 'employment_term',
   },
   {
     title: 'Hiring starting date',
-    flex: 1,
+    flex: 1.5,
     name: 'hiring_start_date',
   },
   {
     title: 'Hiring ending date',
-    flex: 1,
+    flex: 1.5,
     name: 'hiring_end_date',
   },
   {

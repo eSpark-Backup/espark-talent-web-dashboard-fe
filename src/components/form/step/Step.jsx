@@ -8,6 +8,7 @@ import { SETTING } from '@/src/constants/SettingHr';
 import { useMutation } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import { usePathname } from 'next/navigation';
+import { Toast } from '../../Toast/Toast';
 
 const Step = ({
   handleGoPrev,
@@ -41,7 +42,6 @@ const Step = ({
   miniFontSize,
 }) => {
   const pathname = usePathname();
-  console.log(pathname, 'pathname');
 
   const { mutate, isPending } = useMutation({
     mutationFn: async (formVals) => {
@@ -53,6 +53,7 @@ const Step = ({
       return api[method](endpoint, formDataVals);
     },
     onSuccess: ({ data }) => {
+      Toast('success', 'Status updated successfully');
       console.log({ data });
       setCurrentStep?.(0);
       toast?.();

@@ -38,7 +38,6 @@ const DatePickerBox = ({ dateKey, placeholder }) => {
           }}
         />
       </LocalizationProvider>
-      
     </>
   );
 };

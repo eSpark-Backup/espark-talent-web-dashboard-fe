@@ -1,7 +1,6 @@
 import React, { forwardRef, useState } from 'react';
 import { Avatar, Box, Button, Grid, Typography } from '@mui/material';
 import Image from 'next/image';
-import AppDropdown from '@/src/components/dashboard/appDropdown';
 import { getCamelCapitalized } from '@/src/utils/stringModification';
 import dayjs from 'dayjs';
 import weekOfYear from 'dayjs/plugin/weekOfYear';
@@ -20,10 +19,11 @@ const LeaveViewModal = forwardRef(
     },
     ref
   ) => {
-    const [isLoadingTitles, setIsLoadingTitles] = useState(false);
+    // const [isLoadingTitles, setIsLoadingTitles] = useState(false);
     const [selectedLeaveType, setSelectedLeaveType] = useState(
       getCamelCapitalized(modalData?.leave_type)
     );
+    console.log(setSelectedLeaveType);
     const { homeData } = useSelector((state) => state?.emp?.home);
     const preetyTime = (time) => {
       if (dayjs(time).format('hh:mm A') === 'Invalid Date') {

@@ -15,12 +15,10 @@ const EditClient = () => {
   const [formData, setFormData] = useState({});
   const { currentClient } = useSelector((state) => state?.hr?.clients);
   const handleData = (name, value) => {
-    const { email, ...restData } = formData;
-    setFormData({ ...restData, [name]: value });
-    console.log(formData, email);
+    setFormData({ ...formData, [name]: value });
   };
   useEffect(() => {
-    console.log('formData', formData);
+    console.log('form', formData);
   }, [formData]);
   const getCountry = (country) => {
     return (
@@ -34,15 +32,15 @@ const EditClient = () => {
     ...currentClient,
     country: getCountry(currentClient?.country),
   };
-  
   const getFinalData = (values) => {
-    const { email, gender, ...rest } = values; // Destructure and exclude email
-    console.log({ values, final, email, gender });
+    const { email, gender, ...rest } = values;
+    console.log(email, gender);
     const final = {
       ...rest,
       country: values.country?.title,
       join_date: dayjs(values?.join_date).format('YYYY-MM-DD'),
     };
+    console.log({ values, final });
     return final;
   };
 

@@ -132,6 +132,7 @@ const WideFormInput = ({
   const start = dayjs(values.startDate);
   const end = start.add(values.availableLeaves || 0, 'day');
   const countOfWeekends = countWeekendsHandler(values.startDate, end.$d);
+  console.log(countOfWeekends);
 
   useEffect(() => {
     if (values.startDate && values.endDate) {
@@ -155,8 +156,7 @@ const WideFormInput = ({
       return (
         // date.isBefore(start, 'day') ||
         // date.isAfter(endWithWeekend, 'day') ||
-        day === 0 ||
-        day === 6
+        day === 0 || day === 6
       );
     }
     return day === 0 || day === 6;
