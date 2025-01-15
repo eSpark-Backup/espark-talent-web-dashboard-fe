@@ -30,7 +30,7 @@ export const contractSignedEmployeeColumn = [
   {
     title: 'Employee ID',
     flex: 2,
-    name: 'employee_id',
+    name: 'email',
   },
   {
     title: 'Date',
@@ -171,5 +171,51 @@ export const contractSignedNestEmployeeData = [
     download: 'Download',
     action: ['Delete'],
     actionStatus: true,
+  },
+];
+
+export const employeeContractColumn = [
+  {
+    title: 'Contract name',
+    flex: 2,
+    name: 'contract_name',
+  },
+  {
+    title: 'Client ID',
+    flex: 2,
+    name: 'email',
+  },
+  {
+    title: 'Date',
+    flex: 2,
+    name: 'date',
+  },
+  {
+    title: 'Download',
+    flex: 2,
+    name: 'download',
+  },
+];
+
+export const companyContractColumn = [
+  {
+    title: 'Contract name',
+    flex: 2,
+    name: 'contract_name',
+  },
+  {
+    title: 'Employee ID',
+    flex: 2,
+    name: 'employee_id',
+  },
+  {
+    title: 'Date',
+    flex: 2,
+    name: 'date',
+  },
+  {
+    title: 'Download',
+    flex: 2,
+    name: 'download',
   },
 ];

@@ -25,6 +25,7 @@ import {
 import { api } from '@/src/services/apiService';
 import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
 import { Toast } from '@/src/components/Toast/Toast';
+import dayjs from 'dayjs';
 
 const ContractSigned = () => {
   const dispatch = useDispatch();
@@ -45,7 +46,11 @@ const ContractSigned = () => {
           const newData =
             data === '' || !data.length
               ? []
-              : data?.map((item) => ({ ...item, download: 'Download' }));
+              : data?.map((item) => ({
+                  ...item,
+                  download: 'Download',
+                  date: dayjs(item?.date)?.format('DD-MMMM-YYYY'),
+                }));
           dispatch(fetchEmpCompanyContractsSuccess({ company: newData }));
           return data;
         })
@@ -70,7 +75,11 @@ const ContractSigned = () => {
           const newData =
             data === '' || !data.length
               ? []
-              : data?.map((item) => ({ ...item, download: 'Download' }));
+              : data?.map((item) => ({
+                  ...item,
+                  download: 'Download',
+                  date: dayjs(item?.date)?.format('DD-MMMM-YYYY'),
+                }));
 
           dispatch(fetchEmpClientContractSuccess({ offShores: newData }));
           return data;

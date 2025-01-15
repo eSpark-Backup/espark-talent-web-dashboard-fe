@@ -1,8 +1,8 @@
 'use client';
 import React, { useState } from 'react';
-import Image from 'next/image';
 import {
   Avatar,
+  Button,
   Grid,
   Menu,
   MenuItem,
@@ -173,15 +173,36 @@ const ClientView = ({ status, id, data, isLoading }) => {
           }}
         >
           <Box>
-            <Image
-              width={20}
-              height={20}
-              src={`/icons/ellipse.svg`}
-              style={{ cursor: 'pointer', maxWidth: '100%' }}
-              onClick={(e) => handleClick(e, eachItem.id)}
-              alt="ellipse"
-              aria-hidden={false}
-            />
+            <Button
+              disableRipple
+              sx={{
+                all: 'unset',
+                display: 'inline-block',
+                padding: 0,
+                margin: 0,
+                background: 'none',
+                border: 'none',
+                cursor: 'pointer',
+                textDecoration: 'none',
+                '&:hover': {
+                  backgroundColor: 'unset',
+                  boxShadow: 'none',
+                  textDecoration: 'none',
+                },
+                '&:focus': {
+                  outline: 'none',
+                },
+                width: '24px',
+                height: '24px',
+              }}
+              onClick={(e) => handleClick(e, eachItem?.id)}
+            >
+              <img
+                src={`/icons/ellipse.svg`}
+                style={{ width: '24px', height: '24px', cursor: 'pointer' }}
+                alt="ellipse"
+              />
+            </Button>
             <Menu
               id="basic-menu"
               anchorEl={anchorEl}

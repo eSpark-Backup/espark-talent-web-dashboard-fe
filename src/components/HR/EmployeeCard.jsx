@@ -1,6 +1,5 @@
 import React from 'react';
-import { Box, Grid, Menu, MenuItem, Typography } from '@mui/material';
-import Image from 'next/image';
+import { Box, Button, Grid, Menu, MenuItem, Typography } from '@mui/material';
 import { useRouter } from 'next/navigation';
 import { useSelector } from 'react-redux';
 
@@ -77,15 +76,40 @@ const EmployeeCard = ({
                 {(role === 'super_admin' ||
                   (role !== 'super_admin' && client_perms?.[0]?.write)) && (
                   <Box sx={{ width: '30px', position: 'absolute', right: 16 }}>
-                    <Image
-                      width={24}
-                      height={24}
-                      src={`/icons/ellipse.svg`}
-                      style={{ cursor: 'pointer' }}
-                      onClick={(e) => handleClick(e, eachItem.id)}
-                      alt="ellipse"
-                      aria-hidden={false}
-                    />
+                    <Button
+                      disableRipple
+                      sx={{
+                        all: 'unset',
+                        display: 'inline-block',
+                        padding: 0,
+                        margin: 0,
+                        background: 'none',
+                        border: 'none',
+                        cursor: 'pointer',
+                        textDecoration: 'none',
+                        '&:hover': {
+                          backgroundColor: 'unset',
+                          boxShadow: 'none',
+                          textDecoration: 'none',
+                        },
+                        '&:focus': {
+                          outline: 'none',
+                        },
+                        width: '24px',
+                        height: '24px',
+                      }}
+                      onClick={(e) => handleClick(e, eachItem?.id)}
+                    >
+                      <img
+                        src={`/icons/ellipse.svg`}
+                        style={{
+                          width: '24px',
+                          height: '24px',
+                          cursor: 'pointer',
+                        }}
+                        alt="ellipse"
+                      />
+                    </Button>
                     <>
                       <Menu
                         onClick={(e) => {

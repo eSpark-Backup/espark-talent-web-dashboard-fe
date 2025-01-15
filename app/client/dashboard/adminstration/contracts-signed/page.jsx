@@ -26,6 +26,7 @@ import {
 } from '@/src/redux/slices/clientSlices/contratSignedSlice';
 import { Toast } from '@/src/components/Toast/Toast';
 import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
+import dayjs from 'dayjs';
 
 const ContractSigned = () => {
   const { data, isLoading } = useSelector((state) => state?.client?.contract);
@@ -48,6 +49,7 @@ const ContractSigned = () => {
               : data?.map((item) => ({
                   ...item,
                   download: 'Download',
+                  date: dayjs(item?.date)?.format('DD-MMMM-YYYY'),
                 }));
           dispatch(fetchClientCompanyContractRequestSuccess(tempData));
           return data;
@@ -74,6 +76,7 @@ const ContractSigned = () => {
               : data?.map((item) => ({
                   ...item,
                   download: 'Download',
+                  date: dayjs(item?.date)?.format('DD-MMMM-YYYY'),
                 }));
           dispatch(fetchClientEmpContractRequestSuccess(tempData));
           return data;

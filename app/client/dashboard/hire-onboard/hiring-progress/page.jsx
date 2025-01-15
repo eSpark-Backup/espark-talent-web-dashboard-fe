@@ -131,6 +131,10 @@ const Dashboard = () => {
               ? []
               : data?.map((item) => ({
                   ...item,
+                  notice_period:
+                    item?.notice_period > 0
+                      ? `${item?.notice_period} ${item?.notice_period === 1 ? 'day' : 'days'}`
+                      : '-',
                   joining_date: dayjs(item?.joining_date)?.format(
                     'DD-MMMM-YYYY'
                   ),
