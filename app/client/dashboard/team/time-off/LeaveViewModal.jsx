@@ -132,17 +132,29 @@ const LeaveViewModal = forwardRef(
                   </Typography>
                 </Grid>
                 <Grid item xs={12} md={6.5} sx={{ width: '100%' }}>
-                  <AppDropdown
-                    disabled
-                    data={[]}
-                    setIsLoadingList={setIsLoadingTitles}
-                    isLoadingList={isLoadingTitles}
-                    selectedItem={selectedLeaveType}
-                    setSelectedItem={setSelectedLeaveType}
-                    placeHolder="Select Leave Type"
-                    padding="9px"
-                    mb={'0px'}
-                  />
+                  <Box
+                    display={'flex'}
+                    justifyContent={'space-between'}
+                    alignItems={'center'}
+                    sx={{
+                      border: 'solid 1px #ccc',
+                      p: '9px',
+                      borderRadius: '5px',
+                      background: '#f6f6f6',
+                    }}
+                  >
+                    <Typography
+                      sx={{
+                        color: '#595959',
+                        fontSize: '16px',
+                        fontStyle: 'normal',
+                        fontWeight: '500',
+                        lineHeight: 'normal',
+                      }}
+                    >
+                      {selectedLeaveType}
+                    </Typography>
+                  </Box>
                 </Grid>
               </Grid>
             </Box>
@@ -868,7 +880,7 @@ const LeaveViewModal = forwardRef(
                       onClick={handleClose}
                       variant="outlined"
                     >
-                      Decline
+                      Closed
                     </Button>
                   </Box>
                 ) : !isEmployee && modalData?.status === 'reject' ? (
