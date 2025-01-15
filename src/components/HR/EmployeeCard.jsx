@@ -84,6 +84,7 @@ const EmployeeCard = ({
                       style={{ cursor: 'pointer' }}
                       onClick={(e) => handleClick(e, eachItem.id)}
                       alt="ellipse"
+                      aria-hidden={false}
                     />
                     <>
                       <Menu

@@ -254,6 +254,7 @@ const Policies = () => {
               }}
             >
               <Button
+                aria-hidden={false}
                 sx={{
                   minWidth: '120px',
                   fontSize: '16px',

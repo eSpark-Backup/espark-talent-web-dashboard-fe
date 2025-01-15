@@ -180,6 +180,7 @@ const ClientView = ({ status, id, data, isLoading }) => {
               style={{ cursor: 'pointer', maxWidth: '100%' }}
               onClick={(e) => handleClick(e, eachItem.id)}
               alt="ellipse"
+              aria-hidden={false}
             />
             <Menu
               id="basic-menu"
