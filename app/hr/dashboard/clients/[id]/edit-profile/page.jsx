@@ -34,6 +34,7 @@ const EditClient = () => {
     ...currentClient,
     country: getCountry(currentClient?.country),
   };
+  
   const getFinalData = (values) => {
     const { email, gender, ...rest } = values; // Destructure and exclude email
     console.log({ values, final, email, gender });

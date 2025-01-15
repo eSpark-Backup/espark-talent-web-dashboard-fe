@@ -12,7 +12,7 @@ import policiesSlice from './policy';
 const persistConfig = {
   key: 'home',
   storage,
-  whitelist: ['home'],
+  whitelist: ['home', 'clients', 'employees'],
 };
 
 const hrReducer = persistReducer(
