@@ -19,9 +19,7 @@ const ClientEmployees = ({ fromClient, openModal }) => {
   const { all } = useSelector(
     (state) => state?.hr?.clients?.currentClientData?.employees
   );
-  const { isLoadingClientEmployees } = useSelector(
-    (state) => state?.hr?.clients
-  );
+
   const dispatch = useDispatch();
   const { client_perms } = useSelector((state) => state?.hr?.home?.homeData);
   const { role } = useSelector((state) => state?.auth?.userData);
@@ -95,8 +93,10 @@ const ClientEmployees = ({ fromClient, openModal }) => {
             variant="scrollable"
             sx={{ width: { xs: '100%', md: '80%' } }}
             TabIndicatorProps={{ style: { backgroundColor: '#068987' } }}
+            disableRipple={true}
           >
             <Tab
+              disableRipple={true}
               value="one"
               label="All"
               wrapped
@@ -108,6 +108,7 @@ const ClientEmployees = ({ fromClient, openModal }) => {
               }}
             />
             <Tab
+              disableRipple={true}
               value="two"
               label="Active employees"
               sx={{
@@ -118,6 +119,7 @@ const ClientEmployees = ({ fromClient, openModal }) => {
               }}
             />
             <Tab
+              disableRipple={true}
               value="three"
               label="Terminated employees"
               sx={{
@@ -150,9 +152,7 @@ const ClientEmployees = ({ fromClient, openModal }) => {
             </Button>
           )}
         </Box>
-        {ClientEmployeesAll.isLoading || isLoadingClientEmployees ? (
-          'Loading...'
-        ) : (
+        {
           <>
             {value === 'one' ? (
               <EmployeeStatus
@@ -186,7 +186,7 @@ const ClientEmployees = ({ fromClient, openModal }) => {
               />
             )}
           </>
-        )}
+        }
       </>
     );
   return (
@@ -234,6 +234,7 @@ const ClientEmployees = ({ fromClient, openModal }) => {
           }}
         >
           <Tabs
+            disableRipple={true}
             value={value}
             onChange={handleChange}
             aria-label="wrapped label tabs example"

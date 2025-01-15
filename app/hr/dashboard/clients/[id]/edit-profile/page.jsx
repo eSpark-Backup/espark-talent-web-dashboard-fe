@@ -43,7 +43,6 @@ const EditClient = () => {
     console.log({ values, final });
     return final;
   };
-
   return (
     <Box>
       <Breadcrumb root="clients" title="Clients /" currentPage="Edit client" />

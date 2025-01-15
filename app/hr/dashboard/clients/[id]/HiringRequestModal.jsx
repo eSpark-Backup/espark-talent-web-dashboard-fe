@@ -177,7 +177,7 @@ const HiringRequestModal = ({ open, onClose }) => {
           <Grid
             container
             sx={{
-              padding: { xs: '10px 20px', lg: '41px 100px' },
+              padding: { xs: '10px 20px', lg: '41px 80px' },
             }}
           >
             {hringRequestForm?.map(

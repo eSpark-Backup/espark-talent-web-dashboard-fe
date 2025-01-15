@@ -35,7 +35,7 @@ export const interviewScheduleColumn = [
     name: 'country',
   },
   {
-    title: 'Status',
+    title: 'Status ',
     flex: 1,
     name: 'status',
   },

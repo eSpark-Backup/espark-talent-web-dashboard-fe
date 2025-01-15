@@ -1332,7 +1332,7 @@ const AddEmployee = () => {
                 isOpen: isOpen,
                 handleOpen,
                 handleClose,
-                minWidth: '1450px',
+                minWidth: '1300px',
                 handleClickActionDelete: handleOpen,
                 handleConfirmDelete: handleConfirmDeleteHiringReq,
                 updateStatus: handleConfirmUpdatePayStatus,
