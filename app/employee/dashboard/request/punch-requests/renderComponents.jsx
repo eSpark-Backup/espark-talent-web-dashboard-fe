@@ -2,7 +2,6 @@ import { Box, Typography } from '@mui/material';
 import React from 'react';
 
 import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
-// import AppTable from '@/src/components/dashboard/appTable';
 import { filterTableRowsWRTTab } from '@/src/utils/table';
 import AppTable from '@/src/components/appTableNew/AppTable';
 

@@ -54,10 +54,6 @@ const Notification = () => {
                           '&.Mui-checked + .MuiSwitch-track': {
                             backgroundColor: '#198f51 !important',
                           },
-                          //   '& .MuiSwitch-thumb': {
-                          //     width: 25,
-                          //     height: 25,
-                          //       },
                         },
                       }}
                     />

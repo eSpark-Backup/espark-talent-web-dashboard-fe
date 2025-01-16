@@ -19,7 +19,6 @@ const Submit = () => {
           type="submit"
           sx={{
             fontSize: '16px',
-            // width: '88%',
             padding: '10px',
             fontWeight: 400,
             background: '#fff',

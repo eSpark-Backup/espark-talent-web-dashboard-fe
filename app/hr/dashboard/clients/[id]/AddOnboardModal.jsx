@@ -47,7 +47,6 @@ const AddOnboardModal = ({ open, onClose }) => {
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to post data');
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const {
@@ -72,7 +71,6 @@ const AddOnboardModal = ({ open, onClose }) => {
         joining_date: dayjs(formValues.joining_date).format('YYYY-MM-DD'),
         client_id: email,
       };
-      console.log({ finalData });
       setOnBoardFormValues(finalData);
       mutate(finalData);
       handleCloseModal();
@@ -170,8 +168,8 @@ const AddOnboardModal = ({ open, onClose }) => {
                 },
                 formIndex
               ) => (
-                <>
-                  <Grid item xs={12} lg={5} key={formIndex}>
+                <React.Fragment key={formIndex}>
+                  <Grid item xs={12} lg={5}>
                     <FormInput
                       title={title}
                       placeholder={placeholder}
@@ -203,7 +201,7 @@ const AddOnboardModal = ({ open, onClose }) => {
                     />
                   </Grid>
                   {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>}
-                </>
+                </React.Fragment>
               )
             )}
             <Grid item p={'0 10px'} xs={12}>

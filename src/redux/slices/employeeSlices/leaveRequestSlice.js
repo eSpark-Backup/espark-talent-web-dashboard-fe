@@ -38,7 +38,6 @@ const leaveRequestSlice = createSlice({
       state.isLoading = true;
     },
     createEmpLeaveRequestSuccess: (state, action) => {
-      // const tempData = state?.data?.requests.filter((el) => el.id !== action.payload)
       const tempData = state?.data?.requests;
       tempData.push(action.payload);
       state.data.requests = tempData;

@@ -31,9 +31,8 @@ const EditBenefitForm = ({ onClose, open, selectedId }) => {
         data
       );
     },
-    onSuccess: async ({ data }) => {
+    onSuccess: async () => {
       Toast('success', 'Data updated successfully');
-      console.log({ data, values });
       const reformedData = {
         card_id: values.card_id,
         description: values.description,
@@ -44,7 +43,6 @@ const EditBenefitForm = ({ onClose, open, selectedId }) => {
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to update data');
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
 
@@ -67,7 +65,6 @@ const EditBenefitForm = ({ onClose, open, selectedId }) => {
       const reformedData = {
         ...filteredFormValues,
       };
-      console.log({ reformedData });
       mutate(reformedData);
     },
     validateOnChange: false,
@@ -166,8 +163,8 @@ const EditBenefitForm = ({ onClose, open, selectedId }) => {
                 },
                 formIndex
               ) => (
-                <>
-                  <Grid item xs={12} lg={5} key={formIndex}>
+                <React.Fragment key={formIndex}>
+                  <Grid item xs={12} lg={5}>
                     <FormInput
                       disabled={
                         name === 'card_id' || name === 'description'
@@ -199,7 +196,7 @@ const EditBenefitForm = ({ onClose, open, selectedId }) => {
                     />
                   </Grid>
                   {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>}
-                </>
+                </React.Fragment>
               )
             )}
             <Grid item p={'0 10px'} xs={12}>

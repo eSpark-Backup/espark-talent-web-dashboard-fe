@@ -40,7 +40,6 @@ const PasswordSection = ({ User_Password, handleData }) => {
                 fontSize: '14px',
                 color: '#666',
                 width: '300px',
-                // height: 'auto',
                 '@media (max-width: 562px)': {
                   width: '100%',
                 },

@@ -56,8 +56,6 @@ const ContractSigned = () => {
         })
         .catch((err) => {
           Toast('error', err.message || 'Failed to get data');
-          console.log({ err });
-          console.log({ isLoading });
           dispatch(fetchEmpContractsFailed());
         });
     },
@@ -86,26 +84,11 @@ const ContractSigned = () => {
         })
         .catch((err) => {
           Toast('error', err.message || 'Failed to get data');
-          console.log({ err });
           dispatch(fetchEmpContractsFailed());
         });
     },
   });
-
-  // useEffect(() => {
-  //   const fetchDataAsync = async () => {
-  //     try {
-  //       await fetchDataFake();
-  //     } finally {
-  //       setIsLoading(false);
-  //     }
-  //   };
-
-  //   fetchDataAsync();
-  // }, []);
-  // console.log(empData, setSearch);
   const handleChange = (event, newValue) => {
-    console.log({ newValue });
     changeTab({
       isSingular: true,
       tabs: empTabs,
@@ -136,15 +119,10 @@ const ContractSigned = () => {
       document.body.appendChild(link);
       link.click();
       link.parentNode.removeChild(link);
-
-      // dispatchFunction?.(data);
       Toast('success', 'File downloaded');
     },
     onError: (err) => {
       Toast('error', err.message || 'File not downloaded');
-      // dispatch(getTimeSheetDataFailed());
-      console.log({ err });
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const downloadContract = (id) => {

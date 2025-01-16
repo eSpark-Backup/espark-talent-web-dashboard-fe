@@ -82,7 +82,6 @@ const FormInput = ({
     }
     setErrors({ ...tempErrors });
     setFieldValue(name, item);
-    // handleData(name, item);
   };
   const handleChangeInput = (field, value) => {
     const tempErrors = { ...errors };
@@ -97,12 +96,8 @@ const FormInput = ({
         delete tempErrors[name];
       }
     }
-    // else {
-    //   tempErrors[name] = 'Required';
-    // }
     setErrors({ ...tempErrors });
     setFieldValue?.(field, value);
-    // handleData(field, value);
   };
 
   const handleChangeFileInput = (field, value) => {
@@ -112,7 +107,6 @@ const FormInput = ({
     }
     setErrors({ ...tempErrors });
     setFieldValue?.(field, value);
-    // handleData(field, value);
   };
 
   const handleClickCounter = (type, name, value, min) => {
@@ -123,7 +117,6 @@ const FormInput = ({
             break;
           default:
             setFieldValue(name, value - 1);
-            // handleData(name, value - 1);
             break;
         }
         break;
@@ -134,7 +127,6 @@ const FormInput = ({
             break;
           default:
             setFieldValue(name, value + 1);
-            // handleData(name, value + 1);
             break;
         }
         break;
@@ -241,7 +233,7 @@ const FormInput = ({
           {searchable ? (
             <AppSearchableDropdown
               data={countries || options}
-              selectedItem={value}
+              selectedItem={value || ''}
               setSelectedItem={handleSelectItem}
               setIsLoadingList={setIsLoadingList}
               isLoadingList={isLoadingList}
@@ -257,7 +249,7 @@ const FormInput = ({
               handleJobTitleSelect={handleJobTitleSelect}
               data={options}
               placeHolder={placeholder}
-              selectedItem={value}
+              selectedItem={value || ''}
               setSelectedItem={handleSelectItem}
               isLoadingList={isLoadingList}
               setIsLoadingList={setIsLoadingList}
@@ -463,11 +455,6 @@ const FormInput = ({
                 },
               }}
               value={value}
-              // value={dayjs('2022-04-17T22:00')}
-              // value={dayjs('2000-01-01T22:00')}
-              // value={dayjs(convert12to24(value))}
-              // value={'10:00 PM'}
-              // defaultValue={new Date()}
               onChange={(e) => {
                 handleChangeInput(name, `${e?.$d}`);
               }}
@@ -539,11 +526,6 @@ const FormInput = ({
                           delete tempErrors[name];
                         }
                         setErrors({ ...tempErrors });
-
-                        // handleChangeInput(
-                        //   `${name}.${field.name}`,
-                        //   e?.target?.value
-                        // );
                       }}
                       value={value?.[field?.name]}
                       name={`${name}.${field.name}`}
@@ -732,7 +714,6 @@ const FormInput = ({
             sx={{
               width: '30px',
               height: '30px',
-              // background: value > max || 10 ? '#888888' : '#068987',
               background: value < max ? '#068987' : '#888888',
               borderRadius: '5px',
               display: 'flex',
@@ -929,7 +910,6 @@ const FormInput = ({
                 </label>
               )}
             </Box>
-            {/* {imageUrl && <img src={imageUrl} />} */}
             {suffixIconOutside && (
               <Box
                 src={`/icons/${suffixIconOutside}.svg`}

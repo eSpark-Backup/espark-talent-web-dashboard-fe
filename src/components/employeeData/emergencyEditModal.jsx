@@ -27,15 +27,13 @@ const EditEmergencyModal = ({ onClose, handleEmergencyModal, data }) => {
     mutationFn: async (data) => {
       return api.updateJSONData(`${HR_UPDATE_EMP_INFO}?id=${params.id}`, data);
     },
-    onSuccess: async ({ data }) => {
+    onSuccess: async () => {
       Toast('success', 'Data updated successfully');
-      console.log({ data });
       onClose();
       await queryClient.invalidateQueries('employee-profile');
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to update data');
-      console.log({ err: err.message, name: err.name, stack: err.stack });
       onClose();
     },
   });
@@ -72,7 +70,6 @@ const EditEmergencyModal = ({ onClose, handleEmergencyModal, data }) => {
     validationSchema: emergency_contact_schema,
     enableReinitialize: true,
     onSubmit: (formValues) => {
-      console.log({ formValues });
       handleUpdate(formValues);
     },
     validateOnChange: false,
@@ -80,7 +77,6 @@ const EditEmergencyModal = ({ onClose, handleEmergencyModal, data }) => {
   });
   const [secPhoneList, setSecPhoneList] = useState([]);
   const handleClickTogglePhoneNumber = (name, icon) => {
-    console.log({ name, icon });
     if (icon === 'plus') {
       if (secPhoneList.includes(`${name}2`)) return;
       setSecPhoneList((prevState) => {

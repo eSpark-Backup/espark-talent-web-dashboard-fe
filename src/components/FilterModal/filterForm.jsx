@@ -19,6 +19,7 @@ import { convertDateFormat, getAttendenceShortHand } from '@/src/utils/helpers';
 import { filterModalSchema } from '../form/schemas/filterModal';
 import { onCheckDateValidation } from '@/src/utils/onCheckDateValidation';
 import { calculateExpectedTime } from '@/src/utils/calculateExpectedTime';
+import { Toast } from '../Toast/Toast';
 
 const FilterFormModal = ({
   open,
@@ -31,12 +32,6 @@ const FilterFormModal = ({
   const { currentWorkSpace } = useSelector((state) => state?.emp?.home);
   const dispatch = useDispatch();
   const queryClient = useQueryClient();
-  // function isWithinRange(timeStr, startTimeStr, endTimeStr) {
-  //   const time = new Date('1970-01-01 ' + timeStr);
-  //   const startTime = new Date('1970-01-01 ' + startTimeStr);
-  //   const endTime = new Date('1970-01-01 ' + endTimeStr);
-  //   return time >= startTime && time <= endTime;
-  // }
   const { mutate } = useMutation({
     mutationFn: async (args) => {
       dispatch(getTimeSheetData());
@@ -59,23 +54,6 @@ const FilterFormModal = ({
           filterFormValues?.checkOut
         );
       } else {
-        // const newData =
-        //   data === '' || !Object.keys(data?.time_sheet)?.length
-        //     ? []
-        //     : Object.entries(data?.time_sheet)?.map((item) => ({
-        //         ...item[1],
-        //         day: dayjs(convertDateFormat(item[0])).format('dddd'),
-        //         status: Object.entries(item[1]?.status)
-        //           ?.map((st) => {
-        //             if (!st[1]) return;
-        //             else return getAttendenceShortHand(st[0]);
-        //           })
-        //           .filter((el) => el !== undefined),
-        //         date: convertDateFormat(item[0]),
-        //         action: ['View'],
-        //         attendenceShortHand: true,
-        //         actionStatus: true,
-        //       }));
         const newData1 =
           data === '' || !Object.keys(data?.time_sheet)?.length
             ? []
@@ -154,8 +132,7 @@ const FilterFormModal = ({
     },
     onError: (err) => {
       dispatch(getTimeSheetDataFailed());
-      console.log({ err });
-      console.log({ err: err.message, name: err.name, stack: err.stack });
+      Toast('error', err.message || 'Failed to get data');
     },
   });
   const resetMutation = useMutation({
@@ -180,23 +157,6 @@ const FilterFormModal = ({
         );
         queryClient.invalidateQueries(['']);
       } else {
-        // const newData =
-        //   data === '' || !Object.keys(data?.time_sheet)?.length
-        //     ? []
-        //     : Object.entries(data?.time_sheet)?.map((item) => ({
-        //         ...item[1],
-        //         day: dayjs(convertDateFormat(item[0])).format('dddd'),
-        //         status: Object.entries(item[1]?.status)
-        //           ?.map((st) => {
-        //             if (!st[1]) return;
-        //             else return getAttendenceShortHand(st[0]);
-        //           })
-        //           .filter((el) => el !== undefined),
-        //         date: convertDateFormat(item[0]),
-        //         action: ['View'],
-        //         attendenceShortHand: true,
-        //         actionStatus: true,
-        //       }));
         const newData1 =
           data === '' || !Object.keys(data?.time_sheet)?.length
             ? []
@@ -267,8 +227,7 @@ const FilterFormModal = ({
     },
     onError: (err) => {
       dispatch(getTimeSheetDataFailed());
-      console.log({ err });
-      console.log({ err: err.message, name: err.name, stack: err.stack });
+      Toast('error', err.message || 'Failed to get data');
     },
   });
   const {
@@ -427,8 +386,6 @@ const FilterFormModal = ({
                       name,
                       nested,
                       fieldsName,
-
-                      // searchable,
                     },
                     formIndex
                   ) => (
@@ -452,7 +409,6 @@ const FilterFormModal = ({
                           setErrors={setErrors}
                           values={values}
                           nested={nested}
-                          // searchable={searchable}
                           sm={12}
                           md={12}
                           lg={12}

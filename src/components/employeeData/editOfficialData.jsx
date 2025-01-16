@@ -39,33 +39,6 @@ const EditOfficialModal = ({ onClose, handleEditProfileModal, data }) => {
 
   const queryClient = useQueryClient();
 
-  // const { mutate, isPending } = useMutation({
-  //   mutationFn: async (data) => {
-  //     const updatedData = {
-  //       ...data,
-  //       dob: dayjs(data?.dob).format('YYYY-MM-DD'),
-  //       joining_date: dayjs(data?.joining_date).format('YYYY-MM-DD'),
-  //       starting_date: dayjs(data?.starting_date).format('YYYY-MM-DD'),
-  //       ending_date: dayjs(data?.ending_date).format('YYYY-MM-DD'),
-  //     };
-  //     return api.updateJSONData(
-  //       `${HR_UPDATE_EMP_INFO}?id=${params.id}`,
-  //       updatedData
-  //     );
-  //   },
-  //   onSuccess: async ({ data }) => {
-  //     Toast('success', 'Data updated successfully');
-  //     console.log({ data });
-  //     onClose();
-  //     await queryClient.invalidateQueries('employee-profile');
-  //   },
-  //   onError: (err) => {
-  //     Toast('error', err.message || 'Failed to update data');
-  //     console.log({ err: err.message, name: err.name, stack: err.stack });
-  //     onClose();
-  //   },
-  // });
-
   const { mutate, isPending } = useMutation({
     mutationFn: async (data) => {
       // Prepare the updated data object
@@ -77,7 +50,6 @@ const EditOfficialModal = ({ onClose, handleEditProfileModal, data }) => {
 
       // Dynamically exclude `starting_date` and `ending_date` if job status is Part-Time or Permanent
       if (data.status === 'Part-Time' || data.status === 'Permanent') {
-        console.log('Excluding starting_date and ending_date'); // Debugging log
         delete updatedData.starting_date;
         delete updatedData.ending_date;
       } else {
@@ -86,22 +58,18 @@ const EditOfficialModal = ({ onClose, handleEditProfileModal, data }) => {
         );
         updatedData.ending_date = dayjs(data?.ending_date).format('YYYY-MM-DD');
       }
-
-      console.log('Final Payload:', updatedData); // Debugging log
       return api.updateJSONData(
         `${HR_UPDATE_EMP_INFO}?id=${params.id}`,
         updatedData
       );
     },
-    onSuccess: async ({ data }) => {
+    onSuccess: async () => {
       Toast('success', 'Data updated successfully');
-      console.log({ data });
       onClose();
       await queryClient.invalidateQueries('employee-profile');
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to update data');
-      console.log({ err: err.message, name: err.name, stack: err.stack });
       onClose();
     },
   });
@@ -131,17 +99,14 @@ const EditOfficialModal = ({ onClose, handleEditProfileModal, data }) => {
     validationSchema: employeeOfficialDataSchema,
     enableReinitialize: true,
     onSubmit: (formValues) => {
-      console.log(formValues, 'formValues');
       const cleanedFormValues = { ...formValues };
       if (
         formValues.job_status === 'Part-Time' ||
         formValues.job_status === 'Permanent'
       ) {
-        console.log('Cleaning up form values'); // Debugging log
         delete cleanedFormValues.starting_date;
         delete cleanedFormValues.ending_date;
       }
-      console.log('Cleaned Form Values:', cleanedFormValues); // Debugging log
       handleUpdate(cleanedFormValues);
     },
     validateOnChange: false,
@@ -243,52 +208,50 @@ const EditOfficialModal = ({ onClose, handleEditProfileModal, data }) => {
                 },
                 formIndex
               ) => (
-                <>
-                  <Grid item xs={12} md={5.5} key={formIndex}>
-                    <FormInput
-                      title={title}
-                      placeholder={placeholder}
-                      errorText={errorText}
-                      prefixIcon={prefixIcon}
-                      type={type}
-                      suffixIcon={suffixIcon}
-                      options={options}
-                      name={name}
-                      selectWithType={selectWithType}
-                      setFieldValue={setFieldValue}
-                      value={name === 'email' ? data?.email : values[name]}
-                      error={errors[name]}
-                      touched={touched}
-                      setFieldError={setFieldError}
-                      errors={errors}
-                      setErrors={setErrors}
-                      values={values}
-                      disabled={
-                        name === 'email' ||
-                        (name === 'starting_date' &&
-                          (values.job_status === 'Part-Time' ||
-                            values.job_status === 'Permanent')) ||
-                        (name === 'ending_date' &&
-                          (values.job_status === 'Part-Time' ||
-                            values.job_status === 'Permanent'))
-                          ? true
-                          : false
-                      }
-                      nested={nested}
-                      xs={12}
-                      sm={12}
-                      md={12}
-                      lg={12}
-                      fields={fields}
-                      handleJobTitleClick={(event) =>
-                        handleJobTitleClick(event, name)
-                      }
-                      handleJobTitleSelect={(event) =>
-                        handleJobTitleSelect(event, name)
-                      }
-                    />
-                  </Grid>
-                </>
+                <Grid item xs={12} md={5.5} key={formIndex}>
+                  <FormInput
+                    title={title}
+                    placeholder={placeholder}
+                    errorText={errorText}
+                    prefixIcon={prefixIcon}
+                    type={type}
+                    suffixIcon={suffixIcon}
+                    options={options}
+                    name={name}
+                    selectWithType={selectWithType}
+                    setFieldValue={setFieldValue}
+                    value={name === 'email' ? data?.email : values[name]}
+                    error={errors[name]}
+                    touched={touched}
+                    setFieldError={setFieldError}
+                    errors={errors}
+                    setErrors={setErrors}
+                    values={values}
+                    disabled={
+                      name === 'email' ||
+                      (name === 'starting_date' &&
+                        (values.job_status === 'Part-Time' ||
+                          values.job_status === 'Permanent')) ||
+                      (name === 'ending_date' &&
+                        (values.job_status === 'Part-Time' ||
+                          values.job_status === 'Permanent'))
+                        ? true
+                        : false
+                    }
+                    nested={nested}
+                    xs={12}
+                    sm={12}
+                    md={12}
+                    lg={12}
+                    fields={fields}
+                    handleJobTitleClick={(event) =>
+                      handleJobTitleClick(event, name)
+                    }
+                    handleJobTitleSelect={(event) =>
+                      handleJobTitleSelect(event, name)
+                    }
+                  />
+                </Grid>
               )
             )}
             <Grid item p={'0 10px'} xs={12}>

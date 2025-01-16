@@ -51,15 +51,13 @@ const EditPersonalModal = ({ onClose, handleEditProfileModal, data }) => {
         updatedData
       );
     },
-    onSuccess: async ({ data }) => {
+    onSuccess: async () => {
       Toast('success', 'Data updated successfully');
-      console.log({ data });
       onClose();
       await queryClient.invalidateQueries('employee-profile');
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to update data');
-      console.log({ err: err.message, name: err.name, stack: err.stack });
       onClose();
     },
   });
@@ -88,7 +86,6 @@ const EditPersonalModal = ({ onClose, handleEditProfileModal, data }) => {
     validationSchema: employeePersonalDataSchema,
     enableReinitialize: true,
     onSubmit: (formValues) => {
-      console.log({ formValues });
       handleUpdate({
         ...formValues,
       });
@@ -191,41 +188,39 @@ const EditPersonalModal = ({ onClose, handleEditProfileModal, data }) => {
                 },
                 formIndex
               ) => (
-                <>
-                  <Grid item xs={12} md={5.5} key={formIndex}>
-                    <FormInput
-                      title={title}
-                      placeholder={placeholder}
-                      errorText={errorText}
-                      prefixIcon={prefixIcon}
-                      type={type}
-                      suffixIcon={suffixIcon}
-                      options={options}
-                      name={name}
-                      selectWithType={selectWithType}
-                      setFieldValue={setFieldValue}
-                      value={values[name]}
-                      error={errors[name]}
-                      touched={touched}
-                      setFieldError={setFieldError}
-                      errors={errors}
-                      setErrors={setErrors}
-                      values={values}
-                      nested={nested}
-                      xs={12}
-                      sm={12}
-                      md={12}
-                      lg={12}
-                      fields={fields}
-                      handleJobTitleClick={(event) =>
-                        handleJobTitleClick(event, name)
-                      }
-                      handleJobTitleSelect={(event) =>
-                        handleJobTitleSelect(event, name)
-                      }
-                    />
-                  </Grid>
-                </>
+                <Grid item xs={12} md={5.5} key={formIndex}>
+                  <FormInput
+                    title={title}
+                    placeholder={placeholder}
+                    errorText={errorText}
+                    prefixIcon={prefixIcon}
+                    type={type}
+                    suffixIcon={suffixIcon}
+                    options={options}
+                    name={name}
+                    selectWithType={selectWithType}
+                    setFieldValue={setFieldValue}
+                    value={values[name]}
+                    error={errors[name]}
+                    touched={touched}
+                    setFieldError={setFieldError}
+                    errors={errors}
+                    setErrors={setErrors}
+                    values={values}
+                    nested={nested}
+                    xs={12}
+                    sm={12}
+                    md={12}
+                    lg={12}
+                    fields={fields}
+                    handleJobTitleClick={(event) =>
+                      handleJobTitleClick(event, name)
+                    }
+                    handleJobTitleSelect={(event) =>
+                      handleJobTitleSelect(event, name)
+                    }
+                  />
+                </Grid>
               )
             )}
             <Grid item p={'0 10px'} xs={12}>

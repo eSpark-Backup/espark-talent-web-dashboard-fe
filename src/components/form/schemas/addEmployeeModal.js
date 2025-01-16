@@ -2,7 +2,6 @@ import * as Yup from 'yup';
 import { dojValidation } from './validations';
 
 export const addEmployeModalFormSchema = Yup.object({
-  // employeeName: nameValidation,
   salary: Yup.string().required('Salary is required'),
   job_title: Yup.string()
     .required('Job title is required')

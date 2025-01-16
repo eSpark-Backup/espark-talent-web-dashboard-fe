@@ -36,7 +36,6 @@ const AppSearchableDropdown = ({
     const timeoutId = setTimeout(() => {
       filterDataByKeyword(tempData, searchItem.trim() || '', setListData);
       setIsLoadingList(false);
-      console.log({ searchItem });
     }, 500);
     return () => {
       clearTimeout(timeoutId);
@@ -123,7 +122,6 @@ const AppSearchableDropdown = ({
             border: `solid 1px ${error ? 'red' : '#ccc'}`,
             borderTopLeftRadius: '5px',
             borderTopRightRadius: '5px',
-            // borderRadius:'5px',
             borderBottomLeftRadius: !isOpenedDropdown && '5px',
             borderBottomRightRadius: !isOpenedDropdown && '5px',
             width: width || '400px',
@@ -189,11 +187,8 @@ const AppSearchableDropdown = ({
               border: 'solid 1px #ccc',
               borderRadius: '5px',
               overflow: 'hidden',
-              // borderBottomLeftRadius: '5px',
-              // borderBottomRightRadius: '5px',
               borderTopLeftRadius: !isOpenedDropdown && '5px',
               borderTopRightRadius: !isOpenedDropdown && '5px',
-              // borderTop: 'none',
               position: 'absolute',
               width: '100%',
               background: '#fff',
@@ -280,7 +275,6 @@ const AppSearchableDropdown = ({
                             src={item?.flag}
                             sx={{
                               width: '35px',
-                              // height: '20px',
                               mr: '20px',
                             }}
                           />

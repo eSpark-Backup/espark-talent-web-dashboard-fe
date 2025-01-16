@@ -57,8 +57,6 @@ const Page = () => {
         })
         .catch((err) => {
           Toast('error', err.message || 'Failed to get data');
-          // dispatch(fetchClientPoliciesRequestFailed());
-          console.log({ err });
         });
     },
   });
@@ -66,18 +64,16 @@ const Page = () => {
   const clientInfoMutation = useMutation({
     mutationFn: async (id) => {
       dispatch(getCurrentClientData());
-      console.log({ mutationID: id });
       return api.getData(`${HR_GET_CLIENT_PROFILE}?id=${id}`);
     },
     onSuccess: ({ data }) => {
-      console.log({ selectedClient, data });
       dispatch(getCurrentClientDataSuccess(data));
       router.push(`/hr/dashboard/clients/${selectedClient}`);
       return data;
     },
     onError: (err) => {
+      Toast('error', err.message || 'Failed to update data');
       dispatch(getCurrentClientDataFailed());
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
 
@@ -154,7 +150,7 @@ const Page = () => {
           </Grid>
           <Grid item xs={12} md={6} lg={3}>
             <AppDropdown
-              selectedItem={status}
+              selectedItem={status || ''}
               setSelectedItem={setStatus}
               lg={12}
               type="select"

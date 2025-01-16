@@ -118,7 +118,6 @@ const EmployeeCard = ({
                         id="demo-positioned-menu"
                         aria-labelledby="demo-positioned-button"
                         anchorEl={anchorEl}
-                        // open={open}
                         open={eachItem.id === open}
                         onClose={handleClose}
                         sx={{ mt: 1 }}

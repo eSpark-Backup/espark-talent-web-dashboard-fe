@@ -11,7 +11,6 @@ import { marKCheckin } from '@/src/redux/slices/employeeSlices/empHomeSlice';
 
 const MarkCheckIn = () => {
   const dispatch = useDispatch();
-  // const [time, setTime] = useState(null);
   const { currentWorkSpace } = useSelector((state) => state?.emp?.home);
   const { homeData } = useSelector((state) => state?.emp?.home);
   const { mutate } = useMutation({
@@ -19,19 +18,16 @@ const MarkCheckIn = () => {
       const url = `${EMP_HOME}?workspace=${currentWorkSpace?.email}&check_in=${data.check_in}`;
       return api.patchData(url);
     },
-    onSuccess: ({ data }) => {
-      console.log({ data });
+    onSuccess: () => {
       Toast('success', 'Data updated successfully');
       dispatch(
         marKCheckin({
           check_in: dayjs().format('hh:mm:ss A'),
         })
       );
-      // setTime(null);
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to update data');
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
 
@@ -40,35 +36,12 @@ const MarkCheckIn = () => {
       return;
     } else {
       const data = {
-        // check_in: dayjs().format('hh:mm A'),
         check_in: dayjs().format('hh:mm:ss A'),
         check_in_timer: dayjs().format('hh:mm:ss A'),
       };
-      // setTime(data);
-      // setTime(data?.check_in);
       mutate(data);
     }
   };
-  // const canCheckIn = (homeData) => {
-  //   // Case 1: User has already checked out
-  //   if (
-  //     homeData?.today_activity?.check_out !== '-' ||
-  //     !homeData?.today_activity?.check_out
-  //   ) {
-  //     return false;
-  //   }
-
-  //   // Case 2: User has already checked in
-  //   if (
-  //     homeData?.today_activity?.check_in !== '-' ||
-  //     !homeData?.today_activity?.check_in
-  //   ) {
-  //     return false;
-  //   }
-
-  //   // Otherwise, user can check in
-  //   return true;
-  // };
   return (
     <Grid item xs={12} md={6} lg={6} xl={6}>
       <Button
@@ -90,8 +63,6 @@ const MarkCheckIn = () => {
             background: '#fff',
           },
         }}
-        // disabled={homeData?.today_activity?.check_in !== '-' ? true : false}
-        // disabled={homeData?.today_activity?.check_in}
         disabled={homeData?.today_activity?.check_in !== '-'}
         onClick={handleCheckIn}
       >

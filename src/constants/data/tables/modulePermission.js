@@ -14,11 +14,6 @@ export const modulepermissionColumn = [
     flex: 1,
     name: 'write',
   },
-  // {
-  //   title: 'Create',
-  //   flex: 1,
-  //   name: 'create'
-  // },
   {
     title: 'Delete',
     flex: 1,

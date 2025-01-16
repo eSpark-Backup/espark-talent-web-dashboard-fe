@@ -70,7 +70,6 @@ const TimeManagementModal = ({ open, onClose }) => {
       );
     },
     onSuccess: () => {
-      Toast('success', 'Time updated successfully');
       dispatch(
         updateEmpTime([
           {
@@ -79,6 +78,7 @@ const TimeManagementModal = ({ open, onClose }) => {
           },
         ])
       );
+      Toast('success', 'Time updated successfully');
       onClose();
       clientQuery?.invalidateQueries(['employee-time-profile']);
     },

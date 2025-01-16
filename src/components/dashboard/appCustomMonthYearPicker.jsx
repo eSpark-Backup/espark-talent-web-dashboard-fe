@@ -31,11 +31,6 @@ const AppCustomMonthYearPicker = ({ timeTracking, setTimeTracking }) => {
   };
 
   const handleMonthChange = (newMonth) => {
-    console.log({
-      newMonth,
-      currentYear,
-      date: new Date(currentYear, newMonth, 1),
-    });
     setSelectedDate(new Date(currentYear, newMonth, 1));
     setTimeTracking({
       month: months[newMonth],
@@ -90,7 +85,6 @@ const AppCustomMonthYearPicker = ({ timeTracking, setTimeTracking }) => {
             width={25}
             height={25}
           />
-          {console.log(timeTracking, 'timeTracking')}
           <Typography ml={'14px'} mt={0} color={'#595959'}>
             {timeTracking?.month} {timeTracking?.year}
           </Typography>

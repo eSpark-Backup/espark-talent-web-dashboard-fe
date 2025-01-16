@@ -52,7 +52,6 @@ const AttendanceReport = ({ employeeData }) => {
         return data;
       } catch (err) {
         Toast('error', err.message || 'Failed to get data');
-        console.log({ err });
       }
     },
   });
@@ -85,7 +84,6 @@ const AttendanceReport = ({ employeeData }) => {
         return tempData;
       } catch (err) {
         Toast('error', err.message || 'Failed to get data');
-        console.log({ err });
       }
     },
   });

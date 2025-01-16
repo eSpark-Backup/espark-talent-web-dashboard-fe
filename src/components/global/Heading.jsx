@@ -45,7 +45,6 @@ const Heading = ({
       >
         {title}
       </Typography>
-      {/* <br /> */}
       <Typography
         sx={{
           fontSize: { xs: '16px', md: '14px' },

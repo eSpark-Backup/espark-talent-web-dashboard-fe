@@ -49,7 +49,7 @@ const ChangePassword = () => {
       try {
         const formData = new FormData();
         for (const key in formVals) {
-          formData.append(key, formVals[key]);
+          formData?.append(key, formVals[key]);
         }
         return api['updateData'](`${HR_CHANGE_PASSWORD}`, formData);
       } catch (err) {

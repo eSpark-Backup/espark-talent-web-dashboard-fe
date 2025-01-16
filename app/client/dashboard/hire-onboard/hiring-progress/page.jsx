@@ -276,8 +276,8 @@ const Dashboard = () => {
       return api.daleteData(`${CLIENT_HIRING_PROGRESS}?id=${id}`);
     },
     onSuccess: () => {
-      Toast('success', 'Data deleted successfully');
       dispatch(deleteClientHiringRequestSuccess(modalData?.id));
+      Toast('success', 'Data deleted successfully');
       handleClose();
       setModalData({});
     },
@@ -299,8 +299,8 @@ const Dashboard = () => {
       );
     },
     onSuccess: () => {
-      Toast('success', 'Status updated successfully');
       clientQuery?.invalidateQueries(['interviewSchedules']);
+      Toast('success', 'Status updated successfully');
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to delete data');
@@ -357,7 +357,6 @@ const Dashboard = () => {
     },
     onError: (err) => {
       Toast('error', err.message || 'File not downloaded');
-      console.log({ err });
     },
   });
 

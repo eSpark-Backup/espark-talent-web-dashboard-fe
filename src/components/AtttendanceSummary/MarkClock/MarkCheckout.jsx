@@ -14,7 +14,6 @@ const MarkCheckOut = () => {
   const dispatch = useDispatch();
   const [isOpenWarnignModal, setIsOpenWarningModal] = useState(false);
   const { currentWorkSpace } = useSelector((state) => state?.emp?.home);
-  // const [time, setTime] = useState('');
   const { homeData } = useSelector((state) => state?.emp?.home);
   const clientQuery = useQueryClient();
 
@@ -23,15 +22,13 @@ const MarkCheckOut = () => {
       const url = `${EMP_HOME}?workspace=${currentWorkSpace?.email}&check_out=${data.time}`;
       return api.patchData(url);
     },
-    onSuccess: ({ data }) => {
-      Toast('success', 'Data updated successfully');
-      console.log({ data });
+    onSuccess: () => {
       dispatch(markCheckout(dayjs().format('hh:mm:ss A')));
       clientQuery?.invalidateQueries(['get-emp-home']);
+      Toast('success', 'Data updated successfully');
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to update data');
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
 
@@ -39,9 +36,7 @@ const MarkCheckOut = () => {
     const data = {
       time: dayjs().format('hh:mm:ss A'),
     };
-    // setTime(data?.time);
     mutate(data);
-    console.log({ data });
     setIsOpenWarningModal(false);
   };
   const canCheckout = () => {

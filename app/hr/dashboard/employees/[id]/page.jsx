@@ -20,11 +20,9 @@ import Profile from '@/src/components/employeeData/profile';
 import AttendanceReport from '@/src/components/employeeData/attendanceReports';
 import EditEmployeeCredential from '@/src/components/employeeData/editEmployeeCredential';
 import EditModal from '@/src/components/employeeData/editModal';
-// import { getEmployeeData } from '@/src/utils/employeeProfile';
 import Client from '@/src/components/employeeData/client';
 import Assets from '@/src/components/employeeData/assets';
 import AssetForm from '@/src/components/employeeData/assetModal';
-// import { allEmployees } from '@/src/constants/AllEmployee';
 import TimeAndLeaves from '@/src/components/employeeData/timeAndLeaves';
 import FilterFormModal from '@/src/components/FilterModal/filterForm';
 import { filterAttendanceForm } from '@/src/constants/data/forms/filter-form';
@@ -109,9 +107,8 @@ const Page = () => {
           return data;
         })
         .catch((err) => {
-          Toast('error', err.message || 'Failed to get data');
           dispatch(getCurrentEmpDataFailed());
-          console.log({ err });
+          Toast('error', err.message || 'Failed to get data');
         });
     },
   });
@@ -201,8 +198,7 @@ const Page = () => {
       queryClient.invalidateQueries(['hr-employee-attendence']);
     },
     onError: (err) => {
-      console.log({ err });
-      console.log({ err: err.message, name: err.name, stack: err.stack });
+      Toast('error', err.message || 'Failed to get data');
     },
   });
   const downloadResumeMutation = useMutation({
@@ -224,8 +220,6 @@ const Page = () => {
     },
     onError: (err) => {
       Toast('error', err.message || 'File not downloaded');
-      console.log({ err });
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const handleRefresh = () => {
@@ -459,9 +453,6 @@ const Page = () => {
                           },
                         },
                       }}
-                      // onClick={() =>
-                      //   window.open(currentEmployee?.resume_path, '_blank')
-                      // }
                       onClick={handleDownloadResume}
                     >
                       {downloadResumeMutation?.isPending ? (

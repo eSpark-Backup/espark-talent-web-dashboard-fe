@@ -52,13 +52,19 @@ export default function ProfilePopper({
 
   const { refetch } = useQuery({
     queryKey: ['get-notifications'],
-    queryFn: () => {
-      setIsFetchingNotifications(true);
-      api.getData(GET_NOTIFICATIONS).then(({ data }) => {
-        dispatch(getNotifications(data !== '' ? data : []));
+    queryFn: async () => {
+      try {
+        setIsFetchingNotifications(true);
+        const { data } = await api.getData(GET_NOTIFICATIONS);
+        // Dispatch the fetched notifications or an empty array if no data
+        dispatch(getNotifications(data || []));
         setIsFetchingNotifications(false);
-        return data;
-      });
+        return data || []; // Ensure the function always returns a value
+      } catch (error) {
+        console.error('Error fetching notifications:', error);
+        setIsFetchingNotifications(false);
+        return []; // Return an empty array on error
+      }
     },
   });
 

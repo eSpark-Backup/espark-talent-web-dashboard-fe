@@ -39,19 +39,17 @@ const EmployeeView = ({ status, data, isLoading }) => {
       dispatch(deleteCurrentEmpData());
       return api.daleteData(`${HR_EMPLOYEES}?id=${id}`);
     },
-    onSuccess: ({ data }) => {
-      Toast('success', 'Data deleted successfully');
-      console.log({ data });
+    onSuccess: () => {
       dispatch(deleteCurrentEmpDataSuccess(currentEmpId));
       handleCloseModal();
       setCurrentEmpId(null);
       setAnchorEl(null);
+      Toast('success', 'Data deleted successfully');
       setOpen(null);
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to delete data');
       dispatch(deleteCurrentEmpDataFailed());
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
 
@@ -67,7 +65,6 @@ const EmployeeView = ({ status, data, isLoading }) => {
   const handleOpenRemove = (event, item) => {
     setCurrentEmpId(item.id);
     event?.stopPropagation();
-    console.log({ id: item.id });
     setIsOpen(true);
   };
   const handleCloseModal = () => {

@@ -29,9 +29,8 @@ const EditLetterForm = ({ onClose, open, selectedId }) => {
     mutationFn: async (data) => {
       return api.updateData(`${HR_EMP_LETTER}?id=${data?.id}`, data);
     },
-    onSuccess: async ({ data }) => {
+    onSuccess: async () => {
       Toast('success', 'Data updated successfully');
-      console.log({ data, values });
       const reformedData = {
         ...values,
         id: selectedId?.row?.id,
@@ -44,7 +43,6 @@ const EditLetterForm = ({ onClose, open, selectedId }) => {
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to update data');
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const {
@@ -69,7 +67,6 @@ const EditLetterForm = ({ onClose, open, selectedId }) => {
         letter: values.letter,
         reason: values.reason,
       };
-      console.log({ formValues, reformedData });
       mutate(reformedData);
     },
     validateOnChange: false,
@@ -86,7 +83,6 @@ const EditLetterForm = ({ onClose, open, selectedId }) => {
       setFieldValue('email', filteredLetter.email);
       setFieldValue('issue_date', filteredLetter.issue_date);
       setFieldValue('reason', filteredLetter.reason);
-      // setFieldValue('download', filteredLetter.download);
     }
   }, [letters]);
 
@@ -169,8 +165,8 @@ const EditLetterForm = ({ onClose, open, selectedId }) => {
                 },
                 formIndex
               ) => (
-                <>
-                  <Grid item xs={12} lg={5} key={formIndex}>
+                <React.Fragment key={formIndex}>
+                  <Grid item xs={12} lg={5}>
                     <FormInput
                       disabled={
                         name === 'reason' || name === 'letter' ? false : true
@@ -201,7 +197,7 @@ const EditLetterForm = ({ onClose, open, selectedId }) => {
                     />
                   </Grid>
                   {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>}
-                </>
+                </React.Fragment>
               )
             )}
             <Grid item p={'0 10px'} xs={12}>

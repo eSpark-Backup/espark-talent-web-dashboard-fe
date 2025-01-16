@@ -64,7 +64,6 @@ const Letters = () => {
     },
     onError: (err) => {
       Toast('error', err.message || 'File not downloaded');
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
 

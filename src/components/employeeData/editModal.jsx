@@ -27,10 +27,9 @@ const EditModal = ({ handleOpenModal, onClose, isClient }) => {
   const [imagePreview, setImagePreview] = useState(null);
   const { mutate, isPending } = useMutation({
     mutationFn: async (formVals) => {
-      console.log({ formVals });
       const formData = new FormData();
       for (const key in formVals.data) {
-        formData.append(key, formVals.data[key]);
+        formData?.append(key, formVals.data[key]);
       }
       return api.updateData(
         `${isClient ? HR_GET_CLIENT_PROFILE : HR_UPDATE_EMP_IMAGE}?id=${formVals.id}`,
@@ -44,13 +43,11 @@ const EditModal = ({ handleOpenModal, onClose, isClient }) => {
       } else {
         dispatch(updateCurrentEmployeeImage(data?.image));
       }
-      console.log({ data });
       onClose();
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to delete data');
       onClose();
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const handleFileInputChange = (event) => {
@@ -70,11 +67,9 @@ const EditModal = ({ handleOpenModal, onClose, isClient }) => {
   };
 
   const handleClick = () => {
-    // console.log({ selectedFile });
     document.getElementById('fileInput').click();
   };
   const handleSubmit = () => {
-    // console.log({ selectedFile, imagePreview });
     mutate({
       id: isClient ? currentClient.id : currentEmployee.id,
       data: {
@@ -82,10 +77,6 @@ const EditModal = ({ handleOpenModal, onClose, isClient }) => {
       },
     });
   };
-  // const handleRemove = () => {
-  //   setSelectedFile(null);
-  //   setImagePreview(null);
-  // };
 
   return (
     <Box>

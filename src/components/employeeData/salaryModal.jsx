@@ -26,13 +26,12 @@ const SalaryForm = ({ onClose, open, empData }) => {
   const QueryClient = useQueryClient();
   const { mutate, isPending } = useMutation({
     mutationFn: async (data) => {
-      return api?.postData(
+      return api.postData(
         `${HR_EMP_SALARY}?employee_id=${empData?.email}`,
         data
       );
     },
     onSuccess: ({ data }) => {
-      Toast('success', 'Data posted successfully');
       const reformedData = {
         ...values,
         id: data?.id,
@@ -40,11 +39,11 @@ const SalaryForm = ({ onClose, open, empData }) => {
       };
       dispatch(addEmpSalary(reformedData));
       QueryClient.invalidateQueries(['hr-employee-get-salary']);
+      Toast('success', 'Data posted successfully');
       onClose();
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to post data');
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const {
@@ -158,8 +157,8 @@ const SalaryForm = ({ onClose, open, empData }) => {
                 },
                 formIndex
               ) => (
-                <>
-                  <Grid item xs={12} lg={5} key={formIndex}>
+                <React.Fragment key={formIndex}>
+                  <Grid item xs={12} lg={5}>
                     <FormInput
                       title={title}
                       placeholder={placeholder}
@@ -187,7 +186,7 @@ const SalaryForm = ({ onClose, open, empData }) => {
                     />
                   </Grid>
                   {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>}
-                </>
+                </React.Fragment>
               )
             )}
             <Grid item p={'0 10px'} xs={12}>

@@ -18,7 +18,6 @@ import {
 } from '@/src/redux/slices/employeeSlices/punchRequestSlice';
 import { Toast } from '../Toast/Toast';
 import { onCheckDateValidation } from '@/src/utils/onCheckDateValidation';
-// import { filterModalSchema } from '../form/schemas/filterModal';
 
 const EmpPunchReqFilterFormModal = ({ open, onClose, filterForm }) => {
   const { currentWorkSpace } = useSelector((state) => state?.emp?.home);
@@ -33,7 +32,6 @@ const EmpPunchReqFilterFormModal = ({ open, onClose, filterForm }) => {
       );
     },
     onSuccess: ({ data }) => {
-      console.log({ data });
       dispatch(
         getEmpPunchRequestDataSuccess(
           data || {
@@ -48,7 +46,7 @@ const EmpPunchReqFilterFormModal = ({ open, onClose, filterForm }) => {
     },
     onError: (err) => {
       dispatch(getEmpPunchRequestDataFailed());
-      Toast('error', err?.message || 'Failed to fetch data');
+      Toast('error', err.message || 'Failed to fetch data');
     },
   });
 
@@ -93,7 +91,6 @@ const EmpPunchReqFilterFormModal = ({ open, onClose, filterForm }) => {
   };
   const resetMutation = useMutation({
     mutationFn: async () => {
-      // dispatch(getTimeSheetData());
       return api.getData(
         `${EMP_PUNCH_REQUEST}?workspace=${currentWorkSpace?.email || ''}`
       );
@@ -113,7 +110,7 @@ const EmpPunchReqFilterFormModal = ({ open, onClose, filterForm }) => {
     },
     onError: (err) => {
       dispatch(getEmpPunchRequestDataFailed());
-      Toast('error', err?.message || 'Failed to fetch data');
+      Toast('error', err.message || 'Failed to fetch data');
     },
   });
 
@@ -233,34 +230,32 @@ const EmpPunchReqFilterFormModal = ({ open, onClose, filterForm }) => {
                     },
                     formIndex
                   ) => (
-                    <>
-                      <Grid item xs={12} lg={12} key={formIndex}>
-                        <FormInput
-                          title={title}
-                          placeholder={placeholder}
-                          errorText={errorText}
-                          prefixIcon={prefixIcon}
-                          type={type}
-                          suffixIcon={suffixIcon}
-                          options={options}
-                          name={name}
-                          setFieldValue={setFieldValue}
-                          value={values[name]}
-                          error={errors[name]}
-                          touched={touched}
-                          setFieldError={setFieldError}
-                          errors={errors}
-                          setErrors={setErrors}
-                          values={values}
-                          nested={nested}
-                          searchable={searchable}
-                          sm={12}
-                          md={12}
-                          lg={12}
-                          fieldsName={fieldsName}
-                        />
-                      </Grid>
-                    </>
+                    <Grid item xs={12} lg={12} key={formIndex}>
+                      <FormInput
+                        title={title}
+                        placeholder={placeholder}
+                        errorText={errorText}
+                        prefixIcon={prefixIcon}
+                        type={type}
+                        suffixIcon={suffixIcon}
+                        options={options}
+                        name={name}
+                        setFieldValue={setFieldValue}
+                        value={values[name]}
+                        error={errors[name]}
+                        touched={touched}
+                        setFieldError={setFieldError}
+                        errors={errors}
+                        setErrors={setErrors}
+                        values={values}
+                        nested={nested}
+                        searchable={searchable}
+                        sm={12}
+                        md={12}
+                        lg={12}
+                        fieldsName={fieldsName}
+                      />
+                    </Grid>
                   )
                 )}
                 <Grid
@@ -271,7 +266,6 @@ const EmpPunchReqFilterFormModal = ({ open, onClose, filterForm }) => {
                   xs={12}
                 >
                   <ResetButton
-                    // handleReset={() => resetMutation.mutate()}
                     handleReset={handleClickReset}
                     isLoadingReset={resetMutation.isPending}
                     isLoadingSubmit={isPending}

@@ -314,7 +314,7 @@ const TeamManagement = () => {
             <AppSearchableDropdown
               setIsLoadingList={setIsLoadingEmployee}
               isLoadingList={isLoadingEmployee}
-              selectedItem={selectedEmployee}
+              selectedItem={selectedEmployee || ''}
               data={listItems}
               setSelectedItem={setSelectedEmployee}
             />

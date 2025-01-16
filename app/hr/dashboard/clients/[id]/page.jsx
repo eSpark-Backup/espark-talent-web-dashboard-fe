@@ -72,6 +72,7 @@ import dayjs from 'dayjs';
 import { hasSymbol } from '@/src/utils/symbolChecker';
 import { genderType } from '@/src/utils/genderType';
 import { clientProfileTabsHandler } from '@/src/utils/clientProfileTabHandler';
+import { getTimeSheetDataFailed } from '@/src/redux/slices/employeeSlices/timeSheetSlice';
 
 const AddEmployee = () => {
   const params = useParams();
@@ -99,7 +100,6 @@ const AddEmployee = () => {
         .catch((err) => {
           dispatch(getCurrentClientDataFailed());
           Toast('error', err.message || 'Failed to get data');
-          console.log({ err });
         });
     },
   });
@@ -138,7 +138,6 @@ const AddEmployee = () => {
         })
         .catch((err) => {
           Toast('error', err.message || 'Failed to get data');
-          console.log({ err });
         });
     },
   });
@@ -147,7 +146,6 @@ const AddEmployee = () => {
     refetchOnWindowFocus: false,
     queryKey: ['hr-interview-schedule-req-query', email],
     queryFn: () => {
-      console.log('Calling api');
       return api
         .getData(`${HR_CLIENT_EMP_INTERVIEW_SCHEDULE}?id=${params.id}`)
         .then(({ data }) => {
@@ -168,7 +166,6 @@ const AddEmployee = () => {
         })
         .catch((err) => {
           Toast('error', err.message || 'Failed to get data');
-          console.log({ err });
         });
     },
   });
@@ -207,7 +204,6 @@ const AddEmployee = () => {
         })
         .catch((err) => {
           Toast('error', err.message || 'Failed to get data');
-          console.log({ err });
         });
     },
   });
@@ -223,7 +219,6 @@ const AddEmployee = () => {
         })
         .catch((err) => {
           Toast('error', err.message || 'Failed to get data');
-          console.log({ err });
         });
     },
   });
@@ -239,7 +234,6 @@ const AddEmployee = () => {
         })
         .catch((err) => {
           Toast('error', err.message || 'Failed to get data');
-          console.log({ err });
         });
     },
   });
@@ -255,7 +249,6 @@ const AddEmployee = () => {
         })
         .catch((err) => {
           Toast('error', err.message || 'Failed to get data');
-          console.log({ err });
         });
     },
   });
@@ -284,7 +277,6 @@ const AddEmployee = () => {
         })
         .catch((err) => {
           Toast('error', err.message || 'Failed to get data');
-          console.log({ err });
         });
     },
   });
@@ -315,7 +307,6 @@ const AddEmployee = () => {
         })
         .catch((err) => {
           Toast('error', err.message || 'Failed to get data');
-          console.log({ err });
         });
     },
   });
@@ -344,7 +335,6 @@ const AddEmployee = () => {
         })
         .catch((err) => {
           Toast('error', err.message || 'Failed to get data');
-          console.log({ err });
         });
     },
   });
@@ -373,7 +363,6 @@ const AddEmployee = () => {
         })
         .catch((err) => {
           Toast('error', err.message || 'Failed to get data');
-          console.log({ err });
         });
     },
   });
@@ -397,13 +386,11 @@ const AddEmployee = () => {
               download: 'Download',
               payment_status: getCamelCapitalized(item.payment_status),
             }));
-          console.log({ tempData });
           dispatch(getClientOthInvoiceProcessing(tempData || []));
           return data;
         })
         .catch((err) => {
           Toast('error', err.message || 'Failed to get data');
-          console.log({ err });
         });
     },
   });
@@ -432,7 +419,6 @@ const AddEmployee = () => {
         })
         .catch((err) => {
           Toast('error', err.message || 'Failed to get data');
-          console.log({ err });
         });
     },
   });
@@ -664,7 +650,6 @@ const AddEmployee = () => {
         },
       };
     });
-    console.log({ label, nestedTabs, data, column, currentTab });
     if (data?.length) {
       const filteredData = filterTableRowsWRTTab(data, {
         paymentStatus: nestedTabs[0].label,
@@ -696,17 +681,12 @@ const AddEmployee = () => {
         },
       };
     });
-    console.log({ current });
     if (current?.column?.length) {
-      console.log('currentData');
-      console.log({ event, newValue, data, rest, current });
       setCurrentTabTable({
         data: current?.data || [],
         column: current?.column,
       });
     } else if (rest?.column?.length) {
-      console.log('restData');
-      console.log({ event, newValue, data, rest, current });
       setCurrentTabTable({
         data: rest?.data || [],
         column: rest?.column,
@@ -770,7 +750,6 @@ const AddEmployee = () => {
   const handleClose = () => setIsOpen(false);
 
   const handleOpen = (id, row) => {
-    console.log({ id, row });
     setDeleteRowID(id);
     if (currentTab?.label !== 'Hire & onboard') {
       setDeleteInvType(row?.payment_status.toLowerCase());
@@ -782,15 +761,14 @@ const AddEmployee = () => {
       return api.daleteData(`${HR_CLIENT_EMP_HIRING_REQUEST}?id=${id}`);
     },
     onSuccess: () => {
-      Toast('success', 'Data deleted successfully');
       dispatch(deleteHiringRequest(deleteRowID));
+      Toast('success', 'Data deleted successfully');
       setDeleteRowID(null);
       handleClose();
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to delete data');
       handleClose();
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const deleteInterviewMutation = useMutation({
@@ -798,15 +776,14 @@ const AddEmployee = () => {
       return api.daleteData(`${HR_CLIENT_EMP_INTERVIEW_SCHEDULE}?id=${id}`);
     },
     onSuccess: () => {
-      Toast('success', 'Data deleted successfully');
       dispatch(deleteInterSchedule(deleteRowID));
+      Toast('success', 'Data deleted successfully');
       setDeleteRowID(null);
       handleClose();
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to delete data');
       handleClose();
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const deleteOnBoardingMutation = useMutation({
@@ -814,15 +791,14 @@ const AddEmployee = () => {
       return api.daleteData(`${HR_CLIENT_EMP_ON_BOARDING}?id=${id}`);
     },
     onSuccess: () => {
-      Toast('success', 'Data deleted successfully');
       dispatch(deleteOnBoarding(deleteRowID));
+      Toast('success', 'Data deleted successfully');
       setDeleteRowID(null);
       handleClose();
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to delete data');
       handleClose();
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const deleteEmpInvMutation = useMutation({
@@ -830,8 +806,8 @@ const AddEmployee = () => {
       return api.daleteData(`${HR_CLIENT_EMPLOYEE_INVOICE}?id=${id}`);
     },
     onSuccess: () => {
-      Toast('success', 'Data deleted successfully');
       dispatch(deleteEmpInv({ type: deleteInvType, id: deleteRowID }));
+      Toast('success', 'Data deleted successfully');
       setDeleteRowID(null);
       setDeleteInvType(null);
       handleClose();
@@ -839,7 +815,6 @@ const AddEmployee = () => {
     onError: (err) => {
       Toast('error', err.message || 'Failed to delete data');
       handleClose();
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const deleteOthInvMutation = useMutation({
@@ -847,8 +822,8 @@ const AddEmployee = () => {
       return api.daleteData(`${HR_CLIENT_OTHER_INVOICE}?id=${id}`);
     },
     onSuccess: () => {
-      Toast('success', 'Data deleted successfully');
       dispatch(deleteOthInv({ type: deleteInvType, id: deleteRowID }));
+      Toast('success', 'Data deleted successfully');
       setDeleteRowID(null);
       setDeleteInvType(null);
       handleClose();
@@ -856,19 +831,17 @@ const AddEmployee = () => {
     onError: (err) => {
       Toast('error', err.message || 'Failed to delete data');
       handleClose();
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const updateEmpInvMutation = useMutation({
     mutationFn: async (data) => {
       const formData = new FormData();
       for (const key in data.data) {
-        formData.append(key, data.data[key]);
+        formData?.append(key, data.data[key]);
       }
       return api.updateData(`${data?.url}?id=${data?.id}`, formData);
     },
     onSuccess: () => {
-      Toast('success', 'Data updated successfully');
       if (currentTab?.label === 'Employee invoices') {
         dispatch(
           updateEmpInv({
@@ -888,6 +861,7 @@ const AddEmployee = () => {
           })
         );
       }
+      Toast('success', 'Data updated successfully');
       setDeleteRowID(null);
       setUpdateStatusType({
         currentInvData: null,
@@ -899,7 +873,6 @@ const AddEmployee = () => {
     onError: (err) => {
       Toast('error', err.message || 'Failed to update data');
       handleClose();
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const handleConfirmDeleteHiringReq = () => {
@@ -919,7 +892,6 @@ const AddEmployee = () => {
     }
   };
   const handleConfirmUpdatePayStatus = (data, newVal) => {
-    console.log({ data, newVal });
     setUpdateRowID(data.id);
     setUpdateStatusType({
       currentVal: data.payment_status,
@@ -1062,7 +1034,6 @@ const AddEmployee = () => {
       return api.downloadFile(resolveURL(id));
     },
     onSuccess: ({ data }) => {
-      console.log({ data });
       const url = window.URL.createObjectURL(new Blob([data]));
       const link = document.createElement('a');
       link.href = url;
@@ -1070,15 +1041,10 @@ const AddEmployee = () => {
       document.body.appendChild(link);
       link.click();
       link.parentNode.removeChild(link);
-
-      // dispatchFunction?.(data);
       Toast('success', 'File downloaded');
     },
     onError: (err) => {
       Toast('error', err.message || 'File not downloaded');
-      // dispatch(getTimeSheetDataFailed());
-      console.log({ err });
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const downloadJSMutation = useMutation({
@@ -1098,10 +1064,8 @@ const AddEmployee = () => {
       Toast('success', 'File downloaded');
     },
     onError: (err) => {
+      dispatch(getTimeSheetDataFailed());
       Toast('error', err.message || 'File not downloaded');
-      // dispatch(getTimeSheetDataFailed());
-      console.log({ err });
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const downloadInvoice = (id) => {

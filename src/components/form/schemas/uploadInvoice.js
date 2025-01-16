@@ -16,7 +16,6 @@ export const uploadInvoiceFormSchema = Yup.object({
     ),
   invoice_amount: Yup.string().required('Invoice amount is required'),
   invoice: Yup.mixed().required('Invoice is required'),
-  // payment_status: Yup.string().required('Required'),
 });
 export const uploadOthInvoiceFormSchema = Yup.object({
   invoice_reference: Yup.string().required('Invoice reference is required'),
@@ -34,5 +33,4 @@ export const uploadOthInvoiceFormSchema = Yup.object({
     ),
   invoice_amount: Yup.string().required('Invoice amount is required'),
   invoice: Yup.mixed().required('Invoice is required'),
-  // payment_status: Yup.string().required('Required'),
 });

@@ -27,7 +27,6 @@ const Client = () => {
         })
         .catch((err) => {
           Toast('error', err.message || 'Failed to get data');
-          console.log({ err });
         });
     },
   });
@@ -52,13 +51,13 @@ const Client = () => {
     },
   ];
   const handleChangeTab = (event, newValue, rest) => {
-    console.log({ event, newValue, rest });
     setCurrentTab({
       label: tabs[newValue].label,
       val: newValue,
       data: tabs[newValue].data,
       column: tabs[newValue].column,
     });
+    console.log(event, rest);
   };
   return (
     <>

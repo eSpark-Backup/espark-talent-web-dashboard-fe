@@ -29,7 +29,6 @@ const Dashboard = () => {
 
   const { currentWorkSpace } = useSelector((state) => state?.emp?.home);
   const { isLoading } = useQuery({
-    // staleTime: 10000,
     refetchOnWindowFocus: false,
     queryKey: ['get-emp-home'],
     queryFn: () => {

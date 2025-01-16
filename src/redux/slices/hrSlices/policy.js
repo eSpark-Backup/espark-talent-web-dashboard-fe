@@ -16,7 +16,6 @@ const policySlice = createSlice({
       state.policies = tempData;
     },
     addPolicy: (state, action) => {
-      console.log({ paylaod: action.payload });
       state.policies = [...state.policies, action.payload];
     },
     updatePolicyValue: (state, action) => {

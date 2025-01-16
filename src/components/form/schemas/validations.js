@@ -1,7 +1,6 @@
 import dayjs from 'dayjs';
 import * as Yup from 'yup';
 
-// const emailRegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const emailRegExp = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
 const nameRegExp = /^[a-zA-Z\s'-]+$/;
 const companyNameRegExp = /^[a-zA-Z0-9\s'&.-]+$/;

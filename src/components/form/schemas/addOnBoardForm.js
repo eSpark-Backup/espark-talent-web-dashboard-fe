@@ -13,7 +13,6 @@ export const addOnboardFormSchema = Yup.object({
   joining_date: dojValidation,
   country: Yup.object().required('Country is required'),
   notice_period: Yup.number()
-    // .trim('Notice period must not contain leading or trailing spaces')
     .required('Notice period is required')
     .min(1, 'Notice period must be at least 1 day')
     .max(365, 'Notice period cannot exceed 365 days'),

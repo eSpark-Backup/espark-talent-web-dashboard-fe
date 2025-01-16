@@ -5,10 +5,7 @@ import Skeleton from '@mui/material/Skeleton';
 import AppTable from '../appTableNew/AppTable';
 import { modulepermissionColumn } from '@/src/constants/data/tables/modulePermission';
 import RoleModal from './addRoleModal';
-import {
-  // ROLES,
-  SETTING,
-} from '@/src/constants/SettingHr';
+import { SETTING } from '@/src/constants/SettingHr';
 import { useDispatch, useSelector } from 'react-redux';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
@@ -46,7 +43,6 @@ const Role = () => {
         })
         .catch((err) => {
           Toast('error', err.message || 'Failed to get data');
-          console.log({ err });
         });
     },
   });
@@ -58,12 +54,10 @@ const Role = () => {
       return api
         .getData(`${HR_ROLES_PERMISSIONS}`)
         .then(({ data }) => {
-          // dispatch(getRolesDetails(data || []));
           return data;
         })
         .catch((err) => {
           Toast('error', err.message || 'Failed to get data');
-          console.log({ err });
         });
     },
   });
@@ -77,11 +71,7 @@ const Role = () => {
         );
 
         if (roleDetails) {
-          const {
-            //  id,
-            //  role,
-            ...permissions
-          } = roleDetails;
+          const { ...permissions } = roleDetails;
           return {
             id: companyAccount.id,
             role: companyAccount.account_name,
@@ -126,7 +116,6 @@ const Role = () => {
         }
       });
     }
-    // const finalData = mergedData
     dispatch(getRolesDetailsSuccess(mergedData || []));
   }, [companyAccountsQuery.data, getRolesDetailsQuery.data]);
 
@@ -142,12 +131,11 @@ const Role = () => {
   const handleSelectRow = (column, row) => {
     // Create a copy of permissionDataNew
     const newTempForm = [...permissionDataNew];
-    console.log({ row, column, newTempForm });
     // Retrieve the selected role's permission data
     const selectedTempFormData = newTempForm[selectedRolePermissionIndex];
 
     // Find the index of the row in the permission data
-    const manipulateIndex = selectedTempFormData.state.findIndex(
+    const manipulateIndex = selectedTempFormData?.state.findIndex(
       (el) => el.module_permission === row.module_permission
     );
 
@@ -155,7 +143,6 @@ const Role = () => {
     const updatedPermission = {
       ...newTempForm[selectedRolePermissionIndex].state[manipulateIndex],
     };
-    console.log({ updatedPermission });
 
     // Update the specific column in the copied object
     if (column.name !== 'read') {
@@ -245,15 +232,11 @@ const Role = () => {
         data.state
       );
     },
-    onSuccess: ({ data }) => {
+    onSuccess: () => {
       Toast('success', 'Data updated successfully');
-      console.log({ data });
-      // dispatch(deleteClientHiringRequestSuccess(modalData?.id));
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to update data');
-      // dispatch(deleteClientHiringRequestFailed());
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   function convertArrayToObject(array) {
@@ -366,9 +349,6 @@ const Role = () => {
               width: { xs: '100%', md: 'calc(100% - 320px)' },
               maxWidth: '100%',
               overflowX: 'auto',
-              // '&::-webkit-scrollbar': {
-              //   display: 'none',
-              // },
             }}
           >
             <Box>

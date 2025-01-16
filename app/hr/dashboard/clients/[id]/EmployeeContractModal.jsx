@@ -40,31 +40,28 @@ const EmployeeContractModal = ({ open, onClose }) => {
       dispatch(getEmployeesCompanyContractRequestSuccess(tempData));
     },
     onError: (err) => {
-      console.log({ err: err.message, name: err.name, stack: err.stack });
+      Toast('error', err.message || 'Failed to update data');
     },
   });
   const [formData, setFormData] = useState(null);
   const dispatch = useDispatch();
   const { mutate, isPending } = useMutation({
     mutationFn: async (formVals) => {
-      // console.log({ formValues });
       const formData = new FormData();
       for (const key in formVals) {
-        formData.append(key, formVals[key]);
+        formData?.append(key, formVals[key]);
       }
       return api.postData(`${HR_COMPANY_CONTRACTS}?status=employee`, formData);
     },
-    onSuccess: ({ data }) => {
-      Toast('success', 'Contract uploaded successfully');
+    onSuccess: () => {
       companyContractSignedMutation.mutate('employees');
+      Toast('success', 'Contract uploaded successfully');
       setFormData(null);
       resetForm();
-      console.log({ data });
       onClose();
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to post data');
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const {
@@ -84,10 +81,8 @@ const EmployeeContractModal = ({ open, onClose }) => {
     validationSchema: contractFormHrPortalSchema,
     enableReinitialize: true,
     onSubmit: (formData) => {
-      console.log({ formData });
       setFormData(formData);
-      mutate({ ...formData, date: dayjs(formData.date).format('YYYY-MM-DD') });
-      // handleCloseModal();
+      mutate({ ...formData, date: dayjs(formData?.date).format('YYYY-MM-DD') });
     },
     validateOnChange: false,
     validateOnBlur: false,
@@ -188,7 +183,7 @@ const EmployeeContractModal = ({ open, onClose }) => {
                 },
                 formIndex
               ) => (
-                <>
+                <React.Fragment key={formIndex}>
                   <Grid item xs={12} md={12} lg={5} key={formIndex}>
                     <FormInput
                       title={title}
@@ -219,7 +214,7 @@ const EmployeeContractModal = ({ open, onClose }) => {
                     />
                   </Grid>
                   {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>}
-                </>
+                </React.Fragment>
               )
             )}
             <Grid item p={'0 10px'} xs={12}>

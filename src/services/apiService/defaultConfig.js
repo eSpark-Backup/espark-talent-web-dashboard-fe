@@ -1,6 +1,6 @@
 import { LOGIN } from './apiEndPoints';
 
-// ** Auth Endpoints
+//  Auth Endpoints
 const defaultConfig = {
   tokenType: 'Bearer',
   storageTokenKeyName: 'token',

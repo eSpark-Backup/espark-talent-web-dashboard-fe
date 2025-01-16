@@ -41,7 +41,6 @@ const Letters = () => {
     queryFn: async () => {
       try {
         if (!currentEmployee?.email) {
-          // Toast('error', 'Employee email is required!');
           dispatch(getEmpLetterRequestFailed());
           return [];
         }
@@ -110,7 +109,6 @@ const Letters = () => {
     },
     onError: (err) => {
       Toast('error', err.message || 'File not downloaded');
-      console.log({ err });
     },
   });
 
@@ -141,27 +139,25 @@ const Letters = () => {
 
   return (
     <>
-      <>
-        <Box
-          sx={{
-            maxWidth: '100%',
-            overflowX: 'auto',
-            mt: '40px',
-          }}
-        >
-          <AppTable
-            column={processColumns()}
-            data={letters || []}
-            handleClickActionDelete={handleClickDelete}
-            handleClickDownload={downloadLetter}
-            handleClickActionView={handleEdit}
-            handleEditImage={'/icons/EditIcon.svg'}
-            tableRowClass="app-table-row-letter"
-            minWidth={'700px'}
-            isLoading={isLoading}
-          />
-        </Box>
-      </>
+      <Box
+        sx={{
+          maxWidth: '100%',
+          overflowX: 'auto',
+          mt: '40px',
+        }}
+      >
+        <AppTable
+          column={processColumns()}
+          data={letters || []}
+          handleClickActionDelete={handleClickDelete}
+          handleClickDownload={downloadLetter}
+          handleClickActionView={handleEdit}
+          handleEditImage={'/icons/EditIcon.svg'}
+          tableRowClass="app-table-row-letter"
+          minWidth={'700px'}
+          isLoading={isLoading}
+        />
+      </Box>
       {showEditModal && (
         <EditLetterForm
           open={showEditModal}

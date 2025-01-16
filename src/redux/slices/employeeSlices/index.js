@@ -17,15 +17,6 @@ const persistConfig = {
   whitelist: ['home'],
 };
 
-// const empReducer = combineReducers({
-//   home: empHomeSlice,
-//   leaveReq: leaveReqSlice,
-//   contract: contractSlice,
-//   timeSheet: timeSheetSlice,
-//   punchReq: punchReqSlice,
-//   policies: empPoliciesSlice,
-// });
-
 const empReducer = persistReducer(
   persistConfig,
   combineReducers({

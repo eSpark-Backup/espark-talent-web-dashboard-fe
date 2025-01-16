@@ -57,7 +57,6 @@ const ClientEmployees = ({ fromClient, openModal }) => {
         })
         .catch((error) => {
           Toast('error', error.message || 'Failed to get data');
-          console.log({ error });
         });
     },
   });

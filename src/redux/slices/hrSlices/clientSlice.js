@@ -103,7 +103,6 @@ const clientSlice = createSlice({
         state?.currentClientData?.hireAndOnBoard?.onBoarding.filter(
           (el) => el.id !== action.payload
         );
-      console.log({ tempData, id: action.payload });
       state.currentClientData.hireAndOnBoard.onBoarding = tempData;
     },
     deleteEmpInv: (state, action) => {
@@ -111,7 +110,6 @@ const clientSlice = createSlice({
       const tempData = state?.currentClientData?.employeeInvoices?.[
         type
       ].filter((el) => el.id !== action.payload.id);
-      console.log({ tempData, id: action.payload });
       state.currentClientData.employeeInvoices[type] = tempData;
     },
     deleteOthInv: (state, action) => {
@@ -119,7 +117,6 @@ const clientSlice = createSlice({
       const tempData = state?.currentClientData?.otherInvoices?.[type].filter(
         (el) => el.id !== action.payload.id
       );
-      console.log({ tempData, id: action.payload });
       state.currentClientData.otherInvoices[type] = tempData;
     },
     updateOthInv: (state, action) => {
@@ -128,12 +125,6 @@ const clientSlice = createSlice({
       const tempDataOld = state?.currentClientData?.otherInvoices?.[
         currentType
       ].filter((el) => el.id !== action.payload.id);
-      console.log({
-        tempDataOld,
-        currentType,
-        newType,
-        data: action.payload.data,
-      });
       state.currentClientData.otherInvoices[currentType] = tempDataOld;
       state.currentClientData.otherInvoices[newType] = [
         ...state.currentClientData.otherInvoices[newType],
@@ -149,12 +140,6 @@ const clientSlice = createSlice({
       const tempDataOld = state?.currentClientData?.employeeInvoices?.[
         currentType
       ].filter((el) => el.id !== action.payload.id);
-      console.log({
-        tempDataOld,
-        currentType,
-        newType,
-        data: action.payload.data,
-      });
       state.currentClientData.employeeInvoices[currentType] = tempDataOld;
       state.currentClientData.employeeInvoices[newType] = [
         ...state.currentClientData.employeeInvoices[newType],
@@ -177,14 +162,12 @@ const clientSlice = createSlice({
       ];
     },
     addEmpInvoice: (state, action) => {
-      console.log({ action });
       state.currentClientData.employeeInvoices[action.payload.type] = [
         ...state.currentClientData.employeeInvoices[action.payload.type],
         action.payload.data,
       ];
     },
     addOthInvoice: (state, action) => {
-      console.log({ action });
       state.currentClientData.otherInvoices[action.payload.type] = [
         ...state.currentClientData.otherInvoices[action.payload.type],
         action.payload.data,
@@ -207,7 +190,6 @@ const clientSlice = createSlice({
       };
     },
     updateCurrentClientImage: (state, action) => {
-      console.log({ currClient: action.payload });
       state.currentClient.image_path = action.payload;
     },
     removeHrClientData: (state) => {
