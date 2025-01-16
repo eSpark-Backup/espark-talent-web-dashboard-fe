@@ -46,7 +46,7 @@ export default function ProfilePopper({
   const userType = Cookie.get('userType');
 
   const handleClick = (event) => {
-    setProfileMenu(profileMenu ? null : event?.currentTarget);
+    setProfileMenu(profileMenu ? null : event?.currentTarget || undefined);
     setWorkspace(null);
   };
 
@@ -188,7 +188,7 @@ export default function ProfilePopper({
         id={id}
         open={notification !== null ? true : open}
         ref={profilePopupRef}
-        anchorEl={profileMenu}
+        anchorEl={profileMenu || undefined}
         placement={profile_placement}
         sx={{ position: 'relative', zIndex: 405 }}
         transition

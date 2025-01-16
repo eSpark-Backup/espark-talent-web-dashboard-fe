@@ -43,10 +43,18 @@ export const SideNav = (props) => {
 
   return (
     <Drawer
+      aria-labelledby="modal-modal-title"
+      aria-describedby="modal-modal-description"
+      disableEnforceFocus // Prevents issues with hidden ancestors
+      disableRestoreFocus
       anchor="left"
       onClose={onClose}
       open={open}
-      BackdropProps={{ click: false }}
+      BackdropProps={
+        {
+          // Removed the invalid `click` attribute
+        }
+      }
       BackdropComponent={(props) => (
         <Backdrop {...props} sx={{ backgroundColor: 'rgba(0, 0, 0, 0.04)' }} />
       )}

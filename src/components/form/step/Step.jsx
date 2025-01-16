@@ -287,13 +287,14 @@ const Step = ({
         </Grid>
       </form>
     );
+
   return (
     <form onSubmit={handleSubmit}>
       <Grid
-        spacing={0}
+        spacing={{ xs: 1, sm: 2, md: 3, lg: 5 }}
         container
         sx={{
-          p: { xs: '20px', md: pmd },
+          p: { xs: '20px', md: '60px 45px', lg: '70px 45px', xl: pmd },
           display: 'flex',
           gap: gap ? gap : 0,
           '@media (min-width: 280px) and (max-width: 1460px)': {
@@ -313,7 +314,6 @@ const Step = ({
               options,
               name,
               nested,
-              col,
               searchable,
               accept,
               withFlag,
@@ -343,7 +343,10 @@ const Step = ({
               setErrors={setErrors}
               values={values}
               nested={nested}
-              lg={col}
+              xs={12}
+              sm={6}
+              md={3.5}
+              lg={3}
               countries={countries}
               withFlag={withFlag}
               searchable={searchable}

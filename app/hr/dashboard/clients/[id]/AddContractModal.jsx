@@ -37,7 +37,7 @@ const AddContractModal = ({ open, onClose }) => {
       Toast('success', 'Contract uploaded successfully');
       const tempData = {
         ...formData,
-        date: dayjs(formData?.date)?.format('YYYY-MM-DD'),
+        date: dayjs(formData?.date)?.format('DD-MMMM-YYYY'),
         id: data.id,
         download: 'Download',
         contract_doc: data.contract_doc,

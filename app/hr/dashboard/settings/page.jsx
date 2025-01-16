@@ -88,7 +88,7 @@ const Page = () => {
                     sx={{
                       fontSize: '14px',
                       textTransform: 'math-auto',
-                      mr: { xs: '0px', md: '30px' },
+                      mr: { xs: '5px', md: '20px', lg: '30px' },
                       color: '#595959',
                       '&.Mui-selected': {
                         color: '#068987',
@@ -102,7 +102,7 @@ const Page = () => {
                     disableRipple={true}
                     sx={{
                       fontSize: '14px',
-                      mr: { xs: '0px', md: '30px' },
+                      mr: { xs: '5px', md: '20px', lg: '30px' },
                       color: '#595959',
                       '&.Mui-selected': {
                         color: '#068987',
@@ -116,7 +116,7 @@ const Page = () => {
                     disableRipple={true}
                     sx={{
                       fontSize: '14px',
-                      mr: { xs: '0px', md: '30px' },
+                      mr: { xs: '5px', md: '30px' },
                       textTransform: 'math-auto',
                       color: '#595959',
                       '&.Mui-selected': {
@@ -131,7 +131,7 @@ const Page = () => {
                     disableRipple={true}
                     sx={{
                       fontSize: '14px',
-                      mr: { xs: '0px', md: '30px' },
+                      mr: { xs: '5px', md: '20px', lg: '30px' },
                       color: '#595959',
                       '&.Mui-selected': {
                         color: '#068987',
@@ -143,14 +143,21 @@ const Page = () => {
               <Box
                 sx={{
                   display: 'flex',
-                  marginTop: { xs: '20px', md: '0px' },
+                  borderTop: {
+                    xs:
+                      value === employeeProfileData?.valueTwo
+                        ? '1px solid #e5e7eb'
+                        : 0,
+                    md: 0,
+                  },
                 }}
               >
                 {value === employeeProfileData?.valueTwo && (
                   <Box
                     sx={{
                       display: 'flex',
-                      marginBottom: '7px',
+                      mt: { xs: '7px', md: 0 },
+                      mb: { xs: '7px' },
                     }}
                   >
                     <Button
@@ -159,6 +166,7 @@ const Page = () => {
                         fontSize: '16px',
                         textTransform: 'math-auto',
                         color: '#fff',
+                        textWrap: 'nowrap',
                         background: '#029894',
                         '&:hover': {
                           color: '#fff',

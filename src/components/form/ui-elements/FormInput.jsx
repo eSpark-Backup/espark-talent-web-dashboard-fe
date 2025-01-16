@@ -198,6 +198,7 @@ const FormInput = ({
                   fontStyle: 'normal',
                   fontWeight: 500,
                   lineHeight: 'normal',
+                  textWrap: 'nowrap',
                   '@media (min-width: 1200px) and (max-width: 1250px)': {
                     fontSize: '14px',
                   },
@@ -210,6 +211,7 @@ const FormInput = ({
                 <Typography
                   sx={{
                     fontSize: '10px',
+                    textWrap: 'nowrap',
                     ml: '5px',
 
                     '@media (min-width: 1210px) and (max-width: 1370px)': {

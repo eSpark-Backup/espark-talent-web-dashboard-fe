@@ -33,6 +33,7 @@ import { Toast } from '@/src/components/Toast/Toast';
 import AddContractModal from '../clients/[id]/AddContractModal';
 import EmployeeContractModal from '../clients/[id]/EmployeeContractModal';
 import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
+import dayjs from 'dayjs';
 
 const ContractSigned = () => {
   const dispatch = useDispatch();
@@ -66,6 +67,7 @@ const ContractSigned = () => {
                   download: 'Download',
                   actionStatus: true,
                   action: ['Delete'],
+                  date: dayjs(item?.date)?.format('DD-MMMM-YYYY'),
                 }))
               : [];
           dispatch(getOffShoreContractRequestSuccess(tempData || []));
@@ -93,6 +95,7 @@ const ContractSigned = () => {
                   download: 'Download',
                   actionStatus: true,
                   action: ['Delete'],
+                  date: dayjs(item?.date)?.format('DD-MMMM-YYYY'),
                 }))
               : [];
           dispatch(getClientsCompanyContractRequestSuccess(tempData));
@@ -118,6 +121,7 @@ const ContractSigned = () => {
               download: 'Download',
               action: ['Delete'],
               contract_doc: item.contract_doc,
+              date: dayjs(item?.date)?.format('DD-MMMM-YYYY'),
             }));
       if (nestedValue === 0) {
         dispatch(getClientsCompanyContractRequestSuccess(tempData));
@@ -143,6 +147,7 @@ const ContractSigned = () => {
               download: 'Download',
               actionStatus: true,
               action: ['Delete'],
+              date: dayjs(item?.date)?.format('DD-MMMM-YYYY'),
             }))
           : [];
       dispatch(getOffShoreContractRequestSuccess(tempData || []));

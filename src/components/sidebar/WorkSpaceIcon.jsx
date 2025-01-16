@@ -9,6 +9,7 @@ const WorkSpaceIcon = ({ image }) => {
         alt="work-space-icon"
         src={image}
         sx={{
+          cursor: 'pointer',
           width: '100%',
           height: '100%',
           maxWidth: '120px',

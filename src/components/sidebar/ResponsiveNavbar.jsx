@@ -56,6 +56,7 @@ export default function ResponsiveNavbar({ openSidebar }) {
           <MenuOpenIcon
             onClick={openSidebar}
             sx={{
+              cursor: 'pointer',
               color: 'white',
               fontSize: '37px',
               display: {

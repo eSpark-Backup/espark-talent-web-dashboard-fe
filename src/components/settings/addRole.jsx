@@ -278,6 +278,7 @@ const Role = () => {
         <Box
           sx={{
             display: 'flex',
+            height: '100%',
             flexDirection: { xs: 'column', md: 'row' },
             gap: 3,
           }}
@@ -292,7 +293,12 @@ const Role = () => {
               borderRadius: '5px',
               background: '#F6F6F6',
               boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.25)',
-              height: ' 520px',
+              height: 'auto',
+              maxHeight: '520px',
+              minHeight: {
+                xs: 'auto',
+                md: selectedRole == null ? 'auto' : '520px',
+              },
               gap: '15px',
               py: 1.5,
               px: { xs: 1, md: 0.5 },
@@ -305,7 +311,6 @@ const Role = () => {
                 color: '#595959',
                 fontWeight: '500',
                 padding: '5px',
-                ml: '-15px',
               }}
             >
               {SETTING?.roles}
@@ -315,32 +320,52 @@ const Role = () => {
               paddingBottom="20px"
               paddingLeft={'7px'}
             >
-              {rolesDetails?.map((button, index) => (
-                <Button
-                  key={index}
+              {rolesDetails?.length > 0 ? (
+                rolesDetails?.map((button, index) => (
+                  <Button
+                    key={index}
+                    sx={{
+                      borderRadius: '5px',
+                      color: selectedRole === button?.id ? 'teal' : '#595959',
+                      background: selectedRole === button?.id ? '#FFF' : '#fff',
+                      width: '98%',
+                      padding: '8px',
+                      border:
+                        selectedRole === button?.id
+                          ? '1px solid #029894'
+                          : '1px solid #fff',
+                      '&:hover': {
+                        border: '1px solid #029894',
+                        color: 'teal',
+                        background: '#FFF',
+                      },
+                    }}
+                    onClick={() => {
+                      handleRoleChange(
+                        button?.id,
+                        button?.account_name,
+                        button
+                      );
+                    }}
+                  >
+                    {button.role}
+                  </Button>
+                ))
+              ) : (
+                <Box
+                  textAlign="center"
                   sx={{
                     borderRadius: '5px',
-                    color: selectedRole === button.id ? 'teal' : '#595959',
-                    background: selectedRole === button.id ? '#FFF' : '#fff',
+                    color: '#595959',
+                    background: '#fff',
                     width: '98%',
                     padding: '8px',
-                    border:
-                      selectedRole === button.id
-                        ? '1px solid #029894'
-                        : '1px solid #fff',
-                    '&:hover': {
-                      border: ' 1px solid #029894',
-                      color: 'teal',
-                      background: ' #FFF',
-                    },
-                  }}
-                  onClick={() => {
-                    handleRoleChange(button?.id, button?.account_name, button);
+                    border: '1px solid #fff',
                   }}
                 >
-                  {button.role}
-                </Button>
-              ))}
+                  No Accounts
+                </Box>
+              )}
             </Box>
             <RoleModal open={open} handleClose={handleClose} />
           </Box>
@@ -349,6 +374,8 @@ const Role = () => {
               width: { xs: '100%', md: 'calc(100% - 320px)' },
               maxWidth: '100%',
               overflowX: 'auto',
+              minHeight: { xs: '220px', md: '220px' },
+              height: '100%',
             }}
           >
             <Box>
@@ -358,7 +385,7 @@ const Role = () => {
                 handleClickActionView={handleSelectRow}
                 noPagination
                 isLoading={getRolesDetailsQuery?.isLoading}
-                minWidth={'1135px'}
+                minWidth={'1000px'}
               />
             </Box>
             <Box
@@ -373,14 +400,15 @@ const Role = () => {
                 sx={{
                   minWidth: '120px',
                   fontSize: '16px',
-                  backgroundColor: isPending ? '#ccc' : '#029894',
+                  backgroundColor:
+                    selectedRole == null || isPending ? '#ccc' : '#029894',
                   color: '#fff',
                   '&:hover': {
                     backgroundColor: isPending ? '#ccc' : '#029894',
                     color: '#fff',
                   },
                 }}
-                disabled={isPending}
+                disabled={selectedRole == null || isPending}
               >
                 {isPending ? (
                   <CircularProgress size={26} color="secondary" />

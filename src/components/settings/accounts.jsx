@@ -89,6 +89,7 @@ const Accounts = ({ handleAdd }) => {
       }}
     >
       <AppTable
+        minWidth={'1000px'}
         column={accountColumn}
         data={accounts}
         handleClickActionDelete={handleClickActionDelete}

@@ -150,7 +150,7 @@ const AddEmployee = () => {
                 return (
                   <Step
                     key={stepIndex}
-                    isLastStep={currentStep === formSteps.length}
+                    isLastStep={currentStep === formSteps?.length}
                     currentStep={currentStep}
                     countNo={countNo}
                     form={form}

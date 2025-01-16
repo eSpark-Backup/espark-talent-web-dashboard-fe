@@ -40,6 +40,7 @@ const AddContractHrPortalModal = ({ open, onClose, endPoint }) => {
           download: 'Download',
           action: ['Delete'],
           contract_doc: data?.contract_doc,
+          date: dayjs(contractFormValues?.date)?.format('DD-MMMM-YYYY'),
           id: data.id,
         })
       );

@@ -914,10 +914,6 @@ const AddEmployee = () => {
   const getCurrentTabData = () => {
     if (currentTab?.label === 'Hire & onboard') {
       if (currentTab?.nested.val === 0) {
-        console.log(
-          hireAndOnBoard?.hiringRequest,
-          'hireAndOnBoard?.hiringRequest'
-        );
         return (
           hireAndOnBoard?.hiringRequest?.map((item) => {
             // salaryRange = JSON.parse(item?.salary_range);

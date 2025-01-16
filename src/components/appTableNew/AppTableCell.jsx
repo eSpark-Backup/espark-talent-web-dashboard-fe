@@ -638,8 +638,8 @@ export const renderCellContent = (
             justifyContent: col?.textAlign || 'center',
           }}
         >
-          {col?.title?.toLowerCase() === 'employee invoices' ||
-          col?.title?.toLowerCase() === 'other invoices' ? (
+          {col.title?.toLowerCase() === 'employee invoices' ||
+          col.title?.toLowerCase() === 'other invoices' ? (
             row[col?.name] === null ? (
               '-'
             ) : (
@@ -658,11 +658,13 @@ export const renderCellContent = (
             '-'
           ) : col?.title === 'Salary range' || col?.title === 'Salary' ? (
             <Tooltip title={row?.currency || row?.salary_currency}>
-              <span>{row[col?.name]}</span>
+              <Typography component={'span'}>{row[col?.name]}</Typography>
             </Tooltip>
           ) : col?.name === 'job_title' && row[col?.name]?.length > 22 ? (
             <Tooltip title={row[col?.name]}>
-              <span>{truncateText(row[col?.name], 22)}</span>
+              <Typography component={'span'}>
+                {truncateText(row[col?.name], 22)}
+              </Typography>
             </Tooltip>
           ) : (
             getCamelCapitalized(row[col?.name])

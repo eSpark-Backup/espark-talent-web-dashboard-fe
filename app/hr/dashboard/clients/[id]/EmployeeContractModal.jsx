@@ -36,6 +36,7 @@ const EmployeeContractModal = ({ open, onClose }) => {
               download: 'Download',
               action: ['Delete'],
               contract_doc: item.contract_doc,
+              date: dayjs(item?.date)?.format('DD-MMMM-YYYY'),
             }));
       dispatch(getEmployeesCompanyContractRequestSuccess(tempData));
     },

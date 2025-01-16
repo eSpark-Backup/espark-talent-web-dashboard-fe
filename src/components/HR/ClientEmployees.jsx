@@ -92,7 +92,7 @@ const ClientEmployees = ({ fromClient, openModal }) => {
             variant="scrollable"
             sx={{ width: { xs: '100%', md: '80%' } }}
             TabIndicatorProps={{ style: { backgroundColor: '#068987' } }}
-            disableRipple={true}
+            // disableRipple={true}
           >
             <Tab
               disableRipple={true}

@@ -81,10 +81,7 @@ const CompanySettings = () => {
             form={companyformElement}
             schema={companyInfoSchema}
             editProfile
-            mt="180px"
             pmd="49px 10px"
-            gap="60px"
-            midScreenGap="10px"
             isLastStep
             defaultValues={defaultValues}
             getFinalData={getFinalData}
