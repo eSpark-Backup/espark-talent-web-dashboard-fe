@@ -270,6 +270,7 @@ const Dashboard = () => {
                       statusIndex,
                       background,
                       shortForm,
+                      totalItems: sheetStatusTypes.length,
                     })
                 )}
               </Box>

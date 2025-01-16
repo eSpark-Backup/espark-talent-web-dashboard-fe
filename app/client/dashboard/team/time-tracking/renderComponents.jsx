@@ -6,10 +6,11 @@ export const renderTrackingStatus = ({
   label,
   background,
   shortForm,
+  totalItems,
 }) => {
   return (
     <Box
-      mr={'20px'}
+      mr={statusIndex === totalItems - 1 ? 0 : '20px'}
       mb={'10px'}
       display={'flex'}
       alignItems={'center'}
@@ -30,7 +31,12 @@ export const renderTrackingStatus = ({
       >
         {shortForm}
       </Box>
-      <Typography variant="caption" marginX={'5px'} color={'#595959'}>
+      <Typography
+        variant="caption"
+        marginX={'5px'}
+        color={'#595959'}
+        sx={{ whiteSpace: 'nowrap' }}
+      >
         {label}
       </Typography>
     </Box>
