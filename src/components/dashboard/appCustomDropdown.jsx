@@ -40,7 +40,7 @@ const AppCustomDropdown = ({
     };
   }, []);
   return (
-    <td
+    <React.Fragment
       key={colIndex}
       style={{
         display: 'flex',
@@ -136,7 +136,7 @@ const AppCustomDropdown = ({
           </Box>
         )}
       </Box>
-    </td>
+    </React.Fragment>
   );
 };
 
