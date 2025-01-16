@@ -50,8 +50,8 @@ const Dashboard = () => {
   function convertDateFormat(dateStr) {
     // Split the date string into day, month, and year
     var parts = dateStr.split('-');
-    var day = parts[0];
-    var month = parts[1];
+    var day = parts[1];
+    var month = parts[0];
     var year = parts[2];
 
     // Reorder the components to the new format
@@ -102,9 +102,8 @@ const Dashboard = () => {
           return data;
         })
         .catch((error) => {
-          Toast('error', error.message || 'Failed to get data');
           dispatch(getTimeSheetDataFailed());
-          console.log({ error });
+          Toast('error', error.message || 'Failed to get data');
         });
     },
   });
@@ -143,8 +142,8 @@ const Dashboard = () => {
       dispatchFunction(newData);
     },
     onError: (err) => {
+      Toast('error', err.message || 'Failed to update data');
       dispatch(getTimeSheetDataFailed());
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const handleOpenFilterModal = () => {
@@ -155,7 +154,6 @@ const Dashboard = () => {
     setOpen(false);
   };
   const handleAttendanceModal = (props) => {
-    console.log({ props });
     const { item, row } = props;
     setModalData({ item, ...row });
     setOpen(true);

@@ -36,7 +36,7 @@ const JobTitle = ({
           data={jobTitles}
           setIsLoadingList={setIsLoadingTitles}
           isLoadingList={isLoadingTitles}
-          selectedItem={selectedJobTitle}
+          selectedItem={selectedJobTitle || ''}
           setSelectedItem={setSelectedJobTitle}
           nested
           placeHolder="Select job."

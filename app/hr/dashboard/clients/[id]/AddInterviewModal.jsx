@@ -30,8 +30,6 @@ const AddInterviewModal = ({ open, onClose }) => {
       return api.postJSONData(`${HR_CLIENT_EMP_INTERVIEW_SCHEDULE}`, formVals);
     },
     onSuccess: ({ data }) => {
-      console.log({ data, interviewFormValues });
-      Toast('success', 'Data posted successfully');
       dispatch(
         addInterviewSchedule({
           ...interviewFormValues,
@@ -42,10 +40,10 @@ const AddInterviewModal = ({ open, onClose }) => {
       );
       setInterviewFormValues(null);
       handleCloseModal();
+      Toast('success', 'Data posted successfully');
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to post data');
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const {
@@ -72,7 +70,6 @@ const AddInterviewModal = ({ open, onClose }) => {
         ),
         client_id: email,
       };
-      console.log({ finalData });
       setInterviewFormValues(finalData);
       mutate(finalData);
     },
@@ -167,8 +164,8 @@ const AddInterviewModal = ({ open, onClose }) => {
                 },
                 formIndex
               ) => (
-                <>
-                  <Grid item xs={12} lg={5} key={formIndex}>
+                <React.Fragment key={formIndex}>
+                  <Grid item xs={12} lg={5}>
                     <FormInput
                       title={title}
                       placeholder={placeholder}
@@ -199,7 +196,7 @@ const AddInterviewModal = ({ open, onClose }) => {
                     />
                   </Grid>
                   {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>}
-                </>
+                </React.Fragment>
               )
             )}
             <Grid item p={'0 10px'} xs={12}>

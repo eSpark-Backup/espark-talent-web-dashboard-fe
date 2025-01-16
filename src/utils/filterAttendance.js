@@ -45,10 +45,7 @@ export const filterAttendance = (
       ? checkOutTime === '-' || isWithinRange(checkOutTime, checkOutRange)
       : true;
 
-    // console.log({ statusMatches, checkInMatches, checkOutMatches });
-
     return statusMatches && checkInMatches && checkOutMatches;
   });
-  // console.log({ final, data, attendanceStatus, checkInRange, checkOutRange });
   return final;
 };

@@ -6,6 +6,7 @@ import FormInput from '../form/ui-elements/FormInput';
 import { FILTER } from '@/src/constants/filter';
 import ResetButton from './resetButton';
 import { api } from '@/src/services/apiService';
+import { Toast } from '@/src/components/Toast/Toast';
 import {
   getTimeSheetData,
   getTimeSheetDataFailed,
@@ -28,26 +29,18 @@ const WFHReqFilterFormModal = ({ open, onClose, filterForm }) => {
 
   const { mutate, isPending } = useMutation({
     mutationFn: async (args) => {
-      console.log({ args });
       dispatch(getTimeSheetData());
       return api.getData(
         `${EMP_WFH_REQUEST}?tab=${values?.status?.toLowerCase()}&from=${args.from}&to=${args.to}`
       );
     },
     onSuccess: ({ data }) => {
-      console.log({ data });
       const newData1 =
         data === '' || !data?.requests?.length
           ? []
           : data?.requests.filter((el) => {
               return el;
             });
-
-      console.log({
-        newData1,
-        values,
-        data,
-      });
 
       const updateRequestAtTime = newData1?.map((item) => {
         return {
@@ -64,8 +57,7 @@ const WFHReqFilterFormModal = ({ open, onClose, filterForm }) => {
     },
     onError: (err) => {
       dispatch(getTimeSheetDataFailed());
-      console.log({ err });
-      console.log({ err: err.message, name: err.name, stack: err.stack });
+      Toast('error', err.message || 'Failed to get data');
     },
   });
 
@@ -87,7 +79,7 @@ const WFHReqFilterFormModal = ({ open, onClose, filterForm }) => {
     },
     onError: (err) => {
       dispatch(getEmpWfhRequestDataFailed());
-      console.log({ err: err.message, name: err.name, stack: err.stack });
+      Toast('error', err.message || 'Failed to update data');
     },
   });
   const {

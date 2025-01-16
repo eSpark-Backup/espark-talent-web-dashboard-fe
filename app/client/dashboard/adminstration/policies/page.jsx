@@ -22,7 +22,6 @@ const Policies = () => {
     refetchOnWindowFocus: false,
     queryKey: ['policiesQuery'],
     queryFn: async () => {
-      // dispatch(fetchClientPoliciesRequest());
       return api
         .getData(`${CLIENT_POLICY}`)
         .then(({ data }) => {
@@ -30,9 +29,8 @@ const Policies = () => {
           return data;
         })
         .catch((err) => {
-          Toast('error', err.message || 'Failed to get data');
           dispatch(fetchClientPoliciesRequestFailed());
-          console.log({ err });
+          Toast('error', err.message || 'Failed to get data');
         });
     },
   });
@@ -46,7 +44,7 @@ const Policies = () => {
             fontFamily: 'sans-serif',
           }}
         >
-          Policy Data is not available.
+          Policy data is not available
         </Typography>
       </Box>
     );

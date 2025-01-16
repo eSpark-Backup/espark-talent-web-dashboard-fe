@@ -39,13 +39,13 @@ export const emergencyContactSchema = Yup.object({
 export const companyDetailsSchema = Yup.object({
   joining_date: Yup.date()
     .typeError('Joining date must be a valid date')
-    .nullable(),
+    .required('Joining date is required'),
   role: Yup.string().required('Role is required'),
   job_title: Yup.string()
     .required('Job title is required')
     .min(3, 'Job title must be at least 3 characters long')
     .max(30, 'Job title cannot exceed 30 characters'),
-  company: Yup.string().required('Company is required'),
+  company: Yup.string().trim().required('Company is required'),
   job_status: Yup.string().required('Job Status is required'),
   starting_date: Yup.mixed()
     .test(

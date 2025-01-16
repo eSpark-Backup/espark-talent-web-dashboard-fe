@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Modal, Tab, Tabs, Typography } from '@mui/material';
-
+import { Box, Modal, Tab, Tabs } from '@mui/material';
 import AppTable from '../appTableNew/AppTable';
-import { a11yProps } from '@/src/utils/tabs';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import {
   HR_GET_EMP_ATTENDENCE,
@@ -25,17 +23,8 @@ const AttendanceReport = ({ employeeData }) => {
   const params = useParams();
   const clientQuery = useQueryClient();
   const [open, setOpen] = useState(false);
-  const handleClose = () => setOpen(false);
   const [modalData, setModalData] = useState({});
-  const [currentTab, setCurrentTab] = useState({
-    label: '',
-    val: 0,
-  });
-
-  const tabs = attendance?.map((item, index) => ({
-    label: `${item?.client}`,
-    prop: a11yProps(index),
-  }));
+  const [currentTab, setCurrentTab] = useState(0);
 
   const handleAttendanceModal = (props) => {
     const { item, row } = props || {};
@@ -48,10 +37,7 @@ const AttendanceReport = ({ employeeData }) => {
   };
 
   const handleChangeTab = (event, newValue) => {
-    setCurrentTab({
-      label: tabs[newValue]?.label,
-      val: newValue,
-    });
+    setCurrentTab(newValue);
   };
 
   const empProfile = useQuery({
@@ -59,36 +45,16 @@ const AttendanceReport = ({ employeeData }) => {
     refetchOnWindowFocus: false,
     queryKey: ['employee-profile', params?.id],
     queryFn: async () => {
-      return api
-        .getData(`${HR_GET_EMP_PROFILE}?id=${params?.id}`)
-        .then(({ data }) => {
-          return data;
-        })
-        .catch((err) => {
-          Toast('error', err.message || 'Failed to get data');
-          console.log({ err });
-        });
+      try {
+        const { data } = await api.getData(
+          `${HR_GET_EMP_PROFILE}?id=${params?.id}`
+        );
+        return data;
+      } catch (err) {
+        Toast('error', err.message || 'Failed to get data');
+      }
     },
   });
-  const getTimeSheet = (timeSheetData) => {
-    const newData = Object?.entries(timeSheetData)?.map((recItem) => {
-      return {
-        ...recItem[1],
-        date: recItem[0],
-        day: dayjs(convertDateFormat(recItem[0]))?.format('dddd'),
-        status: Object.entries(recItem[1]?.status)
-          ?.map((st) => {
-            if (!st[1]) return;
-            else return getAttendenceShortHand(st[0]);
-          })
-          ?.filter((el) => el !== undefined),
-        action: ['View'],
-        attendenceShortHand: true,
-        actionStatus: true,
-      };
-    });
-    return newData;
-  };
 
   const { data, isLoading } = useQuery({
     staleTime: 10000,
@@ -96,43 +62,31 @@ const AttendanceReport = ({ employeeData }) => {
     refetchOnMount: true,
     queryKey: ['hr-employee-attendence', empProfile?.data?.email],
     queryFn: async () => {
-      return api
-        .getData(`${HR_GET_EMP_ATTENDENCE}?e_email=${empProfile.data?.email}`)
-        .then(({ data }) => {
-          const tempData = [];
-          for (let i = 0; i < data.length; i++) {
-            const element = data[i];
-            const newEle = Object.entries(element);
-            tempData.push({
-              client: newEle[0][0],
-              emp_data: {
-                time_sheet: getTimeSheet(newEle[0][1]?.time_sheet?.record),
-                employee_details: {
-                  ...newEle[0][1]?.employee_details,
-                  expect_check_in: newEle[0][1]?.time_sheet?.expect_check_in,
-                  expect_check_out: newEle[0][1]?.time_sheet?.expect_check_out,
-                },
+      try {
+        const { data } = await api.getData(
+          `${HR_GET_EMP_ATTENDENCE}?e_email=${empProfile.data?.email}`
+        );
+        const tempData = data.map((item) => {
+          const [client, details] = Object.entries(item)[0];
+          return {
+            client,
+            emp_data: {
+              time_sheet: getTimeSheet(details?.time_sheet?.record),
+              employee_details: {
+                ...details?.employee_details,
+                expect_check_in: details?.time_sheet?.expect_check_in,
+                expect_check_out: details?.time_sheet?.expect_check_out,
               },
-            });
-          }
-          dispatch(getAttendanceRequestSuccess(tempData));
-          return tempData || [];
-        })
-        .catch((err) => {
-          Toast('error', err.message || 'Failed to get data');
-          console.log({ err });
+            },
+          };
         });
+        dispatch(getAttendanceRequestSuccess(tempData));
+        return tempData;
+      } catch (err) {
+        Toast('error', err.message || 'Failed to get data');
+      }
     },
   });
-
-  useEffect(() => {
-    if (attendance?.length > 0) {
-      setCurrentTab({
-        label: attendance[0]?.client || '',
-        val: 0,
-      });
-    }
-  }, [attendance]);
 
   useEffect(() => {
     if (empProfile.data?.email) {
@@ -143,129 +97,105 @@ const AttendanceReport = ({ employeeData }) => {
     }
   }, [empProfile?.data?.email, clientQuery]);
 
+  const getTimeSheet = (timeSheetData) => {
+    return Object.entries(timeSheetData).map(([date, details]) => ({
+      ...details,
+      date,
+      day: dayjs(convertDateFormat(date)).format('dddd'),
+      status: Object.entries(details?.status)
+        ?.map(([key, value]) =>
+          value ? getAttendenceShortHand(key) : undefined
+        )
+        ?.filter(Boolean),
+      action: ['View'],
+      attendenceShortHand: true,
+      actionStatus: true,
+    }));
+  };
+
+  const formattedTimeSheet =
+    attendance?.[currentTab]?.emp_data?.time_sheet?.map((row) => ({
+      ...row,
+      expected_hours: calculateExpectedTime(
+        attendance?.[currentTab]?.emp_data,
+        currentTab
+      ),
+      date: dayjs(row?.date, 'DD-MM-YYYY')?.format('D MMMM, YYYY'),
+      check_in: row?.check_in
+        ? dayjs(row?.check_in, 'HH:mm')?.isValid()
+          ? dayjs(row?.check_in, 'HH:mm')?.format('hh:mm A')
+          : '-'
+        : '-',
+      check_out: row?.check_out
+        ? dayjs(row?.check_out, 'HH:mm')?.isValid()
+          ? dayjs(row?.check_out, 'HH:mm')?.format('hh:mm A')
+          : '-'
+        : '-',
+    })) || [];
+
   return (
     <>
-      <>
+      <Box
+        sx={{
+          maxWidth: '100%',
+          mt: !data?.length ? '40px' : '8px',
+          borderBottom: 1,
+          borderColor: 'divider',
+        }}
+      >
         <Box
           sx={{
-            maxWidth: '100%',
-            overflowX: 'auto',
-            mt: !data?.length ? '40px' : null,
+            display: data?.length ? 'flex' : 'none',
+            borderBottom: 1,
+            borderColor: 'divider',
           }}
         >
           {data?.length ? (
-            <Box
-              sx={{
-                display: 'flex',
-                flexDirection: { xs: 'column', md: 'row' },
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                borderBottom: 'solid 1px #ccc',
-                mb: '40px',
-              }}
+            <Tabs
+              value={currentTab}
+              onChange={handleChangeTab}
+              aria-label="basic tabs example"
+              variant="scrollable"
+              TabIndicatorProps={{ style: { backgroundColor: '#068987' } }}
             >
-              <Tabs
-                value={currentTab?.val}
-                onChange={(ev, newVal) => {
-                  handleChangeTab(ev, newVal);
-                }}
-                aria-label="basic tabs example"
-                variant="scrollable"
-                sx={{
-                  mt: '8px',
-                }}
-                TabIndicatorProps={{ style: { backgroundColor: '#068987' } }}
-              >
-                {data?.map((item, tabIndex) => {
-                  return (
-                    <Tab
-                      key={tabIndex}
-                      label={`${item?.client}`}
-                      disableRipple={true}
-                      sx={{
-                        textTransform: 'none',
-                        color: '#595959',
-                        '&.Mui-selected': {
-                          color: '#068987',
-                        },
-                      }}
-                    />
-                  );
-                })}
-              </Tabs>
-            </Box>
+              {data.map((item, index) => (
+                <Tab
+                  disableRipple
+                  key={index}
+                  label={item?.client}
+                  sx={{
+                    textTransform: 'none',
+                    color: '#595959',
+                    '&.Mui-selected': {
+                      color: '#068987',
+                    },
+                  }}
+                />
+              ))}
+            </Tabs>
           ) : null}
-          {attendance?.length ? (
-            attendance?.map((item, index) => {
-              if (index === currentTab.val) {
-                const formattedTimeSheet = item?.emp_data?.time_sheet?.map(
-                  (row) => ({
-                    ...row,
-                    expected_hours: calculateExpectedTime(
-                      item?.emp_data,
-                      currentTab
-                    ),
-                    date: dayjs(row?.date, 'DD-MM-YYYY')?.format(
-                      'D MMMM, YYYY'
-                    ),
-                    check_in: row?.check_in
-                      ? dayjs(row?.check_in, 'HH:mm')?.isValid()
-                        ? dayjs(row?.check_in, 'HH:mm')?.format('hh:mm A')
-                        : '-'
-                      : '-',
-                    check_out: row?.check_out
-                      ? dayjs(row?.check_out, 'HH:mm')?.isValid()
-                        ? dayjs(row?.check_out, 'HH:mm')?.format('hh:mm A')
-                        : '-'
-                      : '-',
-                  })
-                );
-
-                return (
-                  <AppTable
-                    key={index}
-                    minWidth={'1200px'}
-                    column={attendanceReportTableColumn}
-                    data={formattedTimeSheet}
-                    handleClickActionView={handleAttendanceModal}
-                    isLoading={isLoading}
-                  />
-                );
-              }
-              return null;
-            })
-          ) : (
-            <Typography sx={{ my: '45px', textAlign: 'center' }} variant="h3">
-              No attendance record found!
-            </Typography>
-          )}
         </Box>
-      </>
-      {data?.length ? (
-        <Modal
-          open={open}
-          onClose={handleClose}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-          data-aos="fade-down"
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-          }}
-        >
-          <AttendanceViewModal
-            modalData={modalData || {}}
-            empData={
-              {
-                ...data[currentTab.val]?.emp_data?.employee_details,
-                role: employeeData?.role,
-              } || {}
-            }
-            handleClose={handleClose}
-            image={employeeData?.image_path}
+        <Box sx={{ width: '100%', mt: '40px', overflowX: 'auto' }}>
+          <AppTable
+            minWidth={'1200px'}
+            column={attendanceReportTableColumn}
+            data={formattedTimeSheet || ['No attendance record found!']}
+            handleClickActionView={handleAttendanceModal}
+            isLoading={isLoading}
           />
-        </Modal>
-      ) : null}
+        </Box>
+      </Box>
+      <Modal open={open} onClose={() => setOpen(false)}>
+        <AttendanceViewModal
+          modalData={modalData}
+          empData={{
+            ...data?.[currentTab]?.emp_data?.employee_details,
+            role: employeeData?.role,
+          }}
+          handleClose={() => setOpen(false)}
+          image={employeeData?.image_path}
+        />
+      </Modal>
     </>
   );
 };

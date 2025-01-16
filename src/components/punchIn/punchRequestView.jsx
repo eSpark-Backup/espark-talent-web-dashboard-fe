@@ -53,8 +53,6 @@ const PunchRequestView = ({ onClose, modalData, createPunch }) => {
               disabled={!createPunch && true}
               value={modalData?.punchTime}
             />
-            {/* {punchTime}
-            </TextField> */}
           </Box>
         </Box>
         <Box

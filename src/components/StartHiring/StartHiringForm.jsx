@@ -21,6 +21,7 @@ import dayjs from 'dayjs';
 import { Toast } from '../Toast/Toast';
 import { useRouter } from 'next/navigation';
 import { countriesList } from '@/src/constants/countries';
+
 const StartHiringForm = () => {
   const router = useRouter();
   const dispatch = useDispatch();
@@ -63,7 +64,6 @@ const StartHiringForm = () => {
         ),
         hiring_end_date: dayjs(formValues?.hiringEndDate).format('YYYY-MM-DD'),
       };
-      console.log(formValues, 'mmm');
       mutate(revampFormValues);
     },
     validateOnChange: false,
@@ -93,14 +93,12 @@ const StartHiringForm = () => {
       return api.postData(CLIENT_START_HIRING, formVals);
     },
     onSuccess: () => {
-      Toast('success', 'Data posted successfully');
       dispatch(
         createClientHiringRequestSuccess({
           ...getRevampedValues(values),
           id: generateUniqueString(),
         })
       );
-
       router.push(`/client/dashboard/hire-onboard/hiring-progress`);
     },
     onError: (err) => {
@@ -124,7 +122,7 @@ const StartHiringForm = () => {
         px: { xs: '5px', sm: '20px', md: '20px 60px' },
         gap: { xs: '10px', md: '30px' },
         '@media (min-width: 750px)': {
-          height: '900px',
+          minHeight: '900px',
         },
       }}
     >
@@ -167,52 +165,51 @@ const StartHiringForm = () => {
               },
               formIndex
             ) => (
-              <>
-                <Box
-                  sx={{
-                    width: '50%',
-                    '@media (max-width: 749px)': {
-                      width: '100%',
+              <Box
+                sx={{
+                  width: '50%',
+                  '@media (max-width: 749px)': {
+                    width: '100%',
+                  },
+                }}
+                key={formIndex}
+              >
+                <FormInput
+                  title={title}
+                  placeholder={placeholder}
+                  errorText={errorText}
+                  prefixIcon={prefixIcon}
+                  type={type}
+                  suffixIcon={suffixIcon}
+                  options={options}
+                  name={name}
+                  setFieldValue={setFieldValue}
+                  value={values[name]}
+                  error={errors[name]}
+                  touched={touched}
+                  setFieldError={setFieldError}
+                  errors={errors}
+                  setErrors={setErrors}
+                  values={values}
+                  nested={nested}
+                  xs={12}
+                  sm={12}
+                  md={12}
+                  accept=".pdf"
+                  lg={12}
+                  fields={fields}
+                  searchable={searchable}
+                  countries={countriesList}
+                  width={'100%'}
+                  selectWithType={selectWithType}
+                  withFlag={withFlag}
+                  marginLeft={{
+                    '@media (min-width: 600px) and (max-width: 1200px)': {
+                      marginLeft: '15px',
                     },
                   }}
-                  key={formIndex}
-                >
-                  <FormInput
-                    title={title}
-                    placeholder={placeholder}
-                    errorText={errorText}
-                    prefixIcon={prefixIcon}
-                    type={type}
-                    suffixIcon={suffixIcon}
-                    options={options}
-                    name={name}
-                    setFieldValue={setFieldValue}
-                    value={values[name]}
-                    error={errors[name]}
-                    touched={touched}
-                    setFieldError={setFieldError}
-                    errors={errors}
-                    setErrors={setErrors}
-                    values={values}
-                    nested={nested}
-                    xs={12}
-                    sm={12}
-                    md={12}
-                    lg={12}
-                    fields={fields}
-                    searchable={searchable}
-                    countries={countriesList}
-                    width={'100%'}
-                    selectWithType={selectWithType}
-                    withFlag={withFlag}
-                    marginLeft={{
-                      '@media (min-width: 600px) and (max-width: 1200px)': {
-                        marginLeft: '15px',
-                      },
-                    }}
-                  />
-                </Box>
-              </>
+                />
+              </Box>
             )
           )}
           <Box sx={{ width: '100%', px: { xs: '10px', md: 0 } }}>

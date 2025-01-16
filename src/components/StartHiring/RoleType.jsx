@@ -20,7 +20,7 @@ const RoleType = () => {
         data={roles}
         setIsLoadingList={setIsLoadingTitles}
         isLoadingList={isLoadingTitles}
-        selectedItem={selectedJobTitle}
+        selectedItem={selectedJobTitle || ''}
         setSelectedItem={setSelectedJobTitle}
         placeHolder="Select role"
       />

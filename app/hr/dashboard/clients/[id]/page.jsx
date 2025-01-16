@@ -13,8 +13,8 @@ import UploadInvoiceModal from './UploadInvoiceModal';
 import AddEmployeeModal from './AddEmployeeModal';
 import AddInterviewModal from './AddInterviewModal';
 import AddOnboardModal from './AddOnboardModal';
-import { useSearchParams } from 'next/navigation';
 
+import { useSearchParams } from 'next/navigation';
 import { CLIENTPROFILE } from '@/src/constants/ClientProfile';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
@@ -28,17 +28,18 @@ import {
   HR_CLIENT_EMP_ON_BOARDING,
   HR_CLIENT_OTHER_INVOICE,
   HR_GET_CLIENT_PROFILE,
+  DOWNLOAD_CLIENT_JOB_DESCRIPTION,
 } from '@/src/services/apiService/apiEndPoints';
 import {
   deleteEmpInv,
   deleteHiringRequest,
+  getClientHiringRequest,
   deleteInterSchedule,
   deleteOnBoarding,
   deleteOthInv,
   getClientEmpInvoicePaid,
   getClientEmpInvoicePending,
   getClientEmpInvoiceProcessing,
-  getClientHiringRequest,
   getClientInterviewSchedule,
   getClientOnboarding,
   getClientOthInvoicePaid,
@@ -71,6 +72,7 @@ import dayjs from 'dayjs';
 import { hasSymbol } from '@/src/utils/symbolChecker';
 import { genderType } from '@/src/utils/genderType';
 import { clientProfileTabsHandler } from '@/src/utils/clientProfileTabHandler';
+import { getTimeSheetDataFailed } from '@/src/redux/slices/employeeSlices/timeSheetSlice';
 
 const AddEmployee = () => {
   const params = useParams();
@@ -98,15 +100,13 @@ const AddEmployee = () => {
         .catch((err) => {
           dispatch(getCurrentClientDataFailed());
           Toast('error', err.message || 'Failed to get data');
-          console.log({ err });
         });
     },
   });
-
   const ClientHiringReqQuery = useQuery({
     staleTime: 100000,
     refetchOnWindowFocus: false,
-    queryKey: ['hr-client-hiring-req-query'],
+    queryKey: ['hr-client-hiring-req-query', email],
     queryFn: () => {
       return api
         .getData(`${HR_CLIENT_EMP_HIRING_REQUEST}?id=${params.id}`)
@@ -114,14 +114,22 @@ const AddEmployee = () => {
           const tempData =
             data !== ''
               ? data?.map((item) => {
-                  const symbol = item?.salary_range?.currency?.split(' ')[0];
+                  const symbol = item?.salary_currency?.split(' ')[0];
 
                   return {
                     ...item,
-                    salary_range: `${item.salary_range.minimum}${hasSymbol(symbol) ? symbol : ''} - ${item.salary_range.maximum}${hasSymbol(symbol) ? symbol : ''}`,
+                    salary_range: `${item.salary_range.minimum}${hasSymbol(symbol) ? ' ' + symbol : ' '} - ${item.salary_range.maximum}${hasSymbol(symbol) ? ' ' + symbol : ''}`,
                     currency: item?.salary_range?.currency || '',
                     gender: genderType(item?.gender),
+                    hiring_start_date: dayjs(item.hiring_start_date).format(
+                      'DD-MMMM-YYYY'
+                    ),
+                    hiring_end_date: dayjs(item.hiring_end_date).format(
+                      'DD-MMMM-YYYY'
+                    ),
                     action: ['Delete'],
+                    jobDescription: 'Download',
+                    comments: `${(item.comments = item?.comments?.length > 20 ? item?.comments?.substring(0, 20) + '…' : item?.comments)}`,
                   };
                 })
               : [];
@@ -130,16 +138,14 @@ const AddEmployee = () => {
         })
         .catch((err) => {
           Toast('error', err.message || 'Failed to get data');
-          console.log({ err });
         });
     },
   });
   const ClientInterviewSchedule = useQuery({
     staleTime: 100000,
     refetchOnWindowFocus: false,
-    queryKey: ['hr-interview-schedule-req-query'],
+    queryKey: ['hr-interview-schedule-req-query', email],
     queryFn: () => {
-      console.log('Calling api');
       return api
         .getData(`${HR_CLIENT_EMP_INTERVIEW_SCHEDULE}?id=${params.id}`)
         .then(({ data }) => {
@@ -149,7 +155,7 @@ const AddEmployee = () => {
                   ...item,
                   action: ['Delete'],
                   interview_date_time: dayjs(item?.interview_date_time).format(
-                    'YYYY-MM-DD hh:mm A'
+                    'DD-MMMM-YYYY hh:mm A'
                   ),
                   gender: genderType(item?.gender),
                 }))
@@ -160,14 +166,13 @@ const AddEmployee = () => {
         })
         .catch((err) => {
           Toast('error', err.message || 'Failed to get data');
-          console.log({ err });
         });
     },
   });
   const ClientOnBoarding = useQuery({
     staleTime: 100000,
     refetchOnWindowFocus: false,
-    queryKey: ['hr-client-on-board-req-query'],
+    queryKey: ['hr-client-on-board-req-query', email],
     queryFn: () => {
       return api
         .getData(`${HR_CLIENT_EMP_ON_BOARDING}?id=${params.id}`)
@@ -181,6 +186,13 @@ const AddEmployee = () => {
                     ...item,
                     salary: `${item.salary} ${hasSymbol(symbol) ? symbol : ''}`,
                     salary_currency: item?.salary_currency || '',
+                    joining_date: dayjs(item?.joining_date).format(
+                      'DD-MMMM-YYYY'
+                    ),
+                    notice_period:
+                      item?.notice_period > 0
+                        ? `${item?.notice_period} ${item?.notice_period === 1 ? 'day' : 'days'}`
+                        : '-',
                     dropdownStatus: true,
                     gender: genderType(item?.gender),
                     action: ['Delete'],
@@ -192,14 +204,13 @@ const AddEmployee = () => {
         })
         .catch((err) => {
           Toast('error', err.message || 'Failed to get data');
-          console.log({ err });
         });
     },
   });
   const ClientEmployeesAll = useQuery({
     staleTime: 100000,
     refetchOnWindowFocus: false,
-    queryKey: ['hr-clients-employees-all'],
+    queryKey: ['hr-clients-employees-all', email],
     queryFn: () => {
       return api
         .getData(`${HR_CLIENT_EMPLOYEES}?c_email=${email}&tab=all`)
@@ -208,14 +219,13 @@ const AddEmployee = () => {
         })
         .catch((err) => {
           Toast('error', err.message || 'Failed to get data');
-          console.log({ err });
         });
     },
   });
   const ClientEmployeesActive = useQuery({
     staleTime: 100000,
     refetchOnWindowFocus: false,
-    queryKey: ['hr-clients-employees-active'],
+    queryKey: ['hr-clients-employees-active', email],
     queryFn: () => {
       return api
         .getData(`${HR_CLIENT_EMPLOYEES}?c_email=${email}&tab=active`)
@@ -224,14 +234,13 @@ const AddEmployee = () => {
         })
         .catch((err) => {
           Toast('error', err.message || 'Failed to get data');
-          console.log({ err });
         });
     },
   });
   const ClientEmployeesTerminated = useQuery({
     staleTime: 100000,
     refetchOnWindowFocus: false,
-    queryKey: ['hr-clients-employees-terminated'],
+    queryKey: ['hr-clients-employees-terminated', email],
     queryFn: () => {
       return api
         .getData(`${HR_CLIENT_EMPLOYEES}?c_email=${email}&tab=terminated`)
@@ -240,14 +249,13 @@ const AddEmployee = () => {
         })
         .catch((err) => {
           Toast('error', err.message || 'Failed to get data');
-          console.log({ err });
         });
     },
   });
   const EmployeeInvoicesPending = useQuery({
     staleTime: 100000,
     refetchOnWindowFocus: false,
-    queryKey: ['hr-clients-employees-invoices-pending'],
+    queryKey: ['hr-clients-employees-invoices-pending', email],
     queryFn: () => {
       return api
         .getData(`${HR_CLIENT_EMPLOYEE_INVOICE}?client_id=${email}&tab=pending`)
@@ -256,6 +264,8 @@ const AddEmployee = () => {
             ? data?.map((item) => ({
                 ...item,
                 dropdownStatus: true,
+                due_date: dayjs(item.due_date).format('DD-MMMM-YYYY'),
+                invoice_date: dayjs(item.invoice_date).format('DD-MMMM-YYYY'),
                 action: ['Delete'],
                 actionStatus: true,
                 download: 'Download',
@@ -267,14 +277,13 @@ const AddEmployee = () => {
         })
         .catch((err) => {
           Toast('error', err.message || 'Failed to get data');
-          console.log({ err });
         });
     },
   });
   const EmployeeInvoicesProcessing = useQuery({
     staleTime: 100000,
     refetchOnWindowFocus: false,
-    queryKey: ['hr-clients-employees-invoices-processing'],
+    queryKey: ['hr-clients-employees-invoices-processing', email],
     queryFn: () => {
       return api
         .getData(
@@ -285,6 +294,8 @@ const AddEmployee = () => {
             ? data?.map((item) => ({
                 ...item,
                 dropdownStatus: true,
+                due_date: dayjs(item.due_date).format('DD-MMMM-YYYY'),
+                invoice_date: dayjs(item.invoice_date).format('DD-MMMM-YYYY'),
                 action: ['Delete'],
                 actionStatus: true,
                 download: 'Download',
@@ -296,14 +307,13 @@ const AddEmployee = () => {
         })
         .catch((err) => {
           Toast('error', err.message || 'Failed to get data');
-          console.log({ err });
         });
     },
   });
   const EmployeeInvoicesPaid = useQuery({
     staleTime: 100000,
     refetchOnWindowFocus: false,
-    queryKey: ['hr-clients-employees-invoices-paid'],
+    queryKey: ['hr-clients-employees-invoices-paid', email],
     queryFn: () => {
       return api
         .getData(`${HR_CLIENT_EMPLOYEE_INVOICE}?client_id=${email}&tab=paid`)
@@ -312,6 +322,8 @@ const AddEmployee = () => {
             ? data?.map((item) => ({
                 ...item,
                 dropdownStatus: true,
+                due_date: dayjs(item.due_date).format('DD-MMMM-YYYY'),
+                invoice_date: dayjs(item.invoice_date).format('DD-MMMM-YYYY'),
                 action: ['Delete'],
                 actionStatus: true,
                 download: 'Download',
@@ -323,14 +335,13 @@ const AddEmployee = () => {
         })
         .catch((err) => {
           Toast('error', err.message || 'Failed to get data');
-          console.log({ err });
         });
     },
   });
   const OtherInvoicesPending = useQuery({
     staleTime: 100000,
     refetchOnWindowFocus: false,
-    queryKey: ['hr-clients-other-invoices-pending'],
+    queryKey: ['hr-clients-other-invoices-pending', email],
     queryFn: () => {
       return api
         .getData(`${HR_CLIENT_OTHER_INVOICE}?client_id=${email}&tab=pending`)
@@ -340,6 +351,8 @@ const AddEmployee = () => {
             data?.map((item) => ({
               ...item,
               dropdownStatus: true,
+              due_date: dayjs(item.due_date).format('DD-MMMM-YYYY'),
+              invoice_date: dayjs(item.invoice_date).format('DD-MMMM-YYYY'),
               action: ['Delete'],
               actionStatus: true,
               download: 'Download',
@@ -350,14 +363,13 @@ const AddEmployee = () => {
         })
         .catch((err) => {
           Toast('error', err.message || 'Failed to get data');
-          console.log({ err });
         });
     },
   });
   const OtherInvoicesProcessing = useQuery({
     staleTime: 100000,
     refetchOnWindowFocus: false,
-    queryKey: ['hr-clients-other-invoices-processing'],
+    queryKey: ['hr-clients-other-invoices-processing', email],
     queryFn: () => {
       return api
         .getData(`${HR_CLIENT_OTHER_INVOICE}?client_id=${email}&tab=processing`)
@@ -367,25 +379,25 @@ const AddEmployee = () => {
             data?.map((item) => ({
               ...item,
               dropdownStatus: true,
+              due_date: dayjs(item.due_date).format('DD-MMMM-YYYY'),
+              invoice_date: dayjs(item.invoice_date).format('DD-MMMM-YYYY'),
               action: ['Delete'],
               actionStatus: true,
               download: 'Download',
               payment_status: getCamelCapitalized(item.payment_status),
             }));
-          console.log({ tempData });
           dispatch(getClientOthInvoiceProcessing(tempData || []));
           return data;
         })
         .catch((err) => {
           Toast('error', err.message || 'Failed to get data');
-          console.log({ err });
         });
     },
   });
   const OtherInvoicesPaid = useQuery({
     staleTime: 100000,
     refetchOnWindowFocus: false,
-    queryKey: ['hr-clients-other-invoices-paid'],
+    queryKey: ['hr-clients-other-invoices-paid', email],
     queryFn: () => {
       return api
         .getData(`${HR_CLIENT_OTHER_INVOICE}?client_id=${email}&tab=paid`)
@@ -395,6 +407,8 @@ const AddEmployee = () => {
             data?.map((item) => ({
               ...item,
               dropdownStatus: true,
+              due_date: dayjs(item.due_date).format('DD-MMMM-YYYY'),
+              invoice_date: dayjs(item.invoice_date).format('DD-MMMM-YYYY'),
               action: ['Delete'],
               actionStatus: true,
               download: 'Download',
@@ -405,7 +419,6 @@ const AddEmployee = () => {
         })
         .catch((err) => {
           Toast('error', err.message || 'Failed to get data');
-          console.log({ err });
         });
     },
   });
@@ -637,7 +650,6 @@ const AddEmployee = () => {
         },
       };
     });
-    console.log({ label, nestedTabs, data, column, currentTab });
     if (data?.length) {
       const filteredData = filterTableRowsWRTTab(data, {
         paymentStatus: nestedTabs[0].label,
@@ -669,17 +681,12 @@ const AddEmployee = () => {
         },
       };
     });
-    console.log({ current });
     if (current?.column?.length) {
-      console.log('currentData');
-      console.log({ event, newValue, data, rest, current });
       setCurrentTabTable({
         data: current?.data || [],
         column: current?.column,
       });
     } else if (rest?.column?.length) {
-      console.log('restData');
-      console.log({ event, newValue, data, rest, current });
       setCurrentTabTable({
         data: rest?.data || [],
         column: rest?.column,
@@ -741,8 +748,8 @@ const AddEmployee = () => {
     currentInvData: null,
   });
   const handleClose = () => setIsOpen(false);
+
   const handleOpen = (id, row) => {
-    console.log({ id, row });
     setDeleteRowID(id);
     if (currentTab?.label !== 'Hire & onboard') {
       setDeleteInvType(row?.payment_status.toLowerCase());
@@ -754,15 +761,14 @@ const AddEmployee = () => {
       return api.daleteData(`${HR_CLIENT_EMP_HIRING_REQUEST}?id=${id}`);
     },
     onSuccess: () => {
-      Toast('success', 'Data deleted successfully');
       dispatch(deleteHiringRequest(deleteRowID));
+      Toast('success', 'Data deleted successfully');
       setDeleteRowID(null);
       handleClose();
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to delete data');
       handleClose();
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const deleteInterviewMutation = useMutation({
@@ -770,15 +776,14 @@ const AddEmployee = () => {
       return api.daleteData(`${HR_CLIENT_EMP_INTERVIEW_SCHEDULE}?id=${id}`);
     },
     onSuccess: () => {
-      Toast('success', 'Data deleted successfully');
       dispatch(deleteInterSchedule(deleteRowID));
+      Toast('success', 'Data deleted successfully');
       setDeleteRowID(null);
       handleClose();
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to delete data');
       handleClose();
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const deleteOnBoardingMutation = useMutation({
@@ -786,15 +791,14 @@ const AddEmployee = () => {
       return api.daleteData(`${HR_CLIENT_EMP_ON_BOARDING}?id=${id}`);
     },
     onSuccess: () => {
-      Toast('success', 'Data deleted successfully');
       dispatch(deleteOnBoarding(deleteRowID));
+      Toast('success', 'Data deleted successfully');
       setDeleteRowID(null);
       handleClose();
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to delete data');
       handleClose();
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const deleteEmpInvMutation = useMutation({
@@ -802,8 +806,8 @@ const AddEmployee = () => {
       return api.daleteData(`${HR_CLIENT_EMPLOYEE_INVOICE}?id=${id}`);
     },
     onSuccess: () => {
-      Toast('success', 'Data deleted successfully');
       dispatch(deleteEmpInv({ type: deleteInvType, id: deleteRowID }));
+      Toast('success', 'Data deleted successfully');
       setDeleteRowID(null);
       setDeleteInvType(null);
       handleClose();
@@ -811,7 +815,6 @@ const AddEmployee = () => {
     onError: (err) => {
       Toast('error', err.message || 'Failed to delete data');
       handleClose();
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const deleteOthInvMutation = useMutation({
@@ -819,8 +822,8 @@ const AddEmployee = () => {
       return api.daleteData(`${HR_CLIENT_OTHER_INVOICE}?id=${id}`);
     },
     onSuccess: () => {
-      Toast('success', 'Data deleted successfully');
       dispatch(deleteOthInv({ type: deleteInvType, id: deleteRowID }));
+      Toast('success', 'Data deleted successfully');
       setDeleteRowID(null);
       setDeleteInvType(null);
       handleClose();
@@ -828,19 +831,17 @@ const AddEmployee = () => {
     onError: (err) => {
       Toast('error', err.message || 'Failed to delete data');
       handleClose();
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const updateEmpInvMutation = useMutation({
     mutationFn: async (data) => {
       const formData = new FormData();
       for (const key in data.data) {
-        formData.append(key, data.data[key]);
+        formData?.append(key, data.data[key]);
       }
       return api.updateData(`${data?.url}?id=${data?.id}`, formData);
     },
     onSuccess: () => {
-      Toast('success', 'Data updated successfully');
       if (currentTab?.label === 'Employee invoices') {
         dispatch(
           updateEmpInv({
@@ -860,6 +861,7 @@ const AddEmployee = () => {
           })
         );
       }
+      Toast('success', 'Data updated successfully');
       setDeleteRowID(null);
       setUpdateStatusType({
         currentInvData: null,
@@ -871,12 +873,11 @@ const AddEmployee = () => {
     onError: (err) => {
       Toast('error', err.message || 'Failed to update data');
       handleClose();
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const handleConfirmDeleteHiringReq = () => {
-    console.log({ deleteRowID });
     if (currentTab?.label === 'Hire & onboard') {
+      console.log(deleteRowID, 'deleteRowID');
       if (currentTab?.nested.val === 0) {
         deleteStartHiringMutation.mutate(deleteRowID);
       } else if (currentTab?.nested.val === 1) {
@@ -891,7 +892,6 @@ const AddEmployee = () => {
     }
   };
   const handleConfirmUpdatePayStatus = (data, newVal) => {
-    console.log({ data, newVal });
     setUpdateRowID(data.id);
     setUpdateStatusType({
       currentVal: data.payment_status,
@@ -910,30 +910,104 @@ const AddEmployee = () => {
           : HR_CLIENT_OTHER_INVOICE,
     });
   };
+  // const symbolSalary = (item) => item?.salary_range?.currency?.split(' ')[0] || null;
   const getCurrentTabData = () => {
     if (currentTab?.label === 'Hire & onboard') {
       if (currentTab?.nested.val === 0) {
-        return hireAndOnBoard?.hiringRequest || [];
+        return (
+          hireAndOnBoard?.hiringRequest?.map((item) => {
+            // salaryRange = JSON.parse(item?.salary_range);
+            return {
+              ...item,
+              // salary_range:`${salaryRange.minimum} ${salaryRange.currency} - ${salaryRange.maximum} ${salaryRange.currency}`,
+              // salary_currency: salaryRange?.currency || '',
+              gender: genderType(item?.gender),
+              hiring_start_date: dayjs(item.hiring_start_date).format(
+                'DD-MMMM-YYYY'
+              ),
+              hiring_end_date: dayjs(item.hiring_end_date).format(
+                'DD-MMMM-YYYY'
+              ),
+              jobDescription: 'Download',
+              notice_period:
+                item?.notice_period > 0
+                  ? `${item?.notice_period} ${item?.notice_period === 1 ? 'day' : 'days'}`
+                  : '-',
+              comments:
+                item?.comments && item.comments.length > 20
+                  ? item.comments.substring(0, 20) + '…'
+                  : item.comments,
+            };
+          }) || []
+        );
       } else if (currentTab?.nested.val === 1) {
-        return hireAndOnBoard?.interviewSchedule || [];
+        return (
+          hireAndOnBoard?.interviewSchedule?.map((item) => ({
+            ...item,
+            interview_date_time: dayjs(item?.interview_date_time).format(
+              'DD-MMMM-YYYY hh:mm A'
+            ),
+          })) || []
+        );
       } else {
-        return hireAndOnBoard?.onBoarding || [];
+        return (
+          hireAndOnBoard?.onBoarding?.map((item) => ({
+            ...item,
+            joining_date: dayjs(item?.joining_date).format('DD-MMMM-YYYY'),
+          })) || []
+        );
       }
     } else if (currentTab?.label === 'Employee invoices') {
       if (currentTab?.nested.val === 0) {
-        return employeeInvoices?.pending || [];
+        return (
+          employeeInvoices?.pending?.map((item) => ({
+            ...item,
+            invoice_date: dayjs(item.invoice_date).format('DD-MMMM-YYYY'),
+            due_date: dayjs(item.join_date).format('DD-MMMM-YYYY'),
+          })) || []
+        );
       } else if (currentTab?.nested.val === 1) {
-        return employeeInvoices?.processing || [];
+        return (
+          employeeInvoices?.processing?.map((item) => ({
+            ...item,
+            invoice_date: dayjs(item.invoice_date).format('DD-MMMM-YYYY'),
+            due_date: dayjs(item.join_date).format('DD-MMMM-YYYY'),
+          })) || []
+        );
       } else {
-        return employeeInvoices?.paid || [];
+        return (
+          employeeInvoices?.paid?.map((item) => ({
+            ...item,
+            invoice_date: dayjs(item.invoice_date).format('DD-MMMM-YYYY'),
+            due_date: dayjs(item.join_date).format('DD-MMMM-YYYY'),
+          })) || []
+        );
       }
     } else {
       if (currentTab?.nested.val === 0) {
-        return otherInvoices?.pending || [];
+        return (
+          otherInvoices?.pending?.map((item) => ({
+            ...item,
+            invoice_date: dayjs(item.invoice_date).format('DD-MMMM-YYYY'),
+            due_date: dayjs(item.join_date).format('DD-MMMM-YYYY'),
+          })) || []
+        );
       } else if (currentTab?.nested.val === 1) {
-        return otherInvoices?.processing || [];
+        return (
+          otherInvoices?.processing?.map((item) => ({
+            ...item,
+            invoice_date: dayjs(item.invoice_date).format('DD-MMMM-YYYY'),
+            due_date: dayjs(item.join_date).format('DD-MMMM-YYYY'),
+          })) || []
+        );
       } else {
-        return otherInvoices?.paid || [];
+        return (
+          otherInvoices?.paid?.map((item) => ({
+            ...item,
+            invoice_date: dayjs(item.invoice_date).format('DD-MMMM-YYYY'),
+            due_date: dayjs(item.join_date).format('DD-MMMM-YYYY'),
+          })) || []
+        );
       }
     }
   };
@@ -942,7 +1016,9 @@ const AddEmployee = () => {
   };
   const resolveURL = (id) => {
     let url;
-    if (currentTab.val === 2) {
+    if (currentTab.val === 0) {
+      url = `${DOWNLOAD_CLIENT_JOB_DESCRIPTION}?id=${id}`;
+    } else if (currentTab.val === 2) {
       url = `${DOWNLOAD_EMP_INV}?id=${id}`;
     } else {
       url = `${DOWNLOAD_OTH_INV}?id=${id}`;
@@ -954,7 +1030,6 @@ const AddEmployee = () => {
       return api.downloadFile(resolveURL(id));
     },
     onSuccess: ({ data }) => {
-      console.log({ data });
       const url = window.URL.createObjectURL(new Blob([data]));
       const link = document.createElement('a');
       link.href = url;
@@ -962,19 +1037,45 @@ const AddEmployee = () => {
       document.body.appendChild(link);
       link.click();
       link.parentNode.removeChild(link);
-
-      // dispatchFunction?.(data);
       Toast('success', 'File downloaded');
     },
     onError: (err) => {
       Toast('error', err.message || 'File not downloaded');
-      // dispatch(getTimeSheetDataFailed());
-      console.log({ err });
-      console.log({ err: err.message, name: err.name, stack: err.stack });
+    },
+  });
+  const downloadJSMutation = useMutation({
+    mutationFn: async (id) => {
+      return api.downloadFile(resolveURL(id));
+    },
+    onSuccess: ({ data }) => {
+      console.log({ data });
+      const url = window.URL.createObjectURL(new Blob([data]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', 'job_description.pdf');
+      document.body.appendChild(link);
+      link.click();
+      link.parentNode.removeChild(link);
+
+      Toast('success', 'File downloaded');
+    },
+    onError: (err) => {
+      dispatch(getTimeSheetDataFailed());
+      Toast('error', err.message || 'File not downloaded');
     },
   });
   const downloadInvoice = (id) => {
     downloadInvoiceMutation.mutate(id);
+  };
+  const downloadJD = (id) => {
+    downloadJSMutation.mutate(id);
+  };
+  const downlaodfile = (id) => {
+    if (currentTab.val === 0) {
+      return downloadJD(id);
+    } else {
+      return downloadInvoice(id);
+    }
   };
 
   return (
@@ -1253,7 +1354,6 @@ const AddEmployee = () => {
                   ))}
                 </Box>
               )}
-
               {renderTable({
                 isLoading:
                   isLoading ||
@@ -1273,7 +1373,8 @@ const AddEmployee = () => {
                 isOpen: isOpen,
                 handleOpen,
                 handleClose,
-                minWidth: '1450px',
+                minWidth: '1300px',
+                handleClickActionDelete: handleOpen,
                 handleConfirmDelete: handleConfirmDeleteHiringReq,
                 updateStatus: handleConfirmUpdatePayStatus,
                 isPending:
@@ -1282,7 +1383,7 @@ const AddEmployee = () => {
                   deleteOnBoardingMutation.isPending ||
                   deleteEmpInvMutation.isPending ||
                   deleteOthInvMutation.isPending,
-                handleClickDownload: downloadInvoice,
+                handleClickDownload: downlaodfile,
               })}
             </Box>
           </>
@@ -1316,7 +1417,7 @@ const AddEmployee = () => {
         onClose={handleCloseUploadOthInvoiceModal}
       />
       <AddEmployeeModal
-        title="Employee invoice form"
+        title="Employee Employee form"
         open={isOpenAddClientModal}
         onClose={handleCloseAddClientModal}
       />

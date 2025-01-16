@@ -80,6 +80,9 @@ const Dashboard = () => {
             data !== ''
               ? data?.map((item) => ({
                   ...item,
+                  joining_date: dayjs(item?.joining_date).format(
+                    'DD-MMMM-YYYY'
+                  ),
                   status: 'onBoard',
                 }))
               : [];
@@ -103,6 +106,9 @@ const Dashboard = () => {
             data !== ''
               ? data?.map((item) => ({
                   ...item,
+                  joining_date: dayjs(item?.joining_date).format(
+                    'DD-MMMM-YYYY'
+                  ),
                   status: 'Terminated',
                 }))
               : [];
@@ -149,13 +155,6 @@ const Dashboard = () => {
       filterTableRowsWRTTab,
       teamMembersData,
       filterBy: 'memberStatus',
-      // isSingular: true,
-      // tabs: teamTabs,
-      // event,
-      // newValue,
-      // setSearch,
-      // setCurrentTab,
-      // setValue,
     });
   };
 
@@ -270,7 +269,6 @@ const Dashboard = () => {
                         ).length
                       })`}
                       {...prop}
-                      // value={label}
                     />
                   ))}
                 </Tabs>
@@ -293,6 +291,7 @@ const Dashboard = () => {
                     }}
                   >
                     <AppTable
+                      minWidth={'1250px'}
                       currentTab={currentTab}
                       column={column}
                       data={

@@ -32,9 +32,9 @@ const Assets = () => {
       return api.daleteData(`${HR_ADD_EMP_ASSET}?id=${id}`);
     },
     onSuccess: () => {
-      Toast('success', 'Asset deleted successfully');
       handleClose();
       dispatch(deleteEmpAsset(deletingAssetId));
+      Toast('success', 'Asset deleted successfully');
       setDeletingAssetId(null);
     },
     onError: (err) => {
@@ -67,15 +67,13 @@ const Assets = () => {
           return tempAssets || [];
         })
         .catch((err) => {
-          Toast('error', err.message || 'Failed to get data');
           dispatch(getEmpAssetRequestFailed());
-          console.log({ err });
+          Toast('error', err.message || 'Failed to get data');
         });
     },
   });
 
   const handleClickDelete = (a, b) => {
-    console.log({ a, b });
     setDeletingAssetId(b?.id);
     setIsOpen(true);
   };
@@ -97,23 +95,22 @@ const Assets = () => {
 
   return (
     <>
-      <>
-        <Box
-          sx={{
-            maxWidth: '100%',
-            overflowX: 'auto',
-            mt: '40px',
-          }}
-        >
-          <AppTable
-            minWidth={'1200px'}
-            column={processColumns()}
-            data={assets}
-            handleClickActionDelete={handleClickDelete}
-            isLoading={isLoading}
-          />
-        </Box>
-      </>
+      <Box
+        sx={{
+          maxWidth: '100%',
+          overflowX: 'auto',
+          mt: '40px',
+        }}
+      >
+        <AppTable
+          minWidth={'1200px'}
+          column={processColumns()}
+          data={assets}
+          handleClickActionDelete={handleClickDelete}
+          isLoading={isLoading}
+        />
+      </Box>
+
       <AppConfirmationMadal
         title={CONTRACT_SIGNED?.delete}
         bodyText={`Are you sure you want to delete asset?`}

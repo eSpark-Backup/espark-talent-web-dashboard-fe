@@ -28,8 +28,6 @@ const AssetForm = ({ onClose, open, empData }) => {
       return api.postJSONData(`${HR_ADD_EMP_ASSET}`, data);
     },
     onSuccess: ({ data }) => {
-      Toast('success', 'Data posted successfully');
-      console.log({ data, values });
       const reformedData = {
         ...values,
         id: data?.id,
@@ -40,11 +38,11 @@ const AssetForm = ({ onClose, open, empData }) => {
         action: ['Delete'],
       };
       dispatch(addEmpAsset(reformedData));
+      Toast('success', 'Data posted successfully');
       onClose();
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to post data');
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const {
@@ -67,7 +65,6 @@ const AssetForm = ({ onClose, open, empData }) => {
           'YYYY-MM-DDTHH:mm:ss.SSS[Z]'
         ),
       };
-      console.log({ reformedData });
       mutate(reformedData);
     },
     validateOnChange: false,
@@ -150,8 +147,8 @@ const AssetForm = ({ onClose, open, empData }) => {
                 },
                 formIndex
               ) => (
-                <>
-                  <Grid item xs={12} lg={5} key={formIndex}>
+                <React.Fragment key={formIndex}>
+                  <Grid item xs={12} lg={5}>
                     <FormInput
                       title={title}
                       placeholder={placeholder}
@@ -178,7 +175,7 @@ const AssetForm = ({ onClose, open, empData }) => {
                     />
                   </Grid>
                   {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>}
-                </>
+                </React.Fragment>
               )
             )}
             <Grid item p={'0 10px'} xs={12}>

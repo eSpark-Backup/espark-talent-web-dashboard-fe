@@ -30,7 +30,7 @@ import {
   fetchClientOnboardingFailed,
   fetchClientOnboardingSuccess,
 } from '@/src/redux/slices/clientSlices/hiringProgressSlice';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useDispatch, useSelector } from 'react-redux';
 import { filterTableRowsWRTTab } from '@/src/utils/table';
 import { Toast } from '@/src/components/Toast/Toast';
@@ -46,6 +46,7 @@ const Dashboard = () => {
   const [currentTab, setCurrentTab] = useState('Hiring Request');
   const [search, setSearch] = useState('');
   const [modalData, setModalData] = useState({});
+  const { c_email } = useSelector((state) => state?.client?.home?.data);
   const dispatch = useDispatch();
   const { data } = useSelector((state) => state?.client?.hiringProgress);
   const [hiringRequestDataState, setHiringRequestDataState] = useState([]);
@@ -56,11 +57,12 @@ const Dashboard = () => {
 
   const searchParams = useSearchParams();
   const activePrams = searchParams.get('param');
+  const clientQuery = useQueryClient();
 
   const hiringRequestQuery = useQuery({
     staleTime: 10000,
     refetchOnWindowFocus: false,
-    queryKey: 'hiringRequests',
+    queryKey: ['hiringRequests', c_email],
     queryFn: async () => {
       return await api
         .getData(`${CLIENT_HIRING_PROGRESS}`)
@@ -93,7 +95,7 @@ const Dashboard = () => {
   const interviewScheduledQuery = useQuery({
     staleTime: 10000,
     refetchOnWindowFocus: false,
-    queryKey: 'interviewSchedules',
+    queryKey: ['interviewSchedules', c_email],
     queryFn: async () => {
       return await api
         .getData(`${CLIENT_INTERVIEW_SCHEDULE}`)
@@ -105,7 +107,7 @@ const Dashboard = () => {
                   ...item,
                   status: returnStatusVal(item?.status),
                   dropdownStatus: true,
-                  interview_date_time: dayjs(item?.interview_date_time).format(
+                  interview_date_time: dayjs(item?.interview_date_time)?.format(
                     'DD-MMMM-YYYY hh:mm A'
                   ),
                 }));
@@ -119,7 +121,7 @@ const Dashboard = () => {
   const onBoardingQuery = useQuery({
     staleTime: 10000,
     refetchOnWindowFocus: false,
-    queryKey: 'onBoarding',
+    queryKey: ['onBoarding', c_email],
     queryFn: async () => {
       return await api
         .getData(`${CLIENT_ONBOARDING}`)
@@ -129,7 +131,11 @@ const Dashboard = () => {
               ? []
               : data?.map((item) => ({
                   ...item,
-                  joining_date: dayjs(item?.joining_date).format(
+                  notice_period:
+                    item?.notice_period > 0
+                      ? `${item?.notice_period} ${item?.notice_period === 1 ? 'day' : 'days'}`
+                      : '-',
+                  joining_date: dayjs(item?.joining_date)?.format(
                     'DD-MMMM-YYYY'
                   ),
                 }));
@@ -270,8 +276,8 @@ const Dashboard = () => {
       return api.daleteData(`${CLIENT_HIRING_PROGRESS}?id=${id}`);
     },
     onSuccess: () => {
-      Toast('success', 'Data deleted successfully');
       dispatch(deleteClientHiringRequestSuccess(modalData?.id));
+      Toast('success', 'Data deleted successfully');
       handleClose();
       setModalData({});
     },
@@ -293,6 +299,7 @@ const Dashboard = () => {
       );
     },
     onSuccess: () => {
+      clientQuery?.invalidateQueries(['interviewSchedules']);
       Toast('success', 'Status updated successfully');
     },
     onError: (err) => {
@@ -350,7 +357,6 @@ const Dashboard = () => {
     },
     onError: (err) => {
       Toast('error', err.message || 'File not downloaded');
-      console.log({ err });
     },
   });
 
@@ -454,7 +460,7 @@ const Dashboard = () => {
                 >
                   <AppTable
                     handleClickDownload={downloadContract}
-                    minWidth={'1400px'}
+                    minWidth={'1250px'}
                     currentTab={currentTab}
                     column={column}
                     data={

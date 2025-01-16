@@ -1,6 +1,5 @@
 import React from 'react';
-import { Avatar, Box, Grid, Menu, MenuItem, Typography } from '@mui/material';
-import Image from 'next/image';
+import { Box, Button, Grid, Menu, MenuItem, Typography } from '@mui/material';
 import { useRouter } from 'next/navigation';
 import { useSelector } from 'react-redux';
 
@@ -19,14 +18,14 @@ const EmployeeCard = ({
   const router = useRouter();
   const isActive =
     eachItem?.status?.toLowerCase() === 'active' || eachItem?.active;
-  const isTerminated = eachItem?.status?.toLowerCase() === 'terminate';
+  const isTerminated = eachItem?.status?.toLowerCase() === 'terminated';
   let statusColor;
   let statusText;
   if (isActive) {
     statusColor = '#068987';
     statusText = 'Active';
   } else if (isTerminated) {
-    statusColor = '#068987';
+    statusColor = '#FF0000';
     statusText = 'Terminated';
   } else {
     statusColor = '#F00';
@@ -77,14 +76,40 @@ const EmployeeCard = ({
                 {(role === 'super_admin' ||
                   (role !== 'super_admin' && client_perms?.[0]?.write)) && (
                   <Box sx={{ width: '30px', position: 'absolute', right: 16 }}>
-                    <Image
-                      width={24}
-                      height={24}
-                      src={`/icons/ellipse.svg`}
-                      style={{ cursor: 'pointer' }}
-                      onClick={(e) => handleClick(e, eachItem.id)}
-                      alt="ellipse"
-                    />
+                    <Button
+                      disableRipple
+                      sx={{
+                        all: 'unset',
+                        display: 'inline-block',
+                        padding: 0,
+                        margin: 0,
+                        background: 'none',
+                        border: 'none',
+                        cursor: 'pointer',
+                        textDecoration: 'none',
+                        '&:hover': {
+                          backgroundColor: 'unset',
+                          boxShadow: 'none',
+                          textDecoration: 'none',
+                        },
+                        '&:focus': {
+                          outline: 'none',
+                        },
+                        width: '24px',
+                        height: '24px',
+                      }}
+                      onClick={(e) => handleClick(e, eachItem?.id)}
+                    >
+                      <img
+                        src={`/icons/ellipse.svg`}
+                        style={{
+                          width: '24px',
+                          height: '24px',
+                          cursor: 'pointer',
+                        }}
+                        alt="ellipse"
+                      />
+                    </Button>
                     <>
                       <Menu
                         onClick={(e) => {
@@ -93,7 +118,6 @@ const EmployeeCard = ({
                         id="demo-positioned-menu"
                         aria-labelledby="demo-positioned-button"
                         anchorEl={anchorEl}
-                        // open={open}
                         open={eachItem.id === open}
                         onClose={handleClose}
                         sx={{ mt: 1 }}
@@ -135,15 +159,18 @@ const EmployeeCard = ({
             gap: 0.5,
           }}
         >
-          <Avatar
-            sx={{
-              height: '100px',
-              width: '100px',
-              borderRadius: '50%',
-              padding: '5px',
-            }}
-            src={eachItem?.image}
-          />
+          <Box sx={{ width: '100px', height: '100px' }}>
+            <Box
+              component={'img'}
+              src={eachItem?.image}
+              sx={{
+                height: '100%',
+                width: '100%',
+                objectFit: 'contain',
+                borderRadius: '50%',
+              }}
+            />
+          </Box>
           <Typography
             sx={{
               color: '#171717',

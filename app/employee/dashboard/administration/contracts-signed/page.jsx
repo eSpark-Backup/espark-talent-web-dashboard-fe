@@ -25,6 +25,7 @@ import {
 import { api } from '@/src/services/apiService';
 import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
 import { Toast } from '@/src/components/Toast/Toast';
+import dayjs from 'dayjs';
 
 const ContractSigned = () => {
   const dispatch = useDispatch();
@@ -45,14 +46,16 @@ const ContractSigned = () => {
           const newData =
             data === '' || !data.length
               ? []
-              : data?.map((item) => ({ ...item, download: 'Download' }));
+              : data?.map((item) => ({
+                  ...item,
+                  download: 'Download',
+                  date: dayjs(item?.date)?.format('DD-MMMM-YYYY'),
+                }));
           dispatch(fetchEmpCompanyContractsSuccess({ company: newData }));
           return data;
         })
         .catch((err) => {
           Toast('error', err.message || 'Failed to get data');
-          console.log({ err });
-          console.log({ isLoading });
           dispatch(fetchEmpContractsFailed());
         });
     },
@@ -70,33 +73,22 @@ const ContractSigned = () => {
           const newData =
             data === '' || !data.length
               ? []
-              : data?.map((item) => ({ ...item, download: 'Download' }));
+              : data?.map((item) => ({
+                  ...item,
+                  download: 'Download',
+                  date: dayjs(item?.date)?.format('DD-MMMM-YYYY'),
+                }));
 
           dispatch(fetchEmpClientContractSuccess({ offShores: newData }));
           return data;
         })
         .catch((err) => {
           Toast('error', err.message || 'Failed to get data');
-          console.log({ err });
           dispatch(fetchEmpContractsFailed());
         });
     },
   });
-
-  // useEffect(() => {
-  //   const fetchDataAsync = async () => {
-  //     try {
-  //       await fetchDataFake();
-  //     } finally {
-  //       setIsLoading(false);
-  //     }
-  //   };
-
-  //   fetchDataAsync();
-  // }, []);
-  // console.log(empData, setSearch);
   const handleChange = (event, newValue) => {
-    console.log({ newValue });
     changeTab({
       isSingular: true,
       tabs: empTabs,
@@ -127,15 +119,10 @@ const ContractSigned = () => {
       document.body.appendChild(link);
       link.click();
       link.parentNode.removeChild(link);
-
-      // dispatchFunction?.(data);
       Toast('success', 'File downloaded');
     },
     onError: (err) => {
       Toast('error', err.message || 'File not downloaded');
-      // dispatch(getTimeSheetDataFailed());
-      console.log({ err });
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const downloadContract = (id) => {

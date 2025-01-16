@@ -162,7 +162,7 @@ const PunchRequestDataView = ({
             }}
             onClick={handleClose}
           >
-            Declined
+            Closed
           </Button>
         </Box>
       ) : isEmployee && modalData?.status === 'rejected' ? (
@@ -204,7 +204,7 @@ const PunchRequestDataView = ({
             }}
             onClick={handleClose}
           >
-            Declined
+            Closed
           </Button>
         </Box>
       ) : isEmployee && modalData?.status === 'pending' ? (
@@ -262,7 +262,7 @@ const PunchRequestDataView = ({
             type="submit"
             variant="outlined"
           >
-            Decline
+            Close
           </Button>
           <Button
             onClick={approveRequestAndClose}

@@ -31,11 +31,6 @@ const AppCustomMonthYearPicker = ({ timeTracking, setTimeTracking }) => {
   };
 
   const handleMonthChange = (newMonth) => {
-    console.log({
-      newMonth,
-      currentYear,
-      date: new Date(currentYear, newMonth, 1),
-    });
     setSelectedDate(new Date(currentYear, newMonth, 1));
     setTimeTracking({
       month: months[newMonth],
@@ -70,12 +65,13 @@ const AppCustomMonthYearPicker = ({ timeTracking, setTimeTracking }) => {
           position: 'relative',
           width: '221px',
           padding: '3px',
+          cursor: 'pointer',
         }}
       >
         <Box
           display={'flex'}
           justifyContent="flex-start"
-          minWidth={'250px'}
+          // minWidth={'250px'}
           alignItems="center"
           borderRadius="5px"
           py={'5px'}

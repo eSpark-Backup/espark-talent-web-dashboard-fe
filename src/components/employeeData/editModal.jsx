@@ -27,10 +27,9 @@ const EditModal = ({ handleOpenModal, onClose, isClient }) => {
   const [imagePreview, setImagePreview] = useState(null);
   const { mutate, isPending } = useMutation({
     mutationFn: async (formVals) => {
-      console.log({ formVals });
       const formData = new FormData();
       for (const key in formVals.data) {
-        formData.append(key, formVals.data[key]);
+        formData?.append(key, formVals.data[key]);
       }
       return api.updateData(
         `${isClient ? HR_GET_CLIENT_PROFILE : HR_UPDATE_EMP_IMAGE}?id=${formVals.id}`,
@@ -44,33 +43,33 @@ const EditModal = ({ handleOpenModal, onClose, isClient }) => {
       } else {
         dispatch(updateCurrentEmployeeImage(data?.image));
       }
-      console.log({ data });
       onClose();
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to delete data');
       onClose();
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const handleFileInputChange = (event) => {
     const file = event.target.files[0];
-    setSelectedFile(file);
-    if (file) {
+
+    if (file && file.type === 'image/jpeg') {
+      setSelectedFile(file);
+
       const reader = new FileReader();
       reader.onloadend = () => {
         setImagePreview(reader.result);
       };
       reader.readAsDataURL(file);
+    } else {
+      alert('Only .jpg files are allowed.');
     }
   };
 
   const handleClick = () => {
-    // console.log({ selectedFile });
     document.getElementById('fileInput').click();
   };
   const handleSubmit = () => {
-    // console.log({ selectedFile, imagePreview });
     mutate({
       id: isClient ? currentClient.id : currentEmployee.id,
       data: {
@@ -78,10 +77,6 @@ const EditModal = ({ handleOpenModal, onClose, isClient }) => {
       },
     });
   };
-  // const handleRemove = () => {
-  //   setSelectedFile(null);
-  //   setImagePreview(null);
-  // };
 
   return (
     <Box>
@@ -139,19 +134,23 @@ const EditModal = ({ handleOpenModal, onClose, isClient }) => {
             <Typography variant="h5" sx={{ textAlign: 'center' }}>
               {EDIT_MODAL?.editProfile}
             </Typography>
-            <Box
-              component={'img'}
-              src={
-                imagePreview
-                  ? imagePreview
-                  : isClient
+            <Box sx={{ width: '100px', height: '100px' }}>
+              <Box
+                component={'img'}
+                src={
+                  imagePreview ||
+                  (isClient
                     ? currentClient?.image_path
-                    : currentEmployee?.image_path
-              }
-              width={100}
-              height={100}
-              alt="employee"
-            />
+                    : currentEmployee?.image_path)
+                }
+                sx={{
+                  height: '100%',
+                  width: '100%',
+                  objectFit: 'contain',
+                  borderRadius: '50%',
+                }}
+              />
+            </Box>
             <Box
               sx={{
                 display: 'flex',

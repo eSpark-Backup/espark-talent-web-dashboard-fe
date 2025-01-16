@@ -27,15 +27,13 @@ const EditEmergencyModal = ({ onClose, handleEmergencyModal, data }) => {
     mutationFn: async (data) => {
       return api.updateJSONData(`${HR_UPDATE_EMP_INFO}?id=${params.id}`, data);
     },
-    onSuccess: async ({ data }) => {
+    onSuccess: async () => {
       Toast('success', 'Data updated successfully');
-      console.log({ data });
       onClose();
       await queryClient.invalidateQueries('employee-profile');
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to update data');
-      console.log({ err: err.message, name: err.name, stack: err.stack });
       onClose();
     },
   });
@@ -72,7 +70,6 @@ const EditEmergencyModal = ({ onClose, handleEmergencyModal, data }) => {
     validationSchema: emergency_contact_schema,
     enableReinitialize: true,
     onSubmit: (formValues) => {
-      console.log({ formValues });
       handleUpdate(formValues);
     },
     validateOnChange: false,
@@ -80,7 +77,6 @@ const EditEmergencyModal = ({ onClose, handleEmergencyModal, data }) => {
   });
   const [secPhoneList, setSecPhoneList] = useState([]);
   const handleClickTogglePhoneNumber = (name, icon) => {
-    console.log({ name, icon });
     if (icon === 'plus') {
       if (secPhoneList.includes(`${name}2`)) return;
       setSecPhoneList((prevState) => {
@@ -111,7 +107,6 @@ const EditEmergencyModal = ({ onClose, handleEmergencyModal, data }) => {
       <Box
         sx={{
           bgcolor: '#fff',
-          // width: { xs: '90%', sm: '90%', md: '50%' },
           maxWidth: '1000px',
           width: '95%',
           display: 'flex',
@@ -140,9 +135,10 @@ const EditEmergencyModal = ({ onClose, handleEmergencyModal, data }) => {
         >
           <Typography
             sx={{
-              fontSize: '25px',
+              fontSize: { xs: '18px', md: '25px' },
               fontWeight: 600,
-              marginLeft: '20px',
+              marginLeft: '17px',
+              marginRight: '20px',
             }}
           >
             {EDIT_MODAL?.editEmergencyContacts}
@@ -151,26 +147,29 @@ const EditEmergencyModal = ({ onClose, handleEmergencyModal, data }) => {
             src="/images/leave-request/close.svg"
             component={'img'}
             onClick={onClose}
+            sx={{
+              cursor: 'pointer',
+            }}
           />
         </Box>
         <form onSubmit={handleSubmit}>
           <Grid
             container
             sx={{
-              padding: { xs: '10px 20px', lg: '35px 70px' },
+              padding: { xs: '25px 25px', md: '35px 50px', lg: '35px 70px' },
               display: 'flex',
               flexDirection: 'row',
             }}
           >
-            <Grid container>
+            <Grid container spacing={5}>
               {emergency_contact_form?.map(
                 ({ contactTitle, fields, type }, contactIndex) => (
-                  <Grid item xs={12} md={6} key={contactIndex}>
+                  <Grid item xs={12} md={5.5} lg={6} key={contactIndex}>
                     <Typography
                       sx={{
                         fontSize: { xs: '14px', md: '16px' },
                         fontWeight: 600,
-                        paddingBottom: '35px',
+                        paddingBottom: { xs: '25px', md: '35px' },
                         marginLeft: '7px',
                       }}
                     >
@@ -207,8 +206,8 @@ const EditEmergencyModal = ({ onClose, handleEmergencyModal, data }) => {
                                 errors={errors}
                                 setErrors={setErrors}
                                 values={values}
-                                xs={12}
-                                sm={12}
+                                xs={11}
+                                sm={11.5}
                                 md={12}
                                 lg={12}
                                 suffixIconOutside={

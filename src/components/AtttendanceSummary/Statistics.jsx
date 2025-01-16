@@ -62,17 +62,7 @@ const Statistics = ({ isLoading }) => {
           ) : (
             <Box p={'20px'}>
               {Statistics_Data?.map(
-                (
-                  {
-                    title,
-                    //   hoursCompleted,
-                    //   totalHours,
-                    remainingBack,
-                    background,
-                    name,
-                  },
-                  index
-                ) => {
+                ({ title, remainingBack, background, name }, index) => {
                   return (
                     <Box
                       sx={{

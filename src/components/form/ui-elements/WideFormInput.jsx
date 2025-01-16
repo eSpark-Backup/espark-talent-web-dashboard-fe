@@ -4,7 +4,6 @@ import {
   DesktopTimePicker,
   LocalizationProvider,
 } from '@mui/x-date-pickers';
-// import { DesktopDateRangePicker } from '@mui/x-date-pickers-pro/DateRangePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs';
 import Image from 'next/image';
@@ -32,14 +31,14 @@ const WideFormInput = ({
   setErrors,
   values,
   minDate,
+  maxDate,
   searchable,
   nested,
-  maxDate,
 }) => {
   const [isOpenDatePicker, setIsOpenDatePicker] = useState(false);
   const [isLoadingList, setIsLoadingList] = useState(false);
+  const [datePickerValue, setDatePickerValue] = useState(null);
   const handleCloseDatePicker = () => setIsOpenDatePicker(false);
-
   function getTimeComponents(timeString) {
     const arr = timeString.split(':');
     const hour = parseInt(arr[0]);
@@ -49,7 +48,7 @@ const WideFormInput = ({
   function convertTo24HourFormat(time) {
     const parsedTime = dayjs(time, ['h:mm A', 'H:mm']);
     const time24HourFormat = parsedTime.format('HH:mm');
-
+    console.log(setDatePickerValue);
     return time24HourFormat;
   }
   const handleSelectItem = (item) => {
@@ -132,6 +131,10 @@ const WideFormInput = ({
   const start = dayjs(values.startDate);
   const end = start.add(values.availableLeaves || 0, 'day');
   const countOfWeekends = countWeekendsHandler(values.startDate, end.$d);
+  const endWithWeekend = start.add(
+    values.availableLeaves - 1 + countOfWeekends || 0,
+    'day'
+  );
 
   useEffect(() => {
     if (values.startDate && values.endDate) {
@@ -143,11 +146,6 @@ const WideFormInput = ({
       );
     }
   }, [values]);
-
-  const endWithWeekend = start.add(
-    values.availableLeaves - 1 + countOfWeekends || 0,
-    'day'
-  );
 
   const shouldDisableDate = (date) => {
     const day = date.day();
@@ -254,9 +252,8 @@ const WideFormInput = ({
                     sx={{
                       width: '100%',
                       borderRadius: '50%',
-                      // backgroundColor: '#888',
                     }}
-                    value={value && dayjs(value)}
+                    defaultValue={datePickerValue}
                     onChange={(e) => {
                       handleChangeInput(name, `${e?.$d}`);
                     }}
@@ -298,7 +295,6 @@ const WideFormInput = ({
                     />
                   ) : (
                     <DesktopTimePicker
-                      // className="custom-date-time-picker"
                       className={[
                         error && 'error-border',
                         'custom-date-time-picker',
@@ -321,7 +317,7 @@ const WideFormInput = ({
                   {searchable ? (
                     <AppSearchableDropdown
                       data={options}
-                      selectedItem={value}
+                      selectedItem={value || ''}
                       setSelectedItem={handleSelectItem}
                       setIsLoadingList={setIsLoadingList}
                       isLoadingList={isLoadingList}
@@ -334,7 +330,7 @@ const WideFormInput = ({
                     <AppDropdown
                       data={options}
                       placeHolder={'Select'}
-                      selectedItem={value}
+                      selectedItem={value || ''}
                       setSelectedItem={handleSelectItem}
                       isLoadingList={isLoadingList}
                       setIsLoadingList={setIsLoadingList}
@@ -397,7 +393,6 @@ const WideFormInput = ({
                         {values?.[name]?.name || 'Upload File'}
                       </Typography>
                       <input
-                        // onChange={handleUpload}
                         name={name}
                         id="input-attachment"
                         type="file"

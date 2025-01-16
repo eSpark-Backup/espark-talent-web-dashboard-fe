@@ -8,7 +8,6 @@ const OfficialInformation = ({ data }) => {
   return (
     <>
       <Box>
-        {console.log(data, 'data')}
         {employeeOfficialDataLabel
           ?.filter(
             (empData) =>
@@ -50,6 +49,7 @@ const OfficialInformation = ({ data }) => {
                   fontWeight: 400,
                   '@media (max-width: 499px)': {
                     width: 'auto',
+                    textAlign: 'center',
                   },
                 }}
               >

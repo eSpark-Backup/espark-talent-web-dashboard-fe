@@ -30,7 +30,6 @@ const BenefitForm = ({ onClose, open, empData }) => {
       return api.postJSONData(`${HR_EMP_BENEFIT}`, data);
     },
     onSuccess: async ({ data }) => {
-      Toast('success', 'Data posted successfully');
       const reformedData = {
         id: data?.id,
         action: ['Delete', 'View'],
@@ -41,11 +40,11 @@ const BenefitForm = ({ onClose, open, empData }) => {
       };
       dispatch(addEmpBenefit(reformedData));
       await queryClient.invalidateQueries(['hr-employee-get-benefit']);
+      Toast('success', 'Data posted successfully');
       onClose();
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to post data');
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const {
@@ -66,7 +65,6 @@ const BenefitForm = ({ onClose, open, empData }) => {
         issue_date: dayjs(formValues.issue_date).format('YYYY-MM-DD'),
         employee_id: empData?.email,
       };
-      console.log({ benifit_form_data: reformedData });
       mutate(reformedData);
     },
     validateOnChange: false,
@@ -152,8 +150,8 @@ const BenefitForm = ({ onClose, open, empData }) => {
                 },
                 formIndex
               ) => (
-                <>
-                  <Grid item xs={12} lg={5} key={formIndex}>
+                <React.Fragment key={formIndex}>
+                  <Grid item xs={12} lg={5}>
                     <FormInput
                       title={title}
                       placeholder={placeholder}
@@ -180,7 +178,7 @@ const BenefitForm = ({ onClose, open, empData }) => {
                     />
                   </Grid>
                   {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>}
-                </>
+                </React.Fragment>
               )
             )}
             <Grid item p={'0 10px'} xs={12}>

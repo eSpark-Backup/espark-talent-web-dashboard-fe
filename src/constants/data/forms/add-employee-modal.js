@@ -6,25 +6,6 @@ import {
 } from '../tables/hr/addEmployeeFormTable';
 
 const form = [
-  // {
-  //   title: 'Employee name',
-  //   placeholder: 'Enter name',
-  //   name: 'employeeName',
-  // },
-  // {
-  //   title: 'Gender',
-  //   placeholder: 'Select',
-  //   name: 'gender',
-  //   type: 'select',
-  //   options: [
-  //     {
-  //       label: 'Male',
-  //     },
-  //     {
-  //       label: 'Female',
-  //     },
-  //   ],
-  // },
   {
     title: 'Job title',
     placeholder: 'Select Job',

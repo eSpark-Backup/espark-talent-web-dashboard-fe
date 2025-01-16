@@ -15,9 +15,6 @@ export const calculateExpectedTime = (row) => {
 
       const timeDifferenceMs = checkOutDate - checkInDate;
       const hours = Math?.floor(timeDifferenceMs / (1000 * 60 * 60));
-      // const minutes = Math?.floor(
-      //   (timeDifferenceMs % (1000 * 60 * 60)) / (1000 * 60)
-      // );
       return `${hours}h`;
     } else {
       console.error('Check-in or Check-out time is missing.');

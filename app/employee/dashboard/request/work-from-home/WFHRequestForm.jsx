@@ -2,7 +2,6 @@ import React from 'react';
 import WideFormInput from '../../../../../src/components/form/ui-elements/WideFormInput';
 import { Box, Button, CircularProgress } from '@mui/material';
 import { useFormik } from 'formik';
-// import { createLeaveRequestForm } from '@/src/constants/data/forms/create-leave-request';
 import { createWFHRequestSchema } from '@/src/components/form/schemas/createLeaveRequest';
 import { useMutation } from '@tanstack/react-query';
 import { EMP_WFH_REQUEST } from '@/src/services/apiService/apiEndPoints';
@@ -57,7 +56,6 @@ const WFHRequestForm = ({ handleClose }) => {
     onError: (err) => {
       console.log(err.message, 'error invoked');
       dispatch(getEmpWfhRequestDataFailed());
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
 
@@ -66,12 +64,11 @@ const WFHRequestForm = ({ handleClose }) => {
       dispatch(createEmpWfhRequest());
       const formData = new FormData();
       for (const key in formVals) {
-        formData.append(key, formVals[key]);
+        formData?.append(key, formVals[key]);
       }
       return api.postData(EMP_WFH_REQUEST, formData);
     },
     onSuccess: (data) => {
-      Toast('success', 'Data posted successfully');
       dispatch(
         createEmpWfhRequestSuccess({
           ...getRevampedValues(values),
@@ -80,6 +77,7 @@ const WFHRequestForm = ({ handleClose }) => {
       );
       handleClose();
       refreshMutation.mutate();
+      Toast('success', 'Data posted successfully');
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to post data');
@@ -131,6 +129,7 @@ const WFHRequestForm = ({ handleClose }) => {
                 required,
                 hideSuffix,
                 minDate,
+                maxDate,
                 searchable,
               },
               formIndex
@@ -155,6 +154,7 @@ const WFHRequestForm = ({ handleClose }) => {
                   setErrors={setErrors}
                   values={values}
                   minDate={minDate}
+                  maxDate={maxDate}
                   searchable={searchable}
                 />
               );

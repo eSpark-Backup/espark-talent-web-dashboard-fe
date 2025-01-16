@@ -1,33 +1,15 @@
 import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
 import { employeeRequestsTabs } from '@/src/constants/data/tabs/requestTabs';
 import { REQUEST_LEAVE } from '@/src/constants/requestviewModal';
-import {
-  Box,
-  Button,
-  // CircularProgress,
-  Tab,
-  Tabs,
-  Typography,
-} from '@mui/material';
+import { Box, Button, Tab, Tabs, Typography } from '@mui/material';
 import Image from 'next/image';
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import LeaveRequestTable from './LeaveRequestTable';
-// import FilterFormModal from '@/src/components/FilterModal/filterForm';
 import { filterLeaveForm } from '@/src/constants/data/forms/filter-form';
 import LeaveReqFilterFormModal from '@/src/components/FilterModal/leaveReqFilterForm';
-// import {
-//   fetchEmpLeaveRequestData,
-//   getEmpLeaveRequestDataFailed,
-//   getEmpLeaveRequestDataSuccess,
-// } from '@/src/redux/slices/employeeSlices/leaveRequestSlice';
-// import { useMutation } from '@tanstack/react-query';
 import Skeleton from '@mui/material/Skeleton';
-
-// import { EMP_LEAVE_REQUEST } from '@/src/services/apiService/apiEndPoints';
-// import { api } from '@/src/services/apiService';
 import { filterTableRowsWRTTab } from '@/src/utils/table';
-// import dayjs from 'dayjs';
 
 const LeaveRequestTablesTabs = ({
   handleOpen,
@@ -36,63 +18,14 @@ const LeaveRequestTablesTabs = ({
   handleClickDelete,
   viewClicked,
 }) => {
-  // const dispatch = useDispatch();
   const { isLoading } = useSelector((state) => state?.emp?.leaveReq);
-  // const { currentWorkSpace } = useSelector((state) => state?.emp?.home);
   const [currentReqStatusTab, setcurrentReqStatusTab] = useState('All');
   const [currentReqStatusTabVal, setcurrentReqStatusTabVal] = useState(0);
   const [leaveRequestDataState, setLeaveRequestDataState] = useState([]);
   const [showFilterModal, setShowFilterModal] = useState(false);
   const handleClose = () => {
     setShowFilterModal(false);
-    // setOpen(false);
   };
-
-  // const reformData = (dataObj) => {
-  //   const arrayfiedData = Object.entries(dataObj);
-  //   const refinedData = [];
-  //   for (let i = 0; i < arrayfiedData.length; i++) {
-  //     const element = arrayfiedData[i];
-  //     if (i > 0) {
-  //       refinedData.push({
-  //         leave_type: element[0],
-  //         pending: +element[1].total - +element[1].balance,
-  //         available: +element[1].total - +element[1].balance,
-  //         ...element[1],
-  //       });
-  //     }
-  //   }
-  //   return refinedData;
-  // };
-
-  // const refreshMutation = useMutation({
-  //   mutationFn: async () => {
-  //     dispatch(fetchEmpLeaveRequestData());
-  //     return api.getData(
-  //       `${EMP_LEAVE_REQUEST}?workspace=${currentWorkSpace?.email || ''}`
-  //     );
-  //   },
-  //   onSuccess: ({ data }) => {
-  //     const tempData = {
-  //       ...data,
-  //       balance: reformData(data?.balance),
-  //       requests: data?.requests?.length
-  //         ? data?.requests?.map((item) => ({
-  //             ...item,
-  //             requested_at: dayjs(item?.requested_at).format(
-  //               'YYYY-MM-DD hh:mm A'
-  //             ),
-  //           }))
-  //         : [],
-  //     };
-  //     dispatch(getEmpLeaveRequestDataSuccess(tempData));
-  //     return data;
-  //   },
-  //   onError: (err) => {
-  //     dispatch(getEmpLeaveRequestDataFailed());
-  //     console.log({ err: err.message, name: err.name, stack: err.stack });
-  //   },
-  // });
 
   const handleChangeCurrReqStatusTab = (event, newValue, data) => {
     let tab = event?.target?.innerText;
@@ -191,7 +124,6 @@ const LeaveRequestTablesTabs = ({
                                   filterTableRowsWRTTab(leaveRequestDataState, {
                                     status: label === 'All' ? '' : label,
                                   }).length
-                                  // data?.[name]
                                 }
                               </Box>
                             )}
@@ -225,35 +157,6 @@ const LeaveRequestTablesTabs = ({
                 pb: 0.8,
               }}
             >
-              {/* <Button
-                sx={{
-                  marginX: '10px',
-                  minWidth: '120px',
-                  border: '1px solid #138A72',
-                  color: '#138A72',
-                  '&:hover:': {
-                    background: '#fff',
-                  },
-                }}
-                onClick={() => refreshMutation.mutate()}
-                startIcon={
-                  !refreshMutation.isPending && (
-                    <Image
-                      width={20}
-                      height={22}
-                      alt="Refresh"
-                      src={`/icons/Refresh.svg`}
-                    />
-                  )
-                }
-                disabled={refreshMutation.isPending}
-              >
-                {refreshMutation.isPending ? (
-                  <CircularProgress size={26} color="secondary" />
-                ) : (
-                  REQUEST_LEAVE?.refresh
-                )}
-              </Button> */}
               <Button
                 sx={{
                   minWidth: '120px',

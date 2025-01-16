@@ -28,7 +28,6 @@ const SidebarActiveUser = ({ userName }) => {
   return (
     <>
       <Box
-        // component={'button'}
         sx={{
           width: '100%',
           height: '100%',

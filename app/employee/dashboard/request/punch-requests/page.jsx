@@ -32,13 +32,12 @@ import {
   getEmpPunchRequestDataSuccess,
 } from '@/src/redux/slices/employeeSlices/punchRequestSlice';
 import AppConfirmationMadal from '@/src/components/modals/AppConfirmationMadal';
-// import FilterFormModal from '@/src/components/FilterModal/filterForm';
-// import { filterStatusForm } from '@/src/constants/data/forms/filter-form';
 import EmpPunchReqFilterFormModal from '@/src/components/FilterModal/empPunchReqFilterForm';
 import { empPunchReqfilterForm } from '@/src/constants/data/forms/emp-punch-req-modal-form';
 import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
 import { Toast } from '@/src/components/Toast/Toast';
 import Skeleton from '@mui/material/Skeleton';
+import dayjs from 'dayjs';
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -46,7 +45,6 @@ const Dashboard = () => {
   const { currentWorkSpace } = useSelector((state) => state?.emp?.home);
   const { data } = useSelector((state) => state?.emp?.punchReq);
   const { isLoading } = useQuery({
-    // staleTime: 10000,
     refetchOnWindowFocus: false,
     queryFn: () => {
       dispatch(fetchEmpPunchRequestData());
@@ -59,10 +57,8 @@ const Dashboard = () => {
           return data;
         })
         .catch((err) => {
-          Toast('error', err.message || 'Failed to get data');
           dispatch(getEmpPunchRequestDataFailed());
-          console.log({ err });
-          console.log({ isLoading });
+          Toast('error', err.message || 'Failed to get data');
         });
     },
   });
@@ -76,6 +72,7 @@ const Dashboard = () => {
         description: item?.description,
         actionTimeOffReqStatus: true,
         actionStatus: true,
+        punch_time: dayjs(item?.punchTime).format('hh:mm A'),
         action: item?.status === 'pending' ? ['Delete', 'View'] : ['View'],
       }));
       return tempData;
@@ -102,10 +99,9 @@ const Dashboard = () => {
       dispatch(deleteEmpPunchRequest());
       return api.daleteData(`${EMP_PUNCH_REQUEST}?id=${id}`);
     },
-    onSuccess: ({ data }) => {
-      Toast('success', 'Data deleted successfully');
-      console.log({ data });
+    onSuccess: () => {
       dispatch(deleteEmpPunchRequestSuccess(modalData?.id));
+      Toast('success', 'Data deleted successfully');
       handleCloseDeleteModal();
       setModalData({});
     },
@@ -113,12 +109,10 @@ const Dashboard = () => {
       Toast('error', err.message || 'Failed to delete data');
       dispatch(deletePunchRequestDataFailed());
       handleCloseDeleteModal();
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const refreshMutation = useMutation({
-    mutationFn: async (args) => {
-      console.log({ args });
+    mutationFn: async () => {
       dispatch(fetchEmpPunchRequestData());
       return api.getData(
         `${EMP_PUNCH_REQUEST}?workspace=${currentWorkSpace?.email || ''}`
@@ -139,7 +133,7 @@ const Dashboard = () => {
     },
     onError: (err) => {
       dispatch(getEmpPunchRequestDataFailed());
-      Toast('error', err?.message || 'Failed to fetch data');
+      Toast('error', err.message || 'Failed to fetch data');
     },
   });
   const handleOpenFilterModal = () => {
@@ -293,14 +287,6 @@ const Dashboard = () => {
                           checkInOutStatusTabs
                         )
                       }
-                      sx={{
-                        '@media (min-width: 1200px) and (max-width: 1300px)': {
-                          mb: '3px',
-                        },
-                        '@media (min-width: 280px) and (max-width: 1100px)': {
-                          mb: '3px',
-                        },
-                      }}
                       aria-label="basic tabs example"
                       TabIndicatorProps={{
                         style: { backgroundColor: '#068987' },
@@ -356,7 +342,6 @@ const Dashboard = () => {
                                               label === 'All' ? '' : label,
                                           }
                                         ).length
-                                        // data?.[name]
                                       }
                                     </Box>
                                   )}

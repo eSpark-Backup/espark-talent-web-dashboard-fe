@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import {
-  Avatar,
+  Button,
   Grid,
   Menu,
   MenuItem,
@@ -9,7 +9,6 @@ import {
   useMediaQuery,
 } from '@mui/material';
 import { Box, useTheme } from '@mui/system';
-import Image from 'next/image';
 
 import AppConfirmationMadal from '../modals/AppConfirmationMadal';
 import { useRouter } from 'next/navigation';
@@ -40,19 +39,17 @@ const EmployeeView = ({ status, data, isLoading }) => {
       dispatch(deleteCurrentEmpData());
       return api.daleteData(`${HR_EMPLOYEES}?id=${id}`);
     },
-    onSuccess: ({ data }) => {
-      Toast('success', 'Data deleted successfully');
-      console.log({ data });
+    onSuccess: () => {
       dispatch(deleteCurrentEmpDataSuccess(currentEmpId));
       handleCloseModal();
       setCurrentEmpId(null);
       setAnchorEl(null);
+      Toast('success', 'Data deleted successfully');
       setOpen(null);
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to delete data');
       dispatch(deleteCurrentEmpDataFailed());
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
 
@@ -68,7 +65,6 @@ const EmployeeView = ({ status, data, isLoading }) => {
   const handleOpenRemove = (event, item) => {
     setCurrentEmpId(item.id);
     event?.stopPropagation();
-    console.log({ id: item.id });
     setIsOpen(true);
   };
   const handleCloseModal = () => {
@@ -103,14 +99,36 @@ const EmployeeView = ({ status, data, isLoading }) => {
           }}
         >
           <Box>
-            <Image
-              width={20}
-              height={20}
-              src={`/icons/ellipse.svg`}
-              style={{ cursor: 'pointer', maxWidth: '100%' }}
-              onClick={(e) => handleClick(e, eachItem.id)}
-              alt="ellipse"
-            />
+            <Button
+              disableRipple
+              sx={{
+                all: 'unset',
+                display: 'inline-block',
+                padding: 0,
+                margin: 0,
+                background: 'none',
+                border: 'none',
+                cursor: 'pointer',
+                textDecoration: 'none',
+                '&:hover': {
+                  backgroundColor: 'unset',
+                  boxShadow: 'none',
+                  textDecoration: 'none',
+                },
+                '&:focus': {
+                  outline: 'none',
+                },
+                width: '24px',
+                height: '24px',
+              }}
+              onClick={(e) => handleClick(e, eachItem?.id)}
+            >
+              <img
+                src={`/icons/ellipse.svg`}
+                style={{ width: '24px', height: '24px', cursor: 'pointer' }}
+                alt="ellipse"
+              />
+            </Button>
             <Menu
               id="basic-menu"
               anchorEl={anchorEl}
@@ -250,15 +268,18 @@ const EmployeeView = ({ status, data, isLoading }) => {
                       gap: 0.5,
                     }}
                   >
-                    <Avatar
-                      sx={{
-                        height: '100px',
-                        width: '100px',
-                        borderRadius: '50%',
-                        padding: '5px',
-                      }}
-                      src={eachItem.image_path}
-                    />
+                    <Box sx={{ width: '100px', height: '100px' }}>
+                      <Box
+                        component={'img'}
+                        src={eachItem?.image_path}
+                        sx={{
+                          height: '100%',
+                          width: '100%',
+                          objectFit: 'contain',
+                          borderRadius: '50%',
+                        }}
+                      />
+                    </Box>
                     <Typography
                       sx={{
                         color: '#171717',

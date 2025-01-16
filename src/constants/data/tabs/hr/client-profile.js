@@ -1,5 +1,4 @@
 import { a11yProps } from '@/src/utils/tabs';
-// import { invoicePaymentColumn, invoicePaymentData, otherPaymentColumn, otherPaymentData } from "../../tables/paymentData";
 import {
   hiringRequestColumn,
   hiringRequestData,

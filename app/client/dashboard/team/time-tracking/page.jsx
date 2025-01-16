@@ -51,6 +51,7 @@ const Dashboard = () => {
     month: months[date.getMonth()],
     year: date.getFullYear(),
   });
+
   const { isLoading } = useQuery({
     staleTime: 1000,
     refetchOnWindowFocus: false,
@@ -70,9 +71,8 @@ const Dashboard = () => {
           return data;
         })
         .catch((err) => {
-          Toast('error', err.message || 'Failed to get data');
           dispatch(fetchTimeTrackingDataRequestFailed());
-          console.log({ err });
+          Toast('error', err.message || 'Failed to get data');
         });
     },
   });
@@ -89,11 +89,9 @@ const Dashboard = () => {
     return newDateStr;
   }
   const reformTimeSheet = (sheet) => {
-    console.log({ sheet });
     const tempData = sheet?.map((item) => ({
       ...item,
       day: dayjs(convertDateFormat(item?.date)).format('dddd'),
-      // status: getAttendenceShortHand(item?.status),
       status: Object.entries(item?.status)
         ?.map((st) => {
           if (!st[1]) return;
@@ -102,7 +100,6 @@ const Dashboard = () => {
         .filter((el) => el !== undefined),
       attendenceShortHand: true,
     }));
-    console.log({ sheet, tempData });
     return tempData;
   };
   const { mutate, isPending } = useMutation({
@@ -123,9 +120,8 @@ const Dashboard = () => {
       dispatch(fetchTimeTrackingDataRequestSuccess(tempData));
     },
     onError: (err) => {
-      Toast('error', err?.message || 'Failed to get data');
       dispatch(fetchTimeTrackingDataRequestFailed());
-      console.log({ err });
+      Toast('error', err.message || 'Failed to get data');
     },
   });
   const [isLoadingEmployee, setIsLoadingEmployee] = useState(false);
@@ -145,7 +141,6 @@ const Dashboard = () => {
       return api.downloadFile(resolveURL());
     },
     onSuccess: ({ data }) => {
-      console.log({ data });
       const url = window.URL.createObjectURL(new Blob([data]));
       const link = document.createElement('a');
       link.href = url;
@@ -153,15 +148,10 @@ const Dashboard = () => {
       document.body.appendChild(link);
       link.click();
       link.parentNode.removeChild(link);
-
-      // dispatchFunction?.(data);
       Toast('success', 'File downloaded');
     },
     onError: (err) => {
       Toast('error', err.message || 'File not downloaded');
-      // dispatch(getTimeSheetDataFailed());
-      console.log({ err });
-      console.log({ err: err?.message, name: err?.name, stack: err?.stack });
     },
   });
   const handleDownloadReport = () => {
@@ -243,12 +233,14 @@ const Dashboard = () => {
                   <AppSearchableDropdown
                     setIsLoadingList={setIsLoadingEmployee}
                     isLoadingList={isLoadingEmployee}
-                    selectedItem={selectedEmployee}
+                    selectedItem={selectedEmployee || ''}
                     data={data?.employees}
                     setSelectedItem={setSelectedEmployee}
                   />
-
-                  <AppCustomMonthYearPicker setTimeTracking={setTimeTracking} />
+                  <AppCustomMonthYearPicker
+                    timeTracking={timeTracking}
+                    setTimeTracking={setTimeTracking}
+                  />
                 </Grid>
               </Grid>
             </Box>
@@ -278,6 +270,7 @@ const Dashboard = () => {
                       statusIndex,
                       background,
                       shortForm,
+                      totalItems: sheetStatusTypes.length,
                     })
                 )}
               </Box>
@@ -290,15 +283,12 @@ const Dashboard = () => {
                     overflowX: 'auto',
                   }}
                 >
-                  {isPending || isLoading ? (
-                    'Loading Data'
-                  ) : (
-                    <AppTable
-                      column={timeTrackingTableColumn}
-                      data={data?.time_sheet}
-                      isLoading={isLoading}
-                    />
-                  )}
+                  <AppTable
+                    minWidth={'1250px'}
+                    column={timeTrackingTableColumn}
+                    data={data?.time_sheet}
+                    isLoading={isLoading || isPending}
+                  />
                 </Box>
               ) : (
                 <Box
@@ -308,6 +298,7 @@ const Dashboard = () => {
                   }}
                 >
                   <AppTable
+                    minWidth={'1250px'}
                     column={timeTrackingTableColumn}
                     renderMessage={
                       isLoading ? (

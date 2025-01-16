@@ -14,7 +14,7 @@ export const addEmployeeFormTableColumn = [
   {
     title: 'ID',
     flex: 1,
-    name: 'id',
+    name: 'emp_id',
   },
   {
     title: 'Gender',

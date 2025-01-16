@@ -150,20 +150,6 @@ const WFHRequestDataView = ({
           justifyContent={'flex-end'}
           sx={{ padding: '20px' }}
         >
-          {/* <Button
-            type="submit"
-            variant="outlined"
-            disabled
-            sx={{
-              width: { xs: '105px', sm: '120px' },
-              height: '40px',
-              fontSize: '16px',
-              fontWeight: 600,
-            }}
-            onClick={handleClose}
-          >
-            Declined
-          </Button> */}
           <Button
             sx={{
               ml: '20px',
@@ -197,7 +183,7 @@ const WFHRequestDataView = ({
             }}
             variant="contained"
           >
-            Decline
+            Close
           </Button>
           <Button
             onClick={approveRequestAndClose}

@@ -29,9 +29,7 @@ const EditSalaryForm = ({ onClose, open, selectedId }) => {
     mutationFn: async (data) => {
       return api.updateData(`${HR_EMP_SALARY}?id=${data?.id}`, data);
     },
-    onSuccess: ({ data }) => {
-      Toast('success', 'Data updated successfully');
-      console.log({ data, values });
+    onSuccess: () => {
       const reformedData = {
         ...values,
         id: selectedId?.row?.id,
@@ -40,11 +38,11 @@ const EditSalaryForm = ({ onClose, open, selectedId }) => {
       };
       dispatch(editEmpSalary(reformedData));
       clientQuery?.invalidateQueries(['hr-employee-get-salary']);
+      Toast('success', 'Data updated successfully');
       onClose();
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to update data');
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
 
@@ -174,8 +172,8 @@ const EditSalaryForm = ({ onClose, open, selectedId }) => {
                 },
                 formIndex
               ) => (
-                <>
-                  <Grid item xs={12} lg={5} key={formIndex}>
+                <React.Fragment key={formIndex}>
+                  <Grid item xs={12} lg={5}>
                     <FormInput
                       title={title}
                       placeholder={placeholder}
@@ -199,10 +197,11 @@ const EditSalaryForm = ({ onClose, open, selectedId }) => {
                       md={12}
                       lg={12}
                       fields={fields}
+                      accept=".pdf"
                     />
                   </Grid>
                   {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>}
-                </>
+                </React.Fragment>
               )
             )}
             <Grid item p={'0 10px'} xs={12}>

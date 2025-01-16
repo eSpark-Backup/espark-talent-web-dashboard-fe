@@ -33,6 +33,7 @@ import { Toast } from '@/src/components/Toast/Toast';
 import AddContractModal from '../clients/[id]/AddContractModal';
 import EmployeeContractModal from '../clients/[id]/EmployeeContractModal';
 import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
+import dayjs from 'dayjs';
 
 const ContractSigned = () => {
   const dispatch = useDispatch();
@@ -48,9 +49,6 @@ const ContractSigned = () => {
     (state) => state?.hr?.contracts
   );
   const [currentTab, setCurrentTab] = useState();
-  // const [isLoading, setIsLoading] = useState(true);
-  // const [search, setSearch] = useState('');
-  // const [empData, setEmpData] = useState();
   const [isOpen, setIsOpen] = useState(false);
 
   const offShoreContractSignedQuery = useQuery({
@@ -69,15 +67,15 @@ const ContractSigned = () => {
                   download: 'Download',
                   actionStatus: true,
                   action: ['Delete'],
+                  date: dayjs(item?.date)?.format('DD-MMMM-YYYY'),
                 }))
               : [];
           dispatch(getOffShoreContractRequestSuccess(tempData || []));
           return tempData;
         })
         .catch((err) => {
-          Toast('error', err.message || 'Failed to get data');
           dispatch(getOffShoreContractRequestFailed());
-          console.log({ err });
+          Toast('error', err.message || 'Failed to get data');
         });
     },
   });
@@ -97,15 +95,15 @@ const ContractSigned = () => {
                   download: 'Download',
                   actionStatus: true,
                   action: ['Delete'],
+                  date: dayjs(item?.date)?.format('DD-MMMM-YYYY'),
                 }))
               : [];
           dispatch(getClientsCompanyContractRequestSuccess(tempData));
           return tempData;
         })
         .catch((err) => {
-          Toast('error', err.message || 'Failed to get data');
           dispatch(getClientsCompanyContractRequestFailed());
-          console.log({ err });
+          Toast('error', err.message || 'Failed to get data');
         });
     },
   });
@@ -123,6 +121,7 @@ const ContractSigned = () => {
               download: 'Download',
               action: ['Delete'],
               contract_doc: item.contract_doc,
+              date: dayjs(item?.date)?.format('DD-MMMM-YYYY'),
             }));
       if (nestedValue === 0) {
         dispatch(getClientsCompanyContractRequestSuccess(tempData));
@@ -131,8 +130,8 @@ const ContractSigned = () => {
       }
     },
     onError: (err) => {
+      Toast('error', err.message || 'Failed to update data');
       dispatch(getClientsCompanyContractRequestFailed());
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const offShoreContractMutation = useMutation({
@@ -141,7 +140,6 @@ const ContractSigned = () => {
       return api.getData(`${HR_OFF_SHORE_CONTRACTS}`);
     },
     onSuccess: ({ data }) => {
-      console.log({ data });
       const tempData =
         data !== ''
           ? data?.map((item) => ({
@@ -149,16 +147,16 @@ const ContractSigned = () => {
               download: 'Download',
               actionStatus: true,
               action: ['Delete'],
+              date: dayjs(item?.date)?.format('DD-MMMM-YYYY'),
             }))
           : [];
       dispatch(getOffShoreContractRequestSuccess(tempData || []));
     },
     onError: (err) => {
+      Toast('error', err.message || 'Failed to update data');
       dispatch(getOffShoreContractRequestFailed());
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
-  // console.log(empData, setSearch);
   const handleChange = (event, newValue) => {
     handleTabChange(event, newValue, setCurrentTab, setValue, setNestedValue);
   };
@@ -193,7 +191,6 @@ const ContractSigned = () => {
   const handleCloseContractModal = () => {
     setIsOpenContractModal(false);
   };
-  // const handleConfirmDelete
   const { mutate, isPending } = useMutation({
     mutationFn: async (id) => {
       let url = `${HR_COMPANY_CONTRACTS}?status=clients&id=${id}`;
@@ -207,9 +204,7 @@ const ContractSigned = () => {
       return api.daleteData(url);
     },
     onSuccess: () => {
-      Toast('success', 'Data deleted successfully');
       setDeletingContractId(null);
-      // console.log({ data });
       if (value === 0) {
         if (nestedValue === 0) {
           companyContractSignedMutation.mutate('clients');
@@ -219,14 +214,12 @@ const ContractSigned = () => {
       } else {
         offShoreContractMutation.mutate();
       }
+      Toast('success', 'Data deleted successfully');
       handleClose();
-      // setModalData({});
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to delete data');
-      // dispatch(deleteClientHiringRequestFailed());
       handleClose();
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const resolveURL = (id) => {
@@ -247,7 +240,6 @@ const ContractSigned = () => {
       return api.downloadFile(resolveURL(id));
     },
     onSuccess: ({ data }) => {
-      console.log({ data });
       const url = window.URL.createObjectURL(new Blob([data]));
       const link = document.createElement('a');
       link.href = url;
@@ -256,14 +248,10 @@ const ContractSigned = () => {
       link.click();
       link.parentNode.removeChild(link);
 
-      // dispatchFunction?.(data);
       Toast('success', 'File downloaded');
     },
     onError: (err) => {
       Toast('error', err.message || 'File not downloaded');
-      // dispatch(getTimeSheetDataFailed());
-      console.log({ err });
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const handleConfirmDelete = () => mutate(deletingContractId);
@@ -323,7 +311,6 @@ const ContractSigned = () => {
               {value === 1 && (
                 <Button
                   onClick={handleOpenContractModal}
-                  // variant="contained"
                   sx={{
                     width: '160px',
                     height: '40px',
@@ -423,7 +410,7 @@ const ContractSigned = () => {
                             data={
                               nestedValue === 0
                                 ? companyContract.clients
-                                : companyContract.employees // : JSON.parse(companyContract.employees)
+                                : companyContract.employees
                             }
                             handleClickActionDelete={handleClickDelete}
                             noPagination
@@ -447,7 +434,6 @@ const ContractSigned = () => {
                         )}
                     </Box>
                   </Box>
-                  {/* )} */}
                 </CustomTabPanel>
               ))}
             </Box>

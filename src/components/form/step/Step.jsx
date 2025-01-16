@@ -7,6 +7,8 @@ import { FORM_DATA } from '@/src/constants/form';
 import { SETTING } from '@/src/constants/SettingHr';
 import { useMutation } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
+import { usePathname } from 'next/navigation';
+import { Toast } from '../../Toast/Toast';
 
 const Step = ({
   handleGoPrev,
@@ -39,9 +41,10 @@ const Step = ({
   fontSize,
   miniFontSize,
 }) => {
+  const pathname = usePathname();
+
   const { mutate, isPending } = useMutation({
     mutationFn: async (formVals) => {
-      console.log({ formVals });
       const formDataVals = new FormData();
       for (const key in formVals) {
         formDataVals.append(key, formVals[key]);
@@ -49,6 +52,7 @@ const Step = ({
       return api[method](endpoint, formDataVals);
     },
     onSuccess: ({ data }) => {
+      Toast('success', 'Status updated successfully');
       console.log({ data });
       setCurrentStep?.(0);
       toast?.();
@@ -82,12 +86,6 @@ const Step = ({
       } else {
         errToast = 'An unknown error occurred';
       }
-      console.log({
-        errorDetails: err,
-        errorMessage: err.message,
-        errorName: err.name,
-        errorStack: err.stack,
-      });
       if (errToast) {
         errorToast(errToast);
       }
@@ -124,7 +122,6 @@ const Step = ({
     validationSchema: schema,
     enableReinitialize: true,
     onSubmit: (formValues) => {
-      console.log({ formValues });
       dispatchFunction?.(formValues);
       handleGoNext?.();
       if (isLastStep) {
@@ -136,7 +133,6 @@ const Step = ({
               ? 'nonspec'
               : formValues?.gender,
         });
-        console.log({ fV: formValues, newData });
         mutate(newData);
       }
       btnSave(formValues);
@@ -145,14 +141,9 @@ const Step = ({
     validateOnBlur: false,
   });
   const handeClickBack = () => {
-    console.log({ values, errors });
     dispatchFunction?.(values);
     handleGoPrev();
   };
-
-  {
-    console.log({ errors, values });
-  }
 
   if (isMultiColumn)
     return (
@@ -296,13 +287,14 @@ const Step = ({
         </Grid>
       </form>
     );
+
   return (
     <form onSubmit={handleSubmit}>
       <Grid
-        spacing={0}
+        spacing={{ xs: 1, sm: 2, md: 3, lg: 5 }}
         container
         sx={{
-          p: { xs: '20px', md: pmd },
+          p: { xs: '20px', md: '60px 45px', lg: '70px 45px', xl: pmd },
           display: 'flex',
           gap: gap ? gap : 0,
           '@media (min-width: 280px) and (max-width: 1460px)': {
@@ -322,7 +314,6 @@ const Step = ({
               options,
               name,
               nested,
-              col,
               searchable,
               accept,
               withFlag,
@@ -352,7 +343,10 @@ const Step = ({
               setErrors={setErrors}
               values={values}
               nested={nested}
-              lg={col}
+              xs={12}
+              sm={6}
+              md={3.5}
+              lg={3}
               countries={countries}
               withFlag={withFlag}
               searchable={searchable}
@@ -363,6 +357,8 @@ const Step = ({
                 (name == 'starting_date' &&
                   (values.job_status == 'Part-Time' ||
                     values.job_status == 'Permanent')) ||
+                (pathname == '/hr/dashboard/clients/edit-profile' &&
+                  name == 'email') ||
                 (name == 'ending_date' &&
                   (values.job_status == 'Part-Time' ||
                     values.job_status == 'Permanent'))

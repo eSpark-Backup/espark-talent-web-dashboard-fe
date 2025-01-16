@@ -62,7 +62,6 @@ const Dashboard = () => {
     setOpen(true);
   };
   const handleClose = () => {
-    console.log({ modalData });
     setOpen(false);
   };
   const handleClosePunch = () => setOpenPunch(false);
@@ -90,7 +89,7 @@ const Dashboard = () => {
       row,
       row: { status, employeeName, count, leaveType },
     } = props;
-    console.log({ item, row, status, count, leaveType, employeeName });
+    console.log(status, employeeName, count, leaveType);
     setModalData({ item, ...row });
     if (tabData?.currentReqTypeTab === 'Leave Requests') {
       setOpen(true);
@@ -102,14 +101,13 @@ const Dashboard = () => {
     mutationFn: async (data) => {
       return api.updateJSONData(`${data?.endpoint}?id=${data?.id}`, data?.data);
     },
-    onSuccess: ({ data }) => {
-      console.log({ data });
-      Toast('success', 'Request updated successfully');
+    onSuccess: () => {
       if (tabData?.currentReqTypeTab === 'Leave Requests') {
         dispatch(updateLeaveRequest(updatingLeaveRequest));
       } else {
         dispatch(updateTimeOffRequests(updatingLeaveRequest));
       }
+      Toast('success', 'Request updated successfully');
       setUpdatingLeaveRequest(null);
     },
     onError: (err) => {
@@ -118,7 +116,6 @@ const Dashboard = () => {
   });
 
   const handleApproveRequest = (props) => {
-    console.log({ tabData, crst: tabData?.currentReqStatusTab });
     setUpdatingLeaveRequest({
       id: props.id,
       status: 'completed',
@@ -259,7 +256,6 @@ const Dashboard = () => {
       return api.downloadFile(resolveURL());
     },
     onSuccess: ({ data }) => {
-      console.log({ data });
       const url = window.URL.createObjectURL(new Blob([data]));
       const link = document.createElement('a');
       link.href = url;
@@ -268,14 +264,10 @@ const Dashboard = () => {
       link.click();
       link.parentNode.removeChild(link);
 
-      // dispatchFunction?.(data);
       Toast('success', 'File downloaded');
     },
     onError: (err) => {
       Toast('error', err.message || 'File not downloaded');
-      // dispatch(getTimeSheetDataFailed());
-      console.log({ err });
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const handleDownloadReport = () => {
@@ -294,7 +286,6 @@ const Dashboard = () => {
           }}
         >
           <div>
-            {/* <PageHeader /> */}
             <Box
               sx={{
                 display: 'flex',
@@ -361,7 +352,7 @@ const Dashboard = () => {
               {(tabData?.currentReqTypeTab === 'Leave Requests' ||
                 tabData?.currentReqTypeTab === 'Clockin/out Requests') &&
                 renderNestedTable({
-                  minWidth: '1450px',
+                  minWidth: '1250px',
                   isLoading,
                   currentReqStatusTabVal: tabData?.currentReqStatusTabVal,
                   currentReqStatusTab: tabData?.currentReqStatusTab,

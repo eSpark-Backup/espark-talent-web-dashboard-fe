@@ -20,19 +20,19 @@ export const salaryForm = [
     name: 'job_status',
   },
   {
-    title: 'Gross Salary(Rs)',
+    title: 'Gross Salary (Rs)',
     placeholder: 'Enter gross salary',
     name: 'gross_salary',
     type: 'number',
   },
   {
-    title: 'Tax Deduction(%)',
+    title: 'Tax Deduction (%)',
     placeholder: 'Enter tax deduction',
     name: 'tax_deduction',
     type: 'number',
   },
   {
-    title: 'Net Salary(Rs)',
+    title: 'Net Salary (Rs)',
     placeholder: 'Enter net salary',
     name: 'net_salary',
     type: 'number',

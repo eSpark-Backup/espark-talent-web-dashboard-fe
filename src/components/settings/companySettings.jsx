@@ -29,7 +29,6 @@ const CompanySettings = () => {
         })
         .catch((err) => {
           Toast('error', err.message || 'Failed to get data');
-          console.log({ err });
         });
     },
   });
@@ -82,10 +81,7 @@ const CompanySettings = () => {
             form={companyformElement}
             schema={companyInfoSchema}
             editProfile
-            mt="180px"
             pmd="49px 10px"
-            gap="60px"
-            midScreenGap="10px"
             isLastStep
             defaultValues={defaultValues}
             getFinalData={getFinalData}

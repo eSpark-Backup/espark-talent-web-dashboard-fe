@@ -33,6 +33,7 @@ export default function SidebarUserAvatar({ userName, userImage }) {
     <Stack direction="row">
       <Avatar
         sx={{
+          cursor: 'pointer',
           bgcolor: '#e6f5f4',
           color: '#029E9C',
           fontSize: '12px',

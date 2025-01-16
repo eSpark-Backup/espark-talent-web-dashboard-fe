@@ -28,9 +28,6 @@ const LetterForm = ({ onClose, open, empData }) => {
       return api.postData(`${HR_EMP_LETTER}`, data);
     },
     onSuccess: async ({ data }) => {
-      Toast('success', 'Data posted successfully');
-      console.log('API Success Response:', data);
-
       const reformedData = {
         ...values,
         id: data?.id,
@@ -39,11 +36,11 @@ const LetterForm = ({ onClose, open, empData }) => {
         email: values.email,
         issue_date: dayjs(values.issue_date).format('YYYY-MM-DD'),
         reason: values.reason,
-        // action: ['Delete', 'View'],
         download: values.download,
       };
       await queryClient.invalidateQueries(['hr-employee-get-letter']);
       dispatch(addEmpLetter(reformedData));
+      Toast('success', 'Data posted successfully');
       onClose();
     },
     onError: (err) => {
@@ -170,6 +167,7 @@ const LetterForm = ({ onClose, open, empData }) => {
                       md={12}
                       lg={12}
                       fields={fields}
+                      accept=".pdf"
                     />
                   </Grid>
                   {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>}

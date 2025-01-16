@@ -65,55 +65,60 @@ const DiscoverTalentPlatform = ({ isLoading }) => {
   ) : (
     <Box
       sx={{
-        display: 'flex',
-        background: '#E6F5F4',
-        justifyContent: 'space-around',
-        alignItems: 'center',
-        borderRadius: '5px',
-        flexDirection: { xs: 'column', sm: 'column', md: 'row' },
-        padding: { xs: '15px', md: '10px' },
         width: '100%',
+        px: { xs: '30px', md: '40px' },
+        py: { xs: '30px', md: '10px' },
+        minHeight: '232px',
+        borderRadius: '5px',
+        background: '#E6F5F4',
       }}
     >
       <Box
         sx={{
-          maxWidth: '700px',
-          '@media (min-width: 900px) and (max-width: 1350px)': {
-            marginLeft: '30px',
-          },
+          width: '100%',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: { xs: 'flex-start', md: 'center' },
+          flexDirection: { xs: 'column', sm: 'column', md: 'row' },
         }}
       >
-        <Typography
+        <Box
           sx={{
-            color: '#068987',
-            fontSize: { xs: '25px', md: '35px' },
-            fontWeight: 700,
-            '@media (min-width: 900px) and (max-width: 1350px)': {
-              fontSize: '28px',
-            },
+            maxWidth: '700px',
           }}
         >
-          {DASHBOARD_DATA.talentPlatform}
-        </Typography>
-        <Typography
-          sx={{
-            fontSize: { xs: '20px', md: '25px' },
-            fontWeight: 400,
-            color: '#595959',
-            '@media (min-width: 900px) and (max-width: 1350px)': {
-              fontSize: '20px',
-            },
-          }}
-        >
-          {DASHBOARD_DATA.employeeData}
-        </Typography>
+          <Typography
+            sx={{
+              color: '#068987',
+              fontSize: { xs: '25px', md: '35px' },
+              fontWeight: 700,
+              '@media (min-width: 900px) and (max-width: 1350px)': {
+                fontSize: '28px',
+              },
+            }}
+          >
+            {DASHBOARD_DATA.talentPlatform}
+          </Typography>
+          <Typography
+            sx={{
+              fontSize: { xs: '20px', md: '25px' },
+              fontWeight: 400,
+              color: '#595959',
+              '@media (min-width: 900px) and (max-width: 1350px)': {
+                fontSize: '20px',
+              },
+            }}
+          >
+            {DASHBOARD_DATA.employeeData}
+          </Typography>
+        </Box>
+        <Image
+          src="/images/dashboard/rocket.svg"
+          width={232}
+          height={232}
+          alt="rocket"
+        />
       </Box>
-      <Image
-        src="/images/dashboard/rocket.svg"
-        width={232}
-        height={232}
-        alt="rocket"
-      />
     </Box>
   );
 };

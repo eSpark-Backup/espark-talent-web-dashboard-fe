@@ -44,9 +44,8 @@ const LeaveBalanceTable = () => {
           return data;
         })
         .catch((err) => {
-          console.log({ err });
-          Toast('error', err.message || 'Failed to get data');
           dispatch(getEmpLeaveRequestDataFailed());
+          Toast('error', err.message || 'Failed to get data');
         });
     },
   });

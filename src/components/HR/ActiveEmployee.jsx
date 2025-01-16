@@ -19,7 +19,6 @@ const EmployeeStatus = ({ empData, isFetching }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [empId, setEmpId] = useState(null);
   const [empStatus, setEmpStatus] = useState(null);
-  // const open = Boolean(anchorEl);
   const [open, setOpen] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -34,7 +33,7 @@ const EmployeeStatus = ({ empData, isFetching }) => {
   };
   const handleOpenRemove = (event, id) => {
     setEmpId(id);
-    setEmpStatus('terminate');
+    setEmpStatus('terminated');
     setIsOpen(true);
     event.stopPropagation();
   };
@@ -59,7 +58,6 @@ const EmployeeStatus = ({ empData, isFetching }) => {
       });
     },
     onSuccess: () => {
-      Toast('success', 'Employee status updated successfully');
       dispatch(
         updateClientEmpStatus({
           id: empId,
@@ -69,6 +67,7 @@ const EmployeeStatus = ({ empData, isFetching }) => {
       setEmpId(null);
       setEmpStatus(null);
       handleCloseModal();
+      Toast('success', 'Employee status updated successfully');
       setOpen(null);
     },
   });

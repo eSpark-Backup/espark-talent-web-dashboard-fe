@@ -32,13 +32,11 @@ const UploadInvoiceModal = ({ open, onClose, title }) => {
     mutationFn: async (formVals) => {
       const formData = new FormData();
       for (const key in formVals) {
-        formData.append(key, formVals[key]);
+        formData?.append(key, formVals[key]);
       }
       return api.postData(HR_CLIENT_EMPLOYEE_INVOICE, formData);
     },
     onSuccess: ({ data }) => {
-      console.log({ data });
-      Toast('success', 'Data posted successfully');
       dispatch(
         addEmpInvoice({
           data: {
@@ -57,10 +55,10 @@ const UploadInvoiceModal = ({ open, onClose, title }) => {
       );
       setEmpInvoiceFormValues(null);
       handleCloseModal();
+      Toast('success', 'Data posted successfully');
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to post data');
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const {
@@ -182,8 +180,8 @@ const UploadInvoiceModal = ({ open, onClose, title }) => {
                 },
                 formIndex
               ) => (
-                <>
-                  <Grid item xs={12} lg={5} key={formIndex}>
+                <React.Fragment key={formIndex}>
+                  <Grid item xs={12} lg={5}>
                     <FormInput
                       title={title}
                       placeholder={placeholder}
@@ -213,7 +211,7 @@ const UploadInvoiceModal = ({ open, onClose, title }) => {
                     />
                   </Grid>
                   {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>}
-                </>
+                </React.Fragment>
               )
             )}
             <Grid item p={'0 10px'} xs={12}>

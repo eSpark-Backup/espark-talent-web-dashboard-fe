@@ -27,7 +27,6 @@ const Client = () => {
         })
         .catch((err) => {
           Toast('error', err.message || 'Failed to get data');
-          console.log({ err });
         });
     },
   });
@@ -52,13 +51,13 @@ const Client = () => {
     },
   ];
   const handleChangeTab = (event, newValue, rest) => {
-    console.log({ event, newValue, rest });
     setCurrentTab({
       label: tabs[newValue].label,
       val: newValue,
       data: tabs[newValue].data,
       column: tabs[newValue].column,
     });
+    console.log(event, rest);
   };
   return (
     <>
@@ -67,7 +66,7 @@ const Client = () => {
           display: 'flex',
           flexDirection: { xs: 'column', md: 'row' },
           justifyContent: 'space-between',
-          alignItems: 'center',
+          alignItems: { xs: 'flex-start', md: 'center' },
           borderBottom: 'solid 1px #ccc',
           mb: '40px',
         }}

@@ -43,7 +43,6 @@ const GeneralSettings = () => {
             .postData(`${CLIENT_UPDATE_PIC}`, { picture: data.picture })
             .then((resp) => {
               dispatch(updateClientImage(resp?.data?.image));
-              Toast('success', 'Data posted successfully');
               return api.updateJSONData(CLIENT_UPDATE_COMPANY, {
                 company_name: data.companyName,
               });
@@ -61,12 +60,8 @@ const GeneralSettings = () => {
         return response;
       });
     },
-    onSuccess: ({ data }) => {
-      console.log({ data });
-    },
     onError: (err) => {
       Toast('error', err.message || 'Failed to post data');
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const {
@@ -85,7 +80,6 @@ const GeneralSettings = () => {
     validationSchema: generalSettingFormSchema,
     enableReinitialize: true,
     onSubmit: (formValues) => {
-      console.log({ formValues });
       mutate(formValues);
     },
     validateOnChange: false,
@@ -102,18 +96,18 @@ const GeneralSettings = () => {
       reader.onloadend = async () => {
         setImageFile(reader.result);
         const formData = new FormData();
-        formData.append('picture', file);
+        formData?.append('picture', file);
         setIsUploading(true);
         const resp = await api.postData(`${CLIENT_UPDATE_PIC}`, formData);
         setIsUploading(false);
 
         dispatch(updateClientImage(resp?.data?.image));
-        Toast('success', 'Image uploaded successfully');
         const updatedImageData = {
           ...data,
           client_image: resp?.data?.image,
         };
         dispatch(fetchClientHomeDataRequestSuccess(updatedImageData || {}));
+        Toast('success', 'Image uploaded successfully');
       };
       reader.readAsDataURL(file);
     } catch (error) {
@@ -234,36 +228,34 @@ const GeneralSettings = () => {
                     },
                     formIndex
                   ) => (
-                    <>
-                      <Grid item xs={12} lg={6} key={formIndex}>
-                        <FormInput
-                          title={title}
-                          placeholder={placeholder}
-                          errorText={errorText}
-                          prefixIcon={prefixIcon}
-                          type={type}
-                          suffixIcon={suffixIcon}
-                          options={options}
-                          name={name}
-                          setFieldValue={setFieldValue}
-                          value={values[name]}
-                          error={errors[name]}
-                          touched={touched}
-                          setFieldError={setFieldError}
-                          errors={errors}
-                          setErrors={setErrors}
-                          values={values}
-                          nested={nested}
-                          md={6}
-                          lg={6}
-                          fields={fields}
-                          disabled={disabled}
-                          suffixIconOutsideWithTooltip={
-                            suffixIconOutsideWithTooltip
-                          }
-                        />
-                      </Grid>
-                    </>
+                    <Grid item xs={12} lg={6} key={formIndex}>
+                      <FormInput
+                        title={title}
+                        placeholder={placeholder}
+                        errorText={errorText}
+                        prefixIcon={prefixIcon}
+                        type={type}
+                        suffixIcon={suffixIcon}
+                        options={options}
+                        name={name}
+                        setFieldValue={setFieldValue}
+                        value={values[name]}
+                        error={errors[name]}
+                        touched={touched}
+                        setFieldError={setFieldError}
+                        errors={errors}
+                        setErrors={setErrors}
+                        values={values}
+                        nested={nested}
+                        md={6}
+                        lg={6}
+                        fields={fields}
+                        disabled={disabled}
+                        suffixIconOutsideWithTooltip={
+                          suffixIconOutsideWithTooltip
+                        }
+                      />
+                    </Grid>
                   )
                 )}
               </Box>

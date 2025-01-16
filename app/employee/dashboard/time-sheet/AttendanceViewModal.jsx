@@ -25,15 +25,13 @@ const AttendanceViewModal = ({ modalData, empData, handleClose }) => {
     [
       ['Employee ID:', 'es-00020', 'employee_id'],
       ['Company:', 'eSpark talent', 'company_name'],
-      // ['Branch:', 'Jauhar, Block 1', 'location'],
+
       ['Job title:', 'Web developer', 'job_title'],
     ],
     [
       ['Name:', 'Bilal Khan', 'employee_name'],
       ['Joining date:', 'Oct26,2021', 'joining_date', 'date'],
       ['Role:', 'junior', 'role'],
-      // ['Location:', 'Karachi, Pakistan', 'location'],
-      // ['Department:', 'Software', 'department'],
     ],
   ];
   const attendanceData = [
@@ -147,7 +145,6 @@ const AttendanceViewModal = ({ modalData, empData, handleClose }) => {
                   ? formatDate(modalData[data[2]]) ||
                     formatDate(empData[data[2]])
                   : modalData[data[2]] || empData[data[2]]
-                // preetyTime(modalData[data[2]])
               }
             />
           );

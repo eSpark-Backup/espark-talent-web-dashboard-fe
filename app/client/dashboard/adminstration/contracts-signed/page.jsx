@@ -26,6 +26,7 @@ import {
 } from '@/src/redux/slices/clientSlices/contratSignedSlice';
 import { Toast } from '@/src/components/Toast/Toast';
 import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
+import dayjs from 'dayjs';
 
 const ContractSigned = () => {
   const { data, isLoading } = useSelector((state) => state?.client?.contract);
@@ -48,14 +49,14 @@ const ContractSigned = () => {
               : data?.map((item) => ({
                   ...item,
                   download: 'Download',
+                  date: dayjs(item?.date)?.format('DD-MMMM-YYYY'),
                 }));
           dispatch(fetchClientCompanyContractRequestSuccess(tempData));
           return data;
         })
         .catch((err) => {
-          Toast('error', err.message || 'Failed to get data');
           dispatch(fetchClientCompanyContractRequestFailed());
-          console.log({ err });
+          Toast('error', err.message || 'Failed to get data');
         });
     },
   });
@@ -74,14 +75,14 @@ const ContractSigned = () => {
               : data?.map((item) => ({
                   ...item,
                   download: 'Download',
+                  date: dayjs(item?.date)?.format('DD-MMMM-YYYY'),
                 }));
           dispatch(fetchClientEmpContractRequestSuccess(tempData));
           return data;
         })
         .catch((err) => {
-          Toast('error', err.message || 'Failed to get data');
           dispatch(fetchClientEmpContractRequestFailed());
-          console.log({ err });
+          Toast('error', err.message || 'Failed to get data');
         });
     },
   });
@@ -122,14 +123,10 @@ const ContractSigned = () => {
       link.click();
       link.parentNode.removeChild(link);
 
-      // dispatchFunction?.(data);
       Toast('success', 'File downloaded');
     },
     onError: (err) => {
       Toast('error', err.message || 'File not downloaded');
-      // dispatch(getTimeSheetDataFailed());
-      console.log({ err });
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
 
@@ -191,6 +188,7 @@ const ContractSigned = () => {
                     }}
                   >
                     <AppTable
+                      minWidth={'1250px'}
                       currentTab={currentTab}
                       column={tab?.columns}
                       data={value === 0 ? data?.company : data?.employee}

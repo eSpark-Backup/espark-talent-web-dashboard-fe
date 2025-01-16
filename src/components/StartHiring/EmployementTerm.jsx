@@ -22,7 +22,7 @@ const EmployementTerm = () => {
         data={employmentTerm}
         setIsLoadingList={setIsLoadingTitles}
         isLoadingList={isLoadingTitles}
-        selectedItem={selectedJobTitle}
+        selectedItem={selectedJobTitle || ''}
         setSelectedItem={setSelectedJobTitle}
         placeHolder="Select employment terms"
       />

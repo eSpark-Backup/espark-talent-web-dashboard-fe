@@ -47,6 +47,7 @@ const TimeAndLeaves = () => {
     });
   }, []);
   const [isLoadingMutation, setIsLoadingMutation] = useState(false);
+  console.log(isLoadingMutation, 'isLoadingMutation');
 
   const preetyTime = (time) => {
     if (dayjs(time)?.format('hh:mm A') === 'Invalid Date') {
@@ -74,8 +75,6 @@ const TimeAndLeaves = () => {
         })
         .catch((err) => {
           Toast('error', err.message || 'Failed to get data');
-          console.log({ err });
-          console.log({ isLoadingMutation });
         });
     },
   });
@@ -100,14 +99,12 @@ const TimeAndLeaves = () => {
   };
   const { mutate } = useMutation({
     mutationFn: async (tab) => {
-      console.log({ tab });
       setIsLoadingMutation(true);
       return api.getData(
         `${HR_EMP_TIME_AND_LEAVES}?id=${params?.id}&tab=${tab?.toLowerCase()}`
       );
     },
     onSuccess: ({ data }) => {
-      console.log({ data });
       setIsLoadingMutation(false);
       if (currentTab.label === 'Time') {
         const tempData =
@@ -119,14 +116,13 @@ const TimeAndLeaves = () => {
           ] || [];
         dispatch(getHrEmpTime(tempData));
       } else {
-        console.log({ reformed: reformData(data) });
         dispatch(getHrEmpLeaves(reformData(data)));
       }
       return data || [];
     },
     onError: (err) => {
       setIsLoadingMutation(false);
-      console.log({ err: err.message, name: err.name, stack: err.stack });
+      Toast('error', err.message || 'Failed to update data');
     },
   });
   const updateLeaveStatusMutation = useMutation({
@@ -137,8 +133,8 @@ const TimeAndLeaves = () => {
       );
     },
     onSuccess: () => {
-      Toast('success', 'Leaves updates successfully');
       mutate('leaves');
+      Toast('success', 'Leaves updates successfully');
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to post data');
@@ -164,7 +160,6 @@ const TimeAndLeaves = () => {
     },
   ];
   const handleChangeTab = (event, newValue, rest) => {
-    console.log({ event, newValue, rest });
     setCurrentTab({
       label: tabs[newValue].label,
       val: newValue,
@@ -172,6 +167,8 @@ const TimeAndLeaves = () => {
       column: tabs[newValue].column,
     });
     mutate(tabs[newValue].label.toLowerCase());
+    console.log(rest, 'rest');
+    console.log(event, 'event');
   };
   const handleOpenTimeManagementModal = () => {
     setIsOpenTimeManagementModal(true);
@@ -224,7 +221,7 @@ const TimeAndLeaves = () => {
           }}
           aria-label="basic tabs example"
           variant="scrollable"
-          sx={{ mt: '8px' }}
+          sx={{ mt: '8px', order: { xs: 1, sm: 0 } }}
         >
           {tabs?.map(({ label, prop }, tabIndex) => (
             <Tab
@@ -244,23 +241,31 @@ const TimeAndLeaves = () => {
         </Tabs>
         {(role === 'super_admin' ||
           (role !== 'super_admin' && employee_perms?.[0].write)) && (
-          <Button
+          <Box
             sx={{
-              minWidth: '160px',
-              marginTop: { xs: '10px', md: '0px' },
-              marginBottom: { xs: '10px', md: '0px' },
-              color: '#fff',
-              background: '#029894',
-              '&:hover': {
+              width: { xs: '100%', sm: 'auto' },
+              borderBottom: { xs: 'solid 1px #ccc', sm: 'none' },
+            }}
+          >
+            <Button
+              sx={{
+                minWidth: '160px',
+                marginTop: { xs: '10px', md: '0px' },
+                marginBottom: { xs: '10px', sm: '5px', md: '0px' },
                 color: '#fff',
                 background: '#029894',
-              },
-            }}
-            variant="contained"
-            onClick={handleOpenModal}
-          >
-            {FORM_DATA?.manage}
-          </Button>
+                order: { xs: 0, sm: 0 },
+                '&:hover': {
+                  color: '#fff',
+                  background: '#029894',
+                },
+              }}
+              variant="contained"
+              onClick={handleOpenModal}
+            >
+              {FORM_DATA?.manage}
+            </Button>
+          </Box>
         )}
       </Box>
       <Box

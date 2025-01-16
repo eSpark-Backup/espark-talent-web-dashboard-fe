@@ -49,7 +49,7 @@ const ChangePassword = () => {
       try {
         const formData = new FormData();
         for (const key in formVals) {
-          formData.append(key, formVals[key]);
+          formData?.append(key, formVals[key]);
         }
         return api['updateData'](`${HR_CHANGE_PASSWORD}`, formData);
       } catch (err) {
@@ -79,7 +79,7 @@ const ChangePassword = () => {
         spacing={isSmallScreen ? 0 : 2}
         sx={{
           padding: { xs: '20px', lg: '49px 10px' },
-          gap: { xs: '0px', md: '50px' },
+          gap: { xs: '0px', lg: '50px' },
         }}
       >
         {passwordformElement?.map(
@@ -101,7 +101,7 @@ const ChangePassword = () => {
             formIndex
           ) => (
             <>
-              <Grid item xs={12} md={4} lg={lgGridSize} key={formIndex}>
+              <Grid item xs={12} md={5.5} lg={lgGridSize} key={formIndex}>
                 <FormInput
                   title={title}
                   placeholder={placeholder}
@@ -143,12 +143,16 @@ const ChangePassword = () => {
             <Button
               sx={{
                 minWidth: '120px',
-                marginTop: { xs: '180px', md: '174px' },
                 fontSize: '16px',
               }}
               variant="contained"
               type="submit"
-              disabled={isPending}
+              disabled={
+                values?.current_password === '' ||
+                values?.new_password === '' ||
+                values?.confirm_password === '' ||
+                isPending
+              }
             >
               {isPending ? (
                 <CircularProgress size={26} color="secondary" />

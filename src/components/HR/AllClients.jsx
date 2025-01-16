@@ -36,13 +36,11 @@ const AllClients = () => {
       return api
         .getData(HR_GET_CLIENTS)
         .then(({ data }) => {
-          console.log({ data });
           dispatch(getClientsData(data));
           return data || [];
         })
         .catch((error) => {
           Toast('error', error.message || 'Failed to get data');
-          console.log({ error });
         });
     },
   });

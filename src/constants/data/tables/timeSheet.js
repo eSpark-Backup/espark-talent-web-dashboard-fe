@@ -29,11 +29,6 @@ export const sheetStatusTypes = [
     background: '#107863',
     shortForm: 'L',
   },
-  // {
-  //   label: 'Half Day',
-  //   background: '#107863',
-  //   shortForm: 'HD',
-  // },
 ];
 
 export const timeSheetTableColumn = [

@@ -100,6 +100,8 @@ const handleEmployeeNotifications = (notification, userType) => {
     'Leave Request': 'request/leave',
     'Wfh Request': 'request/work-from-home',
     'Punch Request': 'request/punch-requests',
+    Benefit: '/benefits',
+    Letter: '/letters',
     Policy: 'administration/policies',
     'Company Contracts': 'administration/contracts-signed',
   };

@@ -16,10 +16,7 @@ import {
 import { api } from '@/src/services/apiService';
 import { Toast } from '../Toast/Toast';
 
-const Accounts = ({
-  // accountDataState,
-  handleAdd,
-}) => {
+const Accounts = ({ handleAdd }) => {
   const { accounts } = useSelector((state) => state?.hr?.settings);
   const [deletingAccountId, setDeletingAccountId] = useState(null);
   const dispatch = useDispatch();
@@ -43,7 +40,6 @@ const Accounts = ({
         })
         .catch((err) => {
           Toast('error', err.message || 'Failed to get data');
-          console.log({ err });
         });
     },
   });
@@ -52,14 +48,13 @@ const Accounts = ({
       return api.daleteData(`${HR_ACCOUNTS}?id=${id}`);
     },
     onSuccess: () => {
-      Toast('success', 'Account deleted successfully');
       dispatch(deleteAccount(deletingAccountId));
       setDeletingAccountId(null);
       handleCloseDeleteModal?.();
+      Toast('success', 'Account deleted successfully');
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to delete account');
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
@@ -94,6 +89,7 @@ const Accounts = ({
       }}
     >
       <AppTable
+        minWidth={'1000px'}
         column={accountColumn}
         data={accounts}
         handleClickActionDelete={handleClickActionDelete}

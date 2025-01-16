@@ -79,13 +79,11 @@ const LeaveRequestForm = ({ handleClose }) => {
           : [],
       };
       dispatch(getEmpLeaveRequestDataSuccess(tempData));
-      console.log(tempData, 'tempData invoked');
       return data;
     },
     onError: (err) => {
       console.log(err.message, 'error invoked');
       dispatch(getEmpLeaveRequestDataFailed());
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const { mutate, isPending } = useMutation({
@@ -93,21 +91,20 @@ const LeaveRequestForm = ({ handleClose }) => {
       dispatch(createEmpLeaveRequest());
       const formData = new FormData();
       for (const key in formVals) {
-        formData.append(key, formVals[key]);
+        formData?.append(key, formVals[key]);
       }
       return api.postData(EMP_LEAVE_REQUEST, formData);
     },
     onSuccess: (data) => {
-      Toast('success', 'Data posted successfully');
       dispatch(
         createEmpLeaveRequestSuccess({
           ...getRevampedValues(values),
           id: data.id,
-          // department: '-',
         })
       );
       handleClose();
       refreshMutation.mutate();
+      Toast('success', 'Data posted successfully');
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to post data');
@@ -127,8 +124,6 @@ const LeaveRequestForm = ({ handleClose }) => {
     validationSchema: createLeaveRequestSchema,
     enableReinitialize: true,
     onSubmit: (formValues) => {
-      console.log('formValue', formValues);
-
       const revampFormValues = {
         client_id: currentWorkSpace?.email,
         leave_type: formValues?.leaveType?.label.split(' ')[0].toLowerCase(),
@@ -155,9 +150,7 @@ const LeaveRequestForm = ({ handleClose }) => {
     }
   };
   const getOptions = () => {
-    console.log({ balance });
     const tempOptions = balance?.map((item) => {
-      console.log({ item });
       return {
         label: snakeToPascalCase(item?.leave_type),
         disabled: +item?.balance < 1 ? true : false,

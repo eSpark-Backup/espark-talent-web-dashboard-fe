@@ -87,14 +87,6 @@ export const Summary_Boxes = [
     backgroundColor: '#E6F4F4',
     name: 'leaves',
   },
-  // {
-  //   title: 'Travels',
-  //   count: `08`,
-  //   horizontalLineColor: '#7A0916',
-  //   backgroundColor: '#F6ECED',
-  //   name: 'travel'
-  // },
-
   {
     title: 'Absents',
     count: `08`,
@@ -123,27 +115,6 @@ export const Summary_Boxes = [
     backgroundColor: '#F5ECED',
     name: 'days_off',
   },
-  // {
-  //   title: 'Rest days',
-  //   count: `08`,
-  //   horizontalLineColor: '#FFBE3B',
-  //   backgroundColor: '#FFF8EB',
-  //   name:''
-  // },
-  // {
-  //   title: 'Rexations',
-  //   count: `08`,
-  //   horizontalLineColor: '#006C9C',
-  //   backgroundColor: '#E0F6FA',
-  //   name:''
-  // },
-  // {
-  //   title: 'Early left',
-  //   count: `08`,
-  //   horizontalLineColor: '#068987',
-  //   backgroundColor: '#E6F4F4',
-  //   name:''
-  // },
   {
     title: 'Over time',
     count: `08`,

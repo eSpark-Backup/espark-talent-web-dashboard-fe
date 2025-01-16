@@ -82,7 +82,6 @@ const FormInput = ({
     }
     setErrors({ ...tempErrors });
     setFieldValue(name, item);
-    // handleData(name, item);
   };
   const handleChangeInput = (field, value) => {
     const tempErrors = { ...errors };
@@ -97,12 +96,8 @@ const FormInput = ({
         delete tempErrors[name];
       }
     }
-    // else {
-    //   tempErrors[name] = 'Required';
-    // }
     setErrors({ ...tempErrors });
     setFieldValue?.(field, value);
-    // handleData(field, value);
   };
 
   const handleChangeFileInput = (field, value) => {
@@ -112,7 +107,6 @@ const FormInput = ({
     }
     setErrors({ ...tempErrors });
     setFieldValue?.(field, value);
-    // handleData(field, value);
   };
 
   const handleClickCounter = (type, name, value, min) => {
@@ -123,7 +117,6 @@ const FormInput = ({
             break;
           default:
             setFieldValue(name, value - 1);
-            // handleData(name, value - 1);
             break;
         }
         break;
@@ -134,7 +127,6 @@ const FormInput = ({
             break;
           default:
             setFieldValue(name, value + 1);
-            // handleData(name, value + 1);
             break;
         }
         break;
@@ -161,7 +153,6 @@ const FormInput = ({
     const fieldName = `${name}.${item.name}`;
     setFieldValue(fieldName, checked);
   };
-  console.log(disabled, 'disabledTest=', name, 'value=', value);
   return (
     <Grid
       item
@@ -207,8 +198,9 @@ const FormInput = ({
                   fontStyle: 'normal',
                   fontWeight: 500,
                   lineHeight: 'normal',
+                  textWrap: 'nowrap',
                   '@media (min-width: 1200px) and (max-width: 1250px)': {
-                    fontSize: '11.9px',
+                    fontSize: '14px',
                   },
                 }}
                 dangerouslySetInnerHTML={{
@@ -219,6 +211,7 @@ const FormInput = ({
                 <Typography
                   sx={{
                     fontSize: '10px',
+                    textWrap: 'nowrap',
                     ml: '5px',
 
                     '@media (min-width: 1210px) and (max-width: 1370px)': {
@@ -242,7 +235,7 @@ const FormInput = ({
           {searchable ? (
             <AppSearchableDropdown
               data={countries || options}
-              selectedItem={value}
+              selectedItem={value || ''}
               setSelectedItem={handleSelectItem}
               setIsLoadingList={setIsLoadingList}
               isLoadingList={isLoadingList}
@@ -258,7 +251,7 @@ const FormInput = ({
               handleJobTitleSelect={handleJobTitleSelect}
               data={options}
               placeHolder={placeholder}
-              selectedItem={value}
+              selectedItem={value || ''}
               setSelectedItem={handleSelectItem}
               isLoadingList={isLoadingList}
               setIsLoadingList={setIsLoadingList}
@@ -464,11 +457,6 @@ const FormInput = ({
                 },
               }}
               value={value}
-              // value={dayjs('2022-04-17T22:00')}
-              // value={dayjs('2000-01-01T22:00')}
-              // value={dayjs(convert12to24(value))}
-              // value={'10:00 PM'}
-              // defaultValue={new Date()}
               onChange={(e) => {
                 handleChangeInput(name, `${e?.$d}`);
               }}
@@ -540,11 +528,6 @@ const FormInput = ({
                           delete tempErrors[name];
                         }
                         setErrors({ ...tempErrors });
-
-                        // handleChangeInput(
-                        //   `${name}.${field.name}`,
-                        //   e?.target?.value
-                        // );
                       }}
                       value={value?.[field?.name]}
                       name={`${name}.${field.name}`}
@@ -575,73 +558,111 @@ const FormInput = ({
           }}
         >
           {fields?.map((field, fieldIndex) => (
-            <>
-              {fieldIndex === 1 && (
-                <Box
-                  key={`box-${fieldIndex}`}
-                  sx={{
-                    mx: '10px',
-                    width: '10px',
-                    height: '1px',
-                    background: '#000',
-                    '@media (max-width: 500px)': {
-                      display: 'none',
-                    },
-                  }}
-                ></Box>
-              )}
+            <Box
+              sx={{ width: '100%', display: 'block' }}
+              key={`box-${fieldIndex}`}
+            >
               <Box
-                key={fieldIndex}
                 sx={{
                   width: '100%',
-                  border: `${
-                    error && (error?.minimum || error?.maximum)
-                      ? 'red'
-                      : '#E4E4E4'
-                  } 1px solid`,
-                  borderRadius: '5px',
                   display: 'flex',
-                  overflow: 'hidden',
-                  height: '40px',
+                  alignItems: 'center',
+                  flexDirection: 'row',
+                  '@media (max-width: 500px)': {
+                    flexDirection: 'column',
+                    rowGap: 2,
+                  },
                 }}
               >
-                <input
-                  style={{
-                    width: '100%',
-                    background: '#FFF',
-                    display: type === 'file' && 'none',
-                  }}
-                  placeholder={field.placeholder}
-                  className="form-input-field"
-                  type={type}
-                  disabled={disabled}
-                  onChange={(e) => {
-                    handleChangeInput(
-                      `${name}.${field.name}`,
-                      e?.target?.value
-                    );
-                  }}
-                  value={values[`${name}.${field.name}`]}
-                />
-                {field.suffixIcon && (
+                {fieldIndex === 1 && (
                   <Box
                     sx={{
-                      display: 'flex',
-                      padding: '10px',
-                      justifyContent: 'center',
-                      alignItems: 'center',
+                      mx: '10px',
+                      width: '10px',
+                      height: '1px',
+                      background: '#000',
+                      '@media (max-width: 500px)': {
+                        display: 'none',
+                      },
                     }}
-                  >
-                    <Image
-                      src={`/icons/${field.suffixIcon}.svg`}
-                      width={17}
-                      height={17}
-                      alt="Calendar"
-                    />
-                  </Box>
+                  ></Box>
                 )}
+                <Box
+                  key={fieldIndex}
+                  sx={{
+                    width: '100%',
+                    border: `${
+                      error && (error?.minimum || error?.maximum)
+                        ? 'red'
+                        : '#E4E4E4'
+                    } 1px solid`,
+                    borderRadius: '5px',
+                    display: 'flex',
+                    overflow: 'hidden',
+                    height: '40px',
+                  }}
+                >
+                  <input
+                    style={{
+                      width: '100%',
+                      background: '#FFF',
+                      display: type === 'file' && 'none',
+                    }}
+                    placeholder={field.placeholder}
+                    className="form-input-field"
+                    type={'number'}
+                    disabled={disabled}
+                    onChange={(e) => {
+                      handleChangeInput(
+                        `${name}.${field.name}`,
+                        e?.target?.value
+                      );
+                    }}
+                    value={values[`${name}.${field.name}`]}
+                  />
+                  {field.suffixIcon && (
+                    <Box
+                      sx={{
+                        display: 'flex',
+                        padding: '10px',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                      }}
+                    >
+                      <Image
+                        src={`/icons/${field.suffixIcon}.svg`}
+                        width={17}
+                        height={17}
+                        alt="Calendar"
+                      />
+                    </Box>
+                  )}
+                </Box>
               </Box>
-            </>
+              {error?.minimum && fieldIndex === 0 && (
+                <Box
+                  sx={{
+                    fontSize: '12px',
+                    color: 'red',
+                    display: 'block',
+                    mt: 0.4,
+                    ml: '3px',
+                  }}
+                >{`${error?.minimum}`}</Box>
+              )}
+              {error?.maximum && fieldIndex === 1 && (
+                <Box
+                  sx={{
+                    fontSize: '12px',
+                    color: 'red',
+                    display: 'block',
+                    mt: 0.4,
+                    ml: '31px',
+                    '@media (max-width: 500px)': { ml: '0px' },
+                  }}
+                >{`${error?.maximum}`}</Box>
+              )}
+            </Box>
           ))}
         </Box>
       ) : type === 'add-sub-counter' ? (
@@ -695,7 +716,6 @@ const FormInput = ({
             sx={{
               width: '30px',
               height: '30px',
-              // background: value > max || 10 ? '#888888' : '#068987',
               background: value < max ? '#068987' : '#888888',
               borderRadius: '5px',
               display: 'flex',
@@ -825,7 +845,7 @@ const FormInput = ({
                   //   ? value
                   //   : null
                   // value
-                  type === 'file' ? null : value
+                  type === 'file' ? '' : value
                 }
                 disabled={disabled}
                 placeholder={placeholder}
@@ -892,7 +912,6 @@ const FormInput = ({
                 </label>
               )}
             </Box>
-            {/* {imageUrl && <img src={imageUrl} />} */}
             {suffixIconOutside && (
               <Box
                 src={`/icons/${suffixIconOutside}.svg`}
@@ -901,7 +920,7 @@ const FormInput = ({
                   width: { xs: '20px', md: '30px' },
                   height: { xs: '20px', md: '30px' },
                   position: 'absolute',
-                  right: { xs: '-30px', md: '-40px' },
+                  right: { xs: '-30px', md: '-50px', lg: '-40px' },
                   '@media (min-width: 900px) and (max-width: 1200px)': {
                     width: '20px',
                     height: '20px',
@@ -920,11 +939,11 @@ const FormInput = ({
                     width: { xs: '20px', md: '30px' },
                     height: { xs: '20px', md: '30px' },
                     position: 'absolute',
-                    right: { xs: '-20px', md: '-40px' },
+                    right: { xs: '-25px', md: '-40px' },
                     '@media (min-width: 900px) and (max-width: 1200px)': {
-                      width: '20px',
-                      height: '20px',
-                      marginRight: '20px',
+                      width: '22px',
+                      height: '22px',
+                      marginRight: '7px',
                     },
                   }}
                 />
@@ -937,23 +956,15 @@ const FormInput = ({
       <>
         {error &&
         typeof error === 'object' &&
-        (error?.maximum || error?.minimum) ? (
-          <Box style={{ color: 'red' }}>
-            <Box
-              sx={{
-                display: 'flex',
-                gap: { xs: '80px', sm: '170px', md: '45px' },
-              }}
-            >
-              {error?.minimum && <Box>{error?.minimum}</Box>}
-              {error?.maximum && <Box>{error?.maximum}</Box>}
-            </Box>
-          </Box>
-        ) : (
-          error &&
-          !error?.from &&
-          !error?.to && <div style={{ color: 'red' }}>{error}</div>
-        )}
+        (error?.maximum || error?.minimum)
+          ? null
+          : error &&
+            !error?.from &&
+            !error?.to && (
+              <Box sx={{ fontSize: '12px', mt: 0.4, color: 'red' }}>
+                {error}
+              </Box>
+            )}
       </>
 
       {

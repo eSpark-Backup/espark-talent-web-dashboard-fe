@@ -214,7 +214,11 @@ const ClientProfileData = ({
               src="/icons/EditIcon.svg"
               width={35}
               height={35}
-              onClick={() => router.push(`/hr/dashboard/clients/edit-profile`)}
+              onClick={() =>
+                router.push(
+                  `/hr/dashboard/clients/${currentClient?.id}/edit-profile`
+                )
+              }
             />
           )}
         </Box>

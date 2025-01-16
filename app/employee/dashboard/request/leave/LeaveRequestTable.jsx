@@ -19,7 +19,6 @@ const LeaveRequestTable = ({
   viewClicked,
 }) => {
   const { data, isLoading } = useSelector((state) => state?.emp?.leaveReq);
-  // const [leaveRequestDataState, setLeaveRequestDataState] = useState([]);
   const reformData = (dataArr) => {
     if (dataArr?.length) {
       const tempData = dataArr?.map((item) => ({
@@ -54,7 +53,6 @@ const LeaveRequestTable = ({
     handleOpen,
     column: employeeLeaveRequestsColumn,
     data: leaveRequestDataState || [],
-    // data: [],
     handleOpenConditionalModal: handleOpenModal,
     handleClickActionView: handleClickView,
     handleClickActionDelete: handleClickDelete,

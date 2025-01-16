@@ -51,7 +51,6 @@ const EmployeeId = () => {
         }}
       >
         <Typography>{ATTENDANCE_DATA?.jobTitle}:</Typography>
-        {/* <Typography>{EMPLOYEE_DATA?.jobTitleName}</Typography> */}
       </Box>
     </>
   );

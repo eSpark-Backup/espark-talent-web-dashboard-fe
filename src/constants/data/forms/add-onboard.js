@@ -86,8 +86,9 @@ export const addOnboardForm = [
   },
   {
     title: 'Notice period',
-    placeholder: 'Days',
+    placeholder: 'In days',
     name: 'notice_period',
+    type: 'number',
   },
   {
     title: 'Salary Currency',
@@ -130,6 +131,8 @@ export const addOnboardForm = [
   {
     title: 'Salary',
     name: 'salary',
+    type: 'number',
+    placeholder: 'Salary',
     // dollarIcon: '$',
   },
 ];

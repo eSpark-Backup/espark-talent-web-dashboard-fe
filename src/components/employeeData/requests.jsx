@@ -46,7 +46,6 @@ const Request = () => {
     queryFn: async () => {
       try {
         if (!currentEmployee?.email) {
-          // Toast('error', 'Employee email is required!');
           return [];
         }
 
@@ -77,15 +76,12 @@ const Request = () => {
 
         return tempRequest || [];
       } catch (err) {
-        Toast('error', err.message || 'Failed to get data');
         dispatch(getEmpRequestFailed());
-        console.log({ err });
+        Toast('error', err.message || 'Failed to get data');
         return [];
       }
     },
   });
-
-  console.log({ selectedID });
 
   const { data: punchData, isLoading: punchLoading } = useQuery({
     staleTime: 10000,
@@ -114,9 +110,8 @@ const Request = () => {
           return tempRequest || [];
         })
         .catch((err) => {
-          Toast('error', err.message || 'Failed to get data');
           dispatch(getEmpRequestFailed());
-          console.log({ err });
+          Toast('error', err.message || 'Failed to get data');
         });
     },
   });
@@ -152,21 +147,19 @@ const Request = () => {
           return tempRequest || [];
         })
         .catch((err) => {
-          Toast('error', err.message || 'Failed to get data');
           dispatch(getEmpRequestFailed());
-          console.log({ err });
+          Toast('error', err.message || 'Failed to get data');
         });
     },
   });
 
   const updateRequestMutation = useMutation({
     mutationFn: async (data) => {
-      console.log(data, 'ccc');
       return api.updateData(`${data?.endpoint}?id=${data?.id}`, data?.data);
     },
     onSuccess: () => {
-      Toast('success', 'Request updated successfully');
       queryClient?.invalidateQueries(['hr-employee-get-wfh-request']);
+      Toast('success', 'Request updated successfully');
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to delete data');
@@ -199,7 +192,6 @@ const Request = () => {
     }
     setCurrentTab(tab);
     setValue(newValue);
-    console.log(tab, 'tab');
   };
   const handleOpenLeaveModal = () => {
     setOpenLeave(true);
@@ -231,7 +223,7 @@ const Request = () => {
     setOpenWfh(false);
     setOpenLeave(false);
   };
-
+  console.log(selectedID, 'selectedID');
   return (
     <>
       <Box sx={{ width: '100%' }}>
@@ -241,7 +233,7 @@ const Request = () => {
           sx={{
             borderBottom: 1,
             borderColor: 'divider',
-            mt: '15px',
+            mt: '8px',
             justifyContent: 'space-between',
           }}
         >

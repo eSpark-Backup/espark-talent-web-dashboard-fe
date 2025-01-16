@@ -1,7 +1,6 @@
 import React, { forwardRef, useState } from 'react';
 import { Avatar, Box, Button, Grid, Typography } from '@mui/material';
 import Image from 'next/image';
-import AppDropdown from '@/src/components/dashboard/appDropdown';
 import { getCamelCapitalized } from '@/src/utils/stringModification';
 import dayjs from 'dayjs';
 import weekOfYear from 'dayjs/plugin/weekOfYear';
@@ -20,10 +19,10 @@ const LeaveViewModal = forwardRef(
     },
     ref
   ) => {
-    const [isLoadingTitles, setIsLoadingTitles] = useState(false);
     const [selectedLeaveType, setSelectedLeaveType] = useState(
       getCamelCapitalized(modalData?.leave_type)
     );
+    console.log(setSelectedLeaveType);
     const { homeData } = useSelector((state) => state?.emp?.home);
     const preetyTime = (time) => {
       if (dayjs(time).format('hh:mm A') === 'Invalid Date') {
@@ -40,29 +39,6 @@ const LeaveViewModal = forwardRef(
       handleRejectRequest(modalData);
       handleClose();
     };
-    // function getSandwichCounts(startDate, endDate) {
-    //   const start = dayjs(startDate);
-    //   const end = dayjs(endDate);
-    //   let leaveDays = 0;
-    //   let offDays = 0;
-
-    //   // Loop through each day in the range
-    //   for (
-    //     let date = start;
-    //     date.isSameOrBefore(end);
-    //     date = date.add(1, 'day')
-    //   ) {
-    //     // Check if the day is a Saturday or Sunday
-    //     if (date.day() === 0 || date.day() === 6) {
-    //       offDays++;
-    //     } else {
-    //       leaveDays++;
-    //     }
-    //   }
-
-    //   return { leaveDays, offDays };
-    // }
-
     const countOfWeekends = countWeekendsHandler(
       modalData.start_date,
       modalData.end_date
@@ -132,17 +108,29 @@ const LeaveViewModal = forwardRef(
                   </Typography>
                 </Grid>
                 <Grid item xs={12} md={6.5} sx={{ width: '100%' }}>
-                  <AppDropdown
-                    disabled
-                    data={[]}
-                    setIsLoadingList={setIsLoadingTitles}
-                    isLoadingList={isLoadingTitles}
-                    selectedItem={selectedLeaveType}
-                    setSelectedItem={setSelectedLeaveType}
-                    placeHolder="Select Leave Type"
-                    padding="9px"
-                    mb={'0px'}
-                  />
+                  <Box
+                    display={'flex'}
+                    justifyContent={'space-between'}
+                    alignItems={'center'}
+                    sx={{
+                      border: 'solid 1px #ccc',
+                      p: '9px',
+                      borderRadius: '5px',
+                      background: '#f6f6f6',
+                    }}
+                  >
+                    <Typography
+                      sx={{
+                        color: '#595959',
+                        fontSize: '16px',
+                        fontStyle: 'normal',
+                        fontWeight: '500',
+                        lineHeight: 'normal',
+                      }}
+                    >
+                      {selectedLeaveType}
+                    </Typography>
+                  </Box>
                 </Grid>
               </Grid>
             </Box>
@@ -446,7 +434,6 @@ const LeaveViewModal = forwardRef(
                               border: 'solid 1px #ccc',
                               m: '5px',
                               flex: 1,
-                              // borderRadius: '5px',
                               overflow: 'hidden',
                               background: '#fff',
                               minWidth: { xs: '91px', sm: '112px' },
@@ -464,10 +451,8 @@ const LeaveViewModal = forwardRef(
                                   fontStyle: 'normal',
                                   fontWeight: 500,
                                   lineHeight: 'normal',
-                                  // backgroundColor: '#ccc',
                                 }}
                               >
-                                {/* Tuesday */}
                                 {dayjs(modalData?.start_date)
                                   ?.add(i, 'day')
                                   ?.format('dddd')}
@@ -485,7 +470,6 @@ const LeaveViewModal = forwardRef(
                                   p: '8px 0',
                                 }}
                               >
-                                {/* 10:00 AM-7:00 PM */}
                                 {dayjs(modalData?.start_date)
                                   ?.add(i, 'day')
                                   ?.format('dddd') === 'Saturday' ||
@@ -496,57 +480,12 @@ const LeaveViewModal = forwardRef(
                                   : isEmployee
                                     ? `${preetyTime(homeData?.punch_timings?.check_in)}-${preetyTime(homeData?.punch_timings?.check_out)}`
                                     : `${preetyTime(modalData?.check_in)}-${preetyTime(modalData?.check_out)}`}
-                                {/* {isEmployee
-                                ? `${preetyTime(homeData?.punch_timings?.check_in)}-${preetyTime(homeData?.punch_timings?.check_out)}`
-                                : `${preetyTime(modalData?.check_in)}-${preetyTime(modalData?.check_out)}`} */}
                               </Typography>
                             </Box>
                           </Box>
                         ))
                       : null}
                   </Box>
-                  {/* <Box
-                  sx={{
-                    border: 'solid 1px #ccc',
-                    m: '5px',
-                    flex: 1,
-                    borderRadius: '5px',
-                    overflow: 'hidden',
-                  }}
-                  display={'flex'}
-                  justifyContent={'flex-end'}
-                  flexDirection={'column'}
-                >
-                  <Box sx={{ mb: '5px' }}>
-                    <Typography
-                      textAlign={'center'}
-                      sx={{
-                        color: '#595959',
-                        fontSize: { xs: '12px', lg: '14px' },
-                        fontStyle: 'normal',
-                        fontWeight: 500,
-                        lineHeight: 'normal',
-                      }}
-                    >
-                      Tuesday
-                    </Typography>
-                  </Box>
-                  <Box sx={{ background: '#F6F6F6' }} p={'0 10px'}>
-                    <Typography
-                      sx={{
-                        color: '#595959',
-                        fontSize: { xs: '8px', lg: '10px' },
-                        fontStyle: 'normal',
-                        fontWeight: 500,
-                        lineHeight: 'normal',
-                        textAlign: { xs: 'center', md: 'left' },
-                        p: '8px 0',
-                      }}
-                    >
-                      10:00 AM-7:00 PM
-                    </Typography>
-                  </Box>
-                </Box> */}
                 </Box>
               </Grid>
             </Grid>
@@ -619,65 +558,7 @@ const LeaveViewModal = forwardRef(
               sx={{
                 padding: '0 20px',
               }}
-            >
-              {/* {!isEmployee && (
-              <Grid
-                container
-                sx={{
-                  p: {
-                    xs: '12px',
-                    md: '5px 5px 5px 20px',
-                  },
-                  background: '#fff',
-                  borderRadius: '5px',
-                  display: 'flex',
-                  alignItems: { xs: 'flex-start', md: 'center' },
-                  flexDirection: { xs: 'column', md: 'row' },
-                  gap: { xs: '10px', md: '0px' },
-                }}
-              >
-                <Grid item xs={12} md={5.5}>
-                  <Typography
-                    sx={{
-                      color: '#595959',
-                      fontSize: '16px',
-                      fontStyle: 'normal',
-                      fontWeight: 500,
-                      lineHeight: 'normal',
-                      paddingLeft: { xs: '0px', md: '20px' },
-                    }}
-                  >
-                    Sandwich count
-                  </Typography>
-                </Grid>
-                <Grid item xs={12} md={6.5} sx={{ width: '100%' }}>
-                  <Box
-                    display={'flex'}
-                    justifyContent={'space-between'}
-                    alignItems={'center'}
-                    sx={{
-                      border: 'solid 1px #ccc',
-                      p: '9px',
-                      borderRadius: '5px',
-                      background: '#f6f6f6',
-                    }}
-                  >
-                    <Typography
-                      sx={{
-                        color: '#595959',
-                        fontSize: '16px',
-                        fontStyle: 'normal',
-                        fontWeight: '500',
-                        lineHeight: 'normal',
-                      }}
-                    >
-                      0
-                    </Typography>
-                  </Box>
-                </Grid>
-              </Grid>
-            )} */}
-            </Box>
+            ></Box>
           </Box>
           <Box>
             <Box
@@ -760,7 +641,6 @@ const LeaveViewModal = forwardRef(
                   background: '#fff',
                   borderRadius: '5px',
                   display: 'flex',
-                  // alignItems: { xs: "flex-start", md: "center" },
                   flexDirection: { xs: 'column', md: 'row' },
                   gap: { xs: '10px', md: '0px' },
                 }}
@@ -814,19 +694,6 @@ const LeaveViewModal = forwardRef(
                   pr: 0.5,
                 }}
               >
-                {/* <Button
-                type="submit"
-                variant="primary"
-                sx={{
-                  width: { xs: '105px', sm: '120px' },
-                  height: '40px',
-                  fontSize: '16px',
-                  fontWeight: 600,
-                }}
-                onClick={handleClose}
-              >
-                {'Close'}
-              </Button> */}
                 {isEmployee && modalData?.status === 'completed' ? (
                   <Box
                     display={'flex'}
@@ -868,7 +735,7 @@ const LeaveViewModal = forwardRef(
                       onClick={handleClose}
                       variant="outlined"
                     >
-                      Decline
+                      Closed
                     </Button>
                   </Box>
                 ) : !isEmployee && modalData?.status === 'reject' ? (
@@ -883,9 +750,8 @@ const LeaveViewModal = forwardRef(
                       }}
                       onClick={handleClose}
                       variant="outlined"
-                      // disabled
                     >
-                      Declined
+                      Closed
                     </Button>
                   </Box>
                 ) : isEmployee && modalData?.status === 'reject' ? (
@@ -929,7 +795,7 @@ const LeaveViewModal = forwardRef(
                       onClick={handleRejectRequestAndClose}
                       variant="outlined"
                     >
-                      Decline
+                      Close
                     </Button>
                     <Button
                       onClick={approveRequestAndClose}
@@ -993,7 +859,7 @@ const LeaveViewModal = forwardRef(
                       variant="outlined"
                       disabled
                     >
-                      Declined
+                      Closed
                     </Button>
                     <Button
                       type="submit"
@@ -1060,7 +926,7 @@ const LeaveViewModal = forwardRef(
                     onClick={handleClose}
                     variant="outlined"
                   >
-                    Decline
+                    Close
                   </Button>
                   <Button
                     onClick={handleClose}

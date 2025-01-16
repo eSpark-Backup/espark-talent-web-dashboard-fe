@@ -277,7 +277,6 @@ const WfhViewModal = ({
                 background: '#fff',
                 borderRadius: '5px',
                 display: 'flex',
-                // alignItems: { xs: "flex-start", md: "center" },
                 flexDirection: { xs: 'column', md: 'row' },
                 gap: { xs: '10px', md: '0px' },
               }}
@@ -331,19 +330,6 @@ const WfhViewModal = ({
                 pr: 0.5,
               }}
             >
-              {/* <Button
-                type="submit"
-                variant="primary"
-                sx={{
-                  width: { xs: '105px', sm: '120px' },
-                  height: '40px',
-                  fontSize: '16px',
-                  fontWeight: 600,
-                }}
-                onClick={handleClose}
-              >
-                {'Close'}
-              </Button> */}
               {modalData?.status === 'completed' ? (
                 <Box
                   display={'flex'}
@@ -390,7 +376,7 @@ const WfhViewModal = ({
                     variant="outlined"
                     disabled
                   >
-                    Declined
+                    Closed
                   </Button>
                   <Button
                     type="submit"
@@ -427,7 +413,7 @@ const WfhViewModal = ({
                     onClick={handleRejectRequestAndClose}
                     variant="outlined"
                   >
-                    Decline
+                    Close
                   </Button>
                   <Button
                     onClick={approveRequestAndClose}
@@ -491,7 +477,7 @@ const WfhViewModal = ({
                     variant="outlined"
                     disabled
                   >
-                    Declined
+                    Closed
                   </Button>
                   <Button
                     type="submit"
@@ -558,7 +544,7 @@ const WfhViewModal = ({
                   onClick={handleClose}
                   variant="outlined"
                 >
-                  Decline
+                  Close
                 </Button>
                 <Button
                   onClick={handleClose}

@@ -133,12 +133,10 @@ export const HiringForm = [
       {
         placeholder: 'from',
         name: 'minimum',
-        // suffixIcon: '$',
       },
       {
         placeholder: 'to',
         name: 'maximum',
-        // suffixIcon: '$',
       },
     ],
   },
@@ -148,7 +146,7 @@ export const HiringForm = [
     prefixIcon: 'upload',
     type: 'file',
     name: 'job_description',
-    filelabel: 'Accept .pdf file only',
+    // filelabel: 'Accept .pdf file only',
     accept: '.pdf',
     col: 2.5,
   },
