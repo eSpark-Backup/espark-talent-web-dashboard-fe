@@ -48,7 +48,8 @@ const AddContractHrPortalModal = ({ open, onClose, endPoint }) => {
       setContractFormValues(null);
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to post data');
+      console.log(err, 'errcheck');
+      Toast('error', err?.response?.data?.error || 'Failed to post data');
     },
   });
   const {

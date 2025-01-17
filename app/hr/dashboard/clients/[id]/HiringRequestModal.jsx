@@ -197,6 +197,7 @@ const HiringRequestModal = ({ open, onClose }) => {
                 <React.Fragment key={formIndex}>
                   <Grid item xs={12} lg={5}>
                     <FormInput
+                      width={'100%'}
                       title={title}
                       placeholder={placeholder}
                       errorText={errorText}
@@ -210,14 +211,14 @@ const HiringRequestModal = ({ open, onClose }) => {
                       withFlag={withFlag}
                       selectWithType={selectWithType}
                       setFieldValue={setFieldValue}
-                      value={values[name]}
-                      error={errors[name]}
+                      value={values[name] || ''}
+                      error={errors[name] || ''}
                       accept=".pdf"
                       touched={touched}
                       setFieldError={setFieldError}
-                      errors={errors}
+                      errors={errors || {}}
                       setErrors={setErrors}
-                      values={values}
+                      values={values || {}}
                       nested={nested}
                       xs={12}
                       sm={12}

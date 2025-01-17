@@ -197,7 +197,8 @@ const Page = () => {
           </Box>
           {isOpen && (
             <AddAccountModal
-              open={handleOpen}
+              open={isOpen}
+              handleOpen={handleOpen}
               onClose={handleClose}
               handleAdd={handleAddAccount}
             />

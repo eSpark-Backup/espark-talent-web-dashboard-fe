@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { forwardRef, useState } from 'react';
 import {
   Box,
   Button,
@@ -20,7 +20,7 @@ import { useDispatch } from 'react-redux';
 import { addPolicy } from '@/src/redux/slices/hrSlices/policy';
 import { Toast } from '../Toast/Toast';
 
-const UploadPolicyModal = ({ open, onClose }) => {
+const UploadPolicyModal = forwardRef(({ open, onClose }, ref) => {
   const [policyFormVal, setPolicyFormVal] = useState(null);
   const dispatch = useDispatch();
   const { mutate, isPending } = useMutation({
@@ -78,6 +78,7 @@ const UploadPolicyModal = ({ open, onClose }) => {
   };
   return (
     <Modal
+      ref={ref}
       open={open}
       onClose={handleCloseModal}
       aria-labelledby="keep-mounted-modal-title"
@@ -218,6 +219,6 @@ const UploadPolicyModal = ({ open, onClose }) => {
       </Box>
     </Modal>
   );
-};
-
+});
+UploadPolicyModal.displayName = 'UploadPolicyModal';
 export default UploadPolicyModal;

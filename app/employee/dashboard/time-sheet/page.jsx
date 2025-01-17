@@ -49,7 +49,7 @@ const Dashboard = () => {
   const [showFilterModal, setShowFilterModal] = useState(false);
   function convertDateFormat(dateStr) {
     // Split the date string into day, month, and year
-    var parts = dateStr.split('-');
+    var parts = dateStr?.split('-');
     var day = parts[1];
     var month = parts[0];
     var year = parts[2];
@@ -67,11 +67,11 @@ const Dashboard = () => {
         .getData(`${EMP_TIME_SHEET}?workspace=${currentWorkSpace?.email || ''}`)
         .then(({ data }) => {
           const newData =
-            data !== '' && Object.entries(data?.time_sheet?.record).length
-              ? Object.entries(data?.time_sheet?.record)?.map((item) => ({
+            data !== '' && Object?.entries(data?.time_sheet?.record)?.length
+              ? Object?.entries(data?.time_sheet?.record)?.map((item) => ({
                   ...item[1],
-                  day: dayjs(convertDateFormat(item[0])).format('dddd'),
-                  status: Object.entries(item[1]?.status)
+                  day: dayjs(convertDateFormat(item[0]))?.format('dddd'),
+                  status: Object?.entries(item[1]?.status)
                     ?.map((st) => {
                       if (!st[1]) return;
                       else return getAttendenceShortHand(st[0]);
@@ -94,7 +94,7 @@ const Dashboard = () => {
             getTimeSheetDataSuccess({
               ...data,
               time_sheet: {
-                ...(data.time_sheet || []),
+                ...(data?.time_sheet || []),
                 record: newData,
               },
             })
@@ -110,17 +110,17 @@ const Dashboard = () => {
   const { mutate, isPending } = useMutation({
     mutationFn: async () => {
       dispatch(getTimeSheetData());
-      return api.getData(
+      return api?.getData(
         `${EMP_TIME_SHEET}?workspace=${currentWorkSpace?.email || ''}`
       );
     },
     onSuccess: ({ data }) => {
       const newData =
-        data !== '' && Object.entries(data?.time_sheet?.record).length
-          ? Object.entries(data?.time_sheet?.record)?.map((item) => ({
+        data !== '' && Object?.entries(data?.time_sheet?.record)?.length
+          ? Object?.entries(data?.time_sheet?.record)?.map((item) => ({
               ...item[1],
-              day: dayjs(convertDateFormat(item[0])).format('dddd'),
-              status: Object.entries(item[1]?.status)
+              day: dayjs(convertDateFormat(item[0]))?.format('dddd'),
+              status: Object?.entries(item[1]?.status)
                 ?.map((st) => {
                   if (!st[1]) return;
                   else return getAttendenceShortHand(st[0]);
@@ -141,8 +141,7 @@ const Dashboard = () => {
           : [];
       dispatchFunction(newData);
     },
-    onError: (err) => {
-      Toast('error', err.message || 'Failed to update data');
+    onError: () => {
       dispatch(getTimeSheetDataFailed());
     },
   });
@@ -172,7 +171,7 @@ const Dashboard = () => {
 
       for (let i = 0; i < dataArray?.length; i++) {
         const element = dataArray[i];
-        const entries = Object.entries(element);
+        const entries = Object?.entries(element);
         let myObj;
 
         if (element?.time_sheet?.record) {
@@ -332,7 +331,7 @@ const Dashboard = () => {
 
             {showFilterModal && (
               <FilterFormModal
-                open={handleOpenFilterModal}
+                open={showFilterModal}
                 onClose={handleClose}
                 attendanceStatus
                 filterForm={filterAttendanceForm}
@@ -439,6 +438,7 @@ const Dashboard = () => {
                   column={timeSheetTableColumn}
                   data={data?.time_sheet?.record?.map((row) => ({
                     ...row,
+                    day: dayjs(row?.date, 'DD-MM-YYYY')?.format('dddd'),
                     date: dayjs(row?.date, 'DD-MM-YYYY')?.format(
                       'D MMMM, YYYY'
                     ),
