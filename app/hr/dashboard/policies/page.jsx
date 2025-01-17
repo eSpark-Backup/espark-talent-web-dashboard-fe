@@ -251,7 +251,7 @@ const Policies = () => {
         </Box>
       </Grid>
       {openUploadPolicy && (
-        <UploadPolicyModal open={handleOpenModal} onClose={handleClose} />
+        <UploadPolicyModal open={openUploadPolicy} onClose={handleClose} />
       )}
       <AppConfirmationMadal
         title={CONTRACT_SIGNED?.delete}

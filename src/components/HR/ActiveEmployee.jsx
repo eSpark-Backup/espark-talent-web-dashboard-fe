@@ -115,7 +115,7 @@ const EmployeeStatus = ({ empData, isFetching }) => {
         title={empStatus === 'active' ? 'Activate' : TERMINATE_MODAL?.terminate}
         bodyText={
           empStatus === 'active'
-            ? 'Are you sure you want to activate this employee ?'
+            ? TERMINATE_MODAL?.reactive
             : TERMINATE_MODAL?.warning
         }
         cancelButtonText={TERMINATE_MODAL?.cancel}

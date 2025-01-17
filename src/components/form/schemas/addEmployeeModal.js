@@ -3,6 +3,7 @@ import { dojValidation } from './validations';
 
 export const addEmployeModalFormSchema = Yup.object({
   salary: Yup.string().required('Salary is required'),
+  salary_currency: Yup.string().required('Currency is required'),
   job_title: Yup.string()
     .required('Job title is required')
     .min(3, 'Job title must be at least 3 characters long') // Minimum length

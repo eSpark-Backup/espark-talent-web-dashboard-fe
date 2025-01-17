@@ -41,6 +41,7 @@ const FormInput = ({
   options,
   nested,
   name,
+  autoComplete,
   setFieldValue,
   value,
   values,
@@ -299,6 +300,7 @@ const FormInput = ({
                 }}
                 format={placeholder}
                 disabled={disabled}
+                autoComplete={autoComplete}
                 style={{
                   cursor: disabled && 'no-drop',
                   opacity: disabled ? 0.4 : 1, // Visual cue for disabled state
@@ -513,6 +515,7 @@ const FormInput = ({
                       className="form-input-field"
                       type="time"
                       disabled={disabled}
+                      autoComplete={autoComplete}
                       onChange={(e) => {
                         setValues({
                           ...values,
@@ -612,6 +615,7 @@ const FormInput = ({
                     className="form-input-field"
                     type={'number'}
                     disabled={disabled}
+                    autoComplete={autoComplete}
                     onChange={(e) => {
                       handleChangeInput(
                         `${name}.${field.name}`,
@@ -743,6 +747,7 @@ const FormInput = ({
                 checked={values?.[name]?.[item.name]}
                 onChange={(e) => handleSelectCheckbox(e, item)}
                 disabled={disabled}
+                autoComplete={autoComplete}
               />
               <label style={{ marginLeft: '10px' }} htmlFor={`${item.title}`}>
                 {item.title}
@@ -836,18 +841,9 @@ const FormInput = ({
                   display: type === 'file' && 'none',
                   color: disabled && '#888',
                 }}
-                value={
-                  // name === 'emailCredential'
-                  //   ? modalData?.row?.email || ''
-                  //   : name === 'passwordCredential'
-                  //   ? modalData?.row?.password || ''
-                  //   : '' || type !== 'file'
-                  //   ? value
-                  //   : null
-                  // value
-                  type === 'file' ? '' : value
-                }
+                value={type === 'file' ? '' : value}
                 disabled={disabled}
+                autoComplete={autoComplete}
                 placeholder={placeholder}
                 className="form-input-field"
                 type={type}

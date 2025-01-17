@@ -16,5 +16,6 @@ export const REMOVE_MODAL = {
 export const TERMINATE_MODAL = {
   terminate: 'Terminate',
   warning: ' Are you sure you want to terminate this employee ?',
+  reactive: 'Are you sure you want to activate this employee ?',
   cancel: 'Cancel',
 };
