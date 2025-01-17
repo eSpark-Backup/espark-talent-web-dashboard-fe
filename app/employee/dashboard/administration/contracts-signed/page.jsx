@@ -88,6 +88,8 @@ const ContractSigned = () => {
         });
     },
   });
+
+  console.log(companyContracts, clientContracts);
   const handleChange = (event, newValue) => {
     changeTab({
       isSingular: true,
@@ -128,8 +130,6 @@ const ContractSigned = () => {
   const downloadContract = (id) => {
     downloadContractMutation.mutate(id);
   };
-
-  console.error({ companyContracts, clientContracts });
 
   return (
     <>

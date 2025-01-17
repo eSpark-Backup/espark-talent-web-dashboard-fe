@@ -477,7 +477,7 @@ const FormInput = ({
           >
             {fieldsName?.map((field, fieldIndex) => {
               return (
-                <>
+                <Box sx={{ display: 'flex', width: '100%' }} key={fieldIndex}>
                   {fieldIndex === 1 && (
                     <Box
                       key={`separator-${fieldIndex}`}
@@ -532,11 +532,11 @@ const FormInput = ({
                         }
                         setErrors({ ...tempErrors });
                       }}
-                      value={value?.[field?.name]}
-                      name={`${name}.${field.name}`}
+                      value={value?.[field?.name] || ''}
+                      name={`${name}.${field?.name}`}
                     />
                   </Box>
-                </>
+                </Box>
               );
             })}
           </Box>
