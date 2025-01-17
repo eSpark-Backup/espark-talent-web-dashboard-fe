@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import {
   Box,
   Button,
@@ -22,7 +22,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addAccount } from '@/src/redux/slices/hrSlices/settingsSlice';
 
-const AddAccountModal = ({ open, onClose }) => {
+const AddAccountModal = forwardRef(({ open, onClose }, ref) => {
   const [accountFormValues, setAccountFormValues] = useState(null);
   const dispatch = useDispatch();
   const { mutate, isPending } = useMutation({
@@ -81,7 +81,8 @@ const AddAccountModal = ({ open, onClose }) => {
   };
   return (
     <Modal
-      open={open}
+      ref={ref}
+      open={Boolean(open)}
       onClose={handleCloseModal}
       aria-labelledby="keep-mounted-modal-title"
       aria-describedby="keep-mounted-modal-description"
@@ -214,6 +215,6 @@ const AddAccountModal = ({ open, onClose }) => {
       </Box>
     </Modal>
   );
-};
-
+});
+AddAccountModal.displayName = 'AddAccountModal';
 export default AddAccountModal;

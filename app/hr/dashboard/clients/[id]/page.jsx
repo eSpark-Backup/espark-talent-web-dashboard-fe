@@ -87,7 +87,7 @@ const AddEmployee = () => {
   const { role } = useSelector((state) => state?.auth?.userData);
   const { isLoading, isFetching } = useQuery({
     staleTime: 100000,
-    refetchOnWindowFocus: false,
+    // refetchOnWindowFocus: false,
     queryKey: ['hr-client-info-query'],
     queryFn: () => {
       dispatch(getCurrentClientData());

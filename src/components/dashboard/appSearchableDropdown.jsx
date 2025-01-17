@@ -258,8 +258,8 @@ const AppSearchableDropdown = ({
                           '&::-webkit-scrollbar': {
                             display: 'none',
                           },
-                          scrollbarWidth: 'none',
-                          '-ms-overflow-style': 'none',
+                          scrollbarWidth: 'none', // This is correct for Firefox
+                          msOverflowStyle: 'none', // Corrected for msOverflowStyle
                         }}
                       >
                         <Box

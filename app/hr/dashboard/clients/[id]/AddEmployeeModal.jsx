@@ -285,13 +285,13 @@ const AddEmployeeModal = ({ open, onClose }) => {
                                     withFlag={withFlag}
                                     countries={countriesList}
                                     setFieldValue={setFieldValue}
-                                    value={values[name]}
-                                    error={errors[name]}
+                                    value={values[name] || ''}
+                                    error={errors[name] || ''}
                                     touched={touched}
                                     setFieldError={setFieldError}
-                                    errors={errors}
+                                    errors={errors || {}}
                                     setErrors={setErrors}
-                                    values={values}
+                                    values={values || {}}
                                     nested={nested}
                                     xs={12}
                                     sm={12}

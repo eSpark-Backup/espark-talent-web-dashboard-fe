@@ -1,13 +1,13 @@
 import React, { useEffect, useState, forwardRef } from 'react';
 import { Box, Button, CircularProgress, Grid, Typography } from '@mui/material';
-
 import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { useFormik } from 'formik';
 import { CREDENTIAL_FORM } from '@/src/constants/credential';
 import { credentialForm } from '@/src/constants/data/forms/add-credential';
 
-const CredentialModal = forwardRef(({ modalData, onClose }, ref) => {
+const CredentialModal = forwardRef(({ onClose, modalData }, ref) => {
   const [isLoading, setisLoading] = useState(false);
+
   const Loading = () => {
     setisLoading(true);
     setTimeout(() => {
@@ -15,9 +15,11 @@ const CredentialModal = forwardRef(({ modalData, onClose }, ref) => {
       handleCloseModal();
     }, 2000);
   };
+
   useEffect(() => {
     console.log('modal', modalData);
   }, [modalData]);
+
   const {
     handleSubmit,
     values,
@@ -40,9 +42,11 @@ const CredentialModal = forwardRef(({ modalData, onClose }, ref) => {
     validateOnChange: false,
     validateOnBlur: false,
   });
+
   const handleCloseModal = () => {
     onClose();
   };
+
   return (
     <Box
       ref={ref}
@@ -171,5 +175,6 @@ const CredentialModal = forwardRef(({ modalData, onClose }, ref) => {
     </Box>
   );
 });
+
 CredentialModal.displayName = 'CredentialModal';
 export default CredentialModal;

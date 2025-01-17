@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import { Box, Button, CircularProgress, Grid, Typography } from '@mui/material';
 
@@ -5,9 +6,9 @@ import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { useFormik } from 'formik';
 import { FORM_DATA } from '@/src/constants/form';
 import { SETTING } from '@/src/constants/SettingHr';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { Toast } from '../../Toast/Toast';
 
 const Step = ({
@@ -42,6 +43,8 @@ const Step = ({
   miniFontSize,
 }) => {
   const pathname = usePathname();
+  const router = useRouter();
+  const queryClient = useQueryClient();
 
   const { mutate, isPending } = useMutation({
     mutationFn: async (formVals) => {
@@ -52,8 +55,14 @@ const Step = ({
       return api[method](endpoint, formDataVals);
     },
     onSuccess: ({ data }) => {
+      queryClient?.invalidateQueries(['hr-client-info-query']);
       Toast('success', 'Status updated successfully');
       console.log({ data });
+      if (window?.history?.length > 1) {
+        router?.back();
+      } else {
+        router?.push('/hr/dashboard/clients');
+      }
       setCurrentStep?.(0);
       toast?.();
       clearForm?.();
@@ -219,13 +228,13 @@ const Step = ({
                             lg={12}
                             name={name}
                             setFieldValue={setFieldValue}
-                            value={values[name]}
-                            error={errors[name]}
+                            value={values[name] || ''}
+                            error={errors[name] || ''}
                             touched={touched}
                             setFieldError={setFieldError}
-                            errors={errors}
+                            errors={errors || {}}
                             setErrors={setErrors}
-                            values={values}
+                            values={values || {}}
                             width={'70%'}
                             accept={accept}
                             disabled={
@@ -291,7 +300,7 @@ const Step = ({
   return (
     <form onSubmit={handleSubmit}>
       <Grid
-        spacing={{ xs: 1, sm: 2, md: 3, lg: 5 }}
+        // spacing={{ xs: 1, sm: 2, md: 3, lg: 5 }}
         container
         sx={{
           p: { xs: '20px', md: '60px 45px', lg: '70px 45px', xl: pmd },
@@ -335,13 +344,13 @@ const Step = ({
               options={options}
               name={name}
               setFieldValue={setFieldValue}
-              value={values[name]}
-              error={errors[name]}
+              value={values[name] || ''}
+              error={errors[name] || ''}
               touched={touched}
               setFieldError={setFieldError}
-              errors={errors}
+              errors={errors || {}}
               setErrors={setErrors}
-              values={values}
+              values={values || {}}
               nested={nested}
               xs={12}
               sm={6}
