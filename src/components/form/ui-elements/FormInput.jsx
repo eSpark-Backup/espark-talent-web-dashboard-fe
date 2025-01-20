@@ -622,7 +622,7 @@ const FormInput = ({
                         e?.target?.value
                       );
                     }}
-                    value={values[`${name}.${field.name}`]}
+                    value={values[`${name}.${field.name}`] || ''}
                   />
                   {field.suffixIcon && (
                     <Box
@@ -748,6 +748,7 @@ const FormInput = ({
                 onChange={(e) => handleSelectCheckbox(e, item)}
                 disabled={disabled}
                 autoComplete={autoComplete}
+                value={value || ''}
               />
               <label style={{ marginLeft: '10px' }} htmlFor={`${item.title}`}>
                 {item.title}
@@ -841,7 +842,7 @@ const FormInput = ({
                   display: type === 'file' && 'none',
                   color: disabled && '#888',
                 }}
-                value={type === 'file' ? '' : value}
+                value={type === 'file' ? '' : value || ''}
                 disabled={disabled}
                 autoComplete={autoComplete}
                 placeholder={placeholder}

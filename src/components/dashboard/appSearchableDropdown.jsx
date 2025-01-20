@@ -319,7 +319,7 @@ const AppSearchableDropdown = ({
                             display: 'none',
                           },
                           scrollbarWidth: 'none',
-                          '-ms-overflow-style': 'none',
+                          msOverflowStyle: 'none',
                         }}
                       >
                         <Typography>
