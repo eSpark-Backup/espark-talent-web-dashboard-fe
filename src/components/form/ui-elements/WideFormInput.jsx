@@ -12,6 +12,7 @@ import ActionBarComponent from '@/src/components/requestview/actionbarComponent'
 import AppDropdown from '../../dashboard/appDropdown';
 import AppSearchableDropdown from '../../dashboard/appSearchableDropdown';
 import { countWeekendsHandler } from '@/src/utils/helpers';
+import { emailRegExp } from '../schemas/validations';
 
 const WideFormInput = ({
   title,
@@ -34,6 +35,7 @@ const WideFormInput = ({
   maxDate,
   searchable,
   nested,
+  accept,
 }) => {
   const [isOpenDatePicker, setIsOpenDatePicker] = useState(false);
   const [isLoadingList, setIsLoadingList] = useState(false);
@@ -93,10 +95,9 @@ const WideFormInput = ({
   };
   const handleChangeInput = (field, value) => {
     const tempErrors = { ...errors };
-    if (value.length) {
+    if (value?.length) {
       if (field === 'email') {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        const result = emailRegex.test(value);
+        const result = emailRegExp?.test(value);
         if (result) {
           delete tempErrors[name];
         }
@@ -128,13 +129,13 @@ const WideFormInput = ({
     return differenceInDays;
   }
 
-  const start = dayjs(values.startDate);
-  const end = start.add(values.availableLeaves || 0, 'day');
-  const countOfWeekends = countWeekendsHandler(values.startDate, end.$d);
-  const endWithWeekend = start.add(
-    values.availableLeaves - 1 + countOfWeekends || 0,
-    'day'
-  );
+  // const start = dayjs(values.startDate);
+  // const end = start.add(values.availableLeaves || 0, 'day');
+  // const countOfWeekends = countWeekendsHandler(values.startDate, end.$d);
+  // // const endWithWeekend = start.add(
+  // //   values.availableLeaves - 1 + countOfWeekends || 0,
+  // //   'day'
+  // // );
 
   useEffect(() => {
     if (values.startDate && values.endDate) {
@@ -147,18 +148,18 @@ const WideFormInput = ({
     }
   }, [values]);
 
-  const shouldDisableDate = (date) => {
-    const day = date.day();
-    if (title == 'End date') {
-      return (
-        date.isBefore(start, 'day') ||
-        date.isAfter(endWithWeekend, 'day') ||
-        day === 0 ||
-        day === 6
-      );
-    }
-    return day === 0 || day === 6;
-  };
+  // const shouldDisableDate = (date) => {
+  //   const day = date.day();
+  //   if (title == 'End date') {
+  //     return (
+  //       date.isBefore(start, 'day') ||
+  //       date.isAfter(endWithWeekend, 'day') ||
+  //       day === 0 ||
+  //       day === 6
+  //     );
+  //   }
+  //   return day === 0 || day === 6;
+  // };
 
   return (
     <Box>
@@ -212,7 +213,7 @@ const WideFormInput = ({
               {type === 'date' ? (
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <DesktopDatePicker
-                    shouldDisableDate={shouldDisableDate}
+                    // shouldDisableDate={shouldDisableDate}
                     className={[
                       error && 'error-border',
                       'custom-date-time-picker',
@@ -304,7 +305,7 @@ const WideFormInput = ({
                         openPickerIcon: () => null,
                       }}
                       sx={{ width: '100%' }}
-                      value={values.punchTime ? dayjs(value) : value}
+                      value={value || null}
                       onChange={(e) => {
                         handleChangeInput(name, `${e?.$d}`);
                       }}
@@ -396,8 +397,14 @@ const WideFormInput = ({
                         name={name}
                         id="input-attachment"
                         type="file"
-                        style={{ width: 0, height: 0, visibility: 'hidden' }}
+                        style={{
+                          width: 0,
+                          height: 0,
+                          visibility: 'hidden',
+                          cursor: 'pointer',
+                        }}
                         onChange={handleSelectFile}
+                        accept={accept}
                       />
                     </Box>
 

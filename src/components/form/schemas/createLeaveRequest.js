@@ -8,7 +8,13 @@ export const createLeaveRequestSchema = Yup.object({
     .min(Yup.ref('startDate'), 'End date must be greater than start date'),
   count: Yup.string(),
   availableLeaves: Yup.string(),
-  attachment: Yup.mixed().required('Attachment is required'),
+  attachment: Yup.mixed()
+    .required('Attachment is required')
+    .test(
+      'fileType',
+      'Only PDF files are allowed',
+      (value) => value && value?.type === 'application/pdf'
+    ),
   reason: Yup.string().required('Reason is required'),
 });
 

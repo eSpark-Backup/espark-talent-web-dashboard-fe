@@ -5,6 +5,7 @@ export const Summary_Boxes = [
     backgroundColor: '#E6F4F4',
     image: '/images/dashboard/hr/employeeimage.svg',
     name: 'employees',
+    link: '/hr/dashboard/employees',
   },
   {
     title: 'Clients',
@@ -12,6 +13,7 @@ export const Summary_Boxes = [
     backgroundColor: '#F5ECED',
     image: '/images/dashboard/hr/client.svg',
     name: 'clients',
+    link: '/hr/dashboard/clients',
   },
   {
     title: 'All hiring requests',

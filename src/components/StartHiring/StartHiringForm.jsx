@@ -92,13 +92,15 @@ const StartHiringForm = () => {
       dispatch(createClientHiringRequest());
       return api.postData(CLIENT_START_HIRING, formVals);
     },
-    onSuccess: () => {
+    onSuccess: (data) => {
       dispatch(
         createClientHiringRequestSuccess({
           ...getRevampedValues(values),
           id: generateUniqueString(),
         })
       );
+      Toast('success', data?.data?.message || 'Request is successfully send');
+      console.log(data?.data?.message, 'data');
       router.push(`/client/dashboard/hire-onboard/hiring-progress`);
     },
     onError: (err) => {
@@ -184,7 +186,7 @@ const StartHiringForm = () => {
                   options={options}
                   name={name}
                   setFieldValue={setFieldValue}
-                  value={values[name]}
+                  value={values[name] || ''}
                   error={errors[name]}
                   touched={touched}
                   setFieldError={setFieldError}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import {
   Box,
   Button,
@@ -21,7 +21,7 @@ import { Toast } from '../Toast/Toast';
 import { benefitForm } from '@/src/constants/data/forms/benefit-form';
 import { benefitFormSchema } from '../form/schemas/benefitForm';
 
-const BenefitForm = ({ onClose, open, empData }) => {
+const BenefitForm = forwardRef(({ onClose, open, empData }, ref) => {
   const dispatch = useDispatch();
   const queryClient = useQueryClient();
 
@@ -73,10 +73,13 @@ const BenefitForm = ({ onClose, open, empData }) => {
   // Rendering the form
   return (
     <Modal
+      ref={ref}
       open={open}
       onClose={onClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
+      disableEnforceFocus
+      disableRestoreFocus
       sx={{
         display: 'flex',
         justifyContent: 'center',
@@ -84,6 +87,7 @@ const BenefitForm = ({ onClose, open, empData }) => {
       }}
     >
       <Box
+        tabIndex={-1}
         sx={{
           bgcolor: '#fff',
           maxWidth: '850px',
@@ -200,5 +204,6 @@ const BenefitForm = ({ onClose, open, empData }) => {
       </Box>
     </Modal>
   );
-};
+});
+BenefitForm.displayName = 'BenefitForm';
 export default BenefitForm;

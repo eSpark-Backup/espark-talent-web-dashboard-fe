@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { forwardRef, useEffect } from 'react';
 import {
   Box,
   Button,
@@ -21,7 +21,7 @@ import { useDispatch } from 'react-redux';
 import { Toast } from '../Toast/Toast';
 import { salaryForm } from '@/src/constants/data/forms/salary-form';
 
-const SalaryForm = ({ onClose, open, empData }) => {
+const SalaryForm = forwardRef(({ onClose, open, empData }, ref) => {
   const dispatch = useDispatch();
   const QueryClient = useQueryClient();
   const { mutate, isPending } = useMutation({
@@ -74,15 +74,18 @@ const SalaryForm = ({ onClose, open, empData }) => {
     const { gross_salary, tax_deduction } = values || {};
     const calculatedNetSalary =
       gross_salary - (gross_salary * tax_deduction) / 100;
-    setFieldValue('net_salary', calculatedNetSalary);
+    setFieldValue('net_salary', String(calculatedNetSalary));
   }, [values]);
 
   return (
     <Modal
+      ref={ref}
       open={open}
       onClose={onClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
+      disableEnforceFocus
+      disableRestoreFocus
       sx={{
         display: 'flex',
         justifyContent: 'center',
@@ -90,6 +93,7 @@ const SalaryForm = ({ onClose, open, empData }) => {
       }}
     >
       <Box
+        tabIndex={-1}
         sx={{
           bgcolor: '#fff',
           maxWidth: '850px',
@@ -208,5 +212,6 @@ const SalaryForm = ({ onClose, open, empData }) => {
       </Box>
     </Modal>
   );
-};
+});
+SalaryForm.displayName = 'SalaryForm';
 export default SalaryForm;

@@ -33,7 +33,7 @@ export const createLeaveRequestForm = [
     suffixIcon: 'CalendarOutline',
     type: 'date',
     required: true,
-    minDate: dayjs().subtract(1, 'week'),
+    minDate: dayjs()?.subtract(1, 'week'),
   },
   {
     title: 'End date',
@@ -42,7 +42,7 @@ export const createLeaveRequestForm = [
     suffixIcon: 'CalendarOutline',
     type: 'date',
     required: true,
-    minDate: dayjs().subtract(8, 'days'),
+    minDate: dayjs()?.subtract(8, 'days'),
   },
   {
     title: 'Count',

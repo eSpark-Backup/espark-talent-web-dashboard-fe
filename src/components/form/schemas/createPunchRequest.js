@@ -1,10 +1,9 @@
 import * as Yup from 'yup';
+import { dateFormatRegex } from './validations';
 
 // Custom function to validate the date format
 const isValidDateFormat = (value) => {
   // Regex pattern for matching the desired date format
-  const dateFormatRegex =
-    /^[a-zA-Z]{3}\s[a-zA-Z]{3}\s[0-9]{2}\s[0-9]{4}\s[0-9]{2}:[0-9]{2}:[0-9]{2}\sGMT[+-][0-9]{4}\s\(([^)]+)\)$/;
   return dateFormatRegex.test(value);
 };
 
@@ -30,6 +29,14 @@ export const createPunchRequestSchema = Yup.object({
   expectedCheckIn: Yup.string(),
   expectedCheckOut: Yup.string(),
   punchType: Yup.string().required('Punch type is required'),
-  punchTime: Yup.string().required('Punch time is required'),
+  punch_time: Yup.date()
+    .nullable()
+    .required('Punch time is required')
+    .default(undefined)
+    .test(
+      'is-defined',
+      'Punch time is missing',
+      (value) => value !== undefined
+    ),
   description: Yup.string().required('Description is required'),
 });

@@ -20,11 +20,13 @@ export const User_Detail = {
       label: 'Email',
       place: 'Email',
       type: 'email',
+      autoComplete: 'email',
     },
     {
       label: 'Company Name',
       place: 'Company Name',
       type: 'text',
+      autoComplete: 'organization',
     },
   ],
 };
@@ -37,16 +39,19 @@ export const User_Password = {
       label: 'Current Password',
       place: 'Enter password',
       type: 'password',
+      autoComplete: 'current-password',
     },
     {
       label: 'New Password',
       place: 'Enter password',
       type: 'password',
+      autoComplete: 'new-password',
     },
     {
       label: 'Confirm New Password',
       place: 'Enter password',
       type: 'password',
+      autoComplete: 'new-password',
     },
   ],
 };

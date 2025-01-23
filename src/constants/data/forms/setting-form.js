@@ -4,6 +4,8 @@ export const settingForm = [
     placeholder: 'arman@esparkcnsultants.com',
     name: 'email',
     disabled: true,
+    type: 'email',
+    autoComplete: 'email',
   },
   {
     title: 'Company Name',
@@ -11,5 +13,6 @@ export const settingForm = [
     name: 'companyName',
     disabled: true,
     suffixIconOutsideWithTooltip: 'Infoicon',
+    autoComplete: 'organization',
   },
 ];

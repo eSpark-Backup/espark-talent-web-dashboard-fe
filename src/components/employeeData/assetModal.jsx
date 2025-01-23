@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import {
   Box,
   Button,
@@ -21,7 +21,7 @@ import { addEmpAsset } from '@/src/redux/slices/hrSlices/employeeSlice';
 import { useDispatch } from 'react-redux';
 import { Toast } from '../Toast/Toast';
 
-const AssetForm = ({ onClose, open, empData }) => {
+const AssetForm = forwardRef(({ onClose, open, empData }, ref) => {
   const dispatch = useDispatch();
   const { mutate, isPending } = useMutation({
     mutationFn: async (data) => {
@@ -72,10 +72,13 @@ const AssetForm = ({ onClose, open, empData }) => {
   });
   return (
     <Modal
+      ref={ref}
       open={open}
       onClose={onClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
+      disableEnforceFocus
+      disableRestoreFocus
       sx={{
         display: 'flex',
         justifyContent: 'center',
@@ -83,6 +86,7 @@ const AssetForm = ({ onClose, open, empData }) => {
       }}
     >
       <Box
+        tabIndex={-1}
         sx={{
           bgcolor: '#fff',
           maxWidth: '850px',
@@ -197,5 +201,6 @@ const AssetForm = ({ onClose, open, empData }) => {
       </Box>
     </Modal>
   );
-};
+});
+AssetForm.displayName = 'AssetForm';
 export default AssetForm;

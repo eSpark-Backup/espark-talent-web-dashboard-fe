@@ -1,5 +1,4 @@
-'use client';
-import React from 'react';
+import React, { useState } from 'react';
 import { Box, Button, CircularProgress, Grid, Typography } from '@mui/material';
 
 import FormInput from '@/src/components/form/ui-elements/FormInput';
@@ -10,6 +9,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import { usePathname, useRouter } from 'next/navigation';
 import { Toast } from '../../Toast/Toast';
+import UploadImageModal from '../../employeeData/UploadImageModal';
 
 const Step = ({
   handleGoPrev,
@@ -45,9 +45,10 @@ const Step = ({
   const pathname = usePathname();
   const router = useRouter();
   const queryClient = useQueryClient();
-
+  const [showEditModal, setEditModal] = useState(false);
   const { mutate, isPending } = useMutation({
     mutationFn: async (formVals) => {
+      console.log({ formVals });
       const formDataVals = new FormData();
       for (const key in formVals) {
         formDataVals.append(key, formVals[key]);
@@ -81,20 +82,26 @@ const Step = ({
         if (['/hr_add_emp/', '/hr_add_client/'].includes(endpoint)) {
           if (
             Array.isArray(firstResponseValue) &&
-            firstResponseValue.length > 0
+            firstResponseValue?.length > 0
           ) {
             errToast = formattedErrors;
           } else {
             errToast = firstResponseValue;
           }
         } else {
-          errToast = Array.isArray(firstResponseValue)
+          errToast = Array?.isArray(firstResponseValue)
             ? formattedErrors
             : firstResponseValue;
         }
       } else {
         errToast = 'An unknown error occurred';
       }
+      console.log({
+        errorDetails: err,
+        errorMessage: err?.message,
+        errorName: err?.name,
+        errorStack: err?.stack,
+      });
       if (errToast) {
         errorToast(errToast);
       }
@@ -102,18 +109,18 @@ const Step = ({
   });
 
   const formatErrors = (error) => {
-    return Object.keys(error)
-      .map((key) => {
+    return Object?.keys(error)
+      ?.map((key) => {
         // Replace underscores with spaces and capitalize each word
         const formattedKey = key
-          .replace(/_/g, ' ')
-          .replace(/\b\w/g, (char) => char.toUpperCase());
+          ?.replace(/_/g, ' ')
+          ?.replace(/\b\w/g, (char) => char?.toUpperCase());
         // Join all error messages for the key
-        const errorMessage = error[key].join(', ');
+        const errorMessage = error[key]?.join(', ');
         // Return the formatted error message with bold key
         return `<strong>${formattedKey}:</strong> ${errorMessage}`;
       })
-      .join('<br>');
+      ?.join('<br>');
   };
 
   const {
@@ -127,16 +134,19 @@ const Step = ({
   } = useFormik({
     initialValues: {
       ...defaultValues,
+      image: defaultValues?.image || null,
     },
     validationSchema: schema,
     enableReinitialize: true,
     onSubmit: (formValues) => {
+      console.log({ formValues });
       dispatchFunction?.(formValues);
       handleGoNext?.();
       if (isLastStep) {
         const newData = getFinalData({
           ...defaultValues,
           ...formValues,
+          image: formValues?.image || null,
           gender:
             formValues?.gender == 'Not specific'
               ? 'nonspec'
@@ -152,6 +162,14 @@ const Step = ({
   const handeClickBack = () => {
     dispatchFunction?.(values);
     handleGoPrev();
+  };
+
+  const handleOpenModal = () => {
+    setEditModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setEditModal(false);
   };
 
   if (isMultiColumn)
@@ -228,22 +246,22 @@ const Step = ({
                             lg={12}
                             name={name}
                             setFieldValue={setFieldValue}
-                            value={values[name] || ''}
-                            error={errors[name] || ''}
+                            value={values[name]}
+                            error={errors[name]}
                             touched={touched}
                             setFieldError={setFieldError}
-                            errors={errors || {}}
+                            errors={errors}
                             setErrors={setErrors}
-                            values={values || {}}
+                            values={values}
                             width={'70%'}
                             accept={accept}
                             disabled={
                               (name == 'starting_date' &&
-                                (values.job_status == 'Part-Time' ||
-                                  values.job_status == 'Permanent')) ||
+                                (values?.job_status == 'Part-Time' ||
+                                  values?.job_status == 'Permanent')) ||
                               (name == 'ending_date' &&
-                                (values.job_status == 'Part-Time' ||
-                                  values.job_status == 'Permanent'))
+                                (values?.job_status == 'Part-Time' ||
+                                  values?.job_status == 'Permanent'))
                                 ? true
                                 : false
                             }
@@ -296,11 +314,9 @@ const Step = ({
         </Grid>
       </form>
     );
-
   return (
     <form onSubmit={handleSubmit}>
       <Grid
-        // spacing={{ xs: 1, sm: 2, md: 3, lg: 5 }}
         container
         sx={{
           p: { xs: '20px', md: '60px 45px', lg: '70px 45px', xl: pmd },
@@ -330,6 +346,7 @@ const Step = ({
               max,
               filelabel,
               selectWithType,
+              disabled,
             },
             formIndex
           ) => (
@@ -344,13 +361,12 @@ const Step = ({
               options={options}
               name={name}
               setFieldValue={setFieldValue}
-              value={values[name] || ''}
-              error={errors[name] || ''}
-              touched={touched}
+              value={values[name]}
+              error={errors[name]}
               setFieldError={setFieldError}
-              errors={errors || {}}
+              errors={errors}
               setErrors={setErrors}
-              values={values || {}}
+              values={values}
               nested={nested}
               xs={12}
               sm={6}
@@ -363,14 +379,15 @@ const Step = ({
               min={min}
               max={max}
               disabled={
+                disabled ||
                 (name == 'starting_date' &&
-                  (values.job_status == 'Part-Time' ||
-                    values.job_status == 'Permanent')) ||
+                  (values?.job_status == 'Part-Time' ||
+                    values?.job_status == 'Permanent')) ||
                 (pathname == '/hr/dashboard/clients/edit-profile' &&
                   name == 'email') ||
                 (name == 'ending_date' &&
-                  (values.job_status == 'Part-Time' ||
-                    values.job_status == 'Permanent'))
+                  (values?.job_status == 'Part-Time' ||
+                    values?.job_status == 'Permanent'))
                   ? true
                   : false
               }
@@ -380,6 +397,8 @@ const Step = ({
               fontSize={fontSize}
               miniFontSize={miniFontSize}
               selectWithType={selectWithType}
+              width={'100%'}
+              onclickUpload={handleOpenModal}
             />
           )
         )}
@@ -466,6 +485,14 @@ const Step = ({
           </Grid>
         )}
       </Grid>
+      {showEditModal && (
+        <UploadImageModal
+          open={showEditModal}
+          onClose={handleCloseModal}
+          currentImage={values?.image || null}
+          setFieldValue={setFieldValue}
+        />
+      )}
     </form>
   );
 };

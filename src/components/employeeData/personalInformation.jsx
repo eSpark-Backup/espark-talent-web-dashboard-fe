@@ -9,8 +9,7 @@ const PersonalInformation = ({ data }) => {
     <>
       <Box>
         {employeePersonalDataLabel?.map((empData, index) => (
-          <Typography
-            component={'span'}
+          <Box
             key={index}
             sx={{
               display: 'flex',
@@ -26,6 +25,7 @@ const PersonalInformation = ({ data }) => {
             }}
           >
             <Typography
+              component={'p'}
               sx={{
                 width: { xs: '150px', sm: '150px' },
                 minWidth: { xs: '150px', sm: '150px' },
@@ -40,54 +40,11 @@ const PersonalInformation = ({ data }) => {
                 fontWeight: 400,
                 '@media (max-width: 499px)': {
                   width: 'auto',
+                  textAlign: 'center',
                 },
               }}
             >
-              <Typography
-                sx={{
-                  width: { xs: '150px', sm: '150px' },
-                  minWidth: { xs: '150px', sm: '150px' },
-                  fontSize: {
-                    xs: '12px',
-                    sm: '13px',
-                    md: '15px',
-                    lg: '15px',
-                    xl: '16px',
-                  },
-                  color: '#171717',
-                  fontWeight: 400,
-                  '@media (max-width: 499px)': {
-                    width: 'auto',
-                    textAlign: 'center',
-                  },
-                }}
-              >
-                {empData?.label}
-              </Typography>
-              <Typography
-                key={index}
-                sx={{
-                  fontSize: {
-                    xs: '12px',
-                    sm: '13px',
-                    md: '13px',
-                    lg: '14px',
-                    xl: '16px',
-                  },
-                  color: '#171717',
-                  fontWeight: 400,
-                  wordBreak: 'break-all',
-                  whiteSpace: 'normal',
-                  overflowWrap: 'break-word',
-                  textTransform: data?.[empData?.name]?.includes('@')
-                    ? 'lowercase'
-                    : 'capitalize',
-                }}
-              >
-                {empData?.type === 'date'
-                  ? dayjs(data?.[empData?.name]).format('DD/MM/YYYY')
-                  : data?.[empData?.name]}
-              </Typography>
+              {empData?.label}
             </Typography>
             <Typography
               key={index}
@@ -113,7 +70,7 @@ const PersonalInformation = ({ data }) => {
                 ? dayjs(data?.[empData?.name]).format('DD/MM/YYYY')
                 : data?.[empData?.name]}
             </Typography>
-          </Typography>
+          </Box>
         ))}
       </Box>
     </>

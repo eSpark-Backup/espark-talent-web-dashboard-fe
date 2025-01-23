@@ -351,7 +351,7 @@ const Page = () => {
                   )}
                   {showEditModal && (
                     <EditModal
-                      handleOpenModal={handleOpenModal}
+                      open={showEditModal}
                       onClose={handleCloseModal}
                     />
                   )}
@@ -764,7 +764,7 @@ const Page = () => {
                         )}
                         {showAssetModal && (
                           <AssetForm
-                            open={handleAssetModal}
+                            open={showAssetModal}
                             onClose={handleCloseModal}
                             empData={currentEmployee}
                           />
@@ -799,7 +799,7 @@ const Page = () => {
                         )}
                         {showBenefitModal && (
                           <BenefitForm
-                            open={handleBenefitModal}
+                            open={showBenefitModal}
                             onClose={handleCloseModal}
                             empData={currentEmployee}
                           />
@@ -834,7 +834,7 @@ const Page = () => {
                         )}
                         {showLetterModal && (
                           <LetterForm
-                            open={handleLetterModal}
+                            open={showLetterModal}
                             onClose={handleCloseModal}
                             empData={currentEmployee}
                           />
@@ -887,7 +887,7 @@ const Page = () => {
                         )}
                         {showLetterModal && (
                           <SalaryForm
-                            open={handleLetterModal}
+                            open={showLetterModal}
                             onClose={handleCloseModal}
                             empData={currentEmployee}
                           />

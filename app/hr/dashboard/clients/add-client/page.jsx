@@ -125,6 +125,7 @@ const AddEmployee = () => {
                   navigateFunc={handleNavigate}
                   marginLeft={'10px'}
                   marginRight={'10px'}
+                  width={'100%'}
                 />
               );
             }

@@ -69,9 +69,11 @@ const OfficialInformation = ({ data }) => {
                   wordBreak: 'break-all',
                   whiteSpace: 'normal',
                   overflowWrap: 'break-word',
-                  textTransform: data?.[empData?.name]?.includes('@')
-                    ? 'lowercase'
-                    : 'capitalize',
+                  textTransform:
+                    empData?.name === 'employee_id' ||
+                    data?.[empData?.name]?.includes('@')
+                      ? 'lowercase'
+                      : 'capitalize',
                 }}
               >
                 {empData?.type === 'date'

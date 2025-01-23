@@ -173,18 +173,18 @@ const AddEmployeeModal = ({ open, onClose }) => {
           <Box
             sx={{
               bgcolor: '#fff',
-              minWidth: '1000px',
+              width: '90%',
+              height: '90%',
+              minWidth: '70%',
               maxWidth: '1000px',
               display: 'flex',
               flexDirection: 'column',
+              gap: 3.5,
+              pb: 2.5,
               borderRadius: '10px',
               boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
-              minHeight: '640px',
-              maxHeight: '700px',
-              '@media (min-width: 280px) and (max-width: 1083px)': {
-                minWidth: '93%',
-                maxWidth: '93%',
-              },
+              minHeight: '50%',
+              maxHeight: '640px',
             }}
           >
             <Navigator
@@ -195,16 +195,17 @@ const AddEmployeeModal = ({ open, onClose }) => {
             />
             <Box
               sx={{
-                width: 'auto',
+                display: 'flex',
+                justifyContent: 'center',
+                width: { xs: '96%', md: '95%', lg: '85%' },
+                mx: 'auto',
+                height: 'calc(100% - 50px )',
                 overflow: 'auto',
                 scrollbarWidth: 'thin',
                 scrollbarColor: 'gray',
                 '&::-webkit-scrollbar': {
                   display: 'none',
                 },
-                pt: { xs: 4, sm: 3, md: 5, lg: 5 },
-                pb: { xs: 1, sm: 1, md: 3, lg: 3 },
-                px: { xs: 3, sm: 5, md: 8, lg: 13 },
               }}
             >
               {addEmployeeModalFormSteps?.map(
@@ -214,8 +215,7 @@ const AddEmployeeModal = ({ open, onClose }) => {
                       return (
                         <Box
                           sx={{
-                            pb: 2,
-                            maxWidth: '100%',
+                            width: { xs: '96%', md: '95%', lg: '85%' },
                           }}
                           key={stepIndex}
                         >
@@ -231,7 +231,7 @@ const AddEmployeeModal = ({ open, onClose }) => {
                             <Button
                               disabled={isDisabledNext}
                               variant="contained"
-                              sx={{ minWidth: '120px' }}
+                              sx={{ minWidth: '120px', mb: 1.5 }}
                               onClick={handleSelectEmployee}
                             >
                               {FORM_DATA?.add}
@@ -280,18 +280,19 @@ const AddEmployeeModal = ({ open, onClose }) => {
                                     suffixIcon={suffixIcon}
                                     options={options}
                                     name={name}
+                                    width={'100%'}
                                     selectWithType={selectWithType}
                                     searchable={searchable}
                                     withFlag={withFlag}
                                     countries={countriesList}
                                     setFieldValue={setFieldValue}
-                                    value={values[name] || ''}
-                                    error={errors[name] || ''}
+                                    value={values[name]}
+                                    error={errors[name]}
                                     touched={touched}
                                     setFieldError={setFieldError}
-                                    errors={errors || {}}
+                                    errors={errors}
                                     setErrors={setErrors}
-                                    values={values || {}}
+                                    values={values}
                                     nested={nested}
                                     xs={12}
                                     sm={12}

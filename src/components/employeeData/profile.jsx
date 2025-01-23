@@ -107,7 +107,7 @@ const Profile = ({
                   )}
                   {showEditProfilelModal && (
                     <EditPersonalModal
-                      handleEditProfileModal={handleEditProfileModal}
+                      showEditProfilelModal={showEditProfilelModal}
                       onClose={handleCloseModal}
                       data={data}
                     />
@@ -205,7 +205,7 @@ const Profile = ({
                   )}
                   {showEditOfficialModal && (
                     <EditOfficialModal
-                      handleEditProfileModal={handleEditOfficialModal}
+                      showEditOfficialModal={showEditOfficialModal}
                       onClose={handleCloseModal}
                       data={data}
                     />
@@ -302,7 +302,7 @@ const Profile = ({
                   )}
                   {showEmergencyModal && (
                     <EditEmergencyModal
-                      handleEmergencyModal={handleEmergencyModal}
+                      showEmergencyModal={showEmergencyModal}
                       onClose={handleCloseModal}
                       data={data}
                     />

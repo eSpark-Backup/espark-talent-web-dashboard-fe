@@ -285,6 +285,8 @@ const FilterFormModal = forwardRef(
         onClose={handleCloseModal}
         aria-labelledby="keep-mounted-modal-title"
         aria-describedby="keep-mounted-modal-description"
+        disableEnforceFocus
+        disableRestoreFocus
         sx={{
           display: 'flex',
           alignItems: 'center',
@@ -292,6 +294,7 @@ const FilterFormModal = forwardRef(
         }}
       >
         <Box
+          tabIndex={-1}
           sx={{
             bgcolor: '#fff',
             width: { xs: '300px', sm: '330px', md: '350px' },
@@ -395,13 +398,13 @@ const FilterFormModal = forwardRef(
                           options={options}
                           name={name}
                           setFieldValue={setFieldValue}
-                          value={values[name] || ''}
-                          error={errors[name] || ''}
+                          value={values[name]}
+                          error={errors[name]}
                           touched={touched}
                           setFieldError={setFieldError}
-                          errors={errors || {}}
+                          errors={errors}
                           setErrors={setErrors}
-                          values={values || {}}
+                          values={values}
                           nested={nested}
                           sm={12}
                           md={12}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import {
   Box,
   Button,
@@ -19,7 +19,7 @@ import { letterForm } from '@/src/constants/data/forms/letter-form';
 import { letterFormSchema } from '../form/schemas/letterForm';
 import FormInput from '../form/ui-elements/FormInput';
 
-const LetterForm = ({ onClose, open, empData }) => {
+const LetterForm = forwardRef(({ onClose, open, empData }, ref) => {
   const dispatch = useDispatch();
   const queryClient = useQueryClient();
 
@@ -74,10 +74,13 @@ const LetterForm = ({ onClose, open, empData }) => {
 
   return (
     <Modal
+      ref={ref}
       open={open}
       onClose={onClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
+      disableEnforceFocus
+      disableRestoreFocus
       sx={{
         display: 'flex',
         justifyContent: 'center',
@@ -85,6 +88,7 @@ const LetterForm = ({ onClose, open, empData }) => {
       }}
     >
       <Box
+        tabIndex={-1}
         sx={{
           bgcolor: '#fff',
           maxWidth: '850px',
@@ -193,6 +197,6 @@ const LetterForm = ({ onClose, open, empData }) => {
       </Box>
     </Modal>
   );
-};
-
+});
+LetterForm.displayName = 'LetterForm';
 export default LetterForm;

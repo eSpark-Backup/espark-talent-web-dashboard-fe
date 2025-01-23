@@ -221,6 +221,9 @@ const Dashboard = () => {
                   onClose={handleCloseModal}
                   aria-labelledby="modal-modal-title"
                   aria-describedby="modal-modal-description"
+                  disableEnforceFocus
+                  disableAutoFocus
+                  disableRestoreFocus
                   sx={{
                     display: 'flex',
                     alignItems: 'center',
@@ -350,6 +353,9 @@ const Dashboard = () => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
         data-aos="fade-down"
+        disableEnforceFocus
+        disableAutoFocus
+        disableRestoreFocus
         sx={{
           display: 'flex',
           alignItems: 'center',

@@ -1,12 +1,17 @@
 import * as Yup from 'yup';
-import { dobValidation, dojValidation, nameValidation } from './validations';
+import {
+  dobValidation,
+  dojValidation,
+  emailValidation,
+  nameValidation,
+} from './validations';
 
 export const employeePersonalDataSchema = Yup.object({
   first_name: nameValidation,
   last_name: nameValidation,
   dob: dobValidation,
   gender: Yup.string(),
-  personal_email: Yup.string().email('Invalid email address'),
+  personal_email: emailValidation,
   marital_status: Yup.string(),
 });
 export const employeeOfficialDataSchema = Yup.object({

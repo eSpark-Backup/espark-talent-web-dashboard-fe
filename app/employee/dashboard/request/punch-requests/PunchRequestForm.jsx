@@ -65,6 +65,7 @@ const PunchRequestForm = ({ handleClose }) => {
     setErrors,
   } = useFormik({
     initialValues: {
+      punch_time: null,
       expectedCheckIn: preetyTime(punch_timings?.check_in),
       expectedCheckOut: preetyTime(punch_timings?.check_out),
     },
@@ -72,10 +73,10 @@ const PunchRequestForm = ({ handleClose }) => {
     enableReinitialize: true,
     onSubmit: (formValues) => {
       const revampFormValues = {
-        date: dayjs(formValues.date).format('YYYY-MMMM-DD'),
+        date: dayjs(formValues?.date)?.format('YYYY-MM-DD'),
         client_id: currentWorkSpace?.email,
         punch_type: pascalToSnake(formValues?.punchType),
-        punch_time: dayjs(formValues?.punchTime).format('hh:mm:ss A'),
+        punch_time: dayjs(formValues?.punch_time)?.format('hh:mm A'),
         description: formValues?.description,
       };
       setPunchReqFormData(revampFormValues);
@@ -84,6 +85,8 @@ const PunchRequestForm = ({ handleClose }) => {
     validateOnChange: false,
     validateOnBlur: false,
   });
+
+  console.log(values, 'values');
 
   return (
     <form onSubmit={handleSubmit}>

@@ -26,6 +26,7 @@ const SignoutModal = ({ openModal, setOpenModal, onClick }) => {
   return (
     <Box>
       <Modal
+        disableScrollLock
         open={openModal}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"

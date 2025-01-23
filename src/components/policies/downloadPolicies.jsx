@@ -87,6 +87,7 @@ const DownloadPolicies = ({ image, reportHeading, downloadBtn, data }) => {
           textAlign: 'center',
           color: '#fff',
           borderRadius: '5px',
+          cursor: 'pointer',
         }}
         disabled={isPending}
         onClick={handleDownloadPolicy}

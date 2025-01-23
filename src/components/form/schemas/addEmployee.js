@@ -2,8 +2,10 @@ import * as Yup from 'yup';
 import {
   dobValidation,
   emailValidation,
+  interNameRegExp,
   nameValidation,
   phoneValidation,
+  timeFormatRegex,
 } from './validations';
 
 export const basicInformationSchema = Yup.object({
@@ -15,9 +17,27 @@ export const basicInformationSchema = Yup.object({
   email: emailValidation,
   personal_email: emailValidation,
   marital_status: Yup.string().required('Marital status is required'),
-  image: Yup.mixed().required('Image is required'),
+  image: Yup.mixed()
+    .required('Image is required')
+    .test(
+      'fileFormat',
+      'Unsupported file format',
+      (value) =>
+        value && ['image/jpg', 'image/jpeg', 'image/png']?.includes(value?.type)
+    ),
   emergency_no: phoneValidation,
-  resume: Yup.mixed().required('Resume is required'),
+  resume: Yup.mixed()
+    .required('Resume is required')
+    .test(
+      'fileFormat',
+      'Unsupported file format (only PDF allowed)',
+      (value) =>
+        value &&
+        [
+          'application/pdf',
+          'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+        ]?.includes(value?.type)
+    ),
 });
 
 export const emergencyContactSchema = Yup.object({
@@ -25,11 +45,14 @@ export const emergencyContactSchema = Yup.object({
   name2: nameValidation,
   relation1: Yup.string()
     .required('Relation is required')
-    .matches(/^[a-zA-Z]+$/, ' name must contain only alphabetical characters'),
+    .matches(
+      interNameRegExp,
+      ' name must contain only alphabetical characters'
+    ),
   relation2: Yup.string()
     .required('Relation is required')
     .matches(
-      /^[a-zA-Z]+$/,
+      interNameRegExp,
       'First name must contain only alphabetical characters'
     ),
   phoneNumber1: phoneValidation,
@@ -117,9 +140,6 @@ export const securitySchema = Yup.object({
     .oneOf([Yup.ref('password'), null], 'Passwords must match')
     .required('Confirm Password is required'),
 });
-
-const timeFormatRegex =
-  /^(Mon|Tue|Wed|Thu|Fri|Sat|Sun) (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \d{2} \d{4} \d{2}:\d{2}:\d{2} GMT[+-]\d{4} \([\w\s]+\)$/;
 
 const customTimeValidator = Yup.string()
   .required('Required')

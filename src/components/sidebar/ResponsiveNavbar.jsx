@@ -41,6 +41,7 @@ export default function ResponsiveNavbar({ openSidebar }) {
     <Box
       sx={{
         flexGrow: 1,
+        backgroundColor: 'red',
         display: { xs: 'flex', lg: 'none', xl: 'none' },
       }}
     >

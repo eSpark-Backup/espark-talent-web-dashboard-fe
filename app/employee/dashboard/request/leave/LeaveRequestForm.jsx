@@ -191,7 +191,6 @@ const LeaveRequestForm = ({ handleClose }) => {
                 required,
                 hideSuffix,
                 disabled,
-                minDate,
                 searchable,
               },
               formIndex
@@ -221,8 +220,9 @@ const LeaveRequestForm = ({ handleClose }) => {
                   errors={errors}
                   setErrors={setErrors}
                   values={values}
-                  minDate={minDate}
+                  // minDate={minDate}
                   searchable={searchable}
+                  accept={'.pdf'}
                 />
               );
             }

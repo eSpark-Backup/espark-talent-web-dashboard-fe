@@ -45,11 +45,11 @@ export const clientEditForm = [
     placeholder: '15 Sellamuttu Avenue, 03, Colombo',
     name: 'address',
   },
-  {
-    title: 'Picture',
-    placeholder: 'john.png',
-    name: 'image',
-    prefixIcon: 'upload',
-    type: 'file',
-  },
+  // {
+  //   title: 'Picture',
+  //   placeholder: 'john.png',
+  //   name: 'image',
+  //   prefixIcon: 'upload',
+  //   type: 'upload',
+  // },
 ];

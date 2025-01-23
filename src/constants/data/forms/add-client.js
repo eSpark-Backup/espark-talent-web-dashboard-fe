@@ -54,9 +54,9 @@ const formElements = [
     placeholder: 'Upload image',
     name: 'image',
     prefixIcon: 'upload',
-    type: 'file',
+    type: 'upload',
     filelabel: 'Accept .png or .jpg files only',
-    accept: 'image/png, image/jpg',
+    accept: '.png, .jpg, .jpeg',
   },
 ];
 const formElementsStep4 = [

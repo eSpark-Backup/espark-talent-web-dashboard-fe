@@ -19,10 +19,12 @@ import { HR_HOME } from '@/src/services/apiService/apiEndPoints';
 const Dashboard = () => {
   const dispatch = useDispatch();
   const getData = () => {
-    const tempData = JSON.parse(JSON.stringify(Summary_Boxes))?.map((item) => ({
-      ...item,
-      count: homeData[item.name],
-    }));
+    const tempData = JSON?.parse(JSON?.stringify(Summary_Boxes))?.map(
+      (item) => ({
+        ...item,
+        count: homeData[item?.name],
+      })
+    );
     return tempData;
   };
   const hrHomeMutation = useMutation({
@@ -35,7 +37,7 @@ const Dashboard = () => {
       return data;
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to update data');
+      Toast('error', err?.message || 'Failed to update data');
     },
   });
 

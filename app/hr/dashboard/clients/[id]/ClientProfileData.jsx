@@ -106,7 +106,7 @@ const ClientProfileData = ({
             )}
             {showEditModal && (
               <EditModal
-                handleOpenModal={handleOpenModal}
+                open={showEditModal}
                 onClose={handleCloseModal}
                 isClient
               />

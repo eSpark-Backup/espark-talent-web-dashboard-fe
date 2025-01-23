@@ -348,7 +348,7 @@ const Role = () => {
                       );
                     }}
                   >
-                    {button.role}
+                    {button?.role}
                   </Button>
                 ))
               ) : (
@@ -374,14 +374,19 @@ const Role = () => {
               width: { xs: '100%', md: 'calc(100% - 320px)' },
               maxWidth: '100%',
               overflowX: 'auto',
-              minHeight: { xs: '220px', md: '220px' },
+              minHeight: { xs: 'auto', md: '220px' },
               height: '100%',
+              pb: { xs: 3, md: 0 },
             }}
           >
             <Box>
               <AppTable
                 column={modulepermissionColumn}
-                data={permissionDataNew[selectedRolePermissionIndex]?.state}
+                data={
+                  selectedRole == null
+                    ? []
+                    : permissionDataNew[selectedRolePermissionIndex]?.state
+                }
                 handleClickActionView={handleSelectRow}
                 noPagination
                 isLoading={getRolesDetailsQuery?.isLoading}

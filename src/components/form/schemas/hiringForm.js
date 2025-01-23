@@ -46,7 +46,7 @@ export const hiringFormSchema = Yup.object({
     .test(
       'is-not-just-spaces',
       'Comments cannot be just spaces',
-      (value) => !value || value.trim().length > 0
+      (value) => !value || value?.trim()?.length > 0
     )
     .min(5, 'Comments should be at least 5 characters long')
     .max(500, 'Comments cannot exceed 500 characters'),

@@ -291,7 +291,7 @@ const WFHRequestTablesTabs = ({
           </Box>
           {showFilterModal && (
             <WFHReqFilterFormModal
-              open={handleOpenFilterModal}
+              open={showFilterModal}
               onClose={handleClose}
               filterForm={filterWFHForm}
             />

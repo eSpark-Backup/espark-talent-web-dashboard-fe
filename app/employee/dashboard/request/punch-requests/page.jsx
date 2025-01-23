@@ -72,13 +72,15 @@ const Dashboard = () => {
         description: item?.description,
         actionTimeOffReqStatus: true,
         actionStatus: true,
-        punch_time: dayjs(item?.punchTime).format('hh:mm A'),
+        punch_time: dayjs(item?.punch_time, 'hh:mm A')?.format('hh:mm A'),
+        date: dayjs(item?.date)?.format('DD-MMMM-YYYY'),
         action: item?.status === 'pending' ? ['Delete', 'View'] : ['View'],
       }));
       return tempData;
     }
     return [];
   };
+
   useEffect(() => {
     setCheckInOutRequestDataState(
       filterTableRowsWRTTab(reformData(data?.requests), { status: '' })
@@ -205,6 +207,8 @@ const Dashboard = () => {
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
             data-aos="fade-down"
+            disableEnforceFocus
+            disableRestoreFocus
             sx={{
               display: 'flex',
               alignItems: 'center',
@@ -447,7 +451,7 @@ const Dashboard = () => {
                 </Box>
                 {showFilterModal && (
                   <EmpPunchReqFilterFormModal
-                    open={handleOpenFilterModal}
+                    open={showFilterModal}
                     onClose={handleClose}
                     clockinOut
                     filterForm={empPunchReqfilterForm}
@@ -475,6 +479,8 @@ const Dashboard = () => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
         data-aos="fade-down"
+        disableEnforceFocus
+        disableRestoreFocus
         sx={{
           display: 'flex',
           alignItems: 'center',

@@ -319,7 +319,7 @@ const AppSearchableDropdown = ({
                             display: 'none',
                           },
                           scrollbarWidth: 'none',
-                          '-ms-overflow-style': 'none',
+                          msOverflowStyle: 'none',
                         }}
                       >
                         <Typography>
@@ -343,7 +343,7 @@ const AppSearchableDropdown = ({
 };
 
 AppSearchableDropdown.propTypes = {
-  selectedItem: PropTypes.string.isRequired,
+  selectedItem: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   isLoadingList: PropTypes.bool.isRequired,
   setIsLoadingList: PropTypes.func.isRequired,
   setSelectedItem: PropTypes.func.isRequired,

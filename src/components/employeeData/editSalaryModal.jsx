@@ -89,7 +89,7 @@ const EditSalaryForm = ({ onClose, open, selectedId }) => {
     const { gross_salary, tax_deduction } = values || {};
     const calculatedNetSalary =
       gross_salary - (gross_salary * tax_deduction) / 100;
-    setFieldValue('net_salary', calculatedNetSalary);
+    setFieldValue('net_salary', String(calculatedNetSalary));
   }, [values]);
 
   return (
@@ -184,13 +184,13 @@ const EditSalaryForm = ({ onClose, open, selectedId }) => {
                       options={options}
                       name={name}
                       setFieldValue={setFieldValue}
-                      value={values[name] || ''}
+                      value={values[name]}
                       error={errors[name]}
                       touched={touched}
                       setFieldError={setFieldError}
                       errors={errors}
                       setErrors={setErrors}
-                      values={values || {}}
+                      values={values}
                       nested={nested}
                       xs={12}
                       sm={12}

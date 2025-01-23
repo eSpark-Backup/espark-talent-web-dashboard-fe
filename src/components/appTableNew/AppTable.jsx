@@ -19,6 +19,7 @@ const AppTable = ({
   handleClickActionDelete,
   noPagination,
   minWidth,
+  minHeight,
   options,
   tableRowClass,
   hanldeInvLinkClick,
@@ -76,7 +77,10 @@ const AppTable = ({
     <>
       <table
         className={['table', !minWidth && 'table-min-width'].join(' ')}
-        style={{ minWidth: minWidth && minWidth }}
+        style={{
+          minWidth: minWidth && minWidth,
+          minHeight: minHeight && minHeight,
+        }}
       >
         <TableHead column={column} commonRowStyle={commonRowStyle} />
         <AppTableBody

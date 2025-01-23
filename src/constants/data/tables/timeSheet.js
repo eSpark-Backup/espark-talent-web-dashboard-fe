@@ -34,7 +34,7 @@ export const sheetStatusTypes = [
 export const timeSheetTableColumn = [
   {
     title: 'Date',
-    flex: 2,
+    flex: 3.5,
     name: 'date',
   },
   {

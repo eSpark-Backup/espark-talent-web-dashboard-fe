@@ -73,6 +73,7 @@ export default function ProfilePopper({
       setNotification(notification ? null : event?.currentTarget);
     } else if (key == 'Sign out') {
       setOpenModal(true);
+      handleClickOutside();
     } else {
       null;
     }
@@ -106,21 +107,24 @@ export default function ProfilePopper({
   };
 
   React.useEffect(() => {
-    document.addEventListener('mousedown', handleClickOutsideNotification);
-    document.addEventListener('scroll', handleClickOutsideNotification);
+    document?.addEventListener('mousedown', handleClickOutsideNotification);
+    document?.addEventListener('scroll', handleClickOutsideNotification);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutsideNotification);
-      document.removeEventListener('scroll', handleClickOutsideNotification);
+      document?.removeEventListener(
+        'mousedown',
+        handleClickOutsideNotification
+      );
+      document?.removeEventListener('scroll', handleClickOutsideNotification);
     };
   }, [notification]);
 
   React.useEffect(() => {
-    document.addEventListener('mousedown', handleClickOutside);
-    document.addEventListener('scroll', handleClickOutside);
+    document?.addEventListener('click', handleClickOutside);
+    document?.addEventListener('scroll', handleClickOutside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document?.removeEventListener('click', handleClickOutside);
       if (!window.scroll) {
-        return document.removeEventListener('scroll', handleClickOutside);
+        return document?.removeEventListener('scroll', handleClickOutside);
       }
     };
   }, [profileMenu]);
@@ -188,7 +192,7 @@ export default function ProfilePopper({
         id={id}
         open={notification !== null ? true : open}
         ref={profilePopupRef}
-        anchorEl={profileMenu || undefined}
+        anchorEl={profileMenu || null}
         placement={profile_placement}
         sx={{ position: 'relative', zIndex: 405 }}
         transition
@@ -266,10 +270,10 @@ export default function ProfilePopper({
 
       <Popper
         id={Notification_id}
-        open={Notification_open}
+        open={Notification_open || false}
         ref={notificationPopupRef}
         onMouseLeave={handleCloseNotification}
-        anchorEl={notification}
+        anchorEl={notification || false}
         placement={'bottom-start'}
         sx={{ position: 'relative', zIndex: 506 }}
       >
@@ -366,6 +370,7 @@ export default function ProfilePopper({
                               cursor: 'pointer',
                             }}
                             onClick={() => {
+                              handleClickOutsideNotification();
                               notificationCases(userType, notification);
                             }}
                           >

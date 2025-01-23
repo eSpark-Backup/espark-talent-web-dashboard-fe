@@ -146,6 +146,8 @@ const Dashboard = () => {
                   aria-labelledby="modal-modal-title"
                   aria-describedby="modal-modal-description"
                   data-aos="fade-down"
+                  disableEnforceFocus
+                  disableRestoreFocus
                   sx={{
                     display: 'flex',
                     alignItems: 'center',
@@ -194,6 +196,8 @@ const Dashboard = () => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
         data-aos="fade-down"
+        disableEnforceFocus
+        disableRestoreFocus
         sx={{
           display: 'flex',
           alignItems: 'center',

@@ -43,6 +43,7 @@ export const SideNav = (props) => {
 
   return (
     <Drawer
+      disableScrollLock
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
       disableEnforceFocus // Prevents issues with hidden ancestors

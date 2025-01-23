@@ -197,6 +197,7 @@ const Dashboard = () => {
               : data?.map((item) => ({
                   ...item,
                   actionStatus: true,
+                  date: dayjs(item?.date)?.format('DD-MMMM-YYYY'),
                   actions: [
                     item?.status === 'pending' ? 'Reject' : null,
                     item?.status === 'pending' ? 'Approve' : null,

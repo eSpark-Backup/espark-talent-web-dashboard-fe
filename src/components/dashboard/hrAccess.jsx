@@ -69,6 +69,7 @@ const HrAccess = ({ isHr, data, isLoading }) => {
                 horizontalLineColor={item?.horizontalLineColor}
                 backgroundColor={item?.backgroundColor}
                 image={item?.image}
+                link={item?.link}
                 isHr={isHr}
               />
             )

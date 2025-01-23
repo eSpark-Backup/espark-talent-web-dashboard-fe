@@ -52,7 +52,7 @@ const formElements = [
   },
   {
     title: 'Personal Email',
-    placeholder: 'Enter company email',
+    placeholder: 'Enter personal email',
     name: 'personal_email',
   },
   {
@@ -74,9 +74,10 @@ const formElements = [
     placeholder: 'Upload image',
     name: 'image',
     prefixIcon: 'upload',
-    type: 'file',
+    type: 'upload',
+    onclickUpload: 'onclickUpload',
     filelabel: 'Accept .png or .jpg files only',
-    accept: 'image/png, image/jpg',
+    accept: '.png, .jpg, .jpeg',
   },
   {
     title: 'Emergency Contact',

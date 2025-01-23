@@ -7,6 +7,9 @@ import { styled } from '@mui/material/styles';
 import { SideNav } from '@/src/components/sidebar/SideNavLayout';
 import { TopNav } from '@/src/components/sidebar/TopNavLayout';
 import { BODY_WIDTH, SIDE_NAV_WIDTH } from '@/src/constants/sidebar';
+import { removeAddEmpForm } from '@/src/redux/slices/hrSlices/employeeSlice';
+import { useDispatch } from 'react-redux';
+import { removeClientFormData } from '@/src/redux/slices/hrSlices/clientSlice';
 
 const LayoutRoot = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -34,6 +37,7 @@ const LayoutContainer = styled('div')({
 
 const Layout = ({ children }) => {
   const pathname = usePathname();
+  const dispatch = useDispatch();
   const [openNav, setOpenNav] = useState(true);
   const [child, setChild] = useState(false);
 
@@ -43,6 +47,12 @@ const Layout = ({ children }) => {
 
   useEffect(() => {
     handlePathnameChange();
+    if (!pathname?.includes('employee')) {
+      dispatch(removeAddEmpForm());
+    }
+    if (!pathname?.includes('client')) {
+      dispatch(removeClientFormData());
+    }
   }, [pathname, handlePathnameChange]);
 
   useEffect(() => {

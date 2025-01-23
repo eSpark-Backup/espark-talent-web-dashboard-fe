@@ -45,6 +45,7 @@ const AttendanceViewModal = forwardRef(
     return (
       <Box
         ref={ref}
+        tabIndex={-1}
         sx={{
           mx: 'auto',
           bgcolor: '#fff',

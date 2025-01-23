@@ -183,7 +183,7 @@ const LeaveRequestTablesTabs = ({
           </Box>
           {showFilterModal && (
             <LeaveReqFilterFormModal
-              open={handleOpenFilterModal}
+              open={showFilterModal}
               onClose={handleClose}
               leaveType
               filterForm={filterLeaveForm}

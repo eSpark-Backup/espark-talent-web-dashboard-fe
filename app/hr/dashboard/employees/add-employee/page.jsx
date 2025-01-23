@@ -42,6 +42,7 @@ const AddEmployee = () => {
     casual_leaves: addEmployeeForm?.casual_leaves || 0,
     country: addEmployeeForm?.country,
   };
+
   const getFinalData = (values) => ({
     first_name: values?.first_name,
     last_name: values?.last_name,
@@ -51,7 +52,7 @@ const AddEmployee = () => {
     personal_email: values?.personal_email?.trim()?.toLowerCase(),
     email: values?.email?.trim()?.toLowerCase(),
     marital_status: values?.marital_status,
-    image: values?.image,
+    image: values?.image || null,
     emergency_no: values?.emergency_no,
     resume: values?.resume,
     emergency_contact: JSON?.stringify({

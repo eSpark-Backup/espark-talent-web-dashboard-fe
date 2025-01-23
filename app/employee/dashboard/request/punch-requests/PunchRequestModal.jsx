@@ -4,6 +4,7 @@ import { Box, Typography } from '@mui/material';
 
 import PunchRequestDataView from './PunchRequestFormView';
 import PunchRequestForm from './PunchRequestForm';
+import dayjs from 'dayjs';
 
 const PunchRequestModal = forwardRef(
   ({ createModal, modalData, handleClose, handleConfirmDelete }, ref) => {
@@ -46,7 +47,10 @@ const PunchRequestModal = forwardRef(
           <PunchRequestForm handleClose={handleClose} />
         ) : (
           <PunchRequestDataView
-            modalData={modalData}
+            modalData={{
+              ...modalData,
+              date: dayjs(modalData?.date)?.format('MMMM D, YYYY'),
+            }}
             handleClose={handleClose}
             handleConfirmDelete={handleConfirmDelete}
             isEmployee

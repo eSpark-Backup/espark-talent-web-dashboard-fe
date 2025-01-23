@@ -1,6 +1,6 @@
 'use client';
 import React, { useRef, useState } from 'react';
-import { Grid, Tooltip, Typography } from '@mui/material';
+import { Button, Grid, Tooltip, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import Image from 'next/image';
 import copy from 'copy-to-clipboard';
@@ -17,6 +17,7 @@ import {
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import AppSearchableDropdown from '../../dashboard/appSearchableDropdown';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import { emailRegExp } from '../schemas/validations';
 
 const DateTimePickerComponent = (props) => {
   const isXsScreen = useMediaQuery('(max-width:600px)');
@@ -70,6 +71,7 @@ const FormInput = ({
   handleJobTitleSelect,
   fontSize,
   miniFontSize,
+  onclickUpload,
 }) => {
   const [isLoadingList, setIsLoadingList] = useState(false);
   const [isCopied, setIsCopied] = useState();
@@ -88,8 +90,7 @@ const FormInput = ({
     const tempErrors = { ...errors };
     if (value.length) {
       if (field === 'email') {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        const result = emailRegex.test(value);
+        const result = emailRegExp.test(value);
         if (result) {
           delete tempErrors[name];
         }
@@ -230,7 +231,6 @@ const FormInput = ({
           )}
         </>
       )}
-
       {type === 'select' ? (
         <>
           {searchable ? (
@@ -510,6 +510,7 @@ const FormInput = ({
                       style={{
                         background: '#FFF',
                         display: type === 'file' && 'none',
+                        cursor: 'pointer',
                       }}
                       placeholder={field.placeholder}
                       className="form-input-field"
@@ -562,7 +563,14 @@ const FormInput = ({
         >
           {fields?.map((field, fieldIndex) => (
             <Box
-              sx={{ width: '100%', display: 'block' }}
+              sx={{
+                width: '100%',
+                display: 'block',
+                height: error?.minimum || error?.maximum ? '72px' : 'auto',
+                '@media (max-width: 500px)': {
+                  height: 'auto',
+                },
+              }}
               key={`box-${fieldIndex}`}
             >
               <Box
@@ -650,6 +658,7 @@ const FormInput = ({
                     color: 'red',
                     display: 'block',
                     mt: 0.4,
+                    mb: 0.4,
                     ml: '3px',
                   }}
                 >{`${error?.minimum}`}</Box>
@@ -756,6 +765,25 @@ const FormInput = ({
           ))}
           {error && <div style={{ color: 'red' }}>{error}</div>}
         </Box>
+      ) : type === 'upload' ? (
+        <Button
+          disableRipple
+          sx={{
+            width: '100%',
+            height: 39.3,
+            borderColor: errors?.image ? 'red' : 'auto',
+            color: errors?.image ? 'red' : 'auto',
+            '&:hover': {
+              backgroundColor: errors?.image ? '#fff' : 'auto',
+              color: errors?.image ? 'red' : 'auto',
+              borderColor: errors?.image ? 'red' : 'auto',
+            },
+          }}
+          variant="outlined"
+          onClick={onclickUpload}
+        >
+          {values?.image ? 'Uploaded' : 'Upload'}
+        </Button>
       ) : (
         <Box sx={{ position: 'relative' }}>
           <Box
@@ -840,6 +868,7 @@ const FormInput = ({
                   background: '#FFF',
                   display: type === 'file' && 'none',
                   color: disabled && '#888',
+                  cursor: 'pointer',
                 }}
                 value={type === 'file' ? '' : value}
                 disabled={disabled}

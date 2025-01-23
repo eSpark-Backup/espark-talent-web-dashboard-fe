@@ -71,6 +71,7 @@ const ChangePassword = () => {
                 fields,
                 disabled,
                 suffixIconOutsideWithTooltip,
+                autoComplete,
               },
               formIndex
             ) => (
@@ -99,6 +100,7 @@ const ChangePassword = () => {
                     fields={fields}
                     disabled={disabled}
                     suffixIconOutsideWithTooltip={suffixIconOutsideWithTooltip}
+                    autoComplete={autoComplete}
                   />
                 </Grid>
                 {formIndex % 1 === 0 && <Grid item xs={12} lg={6}></Grid>}

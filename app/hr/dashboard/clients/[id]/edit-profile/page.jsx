@@ -33,15 +33,16 @@ const EditClient = () => {
     country: getCountry(currentClient?.country),
   };
   const getFinalData = (values) => {
-    const { email, gender, ...rest } = values;
-    console.log(email, gender);
+    const { email, gender, image_path, image, ...rest } = values;
+    console.log(email, gender, image_path, image);
     const final = {
       ...rest,
       country: values.country?.title,
-      join_date: dayjs(values?.join_date).format('YYYY-MM-DD'),
+      join_date: dayjs(values?.join_date)?.format('YYYY-MM-DD'),
     };
     return final;
   };
+
   return (
     <Box>
       <Breadcrumb root="clients" title="Clients /" currentPage="Edit client" />
@@ -76,7 +77,7 @@ const EditClient = () => {
           isLastStep={true}
           getFinalData={getFinalData}
           method="updateData"
-          endpoint={`${HR_GET_CLIENT_PROFILE}?id=${currentClient.id}`}
+          endpoint={`${HR_GET_CLIENT_PROFILE}?id=${currentClient?.id}`}
           marginLeft={{
             '@media (min-width: 1200px) and (max-width: 1260px)': {
               marginLeft: '2px',

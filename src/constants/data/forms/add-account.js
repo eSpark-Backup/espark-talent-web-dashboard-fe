@@ -1,25 +1,31 @@
 export const accountForm = [
   {
-    title: 'Acount name',
+    title: 'Account name',
     placeholder: 'Enter name',
     name: 'account_name',
+    type: 'text',
+    autocomplete: 'name',
   },
   {
     title: 'Email',
     placeholder: 'Enter email',
     name: 'email',
+    type: 'email',
+    autocomplete: 'email',
   },
   {
     title: 'Password',
     placeholder: 'Enter password',
     name: 'password',
     type: 'password',
+    autocomplete: 'new-password',
   },
   {
     title: 'Confirm password',
     placeholder: 'Confirm password',
     name: 'confirm_password',
     type: 'password',
+    autocomplete: 'new-password',
   },
   {
     title: 'Upload',

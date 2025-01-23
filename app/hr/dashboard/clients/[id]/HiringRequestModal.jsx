@@ -145,7 +145,7 @@ const HiringRequestModal = ({ open, onClose }) => {
         >
           <Typography
             sx={{
-              fontSize: '25px',
+              fontSize: { xs: '20px', sm: '23px', md: '25px' },
               fontWeight: 600,
               ml: '10px',
             }}
@@ -211,14 +211,14 @@ const HiringRequestModal = ({ open, onClose }) => {
                       withFlag={withFlag}
                       selectWithType={selectWithType}
                       setFieldValue={setFieldValue}
-                      value={values[name] || ''}
-                      error={errors[name] || ''}
+                      value={values[name]}
+                      error={errors[name]}
                       accept=".pdf"
                       touched={touched}
                       setFieldError={setFieldError}
-                      errors={errors || {}}
+                      errors={errors}
                       setErrors={setErrors}
-                      values={values || {}}
+                      values={values}
                       nested={nested}
                       xs={12}
                       sm={12}

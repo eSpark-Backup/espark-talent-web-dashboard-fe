@@ -140,7 +140,7 @@ const GeneralSettings = () => {
           />
           <input
             type="file"
-            style={{ display: 'none' }}
+            style={{ display: 'none', cursor: 'pointer' }}
             ref={fileInputRef}
             onChange={handleFileInputChange}
             required

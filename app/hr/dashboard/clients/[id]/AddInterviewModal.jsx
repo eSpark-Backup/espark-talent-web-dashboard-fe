@@ -177,13 +177,13 @@ const AddInterviewModal = ({ open, onClose }) => {
                       name={name}
                       selectWithType={selectWithType}
                       setFieldValue={setFieldValue}
-                      value={values[name] || ''}
-                      error={errors[name] || ''}
+                      value={values[name]}
+                      error={errors[name]}
                       touched={touched}
                       setFieldError={setFieldError}
-                      errors={errors || {}}
+                      errors={errors}
                       setErrors={setErrors}
-                      values={values || {}}
+                      values={values}
                       searchable={searchable}
                       withFlag={withFlag}
                       countries={countriesList}

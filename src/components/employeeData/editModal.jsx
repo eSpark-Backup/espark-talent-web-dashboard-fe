@@ -1,38 +1,35 @@
-import React, { useState } from 'react';
-import {
-  Box,
-  Button,
-  CircularProgress,
-  Modal,
-  Typography,
-} from '@mui/material';
-
-import { EDIT_MODAL } from '@/src/constants/employeeProfile';
+import React, { useState, useRef } from 'react';
+import { Box, Button, Modal, Typography } from '@mui/material';
+import { useMutation } from '@tanstack/react-query';
 import { useDispatch, useSelector } from 'react-redux';
+
 import { api } from '@/src/services/apiService';
 import {
   HR_GET_CLIENT_PROFILE,
   HR_UPDATE_EMP_IMAGE,
 } from '@/src/services/apiService/apiEndPoints';
-import { useMutation } from '@tanstack/react-query';
 import { Toast } from '../Toast/Toast';
 import { updateCurrentEmployeeImage } from '@/src/redux/slices/hrSlices/employeeSlice';
+import ProfileCroper from '../ProfileCroper';
 import { updateCurrentClientImage } from '@/src/redux/slices/hrSlices/clientSlice';
 
-const EditModal = ({ handleOpenModal, onClose, isClient }) => {
+const EditProfileModal = ({ open, onClose, isClient }) => {
   const dispatch = useDispatch();
-  const { currentEmployee } = useSelector((state) => state?.hr?.employees);
-  const { currentClient } = useSelector((state) => state?.hr?.clients);
+  const { currentEmployee } =
+    useSelector((state) => state?.hr?.employees) || {};
+  const { currentClient } = useSelector((state) => state?.hr?.clients) || {};
   const [selectedFile, setSelectedFile] = useState(null);
-  const [imagePreview, setImagePreview] = useState(null);
-  const { mutate, isPending } = useMutation({
+  const [photoURL, setPhotoURL] = useState(null);
+  const fileInputRef = useRef(null);
+
+  const { mutate, isLoading } = useMutation({
     mutationFn: async (formVals) => {
       const formData = new FormData();
-      for (const key in formVals.data) {
-        formData?.append(key, formVals.data[key]);
+      for (const key in formVals?.data) {
+        formData?.append(key, formVals?.data[key]);
       }
       return api.updateData(
-        `${isClient ? HR_GET_CLIENT_PROFILE : HR_UPDATE_EMP_IMAGE}?id=${formVals.id}`,
+        `${isClient ? HR_GET_CLIENT_PROFILE : HR_UPDATE_EMP_IMAGE}?id=${formVals?.id}`,
         formData
       );
     },
@@ -50,148 +47,127 @@ const EditModal = ({ handleOpenModal, onClose, isClient }) => {
       onClose();
     },
   });
-  const handleFileInputChange = (event) => {
+
+  const handleFileChange = (event) => {
     const file = event.target.files[0];
-
-    if (file && file.type === 'image/jpeg') {
+    if (file && (file.type === 'image/jpeg' || file.type === 'image/png')) {
       setSelectedFile(file);
-
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setImagePreview(reader.result);
-      };
-      reader.readAsDataURL(file);
     } else {
-      alert('Only .jpg files are allowed.');
+      Toast('error', 'Only .jpg and .png files are allowed');
     }
   };
 
-  const handleClick = () => {
-    document.getElementById('fileInput').click();
+  const handleUploadImage = () => {
+    fileInputRef.current.click();
   };
-  const handleSubmit = () => {
+
+  const handleSubmit = (file) => {
+    const convertedFile = new File([file], file?.name || 'default-name.png', {
+      type: file?.type,
+      lastModified: Date?.now(),
+    });
     mutate({
-      id: isClient ? currentClient.id : currentEmployee.id,
+      id: isClient ? currentClient?.id : currentEmployee?.id,
       data: {
-        image: selectedFile,
+        image: convertedFile,
       },
     });
   };
 
-  return (
-    <Box>
-      <Modal
-        open={handleOpenModal}
-        onClose={onClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box
-          sx={{
-            background: '#fff',
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            width: '450px',
-            '@media (max-width: 499px)': {
-              width: '90%',
-            },
-            height: { xs: '250px', sm: '250px' },
-            boxShadow: 24,
-            borderRadius: '5px',
-          }}
-        >
-          <Box
-            sx={{
-              display: 'flex',
-              justifyContent: 'flex-end',
-            }}
-          >
-            <Box
-              src={'/images/leave-request/close.svg'}
-              width={25}
-              height={25}
-              alt="close"
-              onClick={onClose}
-              style={{
-                marginTop: '10px',
-                marginRight: '10px',
-              }}
-            />
-          </Box>
+  const handleClose = () => {
+    onClose();
+    setSelectedFile(null);
+  };
 
+  return (
+    <Modal
+      open={open}
+      onClose={handleClose}
+      aria-labelledby="edit-profile-modal"
+      aria-describedby="edit-profile-modal-description"
+      disableEnforceFocus
+      disableRestoreFocus
+    >
+      <Box
+        sx={{
+          background: '#fff',
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          width: '90%',
+          height: 'auto',
+          maxHeight: '90%',
+          overflow: 'auto',
+          maxWidth: { xs: 350, md: 450 },
+          p: 4,
+          borderRadius: '10px',
+          boxShadow: 24,
+        }}
+      >
+        <Box sx={{ position: 'relative', textAlign: 'center' }}>
+          <Typography variant="h5">Edit Profile Picture</Typography>
+        </Box>
+
+        <Box sx={{ mt: 3, textAlign: 'center' }}>
           <Box
             sx={{
-              padding: { xs: '10px', md: '0px' },
               display: 'flex',
-              gap: { xs: '10px', md: '15px' },
               flexDirection: 'column',
               justifyContent: 'center',
-              alignItems: 'center',
             }}
           >
-            <Typography variant="h5" sx={{ textAlign: 'center' }}>
-              {EDIT_MODAL?.editProfile}
-            </Typography>
-            <Box sx={{ width: '100px', height: '100px' }}>
-              <Box
-                component={'img'}
-                src={
-                  imagePreview ||
-                  (isClient
-                    ? currentClient?.image_path
-                    : currentEmployee?.image_path)
-                }
-                sx={{
-                  height: '100%',
-                  width: '100%',
-                  objectFit: 'contain',
-                  borderRadius: '50%',
-                }}
-              />
-            </Box>
             <Box
+              component="img"
+              src={
+                photoURL ||
+                (isClient
+                  ? currentClient?.image_path
+                  : currentEmployee?.image_path)
+              }
+              alt=""
               sx={{
-                display: 'flex',
-                justifyContent: 'center',
-                gap: '12px',
+                width: 100,
+                height: 100,
+                borderRadius: '50%',
+                objectFit: 'cover',
+                mx: 'auto',
               }}
+            />
+
+            <input
+              type="file"
+              accept="image/*"
+              ref={fileInputRef}
+              style={{ display: 'none', cursor: 'pointer' }}
+              onChange={handleFileChange}
+            />
+            <Button
+              onClick={handleUploadImage}
+              variant="contained"
+              color="primary"
+              sx={{ mx: 'auto', width: '95%', mt: 2 }}
             >
-              <Button
-                variant="primary"
-                sx={{
-                  width: { xs: '100px', sm: '120px' },
-                  height: '40px',
-                  fontSize: '16px',
-                  fontWeight: 600,
-                  cursor: 'pointer',
-                  backgroundColor: isPending && '#888 !important',
-                }}
-                disabled={isPending}
-                onClick={selectedFile ? handleSubmit : handleClick}
-              >
-                {!selectedFile ? (
-                  EDIT_MODAL?.change
-                ) : selectedFile && isPending ? (
-                  <CircularProgress size={26} color="secondary" />
-                ) : (
-                  'Submit'
-                )}
-              </Button>
-              <input
-                type="file"
-                id="fileInput"
-                style={{ display: 'none' }}
-                onChange={handleFileInputChange}
-                accept="image/*"
+              {'Upload Image'}
+            </Button>
+          </Box>
+          {selectedFile && (
+            <Box sx={{ mt: 2 }}>
+              <ProfileCroper
+                photoURL={URL?.createObjectURL(selectedFile) || ''}
+                selectedFile={selectedFile}
+                setPhotoURL={setPhotoURL}
+                handleSubmit={handleSubmit}
+                isLoading={isLoading}
+                handleClose={handleClose}
+                setSelectedFile={setSelectedFile}
               />
             </Box>
-          </Box>
+          )}
         </Box>
-      </Modal>
-    </Box>
+      </Box>
+    </Modal>
   );
 };
 
-export default EditModal;
+export default EditProfileModal;

@@ -305,6 +305,8 @@ const Request = () => {
         onClose={handleCloseModal}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
+        disableEnforceFocus
+        disableRestoreFocus
         sx={{
           display: 'flex',
           alignItems: 'center',
@@ -321,6 +323,8 @@ const Request = () => {
         onClose={handleCloseModal}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
+        disableEnforceFocus
+        disableRestoreFocus
         sx={{
           display: 'flex',
           alignItems: 'center',
@@ -344,6 +348,8 @@ const Request = () => {
         onClose={handleCloseModal}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
+        disableEnforceFocus
+        disableRestoreFocus
         sx={{
           display: 'flex',
           alignItems: 'center',

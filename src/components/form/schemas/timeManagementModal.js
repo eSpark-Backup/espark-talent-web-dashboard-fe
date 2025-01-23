@@ -1,12 +1,13 @@
 import * as Yup from 'yup';
 import dayjs from 'dayjs';
+import { timeRegExp } from './validations';
 
 export const validationSchema = Yup.object({
   check_in: Yup.string()
-    .matches(/^([0-9]{2}):([0-9]{2})$/, 'Invalid time format')
+    .matches(timeRegExp, 'Invalid time format')
     .required('Check-In time is required'),
   check_out: Yup.string()
-    .matches(/^([0-9]{2}):([0-9]{2})$/, 'Invalid time format')
+    .matches(timeRegExp, 'Invalid time format')
     .required('Check-Out time is required')
     .test(
       'checkOut-after-checkIn',

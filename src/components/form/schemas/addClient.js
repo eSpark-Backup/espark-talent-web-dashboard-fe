@@ -13,7 +13,14 @@ export const basicInformationSchemaClient = Yup.object({
   join_date: dojValidation,
   phone_number: phoneValidation,
   email: emailValidation,
-  image: Yup.mixed().required('Image is required'),
+  image: Yup.mixed()
+    .required('Image is required')
+    .test(
+      'fileFormat',
+      'Unsupported file format',
+      (value) =>
+        value && ['image/jpg', 'image/jpeg', 'image/png']?.includes(value?.type)
+    ),
   company_name: Yup.string().required('Company name is required'),
   country: Yup.mixed().required('Country is required'),
 });
