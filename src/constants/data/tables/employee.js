@@ -43,7 +43,7 @@ export const employeeTableInterviewScheduleColumn = [
 export const employeeTableHiringRequestColumn = [
   {
     title: 'Job title',
-    flex: 3,
+    flex: 3.5,
     name: 'job_title',
   },
   {

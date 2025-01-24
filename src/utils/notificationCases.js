@@ -18,11 +18,14 @@ const handleAdminNotifications = (notification, userType) => {
   const routes = {
     'Hiring Request': `clients/${clientId}`,
     'Interview Schedule': `clients/${clientId}`,
+    'Interview Reject': `clients/${clientId}`,
+    'Interview Shortlist': `clients/${clientId}`,
+    'Interview Pending': `clients/${clientId}`,
+    'Interview Hold': `clients/${clientId}`,
     Onboarding: `clients/${clientId}`,
     'Employee Invoice': `clients/${clientId}`,
     'Other Payments': `clients/${clientId}`,
   };
-
   const route = routes[notification?.type];
 
   if (route) {
@@ -104,6 +107,7 @@ const handleEmployeeNotifications = (notification, userType) => {
     Letter: '/letters',
     Policy: 'administration/policies',
     'Company Contracts': 'administration/contracts-signed',
+    'Client Contracts': 'administration/contracts-signed',
   };
 
   const route = routes[notification?.type];
