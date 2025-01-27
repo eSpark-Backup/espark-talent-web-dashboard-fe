@@ -109,7 +109,7 @@ const AddEmployee = () => {
     queryKey: ['hr-client-hiring-req-query', email],
     queryFn: () => {
       return api
-        .getData(`${HR_CLIENT_EMP_HIRING_REQUEST}?id=${params.id}`)
+        .getData(`${HR_CLIENT_EMP_HIRING_REQUEST}?id=${params?.id}`)
         .then(({ data }) => {
           const tempData =
             data !== ''
@@ -118,13 +118,13 @@ const AddEmployee = () => {
 
                   return {
                     ...item,
-                    salary_range: `${item.salary_range.minimum}${hasSymbol(symbol) ? ' ' + symbol : ' '} - ${item.salary_range.maximum}${hasSymbol(symbol) ? ' ' + symbol : ''}`,
+                    salary_range: `${item?.salary_range?.minimum}${hasSymbol(symbol) ? ' ' + symbol : ' '} - ${item?.salary_range?.maximum}${hasSymbol(symbol) ? ' ' + symbol : ''}`,
                     currency: item?.salary_range?.currency || '',
                     gender: genderType(item?.gender),
-                    hiring_start_date: dayjs(item.hiring_start_date).format(
+                    hiring_start_date: dayjs(item?.hiring_start_date)?.format(
                       'DD-MMMM-YYYY'
                     ),
-                    hiring_end_date: dayjs(item.hiring_end_date).format(
+                    hiring_end_date: dayjs(item?.hiring_end_date)?.format(
                       'DD-MMMM-YYYY'
                     ),
                     action: ['Delete'],
@@ -441,14 +441,14 @@ const AddEmployee = () => {
   }
 
   useEffect(() => {
-    ClientHiringReqQuery.refetch();
-    ClientInterviewSchedule.refetch();
-    ClientOnBoarding.refetch();
-    EmployeeInvoicesPending.refetch();
-    EmployeeInvoicesProcessing.refetch();
-    EmployeeInvoicesPaid.refetch();
-    OtherInvoicesPending.refetch();
-    OtherInvoicesProcessing.refetch();
+    ClientHiringReqQuery?.refetch();
+    ClientInterviewSchedule?.refetch();
+    ClientOnBoarding?.refetch();
+    EmployeeInvoicesPending?.refetch();
+    EmployeeInvoicesProcessing?.refetch();
+    EmployeeInvoicesPaid?.refetch();
+    OtherInvoicesPending?.refetch();
+    OtherInvoicesProcessing?.refetch();
     OtherInvoicesPaid.refetch();
   }, []);
 
@@ -917,15 +917,18 @@ const AddEmployee = () => {
         return (
           hireAndOnBoard?.hiringRequest?.map((item) => {
             // salaryRange = JSON.parse(item?.salary_range);
+            // const symbol = item?.salary_currency?.split(' ')[0];
             return {
               ...item,
               // salary_range:`${salaryRange.minimum} ${salaryRange.currency} - ${salaryRange.maximum} ${salaryRange.currency}`,
               // salary_currency: salaryRange?.currency || '',
+              // salary_range: `${item?.salary_range?.minimum}${hasSymbol(symbol) ? ' ' + symbol : ' '} - ${item?.salary_range?.maximum}${hasSymbol(symbol) ? ' ' + symbol : ''}`,
+              // currency: item?.salary_range?.currency || '',
               gender: genderType(item?.gender),
-              hiring_start_date: dayjs(item.hiring_start_date).format(
+              hiring_start_date: dayjs(item?.hiring_start_date)?.format(
                 'DD-MMMM-YYYY'
               ),
-              hiring_end_date: dayjs(item.hiring_end_date).format(
+              hiring_end_date: dayjs(item?.hiring_end_date)?.format(
                 'DD-MMMM-YYYY'
               ),
               jobDescription: 'Download',
@@ -1081,15 +1084,15 @@ const AddEmployee = () => {
   return (
     <>
       {isFetching ||
-      ClientHiringReqQuery.isFetching ||
-      ClientInterviewSchedule.isFetching ||
-      ClientOnBoarding.isFetching ||
-      EmployeeInvoicesPending.isFetching ||
-      EmployeeInvoicesProcessing.isFetching ||
-      EmployeeInvoicesPaid.isFetching ||
-      OtherInvoicesPending.isFetching ||
-      OtherInvoicesProcessing.isFetching ||
-      OtherInvoicesPaid.isFetching ? (
+      ClientHiringReqQuery?.isFetching ||
+      ClientInterviewSchedule?.isFetching ||
+      ClientOnBoarding?.isFetching ||
+      EmployeeInvoicesPending?.isFetching ||
+      EmployeeInvoicesProcessing?.isFetching ||
+      EmployeeInvoicesPaid?.isFetching ||
+      OtherInvoicesPending?.isFetching ||
+      OtherInvoicesProcessing?.isFetching ||
+      OtherInvoicesPaid?.isFetching ? (
         <ProfileEditSkeleton isClient={true} />
       ) : (
         <Box>
@@ -1114,15 +1117,15 @@ const AddEmployee = () => {
           </Box>
           <>
             {isLoading ||
-            ClientHiringReqQuery.isLoading ||
-            ClientInterviewSchedule.isLoading ||
-            ClientOnBoarding.isLoading ||
-            EmployeeInvoicesPending.isLoading ||
-            EmployeeInvoicesProcessing.isLoading ||
-            EmployeeInvoicesPaid.isLoading ||
-            OtherInvoicesPending.isLoading ||
-            OtherInvoicesProcessing.isLoading ||
-            OtherInvoicesPaid.isLoading ? (
+            ClientHiringReqQuery?.isLoading ||
+            ClientInterviewSchedule?.isLoading ||
+            ClientOnBoarding?.isLoading ||
+            EmployeeInvoicesPending?.isLoading ||
+            EmployeeInvoicesProcessing?.isLoading ||
+            EmployeeInvoicesPaid?.isLoading ||
+            OtherInvoicesPending?.isLoading ||
+            OtherInvoicesProcessing?.isLoading ||
+            OtherInvoicesPaid?.isLoading ? (
               <ProfileEditSkeleton isClient={true} />
             ) : (
               <ClientProfileData
@@ -1180,7 +1183,7 @@ const AddEmployee = () => {
                 >
                   {clientProfileTabs?.map(({ nestedTabs, ...rest }, index) => (
                     <CustomTabPanel
-                      value={currentTab.val}
+                      value={currentTab?.val}
                       index={index}
                       key={index}
                     >
@@ -1225,7 +1228,7 @@ const AddEmployee = () => {
                         </Tabs>
                         {currentTab?.label === 'Hire & onboard' ? (
                           <>
-                            {currentTab?.nested.val === 0 ? (
+                            {currentTab?.nested?.val === 0 ? (
                               <>
                                 {(role === 'super_admin' ||
                                   (role !== 'super_admin' &&
@@ -1249,7 +1252,7 @@ const AddEmployee = () => {
                                   </Button>
                                 )}
                               </>
-                            ) : currentTab?.nested.val === 1 ? (
+                            ) : currentTab?.nested?.val === 1 ? (
                               <>
                                 {(role === 'super_admin' ||
                                   (role !== 'super_admin' &&

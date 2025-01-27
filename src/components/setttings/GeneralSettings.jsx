@@ -18,38 +18,24 @@ import {
 import { generalSettingFormSchema } from '../form/schemas/generalDetails';
 import { settingForm } from '@/src/constants/data/forms/setting-form';
 import Image from 'next/image';
-import {
-  CLIENT_UPDATE_COMPANY,
-  CLIENT_UPDATE_PIC,
-} from '@/src/services/apiService/apiEndPoints';
+import { CLIENT_UPDATE_COMPANY } from '@/src/services/apiService/apiEndPoints';
 import { api } from '@/src/services/apiService';
 import { useMutation } from '@tanstack/react-query';
 import { Toast } from '../Toast/Toast';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  fetchClientHomeDataRequestSuccess,
-  updateClientImage,
-} from '@/src/redux/slices/clientSlices/homeSlice';
+import { fetchClientHomeDataRequestSuccess } from '@/src/redux/slices/clientSlices/homeSlice';
+import ClientProfileCroper from './ClientProfileCroper';
 
 const GeneralSettings = () => {
   const dispatch = useDispatch();
-  const [imageFile, setImageFile] = useState(null);
+  const [croperOpen, setCroperOpen] = useState(false);
   const { data } = useSelector((state) => state?.client?.home);
 
   const { mutate, isPending } = useMutation({
     mutationFn: async (data) => {
-      const updateCompanyPromise = imageFile
-        ? api
-            .postData(`${CLIENT_UPDATE_PIC}`, { picture: data.picture })
-            .then((resp) => {
-              dispatch(updateClientImage(resp?.data?.image));
-              return api.updateJSONData(CLIENT_UPDATE_COMPANY, {
-                company_name: data.companyName,
-              });
-            })
-        : api.updateJSONData(CLIENT_UPDATE_COMPANY, {
-            company_name: data.companyName,
-          });
+      const updateCompanyPromise = api.updateJSONData(CLIENT_UPDATE_COMPANY, {
+        company_name: data?.companyName,
+      });
 
       return updateCompanyPromise.then((response) => {
         const updatedHomeData = {
@@ -64,6 +50,7 @@ const GeneralSettings = () => {
       Toast('error', err.message || 'Failed to post data');
     },
   });
+
   const {
     handleSubmit,
     values,
@@ -85,39 +72,13 @@ const GeneralSettings = () => {
     validateOnChange: false,
     validateOnBlur: false,
   });
-  const [isUploading, setIsUploading] = useState(false);
-  const fileInputRef = React.useRef(null);
-  const handleFileInputChange = async (event) => {
-    const file = event.target.files[0];
 
-    if (!file) return;
-    try {
-      const reader = new FileReader();
-      reader.onloadend = async () => {
-        setImageFile(reader.result);
-        const formData = new FormData();
-        formData?.append('picture', file);
-        setIsUploading(true);
-        const resp = await api.postData(`${CLIENT_UPDATE_PIC}`, formData);
-        setIsUploading(false);
-
-        dispatch(updateClientImage(resp?.data?.image));
-        const updatedImageData = {
-          ...data,
-          client_image: resp?.data?.image,
-        };
-        dispatch(fetchClientHomeDataRequestSuccess(updatedImageData || {}));
-        Toast('success', 'Image uploaded successfully');
-      };
-      reader.readAsDataURL(file);
-    } catch (error) {
-      setIsUploading(false);
-      Toast('error', error.message || 'Failed to upload image');
-    }
+  const handleOpenCroper = () => {
+    setCroperOpen(true);
   };
 
-  const handleButtonClick = () => {
-    fileInputRef.current.click();
+  const handleCloseCroper = () => {
+    setCroperOpen(false);
   };
 
   return (
@@ -133,32 +94,19 @@ const GeneralSettings = () => {
           {Profile_Edit_Section?.title}
         </Typography>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mt: 2 }}>
-          <Avatar
-            src={imageFile || data?.client_image}
-            width={50}
-            height={50}
-          />
-          <input
-            type="file"
-            style={{ display: 'none', cursor: 'pointer' }}
-            ref={fileInputRef}
-            onChange={handleFileInputChange}
-            required
-            name="picture"
-          />
+          <Avatar src={data?.client_image} width={50} height={50} />
           <Button
             type="file"
-            onClick={handleButtonClick}
-            disabled={isUploading}
+            onClick={handleOpenCroper}
             sx={{
-              width: isUploading ? '100px' : '160px',
+              width: '160px',
               height: '40px',
               fontSize: { xs: '12px', md: '16px' },
               whiteSpace: 'nowrap',
               fontWeight: 600,
-              background: isUploading ? '#EBEBE4' : '#029894',
+              background: '#029894',
               borderRadius: '5px',
-              color: isUploading ? '#c6c6c6' : '#fff',
+              color: '#fff',
               '&:hover': {
                 background: '#029894',
               },
@@ -172,14 +120,17 @@ const GeneralSettings = () => {
               />
             }
           >
-            {isUploading ? (
-              <CircularProgress size={26} color="secondary" />
-            ) : (
-              Profile_Edit_Section?.buttonText
-            )}
+            {Profile_Edit_Section?.buttonText}
           </Button>
         </Box>
       </Box>
+      {croperOpen && (
+        <ClientProfileCroper
+          open={croperOpen}
+          onClose={handleCloseCroper}
+          currentImage={data?.client_image}
+        />
+      )}
       <form onSubmit={handleSubmit}>
         <Box
           sx={{

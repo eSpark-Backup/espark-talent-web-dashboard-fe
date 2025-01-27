@@ -795,7 +795,7 @@ const LeaveViewModal = forwardRef(
                       onClick={handleRejectRequestAndClose}
                       variant="outlined"
                     >
-                      Close
+                      Decline
                     </Button>
                     <Button
                       onClick={approveRequestAndClose}

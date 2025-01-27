@@ -344,16 +344,6 @@ const WfhViewModal = forwardRef(
                   >
                     <Button
                       sx={{
-                        minWidth: { xs: '100px', md: '120px' },
-                      }}
-                      onClick={handleClose}
-                      variant="outlined"
-                      disabled
-                    >
-                      Approved
-                    </Button>
-                    <Button
-                      sx={{
                         ml: '20px',
                         minWidth: {
                           xs: '100px',
@@ -374,16 +364,6 @@ const WfhViewModal = forwardRef(
                     justifyContent={'flex-end'}
                     sx={{ padding: '20px' }}
                   >
-                    <Button
-                      sx={{
-                        minWidth: { xs: '100px', md: '120px' },
-                      }}
-                      onClick={handleClose}
-                      variant="outlined"
-                      disabled
-                    >
-                      Closed
-                    </Button>
                     <Button
                       type="submit"
                       variant="outlined"
@@ -419,7 +399,7 @@ const WfhViewModal = forwardRef(
                       onClick={handleRejectRequestAndClose}
                       variant="outlined"
                     >
-                      Close
+                      Decline
                     </Button>
                     <Button
                       onClick={approveRequestAndClose}
@@ -475,16 +455,6 @@ const WfhViewModal = forwardRef(
                     justifyContent={'flex-end'}
                     sx={{ padding: '20px' }}
                   >
-                    <Button
-                      sx={{
-                        minWidth: { xs: '100px', md: '120px' },
-                      }}
-                      onClick={handleClose}
-                      variant="outlined"
-                      disabled
-                    >
-                      Closed
-                    </Button>
                     <Button
                       type="submit"
                       variant="outlined"
@@ -583,6 +553,7 @@ const WfhViewModal = forwardRef(
               ) : null}
             </>
           )}
+
           {isEmployee && (
             <>
               {modalData?.status === 'Pending' ? (

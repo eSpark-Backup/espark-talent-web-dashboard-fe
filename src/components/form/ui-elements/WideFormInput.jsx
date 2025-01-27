@@ -171,7 +171,11 @@ const WideFormInput = ({
         <Box
           sx={{
             background: darkBack ? '#F6F6F6' : '#FFF',
-            p: { xs: '0', md: '0px 0px 5px 0px', lg: '5px 5px 5px 20px' },
+            p: {
+              xs: '0',
+              md: name === 'reason' ? '0px' : '0px 0px 5px 0px',
+              lg: name === 'reason' ? '0px' : '5px 5px 5px 20px',
+            },
             borderRadius: '5px',
             display: 'flex',
             alignItems: {
@@ -199,7 +203,20 @@ const WideFormInput = ({
               {title} {required && <span style={{ color: '#FF0000' }}>*</span>}
             </Typography>
           </Box>
-          <Box sx={{ width: { xs: '100%', lg: '778px' } }}>
+          <Box
+            sx={{
+              width: {
+                xs: '100%',
+                lg: '778px',
+                backgroundColor: name === 'reason' && '#fff',
+                my: {
+                  xs: '0',
+                  md: name === 'reason' ? '0px 0px 5px 0px' : '0px',
+                  lg: name === 'reason' ? '5px 5px 5px 20px' : '0px',
+                },
+              },
+            }}
+          >
             <Box
               display={'flex'}
               justifyContent={'space-between'}
@@ -207,7 +224,7 @@ const WideFormInput = ({
               sx={{
                 borderRadius: '5px',
                 width: '100%',
-                background: disabled ? '#ccc' : '#F6F6F6',
+                background: disabled && '#ccc',
               }}
             >
               {type === 'date' ? (
@@ -305,7 +322,7 @@ const WideFormInput = ({
                         openPickerIcon: () => null,
                       }}
                       sx={{ width: '100%' }}
-                      value={value || null}
+                      value={values?.punchTime ? dayjs(value) : value || null}
                       onChange={(e) => {
                         handleChangeInput(name, `${e?.$d}`);
                       }}

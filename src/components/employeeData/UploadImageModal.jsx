@@ -47,6 +47,7 @@ const UploadImageModal = ({ open, onClose, setFieldValue, currentImage }) => {
   return (
     <Modal
       open={open}
+      disableScrollLock
       onClose={handleClose}
       aria-labelledby="edit-profile-modal"
       aria-describedby="edit-profile-modal-description"
@@ -115,6 +116,7 @@ const UploadImageModal = ({ open, onClose, setFieldValue, currentImage }) => {
               onChange={handleFileChange}
             />
             <Button
+              disabled={photoURL !== null ? true : false}
               onClick={handleUploadImage}
               variant="contained"
               color="primary"
@@ -131,6 +133,7 @@ const UploadImageModal = ({ open, onClose, setFieldValue, currentImage }) => {
                 setPhotoURL={setPhotoURL}
                 handleSubmit={handleSubmit}
                 isLoading={false}
+                isPending={photoURL !== null ? true : false}
                 handleClose={handleClose}
                 setSelectedFile={setSelectedFile}
               />

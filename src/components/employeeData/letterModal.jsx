@@ -79,6 +79,7 @@ const LetterForm = forwardRef(({ onClose, open, empData }, ref) => {
       onClose={onClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
+      disableScrollLock
       disableEnforceFocus
       disableRestoreFocus
       sx={{

@@ -30,7 +30,6 @@ import PunchRequestModal from '@/app/employee/dashboard/request/punch-requests/P
 const Request = () => {
   const [value, setValue] = useState(0);
   const { currentEmployee } = useSelector((state) => state?.hr?.employees);
-  const [selectedID, setSelectedID] = useState(null);
   const [openLeave, setOpenLeave] = useState(false);
   const [openPunch, setOpenPunch] = useState(false);
   const [openWfh, setOpenWfh] = useState(false);
@@ -99,6 +98,9 @@ const Request = () => {
                   ...item,
                   actionStatus: true,
                   date: dayjs(item?.date)?.format('MMMM D, YYYY'),
+                  punch_time: dayjs(item?.punch_time, 'hh:mm:ss A')?.format(
+                    'hh:mm A'
+                  ),
                   actions: ['View'],
                 }));
           dispatch(
@@ -208,7 +210,6 @@ const Request = () => {
     setOpenLeave(false);
   };
   const handleClickEdit = (a) => {
-    setSelectedID(a?.row?.id);
     setModalData(a);
     if (value === 0) {
       handleOpenLeaveModal();
@@ -223,7 +224,6 @@ const Request = () => {
     setOpenWfh(false);
     setOpenLeave(false);
   };
-  console.log(selectedID, 'selectedID');
   return (
     <>
       <Box sx={{ width: '100%' }}>
@@ -305,6 +305,7 @@ const Request = () => {
         onClose={handleCloseModal}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
+        disableScrollLock
         disableEnforceFocus
         disableRestoreFocus
         sx={{
@@ -323,6 +324,7 @@ const Request = () => {
         onClose={handleCloseModal}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
+        disableScrollLock
         disableEnforceFocus
         disableRestoreFocus
         sx={{
@@ -335,7 +337,6 @@ const Request = () => {
           title={'WFH request view'}
           modalData={{
             ...modalData?.row,
-            status: '',
             date: dayjs(modalData?.row?.date)?.format('MMMM D, YYYY'),
           }}
           handleClose={handleClose}
@@ -348,6 +349,7 @@ const Request = () => {
         onClose={handleCloseModal}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
+        disableScrollLock
         disableEnforceFocus
         disableRestoreFocus
         sx={{

@@ -53,16 +53,16 @@ const StartHiringForm = () => {
         employment_term: formValues?.employmentTerm,
         comments: formValues?.comments || null,
         job_description: formValues?.job_description,
-        salary_range: JSON.stringify({
+        salary_range: JSON?.stringify({
           minimum: formValues?.salary_range?.minimum,
           maximum: formValues?.salary_range?.maximum,
         }),
         country: formValues?.country?.title,
         salary_currency: formValues?.salary_currency,
-        hiring_start_date: dayjs(formValues?.hiringStartDate).format(
+        hiring_start_date: dayjs(formValues?.hiringStartDate)?.format(
           'YYYY-MM-DD'
         ),
-        hiring_end_date: dayjs(formValues?.hiringEndDate).format('YYYY-MM-DD'),
+        hiring_end_date: dayjs(formValues?.hiringEndDate)?.format('YYYY-MM-DD'),
       };
       mutate(revampFormValues);
     },
@@ -82,8 +82,8 @@ const StartHiringForm = () => {
         minimum: vals?.salary_range?.minimum,
         maximum: vals?.salary_range?.maximum,
       },
-      hiring_start_date: dayjs(vals?.hiringStartDate).format('YYYY-MM-DD'),
-      hiring_end_date: dayjs(vals?.hiringEndDate).format('YYYY-MM-DD'),
+      hiring_start_date: dayjs(vals?.hiringStartDate)?.format('YYYY-MM-DD'),
+      hiring_end_date: dayjs(vals?.hiringEndDate)?.format('YYYY-MM-DD'),
     };
   };
 
@@ -234,7 +234,7 @@ const StartHiringForm = () => {
               disabled={isPending}
             >
               {isPending ? (
-                <CircularProgress size={26} color="secondary" />
+                <CircularProgress size={26} color="primary" />
               ) : (
                 FORM_DATA?.submit
               )}

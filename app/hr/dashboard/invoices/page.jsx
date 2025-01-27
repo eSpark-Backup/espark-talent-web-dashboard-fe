@@ -138,7 +138,7 @@ const Page = () => {
           }}
           spacing={3}
         >
-          <Grid item xs={12} md={6} lg={3}>
+          <Grid item xs={12} md={5.5} lg={3}>
             <Input
               value={name}
               width={'100%'}
@@ -148,7 +148,7 @@ const Page = () => {
               name={'id'}
             />
           </Grid>
-          <Grid item xs={12} md={6} lg={3}>
+          <Grid item xs={12} md={5.5} lg={3}>
             <AppDropdown
               selectedItem={status || ''}
               setSelectedItem={setStatus}
@@ -167,7 +167,7 @@ const Page = () => {
               setIsLoadingList={setIsLoadingList}
             />
           </Grid>
-          <Grid item xs={12} md={12} lg={1} xl={1}>
+          <Grid item xs={12} md={1} lg={1} xl={1}>
             <Button
               disableRipple
               sx={{

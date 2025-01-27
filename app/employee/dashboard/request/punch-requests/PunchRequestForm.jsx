@@ -76,7 +76,7 @@ const PunchRequestForm = ({ handleClose }) => {
         date: dayjs(formValues?.date)?.format('YYYY-MM-DD'),
         client_id: currentWorkSpace?.email,
         punch_type: pascalToSnake(formValues?.punchType),
-        punch_time: dayjs(formValues?.punch_time)?.format('hh:mm A'),
+        punch_time: dayjs(formValues?.punch_time)?.format('hh:mm:ss A'),
         description: formValues?.description,
       };
       setPunchReqFormData(revampFormValues);
@@ -86,7 +86,22 @@ const PunchRequestForm = ({ handleClose }) => {
     validateOnBlur: false,
   });
 
-  console.log(values, 'values');
+  const calculatePunchTime = (punchType, expectedCheckIn, expectedCheckOut) => {
+    const currentDate = dayjs()?.startOf('day');
+
+    if (punchType === 'Check in') {
+      return currentDate
+        .hour(dayjs(expectedCheckIn, 'hh:mm A')?.hour())
+        .minute(dayjs(expectedCheckIn, 'hh:mm A')?.minute())
+        .toDate();
+    } else if (punchType === 'Check out') {
+      return currentDate
+        .hour(dayjs(expectedCheckOut, 'hh:mm A').hour())
+        .minute(dayjs(expectedCheckOut, 'hh:mm A').minute())
+        .toDate();
+    }
+    return null;
+  };
 
   return (
     <form onSubmit={handleSubmit}>
@@ -125,7 +140,17 @@ const PunchRequestForm = ({ handleClose }) => {
                   options={options}
                   darkBack={!(formIndex % 2)}
                   name={name}
-                  setFieldValue={setFieldValue}
+                  setFieldValue={(fieldName, value) => {
+                    setFieldValue(fieldName, value);
+                    if (fieldName === 'punchType') {
+                      const newPunchTime = calculatePunchTime(
+                        value,
+                        values?.expectedCheckIn,
+                        values?.expectedCheckOut
+                      );
+                      setFieldValue('punch_time', newPunchTime);
+                    }
+                  }}
                   value={values[name]}
                   error={errors[name]}
                   touched={touched}

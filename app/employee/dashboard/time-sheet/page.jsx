@@ -444,12 +444,22 @@ const Dashboard = () => {
                     ),
                     check_in: row?.check_in
                       ? dayjs(row?.check_in, 'HH:mm')?.isValid()
-                        ? dayjs(row?.check_in, 'HH:mm')?.format('hh:mm A')
+                        ? dayjs(row?.check_in, 'HH:mm A')?.format('hh:mm A')
                         : '-'
                       : '-',
                     check_out: row?.check_out
                       ? dayjs(row?.check_out, 'HH:mm')?.isValid()
-                        ? dayjs(row?.check_out, 'HH:mm')?.format('hh:mm A')
+                        ? dayjs(row?.check_out, 'HH:mm A')?.format('hh:mm A')
+                        : '-'
+                      : '-',
+                    break: row?.break
+                      ? dayjs(row?.break, 'HH:mm')?.isValid()
+                        ? dayjs(row?.break, 'HH:mm A')?.format('hh:mm A')
+                        : '-'
+                      : '-',
+                    resume: row?.resume
+                      ? dayjs(row?.resume, 'HH:mm')?.isValid()
+                        ? dayjs(row?.resume, 'HH:mm A')?.format('hh:mm A')
                         : '-'
                       : '-',
                   }))}
@@ -470,6 +480,7 @@ const Dashboard = () => {
         disableEnforceFocus
         disableAutoFocus
         disableRestoreFocus
+        disableScrollLock
         sx={{
           display: 'flex',
           alignItems: 'center',

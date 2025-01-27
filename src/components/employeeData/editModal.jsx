@@ -22,7 +22,7 @@ const EditProfileModal = ({ open, onClose, isClient }) => {
   const [photoURL, setPhotoURL] = useState(null);
   const fileInputRef = useRef(null);
 
-  const { mutate, isLoading } = useMutation({
+  const { mutate, isLoading, isPending } = useMutation({
     mutationFn: async (formVals) => {
       const formData = new FormData();
       for (const key in formVals?.data) {
@@ -49,8 +49,8 @@ const EditProfileModal = ({ open, onClose, isClient }) => {
   });
 
   const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    if (file && (file.type === 'image/jpeg' || file.type === 'image/png')) {
+    const file = event?.target?.files[0];
+    if (file && (file?.type === 'image/jpeg' || file?.type === 'image/png')) {
       setSelectedFile(file);
     } else {
       Toast('error', 'Only .jpg and .png files are allowed');
@@ -58,7 +58,7 @@ const EditProfileModal = ({ open, onClose, isClient }) => {
   };
 
   const handleUploadImage = () => {
-    fileInputRef.current.click();
+    fileInputRef?.current?.click();
   };
 
   const handleSubmit = (file) => {
@@ -82,6 +82,7 @@ const EditProfileModal = ({ open, onClose, isClient }) => {
   return (
     <Modal
       open={open}
+      disableScrollLock
       onClose={handleClose}
       aria-labelledby="edit-profile-modal"
       aria-describedby="edit-profile-modal-description"
@@ -122,7 +123,7 @@ const EditProfileModal = ({ open, onClose, isClient }) => {
               src={
                 photoURL ||
                 (isClient
-                  ? currentClient?.image_path
+                  ? currentClient?.image_path || currentClient?.image
                   : currentEmployee?.image_path)
               }
               alt=""
@@ -143,6 +144,7 @@ const EditProfileModal = ({ open, onClose, isClient }) => {
               onChange={handleFileChange}
             />
             <Button
+              disabled={isPending || isLoading}
               onClick={handleUploadImage}
               variant="contained"
               color="primary"
@@ -159,6 +161,7 @@ const EditProfileModal = ({ open, onClose, isClient }) => {
                 setPhotoURL={setPhotoURL}
                 handleSubmit={handleSubmit}
                 isLoading={isLoading}
+                isPending={isPending}
                 handleClose={handleClose}
                 setSelectedFile={setSelectedFile}
               />

@@ -110,26 +110,6 @@ const form = [
       },
     ],
   },
-  {
-    title: 'Benefits',
-    placeholder: 'Enter benefits',
-    name: 'benefits',
-    type: 'checkboxes',
-    options: [
-      {
-        name: 'fuel_card',
-        title: 'Fuel',
-      },
-      {
-        name: 'medical_card',
-        title: 'Medical',
-      },
-      {
-        name: 'life_insurance_card',
-        title: 'Life insurance',
-      },
-    ],
-  },
 ];
 export const addEmployeeModalFormSteps = [
   {

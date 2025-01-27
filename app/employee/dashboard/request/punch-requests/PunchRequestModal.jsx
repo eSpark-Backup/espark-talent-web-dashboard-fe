@@ -49,6 +49,7 @@ const PunchRequestModal = forwardRef(
           <PunchRequestDataView
             modalData={{
               ...modalData,
+              status: '',
               date: dayjs(modalData?.date)?.format('MMMM D, YYYY'),
             }}
             handleClose={handleClose}

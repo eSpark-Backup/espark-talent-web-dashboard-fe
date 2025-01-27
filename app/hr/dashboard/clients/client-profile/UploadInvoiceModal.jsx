@@ -40,6 +40,9 @@ const UploadInvoiceModal = ({ open, onClose, title }) => {
       onClose={handleCloseModal}
       aria-labelledby="keep-mounted-modal-title"
       aria-describedby="keep-mounted-modal-description"
+      disableScrollLock
+      disableEnforceFocus
+      disableRestoreFocus
       sx={{
         display: 'flex',
         alignItems: 'center',

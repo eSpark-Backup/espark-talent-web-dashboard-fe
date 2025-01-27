@@ -51,7 +51,7 @@ const Step = ({
       console.log({ formVals });
       const formDataVals = new FormData();
       for (const key in formVals) {
-        formDataVals.append(key, formVals[key]);
+        formDataVals?.append(key, formVals[key]);
       }
       return api[method](endpoint, formDataVals);
     },

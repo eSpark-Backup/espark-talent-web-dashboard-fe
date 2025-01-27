@@ -92,6 +92,9 @@ const EditLetterForm = ({ onClose, open, selectedId }) => {
       onClose={onClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
+      disableScrollLock
+      disableEnforceFocus
+      disableRestoreFocus
       sx={{
         display: 'flex',
         justifyContent: 'center',

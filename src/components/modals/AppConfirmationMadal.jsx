@@ -24,8 +24,9 @@ const AppConfirmationMadal = ({
       onClose={handleClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
-      disableEnforceFocus // Prevents issues with hidden ancestors
+      disableEnforceFocus
       disableRestoreFocus
+      disableScrollLock
       sx={{
         display: 'flex',
         alignItems: 'center',

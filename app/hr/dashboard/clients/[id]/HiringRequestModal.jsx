@@ -14,7 +14,7 @@ import { hringRequestForm } from '@/src/constants/data/forms/hiring-request';
 import { useFormik } from 'formik';
 import { FORM_DATA } from '@/src/constants/form';
 import { useDispatch, useSelector } from 'react-redux';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import { HR_CLIENT_EMP_HIRING_REQUEST } from '@/src/services/apiService/apiEndPoints';
 import dayjs from 'dayjs';
@@ -31,6 +31,8 @@ const HiringRequestModal = ({ open, onClose }) => {
   const [hiringValues, setHiringValues] = useState(null);
   const { role } = useSelector((state) => state?.auth?.userData);
   const dispatch = useDispatch();
+  const clientQuery = useQueryClient();
+
   const { mutate, isPending } = useMutation({
     mutationFn: async (formVals) => {
       return api.postData(`${HR_CLIENT_EMP_HIRING_REQUEST}`, formVals);
@@ -40,7 +42,7 @@ const HiringRequestModal = ({ open, onClose }) => {
       dispatch(
         addHiringRequest({
           ...hiringValues,
-          salary_range: `${hiringValues.salary_range.minimum} ${hasSymbol(symbol) ? symbol : ''} - ${hiringValues.salary_range.maximum} ${hasSymbol(symbol) ? symbol : ''}`,
+          salary_range: `${hiringValues?.salary_range?.minimum} ${hasSymbol(symbol) ? symbol : ''} - ${hiringValues?.salary_range?.maximum} ${hasSymbol(symbol) ? symbol : ''}`,
           id: data.id,
           gender: genderType(hiringValues?.gender),
           action:
@@ -53,6 +55,7 @@ const HiringRequestModal = ({ open, onClose }) => {
       handleCloseModal();
       setHiringValues(null);
       Toast('success', 'Data posted successfully');
+      clientQuery?.invalidateQueries(['hr-client-hiring-req-query']);
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to post data');
@@ -115,6 +118,9 @@ const HiringRequestModal = ({ open, onClose }) => {
       onClose={handleCloseModal}
       aria-labelledby="keep-mounted-modal-title"
       aria-describedby="keep-mounted-modal-description"
+      disableScrollLock
+      disableEnforceFocus
+      disableRestoreFocus
       sx={{
         display: 'flex',
         alignItems: 'center',

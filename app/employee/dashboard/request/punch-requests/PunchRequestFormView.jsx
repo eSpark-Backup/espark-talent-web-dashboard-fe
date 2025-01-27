@@ -262,7 +262,7 @@ const PunchRequestDataView = ({
             type="submit"
             variant="outlined"
           >
-            Close
+            Decline
           </Button>
           <Button
             onClick={approveRequestAndClose}
@@ -271,6 +271,10 @@ const PunchRequestDataView = ({
               width: '150px',
               border: '1px solid #029894',
               background: '#FFF',
+              '&:hover': {
+                color: '#fff',
+                backgroundColor: '#029894',
+              },
             }}
           >
             Approve
@@ -285,13 +289,15 @@ const PunchRequestDataView = ({
           <Button
             onClick={handleClose}
             sx={{
-              ml: { xs: 0, md: '20px' },
-              width: { xs: '100%', md: '120px' },
-              '&:hover': {
-                background: '#029894',
+              ml: '20px',
+              minWidth: {
+                xs: '100px',
+                md: '120px',
               },
+              fontSize: '16px',
+              fontWeight: 600,
             }}
-            variant="contained"
+            variant="outlined"
           >
             Close
           </Button>

@@ -86,6 +86,9 @@ const AddInterviewModal = ({ open, onClose }) => {
       onClose={handleCloseModal}
       aria-labelledby="keep-mounted-modal-title"
       aria-describedby="keep-mounted-modal-description"
+      disableScrollLock
+      disableEnforceFocus
+      disableRestoreFocus
       sx={{
         display: 'flex',
         alignItems: 'center',
@@ -193,6 +196,7 @@ const AddInterviewModal = ({ open, onClose }) => {
                       md={12}
                       lg={12}
                       fields={fields}
+                      width={'100%'}
                     />
                   </Grid>
                   {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>}

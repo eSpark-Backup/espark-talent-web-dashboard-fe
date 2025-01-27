@@ -148,6 +148,7 @@ const Dashboard = () => {
                   data-aos="fade-down"
                   disableEnforceFocus
                   disableRestoreFocus
+                  disableScrollLock
                   sx={{
                     display: 'flex',
                     alignItems: 'center',
@@ -198,6 +199,7 @@ const Dashboard = () => {
         data-aos="fade-down"
         disableEnforceFocus
         disableRestoreFocus
+        disableScrollLock
         sx={{
           display: 'flex',
           alignItems: 'center',

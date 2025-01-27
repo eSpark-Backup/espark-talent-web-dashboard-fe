@@ -24,7 +24,7 @@ export const getAttendenceShortHand = (title) => {
 };
 
 export const convertDateFormat = (dateString) => {
-  var parts = dateString.split('-');
+  var parts = dateString?.split('-');
 
   // Swap day and month parts
   var temp = parts[0];
@@ -32,7 +32,7 @@ export const convertDateFormat = (dateString) => {
   parts[1] = temp;
 
   // Construct the new date string in the desired format
-  var newDateString = parts.join('-');
+  var newDateString = parts?.join('-');
 
   return newDateString;
 };
@@ -42,11 +42,11 @@ export const countWeekendsHandler = (startDate, endDate) => {
   const end = dayjs(endDate);
   let weekendCount = 0;
 
-  while (start.isBefore(end, 'day') || start.isSame(end, 'day')) {
-    if (start.day() === 6 || start.day() === 0) {
+  while (start?.isBefore(end, 'day') || start?.isSame(end, 'day')) {
+    if (start?.day() === 6 || start?.day() === 0) {
       weekendCount++;
     }
-    start = start.add(1, 'day');
+    start = start?.add(1, 'day');
   }
 
   return weekendCount;

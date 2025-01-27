@@ -28,10 +28,12 @@ const EditClient = () => {
       }
     );
   };
+
   const defaultValues = {
     ...currentClient,
     country: getCountry(currentClient?.country),
   };
+
   const getFinalData = (values) => {
     const { email, gender, image_path, image, ...rest } = values;
     console.log(email, gender, image_path, image);

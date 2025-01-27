@@ -49,7 +49,7 @@ const AttendanceReport = ({ employeeData }) => {
         const { data } = await api.getData(
           `${HR_GET_EMP_PROFILE}?id=${params?.id}`
         );
-        return data;
+        return data || {};
       } catch (err) {
         Toast('error', err.message || 'Failed to get data');
       }
@@ -64,9 +64,9 @@ const AttendanceReport = ({ employeeData }) => {
     queryFn: async () => {
       try {
         const { data } = await api.getData(
-          `${HR_GET_EMP_ATTENDENCE}?e_email=${empProfile.data?.email}`
+          `${HR_GET_EMP_ATTENDENCE}?e_email=${empProfile?.data?.email}`
         );
-        const tempData = data.map((item) => {
+        const tempData = data?.map((item) => {
           const [client, details] = Object.entries(item)[0];
           return {
             client,
@@ -81,15 +81,16 @@ const AttendanceReport = ({ employeeData }) => {
           };
         });
         dispatch(getAttendanceRequestSuccess(tempData));
-        return tempData;
+        return tempData || [];
       } catch (err) {
         Toast('error', err.message || 'Failed to get data');
       }
     },
+    enabled: !!empProfile?.data?.email,
   });
 
   useEffect(() => {
-    if (empProfile.data?.email) {
+    if (empProfile?.data?.email) {
       clientQuery.invalidateQueries([
         'hr-employee-attendence',
         empProfile?.data?.email,
@@ -98,11 +99,11 @@ const AttendanceReport = ({ employeeData }) => {
   }, [empProfile?.data?.email, clientQuery]);
 
   const getTimeSheet = (timeSheetData) => {
-    return Object.entries(timeSheetData).map(([date, details]) => ({
+    return Object?.entries(timeSheetData)?.map(([date, details]) => ({
       ...details,
       date,
-      day: dayjs(convertDateFormat(date)).format('dddd'),
-      status: Object.entries(details?.status)
+      day: dayjs(convertDateFormat(date))?.format('dddd'),
+      status: Object?.entries(details?.status)
         ?.map(([key, value]) =>
           value ? getAttendenceShortHand(key) : undefined
         )
@@ -158,7 +159,7 @@ const AttendanceReport = ({ employeeData }) => {
               variant="scrollable"
               TabIndicatorProps={{ style: { backgroundColor: '#068987' } }}
             >
-              {data.map((item, index) => (
+              {data?.map((item, index) => (
                 <Tab
                   disableRipple
                   key={index}
@@ -185,7 +186,13 @@ const AttendanceReport = ({ employeeData }) => {
           />
         </Box>
       </Box>
-      <Modal open={open} onClose={() => setOpen(false)}>
+      <Modal
+        open={open}
+        disableScrollLock
+        disableEnforceFocus
+        disableRestoreFocus
+        onClose={() => setOpen(false)}
+      >
         <AttendanceViewModal
           modalData={modalData}
           empData={{

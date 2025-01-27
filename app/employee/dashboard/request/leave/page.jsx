@@ -222,8 +222,8 @@ const Dashboard = () => {
                   aria-labelledby="modal-modal-title"
                   aria-describedby="modal-modal-description"
                   disableEnforceFocus
-                  disableAutoFocus
                   disableRestoreFocus
+                  disableScrollLock
                   sx={{
                     display: 'flex',
                     alignItems: 'center',
@@ -356,6 +356,7 @@ const Dashboard = () => {
         disableEnforceFocus
         disableAutoFocus
         disableRestoreFocus
+        disableScrollLock
         sx={{
           display: 'flex',
           alignItems: 'center',

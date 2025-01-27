@@ -86,8 +86,11 @@ const AddOnboardModal = ({ open, onClose }) => {
     <Modal
       open={open}
       onClose={handleCloseModal}
+      disableScrollLock
       aria-labelledby="keep-mounted-modal-title"
       aria-describedby="keep-mounted-modal-description"
+      disableEnforceFocus
+      disableRestoreFocus
       sx={{
         display: 'flex',
         alignItems: 'center',
@@ -198,6 +201,7 @@ const AddOnboardModal = ({ open, onClose }) => {
                       md={12}
                       lg={12}
                       fields={fields}
+                      width={'100%'}
                     />
                   </Grid>
                   {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>}

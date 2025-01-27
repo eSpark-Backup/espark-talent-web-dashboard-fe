@@ -48,8 +48,8 @@ const Dashboard = () => {
   const dispatch = useDispatch();
   const { data } = useSelector((state) => state?.client?.timeTracking);
   const [timeTracking, setTimeTracking] = useState({
-    month: months[date.getMonth()],
-    year: date.getFullYear(),
+    month: months[date?.getMonth()],
+    year: date?.getFullYear(),
   });
 
   const { isLoading } = useQuery({
@@ -62,8 +62,8 @@ const Dashboard = () => {
         .getData(`${CLIENT_AVAILABLE_EMPLOYEES}`)
         .then((resp) => {
           const tempData = {
-            employees: resp.data?.employees,
-            time_sheet: Object.keys(data?.time_sheet).length
+            employees: resp?.data?.employees,
+            time_sheet: Object?.keys(data?.time_sheet)?.length
               ? data?.time_sheet
               : [],
           };
@@ -91,8 +91,13 @@ const Dashboard = () => {
   const reformTimeSheet = (sheet) => {
     const tempData = sheet?.map((item) => ({
       ...item,
-      day: dayjs(convertDateFormat(item?.date)).format('dddd'),
-      status: Object.entries(item?.status)
+      day: dayjs(convertDateFormat(item?.date))?.format('dddd'),
+      date: formatDate(item?.date),
+      check_in: formatTimeToHHMM(item?.check_in),
+      check_out: formatTimeToHHMM(item?.check_out),
+      break: formatTimeToHHMM(item?.break),
+      resume: formatTimeToHHMM(item?.resume),
+      status: Object?.entries(item?.status)
         ?.map((st) => {
           if (!st[1]) return;
           else return getAttendenceShortHand(st[0]);
@@ -105,7 +110,7 @@ const Dashboard = () => {
   const { mutate, isPending } = useMutation({
     mutationFn: (employee) => {
       dispatch(fetchTimeTrackingDataRequest());
-      return api.getData(
+      return api?.getData(
         `${CLIENT_TIME_TRACKING}?year=${timeTracking?.year}&month=${timeTracking?.month}&emp_id=${employee}`
       );
     },
@@ -113,7 +118,7 @@ const Dashboard = () => {
       const tempData = {
         employees: [...data.employees],
         time_sheet:
-          response?.data && Object.keys(response?.data?.time_sheet)?.length
+          response?.data && Object?.keys(response?.data?.time_sheet)?.length
             ? reformTimeSheet(response?.data?.time_sheet)
             : [],
       };
@@ -157,6 +162,19 @@ const Dashboard = () => {
   const handleDownloadReport = () => {
     attendenceReportDownloadMutation.mutate();
   };
+
+  function formatDate(dateString) {
+    const [day, month, year] = dateString.split('-');
+    const formattedInput = `${year}-${month}-${day}`;
+    return dayjs(formattedInput)?.format('D MMMM, YYYY');
+  }
+
+  function formatTimeToHHMM(time) {
+    if (time === '-') return time;
+    const [hour, minute, secondPart] = time?.split(':') || [];
+    const period = secondPart?.split(' ')[1];
+    return `${hour || ''}:${minute || ''} ${period || ''}`;
+  }
 
   return (
     <>

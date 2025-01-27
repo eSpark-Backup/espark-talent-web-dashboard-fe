@@ -12,5 +12,4 @@ export const addEmployeModalFormSchema = Yup.object({
   employment_term: Yup.string().required('Employement term is required'),
   joining_date: dojValidation,
   country: Yup.object().required('Country is required'),
-  benefits: Yup.mixed(),
 });

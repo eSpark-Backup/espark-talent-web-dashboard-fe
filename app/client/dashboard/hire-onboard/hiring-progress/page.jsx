@@ -58,7 +58,7 @@ const Dashboard = () => {
   const searchParams = useSearchParams();
   const activePrams = searchParams.get('param');
   const clientQuery = useQueryClient();
-
+  console.log(data, 'onBoarding');
   const hiringRequestQuery = useQuery({
     staleTime: 10000,
     refetchOnWindowFocus: false,
@@ -364,6 +364,10 @@ const Dashboard = () => {
     downloadContractMutation.mutate(id);
   };
 
+  function reverseArrayOrder(array) {
+    return array?.slice()?.reverse();
+  }
+
   return (
     <>
       <Grid container>
@@ -468,7 +472,7 @@ const Dashboard = () => {
                         ? hiringRequestDataState
                         : value === 1
                           ? interviewScheduledDataState
-                          : onBoardingDataState
+                          : reverseArrayOrder(onBoardingDataState)
                     }
                     handleClickActionDelete={handleClickDelete}
                     options={

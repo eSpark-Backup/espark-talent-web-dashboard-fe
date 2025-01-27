@@ -20,6 +20,7 @@ const ProfileCroper = ({
   handleSubmit,
   handleClose,
   isLoading,
+  isPending,
   setSelectedFile,
 }) => {
   const [crop, setCrop] = useState({ x: 0, y: 0 });
@@ -92,6 +93,7 @@ const ProfileCroper = ({
         <Box sx={{ width: '100%', mb: 1 }}>
           <Box>
             <Slider
+              disabled={isPending}
               min={1}
               max={3}
               step={0.1}
@@ -122,6 +124,7 @@ const ProfileCroper = ({
             Cancel
           </Button>
           <Button
+            disabled={isPending}
             sx={{ width: { xs: '100%', sm: '45%' } }}
             variant="contained"
             startIcon={<CropIcon />}

@@ -123,6 +123,7 @@ const EditOfficialModal = forwardRef(
         onClose={onClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
+        disableScrollLock
         disableEnforceFocus
         disableRestoreFocus
         sx={{

@@ -73,7 +73,7 @@ const AddEmployeeModal = ({ open, onClose }) => {
       ...item,
       isSelected: false,
     }));
-    const employeeIndex = tempForm.findIndex((el) => el.id === employeeId);
+    const employeeIndex = tempForm?.findIndex((el) => el.id === employeeId);
     tempForm[employeeIndex] = {
       ...tempForm[employeeIndex],
       isSelected: !tempForm[employeeIndex].isSelected,
@@ -120,11 +120,11 @@ const AddEmployeeModal = ({ open, onClose }) => {
   } = useFormik({
     initialValues: {
       joining_date: null,
-      benefits: {
-        life_insurance_card: false,
-        medical_card: false,
-        fuel_card: false,
-      },
+      // benefits: {
+      //   life_insurance_card: false,
+      //   medical_card: false,
+      //   fuel_card: false,
+      // },
     },
     validationSchema: addEmployeModalFormSchema,
     enableReinitialize: true,
@@ -132,8 +132,8 @@ const AddEmployeeModal = ({ open, onClose }) => {
       const finalData = {
         ...formValues,
         id: currentEmpToAddInClient,
-        joining_date: dayjs(formValues.joining_date).format('YYYY-MM-DD'),
-        country: formValues.country.title,
+        joining_date: dayjs(formValues?.joining_date)?.format('YYYY-MM-DD'),
+        country: formValues?.country?.title,
       };
 
       mutate(finalData);
@@ -164,6 +164,9 @@ const AddEmployeeModal = ({ open, onClose }) => {
           onClose={handleCloseModal}
           aria-labelledby="keep-mounted-modal-title"
           aria-describedby="keep-mounted-modal-description"
+          disableScrollLock
+          disableEnforceFocus
+          disableRestoreFocus
           sx={{
             display: 'flex',
             alignItems: 'center',

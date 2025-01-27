@@ -1,37 +1,37 @@
 export const interviewScheduleColumn = [
   {
     title: 'Employee name',
-    flex: 1,
+    flex: 1.5,
     name: 'employee_name',
   },
   {
     title: 'Gender',
-    flex: 1,
+    flex: 1.5,
     name: 'gender',
   },
   {
     title: 'Job title',
-    flex: 1,
+    flex: 1.5,
     name: 'job_title',
   },
   {
     title: 'Role type',
-    flex: 1,
+    flex: 1.5,
     name: 'role_type',
   },
   {
     title: 'Employment term',
-    flex: 1,
+    flex: 1.5,
     name: 'employment_term',
   },
   {
     title: 'Interview date & time',
-    flex: 1,
+    flex: 2,
     name: 'interview_date_time',
   },
   {
     title: 'Country',
-    flex: 1,
+    flex: 1.2,
     name: 'country',
   },
   {
@@ -41,14 +41,14 @@ export const interviewScheduleColumn = [
   },
   {
     title: 'Action',
-    flex: 1,
+    flex: 1.2,
     name: 'action',
   },
 ];
 export const hiringRequestColumn = [
   {
     title: 'Job title',
-    flex: 1,
+    flex: 2,
     name: 'job_title',
   },
   {
@@ -68,7 +68,7 @@ export const hiringRequestColumn = [
   },
   {
     title: 'Hiring starting date',
-    flex: 1.5,
+    flex: 2,
     name: 'hiring_start_date',
   },
   {
@@ -78,12 +78,12 @@ export const hiringRequestColumn = [
   },
   {
     title: 'Salary range',
-    flex: 1,
+    flex: 1.5,
     name: 'salary_range',
   },
   {
     title: 'Job_description',
-    flex: 1,
+    flex: 1.5,
     name: 'job_description',
   },
   {
@@ -100,52 +100,52 @@ export const hiringRequestColumn = [
 export const onboardingColumn = [
   {
     title: 'Employee name',
-    flex: 1,
+    flex: 2,
     name: 'employee_name',
   },
   {
     title: 'Gender',
-    flex: 1,
+    flex: 1.5,
     name: 'gender',
   },
   {
     title: 'Country',
-    flex: 1,
+    flex: 1.5,
     name: 'country',
   },
   {
     title: 'Job title',
-    flex: 1,
+    flex: 2,
     name: 'job_title',
   },
   {
     title: 'Role type',
-    flex: 1,
+    flex: 1.5,
     name: 'role_type',
   },
   {
     title: 'Employment term',
-    flex: 1,
+    flex: 2,
     name: 'employment_term',
   },
   {
     title: 'Joining date',
-    flex: 1,
+    flex: 2,
     name: 'joining_date',
   },
   {
     title: 'Notice period',
-    flex: 1,
+    flex: 1.5,
     name: 'notice_period',
   },
   {
     title: 'Salary',
-    flex: 1,
+    flex: 1.2,
     name: 'salary',
   },
   {
     title: 'Action',
-    flex: 1,
+    flex: 1.2,
     name: 'action',
   },
 ];
