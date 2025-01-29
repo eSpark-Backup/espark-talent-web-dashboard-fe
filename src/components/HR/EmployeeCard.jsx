@@ -1,5 +1,13 @@
 import React from 'react';
-import { Box, Button, Grid, Menu, MenuItem, Typography } from '@mui/material';
+import {
+  Avatar,
+  Box,
+  Button,
+  Grid,
+  Menu,
+  MenuItem,
+  Typography,
+} from '@mui/material';
 import { useRouter } from 'next/navigation';
 import { useSelector } from 'react-redux';
 
@@ -37,7 +45,7 @@ const EmployeeCard = ({
       <Box
         sx={{
           p: 2,
-          minWidth: '240px',
+          minWidth: '245px',
           maxWidth: { xs: '100%', md: '320px' },
           minHeight: '200px',
           position: 'relative',
@@ -65,7 +73,7 @@ const EmployeeCard = ({
               <Typography
                 sx={{
                   color: statusColor,
-                  fontSize: '12px',
+                  fontSize: { xs: '10px', xl: '12px' },
                 }}
               >
                 {statusText}
@@ -160,14 +168,14 @@ const EmployeeCard = ({
           }}
         >
           <Box sx={{ width: '100px', height: '100px' }}>
-            <Box
-              component={'img'}
+            <Avatar
               src={eachItem?.image}
               sx={{
-                height: '100%',
-                width: '100%',
-                objectFit: 'contain',
+                width: { xs: '100px', md: '100px' },
+                height: { xs: '100px', md: '100px' },
                 borderRadius: '50%',
+                objectFit: 'cover',
+                mx: 'auto',
               }}
             />
           </Box>

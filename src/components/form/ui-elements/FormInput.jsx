@@ -868,7 +868,7 @@ const FormInput = ({
                   background: '#FFF',
                   display: type === 'file' && 'none',
                   color: disabled && '#888',
-                  cursor: 'pointer',
+                  // cursor: 'pointer',
                 }}
                 value={type === 'file' ? '' : value}
                 disabled={disabled}

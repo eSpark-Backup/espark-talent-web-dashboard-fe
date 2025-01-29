@@ -1,12 +1,15 @@
 import { PUNCH_IN } from '@/src/constants/punchIn/createPunch';
 import { Box, Button } from '@mui/material';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import dayjs from 'dayjs';
 import { api } from '@/src/services/apiService';
-import { EMP_HOME } from '@/src/services/apiService/apiEndPoints';
+import {
+  EMP_HOME,
+  EMP_PUNCH_REQUEST,
+} from '@/src/services/apiService/apiEndPoints';
 import { useState } from 'react';
 import {
   markBreak,
@@ -50,6 +53,33 @@ const MarkBreak = ({ icon }) => {
   const { currentWorkSpace } = useSelector((state) => state?.emp?.home);
   const { homeData } = useSelector((state) => state?.emp?.home);
 
+  const { data: completedPunchRequests } = useQuery({
+    refetchOnWindowFocus: false,
+    queryKey: ['punchRequests', currentWorkSpace?.email],
+    queryFn: async () => {
+      try {
+        const response = await api.getData(
+          `${EMP_PUNCH_REQUEST}?workspace=${currentWorkSpace?.email || ''}`
+        );
+        return response?.data;
+      } catch (err) {
+        console.error('Error fetching data:', err);
+        return [];
+      }
+    },
+  });
+
+  const filterCompletedRequest = (data) => {
+    const currentDate = dayjs()?.format('YYYY-MM-DD');
+    return data?.requests?.find((item) => {
+      return (
+        item?.status === 'completed' &&
+        item?.punch_type === 'check_out' &&
+        item?.date === currentDate
+      );
+    });
+  };
+
   const { mutate } = useMutation({
     mutationFn: async (data) => {
       let url = `${EMP_HOME}?workspace=${currentWorkSpace?.email}&break=${data.time}`;
@@ -75,8 +105,19 @@ const MarkBreak = ({ icon }) => {
 
   // Working on new login
   const [timer, setTimer] = useState('00:00:00');
+
   useEffect(() => {
     let interval;
+
+    if (
+      filterCompletedRequest(completedPunchRequests) &&
+      Object.keys(filterCompletedRequest(completedPunchRequests)).length > 0
+    ) {
+      clearInterval(interval);
+      setTimer('00:00:00');
+      return;
+    }
+
     if (
       homeData?.today_activity?.break === '-' &&
       homeData?.today_activity?.resume === '-'
@@ -105,7 +146,11 @@ const MarkBreak = ({ icon }) => {
     }
 
     return () => clearInterval(interval);
-  }, [homeData?.today_activity?.break, homeData?.today_activity?.resume]);
+  }, [
+    homeData?.today_activity?.break,
+    homeData?.today_activity?.resume,
+    filterCompletedRequest(completedPunchRequests),
+  ]);
 
   const handleToggleBreak = () => {
     if (

@@ -147,10 +147,9 @@ const Step = ({
           ...defaultValues,
           ...formValues,
           image: formValues?.image || null,
-          gender:
-            formValues?.gender == 'Not specific'
-              ? 'nonspec'
-              : formValues?.gender,
+          ...(formValues?.gender && formValues?.gender !== 'Not specific'
+            ? { gender: formValues?.gender }
+            : {}),
         });
         mutate(newData);
       }

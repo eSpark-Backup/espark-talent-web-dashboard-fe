@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { Box, Button, Modal, Typography } from '@mui/material';
+import { Avatar, Box, Button, Modal, Typography } from '@mui/material';
 import { useMutation } from '@tanstack/react-query';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -43,7 +43,7 @@ const EditProfileModal = ({ open, onClose, isClient }) => {
       onClose();
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to delete data');
+      Toast('error', err?.response?.data?.error[0] || 'Failed to delete data');
       onClose();
     },
   });
@@ -118,18 +118,16 @@ const EditProfileModal = ({ open, onClose, isClient }) => {
               justifyContent: 'center',
             }}
           >
-            <Box
-              component="img"
+            <Avatar
               src={
                 photoURL ||
                 (isClient
                   ? currentClient?.image_path || currentClient?.image
                   : currentEmployee?.image_path)
               }
-              alt=""
               sx={{
-                width: 100,
-                height: 100,
+                width: { xs: '100px', md: '100px' },
+                height: { xs: '100px', md: '100px' },
                 borderRadius: '50%',
                 objectFit: 'cover',
                 mx: 'auto',

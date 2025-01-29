@@ -188,9 +188,9 @@ const renderActions = (
                 } else if (item === 'Delete') {
                   handleClickActionDelete(row?.id, row);
                 } else if (item === 'Reject') {
-                  rejectReq(row);
+                  approveReq && rejectReq(row);
                 } else if (item === 'Approve') {
-                  approveReq(row);
+                  approveReq && approveReq(row);
                 }
                 return;
               }}
@@ -519,8 +519,8 @@ export const renderCellContent = (
         }}
       >
         <>
-          {typeof data === 'string' && data.length > 0
-            ? data.charAt(0).toLowerCase() + data.slice(1)
+          {typeof data === 'string' && data?.length > 0
+            ? data?.charAt(0)?.toLowerCase() + data?.slice(1)
             : '-'}
         </>
       </td>

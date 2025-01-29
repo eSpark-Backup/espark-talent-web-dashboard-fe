@@ -230,7 +230,10 @@ const WideFormInput = ({
               {type === 'date' ? (
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <DesktopDatePicker
-                    // shouldDisableDate={shouldDisableDate}
+                    shouldDisableDate={(date) => {
+                      const day = dayjs(date)?.day();
+                      return day === 6 || day === 0;
+                    }}
                     className={[
                       error && 'error-border',
                       'custom-date-time-picker',

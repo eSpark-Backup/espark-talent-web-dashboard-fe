@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { Box, Button, Modal, Typography } from '@mui/material';
+import { Avatar, Box, Button, Modal, Typography } from '@mui/material';
 import { useMutation } from '@tanstack/react-query';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -26,14 +26,14 @@ const ClientProfileCroper = ({ open, onClose, currentImage }) => {
       onClose();
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to delete data');
+      Toast('error', err?.response?.data?.error[0] || 'Failed to delete data');
       onClose();
     },
   });
 
   const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    if (file && (file.type === 'image/jpeg' || file.type === 'image/png')) {
+    const file = event?.target?.files[0];
+    if (file && (file?.type === 'image/jpeg' || file?.type === 'image/png')) {
       setSelectedFile(file);
     } else {
       Toast('error', 'Only .jpg and .png files are allowed');
@@ -41,7 +41,7 @@ const ClientProfileCroper = ({ open, onClose, currentImage }) => {
   };
 
   const handleUploadImage = () => {
-    fileInputRef.current.click();
+    fileInputRef?.current?.click();
   };
 
   const handleSubmit = (file) => {
@@ -98,19 +98,16 @@ const ClientProfileCroper = ({ open, onClose, currentImage }) => {
               justifyContent: 'center',
             }}
           >
-            <Box
-              component="img"
+            <Avatar
               src={photoURL || currentImage}
-              alt=""
               sx={{
-                width: 100,
-                height: 100,
+                width: { xs: '100px', md: '100px' },
+                height: { xs: '100px', md: '100px' },
                 borderRadius: '50%',
                 objectFit: 'cover',
                 mx: 'auto',
               }}
             />
-
             <input
               type="file"
               accept="image/*"

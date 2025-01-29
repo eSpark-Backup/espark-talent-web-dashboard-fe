@@ -1,6 +1,7 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import {
+  Avatar,
   Box,
   Button,
   CircularProgress,
@@ -321,14 +322,14 @@ const Page = () => {
               >
                 <Box sx={{ position: 'relative', display: 'inline-block' }}>
                   <Box sx={{ width: '100px', height: '100px' }}>
-                    <Box
-                      component={'img'}
+                    <Avatar
                       src={currentEmployee?.image_path}
                       sx={{
-                        height: '100%',
-                        width: '100%',
-                        objectFit: 'contain',
+                        width: { xs: '100px', md: '100px' },
+                        height: { xs: '100px', md: '100px' },
                         borderRadius: '50%',
+                        objectFit: 'cover',
+                        mx: 'auto',
                       }}
                     />
                   </Box>
@@ -920,7 +921,7 @@ const Page = () => {
                   <Client />
                 </>
               ) : value === employeeProfileData?.valuethree ? (
-                <AttendanceReport employeeData={currentEmployee} />
+                <AttendanceReport employeeData={currentEmployee || {}} />
               ) : value === employeeProfileData?.valueFive ? (
                 <TimeAndLeaves />
               ) : value === employeeProfileData?.valueFour ? (

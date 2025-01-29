@@ -55,8 +55,9 @@ const AttendanceReport = ({ employeeData }) => {
       }
     },
   });
+  console.log(empProfile?.data?.email, 'empProfile');
 
-  const { data, isLoading } = useQuery({
+  const { data: attendanceData, isLoading } = useQuery({
     staleTime: 10000,
     refetchOnWindowFocus: false,
     refetchOnMount: true,
@@ -66,20 +67,22 @@ const AttendanceReport = ({ employeeData }) => {
         const { data } = await api.getData(
           `${HR_GET_EMP_ATTENDENCE}?e_email=${empProfile?.data?.email}`
         );
-        const tempData = data?.map((item) => {
-          const [client, details] = Object.entries(item)[0];
-          return {
-            client,
-            emp_data: {
-              time_sheet: getTimeSheet(details?.time_sheet?.record),
-              employee_details: {
-                ...details?.employee_details,
-                expect_check_in: details?.time_sheet?.expect_check_in,
-                expect_check_out: details?.time_sheet?.expect_check_out,
+        const tempData =
+          data &&
+          data?.map((item) => {
+            const [client, details] = Object.entries(item)[0];
+            return {
+              client,
+              emp_data: {
+                time_sheet: getTimeSheet(details?.time_sheet?.record),
+                employee_details: {
+                  ...details?.employee_details,
+                  expect_check_in: details?.time_sheet?.expect_check_in,
+                  expect_check_out: details?.time_sheet?.expect_check_out,
+                },
               },
-            },
-          };
-        });
+            };
+          });
         dispatch(getAttendanceRequestSuccess(tempData));
         return tempData || [];
       } catch (err) {
@@ -139,19 +142,19 @@ const AttendanceReport = ({ employeeData }) => {
       <Box
         sx={{
           maxWidth: '100%',
-          mt: !data?.length ? '40px' : '8px',
+          mt: !attendanceData?.length ? '40px' : '8px',
           borderBottom: 1,
           borderColor: 'divider',
         }}
       >
         <Box
           sx={{
-            display: data?.length ? 'flex' : 'none',
+            display: attendanceData?.length ? 'flex' : 'none',
             borderBottom: 1,
             borderColor: 'divider',
           }}
         >
-          {data?.length ? (
+          {attendanceData?.length ? (
             <Tabs
               value={currentTab}
               onChange={handleChangeTab}
@@ -159,7 +162,7 @@ const AttendanceReport = ({ employeeData }) => {
               variant="scrollable"
               TabIndicatorProps={{ style: { backgroundColor: '#068987' } }}
             >
-              {data?.map((item, index) => (
+              {attendanceData?.map((item, index) => (
                 <Tab
                   disableRipple
                   key={index}
@@ -196,7 +199,7 @@ const AttendanceReport = ({ employeeData }) => {
         <AttendanceViewModal
           modalData={modalData}
           empData={{
-            ...data?.[currentTab]?.emp_data?.employee_details,
+            ...attendanceData?.[currentTab]?.emp_data?.employee_details,
             role: employeeData?.role,
           }}
           handleClose={() => setOpen(false)}

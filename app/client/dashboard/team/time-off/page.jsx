@@ -117,7 +117,6 @@ const Dashboard = () => {
         dispatch(updateTimeOffRequests(updatingLeaveRequest));
       }
       Toast('success', 'Request updated successfully');
-      setUpdatingLeaveRequest(null);
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to delete data');
@@ -129,7 +128,8 @@ const Dashboard = () => {
       id: props?.id,
       status: 'completed',
     });
-    if (tabData?.currentReqTypeTab === 'Leave Requests') {
+
+    if (tabData?.currentReqTypeTab === 'Leave Requests' && props?.id !== null) {
       updateRequestMutation?.mutate({
         endpoint: CLIENT_LEAVE_REQUEST,
         id: props?.id,
@@ -148,7 +148,7 @@ const Dashboard = () => {
       id: props?.id,
       status: 'rejected',
     });
-    if (tabData?.currentReqTypeTab === 'Leave Requests') {
+    if (tabData?.currentReqTypeTab === 'Leave Requests' && props?.id !== null) {
       updateRequestMutation?.mutate({
         endpoint: CLIENT_LEAVE_REQUEST,
         id: props?.id,

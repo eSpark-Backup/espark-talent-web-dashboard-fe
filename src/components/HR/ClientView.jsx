@@ -312,7 +312,7 @@ const ClientView = ({ status, data, isLoading }) => {
                             <Typography
                               sx={{
                                 color: eachItem?.active ? '#068987' : '#F00',
-                                fontSize: '12px',
+                                fontSize: { xs: '10px', xl: '12px' },
                               }}
                             >
                               {eachItem?.active ? 'Active' : 'Inactive'}

@@ -7,23 +7,17 @@ const isValidDateFormat = (value) => {
   return dateFormatRegex.test(value);
 };
 
-// Custom function to check if date is not greater than maxDate
-const isDateNotGreaterThanMaxDate = (value, maxDate) => {
-  return new Date(value) <= maxDate;
-};
-
 // Schema definition
 export const createPunchRequestSchema = Yup.object({
   date: Yup.string()
     .required('Date is required')
     .test('is-valid-date', 'Invalid date format', isValidDateFormat)
     .test(
-      'not-greater-than-max-date',
-      'Date should not be greater than max date',
+      'no-weekends',
+      'Start date cannot be a Saturday or Sunday',
       (value) => {
-        // Define your maxDate here, for example, let's say it's today's date
-        const maxDate = new Date();
-        return isDateNotGreaterThanMaxDate(value, maxDate);
+        const day = new Date(value)?.getDay();
+        return day !== 0 && day !== 6;
       }
     ),
   expectedCheckIn: Yup.string(),

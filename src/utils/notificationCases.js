@@ -14,7 +14,7 @@ const handleAdminNotifications = (notification, userType) => {
   const commonUrl = `${userType}/dashboard`;
   const paramText = notification?.type?.toLowerCase()?.replace(/ /g, '_');
   const clientId = notification?.client_record_id;
-
+  const employeeId = notification?.employee_record_id;
   const routes = {
     'Hiring Request': `clients/${clientId}`,
     'Interview Schedule': `clients/${clientId}`,
@@ -25,6 +25,7 @@ const handleAdminNotifications = (notification, userType) => {
     Onboarding: `clients/${clientId}`,
     'Employee Invoice': `clients/${clientId}`,
     'Other Payments': `clients/${clientId}`,
+    'WFH Request': `employees/${employeeId}`,
   };
   const route = routes[notification?.type];
 
@@ -35,6 +36,7 @@ const handleAdminNotifications = (notification, userType) => {
       'Onboarding',
       'Employee Invoice',
       'Other Payments',
+      'WFH Request',
     ].includes(notification?.type);
 
     const url = constructUrl(

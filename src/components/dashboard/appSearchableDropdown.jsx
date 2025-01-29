@@ -126,6 +126,7 @@ const AppSearchableDropdown = ({
             borderBottomRightRadius: !isOpenedDropdown && '5px',
             width: width || '400px',
             height: '43px',
+            cursor: 'pointer',
           }}
           p={'10px'}
         >

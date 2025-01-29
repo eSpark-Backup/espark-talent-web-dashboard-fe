@@ -1,6 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import {
+  Avatar,
   Button,
   Grid,
   Menu,
@@ -223,7 +224,7 @@ const EmployeeView = ({ status, data, isLoading }) => {
                     cursor: 'pointer',
                   }}
                   onClick={() =>
-                    router.push(`/hr/dashboard/employees/${eachItem?.id}`)
+                    router?.push(`/hr/dashboard/employees/${eachItem?.id}`)
                   }
                 >
                   <Box sx={{ width: '100%', position: 'absolute' }}>
@@ -251,7 +252,7 @@ const EmployeeView = ({ status, data, isLoading }) => {
                               eachItem.status === 'Active' || eachItem.active
                                 ? '#068987'
                                 : '#F00',
-                            fontSize: '12px',
+                            fontSize: { xs: '10px', xl: '12px' },
                           }}
                         >
                           {eachItem.active ? 'Active' : 'Inactive'}
@@ -269,14 +270,14 @@ const EmployeeView = ({ status, data, isLoading }) => {
                     }}
                   >
                     <Box sx={{ width: '100px', height: '100px' }}>
-                      <Box
-                        component={'img'}
+                      <Avatar
                         src={eachItem?.image_path}
                         sx={{
-                          height: '100%',
-                          width: '100%',
-                          objectFit: 'contain',
+                          width: { xs: '100px', md: '100px' },
+                          height: { xs: '100px', md: '100px' },
                           borderRadius: '50%',
+                          objectFit: 'cover',
+                          mx: 'auto',
                         }}
                       />
                     </Box>

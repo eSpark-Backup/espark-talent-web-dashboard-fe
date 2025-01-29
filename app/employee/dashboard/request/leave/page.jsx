@@ -219,6 +219,7 @@ const Dashboard = () => {
                 <Modal
                   open={openModal}
                   onClose={handleCloseModal}
+                  closeAfterTransition
                   aria-labelledby="modal-modal-title"
                   aria-describedby="modal-modal-description"
                   disableEnforceFocus

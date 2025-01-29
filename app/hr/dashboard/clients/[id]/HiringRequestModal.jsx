@@ -73,6 +73,7 @@ const HiringRequestModal = ({ open, onClose }) => {
     handleReset,
   } = useFormik({
     initialValues: {
+      comments: '',
       hiring_end_date: null,
       hiring_start_date: null,
     },

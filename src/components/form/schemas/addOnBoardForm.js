@@ -16,8 +16,8 @@ export const addOnboardFormSchema = Yup.object({
     .required('Notice period is required')
     .min(1, 'Notice period must be at least 1 day')
     .max(365, 'Notice period cannot exceed 365 days'),
-  salary: Yup.string()
+  salary: Yup.number()
     .required('Salary is required')
-    .min(3, 'Job title must be at least 3 characters long'),
+    .min(1, 'Salary must be at least 1 characters long'),
   salary_currency: Yup.string().required('Currency is required'),
 });
