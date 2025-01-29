@@ -12,14 +12,13 @@ import dayjs from 'dayjs';
 import { convertDateFormat, getAttendenceShortHand } from '@/src/utils/helpers';
 import { Toast } from '../Toast/Toast';
 import AttendanceViewModal from '@/app/hr/dashboard/employees/[id]/AttendanceViewModal';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { getAttendanceRequestSuccess } from '@/src/redux/slices/hrSlices/employeeSlice';
 import { attendanceReportTableColumn } from '@/src/constants/data/tables/attendanceReport';
 import { calculateExpectedTime } from '@/src/utils/calculateExpectedTime';
 
 const AttendanceReport = ({ employeeData }) => {
   const dispatch = useDispatch();
-  const { attendance } = useSelector((state) => state?.hr?.employees);
   const params = useParams();
   const clientQuery = useQueryClient();
   const [open, setOpen] = useState(false);
@@ -118,10 +117,10 @@ const AttendanceReport = ({ employeeData }) => {
   };
 
   const formattedTimeSheet =
-    attendance?.[currentTab]?.emp_data?.time_sheet?.map((row) => ({
+    attendanceData?.[currentTab]?.emp_data?.time_sheet?.map((row) => ({
       ...row,
       expected_hours: calculateExpectedTime(
-        attendance?.[currentTab]?.emp_data,
+        attendanceData?.[currentTab]?.emp_data,
         currentTab
       ),
       date: dayjs(row?.date, 'DD-MM-YYYY')?.format('D MMMM, YYYY'),

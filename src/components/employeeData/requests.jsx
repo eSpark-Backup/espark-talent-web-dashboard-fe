@@ -315,7 +315,11 @@ const Request = () => {
         }}
       >
         <LeaveViewModal
-          modalData={{ ...modalData?.row, status: '' }}
+          modalData={{
+            ...modalData?.row,
+            status: '',
+            employee_image: currentEmployee?.image_path || '',
+          }}
           handleClose={handleClose}
         />
       </Modal>
