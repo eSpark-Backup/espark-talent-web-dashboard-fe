@@ -2,12 +2,12 @@
   "rules": [
     {
       "rulePriority": 1,
-      "description": "Keep last 30 images",
+      "description": "Keep last 5 images",
       "selection": {
         "tagStatus": "tagged",
         "tagPrefixList": [ "prod" ],
         "countType": "imageCountMoreThan",
-        "countNumber": 30
+        "countNumber": 5
       },
       "action": {
         "type": "expire"
