@@ -15,6 +15,7 @@ import {
 } from '@/src/redux/slices/hrSlices/homeSlice';
 import { api } from '@/src/services/apiService';
 import { HR_HOME } from '@/src/services/apiService/apiEndPoints';
+import Cookies from 'js-cookie';
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -34,6 +35,23 @@ const Dashboard = () => {
     },
     onSuccess: ({ data }) => {
       dispatch(getHomeData(data));
+      const {
+        employee_perms,
+        invoices_perms,
+        leaves_perms,
+        client_perms,
+        policies_perms,
+      } = data || {};
+      Cookies?.set(
+        'permissions',
+        JSON?.stringify({
+          employee_perms,
+          invoices_perms,
+          leaves_perms,
+          client_perms,
+          policies_perms,
+        })
+      );
       return data;
     },
     onError: (err) => {
@@ -44,6 +62,7 @@ const Dashboard = () => {
   useEffect(() => {
     hrHomeMutation.mutate(HR_HOME);
   }, []);
+
   const { homeData, isLoading } = useSelector((state) => state?.hr?.home);
 
   return (

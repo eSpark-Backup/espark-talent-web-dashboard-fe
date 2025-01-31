@@ -186,6 +186,10 @@ const EmployeeCard = ({
               fontWeight: '400',
               textAlign: 'center',
               textWrap: 'nowrap',
+              whiteSpace: 'nowrap',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              maxWidth: '160px',
             }}
           >
             {eachItem?.name}
@@ -196,6 +200,9 @@ const EmployeeCard = ({
               fontSize: '16px',
               textAlign: 'center',
               textWrap: 'nowrap',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              maxWidth: '160px',
             }}
           >
             {eachItem?.job_title}

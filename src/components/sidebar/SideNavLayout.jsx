@@ -44,18 +44,13 @@ export const SideNav = (props) => {
   return (
     <Drawer
       disableScrollLock
-      aria-labelledby="modal-modal-title"
-      aria-describedby="modal-modal-description"
-      disableEnforceFocus // Prevents issues with hidden ancestors
+      disableEnforceFocus
       disableRestoreFocus
+      disableAutoFocus
       anchor="left"
       onClose={onClose}
       open={open}
-      BackdropProps={
-        {
-          // Removed the invalid `click` attribute
-        }
-      }
+      ModalProps={{ keepMounted: true }}
       BackdropComponent={(props) => (
         <Backdrop {...props} sx={{ backgroundColor: 'rgba(0, 0, 0, 0.04)' }} />
       )}

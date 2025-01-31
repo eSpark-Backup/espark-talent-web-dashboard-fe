@@ -34,7 +34,11 @@ const Benefits = () => {
   const { data, isLoading } = useQuery({
     staleTime: 10000,
     refetchOnWindowFocus: false,
-    queryKey: ['hr-employee-get-benefit', currentEmployee?.email],
+    queryKey: [
+      'hr-employee-get-benefit',
+      currentEmployee?.email,
+      employee_perms && employee_perms?.[0],
+    ],
     queryFn: async () => {
       try {
         if (!currentEmployee?.email) {
@@ -49,7 +53,16 @@ const Benefits = () => {
           ? data.map((item) => ({
               ...item,
               issue_date: dayjs(item?.issue_date)?.format('MMMM D, YYYY'),
-              action: ['Delete', 'View'],
+              action: [
+                role === 'super_admin' ||
+                (employee_perms && employee_perms[0]?.delete)
+                  ? 'Delete'
+                  : null,
+                role === 'super_admin' ||
+                (employee_perms && employee_perms[0]?.write)
+                  ? 'View'
+                  : null,
+              ]?.filter(Boolean),
             }))
           : [];
         dispatch(getEmpBenefitRequestSuccess(tempBenefits));
@@ -96,14 +109,18 @@ const Benefits = () => {
   };
 
   function processColumns() {
-    if (
-      role === 'super_admin' ||
-      (role !== 'super_admin' && employee_perms[0].delete)
-    )
+    if (role === 'super_admin') {
       return BENEFITS_TABLECOLUMN;
-    else {
-      return BENEFITS_TABLECOLUMN.filter((item) => item.name !== 'action');
     }
+
+    const hasDeletePermission = employee_perms?.[0]?.delete;
+    const hasWritePermission = employee_perms?.[0]?.write;
+
+    if (!hasDeletePermission && !hasWritePermission) {
+      return BENEFITS_TABLECOLUMN?.filter((item) => item?.name !== 'action');
+    }
+
+    return BENEFITS_TABLECOLUMN;
   }
 
   return (

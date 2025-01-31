@@ -7,7 +7,7 @@ import { modulepermissionColumn } from '@/src/constants/data/tables/modulePermis
 import RoleModal from './addRoleModal';
 import { SETTING } from '@/src/constants/SettingHr';
 import { useDispatch, useSelector } from 'react-redux';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import {
   HR_ACCOUNTS,
@@ -22,6 +22,7 @@ import { Toast } from '../Toast/Toast';
 
 const Role = () => {
   const dispatch = useDispatch();
+  const clientQuery = useQueryClient();
   const companyAccountsQuery = useQuery({
     staleTime: 10000,
     refetchOnWindowFocus: false,
@@ -158,7 +159,7 @@ const Role = () => {
             updatedPermission['download'] === true)
       );
       if (updatedPermission['read'] === true && anyOtherTrue) {
-        alert('Read cannot be false if any other is true');
+        Toast('warning', 'Read cannot be false if any other is true');
         return; // Abort the function
       }
       updatedPermission[column.name] = !updatedPermission[column.name];
@@ -188,6 +189,7 @@ const Role = () => {
     const selectedRoleIndex = permissionDataNew.findIndex((el) => el.id === id);
     setSelectedRolePermissionIndex(selectedRoleIndex);
   };
+
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
@@ -234,6 +236,7 @@ const Role = () => {
     },
     onSuccess: () => {
       Toast('success', 'Data updated successfully');
+      clientQuery?.invalidateQueries(['hrHomeData']);
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to update data');

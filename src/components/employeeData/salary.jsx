@@ -23,6 +23,8 @@ import dayjs from 'dayjs';
 
 const Salary = ({ timeTracking }) => {
   const { currentEmployee } = useSelector((state) => state?.hr?.employees);
+  const { employee_perms } =
+    useSelector((state) => state?.hr?.home?.homeData) || [];
   const { role } = useSelector((state) => state?.auth?.userData);
   const dispatch = useDispatch();
   const QueryClient = useQueryClient();
@@ -39,6 +41,7 @@ const Salary = ({ timeTracking }) => {
       timeTracking?.month || 'all',
       timeTracking?.year || 'all',
       currentEmployee?.email,
+      employee_perms && employee_perms[0],
     ],
     queryFn: async () => {
       dispatch(getEmpSalaryRequest());
@@ -54,7 +57,16 @@ const Salary = ({ timeTracking }) => {
                   ...item,
                   paySlip: 'Download',
                   date: dayjs(item?.date)?.format('MMMM D, YYYY'),
-                  action: ['Delete', 'View'],
+                  action: [
+                    role === 'super_admin' ||
+                    (employee_perms && employee_perms[0]?.delete)
+                      ? 'Delete'
+                      : null,
+                    role === 'super_admin' ||
+                    (employee_perms && employee_perms[0]?.write)
+                      ? 'View'
+                      : null,
+                  ]?.filter(Boolean),
                 }));
           dispatch(getEmpSalaryRequestSuccess(tempSalary));
           return tempSalary || [];
@@ -95,12 +107,25 @@ const Salary = ({ timeTracking }) => {
   };
 
   function processColumns() {
-    if (
-      role === 'super_admin' ||
-      (role !== 'super_admin' && currentEmployee?.permissions?.delete)
-    )
+    if (role === 'super_admin') {
       return SALARY_TABLECOLUMN;
-    return SALARY_TABLECOLUMN.filter((col) => col?.name !== 'action');
+    }
+
+    let filteredColumns = SALARY_TABLECOLUMN;
+
+    if (!employee_perms[0]?.download) {
+      filteredColumns = filteredColumns?.filter(
+        (col) => col?.name !== 'pay_slip'
+      );
+    }
+
+    if (!employee_perms?.[0]?.delete && !employee_perms?.[0]?.write) {
+      filteredColumns = filteredColumns?.filter(
+        (col) => col?.name !== 'action'
+      );
+    }
+
+    return filteredColumns;
   }
 
   return (

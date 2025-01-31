@@ -69,7 +69,6 @@ export default function ResponsiveNavbar({ openSidebar }) {
               },
             }}
           />
-
           <Box
             sx={{
               display: { xs: 'flex', md: 'none ' },

@@ -37,7 +37,11 @@ const Letters = () => {
   const { data: letters, isLoading } = useQuery({
     staleTime: 10000,
     refetchOnWindowFocus: false,
-    queryKey: ['hr-employee-get-letter', currentEmployee?.email],
+    queryKey: [
+      'hr-employee-get-letter',
+      currentEmployee?.email,
+      employee_perms && employee_perms?.[0],
+    ],
     queryFn: async () => {
       try {
         if (!currentEmployee?.email) {
@@ -55,7 +59,16 @@ const Letters = () => {
                 ...item,
                 download: 'Download',
                 issue_date: dayjs(item?.issue_date)?.format('MMMM D, YYYY'),
-                action: ['Delete', 'View'],
+                action: [
+                  role === 'super_admin' ||
+                  (employee_perms && employee_perms[0]?.delete)
+                    ? 'Delete'
+                    : null,
+                  role === 'super_admin' ||
+                  (employee_perms && employee_perms[0]?.write)
+                    ? 'View'
+                    : null,
+                ]?.filter(Boolean),
               }));
         dispatch(getEmpLetterRequestSuccess(tempLetters));
         return tempLetters || [];
@@ -125,18 +138,30 @@ const Letters = () => {
   };
 
   function processColumns() {
-    if (
-      role === 'super_admin' ||
-      (role !== 'super_admin' && employee_perms[0].delete)
-    )
+    if (role === 'super_admin') {
       return HR_EMP_LETTERS_TABLECOLUMN;
-    else {
-      return HR_EMP_LETTERS_TABLECOLUMN?.filter(
+    }
+
+    const hasDeletePermission = employee_perms?.[0]?.delete;
+    const hasWritePermission = employee_perms?.[0]?.write;
+    const hasDownloadPermission = employee_perms?.[0]?.download;
+
+    let filteredColumns = [...HR_EMP_LETTERS_TABLECOLUMN];
+
+    if (!hasDownloadPermission) {
+      filteredColumns = filteredColumns.filter(
+        (item) => item?.name !== 'download'
+      );
+    }
+
+    if (!hasDeletePermission && !hasWritePermission) {
+      filteredColumns = filteredColumns.filter(
         (item) => item?.name !== 'action'
       );
     }
-  }
 
+    return filteredColumns;
+  }
   return (
     <>
       <Box

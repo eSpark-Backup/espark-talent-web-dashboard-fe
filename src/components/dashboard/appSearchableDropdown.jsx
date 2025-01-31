@@ -127,8 +127,12 @@ const AppSearchableDropdown = ({
             width: width || '400px',
             height: '43px',
             cursor: 'pointer',
+            '&:hover': {
+              border: `solid 1px ${'#029894'}`,
+            },
           }}
-          p={'10px'}
+          pl={'10px'}
+          pr={'12px'}
         >
           {withFlag ? (
             <Box
@@ -176,8 +180,8 @@ const AppSearchableDropdown = ({
           ) : (
             <Image
               src={'/icons/Dropdown.svg'}
-              width={15}
-              height={15}
+              width={12}
+              height={12}
               alt="Dropdown"
             />
           )}

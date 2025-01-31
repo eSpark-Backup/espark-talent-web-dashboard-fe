@@ -82,7 +82,8 @@ const ClientEmployees = ({ fromClient, openModal }) => {
             flexDirection: { xs: 'column', md: 'row' },
             alignItems: { xs: 'flex-start', md: 'center' },
             justifyContent: { xs: 'flex-start', md: 'space-between' },
-            borderBottom: 'solid 1px #ccc',
+            borderBottom: 1,
+            borderColor: 'divider',
           }}
         >
           <Tabs
@@ -90,7 +91,11 @@ const ClientEmployees = ({ fromClient, openModal }) => {
             onChange={handleChange}
             aria-label="wrapped label tabs example"
             variant="scrollable"
-            sx={{ width: { xs: '100%', md: '80%' } }}
+            sx={{
+              width: { xs: '100%', md: '80%' },
+              borderBottom: { xs: 1, md: 0 },
+              borderColor: { xs: 'divider', md: 'none' },
+            }}
             TabIndicatorProps={{ style: { backgroundColor: '#068987' } }}
             // disableRipple={true}
           >

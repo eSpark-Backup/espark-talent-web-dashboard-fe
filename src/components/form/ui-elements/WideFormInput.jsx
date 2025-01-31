@@ -170,11 +170,12 @@ const WideFormInput = ({
       >
         <Box
           sx={{
+            width: name === 'reason' ? '99.8%' : 'auto',
             background: darkBack ? '#F6F6F6' : '#FFF',
             p: {
               xs: '0',
-              md: name === 'reason' ? '0px' : '0px 0px 5px 0px',
-              lg: name === 'reason' ? '0px' : '5px 5px 5px 20px',
+              md: name === 'reason' ? '0px 0px 0px 20px' : '0px 0px 5px 0px',
+              lg: name === 'reason' ? '0px 0px 0px 20px' : '5px 5px 5px 20px',
             },
             borderRadius: '5px',
             display: 'flex',
@@ -208,13 +209,13 @@ const WideFormInput = ({
               width: {
                 xs: '100%',
                 lg: '778px',
-                backgroundColor: name === 'reason' && '#fff',
-                my: {
-                  xs: '0',
-                  md: name === 'reason' ? '0px 0px 5px 0px' : '0px',
-                  lg: name === 'reason' ? '5px 5px 5px 20px' : '0px',
-                },
               },
+              my: {
+                xs: '0',
+                md: name === 'reason' ? '0px 0px 5px 0px' : '0px',
+                lg: name === 'reason' ? '5px 5px 5px 0px' : '0px',
+              },
+              backgroundColor: name === 'reason' && '#fff',
             }}
           >
             <Box

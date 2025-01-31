@@ -13,15 +13,24 @@ import {
 import SidebarLogo from './sidebarLogo';
 import SidebarActiveUser from './SidebarActiveUser';
 import ProfilePopper from '../popover/ProfilePopper';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import WorkSpacePopper from '../popover/WorkSpacePopper';
 import SidebarWorkSpace from './SidebarWorkSpace';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useQuery } from '@tanstack/react-query';
+import { api } from '@/src/services/apiService';
+import { HR_HOME } from '@/src/services/apiService/apiEndPoints';
+import {
+  getHomeData,
+  getHomeDataRequest,
+} from '@/src/redux/slices/hrSlices/homeSlice';
+import { Toast } from '../Toast/Toast';
+import Cookies from 'js-cookie';
 
 const Sidebar = ({ userName }) => {
   const theme = useTheme();
   const pathName = usePathname();
-
+  const dispatch = useDispatch();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('lg'));
   const [windowHeight, setWindowHeight] = React.useState(window.innerHeight);
   const employee = pathName.includes('/employee/dashboard');
@@ -29,6 +38,7 @@ const Sidebar = ({ userName }) => {
   const [profileMenu, setProfileMenu] = React.useState(null);
   const [workspace, setWorkspace] = React.useState(null);
   const [notification, setNotification] = React.useState(null);
+  const router = useRouter();
 
   React.useEffect(() => {
     const handleResize = () => {
@@ -46,8 +56,10 @@ const Sidebar = ({ userName }) => {
     paddingTop: windowHeight < 300 ? 0 : '35px',
     paddingBottom: windowHeight < 300 ? 0 : '35px',
   };
+
   const { employee_perms, client_perms, invoices_perms, policies_perms } =
     useSelector((state) => state?.hr?.home?.homeData) || {};
+
   const employeePerms = {
     employee_perms,
     client_perms,
@@ -55,36 +67,76 @@ const Sidebar = ({ userName }) => {
     policies_perms,
   };
 
+  const { data } = useQuery({
+    queryKey: ['hrHomeData'],
+    queryFn: async () => {
+      dispatch(getHomeDataRequest());
+      const response = await api.getData(HR_HOME);
+      dispatch(getHomeData(response.data));
+      const {
+        employee_perms,
+        invoices_perms,
+        leaves_perms,
+        client_perms,
+        policies_perms,
+      } = response?.data || {};
+      Cookies?.set(
+        'permissions',
+        JSON?.stringify({
+          employee_perms,
+          invoices_perms,
+          leaves_perms,
+          client_perms,
+          policies_perms,
+        })
+      );
+      return response?.data;
+    },
+    onError: (err) => {
+      Toast('error', err?.message || 'Failed to fetch data');
+    },
+  });
+
   const filteredRoutes = (routes) => {
-    return routes.filter((route) => {
-      // Check for employee permissions
+    return routes?.filter((route) => {
       if (
-        route.text === 'Employees' &&
+        route?.text === 'Employees' &&
         !employeePerms?.employee_perms?.[0]?.read
       ) {
-        return false; // Exclude 'Employees' route if read permission is false
+        if (pathName?.includes(route?.link)) {
+          router?.push('/hr/dashboard');
+        }
+        return false;
       }
 
-      // Check for other permissions (assuming properties exist in employeePerms)
-      const clientPerms = employeePerms?.client_perms?.[0]; // Assuming client permissions exist
+      const clientPerms = employeePerms?.client_perms?.[0];
       if (route.text === 'Clients' && !clientPerms?.read) {
-        return false; // Exclude 'Clients' route if read permission is false
+        if (pathName?.includes(route?.link)) {
+          router?.push('/hr/dashboard');
+        }
+        return false;
       }
 
-      const invoicePerms = employeePerms.invoices_perms?.[0]; // Assuming invoice permissions exist
+      const invoicePerms = employeePerms.invoices_perms?.[0];
       if (route.text === 'Invoices' && !invoicePerms?.read) {
-        return false; // Exclude 'Invoices' route if read permission is false
+        if (pathName?.includes(route?.link)) {
+          router?.push('/hr/dashboard');
+        }
+        return false;
       }
 
-      const policyPerms = employeePerms.policies_perms?.[0]; // Assuming policy permissions exist
+      const policyPerms = employeePerms.policies_perms?.[0];
       if (route.text === 'Policies' && !policyPerms?.read) {
-        return false; // Exclude 'Policies' route if read permission is false
+        if (pathName?.includes(route?.link)) {
+          router?.push('/hr/dashboard');
+        }
+        return false;
       }
-
-      // Include the route if no permission check fails
       return true;
     });
   };
+
+  console.log({ data });
 
   const renderLinks = () => {
     const client = pathName.includes('/client/dashboard');
@@ -98,7 +150,7 @@ const Sidebar = ({ userName }) => {
       if (role === 'super_admin') {
         return Hr_Routes;
       } else {
-        const withoutSettings = Hr_Routes.filter(
+        const withoutSettings = Hr_Routes?.filter(
           ({ text }) => text !== 'Settings'
         );
         return filteredRoutes(withoutSettings);

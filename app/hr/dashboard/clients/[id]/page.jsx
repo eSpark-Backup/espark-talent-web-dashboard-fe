@@ -85,6 +85,7 @@ const AddEmployee = () => {
     (state) => state?.hr?.home?.homeData
   );
   const { role } = useSelector((state) => state?.auth?.userData);
+
   const { isLoading, isFetching } = useQuery({
     staleTime: 100000,
     // refetchOnWindowFocus: false,
@@ -422,17 +423,37 @@ const AddEmployee = () => {
         });
     },
   });
-  function processColumns(column) {
+  function ClientProcessColumns(column) {
     const action =
       role === 'super_admin' ||
-      (role !== 'super_admin' && client_perms?.[0].delete);
+      (role !== 'super_admin' && client_perms?.[0]?.delete);
     const download =
       role === 'super_admin' ||
-      (role !== 'super_admin' && client_perms?.[0].delete);
+      (role !== 'super_admin' && client_perms?.[0]?.download);
     const payment_status =
       role === 'super_admin' ||
-      (role !== 'super_admin' && client_perms?.[0].write);
-    return column.filter(
+      (role !== 'super_admin' && client_perms?.[0]?.write);
+
+    return column?.filter(
+      (item) =>
+        (action || item.name !== 'action') &&
+        (download || item.name !== 'job_description') &&
+        (payment_status || item.name !== 'payment_status')
+    );
+  }
+
+  function InvoiceProcessColumns(column) {
+    const action =
+      role === 'super_admin' ||
+      (role !== 'super_admin' && invoices_perms?.[0]?.delete);
+    const download =
+      role === 'super_admin' ||
+      (role !== 'super_admin' && invoices_perms?.[0]?.download);
+    const payment_status =
+      role === 'super_admin' ||
+      (role !== 'super_admin' && invoices_perms?.[0]?.write);
+
+    return column?.filter(
       (item) =>
         (action || item.name !== 'action') &&
         (download || item.name !== 'download') &&
@@ -455,6 +476,7 @@ const AddEmployee = () => {
   const searchParams = useSearchParams();
 
   const search = searchParams.get('param');
+
   const clientProfileTabs = [
     {
       label: 'Hire & onboard',
@@ -465,19 +487,19 @@ const AddEmployee = () => {
           prop: a11yProps(0),
           label: 'Hiring request',
           data: hireAndOnBoard.hiringRequest,
-          column: processColumns(hiringRequestColumn),
+          column: ClientProcessColumns(hiringRequestColumn),
         },
         {
           prop: a11yProps(1),
           label: 'Interview schedule',
           data: hireAndOnBoard.interviewSchedule,
-          column: processColumns(interviewScheduleColumn),
+          column: ClientProcessColumns(interviewScheduleColumn),
         },
         {
           prop: a11yProps(2),
           label: 'Onboarding',
           data: hireAndOnBoard.onBoarding,
-          column: processColumns(onboardingColumn),
+          column: ClientProcessColumns(onboardingColumn),
         },
       ],
       isTable: true,
@@ -514,19 +536,19 @@ const AddEmployee = () => {
           prop: a11yProps(0),
           label: 'Pending',
           data: employeeInvoices?.pending,
-          column: processColumns(invoicePaymentColumn),
+          column: InvoiceProcessColumns(invoicePaymentColumn),
         },
         {
           prop: a11yProps(1),
           label: 'Processing',
           data: employeeInvoices?.processing,
-          column: processColumns(invoicePaymentColumn),
+          column: InvoiceProcessColumns(invoicePaymentColumn),
         },
         {
           prop: a11yProps(2),
           label: 'Paid',
           data: employeeInvoices?.paid,
-          column: processColumns(invoicePaymentColumn),
+          column: InvoiceProcessColumns(invoicePaymentColumn),
         },
       ],
       isTable: true,
@@ -540,19 +562,19 @@ const AddEmployee = () => {
           prop: a11yProps(0),
           label: 'Pending',
           data: otherInvoices?.pending,
-          column: processColumns(otherPaymentColumn),
+          column: InvoiceProcessColumns(otherPaymentColumn),
         },
         {
           prop: a11yProps(1),
           label: 'Processing',
           data: otherInvoices?.processing,
-          column: processColumns(otherPaymentColumn),
+          column: InvoiceProcessColumns(otherPaymentColumn),
         },
         {
           prop: a11yProps(2),
           label: 'Paid',
           data: otherInvoices?.paid,
-          column: processColumns(otherPaymentColumn),
+          column: InvoiceProcessColumns(otherPaymentColumn),
         },
       ],
       isTable: true,
@@ -586,7 +608,7 @@ const AddEmployee = () => {
         clientProfileTabs[0]?.nestedTabs[0]?.label,
         setCurrentTab,
         hireAndOnBoard.hiringRequest,
-        processColumns,
+        ClientProcessColumns,
         hiringRequestColumn,
         setCurrentTabTable,
         0,
@@ -599,7 +621,7 @@ const AddEmployee = () => {
         clientProfileTabs[2]?.nestedTabs[0]?.label,
         setCurrentTab,
         employeeInvoices?.pending,
-        processColumns,
+        InvoiceProcessColumns,
         invoicePaymentColumn,
         setCurrentTabTable,
         2,
@@ -612,7 +634,7 @@ const AddEmployee = () => {
         clientProfileTabs[3]?.nestedTabs[0]?.label,
         setCurrentTab,
         otherInvoices?.pending,
-        processColumns,
+        InvoiceProcessColumns,
         otherPaymentColumn,
         setCurrentTabTable,
         3,
@@ -1200,11 +1222,15 @@ const AddEmployee = () => {
                       >
                         <Tabs
                           variant="scrollable"
-                          value={currentTab.nested.val}
+                          value={currentTab?.nested?.val}
                           onChange={(ev, newVal) =>
                             handleChangeNestedTab(ev, newVal, nestedTabs, rest)
                           }
-                          sx={{ width: { xs: '100%', md: '80%' } }}
+                          sx={{
+                            width: { xs: '100%', md: '80%' },
+                            borderBottom: { xs: 1, md: 0 },
+                            borderColor: { xs: 'divider', md: 'transparent' },
+                          }}
                           aria-label="basic tabs example"
                           TabIndicatorProps={{
                             style: { backgroundColor: '#068987' },
@@ -1369,9 +1395,9 @@ const AddEmployee = () => {
                   OtherInvoicesPending.isLoading ||
                   OtherInvoicesProcessing.isLoading ||
                   OtherInvoicesPaid.isLoading,
-                currentTab: currentTab.label,
+                currentTab: currentTab?.label,
                 data: getCurrentTabData(),
-                column: currentTabTable.column,
+                column: currentTabTable?.column,
                 openModal: handleOpenAddClientModal,
                 isOpen: isOpen,
                 handleOpen,

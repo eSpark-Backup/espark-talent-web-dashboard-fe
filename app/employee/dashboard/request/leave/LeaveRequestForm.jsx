@@ -107,7 +107,7 @@ const LeaveRequestForm = ({ handleClose }) => {
       Toast('success', 'Data posted successfully');
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to post data');
+      Toast('error', err?.response?.data?.error || 'Failed to post data');
       dispatch(createEmpLeaveRequestFailed());
     },
   });

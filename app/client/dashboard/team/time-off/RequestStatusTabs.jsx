@@ -262,7 +262,6 @@ const RequestStatusTabs = ({
                     <Box maxWidth="100%" sx={{ mb: { xs: 0.7 } }}>
                       <Input
                         width={{ xs: '100%', lg: 250, xl: 400 }}
-                        placeHolder={'Search by name...'}
                         handleChange={
                           tabData?.currentReqTypeTab === 'Leave Requests'
                             ? setSearchLeaveRequest

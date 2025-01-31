@@ -147,6 +147,7 @@ export default function ProfilePopper({
     localStorage.removeItem('password');
     router?.replace('/');
     location?.reload();
+    window?.history?.replaceState(null, '', '/');
   };
 
   const getTimePassedFromNow = (date, time) => {

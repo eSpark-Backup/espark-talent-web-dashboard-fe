@@ -143,6 +143,8 @@ const AuthForm = ({ uiData, fields, handleOpenTroubleModal }) => {
           localStorage?.setItem('password', values.password);
         }
         mutate(values);
+        // Clear back path history
+        window?.history?.replaceState(null, '', '/dashboard');
       } catch (error) {
         console.error('Error submitting form:', error);
       }

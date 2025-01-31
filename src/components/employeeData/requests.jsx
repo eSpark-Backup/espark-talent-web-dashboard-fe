@@ -30,6 +30,8 @@ import PunchRequestModal from '@/app/employee/dashboard/request/punch-requests/P
 const Request = () => {
   const [value, setValue] = useState(0);
   const { currentEmployee } = useSelector((state) => state?.hr?.employees);
+  const { employee_perms } = useSelector((state) => state?.hr?.home?.homeData);
+  const { role } = useSelector((state) => state?.auth?.userData);
   const [openLeave, setOpenLeave] = useState(false);
   const [openPunch, setOpenPunch] = useState(false);
   const [openWfh, setOpenWfh] = useState(false);
@@ -85,11 +87,13 @@ const Request = () => {
   const { data: punchData, isLoading: punchLoading } = useQuery({
     staleTime: 10000,
     refetchOnWindowFocus: false,
-    queryKey: ['hr-employee-get-punch-request, currentEmployee?.email'],
+    queryKey: ['hr-employee-get-punch-request', currentEmployee?.email || ''],
     queryFn: async () => {
       dispatch(getEmpRequest());
       return api
-        .getData(`${HR_PUNCH_REQUEST}?emp_email=${currentEmployee?.email}`)
+        .getData(
+          `${HR_PUNCH_REQUEST}?emp_email=${currentEmployee?.email || ''}`
+        )
         .then(({ data }) => {
           const tempRequest =
             data === '' || !data.length
@@ -116,12 +120,17 @@ const Request = () => {
           Toast('error', err.message || 'Failed to get data');
         });
     },
+    enabled: !!currentEmployee?.email,
   });
 
   const { data: wfhData, isLoading: wfhLoading } = useQuery({
     staleTime: 10000,
     refetchOnWindowFocus: false,
-    queryKey: ['hr-employee-get-wfh-request', currentEmployee?.email],
+    queryKey: [
+      'hr-employee-get-wfh-request',
+      currentEmployee?.email,
+      employee_perms?.[0],
+    ],
     queryFn: async () => {
       dispatch(getEmpRequest());
       return api
@@ -135,10 +144,16 @@ const Request = () => {
                   date: dayjs(item?.date)?.format('MMMM D, YYYY'),
                   actionStatus: true,
                   actions: [
-                    item?.status === 'pending' ? 'Reject' : null,
-                    item?.status === 'pending' ? 'Approve' : null,
+                    item?.status === 'pending' &&
+                    (role === 'super_admin' || employee_perms?.[0]?.write)
+                      ? 'Reject'
+                      : null,
+                    item?.status === 'pending' &&
+                    (role === 'super_admin' || employee_perms?.[0]?.write)
+                      ? 'Approve'
+                      : null,
                     'View',
-                  ],
+                  ]?.filter(Boolean),
                 }));
           dispatch(
             getEmpRequestSuccess({

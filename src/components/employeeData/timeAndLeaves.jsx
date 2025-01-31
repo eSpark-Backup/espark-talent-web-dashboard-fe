@@ -24,7 +24,9 @@ import { useEffect } from 'react';
 import dayjs from 'dayjs';
 
 const TimeAndLeaves = () => {
-  const { employee_perms } = useSelector((state) => state?.hr?.home?.homeData);
+  const { employee_perms, leaves_perms } = useSelector(
+    (state) => state?.hr?.home?.homeData
+  );
   const { role } = useSelector((state) => state?.auth?.userData);
 
   const { id } = useSelector((state) => state?.hr?.employees?.currentEmployee);
@@ -141,6 +143,16 @@ const TimeAndLeaves = () => {
     },
   });
 
+  const getLeavesColumn = (leaves_perms, columns) => {
+    const writeAcess = leaves_perms?.[0]?.write;
+    return columns?.filter((column) => writeAcess || column?.name !== 'status');
+  };
+
+  const getLeavesData = (leaves_perms, data) => {
+    const readAcess = leaves_perms?.[0]?.read;
+    return !readAcess ? [] : data;
+  };
+
   const [isOpenTimeManagementModal, setIsOpenTimeManagementModal] =
     useState(false);
   const [isOpenLeaveManagementModal, setIsOpenLeaveManagementModal] =
@@ -156,7 +168,7 @@ const TimeAndLeaves = () => {
       prop: a11yProps(1),
       label: 'Leaves',
       data: leavesData,
-      column: leavesColumn,
+      column: getLeavesColumn(leaves_perms, leavesColumn),
     },
   ];
   const handleChangeTab = (event, newValue, rest) => {
@@ -202,6 +214,7 @@ const TimeAndLeaves = () => {
 
     updateLeaveStatusMutation.mutate(tempData);
   };
+
   return (
     <>
       <Box
@@ -240,7 +253,9 @@ const TimeAndLeaves = () => {
           ))}
         </Tabs>
         {(role === 'super_admin' ||
-          (role !== 'super_admin' && employee_perms?.[0].write)) && (
+          (role !== 'super_admin' && currentTab?.val === 1
+            ? leaves_perms[0]?.write
+            : employee_perms[0]?.write)) && (
           <Box
             sx={{
               width: { xs: '100%', sm: 'auto' },
@@ -277,8 +292,14 @@ const TimeAndLeaves = () => {
         <AppTable
           minWidth={'1200px'}
           currentTab={currentTab}
-          column={currentTab.column}
-          data={currentTab?.val === 0 ? time : leaves}
+          column={
+            currentTab?.val === 0
+              ? timeColumn
+              : getLeavesColumn(leaves_perms, leavesColumn)
+          }
+          data={
+            currentTab?.val === 0 ? time : getLeavesData(leaves_perms, leaves)
+          }
           noPagination
           updateLeaveStatus={handleUpdateLeaveStatus}
           isLoading={isLoading}
