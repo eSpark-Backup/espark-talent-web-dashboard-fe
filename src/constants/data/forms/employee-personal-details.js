@@ -2,18 +2,15 @@ import { jobTitles } from '../dropdown.js/startHiring';
 
 export const personalDetailsForm = [
   {
-    title: 'Employee name',
-    placeholder: 'John Doe',
-    name: 'employee_name',
+    title: 'First name',
+    placeholder: 'John',
+    name: 'first_name',
   },
   {
-    title: 'Joining Date',
-    placeholder: 'DD-MM-YYYY',
-    suffixIcon: 'calender',
-    type: 'date',
-    name: 'joining_date',
+    title: 'Last name',
+    placeholder: 'Doe',
+    name: 'last_name',
   },
-
   {
     title: 'Birth Date',
     placeholder: 'DD-MM-YYYY',
@@ -39,6 +36,11 @@ export const personalDetailsForm = [
     ],
   },
   {
+    title: 'Personal Email',
+    placeholder: 'Enter personal email',
+    name: 'personal_email',
+  },
+  {
     title: 'Marital status',
     placeholder: 'Select',
     name: 'marital_status',
@@ -52,6 +54,28 @@ export const personalDetailsForm = [
         label: 'Single',
       },
     ],
+  },
+];
+
+export const officialDetailsForm = [
+  {
+    title: 'Employee id',
+    placeholder: 'John Doe',
+    name: 'employee_id',
+  },
+  {
+    title: 'Official Email',
+    placeholder: 'Enter company email',
+    name: 'email',
+  },
+  {
+    title: 'Job title',
+    placeholder: 'Select job',
+    type: 'select',
+    nested: true,
+    options: jobTitles,
+    name: 'job_title',
+    selectWithType: true,
   },
   {
     title: 'Role',
@@ -76,12 +100,44 @@ export const personalDetailsForm = [
     ],
   },
   {
-    title: 'Job title',
-    placeholder: 'Select job',
+    title: 'Joining Date',
+    placeholder: 'DD-MM-YYYY',
+    suffixIcon: 'calender',
+    type: 'date',
+    name: 'joining_date',
+  },
+  {
+    title: 'Job Status',
+    placeholder: 'Select employement Status',
     type: 'select',
-    nested: true,
-    options: jobTitles,
-    name: 'job_title',
-    selectWithType: true,
+    name: 'job_status',
+    options: [
+      {
+        label: 'Internship',
+      },
+      {
+        label: 'Probation',
+      },
+      {
+        label: 'Part-Time',
+      },
+      {
+        label: 'Permanent',
+      },
+    ],
+  },
+  {
+    title: 'Starting Date',
+    placeholder: 'DD-MM-YYYY',
+    suffixIcon: 'calender',
+    type: 'date',
+    name: 'starting_date',
+  },
+  {
+    title: 'Ending Date',
+    placeholder: 'DD-MM-YYYY',
+    suffixIcon: 'calender',
+    type: 'date',
+    name: 'ending_date',
   },
 ];

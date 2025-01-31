@@ -265,6 +265,9 @@ const TeamManagement = () => {
         onClose={handleClose}
         aria-labelledby="keep-mounted-modal-title"
         aria-describedby="keep-mounted-modal-description"
+        disableScrollLock
+        disableEnforceFocus
+        disableRestoreFocus
       >
         <Box sx={style} className="modal-wrapper">
           <Box
@@ -314,7 +317,7 @@ const TeamManagement = () => {
             <AppSearchableDropdown
               setIsLoadingList={setIsLoadingEmployee}
               isLoadingList={isLoadingEmployee}
-              selectedItem={selectedEmployee}
+              selectedItem={selectedEmployee || ''}
               data={listItems}
               setSelectedItem={setSelectedEmployee}
             />

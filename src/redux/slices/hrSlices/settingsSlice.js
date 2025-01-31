@@ -14,11 +14,9 @@ const settingsSlice = createSlice({
       state.companySettings = action.payload;
     },
     getAccountsData: (state, action) => {
-      console.log({ getData: action.payload });
       state.accounts = action.payload;
     },
     addAccount: (state, action) => {
-      console.log({ addData: action.payload });
       state.accounts = [...state.accounts, action.payload];
     },
     getPasswordData: (state, action) => {

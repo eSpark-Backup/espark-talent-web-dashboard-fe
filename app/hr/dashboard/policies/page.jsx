@@ -4,11 +4,7 @@ import { Grid, Box, Button } from '@mui/material';
 
 import Heading from '@/src/components/global/Heading';
 import AppTable from '@/src/components/appTableNew/AppTable';
-import {
-  policyColumn,
-  // policyData,
-} from '@/src/constants/data/tables/policyData';
-// import { toCamelCase } from '@/src/utils/stringModification';
+import { policyColumn } from '@/src/constants/data/tables/policyData';
 import UploadPolicyModal from '@/src/components/modals/uploadPolicyModal';
 import { POLICIES_DATA } from '@/src/constants/policies';
 import { CONTRACT_SIGNED } from '@/src/constants/contractSigned';
@@ -60,7 +56,6 @@ const Policies = () => {
         })
         .catch((err) => {
           Toast('error', err.message || 'Failed to get data');
-          console.log({ err });
         });
     },
   });
@@ -69,13 +64,12 @@ const Policies = () => {
       return api.updateJSONData(HR_POLICY_EDIT, formVals);
     },
     onSuccess: () => {
-      Toast('success', 'Policies updates successfully');
       setIsOpenSavePolicies(false);
+      Toast('success', 'Policies updates successfully');
       handleClose?.();
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to post data');
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const deletePolicyMutation = useMutation({
@@ -83,24 +77,19 @@ const Policies = () => {
       return api.daleteData(`${HR_POLICY}?id=${id}`);
     },
     onSuccess: () => {
-      Toast('success', 'Policy deleted successfully');
       dispatch(removePolicy(deletingPolicyId));
+      Toast('success', 'Policy deleted successfully');
       setDeletingPolicyId(null);
       handleClose?.();
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to delete policy');
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const [openUploadPolicy, setOpenUploadPolicy] = useState(false);
   const [deletingPolicyId, setDeletingPolicyId] = useState(null);
-  // const [formTableState, setFormTableState] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenSavePolicies, setIsOpenSavePolicies] = useState(false);
-  // useEffect(() => {
-  //   setFormTableState([...policyData]);
-  // }, [policyData]);
   const handleSelectRow = (id, column, row) => {
     if (
       role === 'super_admin' ||
@@ -115,19 +104,7 @@ const Policies = () => {
       );
     } else {
       return false;
-      // alert('hi');
     }
-    // const tempForm = [...policyData];
-    // const employeeIndex = tempForm.findIndex(
-    //   (employee) => employee.id === employeeId
-    // );
-    // const targetObject = {
-    //   ...tempForm[employeeIndex],
-    // };
-    // targetObject[[toCamelCase(column)]][2] =
-    //   !targetObject[[toCamelCase(column)]][2];
-    // tempForm[employeeIndex] = targetObject;
-    // setFormTableState(tempForm);
   };
   const handleClickDelete = (id) => {
     setDeletingPolicyId(id);
@@ -254,6 +231,7 @@ const Policies = () => {
               }}
             >
               <Button
+                aria-hidden={false}
                 sx={{
                   minWidth: '120px',
                   fontSize: '16px',
@@ -273,7 +251,7 @@ const Policies = () => {
         </Box>
       </Grid>
       {openUploadPolicy && (
-        <UploadPolicyModal open={handleOpenModal} onClose={handleClose} />
+        <UploadPolicyModal open={openUploadPolicy} onClose={handleClose} />
       )}
       <AppConfirmationMadal
         title={CONTRACT_SIGNED?.delete}

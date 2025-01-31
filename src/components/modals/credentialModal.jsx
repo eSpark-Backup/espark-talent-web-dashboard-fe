@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, forwardRef } from 'react';
 import { Box, Button, CircularProgress, Grid, Typography } from '@mui/material';
-
 import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { useFormik } from 'formik';
 import { CREDENTIAL_FORM } from '@/src/constants/credential';
 import { credentialForm } from '@/src/constants/data/forms/add-credential';
 
-const CredentialModal = ({ onClose, modalData }) => {
-  console.log({ modalData });
+const CredentialModal = forwardRef(({ onClose, modalData }, ref) => {
   const [isLoading, setisLoading] = useState(false);
+
   const Loading = () => {
     setisLoading(true);
     setTimeout(() => {
@@ -16,9 +15,11 @@ const CredentialModal = ({ onClose, modalData }) => {
       handleCloseModal();
     }, 2000);
   };
+
   useEffect(() => {
     console.log('modal', modalData);
   }, [modalData]);
+
   const {
     handleSubmit,
     values,
@@ -41,14 +42,16 @@ const CredentialModal = ({ onClose, modalData }) => {
     validateOnChange: false,
     validateOnBlur: false,
   });
+
   const handleCloseModal = () => {
     onClose();
   };
+
   return (
     <Box
+      ref={ref}
       sx={{
         bgcolor: '#fff',
-        // width: { xs: '90%', sm: '90%', md: '25%' },
         maxWidth: '500px',
         width: '95%',
         display: 'flex',
@@ -147,7 +150,6 @@ const CredentialModal = ({ onClose, modalData }) => {
                     fields={fields}
                     suffixIconInside={suffixIconInside}
                     readOnly={true}
-                    // modalData={modalData}
                   />
                 </Grid>
                 {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>}
@@ -172,6 +174,7 @@ const CredentialModal = ({ onClose, modalData }) => {
       </form>
     </Box>
   );
-};
+});
 
+CredentialModal.displayName = 'CredentialModal';
 export default CredentialModal;

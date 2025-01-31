@@ -28,7 +28,8 @@ const EditProfile = () => {
             maxWidth: '750px',
           },
           '@media (max-width: 380px)': {
-            padding: 2,
+            padding: 3,
+            paddingRight: 3.5,
           },
         }}
       >

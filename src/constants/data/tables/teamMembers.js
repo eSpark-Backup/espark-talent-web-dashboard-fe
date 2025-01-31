@@ -24,11 +24,6 @@ export const teamMembersColumn = [
     flex: 2,
     name: 'country',
   },
-  {
-    title: 'Benefits',
-    flex: 2,
-    name: 'benefits',
-  },
 ];
 export const teamMembersData = [
   {

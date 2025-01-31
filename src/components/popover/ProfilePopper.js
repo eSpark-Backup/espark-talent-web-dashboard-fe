@@ -2,13 +2,12 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Popper from '@mui/material/Popper';
-import { MenuItem, Typography } from '@mui/material';
+import { Fade, MenuItem, Typography } from '@mui/material';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 
 import SidebarUserAvatar from '../sidebar/SidebarUserAvatar';
 import { NOTIFICATION_TITLE, profileMenuData } from '@/src/constants/sidebar';
-// import { NOTIFICATION_DATA } from '@/src/constants/data/userData';
 import SignoutModal from '../signoutmodal/signoutModal';
 import DotBadge from '../sidebar/SidebarProfileBadge';
 import { useDispatch, useSelector } from 'react-redux';
@@ -47,19 +46,25 @@ export default function ProfilePopper({
   const userType = Cookie.get('userType');
 
   const handleClick = (event) => {
-    setProfileMenu(profileMenu ? null : event?.currentTarget);
+    setProfileMenu(profileMenu ? null : event?.currentTarget || undefined);
     setWorkspace(null);
   };
 
   const { refetch } = useQuery({
     queryKey: ['get-notifications'],
-    queryFn: () => {
-      setIsFetchingNotifications(true);
-      api.getData(GET_NOTIFICATIONS).then(({ data }) => {
-        dispatch(getNotifications(data !== '' ? data : []));
+    queryFn: async () => {
+      try {
+        setIsFetchingNotifications(true);
+        const { data } = await api.getData(GET_NOTIFICATIONS);
+        // Dispatch the fetched notifications or an empty array if no data
+        dispatch(getNotifications(data || []));
         setIsFetchingNotifications(false);
-        return data;
-      });
+        return data || []; // Ensure the function always returns a value
+      } catch (error) {
+        console.error('Error fetching notifications:', error);
+        setIsFetchingNotifications(false);
+        return []; // Return an empty array on error
+      }
     },
   });
 
@@ -68,6 +73,7 @@ export default function ProfilePopper({
       setNotification(notification ? null : event?.currentTarget);
     } else if (key == 'Sign out') {
       setOpenModal(true);
+      handleClickOutside();
     } else {
       null;
     }
@@ -101,16 +107,25 @@ export default function ProfilePopper({
   };
 
   React.useEffect(() => {
-    document.addEventListener('mousedown', handleClickOutsideNotification);
+    document?.addEventListener('mousedown', handleClickOutsideNotification);
+    document?.addEventListener('scroll', handleClickOutsideNotification);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutsideNotification);
+      document?.removeEventListener(
+        'mousedown',
+        handleClickOutsideNotification
+      );
+      document?.removeEventListener('scroll', handleClickOutsideNotification);
     };
   }, [notification]);
 
   React.useEffect(() => {
-    document.addEventListener('mousedown', handleClickOutside);
+    document?.addEventListener('click', handleClickOutside);
+    document?.addEventListener('scroll', handleClickOutside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document?.removeEventListener('click', handleClickOutside);
+      if (!window.scroll) {
+        return document?.removeEventListener('scroll', handleClickOutside);
+      }
     };
   }, [profileMenu]);
 
@@ -132,6 +147,7 @@ export default function ProfilePopper({
     localStorage.removeItem('password');
     router?.replace('/');
     location?.reload();
+    window?.history?.replaceState(null, '', '/');
   };
 
   const getTimePassedFromNow = (date, time) => {
@@ -160,7 +176,11 @@ export default function ProfilePopper({
         aria-describedby={id}
         type="button"
         onMouseEnter={(event) => handleClick(event)}
-        style={{ width: '100%', height: '100%' }}
+        style={{
+          width: '100%',
+          height: '100%',
+          backgroundColor: 'transparent',
+        }}
       >
         {button}
       </button>
@@ -173,250 +193,186 @@ export default function ProfilePopper({
         id={id}
         open={notification !== null ? true : open}
         ref={profilePopupRef}
-        anchorEl={profileMenu}
+        anchorEl={profileMenu || null}
         placement={profile_placement}
-        sx={{ position: 'relative', zIndex: 505 }}
+        sx={{ position: 'relative', zIndex: 405 }}
+        transition
       >
-        <Box
-          ref={profilePopupRef}
-          sx={{
-            borderRadius: '5px',
-            border: '1px solid #068987',
-            background: '#FFF',
-            boxShadow: '0px 0px 80px 0px rgba(0, 0, 0, 0.20)',
-            display: 'flex',
-            width: '220px',
-            height: '100px',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'flex-start',
-            position: 'fixed',
-            marginLeft: { xs: 'auto', lg: 0.8 },
-            right: { xs: 0, lg: 'auto' },
-            marginRight: { xs: 0, lg: 0 },
-            marginTop: { xs: 8, lg: 1 },
-            '@media(max-width:1200px)': {
-              marginRight: -2,
-            },
-          }}
-        >
-          {profileMenuData?.map((item, i) => (
-            <MenuItem
-              key={i}
-              onClick={(e) => handleNotification(e, item?.text)}
+        {({ TransitionProps }) => (
+          <Fade
+            {...TransitionProps}
+            in={notification !== null ? true : open}
+            timeout={400}
+          >
+            <Box
+              ref={profilePopupRef}
               sx={{
-                width: '100%',
-                py: 1.1,
-                '&: hover': { backgroundColor: 'transparent' },
-                ...(item?.text === 'Notifications' && {
-                  borderBottom: '1px solid #E4E4E4',
-                }),
+                borderRadius: '5px',
+                border: '1px solid #068987',
+                background: '#FFF',
+                boxShadow: '0px 0px 80px 0px rgba(0, 0, 0, 0.20)',
+                display: 'flex',
+                width: '220px',
+                height: '100px',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'flex-start',
+                position: 'fixed',
+                marginLeft: { xs: 'auto', lg: 0.8 },
+                right: { xs: 0, lg: 'auto' },
+                marginRight: { xs: 0, lg: 0 },
+                marginTop: { xs: 8, lg: 2 },
+                '@media(max-width:1200px)': {
+                  marginRight: -2,
+                },
               }}
             >
-              <Box sx={{ display: 'flex', gap: 1.7, px: 2 }}>
-                <Box sx={{ display: 'flex', gap: 0.1 }}>
-                  <Box sx={{ marginTop: -1.2 }}>
-                    {item?.text == 'Notifications' && data?.length && (
-                      <DotBadge color={'red'} />
-                    )}
-                  </Box>
-                  <Image width={20} height={20} src={item?.icon} alt="icon" />
-                </Box>
-                <Typography
-                  variant="body1"
+              {profileMenuData?.map((item, i) => (
+                <MenuItem
+                  key={i}
+                  onClick={(e) => handleNotification(e, item?.text)}
                   sx={{
-                    color: `${
-                      item?.text == 'Sign out' ? '#DF1515' : '#595959'
-                    }`,
+                    width: '100%',
+                    py: 1.1,
+                    '&: hover': { backgroundColor: 'transparent' },
+                    ...(item?.text === 'Notifications' && {
+                      borderBottom: '1px solid #E4E4E4',
+                    }),
                   }}
                 >
-                  {item?.text}
-                </Typography>
-              </Box>
-            </MenuItem>
-          ))}
-        </Box>
+                  <Box sx={{ display: 'flex', gap: 1.7, px: 2 }}>
+                    <Box sx={{ display: 'flex', gap: 0.1 }}>
+                      <Box sx={{ marginTop: -1.2 }}>
+                        {item?.text === 'Notifications' &&
+                          data?.length !== 0 && <DotBadge color={'red'} />}
+                      </Box>
+                      <Image
+                        width={20}
+                        height={20}
+                        src={item?.icon}
+                        alt="icon"
+                      />
+                    </Box>
+                    <Typography
+                      variant="body1"
+                      sx={{
+                        color: `${item?.text === 'Sign out' ? '#DF1515' : '#595959'}`,
+                      }}
+                    >
+                      {item?.text}
+                    </Typography>
+                  </Box>
+                </MenuItem>
+              ))}
+            </Box>
+          </Fade>
+        )}
       </Popper>
+
       <Popper
         id={Notification_id}
-        open={Notification_open}
+        open={Notification_open || false}
         ref={notificationPopupRef}
         onMouseLeave={handleCloseNotification}
-        anchorEl={notification}
+        anchorEl={notification || false}
         placement={'bottom-start'}
         sx={{ position: 'relative', zIndex: 506 }}
       >
-        <Box
-          ref={notificationPopupRef}
-          sx={{
-            borderRadius: '5px',
-            border: '1px solid #068987',
-            background: '#FFF',
-            boxShadow: '0px 0px 80px 0px rgba(0, 0, 0, 0.20)',
-            display: 'flex',
-            width: {
-              xs: '250px',
-              sm: `${restructureNotificationData(data)?.length === 0 ? '250px' : '350px'}`,
-            },
-            minHeight: 'auto',
-            maxHeight: '410px',
-            flexDirection: 'column',
-            alignItems: 'flex-start',
-            marginLeft: {
-              xs: 1,
-              lg: -0.1,
-            },
-            marginTop: { xs: 9, lg: -6.3 },
-            '@media(max-width:1200px)': {
-              marginTop: -6.5,
-              marginRight: -0.5,
-            },
-          }}
-        >
-          <Box
-            sx={{
-              width: '100%',
-              px: 2.5,
-              py: 2,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-            }}
-          >
-            <Typography variant="body2" sx={{ fontWeight: 600 }}>
-              {NOTIFICATION_TITLE}
-            </Typography>
+        {({ TransitionProps }) => (
+          <Fade {...TransitionProps} in={Notification_open} timeout={300}>
             <Box
-              component={'img'}
-              width={20}
-              height={22}
-              alt="Refresh"
-              src={`/icons/Refresh.svg`}
-              className={`icon-refresh-${isFetchingNotifications ? 'play' : 'pause'}`}
-              id={'refresh-icon'}
-              onClick={refetch}
-              sx={{ cursor: 'pointer' }}
-            />
-          </Box>
-          <Box sx={{ width: '100%', minHeight: '50px', overflowY: 'auto' }}>
-            {restructureNotificationData(data)?.length > 0 ? (
-              <>
-                {restructureNotificationData(data)?.map((item, index) => (
+              ref={notificationPopupRef}
+              sx={{
+                borderRadius: '5px',
+                border: '1px solid #068987',
+                background: '#FFF',
+                boxShadow: '0px 0px 80px 0px rgba(0, 0, 0, 0.20)',
+                display: 'flex',
+                width: {
+                  xs: '250px',
+                  sm: `${restructureNotificationData(data)?.length === 0 ? '250px' : '350px'}`,
+                },
+                minHeight: 'auto',
+                maxHeight: '410px',
+                flexDirection: 'column',
+                alignItems: 'flex-start',
+                marginLeft: {
+                  xs: 1,
+                  lg: -0.1,
+                },
+                marginTop: { xs: 9, lg: -6.3 },
+                '@media(max-width:1200px)': {
+                  marginTop: -6.5,
+                  marginRight: -0.5,
+                },
+              }}
+            >
+              <Box
+                sx={{
+                  width: '100%',
+                  px: 2.5,
+                  py: 2,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                }}
+              >
+                <Typography variant="body2" sx={{ fontWeight: 600 }}>
+                  {NOTIFICATION_TITLE}
+                </Typography>
+                <Box
+                  component={'img'}
+                  width={20}
+                  height={22}
+                  alt="Refresh"
+                  src={`/icons/Refresh.svg`}
+                  className={`icon-refresh-${isFetchingNotifications ? 'play' : 'pause'}`}
+                  id={'refresh-icon'}
+                  onClick={refetch}
+                  sx={{ cursor: 'pointer' }}
+                />
+              </Box>
+              <Box sx={{ width: '100%', minHeight: '50px', overflowY: 'auto' }}>
+                {restructureNotificationData(data)?.length > 0 ? (
                   <>
-                    <Box component={'div'} key={index}>
-                      <Box
-                        sx={{
-                          width: '100%',
-                          background: '#F5F5F5',
-                          py: 1.6,
-                          px: 2.5,
-                          borderTop: '1px solid #E4E4E4',
-                          borderBottom: '1px solid #E4E4E4',
-                          '@media(max-width: 1200px)': {
-                            width: '99.5%',
-                          },
-                        }}
-                      >
-                        <Typography
-                          variant="body1"
-                          sx={{ fontWeight: 600, color: '#595959' }}
-                        >
-                          {item?.day}
-                        </Typography>
-                      </Box>
-                      {item?.data?.map((notification, index) => (
+                    {restructureNotificationData(data)?.map((item, index) => (
+                      <Box component={'div'} key={index}>
                         <Box
-                          key={index}
-                          sx={{
-                            width: '99%',
-                            display: { xs: 'none', sm: 'flex' },
-                            flexDirection: { xs: 'row', sm: 'row' },
-                            gap: { xs: 1, sm: 2 },
-                            py: 3,
-                            pl: { xs: 2.5, sm: 3.5 },
-                            borderBottom: '1px solid #E4E4E4',
-                            cursor: 'pointer',
-                          }}
-                          onClick={() => {
-                            notificationCases(userType, notification);
-                          }}
-                        >
-                          <Box>
-                            <SidebarUserAvatar
-                              userName={notification?.userName}
-                            />
-                          </Box>
-                          <Box
-                            sx={{
-                              maxWidth: '180px',
-                              minWidth: '180px',
-                              display: 'flex',
-                              flexDirection: 'column',
-                            }}
-                          >
-                            <Typography
-                              variant="body1"
-                              sx={{
-                                fontWeight: 600,
-                                color: '#595959',
-                                pb: 0.5,
-                                maxWidth: '220px',
-                                overflow: 'hidden',
-                                textOverflow: 'ellipsis',
-                                whiteSpace: 'nowrap',
-                              }}
-                            >
-                              {notification?.type}
-                            </Typography>
-                            <Typography
-                              sx={{
-                                fontSize: '12px',
-                                fontWeight: 400,
-                                color: '#595959',
-                                display: '-webkit-box',
-                                WebkitBoxOrient: 'vertical',
-                                WebkitLineClamp: 3,
-                                overflow: 'hidden',
-                              }}
-                            >
-                              {notification?.description}
-                            </Typography>
-                          </Box>
-                          <Box>
-                            <Typography
-                              sx={{
-                                fontSize: '12px',
-                                fontWeight: 400,
-                                color: '#595959',
-                              }}
-                            >
-                              {/* {notification?.time} */}
-
-                              {/* {dayjs(notification?.time).fromNow()} */}
-                              {getTimePassedFromNow(
-                                notification?.date,
-                                notification?.time
-                              )}
-                            </Typography>
-                          </Box>
-                        </Box>
-                      ))}
-                      {item?.data?.map((notification, index) => (
-                        <Box
-                          key={index}
                           sx={{
                             width: '100%',
-                            display: { xs: 'block', sm: 'none' },
-                            py: 3,
+                            background: '#F5F5F5',
+                            py: 1.6,
+                            px: 2.5,
+                            borderTop: '1px solid #E4E4E4',
                             borderBottom: '1px solid #E4E4E4',
+                            '@media(max-width: 1200px)': {
+                              width: '99.5%',
+                            },
                           }}
                         >
+                          <Typography
+                            variant="body1"
+                            sx={{ fontWeight: 600, color: '#595959' }}
+                          >
+                            {item?.day}
+                          </Typography>
+                        </Box>
+                        {item?.data?.map((notification, index) => (
                           <Box
+                            key={index}
                             sx={{
-                              width: '100%',
-                              display: 'flex',
-                              pl: 3.5,
-                              gap: 1.5,
+                              width: '99%',
+                              display: { xs: 'none', sm: 'flex' },
+                              flexDirection: { xs: 'row', sm: 'row' },
+                              gap: { xs: 1, sm: 2 },
+                              py: 3,
+                              pl: { xs: 2.5, sm: 3.5 },
+                              borderBottom: '1px solid #E4E4E4',
+                              cursor: 'pointer',
+                            }}
+                            onClick={() => {
+                              handleClickOutsideNotification();
+                              notificationCases(userType, notification);
                             }}
                           >
                             <Box>
@@ -438,7 +394,7 @@ export default function ProfilePopper({
                                   fontWeight: 600,
                                   color: '#595959',
                                   pb: 0.5,
-                                  maxWidth: '160px',
+                                  maxWidth: '220px',
                                   overflow: 'hidden',
                                   textOverflow: 'ellipsis',
                                   whiteSpace: 'nowrap',
@@ -448,52 +404,128 @@ export default function ProfilePopper({
                               </Typography>
                               <Typography
                                 sx={{
-                                  fontSize: '11px',
+                                  fontSize: '12px',
+                                  fontWeight: 400,
+                                  color: '#595959',
+                                  display: '-webkit-box',
+                                  WebkitBoxOrient: 'vertical',
+                                  WebkitLineClamp: 3,
+                                  overflow: 'hidden',
+                                }}
+                              >
+                                {notification?.description}
+                              </Typography>
+                            </Box>
+                            <Box>
+                              <Typography
+                                sx={{
+                                  fontSize: '12px',
                                   fontWeight: 400,
                                   color: '#595959',
                                 }}
                               >
-                                {notification?.time}
+                                {getTimePassedFromNow(
+                                  notification?.date,
+                                  notification?.time
+                                )}
                               </Typography>
                             </Box>
                           </Box>
-                          <Box sx={{ px: 3, pt: 1 }}>
-                            <Typography
+                        ))}
+                        {item?.data?.map((notification, index) => (
+                          <Box
+                            key={index}
+                            sx={{
+                              width: '100%',
+                              display: { xs: 'block', sm: 'none' },
+                              py: 3,
+                              borderBottom: '1px solid #E4E4E4',
+                            }}
+                          >
+                            <Box
                               sx={{
-                                fontSize: '12px',
-                                fontWeight: 400,
-                                color: '#595959',
-                                display: '-webkit-box',
-                                WebkitBoxOrient: 'vertical',
-                                WebkitLineClamp: 3,
-                                overflow: 'hidden',
+                                width: '100%',
+                                display: 'flex',
+                                pl: 3.5,
+                                gap: 1.5,
                               }}
                             >
-                              {notification?.description}
-                            </Typography>
+                              <Box>
+                                <SidebarUserAvatar
+                                  userName={notification?.userName}
+                                />
+                              </Box>
+                              <Box
+                                sx={{
+                                  maxWidth: '180px',
+                                  minWidth: '180px',
+                                  display: 'flex',
+                                  flexDirection: 'column',
+                                }}
+                              >
+                                <Typography
+                                  variant="body1"
+                                  sx={{
+                                    fontWeight: 600,
+                                    color: '#595959',
+                                    pb: 0.5,
+                                    maxWidth: '160px',
+                                    overflow: 'hidden',
+                                    textOverflow: 'ellipsis',
+                                    whiteSpace: 'nowrap',
+                                  }}
+                                >
+                                  {notification?.type}
+                                </Typography>
+                                <Typography
+                                  sx={{
+                                    fontSize: '11px',
+                                    fontWeight: 400,
+                                    color: '#595959',
+                                  }}
+                                >
+                                  {notification?.time}
+                                </Typography>
+                              </Box>
+                            </Box>
+                            <Box sx={{ px: 3, pt: 1 }}>
+                              <Typography
+                                sx={{
+                                  fontSize: '12px',
+                                  fontWeight: 400,
+                                  color: '#595959',
+                                  display: '-webkit-box',
+                                  WebkitBoxOrient: 'vertical',
+                                  WebkitLineClamp: 3,
+                                  overflow: 'hidden',
+                                }}
+                              >
+                                {notification?.description}
+                              </Typography>
+                            </Box>
                           </Box>
-                        </Box>
-                      ))}
-                    </Box>
+                        ))}
+                      </Box>
+                    ))}
                   </>
-                ))}
-              </>
-            ) : (
-              <Box
-                sx={{
-                  width: '99%',
-                  height: '100%',
-                  background: '#F5F5F5',
-                  py: 1.6,
-                  px: 2.5,
-                  borderTop: '1px solid #E4E4E4',
-                }}
-              >
-                No New Notification
+                ) : (
+                  <Box
+                    sx={{
+                      width: '99%',
+                      height: '100%',
+                      background: '#F5F5F5',
+                      py: 1.6,
+                      px: 2.5,
+                      borderTop: '1px solid #E4E4E4',
+                    }}
+                  >
+                    No New Notification
+                  </Box>
+                )}
               </Box>
-            )}
-          </Box>
-        </Box>
+            </Box>
+          </Fade>
+        )}
       </Popper>
     </div>
   );

@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { Box, Typography } from '@mui/material';
 import LeaveRequestForm from './LeaveRequestForm';
 
-const LeaveRequestModal = ({ handleClose }) => {
+const LeaveRequestModal = forwardRef(({ handleClose }, ref) => {
   return (
     <Box
+      ref={ref} // Attach the forwarded ref here
+      tabIndex={-1}
       sx={{
         mx: 'auto',
         bgcolor: '#fff',
@@ -32,6 +34,8 @@ const LeaveRequestModal = ({ handleClose }) => {
       <LeaveRequestForm handleClose={handleClose} />
     </Box>
   );
-};
+});
+
+LeaveRequestModal.displayName = 'LeaveRequestModal';
 
 export default LeaveRequestModal;

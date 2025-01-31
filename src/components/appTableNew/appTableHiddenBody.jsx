@@ -19,34 +19,37 @@ const TableHiddenBody = ({
           className="app-table-row"
         >
           {index === 2 ? (
-            <Box
-              display={'flex'}
-              flexDirection={'column'}
-              alignItems={'center'}
-            >
-              <Typography
-                sx={{
-                  fontSize: '24px',
-                  fontWeight: 400,
-                  lineHeight: '29px',
-                  letterSpacing: '0em',
-                  textAlign: 'left',
-                }}
-                variant="body1"
-                textAlign={'center'}
+            <td style={{ textAlign: 'center' }}>
+              <Box
+                display={'flex'}
+                flexDirection={'column'}
+                alignItems={'center'}
               >
-                {renderMessage}
-              </Typography>
-              {renderMessageButton && (
-                <Button
-                  onClick={handleClickRenderMessageButton}
-                  sx={{ marginTop: '20px' }}
-                  variant="contained"
+                <Typography
+                  component="div"
+                  sx={{
+                    fontSize: '24px',
+                    fontWeight: 400,
+                    lineHeight: '29px',
+                    letterSpacing: '0em',
+                    textAlign: 'left',
+                  }}
+                  variant="body1"
+                  textAlign={'center'}
                 >
-                  {renderMessageButton}
-                </Button>
-              )}
-            </Box>
+                  {renderMessage}
+                </Typography>
+                {renderMessageButton && (
+                  <Button
+                    onClick={handleClickRenderMessageButton}
+                    sx={{ marginTop: '20px' }}
+                    variant="contained"
+                  >
+                    {renderMessageButton}
+                  </Button>
+                )}
+              </Box>
+            </td>
           ) : (
             <td />
           )}

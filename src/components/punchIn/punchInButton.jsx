@@ -23,7 +23,6 @@ const PunchRequestButton = ({ onClose, closeBtn, createPunch }) => {
             onClick={onClose}
           >
             Cancel
-            {/* {cancelBtn} */}
           </Button>
         )}
         {createPunch && (
@@ -33,7 +32,6 @@ const PunchRequestButton = ({ onClose, closeBtn, createPunch }) => {
             onClick={onClose}
           >
             Save
-            {/* {saveBtn} */}
           </Button>
         )}
         {!createPunch && (

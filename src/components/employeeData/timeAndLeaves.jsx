@@ -6,7 +6,6 @@ import {
   leavesColumn,
   leavesData,
   timeColumn,
-  timeData,
 } from '@/src/constants/data/tables/hr/timeAndLeaves';
 import TimeManagementModal from '@/app/hr/dashboard/clients/client-profile/TimeManagementModal';
 import LeaveManagementModal from '@/app/hr/dashboard/clients/client-profile/LeaveManagementModal';
@@ -25,15 +24,15 @@ import { useEffect } from 'react';
 import dayjs from 'dayjs';
 
 const TimeAndLeaves = () => {
-  const { employee_perms } = useSelector((state) => state?.hr?.home?.homeData);
+  const { employee_perms, leaves_perms } = useSelector(
+    (state) => state?.hr?.home?.homeData
+  );
   const { role } = useSelector((state) => state?.auth?.userData);
 
   const { id } = useSelector((state) => state?.hr?.employees?.currentEmployee);
   const dispatch = useDispatch();
-  const { time, leaves } = useSelector(
-    (state) => state?.hr?.employees?.timeAndLeaves
-  );
-  console.log({ leaves });
+  const { time, leaves } =
+    useSelector((state) => state?.hr?.employees?.timeAndLeaves) || {};
   const params = useParams();
   const [currentTab, setCurrentTab] = useState({
     label: 'Time',
@@ -48,39 +47,36 @@ const TimeAndLeaves = () => {
       data: time,
       column: timeColumn,
     });
-  }, [time]);
+  }, []);
   const [isLoadingMutation, setIsLoadingMutation] = useState(false);
+  console.log(isLoadingMutation, 'isLoadingMutation');
+
   const preetyTime = (time) => {
-    if (dayjs(time).format('hh:mm A') === 'Invalid Date') {
+    if (dayjs(time)?.format('hh:mm A') === 'Invalid Date') {
       return time;
     } else {
-      return dayjs(time).format('hh:mm A');
+      return dayjs(time)?.format('hh:mm A');
     }
   };
-  const { isLoading } = useQuery({
+  const { data: timeData, isLoading } = useQuery({
     staleTime: 10000,
     refetchOnWindowFocus: false,
-    queryKey: ['employee-time-profile'],
+    queryKey: ['employee-time-profile', params?.id],
     queryFn: async () => {
       return api
-        .getData(`${HR_EMP_TIME_AND_LEAVES}?id=${params.id}&tab=time`)
+        .getData(`${HR_EMP_TIME_AND_LEAVES}?id=${params?.id}&tab=time`)
         .then(({ data }) => {
-          const tempData =
-            [
-              {
-                // check_in: dayjs(data?.check_in).format('hh:mm A'),
-                // check_out: dayjs(data?.check_out).format('hh:mm A'),
-                check_in: preetyTime(data?.check_in),
-                check_out: preetyTime(data?.check_out),
-              },
-            ] || [];
+          const tempData = [
+            {
+              check_in: preetyTime(data?.check_in),
+              check_out: preetyTime(data?.check_out),
+            },
+          ];
           dispatch(getHrEmpTime(tempData));
           return tempData || [];
         })
         .catch((err) => {
           Toast('error', err.message || 'Failed to get data');
-          console.log({ err });
-          console.log({ isLoadingMutation });
         });
     },
   });
@@ -105,14 +101,12 @@ const TimeAndLeaves = () => {
   };
   const { mutate } = useMutation({
     mutationFn: async (tab) => {
-      console.log({ tab });
       setIsLoadingMutation(true);
       return api.getData(
-        `${HR_EMP_TIME_AND_LEAVES}?id=${params.id}&tab=${tab.toLowerCase()}`
+        `${HR_EMP_TIME_AND_LEAVES}?id=${params?.id}&tab=${tab?.toLowerCase()}`
       );
     },
     onSuccess: ({ data }) => {
-      console.log({ data });
       setIsLoadingMutation(false);
       if (currentTab.label === 'Time') {
         const tempData =
@@ -124,15 +118,13 @@ const TimeAndLeaves = () => {
           ] || [];
         dispatch(getHrEmpTime(tempData));
       } else {
-        console.log({ reformed: reformData(data) });
         dispatch(getHrEmpLeaves(reformData(data)));
-        // setTabData(reformData(data));
       }
       return data || [];
     },
     onError: (err) => {
       setIsLoadingMutation(false);
-      console.log({ err: err.message, name: err.name, stack: err.stack });
+      Toast('error', err.message || 'Failed to update data');
     },
   });
   const updateLeaveStatusMutation = useMutation({
@@ -143,14 +135,23 @@ const TimeAndLeaves = () => {
       );
     },
     onSuccess: () => {
-      Toast('success', 'Leaves updates successfully');
       mutate('leaves');
+      Toast('success', 'Leaves updates successfully');
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to post data');
-      // console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
+
+  const getLeavesColumn = (leaves_perms, columns) => {
+    const writeAcess = leaves_perms?.[0]?.write;
+    return columns?.filter((column) => writeAcess || column?.name !== 'status');
+  };
+
+  const getLeavesData = (leaves_perms, data) => {
+    const readAcess = leaves_perms?.[0]?.read;
+    return !readAcess ? [] : data;
+  };
 
   const [isOpenTimeManagementModal, setIsOpenTimeManagementModal] =
     useState(false);
@@ -167,19 +168,19 @@ const TimeAndLeaves = () => {
       prop: a11yProps(1),
       label: 'Leaves',
       data: leavesData,
-      column: leavesColumn,
+      column: getLeavesColumn(leaves_perms, leavesColumn),
     },
   ];
   const handleChangeTab = (event, newValue, rest) => {
-    console.log({ event, newValue, rest });
     setCurrentTab({
       label: tabs[newValue].label,
       val: newValue,
-      // data: tabs[newValue].data,
       data: newValue === 0 ? time : leaves,
       column: tabs[newValue].column,
     });
     mutate(tabs[newValue].label.toLowerCase());
+    console.log(rest, 'rest');
+    console.log(event, 'event');
   };
   const handleOpenTimeManagementModal = () => {
     setIsOpenTimeManagementModal(true);
@@ -200,7 +201,7 @@ const TimeAndLeaves = () => {
       handleOpenLeaveManagementModal();
     }
   };
-  if (isLoading) return 'Loading...';
+
   const handleUpdateLeaveStatus = (data) => {
     const tempData = {
       [data.leave_type]: {
@@ -213,6 +214,7 @@ const TimeAndLeaves = () => {
 
     updateLeaveStatusMutation.mutate(tempData);
   };
+
   return (
     <>
       <Box
@@ -226,13 +228,13 @@ const TimeAndLeaves = () => {
         }}
       >
         <Tabs
-          value={currentTab.val}
+          value={currentTab?.val}
           onChange={(ev, newVal) => {
             handleChangeTab(ev, newVal);
           }}
           aria-label="basic tabs example"
           variant="scrollable"
-          sx={{ mt: '8px' }}
+          sx={{ mt: '8px', order: { xs: 1, sm: 0 } }}
         >
           {tabs?.map(({ label, prop }, tabIndex) => (
             <Tab
@@ -251,24 +253,34 @@ const TimeAndLeaves = () => {
           ))}
         </Tabs>
         {(role === 'super_admin' ||
-          (role !== 'super_admin' && employee_perms?.[0].write)) && (
-          <Button
+          (role !== 'super_admin' && currentTab?.val === 1
+            ? leaves_perms[0]?.write
+            : employee_perms[0]?.write)) && (
+          <Box
             sx={{
-              minWidth: '160px',
-              marginTop: { xs: '10px', md: '0px' },
-              marginBottom: { xs: '10px', md: '0px' },
-              color: '#fff',
-              background: '#029894',
-              '&:hover': {
+              width: { xs: '100%', sm: 'auto' },
+              borderBottom: { xs: 'solid 1px #ccc', sm: 'none' },
+            }}
+          >
+            <Button
+              sx={{
+                minWidth: '160px',
+                marginTop: { xs: '10px', md: '0px' },
+                marginBottom: { xs: '10px', sm: '5px', md: '0px' },
                 color: '#fff',
                 background: '#029894',
-              },
-            }}
-            variant="contained"
-            onClick={handleOpenModal}
-          >
-            {FORM_DATA?.manage}
-          </Button>
+                order: { xs: 0, sm: 0 },
+                '&:hover': {
+                  color: '#fff',
+                  background: '#029894',
+                },
+              }}
+              variant="contained"
+              onClick={handleOpenModal}
+            >
+              {FORM_DATA?.manage}
+            </Button>
+          </Box>
         )}
       </Box>
       <Box
@@ -278,10 +290,16 @@ const TimeAndLeaves = () => {
         }}
       >
         <AppTable
-          minWidth={'1480px'}
+          minWidth={'1200px'}
           currentTab={currentTab}
-          column={currentTab.column}
-          data={currentTab.val === 0 ? time : leaves}
+          column={
+            currentTab?.val === 0
+              ? timeColumn
+              : getLeavesColumn(leaves_perms, leavesColumn)
+          }
+          data={
+            currentTab?.val === 0 ? time : getLeavesData(leaves_perms, leaves)
+          }
           noPagination
           updateLeaveStatus={handleUpdateLeaveStatus}
           isLoading={isLoading}

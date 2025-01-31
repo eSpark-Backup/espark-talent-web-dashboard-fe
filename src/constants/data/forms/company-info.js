@@ -24,7 +24,7 @@ export const companyformElement = [
     placeholder: 'Upload picture',
     filelabel: 'Accept .png or .jpg files only',
     prefixIcon: 'upload',
-    type: 'file',
+    type: 'upload',
     name: 'image',
     accept: 'image/png, image/jpg',
     col: 2.5,

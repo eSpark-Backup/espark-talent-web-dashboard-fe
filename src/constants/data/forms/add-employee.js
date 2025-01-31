@@ -30,9 +30,6 @@ const formElements = [
       {
         label: 'Female',
       },
-      {
-        label: 'Not specific',
-      },
     ],
   },
   {
@@ -46,11 +43,17 @@ const formElements = [
     title: 'Phone number',
     placeholder: 'Enter phone number',
     name: 'phone_number',
+    type: 'number',
   },
   {
-    title: 'Email',
-    placeholder: 'Enter email',
+    title: 'Company Email',
+    placeholder: 'Enter company email',
     name: 'email',
+  },
+  {
+    title: 'Personal Email',
+    placeholder: 'Enter personal email',
+    name: 'personal_email',
   },
   {
     title: 'Marital status',
@@ -71,14 +74,16 @@ const formElements = [
     placeholder: 'Upload image',
     name: 'image',
     prefixIcon: 'upload',
-    type: 'file',
+    type: 'upload',
+    onclickUpload: 'onclickUpload',
     filelabel: 'Accept .png or .jpg files only',
-    accept: 'image/png, image/jpg',
+    accept: '.png, .jpg, .jpeg',
   },
   {
     title: 'Emergency Contact',
     placeholder: 'Enter phone number',
     name: 'emergency_no',
+    type: 'number',
   },
   {
     title: 'Upload resume',
@@ -175,22 +180,42 @@ const formElementsStep3 = [
     placeholder: 'Enter company',
     name: 'company',
   },
+
   {
-    title: 'Employement terms',
-    placeholder: 'Select employement terms',
+    title: 'Job Status',
+    placeholder: 'Select employement Status',
     type: 'select',
     options: [
       {
-        label: 'Salary based',
+        label: 'Internship',
       },
       {
-        label: 'Hourly based',
+        label: 'Probation',
       },
       {
-        label: 'Project based',
+        label: 'Part-Time',
+      },
+      {
+        label: 'Permanent',
       },
     ],
-    name: 'employementTerms',
+    name: 'job_status',
+  },
+  {
+    title: 'Starting date',
+    placeholder: 'DD-MM-YYYY',
+    suffixIcon: 'calender',
+    type: 'date',
+    name: 'starting_date',
+    col: 3,
+  },
+  {
+    title: 'Ending date',
+    placeholder: 'DD-MM-YYYY',
+    suffixIcon: 'calender',
+    type: 'date',
+    name: 'ending_date',
+    col: 3,
   },
 ];
 const formElementsStep4 = [
@@ -215,7 +240,6 @@ const formElementsStep4 = [
     title: 'Casual Leaves',
     placeholder: 'Enter password',
     name: 'casual_leaves',
-    // col: 3,
     type: 'add-sub-counter',
     min: 0,
     max: 8,
@@ -224,7 +248,6 @@ const formElementsStep4 = [
     title: 'Sick Leaves',
     placeholder: '0',
     name: 'sick_leaves',
-    // col: 3,
     type: 'add-sub-counter',
     min: 0,
     max: 12,
@@ -234,7 +257,6 @@ const formElementsStep4 = [
     title: 'Annual Leaves',
     placeholder: '0',
     name: 'annual_leaves',
-    // col: 3,
     type: 'add-sub-counter',
     min: 0,
     max: 20,
@@ -244,7 +266,6 @@ const formElementsStep4 = [
     title: 'Hajj / Umrah Leaves',
     placeholder: '0',
     name: 'hajj_leaves',
-    // col: 3,
     type: 'add-sub-counter',
     min: 0,
     max: 45,
@@ -255,7 +276,6 @@ const formElementsStep4 = [
       'Paid Leaves <span style = font-size:8px> (Excl Umrah & Hajj)</span>',
     placeholder: '0',
     name: 'paid_leaves',
-    // col: 3,
     type: 'add-sub-counter',
     min: 0,
     max: 40,
@@ -265,7 +285,6 @@ const formElementsStep4 = [
     title: 'Unpaid Leaves',
     placeholder: '0',
     name: 'unpaid_leaves',
-    // col: 3,
     type: 'add-sub-counter',
     min: 0,
     max: 20,

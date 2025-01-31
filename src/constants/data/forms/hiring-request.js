@@ -102,12 +102,10 @@ export const hringRequestForm = [
       {
         placeholder: 'from',
         name: 'minimum',
-        // suffixIcon: '$',
       },
       {
         placeholder: 'to',
         name: 'maximum',
-        // suffixIcon: '$',
       },
     ],
   },
@@ -142,5 +140,21 @@ export const hringRequestForm = [
     suffixIcon: 'calender',
     type: 'date',
     name: 'hiring_end_date',
+  },
+  {
+    title: 'Job Description',
+    placeholder: 'Upload File',
+    prefixIcon: 'upload',
+    type: 'file',
+    name: 'job_description',
+    filelabel: 'Accept .pdf file only',
+    accept: '.pdf',
+    col: 2.5,
+  },
+  {
+    title: 'Comments',
+    placeholder: 'Write here..',
+    type: 'text',
+    name: 'comments',
   },
 ];

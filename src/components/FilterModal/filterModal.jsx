@@ -44,6 +44,9 @@ const FilterModal = ({
       onClose={onClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
+      disableScrollLock
+      disableEnforceFocus
+      disableRestoreFocus
       BackdropProps={{ click: false }}
       sx={{
         width: '100%',

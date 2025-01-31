@@ -46,20 +46,15 @@ const AllEmployee = ({ fromClient, openModal }) => {
     queryKey: ['employeeQuery'],
     queryFn: () => {
       dispatch(getEmpData());
-      // console.log('Calling api');
       return api
         .getData(HR_EMPLOYEES)
         .then(({ data }) => {
-          // console.log('API Success');
           dispatch(getEmpDataSuccess(data));
-          // console.log('API Success1');
           return data || [];
         })
         .catch((error) => {
           Toast('error', error.message || 'Failed to get data');
-          // console.log('API Failed');
           dispatch(getEmpDataFailed());
-          // console.log({ error });
         });
     },
   });
@@ -84,7 +79,7 @@ const AllEmployee = ({ fromClient, openModal }) => {
               item.employee_id.toLowerCase().includes(id.toLowerCase());
             return nameMatch && designationMatch && companyMatch && idMatch;
           });
-    return filteredData;
+    return filteredData || [];
   };
 
   useEffect(() => {
@@ -360,7 +355,6 @@ const AllEmployee = ({ fromClient, openModal }) => {
           </Grid>
           <Grid item xs={12} md={6} lg={1}>
             <Button
-              // onClick={() => setSearch(true)}
               onClick={handleSearch}
               sx={{
                 backgroundColor: '#029894',
@@ -379,18 +373,6 @@ const AllEmployee = ({ fromClient, openModal }) => {
                 alt="Refresh"
                 src={`/icons/searchIconWhite.svg`}
               />
-              {/* <Box
-                component={'img'}
-                sx={{
-                  height: '100px',
-                  width: '100px',
-                  background: '#fff',
-                  borderRadius: '50%',
-                  padding: '5px',
-                }}
-                alt="Employee"
-                src={data?.[0]?.image_path}
-              /> */}
             </Button>
           </Grid>
         </Grid>

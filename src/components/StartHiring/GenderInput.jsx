@@ -30,7 +30,7 @@ const GenderInput = ({ open, SelectOpen, SelectClose }) => {
           data={gender}
           setIsLoadingList={setIsLoadingTitles}
           isLoadingList={isLoadingTitles}
-          selectedItem={selectedJobTitle}
+          selectedItem={selectedJobTitle || ''}
           setSelectedItem={setSelectedJobTitle}
           placeHolder="Select gender"
         />

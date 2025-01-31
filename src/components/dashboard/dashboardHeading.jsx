@@ -3,9 +3,6 @@ import { Box, Stack, Typography } from '@mui/material';
 import Skeleton from '@mui/material/Skeleton';
 
 const DashboardHeading = ({ dashboardDescription, title, isLoading }) => {
-  // console.log({ dashbaords: dashboardDescription });
-  // const { empDetails } = useSelector((state) => state?.auth?.userData);
-
   return isLoading ? (
     <Stack spacing={1.5} sx={{ width: { xs: '100%', md: '200px' } }}>
       <Skeleton variant="text" sx={{ fontSize: '1rem' }} />
@@ -42,30 +39,6 @@ const DashboardHeading = ({ dashboardDescription, title, isLoading }) => {
       >
         {dashboardDescription || ''}
       </Typography>
-      {/* {teamMember && esparkCenter && (
-        <Typography
-          sx={{
-            fontSize: { xs: '14px', lg: '14px' },
-            fontWeight: 400,
-            color: '#595959',
-            textAlign: { xs: 'center', sm: 'start' },
-            marginRight: '8px',
-          }}
-        >
-          {teamMember}
-          <span
-            style={{
-              color: '#000000',
-              borderBottom: '1.5px solid black',
-              paddingBottom: '0px',
-              display: 'inline-block',
-              marginLeft: '3px',
-            }}
-          >
-            {esparkCenter || ''}
-          </span>
-        </Typography>
-      )} */}
     </Box>
   );
 };

@@ -6,25 +6,6 @@ import {
 } from '../tables/hr/addEmployeeFormTable';
 
 const form = [
-  // {
-  //   title: 'Employee name',
-  //   placeholder: 'Enter name',
-  //   name: 'employeeName',
-  // },
-  // {
-  //   title: 'Gender',
-  //   placeholder: 'Select',
-  //   name: 'gender',
-  //   type: 'select',
-  //   options: [
-  //     {
-  //       label: 'Male',
-  //     },
-  //     {
-  //       label: 'Female',
-  //     },
-  //   ],
-  // },
   {
     title: 'Job title',
     placeholder: 'Select Job',
@@ -126,26 +107,6 @@ const form = [
       },
       {
         label: 'INR',
-      },
-    ],
-  },
-  {
-    title: 'Benefits',
-    placeholder: 'Enter benefits',
-    name: 'benefits',
-    type: 'checkboxes',
-    options: [
-      {
-        name: 'fuel_card',
-        title: 'Fuel',
-      },
-      {
-        name: 'medical_card',
-        title: 'Medical',
-      },
-      {
-        name: 'life_insurance_card',
-        title: 'Life insurance',
       },
     ],
   },

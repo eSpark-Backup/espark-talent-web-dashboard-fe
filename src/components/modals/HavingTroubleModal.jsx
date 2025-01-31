@@ -13,6 +13,9 @@ const HavingTroubleModal = ({ open, data, onClose }) => {
         onClose={onClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
+        disableScrollLock
+        disableEnforceFocus
+        disableRestoreFocus
         sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
       >
         <Box

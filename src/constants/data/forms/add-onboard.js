@@ -86,8 +86,9 @@ export const addOnboardForm = [
   },
   {
     title: 'Notice period',
-    placeholder: 'Days',
+    placeholder: 'In days',
     name: 'notice_period',
+    type: 'number',
   },
   {
     title: 'Salary Currency',
@@ -130,26 +131,8 @@ export const addOnboardForm = [
   {
     title: 'Salary',
     name: 'salary',
+    type: 'number',
+    placeholder: 'Salary',
     // dollarIcon: '$',
-  },
-  {
-    title: 'Benefits',
-    placeholder: 'Enter benefits',
-    name: 'benefits',
-    type: 'checkboxes',
-    options: [
-      {
-        name: 'fuel_card',
-        title: 'Fuel',
-      },
-      {
-        name: 'medical_card',
-        title: 'Medical',
-      },
-      {
-        name: 'life_insurance_card',
-        title: 'Life insurance',
-      },
-    ],
   },
 ];

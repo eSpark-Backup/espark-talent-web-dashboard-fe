@@ -40,7 +40,6 @@ const AddEmployeeModal = ({ open, onClose }) => {
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to post data');
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const { mutate, isPending } = useMutation({
@@ -50,16 +49,14 @@ const AddEmployeeModal = ({ open, onClose }) => {
         formVals
       );
     },
-    onSuccess: ({ data }) => {
-      Toast('success', 'Data posted successfully');
+    onSuccess: () => {
       setCurrentStep(1);
       handleCloseModal();
       getClientEmpsMutation.mutate();
-      console.log({ data });
+      Toast('success', 'Data posted successfully');
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to post data');
-      // console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const dispatch = useDispatch();
@@ -72,17 +69,15 @@ const AddEmployeeModal = ({ open, onClose }) => {
 
   const handleSelectRow = (employeeId) => {
     dispatch(selectEmployeeToAdd(employeeId));
-    console.log({ employeeId });
     const tempForm = [...modalStep1FormTableState]?.map((item) => ({
       ...item,
       isSelected: false,
     }));
-    const employeeIndex = tempForm.findIndex((el) => el.id === employeeId);
+    const employeeIndex = tempForm?.findIndex((el) => el.id === employeeId);
     tempForm[employeeIndex] = {
       ...tempForm[employeeIndex],
       isSelected: !tempForm[employeeIndex].isSelected,
     };
-    console.log({ employeeIndex, tempForm, slctd: tempForm[employeeIndex] });
     setModalStep1FormTableState(tempForm);
     setIsDisabledNext(false);
   };
@@ -110,7 +105,6 @@ const AddEmployeeModal = ({ open, onClose }) => {
         })
         .catch((err) => {
           Toast('error', err.message || 'Failed to get data');
-          console.log({ err });
         });
     },
   });
@@ -126,11 +120,11 @@ const AddEmployeeModal = ({ open, onClose }) => {
   } = useFormik({
     initialValues: {
       joining_date: null,
-      benefits: {
-        life_insurance_card: false,
-        medical_card: false,
-        fuel_card: false,
-      },
+      // benefits: {
+      //   life_insurance_card: false,
+      //   medical_card: false,
+      //   fuel_card: false,
+      // },
     },
     validationSchema: addEmployeModalFormSchema,
     enableReinitialize: true,
@@ -138,8 +132,8 @@ const AddEmployeeModal = ({ open, onClose }) => {
       const finalData = {
         ...formValues,
         id: currentEmpToAddInClient,
-        joining_date: dayjs(formValues.joining_date).format('YYYY-MM-DD'),
-        country: formValues.country.title,
+        joining_date: dayjs(formValues?.joining_date)?.format('YYYY-MM-DD'),
+        country: formValues?.country?.title,
       };
 
       mutate(finalData);
@@ -149,7 +143,6 @@ const AddEmployeeModal = ({ open, onClose }) => {
   });
   const handleCloseModal = () => {
     handleReset();
-    // setCurrentStep(2);
     onClose();
   };
   const handleSelectEmployee = () => {
@@ -171,6 +164,9 @@ const AddEmployeeModal = ({ open, onClose }) => {
           onClose={handleCloseModal}
           aria-labelledby="keep-mounted-modal-title"
           aria-describedby="keep-mounted-modal-description"
+          disableScrollLock
+          disableEnforceFocus
+          disableRestoreFocus
           sx={{
             display: 'flex',
             alignItems: 'center',
@@ -180,18 +176,18 @@ const AddEmployeeModal = ({ open, onClose }) => {
           <Box
             sx={{
               bgcolor: '#fff',
-              minWidth: '1000px',
+              width: '90%',
+              height: '90%',
+              minWidth: '70%',
               maxWidth: '1000px',
               display: 'flex',
               flexDirection: 'column',
+              gap: 3.5,
+              pb: 2.5,
               borderRadius: '10px',
               boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
-              minHeight: '640px',
-              maxHeight: '700px',
-              '@media (min-width: 280px) and (max-width: 1083px)': {
-                minWidth: '93%',
-                maxWidth: '93%',
-              },
+              minHeight: '50%',
+              maxHeight: '640px',
             }}
           >
             <Navigator
@@ -202,16 +198,17 @@ const AddEmployeeModal = ({ open, onClose }) => {
             />
             <Box
               sx={{
-                width: 'auto',
+                display: 'flex',
+                justifyContent: 'center',
+                width: { xs: '96%', md: '95%', lg: '85%' },
+                mx: 'auto',
+                height: 'calc(100% - 50px )',
                 overflow: 'auto',
                 scrollbarWidth: 'thin',
                 scrollbarColor: 'gray',
                 '&::-webkit-scrollbar': {
                   display: 'none',
                 },
-                pt: { xs: 4, sm: 3, md: 5, lg: 5 },
-                pb: { xs: 1, sm: 1, md: 3, lg: 3 },
-                px: { xs: 3, sm: 5, md: 8, lg: 13 },
               }}
             >
               {addEmployeeModalFormSteps?.map(
@@ -221,8 +218,7 @@ const AddEmployeeModal = ({ open, onClose }) => {
                       return (
                         <Box
                           sx={{
-                            pb: 2,
-                            maxWidth: '100%',
+                            width: { xs: '96%', md: '95%', lg: '85%' },
                           }}
                           key={stepIndex}
                         >
@@ -238,8 +234,7 @@ const AddEmployeeModal = ({ open, onClose }) => {
                             <Button
                               disabled={isDisabledNext}
                               variant="contained"
-                              sx={{ minWidth: '120px' }}
-                              // onClick={() => setCurrentStep((ps) => ps + 1)}
+                              sx={{ minWidth: '120px', mb: 1.5 }}
                               onClick={handleSelectEmployee}
                             >
                               {FORM_DATA?.add}
@@ -278,38 +273,37 @@ const AddEmployeeModal = ({ open, onClose }) => {
                                 },
                                 formIndex
                               ) => (
-                                <>
-                                  <Grid item xs={12} lg={5.5} key={formIndex}>
-                                    <FormInput
-                                      title={title}
-                                      placeholder={placeholder}
-                                      errorText={errorText}
-                                      prefixIcon={prefixIcon}
-                                      type={type}
-                                      suffixIcon={suffixIcon}
-                                      options={options}
-                                      name={name}
-                                      selectWithType={selectWithType}
-                                      searchable={searchable}
-                                      withFlag={withFlag}
-                                      countries={countriesList}
-                                      setFieldValue={setFieldValue}
-                                      value={values[name]}
-                                      error={errors[name]}
-                                      touched={touched}
-                                      setFieldError={setFieldError}
-                                      errors={errors}
-                                      setErrors={setErrors}
-                                      values={values}
-                                      nested={nested}
-                                      xs={12}
-                                      sm={12}
-                                      md={12}
-                                      lg={12}
-                                      fields={fields}
-                                    />
-                                  </Grid>
-                                </>
+                                <Grid item xs={12} lg={5.5} key={formIndex}>
+                                  <FormInput
+                                    title={title}
+                                    placeholder={placeholder}
+                                    errorText={errorText}
+                                    prefixIcon={prefixIcon}
+                                    type={type}
+                                    suffixIcon={suffixIcon}
+                                    options={options}
+                                    name={name}
+                                    width={'100%'}
+                                    selectWithType={selectWithType}
+                                    searchable={searchable}
+                                    withFlag={withFlag}
+                                    countries={countriesList}
+                                    setFieldValue={setFieldValue}
+                                    value={values[name]}
+                                    error={errors[name]}
+                                    touched={touched}
+                                    setFieldError={setFieldError}
+                                    errors={errors}
+                                    setErrors={setErrors}
+                                    values={values}
+                                    nested={nested}
+                                    xs={12}
+                                    sm={12}
+                                    md={12}
+                                    lg={12}
+                                    fields={fields}
+                                  />
+                                </Grid>
                               )
                             )}
                             <Grid

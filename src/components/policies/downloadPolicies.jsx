@@ -12,7 +12,6 @@ const DownloadPolicies = ({ image, reportHeading, downloadBtn, data }) => {
       return api.downloadFile(`${DOWNLOAD_POLICY}?id=${id}`);
     },
     onSuccess: ({ data }) => {
-      console.log({ data });
       const url = window.URL.createObjectURL(new Blob([data]));
       const link = document.createElement('a');
       link.href = url;
@@ -20,19 +19,13 @@ const DownloadPolicies = ({ image, reportHeading, downloadBtn, data }) => {
       document.body.appendChild(link);
       link.click();
       link.parentNode.removeChild(link);
-
-      // dispatchFunction?.(data);
       Toast('success', 'File downloaded');
     },
     onError: (err) => {
       Toast('error', err.message || 'File not downloaded');
-      // dispatch(getTimeSheetDataFailed());
-      console.log({ err });
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const handleDownloadPolicy = () => {
-    console.log({ data });
     mutate(data?.[0]?.id);
   };
   return (
@@ -81,21 +74,7 @@ const DownloadPolicies = ({ image, reportHeading, downloadBtn, data }) => {
           fontWeight: 400,
           lineHeight: 'normal',
         }}
-      >
-        {/* {downloadReports} */}
-      </Typography>
-      {/* <Button
-        variant="primary"
-        sx={{
-          width: { xs: '120px', md: '120px' },
-          height: '40px',
-          padding: '8px',
-          fontSize: '16px',
-          fontWeight: 600,
-        }}
-      >
-        {downloadBtn}
-      </Button> */}
+      ></Typography>
       <Box
         component={'button'}
         sx={{
@@ -108,10 +87,9 @@ const DownloadPolicies = ({ image, reportHeading, downloadBtn, data }) => {
           textAlign: 'center',
           color: '#fff',
           borderRadius: '5px',
+          cursor: 'pointer',
         }}
         disabled={isPending}
-        // href={documentLink}
-        // target="_blank"
         onClick={handleDownloadPolicy}
       >
         {isPending ? (

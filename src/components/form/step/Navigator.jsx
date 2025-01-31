@@ -9,6 +9,7 @@ const Navigator = ({
   navigationPadding = '35px 0px 66px 0px',
 }) => {
   const isXsScreen = useMediaQuery('(max-width:600px)');
+
   return (
     <Box
       sx={{
@@ -67,7 +68,13 @@ const Navigator = ({
                 sx={{
                   width: { xs: '56px', sm: navigationLabelWidth },
                   position: 'absolute',
-                  bottom: '-30px',
+                  bottom: currentStep === 4 ? '-43px' : '-30px',
+                  '@media (min-width: 400px) and (max-width: 600px)': {
+                    bottom: currentStep === 4 ? '-43px' : '-30px',
+                  },
+                  '@media (min-width: 280px) and (max-width: 400px)': {
+                    bottom: '-30px',
+                  },
                 }}
               >
                 <Typography
@@ -87,7 +94,6 @@ const Navigator = ({
                     },
                     '@media (min-width: 300px) and (max-width: 400px)': {
                       fontSize: '8px',
-                      // width: '60px',
                     },
                     '@media (min-width: 270px) and (max-width: 300px)': {
                       fontSize: '7px',

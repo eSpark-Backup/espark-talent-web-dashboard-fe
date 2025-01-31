@@ -1,17 +1,17 @@
 export const employeeLeaveRequestsColumn = [
   {
     title: 'Employee ID',
-    flex: 2,
+    flex: 1.5,
     name: 'employee_id',
   },
   {
     title: 'Employee name',
-    flex: 2,
+    flex: 1.5,
     name: 'employee_name',
   },
   {
     title: 'Department',
-    flex: 1,
+    flex: 1.5,
     name: 'department',
   },
   {
@@ -21,22 +21,60 @@ export const employeeLeaveRequestsColumn = [
   },
   {
     title: 'Count',
-    flex: 1,
+    flex: 1.5,
     name: 'count',
   },
   {
     title: 'Requested at',
-    flex: 2,
+    flex: 2.5,
     name: 'requested_at',
   },
   {
     title: 'Status',
-    flex: 2,
+    flex: 1.5,
     name: 'status',
   },
   {
     title: 'Actions',
-    flex: 2,
+    flex: 1.5,
+    name: 'actions',
+  },
+];
+
+export const employeeWFHRequestsColumn = [
+  {
+    title: 'Employee ID',
+    flex: 1.5,
+    name: 'employee_id',
+  },
+  {
+    title: 'Employee name',
+    flex: 1.5,
+    name: 'employee_name',
+  },
+  {
+    title: 'Department',
+    flex: 1.5,
+    name: 'department',
+  },
+  {
+    title: 'Count',
+    flex: 1.5,
+    name: 'count',
+  },
+  {
+    title: 'Date',
+    flex: 1.5,
+    name: 'start_date',
+  },
+  {
+    title: 'Status',
+    flex: 1.5,
+    name: 'status',
+  },
+  {
+    title: 'Actions',
+    flex: 1.5,
     name: 'actions',
   },
 ];

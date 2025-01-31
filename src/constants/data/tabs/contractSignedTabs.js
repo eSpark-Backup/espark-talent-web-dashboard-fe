@@ -1,5 +1,6 @@
 import { a11yProps } from '@/src/utils/tabs';
 import {
+  companyContractColumn,
   contractSignedColumn,
   contractSignedEmployeeColumn,
   contractSignedEmployeeData,
@@ -9,6 +10,7 @@ import {
   contractSignedNestEmployeeData,
   contractSignedOffshoreColumn,
   contractSignedOffshoreData,
+  employeeContractColumn,
 } from '../tables/contractSigned';
 
 import { contractSignedData } from '../tables/hr/contractSigned';
@@ -18,13 +20,13 @@ export const contractSignedTabs = [
     label: 'Company contracts',
     prop: a11yProps(0),
     data: contractSignedData,
-    columns: contractSignedColumn,
+    columns: employeeContractColumn,
   },
   {
     label: 'Employee contracts',
     prop: a11yProps(1),
     data: contractSignedEmployeeData,
-    columns: contractSignedEmployeeColumn,
+    columns: companyContractColumn,
   },
 ];
 export const contractHrSignedTabs = [

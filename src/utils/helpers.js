@@ -20,11 +20,11 @@ export const generateUniqueString = () => {
 
 export const getAttendenceShortHand = (title) => {
   const val = trackingStatusTypes?.filter(({ label }) => label === title);
-  return val[0].shortForm;
+  return val[0]?.shortForm;
 };
 
 export const convertDateFormat = (dateString) => {
-  var parts = dateString.split('-');
+  var parts = dateString?.split('-');
 
   // Swap day and month parts
   var temp = parts[0];
@@ -32,7 +32,7 @@ export const convertDateFormat = (dateString) => {
   parts[1] = temp;
 
   // Construct the new date string in the desired format
-  var newDateString = parts.join('-');
+  var newDateString = parts?.join('-');
 
   return newDateString;
 };
@@ -42,143 +42,15 @@ export const countWeekendsHandler = (startDate, endDate) => {
   const end = dayjs(endDate);
   let weekendCount = 0;
 
-  while (start.isBefore(end, 'day') || start.isSame(end, 'day')) {
-    if (start.day() === 6 || start.day() === 0) {
+  while (start?.isBefore(end, 'day') || start?.isSame(end, 'day')) {
+    if (start?.day() === 6 || start?.day() === 0) {
       weekendCount++;
     }
-    start = start.add(1, 'day');
+    start = start?.add(1, 'day');
   }
 
   return weekendCount;
 };
-
-// export const restructureNotificationData = (originalData) => {
-//   const today = dayjs();
-
-//   const restructuredData = [];
-
-//   // Iterate over each item in the original data
-//   originalData.forEach((item) => {
-//     const itemDate = dayjs(item.date);
-//     let dayLabel;
-
-//     if (itemDate.isSame(today, 'day')) {
-//       dayLabel = 'Today';
-//     } else if (itemDate.isSame(today.subtract(1, 'day'), 'day')) {
-//       dayLabel = 'Yesterday';
-//     } else if (itemDate.isAfter(today.subtract(7, 'day'))) {
-//       dayLabel = itemDate.format('dddd'); // Day of the week
-//     } else {
-//       dayLabel = item.date; // Exact date
-//     }
-
-//     // Check if the day already exists in the restructured data
-//     const existingDay = restructuredData.find((day) => day.day === dayLabel);
-
-//     if (existingDay) {
-//       existingDay.data.push(item);
-//     } else {
-//       restructuredData.push({
-//         day: dayLabel,
-//         data: [item],
-//       });
-//     }
-//   });
-
-//   return restructuredData;
-// };
-
-// export const restructureNotificationData = (originalData) => {
-//   const today = dayjs();
-
-//   const restructuredData = [];
-
-//   // Iterate over each item in the original data
-//   originalData.forEach((item) => {
-//     const itemDate = dayjs(item.date);
-//     let dayLabel;
-
-//     if (itemDate.isSame(today, 'day')) {
-//       dayLabel = 'Today';
-//     } else if (itemDate.isSame(today.subtract(1, 'day'), 'day')) {
-//       dayLabel = 'Yesterday';
-//     } else if (itemDate.isAfter(today.subtract(7, 'day'))) {
-//       dayLabel = itemDate.format('dddd'); // Day of the week
-//     } else {
-//       dayLabel = item.date; // Exact date
-//     }
-
-//     // Check if the day already exists in the restructured data
-//     const existingDay = restructuredData.find((day) => day.day === dayLabel);
-
-//     if (existingDay) {
-//       existingDay.data.push(item);
-//     } else {
-//       restructuredData.push({
-//         day: dayLabel,
-//         data: [item],
-//       });
-//     }
-//   });
-
-//   // Sort the restructuredData array by date in descending order
-//   restructuredData.sort((a, b) => {
-//     if (a.day === 'Today') return -1;
-//     if (b.day === 'Today') return 1;
-//     if (a.day === 'Yesterday') return -1;
-//     if (b.day === 'Yesterday') return 1;
-//     return dayjs(b.day).valueOf() - dayjs(a.day).valueOf();
-//   });
-
-//   return restructuredData;
-// };
-
-// export const restructureNotificationData = (originalData) => {
-//   const today = dayjs();
-
-//   const restructuredData = [];
-
-//   // Iterate over each item in the original data
-//   originalData.forEach((item) => {
-//     const itemDate = dayjs(item.date);
-//     const itemTime = dayjs(item.date + ' ' + item.time);
-//     let dayLabel;
-
-//     if (itemDate.isSame(today, 'day')) {
-//       dayLabel = 'Today';
-//     } else if (itemDate.isSame(today.subtract(1, 'day'), 'day')) {
-//       dayLabel = 'Yesterday';
-//     } else {
-//       dayLabel = itemDate.format('dddd'); // Day of the week
-//     }
-
-//     // Convert time to 12-hour format without seconds
-//     const formattedTime = itemTime.format('hh:mm A');
-
-//     // Check if the day already exists in the restructured data
-//     const existingDay = restructuredData.find((day) => day.day === dayLabel);
-
-//     if (existingDay) {
-//       existingDay.data.push({ ...item, time: formattedTime });
-//     } else {
-//       restructuredData.push({
-//         day: dayLabel,
-//         data: [{ ...item, time: formattedTime }],
-//       });
-//     }
-//   });
-
-//   // Sort the restructuredData array by date in descending order
-//   restructuredData.sort((a, b) => {
-//     if (a.day === 'Today') return -1;
-//     if (b.day === 'Today') return 1;
-//     if (a.day === 'Yesterday') return -1;
-//     if (b.day === 'Yesterday') return 1;
-//     return dayjs(b.day, 'dddd').valueOf() - dayjs(a.day, 'dddd').valueOf();
-//   });
-
-//   return restructuredData;
-// };
 
 export const restructureNotificationData = (originalData) => {
   // Check if originalData is empty or not an array

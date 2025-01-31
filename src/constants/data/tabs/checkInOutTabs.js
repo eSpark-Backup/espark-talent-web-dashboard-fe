@@ -22,12 +22,6 @@ export const checkInOutStatusTabs = [
     color: '#068987',
     name: 'completed',
   },
-  // {
-  //   label: 'Cancelled',
-  //   prop: a11yProps(3),
-  //   background: '#F6DCD8',
-  //   color: '#BA424C',
-  // },
   {
     label: 'Rejected',
     prop: a11yProps(3),

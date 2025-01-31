@@ -8,6 +8,7 @@ import DiscoverTalentPlatform from '@/src/components/dashboard/discoverTalent';
 import { DASHBOARD_DATA } from '@/src/constants/dashboard';
 import { useDispatch, useSelector } from 'react-redux';
 import { api } from '@/src/services/apiService';
+import { Toast } from '@/src/components/Toast/Toast';
 import {
   fetchClientHomeDataRequest,
   fetchClientHomeDataRequestSuccess,
@@ -29,7 +30,7 @@ const Dashboard = () => {
       return data;
     },
     onError: (err) => {
-      console.log({ err: err.message, name: err.name, stack: err.stack });
+      Toast('error', err.message || 'File not downloaded');
     },
   });
   useEffect(() => {
@@ -53,7 +54,6 @@ const Dashboard = () => {
               <DashboardHeading
                 title={`Hello ${username},` || 'World'}
                 dashboardDescription={DASHBOARD_DATA?.updates}
-                // isLoading={isLoading}
               />
             ) : (
               <Stack spacing={1.5} sx={{ width: { xs: '100%', md: '200px' } }}>
@@ -63,9 +63,7 @@ const Dashboard = () => {
             )}
 
             <Grid item xs={12}>
-              <DiscoverTalentPlatform
-              //  isLoading={isLoading}
-              />
+              <DiscoverTalentPlatform />
             </Grid>
             <Grid item xs={12}>
               <OnBoarding />

@@ -6,6 +6,7 @@ export const changePasswordForm = [
     type: 'password',
     disabled: true,
     suffixIconOutsideWithTooltip: 'Infoicon',
+    autoComplete: 'current-password',
   },
   {
     title: 'New Password',
@@ -14,6 +15,7 @@ export const changePasswordForm = [
     type: 'password',
     disabled: true,
     suffixIconOutsideWithTooltip: 'Infoicon',
+    autoComplete: 'new-password',
   },
   {
     title: 'Confirm New Passowrd',
@@ -22,5 +24,6 @@ export const changePasswordForm = [
     type: 'password',
     disabled: true,
     suffixIconOutsideWithTooltip: 'Infoicon',
+    autoComplete: 'new-password',
   },
 ];

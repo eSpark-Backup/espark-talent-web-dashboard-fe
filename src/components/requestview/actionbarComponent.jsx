@@ -1,7 +1,8 @@
 import React from 'react';
-import { Box, Button } from '@mui/material';
+import { Box } from '@mui/material';
 
-import { REQUESTVIEW_DATA } from '@/src/constants/requestviewModal';
+import CloseIcon from '@mui/icons-material/Close';
+import DoneIcon from '@mui/icons-material/Done';
 
 const ActionBarComponent = ({ onClose }) => {
   return (
@@ -9,28 +10,38 @@ const ActionBarComponent = ({ onClose }) => {
       sx={{
         display: 'flex',
         justifyContent: 'center',
-        gap: '10px',
+        gap: '2px',
         paddingTop: '12px',
         position: 'absolute',
-        bottom: 3,
+        bottom: 10,
+        right: -110,
+        left: 'auto',
         width: '100%',
         zIndex: 1,
       }}
     >
-      <Button
-        sx={{
-          borderRadius: '5px',
-          border: '1px solid #029894',
-          background: '#FFF',
-          width: '100px',
-        }}
+      <CloseIcon
+        color="primary"
+        fontSize="medium"
         onClick={onClose}
-      >
-        {REQUESTVIEW_DATA?.close}
-      </Button>
-      <Button variant="contained" sx={{ width: '100px' }} onClick={onClose}>
-        {REQUESTVIEW_DATA?.set}
-      </Button>
+        sx={{
+          borderRadius: '100%',
+          p: 0.5,
+          fontSize: '30px',
+          '&:hover': { backgroundColor: 'rgb(228, 245, 244)' },
+        }}
+      />
+      <DoneIcon
+        color="primary"
+        sx={{
+          borderRadius: '100%',
+          p: 0.5,
+          fontSize: '30px',
+          '&:hover': { backgroundColor: 'rgb(228, 245, 244)' },
+        }}
+        fontSize="medium"
+        onClick={onClose}
+      />
     </Box>
   );
 };

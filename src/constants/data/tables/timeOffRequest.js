@@ -1,27 +1,27 @@
 export const leaveRequestsColumn = [
   {
     title: 'Employee ID',
-    flex: 2,
+    flex: 3,
     name: 'employee_id',
   },
   {
     title: 'Employee name',
-    flex: 2,
+    flex: 3,
     name: 'employee_name',
   },
   {
     title: 'Country',
-    flex: 2,
+    flex: 3,
     name: 'country',
   },
   {
     title: 'Department',
-    flex: 2,
+    flex: 3,
     name: 'department',
   },
   {
     title: 'Leave type',
-    flex: 2,
+    flex: 3,
     name: 'leave_type',
   },
   {
@@ -31,7 +31,7 @@ export const leaveRequestsColumn = [
   },
   {
     title: 'Requested at',
-    flex: 2,
+    flex: 5,
     name: 'requested_at',
   },
   {
@@ -41,7 +41,7 @@ export const leaveRequestsColumn = [
   },
   {
     title: 'Actions',
-    flex: 2,
+    flex: 3,
     name: 'actions',
   },
 ];

@@ -35,9 +35,8 @@ const Policies = () => {
           return data;
         })
         .catch((err) => {
-          Toast('error', err.message || 'Failed to get data');
           dispatch(fetchEmpPoliciesDataRequestFailed());
-          console.log({ err });
+          Toast('error', err.message || 'Failed to get data');
         });
     },
   });
@@ -84,7 +83,6 @@ const Policies = () => {
             data={filteredItems}
             isLoading={isLoading}
           />
-          {/* <PoliciesCard data={POLICIES_DATA?.items} /> */}
         </Box>
       </Grid>
     </>

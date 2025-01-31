@@ -18,16 +18,15 @@ const Client = () => {
   const { data, isLoading } = useQuery({
     staleTime: 10000,
     refetchOnWindowFocus: false,
-    queryKey: ['employee-get-client'],
+    queryKey: ['employee-get-client', params?.id],
     queryFn: async () => {
       return api
-        .getData(`${HR_GET_EMP_PROFILE}?id=${params.id}&tab=client`)
+        .getData(`${HR_GET_EMP_PROFILE}?id=${params?.id}&tab=client`)
         .then(({ data }) => {
           return data || [];
         })
         .catch((err) => {
           Toast('error', err.message || 'Failed to get data');
-          console.log({ err });
         });
     },
   });
@@ -52,13 +51,13 @@ const Client = () => {
     },
   ];
   const handleChangeTab = (event, newValue, rest) => {
-    console.log({ event, newValue, rest });
     setCurrentTab({
       label: tabs[newValue].label,
       val: newValue,
       data: tabs[newValue].data,
       column: tabs[newValue].column,
     });
+    console.log(event, rest);
   };
   return (
     <>
@@ -67,7 +66,7 @@ const Client = () => {
           display: 'flex',
           flexDirection: { xs: 'column', md: 'row' },
           justifyContent: 'space-between',
-          alignItems: 'center',
+          alignItems: { xs: 'flex-start', md: 'center' },
           borderBottom: 'solid 1px #ccc',
           mb: '40px',
         }}
@@ -106,6 +105,7 @@ const Client = () => {
         }}
       >
         <AppTable
+          minWidth={'1200px'}
           currentTab={currentTab}
           column={currentTab.column}
           data={

@@ -22,7 +22,6 @@ const LeaveRequest = ({
   createLeaveRequest,
 }) => {
   const { status, leaveType, employeeName } = modalData || {};
-  console.log({ modalData, isViewingClient });
   return (
     <Box sx={{ p: 3.5 }}>
       <LeaveType isViewingClient={isViewingClient} leaveType={leaveType} />

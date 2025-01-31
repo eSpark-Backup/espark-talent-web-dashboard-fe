@@ -223,42 +223,39 @@ export const filterLeaveForm = [
     type: 'date',
     name: 'to',
   },
-  // {
-  //   title: 'CheckIn Time',
-  //   type: 'timerow',
-  //   name: 'checkIn',
-  //   fieldsName: [
-  //     {
-  //       placeholder: '--:-- --',
-  //       name: 'checkinTimeFrom',
-  //       type: 'time',
-  //       suffixIcon: 'ClockIcon',
-  //     },
-  //     {
-  //       placeholder: '--:-- --',
-  //       name: 'checkinTimeTo',
-  //       type: 'time',
-  //       suffixIcon: 'ClockIcon',
-  //     },
-  //   ],
-  // },
-  // {
-  //   title: 'CheckOut Time',
-  //   type: 'timerow',
-  //   name: 'checkOut',
-  //   fieldsName: [
-  //     {
-  //       placeholder: '--:-- --',
-  //       name: 'checkoutTimeFrom',
-  //       type: 'time',
-  //       suffixIcon: 'ClockIcon',
-  //     },
-  //     {
-  //       placeholder: '--:-- --',
-  //       name: 'checkoutTimeTo',
-  //       type: 'time',
-  //       suffixIcon: 'ClockIcon',
-  //     },
-  //   ],
-  // },
+];
+
+export const filterWFHForm = [
+  {
+    title: ' Status',
+    placeholder: 'Select Status',
+    name: 'status',
+    type: 'select',
+    options: [
+      {
+        label: 'Pending',
+      },
+      {
+        label: 'Completed',
+      },
+      {
+        label: 'Rejected',
+      },
+    ],
+    searchable: true,
+  },
+  {
+    title: 'From',
+    placeholder: 'DD-MM-YYYY',
+    suffixIcon: 'calender',
+    type: 'date',
+    name: 'from',
+  },
+  {
+    title: 'To',
+    placeholder: 'DD-MM-YYYY',
+    suffixIcon: 'calender',
+    type: 'date',
+    name: 'to',
+  },
 ];

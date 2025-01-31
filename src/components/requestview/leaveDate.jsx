@@ -38,7 +38,7 @@ const LeaveDate = ({ date, backgroundColor, isViewingClient }) => {
       </Typography>
 
       <Box sx={{ width: '100%', display: 'flex', justifyContent: 'flex-end' }}>
-        <LeaveDatePicker isViewingClient={isViewingClient} />
+        <LeaveDatePicker />
       </Box>
     </Box>
   );

@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box, Button, CircularProgress, Grid, Typography } from '@mui/material';
 
 import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { useFormik } from 'formik';
 import { FORM_DATA } from '@/src/constants/form';
 import { SETTING } from '@/src/constants/SettingHr';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
+import { usePathname, useRouter } from 'next/navigation';
+import { Toast } from '../../Toast/Toast';
+import UploadImageModal from '../../employeeData/UploadImageModal';
 
 const Step = ({
   handleGoPrev,
@@ -39,17 +42,28 @@ const Step = ({
   fontSize,
   miniFontSize,
 }) => {
+  const pathname = usePathname();
+  const router = useRouter();
+  const queryClient = useQueryClient();
+  const [showEditModal, setEditModal] = useState(false);
   const { mutate, isPending } = useMutation({
     mutationFn: async (formVals) => {
       console.log({ formVals });
       const formDataVals = new FormData();
       for (const key in formVals) {
-        formDataVals.append(key, formVals[key]);
+        formDataVals?.append(key, formVals[key]);
       }
       return api[method](endpoint, formDataVals);
     },
     onSuccess: ({ data }) => {
+      queryClient?.invalidateQueries(['hr-client-info-query']);
+      Toast('success', 'Status updated successfully');
       console.log({ data });
+      if (window?.history?.length > 1) {
+        router?.back();
+      } else {
+        router?.push('/hr/dashboard/clients');
+      }
       setCurrentStep?.(0);
       toast?.();
       clearForm?.();
@@ -68,14 +82,14 @@ const Step = ({
         if (['/hr_add_emp/', '/hr_add_client/'].includes(endpoint)) {
           if (
             Array.isArray(firstResponseValue) &&
-            firstResponseValue.length > 0
+            firstResponseValue?.length > 0
           ) {
             errToast = formattedErrors;
           } else {
             errToast = firstResponseValue;
           }
         } else {
-          errToast = Array.isArray(firstResponseValue)
+          errToast = Array?.isArray(firstResponseValue)
             ? formattedErrors
             : firstResponseValue;
         }
@@ -84,9 +98,9 @@ const Step = ({
       }
       console.log({
         errorDetails: err,
-        errorMessage: err.message,
-        errorName: err.name,
-        errorStack: err.stack,
+        errorMessage: err?.message,
+        errorName: err?.name,
+        errorStack: err?.stack,
       });
       if (errToast) {
         errorToast(errToast);
@@ -95,18 +109,18 @@ const Step = ({
   });
 
   const formatErrors = (error) => {
-    return Object.keys(error)
-      .map((key) => {
+    return Object?.keys(error)
+      ?.map((key) => {
         // Replace underscores with spaces and capitalize each word
         const formattedKey = key
-          .replace(/_/g, ' ')
-          .replace(/\b\w/g, (char) => char.toUpperCase());
+          ?.replace(/_/g, ' ')
+          ?.replace(/\b\w/g, (char) => char?.toUpperCase());
         // Join all error messages for the key
-        const errorMessage = error[key].join(', ');
+        const errorMessage = error[key]?.join(', ');
         // Return the formatted error message with bold key
         return `<strong>${formattedKey}:</strong> ${errorMessage}`;
       })
-      .join('<br>');
+      ?.join('<br>');
   };
 
   const {
@@ -120,6 +134,7 @@ const Step = ({
   } = useFormik({
     initialValues: {
       ...defaultValues,
+      image: defaultValues?.image || null,
     },
     validationSchema: schema,
     enableReinitialize: true,
@@ -131,12 +146,11 @@ const Step = ({
         const newData = getFinalData({
           ...defaultValues,
           ...formValues,
-          gender:
-            formValues?.gender == 'Not specific'
-              ? 'nonspec'
-              : formValues?.gender,
+          image: formValues?.image || null,
+          ...(formValues?.gender && formValues?.gender !== 'Not specific'
+            ? { gender: formValues?.gender }
+            : {}),
         });
-        console.log({ fV: formValues, newData });
         mutate(newData);
       }
       btnSave(formValues);
@@ -145,14 +159,17 @@ const Step = ({
     validateOnBlur: false,
   });
   const handeClickBack = () => {
-    console.log({ values, errors });
     dispatchFunction?.(values);
     handleGoPrev();
   };
 
-  {
-    console.log({ errors, values });
-  }
+  const handleOpenModal = () => {
+    setEditModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setEditModal(false);
+  };
 
   if (isMultiColumn)
     return (
@@ -214,14 +231,7 @@ const Step = ({
                     >
                       {fields?.map(
                         (
-                          {
-                            title,
-                            placeholder,
-                            errorText,
-                            name,
-                            accept,
-                            disabled,
-                          },
+                          { title, placeholder, errorText, name, accept },
                           fieldIndex
                         ) => (
                           <FormInput
@@ -244,7 +254,16 @@ const Step = ({
                             values={values}
                             width={'70%'}
                             accept={accept}
-                            disabled={disabled}
+                            disabled={
+                              (name == 'starting_date' &&
+                                (values?.job_status == 'Part-Time' ||
+                                  values?.job_status == 'Permanent')) ||
+                              (name == 'ending_date' &&
+                                (values?.job_status == 'Part-Time' ||
+                                  values?.job_status == 'Permanent'))
+                                ? true
+                                : false
+                            }
                             marginLeft={marginLeft}
                             marginRight={marginRight}
                           />
@@ -297,10 +316,9 @@ const Step = ({
   return (
     <form onSubmit={handleSubmit}>
       <Grid
-        spacing={0}
         container
         sx={{
-          p: { xs: '20px', md: pmd },
+          p: { xs: '20px', md: '60px 45px', lg: '70px 45px', xl: pmd },
           display: 'flex',
           gap: gap ? gap : 0,
           '@media (min-width: 280px) and (max-width: 1460px)': {
@@ -320,15 +338,14 @@ const Step = ({
               options,
               name,
               nested,
-              col,
               searchable,
               accept,
               withFlag,
               min,
               max,
-              disabled,
               filelabel,
               selectWithType,
+              disabled,
             },
             formIndex
           ) => (
@@ -345,26 +362,42 @@ const Step = ({
               setFieldValue={setFieldValue}
               value={values[name]}
               error={errors[name]}
-              touched={touched}
               setFieldError={setFieldError}
               errors={errors}
               setErrors={setErrors}
               values={values}
               nested={nested}
-              lg={col}
+              xs={12}
+              sm={6}
+              md={3.5}
+              lg={3}
               countries={countries}
               withFlag={withFlag}
               searchable={searchable}
               accept={accept}
               min={min}
               max={max}
-              disabled={disabled}
+              disabled={
+                disabled ||
+                (name == 'starting_date' &&
+                  (values?.job_status == 'Part-Time' ||
+                    values?.job_status == 'Permanent')) ||
+                (pathname == '/hr/dashboard/clients/edit-profile' &&
+                  name == 'email') ||
+                (name == 'ending_date' &&
+                  (values?.job_status == 'Part-Time' ||
+                    values?.job_status == 'Permanent'))
+                  ? true
+                  : false
+              }
               filelabel={filelabel}
               marginLeft={marginLeft}
               marginRight={marginRight}
               fontSize={fontSize}
               miniFontSize={miniFontSize}
               selectWithType={selectWithType}
+              width={'100%'}
+              onclickUpload={handleOpenModal}
             />
           )
         )}
@@ -446,12 +479,19 @@ const Step = ({
                 ) : (
                   'Submit'
                 )}
-                {/* {isLastStep ? 'Submit' : 'Next'} */}
               </Button>
             </Box>
           </Grid>
         )}
       </Grid>
+      {showEditModal && (
+        <UploadImageModal
+          open={showEditModal}
+          onClose={handleCloseModal}
+          currentImage={values?.image || null}
+          setFieldValue={setFieldValue}
+        />
+      )}
     </form>
   );
 };

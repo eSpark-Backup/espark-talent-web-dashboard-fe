@@ -29,39 +29,35 @@ const Assets = () => {
   const dispatch = useDispatch();
   const { mutate, isPending } = useMutation({
     mutationFn: async (id) => {
-      // dispatch(deleteClientHiringRequest());
       return api.daleteData(`${HR_ADD_EMP_ASSET}?id=${id}`);
     },
     onSuccess: () => {
-      Toast('success', 'Asset deleted successfully');
-      // dispatch(deleteClientHiringRequestSuccess(modalData?.id));
       handleClose();
       dispatch(deleteEmpAsset(deletingAssetId));
+      Toast('success', 'Asset deleted successfully');
       setDeletingAssetId(null);
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to delete data');
-      // dispatch(deleteClientHiringRequestFailed());
     },
   });
   const params = useParams();
-  // const [isLoading, setIsLoading] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
   const { assets } = useSelector((state) => state?.hr?.employees);
   const { isLoading } = useQuery({
     staleTime: 10000,
     refetchOnWindowFocus: false,
-    queryKey: ['hr-employee-get-asset'],
+    queryKey: ['hr-employee-get-asset', params?.id],
     queryFn: async () => {
       dispatch(getEmpAssetRequest());
       return api
-        .getData(`${HR_GET_EMP_PROFILE}?id=${params.id}&tab=assets`)
+        .getData(`${HR_GET_EMP_PROFILE}?id=${params?.id}&tab=assets`)
         .then(({ data }) => {
           const tempAssets = data?.length
             ? data?.map((item) => ({
                 ...item,
-                assigned_date: dayjs(item.assigned_date).format(
-                  'YYYY-MM-DD h:m A'
+                assigned_date: dayjs(item?.assigned_date)?.format(
+                  'MMMM D, YYYY h:m A'
                 ),
                 assignee: [item?.assignee_name, item?.assignee_email],
                 action: ['Delete'],
@@ -71,15 +67,13 @@ const Assets = () => {
           return tempAssets || [];
         })
         .catch((err) => {
-          Toast('error', err.message || 'Failed to get data');
           dispatch(getEmpAssetRequestFailed());
-          console.log({ err });
+          Toast('error', err.message || 'Failed to get data');
         });
     },
   });
 
   const handleClickDelete = (a, b) => {
-    console.log({ a, b });
     setDeletingAssetId(b?.id);
     setIsOpen(true);
   };
@@ -101,21 +95,22 @@ const Assets = () => {
 
   return (
     <>
-      <>
-        <Box
-          sx={{
-            maxWidth: '100%',
-            overflowX: 'auto',
-          }}
-        >
-          <AppTable
-            column={processColumns()}
-            data={assets}
-            handleClickActionDelete={handleClickDelete}
-            isLoading={isLoading}
-          />
-        </Box>
-      </>
+      <Box
+        sx={{
+          maxWidth: '100%',
+          overflowX: 'auto',
+          mt: '40px',
+        }}
+      >
+        <AppTable
+          minWidth={'1200px'}
+          column={processColumns()}
+          data={assets}
+          handleClickActionDelete={handleClickDelete}
+          isLoading={isLoading}
+        />
+      </Box>
+
       <AppConfirmationMadal
         title={CONTRACT_SIGNED?.delete}
         bodyText={`Are you sure you want to delete asset?`}

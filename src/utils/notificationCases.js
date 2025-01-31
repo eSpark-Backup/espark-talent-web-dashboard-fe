@@ -14,15 +14,19 @@ const handleAdminNotifications = (notification, userType) => {
   const commonUrl = `${userType}/dashboard`;
   const paramText = notification?.type?.toLowerCase()?.replace(/ /g, '_');
   const clientId = notification?.client_record_id;
-
+  const employeeId = notification?.employee_record_id;
   const routes = {
     'Hiring Request': `clients/${clientId}`,
     'Interview Schedule': `clients/${clientId}`,
+    'Interview Reject': `clients/${clientId}`,
+    'Interview Shortlist': `clients/${clientId}`,
+    'Interview Pending': `clients/${clientId}`,
+    'Interview Hold': `clients/${clientId}`,
     Onboarding: `clients/${clientId}`,
     'Employee Invoice': `clients/${clientId}`,
     'Other Payments': `clients/${clientId}`,
+    'WFH Request': `employees/${employeeId}`,
   };
-
   const route = routes[notification?.type];
 
   if (route) {
@@ -32,6 +36,7 @@ const handleAdminNotifications = (notification, userType) => {
       'Onboarding',
       'Employee Invoice',
       'Other Payments',
+      'WFH Request',
     ].includes(notification?.type);
 
     const url = constructUrl(
@@ -97,10 +102,14 @@ const handleEmployeeNotifications = (notification, userType) => {
   const commonUrl = `${userType}/dashboard`;
 
   const routes = {
-    'Punch Request': 'attendance/punch-requests',
     'Leave Request': 'request/leave',
+    'Wfh Request': 'request/work-from-home',
+    'Punch Request': 'request/punch-requests',
+    Benefit: '/benefits',
+    Letter: '/letters',
     Policy: 'administration/policies',
     'Company Contracts': 'administration/contracts-signed',
+    'Client Contracts': 'administration/contracts-signed',
   };
 
   const route = routes[notification?.type];

@@ -12,6 +12,7 @@ const AppTable = ({
   renderMessageButton,
   handleClickRenderMessageButton,
   handleClickActionView,
+  handleEditImage,
   handleClickActionDelete,
   noPagination,
   minWidth,
@@ -30,6 +31,7 @@ const AppTable = ({
           data={data}
           renderMessage={renderMessage}
           handleClickActionView={handleClickActionView}
+          handleEditImage={handleEditImage}
           handleClickRenderMessageButton={handleClickRenderMessageButton}
           renderMessageButton={renderMessageButton}
           handleClick={handleClick}

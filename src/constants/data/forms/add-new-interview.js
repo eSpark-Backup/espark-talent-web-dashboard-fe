@@ -71,7 +71,7 @@ export const addNewInterviewForm = [
   },
   {
     title: 'Interview date & time',
-    placeholder: 'DD/MM/YYYY , 00:00 PST',
+    placeholder: 'MM/DD/YYYY , 00:00 PST',
     suffixIcon: 'CalendarOutline',
     type: 'date-and-time',
     name: 'interview_date_time',

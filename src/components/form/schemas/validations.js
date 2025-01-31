@@ -1,9 +1,17 @@
 import dayjs from 'dayjs';
 import * as Yup from 'yup';
 
-const emailRegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const nameRegExp = /^[a-zA-Z\s'-]+$/;
-const companyNameRegExp = /^[a-zA-Z0-9\s'&.-]+$/;
+export const emailRegExp =
+  /^[A-Z0-9]+(?:[._%+-][A-Z0-9]+)*@[A-Z0-9]+(?:-[A-Z0-9]+)*(\.[A-Z0-9]+(?:-[A-Z0-9]+)*)+$/i;
+export const nameRegExp = /^[a-zA-Z\s'-]+$/;
+export const interNameRegExp = /^[a-zA-ZÀ-ÖØ-öø-ÿ]+([ '-][a-zA-ZÀ-ÖØ-öø-ÿ]+)*$/;
+export const companyNameRegExp = /^[a-zA-Z0-9\s'&.-]+$/;
+export const phoneNumberRegExp = /^\+?[0-9]+$/;
+export const timeRegExp = /^([0-9]{2}):([0-9]{2})$/;
+export const dateFormatRegex =
+  /^[a-zA-Z]{3}\s[a-zA-Z]{3}\s[0-9]{2}\s[0-9]{4}\s[0-9]{2}:[0-9]{2}:[0-9]{2}\sGMT[+-][0-9]{4}\s\(([^)]+)\)$/;
+export const timeFormatRegex =
+  /^(Mon|Tue|Wed|Thu|Fri|Sat|Sun) (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \d{2} \d{4} \d{2}:\d{2}:\d{2} GMT[+-]\d{4} \([\w\s]+\)$/;
 
 export const dobValidation = Yup.string()
   .required('Required')
@@ -17,14 +25,14 @@ export const dobValidation = Yup.string()
 export const phoneValidation = Yup.string()
   .required('Contact number is required')
   .matches(
-    /^\+?[0-9]+$/,
+    phoneNumberRegExp,
     'Phone number must contain only numeric characters and an optional leading +'
   )
   .min(6, 'Phone number must be at least 6 digits')
   .max(16, 'Phone number must be at most 16 digits');
 export const notRequiredValidation = Yup.string()
   .matches(
-    /^\+?[0-9]+$/,
+    phoneNumberRegExp,
     'Phone number must contain only numeric characters and an optional leading +'
   )
   .min(6, 'Phone number must be at least 6 digits')
@@ -50,6 +58,7 @@ export const websiteValidation = Yup.string()
     return urlRegex.test(value);
   });
 export const nameValidation = Yup.string()
+  .transform((value) => value.replace(/\s+/g, '')) // Removes all spaces before validation
   .matches(nameRegExp, 'Name is not valid')
   .required('Name is required')
   .min(2, 'Name is too short - should be 2 chars minimum.')

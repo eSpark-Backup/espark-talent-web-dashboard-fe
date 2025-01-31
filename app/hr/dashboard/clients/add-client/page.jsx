@@ -39,7 +39,6 @@ const AddEmployee = () => {
     country: addClientForm?.country,
   };
   const dispatchFunction = (values) => {
-    console.log({ values });
     dispatch(
       addClientFormData({
         ...values,
@@ -64,8 +63,6 @@ const AddEmployee = () => {
       password: values?.password,
       confirm_password: values?.confirm_password,
       country: values?.country.title,
-      // // ...values,
-      // // country: values.country.title,
     };
   };
   const handleToast = () => {
@@ -95,8 +92,6 @@ const AddEmployee = () => {
       </Box>
       <Box
         sx={{
-          // maxWidth: '1480px',
-          // width: '95%',
           minHeight: '550px',
           border: 'solid 1px #ccc',
           borderRadius: '10px 10px 0 0',
@@ -130,6 +125,7 @@ const AddEmployee = () => {
                   navigateFunc={handleNavigate}
                   marginLeft={'10px'}
                   marginRight={'10px'}
+                  width={'100%'}
                 />
               );
             }

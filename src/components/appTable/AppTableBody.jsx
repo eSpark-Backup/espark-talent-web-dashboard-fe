@@ -9,6 +9,7 @@ const AppTableBody = ({
   column,
   renderMessage,
   handleClickActionView,
+  handleEditImage,
   handleClickRenderMessageButton,
   renderMessageButton,
   handleClick,
@@ -61,6 +62,7 @@ const AppTableBody = ({
                       row,
                       col,
                       handleClickActionView,
+                      handleEditImage,
                       commonCellStyle,
                       handleClick,
                       handleClickRenderMessageButton,
@@ -84,45 +86,6 @@ const AppTableBody = ({
           </td>
         </tr>
       )}
-      {/* {renderMessage ? (
-        <TableHiddenBody
-          renderMessage={renderMessage}
-          handleClickRenderMessageButton={handleClickRenderMessageButton}
-          renderMessageButton={renderMessageButton}
-        />
-      ) : data?.length ? (
-        data?.map((row, rowIndex) => (
-          <tr
-            className={tableRowClass ? tableRowClass : 'app-table-row'}
-            key={rowIndex}
-          >
-            {column?.map((col, colIndex) => (
-              <Fragment key={colIndex}>
-                {renderCellContent(
-                  row,
-                  col,
-                  handleClickActionView,
-                  commonCellStyle,
-                  handleClick,
-                  handleClickRenderMessageButton,
-                  colIndex,
-                  rowIndex,
-                  handleClickActionDelete,
-                  options
-                )}
-              </Fragment>
-            ))}
-          </tr>
-        ))
-      ) : (
-        <tr>
-          <td className="app-table-row" colSpan={column?.length}>
-            <Typography variant="caption" sx={{ width: '100%' }}>
-              No Records Found
-            </Typography>
-          </td>
-        </tr>
-      )} */}
     </tbody>
   );
 };

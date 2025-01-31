@@ -40,12 +40,21 @@ import { Toast } from '@/src/components/Toast/Toast';
 import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
 import { TIME_REQUEST } from '@/src/constants/timeSheet';
 import dayjs from 'dayjs';
-import PunchRequestDataView from '@/app/employee/dashboard/attendance/punch-requests/PunchRequestFormView';
+import PunchRequestDataView from '@/app/employee/dashboard/request/punch-requests/PunchRequestFormView';
 
 const Dashboard = () => {
   const { data, tabData } = useSelector((state) => state?.client?.timeOff);
+  const { c_email } = useSelector((state) => state?.client?.home?.data);
   const [leaveRequestDataState, setLeaveRequestDataState] = useState([]);
   const [clockInOutDataState, setClockInOutDataState] = useState([]);
+
+  function formatTimeToHHMM(time) {
+    if (time === '-') return time;
+    const [hour, minute, secondPart] = time?.split(':') || [];
+    const period = secondPart?.split(' ')[1];
+    return `${hour || ''}:${minute || ''} ${period || ''}`;
+  }
+
   useEffect(() => {
     setLeaveRequestDataState(data?.leaveRequest);
     setClockInOutDataState(data?.clockInOutRequests);
@@ -53,7 +62,6 @@ const Dashboard = () => {
 
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(true);
-
   const [open, setOpen] = useState(false);
   const [updatingLeaveRequest, setUpdatingLeaveRequest] = useState(null);
   const [openPunch, setOpenPunch] = useState(false);
@@ -62,7 +70,6 @@ const Dashboard = () => {
     setOpen(true);
   };
   const handleClose = () => {
-    console.log({ modalData });
     setOpen(false);
   };
   const handleClosePunch = () => setOpenPunch(false);
@@ -83,6 +90,7 @@ const Dashboard = () => {
 
     fetchDataAsync();
   }, []);
+
   const handleClickActionView = (props) => {
     setViewClicked(true);
     const {
@@ -90,7 +98,7 @@ const Dashboard = () => {
       row,
       row: { status, employeeName, count, leaveType },
     } = props;
-    console.log({ item, row, status, count, leaveType, employeeName });
+    console.log(status, employeeName, count, leaveType);
     setModalData({ item, ...row });
     if (tabData?.currentReqTypeTab === 'Leave Requests') {
       setOpen(true);
@@ -102,15 +110,13 @@ const Dashboard = () => {
     mutationFn: async (data) => {
       return api.updateJSONData(`${data?.endpoint}?id=${data?.id}`, data?.data);
     },
-    onSuccess: ({ data }) => {
-      console.log({ data });
-      Toast('success', 'Request updated successfully');
+    onSuccess: () => {
       if (tabData?.currentReqTypeTab === 'Leave Requests') {
         dispatch(updateLeaveRequest(updatingLeaveRequest));
       } else {
         dispatch(updateTimeOffRequests(updatingLeaveRequest));
       }
-      setUpdatingLeaveRequest(null);
+      Toast('success', 'Request updated successfully');
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to delete data');
@@ -118,40 +124,40 @@ const Dashboard = () => {
   });
 
   const handleApproveRequest = (props) => {
-    console.log({ tabData, crst: tabData?.currentReqStatusTab });
     setUpdatingLeaveRequest({
-      id: props.id,
+      id: props?.id,
       status: 'completed',
     });
-    if (tabData?.currentReqTypeTab === 'Leave Requests') {
-      updateRequestMutation.mutate({
+
+    if (tabData?.currentReqTypeTab === 'Leave Requests' && props?.id !== null) {
+      updateRequestMutation?.mutate({
         endpoint: CLIENT_LEAVE_REQUEST,
-        id: props.id,
+        id: props?.id,
         data: { status: 'completed' },
       });
     } else {
-      updateRequestMutation.mutate({
+      updateRequestMutation?.mutate({
         endpoint: CLIENT_TIME_OFF,
-        id: props.id,
+        id: props?.id,
         data: { status: 'completed' },
       });
     }
   };
   const handleRejectRequest = (props) => {
     setUpdatingLeaveRequest({
-      id: props.id,
+      id: props?.id,
       status: 'rejected',
     });
-    if (tabData?.currentReqTypeTab === 'Leave Requests') {
-      updateRequestMutation.mutate({
+    if (tabData?.currentReqTypeTab === 'Leave Requests' && props?.id !== null) {
+      updateRequestMutation?.mutate({
         endpoint: CLIENT_LEAVE_REQUEST,
-        id: props.id,
+        id: props?.id,
         data: { status: 'reject' },
       });
     } else {
-      updateRequestMutation.mutate({
+      updateRequestMutation?.mutate({
         endpoint: CLIENT_TIME_OFF,
-        id: props.id,
+        id: props?.id,
         data: { status: 'rejected' },
       });
     }
@@ -159,7 +165,7 @@ const Dashboard = () => {
   const leaveRequestQuery = useQuery({
     staleTime: 10000,
     refetchOnWindowFocus: false,
-    queryKey: ['leaveRequests'],
+    queryKey: ['leaveRequests', c_email],
     queryFn: async () => {
       return await api
         .getData(`${CLIENT_LEAVE_REQUEST}?status=all`)
@@ -171,7 +177,7 @@ const Dashboard = () => {
                   ...item,
                   actionStatus: true,
                   requested_at: dayjs(item?.requested_at).format(
-                    'YYYY-MM-DD hh:mm a'
+                    'MMMM D, YYYY hh:mm A'
                   ),
                   actions: [
                     item?.status === 'pending' ? 'Reject' : null,
@@ -189,7 +195,7 @@ const Dashboard = () => {
   const timeOffQuery = useQuery({
     staleTime: 10000,
     refetchOnWindowFocus: false,
-    queryKey: ['timeOffRequests'],
+    queryKey: ['timeOffRequests', c_email],
     queryFn: async () => {
       return api
         .getData(`${CLIENT_TIME_OFF}?status=all`)
@@ -200,6 +206,8 @@ const Dashboard = () => {
               : data?.map((item) => ({
                   ...item,
                   actionStatus: true,
+                  date: dayjs(item?.date)?.format('DD-MMMM-YYYY'),
+                  punch_time: formatTimeToHHMM(item?.punch_time, 'hh:mm:ss A'),
                   actions: [
                     item?.status === 'pending' ? 'Reject' : null,
                     item?.status === 'pending' ? 'Approve' : null,
@@ -216,7 +224,7 @@ const Dashboard = () => {
   const leaveBalanceQuery = useQuery({
     staleTime: 10000,
     refetchOnWindowFocus: false,
-    queryKey: ['leaveBalanceRequests'],
+    queryKey: ['leaveBalanceRequests', c_email],
     queryFn: async () => {
       return await api
         .getData(`${CLIENT_LEAVE_BALANCE}`)
@@ -259,7 +267,6 @@ const Dashboard = () => {
       return api.downloadFile(resolveURL());
     },
     onSuccess: ({ data }) => {
-      console.log({ data });
       const url = window.URL.createObjectURL(new Blob([data]));
       const link = document.createElement('a');
       link.href = url;
@@ -268,19 +275,16 @@ const Dashboard = () => {
       link.click();
       link.parentNode.removeChild(link);
 
-      // dispatchFunction?.(data);
       Toast('success', 'File downloaded');
     },
     onError: (err) => {
       Toast('error', err.message || 'File not downloaded');
-      // dispatch(getTimeSheetDataFailed());
-      console.log({ err });
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const handleDownloadReport = () => {
     mutate();
   };
+
   return (
     <>
       <Grid container>
@@ -294,7 +298,6 @@ const Dashboard = () => {
           }}
         >
           <div>
-            {/* <PageHeader /> */}
             <Box
               sx={{
                 display: 'flex',
@@ -318,9 +321,9 @@ const Dashboard = () => {
                     !tabData ||
                     !tabData.currentReqTypeTab ||
                     (tabData.currentReqTypeTab === 'Leave Requests' &&
-                      !leaveRequestDataState.length) ||
+                      !data?.leaveRequest?.length) ||
                     (tabData.currentReqTypeTab === 'Clockin/out Requests' &&
-                      !clockInOutDataState.length)
+                      !data?.clockInOutRequests?.length)
                       ? '#ccc'
                       : '#029894'
                   }`,
@@ -337,9 +340,12 @@ const Dashboard = () => {
                   !tabData ||
                   !tabData.currentReqTypeTab ||
                   (tabData.currentReqTypeTab === 'Leave Requests' &&
-                    !leaveRequestDataState.length) ||
+                    !data?.leaveRequest?.length) ||
+                  (tabData.currentReqTypeTab === 'Leave Balance' &&
+                    !data?.leaveRequest?.length) ||
+                  !data?.clockInOutRequests?.length ||
                   (tabData.currentReqTypeTab === 'Clockin/out Requests' &&
-                    !clockInOutDataState.length)
+                    !data?.clockInOutRequests?.length)
                 }
               >
                 {isPending ? (
@@ -361,7 +367,7 @@ const Dashboard = () => {
               {(tabData?.currentReqTypeTab === 'Leave Requests' ||
                 tabData?.currentReqTypeTab === 'Clockin/out Requests') &&
                 renderNestedTable({
-                  minWidth: '1450px',
+                  minWidth: '1250px',
                   isLoading,
                   currentReqStatusTabVal: tabData?.currentReqStatusTabVal,
                   currentReqStatusTab: tabData?.currentReqStatusTab,
@@ -372,8 +378,12 @@ const Dashboard = () => {
                       : checkInOutColumn,
                   data:
                     tabData?.currentReqTypeTab === 'Leave Requests'
-                      ? leaveRequestDataState
-                      : clockInOutDataState,
+                      ? !leaveRequestDataState?.length
+                        ? data?.leaveRequest
+                        : leaveRequestDataState || []
+                      : !clockInOutDataState?.length
+                        ? data?.clockInOutRequests
+                        : clockInOutDataState || [],
                   currentReqTypeTab: tabData?.currentReqTypeTab,
                   handleClickActionView,
                   viewClicked,
@@ -389,6 +399,9 @@ const Dashboard = () => {
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
+        disableScrollLock
+        disableEnforceFocus
+        disableRestoreFocus
         sx={{
           display: 'flex',
           alignItems: 'center',
@@ -407,6 +420,9 @@ const Dashboard = () => {
         onClose={handleClosePunch}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
+        disableScrollLock
+        disableEnforceFocus
+        disableRestoreFocus
         sx={{
           display: 'flex',
           alignItems: 'center',

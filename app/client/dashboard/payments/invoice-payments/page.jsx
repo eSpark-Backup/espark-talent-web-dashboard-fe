@@ -73,7 +73,6 @@ const Dashboard = () => {
     queryKey: ['pendingInvoicePayments'],
     queryFn: async () => {
       dispatch(fetchPendingInvoicePaymentsRequest());
-      // dispatch(fetchOtherPendingInvoicePaymentsRequest());
       return api
         .getData(`${CLIENT_INVOICE_PAYMENTS}?payment_status=pending`)
         .then(({ data }) => {
@@ -102,10 +101,8 @@ const Dashboard = () => {
           return tempOthInvData;
         })
         .catch((err) => {
-          Toast('error', err.message || 'Failed to get data');
           dispatch(fetchPendingInvoicePaymentsRequestFailed());
-          // dispatch(fetchOtherPendingInvoicePaymentsRequestFailed());
-          console.log({ err });
+          Toast('error', err.message || 'Failed to get data');
         });
     },
   });
@@ -115,11 +112,9 @@ const Dashboard = () => {
     queryKey: ['processingInvoicePayments'],
     queryFn: async () => {
       dispatch(fetchProcessingInvoicePaymentsRequest());
-      // dispatch(fetchOtherProcessingInvoicePaymentsRequest());
       return api
         .getData(`${CLIENT_INVOICE_PAYMENTS}?payment_status=processing`)
         .then(({ data }) => {
-          console.log({ processData: data });
           const tempData =
             data === ''
               ? []
@@ -145,10 +140,8 @@ const Dashboard = () => {
           return tempOthInvData;
         })
         .catch((err) => {
-          Toast('error', err.message || 'Failed to get data');
           dispatch(fetchProcessingInvoicePaymentsRequestFailed());
-          // dispatch(fetchOtherProcessingInvoicePaymentsRequestFailed());
-          console.log({ err });
+          Toast('error', err.message || 'Failed to get data');
         });
     },
   });
@@ -158,7 +151,6 @@ const Dashboard = () => {
     queryKey: ['paidInvoicePayments'],
     queryFn: async () => {
       dispatch(fetchPaidInvoicePaymentsRequest());
-      // dispatch(fetchOtherPaidInvoicePaymentsRequest());
       return api
         .getData(`${CLIENT_INVOICE_PAYMENTS}?payment_status=paid`)
         .then(({ data }) => {
@@ -185,10 +177,8 @@ const Dashboard = () => {
           return tempOthInvData;
         })
         .catch((err) => {
-          Toast('error', err.message || 'Failed to get data');
           dispatch(fetchPaidInvoicePaymentsRequestFailed());
-          // dispatch(fetchOtherPaidInvoicePaymentsRequestFailed());
-          console.log({ err });
+          Toast('error', err.message || 'Failed to get data');
         });
     },
   });
@@ -273,7 +263,6 @@ const Dashboard = () => {
       );
     },
     onSuccess: () => {
-      Toast('success', 'Status updated successfully');
       dispatch(
         updateEmpInvStatus({
           currentVal: updateStatusType.currentVal,
@@ -287,6 +276,7 @@ const Dashboard = () => {
         newVal: null,
         currentVal: null,
       });
+      Toast('success', 'Status updated successfully');
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to delete data');
@@ -330,7 +320,6 @@ const Dashboard = () => {
       return api.downloadFile(`${data.url}?id=${data.id}`);
     },
     onSuccess: ({ data }) => {
-      console.log({ data });
       const url = window.URL.createObjectURL(new Blob([data]));
       const link = document.createElement('a');
       link.href = url;
@@ -338,13 +327,11 @@ const Dashboard = () => {
       document.body.appendChild(link);
       link.click();
       link.parentNode.removeChild(link);
-
       Toast('success', 'File downloaded');
+      console.log(data, 'data');
     },
     onError: (err) => {
       Toast('error', err.message || 'File not downloaded');
-      console.log({ err });
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const downloadInvoice = (id, url) => {
@@ -434,6 +421,7 @@ const Dashboard = () => {
                   }}
                 >
                   <AppTable
+                    minWidth={'1250px'}
                     column={invoicePaymentColumn}
                     data={
                       value === 0
@@ -521,9 +509,9 @@ const Dashboard = () => {
               }}
             >
               <AppTable
+                minWidth={'1250px'}
                 column={otherPaymentColumn}
                 data={othInvDataState}
-                // data={getOtherInvData()}
                 updateStatus={updateInvoiceStatus}
                 handleClickDownload={(id) =>
                   downloadInvoice(id, DOWNLOAD_OTH_INV)

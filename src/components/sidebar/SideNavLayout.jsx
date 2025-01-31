@@ -1,5 +1,5 @@
 import Sidebar from './Sidebar';
-import { Drawer, useMediaQuery } from '@mui/material';
+import { Backdrop, Drawer, useMediaQuery } from '@mui/material';
 import { useSelector } from 'react-redux';
 
 export const SideNav = (props) => {
@@ -11,7 +11,6 @@ export const SideNav = (props) => {
 
   const content = (
     <Sidebar
-      // userName={empDetails?.employee_name || data?.username || homeData.user}
       userName={
         role === 'client'
           ? data?.username
@@ -44,18 +43,26 @@ export const SideNav = (props) => {
 
   return (
     <Drawer
+      disableScrollLock
+      disableEnforceFocus
+      disableRestoreFocus
+      disableAutoFocus
       anchor="left"
       onClose={onClose}
       open={open}
+      ModalProps={{ keepMounted: true }}
+      BackdropComponent={(props) => (
+        <Backdrop {...props} sx={{ backgroundColor: 'rgba(0, 0, 0, 0.04)' }} />
+      )}
       PaperProps={{
         sx: {
-          marginTop: '57px',
+          marginTop: '58px',
           overflowX: 'hidden',
           overflowY: 'hidden',
           width: 280,
         },
       }}
-      sx={{ zIndex: (theme) => theme.zIndex.appBar + 100 }}
+      sx={{ zIndex: (theme) => theme?.zIndex?.appBar + 100 }}
       variant="temporary"
     >
       {content}

@@ -1,6 +1,6 @@
 'use client';
 import React, { useRef, useState } from 'react';
-import { Grid, Tooltip, Typography } from '@mui/material';
+import { Button, Grid, Tooltip, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import Image from 'next/image';
 import copy from 'copy-to-clipboard';
@@ -17,6 +17,7 @@ import {
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import AppSearchableDropdown from '../../dashboard/appSearchableDropdown';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import { emailRegExp } from '../schemas/validations';
 
 const DateTimePickerComponent = (props) => {
   const isXsScreen = useMediaQuery('(max-width:600px)');
@@ -41,12 +42,13 @@ const FormInput = ({
   options,
   nested,
   name,
+  autoComplete,
   setFieldValue,
-  value,
-  values,
-  error,
+  value = '',
+  values = {},
+  error = '',
   setFieldError,
-  errors,
+  errors = {},
   setErrors,
   fields,
   suffixIconOutside,
@@ -69,6 +71,7 @@ const FormInput = ({
   handleJobTitleSelect,
   fontSize,
   miniFontSize,
+  onclickUpload,
 }) => {
   const [isLoadingList, setIsLoadingList] = useState(false);
   const [isCopied, setIsCopied] = useState();
@@ -82,14 +85,12 @@ const FormInput = ({
     }
     setErrors({ ...tempErrors });
     setFieldValue(name, item);
-    // handleData(name, item);
   };
   const handleChangeInput = (field, value) => {
     const tempErrors = { ...errors };
     if (value.length) {
       if (field === 'email') {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        const result = emailRegex.test(value);
+        const result = emailRegExp.test(value);
         if (result) {
           delete tempErrors[name];
         }
@@ -97,12 +98,8 @@ const FormInput = ({
         delete tempErrors[name];
       }
     }
-    // else {
-    //   tempErrors[name] = 'Required';
-    // }
     setErrors({ ...tempErrors });
     setFieldValue?.(field, value);
-    // handleData(field, value);
   };
 
   const handleChangeFileInput = (field, value) => {
@@ -112,7 +109,6 @@ const FormInput = ({
     }
     setErrors({ ...tempErrors });
     setFieldValue?.(field, value);
-    // handleData(field, value);
   };
 
   const handleClickCounter = (type, name, value, min) => {
@@ -123,7 +119,6 @@ const FormInput = ({
             break;
           default:
             setFieldValue(name, value - 1);
-            // handleData(name, value - 1);
             break;
         }
         break;
@@ -134,7 +129,6 @@ const FormInput = ({
             break;
           default:
             setFieldValue(name, value + 1);
-            // handleData(name, value + 1);
             break;
         }
         break;
@@ -161,7 +155,6 @@ const FormInput = ({
     const fieldName = `${name}.${item.name}`;
     setFieldValue(fieldName, checked);
   };
-
   return (
     <Grid
       item
@@ -207,8 +200,9 @@ const FormInput = ({
                   fontStyle: 'normal',
                   fontWeight: 500,
                   lineHeight: 'normal',
+                  textWrap: 'nowrap',
                   '@media (min-width: 1200px) and (max-width: 1250px)': {
-                    fontSize: '11.9px',
+                    fontSize: '14px',
                   },
                 }}
                 dangerouslySetInnerHTML={{
@@ -219,6 +213,7 @@ const FormInput = ({
                 <Typography
                   sx={{
                     fontSize: '10px',
+                    textWrap: 'nowrap',
                     ml: '5px',
 
                     '@media (min-width: 1210px) and (max-width: 1370px)': {
@@ -236,13 +231,12 @@ const FormInput = ({
           )}
         </>
       )}
-
       {type === 'select' ? (
         <>
           {searchable ? (
             <AppSearchableDropdown
               data={countries || options}
-              selectedItem={value}
+              selectedItem={value || ''}
               setSelectedItem={handleSelectItem}
               setIsLoadingList={setIsLoadingList}
               isLoadingList={isLoadingList}
@@ -258,7 +252,7 @@ const FormInput = ({
               handleJobTitleSelect={handleJobTitleSelect}
               data={options}
               placeHolder={placeholder}
-              selectedItem={value}
+              selectedItem={value || ''}
               setSelectedItem={handleSelectItem}
               isLoadingList={isLoadingList}
               setIsLoadingList={setIsLoadingList}
@@ -273,12 +267,18 @@ const FormInput = ({
           )}
         </>
       ) : type === 'date' ? (
-        <>
+        <Box
+          style={{
+            cursor: disabled && 'no-drop',
+            opacity: disabled ? 0.4 : 1, // Visual cue for disabled state
+          }}
+        >
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
               <DesktopDatePicker
                 className={[
                   error ? 'error-border' : 'no-error-border',
+                  disabled ? 'date-picker-disabled' : 'date-picker-enabled', // Class for disabled state
                   'form-date-picker-component',
                 ].join(' ')}
                 slots={{
@@ -288,20 +288,28 @@ const FormInput = ({
                       src="/images/hiring/calender.svg"
                       width={30}
                       height={30}
-                      alt="calender"
+                      alt="calendar"
                       className="calendar-icon"
                       sx={{
                         mx: 'auto',
                         marginRight: '3px',
+                        opacity: disabled ? 0.5 : 1, // Dim the icon when disabled
                       }}
                     />
                   ),
                 }}
                 format={placeholder}
+                disabled={disabled}
+                autoComplete={autoComplete}
+                style={{
+                  cursor: disabled && 'no-drop',
+                  opacity: disabled ? 0.4 : 1, // Visual cue for disabled state
+                }}
                 placeholder={placeholder}
                 slotProps={{
                   openPickerButton: {
                     disableRipple: true,
+                    'aria-disabled': disabled, // Accessibility enhancement
                   },
                   textField: {
                     placeholder: placeholder,
@@ -316,6 +324,7 @@ const FormInput = ({
                         background: 'none !important',
                       },
                     },
+                    disabled: disabled, // Ensure text field is also disabled
                   },
                 }}
                 sx={{
@@ -324,8 +333,9 @@ const FormInput = ({
                   '@media (min-width: 900px) and (max-width: 1400px)': {
                     width: '100%',
                   },
+                  cursor: disabled && 'no-drop',
+                  opacity: disabled ? 0.5 : 1, // Additional visual cue for disabled state
                 }}
-                // value={value}
                 maxDate={
                   name === 'from'
                     ? values['to']
@@ -347,52 +357,64 @@ const FormInput = ({
               />
             </Box>
           </LocalizationProvider>
-        </>
+        </Box>
       ) : type === 'date-and-time' ? (
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <DateTimePickerComponent
-            className={[
-              error ? 'error-border' : 'no-error-border',
-              'form-date-picker-component',
-            ].join(' ')}
-            slots={{
-              openPickerIcon: () => (
-                <Image
-                  src={`/icons/${suffixIcon}.svg`}
-                  width={30}
-                  height={30}
-                  alt="calender"
-                />
-              ),
-            }}
-            placeholder={placeholder}
-            slotProps={{
-              textField: {
-                placeholder: placeholder,
-                sx: {
-                  '& input': {
-                    color: '#88888',
-                    padding: '9.95px 10px',
-                    width: '100%',
+        <Box
+          style={{
+            cursor: disabled && 'no-drop',
+            opacity: disabled ? 0.4 : 1, // Visual cue for disabled state
+          }}
+        >
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DateTimePickerComponent
+              className={[
+                error ? 'error-border' : 'no-error-border',
+                'form-date-picker-component',
+              ].join(' ')}
+              slots={{
+                openPickerIcon: () => (
+                  <Image
+                    src={`/icons/${suffixIcon}.svg`}
+                    width={30}
+                    height={30}
+                    alt="calender"
+                  />
+                ),
+              }}
+              placeholder={placeholder}
+              slotProps={{
+                textField: {
+                  placeholder: placeholder,
+                  sx: {
+                    '& input': {
+                      color: '#88888',
+                      padding: '9.95px 10px',
+                      width: '100%',
+                    },
                   },
                 },
-              },
-            }}
-            sx={{
-              width: '100%',
-              height: '40px',
-              '@media (min-width: 900px) and (max-width: 1400px)': {
+              }}
+              sx={{
                 width: '100%',
-              },
-            }}
-            value={value}
-            onChange={(e) => {
-              handleChangeInput(name, `${e?.$d}`);
-            }}
-          />
-        </LocalizationProvider>
+                height: '40px',
+                '@media (min-width: 900px) and (max-width: 1400px)': {
+                  width: '100%',
+                },
+              }}
+              value={value}
+              onChange={(e) => {
+                handleChangeInput(name, `${e?.$d}`);
+              }}
+            />
+          </LocalizationProvider>
+        </Box>
       ) : type === 'time' ? (
-        <>
+        <Box
+          style={{
+            cursor: disabled && 'no-drop',
+            opacity: disabled ? 0.4 : 1, // Visual cue for disabled state
+          }}
+        >
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DesktopTimePicker
               className={[
@@ -437,17 +459,12 @@ const FormInput = ({
                 },
               }}
               value={value}
-              // value={dayjs('2022-04-17T22:00')}
-              // value={dayjs('2000-01-01T22:00')}
-              // value={dayjs(convert12to24(value))}
-              // value={'10:00 PM'}
-              // defaultValue={new Date()}
               onChange={(e) => {
                 handleChangeInput(name, `${e?.$d}`);
               }}
             />
           </LocalizationProvider>
-        </>
+        </Box>
       ) : type === 'timerow' ? (
         <>
           <Box
@@ -460,7 +477,7 @@ const FormInput = ({
           >
             {fieldsName?.map((field, fieldIndex) => {
               return (
-                <>
+                <Box sx={{ display: 'flex', width: '100%' }} key={fieldIndex}>
                   {fieldIndex === 1 && (
                     <Box
                       key={`separator-${fieldIndex}`}
@@ -493,10 +510,13 @@ const FormInput = ({
                       style={{
                         background: '#FFF',
                         display: type === 'file' && 'none',
+                        cursor: 'pointer',
                       }}
                       placeholder={field.placeholder}
                       className="form-input-field"
                       type="time"
+                      disabled={disabled}
+                      autoComplete={autoComplete}
                       onChange={(e) => {
                         setValues({
                           ...values,
@@ -512,17 +532,12 @@ const FormInput = ({
                           delete tempErrors[name];
                         }
                         setErrors({ ...tempErrors });
-
-                        // handleChangeInput(
-                        //   `${name}.${field.name}`,
-                        //   e?.target?.value
-                        // );
                       }}
-                      value={value?.[field?.name]}
-                      name={`${name}.${field.name}`}
+                      value={value?.[field?.name] || ''}
+                      name={`${name}.${field?.name}`}
                     />
                   </Box>
-                </>
+                </Box>
               );
             })}
           </Box>
@@ -547,72 +562,120 @@ const FormInput = ({
           }}
         >
           {fields?.map((field, fieldIndex) => (
-            <>
-              {fieldIndex === 1 && (
-                <Box
-                  key={`box-${fieldIndex}`}
-                  sx={{
-                    mx: '10px',
-                    width: '10px',
-                    height: '1px',
-                    background: '#000',
-                    '@media (max-width: 500px)': {
-                      display: 'none',
-                    },
-                  }}
-                ></Box>
-              )}
+            <Box
+              sx={{
+                width: '100%',
+                display: 'block',
+                height: error?.minimum || error?.maximum ? '72px' : 'auto',
+                '@media (max-width: 500px)': {
+                  height: 'auto',
+                },
+              }}
+              key={`box-${fieldIndex}`}
+            >
               <Box
-                key={fieldIndex}
                 sx={{
                   width: '100%',
-                  border: `${
-                    error && (error?.minimum || error?.maximum)
-                      ? 'red'
-                      : '#E4E4E4'
-                  } 1px solid`,
-                  borderRadius: '5px',
                   display: 'flex',
-                  overflow: 'hidden',
-                  height: '40px',
+                  alignItems: 'center',
+                  flexDirection: 'row',
+                  '@media (max-width: 500px)': {
+                    flexDirection: 'column',
+                    rowGap: 2,
+                  },
                 }}
               >
-                <input
-                  style={{
-                    width: '100%',
-                    background: '#FFF',
-                    display: type === 'file' && 'none',
-                  }}
-                  placeholder={field.placeholder}
-                  className="form-input-field"
-                  type={type}
-                  onChange={(e) => {
-                    handleChangeInput(
-                      `${name}.${field.name}`,
-                      e?.target?.value
-                    );
-                  }}
-                  value={values[`${name}.${field.name}`]}
-                />
-                {field.suffixIcon && (
+                {fieldIndex === 1 && (
                   <Box
                     sx={{
-                      display: 'flex',
-                      padding: '10px',
-                      justifyContent: 'center',
-                      alignItems: 'center',
+                      mx: '10px',
+                      width: '10px',
+                      height: '1px',
+                      background: '#000',
+                      '@media (max-width: 500px)': {
+                        display: 'none',
+                      },
                     }}
-                  >
-                    <Image
-                      src={`/icons/${field.suffixIcon}.svg`}
-                      width={17}
-                      height={17}
-                      alt="Calendar"
-                    />
-                  </Box>
+                  ></Box>
                 )}
+                <Box
+                  key={fieldIndex}
+                  sx={{
+                    width: '100%',
+                    border: `${
+                      error && (error?.minimum || error?.maximum)
+                        ? 'red'
+                        : '#E4E4E4'
+                    } 1px solid`,
+                    borderRadius: '5px',
+                    display: 'flex',
+                    overflow: 'hidden',
+                    height: '40px',
+                  }}
+                >
+                  <input
+                    style={{
+                      width: '100%',
+                      background: '#FFF',
+                      display: type === 'file' && 'none',
+                    }}
+                    placeholder={field.placeholder}
+                    className="form-input-field"
+                    type={'number'}
+                    disabled={disabled}
+                    autoComplete={autoComplete}
+                    onChange={(e) => {
+                      handleChangeInput(
+                        `${name}.${field.name}`,
+                        e?.target?.value
+                      );
+                    }}
+                    value={values[`${name}.${field.name}`]}
+                  />
+                  {field.suffixIcon && (
+                    <Box
+                      sx={{
+                        display: 'flex',
+                        padding: '10px',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                      }}
+                    >
+                      <Image
+                        src={`/icons/${field.suffixIcon}.svg`}
+                        width={17}
+                        height={17}
+                        alt="Calendar"
+                      />
+                    </Box>
+                  )}
+                </Box>
               </Box>
-            </>
+              {error?.minimum && fieldIndex === 0 && (
+                <Box
+                  sx={{
+                    fontSize: '12px',
+                    color: 'red',
+                    display: 'block',
+                    mt: 0.4,
+                    mb: 0.4,
+                    ml: '3px',
+                  }}
+                >{`${error?.minimum}`}</Box>
+              )}
+              {error?.maximum && fieldIndex === 1 && (
+                <Box
+                  sx={{
+                    fontSize: '12px',
+                    color: 'red',
+                    display: 'block',
+                    mt: 0.4,
+                    ml: '31px',
+                    '@media (max-width: 500px)': { ml: '0px' },
+                  }}
+                >{`${error?.maximum}`}</Box>
+              )}
+            </Box>
           ))}
         </Box>
       ) : type === 'add-sub-counter' ? (
@@ -666,7 +729,6 @@ const FormInput = ({
             sx={{
               width: '30px',
               height: '30px',
-              // background: value > max || 10 ? '#888888' : '#068987',
               background: value < max ? '#068987' : '#888888',
               borderRadius: '5px',
               display: 'flex',
@@ -693,6 +755,8 @@ const FormInput = ({
                 id={`${item.title}`}
                 checked={values?.[name]?.[item.name]}
                 onChange={(e) => handleSelectCheckbox(e, item)}
+                disabled={disabled}
+                autoComplete={autoComplete}
               />
               <label style={{ marginLeft: '10px' }} htmlFor={`${item.title}`}>
                 {item.title}
@@ -701,6 +765,25 @@ const FormInput = ({
           ))}
           {error && <div style={{ color: 'red' }}>{error}</div>}
         </Box>
+      ) : type === 'upload' ? (
+        <Button
+          disableRipple
+          sx={{
+            width: '100%',
+            height: 39.3,
+            borderColor: errors?.image ? 'red' : 'auto',
+            color: errors?.image ? 'red' : 'auto',
+            '&:hover': {
+              backgroundColor: errors?.image ? '#fff' : 'auto',
+              color: errors?.image ? 'red' : 'auto',
+              borderColor: errors?.image ? 'red' : 'auto',
+            },
+          }}
+          variant="outlined"
+          onClick={onclickUpload}
+        >
+          {values?.image ? 'Uploaded' : 'Upload'}
+        </Button>
       ) : (
         <Box sx={{ position: 'relative' }}>
           <Box
@@ -785,19 +868,11 @@ const FormInput = ({
                   background: '#FFF',
                   display: type === 'file' && 'none',
                   color: disabled && '#888',
+                  // cursor: 'pointer',
                 }}
-                value={
-                  // name === 'emailCredential'
-                  //   ? modalData?.row?.email || ''
-                  //   : name === 'passwordCredential'
-                  //   ? modalData?.row?.password || ''
-                  //   : '' || type !== 'file'
-                  //   ? value
-                  //   : null
-                  // value
-                  type === 'file' ? null : value
-                }
+                value={type === 'file' ? '' : value}
                 disabled={disabled}
+                autoComplete={autoComplete}
                 placeholder={placeholder}
                 className="form-input-field"
                 type={type}
@@ -862,7 +937,6 @@ const FormInput = ({
                 </label>
               )}
             </Box>
-            {/* {imageUrl && <img src={imageUrl} />} */}
             {suffixIconOutside && (
               <Box
                 src={`/icons/${suffixIconOutside}.svg`}
@@ -871,7 +945,7 @@ const FormInput = ({
                   width: { xs: '20px', md: '30px' },
                   height: { xs: '20px', md: '30px' },
                   position: 'absolute',
-                  right: { xs: '-30px', md: '-40px' },
+                  right: { xs: '-30px', md: '-50px', lg: '-40px' },
                   '@media (min-width: 900px) and (max-width: 1200px)': {
                     width: '20px',
                     height: '20px',
@@ -890,11 +964,11 @@ const FormInput = ({
                     width: { xs: '20px', md: '30px' },
                     height: { xs: '20px', md: '30px' },
                     position: 'absolute',
-                    right: { xs: '-20px', md: '-40px' },
+                    right: { xs: '-25px', md: '-40px' },
                     '@media (min-width: 900px) and (max-width: 1200px)': {
-                      width: '20px',
-                      height: '20px',
-                      marginRight: '20px',
+                      width: '22px',
+                      height: '22px',
+                      marginRight: '7px',
                     },
                   }}
                 />
@@ -907,23 +981,15 @@ const FormInput = ({
       <>
         {error &&
         typeof error === 'object' &&
-        (error?.maximum || error?.minimum) ? (
-          <Box style={{ color: 'red' }}>
-            <Box
-              sx={{
-                display: 'flex',
-                gap: { xs: '80px', sm: '170px', md: '45px' },
-              }}
-            >
-              {error?.minimum && <Box>{error?.minimum}</Box>}
-              {error?.maximum && <Box>{error?.maximum}</Box>}
-            </Box>
-          </Box>
-        ) : (
-          error &&
-          !error?.from &&
-          !error?.to && <div style={{ color: 'red' }}>{error}</div>
-        )}
+        (error?.maximum || error?.minimum)
+          ? null
+          : error &&
+            !error?.from &&
+            !error?.to && (
+              <Box sx={{ fontSize: '12px', mt: 0.4, color: 'red' }}>
+                {error}
+              </Box>
+            )}
       </>
 
       {

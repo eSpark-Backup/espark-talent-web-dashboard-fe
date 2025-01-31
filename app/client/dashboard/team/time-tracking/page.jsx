@@ -48,9 +48,10 @@ const Dashboard = () => {
   const dispatch = useDispatch();
   const { data } = useSelector((state) => state?.client?.timeTracking);
   const [timeTracking, setTimeTracking] = useState({
-    month: months[date.getMonth()],
-    year: date.getFullYear(),
+    month: months[date?.getMonth()],
+    year: date?.getFullYear(),
   });
+
   const { isLoading } = useQuery({
     staleTime: 1000,
     refetchOnWindowFocus: false,
@@ -61,8 +62,8 @@ const Dashboard = () => {
         .getData(`${CLIENT_AVAILABLE_EMPLOYEES}`)
         .then((resp) => {
           const tempData = {
-            employees: resp.data?.employees,
-            time_sheet: Object.keys(data?.time_sheet).length
+            employees: resp?.data?.employees,
+            time_sheet: Object?.keys(data?.time_sheet)?.length
               ? data?.time_sheet
               : [],
           };
@@ -70,9 +71,8 @@ const Dashboard = () => {
           return data;
         })
         .catch((err) => {
-          Toast('error', err.message || 'Failed to get data');
           dispatch(fetchTimeTrackingDataRequestFailed());
-          console.log({ err });
+          Toast('error', err.message || 'Failed to get data');
         });
     },
   });
@@ -89,12 +89,15 @@ const Dashboard = () => {
     return newDateStr;
   }
   const reformTimeSheet = (sheet) => {
-    console.log({ sheet });
     const tempData = sheet?.map((item) => ({
       ...item,
-      day: dayjs(convertDateFormat(item?.date)).format('dddd'),
-      // status: getAttendenceShortHand(item?.status),
-      status: Object.entries(item?.status)
+      day: dayjs(convertDateFormat(item?.date))?.format('dddd'),
+      date: formatDate(item?.date),
+      check_in: formatTimeToHHMM(item?.check_in),
+      check_out: formatTimeToHHMM(item?.check_out),
+      break: formatTimeToHHMM(item?.break),
+      resume: formatTimeToHHMM(item?.resume),
+      status: Object?.entries(item?.status)
         ?.map((st) => {
           if (!st[1]) return;
           else return getAttendenceShortHand(st[0]);
@@ -102,13 +105,12 @@ const Dashboard = () => {
         .filter((el) => el !== undefined),
       attendenceShortHand: true,
     }));
-    console.log({ sheet, tempData });
     return tempData;
   };
   const { mutate, isPending } = useMutation({
     mutationFn: (employee) => {
       dispatch(fetchTimeTrackingDataRequest());
-      return api.getData(
+      return api?.getData(
         `${CLIENT_TIME_TRACKING}?year=${timeTracking?.year}&month=${timeTracking?.month}&emp_id=${employee}`
       );
     },
@@ -116,16 +118,15 @@ const Dashboard = () => {
       const tempData = {
         employees: [...data.employees],
         time_sheet:
-          response?.data && Object.keys(response?.data?.time_sheet)?.length
+          response?.data && Object?.keys(response?.data?.time_sheet)?.length
             ? reformTimeSheet(response?.data?.time_sheet)
             : [],
       };
       dispatch(fetchTimeTrackingDataRequestSuccess(tempData));
     },
     onError: (err) => {
-      Toast('error', err?.message || 'Failed to get data');
       dispatch(fetchTimeTrackingDataRequestFailed());
-      console.log({ err });
+      Toast('error', err.message || 'Failed to get data');
     },
   });
   const [isLoadingEmployee, setIsLoadingEmployee] = useState(false);
@@ -145,7 +146,6 @@ const Dashboard = () => {
       return api.downloadFile(resolveURL());
     },
     onSuccess: ({ data }) => {
-      console.log({ data });
       const url = window.URL.createObjectURL(new Blob([data]));
       const link = document.createElement('a');
       link.href = url;
@@ -153,20 +153,28 @@ const Dashboard = () => {
       document.body.appendChild(link);
       link.click();
       link.parentNode.removeChild(link);
-
-      // dispatchFunction?.(data);
       Toast('success', 'File downloaded');
     },
     onError: (err) => {
       Toast('error', err.message || 'File not downloaded');
-      // dispatch(getTimeSheetDataFailed());
-      console.log({ err });
-      console.log({ err: err?.message, name: err?.name, stack: err?.stack });
     },
   });
   const handleDownloadReport = () => {
     attendenceReportDownloadMutation.mutate();
   };
+
+  function formatDate(dateString) {
+    const [day, month, year] = dateString.split('-');
+    const formattedInput = `${year}-${month}-${day}`;
+    return dayjs(formattedInput)?.format('D MMMM, YYYY');
+  }
+
+  function formatTimeToHHMM(time) {
+    if (time === '-') return time;
+    const [hour, minute, secondPart] = time?.split(':') || [];
+    const period = secondPart?.split(' ')[1];
+    return `${hour || ''}:${minute || ''} ${period || ''}`;
+  }
 
   return (
     <>
@@ -243,12 +251,14 @@ const Dashboard = () => {
                   <AppSearchableDropdown
                     setIsLoadingList={setIsLoadingEmployee}
                     isLoadingList={isLoadingEmployee}
-                    selectedItem={selectedEmployee}
+                    selectedItem={selectedEmployee || ''}
                     data={data?.employees}
                     setSelectedItem={setSelectedEmployee}
                   />
-
-                  <AppCustomMonthYearPicker setTimeTracking={setTimeTracking} />
+                  <AppCustomMonthYearPicker
+                    timeTracking={timeTracking}
+                    setTimeTracking={setTimeTracking}
+                  />
                 </Grid>
               </Grid>
             </Box>
@@ -278,6 +288,7 @@ const Dashboard = () => {
                       statusIndex,
                       background,
                       shortForm,
+                      totalItems: sheetStatusTypes.length,
                     })
                 )}
               </Box>
@@ -290,15 +301,12 @@ const Dashboard = () => {
                     overflowX: 'auto',
                   }}
                 >
-                  {isPending || isLoading ? (
-                    'Loading Data'
-                  ) : (
-                    <AppTable
-                      column={timeTrackingTableColumn}
-                      data={data?.time_sheet}
-                      isLoading={isLoading}
-                    />
-                  )}
+                  <AppTable
+                    minWidth={'1250px'}
+                    column={timeTrackingTableColumn}
+                    data={data?.time_sheet}
+                    isLoading={isLoading || isPending}
+                  />
                 </Box>
               ) : (
                 <Box
@@ -308,6 +316,7 @@ const Dashboard = () => {
                   }}
                 >
                   <AppTable
+                    minWidth={'1250px'}
                     column={timeTrackingTableColumn}
                     renderMessage={
                       isLoading ? (

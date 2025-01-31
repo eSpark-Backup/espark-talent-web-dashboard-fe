@@ -6,8 +6,7 @@ import TopNavNavbar from '../global/topNavbar';
 import { Active_User_Data } from '@/src/constants/data/userData';
 import { SIDE_NAV_WIDTH } from '@/src/constants/sidebar';
 
-export const TopNav = (props) => {
-  const { onNavOpen } = props;
+export const TopNav = ({ onNavOpen }) => {
   const lgUp = useMediaQuery((theme) => theme.breakpoints.up('lg'));
   return (
     <>

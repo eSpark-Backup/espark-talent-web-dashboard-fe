@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-// import AppDropdown from '@/src/components/dashboard/appDropdown';
 import { Box, Button, CircularProgress, Grid, Typography } from '@mui/material';
 import Image from 'next/image';
 import { useMutation } from '@tanstack/react-query';
@@ -20,10 +19,9 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
         data?.data
       );
     },
-    onSuccess: ({ data }) => {
-      console.log({ data });
-      Toast('success', 'Request updated successfully');
+    onSuccess: () => {
       dispatch(updateTimeOffRequests(updatingLeaveRequest));
+      Toast('success', 'Request updated successfully');
       setUpdatingLeaveRequest(null);
       handleClose?.();
     },
@@ -56,7 +54,6 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
     <Box
       sx={{
         bgcolor: '#fff',
-        // width: { xs: '90%', sm: '90%', md: '77.084%' },
         maxWidth: '1480px',
         width: '95%',
         display: 'flex',
@@ -65,6 +62,7 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
         boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
         maxHeight: '80%',
         overflowY: 'auto',
+        pb: '50px',
       }}
     >
       <Box sx={{ borderBottom: '1px solid #E4E4E4', p: 2 }}>
@@ -334,7 +332,7 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
             {isPending && !isApprovedClicked ? (
               <CircularProgress size={26} color="secondary" />
             ) : (
-              'Decline'
+              'Close'
             )}
           </Button>
           <Button
@@ -379,7 +377,7 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
             onClick={handleClose}
             variant="outlined"
           >
-            Declined
+            Closed
           </Button>
         </Box>
       ) : null}

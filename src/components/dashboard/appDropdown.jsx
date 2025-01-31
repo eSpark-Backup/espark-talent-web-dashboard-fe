@@ -480,7 +480,6 @@ const AppDropdown = ({
                 width: '100%',
                 background: '#fff',
                 zIndex: 110,
-                pb: 5,
               }}
             >
               <Box

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { forwardRef, useState } from 'react';
 import {
   Box,
   Button,
@@ -20,182 +20,180 @@ import { useParams } from 'next/navigation';
 import { Toast } from '../Toast/Toast';
 import dayjs from 'dayjs';
 
-const EditPersonalModal = ({ onClose, handleEditProfileModal, data }) => {
-  const params = useParams();
-  const [isJobTitleClicked, setIsJobTitleClicked] = useState(false);
+const EditPersonalModal = forwardRef(
+  ({ onClose, showEditProfilelModal, data }, ref) => {
+    const params = useParams();
+    const [isJobTitleClicked, setIsJobTitleClicked] = useState(false);
 
-  const handleJobTitleClick = (event, name) => {
-    if (name === 'job_title') {
-      setIsJobTitleClicked(!isJobTitleClicked);
-    }
-  };
+    const handleJobTitleClick = (event, name) => {
+      if (name === 'job_title') {
+        setIsJobTitleClicked(!isJobTitleClicked);
+      }
+    };
 
-  const handleJobTitleSelect = (event, name) => {
-    if (event?.target?.value) {
-      setFieldValue(name, event.target.value); // Update the form value
-      setIsJobTitleClicked(false); // Reset dropdown open state
-    }
-  };
+    const handleJobTitleSelect = (event, name) => {
+      if (event?.target?.value) {
+        setFieldValue(name, event.target.value); // Update the form value
+        setIsJobTitleClicked(false); // Reset dropdown open state
+      }
+    };
 
-  const queryClient = useQueryClient();
+    const queryClient = useQueryClient();
 
-  const { mutate, isPending } = useMutation({
-    mutationFn: async (data) => {
-      const updatedData = {
-        ...data,
-        dob: dayjs(data?.dob).format('YYYY-MM-DD'),
-        joining_date: dayjs(data?.joining_date).format('YYYY-MM-DD'),
-      };
-      return api.updateJSONData(
-        `${HR_UPDATE_EMP_INFO}?id=${params.id}`,
-        updatedData
-      );
-    },
-    onSuccess: async ({ data }) => {
-      Toast('success', 'Data updated successfully');
-      console.log({ data });
-      onClose();
-      await queryClient.invalidateQueries('employee-profile');
-    },
-    onError: (err) => {
-      Toast('error', err.message || 'Failed to update data');
-      console.log({ err: err.message, name: err.name, stack: err.stack });
-      onClose();
-    },
-  });
+    const { mutate, isPending } = useMutation({
+      mutationFn: async (data) => {
+        const updatedData = {
+          ...data,
+          dob: dayjs(data?.dob).format('YYYY-MM-DD'),
+          joining_date: dayjs(data?.joining_date).format('YYYY-MM-DD'),
+        };
+        return api.updateJSONData(
+          `${HR_UPDATE_EMP_INFO}?id=${params.id}`,
+          updatedData
+        );
+      },
+      onSuccess: async () => {
+        Toast('success', 'Data updated successfully');
+        onClose();
+        await queryClient.invalidateQueries('employee-profile');
+      },
+      onError: (err) => {
+        Toast('error', err.message || 'Failed to update data');
+        onClose();
+      },
+    });
 
-  const handleUpdate = (data) => {
-    mutate(data);
-  };
+    const handleUpdate = (data) => {
+      mutate(data);
+    };
 
-  const {
-    handleSubmit,
-    values,
-    setFieldValue,
-    errors,
-    touched,
-    setFieldError,
-    setErrors,
-  } = useFormik({
-    initialValues: {
-      employee_name: data?.employee_name || '',
-      employee_id: data?.employee_id || '',
-      dob: data?.dob || '',
-      gender: data?.gender || '',
-      role: data?.role || '',
-      joining_date: data?.joining_date || '',
-      job_title: data?.job_title || '',
-      marital_status: data?.marital_status || '',
-    },
-    validationSchema: employeePersonalDataSchema,
-    enableReinitialize: true,
-    onSubmit: (formValues) => {
-      console.log({ formValues });
-      handleUpdate({
-        ...formValues,
-        gender:
-          formValues?.gender == 'Not specific' ? 'nonspec' : formValues?.gender,
-      });
-    },
-    validateOnChange: false,
-    validateOnBlur: false,
-  });
+    const {
+      handleSubmit,
+      values,
+      setFieldValue,
+      errors,
+      touched,
+      setFieldError,
+      setErrors,
+    } = useFormik({
+      initialValues: {
+        first_name: data?.first_name || '',
+        last_name: data?.last_name || '',
+        dob: data?.dob || '',
+        gender: data?.gender || '',
+        personal_email: data?.personal_email || '',
+        marital_status: data?.marital_status || '',
+      },
+      validationSchema: employeePersonalDataSchema,
+      enableReinitialize: true,
+      onSubmit: (formValues) => {
+        handleUpdate({
+          ...formValues,
+        });
+      },
+      validateOnChange: false,
+      validateOnBlur: false,
+    });
 
-  return (
-    <Modal
-      open={handleEditProfileModal}
-      onClose={onClose}
-      aria-labelledby="modal-modal-title"
-      aria-describedby="modal-modal-description"
-      sx={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-    >
-      <Box
+    return (
+      <Modal
+        ref={ref}
+        open={showEditProfilelModal}
+        onClose={onClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+        disableScrollLock
+        disableEnforceFocus
+        disableRestoreFocus
         sx={{
-          mx: 'auto',
-          width: '95%',
-          bgcolor: '#fff',
-          top: '50%',
-          left: '50%',
-          maxWidth: '1000px',
           display: 'flex',
-          flexDirection: 'column',
-          borderRadius: '10px',
-          border: 'none',
-          boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
-          minHeight: '630px',
-          height: 'auto',
-          '&.MuiBox-root': {
-            border: 'none',
-            outline: 'none',
-          },
+          alignItems: 'center',
+          justifyContent: 'center',
         }}
       >
         <Box
+          tabIndex={-1}
           sx={{
-            borderBottom: '1px solid #E4E4E4',
-            p: 2,
+            mx: 'auto',
+            width: '95%',
+            bgcolor: '#fff',
+            top: '50%',
+            left: '50%',
+            maxWidth: '1000px',
             display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
+            flexDirection: 'column',
+            borderRadius: '10px',
+            border: 'none',
+            boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
+            minHeight: '630px',
+            height: 'auto',
+            '&.MuiBox-root': {
+              border: 'none',
+              outline: 'none',
+            },
           }}
         >
-          <Typography
-            sx={{
-              fontSize: { xs: '16px', sm: '18px', md: '23px', lg: '25px' },
-              fontWeight: 600,
-              marginLeft: { xs: '12px', sm: '20px' },
-            }}
-          >
-            {EDIT_MODAL?.editPersonalDetails}
-          </Typography>
-
           <Box
-            sx={{ cursor: 'pointer' }}
-            src="/images/leave-request/close.svg"
-            component={'img'}
-            onClick={onClose}
-          />
-        </Box>
-        <form onSubmit={handleSubmit}>
-          <Grid
-            container
             sx={{
+              borderBottom: '1px solid #E4E4E4',
+              p: 2,
               display: 'flex',
-              height: '100%',
               justifyContent: 'space-between',
-              px: { xs: 2, sm: 4, md: 10, lg: 10 },
-              pt: { xs: 3, sm: 4, md: 5, lg: 5 },
-              pb: { xs: 3, sm: 4, md: 7, lg: 7 },
-              overflow: 'auto',
-              scrollbarWidth: 'thin',
-              scrollbarColor: 'gray',
-              '&::-webkit-scrollbar': {
-                display: 'none',
-              },
+              alignItems: 'center',
             }}
           >
-            {personalDetailsForm?.map(
-              (
-                {
-                  title,
-                  placeholder,
-                  errorText,
-                  prefixIcon,
-                  type,
-                  suffixIcon,
-                  options,
-                  name,
-                  nested,
-                  selectWithType,
-                  fields,
+            <Typography
+              sx={{
+                fontSize: { xs: '16px', sm: '18px', md: '23px', lg: '25px' },
+                fontWeight: 600,
+                marginLeft: { xs: '12px', sm: '20px' },
+              }}
+            >
+              {EDIT_MODAL?.editPersonalDetails}
+            </Typography>
+
+            <Box
+              sx={{ cursor: 'pointer' }}
+              src="/images/leave-request/close.svg"
+              component={'img'}
+              onClick={onClose}
+            />
+          </Box>
+          <form onSubmit={handleSubmit}>
+            <Grid
+              container
+              sx={{
+                display: 'flex',
+                height: '100%',
+                justifyContent: 'space-between',
+                px: { xs: 2, sm: 4, md: 10, lg: 10 },
+                pt: { xs: 3, sm: 4, md: 5, lg: 5 },
+                pb: { xs: 3, sm: 4, md: 7, lg: 7 },
+                overflow: 'auto',
+                scrollbarWidth: 'thin',
+                scrollbarColor: 'gray',
+                '&::-webkit-scrollbar': {
+                  display: 'none',
                 },
-                formIndex
-              ) => (
-                <>
+              }}
+            >
+              {personalDetailsForm?.map(
+                (
+                  {
+                    title,
+                    placeholder,
+                    errorText,
+                    prefixIcon,
+                    type,
+                    suffixIcon,
+                    options,
+                    name,
+                    nested,
+                    selectWithType,
+                    fields,
+                  },
+                  formIndex
+                ) => (
                   <Grid item xs={12} md={5.5} key={formIndex}>
                     <FormInput
                       title={title}
@@ -229,27 +227,28 @@ const EditPersonalModal = ({ onClose, handleEditProfileModal, data }) => {
                       }
                     />
                   </Grid>
-                </>
-              )
-            )}
-            <Grid item p={'0 10px'} xs={12}>
-              <Button
-                sx={{ minWidth: { xs: '100%', sm: '120px' } }}
-                variant="contained"
-                type="submit"
-                disabled={isPending}
-              >
-                {isPending ? (
-                  <CircularProgress size={26} color="secondary" />
-                ) : (
-                  'Save'
-                )}
-              </Button>
+                )
+              )}
+              <Grid item p={'0 10px'} xs={12}>
+                <Button
+                  sx={{ minWidth: { xs: '100%', sm: '120px' } }}
+                  variant="contained"
+                  type="submit"
+                  disabled={isPending}
+                >
+                  {isPending ? (
+                    <CircularProgress size={26} color="secondary" />
+                  ) : (
+                    'Save'
+                  )}
+                </Button>
+              </Grid>
             </Grid>
-          </Grid>
-        </form>
-      </Box>
-    </Modal>
-  );
-};
+          </form>
+        </Box>
+      </Modal>
+    );
+  }
+);
+EditPersonalModal.displayName = 'EditPersonalModal';
 export default EditPersonalModal;

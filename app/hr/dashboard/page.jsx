@@ -8,20 +8,24 @@ import { DASHBOARD_DATA } from '@/src/constants/dashboard';
 import { useDispatch, useSelector } from 'react-redux';
 import { Summary_Boxes } from '@/src/constants/data/hrDashboard';
 import { useMutation } from '@tanstack/react-query';
+import { Toast } from '@/src/components/Toast/Toast';
 import {
   getHomeData,
   getHomeDataRequest,
 } from '@/src/redux/slices/hrSlices/homeSlice';
 import { api } from '@/src/services/apiService';
 import { HR_HOME } from '@/src/services/apiService/apiEndPoints';
+import Cookies from 'js-cookie';
 
 const Dashboard = () => {
   const dispatch = useDispatch();
   const getData = () => {
-    const tempData = JSON.parse(JSON.stringify(Summary_Boxes))?.map((item) => ({
-      ...item,
-      count: homeData[item.name],
-    }));
+    const tempData = JSON?.parse(JSON?.stringify(Summary_Boxes))?.map(
+      (item) => ({
+        ...item,
+        count: homeData[item?.name],
+      })
+    );
     return tempData;
   };
   const hrHomeMutation = useMutation({
@@ -31,16 +35,34 @@ const Dashboard = () => {
     },
     onSuccess: ({ data }) => {
       dispatch(getHomeData(data));
+      const {
+        employee_perms,
+        invoices_perms,
+        leaves_perms,
+        client_perms,
+        policies_perms,
+      } = data || {};
+      Cookies?.set(
+        'permissions',
+        JSON?.stringify({
+          employee_perms,
+          invoices_perms,
+          leaves_perms,
+          client_perms,
+          policies_perms,
+        })
+      );
       return data;
     },
     onError: (err) => {
-      console.log({ err: err.message, name: err.name, stack: err.stack });
+      Toast('error', err?.message || 'Failed to update data');
     },
   });
 
   useEffect(() => {
     hrHomeMutation.mutate(HR_HOME);
   }, []);
+
   const { homeData, isLoading } = useSelector((state) => state?.hr?.home);
 
   return (

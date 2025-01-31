@@ -5,12 +5,9 @@ import Skeleton from '@mui/material/Skeleton';
 import AppTable from '../appTableNew/AppTable';
 import { modulepermissionColumn } from '@/src/constants/data/tables/modulePermission';
 import RoleModal from './addRoleModal';
-import {
-  // ROLES,
-  SETTING,
-} from '@/src/constants/SettingHr';
+import { SETTING } from '@/src/constants/SettingHr';
 import { useDispatch, useSelector } from 'react-redux';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import {
   HR_ACCOUNTS,
@@ -25,6 +22,7 @@ import { Toast } from '../Toast/Toast';
 
 const Role = () => {
   const dispatch = useDispatch();
+  const clientQuery = useQueryClient();
   const companyAccountsQuery = useQuery({
     staleTime: 10000,
     refetchOnWindowFocus: false,
@@ -46,7 +44,6 @@ const Role = () => {
         })
         .catch((err) => {
           Toast('error', err.message || 'Failed to get data');
-          console.log({ err });
         });
     },
   });
@@ -58,12 +55,10 @@ const Role = () => {
       return api
         .getData(`${HR_ROLES_PERMISSIONS}`)
         .then(({ data }) => {
-          // dispatch(getRolesDetails(data || []));
           return data;
         })
         .catch((err) => {
           Toast('error', err.message || 'Failed to get data');
-          console.log({ err });
         });
     },
   });
@@ -77,11 +72,7 @@ const Role = () => {
         );
 
         if (roleDetails) {
-          const {
-            //  id,
-            //  role,
-            ...permissions
-          } = roleDetails;
+          const { ...permissions } = roleDetails;
           return {
             id: companyAccount.id,
             role: companyAccount.account_name,
@@ -126,7 +117,6 @@ const Role = () => {
         }
       });
     }
-    // const finalData = mergedData
     dispatch(getRolesDetailsSuccess(mergedData || []));
   }, [companyAccountsQuery.data, getRolesDetailsQuery.data]);
 
@@ -142,12 +132,11 @@ const Role = () => {
   const handleSelectRow = (column, row) => {
     // Create a copy of permissionDataNew
     const newTempForm = [...permissionDataNew];
-    console.log({ row, column, newTempForm });
     // Retrieve the selected role's permission data
     const selectedTempFormData = newTempForm[selectedRolePermissionIndex];
 
     // Find the index of the row in the permission data
-    const manipulateIndex = selectedTempFormData.state.findIndex(
+    const manipulateIndex = selectedTempFormData?.state.findIndex(
       (el) => el.module_permission === row.module_permission
     );
 
@@ -155,7 +144,6 @@ const Role = () => {
     const updatedPermission = {
       ...newTempForm[selectedRolePermissionIndex].state[manipulateIndex],
     };
-    console.log({ updatedPermission });
 
     // Update the specific column in the copied object
     if (column.name !== 'read') {
@@ -171,7 +159,7 @@ const Role = () => {
             updatedPermission['download'] === true)
       );
       if (updatedPermission['read'] === true && anyOtherTrue) {
-        alert('Read cannot be false if any other is true');
+        Toast('warning', 'Read cannot be false if any other is true');
         return; // Abort the function
       }
       updatedPermission[column.name] = !updatedPermission[column.name];
@@ -201,6 +189,7 @@ const Role = () => {
     const selectedRoleIndex = permissionDataNew.findIndex((el) => el.id === id);
     setSelectedRolePermissionIndex(selectedRoleIndex);
   };
+
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
@@ -245,15 +234,12 @@ const Role = () => {
         data.state
       );
     },
-    onSuccess: ({ data }) => {
+    onSuccess: () => {
       Toast('success', 'Data updated successfully');
-      console.log({ data });
-      // dispatch(deleteClientHiringRequestSuccess(modalData?.id));
+      clientQuery?.invalidateQueries(['hrHomeData']);
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to update data');
-      // dispatch(deleteClientHiringRequestFailed());
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   function convertArrayToObject(array) {
@@ -295,6 +281,7 @@ const Role = () => {
         <Box
           sx={{
             display: 'flex',
+            height: '100%',
             flexDirection: { xs: 'column', md: 'row' },
             gap: 3,
           }}
@@ -309,7 +296,12 @@ const Role = () => {
               borderRadius: '5px',
               background: '#F6F6F6',
               boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.25)',
-              height: ' 520px',
+              height: 'auto',
+              maxHeight: '520px',
+              minHeight: {
+                xs: 'auto',
+                md: selectedRole == null ? 'auto' : '520px',
+              },
               gap: '15px',
               py: 1.5,
               px: { xs: 1, md: 0.5 },
@@ -322,7 +314,6 @@ const Role = () => {
                 color: '#595959',
                 fontWeight: '500',
                 padding: '5px',
-                ml: '-15px',
               }}
             >
               {SETTING?.roles}
@@ -332,32 +323,52 @@ const Role = () => {
               paddingBottom="20px"
               paddingLeft={'7px'}
             >
-              {rolesDetails?.map((button, index) => (
-                <Button
-                  key={index}
+              {rolesDetails?.length > 0 ? (
+                rolesDetails?.map((button, index) => (
+                  <Button
+                    key={index}
+                    sx={{
+                      borderRadius: '5px',
+                      color: selectedRole === button?.id ? 'teal' : '#595959',
+                      background: selectedRole === button?.id ? '#FFF' : '#fff',
+                      width: '98%',
+                      padding: '8px',
+                      border:
+                        selectedRole === button?.id
+                          ? '1px solid #029894'
+                          : '1px solid #fff',
+                      '&:hover': {
+                        border: '1px solid #029894',
+                        color: 'teal',
+                        background: '#FFF',
+                      },
+                    }}
+                    onClick={() => {
+                      handleRoleChange(
+                        button?.id,
+                        button?.account_name,
+                        button
+                      );
+                    }}
+                  >
+                    {button?.role}
+                  </Button>
+                ))
+              ) : (
+                <Box
+                  textAlign="center"
                   sx={{
                     borderRadius: '5px',
-                    color: selectedRole === button.id ? 'teal' : '#595959',
-                    background: selectedRole === button.id ? '#FFF' : '#fff',
+                    color: '#595959',
+                    background: '#fff',
                     width: '98%',
                     padding: '8px',
-                    border:
-                      selectedRole === button.id
-                        ? '1px solid #029894'
-                        : '1px solid #fff',
-                    '&:hover': {
-                      border: ' 1px solid #029894',
-                      color: 'teal',
-                      background: ' #FFF',
-                    },
-                  }}
-                  onClick={() => {
-                    handleRoleChange(button?.id, button?.account_name, button);
+                    border: '1px solid #fff',
                   }}
                 >
-                  {button.role}
-                </Button>
-              ))}
+                  No Accounts
+                </Box>
+              )}
             </Box>
             <RoleModal open={open} handleClose={handleClose} />
           </Box>
@@ -366,19 +377,23 @@ const Role = () => {
               width: { xs: '100%', md: 'calc(100% - 320px)' },
               maxWidth: '100%',
               overflowX: 'auto',
-              // '&::-webkit-scrollbar': {
-              //   display: 'none',
-              // },
+              minHeight: { xs: 'auto', md: '220px' },
+              height: '100%',
+              pb: { xs: 3, md: 0 },
             }}
           >
             <Box>
               <AppTable
                 column={modulepermissionColumn}
-                data={permissionDataNew[selectedRolePermissionIndex]?.state}
+                data={
+                  selectedRole == null
+                    ? []
+                    : permissionDataNew[selectedRolePermissionIndex]?.state
+                }
                 handleClickActionView={handleSelectRow}
                 noPagination
                 isLoading={getRolesDetailsQuery?.isLoading}
-                minWidth={'1135px'}
+                minWidth={'1000px'}
               />
             </Box>
             <Box
@@ -393,14 +408,15 @@ const Role = () => {
                 sx={{
                   minWidth: '120px',
                   fontSize: '16px',
-                  backgroundColor: isPending ? '#ccc' : '#029894',
+                  backgroundColor:
+                    selectedRole == null || isPending ? '#ccc' : '#029894',
                   color: '#fff',
                   '&:hover': {
                     backgroundColor: isPending ? '#ccc' : '#029894',
                     color: '#fff',
                   },
                 }}
-                disabled={isPending}
+                disabled={selectedRole == null || isPending}
               >
                 {isPending ? (
                   <CircularProgress size={26} color="secondary" />

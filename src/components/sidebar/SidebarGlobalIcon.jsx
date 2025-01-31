@@ -30,9 +30,15 @@ const SidebarGlobalIcon = ({ company_img }) => {
         <Box
           component={'img'}
           onError={handleError}
-          width={'25px'}
           height={'25px'}
-          sx={{ borderRadius: '100%' }}
+          sx={{
+            mr: -0.2,
+            width: '25px',
+            borderRadius: '100%',
+            '@media(min-width: 1200px)': {
+              width: '25px',
+            },
+          }}
           src={imgSrc || '/images/sidebar-icons/internet-logo.svg'}
         />
       </Box>

@@ -1,84 +1,94 @@
 export const employeeTableInterviewScheduleColumn = [
   {
     title: 'Employee name',
-    flex: 1,
+    flex: 1.5,
     name: 'employee_name',
   },
   {
     title: 'Gender',
-    flex: 1,
+    flex: 1.5,
     name: 'gender',
   },
   {
     title: 'Job title',
-    flex: 1,
+    flex: 1.5,
     name: 'job_title',
   },
   {
     title: 'Role type',
-    flex: 1,
+    flex: 1.5,
     name: 'role_type',
   },
   {
     title: 'Employment term',
-    flex: 1,
+    flex: 2,
     name: 'employment_term',
   },
   {
     title: 'Interview date & time',
-    flex: 1,
+    flex: 2,
     name: 'interview_date_time',
   },
   {
     title: 'Country',
-    flex: 1,
+    flex: 1.5,
     name: 'country',
   },
   {
     title: 'Status',
-    flex: 1,
+    flex: 1.5,
     name: 'status',
   },
 ];
 export const employeeTableHiringRequestColumn = [
   {
     title: 'Job title',
-    flex: 1,
+    flex: 3.5,
     name: 'job_title',
   },
   {
     title: 'Role type',
-    flex: 1,
+    flex: 2.5,
     name: 'role_type',
   },
   {
     title: 'Gender',
-    flex: 1,
+    flex: 2.5,
     name: 'gender',
   },
   {
     title: 'Employment term',
-    flex: 1,
+    flex: 3,
     name: 'employment_term',
   },
   {
     title: 'Hiring starting date',
-    flex: 1,
+    flex: 3.5,
     name: 'hiring_start_date',
   },
   {
     title: 'Hiring ending date',
-    flex: 1,
+    flex: 3.5,
     name: 'hiring_end_date',
   },
   {
     title: 'Salary range',
-    flex: 1,
+    flex: 2.5,
     name: 'salary_range',
   },
   {
+    title: 'Job_description',
+    flex: 3.5,
+    name: 'job_description',
+  },
+  {
+    title: 'Comments',
+    flex: 2.5,
+    name: 'comments',
+  },
+  {
     title: 'Action',
-    flex: 1,
+    flex: 2.5,
     name: 'action',
   },
 ];
@@ -212,6 +222,7 @@ export const employeeTableDataHiringRequest = [
     hiringStartingDate: '07-October-2021',
     hiringEndingDate: '07-October-2021',
     salaryRange: '1,000 $ - 1,200 $',
+    download: 'Download',
     action: ['Delete'],
     actionStatus: true,
   },
@@ -224,6 +235,7 @@ export const employeeTableDataHiringRequest = [
     hiringEndingDate: '28-February-2021',
     salaryRange: '1,000 $ - 1,200 $',
     action: ['Delete'],
+    download: 'Download',
     actionStatus: true,
   },
   {

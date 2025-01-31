@@ -4,7 +4,6 @@ import {
   DesktopTimePicker,
   LocalizationProvider,
 } from '@mui/x-date-pickers';
-// import { DesktopDateRangePicker } from '@mui/x-date-pickers-pro/DateRangePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs';
 import Image from 'next/image';
@@ -13,6 +12,7 @@ import ActionBarComponent from '@/src/components/requestview/actionbarComponent'
 import AppDropdown from '../../dashboard/appDropdown';
 import AppSearchableDropdown from '../../dashboard/appSearchableDropdown';
 import { countWeekendsHandler } from '@/src/utils/helpers';
+import { emailRegExp } from '../schemas/validations';
 
 const WideFormInput = ({
   title,
@@ -32,14 +32,15 @@ const WideFormInput = ({
   setErrors,
   values,
   minDate,
+  maxDate,
   searchable,
   nested,
-  maxDate,
+  accept,
 }) => {
   const [isOpenDatePicker, setIsOpenDatePicker] = useState(false);
   const [isLoadingList, setIsLoadingList] = useState(false);
+  const [datePickerValue, setDatePickerValue] = useState(null);
   const handleCloseDatePicker = () => setIsOpenDatePicker(false);
-
   function getTimeComponents(timeString) {
     const arr = timeString.split(':');
     const hour = parseInt(arr[0]);
@@ -49,7 +50,7 @@ const WideFormInput = ({
   function convertTo24HourFormat(time) {
     const parsedTime = dayjs(time, ['h:mm A', 'H:mm']);
     const time24HourFormat = parsedTime.format('HH:mm');
-
+    console.log(setDatePickerValue);
     return time24HourFormat;
   }
   const handleSelectItem = (item) => {
@@ -94,10 +95,9 @@ const WideFormInput = ({
   };
   const handleChangeInput = (field, value) => {
     const tempErrors = { ...errors };
-    if (value.length) {
+    if (value?.length) {
       if (field === 'email') {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        const result = emailRegex.test(value);
+        const result = emailRegExp?.test(value);
         if (result) {
           delete tempErrors[name];
         }
@@ -129,9 +129,13 @@ const WideFormInput = ({
     return differenceInDays;
   }
 
-  const start = dayjs(values.startDate);
-  const end = start.add(values.availableLeaves || 0, 'day');
-  const countOfWeekends = countWeekendsHandler(values.startDate, end.$d);
+  // const start = dayjs(values.startDate);
+  // const end = start.add(values.availableLeaves || 0, 'day');
+  // const countOfWeekends = countWeekendsHandler(values.startDate, end.$d);
+  // // const endWithWeekend = start.add(
+  // //   values.availableLeaves - 1 + countOfWeekends || 0,
+  // //   'day'
+  // // );
 
   useEffect(() => {
     if (values.startDate && values.endDate) {
@@ -144,23 +148,18 @@ const WideFormInput = ({
     }
   }, [values]);
 
-  const endWithWeekend = start.add(
-    values.availableLeaves - 1 + countOfWeekends || 0,
-    'day'
-  );
-
-  const shouldDisableDate = (date) => {
-    const day = date.day();
-    if (title == 'End date') {
-      return (
-        date.isBefore(start, 'day') ||
-        date.isAfter(endWithWeekend, 'day') ||
-        day === 0 ||
-        day === 6
-      );
-    }
-    return day === 0 || day === 6;
-  };
+  // const shouldDisableDate = (date) => {
+  //   const day = date.day();
+  //   if (title == 'End date') {
+  //     return (
+  //       date.isBefore(start, 'day') ||
+  //       date.isAfter(endWithWeekend, 'day') ||
+  //       day === 0 ||
+  //       day === 6
+  //     );
+  //   }
+  //   return day === 0 || day === 6;
+  // };
 
   return (
     <Box>
@@ -171,8 +170,13 @@ const WideFormInput = ({
       >
         <Box
           sx={{
+            width: name === 'reason' ? '99.8%' : 'auto',
             background: darkBack ? '#F6F6F6' : '#FFF',
-            p: { xs: '0', md: '0px 0px 5px 0px', lg: '5px 5px 5px 20px' },
+            p: {
+              xs: '0',
+              md: name === 'reason' ? '0px 0px 0px 20px' : '0px 0px 5px 0px',
+              lg: name === 'reason' ? '0px 0px 0px 20px' : '5px 5px 5px 20px',
+            },
             borderRadius: '5px',
             display: 'flex',
             alignItems: {
@@ -200,7 +204,20 @@ const WideFormInput = ({
               {title} {required && <span style={{ color: '#FF0000' }}>*</span>}
             </Typography>
           </Box>
-          <Box sx={{ width: { xs: '100%', lg: '778px' } }}>
+          <Box
+            sx={{
+              width: {
+                xs: '100%',
+                lg: '778px',
+              },
+              my: {
+                xs: '0',
+                md: name === 'reason' ? '0px 0px 5px 0px' : '0px',
+                lg: name === 'reason' ? '5px 5px 5px 0px' : '0px',
+              },
+              backgroundColor: name === 'reason' && '#fff',
+            }}
+          >
             <Box
               display={'flex'}
               justifyContent={'space-between'}
@@ -208,13 +225,16 @@ const WideFormInput = ({
               sx={{
                 borderRadius: '5px',
                 width: '100%',
-                background: disabled ? '#ccc' : '#F6F6F6',
+                background: disabled && '#ccc',
               }}
             >
               {type === 'date' ? (
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <DesktopDatePicker
-                    shouldDisableDate={shouldDisableDate}
+                    shouldDisableDate={(date) => {
+                      const day = dayjs(date)?.day();
+                      return day === 6 || day === 0;
+                    }}
                     className={[
                       error && 'error-border',
                       'custom-date-time-picker',
@@ -254,9 +274,8 @@ const WideFormInput = ({
                     sx={{
                       width: '100%',
                       borderRadius: '50%',
-                      // backgroundColor: '#888',
                     }}
-                    value={value && dayjs(value)}
+                    defaultValue={datePickerValue}
                     onChange={(e) => {
                       handleChangeInput(name, `${e?.$d}`);
                     }}
@@ -298,7 +317,6 @@ const WideFormInput = ({
                     />
                   ) : (
                     <DesktopTimePicker
-                      // className="custom-date-time-picker"
                       className={[
                         error && 'error-border',
                         'custom-date-time-picker',
@@ -308,7 +326,7 @@ const WideFormInput = ({
                         openPickerIcon: () => null,
                       }}
                       sx={{ width: '100%' }}
-                      value={values.punchTime ? dayjs(value) : value}
+                      value={values?.punchTime ? dayjs(value) : value || null}
                       onChange={(e) => {
                         handleChangeInput(name, `${e?.$d}`);
                       }}
@@ -321,7 +339,7 @@ const WideFormInput = ({
                   {searchable ? (
                     <AppSearchableDropdown
                       data={options}
-                      selectedItem={value}
+                      selectedItem={value || ''}
                       setSelectedItem={handleSelectItem}
                       setIsLoadingList={setIsLoadingList}
                       isLoadingList={isLoadingList}
@@ -334,7 +352,7 @@ const WideFormInput = ({
                     <AppDropdown
                       data={options}
                       placeHolder={'Select'}
-                      selectedItem={value}
+                      selectedItem={value || ''}
                       setSelectedItem={handleSelectItem}
                       isLoadingList={isLoadingList}
                       setIsLoadingList={setIsLoadingList}
@@ -397,12 +415,17 @@ const WideFormInput = ({
                         {values?.[name]?.name || 'Upload File'}
                       </Typography>
                       <input
-                        // onChange={handleUpload}
                         name={name}
                         id="input-attachment"
                         type="file"
-                        style={{ width: 0, height: 0, visibility: 'hidden' }}
+                        style={{
+                          width: 0,
+                          height: 0,
+                          visibility: 'hidden',
+                          cursor: 'pointer',
+                        }}
                         onChange={handleSelectFile}
+                        accept={accept}
                       />
                     </Box>
 

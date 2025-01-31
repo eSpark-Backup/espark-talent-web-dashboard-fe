@@ -29,17 +29,12 @@ export const sheetStatusTypes = [
     background: '#107863',
     shortForm: 'L',
   },
-  // {
-  //   label: 'Half Day',
-  //   background: '#107863',
-  //   shortForm: 'HD',
-  // },
 ];
 
 export const timeSheetTableColumn = [
   {
     title: 'Date',
-    flex: 2,
+    flex: 3.5,
     name: 'date',
   },
   {
@@ -54,12 +49,12 @@ export const timeSheetTableColumn = [
   },
   {
     title: 'Check-out',
-    flex: 2,
+    flex: 2.5,
     name: 'check_out',
   },
   {
     title: 'Hours worked',
-    flex: 2,
+    flex: 3,
     name: 'hours_worked',
   },
   {
@@ -73,8 +68,13 @@ export const timeSheetTableColumn = [
     name: 'resume',
   },
   {
+    title: 'Expected hours',
+    flex: 3,
+    name: 'expected_hours',
+  },
+  {
     title: 'Overtime hours',
-    flex: 2,
+    flex: 3,
     name: 'overtime',
   },
   {

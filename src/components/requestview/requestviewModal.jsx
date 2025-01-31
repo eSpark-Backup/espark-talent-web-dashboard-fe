@@ -12,6 +12,9 @@ const RequestviewModal = ({ open, onClose, isViewingClient, title }) => {
       onClose={onClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
+      disableScrollLock
+      disableEnforceFocus
+      disableRestoreFocus
       sx={{
         height: { xs: '850px', md: '900px' },
         display: 'flex',

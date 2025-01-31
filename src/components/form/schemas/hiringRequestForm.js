@@ -39,4 +39,26 @@ export const hiringRequestSchema = Yup.object({
         return new Date(endDate) >= new Date(hiring_start_date);
       }
     ),
+  job_description: Yup.mixed()
+    .required('Job description is required')
+    .test(
+      'fileFormat',
+      'Only PDF files are allowed',
+      (value) => value && value.type === 'application/pdf'
+    )
+    .test(
+      'fileSize',
+      'File size should not exceed 2MB',
+      (value) => value && value.size <= 2 * 1024 * 1024 // Validates file size <= 2MB
+    ),
+  comments: Yup.string()
+    .nullable()
+    .notRequired()
+    .test(
+      'is-not-just-spaces',
+      'comments cannot be just spaces',
+      (value) => !value || value.trim().length > 0
+    )
+    .min(5, 'comments should be at least 5 characters long')
+    .max(500, 'comments cannot exceed 500 characters'),
 });

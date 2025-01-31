@@ -4,6 +4,8 @@ export const employeeProfileData = {
   downloadResume: 'Download resume',
   editCredentials: 'Edit credentials',
   personalInformation: 'Personal information',
+  officialDetails: 'Official Details',
+  personalDetails: 'Personal Details',
   emergencyContact: 'Emergency contact',
   profile: 'Profile',
   employees: 'Employees',
@@ -18,6 +20,9 @@ export const employeeProfileData = {
   refreshBtn: 'Refresh',
   filterBtn: 'Filter',
   addAsset: 'Add asset',
+  addBenefit: 'Add benefit',
+  addLetter: 'Add letter',
+  addSalary: 'Add salary',
   loading: ' Loading...',
   employeeNotfound: ' Employee not found',
   noidFound: 'No Employee Found',
@@ -27,13 +32,27 @@ export const employeeProfileData = {
   valueTwo: 'two',
   valuethree: 'three',
   valueFour: 'four',
+  valueFive: 'five',
+  valueSix: 'six',
+  valueSeven: 'seven',
+  valueEight: 'eight',
+  valueNine: 'nine',
   select: ' Select',
   save: 'Save',
   addEmployee: 'Add employee',
 };
 export const EDIT_MODAL = {
   editProfile: 'Edit profile picture',
-  addassetForm: 'Add asset form',
+  addassetForm: 'Add Asset',
+  addbenefitForm: 'Add Benefit',
+  addletterForm: 'Add Letter',
+  addsalaryForm: 'Add Salary',
+  editbenefitForm: 'Edit Benefit',
+  editletterForm: 'Edit Letter',
+  editsalaryForm: 'Edit Salary',
+  viewLeaveRequest: 'View Leave Request',
+  ViewPunchRequest: 'View Punch Request',
+  viewWfhRequest: 'View WFH Request',
   remove: 'Remove',
   change: 'Change',
   employeeId: 'Employee ID',
@@ -56,6 +75,7 @@ export const EDIT_MODAL = {
   primaryContact: 'Primary Contact',
   secondaryContact: 'Secondary Contact',
   editPersonalDetails: 'Edit personal informations',
+  editOfficialDetails: 'Edit official informations',
   employeeName: 'Employee name',
   birthDate: 'Birth Date',
   email: 'Email',
@@ -78,7 +98,6 @@ export const EDIT_MODAL = {
   uploadPicture: 'Upload picture',
   submit: 'Submit',
 };
-
 export const employeeDataLabel = [
   { label: 'Employee name', value: 'John Doe', name: 'employee_name' },
   { label: 'Employee ID', value: '090078601', name: 'employee_id' },
@@ -94,6 +113,47 @@ export const employeeDataLabel = [
     type: 'date',
   },
   { label: 'Marital status', value: 'Married', name: 'marital_status' },
+];
+export const employeePersonalDataLabel = [
+  {
+    label: 'First Name ',
+    value: 'John Doe',
+    name: 'first_name',
+  },
+  {
+    label: 'Last Name ',
+    value: 'John Doe',
+    name: 'last_name',
+  },
+  { label: 'Birth date', value: 'January 1, 1990', name: 'dob', type: 'date' },
+  { label: 'Gender', value: 'Male', name: 'gender' },
+  { label: 'Personal Email', value: 'johndoe@123.com', name: 'personal_email' },
+  { label: 'Marital status', value: 'Married', name: 'marital_status' },
+];
+export const employeeOfficialDataLabel = [
+  { label: 'Employee ID', value: '090078601', name: 'employee_id' },
+  { label: 'Official Email', value: 'johndoe@123.com', name: 'email' },
+  { label: 'Job title', value: 'Web developer', name: 'job_title' },
+  { label: 'Role', value: 'Senior', name: 'role' },
+  { label: 'Status', value: 'Permenent', name: 'status' },
+  {
+    label: 'Starting date',
+    value: 'January 1, 1990',
+    name: 'probation_started',
+    type: 'date',
+  },
+  {
+    label: 'Ending date',
+    value: 'January 1, 1990',
+    name: 'probation_ended',
+    type: 'date',
+  },
+  {
+    label: 'Joining date',
+    value: 'January 1, 1990',
+    name: 'joining_date',
+    type: 'date',
+  },
 ];
 export const emergencyContact = [
   { label: 'Name', value: 'John Doe', name: 'name' },
@@ -132,12 +192,28 @@ export const employeesTabs = [
     prop: a11yProps(1),
   },
   {
-    label: ' Attendance reports',
+    label: 'Attendance reports',
     prop: a11yProps(2),
   },
   {
-    label: ' Assets',
+    label: 'Assets',
     prop: a11yProps(3),
+  },
+  {
+    label: 'Benefits',
+    prop: a11yProps(4),
+  },
+  {
+    label: 'Letters',
+    prop: a11yProps(5),
+  },
+  {
+    label: 'Salary',
+    prop: a11yProps(6),
+  },
+  {
+    label: 'Requests',
+    prop: a11yProps(7),
   },
 ];
 
@@ -177,6 +253,208 @@ export const ASSET_TABLECOLUMN = [
     title: 'Action',
     flex: 2,
     name: 'action',
+  },
+];
+
+export const LETTERS_TABLECOLUMN = [
+  {
+    title: 'Objective',
+    flex: 2,
+    name: 'objective',
+  },
+  {
+    title: 'Issue date',
+    flex: 2,
+    name: 'issue_date',
+  },
+  {
+    title: 'Download',
+    flex: 2,
+    name: 'download',
+  },
+];
+
+export const HR_EMP_LETTERS_TABLECOLUMN = [
+  {
+    title: 'Objective',
+    flex: 2,
+    name: 'objective',
+  },
+  {
+    title: 'Date',
+    flex: 2,
+    name: 'issue_date',
+  },
+  {
+    title: 'Reason',
+    flex: 2,
+    name: 'reason',
+  },
+  {
+    title: 'Download',
+    flex: 2,
+    name: 'download',
+  },
+  {
+    title: 'Action',
+    flex: 2,
+    name: 'action',
+  },
+];
+
+export const BENEFITS_TABLECOLUMN = [
+  {
+    title: 'Benefits',
+    flex: 2,
+    name: 'benefit',
+  },
+  {
+    title: 'Card ID',
+    flex: 2,
+    name: 'card_id',
+  },
+  {
+    title: 'Issue date',
+    flex: 2,
+    name: 'issue_date',
+  },
+  {
+    title: 'Description',
+    flex: 2,
+    name: 'description',
+  },
+  {
+    title: 'Action',
+    flex: 2,
+    name: 'action',
+  },
+];
+
+export const SALARY_TABLECOLUMN = [
+  {
+    title: 'Job Status',
+    flex: 2,
+    name: 'job_status',
+  },
+  {
+    title: 'Gross Salary(Rs)',
+    flex: 2,
+    name: 'gross_salary',
+  },
+  {
+    title: 'Tax Deduction(%)',
+    flex: 2,
+    name: 'tax_deduction',
+  },
+  {
+    title: 'Net Salary(Rs)',
+    flex: 2,
+    name: 'net_salary',
+  },
+  {
+    title: 'Date',
+    flex: 2,
+    name: 'date',
+  },
+  {
+    title: 'Pay_slip',
+    flex: 2,
+    name: 'pay_slip',
+  },
+  {
+    title: 'Action',
+    flex: 2,
+    name: 'action',
+  },
+];
+export const SALARY_SAMPLE_DATA = [
+  {
+    id: 8,
+    action: ['Delete', 'View'],
+    job_status: 'Permanent',
+    gross_salary: '90,000',
+    tax_deduction: '10%',
+    net_salary: '81,000',
+    issue_date: '26 February,2024',
+    download: 'Download',
+    pay_slip: '../filelink',
+  },
+  {
+    id: 6,
+    action: ['Delete', 'View'],
+    job_status: 'Permanent',
+    gross_salary: '50,000',
+    tax_deduction: '10%',
+    net_salary: '45,000',
+    issue_date: '26 January,2024',
+    download: 'Download',
+    pay_slip: '../filelink',
+  },
+  {
+    id: 6,
+    action: ['Delete', 'View'],
+    job_status: 'Permanent',
+    gross_salary: '50,000',
+    tax_deduction: '10%',
+    net_salary: '45,000',
+    issue_date: '26 January,2024',
+    download: 'Download',
+    pay_slip: '../filelink',
+  },
+  {
+    id: 5,
+    action: ['Delete', 'View'],
+    job_status: 'Permanent',
+    gross_salary: '50,000',
+    tax_deduction: '10%',
+    net_salary: '45,000',
+    issue_date: '26 December,2023',
+    download: 'Download',
+    pay_slip: '../filelink',
+  },
+  {
+    id: 4,
+    action: ['Delete', 'View'],
+    job_status: 'Permanent',
+    gross_salary: '50,000',
+    tax_deduction: '10%',
+    net_salary: '45,000',
+    issue_date: '26 November,2023',
+    download: 'Download',
+    pay_slip: '../filelink',
+  },
+  {
+    id: 3,
+    action: ['Delete', 'View'],
+    job_status: 'Permanent',
+    gross_salary: '50,000',
+    tax_deduction: '10%',
+    net_salary: '45,000',
+    issue_date: '26 October,2023',
+    download: 'Download',
+    pay_slip: '../filelink',
+  },
+  {
+    id: 2,
+    action: ['Delete', 'View'],
+    job_status: 'Permanent',
+    gross_salary: '50,000',
+    tax_deduction: '10%',
+    net_salary: '45,000',
+    issue_date: '26 September,2023',
+    download: 'Download',
+    pay_slip: '../filelink',
+  },
+  {
+    id: 1,
+    action: ['Delete', 'View'],
+    job_status: 'Probation',
+    gross_salary: '35,000',
+    tax_deduction: '10%',
+    net_salary: '2,800',
+    issue_date: '26 August,2023',
+    download: 'Download',
+    pay_slip: '../filelink',
   },
 ];
 export const ASSET_TABLEDATA = [

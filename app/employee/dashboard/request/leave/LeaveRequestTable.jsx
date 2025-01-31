@@ -4,6 +4,7 @@ import { filterTableRowsWRTTab } from '@/src/utils/table';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { renderNestedTable } from './renderComponents';
+import dayjs from 'dayjs';
 
 const LeaveRequestTable = ({
   tabVal,
@@ -18,11 +19,11 @@ const LeaveRequestTable = ({
   viewClicked,
 }) => {
   const { data, isLoading } = useSelector((state) => state?.emp?.leaveReq);
-  // const [leaveRequestDataState, setLeaveRequestDataState] = useState([]);
   const reformData = (dataArr) => {
     if (dataArr?.length) {
       const tempData = dataArr?.map((item) => ({
         ...item,
+        requested_at: dayjs(item?.requested_at)?.format('MMMM D, YYYY hh:mm A'),
         actions: item?.status === 'pending' ? ['Delete', 'View'] : ['View'],
       }));
       return tempData;
@@ -46,12 +47,12 @@ const LeaveRequestTable = ({
     );
   }
   return renderNestedTable({
+    minWidth: '1200px',
     currentReqStatusTabVal: tabVal,
     currentReqStatusTab: tab,
     handleOpen,
     column: employeeLeaveRequestsColumn,
-    data: leaveRequestDataState,
-    // data: [],
+    data: leaveRequestDataState || [],
     handleOpenConditionalModal: handleOpenModal,
     handleClickActionView: handleClickView,
     handleClickActionDelete: handleClickDelete,

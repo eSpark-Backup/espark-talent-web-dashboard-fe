@@ -45,10 +45,9 @@ const Dashboard = () => {
       dispatch(deleteEmpLeaveRequest());
       return api.daleteData(`${EMP_LEAVE_REQUEST}?id=${id}`);
     },
-    onSuccess: ({ data }) => {
-      Toast('success', 'Data deleted successfully');
-      console.log({ data });
+    onSuccess: () => {
       dispatch(deleteEmpLeaveRequestSuccess(modalData?.id));
+      Toast('success', 'Data deleted successfully');
       handleCloseDeleteModal();
       setModalData({});
     },
@@ -56,7 +55,6 @@ const Dashboard = () => {
       Toast('error', err.message || 'Failed to delete data');
       dispatch(deleteLeaveRequestDataFailed(modalData?.id));
       handleCloseDeleteModal();
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
 
@@ -135,12 +133,10 @@ const Dashboard = () => {
     const refinedData = [];
     for (let i = 0; i < arrayfiedData.length; i++) {
       const element = arrayfiedData[i];
-      console.log({ element });
       if (i > 0) {
         refinedData.push({
           leave_type: element[0],
           pending: +element[1].total - +element[1].balance,
-          // requested_at:element[1],
           available: +element[1].total - +element[1].balance,
           ...element[1],
         });
@@ -172,8 +168,8 @@ const Dashboard = () => {
       return data;
     },
     onError: (err) => {
+      Toast('error', err.message || 'Failed to update data');
       dispatch(getEmpLeaveRequestDataFailed());
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
 
@@ -223,8 +219,12 @@ const Dashboard = () => {
                 <Modal
                   open={openModal}
                   onClose={handleCloseModal}
+                  closeAfterTransition
                   aria-labelledby="modal-modal-title"
                   aria-describedby="modal-modal-description"
+                  disableEnforceFocus
+                  disableRestoreFocus
+                  disableScrollLock
                   sx={{
                     display: 'flex',
                     alignItems: 'center',
@@ -238,7 +238,6 @@ const Dashboard = () => {
             <Box sx={{ width: '100%' }}>
               <Box
                 sx={{
-                  // marginTop: '10px',
                   marginBottom: '20px',
                   maxWidth: '100%',
                   overflowX: 'auto',
@@ -279,6 +278,7 @@ const Dashboard = () => {
                         background: '#fff',
                       },
                     }}
+                    disableRipple
                     onClick={() => refreshMutation.mutate()}
                     startIcon={
                       !refreshMutation.isPending && (
@@ -292,7 +292,7 @@ const Dashboard = () => {
                     }
                   >
                     {refreshMutation.isPending ? (
-                      <CircularProgress size={26} color="secondary" />
+                      <CircularProgress size={26} sx={{ color: '#138A72' }} />
                     ) : (
                       REQUEST_LEAVE?.refresh
                     )}
@@ -342,8 +342,6 @@ const Dashboard = () => {
               handleClickView={handleClickActionView}
               handleClickDelete={handleClickActionDelete}
               viewClicked={viewClicked}
-              // showFilterModal={showFilterModal}
-              // setShowFilterModal={setShowFilterModal}
             />
           </div>
         </Box>
@@ -356,6 +354,10 @@ const Dashboard = () => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
         data-aos="fade-down"
+        disableEnforceFocus
+        disableAutoFocus
+        disableRestoreFocus
+        disableScrollLock
         sx={{
           display: 'flex',
           alignItems: 'center',

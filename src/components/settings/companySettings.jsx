@@ -29,10 +29,10 @@ const CompanySettings = () => {
         })
         .catch((err) => {
           Toast('error', err.message || 'Failed to get data');
-          console.log({ err });
         });
     },
   });
+  console.log(companySettings, 'companySettings');
   const defaultValues = { ...companySettings };
   const getFinalData = (values) => {
     if (typeof values?.image === 'object') {
@@ -47,6 +47,15 @@ const CompanySettings = () => {
   };
   const handleToast = () => {
     Toast('success', 'Setting updated succesfully');
+  };
+
+  const extractErrorText = (html) => {
+    const match = html?.match(/<strong>Error:<\/strong>\s*(.*)/);
+    return match ? match[1] : 'No error text found';
+  };
+
+  const handleErrorToast = (err) => {
+    Toast('error', extractErrorText(err) || 'Failed to delete data');
   };
   const { homeData } = useSelector((state) => state?.hr?.home);
   const handleSave = () => {
@@ -82,10 +91,7 @@ const CompanySettings = () => {
             form={companyformElement}
             schema={companyInfoSchema}
             editProfile
-            mt="180px"
             pmd="49px 10px"
-            gap="60px"
-            midScreenGap="10px"
             isLastStep
             defaultValues={defaultValues}
             getFinalData={getFinalData}
@@ -95,6 +101,7 @@ const CompanySettings = () => {
             onSave={handleSave}
             fontSize={'8px'}
             miniFontSize={'7px'}
+            errorToast={handleErrorToast}
           />
         </>
       )}

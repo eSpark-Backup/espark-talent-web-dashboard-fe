@@ -67,7 +67,7 @@ const AuthForm = ({ uiData, fields, handleOpenTroubleModal }) => {
       return data;
     },
     onError: (err) => {
-      console.log({ err: err.message, name: err.name, stack: err.stack });
+      Toast('error', err.message || 'Failed to update data');
     },
   });
   const clientHomeMutation = useMutation({
@@ -81,8 +81,8 @@ const AuthForm = ({ uiData, fields, handleOpenTroubleModal }) => {
       return data;
     },
     onError: (err) => {
+      Toast('error', err.message || 'Failed to update data');
       dispatch(fetchClientHomeDataRequestFailed());
-      console.log({ err: err.message, name: err.name, stack: err.stack });
     },
   });
   const employeeHomeMutation = useMutation({
@@ -90,7 +90,6 @@ const AuthForm = ({ uiData, fields, handleOpenTroubleModal }) => {
       return api.getData(`${url}?workspace=${currentWorkSpace?.email || ''}`);
     },
     onSuccess: ({ data }) => {
-      // dispatch(getHomeData(data));
       dispatch(getEmpHomeData(data));
       dispatch(getWorkSpace(data?.workspaces?.[0]));
       dispatch(addCurrentWorkSpace(data?.workspaces?.[0]));
@@ -99,7 +98,7 @@ const AuthForm = ({ uiData, fields, handleOpenTroubleModal }) => {
       return data;
     },
     onError: (err) => {
-      console.log({ err: err.message, name: err.name, stack: err.stack });
+      Toast('error', err.message || 'Failed to update data');
     },
   });
   const { mutate, isPending } = useMutation({
@@ -111,7 +110,6 @@ const AuthForm = ({ uiData, fields, handleOpenTroubleModal }) => {
       dispatch(login(data));
       Cookie.set('token', data?.token);
       Cookie.set('userType', data?.role);
-      console.log({ data });
       if (CLIENT_ROLES.includes(data?.role)) {
         setTimeout(() => {
           clientHomeMutation.mutate(CLIENT_HOME);
@@ -129,12 +127,6 @@ const AuthForm = ({ uiData, fields, handleOpenTroubleModal }) => {
     onError: (err) => {
       setIsLoggingIn(false);
       Toast('error', err?.response?.data?.error || 'Failed to logging in');
-      console.log({
-        error: err?.response?.data?.error,
-        err: err.message,
-        name: err.name,
-        stack: err.stack,
-      });
     },
   });
 
@@ -147,10 +139,12 @@ const AuthForm = ({ uiData, fields, handleOpenTroubleModal }) => {
     onSubmit: (values) => {
       try {
         if (rememberMe) {
-          localStorage.setItem('email', values.email);
-          localStorage.setItem('password', values.password);
+          localStorage?.setItem('email', values.email);
+          localStorage?.setItem('password', values.password);
         }
         mutate(values);
+        // Clear back path history
+        window?.history?.replaceState(null, '', '/dashboard');
       } catch (error) {
         console.error('Error submitting form:', error);
       }

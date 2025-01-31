@@ -17,6 +17,14 @@ const employeeSlice = createSlice({
       time: [],
       leaves: [],
     },
+    letters: [],
+    benefits: [],
+    salary: [],
+    requests: {
+      leave: [],
+      whf: [],
+      punch: [],
+    },
   },
   reducers: {
     getEmpData: (state) => {
@@ -113,6 +121,156 @@ const employeeSlice = createSlice({
       const tempData = state?.assets?.filter((el) => el.id !== action.payload);
       state.assets = tempData;
     },
+    getEmpLetterRequest: (state) => {
+      state.isLoading = true;
+    },
+    getEmpLetterRequestSuccess: (state, action) => {
+      state.isLoading = false;
+      state.letters = action.payload;
+    },
+    getEmpLetterRequestFailed: (state) => {
+      state.isLoading = false;
+    },
+    addEmpLetter: (state, action) => {
+      const tempLetters = state.letters;
+      tempLetters.push(action.payload);
+      state.letters = tempLetters;
+    },
+    deleteEmpLetter: (state, action) => {
+      const tempLetters = state?.letters?.filter(
+        (el) => el.id !== action.payload
+      );
+      state.letters = tempLetters;
+    },
+    editEmpLetter: (state, action) => {
+      const tempLetters = state.letters.map((letter) => {
+        if (letter.id === action.payload.id) {
+          return action.payload;
+        }
+        return letter;
+      });
+      state.letters = tempLetters;
+    },
+    getEmpBenefitRequest: (state) => {
+      state.isLoading = true;
+    },
+    getEmpBenefitRequestSuccess: (state, action) => {
+      state.isLoading = false;
+      state.benefits = action.payload;
+    },
+    getEmpBenefitRequestFailed: (state) => {
+      state.isLoading = false;
+    },
+    addEmpBenefit: (state, action) => {
+      const tempBenefits = state.benefits;
+      tempBenefits.push(action.payload);
+      state.benefits = tempBenefits;
+    },
+    deleteEmpBenefit: (state, action) => {
+      const tempBenefits = state?.benefits?.filter(
+        (el) => el.id !== action.payload
+      );
+      state.benefits = tempBenefits;
+    },
+    editEmpBenefit: (state, action) => {
+      const tempBenefits = state.benefits.map((benefit) => {
+        if (benefit.id === action.payload.id) {
+          return action.payload;
+        }
+        return benefit;
+      });
+      state.benefits = tempBenefits;
+    },
+    getEmpSalaryRequest: (state) => {
+      state.isLoading = true;
+    },
+    getEmpSalaryRequestSuccess: (state, action) => {
+      state.isLoading = false;
+      state.salary = action.payload;
+    },
+    getEmpSalaryRequestFailed: (state) => {
+      state.isLoading = false;
+    },
+    getEmpRequest: (state) => {
+      state.isLoading = true;
+    },
+    getEmpRequestSuccess: (state, action) => {
+      const { type, data } = action.payload;
+      state.isLoading = false;
+
+      if (state?.requests[type]) {
+        state.requests[type] = data;
+      } else {
+        console.warn(`Invalid request type: ${type}`);
+      }
+    },
+    getEmpRequestFailed: (state) => {
+      state.isLoading = false;
+    },
+    addEmpSalary: (state, action) => {
+      const tempSalary = state.salary;
+      tempSalary.push(action.payload);
+      state.salary = tempSalary;
+    },
+    deleteEmpSalary: (state, action) => {
+      const tempSalary = state?.salary?.filter(
+        (el) => el.id !== action.payload
+      );
+      state.salary = tempSalary;
+    },
+    editEmpSalary: (state, action) => {
+      const tempSalary = state.salary.map((salary) => {
+        if (salary.id === action.payload.id) {
+          return action.payload;
+        }
+        return salary;
+      });
+      state.salary = tempSalary;
+    },
+    getEmpLeaveRequest: (state) => {
+      state.isLoading = true;
+    },
+    getEmpLeaveRequestSuccess: (state, action) => {
+      state.isLoading = false;
+      state.leaves = action.payload;
+    },
+    getEmpLeaveRequestFailed: (state) => {
+      state.isLoading = false;
+    },
+    getEmpPunchRequest: (state) => {
+      state.isLoading = true;
+    },
+    getEmpPunchRequestSuccess: (state, action) => {
+      state.isLoading = false;
+      state.punches = action.payload;
+    },
+    getEmpPunchRequestFailed: (state) => {
+      state.isLoading = false;
+    },
+    getEmpWfhRequest: (state) => {
+      state.isLoading = true;
+    },
+    getEmpWfhRequestSuccess: (state, action) => {
+      state.isLoading = false;
+      state.wfhRequests = action.payload;
+    },
+    getEmpWfhRequestFailed: (state) => {
+      state.isLoading = false;
+    },
+    acceptEmpWfhRequest: (state, action) => {
+      state.wfhRequests = state.wfhRequests.map((request) =>
+        request.id === action.payload
+          ? { ...request, status: 'accepted' }
+          : request
+      );
+    },
+    rejectEmpWfhRequest: (state, action) => {
+      state.wfhRequests = state.wfhRequests.map((request) =>
+        request.id === action.payload
+          ? { ...request, status: 'rejected' }
+          : request
+      );
+    },
     removeHrEmployeeData: (state) => {
       state.isLoading = false;
       state.assets = [];
@@ -125,6 +283,14 @@ const employeeSlice = createSlice({
       state.timeAndLeaves = {
         time: [],
         leaves: [],
+      };
+      state.letters = [];
+      state.benefits = [];
+      state.salary = [];
+      state.requests = {
+        leave: [],
+        whf: [],
+        punch: [],
       };
     },
     removeCurrentEmployee: (state) => {
@@ -163,6 +329,38 @@ export const {
   updateEmpLeaves,
   updateCurrentEmployeeImage,
   deleteEmpAsset,
+  getEmpLetterRequest,
+  getEmpLetterRequestSuccess,
+  getEmpLetterRequestFailed,
+  addEmpLetter,
+  deleteEmpLetter,
+  editEmpLetter,
+  getEmpBenefitRequest,
+  getEmpBenefitRequestSuccess,
+  getEmpBenefitRequestFailed,
+  addEmpBenefit,
+  deleteEmpBenefit,
+  editEmpBenefit,
+  getEmpSalaryRequest,
+  getEmpSalaryRequestSuccess,
+  getEmpSalaryRequestFailed,
+  addEmpSalary,
+  deleteEmpSalary,
+  editEmpSalary,
+  getEmpRequest,
+  getEmpRequestSuccess,
+  getEmpRequestFailed,
+  getEmpLeaveRequest,
+  getEmpLeaveRequestFailed,
+  getEmpLeaveRequestSuccess,
+  getEmpPunchRequest,
+  getEmpPunchRequestFailed,
+  getEmpPunchRequestSuccess,
+  getEmpWfhRequest,
+  getEmpWfhRequestFailed,
+  getEmpWfhRequestSuccess,
+  rejectEmpWfhRequest,
+  acceptEmpWfhRequest,
   removeHrEmployeeData,
   removeCurrentEmployee,
   removeAddEmpForm,

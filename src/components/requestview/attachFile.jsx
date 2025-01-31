@@ -35,7 +35,7 @@ const AttachDoc = () => {
               ref={fileInputRef}
               type="file"
               accept="image/*"
-              style={{ display: 'none' }}
+              style={{ display: 'none', cursor: 'pointer' }}
               onChange={handleFileChange}
             />
           </InputAdornment>

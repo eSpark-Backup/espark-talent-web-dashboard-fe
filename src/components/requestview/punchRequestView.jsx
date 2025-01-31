@@ -58,7 +58,12 @@ const PunchRequest = ({
             >
               November 1, 2023
             </Typography>
-            <Image src={'/icons/CalendarOutline.svg'} width={20} height={20} />
+            <Image
+              src={'/icons/CalendarOutline.svg'}
+              width={20}
+              height={20}
+              alt={'Calendar'}
+            />
           </Box>
         </Grid>
       </Grid>
@@ -215,7 +220,12 @@ const PunchRequest = ({
               {createPunchRequest ? 'Select Punch Type' : 'Check out'}
             </Typography>
             {createPunchRequest && (
-              <Image src={'/icons/Dropdown.svg'} width={20} height={20} />
+              <Image
+                src={'/icons/Dropdown.svg'}
+                width={20}
+                height={20}
+                alt="drop down Button"
+              />
             )}
           </Box>
         </Grid>

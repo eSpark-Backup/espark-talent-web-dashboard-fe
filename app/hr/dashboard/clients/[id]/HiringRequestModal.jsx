@@ -14,7 +14,7 @@ import { hringRequestForm } from '@/src/constants/data/forms/hiring-request';
 import { useFormik } from 'formik';
 import { FORM_DATA } from '@/src/constants/form';
 import { useDispatch, useSelector } from 'react-redux';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import { HR_CLIENT_EMP_HIRING_REQUEST } from '@/src/services/apiService/apiEndPoints';
 import dayjs from 'dayjs';
@@ -31,19 +31,18 @@ const HiringRequestModal = ({ open, onClose }) => {
   const [hiringValues, setHiringValues] = useState(null);
   const { role } = useSelector((state) => state?.auth?.userData);
   const dispatch = useDispatch();
+  const clientQuery = useQueryClient();
+
   const { mutate, isPending } = useMutation({
     mutationFn: async (formVals) => {
-      return api.postJSONData(`${HR_CLIENT_EMP_HIRING_REQUEST}`, formVals);
+      return api.postData(`${HR_CLIENT_EMP_HIRING_REQUEST}`, formVals);
     },
     onSuccess: ({ data }) => {
-      Toast('success', 'Data posted successfully');
-
       const symbol = hiringValues?.salary_range?.currency?.split(' ')[0];
-
       dispatch(
         addHiringRequest({
           ...hiringValues,
-          salary_range: `${hiringValues.salary_range.minimum} ${hasSymbol(symbol) ? symbol : ''} - ${hiringValues.salary_range.maximum} ${hasSymbol(symbol) ? symbol : ''}`,
+          salary_range: `${hiringValues?.salary_range?.minimum} ${hasSymbol(symbol) ? symbol : ''} - ${hiringValues?.salary_range?.maximum} ${hasSymbol(symbol) ? symbol : ''}`,
           id: data.id,
           gender: genderType(hiringValues?.gender),
           action:
@@ -55,12 +54,14 @@ const HiringRequestModal = ({ open, onClose }) => {
       );
       handleCloseModal();
       setHiringValues(null);
+      Toast('success', 'Data posted successfully');
+      clientQuery?.invalidateQueries(['hr-client-hiring-req-query']);
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to post data');
-      console.log({ err, errm: err.message, name: err.name, stack: err.stack });
     },
   });
+
   const {
     handleSubmit,
     values,
@@ -72,14 +73,19 @@ const HiringRequestModal = ({ open, onClose }) => {
     handleReset,
   } = useFormik({
     initialValues: {
+      comments: '',
       hiring_end_date: null,
       hiring_start_date: null,
     },
     validationSchema: hiringRequestSchema,
     enableReinitialize: true,
     onSubmit: (formValues) => {
+      console.log(formValues, 'formValues');
+
       const finalData = {
         ...formValues,
+        description: 'ok',
+        job_description: formValues?.job_description,
         gender:
           formValues?.gender == 'Not specific' ? 'nonspec' : formValues?.gender,
         hiring_start_date: dayjs(formValues.hiring_start_date).format(
@@ -87,22 +93,17 @@ const HiringRequestModal = ({ open, onClose }) => {
         ),
         hiring_end_date: dayjs(formValues.hiring_end_date).format('YYYY-MM-DD'),
         client_id: email,
-        salary_range: {
-          minimum: formValues?.salary_range.minimum,
-          maximum: formValues?.salary_range.maximum,
-          currency: formValues?.salary_currency,
-        },
+        salary_currency: formValues?.salary_currency,
+        salary_range: JSON.stringify({
+          minimum: formValues?.salary_range?.minimum,
+          maximum: formValues?.salary_range?.maximum,
+        }),
         country: formValues?.country?.title,
       };
 
       setHiringValues(finalData);
       mutate({
         ...finalData,
-        // salary_range: `${finalData.salary_range.minimum}$ - ${finalData.salary_range.maximum}$`,
-        // salary_range: {
-        //   minimum: finalData.salary_range.minimum,
-        //   maximum: finalData.salary_range.maximum,
-        // },
       });
     },
     validateOnChange: false,
@@ -112,13 +113,15 @@ const HiringRequestModal = ({ open, onClose }) => {
     handleReset();
     onClose();
   };
-  // console.log({ values, errors });
   return (
     <Modal
       open={open}
       onClose={handleCloseModal}
       aria-labelledby="keep-mounted-modal-title"
       aria-describedby="keep-mounted-modal-description"
+      disableScrollLock
+      disableEnforceFocus
+      disableRestoreFocus
       sx={{
         display: 'flex',
         alignItems: 'center',
@@ -128,7 +131,6 @@ const HiringRequestModal = ({ open, onClose }) => {
       <Box
         sx={{
           bgcolor: '#fff',
-          // width: { xs: '90%', sm: '90%', md: '50%' },
           maxWidth: '1000px',
           width: '95%',
           display: 'flex',
@@ -150,7 +152,7 @@ const HiringRequestModal = ({ open, onClose }) => {
         >
           <Typography
             sx={{
-              fontSize: '25px',
+              fontSize: { xs: '20px', sm: '23px', md: '25px' },
               fontWeight: 600,
               ml: '10px',
             }}
@@ -177,7 +179,7 @@ const HiringRequestModal = ({ open, onClose }) => {
           <Grid
             container
             sx={{
-              padding: { xs: '10px 20px', lg: '41px 100px' },
+              padding: { xs: '10px 20px', lg: '41px 80px' },
             }}
           >
             {hringRequestForm?.map(
@@ -199,9 +201,10 @@ const HiringRequestModal = ({ open, onClose }) => {
                 },
                 formIndex
               ) => (
-                <>
-                  <Grid item xs={12} lg={5} key={formIndex}>
+                <React.Fragment key={formIndex}>
+                  <Grid item xs={12} lg={5}>
                     <FormInput
+                      width={'100%'}
                       title={title}
                       placeholder={placeholder}
                       errorText={errorText}
@@ -217,6 +220,7 @@ const HiringRequestModal = ({ open, onClose }) => {
                       setFieldValue={setFieldValue}
                       value={values[name]}
                       error={errors[name]}
+                      accept=".pdf"
                       touched={touched}
                       setFieldError={setFieldError}
                       errors={errors}
@@ -231,7 +235,7 @@ const HiringRequestModal = ({ open, onClose }) => {
                     />
                   </Grid>
                   {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>}
-                </>
+                </React.Fragment>
               )
             )}
             <Grid item p={'0 10px'} xs={12}>

@@ -23,12 +23,6 @@ const invoiceTrackingSlice = createSlice({
       const tempDataOld = state?.data?.[currentType].filter(
         (el) => el.id !== action.payload.id
       );
-      // console.log({
-      //   tempDataOld,
-      //   currentType,
-      //   newType,
-      //   data: action.payload.data,
-      // });
       state.data[currentType] = tempDataOld;
       state.data[newType] = [
         ...state.data[newType],
@@ -69,17 +63,14 @@ const invoiceTrackingSlice = createSlice({
       state.isLoading = false;
     },
     fetchOtherPendingInvoicePaymentsRequestSuccess: (state, action) => {
-      console.log({ pendingSlice: action.payload });
       state.otherInvoicesData.pending = action?.payload;
       state.isLoading = false;
     },
     fetchOtherProcessingInvoicePaymentsRequestSuccess: (state, action) => {
-      console.log({ processingSlice: action.payload });
       state.otherInvoicesData.processing = action?.payload;
       state.isLoading = false;
     },
     fetchOtherPaidInvoicePaymentsRequestSuccess: (state, action) => {
-      console.log({ paidSlice: action.payload });
       state.otherInvoicesData.paid = action?.payload;
       state.isLoading = false;
     },

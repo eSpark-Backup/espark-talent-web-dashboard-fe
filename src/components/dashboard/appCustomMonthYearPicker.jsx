@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Box, Grid, Typography } from '@mui/material';
 import Image from 'next/image';
 
-const AppCustomMonthYearPicker = ({ setTimeTracking }) => {
+const AppCustomMonthYearPicker = ({ timeTracking, setTimeTracking }) => {
   const months = [
     'January',
     'February',
@@ -31,11 +31,6 @@ const AppCustomMonthYearPicker = ({ setTimeTracking }) => {
   };
 
   const handleMonthChange = (newMonth) => {
-    console.log({
-      newMonth,
-      currentYear,
-      date: new Date(currentYear, newMonth, 1),
-    });
     setSelectedDate(new Date(currentYear, newMonth, 1));
     setTimeTracking({
       month: months[newMonth],
@@ -55,7 +50,6 @@ const AppCustomMonthYearPicker = ({ setTimeTracking }) => {
     };
 
     document.addEventListener('click', handleClickOutside);
-
     return () => {
       document.removeEventListener('click', handleClickOutside);
     };
@@ -71,12 +65,13 @@ const AppCustomMonthYearPicker = ({ setTimeTracking }) => {
           position: 'relative',
           width: '221px',
           padding: '3px',
+          cursor: 'pointer',
         }}
       >
         <Box
           display={'flex'}
           justifyContent="flex-start"
-          minWidth={'250px'}
+          // minWidth={'250px'}
           alignItems="center"
           borderRadius="5px"
           py={'5px'}
@@ -91,7 +86,7 @@ const AppCustomMonthYearPicker = ({ setTimeTracking }) => {
             height={25}
           />
           <Typography ml={'14px'} mt={0} color={'#595959'}>
-            {`${months[selectedDate.getMonth()]} ${selectedDate.getFullYear()}`}
+            {timeTracking?.month} {timeTracking?.year}
           </Typography>
         </Box>
         {isOpenCalendar && (

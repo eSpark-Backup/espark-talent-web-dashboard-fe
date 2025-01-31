@@ -58,6 +58,9 @@ const AddEmployeeModal = ({ open, onClose }) => {
       onClose={handleCloseModal}
       aria-labelledby="keep-mounted-modal-title"
       aria-describedby="keep-mounted-modal-description"
+      disableScrollLock
+      disableEnforceFocus
+      disableRestoreFocus
       sx={{
         display: 'flex',
         alignItems: 'center',
@@ -141,7 +144,7 @@ const AddEmployeeModal = ({ open, onClose }) => {
                             formIndex
                           ) => (
                             <>
-                              <Grid item xs={12} lg={5} key={formIndex}>
+                              <Grid item xs={12} lg={5}>
                                 <FormInput
                                   title={title}
                                   placeholder={placeholder}

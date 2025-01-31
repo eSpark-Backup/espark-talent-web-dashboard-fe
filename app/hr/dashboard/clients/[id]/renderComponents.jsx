@@ -12,11 +12,16 @@ export const renderTable = ({
   handleClose,
   handleOpen,
   handleConfirmDelete,
+  handleClickDownload,
   updateStatus,
   isPending,
   isLoading,
-  handleClickDownload,
   minWidth,
+  handleClickActionView,
+  handleClickActionDelete,
+  rejectReq,
+  approveReq,
+  viewClicked,
 }) => {
   if (currentTab !== 'Employees') {
     return (
@@ -27,13 +32,19 @@ export const renderTable = ({
         }}
       >
         <AppTable
-          data={data}
-          column={column}
-          minWidth={minWidth}
-          handleClickActionDelete={handleOpen}
           updateStatus={updateStatus}
-          isLoading={isLoading}
+          minWidth={minWidth}
+          currentTab={currentTab}
+          column={column}
+          data={data}
+          handleOpen={handleOpen}
           handleClickDownload={handleClickDownload}
+          handleClickActionDelete={handleClickActionDelete}
+          handleClickActionView={handleClickActionView}
+          rejectReq={rejectReq}
+          approveReq={approveReq}
+          isLoading={isLoading}
+          viewClicked={viewClicked}
         />
         <AppConfirmationMadal
           title={'Delete'}

@@ -24,10 +24,6 @@ const EmergencyContact = ({ data }) => {
           borderRadius: '5px',
           border: '1px solid #E4E4E4',
           width: '100%',
-          maxWidth: '590px',
-          '@media(max-Width: 1439px)': {
-            maxWidth: '100%',
-          },
         }}
       >
         <Box sx={{ borderBottom: '1px solid #E4E4E4', padding: '10px' }}>
@@ -78,7 +74,6 @@ const EmergencyContact = ({ data }) => {
                 }}
               >
                 <Typography
-                  key={index}
                   sx={{
                     width: { xs: '120px', sm: '120px' },
                     fontSize: {
@@ -97,7 +92,6 @@ const EmergencyContact = ({ data }) => {
                   {item?.label}
                 </Typography>
                 <Typography
-                  key={index}
                   sx={{
                     fontSize: {
                       xs: '12px',
@@ -107,6 +101,7 @@ const EmergencyContact = ({ data }) => {
                       xl: '16px',
                     },
                     fontWeight: 400,
+                    textTransform: 'capitalize',
                   }}
                 >
                   {data?.emergency_contact?.primary[item?.name]}
@@ -122,10 +117,6 @@ const EmergencyContact = ({ data }) => {
           borderRadius: '5px',
           border: '1px solid #E4E4E4',
           width: '100%',
-          maxWidth: '590px',
-          '@media(max-Width: 1439px)': {
-            maxWidth: '100%',
-          },
         }}
       >
         <Box sx={{ borderBottom: '1px solid #E4E4E4', padding: '10px' }}>
@@ -176,7 +167,6 @@ const EmergencyContact = ({ data }) => {
                 }}
               >
                 <Typography
-                  key={index}
                   sx={{
                     width: { xs: '120px', sm: '120px' },
                     fontSize: {
@@ -195,7 +185,6 @@ const EmergencyContact = ({ data }) => {
                   {contactData?.label}
                 </Typography>
                 <Typography
-                  key={index}
                   sx={{
                     fontSize: {
                       xs: '12px',
@@ -205,6 +194,7 @@ const EmergencyContact = ({ data }) => {
                       xl: '16px',
                     },
                     fontWeight: 400,
+                    textTransform: 'capitalize',
                   }}
                 >
                   {data?.emergency_contact?.secondary[contactData?.name]}
