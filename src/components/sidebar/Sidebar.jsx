@@ -67,12 +67,12 @@ const Sidebar = ({ userName }) => {
     policies_perms,
   };
 
-  const { data } = useQuery({
+  const { error } = useQuery({
     queryKey: ['hrHomeData'],
     queryFn: async () => {
       dispatch(getHomeDataRequest());
       const response = await api.getData(HR_HOME);
-      dispatch(getHomeData(response.data));
+      dispatch(getHomeData(response?.data));
       const {
         employee_perms,
         invoices_perms,
@@ -94,6 +94,7 @@ const Sidebar = ({ userName }) => {
     },
     onError: (err) => {
       Toast('error', err?.message || 'Failed to fetch data');
+      console.error({ error });
     },
   });
 
@@ -135,8 +136,6 @@ const Sidebar = ({ userName }) => {
       return true;
     });
   };
-
-  console.log({ data });
 
   const renderLinks = () => {
     const client = pathName.includes('/client/dashboard');

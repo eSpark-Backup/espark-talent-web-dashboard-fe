@@ -10,7 +10,6 @@ export default function middleware(req) {
   const permissions = permissionsCookie
     ? JSON.parse(permissionsCookie.value)
     : {};
-  console.log(permissions, 'permissions');
   const { pathname } = req.nextUrl;
 
   const dashboardRoutes = {

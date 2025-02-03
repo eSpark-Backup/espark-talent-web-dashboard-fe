@@ -96,9 +96,9 @@ const Dashboard = () => {
     const {
       item,
       row,
-      row: { status, employeeName, count, leaveType },
+      // row: { status, employeeName, count, leaveType },
     } = props;
-    console.log(status, employeeName, count, leaveType);
+    // console.log(status, employeeName, count, leaveType);
     setModalData({ item, ...row });
     if (tabData?.currentReqTypeTab === 'Leave Requests') {
       setOpen(true);
@@ -106,6 +106,7 @@ const Dashboard = () => {
       setOpenPunch(true);
     } else return;
   };
+
   const updateRequestMutation = useMutation({
     mutationFn: async (data) => {
       return api.updateJSONData(`${data?.endpoint}?id=${data?.id}`, data?.data);
@@ -143,6 +144,7 @@ const Dashboard = () => {
       });
     }
   };
+
   const handleRejectRequest = (props) => {
     setUpdatingLeaveRequest({
       id: props?.id,
@@ -162,80 +164,89 @@ const Dashboard = () => {
       });
     }
   };
+
   const leaveRequestQuery = useQuery({
     staleTime: 10000,
     refetchOnWindowFocus: false,
     queryKey: ['leaveRequests', c_email],
     queryFn: async () => {
-      return await api
-        .getData(`${CLIENT_LEAVE_REQUEST}?status=all`)
-        .then(({ data }) => {
-          const tempData =
-            data === ''
-              ? []
-              : data?.map((item) => ({
-                  ...item,
-                  actionStatus: true,
-                  requested_at: dayjs(item?.requested_at).format(
-                    'MMMM D, YYYY hh:mm A'
-                  ),
-                  actions: [
-                    item?.status === 'pending' ? 'Reject' : null,
-                    item?.status === 'pending' ? 'Approve' : null,
-                    'View',
-                  ],
-                }));
-          dispatch(fetchLeaveRequestsSuccess(tempData));
-        })
-        .catch((err) => {
-          Toast('error', err.message || 'Failed to get data');
-        });
+      try {
+        const response = await api.getData(
+          `${CLIENT_LEAVE_REQUEST}?status=all`
+        );
+        const data = response.data || [];
+        const tempData = data.map((item) => ({
+          ...item,
+          actionStatus: true,
+          requested_at: dayjs(item?.requested_at).format(
+            'MMMM D, YYYY hh:mm A'
+          ),
+          actions: [
+            item?.status === 'pending' ? 'Reject' : null,
+            item?.status === 'pending' ? 'Approve' : null,
+            'View',
+          ],
+        }));
+        dispatch(fetchLeaveRequestsSuccess(tempData));
+        return tempData;
+      } catch (err) {
+        Toast('error', err.message || 'Failed to get data');
+        return [];
+      }
     },
+    enabled: !!c_email,
   });
+
   const timeOffQuery = useQuery({
     staleTime: 10000,
     refetchOnWindowFocus: false,
     queryKey: ['timeOffRequests', c_email],
     queryFn: async () => {
-      return api
-        .getData(`${CLIENT_TIME_OFF}?status=all`)
-        .then(({ data }) => {
-          const tempData =
-            data === ''
-              ? []
-              : data?.map((item) => ({
-                  ...item,
-                  actionStatus: true,
-                  date: dayjs(item?.date)?.format('DD-MMMM-YYYY'),
-                  punch_time: formatTimeToHHMM(item?.punch_time, 'hh:mm:ss A'),
-                  actions: [
-                    item?.status === 'pending' ? 'Reject' : null,
-                    item?.status === 'pending' ? 'Approve' : null,
-                    'View',
-                  ],
-                })) || [];
-          dispatch(fetchTimeOffRequestSuccess(tempData));
-        })
-        .catch((err) => {
-          Toast('error', err.message || 'Failed to get data');
-        });
+      try {
+        const response = await api.getData(`${CLIENT_TIME_OFF}?status=all`);
+        const tempData =
+          response.data === ''
+            ? []
+            : response.data?.map((item) => ({
+                ...item,
+                actionStatus: true,
+                date: dayjs(item?.date)?.format('DD-MMMM-YYYY'),
+                punch_time: formatTimeToHHMM(item?.punch_time, 'hh:mm:ss A'),
+                actions: [
+                  item?.status === 'pending' ? 'Reject' : null,
+                  item?.status === 'pending' ? 'Approve' : null,
+                  'View',
+                ],
+              })) || [];
+
+        dispatch(fetchTimeOffRequestSuccess(tempData));
+        return tempData;
+      } catch (err) {
+        Toast('error', err.message || 'Failed to get data');
+        return [];
+      }
     },
+    enabled: !!c_email,
   });
+
   const leaveBalanceQuery = useQuery({
     staleTime: 10000,
     refetchOnWindowFocus: false,
     queryKey: ['leaveBalanceRequests', c_email],
     queryFn: async () => {
-      return await api
-        .getData(`${CLIENT_LEAVE_BALANCE}`)
-        .then(({ data }) => {
-          dispatch(fetchLeaveBalanceRequestSuccess(data || []));
-        })
-        .catch((err) => {
-          Toast('error', err.message || 'Failed to get data');
-        });
+      try {
+        const response = await api.getData(`${CLIENT_LEAVE_BALANCE}`);
+        const data = response.data || []; // Ensure data is always an array or fallback to empty array
+        dispatch(fetchLeaveBalanceRequestSuccess(data));
+        return data; // ✅ Return data for React Query
+      } catch (err) {
+        Toast('error', err.message || 'Failed to get data');
+        return [];
+      }
     },
+    enabled: !!c_email,
   });
+
   useEffect(() => {
     if (timeOffQuery.isError) {
       dispatch(fetchTimeOffRequestFailed());
@@ -267,8 +278,8 @@ const Dashboard = () => {
       return api.downloadFile(resolveURL());
     },
     onSuccess: ({ data }) => {
-      const url = window.URL.createObjectURL(new Blob([data]));
-      const link = document.createElement('a');
+      const url = window?.URL?.createObjectURL(new Blob([data]));
+      const link = document?.createElement('a');
       link.href = url;
       link.setAttribute('download', 'report.pdf');
       document.body.appendChild(link);

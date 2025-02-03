@@ -29,12 +29,12 @@ import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
 import dayjs from 'dayjs';
 
 const ContractSigned = () => {
-  const { data, isLoading } = useSelector((state) => state?.client?.contract);
+  const { data } = useSelector((state) => state?.client?.contract);
   const dispatch = useDispatch();
   const [value, setValue] = useState(0);
   const [currentTab, setCurrentTab] = useState('Hiring Request');
 
-  const companyContractSignedQuery = useQuery({
+  const { isLoading: companyContractLoading } = useQuery({
     staleTime: 10000,
     refetchOnWindowFocus: false,
     queryKey: ['company-contract-signed-query'],
@@ -60,7 +60,8 @@ const ContractSigned = () => {
         });
     },
   });
-  const empContractSignedQuery = useQuery({
+
+  const { isLoading: employeeContractLoading } = useQuery({
     staleTime: 10000,
     refetchOnWindowFocus: false,
     queryKey: ['employee-contract-signed-query'],
@@ -86,10 +87,7 @@ const ContractSigned = () => {
         });
     },
   });
-  console.log({
-    empContractSignedQuery,
-    companyContractSignedQuery,
-  });
+
   const handleChange = (event, newValue) => {
     let tab = event?.target?.innerText.split(' ');
     if (tab.length > 1) {
@@ -193,7 +191,11 @@ const ContractSigned = () => {
                       column={tab?.columns}
                       data={value === 0 ? data?.company : data?.employee}
                       tableRowClass="app-table-row-contract"
-                      isLoading={isLoading}
+                      isLoading={
+                        value === 0
+                          ? companyContractLoading
+                          : employeeContractLoading
+                      }
                       handleClickDownload={downloadContract}
                     />
                   </Box>

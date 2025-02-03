@@ -11,7 +11,16 @@ import storage from 'redux-persist/lib/storage';
 import { persistReducer } from 'redux-persist';
 
 const persistConfig = {
-  key: 'home',
+  key: [
+    'home',
+    'hiringProgress',
+    'teamMembers',
+    'timeOff',
+    'timeTracking',
+    'invoicePayments',
+    'policies',
+    'contract',
+  ],
   storage,
   whitelist: ['home'],
 };

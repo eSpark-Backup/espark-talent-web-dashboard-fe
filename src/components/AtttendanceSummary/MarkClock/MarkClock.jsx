@@ -31,7 +31,6 @@ const MarkClock = ({ data, isLoading }) => {
   const { homeData } = useSelector((state) => state?.emp?.home);
   const [timer, setTimer] = useState('00:00:00');
   const [timerPercentage, setTimerPercentage] = useState(0);
-  console.log(timer, 'timer');
   useEffect(() => {
     let interval;
     if (

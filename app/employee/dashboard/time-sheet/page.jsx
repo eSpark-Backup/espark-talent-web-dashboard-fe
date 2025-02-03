@@ -61,6 +61,7 @@ const Dashboard = () => {
   }
   const { isLoading } = useQuery({
     refetchOnWindowFocus: false,
+    queryKey: ['getTimeSheet'],
     queryFn: async () => {
       dispatch(getTimeSheetData());
       return api

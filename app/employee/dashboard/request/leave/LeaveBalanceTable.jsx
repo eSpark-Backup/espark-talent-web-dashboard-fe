@@ -21,6 +21,7 @@ const LeaveBalanceTable = () => {
   const { balance } = useSelector((state) => state?.emp?.leaveReq?.data);
   const { isLoading } = useQuery({
     refetchOnWindowFocus: false,
+    queryKey: ['get-leave-request'],
     queryFn: async () => {
       dispatch(fetchEmpLeaveRequestData());
       return api

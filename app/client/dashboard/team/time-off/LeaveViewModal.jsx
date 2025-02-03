@@ -1,4 +1,4 @@
-import React, { forwardRef, useState } from 'react';
+import React, { forwardRef } from 'react';
 import { Avatar, Box, Button, Grid, Typography } from '@mui/material';
 import Image from 'next/image';
 import { getCamelCapitalized } from '@/src/utils/stringModification';
@@ -19,10 +19,8 @@ const LeaveViewModal = forwardRef(
     },
     ref
   ) => {
-    const [selectedLeaveType, setSelectedLeaveType] = useState(
-      getCamelCapitalized(modalData?.leave_type)
-    );
-    console.log(setSelectedLeaveType);
+    const selectedLeaveType = getCamelCapitalized(modalData?.leave_type);
+
     const { homeData } = useSelector((state) => state?.emp?.home);
     const preetyTime = (time) => {
       if (dayjs(time).format('hh:mm A') === 'Invalid Date') {

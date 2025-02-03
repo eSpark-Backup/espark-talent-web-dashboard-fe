@@ -47,78 +47,75 @@ const Dashboard = () => {
     queryKey: ['team-members-active'],
     queryFn: async () => {
       dispatch(fetchTeamMembersRequest());
-      return await api
-        .getData(`${CLIENT_TEAM_MEMBER}?status=active`)
-        .then(({ data }) => {
-          const tempData =
-            data !== ''
-              ? data?.map((item) => ({
-                  ...item,
-                  joining_date: dayjs(item?.joining_date).format(
-                    'DD-MMMM-YYYY'
-                  ),
-                  status: 'Active',
-                }))
-              : [];
-          dispatch(fetchTeamMembersRequestActiveSuccess(tempData || []));
-        })
-        .catch((err) => {
-          Toast('error', err.message || 'Failed to get data');
-        });
+      try {
+        const response = await api.getData(
+          `${CLIENT_TEAM_MEMBER}?status=active`
+        );
+        const data = response.data || []; // Ensure data is always an array
+        const tempData = data.map((item) => ({
+          ...item,
+          joining_date: dayjs(item?.joining_date).format('DD-MMMM-YYYY'),
+          status: 'Active',
+        }));
+        dispatch(fetchTeamMembersRequestActiveSuccess(tempData));
+        return tempData; // Return the transformed data
+      } catch (err) {
+        Toast('error', err.message || 'Failed to get data');
+        return []; // Return an empty array in case of an error
+      }
     },
   });
+
   const temMembersQueryOnBoard = useQuery({
     staleTime: 10000,
     refetchOnWindowFocus: false,
     queryKey: ['team-members-onboard'],
     queryFn: async () => {
       dispatch(fetchTeamMembersRequest());
-      return await api
-        .getData(`${CLIENT_TEAM_MEMBER}?status=onboard`)
-        .then(({ data }) => {
-          const tempData =
-            data !== ''
-              ? data?.map((item) => ({
-                  ...item,
-                  joining_date: dayjs(item?.joining_date).format(
-                    'DD-MMMM-YYYY'
-                  ),
-                  status: 'onBoard',
-                }))
-              : [];
-          dispatch(fetchTeamMembersRequestOnBoardSuccess(tempData || []));
-        })
-        .catch((err) => {
-          Toast('error', err.message || 'Failed to get data');
-        });
+      try {
+        const response = await api.getData(
+          `${CLIENT_TEAM_MEMBER}?status=onboard`
+        );
+        const data = response.data || []; // Ensure data is always an array
+        const tempData = data.map((item) => ({
+          ...item,
+          joining_date: dayjs(item?.joining_date).format('DD-MMMM-YYYY'),
+          status: 'onBoard',
+        }));
+        dispatch(fetchTeamMembersRequestOnBoardSuccess(tempData));
+        return tempData; // ✅ **React Query needs this return**
+      } catch (err) {
+        Toast('error', err.message || 'Failed to get data');
+        return []; // ✅ **Return an empty array in case of error**
+      }
     },
   });
+
   const temMembersQueryTerminated = useQuery({
     staleTime: 10000,
     refetchOnWindowFocus: false,
     queryKey: ['team-members-terminated'],
     queryFn: async () => {
       dispatch(fetchTeamMembersRequest());
-      return await api
-        .getData(`${CLIENT_TEAM_MEMBER}?status=terminated`)
-        .then(({ data }) => {
-          const tempData =
-            data !== ''
-              ? data?.map((item) => ({
-                  ...item,
-                  joining_date: dayjs(item?.joining_date).format(
-                    'DD-MMMM-YYYY'
-                  ),
-                  status: 'Terminated',
-                }))
-              : [];
-          dispatch(fetchTeamMembersRequestTerminatedSuccess(tempData || []));
-        })
-        .catch((err) => {
-          Toast('error', err.message || 'Failed to get data');
-        });
+      try {
+        const response = await api.getData(
+          `${CLIENT_TEAM_MEMBER}?status=terminated`
+        );
+        const data = response.data || [];
+        const tempData = data.map((item) => ({
+          ...item,
+          joining_date: dayjs(item?.joining_date).format('DD-MMMM-YYYY'),
+          status: 'Terminated',
+        }));
+        dispatch(fetchTeamMembersRequestTerminatedSuccess(tempData));
+        return tempData;
+      } catch (err) {
+        Toast('error', err.message || 'Failed to get data');
+        return [];
+      }
     },
   });
+
   useEffect(() => {
     if (
       temMembersQueryActive.isError ||

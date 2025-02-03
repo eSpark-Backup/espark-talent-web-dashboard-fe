@@ -119,6 +119,7 @@ const AppSearchableDropdown = ({
           display={'flex'}
           justifyContent={'space-between'}
           sx={{
+            alignItems: 'center',
             border: `solid 1px ${error ? 'red' : '#ccc'}`,
             borderTopLeftRadius: '5px',
             borderTopRightRadius: '5px',
@@ -155,13 +156,23 @@ const AppSearchableDropdown = ({
               )}
               <Box></Box>
               <Typography
-                sx={{ color: selectedItem?.title ? '#000' : '#838383' }}
+                sx={{
+                  color: selectedItem?.title ? '#000' : '#838383',
+                }}
               >
                 {selectedItem?.title || placeholder}
               </Typography>
             </Box>
           ) : (
-            <Typography sx={{ color: selectedItem ? '#000' : '#838383' }}>
+            <Typography
+              sx={{
+                color: selectedItem ? '#000' : '#838383',
+                maxWidth: '155px',
+                whiteSpace: 'nowrap',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+              }}
+            >
               {selectedItem?.label ||
                 selectedItem?.name ||
                 selectedItem ||
