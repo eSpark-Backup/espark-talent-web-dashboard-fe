@@ -106,7 +106,6 @@ const WFHRequestTablesTabs = ({
         });
     },
   });
-
   return (
     <Box sx={{ width: '100%' }}>
       <Box

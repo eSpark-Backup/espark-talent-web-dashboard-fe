@@ -32,6 +32,7 @@ const CompanySettings = () => {
         });
     },
   });
+  console.log(companySettings, 'companySettings');
   const defaultValues = { ...companySettings };
   const getFinalData = (values) => {
     if (typeof values?.image === 'object') {

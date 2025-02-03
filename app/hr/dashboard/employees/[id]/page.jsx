@@ -499,7 +499,6 @@ const Page = () => {
                   flexDirection: { xs: 'column', md: 'row' },
                 }}
               >
-                {console.log(employee_perms?.[0]?.write, 'write')}
                 <Box
                   sx={{
                     width: {
