@@ -31,11 +31,11 @@ const ContractSigned = () => {
   const dispatch = useDispatch();
 
   const { currentWorkSpace } = useSelector((state) => state?.emp?.home);
-  const { contracts, isLoading } = useSelector((state) => state?.emp?.contract);
+  const { contracts } = useSelector((state) => state?.emp?.contract);
   const [value, setValue] = useState(0);
   const [currentTab, setCurrentTab] = useState('Hiring Request');
 
-  const companyContracts = useQuery({
+  const { isLoading: companyContractLoading } = useQuery({
     refetchOnWindowFocus: false,
     queryKey: ['fetch-emp-comp-contracts'],
     queryFn: () => {
@@ -61,7 +61,7 @@ const ContractSigned = () => {
     },
   });
 
-  const clientContracts = useQuery({
+  const { isLoading: employeeContractLoading } = useQuery({
     refetchOnWindowFocus: false,
     queryKey: ['fetch-emp-off-shore-contracts'],
     queryFn: () => {
@@ -89,7 +89,6 @@ const ContractSigned = () => {
     },
   });
 
-  console.log(companyContracts, clientContracts);
   const handleChange = (event, newValue) => {
     changeTab({
       isSingular: true,
@@ -191,7 +190,11 @@ const ContractSigned = () => {
                     }}
                   >
                     <AppTable
-                      isLoading={isLoading}
+                      isLoading={
+                        value === 0
+                          ? companyContractLoading
+                          : employeeContractLoading
+                      }
                       currentTab={currentTab}
                       column={tab?.columns}
                       data={

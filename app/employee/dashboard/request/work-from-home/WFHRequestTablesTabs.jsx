@@ -12,7 +12,7 @@ import {
 } from '@mui/material';
 import Image from 'next/image';
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { filterWFHForm } from '@/src/constants/data/forms/filter-form';
 
 import Skeleton from '@mui/material/Skeleton';
@@ -39,7 +39,7 @@ const WFHRequestTablesTabs = ({
   viewClicked,
 }) => {
   const dispatch = useDispatch();
-  const { isLoading } = useSelector((state) => state?.emp?.wfhReq);
+  // const { isLoading } = useSelector((state) => state?.emp?.wfhReq);
   const [currentReqStatusTab, setcurrentReqStatusTab] = useState('All');
   const [currentReqStatusTabVal, setcurrentReqStatusTabVal] = useState(0);
   const [leaveRequestDataState, setLeaveRequestDataState] = useState([]);
@@ -90,7 +90,7 @@ const WFHRequestTablesTabs = ({
     },
   });
 
-  const { data } = useQuery({
+  const { isLoading: wfhLoading } = useQuery({
     staleTime: 10000,
     queryKey: ['emp_wfhr'],
     queryFn: async () => {
@@ -106,7 +106,6 @@ const WFHRequestTablesTabs = ({
         });
     },
   });
-  console.log(data, 'data');
   return (
     <Box sx={{ width: '100%' }}>
       <Box
@@ -153,7 +152,7 @@ const WFHRequestTablesTabs = ({
                         }}
                         label={
                           <Box display={'flex'} alignItems={'center'}>
-                            {isLoading ? (
+                            {wfhLoading ? (
                               <Skeleton
                                 variant="text"
                                 sx={{
@@ -196,7 +195,7 @@ const WFHRequestTablesTabs = ({
                                 color:
                                   label === currentReqStatusTab
                                     ? '#068987'
-                                    : isLoading
+                                    : wfhLoading
                                       ? 'gray'
                                       : '#595959',
                               }}

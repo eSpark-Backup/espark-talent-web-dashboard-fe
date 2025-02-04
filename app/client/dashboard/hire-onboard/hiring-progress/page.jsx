@@ -58,109 +58,116 @@ const Dashboard = () => {
   const searchParams = useSearchParams();
   const activePrams = searchParams.get('param');
   const clientQuery = useQueryClient();
-  console.log(data, 'onBoarding');
-  const hiringRequestQuery = useQuery({
+
+  const { data: hiringRequestQuery } = useQuery({
     staleTime: 10000,
     refetchOnWindowFocus: false,
     queryKey: ['hiringRequests', c_email],
     queryFn: async () => {
-      return await api
-        .getData(`${CLIENT_HIRING_PROGRESS}`)
-        .then(({ data }) => {
-          const tempData =
-            data === ''
-              ? []
-              : data?.map((item) => ({
-                  ...item,
-                  hiring_start_date: dayjs(item?.hiring_start_date).format(
-                    'DD-MMMM-YYYY'
-                  ),
-                  hiring_end_date: dayjs(item?.hiring_end_date).format(
-                    'DD-MMMM-YYYY'
-                  ),
-                }));
-          dispatch(fetchClientHiringRequestsSuccess(tempData));
-        })
-        .catch((err) => {
-          Toast('error', err.message || 'Failed to get data');
-        });
+      try {
+        const response = await api.getData(`${CLIENT_HIRING_PROGRESS}`);
+        const tempData =
+          response.data === ''
+            ? []
+            : response.data?.map((item) => ({
+                ...item,
+                hiring_start_date: dayjs(item?.hiring_start_date)?.format(
+                  'DD-MMMM-YYYY'
+                ),
+                hiring_end_date: dayjs(item?.hiring_end_date)?.format(
+                  'DD-MMMM-YYYY'
+                ),
+              }));
+
+        dispatch(fetchClientHiringRequestsSuccess(tempData));
+        return tempData;
+      } catch (err) {
+        Toast('error', err.message || 'Failed to get data');
+        return [];
+      }
     },
+    enabled: !!c_email,
   });
+
   const returnStatusVal = (val) => {
     if (val === 'pending') return 'Pending';
     else if (val === 'rejected') return 'Rejected';
     else if (val === 'hold') return 'Hold';
     else if (val === 'short_list') return 'Short listed';
   };
+
   const interviewScheduledQuery = useQuery({
     staleTime: 10000,
     refetchOnWindowFocus: false,
     queryKey: ['interviewSchedules', c_email],
     queryFn: async () => {
-      return await api
-        .getData(`${CLIENT_INTERVIEW_SCHEDULE}`)
-        .then(({ data }) => {
-          const tempData =
-            data === ''
-              ? []
-              : data?.map((item) => ({
-                  ...item,
-                  status: returnStatusVal(item?.status),
-                  dropdownStatus: true,
-                  interview_date_time: dayjs(item?.interview_date_time)?.format(
-                    'DD-MMMM-YYYY hh:mm A'
-                  ),
-                }));
-          dispatch(fetchClientInterviewSchedulesSuccess(tempData));
-        })
-        .catch((err) => {
-          Toast('error', err.message || 'Failed to get data');
-        });
+      try {
+        const response = await api.getData(`${CLIENT_INTERVIEW_SCHEDULE}`);
+        const tempData =
+          response.data === ''
+            ? []
+            : response.data?.map((item) => ({
+                ...item,
+                status: returnStatusVal(item?.status),
+                dropdownStatus: true,
+                interview_date_time: dayjs(item?.interview_date_time)?.format(
+                  'DD-MMMM-YYYY hh:mm A'
+                ),
+              }));
+
+        dispatch(fetchClientInterviewSchedulesSuccess(tempData));
+        return tempData; // ✅ Ensure data is returned
+      } catch (err) {
+        Toast('error', err.message || 'Failed to get data');
+        return []; // ✅ Return an empty array in case of error
+      }
     },
+    enabled: !!c_email,
   });
+
   const onBoardingQuery = useQuery({
     staleTime: 10000,
     refetchOnWindowFocus: false,
     queryKey: ['onBoarding', c_email],
     queryFn: async () => {
-      return await api
-        .getData(`${CLIENT_ONBOARDING}`)
-        .then(({ data }) => {
-          const tempData =
-            data === ''
-              ? []
-              : data?.map((item) => ({
-                  ...item,
-                  notice_period:
-                    item?.notice_period > 0
-                      ? `${item?.notice_period} ${item?.notice_period === 1 ? 'day' : 'days'}`
-                      : '-',
-                  joining_date: dayjs(item?.joining_date)?.format(
-                    'DD-MMMM-YYYY'
-                  ),
-                }));
-          dispatch(fetchClientOnboardingSuccess(tempData));
-        })
-        .catch((err) => {
-          Toast('error', err.message || 'Failed to get data');
-        });
+      try {
+        const response = await api.getData(`${CLIENT_ONBOARDING}`);
+        const tempData =
+          response.data === ''
+            ? []
+            : response.data?.map((item) => ({
+                ...item,
+                notice_period:
+                  item?.notice_period > 0
+                    ? `${item?.notice_period} ${item?.notice_period === 1 ? 'day' : 'days'}`
+                    : '-',
+                joining_date: dayjs(item?.joining_date)?.format('DD-MMMM-YYYY'),
+              }));
+
+        dispatch(fetchClientOnboardingSuccess(tempData));
+        return tempData; // ✅ Ensure data is returned
+      } catch (err) {
+        Toast('error', err.message || 'Failed to get data');
+        return []; // ✅ Return an empty array in case of error
+      }
     },
+    enabled: !!c_email, // ✅ Run query only if c_email is available
   });
 
   useEffect(() => {
-    if (hiringRequestQuery.isError) {
+    if (hiringRequestQuery?.isError) {
       dispatch(fetchClientHiringRequestsFailed());
     }
-    if (interviewScheduledQuery.isError) {
+    if (interviewScheduledQuery?.isError) {
       dispatch(fetchClientInterviewSchedulesFailed());
     }
-    if (onBoardingQuery.isError) {
+    if (onBoardingQuery?.isError) {
       dispatch(fetchClientOnboardingFailed());
     }
   }, [
-    hiringRequestQuery.isError,
-    interviewScheduledQuery.isError,
-    onBoardingQuery.isError,
+    hiringRequestQuery?.isError,
+    interviewScheduledQuery?.isError,
+    onBoardingQuery?.isError,
   ]);
 
   const reformData = (dataArr) => {
@@ -169,7 +176,6 @@ const Dashboard = () => {
         const symbol = item?.salary_currency
           ? item?.salary_currency?.split(' ')[0]
           : item?.salary_range?.currency?.split(' ')[0];
-
         return {
           ...item,
           salary_range: `${item.salary_range?.minimum} ${hasSymbol(symbol) ? symbol : ''} - ${item.salary_range?.maximum} ${hasSymbol(symbol) ? symbol : ''}`,
@@ -270,6 +276,7 @@ const Dashboard = () => {
     setModalData({ id: props });
     setIsOpen(true);
   };
+
   const { mutate, isPending } = useMutation({
     mutationFn: async (id) => {
       dispatch(deleteClientHiringRequest());

@@ -50,6 +50,7 @@ const CredentialModal = forwardRef(({ onClose, modalData }, ref) => {
   return (
     <Box
       ref={ref}
+      tabIndex={-1}
       sx={{
         bgcolor: '#fff',
         maxWidth: '500px',
@@ -123,37 +124,34 @@ const CredentialModal = forwardRef(({ onClose, modalData }, ref) => {
               },
               formIndex
             ) => (
-              <>
-                <Grid item xs={12} lg={12} key={formIndex}>
-                  <FormInput
-                    title={title}
-                    placeholder={placeholder}
-                    errorText={errorText}
-                    prefixIcon={prefixIcon}
-                    type={type}
-                    suffixIcon={suffixIcon}
-                    options={options}
-                    name={name}
-                    setFieldValue={setFieldValue}
-                    value={values[name]}
-                    error={errors[name]}
-                    touched={touched}
-                    setFieldError={setFieldError}
-                    errors={errors}
-                    setErrors={setErrors}
-                    values={values}
-                    nested={nested}
-                    xs={12}
-                    sm={12}
-                    md={12}
-                    lg={12}
-                    fields={fields}
-                    suffixIconInside={suffixIconInside}
-                    readOnly={true}
-                  />
-                </Grid>
-                {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>}
-              </>
+              <Grid item xs={12} lg={12} key={formIndex}>
+                <FormInput
+                  title={title}
+                  placeholder={placeholder}
+                  errorText={errorText}
+                  prefixIcon={prefixIcon}
+                  type={type}
+                  suffixIcon={suffixIcon}
+                  options={options}
+                  name={name}
+                  setFieldValue={setFieldValue}
+                  value={values[name]}
+                  error={errors[name]}
+                  touched={touched}
+                  setFieldError={setFieldError}
+                  errors={errors}
+                  setErrors={setErrors}
+                  values={values}
+                  nested={nested}
+                  xs={12}
+                  sm={12}
+                  md={12}
+                  lg={12}
+                  fields={fields}
+                  suffixIconInside={suffixIconInside}
+                  readOnly={true}
+                />
+              </Grid>
             )
           )}
           <Grid item p={'0 10px'} xs={12}>

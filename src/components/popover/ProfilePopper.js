@@ -166,7 +166,7 @@ export default function ProfilePopper({
       return 'Invalid date or time';
     }
 
-    const timeFromNow = dateTime.fromNow();
+    const timeFromNow = dateTime?.fromNow();
 
     return timeFromNow;
   };

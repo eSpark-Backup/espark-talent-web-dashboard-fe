@@ -505,17 +505,25 @@ const Page = () => {
                       md:
                         value === employeeProfileData?.valuethree
                           ? 'calc(100% - 260px)'
-                          : value === employeeProfileData?.valueFour &&
-                              employee_perms?.[0]?.write
+                          : (value === employeeProfileData?.valueFour &&
+                                role == 'super_admin') ||
+                              (role !== 'super_admin' &&
+                                employee_perms?.[0]?.write)
                             ? 'calc(100% - 140px)'
-                            : value === employeeProfileData?.valueSix &&
-                                employee_perms?.[0]?.write
+                            : (value === employeeProfileData?.valueSix &&
+                                  role == 'super_admin') ||
+                                (role !== 'super_admin' &&
+                                  employee_perms?.[0]?.write)
                               ? 'calc(100% - 140px)'
-                              : value === employeeProfileData?.valueSeven &&
-                                  employee_perms?.[0]?.write
+                              : (value === employeeProfileData?.valueSeven &&
+                                    role == 'super_admin') ||
+                                  (role !== 'super_admin' &&
+                                    employee_perms?.[0]?.write)
                                 ? 'calc(100% - 140px)'
-                                : value === employeeProfileData?.valueEight &&
-                                    employee_perms?.[0]?.write
+                                : (value === employeeProfileData?.valueEight &&
+                                      role == 'super_admin') ||
+                                    (role !== 'super_admin' &&
+                                      employee_perms?.[0]?.write)
                                   ? 'calc(100% - 393px)'
                                   : '100%',
                     },

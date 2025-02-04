@@ -1,4 +1,3 @@
-// store.js
 import { configureStore } from '@reduxjs/toolkit';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
@@ -14,7 +13,7 @@ import { clientReducer } from './slices/clientSlices';
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['auth'], // specify which reducers you want to persist
+  whitelist: ['auth', 'hr', 'emp', 'client'], // specify which reducers you want to persist
 };
 
 const persistedReducer = persistReducer(
@@ -32,8 +31,13 @@ const persistedReducer = persistReducer(
 
 const store = configureStore({
   reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: ['persist/PERSIST'], // ✅ Correct way to ignore non-serializable actions
+      },
+    }),
 });
 
 const persistor = persistStore(store);
-
 export { store, persistor };

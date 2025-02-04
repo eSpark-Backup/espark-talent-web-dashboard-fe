@@ -12,7 +12,17 @@ import benefitsSlice from './benefitsSlice';
 import lettersSlice from './lettersSlice';
 
 const persistConfig = {
-  key: 'home',
+  key: [
+    'home',
+    'leaveReq',
+    'wfhReq',
+    'contract',
+    'timeSheet',
+    'punchReq',
+    'policies',
+    'benefits',
+    'letters',
+  ],
   storage,
   whitelist: ['home'],
 };
