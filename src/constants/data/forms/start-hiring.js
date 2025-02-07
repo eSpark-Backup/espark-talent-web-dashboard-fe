@@ -117,6 +117,9 @@ export const HiringForm = [
         label: 'Swiss franc',
       },
       {
+        label: 'SAR',
+      },
+      {
         label: 'PKR',
       },
       {

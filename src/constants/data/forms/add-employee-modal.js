@@ -103,6 +103,9 @@ const form = [
         label: 'Swiss franc',
       },
       {
+        label: 'SAR',
+      },
+      {
         label: 'PKR',
       },
       {

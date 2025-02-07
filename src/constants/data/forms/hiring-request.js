@@ -86,6 +86,9 @@ export const hringRequestForm = [
         label: 'Swiss franc',
       },
       {
+        label: 'SAR',
+      },
+      {
         label: 'PKR',
       },
       {
