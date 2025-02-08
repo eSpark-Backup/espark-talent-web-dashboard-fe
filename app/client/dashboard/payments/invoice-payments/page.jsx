@@ -43,6 +43,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { Toast } from '@/src/components/Toast/Toast';
 import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
+import { formatSalary } from '@/src/utils/salaryFormat';
 
 const Dashboard = () => {
   const { data, otherInvoicesData } = useSelector(
@@ -81,6 +82,10 @@ const Dashboard = () => {
               ? []
               : data?.employee_invoices?.map((item) => ({
                   ...item,
+                  invoice_amount: formatSalary(
+                    item?.invoice_amount,
+                    item?.currency || ''
+                  ),
                   download: 'Download',
                   contract_doc: item?.download,
                   inv_type: 'employee_invoice',
@@ -91,6 +96,10 @@ const Dashboard = () => {
               : data?.other_payments?.map((item) => ({
                   ...item,
                   download: 'Download',
+                  invoice_amount: formatSalary(
+                    item?.invoice_amount,
+                    item?.currency || ''
+                  ),
                   contract_doc: item?.download,
                   inv_type: 'other_payment',
                 }));
@@ -121,6 +130,10 @@ const Dashboard = () => {
               : data?.employee_invoices?.map((item) => ({
                   ...item,
                   download: 'Download',
+                  invoice_amount: formatSalary(
+                    item?.invoice_amount,
+                    item?.currency || ''
+                  ),
                   contract_doc: item?.download,
                   inv_type: 'employee_invoice',
                 }));
@@ -129,6 +142,10 @@ const Dashboard = () => {
               ? []
               : data?.other_payments?.map((item) => ({
                   ...item,
+                  invoice_amount: formatSalary(
+                    item?.invoice_amount,
+                    item?.currency || ''
+                  ),
                   download: 'Download',
                   contract_doc: item?.download,
                   inv_type: 'other_payment',
@@ -159,6 +176,10 @@ const Dashboard = () => {
               ? []
               : data?.employee_invoices?.map((item) => ({
                   ...item,
+                  invoice_amount: formatSalary(
+                    item?.invoice_amount,
+                    item?.currency || ''
+                  ),
                   download: 'Download',
                   contract_doc: item?.download,
                   inv_type: 'employee_invoice',
@@ -168,6 +189,10 @@ const Dashboard = () => {
               ? []
               : data?.other_payments?.map((item) => ({
                   ...item,
+                  invoice_amount: formatSalary(
+                    item?.invoice_amount,
+                    item?.currency || ''
+                  ),
                   download: 'Download',
                   contract_doc: item?.download,
                   inv_type: 'other_payment',

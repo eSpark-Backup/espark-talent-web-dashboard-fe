@@ -15,7 +15,12 @@ export const uploadInvoiceFormSchema = Yup.object({
       }
     ),
   invoice_amount: Yup.string().required('Invoice amount is required'),
-  invoice: Yup.mixed().required('Invoice is required'),
+  invoice: Yup.mixed()
+    .required('Invoice is required')
+    .test('fileType', 'Only PDF files are allowed', (value) => {
+      return value && value.type === 'application/pdf';
+    }),
+  currency: Yup.string().required('Currency is required'),
 });
 export const uploadOthInvoiceFormSchema = Yup.object({
   invoice_reference: Yup.string().required('Invoice reference is required'),
@@ -27,10 +32,15 @@ export const uploadOthInvoiceFormSchema = Yup.object({
       'Due date must be greater than invoice date',
       function (dueDate) {
         const { invoice_date: invoiceDate } = this.parent;
-        if (!invoiceDate || !dueDate) return true; // If any date is missing, skip validation
+        if (!invoiceDate || !dueDate) return true;
         return new Date(dueDate) >= new Date(invoiceDate);
       }
     ),
   invoice_amount: Yup.string().required('Invoice amount is required'),
-  invoice: Yup.mixed().required('Invoice is required'),
+  invoice: Yup.mixed()
+    .required('Invoice is required')
+    .test('fileType', 'Only PDF files are allowed', (value) => {
+      return value && value.type === 'application/pdf';
+    }),
+  currency: Yup.string().required('Currency is required'),
 });

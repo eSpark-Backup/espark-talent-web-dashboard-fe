@@ -13,7 +13,7 @@ import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { uploadInvoiceForm } from '@/src/constants/data/forms/upload-invoice';
 import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import { HR_CLIENT_EMPLOYEE_INVOICE } from '@/src/services/apiService/apiEndPoints';
 import dayjs from 'dayjs';
@@ -27,6 +27,7 @@ const UploadInvoiceModal = ({ open, onClose, title }) => {
   const { email } = useSelector((state) => state?.hr?.clients?.currentClient);
   const { role } = useSelector((state) => state?.auth?.userData);
   const [empInvoiceFormValues, setEmpInvoiceFormValues] = useState(null);
+  const clientQuery = useQueryClient();
 
   const { mutate, isPending } = useMutation({
     mutationFn: async (formVals) => {
@@ -56,6 +57,7 @@ const UploadInvoiceModal = ({ open, onClose, title }) => {
       setEmpInvoiceFormValues(null);
       handleCloseModal();
       Toast('success', 'Data posted successfully');
+      clientQuery?.invalidateQueries(['hr-clients-employees-invoices-pending']);
     },
     onError: (err) => {
       Toast('error', err?.response?.data?.message || 'Failed to post data');
@@ -120,7 +122,12 @@ const UploadInvoiceModal = ({ open, onClose, title }) => {
           borderRadius: '10px',
           boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
           maxHeight: '90%',
-          overflowY: 'auto',
+          overflow: 'auto',
+          scrollbarWidth: 'thin',
+          scrollbarColor: 'transparent transparent',
+          '&::-webkit-scrollbar': {
+            display: 'none',
+          },
         }}
       >
         <Box

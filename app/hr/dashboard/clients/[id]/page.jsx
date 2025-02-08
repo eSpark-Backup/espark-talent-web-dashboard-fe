@@ -69,10 +69,10 @@ import UploadOtherInvoiceModal from './UploadOtherInvoiceModal';
 import { Toast } from '@/src/components/Toast/Toast';
 import ProfileEditSkeleton from '@/src/components/HR/ProfileEditSkeleton';
 import dayjs from 'dayjs';
-import { hasSymbol } from '@/src/utils/symbolChecker';
 import { genderType } from '@/src/utils/genderType';
 import { clientProfileTabsHandler } from '@/src/utils/clientProfileTabHandler';
 import { getTimeSheetDataFailed } from '@/src/redux/slices/employeeSlices/timeSheetSlice';
+import { formatSalary } from '@/src/utils/salaryFormat';
 
 const AddEmployee = () => {
   const params = useParams();
@@ -115,11 +115,11 @@ const AddEmployee = () => {
           const tempData =
             data !== ''
               ? data?.map((item) => {
-                  const symbol = item?.salary_currency?.split(' ')[0];
+                  // const symbol = item?.salary_currency?.split(' ')[0];
 
                   return {
                     ...item,
-                    salary_range: `${item?.salary_range?.minimum}${hasSymbol(symbol) ? ' ' + symbol : ' '} - ${item?.salary_range?.maximum}${hasSymbol(symbol) ? ' ' + symbol : ''}`,
+                    salary_range: `${formatSalary(item?.salary_range?.minimum, '')} - ${formatSalary(item.salary_range?.maximum, item?.salary_currency)}`,
                     currency: item?.salary_range?.currency || '',
                     gender: genderType(item?.gender),
                     hiring_start_date: dayjs(item?.hiring_start_date)?.format(
@@ -181,11 +181,11 @@ const AddEmployee = () => {
           const tempData =
             data !== ''
               ? [...data]?.map((item) => {
-                  const symbol = item?.salary_currency?.split(' ')[0];
+                  // const symbol = item?.salary_currency?.split(' ')[0];
 
                   return {
                     ...item,
-                    salary: `${item.salary} ${hasSymbol(symbol) ? symbol : ''}`,
+                    salary: `${formatSalary(item?.salary, item?.salary_currency || '')}`,
                     salary_currency: item?.salary_currency || '',
                     joining_date: dayjs(item?.joining_date).format(
                       'DD-MMMM-YYYY'
@@ -265,6 +265,10 @@ const AddEmployee = () => {
             ? data?.map((item) => ({
                 ...item,
                 dropdownStatus: true,
+                invoice_amount: formatSalary(
+                  item?.invoice_amount,
+                  item?.currency || ''
+                ),
                 due_date: dayjs(item.due_date).format('DD-MMMM-YYYY'),
                 invoice_date: dayjs(item.invoice_date).format('DD-MMMM-YYYY'),
                 action: ['Delete'],
@@ -295,6 +299,10 @@ const AddEmployee = () => {
             ? data?.map((item) => ({
                 ...item,
                 dropdownStatus: true,
+                invoice_amount: formatSalary(
+                  item?.invoice_amount,
+                  item?.currency || ''
+                ),
                 due_date: dayjs(item.due_date).format('DD-MMMM-YYYY'),
                 invoice_date: dayjs(item.invoice_date).format('DD-MMMM-YYYY'),
                 action: ['Delete'],
@@ -323,6 +331,10 @@ const AddEmployee = () => {
             ? data?.map((item) => ({
                 ...item,
                 dropdownStatus: true,
+                invoice_amount: formatSalary(
+                  item?.invoice_amount,
+                  item?.currency || ''
+                ),
                 due_date: dayjs(item.due_date).format('DD-MMMM-YYYY'),
                 invoice_date: dayjs(item.invoice_date).format('DD-MMMM-YYYY'),
                 action: ['Delete'],
@@ -352,6 +364,10 @@ const AddEmployee = () => {
             data?.map((item) => ({
               ...item,
               dropdownStatus: true,
+              invoice_amount: formatSalary(
+                item?.invoice_amount,
+                item?.currency || ''
+              ),
               due_date: dayjs(item.due_date).format('DD-MMMM-YYYY'),
               invoice_date: dayjs(item.invoice_date).format('DD-MMMM-YYYY'),
               action: ['Delete'],
@@ -380,6 +396,10 @@ const AddEmployee = () => {
             data?.map((item) => ({
               ...item,
               dropdownStatus: true,
+              invoice_amount: formatSalary(
+                item?.invoice_amount,
+                item?.currency || ''
+              ),
               due_date: dayjs(item.due_date).format('DD-MMMM-YYYY'),
               invoice_date: dayjs(item.invoice_date).format('DD-MMMM-YYYY'),
               action: ['Delete'],
@@ -408,6 +428,10 @@ const AddEmployee = () => {
             data?.map((item) => ({
               ...item,
               dropdownStatus: true,
+              invoice_amount: formatSalary(
+                item?.invoice_amount,
+                item?.currency || ''
+              ),
               due_date: dayjs(item.due_date).format('DD-MMMM-YYYY'),
               invoice_date: dayjs(item.invoice_date).format('DD-MMMM-YYYY'),
               action: ['Delete'],
@@ -1418,6 +1442,7 @@ const AddEmployee = () => {
           </>
         </Box>
       )}
+
       <HiringRequestModal
         open={isOpenHiringRequestModal}
         onClose={handleCloseHiringRequestModal}

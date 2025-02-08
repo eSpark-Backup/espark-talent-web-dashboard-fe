@@ -90,6 +90,7 @@ const EditProfileModal = ({ open, onClose, isClient }) => {
       disableRestoreFocus
     >
       <Box
+        className="scrollbar-container"
         sx={{
           background: '#fff',
           position: 'absolute',

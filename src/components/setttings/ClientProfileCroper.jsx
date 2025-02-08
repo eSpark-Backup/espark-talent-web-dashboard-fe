@@ -70,6 +70,7 @@ const ClientProfileCroper = ({ open, onClose, currentImage }) => {
       disableRestoreFocus
     >
       <Box
+        className="scrollbar-container"
         sx={{
           background: '#fff',
           position: 'absolute',

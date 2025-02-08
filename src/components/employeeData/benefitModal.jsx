@@ -102,6 +102,12 @@ const BenefitForm = forwardRef(({ onClose, open, empData }, ref) => {
           left: '50%',
           transform: 'translate(-50%, -50%)',
           maxHeight: '90%',
+          overflow: 'auto',
+          scrollbarWidth: 'thin',
+          scrollbarColor: 'transparent transparent',
+          '&::-webkit-scrollbar': {
+            display: 'none',
+          },
           '@media (min-width: 900px) and (max-width: 1440px)': {
             width: '70%',
           },

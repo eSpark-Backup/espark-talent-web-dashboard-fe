@@ -3,7 +3,14 @@ import { Box, Button, Modal, Typography } from '@mui/material';
 import { Toast } from '../Toast/Toast';
 import ProfileCroper from '../ProfileCroper';
 
-const UploadImageModal = ({ open, onClose, setFieldValue, currentImage }) => {
+const UploadImageModal = ({
+  open,
+  onClose,
+  setFieldValue,
+  errors,
+  setErrors,
+  currentImage,
+}) => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [photoURL, setPhotoURL] = useState(null);
   const fileInputRef = useRef(null);
@@ -38,6 +45,7 @@ const UploadImageModal = ({ open, onClose, setFieldValue, currentImage }) => {
         lastModified: Date?.now(),
       });
       setFieldValue('image', convertedFile);
+      setErrors({ ...errors, image: '' });
       setTimeout(() => {
         onClose();
       }, 1000);
@@ -55,6 +63,7 @@ const UploadImageModal = ({ open, onClose, setFieldValue, currentImage }) => {
       disableRestoreFocus
     >
       <Box
+        className="scrollbar-container"
         sx={{
           background: '#fff',
           position: 'absolute',
@@ -64,7 +73,6 @@ const UploadImageModal = ({ open, onClose, setFieldValue, currentImage }) => {
           width: '90%',
           height: 'auto',
           maxHeight: '90%',
-          overflow: 'auto',
           maxWidth: { xs: 350, md: 450 },
           p: 4,
           borderRadius: '10px',

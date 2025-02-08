@@ -31,9 +31,7 @@ const AssetForm = forwardRef(({ onClose, open, empData }, ref) => {
       const reformedData = {
         ...values,
         id: data?.id,
-        assigned_date: dayjs(values?.assigned_date)?.format(
-          'MMMM D, YYYY h:m A'
-        ),
+        assigned_date: dayjs(values?.assigned_date)?.format('MMMM D, YYYY'),
         assignee: [values?.assignee_name, values?.assignee_email],
         action: ['Delete'],
       };
@@ -42,7 +40,11 @@ const AssetForm = forwardRef(({ onClose, open, empData }, ref) => {
       onClose();
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to post data');
+      console.log(err?.response?.data?.assignee_name[0], 'err');
+      Toast(
+        'error',
+        err?.response?.data?.assignee_name[0] || 'Failed to post data'
+      );
     },
   });
   const {
@@ -91,16 +93,22 @@ const AssetForm = forwardRef(({ onClose, open, empData }, ref) => {
         sx={{
           bgcolor: '#fff',
           maxWidth: '850px',
+          maxHeight: '510px',
           width: '95%',
+          height: '95%',
           display: 'flex',
           flexDirection: 'column',
           borderRadius: '10px',
           boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
           position: 'absolute',
-          top: '10%',
-          maxHeight: '90%',
-          '@media (min-width: 900px) and (max-width: 1440px)': {
-            width: '70%',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          overflow: 'auto',
+          scrollbarWidth: 'thin',
+          scrollbarColor: 'transparent transparent',
+          '&::-webkit-scrollbar': {
+            display: 'none',
           },
         }}
       >

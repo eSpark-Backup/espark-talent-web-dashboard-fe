@@ -27,7 +27,7 @@ export default function RootLayout({ children }) {
         />
       </Head>
       <AOSInit />
-      <body>
+      <body className="scrollbar-container">
         <Provider store={store}>
           <PersistGate loading={null} persistor={persistor}>
             <QueryClientProvider client={queryClient}>

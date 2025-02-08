@@ -103,6 +103,12 @@ const LetterForm = forwardRef(({ onClose, open, empData }, ref) => {
           left: '50%',
           transform: 'translate(-50%, -50%)',
           maxHeight: '90%',
+          overflow: 'auto',
+          scrollbarWidth: 'thin',
+          scrollbarColor: 'transparent transparent',
+          '&::-webkit-scrollbar': {
+            display: 'none',
+          },
         }}
       >
         <Box

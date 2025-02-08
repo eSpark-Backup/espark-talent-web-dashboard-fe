@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import Image from 'next/image';
-import { Avatar, Box, Tooltip, Typography } from '@mui/material';
+import { Avatar, Box, Typography } from '@mui/material';
 
 import AppCustomDropdown from '../dashboard/appCustomDropdown';
 import {
@@ -20,23 +20,39 @@ const renderAssigneeCell = (row, col) => {
       <Box
         sx={{
           display: 'flex',
-          justifyContent: 'flex-start',
+          justifyContent: 'center',
+          alignItems: 'center',
           mx: 'auto',
-          width: '30%',
+          width: '45%',
         }}
       >
         <Box
           sx={{
             display: 'flex',
             flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
           }}
         >
           <Typography
-            sx={{ fontSize: '12px', fontWeight: '400', textAlign: 'left' }}
+            sx={{
+              fontSize: '12px',
+              fontWeight: '400',
+              textAlign: 'center',
+              textWrap: 'nowrap',
+            }}
           >
             {name}
           </Typography>
-          <Typography sx={{ fontSize: '10px', fontWeight: '300' }}>
+          <Typography
+            sx={{
+              fontSize: '10px',
+              fontWeight: '300',
+              textAlign: 'center',
+              wordBreak: 'break-all',
+              overflowWrap: 'break-word',
+            }}
+          >
             {subtitle}
           </Typography>
         </Box>
@@ -657,15 +673,13 @@ export const renderCellContent = (
           ) : row[col?.name] === null || row[col?.name] === undefined ? (
             '-'
           ) : col?.title === 'Salary range' || col?.title === 'Salary' ? (
-            <Tooltip title={row?.currency || row?.salary_currency}>
-              <Typography component={'span'}>{row[col?.name]}</Typography>
-            </Tooltip>
+            <Typography component={'span'} fontSize={'12px'}>
+              {row[col?.name]}
+            </Typography>
           ) : col?.name === 'job_title' && row[col?.name]?.length > 22 ? (
-            <Tooltip title={row[col?.name]}>
-              <Typography component={'span'}>
-                {truncateText(row[col?.name], 22)}
-              </Typography>
-            </Tooltip>
+            <Typography component={'span'}>
+              {truncateText(row[col?.name], 22)}
+            </Typography>
           ) : (
             getCamelCapitalized(row[col?.name])
           )}
