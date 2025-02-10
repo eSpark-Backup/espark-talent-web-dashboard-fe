@@ -147,7 +147,12 @@ const EditOfficialModal = forwardRef(
             border: 'none',
             boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
             maxHeight: '630px',
-            overflowY: 'auto',
+            overflow: 'auto',
+            scrollbarWidth: 'thin',
+            scrollbarColor: 'transparent transparent',
+            '&::-webkit-scrollbar': {
+              display: 'none',
+            },
             height: '95%',
             '&.MuiBox-root': {
               border: 'none',

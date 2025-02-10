@@ -121,6 +121,9 @@ export const addOnboardForm = [
         label: 'Swiss franc',
       },
       {
+        label: 'SAR',
+      },
+      {
         label: 'PKR',
       },
       {

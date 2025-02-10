@@ -13,7 +13,7 @@ import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { uploadOtherInvoiceForm } from '@/src/constants/data/forms/upload-invoice';
 import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import { HR_CLIENT_OTHER_INVOICE } from '@/src/services/apiService/apiEndPoints';
 import dayjs from 'dayjs';
@@ -27,6 +27,7 @@ const UploadOtherInvoiceModal = ({ open, onClose, title }) => {
   const { email } = useSelector((state) => state?.hr?.clients?.currentClient);
   const { role } = useSelector((state) => state?.auth?.userData);
   const [othInvoiceFormValues, setOthInvoiceFormValues] = useState(null);
+  const queryClient = useQueryClient();
   const { mutate, isPending } = useMutation({
     mutationFn: async (formVals) => {
       const formData = new FormData();
@@ -55,6 +56,7 @@ const UploadOtherInvoiceModal = ({ open, onClose, title }) => {
       setOthInvoiceFormValues(null);
       handleCloseModal();
       Toast('success', 'Data posted successfully');
+      queryClient.invalidateQueries(['hr-clients-other-invoices-pending']);
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to post data');
@@ -121,7 +123,12 @@ const UploadOtherInvoiceModal = ({ open, onClose, title }) => {
           borderRadius: '10px',
           boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
           maxHeight: '90%',
-          overflowY: 'auto',
+          overflow: 'auto',
+          scrollbarWidth: 'thin',
+          scrollbarColor: 'transparent transparent',
+          '&::-webkit-scrollbar': {
+            display: 'none',
+          },
         }}
       >
         <Box

@@ -490,6 +490,8 @@ const Step = ({
           onClose={handleCloseModal}
           currentImage={values?.image || null}
           setFieldValue={setFieldValue}
+          errors={errors}
+          setErrors={setErrors}
         />
       )}
     </form>

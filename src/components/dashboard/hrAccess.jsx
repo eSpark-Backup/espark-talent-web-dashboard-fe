@@ -24,6 +24,22 @@ const HrAccess = ({ isHr, data, isLoading }) => {
           overflowX: 'auto',
           width: '100%',
           height: '140px',
+          '&::-webkit-scrollbar': {
+            width: '12px',
+            height: '12px',
+          },
+          '&::-webkit-scrollbar-track': {
+            backgroundColor: '#d9d9d9',
+            borderRadius: '10px',
+            marginTop: '-30px',
+            marginBottom: '-30px',
+          },
+          '&::-webkit-scrollbar-thumb': {
+            background: '#f6f6f6',
+            borderRadius: '10px',
+            backgroundClip: 'content-box',
+            border: '1px solid #d9d9d9',
+          },
         }}
       >
         {isHr &&

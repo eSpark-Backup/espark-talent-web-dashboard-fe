@@ -332,7 +332,10 @@ export default function ProfilePopper({
                   sx={{ cursor: 'pointer' }}
                 />
               </Box>
-              <Box sx={{ width: '100%', minHeight: '50px', overflowY: 'auto' }}>
+              <Box
+                className="scrollbar-container"
+                sx={{ width: '100%', minHeight: '50px', overflowY: 'auto' }}
+              >
                 {restructureNotificationData(data)?.length > 0 ? (
                   <>
                     {restructureNotificationData(data)?.map((item, index) => (

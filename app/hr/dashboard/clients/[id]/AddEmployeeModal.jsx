@@ -188,6 +188,12 @@ const AddEmployeeModal = ({ open, onClose }) => {
               boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
               minHeight: '50%',
               maxHeight: '640px',
+              overflow: 'auto',
+              scrollbarWidth: 'thin',
+              scrollbarColor: 'transparent transparent',
+              '&::-webkit-scrollbar': {
+                display: 'none',
+              },
             }}
           >
             <Navigator

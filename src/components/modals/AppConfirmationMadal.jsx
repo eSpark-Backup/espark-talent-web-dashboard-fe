@@ -37,13 +37,19 @@ const AppConfirmationMadal = ({
         sx={{
           bgcolor: '#fff',
           maxWidth: '450px',
-          minHeight: '250px',
+          maxHeight: '250px',
           width: '92%',
+          height: '90%',
           display: 'flex',
           flexDirection: 'column',
           borderRadius: '5px',
           boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
-          overflowY: 'auto',
+          overflow: 'auto',
+          scrollbarWidth: 'thin',
+          scrollbarColor: 'transparent transparent',
+          '&::-webkit-scrollbar': {
+            display: 'none',
+          },
           padding: '38px 0',
         }}
       >

@@ -226,6 +226,7 @@ const Sidebar = ({ userName }) => {
         <Box
           id={'accrodion'}
           component={'div'}
+          className="scrollbar-container"
           sx={{
             px: '12px',
             top: 0,

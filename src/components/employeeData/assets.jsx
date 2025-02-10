@@ -57,7 +57,7 @@ const Assets = () => {
             ? data?.map((item) => ({
                 ...item,
                 assigned_date: dayjs(item?.assigned_date)?.format(
-                  'MMMM D, YYYY h:m A'
+                  'MMMM D, YYYY'
                 ),
                 assignee: [item?.assignee_name, item?.assignee_email],
                 action: ['Delete'],

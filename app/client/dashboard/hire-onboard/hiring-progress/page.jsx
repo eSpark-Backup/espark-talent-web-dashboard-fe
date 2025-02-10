@@ -37,8 +37,8 @@ import { Toast } from '@/src/components/Toast/Toast';
 import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
 import { useRouter, useSearchParams } from 'next/navigation';
 import dayjs from 'dayjs';
-import { hasSymbol } from '@/src/utils/symbolChecker';
 import { genderType } from '@/src/utils/genderType';
+import { formatSalary } from '@/src/utils/salaryFormat';
 
 const Dashboard = () => {
   const [value, setValue] = useState(0);
@@ -173,13 +173,13 @@ const Dashboard = () => {
   const reformData = (dataArr) => {
     if (dataArr?.length) {
       const tempData = dataArr?.map((item) => {
-        const symbol = item?.salary_currency
-          ? item?.salary_currency?.split(' ')[0]
-          : item?.salary_range?.currency?.split(' ')[0];
+        // const symbol = item?.salary_currency
+        //   ? item?.salary_currency?.split(' ')[0]
+        //   : item?.salary_range?.currency?.split(' ')[0];
         return {
           ...item,
-          salary_range: `${item.salary_range?.minimum} ${hasSymbol(symbol) ? symbol : ''} - ${item.salary_range?.maximum} ${hasSymbol(symbol) ? symbol : ''}`,
-          salary: `${item.salary} ${hasSymbol(symbol) ? symbol : ''}`,
+          salary_range: `${formatSalary(item?.salary_range?.minimum, '')} - ${formatSalary(item.salary_range?.maximum, item?.salary_currency)}`,
+          salary: `${item?.salary} ${item?.salary_currency || ''}`,
           currency: item?.salary_range?.currency || item?.salary_currency || '',
           gender: genderType(item?.gender),
           action: ['Delete'],
