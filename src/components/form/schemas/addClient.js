@@ -15,15 +15,18 @@ export const basicInformationSchemaClient = Yup.object({
   email: emailValidation,
   image: Yup.mixed()
     .required('Image is required')
-    .test(
-      'fileFormat',
-      'Unsupported file format',
-      (value) =>
-        value && ['image/jpg', 'image/jpeg', 'image/png']?.includes(value?.type)
-    ),
+    .test('fileFormat', 'Unsupported file format', (value) => {
+      if (!value) return false;
+      const allowedFormats = ['image/jpg', 'image/jpeg', 'image/png'];
+      const isValidType = allowedFormats?.includes(value?.type);
+      const fileName = value?.name?.toLowerCase();
+      const isJfif = fileName?.endsWith('.jfif'); 
+      return isValidType && !isJfif;
+    }),
   company_name: Yup.string().required('Company name is required'),
   country: Yup.mixed().required('Country is required'),
 });
+
 export const securitySchemaClient = Yup.object({
   client_id: Yup.string().required('Client id is required'),
   password: Yup.string()

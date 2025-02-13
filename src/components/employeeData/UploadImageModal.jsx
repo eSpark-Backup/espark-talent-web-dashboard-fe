@@ -17,15 +17,17 @@ const UploadImageModal = ({
 
   const handleFileChange = (event) => {
     const file = event?.target?.files[0];
-    if (
-      file &&
-      (file?.type === 'image/jpg' ||
-        file?.type === 'image/jpeg' ||
-        file?.type === 'image/png')
-    ) {
-      setSelectedFile(file);
-    } else {
-      Toast('error', 'Only .jpg and .png files are allowed');
+
+    if (file) {
+      const allowedTypes = ['image/jpg', 'image/jpeg', 'image/png'];
+      const fileName = file?.name?.toLowerCase();
+      const isJfif = fileName?.endsWith('.jfif'); 
+
+      if (allowedTypes?.includes(file?.type) && !isJfif) {
+        setSelectedFile(file);
+      } else {
+        Toast('error', 'Only .jpg and .png files are allowed');
+      }
     }
   };
 

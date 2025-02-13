@@ -782,7 +782,7 @@ const FormInput = ({
           variant="outlined"
           onClick={onclickUpload}
         >
-          {values?.image ? 'Uploaded' : 'Upload'}
+          {values?.image instanceof File ? 'Uploaded' : 'Upload'}
         </Button>
       ) : (
         <Box sx={{ position: 'relative' }}>
