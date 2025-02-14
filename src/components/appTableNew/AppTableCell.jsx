@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import Image from 'next/image';
-import { Avatar, Box, Typography } from '@mui/material';
+import { Avatar, Box, Tooltip, Typography } from '@mui/material';
 
 import AppCustomDropdown from '../dashboard/appCustomDropdown';
 import {
@@ -680,6 +680,23 @@ export const renderCellContent = (
             <Typography component={'span'}>
               {truncateText(row[col?.name], 22)}
             </Typography>
+          ) : col?.name === 'comments' ? (
+            <Tooltip title={row[col?.name] || ''}>
+              <Typography
+                component={'span'}
+                fontSize={'12px'}
+                style={{
+                  display: 'block',
+                  width: '110px',
+                  whiteSpace: 'nowrap',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                  textAlign: 'center',
+                }}
+              >
+                {row[col?.name]}
+              </Typography>
+            </Tooltip>
           ) : (
             getCamelCapitalized(row[col?.name])
           )}

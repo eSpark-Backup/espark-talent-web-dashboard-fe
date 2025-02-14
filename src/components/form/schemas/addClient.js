@@ -19,13 +19,22 @@ export const basicInformationSchemaClient = Yup.object({
       'fileFormat',
       'Unsupported file format',
       (value) =>
-        value && ['image/jpg', 'image/jpeg', 'image/png']?.includes(value?.type)
+        value &&
+        ['image/jpg', 'image/jpeg', 'image/png', 'image/svg'].includes(
+          value.type
+        )
     ),
-  company_name: Yup.string().required('Company name is required'),
+  company_name: Yup.string()
+    .required('Company name is required')
+    .min(3, 'Company name must be at least 3 characters long')
+    .max(255, 'Company name cannot exceed 255 characters'),
   country: Yup.mixed().required('Country is required'),
 });
 export const securitySchemaClient = Yup.object({
-  client_id: Yup.string().required('Client id is required'),
+  client_id: Yup.string()
+    .required('Client id is required')
+    .min(3, 'Client id must be at least 3 characters long')
+    .max(255, 'Client id cannot exceed 255 characters'),
   password: Yup.string()
     .required('Password is required')
     .min(6, 'Password must be at least 6 characters'),

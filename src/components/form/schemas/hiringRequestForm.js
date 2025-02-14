@@ -3,12 +3,21 @@ import * as Yup from 'yup';
 export const hiringRequestSchema = Yup.object({
   job_title: Yup.string()
     .required('Job title is required')
-    .min(3, 'Job title must be at least 3 characters long') // Minimum length
-    .max(30, 'Job title cannot exceed 30 characters'), // Maximum length
-  role_type: Yup.string().required('Role type is required'),
-  gender: Yup.string().required('Gender is required'),
+    .min(3, 'Job title must be at least 3 characters long')
+    .max(255, 'Job title cannot exceed 255 characters'),
+  role_type: Yup.string()
+    .required('Role type is required')
+    .min(3, 'role type must be at least 3 characters long')
+    .max(255, 'role type cannot exceed 255 characters'),
+  gender: Yup.string()
+    .required('Gender is required')
+    .min(3, 'Gender  must be at least 3 characters long')
+    .max(255, 'Gender cannot exceed 255 characters'),
   country: Yup.object().required('Country is required'),
-  salary_currency: Yup.string().required('Currency is required'),
+  salary_currency: Yup.string()
+    .required('currency is required')
+    .min(3, 'currency must be at least 3 characters long')
+    .max(255, 'currency cannot exceed 255 characters'),
   salary_range: Yup.object()
     .shape({
       minimum: Yup.number()
@@ -26,7 +35,10 @@ export const hiringRequestSchema = Yup.object({
       ),
     })
     .required('Salary range is required'),
-  employment_term: Yup.string().required('Employement term is required'),
+  employment_term: Yup.string()
+    .required('Employement term is required')
+    .min(3, 'Employement term must be at least 3 characters long')
+    .max(255, 'Employement term cannot exceed 255 characters'),
   hiring_start_date: Yup.string().required('Hiring start date is required'),
   hiring_end_date: Yup.string()
     .required('Hiring end date is required')
@@ -35,7 +47,7 @@ export const hiringRequestSchema = Yup.object({
       'End date must be greater than start date',
       function (endDate) {
         const { hiring_start_date } = this.parent;
-        if (!hiring_start_date || !endDate) return true; // If any date is missing, skip validation
+        if (!hiring_start_date || !endDate) return true;
         return new Date(endDate) >= new Date(hiring_start_date);
       }
     ),
@@ -48,17 +60,22 @@ export const hiringRequestSchema = Yup.object({
     )
     .test(
       'fileSize',
-      'File size should not exceed 2MB',
-      (value) => value && value.size <= 2 * 1024 * 1024 // Validates file size <= 2MB
+      'File size should not exceed 5MB',
+      (value) => value && value.size <= 5 * 1024 * 1024
+    )
+    .test(
+      'fileNameLength',
+      'File name should not exceed 100 characters',
+      (value) => value && value.name.length <= 100
     ),
   comments: Yup.string()
     .nullable()
     .notRequired()
     .test(
       'is-not-just-spaces',
-      'comments cannot be just spaces',
-      (value) => !value || value.trim().length > 0
+      'Comments cannot be just spaces',
+      (value) => !value || value?.trim()?.length > 0
     )
-    .min(5, 'comments should be at least 5 characters long')
-    .max(500, 'comments cannot exceed 500 characters'),
+    .min(3, 'Comments should be at least 3 characters long')
+    .max(255, 'Comments cannot exceed 255 characters'),
 });

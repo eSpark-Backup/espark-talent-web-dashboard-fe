@@ -19,13 +19,13 @@ const UploadImageModal = ({
     const file = event?.target?.files[0];
     if (
       file &&
-      (file?.type === 'image/jpg' ||
-        file?.type === 'image/jpeg' ||
-        file?.type === 'image/png')
+      ['image/jpg', 'image/jpeg', 'image/png', 'image/svg+xml']?.includes(
+        file?.type
+      )
     ) {
       setSelectedFile(file);
     } else {
-      Toast('error', 'Only .jpg and .png files are allowed');
+      Toast('error', 'Only .jpg, .png, and .svg files are allowed');
     }
   };
 

@@ -929,12 +929,22 @@ const FormInput = ({
               )}
 
               {type === 'file' && (
-                <label
-                  className="file-upload-label"
-                  htmlFor={`input-file-${title}`}
-                >
-                  {value?.name || placeholder}
-                </label>
+                <Tooltip title={value?.name || placeholder || ''}>
+                  <label
+                    className="file-upload-label"
+                    htmlFor={`input-file-${title}`}
+                    style={{
+                      display: 'block',
+                      width: '180px',
+                      overflow: 'hidden',
+                      whiteSpace: 'nowrap',
+                      textOverflow: 'ellipsis',
+                      lineHeight: '38px',
+                    }}
+                  >
+                    {value?.name || placeholder}
+                  </label>
+                </Tooltip>
               )}
             </Box>
             {suffixIconOutside && (

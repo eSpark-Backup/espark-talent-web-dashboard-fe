@@ -56,7 +56,7 @@ const formElements = [
     prefixIcon: 'upload',
     type: 'upload',
     filelabel: 'Accept .png or .jpg files only',
-    accept: '.png, .jpg, .jpeg',
+    accept: '.png, .jpg, .jpeg, .svg',
   },
 ];
 const formElementsStep4 = [

@@ -62,7 +62,7 @@ export const nameValidation = Yup.string()
   .matches(nameRegExp, 'Name is not valid')
   .required('Name is required')
   .min(2, 'Name is too short - should be 2 chars minimum.')
-  .max(50, 'Name is too long - should be 50 chars maximum.');
+  .max(255, 'Name is too long - should be 50 chars maximum.');
 
 export const dojValidation = Yup.string()
   .required('Required')
