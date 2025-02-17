@@ -130,7 +130,7 @@ const AddEmployee = () => {
                     ),
                     action: ['Delete'],
                     jobDescription: 'Download',
-                    comments: `${(item.comments = item?.comments?.length > 20 ? item?.comments?.substring(0, 20) + '…' : item?.comments)}`,
+                    // comments: `${(item.comments = item?.comments?.length > 20 ? item?.comments?.substring(0, 20) + '…' : item?.comments)}`,
                   };
                 })
               : [];
@@ -982,10 +982,10 @@ const AddEmployee = () => {
                 item?.notice_period > 0
                   ? `${item?.notice_period} ${item?.notice_period === 1 ? 'day' : 'days'}`
                   : '-',
-              comments:
-                item?.comments && item.comments.length > 20
-                  ? item.comments.substring(0, 20) + '…'
-                  : item.comments,
+              // comments:
+              //   item?.comments && item.comments.length > 20
+              //     ? item.comments.substring(0, 20) + '…'
+              //     : item.comments,
             };
           }) || []
         );

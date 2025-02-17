@@ -500,6 +500,29 @@ const renderInfoOptions = (
   );
 };
 
+const EllipsisWithTooltip = ({ text, maxLength = 17 }) => {
+  const isOverflowed = text?.length > maxLength;
+
+  return (
+    <Tooltip title={isOverflowed ? text : ''}>
+      <Typography
+        component="span"
+        fontSize="12px"
+        style={{
+          display: 'block',
+          maxWidth: '110px',
+          whiteSpace: 'nowrap',
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
+          textAlign: 'center',
+        }}
+      >
+        {text}
+      </Typography>
+    </Tooltip>
+  );
+};
+
 export const renderCellContent = (
   row,
   col,
@@ -681,22 +704,7 @@ export const renderCellContent = (
               {truncateText(row[col?.name], 22)}
             </Typography>
           ) : col?.name === 'comments' ? (
-            <Tooltip title={row[col?.name] || ''}>
-              <Typography
-                component={'span'}
-                fontSize={'12px'}
-                style={{
-                  display: 'block',
-                  width: '110px',
-                  whiteSpace: 'nowrap',
-                  overflow: 'hidden',
-                  textOverflow: 'ellipsis',
-                  textAlign: 'center',
-                }}
-              >
-                {row[col?.name]}
-              </Typography>
-            </Tooltip>
+            <EllipsisWithTooltip text={row[col?.name]} maxLength={17} />
           ) : (
             getCamelCapitalized(row[col?.name])
           )}
