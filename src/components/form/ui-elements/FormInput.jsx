@@ -155,6 +155,30 @@ const FormInput = ({
     const fieldName = `${name}.${item.name}`;
     setFieldValue(fieldName, checked);
   };
+
+  const EllipsisWithTooltip = ({ text, maxLength = 17 }) => {
+    const isOverflowed = text?.length > maxLength;
+
+    return (
+      <Tooltip title={isOverflowed ? text : ''}>
+        <label
+          className="file-upload-label"
+          htmlFor={`input-file-${title}`}
+          style={{
+            display: 'block',
+            width: '180px',
+            overflow: 'hidden',
+            whiteSpace: 'nowrap',
+            textOverflow: 'ellipsis',
+            lineHeight: '38px',
+          }}
+        >
+          {value?.name || placeholder}
+        </label>
+      </Tooltip>
+    );
+  };
+
   return (
     <Grid
       item
@@ -929,22 +953,7 @@ const FormInput = ({
               )}
 
               {type === 'file' && (
-                <Tooltip title={value?.name || placeholder || ''}>
-                  <label
-                    className="file-upload-label"
-                    htmlFor={`input-file-${title}`}
-                    style={{
-                      display: 'block',
-                      width: '180px',
-                      overflow: 'hidden',
-                      whiteSpace: 'nowrap',
-                      textOverflow: 'ellipsis',
-                      lineHeight: '38px',
-                    }}
-                  >
-                    {value?.name || placeholder}
-                  </label>
-                </Tooltip>
+                <EllipsisWithTooltip text={value?.name} maxLength={17} />
               )}
             </Box>
             {suffixIconOutside && (
