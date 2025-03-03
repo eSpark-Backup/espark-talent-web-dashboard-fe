@@ -165,7 +165,7 @@ const Sidebar = ({ userName }) => {
         sx={{
           width: '280px',
           display: 'flex',
-          height: `calc(100% - ${isSmallScreen ? '15px' : employee ? '42px' : '0px'})`,
+          height: `calc(100% - ${isSmallScreen ? '15px' : employee ? '0px' : '0px'})`,
           flexDirection: 'column',
         }}
       >
@@ -230,7 +230,10 @@ const Sidebar = ({ userName }) => {
           sx={{
             px: '12px',
             top: 0,
-            height: 'calc(100% - 180px)',
+            height: {
+              xs: 'calc(100% - 180px)',
+              lg: role !== 'client' ? '100%' : 'calc(100% - 180px)',
+            },
             ...accordionStyles,
             overflowY: 'auto',
             position: 'relative',

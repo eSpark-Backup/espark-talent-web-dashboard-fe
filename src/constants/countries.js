@@ -100,7 +100,7 @@ export const countriesList = [
     flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BT.svg',
   },
   {
-    title: 'Bolivia, Plurinational State of',
+    title: 'Bolivia',
     flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/BO.svg',
   },
   {
@@ -192,7 +192,7 @@ export const countriesList = [
     flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CG.svg',
   },
   {
-    title: 'Congo, the Democratic Republic of the',
+    title: 'Congo',
     flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/CD.svg',
   },
   {
@@ -400,7 +400,7 @@ export const countriesList = [
     flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/ID.svg',
   },
   {
-    title: 'Iran, Islamic Republic of',
+    title: 'Iran',
     flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/IR.svg',
   },
   {
@@ -452,11 +452,11 @@ export const countriesList = [
     flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/KI.svg',
   },
   {
-    title: "Korea, Democratic People's Republic of",
+    title: 'Korea',
     flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/KP.svg',
   },
   {
-    title: 'Korea, Republic of',
+    title: 'Korea',
     flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/KR.svg',
   },
   {
@@ -508,7 +508,7 @@ export const countriesList = [
     flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MO.svg',
   },
   {
-    title: 'Macedonia, the Former Yugoslav Republic of',
+    title: 'Macedonia',
     flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MK.svg',
   },
   {
@@ -560,11 +560,11 @@ export const countriesList = [
     flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MX.svg',
   },
   {
-    title: 'Micronesia, Federated States of',
+    title: 'Micronesia',
     flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/FM.svg',
   },
   {
-    title: 'Moldova, Republic of',
+    title: 'Moldova',
     flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/MD.svg',
   },
   {
@@ -660,7 +660,7 @@ export const countriesList = [
     flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PW.svg',
   },
   {
-    title: 'Palestine, State of',
+    title: 'Palestine',
     flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/PS.svg',
   },
   {
@@ -852,7 +852,7 @@ export const countriesList = [
     flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/SY.svg',
   },
   {
-    title: 'Taiwan, Province of China',
+    title: 'Taiwan',
     flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TW.svg',
   },
   {
@@ -860,7 +860,7 @@ export const countriesList = [
     flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TJ.svg',
   },
   {
-    title: 'Tanzania, United Republic of',
+    title: 'Tanzania',
     flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/TZ.svg',
   },
   {
@@ -916,7 +916,7 @@ export const countriesList = [
     flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/UA.svg',
   },
   {
-    title: 'United Arab Emirates',
+    title: 'UAE',
     flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/AE.svg',
   },
   {
@@ -940,7 +940,7 @@ export const countriesList = [
     flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/VU.svg',
   },
   {
-    title: 'Venezuela, Bolivarian Republic of',
+    title: 'Venezuela',
     flag: 'https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/VE.svg',
   },
   {
