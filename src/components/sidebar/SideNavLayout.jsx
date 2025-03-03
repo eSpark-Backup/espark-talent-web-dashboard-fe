@@ -29,7 +29,7 @@ export const SideNav = (props) => {
         PaperProps={{
           sx: {
             width: 280,
-            marginTop: '44px',
+            marginTop: role === 'client' ? '44px' : '0px',
             overflowX: 'hidden',
             overflowY: 'hidden',
           },

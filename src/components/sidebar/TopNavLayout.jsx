@@ -5,9 +5,12 @@ import ResponsiveNavbar from './ResponsiveNavbar';
 import TopNavNavbar from '../global/topNavbar';
 import { Active_User_Data } from '@/src/constants/data/userData';
 import { SIDE_NAV_WIDTH } from '@/src/constants/sidebar';
+import { useSelector } from 'react-redux';
 
 export const TopNav = ({ onNavOpen }) => {
+  const { role } = useSelector((state) => state?.auth?.userData);
   const lgUp = useMediaQuery((theme) => theme.breakpoints.up('lg'));
+
   return (
     <>
       <Box
@@ -27,7 +30,7 @@ export const TopNav = ({ onNavOpen }) => {
           zIndex: 500,
         }}
       >
-        {lgUp && <TopNavNavbar />}
+        {lgUp && role === 'client' && <TopNavNavbar />}
         {!lgUp && (
           <ResponsiveNavbar
             userName={Active_User_Data?.userName}
