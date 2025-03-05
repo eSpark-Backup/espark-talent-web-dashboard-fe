@@ -8,6 +8,7 @@ import invoicesSlice from './invoices';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import policiesSlice from './policy';
+import guideSlice from './guide';
 
 const persistConfig = {
   key: 'home',
@@ -25,6 +26,7 @@ const hrReducer = persistReducer(
     settings: settingsSlice,
     invoices: invoicesSlice,
     policies: policiesSlice,
+    guides: guideSlice,
   })
 );
 

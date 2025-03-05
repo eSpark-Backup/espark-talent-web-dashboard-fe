@@ -207,7 +207,7 @@ const Policies = () => {
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: { xs: 'center', md: 'center' },
-                  '@media (min-width: 600px) and (max-width: 900px)': {
+                  '@media (min-width: 600px) and (max-width: 901px)': {
                     display: 'flex',
                     alignItems: 'flex-start',
                   },
@@ -223,7 +223,7 @@ const Policies = () => {
               <Box>
                 <Button
                   sx={{
-                    minWidth: '200px',
+                    minWidth: '220px',
                     height: '40px',
                     borderColor: '#029894',
                     color: 'teal',
@@ -258,7 +258,7 @@ const Policies = () => {
           >
             <AppTable
               column={processColumns(policyColumn)}
-              data={policies}
+              data={policies || []}
               handleClickActionView={handleClickActionView}
               handleClickActionDownload={handleClickActionDownload}
               handleClickActionDelete={handleClickDelete}
@@ -278,10 +278,12 @@ const Policies = () => {
             >
               <Button
                 aria-hidden={false}
+                disabled={policies?.length > 0 ? false : true}
                 sx={{
                   minWidth: '120px',
                   fontSize: '16px',
-                  backgroundColor: '#029894',
+                  backgroundColor:
+                    policies?.length > 0 ? '#029894' : 'lightgray',
                   color: '#fff',
                   '&:hover': {
                     backgroundColor: '#029894',

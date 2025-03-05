@@ -60,7 +60,12 @@ const SidebarAccordion = ({ sidebarLinks }) => {
               >
                 <Link href={`${item?.link}`}>
                   {item?.icon && (
-                    <Image width={20} height={20} src={item?.icon} alt="icon" />
+                    <Image
+                      width={item?.text === 'Guide' ? 18 : 20}
+                      height={item?.text === 'Guide' ? 18 : 20}
+                      src={item?.icon}
+                      alt="icon"
+                    />
                   )}
                 </Link>
                 {item?.sublinks ? (
