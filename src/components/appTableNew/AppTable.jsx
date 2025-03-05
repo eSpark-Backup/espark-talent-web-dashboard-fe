@@ -14,6 +14,8 @@ const AppTable = ({
   renderMessageButton,
   handleClickRenderMessageButton,
   handleClickActionView,
+  handleClickActionEdit,
+  handleClickActionDownload,
   handleEditImage,
   viewClicked,
   handleClickActionDelete,
@@ -88,6 +90,8 @@ const AppTable = ({
           data={!noPagination ? currPageData : data}
           renderMessage={renderMessage}
           handleClickActionView={handleClickActionView}
+          handleClickActionEdit={handleClickActionEdit}
+          handleClickActionDownload={handleClickActionDownload}
           handleEditImage={handleEditImage}
           handleClickRenderMessageButton={handleClickRenderMessageButton}
           renderMessageButton={renderMessageButton}

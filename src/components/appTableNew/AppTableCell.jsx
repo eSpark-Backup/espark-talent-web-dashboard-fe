@@ -81,12 +81,14 @@ const renderActions = (
   col,
   handleClickActionView,
   handleEditImage,
-  commonCellStyle,
   colIndex,
   rowIndex,
   handleClickActionDelete,
+  commonCellStyle,
   rejectReq,
-  approveReq
+  approveReq,
+  handleClickActionEdit,
+  handleClickActionDownload
 ) => {
   if (row?.formActionStatus) {
     if (row?.isModulePermissionData) {
@@ -201,6 +203,10 @@ const renderActions = (
               onClick={() => {
                 if (item === 'View') {
                   handleClickActionView({ row, item });
+                } else if (item === 'Edit') {
+                  handleClickActionEdit({ row, item });
+                } else if (item === 'Download') {
+                  handleClickActionDownload(row?.id, row);
                 } else if (item === 'Delete') {
                   handleClickActionDelete(row?.id, row);
                 } else if (item === 'Reject') {
@@ -212,7 +218,7 @@ const renderActions = (
               }}
               key={rowIndex}
               style={{
-                margin: rowIndex === 1 && '0 5px',
+                margin: '0 5px',
                 cursor: 'pointer',
               }}
               width={25}
@@ -504,6 +510,8 @@ export const renderCellContent = (
   row,
   col,
   handleClickActionView,
+  handleClickActionEdit,
+  handleClickActionDownload,
   handleEditImage,
   commonCellStyle,
   handleClick,
@@ -561,10 +569,14 @@ export const renderCellContent = (
           col,
           handleClickActionView,
           handleEditImage,
-          commonCellStyle,
           colIndex,
           rowIndex,
-          handleClickActionDelete
+          handleClickActionDelete,
+          commonCellStyle,
+          rejectReq,
+          approveReq,
+          handleClickActionEdit,
+          handleClickActionDownload
         );
       } else {
         return renderDownloadButton(
@@ -605,10 +617,14 @@ export const renderCellContent = (
         col,
         handleClickActionView,
         handleEditImage,
-        commonCellStyle,
         colIndex,
         rowIndex,
-        handleClickActionDelete
+        handleClickActionDelete,
+        commonCellStyle,
+        rejectReq,
+        approveReq,
+        handleClickActionEdit,
+        handleClickActionDownload
       );
 
     case 'Actions':
@@ -617,12 +633,14 @@ export const renderCellContent = (
         col,
         handleClickActionView,
         handleEditImage,
-        commonCellStyle,
         colIndex,
         rowIndex,
         handleClickActionDelete,
+        commonCellStyle,
         rejectReq,
-        approveReq
+        approveReq,
+        handleClickActionEdit,
+        handleClickActionDownload
       );
     case 'Status':
       return renderStatusCell(

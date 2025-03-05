@@ -12,6 +12,7 @@ import AppConfirmationMadal from '@/src/components/modals/AppConfirmationMadal';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import {
+  DOWNLOAD_POLICY,
   HR_POLICY,
   HR_POLICY_EDIT,
 } from '@/src/services/apiService/apiEndPoints';
@@ -41,7 +42,7 @@ const Policies = () => {
             data !== ''
               ? data?.map((item) => ({
                   ...item,
-                  action: ['Delete'],
+                  action: ['View', 'Download', 'Delete'],
                   actionStatus: true,
                   employee: ['DisabledCheck', 'EnabledCheck', item.employee],
                   client: ['DisabledCheck', 'EnabledCheck', item.client],
@@ -90,21 +91,65 @@ const Policies = () => {
   const [deletingPolicyId, setDeletingPolicyId] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenSavePolicies, setIsOpenSavePolicies] = useState(false);
-  const handleSelectRow = (id, column, row) => {
-    if (
-      role === 'super_admin' ||
-      (role !== 'super_admin' && policies_perms?.[0]?.write)
-    ) {
-      dispatch(
-        updatePolicyValue({
-          id,
-          key: column.name,
-          value: !row[column.name][2],
-        })
+
+  const downloadPolicyMutation = useMutation({
+    mutationFn: async (id) => {
+      return api.downloadFile(`${DOWNLOAD_POLICY}?id=${id}`);
+    },
+    onSuccess: ({ data }) => {
+      const url = window?.URL?.createObjectURL(new Blob([data]));
+      const link = document?.createElement('a');
+      link.href = url;
+      link?.setAttribute('download', 'policy.pdf');
+      document?.body?.appendChild(link);
+      link?.click();
+      link?.parentNode?.removeChild(link);
+      Toast('success', 'File downloaded');
+    },
+    onError: (err) => {
+      Toast('error', err.message || 'File not downloaded');
+    },
+  });
+
+  const openPolicyMutation = useMutation({
+    mutationFn: async (id) => {
+      return api.downloadFile(`${DOWNLOAD_POLICY}?id=${id}`);
+    },
+    onSuccess: ({ data }) => {
+      const url = window?.URL?.createObjectURL(
+        new Blob([data], { type: 'application/pdf' })
       );
+      window?.open(url, '_blank');
+    },
+    onError: (err) => {
+      Toast('error', err.message || 'File not downloaded');
+    },
+  });
+
+  const handleClickActionView = (id, column, row) => {
+    const row_id = id?.row?.id;
+    if (column === undefined && row === undefined) {
+      return openPolicyMutation?.mutate(row_id);
     } else {
-      return false;
+      if (
+        role === 'super_admin' ||
+        (role !== 'super_admin' && policies_perms?.[0]?.write)
+      ) {
+        dispatch(
+          updatePolicyValue({
+            id,
+            key: column?.name,
+            value: !row[column?.name][2],
+          })
+        );
+      } else {
+        return false;
+      }
     }
+  };
+
+  const handleClickActionDownload = (id) => {
+    downloadPolicyMutation?.mutate(id);
   };
   const handleClickDelete = (id) => {
     setDeletingPolicyId(id);
@@ -132,7 +177,7 @@ const Policies = () => {
     const action =
       role === 'super_admin' ||
       (role !== 'super_admin' && policies_perms?.[0].delete);
-    return column.filter((item) => action || item.name !== 'action');
+    return column?.filter((item) => action || item.name !== 'action');
   }
   return (
     <>
@@ -214,7 +259,8 @@ const Policies = () => {
             <AppTable
               column={processColumns(policyColumn)}
               data={policies}
-              handleClickActionView={handleSelectRow}
+              handleClickActionView={handleClickActionView}
+              handleClickActionDownload={handleClickActionDownload}
               handleClickActionDelete={handleClickDelete}
               noPagination
               isLoading={isLoading}

@@ -36,7 +36,7 @@ const UploadPolicyModal = forwardRef(({ open, onClose }, ref) => {
       dispatch(
         addPolicy({
           ...policyFormVal,
-          action: ['Delete'],
+          action: ['View', 'Download', 'Delete'],
           actionStatus: true,
           employee: ['DisabledCheck', 'EnabledCheck', false],
           client: ['DisabledCheck', 'EnabledCheck', false],
