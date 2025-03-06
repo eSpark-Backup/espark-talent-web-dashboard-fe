@@ -137,6 +137,12 @@ export const Employee_Routes = [
     ],
   },
   {
+    icon: '/images/sidebar-icons/guide.svg',
+    text: 'Guide',
+    link: '/employee/dashboard/guide',
+    sublinks: null,
+  },
+  {
     icon: '/images/sidebar-icons/dashboard.svg',
     text: 'Benefits',
     link: '/employee/dashboard/benefits',

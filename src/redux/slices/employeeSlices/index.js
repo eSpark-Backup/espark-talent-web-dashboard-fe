@@ -6,6 +6,7 @@ import contractSlice from './contractSlice';
 import timeSheetSlice from './timeSheetSlice';
 import punchReqSlice from './punchRequestSlice';
 import empPoliciesSlice from './empPoliciesSlice';
+import empGuidesSlice from './empGuidesSlice';
 import storage from 'redux-persist/lib/storage';
 import { persistReducer } from 'redux-persist';
 import benefitsSlice from './benefitsSlice';
@@ -20,6 +21,7 @@ const persistConfig = {
     'timeSheet',
     'punchReq',
     'policies',
+    'guides',
     'benefits',
     'letters',
   ],
@@ -37,6 +39,7 @@ const empReducer = persistReducer(
     timeSheet: timeSheetSlice,
     punchReq: punchReqSlice,
     policies: empPoliciesSlice,
+    guides: empGuidesSlice,
     benefits: benefitsSlice,
     letters: lettersSlice,
   })

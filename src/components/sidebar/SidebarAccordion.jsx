@@ -9,7 +9,6 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Link from 'next/link';
 import { Box } from '@mui/material';
 import { usePathname } from 'next/navigation';
-import Image from 'next/image';
 
 const SidebarAccordion = ({ sidebarLinks }) => {
   const pathname = usePathname();
@@ -49,6 +48,8 @@ const SidebarAccordion = ({ sidebarLinks }) => {
                   gap: 2,
                   width: '95%',
                   height: '43px',
+                  display: 'flex',
+                  alignItems: 'center',
                   borderRight: `${
                     item?.link == pathname ? '2px solid #068987' : null
                   }`,
@@ -60,9 +61,13 @@ const SidebarAccordion = ({ sidebarLinks }) => {
               >
                 <Link href={`${item?.link}`}>
                   {item?.icon && (
-                    <Image
-                      width={item?.text === 'Guide' ? 18 : 20}
-                      height={item?.text === 'Guide' ? 18 : 20}
+                    <Box
+                      component={'img'}
+                      sx={{
+                        width: 'auto',
+                        height: '20px',
+                        objectFit: 'contain',
+                      }}
                       src={item?.icon}
                       alt="icon"
                     />
