@@ -19,12 +19,42 @@ import GuideCard from '@/src/components/guides/GuideCard';
 
 const Guide = () => {
   const dummy_data = [
-    { id: 1, guide_name: 'Dashboard Guide' },
-    { id: 2, guide_name: 'Dashboard Guide' },
-    { id: 3, guide_name: 'Dashboard Guide' },
-    { id: 4, guide_name: 'Dashboard Guide' },
-    { id: 5, guide_name: 'Dashboard Guide' },
-    { id: 6, guide_name: 'Dashboard Guide' },
+    {
+      id: 1,
+      guide_name: 'Dashboard Guide',
+      description: 'Description added by HR will be reflected here.',
+      language: 'English',
+    },
+    {
+      id: 2,
+      guide_name: 'Dashboard Guide',
+      description: 'Description added by HR will be reflected here.',
+      language: 'Arabic',
+    },
+    {
+      id: 3,
+      guide_name: 'Dashboard Guide',
+      description: 'Description added by HR will be reflected here.',
+      language: 'English',
+    },
+    {
+      id: 4,
+      guide_name: 'Dashboard Guide',
+      description: 'Description added by HR will be reflected here.',
+      language: 'Arabic',
+    },
+    {
+      id: 5,
+      guide_name: 'Dashboard Guide',
+      description: 'Description added by HR will be reflected here.',
+      language: 'Arabic',
+    },
+    {
+      id: 6,
+      guide_name: 'Dashboard Guide',
+      description: 'Description added by HR will be reflected here.',
+      language: 'English',
+    },
   ];
 
   // const dispatch = useDispatch();

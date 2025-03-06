@@ -9,7 +9,7 @@ const GuideCard = ({ guideData, isLoading }) => {
     <Box
       sx={{
         display: 'grid',
-        maxWidth: '900px',
+        maxWidth: '850px',
         width: '100%',
         gridTemplateRows: 'repeat(2, 1fr)',
         gridTemplateColumns: guideData?.length === 1 ? '1fr' : 'repeat(2, 1fr)',
@@ -22,8 +22,8 @@ const GuideCard = ({ guideData, isLoading }) => {
           guideData?.length === 1
             ? { xs: 'flex-start', lg: 'center' }
             : { xs: 'flex-start', lg: 'flex-start' },
-        columnGap: 3.5,
-        rowGap: 3.5,
+        columnGap: 5.5,
+        rowGap: 5.5,
         flexWrap: 'wrap',
         mx: 'auto',
       }}
@@ -116,10 +116,10 @@ const GuideCard = ({ guideData, isLoading }) => {
             <DownloadGuide
               key={item?.id}
               id={item?.id}
-              reportLanguage={'Arabic'}
+              reportLanguage={item?.language || ''}
               image={'/images/guides/property-contract.svg'}
-              reportHeading={item?.guide_name}
-              downloadReports={'Generate and download all your payroll reports'}
+              reportHeading={item?.guide_name || ''}
+              downloadReports={item?.description || ''}
               downloadBtn={'Download'}
               documentLink={item?.guide_doc}
               data={guideData}
