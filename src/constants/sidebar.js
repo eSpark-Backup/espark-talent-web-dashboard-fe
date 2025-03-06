@@ -65,6 +65,12 @@ export const Client_Routes = [
     ],
   },
   {
+    icon: '/images/sidebar-icons/guide.svg',
+    text: 'Guide',
+    link: '/client/dashboard/guide',
+    sublinks: null,
+  },
+  {
     icon: '/images/sidebar-icons/administration.svg',
     text: 'Organization',
     link: '#',
