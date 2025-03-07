@@ -2,15 +2,14 @@ import * as Yup from 'yup';
 import { nameValidation } from './validations';
 
 export const uploadGuideFormSchema = Yup.object({
-  guide: nameValidation,
+  guide_name: nameValidation,
   language: Yup.string()
     .required('Language is required')
-    .min(3, 'Language must be at least 3 characters long')
-    .max(30, 'Language cannot exceed 30 characters'),
+    .min(2, 'Language must be at least 3 characters long')
+    .max(255, 'Language cannot exceed 30 characters'),
   description: Yup.string()
-    .required('Description is required')
-    .min(3, 'Description must be at least 3 characters long')
-    .max(30, 'Description cannot exceed 30 characters'),
+    .min(2, 'Description must be at least 3 characters long')
+    .max(255, 'Description cannot exceed 30 characters'),
   guide_doc: Yup.mixed()
     .required('Guide doc is required')
     .test('fileType', 'Only PDF files are allowed', (value) => {
@@ -29,15 +28,14 @@ export const uploadGuideFormSchema = Yup.object({
 });
 
 export const editGuideFormSchema = Yup.object({
-  guide: Yup.string().required('Policy name is required'),
+  guide_name: nameValidation,
   language: Yup.string()
     .required('Language is required')
     .min(3, 'Language must be at least 3 characters long')
-    .max(30, 'Language cannot exceed 30 characters'),
+    .max(255, 'Language cannot exceed 30 characters'),
   description: Yup.string()
-    .required('Description is required')
     .min(3, 'Description must be at least 3 characters long')
-    .max(30, 'Description cannot exceed 30 characters'),
+    .max(255, 'Description cannot exceed 30 characters'),
   guide_doc: Yup.mixed()
     .nullable()
     .test('fileType', 'Only PDF files are allowed', (value) => {

@@ -17,10 +17,10 @@ const guideSlice = createSlice({
       state.guides = [...state.guides, action.payload];
     },
     updateGuideValue: (state, action) => {
-      const policyIndex = state.guides.findIndex(
+      const guideIndex = state.guides.findIndex(
         (el) => el.id === action.payload.id
       );
-      state.guides[policyIndex][action.payload.key] = [
+      state.guides[guideIndex][action.payload.key] = [
         'DisabledCheck',
         'EnabledCheck',
         action.payload.value,

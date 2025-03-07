@@ -2,7 +2,7 @@ export const uploadGuideForm = [
   {
     title: 'Guide name',
     placeholder: 'Enter guide name',
-    name: 'guide',
+    name: 'guide_name',
   },
   {
     title: 'Language',

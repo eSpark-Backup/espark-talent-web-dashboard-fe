@@ -12,48 +12,32 @@ import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { useFormik } from 'formik';
 import { api } from '@/src/services/apiService';
 import { HR_GUIDE } from '@/src/services/apiService/apiEndPoints';
-// import { useDispatch } from 'react-redux';
 import { Toast } from '../Toast/Toast';
 import { uploadGuideForm } from '@/src/constants/data/forms/upload-guide';
-import {
-  editGuideFormSchema,
-  // uploadGuideFormSchema,
-} from '../form/schemas/uploadGuide';
+import { editGuideFormSchema } from '../form/schemas/uploadGuide';
 import { UPLOAD_GUIDE } from '@/src/constants/guide';
-// import { addGuide } from '@/src/redux/slices/hrSlices/guide';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 const EditGuideModal = forwardRef(({ open, onClose, modalData }, ref) => {
   const [guideFormVal, setGuideFormVal] = useState(null);
-  // const dispatch = useDispatch();
-  const { isPending } = useMutation({
+  const queryClient = useQueryClient();
+  console.log(guideFormVal, 'data');
+  const { isPending, mutate } = useMutation({
     mutationFn: async (formVals) => {
       const formData = new FormData();
       for (const key in formVals) {
         formData?.append(key, formVals[key]);
       }
-      return api?.updateData(HR_GUIDE, formData);
+      return api?.updateData(`${HR_GUIDE}?id=${modalData?.id}`, formData);
     },
     onSuccess: ({ data }) => {
-      Toast('success', 'Policy posted successfully');
-      console.log(guideFormVal, data);
-      // dispatch(
-      //   addGuide({
-      //     ...guideFormVal,
-      //     action: ['View', 'Download', 'Edit', 'Delete'],
-      //     actionStatus: true,
-      //     employee: ['DisabledCheck', 'EnabledCheck', false],
-      //     client: ['DisabledCheck', 'EnabledCheck', false],
-      //     isSelected: false,
-      //     isModulePermissionData: true,
-      //     isPolicyData: true,
-      //     id: data?.id,
-      //   })
-      // );
+      Toast('success', `guide ${data?.message}`);
       onClose();
+      queryClient.invalidateQueries(['hr-guide-query']);
     },
     onError: (err) => {
       Toast('error', err?.message || 'Failed to post data');
+      console.log(err, 'err');
     },
   });
   const {
@@ -67,7 +51,7 @@ const EditGuideModal = forwardRef(({ open, onClose, modalData }, ref) => {
     handleReset,
   } = useFormik({
     initialValues: {
-      guide: modalData?.guide,
+      guide_name: modalData?.guide_name,
       language: modalData?.language,
       description: modalData?.description,
     },
@@ -75,7 +59,7 @@ const EditGuideModal = forwardRef(({ open, onClose, modalData }, ref) => {
     enableReinitialize: true,
     onSubmit: (formValues) => {
       setGuideFormVal(formValues);
-      // mutate(formValues);
+      mutate(formValues);
     },
     validateOnChange: false,
     validateOnBlur: false,

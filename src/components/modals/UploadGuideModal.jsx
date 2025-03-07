@@ -23,7 +23,7 @@ import { useMutation } from '@tanstack/react-query';
 const UploadGuideModal = forwardRef(({ open, onClose }, ref) => {
   const [guideFormVal, setGuideFormVal] = useState(null);
   const dispatch = useDispatch();
-  const { isPending } = useMutation({
+  const { isPending, mutate } = useMutation({
     mutationFn: async (formVals) => {
       const formData = new FormData();
       for (const key in formVals) {
@@ -32,7 +32,7 @@ const UploadGuideModal = forwardRef(({ open, onClose }, ref) => {
       return api?.postData(HR_GUIDE, formData);
     },
     onSuccess: ({ data }) => {
-      Toast('success', 'Policy posted successfully');
+      Toast('success', 'Guide posted successfully');
       dispatch(
         addGuide({
           ...guideFormVal,
@@ -42,7 +42,7 @@ const UploadGuideModal = forwardRef(({ open, onClose }, ref) => {
           client: ['DisabledCheck', 'EnabledCheck', false],
           isSelected: false,
           isModulePermissionData: true,
-          isPolicyData: true,
+          isGuideData: true,
           id: data?.id,
         })
       );
@@ -67,7 +67,7 @@ const UploadGuideModal = forwardRef(({ open, onClose }, ref) => {
     enableReinitialize: true,
     onSubmit: (formValues) => {
       setGuideFormVal(formValues);
-      // mutate(formValues);
+      mutate(formValues);
     },
     validateOnChange: false,
     validateOnBlur: false,

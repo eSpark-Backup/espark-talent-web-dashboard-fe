@@ -6,86 +6,62 @@ import Heading from '@/src/components/global/Heading';
 import AppTable from '@/src/components/appTableNew/AppTable';
 import { CONTRACT_SIGNED } from '@/src/constants/contractSigned';
 import AppConfirmationMadal from '@/src/components/modals/AppConfirmationMadal';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import {
   DOWNLOAD_GUIDE,
   HR_GUIDE,
-  // HR_GUIDE,
   HR_GUIDE_EDIT,
 } from '@/src/services/apiService/apiEndPoints';
 import { Toast } from '@/src/components/Toast/Toast';
 import { SETTING } from '@/src/constants/SettingHr';
-import { removePolicy } from '@/src/redux/slices/hrSlices/policy';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { GUIDE_DATA, guideColumn } from '@/src/constants/guide';
 import UploadGuideModal from '@/src/components/modals/UploadGuideModal';
+import {
+  getGuideData,
+  removeGuide,
+  updateGuideValue,
+} from '@/src/redux/slices/hrSlices/guide';
 import EditGuideModal from '@/src/components/modals/EditGuideModal';
-import { updateGuideValue } from '@/src/redux/slices/hrSlices/guide';
 
 const Page = () => {
   const dispatch = useDispatch();
-  // const { policies_perms } = useSelector((state) => state?.hr?.home?.homeData);
-  // const { role } = useSelector((state) => state?.auth?.userData);
-  // const { guides } = useSelector((state) => state?.hr?.guides);
+  const { policies_perms } = useSelector((state) => state?.hr?.home?.homeData);
+  const { role } = useSelector((state) => state?.auth?.userData);
+  const { guides } = useSelector((state) => state?.hr?.guides);
+  const queryClient = useQueryClient();
 
-  const guides = [
-    {
-      guide: 'Dashboard Guide',
-      description: 'You will see all the guide...',
-      language: 'Arabic',
-      employee: '✅',
-      client: '😊',
-      action: ['View', 'Download', 'Edit', 'Delete'],
-    },
-    {
-      guide: 'Dashboard Guide',
-      description: 'You will see all the guide...',
-      language: 'Arabic',
-      employee: '✅',
-      client: '😊',
-      action: ['View', 'Download', 'Edit', 'Delete'],
-    },
-    {
-      guide: 'Dashboard Guide',
-      description: 'You will see all the guide...',
-      language: 'Arabic',
-      employee: '✅',
-      client: '😊',
-      action: ['View', 'Download', 'Edit', 'Delete'],
-    },
-  ];
+  const { isLoading } = useQuery({
+    staleTime: 10000,
+    refetchOnWindowFocus: false,
+    queryKey: ['hr-guide-query'],
+    queryFn: async () => {
+      return api
+        .getData(`${HR_GUIDE}`)
+        .then(({ data }) => {
+          const tempData =
+            data !== ''
+              ? data?.map((item) => ({
+                  ...item,
+                  action: ['View', 'Download', 'Edit', 'Delete'],
+                  actionStatus: true,
+                  employee: ['DisabledCheck', 'EnabledCheck', item?.employee],
+                  client: ['DisabledCheck', 'EnabledCheck', item?.client],
+                  isSelected: false,
+                  isModulePermissionData: true,
+                  isGuideData: true,
+                }))
+              : [];
 
-  // const { isLoading } = useQuery({
-  //   staleTime: 10000,
-  //   refetchOnWindowFocus: false,
-  //   queryKey: ['hr-guide-query'],
-  //   queryFn: async () => {
-  //     return api
-  //       .getData(`${HR_GUIDE}`)
-  //       .then(({ data }) => {
-  //         const tempData =
-  //           data !== ''
-  //             ? data?.map((item) => ({
-  //                 ...item,
-  //                 action: ['View', 'Download', 'Edit', 'Delete'],
-  //                 actionStatus: true,
-  //                 employee: ['DisabledCheck', 'EnabledCheck', item.employee],
-  //                 client: ['DisabledCheck', 'EnabledCheck', item.client],
-  //                 isSelected: false,
-  //                 isModulePermissionData: true,
-  //                 isGuideData: true,
-  //               }))
-  //             : [];
-
-  //         dispatch(getGuideData(tempData));
-  //         return tempData || [];
-  //       })
-  //       .catch((err) => {
-  //         Toast('error', err.message || 'Failed to get data');
-  //       });
-  //   },
-  // });
+          dispatch(getGuideData(tempData));
+          return tempData || [];
+        })
+        .catch((err) => {
+          Toast('error', err.message || 'Failed to get data');
+        });
+    },
+  });
 
   const { mutate, isPending } = useMutation({
     mutationFn: async (formVals) => {
@@ -105,10 +81,11 @@ const Page = () => {
       return api.daleteData(`${HR_GUIDE}?id=${id}`);
     },
     onSuccess: () => {
-      dispatch(removePolicy(deletingGuideId));
-      Toast('success', 'Policy deleted successfully');
+      dispatch(removeGuide(deletingGuideId));
+      Toast('success', 'Guide deleted successfully');
       setDeletingGuideId(null);
       handleClose?.();
+      queryClient.invalidateQueries(['hr-guide-query']);
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to delete policy');
@@ -129,7 +106,7 @@ const Page = () => {
       const url = window?.URL?.createObjectURL(new Blob([data]));
       const link = document?.createElement('a');
       link.href = url;
-      link?.setAttribute('download', 'policy.pdf');
+      link?.setAttribute('download', 'guide.pdf');
       document?.body?.appendChild(link);
       link?.click();
       link?.parentNode?.removeChild(link);
@@ -173,7 +150,6 @@ const Page = () => {
   const handleClickActionEdit = ({ row }) => {
     setOpenEditUploadGuide(true);
     setEditModalData(row);
-    console.log('edit', row);
   };
 
   const handleClickActionDownload = (id) => {
@@ -188,11 +164,13 @@ const Page = () => {
   const handleOpenModal = () => {
     setOpenUploadGuide(true);
   };
+
   const handleClose = () => {
     setOpenUploadGuide(false);
     setOpenEditUploadGuide(false);
     setIsOpen(false);
   };
+
   const handleSaveGuide = () => {
     const tempData = guides?.map((item) => ({
       id: item?.id,
@@ -205,12 +183,12 @@ const Page = () => {
     deleteGuideMutation?.mutate(deletingGuideId);
   };
 
-  // function processColumns(column) {
-  //   const action =
-  //     role === 'super_admin' ||
-  //     (role !== 'super_admin' && policies_perms?.[0].delete);
-  //   return column?.filter((item) => action || item.name !== 'action');
-  // }
+  function processColumns(column) {
+    const action =
+      role === 'super_admin' ||
+      (role !== 'super_admin' && policies_perms?.[0].delete);
+    return column?.filter((item) => action || item.name !== 'action');
+  }
 
   return (
     <>
@@ -287,14 +265,14 @@ const Page = () => {
             }}
           >
             <AppTable
-              column={guideColumn}
+              column={processColumns(guideColumn)}
               data={guides || []}
               handleClickActionView={handleClickActionView}
               handleClickActionEdit={handleClickActionEdit}
               handleClickActionDownload={handleClickActionDownload}
               handleClickActionDelete={handleClickDelete}
               noPagination
-              // isLoading={isLoading}
+              isLoading={isLoading}
             />
           </Box>
           <Box
@@ -346,8 +324,8 @@ const Page = () => {
         isLoading={deleteGuideMutation.isPending}
       />
       <AppConfirmationMadal
-        title={'Save Policies'}
-        bodyText={'Are you sure you want to update the policies?'}
+        title={'Save Guides'}
+        bodyText={'Are you sure you want to update the guides?'}
         cancelButtonText={'Cancel'}
         confirmButtonText={'Save'}
         isOpen={isOpenSaveGuide}

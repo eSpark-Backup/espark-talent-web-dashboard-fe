@@ -20,7 +20,7 @@ export const guideColumn = [
   {
     title: 'Guide',
     flex: 2,
-    name: 'guide',
+    name: 'guide_name',
   },
   {
     title: 'Description',
