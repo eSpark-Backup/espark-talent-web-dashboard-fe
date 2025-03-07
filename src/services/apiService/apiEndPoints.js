@@ -54,6 +54,7 @@ export const EMP_PUNCH_REQUEST = '/emp_pr/';
 export const EMP_LEAVE_REQUEST = '/emp_lr/';
 export const EMP_WFH_REQUEST = '/emp_wfhr/';
 export const EMP_POLICIES = '/emp_policies/';
+export const EMP_GUIDE = '/emp_guide/';
 export const EMP_COMPANY_CONTRACT = '/emp_compcontract/';
 export const EMP_LETTERS = '/letters/';
 export const EMP_BENEFITS = '/emp_benefits/';

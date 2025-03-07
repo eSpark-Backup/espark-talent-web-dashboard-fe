@@ -1,92 +1,56 @@
 'use client';
 import React from 'react';
-import { Grid, Box } from '@mui/material';
+import { Grid, Box, Typography } from '@mui/material';
 
-// import { GUIDE_DATA } from '@/src/constants/guide';
-// import { useQuery } from '@tanstack/react-query';
-// import { api } from '@/src/services/apiService';
+import { GUIDE_DATA } from '@/src/constants/guide';
+import { useQuery } from '@tanstack/react-query';
+import { api } from '@/src/services/apiService';
 
-// import { useDispatch } from 'react-redux';
-// import { Toast } from '@/src/components/Toast/Toast';
-// import { EMP_POLICIES } from '@/src/services/apiService/apiEndPoints';
-// import { fetchEmpGuidesDataRequestSuccess } from '@/src/redux/slices/employeeSlices/empGuidesSlice';
-// import { fetchEmpPoliciesDataRequestFailed } from '@/src/redux/slices/employeeSlices/empPoliciesSlice copy';
+import { useDispatch } from 'react-redux';
+import { Toast } from '@/src/components/Toast/Toast';
+import { EMP_GUIDE } from '@/src/services/apiService/apiEndPoints';
+import {
+  fetchEmpGuidesDataRequestFailed,
+  fetchEmpGuidesDataRequestSuccess,
+} from '@/src/redux/slices/employeeSlices/empGuidesSlice';
 import Heading from '@/src/components/global/Heading';
 import GuideCard from '@/src/components/guides/GuideCard';
 
 const Guide = () => {
-  const dummy_data = [
-    {
-      id: 1,
-      guide_name: 'Dashboard Guide',
-      description: 'Description added by HR will be reflected here.',
-      language: 'English',
+  const { guide, description } = GUIDE_DATA;
+  const dispatch = useDispatch();
+  const { isLoading, data } = useQuery({
+    staleTime: 10000,
+    refetchOnWindowFocus: false,
+    queryKey: ['guideQuery'],
+    queryFn: async () => {
+      return api
+        .getData(`${EMP_GUIDE}`)
+        .then(({ data }) => {
+          dispatch(fetchEmpGuidesDataRequestSuccess(data || []));
+          return data;
+        })
+        .catch((err) => {
+          dispatch(fetchEmpGuidesDataRequestFailed());
+          Toast('error', err.message || 'Failed to get data');
+        });
     },
-    {
-      id: 2,
-      guide_name: 'Dashboard Guide',
-      description: 'Description added by HR will be reflected here.',
-      language: 'Arabic',
-    },
-    {
-      id: 3,
-      guide_name: 'Dashboard Guide',
-      description: 'Description added by HR will be reflected here.',
-      language: 'English',
-    },
-    {
-      id: 4,
-      guide_name: 'Dashboard Guide',
-      description: 'Description added by HR will be reflected here.',
-      language: 'Arabic',
-    },
-    {
-      id: 5,
-      guide_name: 'Dashboard Guide',
-      description: 'Description added by HR will be reflected here.',
-      language: 'Arabic',
-    },
-    {
-      id: 6,
-      guide_name: 'Dashboard Guide',
-      description: 'Description added by HR will be reflected here.',
-      language: 'English',
-    },
-  ];
+  });
 
-  // const dispatch = useDispatch();
-  // const { isLoading, data } = useQuery({
-  //   staleTime: 10000,
-  //   refetchOnWindowFocus: false,
-  //   queryKey: ['guideQuery'],
-  //   queryFn: async () => {
-  //     return api
-  //       .getData(`${EMP_POLICIES}`)
-  //       .then(({ data }) => {
-  //         // dispatch(fetchEmpGuidesDataRequestSuccess(data || []));
-  //         return data;
-  //       })
-  //       .catch((err) => {
-  //         // dispatch(fetchEmpPoliciesDataRequestFailed());
-  //         Toast('error', err.message || 'Failed to get data');
-  //       });
-  //   },
-  // });
-
-  // if (!data && !isLoading) {
-  //   return (
-  //     <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-  //       <Typography
-  //         sx={{
-  //           fontSize: '30px',
-  //           fontFamily: 'sans-serif',
-  //         }}
-  //       >
-  //         Guide data is not available
-  //       </Typography>
-  //     </Box>
-  //   );
-  // }
+  if (!data && !isLoading) {
+    return (
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+        <Typography
+          sx={{
+            fontSize: '30px',
+            fontFamily: 'sans-serif',
+          }}
+        >
+          Guide data is not available
+        </Typography>
+      </Box>
+    );
+  }
 
   return (
     <Grid container>
@@ -101,21 +65,16 @@ const Guide = () => {
         }}
       >
         <Heading
-          title={'Guides'}
-          description={
-            'You will find all the guide related to your company below.'
-          }
-          // isLoading={isLoading}
+          title={guide}
+          description={description}
+          isLoading={isLoading}
           containerStyles={{
             display: 'flex',
             flexDirection: 'column',
             alignItems: { xs: 'center', md: 'center' },
           }}
         />
-        <GuideCard
-          guideData={dummy_data || []}
-          // isLoading={isLoading}
-        />
+        <GuideCard guideData={data || []} isLoading={isLoading} />
       </Box>
     </Grid>
   );
