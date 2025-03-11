@@ -142,13 +142,13 @@ const Sidebar = ({ userName }) => {
         return false;
       }
 
-      // const guidePerms = employeePerms.guides_perms?.[0];
-      // if (route.text === 'Guide' && !policyPerms?.read) {
-      //   if (pathName?.includes(route?.link)) {
-      //     router?.push('/hr/dashboard');
-      //   }
-      //   return false;
-      // }
+      const guidePerms = employeePerms.guides_perms?.[0];
+      if (route.text === 'Guide' && !guidePerms?.read) {
+        if (pathName?.includes(route?.link)) {
+          router?.push('/hr/dashboard');
+        }
+        return false;
+      }
       return true;
     });
   };
