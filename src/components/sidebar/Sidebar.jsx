@@ -39,8 +39,13 @@ const Sidebar = ({ userName }) => {
   const [notification, setNotification] = React.useState(null);
   const router = useRouter();
 
-  const { employee_perms, client_perms, invoices_perms, policies_perms, guides_perms } =
-    useSelector((state) => state?.hr?.home?.homeData) || {};
+  const {
+    employee_perms,
+    client_perms,
+    invoices_perms,
+    policies_perms,
+    guides_perms,
+  } = useSelector((state) => state?.hr?.home?.homeData) || {};
 
   const employeePerms = {
     employee_perms,
