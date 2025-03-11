@@ -27,7 +27,7 @@ import EditGuideModal from '@/src/components/modals/EditGuideModal';
 
 const Page = () => {
   const dispatch = useDispatch();
-  const { policies_perms } = useSelector((state) => state?.hr?.home?.homeData);
+  const { guides_perms } = useSelector((state) => state?.hr?.home?.homeData);
   const { role } = useSelector((state) => state?.auth?.userData);
   const { guides } = useSelector((state) => state?.hr?.guides);
   const queryClient = useQueryClient();
@@ -44,7 +44,21 @@ const Page = () => {
             data !== ''
               ? data?.map((item) => ({
                   ...item,
-                  action: ['View', 'Download', 'Edit', 'Delete'],
+                  action: [
+                    'View',
+                    role === 'super_admin' ||
+                    (guides_perms && guides_perms[0]?.download)
+                      ? 'Download'
+                      : null,
+                    role === 'super_admin' ||
+                    (guides_perms && guides_perms[0]?.write)
+                      ? 'Edit'
+                      : null,
+                    role === 'super_admin' ||
+                    (guides_perms && guides_perms[0]?.delete)
+                      ? 'Delete'
+                      : null,
+                  ]?.filter(Boolean),
                   actionStatus: true,
                   employee: ['DisabledCheck', 'EnabledCheck', item?.employee],
                   client: ['DisabledCheck', 'EnabledCheck', item?.client],
@@ -137,13 +151,20 @@ const Page = () => {
     if (column === undefined && row === undefined) {
       return openGuideMutation?.mutate(row_id);
     } else {
-      dispatch(
-        updateGuideValue({
-          id,
-          key: column?.name,
-          value: !row[column?.name][2],
-        })
-      );
+      if (
+        role === 'super_admin' ||
+        (role !== 'super_admin' && guides_perms?.[0]?.write)
+      ) {
+        dispatch(
+          updateGuideValue({
+            id,
+            key: column?.name,
+            value: !row[column?.name][2],
+          })
+        );
+      } else {
+        return false;
+      }
     }
   };
 
@@ -182,13 +203,6 @@ const Page = () => {
   const handleDeleteGuide = () => {
     deleteGuideMutation?.mutate(deletingGuideId);
   };
-
-  function processColumns(column) {
-    const action =
-      role === 'super_admin' ||
-      (role !== 'super_admin' && policies_perms?.[0].delete);
-    return column?.filter((item) => action || item.name !== 'action');
-  }
 
   return (
     <>
@@ -231,7 +245,7 @@ const Page = () => {
             </Box>
             <Box>
               {(role === 'super_admin' ||
-                (role !== 'super_admin' && policies_perms?.[0].write)) && (
+                (role !== 'super_admin' && guides_perms?.[0].write)) && (
                 <Box>
                   <Button
                     sx={{
@@ -270,7 +284,7 @@ const Page = () => {
             }}
           >
             <AppTable
-              column={processColumns(guideColumn)}
+              column={guideColumn}
               data={guides || []}
               handleClickActionView={handleClickActionView}
               handleClickActionEdit={handleClickActionEdit}
@@ -281,7 +295,7 @@ const Page = () => {
             />
           </Box>
           {(role === 'super_admin' ||
-            (role !== 'super_admin' && policies_perms?.[0].write)) && (
+            (role !== 'super_admin' && guides_perms?.[0].write)) && (
             <Box
               sx={{
                 mt: { xs: '-40px', md: '-85px' },

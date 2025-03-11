@@ -54,7 +54,6 @@ const Dashboard = () => {
           guides_perms,
         })
       );
-      console.log(data, 'dashboard');
       return data;
     },
     onError: (err) => {

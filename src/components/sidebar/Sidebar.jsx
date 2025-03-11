@@ -105,7 +105,6 @@ const Sidebar = ({ userName }) => {
       console.error({ error });
     },
   });
-  console.log(guides_perms, 'guides_perms');
 
   const filteredRoutes = (routes) => {
     return routes?.filter((route) => {

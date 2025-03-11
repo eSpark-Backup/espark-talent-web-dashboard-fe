@@ -42,7 +42,21 @@ const Policies = () => {
             data !== ''
               ? data?.map((item) => ({
                   ...item,
-                  action: ['View', 'Download', 'Delete'],
+                  action: [
+                    'View',
+                    role === 'super_admin' ||
+                    (policies_perms && policies_perms[0]?.download)
+                      ? 'Download'
+                      : null,
+                    role === 'super_admin' ||
+                    (policies_perms && policies_perms[0]?.write)
+                      ? 'Edit'
+                      : null,
+                    role === 'super_admin' ||
+                    (policies_perms && policies_perms[0]?.delete)
+                      ? 'Delete'
+                      : null,
+                  ]?.filter(Boolean),
                   actionStatus: true,
                   employee: ['DisabledCheck', 'EnabledCheck', item.employee],
                   client: ['DisabledCheck', 'EnabledCheck', item.client],
@@ -173,12 +187,7 @@ const Policies = () => {
   const handleDeletePolicies = () => {
     deletePolicyMutation.mutate(deletingPolicyId);
   };
-  function processColumns(column) {
-    const action =
-      role === 'super_admin' ||
-      (role !== 'super_admin' && policies_perms?.[0].delete);
-    return column?.filter((item) => action || item.name !== 'action');
-  }
+
   return (
     <>
       <Grid container>
@@ -257,7 +266,7 @@ const Policies = () => {
             }}
           >
             <AppTable
-              column={processColumns(policyColumn)}
+              column={policyColumn}
               data={policies || []}
               handleClickActionView={handleClickActionView}
               handleClickActionDownload={handleClickActionDownload}
