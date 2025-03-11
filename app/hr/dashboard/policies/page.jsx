@@ -48,10 +48,10 @@ const Policies = () => {
                     (policies_perms && policies_perms[0]?.download)
                       ? 'Download'
                       : null,
-                    role === 'super_admin' ||
-                    (policies_perms && policies_perms[0]?.write)
-                      ? 'Edit'
-                      : null,
+                    // role === 'super_admin' ||
+                    // (policies_perms && policies_perms[0]?.write)
+                    //   ? 'Edit'
+                    //   : null,
                     role === 'super_admin' ||
                     (policies_perms && policies_perms[0]?.delete)
                       ? 'Delete'
