@@ -57,14 +57,20 @@ const Sidebar = ({ userName }) => {
     paddingBottom: windowHeight < 300 ? 0 : '35px',
   };
 
-  const { employee_perms, client_perms, invoices_perms, policies_perms } =
-    useSelector((state) => state?.hr?.home?.homeData) || {};
+  const {
+    employee_perms,
+    client_perms,
+    invoices_perms,
+    policies_perms,
+    guides_perms,
+  } = useSelector((state) => state?.hr?.home?.homeData) || {};
 
   const employeePerms = {
     employee_perms,
     client_perms,
     invoices_perms,
     policies_perms,
+    guides_perms,
   };
 
   const { error } = useQuery({
@@ -79,6 +85,7 @@ const Sidebar = ({ userName }) => {
         leaves_perms,
         client_perms,
         policies_perms,
+        guides_perms,
       } = response?.data || {};
       Cookies?.set(
         'permissions',
@@ -88,6 +95,7 @@ const Sidebar = ({ userName }) => {
           leaves_perms,
           client_perms,
           policies_perms,
+          guides_perms,
         })
       );
       return response?.data;
@@ -97,6 +105,7 @@ const Sidebar = ({ userName }) => {
       console.error({ error });
     },
   });
+  console.log(guides_perms, 'guides_perms');
 
   const filteredRoutes = (routes) => {
     return routes?.filter((route) => {
@@ -133,6 +142,14 @@ const Sidebar = ({ userName }) => {
         }
         return false;
       }
+
+      // const guidePerms = employeePerms.guides_perms?.[0];
+      // if (route.text === 'Guide' && !policyPerms?.read) {
+      //   if (pathName?.includes(route?.link)) {
+      //     router?.push('/hr/dashboard');
+      //   }
+      //   return false;
+      // }
       return true;
     });
   };

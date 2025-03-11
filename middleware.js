@@ -96,6 +96,14 @@ export default function middleware(req) {
   }
 
   if (
+    pathname.startsWith('/hr/dashboard/guides') &&
+    userType !== 'super_admin' &&
+    !hasReadPermission('guides_perms')
+  ) {
+    return NextResponse.redirect(new URL('/hr/dashboard', req.url));
+  }
+
+  if (
     pathname?.startsWith('/hr/dashboard/settings') &&
     userType !== 'super_admin'
   ) {

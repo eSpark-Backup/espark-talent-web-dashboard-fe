@@ -41,6 +41,7 @@ const Dashboard = () => {
         leaves_perms,
         client_perms,
         policies_perms,
+        guides_perms,
       } = data || {};
       Cookies?.set(
         'permissions',
@@ -50,8 +51,10 @@ const Dashboard = () => {
           leaves_perms,
           client_perms,
           policies_perms,
+          guides_perms,
         })
       );
+      console.log(data, 'dashboard');
       return data;
     },
     onError: (err) => {

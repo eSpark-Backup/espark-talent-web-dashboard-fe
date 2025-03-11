@@ -87,6 +87,18 @@ export const modulepermissionData = [
     isModulePermissionData: true,
     isSelected: false,
   },
+  {
+    id: 6,
+    modulePermission: 'Guide',
+    write: ['DisabledCheck', 'EnabledCheck', false],
+    read: ['DisabledCheck', 'EnabledCheck', false],
+    create: ['DisabledCheck', 'EnabledCheck', false],
+    delete: ['DisabledCheck', 'EnabledCheck', false],
+    download: ['DisabledCheck', 'EnabledCheck', false],
+    formActionStatus: true,
+    isModulePermissionData: true,
+    isSelected: false,
+  },
 ];
 
 export const modulePermissionDataSet = [
@@ -133,6 +145,16 @@ export const modulePermissionDataSet = [
   {
     module_permission: 'Policies',
     name: 'policies_perms',
+    read: false,
+    write: false,
+    delete: false,
+    download: false,
+    formActionStatus: true,
+    isNewModulePermission: true,
+  },
+  {
+    module_permission: 'Guides',
+    name: 'guides_perms',
     read: false,
     write: false,
     delete: false,

@@ -230,32 +230,37 @@ const Page = () => {
               />
             </Box>
             <Box>
-              <Button
-                sx={{
-                  minWidth: '200px',
-                  height: '40px',
-                  borderColor: '#029894',
-                  color: 'teal',
-                  fontSize: '16px',
-                  '&:hover': {
-                    background: '#fff',
-                    color: 'teal',
-                  },
-                  marginTop: { xs: '20px', md: '0px' },
-                  '@media (min-width: 600px) and (max-width: 900px)': {
-                    display: 'flex',
-                    alignItems: 'flex-start',
-                  },
-                  '@media (min-width: 280px) and (max-width: 600px)': {
-                    display: 'flex',
-                    mx: 'auto',
-                  },
-                }}
-                variant="outlined"
-                onClick={handleOpenModal}
-              >
-                {GUIDE_DATA?.uploadGuide}
-              </Button>
+              {(role === 'super_admin' ||
+                (role !== 'super_admin' && policies_perms?.[0].write)) && (
+                <Box>
+                  <Button
+                    sx={{
+                      minWidth: '200px',
+                      height: '40px',
+                      borderColor: '#029894',
+                      color: 'teal',
+                      fontSize: '16px',
+                      '&:hover': {
+                        background: '#fff',
+                        color: 'teal',
+                      },
+                      marginTop: { xs: '20px', md: '0px' },
+                      '@media (min-width: 600px) and (max-width: 900px)': {
+                        display: 'flex',
+                        alignItems: 'flex-start',
+                      },
+                      '@media (min-width: 280px) and (max-width: 600px)': {
+                        display: 'flex',
+                        mx: 'auto',
+                      },
+                    }}
+                    variant="outlined"
+                    onClick={handleOpenModal}
+                  >
+                    {GUIDE_DATA?.uploadGuide}
+                  </Button>
+                </Box>
+              )}
             </Box>
           </Box>
           <Box
@@ -275,32 +280,35 @@ const Page = () => {
               isLoading={isLoading}
             />
           </Box>
-          <Box
-            sx={{
-              mt: { xs: '-40px', md: '-85px' },
-              '@media (min-width: 900px) and (max-width: 1400px)': {
-                mt: '-70px',
-              },
-            }}
-          >
-            <Button
-              aria-hidden={false}
-              disabled={guides?.length > 0 ? false : true}
+          {(role === 'super_admin' ||
+            (role !== 'super_admin' && policies_perms?.[0].write)) && (
+            <Box
               sx={{
-                minWidth: '120px',
-                fontSize: '16px',
-                backgroundColor: guides?.length > 0 ? '#029894' : 'lightgray',
-                color: '#fff',
-                '&:hover': {
-                  backgroundColor: '#029894',
-                  color: '#fff',
+                mt: { xs: '-40px', md: '-85px' },
+                '@media (min-width: 900px) and (max-width: 1400px)': {
+                  mt: '-70px',
                 },
               }}
-              onClick={() => setIsOpenSaveGuide(true)}
             >
-              {SETTING?.save}
-            </Button>
-          </Box>
+              <Button
+                aria-hidden={false}
+                disabled={guides?.length > 0 ? false : true}
+                sx={{
+                  minWidth: '120px',
+                  fontSize: '16px',
+                  backgroundColor: guides?.length > 0 ? '#029894' : 'lightgray',
+                  color: '#fff',
+                  '&:hover': {
+                    backgroundColor: '#029894',
+                    color: '#fff',
+                  },
+                }}
+                onClick={() => setIsOpenSaveGuide(true)}
+              >
+                {SETTING?.save}
+              </Button>
+            </Box>
+          )}
         </Box>
       </Grid>
       {openUploadGuide && (
