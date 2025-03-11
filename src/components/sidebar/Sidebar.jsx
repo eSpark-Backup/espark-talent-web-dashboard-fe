@@ -32,7 +32,6 @@ const Sidebar = ({ userName }) => {
   const pathName = usePathname();
   const dispatch = useDispatch();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('lg'));
-  const [windowHeight, setWindowHeight] = React.useState(window.innerHeight);
   const employee = pathName.includes('/employee/dashboard');
   const { role } = useSelector((state) => state?.auth?.userData);
   const [profileMenu, setProfileMenu] = React.useState(null);
@@ -40,30 +39,8 @@ const Sidebar = ({ userName }) => {
   const [notification, setNotification] = React.useState(null);
   const router = useRouter();
 
-  React.useEffect(() => {
-    const handleResize = () => {
-      setWindowHeight(window.innerHeight);
-    };
-
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
-  const accordionStyles = {
-    paddingTop: windowHeight < 300 ? 0 : '35px',
-    paddingBottom: windowHeight < 300 ? 0 : '35px',
-  };
-
-  const {
-    employee_perms,
-    client_perms,
-    invoices_perms,
-    policies_perms,
-    guides_perms,
-  } = useSelector((state) => state?.hr?.home?.homeData) || {};
+  const { employee_perms, client_perms, invoices_perms, policies_perms, guides_perms } =
+    useSelector((state) => state?.hr?.home?.homeData) || {};
 
   const employeePerms = {
     employee_perms,
@@ -240,25 +217,31 @@ const Sidebar = ({ userName }) => {
           </Box>
         )}
         <Box
-          id={'accrodion'}
-          component={'div'}
           className="scrollbar-container"
           sx={{
-            px: '12px',
-            top: 0,
+            py: 3,
+            overflowY: 'hidden',
             height: {
               xs: 'calc(100% - 180px)',
               lg: role !== 'client' ? '100%' : 'calc(100% - 180px)',
             },
-            ...accordionStyles,
-            overflowY: 'auto',
-            position: 'relative',
           }}
         >
-          <Box>
+          <Box
+            id={'accrodion'}
+            component={'div'}
+            className="scrollbar-container"
+            sx={{
+              px: '12px',
+              top: 0,
+              overflowY: 'auto',
+              py: 0.5,
+            }}
+          >
             <SidebarAccordion sidebarLinks={renderLinks()} />
           </Box>
         </Box>
+
         <Box
           sx={{
             width: '100%',
