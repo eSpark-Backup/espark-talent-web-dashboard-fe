@@ -174,7 +174,7 @@ const EditEmergencyModal = forwardRef(
             >
               <Grid container spacing={5}>
                 {emergency_contact_form?.map(
-                  ({ contactTitle, fields, type }, contactIndex) => (
+                  ({ contactTitle, fields }, contactIndex) => (
                     <Grid item xs={12} md={5.5} lg={6} key={contactIndex}>
                       <Typography
                         sx={{
@@ -188,7 +188,7 @@ const EditEmergencyModal = forwardRef(
                       </Typography>
                       {fields?.map(
                         (
-                          { title, placeholder, suffixIconOutside, name },
+                          { title, placeholder, suffixIconOutside, name, type },
                           fieldIndex
                         ) => {
                           return (
@@ -218,6 +218,7 @@ const EditEmergencyModal = forwardRef(
                                   errors={errors}
                                   setErrors={setErrors}
                                   values={values}
+                                  type={type}
                                   xs={11}
                                   sm={11.5}
                                   md={12}

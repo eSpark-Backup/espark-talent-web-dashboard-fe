@@ -231,7 +231,7 @@ const Step = ({
                     >
                       {fields?.map(
                         (
-                          { title, placeholder, errorText, name, accept },
+                          { title, placeholder, errorText, name, accept, type },
                           fieldIndex
                         ) => (
                           <FormInput
@@ -244,6 +244,7 @@ const Step = ({
                             md={12}
                             lg={12}
                             name={name}
+                            type={type}
                             setFieldValue={setFieldValue}
                             value={values[name]}
                             error={errors[name]}

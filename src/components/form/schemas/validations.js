@@ -30,6 +30,7 @@ export const phoneValidation = Yup.string()
   )
   .min(6, 'Phone number must be at least 6 digits')
   .max(16, 'Phone number must be at most 16 digits');
+
 export const notRequiredValidation = Yup.string()
   .matches(
     phoneNumberRegExp,
@@ -37,6 +38,7 @@ export const notRequiredValidation = Yup.string()
   )
   .min(6, 'Phone number must be at least 6 digits')
   .max(16, 'Phone number must be at most 16 digits');
+
 export const emailValidation = Yup.string()
   .required('Email is required')
   .matches(emailRegExp, 'Invalid email address');

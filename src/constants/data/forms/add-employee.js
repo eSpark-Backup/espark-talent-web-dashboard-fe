@@ -112,6 +112,7 @@ export const formElementsStep2 = [
       {
         title: 'Phone number',
         placeholder: 'Enter phone number',
+        type: 'number',
         name: 'phoneNumber1',
       },
     ],
@@ -133,6 +134,7 @@ export const formElementsStep2 = [
         title: 'Phone number',
         placeholder: 'Enter phone number',
         name: 'phoneNumber2',
+        type: 'number',
       },
     ],
   },

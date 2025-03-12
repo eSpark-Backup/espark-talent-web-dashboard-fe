@@ -71,6 +71,7 @@ const form = [
     title: 'Salary',
     placeholder: 'Enter salary',
     name: 'salary',
+    type: 'number',
   },
   {
     title: 'Salary Currency',
