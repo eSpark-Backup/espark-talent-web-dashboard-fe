@@ -29,6 +29,7 @@ export const SideNav = (props) => {
         PaperProps={{
           sx: {
             width: 280,
+            minHeight: '290px',
             marginTop: role === 'client' ? '44px' : '0px',
             overflowX: 'hidden',
             overflowY: 'hidden',
@@ -60,6 +61,7 @@ export const SideNav = (props) => {
           overflowX: 'hidden',
           overflowY: 'hidden',
           width: 280,
+          minHeight: '300px',
         },
       }}
       sx={{ zIndex: (theme) => theme?.zIndex?.appBar + 100 }}
