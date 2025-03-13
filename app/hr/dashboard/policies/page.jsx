@@ -42,7 +42,21 @@ const Policies = () => {
             data !== ''
               ? data?.map((item) => ({
                   ...item,
-                  action: ['View', 'Download', 'Delete'],
+                  action: [
+                    'View',
+                    role === 'super_admin' ||
+                    (policies_perms && policies_perms[0]?.download)
+                      ? 'Download'
+                      : null,
+                    // role === 'super_admin' ||
+                    // (policies_perms && policies_perms[0]?.write)
+                    //   ? 'Edit'
+                    //   : null,
+                    role === 'super_admin' ||
+                    (policies_perms && policies_perms[0]?.delete)
+                      ? 'Delete'
+                      : null,
+                  ]?.filter(Boolean),
                   actionStatus: true,
                   employee: ['DisabledCheck', 'EnabledCheck', item.employee],
                   client: ['DisabledCheck', 'EnabledCheck', item.client],
@@ -173,12 +187,7 @@ const Policies = () => {
   const handleDeletePolicies = () => {
     deletePolicyMutation.mutate(deletingPolicyId);
   };
-  function processColumns(column) {
-    const action =
-      role === 'super_admin' ||
-      (role !== 'super_admin' && policies_perms?.[0].delete);
-    return column?.filter((item) => action || item.name !== 'action');
-  }
+
   return (
     <>
       <Grid container>
@@ -207,7 +216,7 @@ const Policies = () => {
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: { xs: 'center', md: 'center' },
-                  '@media (min-width: 600px) and (max-width: 900px)': {
+                  '@media (min-width: 600px) and (max-width: 901px)': {
                     display: 'flex',
                     alignItems: 'flex-start',
                   },
@@ -223,7 +232,7 @@ const Policies = () => {
               <Box>
                 <Button
                   sx={{
-                    minWidth: '200px',
+                    minWidth: '220px',
                     height: '40px',
                     borderColor: '#029894',
                     color: 'teal',
@@ -257,8 +266,8 @@ const Policies = () => {
             }}
           >
             <AppTable
-              column={processColumns(policyColumn)}
-              data={policies}
+              column={policyColumn}
+              data={policies || []}
               handleClickActionView={handleClickActionView}
               handleClickActionDownload={handleClickActionDownload}
               handleClickActionDelete={handleClickDelete}
@@ -278,10 +287,12 @@ const Policies = () => {
             >
               <Button
                 aria-hidden={false}
+                disabled={policies?.length > 0 ? false : true}
                 sx={{
                   minWidth: '120px',
                   fontSize: '16px',
-                  backgroundColor: '#029894',
+                  backgroundColor:
+                    policies?.length > 0 ? '#029894' : 'lightgray',
                   color: '#fff',
                   '&:hover': {
                     backgroundColor: '#029894',

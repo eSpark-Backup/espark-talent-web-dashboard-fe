@@ -51,7 +51,7 @@ const Heading = ({
           fontWeight: 400,
           color: '#595959',
           fontStyle: 'normal',
-          lineHeight: 'normal',
+          lineHeight: '25px',
           textAlign: 'center',
           '@media (min-width: 300px) and (max-width: 330px)': {
             ...commonStyles,

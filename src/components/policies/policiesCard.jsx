@@ -10,7 +10,7 @@ const PoliciesCard = ({ data, policyData, isLoading }) => {
       <Box
         sx={{
           display: 'grid',
-          maxWidth: '900px',
+          maxWidth: '850px',
           width: '100%',
           gridTemplateRows: 'repeat(2, 1fr)',
           gridTemplateColumns:
@@ -24,8 +24,8 @@ const PoliciesCard = ({ data, policyData, isLoading }) => {
             data?.length === 1
               ? { xs: 'flex-start', lg: 'center' }
               : { xs: 'flex-start', lg: 'flex-start' },
-          columnGap: 3.5,
-          rowGap: 3.5,
+          columnGap: 5.5,
+          rowGap: 5.5,
           flexWrap: 'wrap',
           mx: 'auto',
         }}

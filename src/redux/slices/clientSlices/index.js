@@ -3,6 +3,7 @@ import hiringProgressSlice from './hiringProgressSlice';
 import homeSlice from './homeSlice';
 import invoicePaymentsSlice from './invoicePaymentsSlice';
 import policiesSlice from './policiesSlice';
+import guidesSlice from './guidesSlice';
 import teamMembersSlice from './teamMembersSlice';
 import timeOffSlice from './timeOffSlice';
 import timeTrackingSlice from './timeTrackingSlice';
@@ -19,6 +20,7 @@ const persistConfig = {
     'timeTracking',
     'invoicePayments',
     'policies',
+    'guides',
     'contract',
   ],
   storage,
@@ -35,6 +37,7 @@ const clientReducer = persistReducer(
     timeTracking: timeTrackingSlice,
     invoicePayments: invoicePaymentsSlice,
     policies: policiesSlice,
+    guides: guidesSlice,
     contract: contratSignedSlice,
   })
 );

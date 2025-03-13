@@ -113,6 +113,12 @@ const Role = () => {
               delete: false,
               download: false,
             },
+            guides_perms: {
+              read: false,
+              write: false,
+              delete: false,
+              download: false,
+            },
           };
         }
       });

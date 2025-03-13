@@ -65,6 +65,12 @@ export const Client_Routes = [
     ],
   },
   {
+    icon: '/images/sidebar-icons/guide.svg',
+    text: 'Guide',
+    link: '/client/dashboard/guide',
+    sublinks: null,
+  },
+  {
     icon: '/images/sidebar-icons/administration.svg',
     text: 'Organization',
     link: '#',
@@ -131,6 +137,12 @@ export const Employee_Routes = [
     ],
   },
   {
+    icon: '/images/sidebar-icons/guide.svg',
+    text: 'Guide',
+    link: '/employee/dashboard/guide',
+    sublinks: null,
+  },
+  {
     icon: '/images/sidebar-icons/dashboard.svg',
     text: 'Benefits',
     link: '/employee/dashboard/benefits',
@@ -171,6 +183,11 @@ export const Hr_Routes = [
     icon: '/images/sidebar-icons/contract.svg',
     text: 'Contracts',
     link: '/hr/dashboard/contracts-signed',
+  },
+  {
+    icon: '/images/sidebar-icons/guide.svg',
+    text: 'Guide',
+    link: '/hr/dashboard/guide',
   },
   {
     icon: '/images/sidebar-icons/policies.svg',

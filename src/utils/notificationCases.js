@@ -71,6 +71,7 @@ const handleClientNotifications = (notification, userType) => {
     'Team Member': 'team/team-members',
     Invoice: 'payments/invoice-payments',
     Policy: 'adminstration/policies',
+    Guide: '/guide',
     'Company Contracts': 'adminstration/contracts-signed',
   };
 
@@ -108,6 +109,7 @@ const handleEmployeeNotifications = (notification, userType) => {
     Benefit: '/benefits',
     Letter: '/letters',
     Policy: 'administration/policies',
+    Guide: '/guide',
     'Company Contracts': 'administration/contracts-signed',
     'Client Contracts': 'administration/contracts-signed',
   };

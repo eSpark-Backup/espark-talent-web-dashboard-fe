@@ -39,14 +39,20 @@ const Sidebar = ({ userName }) => {
   const [notification, setNotification] = React.useState(null);
   const router = useRouter();
 
-  const { employee_perms, client_perms, invoices_perms, policies_perms } =
-    useSelector((state) => state?.hr?.home?.homeData) || {};
+  const {
+    employee_perms,
+    client_perms,
+    invoices_perms,
+    policies_perms,
+    guides_perms,
+  } = useSelector((state) => state?.hr?.home?.homeData) || {};
 
   const employeePerms = {
     employee_perms,
     client_perms,
     invoices_perms,
     policies_perms,
+    guides_perms,
   };
 
   const { error } = useQuery({
@@ -61,6 +67,7 @@ const Sidebar = ({ userName }) => {
         leaves_perms,
         client_perms,
         policies_perms,
+        guides_perms,
       } = response?.data || {};
       Cookies?.set(
         'permissions',
@@ -70,6 +77,7 @@ const Sidebar = ({ userName }) => {
           leaves_perms,
           client_perms,
           policies_perms,
+          guides_perms,
         })
       );
       return response?.data;
@@ -110,6 +118,14 @@ const Sidebar = ({ userName }) => {
 
       const policyPerms = employeePerms.policies_perms?.[0];
       if (route.text === 'Policies' && !policyPerms?.read) {
+        if (pathName?.includes(route?.link)) {
+          router?.push('/hr/dashboard');
+        }
+        return false;
+      }
+
+      const guidePerms = employeePerms.guides_perms?.[0];
+      if (route.text === 'Guide' && !guidePerms?.read) {
         if (pathName?.includes(route?.link)) {
           router?.push('/hr/dashboard');
         }

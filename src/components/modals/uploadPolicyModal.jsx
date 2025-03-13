@@ -16,12 +16,14 @@ import { UPLOAD_POLICY } from '@/src/constants/uploadPolicy';
 import { useMutation } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import { HR_POLICY } from '@/src/services/apiService/apiEndPoints';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addPolicy } from '@/src/redux/slices/hrSlices/policy';
 import { Toast } from '../Toast/Toast';
 
 const UploadPolicyModal = forwardRef(({ open, onClose }, ref) => {
   const [policyFormVal, setPolicyFormVal] = useState(null);
+  const { policies_perms } = useSelector((state) => state?.hr?.home?.homeData);
+  const { role } = useSelector((state) => state?.auth?.userData);
   const dispatch = useDispatch();
   const { mutate, isPending } = useMutation({
     mutationFn: async (formVals) => {
@@ -36,7 +38,21 @@ const UploadPolicyModal = forwardRef(({ open, onClose }, ref) => {
       dispatch(
         addPolicy({
           ...policyFormVal,
-          action: ['View', 'Download', 'Delete'],
+          action: [
+            'View',
+            role === 'super_admin' ||
+            (policies_perms && policies_perms[0]?.download)
+              ? 'Download'
+              : null,
+            // role === 'super_admin' ||
+            // (policies_perms && policies_perms[0]?.write)
+            //   ? 'Edit'
+            //   : null,
+            role === 'super_admin' ||
+            (policies_perms && policies_perms[0]?.delete)
+              ? 'Delete'
+              : null,
+          ]?.filter(Boolean),
           actionStatus: true,
           employee: ['DisabledCheck', 'EnabledCheck', false],
           client: ['DisabledCheck', 'EnabledCheck', false],
