@@ -6,7 +6,7 @@ import { useMutation } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import { Toast } from '../Toast/Toast';
 
-const DownloadPolicies = ({ image, reportHeading, downloadBtn, data }) => {
+const DownloadPolicies = ({ image, reportHeading, downloadBtn, data, id }) => {
   const { mutate, isPending } = useMutation({
     mutationFn: async (id) => {
       return api.downloadFile(`${DOWNLOAD_POLICY}?id=${id}`);
@@ -25,9 +25,11 @@ const DownloadPolicies = ({ image, reportHeading, downloadBtn, data }) => {
       Toast('error', err.message || 'File not downloaded');
     },
   });
+
   const handleDownloadPolicy = () => {
-    mutate(data?.[0]?.id);
+    mutate(id);
   };
+
   return (
     <Box
       sx={{

@@ -108,7 +108,7 @@ const PoliciesCard = ({ data, policyData, isLoading }) => {
         ) : (
           policyData?.map((item) => (
             <Box
-              key={item.id}
+              key={item?.id}
               sx={{
                 width: '100%',
                 display: 'flex',
@@ -116,9 +116,10 @@ const PoliciesCard = ({ data, policyData, isLoading }) => {
               }}
             >
               <DownloadPolicies
-                key={item.id}
+                key={item?.id}
+                id={item?.id}
                 image={'/images/policies/salary-document.svg'}
-                reportHeading={item.policy_name}
+                reportHeading={item?.policy_name}
                 downloadReports={
                   'Generate and download all your payroll reports'
                 }
