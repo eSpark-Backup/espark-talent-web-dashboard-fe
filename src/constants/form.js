@@ -2,6 +2,7 @@ export const FORM_DATA = {
   addClient: 'Add client',
   submit: 'Submit',
   add: 'Add',
+  edit: 'Save',
   onBoardingForm: 'Onboarding form',
   timeManagement: 'Time management',
   manage: 'Manage',

@@ -42,7 +42,7 @@ const ProfileCroper = ({
         selectedFile.type
       );
       setPhotoURL(url);
-      handleSubmit(file);
+      handleSubmit(file, url);
     } catch (error) {
       console.log(error);
     }

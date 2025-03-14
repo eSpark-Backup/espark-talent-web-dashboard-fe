@@ -14,6 +14,7 @@ export const SETTING = {
   roleName: ' Role name',
   save: 'Save',
   addAccount: 'Add account',
+  editAccount: 'Edit account',
   settings: 'Settings',
   companySetting: 'Company settings',
   account: 'Accounts',

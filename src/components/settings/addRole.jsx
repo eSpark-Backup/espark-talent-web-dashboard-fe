@@ -35,7 +35,7 @@ const Role = () => {
             data !== ''
               ? data?.map((item) => ({
                   ...item,
-                  action: ['Delete', 'View'],
+                  action: ['View', 'Edit', 'Delete'],
                   pic: '/images/users/Bilal.svg',
                 }))
               : [];
