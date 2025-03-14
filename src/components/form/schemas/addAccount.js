@@ -14,12 +14,22 @@ export const accountInfoSchema = Yup.object({
     .required('Image is required')
     .test(
       'fileFormat',
-      'Unsupported file format',
-      (value) =>
-        value &&
-        ['image/jpg', 'image/jpeg', 'image/png', 'image/svg']?.includes(
-          value?.type
-        )
+      'Only .jpg, .jpeg, .png, and .svg files are allowed',
+      (value) => {
+        if (!value) return false;
+
+        const validMimeTypes = [
+          'image/jpg',
+          'image/jpeg',
+          'image/png',
+          'image/svg+xml',
+        ];
+        const fileExtension = value?.name?.split('.')?.pop()?.toLowerCase();
+
+        return (
+          validMimeTypes?.includes(value?.type) && fileExtension !== 'jfif'
+        );
+      }
     ),
 });
 
@@ -33,11 +43,19 @@ export const editAccountInfoSchema = Yup.object({
     .nullable()
     .test(
       'fileFormat',
-      'Unsupported file format',
-      (value) =>
-        !value ||
-        ['image/jpg', 'image/jpeg', 'image/png', 'image/svg'].includes(
-          value?.type
-        )
+      'Only .jpg, .jpeg, .png, and .svg files are allowed',
+      (value) => {
+        if (!value) return true;
+
+        const validMimeTypes = [
+          'image/jpg',
+          'image/jpeg',
+          'image/png',
+          'image/svg+xml',
+        ];
+        const fileExtension = value?.name?.split('.').pop()?.toLowerCase();
+
+        return validMimeTypes.includes(value?.type) && fileExtension !== 'jfif';
+      }
     ),
 });
