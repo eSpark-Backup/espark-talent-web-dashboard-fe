@@ -95,7 +95,6 @@ const DownloadGuide = ({
           position: 'absolute',
           right: 30,
           top: 30,
-          textTransform: 'capitalize',
         }}
       >
         {reportLanguage}
@@ -108,7 +107,6 @@ const DownloadGuide = ({
           fontStyle: 'normal',
           fontWeight: 500,
           lineHeight: 'normal',
-          textTransform: 'capitalize',
         }}
       >
         {reportHeading}

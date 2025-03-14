@@ -31,7 +31,7 @@ const EditGuideModal = forwardRef(({ open, onClose, modalData }, ref) => {
       return api?.updateData(`${HR_GUIDE}?id=${modalData?.id}`, formData);
     },
     onSuccess: ({ data }) => {
-      Toast('success', `guide ${data?.message}`);
+      Toast('success', `${data?.message}`);
       onClose();
       queryClient.invalidateQueries(['hr-guide-query']);
     },

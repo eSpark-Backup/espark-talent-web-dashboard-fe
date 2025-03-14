@@ -183,15 +183,6 @@ a {
 .list-item-box.last-item::before {
   border-bottom-left-radius: 90px;
 }
-
-.list-item-box:hover {
-  /* background: #e6f5f4; */
-}
-
-.list-item-box:hover::before {
-  /* background-color: #068987; */
-}
-
 .custom-dropdown-item:hover {
   cursor: pointer;
   background-color: #e6f5f4;
@@ -216,7 +207,14 @@ a {
   }
 }
 
+
 .scrollbar-container {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.scrollbar-container .rolesAndPermissions {
   display: flex;
   flex-direction: column;
   gap: 15px;

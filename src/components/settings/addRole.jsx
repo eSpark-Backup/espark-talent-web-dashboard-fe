@@ -325,7 +325,7 @@ const Role = () => {
               {SETTING?.roles}
             </Typography>
             <Box
-              className="scrollbar-container"
+              className="scrollbar-container rolesAndPermissions"
               paddingBottom="20px"
               paddingLeft={'7px'}
             >
