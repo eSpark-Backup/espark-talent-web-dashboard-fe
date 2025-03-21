@@ -52,6 +52,7 @@ export const editAccountForm = [
     name: 'email',
     type: 'email',
     autocomplete: 'email',
+    disabled: true,
   },
   {
     title: 'Password',

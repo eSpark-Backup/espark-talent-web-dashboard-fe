@@ -10,7 +10,7 @@ import {
 
 import { EditInvoiceFormSchema } from '@/src/components/form/schemas/uploadInvoice';
 import FormInput from '@/src/components/form/ui-elements/FormInput';
-import { uploadInvoiceForm } from '@/src/constants/data/forms/upload-invoice';
+import { editUploadInvoiceForm } from '@/src/constants/data/forms/upload-invoice';
 import { useFormik } from 'formik';
 import { useSelector } from 'react-redux';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
@@ -160,7 +160,7 @@ const EditInvoiceModal = ({ open, onClose, title, existingData }) => {
               padding: { xs: '10px 20px', lg: '41px 100px' },
             }}
           >
-            {uploadInvoiceForm?.map(
+            {editUploadInvoiceForm?.map(
               (
                 {
                   title,
@@ -176,6 +176,7 @@ const EditInvoiceModal = ({ open, onClose, title, existingData }) => {
                   fields,
                   accept,
                   filelabel,
+                  disabled,
                 },
                 formIndex
               ) => (
@@ -206,6 +207,7 @@ const EditInvoiceModal = ({ open, onClose, title, existingData }) => {
                       lg={12}
                       fields={fields}
                       accept={accept}
+                      disabled={disabled}
                       filelabel={filelabel}
                     />
                   </Grid>

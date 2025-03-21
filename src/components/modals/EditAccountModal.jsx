@@ -168,6 +168,7 @@ const EditAccountModal = forwardRef(({ open, onClose, modalData }, ref) => {
                   fields,
                   accept,
                   filelabel,
+                  disabled,
                 },
                 formIndex
               ) => (
@@ -196,6 +197,7 @@ const EditAccountModal = forwardRef(({ open, onClose, modalData }, ref) => {
                     lg={12}
                     fields={fields}
                     accept={accept}
+                    disabled={disabled}
                     filelabel={filelabel}
                     onclickUpload={handleOpenModal}
                   />

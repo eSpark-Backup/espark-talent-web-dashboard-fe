@@ -11,7 +11,7 @@ import { useFormik } from 'formik';
 
 import { EDIT_MODAL } from '@/src/constants/employeeProfile';
 import FormInput from '../form/ui-elements/FormInput';
-import { assetForm } from '@/src/constants/data/forms/asset-form';
+import { editAssetForm } from '@/src/constants/data/forms/asset-form';
 import { assetFormSchema } from '../form/schemas/assetForm';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { HR_ADD_EMP_ASSET } from '@/src/services/apiService/apiEndPoints';
@@ -142,7 +142,7 @@ const AssetEditModal = forwardRef(
                 padding: { xs: '10px 20px', lg: '41px 60px' },
               }}
             >
-              {assetForm?.map(
+              {editAssetForm?.map(
                 (
                   {
                     title,
