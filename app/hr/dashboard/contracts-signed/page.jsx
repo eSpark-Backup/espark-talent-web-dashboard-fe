@@ -34,6 +34,9 @@ import AddContractModal from '../clients/[id]/AddContractModal';
 import EmployeeContractModal from '../clients/[id]/EmployeeContractModal';
 import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
 import dayjs from 'dayjs';
+import EditContractModal from '../clients/[id]/EditContractModal';
+import EditEmployeeContractModal from '../clients/[id]/EditEmployeeContractModal';
+import EditContractHr from '@/src/components/contractHrportal/EditContractHr';
 
 const ContractSigned = () => {
   const dispatch = useDispatch();
@@ -50,6 +53,11 @@ const ContractSigned = () => {
   );
   const [currentTab, setCurrentTab] = useState();
   const [isOpen, setIsOpen] = useState(false);
+  const [selectedId, setSelectedId] = useState(null);
+  const [showEditContractModal, setShowEditContractModal] = useState(false);
+  const [showEditEmployeeContractModal, setShowEditEmployeeContractModal] =
+    useState(false);
+  const [showEditOffshoreModal, setShowEditOffshoreModal] = useState(false);
 
   const offShoreContractSignedQuery = useQuery({
     staleTime: 10000,
@@ -66,7 +74,7 @@ const ContractSigned = () => {
                   ...item,
                   download: 'Download',
                   actionStatus: true,
-                  action: ['Delete'],
+                  action: ['View', 'Edit', 'Delete'],
                   date: dayjs(item?.date)?.format('DD-MMMM-YYYY'),
                 }))
               : [];
@@ -79,6 +87,7 @@ const ContractSigned = () => {
         });
     },
   });
+
   const conpanyContractSignedQuery = useQuery({
     staleTime: 10000,
     refetchOnWindowFocus: false,
@@ -94,7 +103,7 @@ const ContractSigned = () => {
                   ...item,
                   download: 'Download',
                   actionStatus: true,
-                  action: ['Delete'],
+                  action: ['View', 'Edit', 'Delete'],
                   date: dayjs(item?.date)?.format('DD-MMMM-YYYY'),
                 }))
               : [];
@@ -107,6 +116,7 @@ const ContractSigned = () => {
         });
     },
   });
+
   const companyContractSignedMutation = useMutation({
     mutationFn: async (status) => {
       dispatch(getClientsCompanyContractRequest());
@@ -119,7 +129,7 @@ const ContractSigned = () => {
           : data?.map((item) => ({
               ...item,
               download: 'Download',
-              action: ['Delete'],
+              action: ['View', 'Edit', 'Delete'],
               contract_doc: item.contract_doc,
               date: dayjs(item?.date)?.format('DD-MMMM-YYYY'),
             }));
@@ -146,7 +156,7 @@ const ContractSigned = () => {
               ...item,
               download: 'Download',
               actionStatus: true,
-              action: ['Delete'],
+              action: ['View', 'Edit', 'Delete'],
               date: dayjs(item?.date)?.format('DD-MMMM-YYYY'),
             }))
           : [];
@@ -175,6 +185,9 @@ const ContractSigned = () => {
   const handleCloseEmployeeContratcModal = () => {
     setIsOpenEmployeeContractModal(false);
   };
+  const handleCloseEditEmployeeContratcModal = () => {
+    setShowEditEmployeeContractModal(false);
+  };
   const handleNestedChange = (event, newValue) => {
     setNestedValue(newValue);
     if (newValue === 0) {
@@ -191,6 +204,10 @@ const ContractSigned = () => {
   const handleCloseContractModal = () => {
     setIsOpenContractModal(false);
   };
+  const handleCloseOffshoreContractModal = () => {
+    setShowEditOffshoreModal(false);
+  };
+
   const { mutate, isPending } = useMutation({
     mutationFn: async (id) => {
       let url = `${HR_COMPANY_CONTRACTS}?status=clients&id=${id}`;
@@ -258,6 +275,87 @@ const ContractSigned = () => {
   const downloadContract = (id) => {
     downloadContractMutation.mutate(id);
   };
+
+  const handleEdit = (row) => {
+    const { client_id, employee_id } = row?.row || {};
+    if (client_id) {
+      setShowEditContractModal(true);
+      setSelectedId(row?.row);
+    }
+    if (employee_id) {
+      setShowEditEmployeeContractModal(true);
+      setSelectedId(row?.row);
+    } else {
+      null;
+    }
+  };
+
+  const handleView = ({ row }) => {
+    const { id, client_id, employee_id } = row || {};
+
+    if (client_id && employee_id) {
+      viewOffShoreContract?.mutate({ id });
+    } else if (client_id) {
+      viewClientContract?.mutate({ id, tab: 'client' });
+    } else if (employee_id) {
+      viewEmployeeContract?.mutate({ id, tab: 'employee' });
+    }
+  };
+
+  const handleCloseEditContractModal = () => {
+    setShowEditContractModal(false);
+  };
+
+  const handleEditOffshoreModal = (row) => {
+    setShowEditOffshoreModal(true);
+    setSelectedId(row?.row);
+  };
+
+  const viewClientContract = useMutation({
+    mutationFn: async ({ id, tab }) => {
+      return api.downloadFile(`${DOWNLOAD_COMP_CONTRACT}?id=${id}&tab=${tab}`);
+    },
+    onSuccess: ({ data }) => {
+      const url = window?.URL?.createObjectURL(
+        new Blob([data], { type: 'application/pdf' })
+      );
+      window?.open(url, '_blank');
+    },
+    onError: (err) => {
+      Toast('error', err.message || 'File not downloaded');
+    },
+  });
+
+  const viewEmployeeContract = useMutation({
+    mutationFn: async ({ id, tab }) => {
+      return api.downloadFile(`${DOWNLOAD_COMP_CONTRACT}?id=${id}&tab=${tab}`);
+    },
+    onSuccess: ({ data }) => {
+      const url = window?.URL?.createObjectURL(
+        new Blob([data], { type: 'application/pdf' })
+      );
+      window?.open(url, '_blank');
+    },
+    onError: (err) => {
+      Toast('error', err.message || 'File not downloaded');
+    },
+  });
+
+  const viewOffShoreContract = useMutation({
+    mutationFn: async ({ id }) => {
+      return api.downloadFile(`${DOWNLOAD_OFFSHORE_CONTRACT}?id=${id}`);
+    },
+    onSuccess: ({ data }) => {
+      const url = window?.URL?.createObjectURL(
+        new Blob([data], { type: 'application/pdf' })
+      );
+      window?.open(url, '_blank');
+    },
+    onError: (err) => {
+      Toast('error', err.message || 'File not downloaded');
+    },
+  });
+
   return (
     <>
       <Grid container>
@@ -406,7 +504,7 @@ const ContractSigned = () => {
                         !conpanyContractSignedQuery.isLoading && (
                           <AppTable
                             currentTab={currentTab}
-                            column={tab.nested[nestedValue].columns}
+                            column={tab?.nested[nestedValue]?.columns}
                             data={
                               nestedValue === 0
                                 ? companyContract.clients
@@ -417,6 +515,8 @@ const ContractSigned = () => {
                             tableRowClass="app-table-row-contract"
                             isLoading={conpanyContractSignedQuery.isLoading}
                             handleClickDownload={downloadContract}
+                            handleClickActionEdit={handleEdit}
+                            handleClickActionView={handleView}
                           />
                         )}
                       {value !== 0 &&
@@ -430,6 +530,8 @@ const ContractSigned = () => {
                             tableRowClass="app-table-row-contract"
                             isLoading={offShoreContractSignedQuery.isLoading}
                             handleClickDownload={downloadContract}
+                            handleClickActionEdit={handleEditOffshoreModal}
+                            handleClickActionView={handleView}
                           />
                         )}
                     </Box>
@@ -440,6 +542,7 @@ const ContractSigned = () => {
           </Box>
         </Box>
       </Grid>
+
       <AppConfirmationMadal
         title={CONTRACT_SIGNED?.delete}
         bodyText={CONTRACT_SIGNED?.warning}
@@ -458,15 +561,33 @@ const ContractSigned = () => {
         open={isOpenAddContractModal}
         onClose={handleCloseAddContratcModal}
       />
+      <EditContractModal
+        open={showEditContractModal}
+        onClose={handleCloseEditContractModal}
+        modalData={selectedId}
+      />
+
       <EmployeeContractModal
         open={isOpenEmployeeContractModal}
         onClose={handleCloseEmployeeContratcModal}
       />
+      <EditEmployeeContractModal
+        open={showEditEmployeeContractModal}
+        onClose={handleCloseEditEmployeeContratcModal}
+        modalData={selectedId}
+      />
+
       <AddContractHrPortalModal
         open={isOpenContractModal}
         onClose={handleCloseContractModal}
         endPoint={HR_OFF_SHORE_CONTRACTS}
         currentTab={value}
+      />
+      <EditContractHr
+        open={showEditOffshoreModal}
+        onClose={handleCloseOffshoreContractModal}
+        currentTab={value}
+        modalData={selectedId}
       />
     </>
   );

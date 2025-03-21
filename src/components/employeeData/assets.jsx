@@ -21,8 +21,11 @@ import {
 } from '@/src/redux/slices/hrSlices/employeeSlice';
 import { Toast } from '../Toast/Toast';
 import dayjs from 'dayjs';
+import AssetEditModal from './assetEditModal';
 
-const Assets = () => {
+const Assets = ({ empData }) => {
+  const [editModalOpen, setEditModalOpen] = useState(null);
+  const [editModalData, setEditModalData] = useState(null);
   const { employee_perms } = useSelector((state) => state?.hr?.home?.homeData);
   const { role } = useSelector((state) => state?.auth?.userData);
   const [deletingAssetId, setDeletingAssetId] = useState(null);
@@ -47,7 +50,7 @@ const Assets = () => {
   const { isLoading } = useQuery({
     staleTime: 10000,
     refetchOnWindowFocus: false,
-    queryKey: ['hr-employee-get-asset', params?.id],
+    queryKey: ['hr-employee-get-asset', params?.id, empData?.email],
     queryFn: async () => {
       dispatch(getEmpAssetRequest());
       return api
@@ -60,7 +63,16 @@ const Assets = () => {
                   'MMMM D, YYYY'
                 ),
                 assignee: [item?.assignee_name, item?.assignee_email],
-                action: ['Delete'],
+                action: [
+                  role === 'super_admin' ||
+                  (employee_perms && employee_perms[0]?.delete)
+                    ? 'Delete'
+                    : null,
+                  role === 'super_admin' ||
+                  (employee_perms && employee_perms[0]?.write)
+                    ? 'Edit'
+                    : null,
+                ]?.filter(Boolean),
               }))
             : [];
           dispatch(getEmpAssetRequestSuccess(tempAssets));
@@ -77,7 +89,17 @@ const Assets = () => {
     setDeletingAssetId(b?.id);
     setIsOpen(true);
   };
-  const handleClose = () => setIsOpen(false);
+
+  const handleClickEdit = ({ row }) => {
+    setEditModalOpen(true);
+    setEditModalData(row);
+    console.log({ row }, empData?.email);
+  };
+
+  const handleClose = () => {
+    setIsOpen(false);
+    setEditModalOpen(false);
+  };
   const handleDelete = () => {
     mutate(deletingAssetId);
   };
@@ -105,8 +127,9 @@ const Assets = () => {
         <AppTable
           minWidth={'1200px'}
           column={processColumns()}
-          data={assets}
+          data={assets || []}
           handleClickActionDelete={handleClickDelete}
+          handleClickActionEdit={handleClickEdit}
           isLoading={isLoading}
         />
       </Box>
@@ -121,6 +144,14 @@ const Assets = () => {
         handleConfirm={handleDelete}
         isLoading={isPending}
       />
+      {editModalOpen && (
+        <AssetEditModal
+          open={editModalOpen}
+          onClose={handleClose}
+          modalData={editModalData}
+          empData={empData}
+        />
+      )}
     </>
   );
 };

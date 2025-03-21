@@ -41,11 +41,20 @@ const UploadOtherInvoiceModal = ({ open, onClose, title }) => {
         addOthInvoice({
           data: {
             ...othInvoiceFormValues,
-            action:
+            action: [
               role === 'super_admin' ||
-              (role !== 'super_admin' && invoices_perms?.[0]?.write)
-                ? ['Delete']
-                : ['-'],
+              (invoices_perms && invoices_perms[0]?.read)
+                ? 'View'
+                : null,
+              role === 'super_admin' ||
+              (invoices_perms && invoices_perms[0]?.delete)
+                ? 'Delete'
+                : null,
+              role === 'super_admin' ||
+              (invoices_perms && invoices_perms[0]?.write)
+                ? 'Edit'
+                : null,
+            ]?.filter(Boolean),
             id: data.id,
             invoice: data?.invoice,
             download: 'Download',
@@ -124,7 +133,7 @@ const UploadOtherInvoiceModal = ({ open, onClose, title }) => {
           boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
           maxHeight: '90%',
           overflow: 'auto',
-          scrollbarWidth: 'thin',
+          scrollbarWidth: 'none',
           scrollbarColor: 'transparent transparent',
           '&::-webkit-scrollbar': {
             display: 'none',
@@ -142,8 +151,9 @@ const UploadOtherInvoiceModal = ({ open, onClose, title }) => {
         >
           <Typography
             sx={{
-              fontSize: '25px',
+              fontSize: { xs: '18px', sm: '20px', md: '22px', lg: '25px' },
               fontWeight: 600,
+              mx: '10px',
             }}
           >
             {title || 'Other invoice form'}
@@ -155,9 +165,10 @@ const UploadOtherInvoiceModal = ({ open, onClose, title }) => {
               alignItems: 'center',
               border: '1px solid #068987',
               borderRadius: '50%',
-              width: '25px',
-              height: '25px',
+              width: { xs: '20px', sm: '25px' },
+              height: { xs: '20px', sm: '25px' },
               cursor: 'pointer',
+              p: 0.5,
             }}
             onClick={handleCloseModal}
           >

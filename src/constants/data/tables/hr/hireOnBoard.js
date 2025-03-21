@@ -48,52 +48,52 @@ export const interviewScheduleColumn = [
 export const hiringRequestColumn = [
   {
     title: 'Job title',
-    flex: 2,
+    flex: 3,
     name: 'job_title',
   },
   {
     title: 'Role type',
-    flex: 1,
+    flex: 2,
     name: 'role_type',
   },
   {
     title: 'Gender',
-    flex: 1,
+    flex: 2,
     name: 'gender',
   },
   {
     title: 'Employment term',
-    flex: 1.5,
+    flex: 3,
     name: 'employment_term',
   },
   {
     title: 'Hiring starting date',
-    flex: 2,
+    flex: 3,
     name: 'hiring_start_date',
   },
   {
     title: 'Hiring ending date',
-    flex: 1.5,
+    flex: 3,
     name: 'hiring_end_date',
   },
   {
     title: 'Salary range',
-    flex: 1.5,
+    flex: 3,
     name: 'salary_range',
   },
   {
     title: 'Job_description',
-    flex: 1.5,
+    flex: 3,
     name: 'job_description',
   },
   {
     title: 'Comments',
-    flex: 1,
+    flex: 2.5,
     name: 'comments',
   },
   {
     title: 'Action',
-    flex: 1,
+    flex: 2.5,
     name: 'action',
   },
 ];

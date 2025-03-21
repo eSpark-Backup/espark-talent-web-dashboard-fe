@@ -14,16 +14,19 @@ import { accountInfoSchema } from '../form/schemas/addAccount';
 import { accountForm } from '@/src/constants/data/forms/add-account';
 import { SETTING } from '@/src/constants/SettingHr';
 import { FORM_DATA } from '@/src/constants/form';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import { HR_ACCOUNTS } from '@/src/services/apiService/apiEndPoints';
 import { Toast } from '../Toast/Toast';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addAccount } from '@/src/redux/slices/hrSlices/settingsSlice';
+import UploadImageModal from '../employeeData/UploadImageModal';
 
 const AddAccountModal = forwardRef(({ open, onClose }, ref) => {
   const [accountFormValues, setAccountFormValues] = useState(null);
+  const [showEditModal, setEditModal] = useState(false);
+  const queryClient = useQueryClient();
   const dispatch = useDispatch();
   const { mutate, isPending } = useMutation({
     mutationFn: async (formVals) => {
@@ -37,7 +40,7 @@ const AddAccountModal = forwardRef(({ open, onClose }, ref) => {
       dispatch(
         addAccount({
           ...accountFormValues,
-          action: ['Delete', 'View'],
+          action: ['View', 'Edit', 'Delete'],
           image: data?.image,
           id: data?.id,
         })
@@ -45,6 +48,7 @@ const AddAccountModal = forwardRef(({ open, onClose }, ref) => {
       setAccountFormValues(null);
       handleCloseModal();
       Toast('success', 'Data posted successfully');
+      queryClient?.invalidateQueries(['get-company-accounts']);
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to post data');
@@ -79,6 +83,15 @@ const AddAccountModal = forwardRef(({ open, onClose }, ref) => {
     handleReset();
     onClose();
   };
+
+  const handleOpenModal = () => {
+    setEditModal(true);
+  };
+
+  const handlePictureModalClose = () => {
+    setEditModal(false);
+  };
+
   return (
     <Modal
       ref={ref}
@@ -195,6 +208,7 @@ const AddAccountModal = forwardRef(({ open, onClose }, ref) => {
                     fields={fields}
                     accept={accept}
                     filelabel={filelabel}
+                    onclickUpload={handleOpenModal}
                   />
                 </Grid>
               )
@@ -215,6 +229,16 @@ const AddAccountModal = forwardRef(({ open, onClose }, ref) => {
             </Grid>
           </Grid>
         </form>
+        {showEditModal && (
+          <UploadImageModal
+            open={showEditModal}
+            onClose={handlePictureModalClose}
+            currentImage={values?.image || null}
+            setFieldValue={setFieldValue}
+            errors={errors}
+            setErrors={setErrors}
+          />
+        )}
       </Box>
     </Modal>
   );

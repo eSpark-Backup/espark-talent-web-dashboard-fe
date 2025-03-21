@@ -45,11 +45,17 @@ const HiringRequestModal = ({ open, onClose }) => {
           salary_range: `${hiringValues?.salary_range?.minimum} ${hasSymbol(symbol) ? symbol : ''} - ${hiringValues?.salary_range?.maximum} ${hasSymbol(symbol) ? symbol : ''}`,
           id: data.id,
           gender: genderType(hiringValues?.gender),
-          action:
-            role === 'super_admin' ||
-            (role !== 'super_admin' && client_perms?.[0]?.write)
-              ? ['Delete']
-              : ['-'],
+          action: [
+            role === 'super_admin' || (client_perms && client_perms[0]?.read)
+              ? 'View'
+              : null,
+            role === 'super_admin' || (client_perms && client_perms[0]?.delete)
+              ? 'Delete'
+              : null,
+            role === 'super_admin' || (client_perms && client_perms[0]?.write)
+              ? 'Edit'
+              : null,
+          ]?.filter(Boolean),
         })
       );
       handleCloseModal();
@@ -139,7 +145,7 @@ const HiringRequestModal = ({ open, onClose }) => {
           boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
           maxHeight: '90%',
           overflow: 'auto',
-          scrollbarWidth: 'thin',
+          scrollbarWidth: 'none',
           scrollbarColor: 'transparent transparent',
           '&::-webkit-scrollbar': {
             display: 'none',
@@ -157,12 +163,12 @@ const HiringRequestModal = ({ open, onClose }) => {
         >
           <Typography
             sx={{
-              fontSize: { xs: '20px', sm: '23px', md: '25px' },
+              fontSize: { xs: '18px', sm: '20px', md: '22px', lg: '25px' },
               fontWeight: 600,
-              ml: '10px',
+              mx: '10px',
             }}
           >
-            Hiring request form
+            Hiring request
           </Typography>
           <Box
             sx={{
@@ -171,9 +177,10 @@ const HiringRequestModal = ({ open, onClose }) => {
               alignItems: 'center',
               border: '1px solid #068987',
               borderRadius: '50%',
-              width: '25px',
-              height: '25px',
+              width: { xs: '20px', sm: '25px' },
+              height: { xs: '20px', sm: '25px' },
               cursor: 'pointer',
+              p: 0.5,
             }}
             onClick={handleCloseModal}
           >

@@ -33,10 +33,10 @@ const AssetForm = forwardRef(({ onClose, open, empData }, ref) => {
         id: data?.id,
         assigned_date: dayjs(values?.assigned_date)?.format('MMMM D, YYYY'),
         assignee: [values?.assignee_name, values?.assignee_email],
-        action: ['Delete'],
+        action: ['Delete', 'Edit'],
       };
       dispatch(addEmpAsset(reformedData));
-      Toast('success', 'Data posted successfully');
+      Toast('success', `${data?.message}`);
       onClose();
     },
     onError: (err) => {

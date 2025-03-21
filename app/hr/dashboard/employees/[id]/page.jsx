@@ -937,7 +937,7 @@ const Page = () => {
               ) : value === employeeProfileData?.valueFive ? (
                 <TimeAndLeaves />
               ) : value === employeeProfileData?.valueFour ? (
-                <Assets />
+                <Assets empData={currentEmployee} />
               ) : value === employeeProfileData?.valueSix ? (
                 <Benefits />
               ) : value === employeeProfileData?.valueSeven ? (

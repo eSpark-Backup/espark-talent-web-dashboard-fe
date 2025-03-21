@@ -4,8 +4,10 @@ export const CONTRACT_SIGNED = {
   cancel: 'Cancel',
   addContract: 'Add contract',
   teamContract: 'Visualise team details & manage members',
-  contractForm: 'Contract form',
+  contractForm: 'Contract',
+  contractEditForm: 'Edit contract',
   submit: 'Submit',
+  edit: 'Save',
 };
 
 export const REMOVE_MODAL = {

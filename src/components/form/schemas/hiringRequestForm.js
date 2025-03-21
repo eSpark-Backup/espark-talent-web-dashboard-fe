@@ -27,8 +27,8 @@ export const hiringRequestSchema = Yup.object({
     })
     .required('Salary range is required'),
   employment_term: Yup.string().required('Employement term is required'),
-  hiring_start_date: Yup.string().required('Hiring start date is required'),
-  hiring_end_date: Yup.string()
+  hiring_start_date: Yup.date().required('Hiring start date is required'),
+  hiring_end_date: Yup.date()
     .required('Hiring end date is required')
     .test(
       'is-greater',
@@ -59,6 +59,75 @@ export const hiringRequestSchema = Yup.object({
       'comments cannot be just spaces',
       (value) => !value || value.trim().length > 0
     )
-    .min(5, 'comments should be at least 5 characters long')
-    .max(500, 'comments cannot exceed 500 characters'),
+    .min(2, 'comments should be at least 5 characters long')
+    .max(255, 'comments cannot exceed 255 characters'),
+});
+
+export const editHiringRequestSchema = Yup.object({
+  job_title: Yup.string()
+    .required('Job title is required')
+    .min(3, 'Job title must be at least 3 characters long') // Minimum length
+    .max(30, 'Job title cannot exceed 30 characters'), // Maximum length
+  role_type: Yup.string().required('Role type is required'),
+  gender: Yup.string().required('Gender is required'),
+  country: Yup.object().required('Country is required'),
+  salary_currency: Yup.string().required('Currency is required'),
+  salary_range: Yup.object()
+    .shape({
+      minimum: Yup.number()
+        .required('Min range is required')
+        .min(0, 'Minimum value must be greater than or equal to 0'),
+      maximum: Yup.number().when('minimum', (minimum, schema) =>
+        minimum
+          ? schema
+              .required('Max range is required')
+              .min(
+                minimum,
+                'Maximum value must not be less than the minimum value'
+              )
+          : schema
+      ),
+    })
+    .required('Salary range is required'),
+  employment_term: Yup.string().required('Employement term is required'),
+  hiring_start_date: Yup.date().required('Hiring start date is required'),
+  hiring_end_date: Yup.date()
+    .required('Hiring end date is required')
+    .test(
+      'is-greater',
+      'End date must be greater than start date',
+      function (endDate) {
+        const { hiring_start_date } = this.parent;
+        if (!hiring_start_date || !endDate) return true;
+        return new Date(endDate) >= new Date(hiring_start_date);
+      }
+    ),
+  job_description: Yup.mixed()
+    .nullable()
+    .test('fileType', 'Only PDF files are allowed', (value) => {
+      if (!value) return true;
+      return value.type === 'application/pdf';
+    })
+    .test('fileSize', 'File size must be less than 5MB', (value) => {
+      if (!value) return true;
+      return value.size <= 5 * 1024 * 1024; // ✅ Convert 5MB to bytes
+    })
+    .test(
+      'fileNameLength',
+      'File name must be at most 100 characters',
+      (value) => {
+        if (!value) return true;
+        return value.name.length <= 100;
+      }
+    ),
+  comments: Yup.string()
+    .nullable()
+    .notRequired()
+    .test(
+      'is-not-just-spaces',
+      'comments cannot be just spaces',
+      (value) => !value || value.trim().length > 0
+    )
+    .min(2, 'comments should be at least 5 characters long')
+    .max(255, 'comments cannot exceed 255 characters'),
 });

@@ -24,6 +24,7 @@ import {
   updatePolicyValue,
 } from '@/src/redux/slices/hrSlices/policy';
 import { useDispatch, useSelector } from 'react-redux';
+import EditPolicyModal from '@/src/components/modals/EditPolicyModal';
 
 const Policies = () => {
   const dispatch = useDispatch();
@@ -48,10 +49,10 @@ const Policies = () => {
                     (policies_perms && policies_perms[0]?.download)
                       ? 'Download'
                       : null,
-                    // role === 'super_admin' ||
-                    // (policies_perms && policies_perms[0]?.write)
-                    //   ? 'Edit'
-                    //   : null,
+                    role === 'super_admin' ||
+                    (policies_perms && policies_perms[0]?.write)
+                      ? 'Edit'
+                      : null,
                     role === 'super_admin' ||
                     (policies_perms && policies_perms[0]?.delete)
                       ? 'Delete'
@@ -102,6 +103,8 @@ const Policies = () => {
     },
   });
   const [openUploadPolicy, setOpenUploadPolicy] = useState(false);
+  const [openEditUploadGuide, setOpenEditUploadGuide] = useState(false);
+  const [editModalData, setEditModalData] = useState({});
   const [deletingPolicyId, setDeletingPolicyId] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenSavePolicies, setIsOpenSavePolicies] = useState(false);
@@ -169,11 +172,18 @@ const Policies = () => {
     setDeletingPolicyId(id);
     setIsOpen(true);
   };
+
+  const handleClickActionEdit = ({ row }) => {
+    setOpenEditUploadGuide(true);
+    setEditModalData(row);
+  };
+
   const handleOpenModal = () => {
     setOpenUploadPolicy(true);
   };
   const handleClose = () => {
     setOpenUploadPolicy(false);
+    setOpenEditUploadGuide(false);
     setIsOpen(false);
   };
   const handleSavePolicies = () => {
@@ -268,6 +278,7 @@ const Policies = () => {
             <AppTable
               column={policyColumn}
               data={policies || []}
+              handleClickActionEdit={handleClickActionEdit}
               handleClickActionView={handleClickActionView}
               handleClickActionDownload={handleClickActionDownload}
               handleClickActionDelete={handleClickDelete}
@@ -309,6 +320,13 @@ const Policies = () => {
       </Grid>
       {openUploadPolicy && (
         <UploadPolicyModal open={openUploadPolicy} onClose={handleClose} />
+      )}
+      {openEditUploadGuide && (
+        <EditPolicyModal
+          open={openEditUploadGuide}
+          onClose={handleClose}
+          modalData={editModalData}
+        />
       )}
       <AppConfirmationMadal
         title={CONTRACT_SIGNED?.delete}

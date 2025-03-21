@@ -630,7 +630,7 @@ const FormInput = ({
                         e?.target?.value
                       );
                     }}
-                    value={values[`${name}.${field.name}`]}
+                    value={values?.[name]?.[field.name] || ''}
                   />
                   {field.suffixIcon && (
                     <Box

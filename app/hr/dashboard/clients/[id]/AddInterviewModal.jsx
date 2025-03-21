@@ -23,7 +23,9 @@ import { useDispatch, useSelector } from 'react-redux';
 
 const AddInterviewModal = ({ open, onClose }) => {
   const dispatch = useDispatch();
+  const { role } = useSelector((state) => state?.auth?.userData);
   const { email } = useSelector((state) => state?.hr?.clients?.currentClient);
+  const { client_perms } = useSelector((state) => state?.hr?.home?.homeData);
   const [interviewFormValues, setInterviewFormValues] = useState(null);
   const { mutate, isPending } = useMutation({
     mutationFn: async (formVals) => {
@@ -35,7 +37,14 @@ const AddInterviewModal = ({ open, onClose }) => {
           ...interviewFormValues,
           id: data.id,
           status: 'pending',
-          action: ['Delete'],
+          action: [
+            role === 'super_admin' || (client_perms && client_perms[0]?.delete)
+              ? 'Delete'
+              : null,
+            role === 'super_admin' || (client_perms && client_perms[0]?.write)
+              ? 'Edit'
+              : null,
+          ]?.filter(Boolean),
         })
       );
       setInterviewFormValues(null);
@@ -65,9 +74,9 @@ const AddInterviewModal = ({ open, onClose }) => {
         gender:
           formValues?.gender == 'Not specific' ? 'nonspec' : formValues?.gender,
         country: formValues?.country.title,
-        interview_date_time: dayjs(formValues.hiring_start_date).format(
-          'YYYY-MM-DDTHH:mm:ss.SSS[Z]'
-        ),
+        interview_date_time: dayjs(
+          formValues?.interview_date_time
+        )?.toISOString(),
         client_id: email,
       };
       setInterviewFormValues(finalData);
@@ -106,7 +115,7 @@ const AddInterviewModal = ({ open, onClose }) => {
           boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
           maxHeight: '90%',
           overflow: 'auto',
-          scrollbarWidth: 'thin',
+          scrollbarWidth: 'none',
           scrollbarColor: 'transparent transparent',
           '&::-webkit-scrollbar': {
             display: 'none',
@@ -124,8 +133,9 @@ const AddInterviewModal = ({ open, onClose }) => {
         >
           <Typography
             sx={{
-              fontSize: '25px',
+              fontSize: { xs: '18px', sm: '20px', md: '22px', lg: '25px' },
               fontWeight: 600,
+              mx: '10px',
             }}
           >
             Interview schedule form
@@ -137,13 +147,14 @@ const AddInterviewModal = ({ open, onClose }) => {
               alignItems: 'center',
               border: '1px solid #068987',
               borderRadius: '50%',
-              width: '25px',
-              height: '25px',
+              width: { xs: '20px', sm: '25px' },
+              height: { xs: '20px', sm: '25px' },
               cursor: 'pointer',
+              p: 0.5,
             }}
             onClick={handleCloseModal}
           >
-            <Box component="img" src="/icons/Close.svg" sx={{}} />
+            <Box component="img" src="/icons/Close.svg" />
           </Box>
         </Box>
         <form onSubmit={handleSubmit}>

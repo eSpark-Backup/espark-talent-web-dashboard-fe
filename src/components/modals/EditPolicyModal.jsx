@@ -13,41 +13,27 @@ import { useFormik } from 'formik';
 import { editUploadPolicyFormSchema } from '../form/schemas/uploadPolicy';
 import { uploadPolicyForm } from '@/src/constants/data/forms/upload-policy';
 import { UPLOAD_POLICY } from '@/src/constants/uploadPolicy';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
-import { HR_POLICY_EDIT } from '@/src/services/apiService/apiEndPoints';
-// import { useDispatch } from 'react-redux';
-// import { addPolicy } from '@/src/redux/slices/hrSlices/policy';
+import { HR_POLICY } from '@/src/services/apiService/apiEndPoints';
 import { Toast } from '../Toast/Toast';
 
 const EditPolicyModal = forwardRef(({ open, onClose, modalData }, ref) => {
   const [policyFormVal, setPolicyFormVal] = useState(null);
-  //   const dispatch = useDispatch();
+  const queryClient = useQueryClient();
   const { mutate, isPending } = useMutation({
     mutationFn: async (formVals) => {
       const formData = new FormData();
       for (const key in formVals) {
         formData?.append(key, formVals[key]);
       }
-      return api.updateData(HR_POLICY_EDIT, formData);
+      return api?.updateData(`${HR_POLICY}?id=${modalData?.id}`, formData);
     },
     onSuccess: ({ data }) => {
-      Toast('success', 'Policy posted successfully');
+      Toast('success', `${data?.message}`);
       console.log(policyFormVal, data);
-      //   dispatch(
-      //     addPolicy({
-      //       ...policyFormVal,
-      //       action: ['Delete'],
-      //       actionStatus: true,
-      //       employee: ['DisabledCheck', 'EnabledCheck', false],
-      //       client: ['DisabledCheck', 'EnabledCheck', false],
-      //       isSelected: false,
-      //       isModulePermissionData: true,
-      //       isPolicyData: true,
-      //       id: data.id,
-      //     })
-      //   );
       onClose();
+      queryClient.invalidateQueries(['hr-policy-query']);
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to post data');
@@ -138,7 +124,7 @@ const EditPolicyModal = forwardRef(({ open, onClose, modalData }, ref) => {
               cursor: 'pointer',
               marginRight: '8px',
             }}
-            onClick={handleCloseModal}
+            onClick={onClose}
           >
             <Box component="img" src="/icons/Close.svg" />
           </Box>

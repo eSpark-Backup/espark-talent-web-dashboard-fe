@@ -10,7 +10,7 @@ export const credentialForm = [
     title: 'Password',
     name: 'passwordCredential',
     suffixIconInside: 'copyClipboard',
-    type: 'password',
+    type: 'text',
     autoComplete: 'current-password',
   },
 ];

@@ -35,9 +35,9 @@ const StartHiringForm = () => {
     setErrors,
   } = useFormik({
     initialValues: {
-      hiringStartDate: null,
-      hiringEndDate: null,
-      comments: null,
+      hiringStartDate: '',
+      hiringEndDate: '',
+      comments: '',
       job_description: null,
     },
     validationSchema: hiringFormSchema,
@@ -51,7 +51,7 @@ const StartHiringForm = () => {
             ? 'nonspec'
             : formValues?.gender,
         employment_term: formValues?.employmentTerm,
-        comments: formValues?.comments || null,
+        comments: formValues?.comments || '',
         job_description: formValues?.job_description,
         salary_range: JSON?.stringify({
           minimum: formValues?.salary_range?.minimum,
@@ -76,7 +76,7 @@ const StartHiringForm = () => {
       gender: vals?.gender === 'Not specific' ? 'nonspec' : vals?.gender,
       employment_term: vals?.employmentTerm,
       job_description: vals?.job_description,
-      comments: vals?.comments || null,
+      comments: vals?.comments || '',
       country: vals?.country?.title,
       salary_range: {
         minimum: vals?.salary_range?.minimum,

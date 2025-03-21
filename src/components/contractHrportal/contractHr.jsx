@@ -13,7 +13,7 @@ import { OffShContractFormHrPortalSchema } from '../form/schemas/contractSignedF
 import { contractFormHrPortal } from '@/src/constants/data/forms/contract';
 import FormInput from '../form/ui-elements/FormInput';
 import { CONTRACT_SIGNED } from '@/src/constants/contractSigned';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { addOffShoreContract } from '@/src/redux/slices/hrSlices/contractSlice';
 import { useDispatch } from 'react-redux';
 import { api } from '@/src/services/apiService';
@@ -23,6 +23,7 @@ import { Toast } from '../Toast/Toast';
 const AddContractHrPortalModal = ({ open, onClose, endPoint }) => {
   const [contractFormValues, setContractFormValues] = useState({});
   const dispatch = useDispatch();
+  const queryClient = useQueryClient();
   const { mutate, isPending } = useMutation({
     mutationFn: async (formVals) => {
       const url = endPoint;
@@ -46,9 +47,9 @@ const AddContractHrPortalModal = ({ open, onClose, endPoint }) => {
       );
       handleCloseModal();
       setContractFormValues(null);
+      queryClient?.invalidateQueries(['off-shore-contract-signed-query']);
     },
     onError: (err) => {
-      console.log(err, 'errcheck');
       Toast('error', err?.response?.data?.error || 'Failed to post data');
     },
   });
@@ -78,6 +79,7 @@ const AddContractHrPortalModal = ({ open, onClose, endPoint }) => {
     validateOnChange: false,
     validateOnBlur: false,
   });
+
   const handleCloseModal = () => {
     handleReset();
     onClose();
@@ -110,7 +112,7 @@ const AddContractHrPortalModal = ({ open, onClose, endPoint }) => {
           height: 'auto',
           maxHeight: '90%',
           overflowY: 'auto',
-          scrollbarWidth: 'thin',
+          scrollbarWidth: 'none',
           scrollbarColor: 'transparent transparent',
           '&::-webkit-scrollbar': {
             display: 'none',
@@ -128,9 +130,9 @@ const AddContractHrPortalModal = ({ open, onClose, endPoint }) => {
         >
           <Typography
             sx={{
-              fontSize: '25px',
+              fontSize: { xs: '18px', sm: '20px', md: '22px', lg: '25px' },
               fontWeight: 600,
-              px: '10px',
+              mx: '10px',
             }}
           >
             {CONTRACT_SIGNED?.contractForm}
@@ -142,9 +144,10 @@ const AddContractHrPortalModal = ({ open, onClose, endPoint }) => {
               alignItems: 'center',
               border: '1px solid #068987',
               borderRadius: '50%',
-              width: '25px',
-              height: '25px',
+              width: { xs: '20px', sm: '25px' },
+              height: { xs: '20px', sm: '25px' },
               cursor: 'pointer',
+              p: 0.5,
             }}
             onClick={handleCloseModal}
           >

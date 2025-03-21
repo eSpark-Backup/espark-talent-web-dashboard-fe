@@ -8,7 +8,6 @@ import { renderTable } from './renderComponents';
 import { filterTableRowsWRTTab } from '@/src/utils/table';
 import { useParams } from 'next/navigation';
 import HiringRequestModal from './HiringRequestModal';
-import AddContractModal from './AddContractModal';
 import UploadInvoiceModal from './UploadInvoiceModal';
 import AddEmployeeModal from './AddEmployeeModal';
 import AddInterviewModal from './AddInterviewModal';
@@ -73,10 +72,16 @@ import { genderType } from '@/src/utils/genderType';
 import { clientProfileTabsHandler } from '@/src/utils/clientProfileTabHandler';
 import { getTimeSheetDataFailed } from '@/src/redux/slices/employeeSlices/timeSheetSlice';
 import { formatSalary } from '@/src/utils/salaryFormat';
+import EditHiringRequestModal from './EditHiringRequestModal';
+import EditInterviewModal from './EditInterviewModal';
+import EditOnboardModal from './EditOnboardModal';
+import EditInvoiceModal from './EditInvoiceModal';
+import EditOtherInvoiceModal from './EditOtherInvoiceModal';
 
 const AddEmployee = () => {
   const params = useParams();
   const dispatch = useDispatch();
+  const [modalData, setModalData] = useState({});
   const { hireAndOnBoard, employeeInvoices, otherInvoices } = useSelector(
     (state) => state?.hr?.clients?.currentClientData
   );
@@ -115,8 +120,6 @@ const AddEmployee = () => {
           const tempData =
             data !== ''
               ? data?.map((item) => {
-                  // const symbol = item?.salary_currency?.split(' ')[0];
-
                   return {
                     ...item,
                     salary_range: `${formatSalary(item?.salary_range?.minimum, '')} - ${formatSalary(item.salary_range?.maximum, item?.salary_currency)}`,
@@ -128,7 +131,20 @@ const AddEmployee = () => {
                     hiring_end_date: dayjs(item?.hiring_end_date)?.format(
                       'DD-MMMM-YYYY'
                     ),
-                    action: ['Delete'],
+                    action: [
+                      role === 'super_admin' ||
+                      (client_perms && client_perms[0]?.read)
+                        ? 'View'
+                        : null,
+                      role === 'super_admin' ||
+                      (client_perms && client_perms[0]?.delete)
+                        ? 'Delete'
+                        : null,
+                      role === 'super_admin' ||
+                      (client_perms && client_perms[0]?.write)
+                        ? 'Edit'
+                        : null,
+                    ]?.filter(Boolean),
                     jobDescription: 'Download',
                     comments: `${(item.comments = item?.comments?.length > 20 ? item?.comments?.substring(0, 20) + '…' : item?.comments)}`,
                   };
@@ -154,7 +170,16 @@ const AddEmployee = () => {
             data !== ''
               ? [...data]?.map((item) => ({
                   ...item,
-                  action: ['Delete'],
+                  action: [
+                    role === 'super_admin' ||
+                    (client_perms && client_perms[0]?.delete)
+                      ? 'Delete'
+                      : null,
+                    role === 'super_admin' ||
+                    (client_perms && client_perms[0]?.write)
+                      ? 'Edit'
+                      : null,
+                  ]?.filter(Boolean),
                   interview_date_time: dayjs(item?.interview_date_time).format(
                     'DD-MMMM-YYYY hh:mm A'
                   ),
@@ -181,8 +206,6 @@ const AddEmployee = () => {
           const tempData =
             data !== ''
               ? [...data]?.map((item) => {
-                  // const symbol = item?.salary_currency?.split(' ')[0];
-
                   return {
                     ...item,
                     salary: `${formatSalary(item?.salary, item?.salary_currency || '')}`,
@@ -196,7 +219,16 @@ const AddEmployee = () => {
                         : '-',
                     dropdownStatus: true,
                     gender: genderType(item?.gender),
-                    action: ['Delete'],
+                    action: [
+                      role === 'super_admin' ||
+                      (client_perms && client_perms[0]?.delete)
+                        ? 'Delete'
+                        : null,
+                      role === 'super_admin' ||
+                      (client_perms && client_perms[0]?.write)
+                        ? 'Edit'
+                        : null,
+                    ]?.filter(Boolean),
                   };
                 })
               : [];
@@ -271,7 +303,20 @@ const AddEmployee = () => {
                 ),
                 due_date: dayjs(item.due_date).format('DD-MMMM-YYYY'),
                 invoice_date: dayjs(item.invoice_date).format('DD-MMMM-YYYY'),
-                action: ['Delete'],
+                action: [
+                  role === 'super_admin' ||
+                  (invoices_perms && invoices_perms[0]?.read)
+                    ? 'View'
+                    : null,
+                  role === 'super_admin' ||
+                  (invoices_perms && invoices_perms[0]?.delete)
+                    ? 'Delete'
+                    : null,
+                  role === 'super_admin' ||
+                  (invoices_perms && invoices_perms[0]?.write)
+                    ? 'Edit'
+                    : null,
+                ]?.filter(Boolean),
                 actionStatus: true,
                 download: 'Download',
                 payment_status: getCamelCapitalized(item.payment_status),
@@ -305,7 +350,20 @@ const AddEmployee = () => {
                 ),
                 due_date: dayjs(item.due_date).format('DD-MMMM-YYYY'),
                 invoice_date: dayjs(item.invoice_date).format('DD-MMMM-YYYY'),
-                action: ['Delete'],
+                action: [
+                  role === 'super_admin' ||
+                  (invoices_perms && invoices_perms[0]?.read)
+                    ? 'View'
+                    : null,
+                  role === 'super_admin' ||
+                  (invoices_perms && invoices_perms[0]?.delete)
+                    ? 'Delete'
+                    : null,
+                  role === 'super_admin' ||
+                  (invoices_perms && invoices_perms[0]?.write)
+                    ? 'Edit'
+                    : null,
+                ]?.filter(Boolean),
                 actionStatus: true,
                 download: 'Download',
                 payment_status: getCamelCapitalized(item.payment_status),
@@ -337,7 +395,20 @@ const AddEmployee = () => {
                 ),
                 due_date: dayjs(item.due_date).format('DD-MMMM-YYYY'),
                 invoice_date: dayjs(item.invoice_date).format('DD-MMMM-YYYY'),
-                action: ['Delete'],
+                action: [
+                  role === 'super_admin' ||
+                  (invoices_perms && invoices_perms[0]?.read)
+                    ? 'View'
+                    : null,
+                  role === 'super_admin' ||
+                  (invoices_perms && invoices_perms[0]?.delete)
+                    ? 'Delete'
+                    : null,
+                  role === 'super_admin' ||
+                  (invoices_perms && invoices_perms[0]?.write)
+                    ? 'Edit'
+                    : null,
+                ]?.filter(Boolean),
                 actionStatus: true,
                 download: 'Download',
                 payment_status: getCamelCapitalized(item.payment_status),
@@ -370,7 +441,20 @@ const AddEmployee = () => {
               ),
               due_date: dayjs(item.due_date).format('DD-MMMM-YYYY'),
               invoice_date: dayjs(item.invoice_date).format('DD-MMMM-YYYY'),
-              action: ['Delete'],
+              action: [
+                role === 'super_admin' ||
+                (invoices_perms && invoices_perms[0]?.read)
+                  ? 'View'
+                  : null,
+                role === 'super_admin' ||
+                (invoices_perms && invoices_perms[0]?.delete)
+                  ? 'Delete'
+                  : null,
+                role === 'super_admin' ||
+                (invoices_perms && invoices_perms[0]?.write)
+                  ? 'Edit'
+                  : null,
+              ]?.filter(Boolean),
               actionStatus: true,
               download: 'Download',
               payment_status: getCamelCapitalized(item.payment_status),
@@ -402,7 +486,20 @@ const AddEmployee = () => {
               ),
               due_date: dayjs(item.due_date).format('DD-MMMM-YYYY'),
               invoice_date: dayjs(item.invoice_date).format('DD-MMMM-YYYY'),
-              action: ['Delete'],
+              action: [
+                role === 'super_admin' ||
+                (invoices_perms && invoices_perms[0]?.read)
+                  ? 'View'
+                  : null,
+                role === 'super_admin' ||
+                (invoices_perms && invoices_perms[0]?.delete)
+                  ? 'Delete'
+                  : null,
+                role === 'super_admin' ||
+                (invoices_perms && invoices_perms[0]?.write)
+                  ? 'Edit'
+                  : null,
+              ]?.filter(Boolean),
               actionStatus: true,
               download: 'Download',
               payment_status: getCamelCapitalized(item.payment_status),
@@ -434,7 +531,20 @@ const AddEmployee = () => {
               ),
               due_date: dayjs(item.due_date).format('DD-MMMM-YYYY'),
               invoice_date: dayjs(item.invoice_date).format('DD-MMMM-YYYY'),
-              action: ['Delete'],
+              action: [
+                role === 'super_admin' ||
+                (invoices_perms && invoices_perms[0]?.read)
+                  ? 'View'
+                  : null,
+                role === 'super_admin' ||
+                (invoices_perms && invoices_perms[0]?.delete)
+                  ? 'Delete'
+                  : null,
+                role === 'super_admin' ||
+                (invoices_perms && invoices_perms[0]?.write)
+                  ? 'Edit'
+                  : null,
+              ]?.filter(Boolean),
               actionStatus: true,
               download: 'Download',
               payment_status: getCamelCapitalized(item.payment_status),
@@ -448,9 +558,6 @@ const AddEmployee = () => {
     },
   });
   function ClientProcessColumns(column) {
-    const action =
-      role === 'super_admin' ||
-      (role !== 'super_admin' && client_perms?.[0]?.delete);
     const download =
       role === 'super_admin' ||
       (role !== 'super_admin' && client_perms?.[0]?.download);
@@ -460,16 +567,12 @@ const AddEmployee = () => {
 
     return column?.filter(
       (item) =>
-        (action || item.name !== 'action') &&
         (download || item.name !== 'job_description') &&
         (payment_status || item.name !== 'payment_status')
     );
   }
 
   function InvoiceProcessColumns(column) {
-    const action =
-      role === 'super_admin' ||
-      (role !== 'super_admin' && invoices_perms?.[0]?.delete);
     const download =
       role === 'super_admin' ||
       (role !== 'super_admin' && invoices_perms?.[0]?.download);
@@ -479,7 +582,6 @@ const AddEmployee = () => {
 
     return column?.filter(
       (item) =>
-        (action || item.name !== 'action') &&
         (download || item.name !== 'download') &&
         (payment_status || item.name !== 'payment_status')
     );
@@ -606,13 +708,20 @@ const AddEmployee = () => {
   ];
   const [isOpenHiringRequestModal, setIsOpenHiringRequestModal] =
     useState(false);
+  const [isOpenEditHiringRequestModal, setIsOpenEditHiringRequestModal] =
+    useState(false);
   const [isOpenAddInterviewModal, setIsOpenAddInterviewModal] = useState(false);
+  const [isOpenEditInterviewModal, setIsOpenEditInterviewModal] =
+    useState(false);
   const [isOpenAddOnboardModal, setIsOpenAddOnboardModal] = useState(false);
-  const [isOpenContractModal, setIsOpenContractModal] = useState(false);
+  const [isOpenEditOnboardModal, setIsOpenEditOnboardModal] = useState(false);
   const [showEditModal, setEditModal] = useState(false);
   const [isOpenUploadInvoiceModal, setIsOpenUploadInvoiceModal] =
     useState(false);
+  const [isOpenEditInvoiceModal, setIsOpenEditInvoiceModal] = useState(false);
   const [isOpenUploadOthInvoiceModal, setIsOpenUploadOthInvoiceModal] =
+    useState(false);
+  const [isOpenEditOthInvoiceModal, setIsOpenEditOthInvoiceModal] =
     useState(false);
   const [isOpenAddClientModal, setIsOpenAddClientModal] = useState(false);
   const [currentTab, setCurrentTab] = useState({
@@ -748,35 +857,70 @@ const AddEmployee = () => {
   const handleOpenHiringRequestModal = () => {
     setIsOpenHiringRequestModal(true);
   };
+  const handleClickEdit = ({ row }) => {
+    if (currentTab?.label === 'Hire & onboard') {
+      if (currentTab?.nested.val === 0) {
+        setIsOpenEditHiringRequestModal(true);
+      } else if (currentTab?.nested.val === 1) {
+        handleOpenEditInterviewModal(true);
+      } else {
+        setIsOpenEditOnboardModal(true);
+      }
+    } else if (currentTab?.label === 'Employee invoices') {
+      setIsOpenEditInvoiceModal(true);
+    } else {
+      setIsOpenEditOthInvoiceModal(true);
+    }
+    setModalData(row);
+  };
+
+  const handleClickActionView = ({ row }) => {
+    const { id } = row || {};
+    if (currentTab?.label === 'Hire & onboard') {
+      if (currentTab?.nested.val === 0) {
+        viewJobDescription?.mutate(id);
+      }
+    } else if (currentTab?.label === 'Employee invoices') {
+      viewEmployeeInvoice?.mutate(id);
+    } else {
+      viewOtherInvoice?.mutate(id);
+    }
+  };
   const handleCloseHiringRequestModal = () => {
     setIsOpenHiringRequestModal(false);
+    setIsOpenEditHiringRequestModal(false);
   };
   const handleOpenAddInterviewModal = () => {
     setIsOpenAddInterviewModal(true);
   };
+  const handleOpenEditInterviewModal = () => {
+    setIsOpenEditInterviewModal(true);
+  };
   const handleCloseAddInterviewModal = () => {
     setIsOpenAddInterviewModal(false);
+    setIsOpenEditInterviewModal(false);
   };
   const handleOpenAddOnboardModal = () => {
     setIsOpenAddOnboardModal(true);
   };
   const handleCloseAddOnboardModal = () => {
     setIsOpenAddOnboardModal(false);
+    setIsOpenEditOnboardModal(false);
   };
-  const handleCloseContractModal = () => {
-    setIsOpenContractModal(false);
-  };
+
   const handleOpenUploadInvoiceModal = () => {
     setIsOpenUploadInvoiceModal(true);
   };
   const handleCloseUploadInvoiceModal = () => {
     setIsOpenUploadInvoiceModal(false);
+    setIsOpenEditInvoiceModal(false);
   };
   const handleOpenUploadOthInvoiceModal = () => {
     setIsOpenUploadOthInvoiceModal(true);
   };
   const handleCloseUploadOthInvoiceModal = () => {
     setIsOpenUploadOthInvoiceModal(false);
+    setIsOpenEditOthInvoiceModal(false);
   };
   const handleOpenAddClientModal = () => {
     setIsOpenAddClientModal(true);
@@ -1113,6 +1257,52 @@ const AddEmployee = () => {
       Toast('error', err.message || 'File not downloaded');
     },
   });
+
+  const viewJobDescription = useMutation({
+    mutationFn: async (id) => {
+      return api.downloadFile(`${DOWNLOAD_CLIENT_JOB_DESCRIPTION}?id=${id}`);
+    },
+    onSuccess: ({ data }) => {
+      const url = window?.URL?.createObjectURL(
+        new Blob([data], { type: 'application/pdf' })
+      );
+      window?.open(url, '_blank');
+    },
+    onError: (err) => {
+      Toast('error', err.message || 'File not downloaded');
+    },
+  });
+
+  const viewEmployeeInvoice = useMutation({
+    mutationFn: async (id) => {
+      return api.downloadFile(`${DOWNLOAD_EMP_INV}?id=${id}`);
+    },
+    onSuccess: ({ data }) => {
+      const url = window?.URL?.createObjectURL(
+        new Blob([data], { type: 'application/pdf' })
+      );
+      window?.open(url, '_blank');
+    },
+    onError: (err) => {
+      Toast('error', err.message || 'File not downloaded');
+    },
+  });
+
+  const viewOtherInvoice = useMutation({
+    mutationFn: async (id) => {
+      return api.downloadFile(`${DOWNLOAD_OTH_INV}?id=${id}`);
+    },
+    onSuccess: ({ data }) => {
+      const url = window?.URL?.createObjectURL(
+        new Blob([data], { type: 'application/pdf' })
+      );
+      window?.open(url, '_blank');
+    },
+    onError: (err) => {
+      Toast('error', err.message || 'File not downloaded');
+    },
+  });
+
   const downloadInvoice = (id) => {
     downloadInvoiceMutation.mutate(id);
   };
@@ -1429,6 +1619,8 @@ const AddEmployee = () => {
                 minWidth: '1300px',
                 handleClickActionDelete: handleOpen,
                 handleConfirmDelete: handleConfirmDeleteHiringReq,
+                handleClickActionEdit: handleClickEdit,
+                handleClickActionView: handleClickActionView,
                 updateStatus: handleConfirmUpdatePayStatus,
                 isPending:
                   deleteStartHiringMutation.isPending ||
@@ -1447,17 +1639,28 @@ const AddEmployee = () => {
         open={isOpenHiringRequestModal}
         onClose={handleCloseHiringRequestModal}
       />
+      <EditHiringRequestModal
+        open={isOpenEditHiringRequestModal}
+        onClose={handleCloseHiringRequestModal}
+        existingData={modalData}
+      />
       <AddInterviewModal
         open={isOpenAddInterviewModal}
         onClose={handleCloseAddInterviewModal}
+      />
+      <EditInterviewModal
+        open={isOpenEditInterviewModal}
+        onClose={handleCloseAddInterviewModal}
+        existingData={modalData}
       />
       <AddOnboardModal
         open={isOpenAddOnboardModal}
         onClose={handleCloseAddOnboardModal}
       />
-      <AddContractModal
-        open={isOpenContractModal}
-        onClose={handleCloseContractModal}
+      <EditOnboardModal
+        open={isOpenEditOnboardModal}
+        onClose={handleCloseAddOnboardModal}
+        existingData={modalData}
       />
 
       <UploadInvoiceModal
@@ -1465,10 +1668,24 @@ const AddEmployee = () => {
         open={isOpenUploadInvoiceModal}
         onClose={handleCloseUploadInvoiceModal}
       />
+
+      <EditInvoiceModal
+        title="Edit employee invoice form"
+        open={isOpenEditInvoiceModal}
+        onClose={handleCloseUploadInvoiceModal}
+        existingData={modalData}
+      />
+
       <UploadOtherInvoiceModal
         title="Other invoice form"
         open={isOpenUploadOthInvoiceModal}
         onClose={handleCloseUploadOthInvoiceModal}
+      />
+      <EditOtherInvoiceModal
+        title="Edit other invoice form"
+        open={isOpenEditOthInvoiceModal}
+        onClose={handleCloseUploadOthInvoiceModal}
+        existingData={modalData}
       />
       <AddEmployeeModal
         title="Employee Employee form"

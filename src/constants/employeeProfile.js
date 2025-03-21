@@ -44,6 +44,7 @@ export const employeeProfileData = {
 export const EDIT_MODAL = {
   editProfile: 'Edit profile picture',
   addassetForm: 'Add Asset',
+  editassetForm: 'Edit Asset',
   addbenefitForm: 'Add Benefit',
   addletterForm: 'Add Letter',
   addsalaryForm: 'Add Salary',

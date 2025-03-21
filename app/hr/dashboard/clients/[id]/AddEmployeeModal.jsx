@@ -189,7 +189,7 @@ const AddEmployeeModal = ({ open, onClose }) => {
               minHeight: '50%',
               maxHeight: '640px',
               overflow: 'auto',
-              scrollbarWidth: 'thin',
+              scrollbarWidth: 'none',
               scrollbarColor: 'transparent transparent',
               '&::-webkit-scrollbar': {
                 display: 'none',

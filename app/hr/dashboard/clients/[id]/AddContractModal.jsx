@@ -14,7 +14,7 @@ import { contractForm } from '@/src/constants/data/forms/contract';
 import { useFormik } from 'formik';
 import { CONTRACT_SIGNED } from '@/src/constants/contractSigned';
 import { FORM_DATA } from '@/src/constants/form';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import { HR_COMPANY_CONTRACTS } from '@/src/services/apiService/apiEndPoints';
 import { Toast } from '@/src/components/Toast/Toast';
@@ -25,6 +25,7 @@ import { addClientContract } from '@/src/redux/slices/hrSlices/contractSlice';
 const AddContractModal = ({ open, onClose }) => {
   const [formData, setFormData] = useState({});
   const dispatch = useDispatch();
+  const queryClient = useQueryClient();
   const { mutate, isPending } = useMutation({
     mutationFn: async (formVals) => {
       const formData = new FormData();
@@ -41,12 +42,13 @@ const AddContractModal = ({ open, onClose }) => {
         id: data.id,
         download: 'Download',
         contract_doc: data.contract_doc,
-        action: ['Delete'],
+        action: ['View', 'Edit', 'Delete'],
       };
       dispatch(addClientContract(tempData));
       setFormData(null);
       resetForm();
       onClose();
+      queryClient?.invalidateQueries(['company-contract-signed-query']);
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to post data');
@@ -109,7 +111,7 @@ const AddContractModal = ({ open, onClose }) => {
           boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
           maxHeight: '90%',
           overflowY: 'auto',
-          scrollbarWidth: 'thin',
+          scrollbarWidth: 'none',
           scrollbarColor: 'transparent transparent',
           '&::-webkit-scrollbar': {
             display: 'none',
@@ -127,9 +129,9 @@ const AddContractModal = ({ open, onClose }) => {
         >
           <Typography
             sx={{
-              fontSize: '25px',
+              fontSize: { xs: '18px', sm: '20px', md: '22px', lg: '25px' },
               fontWeight: 600,
-              ml: '10px',
+              mx: '10px',
             }}
           >
             {CONTRACT_SIGNED?.contractForm}
@@ -141,9 +143,10 @@ const AddContractModal = ({ open, onClose }) => {
               alignItems: 'center',
               border: '1px solid #068987',
               borderRadius: '50%',
-              width: '25px',
-              height: '25px',
+              width: { xs: '20px', sm: '25px' },
+              height: { xs: '20px', sm: '25px' },
               cursor: 'pointer',
+              p: 0.5,
             }}
             onClick={handleCloseModal}
           >
