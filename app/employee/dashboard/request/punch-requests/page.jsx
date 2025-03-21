@@ -7,6 +7,7 @@ import {
   Button,
   Modal,
   CircularProgress,
+  Tooltip,
 } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -38,6 +39,7 @@ import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
 import { Toast } from '@/src/components/Toast/Toast';
 import Skeleton from '@mui/material/Skeleton';
 import dayjs from 'dayjs';
+import { ellipsisWithTooltip } from '@/src/utils/tooltipEllipsis';
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -244,23 +246,31 @@ const Dashboard = () => {
                   sx={{ width: '30%', height: 30, mr: 1, mx: 'auto' }}
                 />
               ) : (
-                <Typography
-                  sx={{
-                    fontSize: { xs: '24px', sm: '28px', md: '30px' },
-                    fontWeight: 400,
-                    lineHeight: '36px',
-                    letterSpacing: '0em',
-                    color: '#595959',
-                  }}
-                  textAlign={'center'}
+                <Tooltip
+                  title={
+                    ellipsisWithTooltip(empDetails?.employee_name, 17)
+                      ? empDetails?.employee_name
+                      : ''
+                  }
                 >
-                  {`${empDetails?.employee_name} -`}{' '}
-                  <Box
-                    component={'br'}
-                    sx={{ display: { xs: 'flex', sm: 'none' } }}
-                  />{' '}
-                  ({empDetails?.employee_id})
-                </Typography>
+                  <Typography
+                    sx={{
+                      fontSize: { xs: '24px', sm: '28px', md: '30px' },
+                      fontWeight: 400,
+                      lineHeight: '36px',
+                      letterSpacing: '0em',
+                      color: '#595959',
+                    }}
+                    textAlign={'center'}
+                  >
+                    {`${empDetails?.employee_name?.slice(0, 17)}${ellipsisWithTooltip(empDetails?.employee_name, 17) ? '... -' : '-'}`}
+                    <Box
+                      component={'br'}
+                      sx={{ display: { xs: 'flex', sm: 'none' } }}
+                    />
+                    {`(${empDetails?.employee_id?.slice(0, 17)}${ellipsisWithTooltip(empDetails?.employee_id, 17) ? '...' : ''})`}
+                  </Typography>
+                </Tooltip>
               )}
             </Box>
             <Box

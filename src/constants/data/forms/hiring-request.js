@@ -77,7 +77,7 @@ export const hringRequestForm = [
         label: 'Renminbi',
       },
       {
-        label: 'Autralian dollar',
+        label: 'Australian dollar',
       },
       {
         label: 'Canadian dollar',

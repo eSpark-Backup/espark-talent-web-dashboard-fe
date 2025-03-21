@@ -91,7 +91,7 @@ const UploadImageModal = ({
           <Typography variant="h5">Upload Image</Typography>
         </Box>
 
-        <Box sx={{ mt: 3, textAlign: 'center' }}>
+        <Box sx={{ mt: 1, textAlign: 'center' }}>
           <Box
             sx={{
               display: 'flex',
@@ -121,6 +121,7 @@ const UploadImageModal = ({
                 borderRadius: '50%',
                 objectFit: 'cover',
                 mx: 'auto',
+                mb: 2,
               }}
             />
 
@@ -136,7 +137,7 @@ const UploadImageModal = ({
               onClick={handleUploadImage}
               variant="contained"
               color="primary"
-              sx={{ mx: 'auto', width: '95%', mt: 2 }}
+              sx={{ mx: 'auto', width: '95%' }}
             >
               {'Upload Image'}
             </Button>

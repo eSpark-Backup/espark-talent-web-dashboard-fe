@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Box, Grid, Typography } from '@mui/material';
+import { Box, Grid, Tooltip, Typography } from '@mui/material';
 import Image from 'next/image';
 import Input from './input';
 import Skeleton from '@mui/material/Skeleton';
 import { filterDataByKeyword } from '@/src/utils/search';
+import { ellipsisWithTooltip } from '@/src/utils/tooltipEllipsis';
 
 const AppSearchableDropdown = ({
   selectedItem,
@@ -150,18 +151,30 @@ const AppSearchableDropdown = ({
                   sx={{
                     width: '35px',
                     height: '20px',
-                    mr: '20px',
+                    mr: '10px',
                   }}
                 />
               )}
               <Box></Box>
-              <Typography
-                sx={{
-                  color: selectedItem?.title ? '#000' : '#838383',
-                }}
+              <Tooltip
+                title={
+                  ellipsisWithTooltip(selectedItem?.title, 12)
+                    ? selectedItem?.title
+                    : ''
+                }
               >
-                {selectedItem?.title || placeholder}
-              </Typography>
+                <Typography
+                  sx={{
+                    color: selectedItem?.title ? '#000' : '#838383',
+                    fontSize: { xs: '13px', xl: '14px' },
+                    whiteSpace: 'nowrap',
+                  }}
+                >
+                  {selectedItem?.title
+                    ? `${selectedItem?.title?.slice(0, 12)}${ellipsisWithTooltip(selectedItem?.title, 12) ? '...' : ''}`
+                    : placeholder}
+                </Typography>
+              </Tooltip>
             </Box>
           ) : (
             <Typography
@@ -213,7 +226,7 @@ const AppSearchableDropdown = ({
           >
             <Box
               width="100%"
-              p={'10px'}
+              p={'5px'}
               position="sticky"
               top="0"
               sx={{ background: '#fff', zIndex: 1 }}
@@ -233,8 +246,8 @@ const AppSearchableDropdown = ({
               maxHeight="250px"
               sx={{
                 overflow: 'auto',
-                scrollbarWidth: 'thin',
-                mt: '10px',
+                mt: '15px',
+                scrollbarWidth: 'none',
                 scrollbarColor: 'transparent transparent',
                 '&::-webkit-scrollbar': {
                   display: 'none',
@@ -338,9 +351,22 @@ const AppSearchableDropdown = ({
                           msOverflowStyle: 'none',
                         }}
                       >
-                        <Typography>
-                          {item?.label || item?.name || item}
-                        </Typography>
+                        <Tooltip
+                          title={
+                            ellipsisWithTooltip(
+                              item?.label || item?.name || item,
+                              22
+                            )
+                              ? item?.label || item?.name || item
+                              : ''
+                          }
+                        >
+                          <Typography>
+                            {item?.label || item?.name || item
+                              ? `${(item?.label || item?.name || item)?.slice(0, 22)}${ellipsisWithTooltip(item?.label || item?.name || item, 22) ? '...' : ''}`
+                              : placeholder}
+                          </Typography>
+                        </Tooltip>
                       </Box>
                     );
                   }

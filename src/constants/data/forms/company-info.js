@@ -22,11 +22,11 @@ export const companyformElement = [
   {
     title: 'Upload',
     placeholder: 'Upload picture',
-    filelabel: 'Accept .png or .jpg files only',
+    filelabel: 'Accept .png, .jpg, .jpeg, or .svg files only',
     prefixIcon: 'upload',
     type: 'upload',
     name: 'image',
-    accept: 'image/png, image/jpg',
+    accept: '.png, .jpg, .jpeg, .svg',
     col: 2.5,
   },
 ];

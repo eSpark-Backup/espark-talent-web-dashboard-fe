@@ -10,6 +10,7 @@ import {
   Stack,
   Tab,
   Tabs,
+  Tooltip,
   Typography,
 } from '@mui/material';
 import Image from 'next/image';
@@ -54,6 +55,7 @@ import BenefitForm from '@/src/components/employeeData/benefitModal';
 import LetterForm from '@/src/components/employeeData/letterModal';
 import SalaryForm from '@/src/components/employeeData/salaryModal';
 import AppCustomMonthYearPicker from '@/src/components/dashboard/appCustomMonthYearPicker';
+import { ellipsisWithTooltip } from '@/src/utils/tooltipEllipsis';
 
 const Page = () => {
   const router = useRouter();
@@ -364,22 +366,40 @@ const Page = () => {
                     }}
                   >
                     <>
-                      <Typography
-                        sx={{
-                          fontSize: {
-                            xs: '18px',
-                            sm: '20px',
-                            md: '23px',
-                            lg: '25px',
-                          },
-                          fontWeight: 500,
-                          textTransform: 'capitalize',
-                          color: '#171717',
-                        }}
+                      <Tooltip
+                        title={
+                          ellipsisWithTooltip(
+                            currentEmployee?.first_name,
+                            22
+                          ) ||
+                          ellipsisWithTooltip(currentEmployee?.last_name, 22)
+                            ? `${currentEmployee?.first_name} ${currentEmployee?.last_name}`
+                            : ''
+                        }
                       >
-                        {currentEmployee?.first_name}{' '}
-                        {currentEmployee?.last_name}
-                      </Typography>
+                        <Typography
+                          sx={{
+                            fontSize: {
+                              xs: '18px',
+                              sm: '20px',
+                              md: '23px',
+                              lg: '25px',
+                            },
+                            fontWeight: 500,
+                            textTransform: 'capitalize',
+                            color: '#171717',
+                          }}
+                        >
+                          {`${`${currentEmployee?.first_name || ''} ${currentEmployee?.last_name || ''}`?.slice(0, 22)}${
+                            ellipsisWithTooltip(
+                              `${currentEmployee?.first_name || ''} ${currentEmployee?.last_name || ''}`,
+                              22
+                            )
+                              ? '...'
+                              : ''
+                          }`}
+                        </Typography>
+                      </Tooltip>
                       <Typography
                         sx={{
                           fontSize: { xs: '13px', sm: '14px', md: '16px' },
@@ -388,20 +408,51 @@ const Page = () => {
                         }}
                       >
                         {`Employee ID: `}
-                        <span style={{ fontWeight: 600 }}>
-                          {currentEmployee?.employee_id}
-                        </span>
+                        <Tooltip
+                          title={
+                            ellipsisWithTooltip(
+                              currentEmployee?.employee_id,
+                              22
+                            )
+                              ? currentEmployee?.employee_id
+                              : ''
+                          }
+                        >
+                          <span style={{ fontWeight: 600 }}>
+                            {`${currentEmployee?.employee_id?.slice(0, 22)}${
+                              ellipsisWithTooltip(
+                                currentEmployee?.employee_id,
+                                22
+                              )
+                                ? '...'
+                                : ''
+                            }`}
+                          </span>
+                        </Tooltip>
                       </Typography>
-                      <Typography
-                        sx={{
-                          fontSize: { xs: '13px', sm: '14px', md: '16px' },
-                          fontWeight: 500,
-                          textTransform: 'capitalize',
-                          color: '#595959',
-                        }}
+                      <Tooltip
+                        title={
+                          ellipsisWithTooltip(currentEmployee?.job_title, 22) ||
+                          ellipsisWithTooltip(currentEmployee?.job_title, 22)
+                            ? `${currentEmployee?.job_title}`
+                            : ''
+                        }
                       >
-                        {currentEmployee?.job_title}
-                      </Typography>
+                        <Typography
+                          sx={{
+                            fontSize: { xs: '13px', sm: '14px', md: '16px' },
+                            fontWeight: 500,
+                            textTransform: 'capitalize',
+                            color: '#595959',
+                          }}
+                        >
+                          {`${currentEmployee?.job_title?.slice(0, 22)}${
+                            ellipsisWithTooltip(currentEmployee?.job_title, 22)
+                              ? '...'
+                              : ''
+                          }`}
+                        </Typography>
+                      </Tooltip>
                     </>
                   </Box>
                 ) : (
@@ -485,7 +536,7 @@ const Page = () => {
 
           {showCredentialModal && (
             <EditEmployeeCredential
-              open={handleCredentialModal}
+              open={showCredentialModal}
               onClose={handleCloseModal}
             />
           )}

@@ -1,8 +1,9 @@
 import React from 'react';
-import { Box, Typography } from '@mui/material';
+import { Box, Tooltip, Typography } from '@mui/material';
 
 import { employeePersonalDataLabel } from '@/src/constants/employeeProfile';
 import dayjs from 'dayjs';
+import { ellipsisWithTooltip } from '@/src/utils/tooltipEllipsis';
 
 const PersonalInformation = ({ data }) => {
   return (
@@ -46,30 +47,42 @@ const PersonalInformation = ({ data }) => {
             >
               {empData?.label}
             </Typography>
-            <Typography
-              key={index}
-              sx={{
-                fontSize: {
-                  xs: '12px',
-                  sm: '13px',
-                  md: '13px',
-                  lg: '14px',
-                  xl: '16px',
-                },
-                color: '#171717',
-                fontWeight: 400,
-                wordBreak: 'break-all',
-                whiteSpace: 'normal',
-                overflowWrap: 'break-word',
-                textTransform: data?.[empData?.name]?.includes('@')
-                  ? 'lowercase'
-                  : 'capitalize',
-              }}
+            <Tooltip
+              title={
+                ellipsisWithTooltip(data?.[empData?.name], 22)
+                  ? `${data?.[empData?.name]}`
+                  : ''
+              }
             >
-              {empData?.type === 'date'
-                ? dayjs(data?.[empData?.name]).format('DD/MM/YYYY')
-                : data?.[empData?.name]}
-            </Typography>
+              <Typography
+                key={index}
+                sx={{
+                  fontSize: {
+                    xs: '12px',
+                    sm: '13px',
+                    md: '13px',
+                    lg: '14px',
+                    xl: '16px',
+                  },
+                  color: '#171717',
+                  fontWeight: 400,
+                  wordBreak: 'break-all',
+                  whiteSpace: 'normal',
+                  overflowWrap: 'break-word',
+                  textTransform: data?.[empData?.name]?.includes('@')
+                    ? 'lowercase'
+                    : 'capitalize',
+                }}
+              >
+                {empData?.type === 'date'
+                  ? dayjs(data?.[empData?.name]).format('DD/MM/YYYY')
+                  : `${data?.[empData?.name]?.slice(0, 22)}${
+                      ellipsisWithTooltip(data?.[empData?.name], 22)
+                        ? '...'
+                        : ''
+                    }`}
+              </Typography>
+            </Tooltip>
           </Box>
         ))}
       </Box>

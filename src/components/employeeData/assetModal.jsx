@@ -105,7 +105,7 @@ const AssetForm = forwardRef(({ onClose, open, empData }, ref) => {
           left: '50%',
           transform: 'translate(-50%, -50%)',
           overflow: 'auto',
-          scrollbarWidth: 'thin',
+          scrollbarWidth: 'none',
           scrollbarColor: 'transparent transparent',
           '&::-webkit-scrollbar': {
             display: 'none',

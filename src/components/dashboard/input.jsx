@@ -52,8 +52,8 @@ const Input = ({
         {!!prefixIcon && (
           <Box sx={{ marginRight: 1 }}>
             <Image
-              width={16}
-              height={16}
+              width={14}
+              height={15}
               alt="Search"
               src={`/icons/SearchIcon.svg`}
             />

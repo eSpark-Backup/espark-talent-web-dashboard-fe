@@ -31,12 +31,12 @@ export const leaveRequestsColumn = [
   },
   {
     title: 'Requested at',
-    flex: 5,
+    flex: 3,
     name: 'requested_at',
   },
   {
     title: 'Status',
-    flex: 2,
+    flex: 3,
     name: 'status',
   },
   {

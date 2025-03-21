@@ -148,7 +148,7 @@ const EditOfficialModal = forwardRef(
             boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
             maxHeight: '630px',
             overflow: 'auto',
-            scrollbarWidth: 'thin',
+            scrollbarWidth: 'none',
             scrollbarColor: 'transparent transparent',
             '&::-webkit-scrollbar': {
               display: 'none',
@@ -197,7 +197,7 @@ const EditOfficialModal = forwardRef(
                 pt: { xs: 3, sm: 4, md: 5, lg: 5 },
                 pb: { xs: 3, sm: 4, md: 7, lg: 7 },
                 overflow: 'auto',
-                scrollbarWidth: 'thin',
+                scrollbarWidth: 'none',
                 scrollbarColor: 'gray',
                 '&::-webkit-scrollbar': {
                   display: 'none',

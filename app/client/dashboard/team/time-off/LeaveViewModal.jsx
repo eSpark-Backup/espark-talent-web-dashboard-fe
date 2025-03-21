@@ -1,11 +1,12 @@
 import React, { forwardRef } from 'react';
-import { Avatar, Box, Button, Grid, Typography } from '@mui/material';
+import { Avatar, Box, Button, Grid, Tooltip, Typography } from '@mui/material';
 import Image from 'next/image';
 import { getCamelCapitalized } from '@/src/utils/stringModification';
 import dayjs from 'dayjs';
 import weekOfYear from 'dayjs/plugin/weekOfYear';
 import { useSelector } from 'react-redux';
 import { countWeekendsHandler } from '@/src/utils/helpers';
+import { ellipsisWithTooltip } from '@/src/utils/tooltipEllipsis';
 
 const LeaveViewModal = forwardRef(
   (
@@ -336,8 +337,8 @@ const LeaveViewModal = forwardRef(
                     <Avatar
                       alt={modalData?.employee_name}
                       src={
-                        homeData?.employee_details?.image ||
                         modalData?.employee_image ||
+                        homeData?.employee_details?.image ||
                         '/default-avatar.png'
                       }
                       width={50}
@@ -347,30 +348,54 @@ const LeaveViewModal = forwardRef(
                       }}
                     />
                   </Box>
-                  <Box ml={'5px'} pb={'5px'}>
-                    <Typography
-                      sx={{
-                        color: '#595959',
-                        fontSize: { xs: '12px', lg: '16px' },
-                        fontStyle: 'normal',
-                        fontWeight: 500,
-                        lineHeight: 'normal',
-                      }}
+                  <Box ml={'5px'} pb={'2px'}>
+                    <Tooltip
+                      title={
+                        ellipsisWithTooltip(modalData?.employee_name, 17)
+                          ? `${modalData?.employee_name}`
+                          : ''
+                      }
                     >
-                      {modalData?.employee_name}
-                    </Typography>
-                    <Typography
-                      sx={{
-                        color: '#595959',
-                        fontSize: { xs: '10px', lg: '14px' },
-                        fontStyle: 'normal',
-                        fontWeight: 500,
-                        lineHeight: 'normal',
-                        textAlign: { xs: 'center', md: 'left' },
-                      }}
+                      <Typography
+                        sx={{
+                          color: '#595959',
+                          fontSize: { xs: '12px', lg: '16px' },
+                          fontStyle: 'normal',
+                          fontWeight: 500,
+                          lineHeight: 'normal',
+                        }}
+                      >
+                        {`${modalData?.employee_name?.slice(0, 17)}${
+                          ellipsisWithTooltip(modalData?.employee_name, 17)
+                            ? '...'
+                            : ''
+                        }`}
+                      </Typography>
+                    </Tooltip>
+                    <Tooltip
+                      title={
+                        ellipsisWithTooltip(modalData?.employee_id, 16)
+                          ? `${modalData?.employee_id}`
+                          : ''
+                      }
                     >
-                      {modalData?.employee_id}
-                    </Typography>
+                      <Typography
+                        sx={{
+                          color: '#595959',
+                          fontSize: { xs: '10px', lg: '14px' },
+                          fontStyle: 'normal',
+                          fontWeight: 500,
+                          lineHeight: 'normal',
+                          textAlign: { xs: 'center', md: 'left' },
+                        }}
+                      >
+                        {`${modalData?.employee_id?.slice(0, 16)}${
+                          ellipsisWithTooltip(modalData?.employee_id, 16)
+                            ? '...'
+                            : ''
+                        }`}
+                      </Typography>
+                    </Tooltip>
                   </Box>
                 </Box>
               </Grid>
@@ -669,17 +694,29 @@ const LeaveViewModal = forwardRef(
                       minHeight: '100px',
                     }}
                   >
-                    <Typography
-                      sx={{
-                        color: '#595959',
-                        fontSize: '16px',
-                        fontStyle: 'normal',
-                        fontWeight: '500',
-                        lineHeight: 'normal',
-                      }}
+                    <Tooltip
+                      title={
+                        ellipsisWithTooltip(modalData?.reason, 120)
+                          ? `${modalData?.reason}`
+                          : ''
+                      }
                     >
-                      {modalData?.reason}
-                    </Typography>
+                      <Typography
+                        sx={{
+                          color: '#595959',
+                          fontSize: '16px',
+                          fontStyle: 'normal',
+                          fontWeight: '500',
+                          lineHeight: 'normal',
+                        }}
+                      >
+                        {`${modalData?.reason?.slice(0, 120)}${
+                          ellipsisWithTooltip(modalData?.reason, 120)
+                            ? '...'
+                            : ''
+                        }`}
+                      </Typography>
+                    </Tooltip>
                   </Box>
                 </Grid>
               </Grid>

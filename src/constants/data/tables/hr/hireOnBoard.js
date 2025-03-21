@@ -1,37 +1,37 @@
 export const interviewScheduleColumn = [
   {
     title: 'Employee name',
-    flex: 1.5,
+    flex: 1,
     name: 'employee_name',
   },
   {
     title: 'Gender',
-    flex: 1.5,
+    flex: 1,
     name: 'gender',
   },
   {
     title: 'Job title',
-    flex: 1.5,
+    flex: 1,
     name: 'job_title',
   },
   {
     title: 'Role type',
-    flex: 1.5,
+    flex: 1,
     name: 'role_type',
   },
   {
     title: 'Employment term',
-    flex: 1.5,
+    flex: 1,
     name: 'employment_term',
   },
   {
     title: 'Interview date & time',
-    flex: 2,
+    flex: 1,
     name: 'interview_date_time',
   },
   {
     title: 'Country',
-    flex: 1.2,
+    flex: 1,
     name: 'country',
   },
   {
@@ -41,7 +41,7 @@ export const interviewScheduleColumn = [
   },
   {
     title: 'Action',
-    flex: 1.2,
+    flex: 1,
     name: 'action',
   },
 ];
@@ -140,7 +140,7 @@ export const onboardingColumn = [
   },
   {
     title: 'Salary',
-    flex: 1.2,
+    flex: 2,
     name: 'salary',
   },
   {

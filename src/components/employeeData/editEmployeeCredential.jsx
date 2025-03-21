@@ -100,6 +100,7 @@ const EditEmployeeCredential = ({ onClose, open }) => {
             src="/images/leave-request/close.svg"
             component={'img'}
             onClick={onClose}
+            sx={{ cursor: 'pointer' }}
           />
         </Box>
         <form onSubmit={handleSubmit}>

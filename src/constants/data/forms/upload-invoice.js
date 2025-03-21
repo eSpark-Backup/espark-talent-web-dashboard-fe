@@ -40,7 +40,7 @@ export const uploadInvoiceForm = [
         label: 'Renminbi',
       },
       {
-        label: 'Autralian dollar',
+        label: 'Australian dollar',
       },
       {
         label: 'Canadian dollar',
@@ -118,7 +118,7 @@ export const uploadOtherInvoiceForm = [
         label: 'Renminbi',
       },
       {
-        label: 'Autralian dollar',
+        label: 'Australian dollar',
       },
       {
         label: 'Canadian dollar',

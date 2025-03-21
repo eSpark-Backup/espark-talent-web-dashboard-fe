@@ -1,17 +1,17 @@
 import React, { Fragment } from 'react';
 import Image from 'next/image';
-import { Avatar, Box, Typography } from '@mui/material';
+import { Avatar, Box, Tooltip, Typography } from '@mui/material';
 
 import AppCustomDropdown from '../dashboard/appCustomDropdown';
 import {
   getCamelCapitalized,
   toCamelCase,
-  truncateText,
 } from '@/src/utils/stringModification';
 import { trackingStatusTypes } from '@/src/constants/data/tables/timeTracking';
 import AppTableInfoOptionsCell from './AppTableInfoOptionsCell';
 import { modulepermissionColumn } from '@/src/constants/data/tables/modulePermission';
 import Link from 'next/link';
+import { ellipsisWithTooltip } from '@/src/utils/tooltipEllipsis';
 
 const renderAssigneeCell = (row, col) => {
   const [name, subtitle] = row.assignee;
@@ -34,32 +34,37 @@ const renderAssigneeCell = (row, col) => {
             alignItems: 'center',
           }}
         >
-          <Typography
-            sx={{
-              fontSize: '12px',
-              fontWeight: '400',
-              textAlign: 'center',
-              textWrap: 'nowrap',
-            }}
-          >
-            {name}
-          </Typography>
-          <Typography
-            sx={{
-              fontSize: '10px',
-              fontWeight: '300',
-              textAlign: 'center',
-              wordBreak: 'break-all',
-              overflowWrap: 'break-word',
-            }}
-          >
-            {subtitle}
-          </Typography>
+          <Tooltip title={ellipsisWithTooltip(name, 17) ? name : ''}>
+            <Typography
+              sx={{
+                fontSize: '12px',
+                fontWeight: '400',
+                textAlign: 'center',
+                textWrap: 'nowrap',
+              }}
+            >
+              {`${name?.slice(0, 17)}${ellipsisWithTooltip(name) ? '...' : ''}`}
+            </Typography>
+          </Tooltip>
+          <Tooltip title={ellipsisWithTooltip(subtitle, 17) ? subtitle : ''}>
+            <Typography
+              sx={{
+                fontSize: '10px',
+                fontWeight: '300',
+                textAlign: 'center',
+                wordBreak: 'break-all',
+                overflowWrap: 'break-word',
+              }}
+            >
+              {`${subtitle?.slice(0, 17)}${ellipsisWithTooltip(subtitle) ? '...' : ''}`}
+            </Typography>
+          </Tooltip>
         </Box>
       </Box>
     </td>
   );
 };
+
 const renderUserAvatar = (row, col, commonCellStyle) => {
   return (
     <td
@@ -603,6 +608,11 @@ export const renderCellContent = (
     col?.title === 'Assignee Email'
   ) {
     const data = row[col?.name.toLowerCase()];
+    const formattedText =
+      typeof data === 'string' && data?.length > 0
+        ? data?.charAt(0)?.toLowerCase() + data?.slice(1)
+        : '-';
+
     return (
       <td
         key={col?.index}
@@ -610,11 +620,23 @@ export const renderCellContent = (
           flex: col?.flex || 1,
         }}
       >
-        <>
-          {typeof data === 'string' && data?.length > 0
-            ? data?.charAt(0)?.toLowerCase() + data?.slice(1)
-            : '-'}
-        </>
+        <Tooltip
+          title={ellipsisWithTooltip(formattedText, 17) ? formattedText : ''}
+        >
+          <Typography
+            component="span"
+            fontSize="12px"
+            sx={{
+              width: 'auto',
+              whiteSpace: 'nowrap',
+              textAlign: 'center',
+            }}
+          >
+            {`${formattedText.slice(0, 17)}${
+              ellipsisWithTooltip(formattedText, 17) ? '...' : ''
+            }`}
+          </Typography>
+        </Tooltip>
       </td>
     );
   }
@@ -756,18 +778,33 @@ export const renderCellContent = (
                 {getCamelCapitalized(row[col?.name])}
               </Typography>
             )
-          ) : row[col?.name] === null || row[col?.name] === undefined ? (
+          ) : row[col?.name] === null ||
+            row[col?.name] === undefined ||
+            row[col?.name] === '' ? (
             '-'
-          ) : col?.title === 'Salary range' || col?.title === 'Salary' ? (
-            <Typography component={'span'} fontSize={'12px'}>
-              {row[col?.name]}
-            </Typography>
-          ) : col?.name === 'job_title' && row[col?.name]?.length > 22 ? (
-            <Typography component={'span'}>
-              {truncateText(row[col?.name], 22)}
-            </Typography>
           ) : (
-            getCamelCapitalized(row[col?.name])
+            <Tooltip
+              title={
+                ellipsisWithTooltip(row[col?.name], 17)
+                  ? `${row[col?.name]}`
+                  : ''
+              }
+            >
+              <Typography
+                component="span"
+                fontSize="12px"
+                sx={{
+                  width: 'auto',
+                  whiteSpace: 'nowrap',
+                }}
+              >
+                {typeof row[col?.name] === 'string' &&
+                row[col?.name]?.length > 0
+                  ? row[col?.name]?.slice(0, 17) +
+                    (ellipsisWithTooltip(row[col?.name], 17) ? '...' : '')
+                  : row[col?.name]}
+              </Typography>
+            </Tooltip>
           )}
         </td>
       );

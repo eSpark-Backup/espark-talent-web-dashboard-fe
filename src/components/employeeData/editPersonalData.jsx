@@ -83,6 +83,7 @@ const EditPersonalModal = forwardRef(
         gender: data?.gender || '',
         personal_email: data?.personal_email || '',
         marital_status: data?.marital_status || '',
+        phone_number: data?.phone_number || '',
       },
       validationSchema: employeePersonalDataSchema,
       enableReinitialize: true,
@@ -128,7 +129,7 @@ const EditPersonalModal = forwardRef(
             border: 'none',
             boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
             overflow: 'auto',
-            scrollbarWidth: 'thin',
+            scrollbarWidth: 'none',
             scrollbarColor: 'transparent transparent',
             '&::-webkit-scrollbar': {
               display: 'none',
@@ -176,7 +177,7 @@ const EditPersonalModal = forwardRef(
                 pt: { xs: 3, sm: 4, md: 5, lg: 5 },
                 pb: { xs: 3, sm: 4, md: 7, lg: 7 },
                 overflow: 'auto',
-                scrollbarWidth: 'thin',
+                scrollbarWidth: 'none',
                 scrollbarColor: 'gray',
                 '&::-webkit-scrollbar': {
                   display: 'none',

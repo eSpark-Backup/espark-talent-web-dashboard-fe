@@ -7,5 +7,15 @@ export const generalSettingFormSchema = Yup.object({
 });
 
 export const pictureSchema = Yup.object({
-  picture: Yup.mixed().required('Picture is required'),
+  picture: Yup.mixed()
+    .required('Image is required')
+    .test(
+      'fileFormat',
+      'Unsupported file format',
+      (value) =>
+        value &&
+        ['image/jpg', 'image/jpeg', 'image/png', 'image/svg'].includes(
+          value.type
+        )
+    ),
 });

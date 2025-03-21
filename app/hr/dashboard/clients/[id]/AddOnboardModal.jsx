@@ -7,7 +7,7 @@ import { addOnboardForm } from '@/src/constants/data/forms/add-onboard';
 import { useFormik } from 'formik';
 import { FORM_DATA } from '@/src/constants/form';
 import { useDispatch, useSelector } from 'react-redux';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import { HR_CLIENT_EMP_ON_BOARDING } from '@/src/services/apiService/apiEndPoints';
 import dayjs from 'dayjs';
@@ -20,6 +20,7 @@ const AddOnboardModal = ({ open, onClose }) => {
   const { client_perms } =
     useSelector((state) => state?.hr?.home?.homeData) || {};
   const dispatch = useDispatch();
+  const clientQuery = useQueryClient();
   const { email } = useSelector((state) => state?.hr?.clients?.currentClient);
   const { role } = useSelector((state) => state?.auth?.userData);
   const [onBoardFormValues, setOnBoardFormValues] = useState(null);
@@ -47,6 +48,7 @@ const AddOnboardModal = ({ open, onClose }) => {
       );
       setOnBoardFormValues(null);
       Toast('success', 'Data posted successfully');
+      clientQuery.invalidateQueries(['hr-client-on-board-req-query']);
     },
     onError: (err) => {
       Toast('error', err.message || 'Failed to post data');

@@ -11,21 +11,39 @@ import {
 export const basicInformationSchema = Yup.object({
   first_name: nameValidation,
   last_name: nameValidation,
-  gender: Yup.string().required('Gender is required'),
+  gender: Yup.string()
+    .required('Gender is required')
+    .min(2, 'Gender must be at least 3 characters long')
+    .max(255, 'Gender cannot exceed 255 characters'),
   dob: dobValidation,
   phone_number: phoneValidation,
   email: emailValidation,
   personal_email: emailValidation,
-  marital_status: Yup.string().required('Marital status is required'),
+  marital_status: Yup.string()
+    .required('Marital status is required')
+    .min(2, 'Marital status must be at least 3 characters long')
+    .max(255, 'Marital status cannot exceed 255 characters'),
   image: Yup.mixed()
     .required('Image is required')
     .test(
       'fileFormat',
-      'Unsupported file format',
-      (value) =>
-        value && ['image/jpg', 'image/jpeg', 'image/png']?.includes(value?.type)
+      'Only .jpg, .jpeg, .png, and .svg files are allowed',
+      (value) => {
+        if (!value) return false;
+
+        const validMimeTypes = [
+          'image/jpg',
+          'image/jpeg',
+          'image/png',
+          'image/svg+xml',
+        ];
+        const fileExtension = value?.name?.split('.')?.pop()?.toLowerCase();
+
+        return (
+          validMimeTypes?.includes(value?.type) && fileExtension !== 'jfif'
+        );
+      }
     ),
-  emergency_no: phoneValidation,
   resume: Yup.mixed()
     .required('Resume is required')
     .test(
@@ -37,6 +55,16 @@ export const basicInformationSchema = Yup.object({
           'application/pdf',
           'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
         ]?.includes(value?.type)
+    )
+    .test(
+      'fileNameLength',
+      'File name should not exceed 100 characters',
+      (value) => value && value?.name?.length <= 100
+    )
+    .test(
+      'fileSize',
+      'File size should not exceed 5MB',
+      (value) => value && value?.size <= 5 * 1024 * 1024 // <= 5MB
     ),
 });
 
@@ -45,16 +73,17 @@ export const emergencyContactSchema = Yup.object({
   name2: nameValidation,
   relation1: Yup.string()
     .required('Relation is required')
-    .matches(
-      interNameRegExp,
-      ' name must contain only alphabetical characters'
-    ),
+    .matches(interNameRegExp, ' name must contain only alphabetical characters')
+    .min(2, 'Relation must be at least 3 characters long')
+    .max(255, 'Relation cannot exceed 255 characters'),
   relation2: Yup.string()
     .required('Relation is required')
     .matches(
       interNameRegExp,
       'First name must contain only alphabetical characters'
-    ),
+    )
+    .min(2, 'Relation must be at least 3 characters long')
+    .max(255, 'Relation cannot exceed 255 characters'),
   phoneNumber1: phoneValidation,
   phoneNumber2: phoneValidation,
 });
@@ -63,13 +92,23 @@ export const companyDetailsSchema = Yup.object({
   joining_date: Yup.date()
     .typeError('Joining date must be a valid date')
     .required('Joining date is required'),
-  role: Yup.string().required('Role is required'),
+  role: Yup.string()
+    .required('Role is required')
+    .min(2, 'Role must be at least 3 characters long')
+    .max(255, 'Role cannot exceed 255 characters'),
   job_title: Yup.string()
     .required('Job title is required')
-    .min(3, 'Job title must be at least 3 characters long')
-    .max(30, 'Job title cannot exceed 30 characters'),
-  company: Yup.string().trim().required('Company is required'),
-  job_status: Yup.string().required('Job Status is required'),
+    .min(2, 'Job title must be at least 3 characters long')
+    .max(255, 'Job title cannot exceed 30 characters'),
+  company: Yup.string()
+    .trim()
+    .required('Company is required')
+    .min(2, 'Company must be at least 3 characters long')
+    .max(255, 'Company cannot exceed 255 characters'),
+  job_status: Yup.string()
+    .required('Job Status is required')
+    .min(2, 'Job Status must be at least 3 characters long')
+    .max(255, 'Job Status cannot exceed 255 characters'),
   starting_date: Yup.mixed()
     .test(
       'is-starting-date-required',

@@ -28,6 +28,7 @@ const formElements = [
     title: 'Phone number',
     placeholder: 'Enter phone number',
     name: 'phone_number',
+    type: 'number',
   },
   {
     title: 'Join date',
@@ -55,8 +56,8 @@ const formElements = [
     name: 'image',
     prefixIcon: 'upload',
     type: 'upload',
-    filelabel: 'Accept .png or .jpg files only',
-    accept: '.png, .jpg, .jpeg',
+    filelabel: 'Accept .png, .jpg, .jpeg, or .svg files only',
+    accept: '.png, .jpg, .jpeg, .svg',
   },
 ];
 const formElementsStep4 = [

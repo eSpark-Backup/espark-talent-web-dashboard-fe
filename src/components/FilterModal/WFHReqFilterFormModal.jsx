@@ -204,7 +204,7 @@ const WFHReqFilterFormModal = forwardRef(
               display: 'flex',
               justifyContent: 'center',
               overflowY: { xs: 'auto', md: 'hidden' },
-              scrollbarWidth: 'thin',
+              scrollbarWidth: 'none',
               scrollbarColor: 'green',
               '&::-webkit-scrollbar': {
                 display: 'none',

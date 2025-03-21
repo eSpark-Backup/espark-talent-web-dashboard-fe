@@ -26,6 +26,7 @@ import UploadImageModal from '../employeeData/UploadImageModal';
 const AddAccountModal = forwardRef(({ open, onClose }, ref) => {
   const [accountFormValues, setAccountFormValues] = useState(null);
   const [showEditModal, setEditModal] = useState(false);
+
   const queryClient = useQueryClient();
   const dispatch = useDispatch();
   const { mutate, isPending } = useMutation({

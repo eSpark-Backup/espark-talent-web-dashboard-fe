@@ -32,5 +32,8 @@ export const createPunchRequestSchema = Yup.object({
       'Punch time is missing',
       (value) => value !== undefined
     ),
-  description: Yup.string().required('Description is required'),
+  description: Yup.string()
+    .required('Description is required')
+    .min(2, 'Description is too short - should be 2 chars minimum.')
+    .max(255, 'Description is too long - should be 255 chars maximum.'),
 });

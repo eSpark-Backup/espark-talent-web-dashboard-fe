@@ -46,6 +46,7 @@ const Step = ({
   const router = useRouter();
   const queryClient = useQueryClient();
   const [showEditModal, setEditModal] = useState(false);
+
   const { mutate, isPending } = useMutation({
     mutationFn: async (formVals) => {
       console.log({ formVals });
@@ -71,10 +72,14 @@ const Step = ({
       onSave();
     },
     onError: (err) => {
+      const errorText = err?.response?.data?.error;
+      if (errorText) {
+        Toast('error', errorText);
+      }
       let errToast;
-      const responseValues = Object.values(err?.response?.data);
+      const responseValues = Object?.values(err?.response?.data);
       const firstResponseValue =
-        responseValues.length > 0 ? responseValues[0] : null;
+        responseValues?.length > 0 ? responseValues[0] : null;
 
       if (firstResponseValue) {
         const formattedErrors = formatErrors(err?.response?.data);
@@ -111,13 +116,10 @@ const Step = ({
   const formatErrors = (error) => {
     return Object?.keys(error)
       ?.map((key) => {
-        // Replace underscores with spaces and capitalize each word
         const formattedKey = key
           ?.replace(/_/g, ' ')
           ?.replace(/\b\w/g, (char) => char?.toUpperCase());
-        // Join all error messages for the key
         const errorMessage = error[key]?.join(', ');
-        // Return the formatted error message with bold key
         return `<strong>${formattedKey}:</strong> ${errorMessage}`;
       })
       ?.join('<br>');
@@ -129,6 +131,7 @@ const Step = ({
     setFieldValue,
     errors,
     touched,
+    setTouched,
     setFieldError,
     setErrors,
   } = useFormik({
@@ -364,6 +367,8 @@ const Step = ({
               error={errors[name]}
               setFieldError={setFieldError}
               errors={errors}
+              touched={touched}
+              setTouched={setTouched}
               setErrors={setErrors}
               values={values}
               nested={nested}

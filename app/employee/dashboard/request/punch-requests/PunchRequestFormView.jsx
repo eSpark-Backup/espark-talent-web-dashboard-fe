@@ -1,7 +1,8 @@
 import React from 'react';
-import { Box, Button, Grid, Typography } from '@mui/material';
+import { Box, Button, Grid, Tooltip, Typography } from '@mui/material';
 import Image from 'next/image';
 import { getCamelCapitalized } from '@/src/utils/stringModification';
+import { ellipsisWithTooltip } from '@/src/utils/tooltipEllipsis';
 
 const PunchRequestDataView = ({
   modalData,
@@ -95,19 +96,25 @@ const PunchRequestDataView = ({
                       background: '#f6f6f6',
                     }}
                   >
-                    <Typography
-                      sx={{
-                        color: '#595959',
-                        fontSize: '16px',
-                        fontStyle: 'normal',
-                        fontWeight: 500,
-                        lineHeight: 'normal',
-                        minHeight: title === 'Description' && '90px',
-                        textTransform: 'capitalize',
-                      }}
+                    <Tooltip
+                      title={ellipsisWithTooltip(value, 150) ? `${value}` : ''}
                     >
-                      {value}
-                    </Typography>
+                      <Typography
+                        sx={{
+                          color: '#595959',
+                          fontSize: '16px',
+                          fontStyle: 'normal',
+                          fontWeight: 500,
+                          lineHeight: 'normal',
+                          minHeight: title === 'Description' && '90px',
+                          textTransform: 'capitalize',
+                        }}
+                      >
+                        {`${value?.slice(0, 150)}${
+                          ellipsisWithTooltip(value, 150) ? '...' : ''
+                        }`}
+                      </Typography>
+                    </Tooltip>
                     {suffixIcon && (
                       <Image
                         src={`/icons/${suffixIcon}.svg`}

@@ -24,6 +24,7 @@ export const clientEditForm = [
     title: 'Phone number',
     placeholder: 'Enter phone number',
     name: 'phone_number',
+    type: 'number',
   },
   {
     title: 'Join date',

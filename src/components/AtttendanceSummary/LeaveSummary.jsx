@@ -68,7 +68,7 @@ const LeaveSummary = ({ isLoading }) => {
               width: '100%',
               height: '360px',
               overflow: 'auto',
-              scrollbarWidth: 'thin',
+              scrollbarWidth: 'none',
               scrollbarColor: 'transparent transparent',
               '&::-webkit-scrollbar': {
                 display: 'none',

@@ -44,7 +44,7 @@ const LetterForm = forwardRef(({ onClose, open, empData }, ref) => {
       onClose();
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to post data');
+      Toast('error', err.response?.data?.error || 'Failed to post data');
     },
   });
 
@@ -104,7 +104,7 @@ const LetterForm = forwardRef(({ onClose, open, empData }, ref) => {
           transform: 'translate(-50%, -50%)',
           maxHeight: '90%',
           overflow: 'auto',
-          scrollbarWidth: 'thin',
+          scrollbarWidth: 'none',
           scrollbarColor: 'transparent transparent',
           '&::-webkit-scrollbar': {
             display: 'none',

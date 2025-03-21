@@ -1,9 +1,12 @@
 import * as Yup from 'yup';
 
 export const uploadInvoiceFormSchema = Yup.object({
-  employee_id: Yup.string().required('Employee id is is required'),
-  invoice_date: Yup.string().required('Invoice date is required'),
-  due_date: Yup.string()
+  employee_id: Yup.string()
+    .required('Employee id is is required')
+    .min(1, 'Employee id must be at least 1 characters long')
+    .max(255, 'Employee id cannot exceed 255 characters'),
+  invoice_date: Yup.date().required('Invoice date is required'),
+  due_date: Yup.date()
     .required('Due date is required')
     .test(
       'is-greater',
@@ -14,19 +17,35 @@ export const uploadInvoiceFormSchema = Yup.object({
         return new Date(dueDate) >= new Date(invoiceDate);
       }
     ),
-  invoice_amount: Yup.string().required('Invoice amount is required'),
+  invoice_amount: Yup.number().required('Invoice amount is required'),
   invoice: Yup.mixed()
     .required('Invoice is required')
     .test('fileType', 'Only PDF files are allowed', (value) => {
       return value && value.type === 'application/pdf';
-    }),
-  currency: Yup.string().required('Currency is required'),
+    })
+    .test(
+      'fileSize',
+      'File size should not exceed 5MB',
+      (value) => value && value.size <= 5 * 1024 * 1024
+    )
+    .test(
+      'fileNameLength',
+      'File name should not exceed 100 characters',
+      (value) => value && value.name.length <= 100
+    ),
+  currency: Yup.string()
+    .required('currency is required')
+    .min(2, 'currency must be at least 2 characters long')
+    .max(255, 'currency cannot exceed 255 characters'),
 });
 
 export const EditInvoiceFormSchema = Yup.object({
-  employee_id: Yup.string().required('Employee id is is required'),
-  invoice_date: Yup.string().required('Invoice date is required'),
-  due_date: Yup.string()
+  employee_id: Yup.string()
+    .required('Employee id is is required')
+    .min(1, 'Employee id must be at least 1 characters long')
+    .max(255, 'Employee id cannot exceed 255 characters'),
+  invoice_date: Yup.date().required('Invoice date is required'),
+  due_date: Yup.date()
     .required('Due date is required')
     .test(
       'is-greater',
@@ -37,7 +56,7 @@ export const EditInvoiceFormSchema = Yup.object({
         return new Date(dueDate) >= new Date(invoiceDate);
       }
     ),
-  invoice_amount: Yup.string().required('Invoice amount is required'),
+  invoice_amount: Yup.number().required('Invoice amount is required'),
   invoice: Yup.mixed()
     .nullable()
     .test('fileType', 'Only PDF files are allowed', (value) => {
@@ -60,9 +79,12 @@ export const EditInvoiceFormSchema = Yup.object({
 });
 
 export const uploadOthInvoiceFormSchema = Yup.object({
-  invoice_reference: Yup.string().required('Invoice reference is required'),
-  invoice_date: Yup.string().required('Invoice date is required'),
-  due_date: Yup.string()
+  invoice_reference: Yup.string()
+    .required('Invoice reference is required')
+    .min(2, 'Invoice reference must be at least 2 characters long')
+    .max(255, 'Invoice reference cannot exceed 255 characters'),
+  invoice_date: Yup.date().required('Invoice date is required'),
+  due_date: Yup.date()
     .required('Due date is required')
     .test(
       'is-greater',
@@ -73,19 +95,35 @@ export const uploadOthInvoiceFormSchema = Yup.object({
         return new Date(dueDate) >= new Date(invoiceDate);
       }
     ),
-  invoice_amount: Yup.string().required('Invoice amount is required'),
+  invoice_amount: Yup.number().required('Invoice amount is required'),
   invoice: Yup.mixed()
     .required('Invoice is required')
     .test('fileType', 'Only PDF files are allowed', (value) => {
       return value && value.type === 'application/pdf';
-    }),
-  currency: Yup.string().required('Currency is required'),
+    })
+    .test(
+      'fileSize',
+      'File size should not exceed 5MB',
+      (value) => value && value.size <= 5 * 1024 * 1024
+    )
+    .test(
+      'fileNameLength',
+      'File name should not exceed 100 characters',
+      (value) => value && value.name.length <= 100
+    ),
+  currency: Yup.string()
+    .required('currency is required')
+    .min(2, 'currency must be at least 2 characters long')
+    .max(255, 'currency cannot exceed 255 characters'),
 });
 
 export const editOthInvoiceFormSchema = Yup.object({
-  invoice_reference: Yup.string().required('Invoice reference is required'),
-  invoice_date: Yup.string().required('Invoice date is required'),
-  due_date: Yup.string()
+  invoice_reference: Yup.string()
+    .required('Invoice reference is required')
+    .min(2, 'Invoice reference must be at least 2 characters long')
+    .max(255, 'Invoice reference cannot exceed 255 characters'),
+  invoice_date: Yup.date().required('Invoice date is required'),
+  due_date: Yup.date()
     .required('Due date is required')
     .test(
       'is-greater',
@@ -96,7 +134,7 @@ export const editOthInvoiceFormSchema = Yup.object({
         return new Date(dueDate) >= new Date(invoiceDate);
       }
     ),
-  invoice_amount: Yup.string().required('Invoice amount is required'),
+  invoice_amount: Yup.number().required('Invoice amount is required'),
   invoice: Yup.mixed()
     .nullable()
     .test('fileType', 'Only PDF files are allowed', (value) => {

@@ -88,7 +88,7 @@ export const employeeTableHiringRequestColumn = [
   },
   {
     title: 'Action',
-    flex: 2.5,
+    flex: 2,
     name: 'action',
   },
 ];

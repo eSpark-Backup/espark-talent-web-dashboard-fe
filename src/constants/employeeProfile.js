@@ -130,6 +130,7 @@ export const employeePersonalDataLabel = [
   { label: 'Gender', value: 'Male', name: 'gender' },
   { label: 'Personal Email', value: 'johndoe@123.com', name: 'personal_email' },
   { label: 'Marital status', value: 'Married', name: 'marital_status' },
+  { label: 'Phone number', value: '+92 03192013292', name: 'phone_number' },
 ];
 export const employeeOfficialDataLabel = [
   { label: 'Employee ID', value: '090078601', name: 'employee_id' },

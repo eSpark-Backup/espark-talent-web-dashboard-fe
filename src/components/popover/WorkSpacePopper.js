@@ -2,12 +2,13 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Popper from '@mui/material/Popper';
-import { Button, Fade, MenuItem, Typography } from '@mui/material';
+import { Button, Fade, MenuItem, Tooltip, Typography } from '@mui/material';
 import Image from 'next/image';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { addCurrentWorkSpace } from '@/src/redux/slices/employeeSlices/empHomeSlice';
 import { useRouter } from 'next/navigation';
+import { ellipsisWithTooltip } from '@/src/utils/tooltipEllipsis';
 export default function WorkSpacePopper({
   button,
   workspace,
@@ -113,7 +114,7 @@ export default function WorkSpacePopper({
                   backgroundColor: '#fff',
                   borderRadius: '5px',
                 },
-                scrollbarWidth: 'thin',
+                scrollbarWidth: 'none',
                 scrollbarColor: 'gray',
                 '&::-webkit-scrollbar': {
                   display: workspaces?.length > 1 ? 'none' : 'scroll',
@@ -164,19 +165,26 @@ export default function WorkSpacePopper({
                         />
                       </Box>
                     )}
-
-                    <Typography
-                      variant="body1"
-                      sx={{
-                        textAlign: 'center',
-                        color: '#595959',
-                        '&: hover': {
-                          color: '#068987',
-                        },
-                      }}
+                    <Tooltip
+                      title={
+                        ellipsisWithTooltip(item?.company_name, 24)
+                          ? item?.company_name
+                          : ''
+                      }
                     >
-                      {item?.company_name}
-                    </Typography>
+                      <Typography
+                        variant="body1"
+                        sx={{
+                          textAlign: 'center',
+                          color: '#595959',
+                          '&: hover': {
+                            color: '#068987',
+                          },
+                        }}
+                      >
+                        {`${item?.company_name?.slice(0, 24)}${ellipsisWithTooltip(item?.company_name, 24) ? '...' : ''}`}
+                      </Typography>
+                    </Tooltip>
                   </Box>
                 </MenuItem>
               ))}

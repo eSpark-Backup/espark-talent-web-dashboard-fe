@@ -122,7 +122,7 @@ const EditSalaryForm = ({ onClose, open, selectedId }) => {
           transform: 'translate(-50%, -50%)',
           maxHeight: '90%',
           overflow: 'auto',
-          scrollbarWidth: 'thin',
+          scrollbarWidth: 'none',
           scrollbarColor: 'transparent transparent',
           '&::-webkit-scrollbar': {
             display: 'none',

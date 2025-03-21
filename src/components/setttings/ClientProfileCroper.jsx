@@ -33,10 +33,23 @@ const ClientProfileCroper = ({ open, onClose, currentImage }) => {
 
   const handleFileChange = (event) => {
     const file = event?.target?.files[0];
-    if (file && (file?.type === 'image/jpeg' || file?.type === 'image/png')) {
-      setSelectedFile(file);
-    } else {
-      Toast('error', 'Only .jpg and .png files are allowed');
+
+    if (file) {
+      const validMimeTypes = [
+        'image/jpg',
+        'image/jpeg',
+        'image/png',
+        'image/svg+xml',
+      ];
+      const fileExtension = file?.name?.split('.')?.pop()?.toLowerCase();
+
+      if (validMimeTypes?.includes(file?.type) && fileExtension !== 'jfif') {
+        setSelectedFile(file);
+      } else {
+        onClose();
+        Toast('error', 'Only .jpg, .jpeg, .png, and .svg files are allowed');
+        event.target.value = null;
+      }
     }
   };
 
@@ -91,7 +104,7 @@ const ClientProfileCroper = ({ open, onClose, currentImage }) => {
           <Typography variant="h5">Edit Profile Picture</Typography>
         </Box>
 
-        <Box sx={{ mt: 3, textAlign: 'center' }}>
+        <Box sx={{ mt: 1, textAlign: 'center' }}>
           <Box
             sx={{
               display: 'flex',
@@ -107,6 +120,7 @@ const ClientProfileCroper = ({ open, onClose, currentImage }) => {
                 borderRadius: '50%',
                 objectFit: 'cover',
                 mx: 'auto',
+                mb: 2,
               }}
             />
             <input
@@ -121,7 +135,7 @@ const ClientProfileCroper = ({ open, onClose, currentImage }) => {
               onClick={handleUploadImage}
               variant="contained"
               color="primary"
-              sx={{ mx: 'auto', width: '95%', mt: 2 }}
+              sx={{ mx: 'auto', width: '95%' }}
             >
               {'Upload Image'}
             </Button>

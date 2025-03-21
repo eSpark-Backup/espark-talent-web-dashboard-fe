@@ -1,8 +1,16 @@
-import { Avatar, Box, Skeleton, Stack, Typography } from '@mui/material';
+import {
+  Avatar,
+  Box,
+  Skeleton,
+  Stack,
+  Tooltip,
+  Typography,
+} from '@mui/material';
 import React from 'react';
 import EditModal from '@/src/components/employeeData/editModal';
 import { useRouter } from 'next/navigation';
 import { useSelector } from 'react-redux';
+import { ellipsisWithTooltip } from '@/src/utils/tooltipEllipsis';
 
 const ClientProfileData = ({
   handleOpenModal,
@@ -45,6 +53,7 @@ const ClientProfileData = ({
     ],
   ];
   const { currentClient } = useSelector((state) => state?.hr?.clients);
+
   return (
     <Box
       sx={{
@@ -115,35 +124,68 @@ const ClientProfileData = ({
           <Box>
             {currentClient?.first_name ? (
               <Box display={'flex'} flexDirection={'column'}>
-                <Typography
-                  sx={{
-                    color: '#171717',
-                    fontSize: {
-                      xs: '18px',
-                      sm: '20px',
-                      md: '23px',
-                      lg: '25px',
-                    },
-                    fontStyle: 'normal',
-                    fontWeight: '600',
-                    lineHeight: 'normal',
-                    mb: { xs: '10px', md: '15px' },
-                  }}
+                <Tooltip
+                  title={
+                    ellipsisWithTooltip(currentClient?.first_name, 22) ||
+                    ellipsisWithTooltip(currentClient?.last_name, 22)
+                      ? `${currentClient?.first_name} ${currentClient?.last_name}`
+                      : ''
+                  }
                 >
-                  {`${currentClient?.first_name} ${currentClient?.last_name}`}
-                </Typography>
-                <Typography
-                  sx={{
-                    color: '#595959',
-                    fontSize: { xs: '13px', md: '14px', xl: '16px' },
-                    fontStyle: 'normal',
-                    fontWeight: '500',
-                    lineHeight: 'normal',
-                    textAlign: { xs: 'center', sm: 'start' },
-                  }}
+                  <Typography
+                    sx={{
+                      color: '#171717',
+                      fontSize: {
+                        xs: '18px',
+                        sm: '20px',
+                        md: '23px',
+                        lg: '25px',
+                      },
+                      fontStyle: 'normal',
+                      fontWeight: '600',
+                      lineHeight: 'normal',
+                      mb: { xs: '10px', md: '15px' },
+                    }}
+                  >
+                    {`${`${currentClient?.first_name || ''} ${currentClient?.last_name || ''}`?.slice(0, 22)}${
+                      ellipsisWithTooltip(
+                        `${currentClient?.first_name || ''} ${currentClient?.last_name || ''}`,
+                        22
+                      )
+                        ? '...'
+                        : ''
+                    }`}
+                  </Typography>
+                </Tooltip>
+                <Tooltip
+                  title={
+                    ellipsisWithTooltip(currentClient?.company_name, 22)
+                      ? `${currentClient?.company_name}`
+                      : ''
+                  }
                 >
-                  {`${currentClient?.company_name}`}
-                </Typography>
+                  <Typography
+                    sx={{
+                      color: '#595959',
+                      fontSize: { xs: '13px', md: '14px', xl: '16px' },
+                      fontStyle: 'normal',
+                      fontWeight: '500',
+                      lineHeight: 'normal',
+                      textAlign: { xs: 'center', sm: 'start' },
+                      width: '110px',
+                      display: 'block',
+                      whiteSpace: 'nowrap',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                    }}
+                  >
+                    {`${currentClient?.company_name?.slice(0, 22)}${
+                      ellipsisWithTooltip(currentClient?.company_name)
+                        ? '...'
+                        : ''
+                    }`}
+                  </Typography>
+                </Tooltip>
               </Box>
             ) : (
               <Stack spacing={1.5} sx={{ width: { xs: '100%', md: '200px' } }}>
@@ -180,18 +222,30 @@ const ClientProfileData = ({
             >
               {item?.map(({ title, name }, i) => (
                 <Box key={i}>
-                  <Typography
-                    sx={{
-                      color: '#595959',
-                      fontSize: { xs: '13px', md: '14px', xl: '16px' },
-                      fontStyle: 'normal',
-                      fontWeight: '500',
-                      lineHeight: { xs: 2, md: 2 },
-                      textAlign: { xs: 'center', sm: 'start' },
-                    }}
+                  <Tooltip
+                    title={
+                      ellipsisWithTooltip(currentClient[name], 22)
+                        ? currentClient[name]
+                        : ''
+                    }
                   >
-                    {`${title}:  ${currentClient[name]}`}
-                  </Typography>
+                    <Typography
+                      sx={{
+                        color: '#595959',
+                        fontSize: { xs: '13px', md: '14px', xl: '16px' },
+                        fontStyle: 'normal',
+                        fontWeight: '500',
+                        lineHeight: { xs: 2, md: 2 },
+                        textAlign: { xs: 'center', sm: 'start' },
+                      }}
+                    >
+                      {`${title}: ${currentClient[name]?.slice(0, 22)}${
+                        ellipsisWithTooltip(currentClient[name], 22)
+                          ? '...'
+                          : ''
+                      }`}
+                    </Typography>
+                  </Tooltip>
                 </Box>
               ))}
             </Box>

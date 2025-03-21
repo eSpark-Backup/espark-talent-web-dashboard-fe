@@ -58,7 +58,7 @@ const AttendanceViewModal = React.forwardRef(
           borderRadius: '10px',
           width: { xs: '90%', sm: '90%', md: '77.084%' },
           boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
-          scrollbarWidth: 'thin',
+          scrollbarWidth: 'none',
           scrollbarColor: 'transparent transparent',
           '&::-webkit-scrollbar': {
             display: 'none',

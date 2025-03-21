@@ -55,6 +55,12 @@ export const personalDetailsForm = [
       },
     ],
   },
+  {
+    title: 'Phone number',
+    placeholder: 'Enter phone number',
+    name: 'phone_number',
+    type: 'number',
+  },
 ];
 
 export const officialDetailsForm = [

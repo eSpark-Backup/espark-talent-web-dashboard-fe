@@ -1,13 +1,15 @@
 import * as Yup from 'yup';
 
 export const salaryFormSchema = Yup.object({
-  job_status: Yup.string().required('Job status is required'),
-
+  job_status: Yup.string()
+    .required('Job status is required')
+    .min(2, 'Job status is too short - should be 2 chars minimum.')
+    .max(255, 'Job status is too long - should be 255 chars maximum.'),
   gross_salary: Yup.number()
     .typeError('Gross Salary must be a number')
     .required('Gross Salary is required')
-    .min(0, 'Gross Salary must be at least Rs. 1')
-    .max(1000000, 'Gross Salary cannot exceed Rs. 1,000,000'),
+    .min(1, 'Gross Salary must be at least Rs. 1'),
+  // .max(1000000, 'Gross Salary cannot exceed Rs. 1,000,000'),
   tax_deduction: Yup.number()
     .typeError('Tax Deduction must be a number')
     .required('Tax Deduction is required')
@@ -41,13 +43,23 @@ export const salaryFormSchema = Yup.object({
     .required('Pay Slip is required')
     .test(
       'fileFormat',
-      'Only PDF files are allowed',
-      (value) => value && value.type === 'application/pdf'
+      'Unsupported file format (only PDF allowed)',
+      (value) =>
+        value &&
+        [
+          'application/pdf',
+          'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+        ]?.includes(value?.type)
+    )
+    .test(
+      'fileNameLength',
+      'File name should not exceed 100 characters',
+      (value) => value && value?.name?.length <= 100
     )
     .test(
       'fileSize',
-      'File size should not exceed 2MB',
-      (value) => value && value.size <= 2 * 1024 * 1024 // Validates file size <= 2MB
+      'File size should not exceed 5MB',
+      (value) => value && value?.size <= 5 * 1024 * 1024 // <= 5MB
     ),
 });
 
@@ -88,14 +100,26 @@ export const salaryEditFormSchema = Yup.object({
     ),
   date: Yup.date().required('Date is required'),
   pay_slip: Yup.mixed()
+    .nullable()
+    .notRequired()
     .test(
       'fileFormat',
-      'Only PDF files are allowed',
-      (value) => !value || value.type === 'application/pdf' // Allow empty or PDF
+      'Unsupported file format (only PDF allowed)',
+      (value) =>
+        !value ||
+        [
+          'application/pdf',
+          'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+        ]?.includes(value?.type)
+    )
+    .test(
+      'fileNameLength',
+      'File name should not exceed 100 characters',
+      (value) => !value || value?.name?.length <= 100
     )
     .test(
       'fileSize',
-      'File size should not exceed 2MB',
-      (value) => !value || value.size <= 2 * 1024 * 1024 // Allow empty or files <= 2MB
+      'File size should not exceed 5MB',
+      (value) => !value || value?.size <= 5 * 1024 * 1024
     ),
 });

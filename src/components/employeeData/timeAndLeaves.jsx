@@ -48,6 +48,7 @@ const TimeAndLeaves = () => {
       column: timeColumn,
     });
   }, []);
+
   const [isLoadingMutation, setIsLoadingMutation] = useState(false);
   console.log(isLoadingMutation, 'isLoadingMutation');
 
@@ -150,7 +151,7 @@ const TimeAndLeaves = () => {
 
   const getLeavesData = (leaves_perms, data) => {
     const readAcess = leaves_perms?.[0]?.read;
-    return !readAcess ? [] : data;
+    return !readAcess && role !== 'super_admin' ? [] : data;
   };
 
   const [isOpenTimeManagementModal, setIsOpenTimeManagementModal] =

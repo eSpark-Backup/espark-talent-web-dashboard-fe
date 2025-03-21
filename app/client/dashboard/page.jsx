@@ -52,7 +52,7 @@ const Dashboard = () => {
           >
             {username ? (
               <DashboardHeading
-                title={`Hello ${username},` || 'World'}
+                title={`Hello ${username}` || 'World'}
                 dashboardDescription={DASHBOARD_DATA?.updates}
               />
             ) : (

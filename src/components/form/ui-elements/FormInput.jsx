@@ -5,7 +5,8 @@ import { Box } from '@mui/system';
 import Image from 'next/image';
 import copy from 'copy-to-clipboard';
 import dayjs from 'dayjs';
-
+import PhoneInput from 'react-phone-number-input';
+import 'react-phone-number-input/style.css';
 import AppDropdown from '../../dashboard/appDropdown';
 import {
   DesktopDatePicker,
@@ -18,6 +19,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import AppSearchableDropdown from '../../dashboard/appSearchableDropdown';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { emailRegExp } from '../schemas/validations';
+import { ellipsisWithTooltip } from '@/src/utils/tooltipEllipsis';
 
 const DateTimePickerComponent = (props) => {
   const isXsScreen = useMediaQuery('(max-width:600px)');
@@ -69,8 +71,6 @@ const FormInput = ({
   filelabel,
   handleJobTitleClick,
   handleJobTitleSelect,
-  fontSize,
-  miniFontSize,
   onclickUpload,
 }) => {
   const [isLoadingList, setIsLoadingList] = useState(false);
@@ -155,6 +155,18 @@ const FormInput = ({
     const fieldName = `${name}.${item.name}`;
     setFieldValue(fieldName, checked);
   };
+
+  const handlePhoneChange = (name, event) => {
+    setFieldValue(name, event);
+    setErrors({ ...errors, [name]: '' });
+  };
+
+  const getNestedValue = (obj, path) => {
+    return path
+      .split('.')
+      .reduce((acc, key) => (acc && acc[key] ? acc[key] : ''), obj);
+  };
+
   return (
     <Grid
       item
@@ -192,7 +204,7 @@ const FormInput = ({
               </Typography>
             </Box>
           ) : (
-            <Box display={'flex'} sx={{ mb: '10px' }} alignItems={'end'}>
+            <Box display={'flex'} sx={{ mb: '10px' }} alignItems={'flex-start'}>
               <Typography
                 sx={{
                   color: error ? 'red' : '#595959',
@@ -200,33 +212,15 @@ const FormInput = ({
                   fontStyle: 'normal',
                   fontWeight: 500,
                   lineHeight: 'normal',
-                  textWrap: 'nowrap',
+                  // textWrap: 'nowrap',
                   '@media (min-width: 1200px) and (max-width: 1250px)': {
                     fontSize: '14px',
                   },
                 }}
                 dangerouslySetInnerHTML={{
-                  __html: title,
+                  __html: `${title} ${filelabel ? `<span style="font-size: 10px">${filelabel}</span>` : ''}`,
                 }}
               ></Typography>
-              {filelabel && (
-                <Typography
-                  sx={{
-                    fontSize: '10px',
-                    textWrap: 'nowrap',
-                    ml: '5px',
-
-                    '@media (min-width: 1210px) and (max-width: 1370px)': {
-                      fontSize: fontSize,
-                    },
-                    '@media (min-width: 1200px) and (max-width: 1210px)': {
-                      fontSize: miniFontSize,
-                    },
-                  }}
-                >
-                  {filelabel}
-                </Typography>
-              )}
             </Box>
           )}
         </>
@@ -862,31 +856,51 @@ const FormInput = ({
                 </label>
               )}
 
-              <input
-                id={`input-file-${title}`}
-                style={{
-                  background: '#FFF',
-                  display: type === 'file' && 'none',
-                  color: disabled && '#888',
-                  // cursor: 'pointer',
-                }}
-                value={type === 'file' ? '' : value}
-                disabled={disabled}
-                autoComplete={autoComplete}
-                placeholder={placeholder}
-                className="form-input-field"
-                type={type}
-                ref={textRef}
-                readOnly={readOnly}
-                onChange={(e) => {
-                  if (type === 'file') {
-                    handleChangeFileInput(name, e?.currentTarget.files[0]);
-                  } else {
-                    handleChangeInput(name, e?.target?.value);
-                  }
-                }}
-                accept={accept}
-              />
+              {(type === 'number' && name === 'phone_number') ||
+              name === 'emergency_no' ||
+              name?.includes('phone') ? (
+                <Box
+                  sx={{
+                    width: '100%',
+                    display: 'flex',
+                    alignItems: 'center',
+                  }}
+                >
+                  <PhoneInput
+                    placeholder="Enter phone number"
+                    value={values[name] || getNestedValue(values, name)}
+                    id={'phone_number'}
+                    defaultCountry={'PK'}
+                    onChange={(e) => handlePhoneChange(name, e)}
+                  />
+                </Box>
+              ) : (
+                <input
+                  id={`input-file-${title}`}
+                  style={{
+                    background: '#FFF',
+                    display: type === 'file' ? 'none' : 'block',
+                    color: disabled ? '#888' : 'inherit',
+                  }}
+                  value={type === 'file' ? '' : value}
+                  disabled={disabled}
+                  autoComplete={autoComplete}
+                  placeholder={placeholder}
+                  className="form-input-field"
+                  type={type}
+                  ref={textRef}
+                  readOnly={readOnly}
+                  onChange={(e) => {
+                    if (type === 'file') {
+                      handleChangeFileInput(name, e?.currentTarget.files[0]);
+                    } else {
+                      handleChangeInput(name, e?.target?.value);
+                    }
+                  }}
+                  accept={accept}
+                />
+              )}
+
               {suffixIcon && (
                 <label
                   htmlFor={`input-file-${title}`}
@@ -929,12 +943,24 @@ const FormInput = ({
               )}
 
               {type === 'file' && (
-                <label
-                  className="file-upload-label"
-                  htmlFor={`input-file-${title}`}
+                <Tooltip
+                  title={
+                    ellipsisWithTooltip(value?.name, 24) ? `${value?.name}` : ''
+                  }
                 >
-                  {value?.name || placeholder}
-                </label>
+                  <label
+                    className="file-upload-label"
+                    htmlFor={`input-file-${title}`}
+                    style={{
+                      display: 'block',
+                      lineHeight: '38px',
+                    }}
+                  >
+                    {`${value?.name ? value?.name?.slice(0, 24) : placeholder}${
+                      ellipsisWithTooltip(value?.name, 24) ? '...' : ''
+                    }`}
+                  </label>
+                </Tooltip>
               )}
             </Box>
             {suffixIconOutside && (

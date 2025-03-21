@@ -64,7 +64,7 @@ const EmployeeContractModal = ({ open, onClose }) => {
       queryClient?.invalidateQueries(['company-contract-signed-query']);
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to post data');
+      Toast('error', err?.response?.data?.error || 'Failed to post data');
     },
   });
   const {

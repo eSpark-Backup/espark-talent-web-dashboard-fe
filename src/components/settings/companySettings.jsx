@@ -33,7 +33,7 @@ const CompanySettings = () => {
     },
   });
   console.log(companySettings, 'companySettings');
-  const defaultValues = { ...companySettings };
+  const defaultValues = { ...companySettings, image: '' };
   const getFinalData = (values) => {
     if (typeof values?.image === 'object') {
       return {
@@ -45,6 +45,7 @@ const CompanySettings = () => {
       return finalData;
     }
   };
+
   const handleToast = () => {
     Toast('success', 'Setting updated succesfully');
   };
@@ -57,6 +58,7 @@ const CompanySettings = () => {
   const handleErrorToast = (err) => {
     Toast('error', extractErrorText(err) || 'Failed to delete data');
   };
+
   const { homeData } = useSelector((state) => state?.hr?.home);
   const handleSave = () => {
     api

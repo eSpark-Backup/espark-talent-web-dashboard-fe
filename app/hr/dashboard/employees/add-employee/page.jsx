@@ -53,7 +53,6 @@ const AddEmployee = () => {
     email: values?.email?.trim()?.toLowerCase(),
     marital_status: values?.marital_status,
     image: values?.image || null,
-    emergency_no: values?.emergency_no,
     resume: values?.resume,
     emergency_contact: JSON?.stringify({
       primary: {
@@ -138,7 +137,7 @@ const AddEmployee = () => {
             height: '100%',
             minHeight: '650px',
             overflow: 'auto',
-            scrollbarWidth: 'thin',
+            scrollbarWidth: 'none',
             scrollbarColor: 'gray',
             '&::-webkit-scrollbar': {
               display: 'none',

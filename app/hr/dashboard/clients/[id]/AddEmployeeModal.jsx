@@ -210,7 +210,7 @@ const AddEmployeeModal = ({ open, onClose }) => {
                 mx: 'auto',
                 height: 'calc(100% - 50px )',
                 overflow: 'auto',
-                scrollbarWidth: 'thin',
+                scrollbarWidth: 'none',
                 scrollbarColor: 'gray',
                 '&::-webkit-scrollbar': {
                   display: 'none',

@@ -64,6 +64,7 @@ const EditAccountModal = forwardRef(({ open, onClose, modalData }, ref) => {
     validateOnBlur: false,
     onSubmit: async (formValues) => {
       mutate(formValues);
+      setImageFile(null);
     },
   });
 

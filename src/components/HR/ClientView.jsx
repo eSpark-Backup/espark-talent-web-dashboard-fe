@@ -344,7 +344,10 @@ const ClientView = ({ status, data, isLoading }) => {
                             fontSize: '16px',
                             fontWeight: '400',
                             textAlign: 'center',
-                            textWrap: 'nowrap',
+                            whiteSpace: 'nowrap',
+                            overflow: 'hidden',
+                            textOverflow: 'ellipsis',
+                            maxWidth: '160px',
                           }}
                         >
                           {eachItem?.name}
@@ -355,6 +358,9 @@ const ClientView = ({ status, data, isLoading }) => {
                             fontSize: '16px',
                             textAlign: 'center',
                             textWrap: 'nowrap',
+                            overflow: 'hidden',
+                            textOverflow: 'ellipsis',
+                            maxWidth: '160px',
                           }}
                         >
                           {eachItem?.company_name}

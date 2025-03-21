@@ -4,15 +4,23 @@ import {
   dojValidation,
   emailValidation,
   nameValidation,
+  phoneValidation,
 } from './validations';
 
 export const employeePersonalDataSchema = Yup.object({
   first_name: nameValidation,
   last_name: nameValidation,
   dob: dobValidation,
-  gender: Yup.string(),
+  gender: Yup.string()
+    .required('Gender is required')
+    .min(2, 'Gender  must be at least 2 characters long')
+    .max(255, 'Gender cannot exceed 255 characters'),
   personal_email: emailValidation,
-  marital_status: Yup.string(),
+  marital_status: Yup.string()
+    .required('Marital status is required')
+    .min(2, 'Marital status must be at least 3 characters long')
+    .max(255, 'Marital status cannot exceed 255 characters'),
+  phone_number: phoneValidation,
 });
 export const employeeOfficialDataSchema = Yup.object({
   employee_id: Yup.string(),

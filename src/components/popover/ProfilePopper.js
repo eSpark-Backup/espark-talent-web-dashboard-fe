@@ -2,7 +2,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Popper from '@mui/material/Popper';
-import { Fade, MenuItem, Typography } from '@mui/material';
+import { Fade, MenuItem, Tooltip, Typography } from '@mui/material';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 
@@ -26,6 +26,7 @@ import { getNotifications } from '@/src/redux/slices/notificationSlice';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { notificationCases } from '@/src/utils/notificationCases';
+import { ellipsisWithTooltip } from '@/src/utils/tooltipEllipsis';
 dayjs.extend(relativeTime);
 
 export default function ProfilePopper({
@@ -405,19 +406,33 @@ export default function ProfilePopper({
                               >
                                 {notification?.type}
                               </Typography>
-                              <Typography
-                                sx={{
-                                  fontSize: '12px',
-                                  fontWeight: 400,
-                                  color: '#595959',
-                                  display: '-webkit-box',
-                                  WebkitBoxOrient: 'vertical',
-                                  WebkitLineClamp: 3,
-                                  overflow: 'hidden',
-                                }}
+                              <Tooltip
+                                title={
+                                  ellipsisWithTooltip(
+                                    notification?.description,
+                                    50
+                                  )
+                                    ? `${notification?.description}`
+                                    : ''
+                                }
                               >
-                                {notification?.description}
-                              </Typography>
+                                <Typography
+                                  sx={{
+                                    fontSize: '12px',
+                                    fontWeight: 400,
+                                    color: '#595959',
+                                  }}
+                                >
+                                  {`${notification?.description?.slice(0, 50)}${
+                                    ellipsisWithTooltip(
+                                      notification?.description,
+                                      50
+                                    )
+                                      ? '...'
+                                      : ''
+                                  }`}
+                                </Typography>
+                              </Tooltip>
                             </Box>
                             <Box>
                               <Typography

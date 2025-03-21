@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Modal, Tab, Tabs } from '@mui/material';
+import { Box, Modal, Tab, Tabs, Tooltip } from '@mui/material';
 import AppTable from '../appTableNew/AppTable';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import {
@@ -16,6 +16,7 @@ import { useDispatch } from 'react-redux';
 import { getAttendanceRequestSuccess } from '@/src/redux/slices/hrSlices/employeeSlice';
 import { attendanceReportTableColumn } from '@/src/constants/data/tables/attendanceReport';
 import { calculateExpectedTime } from '@/src/utils/calculateExpectedTime';
+import { ellipsisWithTooltip } from '@/src/utils/tooltipEllipsis';
 
 const AttendanceReport = ({ employeeData }) => {
   const dispatch = useDispatch();
@@ -54,7 +55,6 @@ const AttendanceReport = ({ employeeData }) => {
       }
     },
   });
-  console.log(empProfile?.data?.email, 'empProfile');
 
   const { data: attendanceData, isLoading } = useQuery({
     staleTime: 10000,
@@ -165,7 +165,19 @@ const AttendanceReport = ({ employeeData }) => {
                 <Tab
                   disableRipple
                   key={index}
-                  label={item?.client}
+                  label={
+                    <Tooltip
+                      title={
+                        ellipsisWithTooltip(item?.client, 17)
+                          ? `${item?.client}`
+                          : ''
+                      }
+                    >
+                      {`${item?.client?.slice(0, 17)}${
+                        ellipsisWithTooltip(item?.client, 17) ? '...' : ''
+                      }`}
+                    </Tooltip>
+                  }
                   sx={{
                     textTransform: 'none',
                     color: '#595959',

@@ -1,9 +1,10 @@
 import dayjs from 'dayjs';
 import * as Yup from 'yup';
-
+import { isValidPhoneNumber } from 'react-phone-number-input';
 export const emailRegExp =
   /^[A-Z0-9]+(?:[._%+-][A-Z0-9]+)*@[A-Z0-9]+(?:-[A-Z0-9]+)*(\.[A-Z0-9]+(?:-[A-Z0-9]+)*)+$/i;
 export const nameRegExp = /^[a-zA-Z\s'-]+$/;
+export const jobTitleRegExp = /^[a-zA-Z\s&.'-]+$/;
 export const interNameRegExp = /^[a-zA-ZÀ-ÖØ-öø-ÿ]+([ '-][a-zA-ZÀ-ÖØ-öø-ÿ]+)*$/;
 export const companyNameRegExp = /^[a-zA-Z0-9\s'&.-]+$/;
 export const phoneNumberRegExp = /^\+?[0-9]+$/;
@@ -22,14 +23,22 @@ export const dobValidation = Yup.string()
     return dateOfBirth.isBefore(today) || dateOfBirth.isSame(today, 'day');
   });
 
+// export const phoneValidation = Yup.string()
+//   .required('Contact number is required')
+//   .matches(
+//     phoneNumberRegExp,
+//     'Phone number must contain only numeric characters and an optional leading +'
+//   )
+//   .min(6, 'Phone number must be at least 6 digits')
+//   .max(16, 'Phone number must be at most 16 digits');
+
+// added new validation for phone number
 export const phoneValidation = Yup.string()
-  .required('Contact number is required')
-  .matches(
-    phoneNumberRegExp,
-    'Phone number must contain only numeric characters and an optional leading +'
+  .test('phone', 'Invalid phone number', (value) =>
+    value ? isValidPhoneNumber(value) : true
   )
-  .min(6, 'Phone number must be at least 6 digits')
-  .max(16, 'Phone number must be at most 16 digits');
+  .required('Phone number is required');
+
 export const notRequiredValidation = Yup.string()
   .matches(
     phoneNumberRegExp,
@@ -46,23 +55,24 @@ export const companyValidation = Yup.string()
   .required('Company name is required')
   .min(2, 'Company name is too short - should be 2 chars minimum.')
   .max(100, 'Company name is too long - should be 100 chars maximum.');
+
 export const websiteValidation = Yup.string()
   .required('Website url is required')
   .test('is-url', 'Invalid URL', (value) => {
     if (!value) return true;
-    const urlRegex =
-      /^(https?:\/\/)((www\.)?[a-zA-Z0-9@:%._+~#?&//=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%._+~#?&//=]*))$/;
+    const urlRegex = /^(https?:\/\/|ftp:\/\/|www\.)[^\s/$.?#].[^\s]*$/;
     if (/^(https?:\/\/)(w{1,2}\.)/.test(value)) return false;
     if (/^(https?:\/\/)\./.test(value)) return false;
     if (/\.\./.test(value)) return false;
     return urlRegex.test(value);
   });
+
 export const nameValidation = Yup.string()
-  .transform((value) => value.replace(/\s+/g, '')) // Removes all spaces before validation
-  .matches(nameRegExp, 'Name is not valid')
-  .required('Name is required')
+  .transform((value) => value.trim()) // Leading & trailing spaces remove karna
+  .matches(nameRegExp, 'Name is not valid') // Sirf letters, hyphens, aur apostrophes allow hain
+  .required('Name is required') // Blank value allowed nahi hai
   .min(2, 'Name is too short - should be 2 chars minimum.')
-  .max(50, 'Name is too long - should be 50 chars maximum.');
+  .max(255, 'Name is too long - should be 255 chars maximum.');
 
 export const dojValidation = Yup.string()
   .required('Required')

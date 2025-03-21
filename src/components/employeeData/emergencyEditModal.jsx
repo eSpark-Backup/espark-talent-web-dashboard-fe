@@ -126,9 +126,11 @@ const EditEmergencyModal = forwardRef(
             boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
             maxHeight: '80%',
             position: 'absolute',
-            top: '10%',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
             overflow: 'auto',
-            scrollbarWidth: 'thin',
+            scrollbarWidth: 'none',
             scrollbarColor: 'transparent transparent',
             '&::-webkit-scrollbar': {
               display: 'none',

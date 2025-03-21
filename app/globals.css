@@ -3,6 +3,13 @@
   flex-wrap: wrap;
 }
 
+html,
+body {
+  position: relative;
+  height: 100%;
+}
+
+
 /* AFTER TAILWIND CSS REMOVED */
 
 *,
@@ -272,28 +279,6 @@ a {
 /* Attendance Summary slider */
 /* ************************ */
 
-/* #app {
-  height: 100%;
-}
-html,
-body {
-  position: relative;
-  height: 100%;
-}
-
-body {
-  background: #eee;
-  font-family:
-    Helvetica Neue,
-    Helvetica,
-    Arial,
-    sans-serif;
-  font-size: 14px;
-  color: #000;
-  margin: 0;
-  padding: 0;
-} */
-
 .swiper {
   width: 100%;
   height: 100%;
@@ -455,4 +440,35 @@ input[type='number']::-webkit-outer-spin-button {
 input[type='number'] {
   -moz-appearance: textfield;
   appearance: textfield;
+}
+
+
+/* phone number input styling */
+
+.PhoneInput {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 400px; 
+  border-radius: 8px;
+  padding: 10px 0px 10px 10px;
+}
+
+.PhoneInputInput {
+  width: calc(100% - 40px);
+  height: 60px; 
+  border: none;
+  outline: none;
+  padding: 8px;
+}
+
+.PhoneInputCountry {
+  margin-right: 10px;
+  gap: 5px;
+}
+
+.PhoneInputCountrySelect {
+  border: none;
+  background: transparent;
+  cursor: pointer;
 }

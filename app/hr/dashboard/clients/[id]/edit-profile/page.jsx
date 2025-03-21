@@ -20,6 +20,7 @@ const EditClient = () => {
   useEffect(() => {
     console.log('form', formData);
   }, [formData]);
+
   const getCountry = (country) => {
     return (
       countriesList.find(({ title }) => title === country) || {

@@ -112,7 +112,7 @@ export const addOnboardForm = [
         label: 'Renminbi',
       },
       {
-        label: 'Autralian dollar',
+        label: 'Australian dollar',
       },
       {
         label: 'Canadian dollar',

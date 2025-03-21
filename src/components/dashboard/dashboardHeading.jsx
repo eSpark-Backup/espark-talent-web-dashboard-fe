@@ -1,6 +1,7 @@
 import React from 'react';
-import { Box, Stack, Typography } from '@mui/material';
+import { Box, Stack, Tooltip, Typography } from '@mui/material';
 import Skeleton from '@mui/material/Skeleton';
+import { ellipsisWithTooltip } from '@/src/utils/tooltipEllipsis';
 
 const DashboardHeading = ({ dashboardDescription, title, isLoading }) => {
   return isLoading ? (
@@ -19,16 +20,18 @@ const DashboardHeading = ({ dashboardDescription, title, isLoading }) => {
         ml: 0.5,
       }}
     >
-      <Typography
-        sx={{
-          fontSize: { xs: '25px', md: '28px', lg: '30px', color: '#171717' },
-          fontWeight: 600,
-          color: '#171717',
-          textAlign: { xs: 'center', sm: 'start' },
-        }}
-      >
-        {title || ''}
-      </Typography>
+      <Tooltip title={ellipsisWithTooltip(title, 24) ? title : ''}>
+        <Typography
+          sx={{
+            fontSize: { xs: '25px', md: '28px', lg: '30px', color: '#171717' },
+            fontWeight: 600,
+            color: '#171717',
+            textAlign: { xs: 'center', sm: 'start' },
+          }}
+        >
+          {`${title?.slice(0, 24)}${ellipsisWithTooltip(title, 24) ? '...' : ''}`}
+        </Typography>
+      </Tooltip>
       <Typography
         sx={{
           fontSize: { xs: '14px', lg: '14px' },

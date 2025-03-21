@@ -2,8 +2,8 @@
 import React from 'react';
 import { Box } from '@mui/material';
 
-import ProfileSection from './ProfileSection';
 import SettingTitle from './SettingTitle';
+import ProfileSection from './ProfileSection';
 import {
   Profile_Edit_Section,
   Setting_Data,

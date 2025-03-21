@@ -71,6 +71,7 @@ const form = [
     title: 'Salary',
     placeholder: 'Enter salary',
     name: 'salary',
+    type: 'number',
   },
   {
     title: 'Salary Currency',
@@ -94,7 +95,7 @@ const form = [
         label: 'Renminbi',
       },
       {
-        label: 'Autralian dollar',
+        label: 'Australian dollar',
       },
       {
         label: 'Canadian dollar',

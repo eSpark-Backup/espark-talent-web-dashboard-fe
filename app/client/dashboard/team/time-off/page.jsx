@@ -333,6 +333,9 @@ const Dashboard = () => {
                     !tabData.currentReqTypeTab ||
                     (tabData.currentReqTypeTab === 'Leave Requests' &&
                       !data?.leaveRequest?.length) ||
+                    (tabData.currentReqTypeTab === 'Leave Balance' &&
+                      !data?.leaveRequest?.length) ||
+                    !data?.clockInOutRequests?.length ||
                     (tabData.currentReqTypeTab === 'Clockin/out Requests' &&
                       !data?.clockInOutRequests?.length)
                       ? '#ccc'
@@ -452,7 +455,7 @@ const Dashboard = () => {
             boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.30)',
             maxHeight: '82%',
             overflow: 'auto',
-            scrollbarWidth: 'thin',
+            scrollbarWidth: 'none',
             scrollbarColor: 'transparent transparent',
             '&::-webkit-scrollbar': {
               display: 'none',

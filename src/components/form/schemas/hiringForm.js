@@ -5,11 +5,20 @@ export const hiringFormSchema = Yup.object({
     .trim()
     .required('Job title is required')
     .min(3, 'Job title must be at least 3 characters long')
-    .max(30, 'Job title cannot exceed 30 characters'),
-  roleType: Yup.string().required('Role type is required'),
-  gender: Yup.string().required('Gender is required'),
+    .max(255, 'Job title cannot exceed 255 characters'),
+  roleType: Yup.string()
+    .required('Role type is required')
+    .min(3, 'role type must be at least 3 characters long')
+    .max(255, 'role type cannot exceed 255 characters'),
+  gender: Yup.string()
+    .required('Gender is required')
+    .min(3, 'gender must be at least 3 characters long')
+    .max(255, 'gender cannot exceed 255 characters'),
   country: Yup.object().required('Country is required'),
-  salary_currency: Yup.string().required('Currency is required'),
+  salary_currency: Yup.string()
+    .required('currency is required')
+    .min(3, 'currency must be at least 3 characters long')
+    .max(255, 'currency cannot exceed 255 characters'),
   salary_range: Yup.object()
     .shape({
       minimum: Yup.number()
@@ -27,7 +36,10 @@ export const hiringFormSchema = Yup.object({
       ),
     })
     .required('Salary range is required'),
-  employmentTerm: Yup.string().required('Employement term is required'),
+  employmentTerm: Yup.string()
+    .required('Employement term is required')
+    .min(3, 'Employement term must be at least 3 characters long')
+    .max(255, 'Employement term cannot exceed 255 characters'),
   hiringStartDate: Yup.string().required('Hiring start date is required'),
   hiringEndDate: Yup.string()
     .required('Hiring end date is required')
@@ -48,8 +60,8 @@ export const hiringFormSchema = Yup.object({
       'Comments cannot be just spaces',
       (value) => !value || value?.trim()?.length > 0
     )
-    .min(5, 'Comments should be at least 5 characters long')
-    .max(500, 'Comments cannot exceed 500 characters'),
+    .min(3, 'Comments should be at least 3 characters long')
+    .max(255, 'Comments cannot exceed 255 characters'),
   job_description: Yup.mixed()
     .required('Job description is required')
     .test(
@@ -59,7 +71,12 @@ export const hiringFormSchema = Yup.object({
     )
     .test(
       'fileSize',
-      'File size should not exceed 2MB',
-      (value) => value && value.size <= 2 * 1024 * 1024 // Validates file size <= 2MB
+      'File size should not exceed 5MB',
+      (value) => value && value.size <= 5 * 1024 * 1024
+    )
+    .test(
+      'fileNameLength',
+      'File name should not exceed 100 characters',
+      (value) => value && value.name.length <= 100
     ),
 });
