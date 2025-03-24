@@ -87,7 +87,7 @@ const UploadImageModal = ({
           boxShadow: 24,
         }}
       >
-        <Box sx={{ position: 'relative', textAlign: 'center' }}>
+        <Box sx={{ position: 'relative', textAlign: 'center', mb: 1 }}>
           <Typography variant="h5">Upload Image</Typography>
         </Box>
 
@@ -106,14 +106,19 @@ const UploadImageModal = ({
                 currentImage instanceof File ||
                 currentImage instanceof Blob
                   ? URL.createObjectURL(currentImage)
-                  : ''
+                  : typeof currentImage === 'string' &&
+                      currentImage.startsWith('http')
+                    ? currentImage
+                    : ''
               }
               alt=""
               sx={{
                 display:
                   photoURL ||
                   currentImage instanceof File ||
-                  currentImage instanceof Blob
+                  currentImage instanceof Blob ||
+                  (typeof currentImage === 'string' &&
+                    currentImage?.startsWith('http'))
                     ? 'flex'
                     : 'none',
                 width: 100,
