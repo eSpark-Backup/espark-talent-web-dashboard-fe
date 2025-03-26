@@ -9,6 +9,7 @@ export const Client_Routes = [
     text: 'Dashboard',
     link: '/client/dashboard',
     sublinks: null,
+    exact: true,
   },
   {
     icon: '/images/sidebar-icons/hire.svg',
@@ -95,6 +96,7 @@ export const Employee_Routes = [
     text: 'Dashboard',
     link: '/employee/dashboard',
     sublinks: null,
+    exact: true,
   },
   {
     icon: '/images/sidebar-icons/attendance.svg',
@@ -160,6 +162,7 @@ export const Hr_Routes = [
     text: 'Dashboard',
     link: '/hr/dashboard',
     sublinks: null,
+    exact: true,
   },
   {
     icon: '/images/sidebar-icons/employees.svg',

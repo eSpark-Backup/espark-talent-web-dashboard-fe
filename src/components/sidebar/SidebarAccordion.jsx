@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
@@ -16,6 +16,15 @@ const SidebarAccordion = ({ sidebarLinks }) => {
   const handleChange = (panel) => (_event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
+
+  useEffect(() => {
+    sidebarLinks?.forEach((item, index) => {
+      if (item?.sublinks?.some((sub) => pathname?.startsWith(sub?.link))) {
+        setExpanded(`panel${index + 1}`);
+      }
+    });
+  }, [pathname]);
+
   return (
     <div>
       {sidebarLinks?.map((item, index) => (
@@ -51,60 +60,84 @@ const SidebarAccordion = ({ sidebarLinks }) => {
                   display: 'flex',
                   alignItems: 'center',
                   borderRight: `${
-                    item?.link == pathname ? '2px solid #068987' : null
+                    item?.exact
+                      ? item?.link == pathname
+                        ? '2px solid #068987'
+                        : null
+                      : pathname?.startsWith(item?.link)
+                        ? '2px solid #068987'
+                        : null
                   }`,
                   borderRadius: '2px',
                   backgroundColor: `${
-                    item?.link == pathname ? '#E6F5F4' : null
+                    item?.exact
+                      ? item?.link == pathname
+                        ? '#E6F5F4'
+                        : null
+                      : pathname?.startsWith(item?.link)
+                        ? '#E6F5F4'
+                        : null
                   }`,
                 }}
               >
-                <Link href={`${item?.link}`}>
-                  {item?.icon && (
-                    <Box
-                      component={'img'}
-                      sx={{
-                        width: 'auto',
-                        height: '20px',
-                        objectFit: 'contain',
-                      }}
-                      src={item?.icon}
-                      alt="icon"
-                    />
-                  )}
-                </Link>
-                {item?.sublinks ? (
-                  <Typography
-                    variant="body1"
-                    sx={{
-                      width: '100%',
-                      height: '100%',
-                      fontWeight: `${item?.link == pathname ? 600 : 400}`,
-                      ml: 2,
-                      color: '#595959',
-                    }}
-                  >
-                    {item?.text}
-                  </Typography>
-                ) : (
-                  <Link
-                    style={{ width: '100%', height: '100%' }}
-                    href={`${item?.link}`}
-                  >
+                <Box
+                  sx={{
+                    width: '100%',
+                    height: '100%',
+                    display: 'flex',
+                    alignItems: 'center',
+                  }}
+                >
+                  <Link href={`${item?.link}`} style={{ height: '23px' }}>
+                    {item?.icon && (
+                      <Box
+                        component={'img'}
+                        sx={{
+                          width: 'auto',
+                          height: '20px',
+                          objectFit: 'contain',
+                        }}
+                        src={item?.icon}
+                        alt="icon"
+                      />
+                    )}
+                  </Link>
+                  {item?.sublinks ? (
                     <Typography
                       variant="body1"
                       sx={{
                         width: '100%',
                         height: '100%',
-                        fontWeight: `${item?.link == pathname ? 600 : 400}`,
+                        fontWeight: `${item?.exact ? (item?.link == pathname ? 600 : 400) : pathname?.startsWith(item?.link) ? 600 : 400}`,
                         ml: 2,
                         color: '#595959',
                       }}
                     >
                       {item?.text}
                     </Typography>
-                  </Link>
-                )}
+                  ) : (
+                    <Link
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                      }}
+                      href={`${item?.link}`}
+                    >
+                      <Typography
+                        variant="body1"
+                        sx={{
+                          width: '100%',
+                          height: '100%',
+                          fontWeight: `${item?.exact ? (item?.link == pathname ? 600 : 400) : pathname?.startsWith(item?.link) ? 600 : 400}`,
+                          ml: 2,
+                          color: '#595959',
+                        }}
+                      >
+                        {item?.text}
+                      </Typography>
+                    </Link>
+                  )}
+                </Box>
               </AccordionSummary>
               {item?.sublinks &&
                 item?.sublinks?.map((eachItem, index) => (
@@ -121,14 +154,23 @@ const SidebarAccordion = ({ sidebarLinks }) => {
                           alignItems: 'center',
                           '&:hover': { backgroundColor: '#E6F5F4 !important' },
                           borderRight: `${
-                            eachItem?.link == pathname
-                              ? '2px solid #068987 !important'
-                              : null
+                            item?.exact
+                              ? eachItem?.link == pathname
+                                ? '2px solid #068987'
+                                : null
+                              : pathname?.startsWith(eachItem?.link)
+                                ? '2px solid #068987'
+                                : null
                           }`,
+                          borderRadius: '2px',
                           backgroundColor: `${
-                            eachItem?.link == pathname
-                              ? '#E6F5F4 !important'
-                              : null
+                            item?.exact
+                              ? eachItem?.link == pathname
+                                ? '#E6F5F4'
+                                : null
+                              : pathname?.startsWith(eachItem?.link)
+                                ? '#E6F5F4'
+                                : null
                           }`,
                         }}
                       >
