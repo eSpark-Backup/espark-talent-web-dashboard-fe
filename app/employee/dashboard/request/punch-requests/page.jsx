@@ -157,10 +157,9 @@ const Dashboard = () => {
     setcurrentReqStatusTabVal(newValue);
   };
 
-  const handleClickActionView = (props) => {
+  const handleClickActionView = (id, column, row) => {
     setViewClicked(true);
-    const { item, row } = props;
-    setModalData({ item, ...row });
+    setModalData({ ...row });
     setOpenPunch(true);
   };
   const handleClickActionDelete = (props) => {

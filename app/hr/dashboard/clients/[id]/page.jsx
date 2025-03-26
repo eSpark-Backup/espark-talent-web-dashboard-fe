@@ -873,17 +873,20 @@ const AddEmployee = () => {
     setModalData(row);
   };
 
-  const handleClickActionView = ({ row }) => {
-    const { id } = row || {};
+  const handleClickActionView = (id, column, row, setviewLoader) => {
     if (currentTab?.label === 'Hire & onboard') {
       if (currentTab?.nested.val === 0) {
-        viewJobDescription?.mutate(id);
+        viewJobDescription?.mutate({ id, setviewLoader });
       }
     } else if (currentTab?.label === 'Employee invoices') {
-      viewEmployeeInvoice?.mutate(id);
+      viewEmployeeInvoice?.mutate({ id, setviewLoader });
     } else {
-      viewOtherInvoice?.mutate(id);
+      viewOtherInvoice?.mutate({ id, setviewLoader });
     }
+    setviewLoader({
+      loader: true,
+      id: id,
+    });
   };
   const handleCloseHiringRequestModal = () => {
     setIsOpenHiringRequestModal(false);
@@ -1258,47 +1261,77 @@ const AddEmployee = () => {
   });
 
   const viewJobDescription = useMutation({
-    mutationFn: async (id) => {
+    mutationFn: async ({ id }) => {
       return api.downloadFile(`${DOWNLOAD_CLIENT_JOB_DESCRIPTION}?id=${id}`);
     },
-    onSuccess: ({ data }) => {
+    onSuccess: ({ data }, { setviewLoader }) => {
       const url = window?.URL?.createObjectURL(
         new Blob([data], { type: 'application/pdf' })
       );
       window?.open(url, '_blank');
+      if (setviewLoader)
+        setviewLoader({
+          loader: false,
+          id: null,
+        });
     },
-    onError: (err) => {
+    onError: (err, { setviewLoader }) => {
       Toast('error', err.message || 'File not downloaded');
+      if (setviewLoader)
+        setviewLoader({
+          loader: false,
+          id: null,
+        });
     },
   });
 
   const viewEmployeeInvoice = useMutation({
-    mutationFn: async (id) => {
+    mutationFn: async ({ id }) => {
       return api.downloadFile(`${DOWNLOAD_EMP_INV}?id=${id}`);
     },
-    onSuccess: ({ data }) => {
+    onSuccess: ({ data }, { setviewLoader }) => {
       const url = window?.URL?.createObjectURL(
         new Blob([data], { type: 'application/pdf' })
       );
       window?.open(url, '_blank');
+      if (setviewLoader)
+        setviewLoader({
+          loader: false,
+          id: null,
+        });
     },
-    onError: (err) => {
+    onError: (err, { setviewLoader }) => {
       Toast('error', err.message || 'File not downloaded');
+      if (setviewLoader)
+        setviewLoader({
+          loader: false,
+          id: null,
+        });
     },
   });
 
   const viewOtherInvoice = useMutation({
-    mutationFn: async (id) => {
+    mutationFn: async ({ id }) => {
       return api.downloadFile(`${DOWNLOAD_OTH_INV}?id=${id}`);
     },
-    onSuccess: ({ data }) => {
+    onSuccess: ({ data }, { setviewLoader }) => {
       const url = window?.URL?.createObjectURL(
         new Blob([data], { type: 'application/pdf' })
       );
       window?.open(url, '_blank');
+      if (setviewLoader)
+        setviewLoader({
+          loader: false,
+          id: null,
+        });
     },
-    onError: (err) => {
+    onError: (err, { setviewLoader }) => {
       Toast('error', err.message || 'File not downloaded');
+      if (setviewLoader)
+        setviewLoader({
+          loader: false,
+          id: null,
+        });
     },
   });
 

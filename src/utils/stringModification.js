@@ -30,7 +30,7 @@ export const getCamelCapitalized = (rawStr) => {
     return '-';
   } else {
     for (let i = 0; i < rawArryStr.length; i++) {
-      const modStr = rawArryStr[i][0] + rawArryStr[i].slice(1);
+      const modStr = rawArryStr[i][0].toUpperCase() + rawArryStr[i].slice(1);
       finalArrStr.push(modStr);
     }
 

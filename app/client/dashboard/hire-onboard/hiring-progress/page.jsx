@@ -179,7 +179,7 @@ const Dashboard = () => {
         return {
           ...item,
           salary_range: `${formatSalary(item?.salary_range?.minimum, '')} - ${formatSalary(item.salary_range?.maximum, item?.salary_currency)}`,
-          salary: `${item?.salary} ${item?.salary_currency || ''}`,
+          salary: `${formatSalary(item?.salary, item?.salary_currency) || ''}`,
           currency: item?.salary_range?.currency || item?.salary_currency || '',
           gender: genderType(item?.gender),
           action: ['Delete'],

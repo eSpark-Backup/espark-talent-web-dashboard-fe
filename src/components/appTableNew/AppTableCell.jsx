@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import { Avatar, Box, Tooltip, Typography } from '@mui/material';
 
@@ -12,6 +12,7 @@ import AppTableInfoOptionsCell from './AppTableInfoOptionsCell';
 import { modulepermissionColumn } from '@/src/constants/data/tables/modulePermission';
 import Link from 'next/link';
 import { ellipsisWithTooltip } from '@/src/utils/tooltipEllipsis';
+import ViewLoader from './ViewLoader';
 
 const renderAssigneeCell = (row, col) => {
   const [name, subtitle] = row.assignee;
@@ -93,7 +94,9 @@ const renderActions = (
   rejectReq,
   approveReq,
   handleClickActionEdit,
-  handleClickActionDownload
+  handleClickActionDownload,
+  viewLoader,
+  setviewLoader
 ) => {
   if (row?.formActionStatus) {
     if (row?.isModulePermissionData) {
@@ -204,37 +207,45 @@ const renderActions = (
         {row[toCamelCase(col || col?.title)]
           ?.filter((item) => item !== null)
           ?.map((item, rowIndex) => (
-            <Image
-              onClick={() => {
-                if (item === 'View') {
-                  handleClickActionView({ row, item });
-                } else if (item === 'Edit') {
-                  handleClickActionEdit({ row, item });
-                } else if (item === 'Download') {
-                  handleClickActionDownload(row?.id, row);
-                } else if (item === 'Delete') {
-                  handleClickActionDelete(row?.id, row);
-                } else if (item === 'Reject') {
-                  approveReq && rejectReq(row);
-                } else if (item === 'Approve') {
-                  approveReq && approveReq(row);
-                }
-                return;
-              }}
-              key={rowIndex}
-              style={{
-                margin: '0 5px',
-                cursor: 'pointer',
-              }}
-              width={25}
-              height={25}
-              alt="Icon"
-              src={
-                handleEditImage && item == 'View'
-                  ? handleEditImage
-                  : `/icons/${item}.svg`
-              }
-            />
+            <Box key={rowIndex} sx={{ display: 'inline-block', mx: '5px' }}>
+              {item === 'View' &&
+              viewLoader?.loader &&
+              viewLoader?.id === row?.id ? (
+                <ViewLoader />
+              ) : (
+                <Image
+                  onClick={() => {
+                    if (item === 'View') {
+                      handleClickActionView(
+                        row?.id,
+                        col || col?.title,
+                        row,
+                        setviewLoader
+                      );
+                    } else if (item === 'Edit') {
+                      handleClickActionEdit({ row, item });
+                    } else if (item === 'Download') {
+                      handleClickActionDownload(row?.id, row);
+                    } else if (item === 'Delete') {
+                      handleClickActionDelete(row?.id, row);
+                    } else if (item === 'Reject') {
+                      approveReq && rejectReq(row);
+                    } else if (item === 'Approve') {
+                      approveReq && approveReq(row);
+                    }
+                  }}
+                  style={{ cursor: 'pointer' }}
+                  width={25}
+                  height={25}
+                  alt="Icon"
+                  src={
+                    handleEditImage && item === 'View'
+                      ? handleEditImage
+                      : `/icons/${item}.svg`
+                  }
+                />
+              )}
+            </Box>
           ))}
       </>
     </td>
@@ -598,7 +609,9 @@ export const renderCellContent = (
   updateLeaveStatus,
   approveReq,
   rejectReq,
-  handleClickDownload
+  handleClickDownload,
+  viewLoader,
+  setviewLoader
 ) => {
   if (
     col?.title === 'Employee ID' ||
@@ -666,7 +679,9 @@ export const renderCellContent = (
           rejectReq,
           approveReq,
           handleClickActionEdit,
-          handleClickActionDownload
+          handleClickActionDownload,
+          viewLoader,
+          setviewLoader
         );
       } else {
         return renderDownloadButton(
@@ -714,7 +729,9 @@ export const renderCellContent = (
         rejectReq,
         approveReq,
         handleClickActionEdit,
-        handleClickActionDownload
+        handleClickActionDownload,
+        viewLoader,
+        setviewLoader
       );
 
     case 'Actions':
@@ -730,7 +747,9 @@ export const renderCellContent = (
         rejectReq,
         approveReq,
         handleClickActionEdit,
-        handleClickActionDownload
+        handleClickActionDownload,
+        viewLoader,
+        setviewLoader
       );
     case 'Status':
       return renderStatusCell(
@@ -800,7 +819,7 @@ export const renderCellContent = (
               >
                 {typeof row[col?.name] === 'string' &&
                 row[col?.name]?.length > 0
-                  ? row[col?.name]?.slice(0, 17) +
+                  ? row[col?.name]?.replace(/_/g, ' ')?.slice(0, 17) +
                     (ellipsisWithTooltip(row[col?.name], 17) ? '...' : '')
                   : row[col?.name]}
               </Typography>

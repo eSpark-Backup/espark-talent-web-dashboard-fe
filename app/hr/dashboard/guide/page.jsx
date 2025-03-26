@@ -132,25 +132,32 @@ const Page = () => {
   });
 
   const openGuideMutation = useMutation({
-    mutationFn: async (id) => {
+    mutationFn: async ({ id }) => {
       return api.downloadFile(`${DOWNLOAD_GUIDE}?id=${id}`);
     },
-    onSuccess: ({ data }) => {
+    onSuccess: ({ data }, { setviewLoader }) => {
       const url = window?.URL?.createObjectURL(
         new Blob([data], { type: 'application/pdf' })
       );
       window?.open(url, '_blank');
+      if (setviewLoader)
+        setviewLoader({
+          loader: false,
+          id: null,
+        });
     },
-    onError: (err) => {
+    onError: (err, { setviewLoader }) => {
       Toast('error', err.message || 'File not downloaded');
+      if (setviewLoader)
+        setviewLoader({
+          loader: false,
+          id: null,
+        });
     },
   });
 
-  const handleClickActionView = (id, column, row) => {
-    const row_id = id?.row?.id;
-    if (column === undefined && row === undefined) {
-      return openGuideMutation?.mutate(row_id);
-    } else {
+  const handleClickActionView = (id, column, row, setviewLoader) => {
+    if (!setviewLoader || typeof setviewLoader !== 'function') {
       if (
         role === 'super_admin' ||
         (role !== 'super_admin' && guides_perms?.[0]?.write)
@@ -165,6 +172,12 @@ const Page = () => {
       } else {
         return false;
       }
+    } else {
+      openGuideMutation?.mutate({ id, setviewLoader });
+      setviewLoader({
+        loader: true,
+        id: id,
+      });
     }
   };
 

@@ -91,15 +91,9 @@ const Dashboard = () => {
     fetchDataAsync();
   }, []);
 
-  const handleClickActionView = (props) => {
+  const handleClickActionView = (_, column, row) => {
     setViewClicked(true);
-    const {
-      item,
-      row,
-      // row: { status, employeeName, count, leaveType },
-    } = props;
-    // console.log(status, employeeName, count, leaveType);
-    setModalData({ item, ...row });
+    setModalData({ ...row });
     if (tabData?.currentReqTypeTab === 'Leave Requests') {
       setOpen(true);
     } else if (tabData?.currentReqTypeTab === 'Clockin/out Requests') {

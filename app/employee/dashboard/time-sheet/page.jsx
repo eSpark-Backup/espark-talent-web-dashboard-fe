@@ -155,9 +155,8 @@ const Dashboard = () => {
     setShowFilterModal(false);
     setOpen(false);
   };
-  const handleAttendanceModal = (props) => {
-    const { item, row } = props;
-    setModalData({ item, ...row });
+  const handleAttendanceModal = (_, column, row) => {
+    setModalData({ ...row });
     setOpen(true);
   };
 

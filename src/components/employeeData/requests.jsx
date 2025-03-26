@@ -224,8 +224,8 @@ const Request = () => {
     setOpenWfh(false);
     setOpenLeave(false);
   };
-  const handleClickEdit = (a) => {
-    setModalData(a);
+  const handleClickEdit = (id, column, row) => {
+    setModalData({ row });
     if (value === 0) {
       handleOpenLeaveModal();
     } else if (value === 1) {

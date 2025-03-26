@@ -290,16 +290,19 @@ const ContractSigned = () => {
     }
   };
 
-  const handleView = ({ row }) => {
-    const { id, client_id, employee_id } = row || {};
-
+  const handleView = (id, column, row, setviewLoader) => {
+    const { client_id, employee_id } = row || {};
     if (client_id && employee_id) {
-      viewOffShoreContract?.mutate({ id });
+      viewOffShoreContract?.mutate({ id, setviewLoader });
     } else if (client_id) {
-      viewClientContract?.mutate({ id, tab: 'client' });
+      viewClientContract?.mutate({ id, tab: 'client', setviewLoader });
     } else if (employee_id) {
-      viewEmployeeContract?.mutate({ id, tab: 'employee' });
+      viewEmployeeContract?.mutate({ id, tab: 'employee', setviewLoader });
     }
+    setviewLoader({
+      loader: true,
+      id: id,
+    });
   };
 
   const handleCloseEditContractModal = () => {
@@ -315,14 +318,24 @@ const ContractSigned = () => {
     mutationFn: async ({ id, tab }) => {
       return api.downloadFile(`${DOWNLOAD_COMP_CONTRACT}?id=${id}&tab=${tab}`);
     },
-    onSuccess: ({ data }) => {
+    onSuccess: ({ data }, { setviewLoader }) => {
       const url = window?.URL?.createObjectURL(
         new Blob([data], { type: 'application/pdf' })
       );
       window?.open(url, '_blank');
+      if (setviewLoader)
+        setviewLoader({
+          loader: false,
+          id: null,
+        });
     },
-    onError: (err) => {
+    onError: (err, { setviewLoader }) => {
       Toast('error', err.message || 'File not downloaded');
+      if (setviewLoader)
+        setviewLoader({
+          loader: false,
+          id: null,
+        });
     },
   });
 
@@ -330,14 +343,24 @@ const ContractSigned = () => {
     mutationFn: async ({ id, tab }) => {
       return api.downloadFile(`${DOWNLOAD_COMP_CONTRACT}?id=${id}&tab=${tab}`);
     },
-    onSuccess: ({ data }) => {
+    onSuccess: ({ data }, { setviewLoader }) => {
       const url = window?.URL?.createObjectURL(
         new Blob([data], { type: 'application/pdf' })
       );
       window?.open(url, '_blank');
+      if (setviewLoader)
+        setviewLoader({
+          loader: false,
+          id: null,
+        });
     },
-    onError: (err) => {
+    onError: (err, { setviewLoader }) => {
       Toast('error', err.message || 'File not downloaded');
+      if (setviewLoader)
+        setviewLoader({
+          loader: false,
+          id: null,
+        });
     },
   });
 
@@ -345,14 +368,24 @@ const ContractSigned = () => {
     mutationFn: async ({ id }) => {
       return api.downloadFile(`${DOWNLOAD_OFFSHORE_CONTRACT}?id=${id}`);
     },
-    onSuccess: ({ data }) => {
+    onSuccess: ({ data }, { setviewLoader }) => {
       const url = window?.URL?.createObjectURL(
         new Blob([data], { type: 'application/pdf' })
       );
       window?.open(url, '_blank');
+      if (setviewLoader)
+        setviewLoader({
+          loader: false,
+          id: null,
+        });
     },
-    onError: (err) => {
+    onError: (err, { setviewLoader }) => {
       Toast('error', err.message || 'File not downloaded');
+      if (setviewLoader)
+        setviewLoader({
+          loader: false,
+          id: null,
+        });
     },
   });
 
@@ -375,11 +408,11 @@ const ContractSigned = () => {
             <Box
               display={'flex'}
               sx={{
-                borderBottom: 1,
-                borderColor: 'divider',
+                borderBottom: { xs: 0, md: 1 },
+                borderColor: { xs: 'none', md: 'divider' },
                 justifyContent: { xs: 'center', md: 'space-between' },
                 flexDirection: { xs: 'column', md: 'row' },
-                mb: '20px',
+                mb: { xs: '0', md: '20px' },
               }}
             >
               <Tabs
@@ -387,6 +420,10 @@ const ContractSigned = () => {
                 value={value}
                 onChange={handleChange}
                 aria-label="basic tabs example"
+                sx={{
+                  borderBottom: { xs: 1, md: 0 },
+                  borderColor: { xs: 'divider', md: 'none' },
+                }}
                 TabIndicatorProps={{ style: { backgroundColor: '#068987' } }}
               >
                 {contractHrSignedTabs?.map(({ label, prop }, i) => (
@@ -434,6 +471,7 @@ const ContractSigned = () => {
                     {value !== 1 && (
                       <Box
                         sx={{
+                          width: '100%',
                           display: 'flex',
                           justifyContent: {
                             xs: 'center',
@@ -448,6 +486,10 @@ const ContractSigned = () => {
                         <Tabs
                           value={nestedValue}
                           onChange={handleNestedChange}
+                          sx={{
+                            borderBottom: { xs: 1, md: 0 },
+                            borderColor: { xs: 'divider', md: 'none' },
+                          }}
                           TabIndicatorProps={{
                             style: { backgroundColor: '#068987' },
                           }}

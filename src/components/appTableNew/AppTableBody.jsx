@@ -1,5 +1,5 @@
 import { Typography } from '@mui/material';
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import TableHiddenBody from './appTableHiddenBody';
 import { renderCellContent } from './AppTableCell';
 import Skeleton from '@mui/material/Skeleton';
@@ -26,6 +26,8 @@ const AppTableBody = ({
   isLoading = false,
   handleClickDownload,
 }) => {
+  const [viewLoader, setviewLoader] = useState({});
+
   const commonCellStyle = {
     display: 'flex',
     justifyContent: 'center',
@@ -82,7 +84,9 @@ const AppTableBody = ({
                       updateLeaveStatus,
                       approveReq,
                       rejectReq,
-                      handleClickDownload
+                      handleClickDownload,
+                      viewLoader,
+                      setviewLoader
                     )}
                   </Fragment>
                 ))}

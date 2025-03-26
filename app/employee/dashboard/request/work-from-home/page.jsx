@@ -52,20 +52,18 @@ const Dashboard = () => {
   const handleOpen = () => {
     setOpen(true);
   };
-  const handleClickActionView = (props) => {
+  const handleClickActionView = (_, column, row) => {
     setViewClicked(true);
     const {
-      row: {
-        id,
-        status,
-        employee_name,
-        count,
-        start_date,
-        end_date,
-        reason,
-        employee_id,
-      },
-    } = props;
+      id,
+      status,
+      employee_name,
+      count,
+      start_date,
+      end_date,
+      reason,
+      employee_id,
+    } = row;
 
     setModalData({
       id,
