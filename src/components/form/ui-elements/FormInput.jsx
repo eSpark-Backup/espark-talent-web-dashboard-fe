@@ -205,22 +205,30 @@ const FormInput = ({
             </Box>
           ) : (
             <Box display={'flex'} sx={{ mb: '10px' }} alignItems={'flex-start'}>
-              <Typography
-                sx={{
-                  color: error ? 'red' : '#595959',
-                  fontSize: '14px',
-                  fontStyle: 'normal',
-                  fontWeight: 500,
-                  lineHeight: 'normal',
-                  // textWrap: 'nowrap',
-                  '@media (min-width: 1200px) and (max-width: 1250px)': {
+              <Tooltip
+                title={
+                  ellipsisWithTooltip(`${title || ''} ${filelabel || ''}`, 20)
+                    ? `${filelabel || ''}`
+                    : ''
+                }
+              >
+                <Typography
+                  sx={{
+                    color: error ? 'red' : '#595959',
                     fontSize: '14px',
-                  },
-                }}
-                dangerouslySetInnerHTML={{
-                  __html: `${title} ${filelabel ? `<span style="font-size: 10px">${filelabel}</span>` : ''}`,
-                }}
-              ></Typography>
+                    fontStyle: 'normal',
+                    fontWeight: 500,
+                    lineHeight: 'normal',
+                    textWrap: 'nowrap',
+                    '@media (min-width: 1200px) and (max-width: 1250px)': {
+                      fontSize: '14px',
+                    },
+                  }}
+                  dangerouslySetInnerHTML={{
+                    __html: `${title} ${filelabel ? `<span style="font-size: 10px">${filelabel?.slice(0, 20)} ${ellipsisWithTooltip(`${title} ${filelabel}`, 24) ? '...' : ''} </span>` : ''}`,
+                  }}
+                ></Typography>
+              </Tooltip>
             </Box>
           )}
         </>

@@ -18,17 +18,29 @@ export const companyInfoSchema = Yup.object({
       (value) => {
         if (!value) return false;
 
-        const validMimeTypes = [
-          'image/jpg',
-          'image/jpeg',
-          'image/png',
-          'image/svg+xml',
-        ];
-        const fileExtension = value?.name?.split('.')?.pop()?.toLowerCase();
+        const validExtensions = ['jpg', 'jpeg', 'png', 'svg'];
 
-        return (
-          validMimeTypes?.includes(value?.type) && fileExtension !== 'jfif'
-        );
+        // If it's a URL string
+        if (typeof value === 'string') {
+          const ext = value.split('.').pop().split('?')[0].toLowerCase();
+          return validExtensions.includes(ext);
+        }
+
+        // If it's a File object
+        if (typeof value === 'object' && value.name && value.type) {
+          const fileExtension = value.name.split('.').pop().toLowerCase();
+          const validMimeTypes = [
+            'image/jpg',
+            'image/jpeg',
+            'image/png',
+            'image/svg+xml',
+          ];
+          return (
+            validMimeTypes.includes(value.type) && fileExtension !== 'jfif'
+          );
+        }
+
+        return false;
       }
     ),
 });
