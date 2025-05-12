@@ -150,19 +150,60 @@ const EmployeeView = ({ status, data, isLoading }) => {
             >
               {(role === 'super_admin' ||
                 (role !== 'super_admin' && employee_perms?.[0]?.delete)) && (
-                <MenuItem
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleOpenRemove(e, eachItem);
-                  }}
-                  sx={{
-                    textAlign: 'center',
-                    fontWeight: 500,
-                    backgroundColor: '#fff !important',
-                  }}
-                >
-                  Remove
-                </MenuItem>
+                <>
+                  {status === 'Terminated' ? (
+                    <>
+                      <MenuItem
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleOpenRemove(e, eachItem); // Delete action
+                        }}
+                        sx={{
+                          textAlign: 'center',
+                          fontWeight: 500,
+                          backgroundColor: '#fff !important',
+                        }}
+                      >
+                        Re-join
+                      </MenuItem>
+
+                      <MenuItem
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          // TODO: Your Rejoin logic here
+                          Toast(
+                            'success',
+                            `${eachItem?.name} marked as rejoined`
+                          );
+                          setAnchorEl(null);
+                          setOpen(null);
+                        }}
+                        sx={{
+                          textAlign: 'center',
+                          fontWeight: 500,
+                          backgroundColor: '#fff !important',
+                          color: '#F00',
+                        }}
+                      >
+                        Delete
+                      </MenuItem>
+                    </>
+                  ) : (
+                    <MenuItem
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleOpenRemove(e, eachItem); // Terminate action
+                      }}
+                      sx={{
+                        textAlign: 'center',
+                        fontWeight: 500,
+                        backgroundColor: '#fff !important',
+                      }}
+                    >
+                      Terminate
+                    </MenuItem>
+                  )}
+                </>
               )}
             </Menu>
           </Box>

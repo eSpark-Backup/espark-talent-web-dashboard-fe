@@ -272,7 +272,7 @@ const AllEmployee = ({ fromClient, openModal }) => {
             />
             <Tab
               value="two"
-              label="Active employees"
+              label="In-house employees"
               disableRipple={true}
               sx={{
                 mr: '20px',
@@ -286,7 +286,21 @@ const AllEmployee = ({ fromClient, openModal }) => {
             />
             <Tab
               value="three"
-              label="Inactive employees"
+              label="Out-source employees"
+              disableRipple={true}
+              sx={{
+                mr: '20px',
+                textTransform: 'math-auto',
+                fontSize: '14px',
+                color: '#595959',
+                '&.Mui-selected': {
+                  color: '#068987',
+                },
+              }}
+            />
+            <Tab
+              value="four"
+              label="Terminate employees"
               disableRipple={true}
               sx={{
                 mr: '20px',
@@ -390,7 +404,17 @@ const AllEmployee = ({ fromClient, openModal }) => {
               />
             ) : value === 'two' ? (
               <EmployeeView
-                status={'Active'}
+                status={'In-house'}
+                id={id}
+                name={name}
+                designation={designation}
+                search={search}
+                data={filteredData}
+                isLoading={isLoading}
+              />
+            ) : value === 'three' ? (
+              <EmployeeView
+                status={'Out-source'}
                 id={id}
                 name={name}
                 designation={designation}
@@ -400,10 +424,10 @@ const AllEmployee = ({ fromClient, openModal }) => {
               />
             ) : (
               <EmployeeView
+                status={'Terminated'}
                 id={id}
                 name={name}
                 designation={designation}
-                status={'Inactive'}
                 search={search}
                 data={filteredData}
                 isLoading={isLoading}
