@@ -29,11 +29,12 @@ const EditLetterForm = ({ onClose, open, selectedId }) => {
     mutationFn: async (data) => {
       return api.updateData(`${HR_EMP_LETTER}?id=${data?.id}`, data);
     },
+
     onSuccess: async () => {
       Toast('success', 'Data updated successfully');
       const reformedData = {
         ...values,
-        id: selectedId?.row?.id,
+        id: selectedId,
         letter: values.letter,
         reason: values.reason,
       };
@@ -55,7 +56,7 @@ const EditLetterForm = ({ onClose, open, selectedId }) => {
     setErrors,
   } = useFormik({
     initialValues: {},
-    validationSchema: letterEditFormSchema,
+    // validationSchema: letterEditFormSchema,
     enableReinitialize: true,
     onSubmit: (formValues) => {
       const { issue_date, email, objective, ...filteredFormValues } =
@@ -63,10 +64,11 @@ const EditLetterForm = ({ onClose, open, selectedId }) => {
       console.log(issue_date, email, objective);
       const reformedData = {
         ...filteredFormValues,
-        id: selectedId?.row?.id,
+        id: selectedId,
         letter: values.letter,
         reason: values.reason,
       };
+
       mutate(reformedData);
     },
     validateOnChange: false,
@@ -74,9 +76,7 @@ const EditLetterForm = ({ onClose, open, selectedId }) => {
   });
 
   useEffect(() => {
-    const filteredLetter = letters?.find(
-      (letter) => letter.id === selectedId?.row?.id
-    );
+    const filteredLetter = letters?.find((letter) => letter.id === selectedId);
     if (filteredLetter) {
       setFieldValue('letter', filteredLetter.letter);
       setFieldValue('objective', filteredLetter.objective);
