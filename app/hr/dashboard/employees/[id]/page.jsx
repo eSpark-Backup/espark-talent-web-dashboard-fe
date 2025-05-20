@@ -369,11 +369,10 @@ const Page = () => {
                       <Tooltip
                         title={
                           ellipsisWithTooltip(
-                            currentEmployee?.first_name,
+                            `${currentEmployee?.first_name || ''} ${currentEmployee?.last_name || ''}`,
                             22
-                          ) ||
-                          ellipsisWithTooltip(currentEmployee?.last_name, 22)
-                            ? `${currentEmployee?.first_name} ${currentEmployee?.last_name}`
+                          )
+                            ? `${currentEmployee?.first_name || ''} ${currentEmployee?.last_name || ''}`
                             : ''
                         }
                       >
@@ -390,7 +389,7 @@ const Page = () => {
                             color: '#171717',
                           }}
                         >
-                          {`${`${currentEmployee?.first_name || ''} ${currentEmployee?.last_name || ''}`?.slice(0, 22)}${
+                          {`${`${currentEmployee?.first_name || ''} ${currentEmployee?.last_name || ''}`.slice(0, 22)}${
                             ellipsisWithTooltip(
                               `${currentEmployee?.first_name || ''} ${currentEmployee?.last_name || ''}`,
                               22
@@ -400,6 +399,7 @@ const Page = () => {
                           }`}
                         </Typography>
                       </Tooltip>
+
                       <Typography
                         sx={{
                           fontSize: { xs: '13px', sm: '14px', md: '16px' },
@@ -411,17 +411,17 @@ const Page = () => {
                         <Tooltip
                           title={
                             ellipsisWithTooltip(
-                              currentEmployee?.employee_id,
+                              currentEmployee?.employee_id || '',
                               22
                             )
-                              ? currentEmployee?.employee_id
+                              ? currentEmployee?.employee_id || ''
                               : ''
                           }
                         >
                           <span style={{ fontWeight: 600 }}>
-                            {`${currentEmployee?.employee_id?.slice(0, 22)}${
+                            {`${(currentEmployee?.employee_id || '').slice(0, 22)}${
                               ellipsisWithTooltip(
-                                currentEmployee?.employee_id,
+                                currentEmployee?.employee_id || '',
                                 22
                               )
                                 ? '...'
@@ -430,11 +430,14 @@ const Page = () => {
                           </span>
                         </Tooltip>
                       </Typography>
+
                       <Tooltip
                         title={
-                          ellipsisWithTooltip(currentEmployee?.job_title, 22) ||
-                          ellipsisWithTooltip(currentEmployee?.job_title, 22)
-                            ? `${currentEmployee?.job_title}`
+                          ellipsisWithTooltip(
+                            currentEmployee?.job_title || '',
+                            22
+                          )
+                            ? currentEmployee?.job_title || ''
                             : ''
                         }
                       >
@@ -446,8 +449,11 @@ const Page = () => {
                             color: '#595959',
                           }}
                         >
-                          {`${currentEmployee?.job_title?.slice(0, 22)}${
-                            ellipsisWithTooltip(currentEmployee?.job_title, 22)
+                          {`${(currentEmployee?.job_title || '').slice(0, 22)}${
+                            ellipsisWithTooltip(
+                              currentEmployee?.job_title || '',
+                              22
+                            )
                               ? '...'
                               : ''
                           }`}
