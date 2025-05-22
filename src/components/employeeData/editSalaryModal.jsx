@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import {
   Box,
   Button,
@@ -25,6 +25,33 @@ const EditSalaryForm = ({ onClose, open, selectedId }) => {
   const dispatch = useDispatch();
   const clientQuery = useQueryClient();
   const { salary } = useSelector((state) => state?.hr?.employees);
+
+  const initialValues = useMemo(() => {
+    if (!selectedId) {
+      return {
+        job_status: '',
+        gross_salary: '',
+        tax_deduction: '',
+        net_salary: '',
+        email: '',
+        date: '',
+        pay_slip: '',
+      };
+    }
+
+    const record = salary?.find((s) => s.id === selectedId) || {};
+
+    return {
+      job_status: record.job_status || '',
+      gross_salary: record.gross_salary || '',
+      tax_deduction: record.tax_deduction || '',
+      net_salary: record.net_salary || '',
+      email: record.email || '',
+      date: record.date || '',
+      pay_slip: record.pay_slip || '',
+    };
+  }, [salary, selectedId]);
+
   const { mutate, isPending } = useMutation({
     mutationFn: async (data) => {
       return api.updateData(`${HR_EMP_SALARY}?id=${data?.id}`, data);
@@ -32,7 +59,7 @@ const EditSalaryForm = ({ onClose, open, selectedId }) => {
     onSuccess: () => {
       const reformedData = {
         ...values,
-        id: selectedId?.row?.id,
+        id: selectedId,
         date: dayjs(values?.date)?.format('YYYY-MM-DD'),
         action: ['Delete', 'View'],
       };
@@ -55,42 +82,44 @@ const EditSalaryForm = ({ onClose, open, selectedId }) => {
     setFieldError,
     setErrors,
   } = useFormik({
-    initialValues: {},
+    initialValues,
     validationSchema: salaryEditFormSchema,
     enableReinitialize: true,
     onSubmit: (formValues) => {
       const reformedData = {
         ...formValues,
-        id: selectedId?.row?.id,
-        date: dayjs(values?.date)?.format('YYYY-MM-DD'),
+        id: selectedId,
+        date: dayjs(formValues?.date)?.format('YYYY-MM-DD'),
       };
+
+      if (!formValues?.pay_slip) {
+        delete reformedData.pay_slip;
+      }
+
       mutate(reformedData);
     },
+
     validateOnChange: false,
     validateOnBlur: false,
   });
 
   useEffect(() => {
-    const filteredSalary = salary?.find(
-      (salary) => salary?.id === selectedId?.row?.id
-    );
-    if (filteredSalary) {
-      setFieldValue('job_status', filteredSalary?.job_status);
-      setFieldValue('gross_salary', filteredSalary?.gross_salary);
-      setFieldValue('tax_deduction', filteredSalary?.tax_deduction);
-      setFieldValue('net_salary', filteredSalary?.net_salary);
-      setFieldValue('email', filteredSalary?.email);
-      setFieldValue('date', filteredSalary?.date);
-      setFieldValue('pay_slip', filteredSalary?.pay_slip);
-    }
-  }, [salary]);
+    const gross = Number(values.gross_salary);
+    const tax = Number(values.tax_deduction);
 
-  useEffect(() => {
-    const { gross_salary, tax_deduction } = values || {};
-    const calculatedNetSalary =
-      gross_salary - (gross_salary * tax_deduction) / 100;
-    setFieldValue('net_salary', String(calculatedNetSalary));
-  }, [values]);
+    if (!isNaN(gross) && !isNaN(tax)) {
+      const calculatedNetSalary = gross - (gross * tax) / 100;
+
+      if (calculatedNetSalary !== Number(values.net_salary)) {
+        setFieldValue('net_salary', String(calculatedNetSalary), false);
+      }
+    }
+  }, [
+    values.gross_salary,
+    values.tax_deduction,
+    setFieldValue,
+    values.net_salary,
+  ]);
 
   return (
     <Modal
@@ -206,6 +235,7 @@ const EditSalaryForm = ({ onClose, open, selectedId }) => {
                       lg={12}
                       fields={fields}
                       accept=".pdf"
+                      isEditMode={true}
                     />
                   </Grid>
                   {formIndex % 2 === 0 && <Grid item xs={12} lg={2}></Grid>}
@@ -232,4 +262,5 @@ const EditSalaryForm = ({ onClose, open, selectedId }) => {
     </Modal>
   );
 };
+
 export default EditSalaryForm;

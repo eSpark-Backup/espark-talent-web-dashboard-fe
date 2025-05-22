@@ -72,6 +72,7 @@ const FormInput = ({
   handleJobTitleClick,
   handleJobTitleSelect,
   onclickUpload,
+  isEditMode,
 }) => {
   const [isLoadingList, setIsLoadingList] = useState(false);
   const [isCopied, setIsCopied] = useState();
@@ -953,7 +954,11 @@ const FormInput = ({
               {type === 'file' && (
                 <Tooltip
                   title={
-                    ellipsisWithTooltip(value?.name, 24) ? `${value?.name}` : ''
+                    isEditMode
+                      ? 'Uploaded'
+                      : ellipsisWithTooltip(value?.name, 24)
+                        ? `${value?.name}`
+                        : ''
                   }
                 >
                   <label
@@ -964,9 +969,11 @@ const FormInput = ({
                       lineHeight: '38px',
                     }}
                   >
-                    {`${value?.name ? value?.name?.slice(0, 24) : placeholder}${
-                      ellipsisWithTooltip(value?.name, 24) ? '...' : ''
-                    }`}
+                    {isEditMode
+                      ? 'Uploaded'
+                      : `${value?.name ? value?.name?.slice(0, 24) : placeholder}${
+                          ellipsisWithTooltip(value?.name, 24) ? '...' : ''
+                        }`}
                   </label>
                 </Tooltip>
               )}
