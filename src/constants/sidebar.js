@@ -27,6 +27,13 @@ export const Client_Routes = [
     ],
   },
   {
+    icon: '/images/sidebar-icons/candidate.png',
+    text: 'Candidate',
+    link: '/client/dashboard/candidate',
+    sublinks: null,
+    exact: true,
+  },
+  {
     icon: '/images/sidebar-icons/team.svg',
     text: 'Team',
     link: '#',

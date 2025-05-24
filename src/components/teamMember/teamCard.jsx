@@ -1,4 +1,3 @@
-// components/TeamMemberCard.jsx
 import {
   Card,
   CardContent,
@@ -15,7 +14,7 @@ const statusColors = {
   Terminated: '#f44336',
 };
 
-const TeamMemberCard = ({ member, onView }) => {
+const TeamMemberCard = ({ member, onView, showStatus = true }) => {
   const statusColor = statusColors[member?.status] || '#9e9e9e';
 
   return (
@@ -31,40 +30,47 @@ const TeamMemberCard = ({ member, onView }) => {
         borderRadius: '5px',
       }}
     >
-      <Box
-        sx={{
-          position: 'absolute',
-          top: 8,
-          left: 8,
-          display: 'flex',
-          alignItems: 'center',
-          gap: '4px',
-        }}
-      >
+      {showStatus && (
         <Box
           sx={{
-            width: 8,
-            height: 8,
-            borderRadius: '50%',
-            backgroundColor: statusColor,
+            position: 'absolute',
+            top: 8,
+            left: 8,
+            display: 'flex',
+            alignItems: 'center',
+            gap: '4px',
           }}
-        />
-        <Typography variant="caption" sx={{ color: statusColor }}>
-          {member?.status || 'Unknown'}
-        </Typography>
-      </Box>
+        >
+          <Box
+            sx={{
+              width: 8,
+              height: 8,
+              borderRadius: '50%',
+              backgroundColor: statusColor,
+            }}
+          />
 
-      <IconButton
-        onClick={() => onView && onView(member)}
-        sx={{
-          position: 'absolute',
-          top: 4,
-          right: 4,
-          color: '#757575',
-        }}
-      >
-        <VisibilityIcon />
-      </IconButton>
+          <Typography variant="caption" sx={{ color: statusColor }}>
+            {member?.status || 'Unknown'}
+          </Typography>
+        </Box>
+      )}
+
+      {/* Show icon only if onView is provided */}
+      {onView && (
+        <IconButton
+          onClick={() => onView(member)}
+          sx={{
+            position: 'absolute',
+            top: 4,
+            right: 4,
+            color: '#757575',
+          }}
+          aria-label={`View ${member.name}'s PDF`}
+        >
+          <VisibilityIcon />
+        </IconButton>
+      )}
 
       <Avatar
         alt={member?.name}
