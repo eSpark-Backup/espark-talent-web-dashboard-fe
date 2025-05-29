@@ -31,11 +31,11 @@ const EditBenefitForm = ({ onClose, open, selectedId }) => {
         data
       );
     },
-    onSuccess: async () => {
+    onSuccess: async (_, variables) => {
       Toast('success', 'Data updated successfully');
       const reformedData = {
-        card_id: values.card_id,
-        description: values.description,
+        card_id: variables.card_id,
+        description: variables.description,
       };
       dispatch(editEmpBenefit(reformedData));
       await queryClient.invalidateQueries(['hr-employee-get-benefit']);
@@ -55,7 +55,12 @@ const EditBenefitForm = ({ onClose, open, selectedId }) => {
     setFieldError,
     setErrors,
   } = useFormik({
-    initialValues: {},
+    initialValues: {
+      benefit: '',
+      card_id: '',
+      description: '',
+      issue_date: '',
+    },
     validationSchema: benefitFormSchema,
     enableReinitialize: true,
     onSubmit: (formValues) => {
@@ -76,10 +81,11 @@ const EditBenefitForm = ({ onClose, open, selectedId }) => {
       (benefit) => benefit.id === selectedId?.row?.id
     );
     if (filteredBenefit) {
-      setFieldValue('benefit', filteredBenefit.benefit);
-      setFieldValue('card_id', filteredBenefit.card_id);
-      setFieldValue('description', filteredBenefit.description);
-      setFieldValue('issue_date', filteredBenefit.issue_date);
+      const { benefit, card_id, description, issue_date } = filteredBenefit;
+      setFieldValue('benefit', benefit);
+      setFieldValue('card_id', card_id);
+      setFieldValue('description', description);
+      setFieldValue('issue_date', issue_date);
     }
   }, [benefits]);
 
