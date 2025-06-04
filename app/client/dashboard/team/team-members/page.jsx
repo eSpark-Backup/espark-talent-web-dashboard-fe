@@ -28,6 +28,7 @@ import { Toast } from '@/src/components/Toast/Toast';
 import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
 import { useRouter } from 'next/navigation';
 import dayjs from 'dayjs';
+import TeamMemberCard from '@/src/components/teamMember/teamCard';
 
 const Dashboard = () => {
   const { data } = useSelector((state) => state?.client?.teamMembers);
@@ -281,32 +282,20 @@ const Dashboard = () => {
               </Box>
               {teamTabs?.map(({ column }, i) => (
                 <CustomTabPanel value={value} key={i} index={i}>
-                  <Box
-                    sx={{
-                      maxWidth: '100%',
-                      overflowX: 'auto',
-                    }}
-                  >
-                    <AppTable
-                      minWidth={'1250px'}
-                      currentTab={currentTab}
-                      column={column}
-                      data={
-                        value === 0
-                          ? allTeamMembers
-                          : value === 1
-                            ? activeTeamMembers
-                            : value === 2
-                              ? onBoardTeamMembers
-                              : terminatedTeamMembers
-                      }
-                      isLoading={
-                        temMembersQueryActive?.isLoading ||
-                        temMembersQueryOnBoard?.isLoading ||
-                        temMembersQueryTerminated?.isLoading
-                      }
-                    />
-                  </Box>
+                  <Grid container spacing={2}>
+                    {(i === 0
+                      ? allTeamMembers
+                      : i === 1
+                        ? activeTeamMembers
+                        : i === 2
+                          ? onBoardTeamMembers
+                          : terminatedTeamMembers
+                    ).map((member, idx) => (
+                      <Grid item xs={12} sm={6} md={4} lg={3} key={idx}>
+                        <TeamMemberCard member={member} />
+                      </Grid>
+                    ))}
+                  </Grid>
                 </CustomTabPanel>
               ))}
             </Box>

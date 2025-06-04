@@ -20,6 +20,7 @@ const EmployeeCard = ({
   handleClose,
   handleOpenRemove,
   handleOpenActive,
+  status,
 }) => {
   const { client_perms } = useSelector((state) => state?.hr?.home?.homeData);
   const { role } = useSelector((state) => state?.auth?.userData);
@@ -84,75 +85,114 @@ const EmployeeCard = ({
                 {(role === 'super_admin' ||
                   (role !== 'super_admin' && client_perms?.[0]?.write)) && (
                   <Box sx={{ width: '30px', position: 'absolute', right: 16 }}>
-                    <Button
-                      disableRipple
-                      sx={{
-                        all: 'unset',
-                        display: 'inline-block',
-                        padding: 0,
-                        margin: 0,
-                        background: 'none',
-                        border: 'none',
-                        cursor: 'pointer',
-                        textDecoration: 'none',
-                        '&:hover': {
-                          backgroundColor: 'unset',
-                          boxShadow: 'none',
+                    {status === 'Inactive' ||
+                    eachItem.status.toLowerCase() === 'terminated' ? (
+                      // View/Hide icon for terminated tab
+                      <Button
+                        disableRipple
+                        sx={{
+                          all: 'unset',
+                          display: 'inline-block',
+                          padding: 0,
+                          margin: 0,
+                          background: 'none',
+                          border: 'none',
+                          cursor: 'pointer',
                           textDecoration: 'none',
-                        },
-                        '&:focus': {
-                          outline: 'none',
-                        },
-                        width: '24px',
-                        height: '24px',
-                      }}
-                      onClick={(e) => handleClick(e, eachItem?.id)}
-                    >
-                      <img
-                        src={`/icons/ellipse.svg`}
-                        style={{
+                          '&:hover': {
+                            backgroundColor: 'unset',
+                            boxShadow: 'none',
+                            textDecoration: 'none',
+                          },
+                          '&:focus': {
+                            outline: 'none',
+                          },
                           width: '24px',
                           height: '24px',
-                          cursor: 'pointer',
                         }}
-                        alt="ellipse"
-                      />
-                    </Button>
-                    <>
-                      <Menu
                         onClick={(e) => {
                           e.stopPropagation();
                         }}
-                        id="demo-positioned-menu"
-                        aria-labelledby="demo-positioned-button"
-                        anchorEl={anchorEl}
-                        open={eachItem.id === open}
-                        onClose={handleClose}
-                        sx={{ mt: 1 }}
-                        anchorOrigin={{
-                          vertical: 'bottom',
-                          horizontal: 'right',
-                        }}
-                        transformOrigin={{
-                          vertical: 'top',
-                          horizontal: 'right',
-                        }}
                       >
-                        {eachItem.status === 'active' ? (
-                          <MenuItem
-                            onClick={(e) => handleOpenRemove(e, eachItem.id)}
-                          >
-                            Terminate
-                          </MenuItem>
-                        ) : (
-                          <MenuItem
-                            onClick={(e) => handleOpenActive(e, eachItem.id)}
-                          >
-                            Active
-                          </MenuItem>
-                        )}
-                      </Menu>
-                    </>
+                        <img
+                          src="/images/Vector.png" 
+                          style={{
+                            cursor: 'pointer',
+                          }}
+                          alt="view-hide"
+                        />
+                      </Button>
+                    ) : (
+                      <>
+                        <Button
+                          disableRipple
+                          sx={{
+                            all: 'unset',
+                            display: 'inline-block',
+                            padding: 0,
+                            margin: 0,
+                            background: 'none',
+                            border: 'none',
+                            cursor: 'pointer',
+                            textDecoration: 'none',
+                            '&:hover': {
+                              backgroundColor: 'unset',
+                              boxShadow: 'none',
+                              textDecoration: 'none',
+                            },
+                            '&:focus': {
+                              outline: 'none',
+                            },
+                            width: '24px',
+                            height: '24px',
+                          }}
+                          onClick={(e) => handleClick(e, eachItem?.id)}
+                        >
+                          <img
+                            src={`/icons/ellipse.svg`}
+                            style={{
+                              width: '24px',
+                              height: '24px',
+                              cursor: 'pointer',
+                            }}
+                            alt="ellipse"
+                          />
+                        </Button>
+                        <Menu
+                          onClick={(e) => {
+                            e.stopPropagation();
+                          }}
+                          id="demo-positioned-menu"
+                          aria-labelledby="demo-positioned-button"
+                          anchorEl={anchorEl}
+                          open={eachItem.id === open}
+                          onClose={handleClose}
+                          sx={{ mt: 1 }}
+                          anchorOrigin={{
+                            vertical: 'bottom',
+                            horizontal: 'right',
+                          }}
+                          transformOrigin={{
+                            vertical: 'top',
+                            horizontal: 'right',
+                          }}
+                        >
+                          {eachItem.status === 'active' ? (
+                            <MenuItem
+                              onClick={(e) => handleOpenRemove(e, eachItem.id)}
+                            >
+                              Terminate
+                            </MenuItem>
+                          ) : (
+                            <MenuItem
+                              onClick={(e) => handleOpenActive(e, eachItem.id)}
+                            >
+                              Active
+                            </MenuItem>
+                          )}
+                        </Menu>
+                      </>
+                    )}
                   </Box>
                 )}
               </>
