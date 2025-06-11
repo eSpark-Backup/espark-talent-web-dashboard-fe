@@ -93,7 +93,7 @@ const renderActions = (
   commonCellStyle,
   rejectReq,
   approveReq,
-  handleClickActionEdit,
+  handleClickActionEdit = () => {},
   handleClickActionDownload,
   viewLoader,
   setviewLoader
@@ -223,7 +223,14 @@ const renderActions = (
                         setviewLoader
                       );
                     } else if (item === 'Edit') {
-                      handleClickActionEdit({ row, item });
+                      console.log('Calling Edit');
+                      if (typeof handleClickActionEdit === 'function') {
+                        handleClickActionEdit({ row, item });
+                      } else {
+                        console.error(
+                          'handleClickActionEdit is not defined or not a function'
+                        );
+                      }
                     } else if (item === 'Download') {
                       handleClickActionDownload(row?.id, row);
                     } else if (item === 'Delete') {
