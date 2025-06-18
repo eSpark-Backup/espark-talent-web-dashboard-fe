@@ -20,8 +20,8 @@ const TeamMemberCard = ({ member, onView, showStatus = true }) => {
   const router = useRouter();
 
   const handleViewClick = (e) => {
-    e.stopPropagation(); // ⛔️ prevent bubbling to card
-    router.push('/team-members-detail'); // ✅ navigate to detail page
+    e.stopPropagation(); 
+    router.push('/team-members-detail');
   };
 
   return (
