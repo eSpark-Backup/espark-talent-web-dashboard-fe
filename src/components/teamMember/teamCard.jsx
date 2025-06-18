@@ -7,6 +7,7 @@ import {
   Box,
 } from '@mui/material';
 import VisibilityIcon from '@mui/icons-material/Visibility';
+import { useRouter } from 'next/navigation';
 
 const statusColors = {
   Active: '#4caf50',
@@ -16,18 +17,24 @@ const statusColors = {
 
 const TeamMemberCard = ({ member, onView, showStatus = true }) => {
   const statusColor = statusColors[member?.status] || '#9e9e9e';
+  const router = useRouter();
+
+  const handleViewClick = (e) => {
+    e.stopPropagation(); // ⛔️ prevent bubbling to card
+    router.push('/team-members-detail'); // ✅ navigate to detail page
+  };
 
   return (
     <Card
       sx={{
         position: 'relative',
         borderRadius: '12px',
-        boxShadow: 2,
+        boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.3)',
         padding: 2,
         textAlign: 'center',
         background: '#F6F6F6',
-        boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.3)',
         borderRadius: '5px',
+        cursor: 'default', // 👈 no pointer
       }}
     >
       {showStatus && (
@@ -56,17 +63,20 @@ const TeamMemberCard = ({ member, onView, showStatus = true }) => {
         </Box>
       )}
 
-      {/* Show icon only if onView is provided */}
+      {/* 👇 Only this triggers navigation */}
       {onView && (
         <IconButton
-          onClick={() => onView(member)}
+          onClick={(e) => {
+            e.stopPropagation(); // stop bubbling
+            onView(member); // call the passed function
+          }}
           sx={{
             position: 'absolute',
             top: 4,
             right: 4,
             color: '#757575',
           }}
-          aria-label={`View ${member.name}'s PDF`}
+          aria-label={`View ${member.name}'s details`}
         >
           <VisibilityIcon />
         </IconButton>

@@ -292,7 +292,14 @@ const Dashboard = () => {
                           : terminatedTeamMembers
                     ).map((member, idx) => (
                       <Grid item xs={12} sm={6} md={4} lg={3} key={idx}>
-                        <TeamMemberCard member={member} />
+                        <TeamMemberCard
+                          member={member}
+                          onView={() =>
+                            router.push(
+                              '/client/dashboard/team/team-members-details'
+                            )
+                          }
+                        />
                       </Grid>
                     ))}
                   </Grid>
