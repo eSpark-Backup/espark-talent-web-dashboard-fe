@@ -125,14 +125,10 @@ const AttendanceReport = ({ employeeData }) => {
       ),
       date: dayjs(row?.date, 'DD-MM-YYYY')?.format('D MMMM, YYYY'),
       check_in: row?.check_in
-        ? dayjs(row?.check_in, 'HH:mm')?.isValid()
-          ? dayjs(row?.check_in, 'HH:mm')?.format('hh:mm A')
-          : '-'
+        ? dayjs(row?.check_in, 'hh:mm A')?.format('hh:mm A')
         : '-',
       check_out: row?.check_out
-        ? dayjs(row?.check_out, 'HH:mm')?.isValid()
-          ? dayjs(row?.check_out, 'HH:mm')?.format('hh:mm A')
-          : '-'
+        ? dayjs(row?.check_out, 'hh:mm A')?.format('hh:mm A')
         : '-',
     })) || [];
 
