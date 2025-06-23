@@ -18,7 +18,7 @@ import { attendanceReportTableColumn } from '@/src/constants/data/tables/attenda
 import { calculateExpectedTime } from '@/src/utils/calculateExpectedTime';
 import { ellipsisWithTooltip } from '@/src/utils/tooltipEllipsis';
 
-const AttendanceReport = ({ employeeData }) => {
+const AttendanceReport = ({ employeeData, filterFormValues }) => {
   const dispatch = useDispatch();
   const params = useParams();
   const clientQuery = useQueryClient();
@@ -135,6 +135,57 @@ const AttendanceReport = ({ employeeData }) => {
           : '-'
         : '-',
     })) || [];
+  const filteredTimeSheet =
+    formattedTimeSheet?.filter((row) => {
+      const {
+        from,
+        to,
+        attendanceStatus,
+        checkIn = {},
+        checkOut = {},
+      } = filterFormValues || {};
+
+      const rowDate = dayjs(row?.date, 'D MMMM, YYYY');
+      const fromDate = from ? dayjs(from) : null;
+      const toDate = to ? dayjs(to) : null;
+
+      const checkInFrom = checkIn?.from ? dayjs(checkIn.from, 'HH:mm') : null;
+      const checkInTo = checkIn?.to ? dayjs(checkIn.to, 'HH:mm') : null;
+
+      const checkOutFrom = checkOut?.from
+        ? dayjs(checkOut.from, 'HH:mm')
+        : null;
+      const checkOutTo = checkOut?.to ? dayjs(checkOut.to, 'HH:mm') : null;
+
+      const actualCheckIn =
+        row?.check_in !== '-' ? dayjs(row.check_in, 'hh:mm A') : null;
+      const actualCheckOut =
+        row?.check_out !== '-' ? dayjs(row.check_out, 'hh:mm A') : null;
+
+      const isDateInRange =
+        (!fromDate || rowDate.isSame(fromDate) || rowDate.isAfter(fromDate)) &&
+        (!toDate || rowDate.isSame(toDate) || rowDate.isBefore(toDate));
+
+      const isStatusMatch = attendanceStatus
+        ? row?.status?.includes(attendanceStatus)
+        : true;
+
+      const isCheckInMatch =
+        checkInFrom && checkInTo && actualCheckIn
+          ? actualCheckIn.isSameOrAfter(checkInFrom) &&
+            actualCheckIn.isSameOrBefore(checkInTo)
+          : true;
+
+      const isCheckOutMatch =
+        checkOutFrom && checkOutTo && actualCheckOut
+          ? actualCheckOut.isSameOrAfter(checkOutFrom) &&
+            actualCheckOut.isSameOrBefore(checkOutTo)
+          : true;
+
+      return (
+        isDateInRange && isStatusMatch && isCheckInMatch && isCheckOutMatch
+      );
+    }) || [];
 
   return (
     <>
@@ -194,7 +245,11 @@ const AttendanceReport = ({ employeeData }) => {
           <AppTable
             minWidth={'1200px'}
             column={attendanceReportTableColumn}
-            data={formattedTimeSheet || ['No attendance record found!']}
+            data={
+              filteredTimeSheet.length
+                ? filteredTimeSheet
+                : ['No attendance record found!']
+            }
             handleClickActionView={handleAttendanceModal}
             isLoading={isLoading}
           />

@@ -1,4 +1,4 @@
-import React, { forwardRef, useState } from 'react';
+import React, { forwardRef } from 'react';
 import { Box, Grid, Modal, Typography } from '@mui/material';
 
 import { useFormik } from 'formik';
@@ -22,8 +22,18 @@ import { calculateExpectedTime } from '@/src/utils/calculateExpectedTime';
 import { Toast } from '../Toast/Toast';
 
 const FilterFormModal = forwardRef(
-  ({ open, onClose, filterForm, url, dispatchFunction }, ref) => {
-    const [filterFormValues, setfilterFormValues] = useState(null);
+  (
+    {
+      open,
+      onClose,
+      filterForm,
+      url,
+      dispatchFunction,
+      filterFormValues,
+      setfilterFormValues,
+    },
+    ref
+  ) => {
     const { currentWorkSpace } = useSelector((state) => state?.emp?.home);
     const dispatch = useDispatch();
     const { mutate } = useMutation({
