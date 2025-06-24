@@ -298,6 +298,8 @@ const LeaveReqFilterFormModal = forwardRef(
                   )}
                   <Grid item p={'0 10px'} xs={12}>
                     <ResetButton
+                      onSubmit={handleSubmit}
+                      isLoadingReset={resetMutation.isPending}
                       handleReset={handleClickReset}
                       isLoadingSubmit={isPending}
                     />

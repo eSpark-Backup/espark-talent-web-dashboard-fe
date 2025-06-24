@@ -5,11 +5,11 @@ export const filterModalSchema = Yup.object({
   to: Yup.string().required('To date is required'),
   attendanceStatus: Yup.string(),
   checkIn: Yup.object().shape({
-    from: Yup.string().required('Checkin time is required'),
-    to: Yup.string().required('Checkin time is required'),
+    from: Yup.string(),
+    to: Yup.string(),
   }),
   checkOut: Yup.object().shape({
-    from: Yup.string().required('Checkout time is required'),
-    to: Yup.string().required('Checkout time is required'),
+    from: Yup.string(),
+    to: Yup.string(),
   }),
 });
