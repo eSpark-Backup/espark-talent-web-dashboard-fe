@@ -35,18 +35,32 @@ const FilterFormModal = forwardRef(
     ref
   ) => {
     const { currentWorkSpace } = useSelector((state) => state?.emp?.home);
+
+    const formatTime = (timeStr) => {
+      if (!timeStr) return '';
+      const time = dayjs(timeStr, ['HH:mm', 'hh:mm A']);
+      return time.isValid() ? time.format('hh:mm:ss A') : '';
+    };
     const dispatch = useDispatch();
     const { mutate } = useMutation({
       mutationFn: async (args) => {
         dispatch(getTimeSheetData());
+        const queryParams = new URLSearchParams({
+          from: args.from,
+          to: args.to,
+          ...(args.status && { status: args.status }),
+          ...(args.checkInFrom && { checkInFrom: args.checkInFrom }),
+          ...(args.checkInTo && { checkInTo: args.checkInTo }),
+          ...(args.checkOutFrom && { checkOutFrom: args.checkOutFrom }),
+          ...(args.checkOutTo && { checkOutTo: args.checkOutTo }),
+        });
         let endpoint;
         if (url) {
-          endpoint = `${url}&from=${args.from}&to=${args.to}`;
+          endpoint = `${url}&${queryParams.toString()}`;
         } else {
-          endpoint = `${EMP_TIME_SHEET}?workspace=${currentWorkSpace?.email || ''}&from=${
-            args.from
-          }&to=${args.to}`;
+          endpoint = `${EMP_TIME_SHEET}?workspace=${currentWorkSpace?.email || ''}&${queryParams.toString()}`;
         }
+
         return api.getData(endpoint);
       },
       onSuccess: ({ data }) => {
@@ -261,6 +275,11 @@ const FilterFormModal = forwardRef(
           mutate({
             from: dayjs(formValues?.from).format('YYYY-MM-DD'),
             to: dayjs(formValues?.to).format('YYYY-MM-DD'),
+            status: formValues?.attendanceStatus || '',
+            checkInFrom: formatTime(formValues?.checkIn?.from),
+            checkInTo: formatTime(formValues?.checkIn?.to),
+            checkOutFrom: formatTime(formValues?.checkOut?.from),
+            checkOutTo: formatTime(formValues?.checkOut?.to),
           });
         }
       },

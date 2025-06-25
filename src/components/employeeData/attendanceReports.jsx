@@ -135,6 +135,13 @@ const AttendanceReport = ({ employeeData, filterFormValues }) => {
           : '-'
         : '-',
     })) || [];
+
+  const formatWithSeconds = (timeStr) => {
+    if (!timeStr) return null;
+    const formats = ['hh:mm:ss A', 'HH:mm:ss', 'hh:mm A', 'HH:mm'];
+    return dayjs(timeStr, formats, true);
+  };
+
   const filteredTimeSheet =
     formattedTimeSheet?.filter((row) => {
       const {
@@ -146,21 +153,23 @@ const AttendanceReport = ({ employeeData, filterFormValues }) => {
       } = filterFormValues || {};
 
       const rowDate = dayjs(row?.date, 'D MMMM, YYYY');
-      const fromDate = from ? dayjs(from) : null;
-      const toDate = to ? dayjs(to) : null;
+      const fromDate = from ? dayjs(from, 'YYYY-MM-DD') : null;
+      const toDate = to ? dayjs(to, 'YYYY-MM-DD') : null;
 
-      const checkInFrom = checkIn?.from ? dayjs(checkIn.from, 'HH:mm') : null;
-      const checkInTo = checkIn?.to ? dayjs(checkIn.to, 'HH:mm') : null;
+      const checkInFrom = formatWithSeconds(checkIn?.from); // ex: 02:29:00 PM
+      const checkInTo = formatWithSeconds(checkIn?.to); // ex: 04:15:00 PM
 
-      const checkOutFrom = checkOut?.from
-        ? dayjs(checkOut.from, 'HH:mm')
-        : null;
-      const checkOutTo = checkOut?.to ? dayjs(checkOut.to, 'HH:mm') : null;
+      const checkOutFrom = formatWithSeconds(checkOut?.from); // ex: 03:13:00 PM
+      const checkOutTo = formatWithSeconds(checkOut?.to); // ex: 04:12:07 PM
 
       const actualCheckIn =
-        row?.check_in !== '-' ? dayjs(row.check_in, 'hh:mm A') : null;
+        row?.check_in !== '-'
+          ? dayjs(row.check_in, ['hh:mm:ss A', 'hh:mm A', 'HH:mm:ss'], true)
+          : null;
       const actualCheckOut =
-        row?.check_out !== '-' ? dayjs(row.check_out, 'hh:mm A') : null;
+        row?.check_out !== '-'
+          ? dayjs(row.check_out, ['hh:mm:ss A', 'hh:mm A', 'HH:mm:ss'], true)
+          : null;
 
       const isDateInRange =
         (!fromDate || rowDate.isSame(fromDate) || rowDate.isAfter(fromDate)) &&
