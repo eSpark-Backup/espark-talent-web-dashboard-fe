@@ -40,6 +40,7 @@ export const HR_ROLES_PERMISSIONS = '/hr_rnp/';
 export const HR_OUTSOURCEABLE_EMPS = '/hr_clientaddemp/';
 export const HR_INVOICES = '/hr_invoices/';
 export const HR_UPDATE_EMP_IMAGE = '/hr_update_empimg/';
+export const HR_CANDIDATES = '/candidate/';
 
 //PATCH
 export const HR_CHANGE_PASSWORD = '/hr_changepass/';

@@ -115,7 +115,7 @@ const EmployeeCard = ({
                         }}
                       >
                         <img
-                          src="/images/Vector.png" 
+                          src="/images/Vector.png"
                           style={{
                             cursor: 'pointer',
                           }}

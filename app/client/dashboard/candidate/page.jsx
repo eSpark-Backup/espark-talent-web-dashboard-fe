@@ -13,7 +13,7 @@ const members = [
     profileImage: '/icons/Johndoe.png',
     pdfUrl: '/dummy.pdf',
   },
-   {
+  {
     name: 'John Doe',
     role: 'Web Designer',
     profileImage: '/icons/Johndoe.png',
@@ -23,7 +23,7 @@ const members = [
 
 const CandidateProfile = () => {
   const [search, setSearch] = useState('');
-  const [openPdf, setOpenPdf] = useState(null); 
+  const [openPdf, setOpenPdf] = useState(null);
 
   const handleViewPdf = (member) => {
     if (member.pdfUrl) {

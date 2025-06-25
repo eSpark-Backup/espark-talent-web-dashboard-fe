@@ -12,7 +12,10 @@ import {
 } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import EmployeeProfileForm from '@/src/components/teamMember/personalDetails';
-import { employeeContractDetails, employeeProfileDetails } from '@/src/constants/teamMember';
+import {
+  employeeContractDetails,
+  employeeProfileDetails,
+} from '@/src/constants/teamMember';
 
 export default function TeamMemberHeader() {
   const [tab, setTab] = React.useState(0);
