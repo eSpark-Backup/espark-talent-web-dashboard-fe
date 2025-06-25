@@ -20,7 +20,7 @@ const TeamMemberCard = ({ member, onView, showStatus = true }) => {
   const router = useRouter();
 
   const handleViewClick = (e) => {
-    e.stopPropagation(); 
+    e.stopPropagation();
     router.push('/team-members-detail');
   };
 
