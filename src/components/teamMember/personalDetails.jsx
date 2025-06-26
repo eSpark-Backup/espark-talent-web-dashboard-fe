@@ -1,6 +1,4 @@
 'use client';
-
-import { employeeProfileFields } from '@/src/constants/teamMember';
 import {
   Avatar,
   Box,

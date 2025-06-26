@@ -1,13 +1,5 @@
-import {
-  Card,
-  CardContent,
-  Typography,
-  IconButton,
-  Avatar,
-  Box,
-} from '@mui/material';
+import { Card, Typography, IconButton, Avatar, Box } from '@mui/material';
 import VisibilityIcon from '@mui/icons-material/Visibility';
-import { useRouter } from 'next/navigation';
 
 const statusColors = {
   Active: '#4caf50',
@@ -17,12 +9,6 @@ const statusColors = {
 
 const TeamMemberCard = ({ member, onView, showStatus = true }) => {
   const statusColor = statusColors[member?.status] || '#9e9e9e';
-  const router = useRouter();
-
-  const handleViewClick = (e) => {
-    e.stopPropagation();
-    router.push('/team-members-detail');
-  };
 
   return (
     <Card
@@ -33,7 +19,6 @@ const TeamMemberCard = ({ member, onView, showStatus = true }) => {
         padding: 2,
         textAlign: 'center',
         background: '#F6F6F6',
-        borderRadius: '5px',
         cursor: 'default', // 👈 no pointer
       }}
     >
