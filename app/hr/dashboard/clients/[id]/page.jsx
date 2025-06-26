@@ -15,7 +15,7 @@ import AddOnboardModal from './AddOnboardModal';
 
 import { useSearchParams } from 'next/navigation';
 import { CLIENTPROFILE } from '@/src/constants/ClientProfile';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import {
   DOWNLOAD_EMP_INV,
@@ -78,6 +78,119 @@ import EditOnboardModal from './EditOnboardModal';
 import EditInvoiceModal from './EditInvoiceModal';
 import EditOtherInvoiceModal from './EditOtherInvoiceModal';
 import CandidateProfile from '@/src/components/HR/CandidateProfile';
+import {
+  getCandidatesFailure,
+  getCandidatesRequest,
+  getCandidatesSuccess,
+  postCandidatesFailure,
+  postCandidatesRequest,
+  postCandidatesSuccess,
+  putCandidatesFailure,
+  putCandidatesRequest,
+  putCandidatesSuccess,
+  deleteCandidatesFailure,
+  deleteCandidatesRequest,
+  deleteCandidatesSuccess,
+} from '@/src/redux/slices/hrSlices/candidatesSlice';
+import EditCandidatesModal from './EditCandidatesModal';
+import AddCandidatesModal from './AddCandidatesModal';
+import AppConfirmationMadal from '@/src/components/modals/AppConfirmationMadal';
+
+const HR_CANDIDATES = '/hr/candidates'; // replace with your actual endpoint
+export const CONTRACT_SIGNED = {
+  delete: 'Delete',
+  warning: 'Are you sure you want to delete this request?',
+  cancel: 'Cancel',
+  addContract: 'Add contract',
+  teamContract: 'Visualise team details & manage members',
+  contractForm: 'Contract',
+  contractEditForm: 'Edit contract',
+  submit: 'Submit',
+  edit: 'Save',
+};
+const names = [
+  'Areeba Shakeel',
+  'Ali Raza',
+  'Hina Khan',
+  'Zeeshan Ahmed',
+  'Sara Malik',
+];
+const designations = [
+  'UI/UX Designer',
+  'Frontend Developer',
+  'Backend Engineer',
+  'Product Manager',
+  'QA Analyst',
+];
+
+const defaultCandidates = Array.from({ length: 5 }, (_, index) => ({
+  id: String(index + 1),
+  name: names[index % names.length],
+  designation: designations[index % designations.length],
+  image: `https://i.pravatar.cc/40?img=${index + 3}`, // varies image
+  resume: `${names[index % names.length].split(' ').join('_')}_CV`,
+  resumeUrl: '/dummy.pdf',
+}));
+
+// ✅ Custom Hook for mutations
+export function useCandidateMutations(client) {
+  const dispatch = useDispatch();
+  const queryClient = useQueryClient();
+
+  const deleteMutation = useMutation({
+    mutationFn: async (id) => {
+      dispatch(deleteCandidatesRequest());
+      return await api.daleteData(`${HR_CANDIDATES}/${id}`);
+    },
+    onSuccess: () => {
+      dispatch(deleteCandidatesSuccess());
+      Toast('success', 'Candidate deleted successfully');
+      queryClient.invalidateQueries(['candidate-list', client]);
+    },
+    onError: (error) => {
+      dispatch(deleteCandidatesFailure(error?.message));
+      Toast('error', error?.message || 'Mutation failed');
+    },
+  });
+
+  const editMutation = useMutation({
+    mutationFn: async (candidate) => {
+      dispatch(putCandidatesRequest());
+      return await api.putData(`${HR_CANDIDATES}/${candidate.id}`, candidate);
+    },
+    onSuccess: () => {
+      dispatch(putCandidatesSuccess());
+      Toast('success', 'Candidate updated successfully');
+      queryClient.invalidateQueries(['candidate-list', client]);
+    },
+    onError: (error) => {
+      dispatch(putCandidatesFailure(error?.message));
+      Toast('error', error?.message || 'Mutation failed');
+    },
+  });
+
+  const addMutation = useMutation({
+    mutationFn: async (candidate) => {
+      dispatch(postCandidatesRequest());
+      return await api.postData(`${HR_CANDIDATES}?client=${client}`, candidate);
+    },
+    onSuccess: () => {
+      dispatch(postCandidatesSuccess());
+      Toast('success', 'Candidate added successfully');
+      queryClient.invalidateQueries(['candidate-list', client]);
+    },
+    onError: (error) => {
+      dispatch(postCandidatesFailure(error?.message));
+      Toast('error', error?.message || 'Mutation failed');
+    },
+  });
+
+  return {
+    deleteCandidate: deleteMutation.mutate,
+    editCandidate: editMutation.mutate,
+    addCandidate: addMutation.mutate,
+  };
+}
 
 const AddEmployee = () => {
   const params = useParams();
@@ -91,7 +204,85 @@ const AddEmployee = () => {
     (state) => state?.hr?.home?.homeData
   );
   const { role } = useSelector((state) => state?.auth?.userData);
+  const [isOpenAddCandidatesModal, setIsOpenAddCandidatesModal] =
+    useState(false);
+  const [isOpenEditCandidatesModal, setIsOpenEditCandidatesModal] =
+    useState(false);
+  const [isOpenDeleteCandidatesModal, setIsOpenDeleteCandidatesModal] =
+    useState(false);
+  const [selectedCandidate, setSelectedCandidate] = useState(null);
+  const [openPdf, setOpenPdf] = useState(null);
 
+  const { deleteCandidate, editCandidate } = useCandidateMutations(email);
+
+  const { data: candidatesList = defaultCandidates } = useQuery({
+    queryKey: ['candidate-list', email],
+    staleTime: 10000,
+    refetchOnWindowFocus: false,
+    placeholderData: defaultCandidates,
+    queryFn: async () => {
+      try {
+        dispatch(getCandidatesRequest());
+        const response = await api.getData(`${HR_CANDIDATES}?client=${email}`);
+        const data = response?.data || [];
+        dispatch(getCandidatesSuccess(data));
+        return data.length > 0 ? data : defaultCandidates;
+      } catch (err) {
+        dispatch(getCandidatesFailure(err?.message));
+        Toast('error', err?.message || 'Failed to get data');
+        return defaultCandidates;
+      }
+    },
+  });
+  const handleEditCandidates = (candidate) => {
+    const newName = prompt('Enter new candidate name:', candidate.name);
+    if (newName && newName !== candidate.name) {
+      editCandidate({ ...candidate, name: newName });
+    }
+  };
+  const handleDeleteCandidates = (candidate) => {
+    setIsOpenDeleteCandidatesModal(false);
+    deleteCandidate(candidate?.id);
+  };
+  const handleDownloadResume = (candidate) => {
+    if (candidate?.resumeUrl) {
+      const link = document.createElement('a');
+      link.href = candidate.resumeUrl;
+      link.download = candidate.resume || 'resume.pdf';
+      link.click();
+    } else {
+      Toast('error', 'Resume not available');
+    }
+  };
+  const handleViewResume = (candidate) => {
+    if (candidate?.resumeUrl) {
+      setOpenPdf(candidate.resumeUrl);
+    } else {
+      Toast('error', 'No PDF available for this candidate');
+    }
+  };
+  const handleClosePDF = () => setOpenPdf(null);
+
+  const handleOpenAddCandidatesModal = () => {
+    setIsOpenAddCandidatesModal(true);
+  };
+  const handleCloseAddCandidatesModal = () => {
+    setIsOpenAddCandidatesModal(false);
+  };
+  const handleOpenEditCandidatesModal = (candidate) => {
+    setSelectedCandidate(candidate);
+    setIsOpenEditCandidatesModal(true);
+  };
+  const handleCloseEditCandidatesModal = () => {
+    setIsOpenEditCandidatesModal(false);
+  };
+  const handleOpenDeleteCandidatesModal = (candidate) => {
+    setSelectedCandidate(candidate);
+    setIsOpenDeleteCandidatesModal(true);
+  };
+  const handleCloseDeleteCandidatesModal = () => {
+    setIsOpenDeleteCandidatesModal(false);
+  };
   const { isLoading, isFetching } = useQuery({
     staleTime: 100000,
     queryKey: ['hr-client-info-query'],
@@ -109,16 +300,6 @@ const AddEmployee = () => {
         });
     },
   });
-
-  const CandidateProfileQuery = useQuery({
-    queryKey: ['candidate-profile-data', email],
-    queryFn: () => api.getData(`/api/candidate-profile?id=${params.id}`),
-    onSuccess: (data) => {},
-    onError: (err) => {
-      Toast('error', err.message || 'Failed to load candidate profile');
-    },
-  });
-
   const ClientHiringReqQuery = useQuery({
     staleTime: 100000,
     refetchOnWindowFocus: false,
@@ -719,7 +900,17 @@ const AddEmployee = () => {
       hasNestedTabs: false,
       prop: a11yProps(5),
       isTable: false,
-      component: <CandidateProfile />,
+      component: (
+        <CandidateProfile
+          candidatesList={candidatesList}
+          handleDownloadResume={handleDownloadResume}
+          handleOpenEditCandidatesModal={handleOpenEditCandidatesModal}
+          handleOpenDeleteCandidatesModal={handleOpenDeleteCandidatesModal}
+          handleViewResume={handleViewResume}
+          openPdf={openPdf}
+          handleClosePDF={handleClosePDF}
+        />
+      ),
     },
   ];
   const [isOpenHiringRequestModal, setIsOpenHiringRequestModal] =
@@ -1439,30 +1630,64 @@ const AddEmployee = () => {
                   justifyContent: 'space-between',
                 }}
               >
-                <Tabs
-                  value={currentTab.val}
-                  onChange={handleChangeCurrentTab}
-                  aria-label="basic tabs example"
-                  variant="scrollable"
-                  TabIndicatorProps={{ style: { backgroundColor: '#068987' } }}
+                <Box
+                  sx={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    flexWrap: 'wrap',
+                    width: '100%',
+                  }}
                 >
-                  {clientProfileTabs?.map(({ label, prop }, index) => (
-                    <Tab
-                      key={index}
-                      label={`${label}`}
-                      {...prop}
-                      disableRipple={true}
+                  <Tabs
+                    value={currentTab.val}
+                    onChange={handleChangeCurrentTab}
+                    aria-label="basic tabs example"
+                    variant="scrollable"
+                    TabIndicatorProps={{
+                      style: {
+                        backgroundColor: '#068987',
+                      },
+                    }}
+                    sx={{ flexGrow: 1 }}
+                  >
+                    {clientProfileTabs?.map(({ label, prop }, index) => (
+                      <Tab
+                        key={index}
+                        label={label}
+                        {...prop}
+                        disableRipple
+                        sx={{
+                          marginRight: '30px',
+                          color: '#595959',
+                          textTransform: 'none',
+                          '&.Mui-selected': {
+                            color: '#068987',
+                          },
+                        }}
+                      />
+                    ))}
+                  </Tabs>
+                  {currentTab?.label == 'Candidate Profile' && (
+                    <Button
+                      onClick={handleOpenAddCandidatesModal}
+                      variant="contained"
                       sx={{
-                        marginRight: '30px',
-                        color: '#595959',
-                        textTransform: 'math-auto',
-                        '&.Mui-selected': {
-                          color: '#068987',
+                        whiteSpace: 'nowrap',
+                        ml: 2,
+                        my: { xs: '5px', md: 0 },
+                        textTransform: 'none',
+                        color: '#fff',
+                        background: '#029894',
+                        '&:hover': {
+                          background: '#029894',
                         },
                       }}
-                    />
-                  ))}
-                </Tabs>
+                    >
+                      Add Candidate
+                    </Button>
+                  )}
+                </Box>
               </Box>
 
               {currentTab?.label !== 'Employees' && (
@@ -1771,6 +1996,32 @@ const AddEmployee = () => {
         title="Employee Employee form"
         open={isOpenAddClientModal}
         onClose={handleCloseAddClientModal}
+      />
+      <AddCandidatesModal
+        title="Add Candidates form"
+        open={isOpenAddCandidatesModal}
+        onClose={handleCloseAddCandidatesModal}
+        handleAddCandidate={(updatedData) =>
+          editCandidate({ ...selectedCandidate, ...updatedData })
+        }
+      />
+      <EditCandidatesModal
+        modalData={selectedCandidate}
+        title="Edit Candidates form"
+        open={isOpenEditCandidatesModal}
+        onClose={handleCloseEditCandidatesModal}
+        handleEditCandidate={handleEditCandidates}
+      />
+      <AppConfirmationMadal
+        title={CONTRACT_SIGNED?.delete}
+        bodyText={CONTRACT_SIGNED?.warning}
+        cancelButtonText={CONTRACT_SIGNED?.cancel}
+        confirmButtonText={CONTRACT_SIGNED?.delete}
+        isOpen={isOpenDeleteCandidatesModal}
+        handleClose={handleCloseDeleteCandidatesModal}
+        width={'25%'}
+        handleConfirm={() => handleDeleteCandidates(selectedCandidate)}
+        // isLoading={isPending}
       />
     </>
   );
