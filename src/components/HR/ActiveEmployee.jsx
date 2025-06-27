@@ -19,6 +19,7 @@ const EmployeeStatus = ({ empData, isFetching }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [empId, setEmpId] = useState(null);
   const [empStatus, setEmpStatus] = useState(null);
+  const [empVisbility, setEmpVisbility] = useState(null);
   const [open, setOpen] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -43,6 +44,19 @@ const EmployeeStatus = ({ empData, isFetching }) => {
     setIsOpen(true);
     event.stopPropagation();
   };
+  const handleToggleEmployeevisibility = (event, id, isVisible) => {
+    event.stopPropagation();
+    const newVisibility = !isVisible;
+
+    updateClientEmpMutation.mutate({
+      id,
+      isVisible: newVisibility,
+    });
+
+    // Store local state in case needed for redux update
+    setEmpId(id);
+    setEmpVisbility(newVisibility);
+  };
   const handleClose = (event) => {
     event.stopPropagation();
     setAnchorEl(null);
@@ -55,6 +69,7 @@ const EmployeeStatus = ({ empData, isFetching }) => {
     mutationFn: async (data) => {
       return api.updateJSONData(`${HR_CLIENT_EMPLOYEES}?id=${data?.id}`, {
         status: data?.status,
+        isVisible: data?.isVisible, // added for visibility toggle
       });
     },
     onSuccess: () => {
@@ -62,10 +77,14 @@ const EmployeeStatus = ({ empData, isFetching }) => {
         updateClientEmpStatus({
           id: empId,
           status: empStatus,
+          isVisible: empVisbility,
         })
       );
       setEmpId(null);
+      setEmpVisbility(null);
       setEmpStatus(null);
+      setOpen(null);
+      setIsOpen(false);
       handleCloseModal();
       Toast('success', 'Employee status updated successfully');
       setOpen(null);
@@ -103,6 +122,7 @@ const EmployeeStatus = ({ empData, isFetching }) => {
               handleOpenRemove={handleOpenRemove}
               handleOpenActive={handleOpenActive}
               isLoading={updateClientEmpMutation.isPending}
+              handleToggleEmployeevisibility={handleToggleEmployeevisibility}
             />
           ))
         ) : (

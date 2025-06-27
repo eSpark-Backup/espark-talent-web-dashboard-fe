@@ -21,6 +21,7 @@ const EmployeeCard = ({
   handleOpenRemove,
   handleOpenActive,
   status,
+  handleToggleEmployeevisibility,
 }) => {
   const { client_perms } = useSelector((state) => state?.hr?.home?.homeData);
   const { role } = useSelector((state) => state?.auth?.userData);
@@ -110,14 +111,23 @@ const EmployeeCard = ({
                           width: '24px',
                           height: '24px',
                         }}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                        }}
+                        onClick={(e) =>
+                          handleToggleEmployeevisibility(
+                            e,
+                            eachItem?.id,
+                            eachItem?.isVisible
+                          )
+                        }
                       >
                         <img
-                          src="/images/Vector.png"
+                          src={
+                            eachItem?.isVisible
+                              ? '/images/eye-open.png'
+                              : '/images/eye-close.png'
+                          }
                           style={{
                             cursor: 'pointer',
+                            width: '22px',
                           }}
                           alt="view-hide"
                         />

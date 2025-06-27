@@ -1892,12 +1892,12 @@ const AddEmployee = () => {
                         )}
 
                         {/* Render the table for tabs that need it */}
-                        {rest.isTable &&
+                        {/* {rest.isTable &&
                           renderTable({
                             currentTab: currentTab?.label,
                             data: getCurrentTabData(),
                             column: currentTabTable?.column,
-                          })}
+                          })} */}
                       </CustomTabPanel>
                     )
                   )}
