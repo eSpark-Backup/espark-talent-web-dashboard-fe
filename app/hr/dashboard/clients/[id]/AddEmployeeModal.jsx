@@ -1,6 +1,9 @@
 import Skeleton from '@mui/material/Skeleton';
 import AppTable from '@/src/components/appTableNew/AppTable';
-import { addEmployeModalFormSchema } from '@/src/components/form/schemas/addEmployeeModal';
+import {
+  addEmployeModalFormSchema,
+  addContractModalFormSchema,
+} from '@/src/components/form/schemas/addEmployeeModal';
 import Navigator from '@/src/components/form/step/Navigator';
 import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { Toast } from '@/src/components/Toast/Toast';
@@ -19,7 +22,6 @@ import {
 } from '@/src/services/apiService/apiEndPoints';
 import { Box, Button, CircularProgress, Grid, Modal } from '@mui/material';
 import { useMutation, useQuery } from '@tanstack/react-query';
-import dayjs from 'dayjs';
 import { useFormik } from 'formik';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -108,6 +110,16 @@ const AddEmployeeModal = ({ open, onClose }) => {
         });
     },
   });
+  const getValidationSchema = (step) => {
+    switch (step) {
+      case 2:
+        return addEmployeModalFormSchema;
+      case 3:
+        return addContractModalFormSchema;
+      default:
+        return null;
+    }
+  };
   const {
     handleSubmit,
     values,
@@ -117,25 +129,25 @@ const AddEmployeeModal = ({ open, onClose }) => {
     setFieldError,
     setErrors,
     handleReset,
+    validateForm,
   } = useFormik({
     initialValues: {
-      joining_date: null,
+      // joining_date: null,
       // benefits: {
       //   life_insurance_card: false,
       //   medical_card: false,
       //   fuel_card: false,
       // },
     },
-    validationSchema: addEmployeModalFormSchema,
+    validationSchema: getValidationSchema(currentStep),
     enableReinitialize: true,
     onSubmit: (formValues) => {
       const finalData = {
         ...formValues,
         id: currentEmpToAddInClient,
-        joining_date: dayjs(formValues?.joining_date)?.format('YYYY-MM-DD'),
-        country: formValues?.country?.title,
+        // joining_date: dayjs(formValues?.joining_date)?.format('YYYY-MM-DD'),
+        // country: formValues?.country?.title,
       };
-
       mutate(finalData);
     },
     validateOnChange: false,
@@ -250,7 +262,25 @@ const AddEmployeeModal = ({ open, onClose }) => {
                       );
                     else if (form.length)
                       return (
-                        <form onSubmit={handleSubmit} key={stepIndex}>
+                        <form
+                          onSubmit={async (e) => {
+                            e.preventDefault();
+                            if (currentStep === 3) {
+                              handleSubmit(e);
+                            } else if (currentStep === 2) {
+                              const errors = await validateForm();
+                              if (Object.keys(errors).length === 0) {
+                                setCurrentStep((ps) => ps + 1);
+                              } else {
+                                Toast(
+                                  'error',
+                                  'Please fix form errors before proceeding'
+                                );
+                              }
+                            }
+                          }}
+                          key={stepIndex}
+                        >
                           <Grid
                             container
                             sx={{
@@ -267,6 +297,7 @@ const AddEmployeeModal = ({ open, onClose }) => {
                                   placeholder,
                                   errorText,
                                   prefixIcon,
+                                  suffix,
                                   type,
                                   suffixIcon,
                                   options,
@@ -286,6 +317,7 @@ const AddEmployeeModal = ({ open, onClose }) => {
                                     errorText={errorText}
                                     prefixIcon={prefixIcon}
                                     type={type}
+                                    suffix={suffix}
                                     suffixIcon={suffixIcon}
                                     options={options}
                                     name={name}
@@ -335,21 +367,32 @@ const AddEmployeeModal = ({ open, onClose }) => {
                               >
                                 Back
                               </Button>
-                              <Button
-                                sx={{ minWidth: '120px' }}
-                                variant="contained"
-                                type="submit"
-                                disabled={isPending}
-                              >
-                                {isPending ? (
-                                  <CircularProgress
-                                    size={26}
-                                    color="secondary"
-                                  />
-                                ) : (
-                                  'Submit'
-                                )}
-                              </Button>
+
+                              {currentStep === 3 ? (
+                                <Button
+                                  sx={{ minWidth: '120px' }}
+                                  variant="contained"
+                                  type="submit"
+                                  disabled={isPending}
+                                >
+                                  {isPending ? (
+                                    <CircularProgress
+                                      size={26}
+                                      color="secondary"
+                                    />
+                                  ) : (
+                                    'Submit'
+                                  )}
+                                </Button>
+                              ) : (
+                                <Button
+                                  sx={{ minWidth: '120px' }}
+                                  variant="contained"
+                                  type="submit"
+                                >
+                                  Next
+                                </Button>
+                              )}
                             </Grid>
                           </Grid>
                         </form>

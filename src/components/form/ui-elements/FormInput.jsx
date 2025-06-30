@@ -43,6 +43,7 @@ const FormInput = ({
   suffixIcon,
   options,
   nested,
+  suffix,
   name,
   autoComplete,
   setFieldValue,
@@ -634,6 +635,20 @@ const FormInput = ({
                     }}
                     value={values?.[name]?.[field.name] || ''}
                   />
+                  {field.suffix && (
+                    <Box
+                      sx={{
+                        display: 'flex',
+                        padding: '10px',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                      }}
+                    >
+                      <Typography sx={{ color: '#585858' }}>
+                        {field.suffix}
+                      </Typography>
+                    </Box>
+                  )}
                   {field.suffixIcon && (
                     <Box
                       sx={{
@@ -908,7 +923,20 @@ const FormInput = ({
                   accept={accept}
                 />
               )}
-
+              {suffix && (
+                <label
+                  htmlFor={`input-file-${title}`}
+                  style={{
+                    display: 'flex',
+                    padding: '10px',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    cursor: 'pointer',
+                  }}
+                >
+                  <Typography sx={{ color: '#585858' }}>{suffix}</Typography>
+                </label>
+              )}
               {suffixIcon && (
                 <label
                   htmlFor={`input-file-${title}`}
@@ -971,6 +999,25 @@ const FormInput = ({
                 </Tooltip>
               )}
             </Box>
+            {suffix && (
+              <Typography
+                sx={{
+                  color: '#585858',
+                  width: { xs: '20px', md: '30px' },
+                  height: { xs: '20px', md: '30px' },
+                  position: 'absolute',
+                  right: { xs: '-30px', md: '-50px', lg: '-40px' },
+                  '@media (min-width: 900px) and (max-width: 1200px)': {
+                    width: '20px',
+                    height: '20px',
+                    marginRight: '20px',
+                  },
+                }}
+                onClick={onClickTogglePhoneNumber}
+              >
+                {suffix}
+              </Typography>
+            )}
             {suffixIconOutside && (
               <Box
                 src={`/icons/${suffixIconOutside}.svg`}

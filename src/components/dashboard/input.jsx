@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { Box, Tooltip } from '@mui/material';
+import { Box, Tooltip, Typography } from '@mui/material';
 import PropTypes from 'prop-types';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
@@ -7,6 +7,7 @@ import { usePathname } from 'next/navigation';
 const Input = ({
   prefixIcon,
   suffixIcon,
+  suffix,
   handleChange,
   value,
   width,
@@ -88,6 +89,13 @@ const Input = ({
           </Box>
         </Tooltip>
       )}
+      {!!suffix && (
+        <Tooltip title={tooltip || ''} placement="right-start">
+          <Box sx={{ marginX: 1 }}>
+            <Typography>{suffix}</Typography>
+          </Box>
+        </Tooltip>
+      )}
     </Box>
   );
 };
@@ -95,6 +103,7 @@ const Input = ({
 Input.propTypes = {
   prefixIcon: PropTypes.string,
   suffixIcon: PropTypes.string,
+  suffix: PropTypes.string,
   handleChange: PropTypes.func,
   value: PropTypes.string,
 };
