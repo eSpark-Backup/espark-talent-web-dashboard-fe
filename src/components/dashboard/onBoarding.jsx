@@ -5,6 +5,7 @@ import { Typography, Box, Grid } from '@mui/material';
 import { COMPANY_ONBOARDING, HIRING_STATUS } from '@/src/constants/dashboard';
 import CompanyProfile from './companyProfile';
 import { useSelector } from 'react-redux';
+import Link from 'next/link';
 
 const OnBoarding = () => {
   const { data } = useSelector((state) => state?.client?.home);
@@ -104,85 +105,99 @@ const OnBoarding = () => {
                   }}
                 >
                   <Box sx={{ width: 'auto', minWidth: '220px', pb: 1 }}>
-                    <Typography
-                      sx={{
-                        fontSize: { xs: '12px', md: '14px' },
-                        fontWeight: 400,
-                        color: '#595959',
-                        mb: 1,
-                      }}
-                    >
-                      {HIRING_STATUS.activeEmployee}:
-                      <span
-                        style={{
-                          fontSize: '14px',
+                    <Link href={'/client/dashboard/team/team-members'}>
+                      <Typography
+                        sx={{
+                          fontSize: { xs: '12px', md: '14px' },
                           fontWeight: 400,
                           color: '#595959',
-                          marginLeft: '5px',
+                          mb: 1,
                         }}
                       >
-                        {data?.active_employee}
-                      </span>
-                    </Typography>
-                    <Typography
-                      sx={{
-                        fontSize: { xs: '12px', md: '14px' },
-                        color: '#595959',
-                        fontWeight: 400,
-                      }}
+                        {HIRING_STATUS.activeEmployee}:
+                        <span
+                          style={{
+                            fontSize: '14px',
+                            fontWeight: 400,
+                            color: '#595959',
+                            marginLeft: '5px',
+                          }}
+                        >
+                          {data?.active_employee}
+                        </span>
+                      </Typography>
+                    </Link>
+                    <Link
+                      href={'/client/dashboard/hire-onboard/hiring-progress'}
                     >
-                      {HIRING_STATUS.onBoard}:
-                      <span
-                        style={{
-                          fontSize: '14px',
+                      <Typography
+                        sx={{
+                          fontSize: { xs: '12px', md: '14px' },
+                          color: '#595959',
                           fontWeight: 400,
-                          marginLeft: '5px',
                         }}
                       >
-                        {data?.onboarding_count}
-                      </span>
-                    </Typography>
+                        {HIRING_STATUS.onBoard}:
+                        <span
+                          style={{
+                            fontSize: '14px',
+                            fontWeight: 400,
+                            marginLeft: '5px',
+                          }}
+                        >
+                          {data?.onboarding_count}
+                        </span>
+                      </Typography>
+                    </Link>
                   </Box>
                   <Box sx={{ width: 'auto', minWidth: '220px', pb: 1 }}>
-                    <Typography
-                      sx={{
-                        fontSize: { xs: '12px', md: '14px' },
-                        fontWeight: 400,
-                        color: '#595959',
-                        mb: 1,
-                      }}
+                    <Link
+                      href={'/client/dashboard/hire-onboard/hiring-progress'}
                     >
-                      {HIRING_STATUS.interviewSchedule}:
-                      <span
-                        style={{
-                          fontSize: '14px',
+                      <Typography
+                        sx={{
+                          fontSize: { xs: '12px', md: '14px' },
                           fontWeight: 400,
                           color: '#595959',
-                          marginLeft: '5px',
+                          mb: 1,
                         }}
                       >
-                        {data?.interview_schedule_count}
-                      </span>
-                    </Typography>
-                    <Typography
-                      sx={{
-                        fontSize: { xs: '12px', md: '14px' },
-                        fontWeight: 400,
-                        color: '#595959',
-                      }}
+                        {HIRING_STATUS.interviewSchedule}:
+                        <span
+                          style={{
+                            fontSize: '14px',
+                            fontWeight: 400,
+                            color: '#595959',
+                            marginLeft: '5px',
+                          }}
+                        >
+                          {data?.interview_schedule_count}
+                        </span>
+                      </Typography>
+                    </Link>
+                    <Link
+                      href={'/client/dashboard/hire-onboard/hiring-progress'}
                     >
-                      {HIRING_STATUS.hiringReuqest}:
-                      <span
-                        style={{
-                          fontSize: '14px',
+                      <Typography
+                        sx={{
+                          fontSize: { xs: '12px', md: '14px' },
                           fontWeight: 400,
                           color: '#595959',
-                          marginLeft: '5px',
                         }}
                       >
-                        {data?.hiring_request_count}
-                      </span>
-                    </Typography>
+                        {HIRING_STATUS.hiringReuqest}:
+                        <span
+                          style={{
+                            fontSize: '14px',
+                            fontWeight: 400,
+                            color: '#595959',
+                            marginLeft: '5px',
+                          }}
+                        >
+                          {data?.hiring_request_count}
+                        </span>
+                      </Typography>
+                    </Link>
                   </Box>
                 </Box>
               </Box>
