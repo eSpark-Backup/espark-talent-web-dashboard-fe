@@ -3,7 +3,14 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useQuery } from '@tanstack/react-query';
-import { Box, Grid, Dialog, DialogContent, IconButton } from '@mui/material';
+import {
+  Box,
+  Grid,
+  Dialog,
+  DialogContent,
+  IconButton,
+  Typography,
+} from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 
 import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
@@ -14,28 +21,13 @@ import { api } from '@/src/services/apiService';
 import { Toast } from '@/src/components/Toast/Toast';
 import { CLIENT_CANDIADATES } from '@/src/services/apiService/apiEndPoints';
 
-const staticMembers = [
-  {
-    name: 'John Doe',
-    role: 'Web Designer',
-    profileImage: '/icons/Johndoe.png',
-    pdfUrl: '/dummy.pdf',
-  },
-  {
-    name: 'John Doe',
-    role: 'Web Designer',
-    profileImage: '/icons/Johndoe.png',
-    pdfUrl: '/dummy.pdf',
-  },
-];
-
 const CandidateProfile = () => {
   const dispatch = useDispatch();
   const [search, setSearch] = useState('');
   const [openPdf, setOpenPdf] = useState(null);
 
   const {
-    data: members = staticMembers,
+    data: members = [],
     //  isLoading
   } = useQuery({
     staleTime: 10000,
@@ -46,11 +38,11 @@ const CandidateProfile = () => {
         dispatch(fetchCandidatesRequest());
         const response = await api.getData(`${CLIENT_CANDIADATES}`);
         const data = response?.data || [];
-
-        return data.length > 0 ? data : staticMembers;
+        // If no candidate data, return empty array
+        return data.length > 0 ? data : [];
       } catch (err) {
         Toast('error', err?.message || 'Failed to get data');
-        return staticMembers;
+        return [];
       }
     },
   });
@@ -67,6 +59,13 @@ const CandidateProfile = () => {
     setOpenPdf(null);
   };
 
+  // Filtered members based on search
+  const filteredMembers = (members || []).filter(
+    (member) =>
+      member.name.toLowerCase().includes(search.toLowerCase()) ||
+      member.role.toLowerCase().includes(search.toLowerCase())
+  );
+
   return (
     <>
       <DashboardHeading title={`Candidate Profile`} />
@@ -80,17 +79,37 @@ const CandidateProfile = () => {
         />
       </Box>
 
-      <Grid container spacing={2}>
-        {(members || []).map((member, index) => (
-          <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
-            <TeamMemberCard
-              member={member}
-              onView={handleViewPdf}
-              showStatus={false}
-            />
-          </Grid>
-        ))}
-      </Grid>
+      {members.length === 0 ? (
+        <Typography
+          variant="h6"
+          align="center"
+          color="text.secondary"
+          sx={{ mt: 4 }}
+        >
+          No candidate assigned
+        </Typography>
+      ) : filteredMembers.length === 0 ? (
+        <Typography
+          variant="h6"
+          align="center"
+          color="text.secondary"
+          sx={{ mt: 4 }}
+        >
+          No results found.
+        </Typography>
+      ) : (
+        <Grid container spacing={2}>
+          {filteredMembers.map((member, index) => (
+            <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
+              <TeamMemberCard
+                member={member}
+                onView={handleViewPdf}
+                showStatus={false}
+              />
+            </Grid>
+          ))}
+        </Grid>
+      )}
 
       <Dialog
         open={Boolean(openPdf)}
