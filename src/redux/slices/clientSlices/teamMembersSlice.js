@@ -7,10 +7,23 @@ const teamMemberSlice = createSlice({
       active: [],
       onBoard: [],
       terminated: [],
+      selectedMember: null, // Add this
     },
     isLoading: false,
   },
   reducers: {
+    fetchTeamMemberByIdRequest: (state) => {
+      state.isLoading = true;
+      state.selectedMember = null;
+    },
+    fetchTeamMemberByIdSuccess: (state, action) => {
+      state.selectedMember = action.payload;
+      state.isLoading = false;
+    },
+    fetchTeamMemberByIdFailed: (state) => {
+      state.isLoading = false;
+      state.selectedMember = null;
+    },
     fetchTeamMembersRequest: (state) => {
       state.isLoading = true;
     },
@@ -33,6 +46,9 @@ const teamMemberSlice = createSlice({
 });
 
 export const {
+  fetchTeamMemberByIdRequest,
+  fetchTeamMemberByIdSuccess,
+  fetchTeamMemberByIdFailed,
   fetchTeamMembersRequest,
   fetchTeamMembersRequestActiveSuccess,
   fetchTeamMembersRequestFailed,

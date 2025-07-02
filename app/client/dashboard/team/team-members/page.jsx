@@ -12,7 +12,6 @@ import { filterTableRowsWRTTab } from '@/src/utils/table';
 import { changeTab } from '@/src/utils/tabs';
 import { teamTabs } from '@/src/constants/data/tabs/teamTabs';
 import { HIRING_FORM_DATA } from '@/src/constants/Hiring';
-import AppTable from '@/src/components/appTableNew/AppTable';
 import { useQuery } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import { CLIENT_TEAM_MEMBER } from '@/src/services/apiService/apiEndPoints';
@@ -280,29 +279,29 @@ const Dashboard = () => {
                   tooltip="Enter the relevant field type and easily filter the relevant data to search"
                 />
               </Box>
-              {teamTabs?.map(({ column }, i) => (
+              {teamTabs?.map((column, i) => (
                 <CustomTabPanel value={value} key={i} index={i}>
-                  <Grid container spacing={2}>
-                    {(i === 0
-                      ? allTeamMembers
-                      : i === 1
-                        ? activeTeamMembers
-                        : i === 2
-                          ? onBoardTeamMembers
-                          : terminatedTeamMembers
-                    ).map((member, idx) => (
-                      <Grid item xs={12} sm={6} md={4} lg={3} key={idx}>
-                        <TeamMemberCard
-                          member={member}
-                          onView={() =>
-                            router.push(
-                              '/client/dashboard/team/team-members-details'
-                            )
-                          }
-                        />
-                      </Grid>
-                    ))}
-                  </Grid>
+                  <Box
+                    sx={{
+                      maxWidth: '100%',
+                      overflowX: 'auto',
+                    }}
+                  >
+                    <Grid container spacing={2}>
+                      {(i === 0
+                        ? allTeamMembers
+                        : i === 1
+                          ? activeTeamMembers
+                          : i === 2
+                            ? onBoardTeamMembers
+                            : terminatedTeamMembers
+                      ).map((member, idx) => (
+                        <Grid item xs={12} sm={6} md={4} lg={3} key={idx}>
+                          <TeamMemberCard member={member} />
+                        </Grid>
+                      ))}
+                    </Grid>
+                  </Box>
                 </CustomTabPanel>
               ))}
             </Box>

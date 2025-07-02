@@ -1,13 +1,6 @@
-import {
-  Card,
-  CardContent,
-  Typography,
-  IconButton,
-  Avatar,
-  Box,
-} from '@mui/material';
+import { Card, Typography, IconButton, Avatar, Box } from '@mui/material';
 import VisibilityIcon from '@mui/icons-material/Visibility';
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 const statusColors = {
   Active: '#4caf50',
@@ -15,14 +8,8 @@ const statusColors = {
   Terminated: '#f44336',
 };
 
-const TeamMemberCard = ({ member, onView, showStatus = true }) => {
+const TeamMemberCard = ({ member, showStatus = true }) => {
   const statusColor = statusColors[member?.status] || '#9e9e9e';
-  const router = useRouter();
-
-  const handleViewClick = (e) => {
-    e.stopPropagation();
-    router.push('/team-members-detail');
-  };
 
   return (
     <Card
@@ -33,8 +20,7 @@ const TeamMemberCard = ({ member, onView, showStatus = true }) => {
         padding: 2,
         textAlign: 'center',
         background: '#F6F6F6',
-        borderRadius: '5px',
-        cursor: 'default', // 👈 no pointer
+        cursor: 'default',
       }}
     >
       {showStatus && (
@@ -62,14 +48,8 @@ const TeamMemberCard = ({ member, onView, showStatus = true }) => {
           </Typography>
         </Box>
       )}
-
-      {/* 👇 Only this triggers navigation */}
-      {onView && (
+      <Link href={`/client/dashboard/team/team-members/${member?.id || '1'}`}>
         <IconButton
-          onClick={(e) => {
-            e.stopPropagation(); // stop bubbling
-            onView(member); // call the passed function
-          }}
           sx={{
             position: 'absolute',
             top: 4,
@@ -80,23 +60,21 @@ const TeamMemberCard = ({ member, onView, showStatus = true }) => {
         >
           <VisibilityIcon />
         </IconButton>
-      )}
-
+      </Link>
       <Avatar
         alt={member?.name}
-        src={member?.profileImage || ''}
+        src={member?.profileImage || '/icons/Ellipse 14.svg'}
         sx={{
           width: 72,
           height: 72,
           margin: '20px auto 10px',
         }}
       />
-
       <Typography variant="subtitle1" fontWeight={600}>
-        {member?.name || 'Unnamed Member'}
+        {member?.employee_name || 'Unnamed Member'}
       </Typography>
       <Typography variant="body2" color="text.secondary">
-        {member?.role || 'N/A'}
+        {member?.job_title || 'N/A'}
       </Typography>
     </Card>
   );

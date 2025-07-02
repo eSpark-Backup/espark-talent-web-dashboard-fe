@@ -1,6 +1,6 @@
 'use client';
 
-import { employeeProfileFields } from '@/src/constants/teamMember';
+import { employeeSidebarDetails } from '@/src/constants/teamMember';
 import {
   Avatar,
   Box,
@@ -11,10 +11,9 @@ import {
   Grid,
 } from '@mui/material';
 
-export default function EmployeeProfile({ fields }) {
+export default function EmployeeProfile({ fields, values, fallbackValues }) {
   return (
     <Grid container spacing={4} p={4}>
-      {/* Left Section */}
       <Grid item xs={12} md={9}>
         <Grid container spacing={2}>
           {fields.map((field, index) => (
@@ -36,9 +35,26 @@ export default function EmployeeProfile({ fields }) {
                 <Typography fontWeight={500}>{field.label}</Typography>
               </Box>
               <Box sx={{ flex: 2 }}>
+                {/* <Typography
+                  sx={{
+                    width: '100%',
+                    padding: '10px',
+                    border: '1px solid #e0e0e0',
+                    borderRadius: '6px',
+                    backgroundColor: 'white',
+                    fontSize: '14px',
+                  }}
+                >
+                  {values?.[field.key] ||
+                    field.value}
+                </Typography> */}
                 <input
                   type="text"
-                  defaultValue={field.value}
+                  defaultValue={
+                    values?.[field.key] || field.value || fallbackValues
+                  }
+                  placeholder={field.placeholder || 'Enter value'}
+                  disabled
                   style={{
                     width: '100%',
                     padding: '10px',
@@ -57,7 +73,7 @@ export default function EmployeeProfile({ fields }) {
               color="primary"
               sx={{ width: '120px', height: '40px' }}
             >
-              Save
+              {'Save'}
             </Button>
           </Grid>
         </Grid>
@@ -87,31 +103,21 @@ export default function EmployeeProfile({ fields }) {
             }}
           >
             <Avatar
-              alt="John Doe"
-              src="/icons/Ellipse 14.svg"
+              alt={values?.employee_name || fallbackValues.employee_name}
+              src={values?.profileImage || fallbackValues.profileImage}
               sx={{ width: 50, height: 50 }}
             />
             <Box>
               <Typography fontWeight={600} fontSize={16}>
-                John Doe
+                {values?.employee_name || fallbackValues.employee_name}
               </Typography>
               <Typography fontSize={14} color="text.secondary">
-                Sr. UI/UX Designer
+                {values?.designation || fallbackValues.designation}
               </Typography>
             </Box>
           </Box>
 
-          {[
-            { label: 'Employment Status:', value: 'Active' },
-            { label: 'Location:', value: 'Karachi, Pakistan' },
-            { label: 'Department:', value: 'IT' },
-            {
-              label: 'Email:',
-              value: 'areeba@esparkconsultants.com',
-              editable: true,
-            },
-            { label: 'Probation Period:', value: 'Active' },
-          ].map((item, index) => (
+          {employeeSidebarDetails?.map((item, index) => (
             <Box key={index} sx={{ mb: 1.5 }}>
               <Divider />
               <Box
@@ -123,21 +129,21 @@ export default function EmployeeProfile({ fields }) {
                 }}
               >
                 <Typography fontSize={13} color="text.secondary">
-                  {item.label}
+                  {item?.label}
                 </Typography>
-                {item.editable && (
+                {item?.editable && (
                   <Link
                     component="button"
                     variant="body2"
                     underline="none"
                     sx={{ fontSize: 12 }}
                   >
-                    Edit
+                    {'Edit'}
                   </Link>
                 )}
               </Box>
               <Typography fontSize={14} mt={0.5}>
-                {item.value}
+                {values?.value || item?.value}
               </Typography>
             </Box>
           ))}
@@ -157,7 +163,7 @@ export default function EmployeeProfile({ fields }) {
               },
             }}
           >
-            Download Resume
+            {'Download Resume'}
           </Button>
         </Box>
       </Grid>
