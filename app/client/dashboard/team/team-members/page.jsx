@@ -40,6 +40,8 @@ const Dashboard = () => {
   const [onBoardTeamMembers, setOnBoardTeamMembers] = useState([]);
   const [terminatedTeamMembers, setTerminatedTeamMembers] = useState([]);
   const router = useRouter();
+  console.log('currentTab', currentTab);
+  console.log('teamMembersData', data);
 
   const temMembersQueryActive = useQuery({
     staleTime: 10000,

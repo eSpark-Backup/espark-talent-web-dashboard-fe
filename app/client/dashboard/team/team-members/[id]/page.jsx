@@ -128,9 +128,11 @@ export default function TeamMemberHeader({ params }) {
               placeholder="Search here..."
               variant="outlined"
             />
-            <Button variant="contained" sx={{ bgcolor: 'teal' }}>
-              {'New hire'}
-            </Button>
+            <Link href="/client/dashboard/hire-onboard/start-hiring" passHref>
+              <Button variant="contained" sx={{ bgcolor: 'teal' }}>
+                New hire
+              </Button>
+            </Link>
           </Box>
         </Box>
 
