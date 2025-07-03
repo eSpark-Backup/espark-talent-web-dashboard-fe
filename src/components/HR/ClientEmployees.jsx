@@ -160,6 +160,7 @@ const ClientEmployees = ({ fromClient, openModal }) => {
           <>
             {value === 'one' ? (
               <EmployeeStatus
+                email={email}
                 search={search}
                 id={id}
                 name={name}
@@ -170,6 +171,7 @@ const ClientEmployees = ({ fromClient, openModal }) => {
               />
             ) : value === 'two' ? (
               <EmployeeStatus
+                email={email}
                 status={'Active'}
                 id={id}
                 name={name}
@@ -180,6 +182,7 @@ const ClientEmployees = ({ fromClient, openModal }) => {
               />
             ) : (
               <EmployeeStatus
+                email={email}
                 id={id}
                 name={name}
                 designation={designation}

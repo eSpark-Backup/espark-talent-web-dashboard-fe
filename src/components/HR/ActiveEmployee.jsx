@@ -14,7 +14,7 @@ import { Toast } from '../Toast/Toast';
 import { useDispatch } from 'react-redux';
 import EmployeeCardSkeleton from './EmployeeCardSkeleton';
 
-const EmployeeStatus = ({ empData, isFetching }) => {
+const EmployeeStatus = ({ empData, isFetching, email }) => {
   const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = useState(null);
   const [empId, setEmpId] = useState(null);
@@ -67,10 +67,13 @@ const EmployeeStatus = ({ empData, isFetching }) => {
   };
   const updateClientEmpMutation = useMutation({
     mutationFn: async (data) => {
-      return api.updateJSONData(`${HR_CLIENT_EMPLOYEES}?id=${data?.id}`, {
-        status: data?.status,
-        isVisible: data?.isVisible, // added for visibility toggle
-      });
+      return api.updateJSONData(
+        `${HR_CLIENT_EMPLOYEES}?c_email=${email}&&id=${data?.id}`,
+        {
+          status: data?.status,
+          isVisible: data?.isVisible, // added for visibility toggle
+        }
+      );
     },
     onSuccess: () => {
       dispatch(
