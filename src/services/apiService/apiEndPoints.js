@@ -84,7 +84,7 @@ export const CLIENT_EMPLOYEE_CONTRACT = '/c_empcontract/';
 export const CLIENT_UPDATE_PASSWORD = '/c_updpass/';
 export const CLIENT_UPDATE_PIC = '/c_updpic/';
 export const CLIENT_UPDATE_COMPANY = '/c_upduser/';
-export const CLIENT_CANDIADATES = '/candidates/';
+export const CLIENT_CANDIADATES = '/client_candidates/';
 
 //Downloads
 export const DOWNLOAD_EMP_RESUME = '/down_resume/';
