@@ -96,7 +96,7 @@ import EditCandidatesModal from './EditCandidatesModal';
 import AddCandidatesModal from './AddCandidatesModal';
 import AppConfirmationMadal from '@/src/components/modals/AppConfirmationMadal';
 
-const HR_CANDIDATES = '/hr/candidates'; // replace with your actual endpoint
+const HR_CANDIDATES = '/hr_candidates'; // replace with your actual endpoint
 export const CONTRACT_SIGNED = {
   delete: 'Delete',
   warning: 'Are you sure you want to delete this request?',
