@@ -15,7 +15,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { HR_EMP_BENEFIT } from '@/src/services/apiService/apiEndPoints';
 import { api } from '@/src/services/apiService';
 import { editEmpBenefit } from '@/src/redux/slices/hrSlices/employeeSlice';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Toast } from '../Toast/Toast';
 import { benefitForm } from '@/src/constants/data/forms/benefit-form';
 import { benefitFormSchema } from '../form/schemas/benefitForm';
@@ -173,11 +173,6 @@ const EditBenefitForm = ({ onClose, open, selectedBenefit }) => {
                 <React.Fragment key={formIndex}>
                   <Grid item xs={12} lg={5}>
                     <FormInput
-                      disabled={
-                        name === 'card_id' || name === 'description'
-                          ? false
-                          : true
-                      }
                       title={title}
                       placeholder={placeholder}
                       errorText={errorText}
