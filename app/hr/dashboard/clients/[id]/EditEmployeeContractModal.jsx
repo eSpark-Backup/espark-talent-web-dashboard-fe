@@ -197,6 +197,7 @@ const EditEmployeeContractModal = ({ open, onClose, modalData }) => {
                   options,
                   name,
                   nested,
+                  required,
                   fields,
                   accept,
                   filelabel,
@@ -214,6 +215,7 @@ const EditEmployeeContractModal = ({ open, onClose, modalData }) => {
                       type={type}
                       suffixIcon={suffixIcon}
                       options={options}
+                      required={required}
                       name={name}
                       setFieldValue={setFieldValue}
                       value={values[name]}

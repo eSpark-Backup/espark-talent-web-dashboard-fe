@@ -165,6 +165,7 @@ const EditContractHr = ({ open, onClose, modalData }) => {
                   name,
                   nested,
                   fields,
+                  required,
                   accept,
                   filelabel,
                   disabled,
@@ -181,6 +182,7 @@ const EditContractHr = ({ open, onClose, modalData }) => {
                       type={type}
                       suffixIcon={suffixIcon}
                       options={options}
+                      required={required}
                       name={name}
                       setFieldValue={setFieldValue}
                       value={values[name]}

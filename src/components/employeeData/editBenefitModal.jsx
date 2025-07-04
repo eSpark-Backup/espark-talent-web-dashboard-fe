@@ -20,24 +20,19 @@ import { Toast } from '../Toast/Toast';
 import { benefitForm } from '@/src/constants/data/forms/benefit-form';
 import { benefitFormSchema } from '../form/schemas/benefitForm';
 
-const EditBenefitForm = ({ onClose, open, selectedId }) => {
+const EditBenefitForm = ({ onClose, open, selectedBenefit }) => {
   const dispatch = useDispatch();
   const queryClient = useQueryClient();
-  const { benefits } = useSelector((state) => state?.hr?.employees);
   const { mutate, isPending } = useMutation({
     mutationFn: async (data) => {
       return api.updateJSONData(
-        `${HR_EMP_BENEFIT}?id=${selectedId?.row?.id}`,
+        `${HR_EMP_BENEFIT}?id=${selectedBenefit?.id}`,
         data
       );
     },
     onSuccess: async (_, variables) => {
       Toast('success', 'Data updated successfully');
-      const reformedData = {
-        card_id: variables.card_id,
-        description: variables.description,
-      };
-      dispatch(editEmpBenefit(reformedData));
+      dispatch(editEmpBenefit({ ...selectedBenefit, ...variables }));
       await queryClient.invalidateQueries(['hr-employee-get-benefit']);
       onClose();
     },
@@ -77,17 +72,14 @@ const EditBenefitForm = ({ onClose, open, selectedId }) => {
   });
 
   useEffect(() => {
-    const filteredBenefit = benefits?.find(
-      (benefit) => benefit.id === selectedId?.row?.id
-    );
-    if (filteredBenefit) {
-      const { benefit, card_id, description, issue_date } = filteredBenefit;
-      setFieldValue('benefit', benefit);
-      setFieldValue('card_id', card_id);
-      setFieldValue('description', description);
-      setFieldValue('issue_date', issue_date);
+    if (selectedBenefit) {
+      const { benefit, card_id, description, issue_date } = selectedBenefit;
+      setFieldValue('benefit', benefit || '');
+      setFieldValue('card_id', card_id || '');
+      setFieldValue('description', description || '');
+      setFieldValue('issue_date', issue_date || '');
     }
-  }, [benefits]);
+  }, [selectedBenefit]);
 
   return (
     <Modal

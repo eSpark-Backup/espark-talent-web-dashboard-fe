@@ -30,6 +30,7 @@ const Salary = ({ timeTracking }) => {
   const QueryClient = useQueryClient();
   const [selectedId, setSelectedId] = useState(null);
   const [showEditModal, setShowEditModal] = useState(false);
+  const [selectedSalary, setSelectedSalary] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
 
   const { data: salaryData, isLoading } = useQuery({
@@ -143,19 +144,27 @@ const Salary = ({ timeTracking }) => {
           handleEditImage={'/icons/EditIcon.svg'}
           handleClickDownload={(id) => downloadSalaryMutation?.mutate(id)}
           handleClickActionView={(id) => {
-            setShowEditModal(true);
+            const salaryItem = salaryData?.find((item) => item?.id === id);
             setSelectedId(id);
+            setSelectedSalary(salaryItem);
+            setShowEditModal(true);
           }}
         />
       </Box>
       {showEditModal && (
         <EditSalaryForm
           open={showEditModal}
-          onClose={() => setShowEditModal(false)}
+          onClose={() => {
+            setShowEditModal(false);
+            setSelectedSalary(null);
+            setSelectedId(null);
+          }}
           empData={currentEmployee}
           selectedId={selectedId}
+          selectedSalary={selectedSalary}
         />
       )}
+
       <AppConfirmationMadal
         title={CONTRACT_SIGNED?.delete}
         bodyText="Are you sure you want to delete this salary?"
