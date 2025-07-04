@@ -27,9 +27,9 @@ export const contractFormSchema = Yup.object({
       'File name should not exceed 100 characters',
       (value) => value && value.name.length <= 100
     ),
-  date: Yup.string()
-    .required('Date is required')
-    .matches(/^\d{4}-\d{2}-\d{2}$/, 'Date must be in YYYY-MM-DD format'),
+  date: Yup.date()
+    .typeError('Must be a valid date')
+    .required('Date is required'),
 });
 
 export const editContractFormSchema = Yup.object({
@@ -62,9 +62,9 @@ export const editContractFormSchema = Yup.object({
       'File size should not exceed 5MB',
       (value) => !value || value?.size <= 5 * 1024 * 1024
     ),
-  date: Yup.string()
-    .required('Date is required')
-    .matches(/^\d{4}-\d{2}-\d{2}$/, 'Date must be in YYYY-MM-DD format'),
+  date: Yup.date()
+    .typeError('Must be a valid date')
+    .required('Date is required'),
 });
 
 export const contractFormHrPortalSchema = Yup.object({
@@ -93,9 +93,9 @@ export const contractFormHrPortalSchema = Yup.object({
       'File name should not exceed 100 characters',
       (value) => value && value.name.length <= 100
     ),
-  date: Yup.string()
-    .required('Date is required')
-    .matches(/^\d{4}-\d{2}-\d{2}$/, 'Date must be in YYYY-MM-DD format'),
+  date: Yup.date()
+    .typeError('Must be a valid date')
+    .required('Date is required'),
 });
 
 export const editContractFormHrPortalSchema = Yup.object({
@@ -128,9 +128,9 @@ export const editContractFormHrPortalSchema = Yup.object({
       'File size should not exceed 5MB',
       (value) => !value || value?.size <= 5 * 1024 * 1024
     ),
-  date: Yup.string()
-    .required('Date is required')
-    .matches(/^\d{4}-\d{2}-\d{2}$/, 'Date must be in YYYY-MM-DD format'),
+  date: Yup.date()
+    .typeError('Must be a valid date')
+    .required('Date is required'),
 });
 
 export const OffShContractFormHrPortalSchema = Yup.object({
@@ -163,9 +163,9 @@ export const OffShContractFormHrPortalSchema = Yup.object({
       'File name should not exceed 100 characters',
       (value) => value && value.name.length <= 100
     ),
-  date: Yup.string()
-    .required('Date is required')
-    .matches(/^\d{4}-\d{2}-\d{2}$/, 'Date must be in YYYY-MM-DD format'),
+  date: Yup.date()
+    .typeError('Must be a valid date')
+    .required('Date is required'),
 });
 
 export const editOffShContractFormHrPortalSchema = Yup.object({
@@ -198,7 +198,7 @@ export const editOffShContractFormHrPortalSchema = Yup.object({
       'File size should not exceed 5MB',
       (value) => !value || value?.size <= 5 * 1024 * 1024
     ),
-  date: Yup.string()
-    .required('Date is required')
-    .matches(/^\d{4}-\d{2}-\d{2}$/, 'Date must be in YYYY-MM-DD format'),
+  date: Yup.date()
+    .typeError('Must be a valid date')
+    .required('Date is required'),
 });
