@@ -85,15 +85,22 @@ const TimeAndLeaves = () => {
     const arrayfiedData = Object.entries(dataObj);
     const refinedData = [];
     for (let i = 0; i < arrayfiedData.length; i++) {
-      const element = arrayfiedData[i];
+      const [leaveType, leaveDetails] = arrayfiedData[i];
       if (i > 0) {
+        const total = isNaN(+leaveDetails.total) ? '-' : +leaveDetails.total;
+        const availed = isNaN(+leaveDetails.availed)
+          ? '-'
+          : +leaveDetails.availed;
+        const balance = isNaN(+leaveDetails.balance)
+          ? '-'
+          : +leaveDetails.balance;
         refinedData.push({
-          ...element[1],
-          leave_type: element[0],
-          total: +element[1].total,
-          availed: +element[1].availed,
-          balance: +element[1].balance,
-          status: element[1].status == 'enable' ? 'Enabled' : 'Disabled',
+          ...leaveDetails,
+          leave_type: leaveType,
+          total,
+          availed,
+          balance,
+          status: leaveDetails.status === 'enable' ? 'Enabled' : 'Disabled',
           isLeaveUpdateStatus: true,
         });
       }
@@ -119,7 +126,8 @@ const TimeAndLeaves = () => {
           ] || [];
         dispatch(getHrEmpTime(tempData));
       } else {
-        dispatch(getHrEmpLeaves(reformData(data)));
+        const refinedData = reformData(data);
+        dispatch(getHrEmpLeaves(refinedData));
       }
       return data || [];
     },

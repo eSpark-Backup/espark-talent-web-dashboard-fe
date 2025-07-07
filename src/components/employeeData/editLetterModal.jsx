@@ -55,7 +55,7 @@ const EditLetterForm = ({ onClose, open, selectedId }) => {
     setErrors,
   } = useFormik({
     initialValues: {},
-    // validationSchema: letterEditFormSchema,
+    validationSchema: letterEditFormSchema,
     enableReinitialize: true,
     onSubmit: (formValues) => {
       const { issue_date, email, objective, ...filteredFormValues } =
@@ -176,9 +176,6 @@ const EditLetterForm = ({ onClose, open, selectedId }) => {
                 <React.Fragment key={formIndex}>
                   <Grid item xs={12} lg={5}>
                     <FormInput
-                      disabled={
-                        name === 'reason' || name === 'letter' ? false : true
-                      }
                       title={title}
                       placeholder={placeholder}
                       errorText={errorText}

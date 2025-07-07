@@ -5,11 +5,6 @@ export const letterForm = [
     name: 'objective',
   },
   {
-    title: 'Email',
-    placeholder: 'Enter email',
-    name: 'email',
-  },
-  {
     title: 'Issue date',
     type: 'date',
     name: 'issue_date',

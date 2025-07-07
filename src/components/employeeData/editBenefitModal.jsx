@@ -15,29 +15,24 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { HR_EMP_BENEFIT } from '@/src/services/apiService/apiEndPoints';
 import { api } from '@/src/services/apiService';
 import { editEmpBenefit } from '@/src/redux/slices/hrSlices/employeeSlice';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Toast } from '../Toast/Toast';
 import { benefitForm } from '@/src/constants/data/forms/benefit-form';
 import { benefitFormSchema } from '../form/schemas/benefitForm';
 
-const EditBenefitForm = ({ onClose, open, selectedId }) => {
+const EditBenefitForm = ({ onClose, open, selectedBenefit }) => {
   const dispatch = useDispatch();
   const queryClient = useQueryClient();
-  const { benefits } = useSelector((state) => state?.hr?.employees);
   const { mutate, isPending } = useMutation({
     mutationFn: async (data) => {
       return api.updateJSONData(
-        `${HR_EMP_BENEFIT}?id=${selectedId?.row?.id}`,
+        `${HR_EMP_BENEFIT}?id=${selectedBenefit?.id}`,
         data
       );
     },
     onSuccess: async (_, variables) => {
       Toast('success', 'Data updated successfully');
-      const reformedData = {
-        card_id: variables.card_id,
-        description: variables.description,
-      };
-      dispatch(editEmpBenefit(reformedData));
+      dispatch(editEmpBenefit({ ...selectedBenefit, ...variables }));
       await queryClient.invalidateQueries(['hr-employee-get-benefit']);
       onClose();
     },
@@ -77,17 +72,14 @@ const EditBenefitForm = ({ onClose, open, selectedId }) => {
   });
 
   useEffect(() => {
-    const filteredBenefit = benefits?.find(
-      (benefit) => benefit.id === selectedId?.row?.id
-    );
-    if (filteredBenefit) {
-      const { benefit, card_id, description, issue_date } = filteredBenefit;
-      setFieldValue('benefit', benefit);
-      setFieldValue('card_id', card_id);
-      setFieldValue('description', description);
-      setFieldValue('issue_date', issue_date);
+    if (selectedBenefit) {
+      const { benefit, card_id, description, issue_date } = selectedBenefit;
+      setFieldValue('benefit', benefit || '');
+      setFieldValue('card_id', card_id || '');
+      setFieldValue('description', description || '');
+      setFieldValue('issue_date', issue_date || '');
     }
-  }, [benefits]);
+  }, [selectedBenefit]);
 
   return (
     <Modal
@@ -181,11 +173,6 @@ const EditBenefitForm = ({ onClose, open, selectedId }) => {
                 <React.Fragment key={formIndex}>
                   <Grid item xs={12} lg={5}>
                     <FormInput
-                      disabled={
-                        name === 'card_id' || name === 'description'
-                          ? false
-                          : true
-                      }
                       title={title}
                       placeholder={placeholder}
                       errorText={errorText}
