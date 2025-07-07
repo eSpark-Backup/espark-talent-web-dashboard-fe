@@ -97,13 +97,16 @@ export const filterAttendanceForm = [
         label: 'Missing',
       },
       {
-        label: 'Day',
+        label: 'Day off',
       },
       {
-        label: 'Leave',
+        label: 'Full Leave',
       },
       {
         label: 'Short Duration',
+      },
+      {
+        label: 'WFH',
       },
     ],
     searchable: true,
