@@ -17,6 +17,7 @@ import { getAttendanceRequestSuccess } from '@/src/redux/slices/hrSlices/employe
 import { attendanceReportTableColumn } from '@/src/constants/data/tables/attendanceReport';
 import { calculateExpectedTime } from '@/src/utils/calculateExpectedTime';
 import { ellipsisWithTooltip } from '@/src/utils/tooltipEllipsis';
+import { formatWithSeconds } from '@/src/utils/global';
 
 const AttendanceReport = ({ employeeData, filterFormValues }) => {
   const dispatch = useDispatch();
@@ -135,12 +136,6 @@ const AttendanceReport = ({ employeeData, filterFormValues }) => {
           : '-'
         : '-',
     })) || [];
-
-  const formatWithSeconds = (timeStr) => {
-    if (!timeStr) return null;
-    const formats = ['hh:mm:ss A', 'HH:mm:ss', 'hh:mm A', 'HH:mm'];
-    return dayjs(timeStr, formats, true);
-  };
 
   const filteredTimeSheet =
     formattedTimeSheet?.filter((row) => {

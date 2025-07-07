@@ -20,6 +20,7 @@ import { filterModalSchema } from '../form/schemas/filterModal';
 import { onCheckDateValidation } from '@/src/utils/onCheckDateValidation';
 import { calculateExpectedTime } from '@/src/utils/calculateExpectedTime';
 import { Toast } from '../Toast/Toast';
+import { formatTime } from '@/src/utils/global';
 
 const FilterFormModal = forwardRef(
   (
@@ -36,11 +37,6 @@ const FilterFormModal = forwardRef(
   ) => {
     const { currentWorkSpace } = useSelector((state) => state?.emp?.home);
 
-    const formatTime = (timeStr) => {
-      if (!timeStr) return '';
-      const time = dayjs(timeStr, ['HH:mm', 'hh:mm A']);
-      return time.isValid() ? time.format('hh:mm:ss A') : '';
-    };
     const dispatch = useDispatch();
     const { mutate } = useMutation({
       mutationFn: async (args) => {
