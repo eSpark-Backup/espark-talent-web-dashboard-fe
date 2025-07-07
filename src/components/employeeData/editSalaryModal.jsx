@@ -17,13 +17,14 @@ import { HR_EMP_SALARY } from '@/src/services/apiService/apiEndPoints';
 import { api } from '@/src/services/apiService';
 import dayjs from 'dayjs';
 import { editEmpSalary } from '@/src/redux/slices/hrSlices/employeeSlice';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Toast } from '../Toast/Toast';
 import { salaryForm } from '@/src/constants/data/forms/salary-form';
 
-const EditSalaryForm = ({ onClose, open, selectedId, selectedSalary }) => {
+const EditSalaryForm = ({ onClose, open, selectedId }) => {
   const dispatch = useDispatch();
   const clientQuery = useQueryClient();
+  const { salary } = useSelector((state) => state?.hr?.employees);
   const { mutate, isPending } = useMutation({
     mutationFn: async (data) => {
       return api.updateData(`${HR_EMP_SALARY}?id=${data?.id}`, data);
@@ -70,16 +71,19 @@ const EditSalaryForm = ({ onClose, open, selectedId, selectedSalary }) => {
   });
 
   useEffect(() => {
-    if (selectedSalary) {
-      setFieldValue('job_status', selectedSalary?.job_status);
-      setFieldValue('gross_salary', selectedSalary?.gross_salary);
-      setFieldValue('tax_deduction', selectedSalary?.tax_deduction);
-      setFieldValue('net_salary', selectedSalary?.net_salary);
-      setFieldValue('email', selectedSalary?.email);
-      setFieldValue('date', selectedSalary?.date);
-      setFieldValue('pay_slip', selectedSalary?.pay_slip);
+    const filteredSalary = salary?.find(
+      (salary) => salary?.id === selectedId?.row?.id
+    );
+    if (filteredSalary) {
+      setFieldValue('job_status', filteredSalary?.job_status);
+      setFieldValue('gross_salary', filteredSalary?.gross_salary);
+      setFieldValue('tax_deduction', filteredSalary?.tax_deduction);
+      setFieldValue('net_salary', filteredSalary?.net_salary);
+      setFieldValue('email', filteredSalary?.email);
+      setFieldValue('date', filteredSalary?.date);
+      setFieldValue('pay_slip', filteredSalary?.pay_slip);
     }
-  }, [selectedSalary]);
+  }, [salary]);
 
   useEffect(() => {
     const { gross_salary, tax_deduction } = values || {};

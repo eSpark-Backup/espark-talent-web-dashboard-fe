@@ -15,7 +15,6 @@ export const contractForm = [
     suffixIcon: 'calender',
     type: 'date',
     name: 'date',
-    required: true,
   },
   {
     title: 'Upload',
@@ -46,7 +45,6 @@ export const editContractForm = [
     suffixIcon: 'calender',
     type: 'date',
     name: 'date',
-    required: true,
   },
   {
     title: 'Upload',
@@ -76,7 +74,6 @@ export const employeeContractForm = [
     suffixIcon: 'calender',
     type: 'date',
     name: 'date',
-    required: true,
   },
   {
     title: 'Upload',
@@ -107,7 +104,6 @@ export const editEmployeeContractForm = [
     suffixIcon: 'calender',
     type: 'date',
     name: 'date',
-    required: true,
   },
   {
     title: 'Upload',
@@ -142,7 +138,6 @@ export const contractFormHrPortal = [
     suffixIcon: 'calender',
     type: 'date',
     name: 'date',
-    required: true,
   },
   {
     title: 'Upload',
@@ -179,7 +174,6 @@ export const editContractFormHrPortal = [
     suffixIcon: 'calender',
     type: 'date',
     name: 'date',
-    required: true,
   },
   {
     title: 'Upload',

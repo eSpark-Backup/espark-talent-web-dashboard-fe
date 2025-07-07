@@ -12,6 +12,7 @@ export const contractFormSchema = Yup.object({
     .required('Client id is equired')
     .min(1, 'Client id must be at least 1 characters long')
     .max(255, 'Client id cannot exceed 255 characters'),
+  date: Yup.string().required('Date is required'),
   contract_doc: Yup.mixed()
     .required('Contract doc is required')
     .test('fileType', 'Only PDF files are allowed', (value) => {
@@ -27,9 +28,6 @@ export const contractFormSchema = Yup.object({
       'File name should not exceed 100 characters',
       (value) => value && value.name.length <= 100
     ),
-  date: Yup.date()
-    .typeError('Must be a valid date')
-    .required('Date is required'),
 });
 
 export const editContractFormSchema = Yup.object({
@@ -62,9 +60,6 @@ export const editContractFormSchema = Yup.object({
       'File size should not exceed 5MB',
       (value) => !value || value?.size <= 5 * 1024 * 1024
     ),
-  date: Yup.date()
-    .typeError('Must be a valid date')
-    .required('Date is required'),
 });
 
 export const contractFormHrPortalSchema = Yup.object({
@@ -78,6 +73,7 @@ export const contractFormHrPortalSchema = Yup.object({
     .required('Employee id is required')
     .min(1, 'Employee id must be at least 1 characters long')
     .max(255, 'Employee id cannot exceed 255 characters'),
+  date: Yup.string().required('Date is required'),
   contract_doc: Yup.mixed()
     .required('Contract doc is required')
     .test('fileType', 'Only PDF files are allowed', (value) => {
@@ -93,9 +89,6 @@ export const contractFormHrPortalSchema = Yup.object({
       'File name should not exceed 100 characters',
       (value) => value && value.name.length <= 100
     ),
-  date: Yup.date()
-    .typeError('Must be a valid date')
-    .required('Date is required'),
 });
 
 export const editContractFormHrPortalSchema = Yup.object({
@@ -128,9 +121,6 @@ export const editContractFormHrPortalSchema = Yup.object({
       'File size should not exceed 5MB',
       (value) => !value || value?.size <= 5 * 1024 * 1024
     ),
-  date: Yup.date()
-    .typeError('Must be a valid date')
-    .required('Date is required'),
 });
 
 export const OffShContractFormHrPortalSchema = Yup.object({
@@ -148,6 +138,7 @@ export const OffShContractFormHrPortalSchema = Yup.object({
     .required('Client id is required')
     .min(1, 'client id must be at least 1 characters long')
     .max(255, 'client id cannot exceed 255 characters'),
+  date: Yup.string().required('Date is required'),
   contract_doc: Yup.mixed()
     .required('Contract doc is required')
     .test('fileType', 'Only PDF files are allowed', (value) => {
@@ -163,9 +154,6 @@ export const OffShContractFormHrPortalSchema = Yup.object({
       'File name should not exceed 100 characters',
       (value) => value && value.name.length <= 100
     ),
-  date: Yup.date()
-    .typeError('Must be a valid date')
-    .required('Date is required'),
 });
 
 export const editOffShContractFormHrPortalSchema = Yup.object({
@@ -198,7 +186,4 @@ export const editOffShContractFormHrPortalSchema = Yup.object({
       'File size should not exceed 5MB',
       (value) => !value || value?.size <= 5 * 1024 * 1024
     ),
-  date: Yup.date()
-    .typeError('Must be a valid date')
-    .required('Date is required'),
 });

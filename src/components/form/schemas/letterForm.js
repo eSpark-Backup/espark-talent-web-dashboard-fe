@@ -1,4 +1,5 @@
 import * as Yup from 'yup';
+import { emailValidation } from './validations';
 
 export const letterFormSchema = Yup.object({
   objective: Yup.string()
@@ -6,6 +7,7 @@ export const letterFormSchema = Yup.object({
     .transform((value) => value.trim())
     .min(2, 'Objective is too short - should be 2 chars minimum.')
     .max(255, 'Objective is too long - should be 255 chars maximum.'),
+  email: emailValidation,
   issue_date: Yup.date().required('Date is required'),
   reason: Yup.string()
     .required('Reason is required')
@@ -42,6 +44,7 @@ export const letterEditFormSchema = Yup.object({
     .transform((value) => value.trim())
     .min(2, 'Objective is too short - should be 2 chars minimum.')
     .max(255, 'Objective is too long - should be 255 chars maximum.'),
+  email: emailValidation,
   issue_date: Yup.date().required('Date is required'),
   reason: Yup.string()
     .transform((value) => value.trim())

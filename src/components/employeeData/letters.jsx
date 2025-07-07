@@ -28,7 +28,6 @@ const Letters = () => {
   const { role } = useSelector((state) => state?.auth?.userData);
   const [selectedId, setSelectedId] = useState(null);
   const [showEditModal, setShowEditModal] = useState(false);
-  const [selectedLetter, setSelectedLetter] = useState(null);
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -131,12 +130,9 @@ const Letters = () => {
   };
 
   const handleEdit = (id) => {
-    const letterData = letters?.find((item) => item.id === id);
-    setSelectedId(id);
-    setSelectedLetter(letterData);
     setShowEditModal(true);
+    setSelectedId(id);
   };
-
   const handleCloseModal = () => {
     setShowEditModal(false);
   };
@@ -193,7 +189,6 @@ const Letters = () => {
           onClose={handleCloseModal}
           empData={currentEmployee}
           selectedId={selectedId}
-          selectedLetter={selectedLetter}
         />
       )}
       <AppConfirmationMadal

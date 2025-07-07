@@ -25,7 +25,6 @@ const Benefits = () => {
   const { currentEmployee } = useSelector((state) => state?.hr?.employees);
   const { role } = useSelector((state) => state?.auth?.userData);
   const [selectedId, setSelectedId] = useState(null);
-  const [selectedBenefit, setSelectedBenefit] = useState(null);
   const [showEditModal, setShowEditModal] = useState(false);
 
   const [isOpen, setIsOpen] = useState(false);
@@ -102,16 +101,11 @@ const Benefits = () => {
   });
 
   const handleEdit = (id) => {
-    const benefit = data?.find((item) => item?.id === id);
-    if (benefit) {
-      setSelectedBenefit(benefit);
-      setShowEditModal(true);
-    }
+    setShowEditModal(true);
+    setSelectedId(id);
   };
-
   const handleCloseModal = () => {
     setShowEditModal(false);
-    setSelectedBenefit(null);
   };
 
   function processColumns() {
@@ -152,7 +146,7 @@ const Benefits = () => {
           open={showEditModal}
           onClose={handleCloseModal}
           empData={currentEmployee}
-          selectedBenefit={selectedBenefit}
+          selectedId={selectedId}
         />
       )}
       <AppConfirmationMadal

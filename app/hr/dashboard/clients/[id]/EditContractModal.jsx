@@ -178,7 +178,6 @@ const EditContractModal = ({ open, onClose, modalData }) => {
                   accept,
                   filelabel,
                   disabled,
-                  required,
                 },
                 formIndex
               ) => (
@@ -195,7 +194,6 @@ const EditContractModal = ({ open, onClose, modalData }) => {
                       name={name}
                       setFieldValue={setFieldValue}
                       value={values[name]}
-                      required={required}
                       error={errors[name]}
                       touched={touched}
                       setFieldError={setFieldError}
