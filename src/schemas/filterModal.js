@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 
-export const filterModalSchema = Yup.object({
+const filterModalSchema = Yup.object({
   from: Yup.string().required('From date is required'),
   to: Yup.string().required('To date is required'),
   attendanceStatus: Yup.string(),
@@ -13,3 +13,5 @@ export const filterModalSchema = Yup.object({
     to: Yup.string().required('Checkout time is required'),
   }),
 });
+
+export { filterModalSchema };

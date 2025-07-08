@@ -6,7 +6,7 @@ import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
 import HrAccess from '@/src/components/dashboard/hrAccess';
 import { DASHBOARD_DATA } from '@/src/constants/dashboard';
 import { useDispatch, useSelector } from 'react-redux';
-import { Summary_Boxes } from '@/src/constants/data/hr-dashboard';
+import { Summary_Boxes } from '@/src/data/hr-dashboard';
 import { useMutation } from '@tanstack/react-query';
 import { Toast } from '@/src/components/Toast/Toast';
 import {

@@ -4,7 +4,7 @@ import { Box, Button, CircularProgress, Grid, Typography } from '@mui/material';
 import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { useFormik } from 'formik';
 import { changePasswordFormSchema } from '../../schemas/changePassword';
-import { changePasswordForm } from '@/src/constants/data/forms/change-password';
+import { changePasswordForm } from '@/src/data/forms/change-password';
 import { User_Password } from '@/src/constants/profile-edit-data';
 import { useMutation } from '@tanstack/react-query';
 import { CLIENT_UPDATE_PASSWORD } from '@/src/services/apiService/apiEndPoints';

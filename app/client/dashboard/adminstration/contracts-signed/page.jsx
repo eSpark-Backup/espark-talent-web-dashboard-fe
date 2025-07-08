@@ -5,7 +5,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 
 import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
-import { contractSignedTabs } from '@/src/constants/data/tabs/contract-signed-tabs';
+import { contractSignedTabs } from '@/src/data/tabs/contract-signed-tabs';
 import AppTable from '@/src/components/appTableNew/AppTable';
 import { useDispatch, useSelector } from 'react-redux';
 import { useMutation, useQuery } from '@tanstack/react-query';

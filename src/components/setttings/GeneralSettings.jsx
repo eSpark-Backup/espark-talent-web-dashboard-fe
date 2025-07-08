@@ -16,7 +16,7 @@ import {
   User_Password,
 } from '@/src/constants/profile-edit-data';
 import { generalSettingFormSchema } from '../../schemas/generalDetails';
-import { settingForm } from '@/src/constants/data/forms/setting-form';
+import { settingForm } from '@/src/data/forms/setting-form';
 import Image from 'next/image';
 import { CLIENT_UPDATE_COMPANY } from '@/src/services/apiService/apiEndPoints';
 import { api } from '@/src/services/apiService';

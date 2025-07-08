@@ -15,7 +15,7 @@ import { addEmpLetter } from '@/src/redux/slices/hrSlices/employeeSlice';
 import { HR_EMP_LETTER } from '@/src/services/apiService/apiEndPoints';
 import { api } from '@/src/services/apiService';
 import { Toast } from '../Toast/Toast';
-import { letterForm } from '@/src/constants/data/forms/letter-form';
+import { letterForm } from '@/src/data/forms/letter-form';
 import { letterFormSchema } from '../../schemas/letterForm';
 import FormInput from '../form/ui-elements/FormInput';
 

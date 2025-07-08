@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
 import { nameRegExp } from './validations';
 
-export const benefitFormSchema = Yup.object({
+const benefitFormSchema = Yup.object({
   benefit: Yup.string()
     .required('Benefits are required')
     .transform((value) => value.trim())
@@ -20,3 +20,5 @@ export const benefitFormSchema = Yup.object({
     .min(2, 'Description is too short - should be 2 chars minimum.')
     .max(255, 'Description is too long - should be 255 chars maximum.'),
 });
+
+export { benefitFormSchema };

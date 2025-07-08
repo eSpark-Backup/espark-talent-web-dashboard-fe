@@ -5,7 +5,7 @@ import {
   phoneValidation,
 } from './validations';
 
-export const emergency_contact_schema = Yup.object().shape({
+const emergencyContactSchema = Yup.object().shape({
   emergency_contact: Yup.object().shape({
     primary: Yup.object().shape({
       name: nameValidation,
@@ -25,3 +25,4 @@ export const emergency_contact_schema = Yup.object().shape({
     }),
   }),
 });
+export { emergencyContactSchema };

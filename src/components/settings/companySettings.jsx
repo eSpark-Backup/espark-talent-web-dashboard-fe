@@ -2,7 +2,7 @@ import React from 'react';
 import Skeleton from '@mui/material/Skeleton';
 import { Box } from '@mui/system';
 
-import { companyformElement } from '@/src/constants/data/forms/company-info';
+import { companyformElement } from '@/src/data/forms/company-info';
 import { companyInfoSchema } from '../../schemas/companyInfo';
 import Step from '../form/step/Step';
 import { useQuery } from '@tanstack/react-query';

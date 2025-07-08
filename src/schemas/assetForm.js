@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
 import { emailValidation, nameRegExp, nameValidation } from './validations';
 
-export const assetFormSchema = Yup.object({
+const assetFormSchema = Yup.object({
   gadget: Yup.string()
     .required('Gadget name is required')
     .matches(nameRegExp, 'Gadget is not valid')
@@ -15,3 +15,5 @@ export const assetFormSchema = Yup.object({
   assignee_name: nameValidation,
   assignee_email: emailValidation,
 });
+
+export { assetFormSchema };

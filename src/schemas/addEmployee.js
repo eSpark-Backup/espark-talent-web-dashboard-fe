@@ -8,7 +8,7 @@ import {
   timeFormatRegex,
 } from './validations';
 
-export const basicInformationSchema = Yup.object({
+const basicInformationSchema = Yup.object({
   first_name: nameValidation,
   last_name: nameValidation,
   gender: Yup.string()
@@ -68,7 +68,7 @@ export const basicInformationSchema = Yup.object({
     ),
 });
 
-export const emergencyContactSchema = Yup.object({
+const emergencyContactSchema = Yup.object({
   name1: nameValidation,
   name2: nameValidation,
   relation1: Yup.string()
@@ -88,7 +88,7 @@ export const emergencyContactSchema = Yup.object({
   phoneNumber2: phoneValidation,
 });
 
-export const companyDetailsSchema = Yup.object({
+const companyDetailsSchema = Yup.object({
   joining_date: Yup.date()
     .typeError('Joining date must be a valid date')
     .required('Joining date is required'),
@@ -170,7 +170,7 @@ export const companyDetailsSchema = Yup.object({
     ),
 });
 
-export const securitySchema = Yup.object({
+const securitySchema = Yup.object({
   employee_id: Yup.string().required('Employee ID is required'),
   password: Yup.string()
     .required('Password is required')
@@ -184,7 +184,7 @@ const customTimeValidator = Yup.string()
   .required('Required')
   .matches(timeFormatRegex, 'Invalid time format');
 
-export const timeAndLeaveAllotmentSchema = Yup.object({
+const timeAndLeaveAllotmentSchema = Yup.object({
   check_in: customTimeValidator,
   check_out: customTimeValidator,
   casual_leaves: Yup.string().required('Required'),
@@ -194,3 +194,11 @@ export const timeAndLeaveAllotmentSchema = Yup.object({
   paid_leaves: Yup.string().required('Required'),
   unpaid_leaves: Yup.string().required('Required'),
 });
+
+export {
+  timeAndLeaveAllotmentSchema,
+  securitySchema,
+  companyDetailsSchema,
+  emergencyContactSchema,
+  basicInformationSchema,
+};

@@ -3,7 +3,7 @@ import { Box, Button, CircularProgress, Typography } from '@mui/material';
 import Skeleton from '@mui/material/Skeleton';
 
 import AppTable from '../appTableNew/AppTable';
-import { modulepermissionColumn } from '@/src/constants/data/tables/module-permission';
+import { modulepermissionColumn } from '@/src/data/tables/module-permission';
 import RoleModal from './addRoleModal';
 import { SETTING } from '@/src/constants/setting-hr';
 import { useDispatch, useSelector } from 'react-redux';

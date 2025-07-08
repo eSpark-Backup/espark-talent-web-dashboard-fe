@@ -6,7 +6,7 @@ import {
   phoneValidation,
 } from './validations';
 
-export const basicInformationSchemaClient = Yup.object({
+const basicInformationSchemaClient = Yup.object({
   first_name: nameValidation,
   last_name: nameValidation,
   address: Yup.string()
@@ -44,7 +44,7 @@ export const basicInformationSchemaClient = Yup.object({
   country: Yup.mixed().required('Country is required'),
 });
 
-export const securitySchemaClient = Yup.object({
+const securitySchemaClient = Yup.object({
   client_id: Yup.string()
     .required('Client id is required')
     .min(1, 'Client id must be at least 1 characters long')
@@ -56,3 +56,5 @@ export const securitySchemaClient = Yup.object({
     .oneOf([Yup.ref('password'), null], 'Passwords must match')
     .required('Confirm Password is required'),
 });
+
+export { basicInformationSchemaClient, securitySchemaClient };

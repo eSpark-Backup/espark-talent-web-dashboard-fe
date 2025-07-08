@@ -3,7 +3,7 @@ import { Box, Button, Grid, Modal, Typography } from '@mui/material';
 
 import { addOnboardFormSchema } from '@/src/schemas/addOnBoardForm';
 import FormInput from '@/src/components/form/ui-elements/FormInput';
-import { addOnboardForm } from '@/src/constants/data/forms/add-onboard';
+import { addOnboardForm } from '@/src/data/forms/add-onboard';
 import { useFormik } from 'formik';
 import { FORM_DATA } from '@/src/constants/form';
 import { useDispatch, useSelector } from 'react-redux';

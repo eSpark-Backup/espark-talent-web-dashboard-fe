@@ -4,7 +4,7 @@ import { addEmployeModalFormSchema } from '@/src/schemas/addEmployeeModal';
 import Navigator from '@/src/components/form/step/Navigator';
 import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { Toast } from '@/src/components/Toast/Toast';
-import { addEmployeeModalFormSteps } from '@/src/constants/data/forms/add-employee-modal';
+import { addEmployeeModalFormSteps } from '@/src/data/forms/add-employee-modal';
 import { FORM_DATA } from '@/src/constants/form';
 import {
   getClientAllEmps,

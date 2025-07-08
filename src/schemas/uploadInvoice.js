@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 
-export const uploadInvoiceFormSchema = Yup.object({
+const uploadInvoiceFormSchema = Yup.object({
   employee_id: Yup.string()
     .required('Employee id is is required')
     .min(1, 'Employee id must be at least 1 characters long')
@@ -39,7 +39,7 @@ export const uploadInvoiceFormSchema = Yup.object({
     .max(255, 'currency cannot exceed 255 characters'),
 });
 
-export const EditInvoiceFormSchema = Yup.object({
+const EditInvoiceFormSchema = Yup.object({
   employee_id: Yup.string()
     .required('Employee id is is required')
     .min(1, 'Employee id must be at least 1 characters long')
@@ -78,7 +78,7 @@ export const EditInvoiceFormSchema = Yup.object({
   currency: Yup.string().required('Currency is required'),
 });
 
-export const uploadOthInvoiceFormSchema = Yup.object({
+const uploadOthInvoiceFormSchema = Yup.object({
   invoice_reference: Yup.string()
     .required('Invoice reference is required')
     .min(2, 'Invoice reference must be at least 2 characters long')
@@ -117,7 +117,7 @@ export const uploadOthInvoiceFormSchema = Yup.object({
     .max(255, 'currency cannot exceed 255 characters'),
 });
 
-export const editOthInvoiceFormSchema = Yup.object({
+const editOthInvoiceFormSchema = Yup.object({
   invoice_reference: Yup.string()
     .required('Invoice reference is required')
     .min(2, 'Invoice reference must be at least 2 characters long')
@@ -155,3 +155,10 @@ export const editOthInvoiceFormSchema = Yup.object({
     ),
   currency: Yup.string().required('Currency is required'),
 });
+
+export {
+  uploadInvoiceFormSchema,
+  EditInvoiceFormSchema,
+  editOthInvoiceFormSchema,
+  uploadOthInvoiceFormSchema,
+};

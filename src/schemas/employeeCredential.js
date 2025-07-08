@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 
-export const editEmployeeCredentialSchema = Yup.object({
+const editEmployeeCredentialSchema = Yup.object({
   current_password: Yup.string().required('Current Password is required'),
   new_password: Yup.string()
     .required('Password is required')
@@ -14,3 +14,5 @@ export const editEmployeeCredentialSchema = Yup.object({
     .oneOf([Yup.ref('new_password'), null], 'Passwords must match')
     .required('Confirm Password is required'),
 });
+
+export { editEmployeeCredentialSchema };

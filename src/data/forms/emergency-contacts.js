@@ -1,4 +1,4 @@
-export const emergency_contact_form = [
+export const emergencyContactForm = [
   {
     contactTitle: 'Primary Contact',
     type: 'primary',

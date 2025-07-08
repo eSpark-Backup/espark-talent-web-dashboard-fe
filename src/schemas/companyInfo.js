@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
 import { emailValidation, nameRegExp, websiteValidation } from './validations';
 
-export const companyInfoSchema = Yup.object({
+const companyInfoSchema = Yup.object({
   company_name: Yup.string()
     .transform((value) => value.trim())
     .matches(nameRegExp, 'Company name is not valid')
@@ -44,3 +44,5 @@ export const companyInfoSchema = Yup.object({
       }
     ),
 });
+
+export { companyInfoSchema };

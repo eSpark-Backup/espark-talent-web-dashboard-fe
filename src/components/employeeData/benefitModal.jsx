@@ -18,7 +18,7 @@ import dayjs from 'dayjs';
 import { addEmpBenefit } from '@/src/redux/slices/hrSlices/employeeSlice';
 import { useDispatch } from 'react-redux';
 import { Toast } from '../Toast/Toast';
-import { benefitForm } from '@/src/constants/data/forms/benefit-form';
+import { benefitForm } from '@/src/data/forms/benefit-form';
 import { benefitFormSchema } from '../../schemas/benefitForm';
 
 const BenefitForm = forwardRef(({ onClose, open, empData }, ref) => {

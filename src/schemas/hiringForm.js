@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 
-export const hiringFormSchema = Yup.object({
+const hiringFormSchema = Yup.object({
   jobTitle: Yup.string()
     .trim()
     .required('Job title is required')
@@ -80,3 +80,5 @@ export const hiringFormSchema = Yup.object({
       (value) => value && value.name.length <= 100
     ),
 });
+
+export { hiringFormSchema };

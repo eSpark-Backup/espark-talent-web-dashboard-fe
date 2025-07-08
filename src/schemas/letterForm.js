@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
 import { emailValidation } from './validations';
 
-export const letterFormSchema = Yup.object({
+const letterFormSchema = Yup.object({
   objective: Yup.string()
     .required('Objective is required')
     .transform((value) => value.trim())
@@ -38,7 +38,7 @@ export const letterFormSchema = Yup.object({
     ),
 });
 
-export const letterEditFormSchema = Yup.object({
+const letterEditFormSchema = Yup.object({
   objective: Yup.string()
     .required('Objective is required')
     .transform((value) => value.trim())
@@ -74,3 +74,5 @@ export const letterEditFormSchema = Yup.object({
       (value) => !value || value?.size <= 5 * 1024 * 1024
     ),
 });
+
+export { letterEditFormSchema, letterFormSchema };

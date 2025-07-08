@@ -8,7 +8,7 @@ import Input from '@/src/components/dashboard/input';
 import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
 import { filterDataByKeyword } from '@/src/utils/search';
 import { changeTab } from '@/src/utils/tabs';
-import { empTabs } from '@/src/constants/data/tabs/emp-tabs';
+import { empTabs } from '@/src/data/tabs/emp-tabs';
 import { HIRING_FORM_DATA } from '@/src/constants/hiring';
 import AppTable from '@/src/components/appTableNew/AppTable';
 import AppConfirmationMadal from '@/src/components/modals/AppConfirmationMadal';

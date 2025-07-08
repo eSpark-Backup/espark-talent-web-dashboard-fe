@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
 import { dojValidation, jobTitleRegExp, nameValidation } from './validations';
 
-export const addOnboardFormSchema = Yup.object({
+const addOnboardFormSchema = Yup.object({
   employee_name: nameValidation,
   gender: Yup.string()
     .required('Gender is required')
@@ -33,3 +33,5 @@ export const addOnboardFormSchema = Yup.object({
     .min(2, 'currency must be at least 2 characters long')
     .max(255, 'currency cannot exceed 255 characters'),
 });
+
+export { addOnboardFormSchema };

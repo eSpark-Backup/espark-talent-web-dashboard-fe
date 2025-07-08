@@ -1,4 +1,4 @@
-export const jobTitles = [
+const jobTitles = [
   {
     label: 'Trending',
     children: [
@@ -69,7 +69,7 @@ export const jobTitles = [
   },
 ];
 
-export const roles = [
+const roles = [
   {
     label: 'Senior',
   },
@@ -84,7 +84,7 @@ export const roles = [
   },
 ];
 
-export const gender = [
+const gender = [
   {
     label: 'Male',
   },
@@ -93,7 +93,7 @@ export const gender = [
   },
 ];
 
-export const employmentTerm = [
+const employmentTerm = [
   {
     label: 'Salary based',
   },
@@ -104,3 +104,5 @@ export const employmentTerm = [
     label: 'Project based',
   },
 ];
+
+export { employmentTerm, gender, roles, jobTitles };

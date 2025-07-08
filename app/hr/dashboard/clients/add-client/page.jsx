@@ -4,7 +4,7 @@ import { Typography } from '@mui/material';
 import { Box } from '@mui/system';
 
 import Step from '@/src/components/form/step/Step';
-import { formSteps } from '@/src/constants/data/forms/add-client';
+import { formSteps } from '@/src/data/forms/add-client';
 import Navigator from '@/src/components/form/step/Navigator';
 import Breadcrumb from '@/src/components/form/step/Breadcrumb';
 import { EMPLOYEE_DATA } from '@/src/constants/all-employee';

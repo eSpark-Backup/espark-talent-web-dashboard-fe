@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 
-export const salaryFormSchema = Yup.object({
+const salaryFormSchema = Yup.object({
   job_status: Yup.string()
     .required('Job status is required')
     .min(2, 'Job status is too short - should be 2 chars minimum.')
@@ -63,7 +63,7 @@ export const salaryFormSchema = Yup.object({
     ),
 });
 
-export const salaryEditFormSchema = Yup.object({
+const salaryEditFormSchema = Yup.object({
   job_status: Yup.string().required('Job status is required'),
   gross_salary: Yup.number()
     .typeError('Gross Salary must be a number')
@@ -123,3 +123,5 @@ export const salaryEditFormSchema = Yup.object({
       (value) => !value || value?.size <= 5 * 1024 * 1024
     ),
 });
+
+export { salaryFormSchema, salaryEditFormSchema };

@@ -3,7 +3,7 @@ import { alpha } from '@mui/material/styles';
 
 import ResponsiveNavbar from './ResponsiveNavbar';
 import TopNavNavbar from '../global/topNavbar';
-import { Active_User_Data } from '@/src/constants/data/user-data';
+import { ACTIVE_USER_DATA } from '@/src/data/user-data';
 import { SIDE_NAV_WIDTH } from '@/src/constants/sidebar';
 import { useSelector } from 'react-redux';
 
@@ -33,7 +33,7 @@ export const TopNav = ({ onNavOpen }) => {
         {lgUp && role === 'client' && <TopNavNavbar />}
         {!lgUp && (
           <ResponsiveNavbar
-            userName={Active_User_Data?.userName}
+            userName={ACTIVE_USER_DATA?.userName}
             openSidebar={onNavOpen}
           />
         )}

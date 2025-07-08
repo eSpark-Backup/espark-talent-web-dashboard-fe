@@ -2,7 +2,12 @@ import * as Yup from 'yup';
 import dayjs from 'dayjs';
 import { timeRegExp } from './validations';
 
-export const validationSchema = Yup.object({
+const timeManagementFormSchema = Yup.object({
+  checkinTime: Yup.string().required('Checkin time is required'),
+  checkoutTime: Yup.string().required('Checkout time is required'),
+});
+
+const validationSchema = Yup.object({
   check_in: Yup.string()
     .matches(timeRegExp, 'Invalid time format')
     .required('Check-In time is required'),
@@ -23,3 +28,5 @@ export const validationSchema = Yup.object({
       }
     ),
 });
+
+export { validationSchema, timeManagementFormSchema };

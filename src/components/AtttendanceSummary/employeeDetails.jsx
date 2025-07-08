@@ -5,7 +5,7 @@ import {
   ATTENDANCE_DATA,
   EMPLOYEE_DATA,
 } from '@/src/constants/attendance-view';
-import { leaveRequestsData } from '@/src/constants/data/tables/time-off-request';
+import { leaveRequestsData } from '@/src/data/tables/time-off-request';
 
 const EmployeeId = () => {
   return (

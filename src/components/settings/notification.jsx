@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Box, FormControlLabel, Grid, Switch } from '@mui/material';
 
-import { NotificationData } from '@/src/constants/data/tables/notifications';
+import { NotificationData } from '@/src/data/tables/notifications';
 
 const Notification = () => {
   const [switchStates, setSwitchStates] = useState(

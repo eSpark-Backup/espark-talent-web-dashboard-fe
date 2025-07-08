@@ -10,7 +10,7 @@ import {
 
 import { editContractFormHrPortalSchema } from '@/src/schemas/contractSignedForm';
 import FormInput from '@/src/components/form/ui-elements/FormInput';
-import { editEmployeeContractForm } from '@/src/constants/data/forms/contract';
+import { editEmployeeContractForm } from '@/src/data/forms/contract';
 import { useFormik } from 'formik';
 import { CONTRACT_SIGNED } from '@/src/constants/contract-signed';
 import { FORM_DATA } from '@/src/constants/form';

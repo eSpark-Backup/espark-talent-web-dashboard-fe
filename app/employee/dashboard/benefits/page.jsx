@@ -14,7 +14,7 @@ import { Toast } from '@/src/components/Toast/Toast';
 
 import { useDispatch } from 'react-redux';
 import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
-import { BenefitsColumn } from '@/src/constants/data/tables/benefits';
+import { BenefitsColumn } from '@/src/data/tables/benefits';
 import dayjs from 'dayjs';
 
 const Benefits = () => {

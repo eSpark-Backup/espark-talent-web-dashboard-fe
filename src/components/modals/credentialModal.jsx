@@ -3,7 +3,7 @@ import { Box, Button, CircularProgress, Grid, Typography } from '@mui/material';
 import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { useFormik } from 'formik';
 import { CREDENTIAL_FORM } from '@/src/constants/credential';
-import { credentialForm } from '@/src/constants/data/forms/add-credential';
+import { credentialForm } from '@/src/data/forms/add-credential';
 
 const CredentialModal = forwardRef(({ onClose, modalData }, ref) => {
   const [isLoading, setisLoading] = useState(false);

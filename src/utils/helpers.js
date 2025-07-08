@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import { trackingStatusTypes } from '../constants/data/tables/time-tracking';
+import { trackingStatusTypes } from '../data/tables/time-tracking';
 
 const generateUniqueString = () => {
   let result = '';

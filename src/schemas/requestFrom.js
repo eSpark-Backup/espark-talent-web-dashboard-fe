@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 
-export const employeePunchRequestDataSchema = Yup.object({
+const employeePunchRequestDataSchema = Yup.object({
   employee: Yup.string().required('Employee name is required'),
   date: Yup.string().required('Date is required'),
   punch_time: Yup.string().required('Punch time is required'),
@@ -8,7 +8,7 @@ export const employeePunchRequestDataSchema = Yup.object({
   status: Yup.string().required('Status is required'),
 });
 
-export const employeeWhfRequestDataSchema = Yup.object({
+const employeeWhfRequestDataSchema = Yup.object({
   employee_id: Yup.string().required('Employee ID is required'),
   employee_name: Yup.string().required('Employee name is required'),
   department: Yup.string().required('Department is required'),
@@ -17,7 +17,7 @@ export const employeeWhfRequestDataSchema = Yup.object({
   status: Yup.string().required('Status is required'),
 });
 
-export const employeeLeaveRequestDataSchema = Yup.object({
+const employeeLeaveRequestDataSchema = Yup.object({
   employee_id: Yup.string().required('Employee ID is required'),
   employee_name: Yup.string().required('Employee name is required'),
   department: Yup.string().required('Department is required'),
@@ -26,3 +26,9 @@ export const employeeLeaveRequestDataSchema = Yup.object({
   requested_at: Yup.string().required('Requested at is required'),
   status: Yup.string().required('Status is required'),
 });
+
+export {
+  employeePunchRequestDataSchema,
+  employeeWhfRequestDataSchema,
+  employeeLeaveRequestDataSchema,
+};

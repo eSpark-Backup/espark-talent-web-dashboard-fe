@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 
-export const leaveManagementFormSchema = Yup.object({
+const leaveManagementFormSchema = Yup.object({
   casual_leaves: Yup.string().required('Casual leave is required'),
   sick_leaves: Yup.string().required('Sick leave is required'),
   annual_leaves: Yup.string().required('Annual leave is required'),
@@ -8,3 +8,5 @@ export const leaveManagementFormSchema = Yup.object({
   paid_leaves: Yup.string().required('Paid leave is required'),
   unpaid_leaves: Yup.string().required('Unpaid leave is required'),
 });
+
+export { leaveManagementFormSchema };

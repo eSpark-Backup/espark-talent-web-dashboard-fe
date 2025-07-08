@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Grid, Box, Typography, Button, CircularProgress } from '@mui/material';
 import Skeleton from '@mui/material/Skeleton';
 
-import { timeTrackingTableColumn } from '@/src/constants/data/tables/time-tracking';
+import { timeTrackingTableColumn } from '@/src/data/tables/time-tracking';
 import AppSearchableDropdown from '@/src/components/dashboard/appSearchableDropdown';
 import AppCustomMonthYearPicker from '@/src/components/dashboard/appCustomMonthYearPicker';
 import AppTable from '@/src/components/appTableNew/AppTable';
@@ -25,7 +25,7 @@ import { Toast } from '@/src/components/Toast/Toast';
 import { getAttendenceShortHand } from '@/src/utils/helpers';
 import dayjs from 'dayjs';
 import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
-import { sheetStatusTypes } from '@/src/constants/data/tables/time-sheet';
+import { sheetStatusTypes } from '@/src/data/tables/time-sheet';
 import { renderTrackingStatus } from './renderComponents';
 import { TIME_REQUEST } from '@/src/constants/time-sheet';
 

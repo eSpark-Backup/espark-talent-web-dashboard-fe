@@ -4,7 +4,7 @@ import { Box, Grid, Button, Typography, CircularProgress } from '@mui/material';
 import FormInput from '../form/ui-elements/FormInput';
 import { FORM_DATA } from '@/src/constants/form';
 import { useFormik } from 'formik';
-import { HiringForm } from '@/src/constants/data/forms/start-hiring';
+import { HiringForm } from '@/src/data/forms/start-hiring';
 import { hiringFormSchema } from '../../schemas/hiringForm';
 import { HIRING_FORM_DATA } from '@/src/constants/hiring';
 import { api } from '@/src/services/apiService';

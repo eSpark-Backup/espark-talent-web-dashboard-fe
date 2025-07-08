@@ -14,7 +14,7 @@ import { api } from '@/src/services/apiService';
 import { HR_GUIDE } from '@/src/services/apiService/apiEndPoints';
 import { useDispatch, useSelector } from 'react-redux';
 import { Toast } from '../Toast/Toast';
-import { uploadGuideForm } from '@/src/constants/data/forms/upload-guide';
+import { uploadGuideForm } from '@/src/data/forms/upload-guide';
 import { uploadGuideFormSchema } from '../../schemas/uploadGuide';
 import { UPLOAD_GUIDE } from '@/src/constants/guide';
 import { addGuide } from '@/src/redux/slices/hrSlices/guide';

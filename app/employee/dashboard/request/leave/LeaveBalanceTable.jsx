@@ -1,7 +1,7 @@
 import React from 'react';
 import AppTable from '@/src/components/appTableNew/AppTable';
 
-import { employeeLeaveBalanceColumn } from '@/src/constants/data/tables/requests-data';
+import { employeeLeaveBalanceColumn } from '@/src/data/tables/requests-data';
 import { useQuery } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import { EMP_LEAVE_REQUEST } from '@/src/services/apiService/apiEndPoints';

@@ -17,7 +17,7 @@ import { api } from '@/src/services/apiService';
 import { editEmpLetter } from '@/src/redux/slices/hrSlices/employeeSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { Toast } from '../Toast/Toast';
-import { letterForm } from '@/src/constants/data/forms/letter-form';
+import { letterForm } from '@/src/data/forms/letter-form';
 
 const EditLetterForm = ({ onClose, open, selectedId }) => {
   const dispatch = useDispatch();

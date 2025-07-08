@@ -14,7 +14,7 @@ import {
   HR_WFH_REQUEST,
 } from '@/src/services/apiService/apiEndPoints';
 import { Toast } from '@/src/components/Toast/Toast';
-import { EmployeeRequestsTabs } from '@/src/constants/data/tabs/request-tab';
+import { EmployeeRequestsTabs } from '@/src/data/tabs/request-tab';
 import LeaveViewModal from '@/app/client/dashboard/team/time-off/LeaveViewModal';
 import WfhViewModal from '@/app/client/dashboard/team/time-off/WfhViewModal';
 

@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
 import { dojValidation, jobTitleRegExp } from './validations';
 
-export const addEmployeModalFormSchema = Yup.object({
+const addEmployeModalFormSchema = Yup.object({
   salary: Yup.number()
     .required('Salary is required')
     .min(1, 'Salary must be at least 1 characters long'),
@@ -20,3 +20,5 @@ export const addEmployeModalFormSchema = Yup.object({
   joining_date: dojValidation,
   country: Yup.object().required('Country is required'),
 });
+
+export { addEmployeModalFormSchema };

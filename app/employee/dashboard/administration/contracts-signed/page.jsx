@@ -5,9 +5,9 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
 import { changeTab } from '@/src/utils/tabs';
-import { empTabs } from '@/src/constants/data/tabs/emp-tabs';
+import { empTabs } from '@/src/data/tabs/emp-tabs';
 import AppTable from '@/src/components/appTableNew/AppTable';
-import { contractSignedEmployeeTabs } from '@/src/constants/data/tabs/contract-signed-tabs';
+import { contractSignedEmployeeTabs } from '@/src/data/tabs/contract-signed-tabs';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import {
   DOWNLOAD_COMP_CONTRACT,

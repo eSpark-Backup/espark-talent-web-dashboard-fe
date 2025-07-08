@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
 import { nameRegExp } from './validations';
 
-export const uploadPolicyFormSchema = Yup.object({
+const uploadPolicyFormSchema = Yup.object({
   policy_name: Yup.string()
     .transform((value) => value.trim())
     .matches(nameRegExp, 'Name is not valid')
@@ -25,7 +25,7 @@ export const uploadPolicyFormSchema = Yup.object({
     ),
 });
 
-export const editUploadPolicyFormSchema = Yup.object({
+const editUploadPolicyFormSchema = Yup.object({
   policy_name: Yup.string()
     .transform((value) => value.trim())
     .matches(nameRegExp, 'Name is not valid')
@@ -51,3 +51,5 @@ export const editUploadPolicyFormSchema = Yup.object({
       }
     ),
 });
+
+export { editUploadPolicyFormSchema, uploadPolicyFormSchema };

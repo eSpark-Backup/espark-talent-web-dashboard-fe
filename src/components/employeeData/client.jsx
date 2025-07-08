@@ -4,7 +4,7 @@ import { Box, Tab, Tabs } from '@mui/material';
 import {
   activeClientData,
   activeClientsColumn,
-} from '@/src/constants/data/tables/hr/employee-profile-client';
+} from '@/src/data/tables/hr/employee-profile-client';
 import { a11yProps } from '@/src/utils/tabs';
 import AppTable from '../appTableNew/AppTable';
 import { useQuery } from '@tanstack/react-query';

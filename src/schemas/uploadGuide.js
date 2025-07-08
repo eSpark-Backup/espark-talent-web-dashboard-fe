@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
 import { nameValidation } from './validations';
 
-export const uploadGuideFormSchema = Yup.object({
+const uploadGuideFormSchema = Yup.object({
   guide_name: nameValidation,
   language: Yup.string()
     .required('Language is required')
@@ -27,7 +27,7 @@ export const uploadGuideFormSchema = Yup.object({
     ),
 });
 
-export const editGuideFormSchema = Yup.object({
+const editGuideFormSchema = Yup.object({
   guide_name: nameValidation,
   language: Yup.string()
     .required('Language is required')
@@ -55,3 +55,5 @@ export const editGuideFormSchema = Yup.object({
       }
     ),
 });
+
+export { uploadGuideFormSchema, editGuideFormSchema };

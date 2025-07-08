@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
 import { jobTitleRegExp, nameValidation } from './validations';
 
-export const addNewInterviewFormSchema = Yup.object({
+const addNewInterviewFormSchema = Yup.object({
   employee_name: nameValidation,
   gender: Yup.string()
     .required('Gender is required')
@@ -24,3 +24,5 @@ export const addNewInterviewFormSchema = Yup.object({
   interview_date_time: Yup.date().required('Interview date & time required'),
   country: Yup.object().required('Country is required'),
 });
+
+export { addNewInterviewFormSchema };

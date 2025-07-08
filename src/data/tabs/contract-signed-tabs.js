@@ -15,7 +15,7 @@ import {
 
 import { contractSignedData } from '../tables/hr/contract-signed';
 
-export const contractSignedTabs = [
+const contractSignedTabs = [
   {
     label: 'Company contracts',
     prop: a11yProps(0),
@@ -30,7 +30,7 @@ export const contractSignedTabs = [
   },
 ];
 
-export const contractHrSignedTabs = [
+const contractHrSignedTabs = [
   {
     label: 'Company contracts',
     prop: a11yProps(0),
@@ -57,7 +57,7 @@ export const contractHrSignedTabs = [
   },
 ];
 
-export const contractSignedEmployeeTabs = [
+const contractSignedEmployeeTabs = [
   {
     label: 'Company contracts',
     prop: a11yProps(0),
@@ -71,3 +71,5 @@ export const contractSignedEmployeeTabs = [
     columns: contractSignedColumn,
   },
 ];
+
+export { contractSignedTabs, contractHrSignedTabs, contractSignedEmployeeTabs };

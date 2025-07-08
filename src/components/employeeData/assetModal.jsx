@@ -11,7 +11,7 @@ import { useFormik } from 'formik';
 
 import { EDIT_MODAL } from '@/src/constants/employee-profile';
 import FormInput from '../form/ui-elements/FormInput';
-import { assetForm } from '@/src/constants/data/forms/asset-form';
+import { assetForm } from '@/src/data/forms/asset-form';
 import { assetFormSchema } from '../../schemas/assetForm';
 import { useMutation } from '@tanstack/react-query';
 import { HR_ADD_EMP_ASSET } from '@/src/services/apiService/apiEndPoints';

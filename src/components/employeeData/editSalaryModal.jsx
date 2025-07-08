@@ -19,7 +19,7 @@ import dayjs from 'dayjs';
 import { editEmpSalary } from '@/src/redux/slices/hrSlices/employeeSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { Toast } from '../Toast/Toast';
-import { salaryForm } from '@/src/constants/data/forms/salary-form';
+import { salaryForm } from '@/src/data/forms/salary-form';
 
 const EditSalaryForm = ({ onClose, open, selectedId }) => {
   const dispatch = useDispatch();

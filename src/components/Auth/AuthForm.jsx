@@ -26,7 +26,7 @@ import {
   login,
 } from '../../redux/slices/authSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { CLIENT_ROLES, EMPLOYEE_ROLES } from '@/src/constants/data/roles';
+import { CLIENT_ROLES, EMPLOYEE_ROLES } from '@/src/data/roles';
 import {
   getHomeData,
   getHomeDataRequest,

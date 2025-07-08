@@ -6,7 +6,7 @@ import {
   phoneValidation,
 } from './validations';
 
-export const editClientSchema = Yup.object({
+const editClientSchema = Yup.object({
   first_name: nameValidation,
   last_name: nameValidation,
   company_name: Yup.string()
@@ -24,3 +24,5 @@ export const editClientSchema = Yup.object({
     .max(255, 'Address cannot exceed 255 characters')
     .matches(/^[a-zA-Z0-9\s.,#-]+$/, 'Enter a valid address'),
 });
+
+export { editClientSchema };

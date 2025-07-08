@@ -57,12 +57,12 @@ import {
   hiringRequestColumn,
   interviewScheduleColumn,
   onboardingColumn,
-} from '@/src/constants/data/tables/hr/hire-on-board';
+} from '@/src/data/tables/hr/hire-on-board';
 import { a11yProps } from '@/src/utils/tabs';
 import {
   invoicePaymentColumn,
   otherPaymentColumn,
-} from '@/src/constants/data/tables/hr/invoices';
+} from '@/src/data/tables/hr/invoices';
 import { getCamelCapitalized } from '@/src/utils/stringModification';
 import UploadOtherInvoiceModal from './UploadOtherInvoiceModal';
 import { Toast } from '@/src/components/Toast/Toast';

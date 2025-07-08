@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 
-export const createLeaveRequestSchema = Yup.object({
+const createLeaveRequestSchema = Yup.object({
   leaveType: Yup.mixed().required('Leave type is required'),
   startDate: Yup.date()
     .required('Start date is required')
@@ -50,7 +50,7 @@ export const createLeaveRequestSchema = Yup.object({
     .max(255, 'Reason is too long - should be 255 chars maximum.'),
 });
 
-export const createWFHRequestSchema = Yup.object({
+const createWFHRequestSchema = Yup.object({
   startDate: Yup.date()
     .required('Start date is required')
     .test(
@@ -75,3 +75,5 @@ export const createWFHRequestSchema = Yup.object({
     .min(2, 'Reason is too short - should be 2 chars minimum.')
     .max(255, 'Reason is too long - should be 255 chars maximum.'),
 });
+
+export { createLeaveRequestSchema, createWFHRequestSchema };

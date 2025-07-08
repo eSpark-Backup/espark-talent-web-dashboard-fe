@@ -10,7 +10,7 @@ import {
 
 import { hiringRequestSchema } from '@/src/schemas/hiringRequestForm';
 import FormInput from '@/src/components/form/ui-elements/FormInput';
-import { hringRequestForm } from '@/src/constants/data/forms/hiring-request';
+import { hringRequestForm } from '@/src/data/forms/hiring-request';
 import { useFormik } from 'formik';
 import { FORM_DATA } from '@/src/constants/form';
 import { useDispatch, useSelector } from 'react-redux';

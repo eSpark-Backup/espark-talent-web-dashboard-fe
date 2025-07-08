@@ -8,7 +8,7 @@ const isValidDateFormat = (value) => {
 };
 
 // Schema definition
-export const createPunchRequestSchema = Yup.object({
+const createPunchRequestSchema = Yup.object({
   date: Yup.string()
     .required('Date is required')
     .test('is-valid-date', 'Invalid date format', isValidDateFormat)
@@ -37,3 +37,5 @@ export const createPunchRequestSchema = Yup.object({
     .min(2, 'Description is too short - should be 2 chars minimum.')
     .max(255, 'Description is too long - should be 255 chars maximum.'),
 });
+
+export { createPunchRequestSchema, isValidDateFormat };

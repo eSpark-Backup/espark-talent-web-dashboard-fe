@@ -3,7 +3,7 @@ import { addEmployeModalFormSchema } from '@/src/schemas/addEmployeeModal';
 import Navigator from '@/src/components/form/step/Navigator';
 import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { countriesList } from '@/src/constants/countries';
-import { addEmployeeModalFormSteps } from '@/src/constants/data/forms/add-employee-modal';
+import { addEmployeeModalFormSteps } from '@/src/data/forms/add-employee-modal';
 import { FORM_DATA } from '@/src/constants/form';
 import { Box, Button, Grid, Modal } from '@mui/material';
 import { useFormik } from 'formik';

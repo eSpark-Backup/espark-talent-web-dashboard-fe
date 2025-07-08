@@ -1,4 +1,4 @@
-export const Active_User_Data = { userName: 'Arman Khan' };
+export const ACTIVE_USER_DATA = { userName: 'Arman Khan' };
 
 export const NOTIFICATION_DATA = [
   {

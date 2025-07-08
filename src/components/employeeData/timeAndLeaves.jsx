@@ -6,7 +6,7 @@ import {
   leavesColumn,
   leavesData,
   timeColumn,
-} from '@/src/constants/data/tables/hr/time-and-leaves';
+} from '@/src/data/tables/hr/time-and-leaves';
 import TimeManagementModal from '@/app/hr/dashboard/clients/client-profile/TimeManagementModal';
 import LeaveManagementModal from '@/app/hr/dashboard/clients/client-profile/LeaveManagementModal';
 import { FORM_DATA } from '@/src/constants/form';

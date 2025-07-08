@@ -2,7 +2,7 @@ import { addNewInterviewFormSchema } from '@/src/schemas/addNewInterviewForm';
 import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { Toast } from '@/src/components/Toast/Toast';
 import { countriesList } from '@/src/constants/countries';
-import { addNewInterviewForm } from '@/src/constants/data/forms/add-new-interview';
+import { addNewInterviewForm } from '@/src/data/forms/add-new-interview';
 import { FORM_DATA } from '@/src/constants/form';
 import { addInterviewSchedule } from '@/src/redux/slices/hrSlices/clientSlice';
 import { api } from '@/src/services/apiService';

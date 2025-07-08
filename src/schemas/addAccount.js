@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
 import { emailValidation, nameValidation } from './validations';
 
-export const accountInfoSchema = Yup.object({
+const accountInfoSchema = Yup.object({
   account_name: nameValidation,
   email: emailValidation,
   password: Yup.string()
@@ -33,7 +33,7 @@ export const accountInfoSchema = Yup.object({
     ),
 });
 
-export const editAccountInfoSchema = Yup.object({
+const editAccountInfoSchema = Yup.object({
   account_name: nameValidation,
   email: emailValidation,
   password: Yup.string()
@@ -59,3 +59,5 @@ export const editAccountInfoSchema = Yup.object({
       }
     ),
 });
+
+export { accountInfoSchema, editAccountInfoSchema };

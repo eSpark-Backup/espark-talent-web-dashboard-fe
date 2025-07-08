@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Grid, Typography, Tabs, Tab, Button } from '@mui/material';
 import { Box } from '@mui/system';
 import Breadcrumb from '@/src/components/form/step/Breadcrumb';
-import { clientProfileTabs } from '@/src/constants/data/tabs/hr/client-profile';
+import { clientProfileTabs } from '@/src/data/tabs/hr/client-profile';
 import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
 import { renderTable } from './renderComponents';
 import { filterTableRowsWRTTab } from '@/src/utils/table';

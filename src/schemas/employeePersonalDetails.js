@@ -7,7 +7,7 @@ import {
   phoneValidation,
 } from './validations';
 
-export const employeePersonalDataSchema = Yup.object({
+const employeePersonalDataSchema = Yup.object({
   first_name: nameValidation,
   last_name: nameValidation,
   dob: dobValidation,
@@ -23,7 +23,7 @@ export const employeePersonalDataSchema = Yup.object({
   phone_number: phoneValidation,
 });
 
-export const employeeOfficialDataSchema = Yup.object({
+const employeeOfficialDataSchema = Yup.object({
   employee_id: Yup.string(),
   job_title: Yup.string(),
   role: Yup.string(),
@@ -89,3 +89,5 @@ export const employeeOfficialDataSchema = Yup.object({
     ),
   joining_date: dojValidation,
 });
+
+export { employeePersonalDataSchema, employeeOfficialDataSchema };

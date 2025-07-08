@@ -10,8 +10,8 @@ import {
 import { useFormik } from 'formik';
 
 import { EDIT_MODAL } from '@/src/constants/employee-profile';
-import { emergency_contact_form } from '@/src/constants/data/forms/emergency-contacts';
-import { emergency_contact_schema } from '../../schemas/emergencyContact';
+import { emergencyContactForm } from '@/src/data/forms/emergency-contacts';
+import { emergencyContactSchema } from '../../schemas/emergencyContact';
 import FormInput from '../form/ui-elements/FormInput';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
@@ -73,7 +73,7 @@ const EditEmergencyModal = forwardRef(
           },
         },
       },
-      validationSchema: emergency_contact_schema,
+      validationSchema: emergencyContactSchema,
       enableReinitialize: true,
       onSubmit: (formValues) => {
         handleUpdate(formValues);
@@ -175,7 +175,7 @@ const EditEmergencyModal = forwardRef(
               }}
             >
               <Grid container spacing={5}>
-                {emergency_contact_form?.map(
+                {emergencyContactForm?.map(
                   ({ contactTitle, fields, type }, contactIndex) => (
                     <Grid item xs={12} md={5.5} lg={6} key={contactIndex}>
                       <Typography

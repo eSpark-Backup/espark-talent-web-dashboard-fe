@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
 import { jobTitleRegExp } from './validations';
 
-export const hiringRequestSchema = Yup.object({
+const hiringRequestSchema = Yup.object({
   job_title: Yup.string()
     .required('Job title is required')
     .matches(jobTitleRegExp, 'Job title is not valid') // Matches the regex
@@ -81,7 +81,7 @@ export const hiringRequestSchema = Yup.object({
     .max(255, 'Comments cannot exceed 255 characters'),
 });
 
-export const editHiringRequestSchema = Yup.object({
+const editHiringRequestSchema = Yup.object({
   job_title: Yup.string()
     .required('Job title is required')
     .matches(jobTitleRegExp, 'Job title is not valid') // Matches the regex
@@ -161,3 +161,5 @@ export const editHiringRequestSchema = Yup.object({
     )
     .max(255, 'comments cannot exceed 255 characters'),
 });
+
+export { hiringRequestSchema, editHiringRequestSchema };

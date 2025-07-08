@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
 import { nameRegExp } from './validations';
 
-export const contractFormSchema = Yup.object({
+const contractFormSchema = Yup.object({
   contract_name: Yup.string()
     .transform((value) => value.trim())
     .matches(nameRegExp, 'Name is not valid')
@@ -30,7 +30,7 @@ export const contractFormSchema = Yup.object({
     ),
 });
 
-export const editContractFormSchema = Yup.object({
+const editContractFormSchema = Yup.object({
   contract_name: Yup.string()
     .transform((value) => value.trim())
     .matches(nameRegExp, 'Name is not valid')
@@ -62,7 +62,7 @@ export const editContractFormSchema = Yup.object({
     ),
 });
 
-export const contractFormHrPortalSchema = Yup.object({
+const contractFormHrPortalSchema = Yup.object({
   contract_name: Yup.string()
     .transform((value) => value.trim())
     .matches(nameRegExp, 'Name is not valid')
@@ -91,7 +91,7 @@ export const contractFormHrPortalSchema = Yup.object({
     ),
 });
 
-export const editContractFormHrPortalSchema = Yup.object({
+const editContractFormHrPortalSchema = Yup.object({
   contract_name: Yup.string()
     .transform((value) => value.trim())
     .matches(nameRegExp, 'Name is not valid')
@@ -123,7 +123,7 @@ export const editContractFormHrPortalSchema = Yup.object({
     ),
 });
 
-export const OffShContractFormHrPortalSchema = Yup.object({
+const OffShContractFormHrPortalSchema = Yup.object({
   contract_name: Yup.string()
     .transform((value) => value.trim())
     .matches(nameRegExp, 'Name is not valid')
@@ -156,7 +156,7 @@ export const OffShContractFormHrPortalSchema = Yup.object({
     ),
 });
 
-export const editOffShContractFormHrPortalSchema = Yup.object({
+const editOffShContractFormHrPortalSchema = Yup.object({
   contract_name: Yup.string()
     .transform((value) => value.trim())
     .matches(nameRegExp, 'Name is not valid')
@@ -187,3 +187,12 @@ export const editOffShContractFormHrPortalSchema = Yup.object({
       (value) => !value || value?.size <= 5 * 1024 * 1024
     ),
 });
+
+export {
+  contractFormSchema,
+  editContractFormSchema,
+  contractFormHrPortalSchema,
+  editContractFormHrPortalSchema,
+  editOffShContractFormHrPortalSchema,
+  OffShContractFormHrPortalSchema,
+};
