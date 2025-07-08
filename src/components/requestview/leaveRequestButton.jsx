@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Button } from '@mui/material';
 
-import { REQUESTVIEW_DATA } from '@/src/constants/requestviewModal';
+import { REQUESTVIEW_DATA } from '@/src/constants/requestview-modal';
 
 const LeaveRequestButtons = ({
   statusType,

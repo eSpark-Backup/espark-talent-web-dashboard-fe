@@ -3,7 +3,7 @@ import React from 'react';
 import { Grid, Box } from '@mui/material';
 import AppTable from '@/src/components/appTableNew/AppTable';
 import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
-import { LETTERS_TABLECOLUMN } from '@/src/constants/employeeProfile';
+import { LETTERS_TABLECOLUMN } from '@/src/constants/employee-profile';
 import { useDispatch } from 'react-redux';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import {

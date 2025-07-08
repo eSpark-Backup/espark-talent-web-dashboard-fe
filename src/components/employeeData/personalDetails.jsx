@@ -10,7 +10,7 @@ import {
 import Image from 'next/image';
 
 import JobTitle from '../StartHiring/JobTitle';
-import { EDIT_MODAL, MARITAL_STATUS } from '@/src/constants/employeeProfile';
+import { EDIT_MODAL, MARITAL_STATUS } from '@/src/constants/employee-profile';
 import DatePicker from './Datepicker';
 
 const PersonalDetails = ({ handleClick, SelectOpen, SelectClose, isOpen }) => {

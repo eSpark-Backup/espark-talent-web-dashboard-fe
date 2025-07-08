@@ -2,7 +2,7 @@ import React from 'react';
 import { Box } from '@mui/material';
 import LeaveType from './leaveType';
 import LeaveDate from './leaveDate';
-import { LEAVE_DATA, REQUESTVIEW_DATA } from '@/src/constants/requestviewModal';
+import { LEAVE_DATA, REQUESTVIEW_DATA } from '@/src/constants/requestview-modal';
 import LeaveDuration from './leaveDuration';
 import LeaveCount from './leaveCount';
 import LeaveDatePicker from './leaveDatepicker';

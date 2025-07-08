@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Button, Modal, Typography } from '@mui/material';
 import WarningAmberSharpIcon from '@mui/icons-material/WarningAmberSharp';
 
-import { BACKDATE_MODAL } from '@/src/constants/requestviewModal';
+import { BACKDATE_MODAL } from '@/src/constants/requestview-modal';
 
 const PreviousDateModal = ({ onClose, open }) => {
   return (

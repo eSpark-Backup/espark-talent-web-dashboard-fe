@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Box, Typography } from '@mui/material';
-import { Clock_Title } from '@/src/constants/employeeDashboard';
-import { Clock_Dial } from '@/src/constants/employeeDashboard';
+import { Clock_Title } from '@/src/constants/employee-dashboard';
+import { Clock_Dial } from '@/src/constants/employee-dashboard';
 
 const Clock = () => {
   const [currentDate, setCurrentDate] = useState({

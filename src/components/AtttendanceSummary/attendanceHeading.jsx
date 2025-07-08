@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
 
-import { ATTENDANCE_DATA } from '@/src/constants/attendanceView';
+import { ATTENDANCE_DATA } from '@/src/constants/attendance-view';
 
 const AttendanceHeading = () => {
   return (

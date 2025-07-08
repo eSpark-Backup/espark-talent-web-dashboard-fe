@@ -1,8 +1,8 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
 
-import { ATTENDANCE_DATA, EMPLOYEE_DATA } from '@/src/constants/attendanceView';
-import { leaveRequestsData } from '@/src/constants/data/tables/timeOffRequest';
+import { ATTENDANCE_DATA, EMPLOYEE_DATA } from '@/src/constants/attendance-view';
+import { leaveRequestsData } from '@/src/constants/data/tables/time-off-request';
 
 const EmployeeId = () => {
   return (

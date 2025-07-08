@@ -5,7 +5,7 @@ import ProgressBar from './ProgressBar';
 import {
   Leave_Summary_Boxes,
   Leave_Summary_Title,
-} from '@/src/constants/employeeDashboard';
+} from '@/src/constants/employee-dashboard';
 import { useSelector } from 'react-redux';
 import Stack from '@mui/material/Stack';
 

@@ -9,7 +9,7 @@ import {
 } from '@mui/material';
 import { useFormik } from 'formik';
 
-import { EDIT_MODAL } from '@/src/constants/employeeProfile';
+import { EDIT_MODAL } from '@/src/constants/employee-profile';
 import FormInput from '../form/ui-elements/FormInput';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { HR_EMP_BENEFIT } from '@/src/services/apiService/apiEndPoints';

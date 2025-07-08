@@ -14,7 +14,7 @@ import AddInterviewModal from './AddInterviewModal';
 import AddOnboardModal from './AddOnboardModal';
 
 import { useSearchParams } from 'next/navigation';
-import { CLIENTPROFILE } from '@/src/constants/ClientProfile';
+import { CLIENTPROFILE } from '@/src/constants/client-profile';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import {
@@ -57,7 +57,7 @@ import {
   hiringRequestColumn,
   interviewScheduleColumn,
   onboardingColumn,
-} from '@/src/constants/data/tables/hr/hireOnBoard';
+} from '@/src/constants/data/tables/hr/hire-on-board';
 import { a11yProps } from '@/src/utils/tabs';
 import {
   invoicePaymentColumn,

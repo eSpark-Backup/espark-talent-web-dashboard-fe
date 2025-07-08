@@ -1,9 +1,9 @@
 import { addEmployeModalFormSchema } from '@/src/components/form/schemas/addEmployeeModal';
-import { jobTitles } from '../dropdown.js/startHiring';
+import { jobTitles } from '../dropdown.js/start-hiring';
 import {
   addEmployeeFormTableColumn,
   addEmployeeFormTableData,
-} from '../tables/hr/addEmployeeFormTable';
+} from '../tables/hr/add-employee-form-table';
 
 const form = [
   {

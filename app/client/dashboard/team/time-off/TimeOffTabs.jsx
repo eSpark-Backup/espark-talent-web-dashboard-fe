@@ -1,4 +1,4 @@
-import { leaveRequestsTab } from '@/src/constants/data/tabs/timeOffTabs';
+import { leaveRequestsTab } from '@/src/constants/data/tabs/time-off-tabs';
 import { updateCurrentReqTypeTab } from '@/src/redux/slices/clientSlices/timeOffSlice';
 import { Box, Tab, Tabs } from '@mui/material';
 import { useSearchParams } from 'next/navigation';

@@ -5,7 +5,7 @@ import {
   securitySchema,
   timeAndLeaveAllotmentSchema,
 } from '@/src/components/form/schemas/addEmployee';
-import { jobTitles } from '../dropdown.js/startHiring';
+import { jobTitles } from '../dropdown.js/start-hiring';
 
 const formElements = [
   {

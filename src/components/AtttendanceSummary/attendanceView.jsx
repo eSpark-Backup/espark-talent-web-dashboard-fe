@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, TextField, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 
-import { ATTENDANCE_DATA } from '@/src/constants/attendanceView';
+import { ATTENDANCE_DATA } from '@/src/constants/attendance-view';
 import AttendanceDatePicker from './attendanceDatePicker';
 import EmployeeData from './employeeData';
 

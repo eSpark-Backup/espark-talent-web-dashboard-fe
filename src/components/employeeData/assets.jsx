@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Box } from '@mui/material';
 
-import { ASSET_TABLECOLUMN } from '@/src/constants/employeeProfile';
+import { ASSET_TABLECOLUMN } from '@/src/constants/employee-profile';
 import AppTable from '../appTableNew/AppTable';
 import AppConfirmationMadal from '../modals/AppConfirmationMadal';
-import { CONTRACT_SIGNED } from '@/src/constants/contractSigned';
+import { CONTRACT_SIGNED } from '@/src/constants/contract-signed';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import {
   HR_ADD_EMP_ASSET,

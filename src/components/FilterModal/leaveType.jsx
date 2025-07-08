@@ -16,7 +16,7 @@ import { FILTER } from '@/src/constants/filter';
 import {
   MARITAL_STATUS,
   employeeProfileData,
-} from '@/src/constants/employeeProfile';
+} from '@/src/constants/employee-profile';
 
 const LeaveType = ({ displayedOptions, setSearchText }) => {
   const [selectedValue, setSelectedValue] = useState(MARITAL_STATUS[0].label);

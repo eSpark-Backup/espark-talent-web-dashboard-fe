@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Box } from '@mui/material';
 
-import { BENEFITS_TABLECOLUMN } from '@/src/constants/employeeProfile';
+import { BENEFITS_TABLECOLUMN } from '@/src/constants/employee-profile';
 import AppTable from '../appTableNew/AppTable';
 import AppConfirmationMadal from '../modals/AppConfirmationMadal';
-import { CONTRACT_SIGNED } from '@/src/constants/contractSigned';
+import { CONTRACT_SIGNED } from '@/src/constants/contract-signed';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';

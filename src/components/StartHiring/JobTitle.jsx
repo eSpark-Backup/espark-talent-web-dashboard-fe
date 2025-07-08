@@ -3,7 +3,7 @@ import { Grid, Typography } from '@mui/material';
 
 import RoleType from './RoleType';
 import AppNestedDropdown from '../dashboard/appDropdown';
-import { jobTitles } from '@/src/constants/data/dropdown.js/startHiring';
+import { jobTitles } from '@/src/constants/data/dropdown.js/start-hiring';
 
 const JobTitle = ({
   open,

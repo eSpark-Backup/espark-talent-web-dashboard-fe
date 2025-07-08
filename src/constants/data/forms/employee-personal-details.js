@@ -1,4 +1,4 @@
-import { jobTitles } from '../dropdown.js/startHiring';
+import { jobTitles } from '../dropdown.js/start-hiring';
 
 export const personalDetailsForm = [
   {

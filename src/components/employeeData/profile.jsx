@@ -1,5 +1,5 @@
 import React from 'react';
-import { employeeProfileData } from '@/src/constants/employeeProfile';
+import { employeeProfileData } from '@/src/constants/employee-profile';
 import EditEmergencyModal from './emergencyEditModal';
 import EditPersonalModal from './editPersonalData';
 import PersonalInformation from './personalInformation';

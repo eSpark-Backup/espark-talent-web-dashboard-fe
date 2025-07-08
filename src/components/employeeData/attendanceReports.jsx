@@ -14,7 +14,7 @@ import { Toast } from '../Toast/Toast';
 import AttendanceViewModal from '@/app/hr/dashboard/employees/[id]/AttendanceViewModal';
 import { useDispatch } from 'react-redux';
 import { getAttendanceRequestSuccess } from '@/src/redux/slices/hrSlices/employeeSlice';
-import { attendanceReportTableColumn } from '@/src/constants/data/tables/attendanceReport';
+import { attendanceReportTableColumn } from '@/src/constants/data/tables/attendance-report';
 import { calculateExpectedTime } from '@/src/utils/calculateExpectedTime';
 import { ellipsisWithTooltip } from '@/src/utils/tooltipEllipsis';
 

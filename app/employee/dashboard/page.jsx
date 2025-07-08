@@ -20,7 +20,7 @@ import { DASHBOARD_DATA } from '@/src/constants/dashboard';
 import {
   Attendance_Summary_Title,
   Mark_CLock_Title,
-} from '@/src/constants/employeeDashboard';
+} from '@/src/constants/employee-dashboard';
 import { Toast } from '@/src/components/Toast/Toast';
 
 const Dashboard = () => {

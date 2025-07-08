@@ -17,8 +17,8 @@ import {
   HR_EMP_SALARY,
   DOWNLOAD_PAYSLIP,
 } from '@/src/services/apiService/apiEndPoints';
-import { CONTRACT_SIGNED } from '@/src/constants/contractSigned';
-import { SALARY_TABLECOLUMN } from '@/src/constants/employeeProfile';
+import { CONTRACT_SIGNED } from '@/src/constants/contract-signed';
+import { SALARY_TABLECOLUMN } from '@/src/constants/employee-profile';
 import dayjs from 'dayjs';
 
 const Salary = ({ timeTracking }) => {

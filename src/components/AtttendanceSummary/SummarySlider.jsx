@@ -10,7 +10,7 @@ import { useSelector } from 'react-redux';
 import Stack from '@mui/material/Stack';
 import Skeleton from '@mui/material/Skeleton';
 import { Box } from '@mui/material';
-import { Summary_Slider_Breakpoints } from '@/src/constants/employeeDashboard';
+import { Summary_Slider_Breakpoints } from '@/src/constants/employee-dashboard';
 
 const SummarySlider = ({ summaryBoxes, isLoading }) => {
   const { attendance_summary } =

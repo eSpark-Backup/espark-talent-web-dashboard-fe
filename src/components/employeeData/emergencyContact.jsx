@@ -4,7 +4,7 @@ import { Box, Tooltip, Typography } from '@mui/material';
 import {
   emergencyContact,
   employeeProfileData,
-} from '@/src/constants/employeeProfile';
+} from '@/src/constants/employee-profile';
 import { ellipsisWithTooltip } from '@/src/utils/tooltipEllipsis';
 
 const EmergencyContact = ({ data }) => {

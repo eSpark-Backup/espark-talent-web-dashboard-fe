@@ -11,9 +11,9 @@ import {
   contractSignedOffshoreColumn,
   contractSignedOffshoreData,
   employeeContractColumn,
-} from '../tables/contractSigned';
+} from '../tables/contract-signed';
 
-import { contractSignedData } from '../tables/hr/contractSigned';
+import { contractSignedData } from '../tables/hr/contract-signed';
 
 export const contractSignedTabs = [
   {

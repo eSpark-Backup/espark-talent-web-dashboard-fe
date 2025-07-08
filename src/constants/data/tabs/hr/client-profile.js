@@ -6,7 +6,7 @@ import {
   interviewScheduleData,
   onboardingColumn,
   onBoardingData,
-} from '../../tables/hr/hireOnBoard';
+} from '../../tables/hr/hire-on-board';
 import {
   invoicePaymentColumn,
   invoicePaymentData,

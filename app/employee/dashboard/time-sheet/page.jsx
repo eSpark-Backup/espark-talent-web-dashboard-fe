@@ -14,9 +14,9 @@ import { renderTrackingStatus } from './renderComponents';
 import {
   sheetStatusTypes,
   timeSheetTableColumn,
-} from '@/src/constants/data/tables/timeSheet';
+} from '@/src/constants/data/tables/time-sheet';
 import Image from 'next/image';
-import { EMPLOYEE_TIMESHEET } from '@/src/constants/timeSheet';
+import { EMPLOYEE_TIMESHEET } from '@/src/constants/time-sheet';
 import AttendanceViewModal from './AttendanceViewModal';
 import AppTable from '@/src/components/appTableNew/AppTable';
 import { useMutation, useQuery } from '@tanstack/react-query';

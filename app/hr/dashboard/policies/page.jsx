@@ -4,10 +4,10 @@ import { Grid, Box, Button } from '@mui/material';
 
 import Heading from '@/src/components/global/Heading';
 import AppTable from '@/src/components/appTableNew/AppTable';
-import { policyColumn } from '@/src/constants/data/tables/policyData';
+import { policyColumn } from '@/src/constants/data/tables/policy-data';
 import UploadPolicyModal from '@/src/components/modals/uploadPolicyModal';
 import { POLICIES_DATA } from '@/src/constants/policies';
-import { CONTRACT_SIGNED } from '@/src/constants/contractSigned';
+import { CONTRACT_SIGNED } from '@/src/constants/contract-signed';
 import AppConfirmationMadal from '@/src/components/modals/AppConfirmationMadal';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';

@@ -1,5 +1,5 @@
 import Skeleton from '@mui/material/Skeleton';
-import { employeeWFHRequestsColumn } from '@/src/constants/data/tables/requestsData';
+import { employeeWFHRequestsColumn } from '@/src/constants/data/tables/requests-data';
 import { filterTableRowsWRTTab } from '@/src/utils/table';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';

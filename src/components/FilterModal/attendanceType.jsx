@@ -13,7 +13,7 @@ import {
 import Image from 'next/image';
 
 import { FILTER } from '@/src/constants/filter';
-import { employeeProfileData } from '@/src/constants/employeeProfile';
+import { employeeProfileData } from '@/src/constants/employee-profile';
 
 const AttendanceType = ({ displayedAttendanceOptions, setSearchText }) => {
   const [selectedValue, setSelectedValue] = useState();

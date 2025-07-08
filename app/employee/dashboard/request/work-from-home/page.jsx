@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Grid, Box, Modal } from '@mui/material';
 import AppConfirmationMadal from '@/src/components/modals/AppConfirmationMadal';
-import { REQUEST_LEAVE } from '@/src/constants/requestviewModal';
+import { REQUEST_LEAVE } from '@/src/constants/requestview-modal';
 import { useMutation } from '@tanstack/react-query';
 import { EMP_WFH_REQUEST } from '@/src/services/apiService/apiEndPoints';
 import { api } from '@/src/services/apiService';
