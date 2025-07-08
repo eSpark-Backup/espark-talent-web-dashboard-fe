@@ -1,4 +1,4 @@
-import { PUNCH_IN } from '@/src/constants/punchIn/create-punch';
+import { PUNCH_IN } from '@/src/constants/punch-in/create-punch';
 import { Button, Grid, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import dayjs from 'dayjs';

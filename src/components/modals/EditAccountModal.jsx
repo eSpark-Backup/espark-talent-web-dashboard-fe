@@ -10,7 +10,7 @@ import {
 
 import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { useFormik } from 'formik';
-import { SETTING } from '@/src/constants/SettingHr';
+import { SETTING } from '@/src/constants/setting-hr';
 import { FORM_DATA } from '@/src/constants/form';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';

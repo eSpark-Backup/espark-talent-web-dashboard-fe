@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Box, Grid, TextField, Typography } from '@mui/material';
 
-import { HIRING_FORM_DATA } from '@/src/constants/Hiring';
+import { HIRING_FORM_DATA } from '@/src/constants/hiring';
 
 const SalaryRange = () => {
   const numberOfFields = HIRING_FORM_DATA?.numberOfFields;

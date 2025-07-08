@@ -8,7 +8,7 @@ import CompanySettings from '@/src/components/settings/companySettings';
 import ChangePassword from '@/src/components/settings/changePassword';
 import Role from '@/src/components/settings/addRole';
 import AddAccountModal from '@/src/components/modals/addAccountModal';
-import { SETTING } from '@/src/constants/SettingHr';
+import { SETTING } from '@/src/constants/setting-hr';
 import { employeeProfileData } from '@/src/constants/employee-profile';
 import Accounts from '@/src/components/settings/accounts';
 import { accountData } from '@/src/constants/data/tables/hr/account';

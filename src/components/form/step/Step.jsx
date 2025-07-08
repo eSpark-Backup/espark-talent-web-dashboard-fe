@@ -4,7 +4,7 @@ import { Box, Button, CircularProgress, Grid, Typography } from '@mui/material';
 import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { useFormik } from 'formik';
 import { FORM_DATA } from '@/src/constants/form';
-import { SETTING } from '@/src/constants/SettingHr';
+import { SETTING } from '@/src/constants/setting-hr';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import { usePathname, useRouter } from 'next/navigation';

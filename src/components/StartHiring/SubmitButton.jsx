@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Button } from '@mui/material';
 
-import { HIRING_FORM_DATA } from '@/src/constants/Hiring';
+import { HIRING_FORM_DATA } from '@/src/constants/hiring';
 
 const Submit = () => {
   return (

@@ -14,7 +14,7 @@ import {
   HR_GUIDE_EDIT,
 } from '@/src/services/apiService/apiEndPoints';
 import { Toast } from '@/src/components/Toast/Toast';
-import { SETTING } from '@/src/constants/SettingHr';
+import { SETTING } from '@/src/constants/setting-hr';
 import { useDispatch, useSelector } from 'react-redux';
 import { GUIDE_DATA, guideColumn } from '@/src/constants/guide';
 import UploadGuideModal from '@/src/components/modals/UploadGuideModal';

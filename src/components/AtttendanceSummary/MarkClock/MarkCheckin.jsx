@@ -1,4 +1,4 @@
-import { PUNCH_IN } from '@/src/constants/punchIn/create-punch';
+import { PUNCH_IN } from '@/src/constants/punch-in/create-punch';
 import { api } from '@/src/services/apiService';
 import { EMP_HOME } from '@/src/services/apiService/apiEndPoints';
 import { Button, Grid, Typography } from '@mui/material';

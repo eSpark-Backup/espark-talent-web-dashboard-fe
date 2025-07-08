@@ -2,7 +2,7 @@ import React from 'react';
 import { TextField, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 
-import { PUNCH_IN } from '@/src/constants/punchIn/create-punch';
+import { PUNCH_IN } from '@/src/constants/punch-in/create-punch';
 
 const ReasonDescription = ({ disabled }) => {
   return (

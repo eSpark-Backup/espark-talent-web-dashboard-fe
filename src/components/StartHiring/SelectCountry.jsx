@@ -7,7 +7,7 @@ import {
   Typography,
 } from '@mui/material';
 
-import { HIRING_FORM_DATA } from '@/src/constants/Hiring';
+import { HIRING_FORM_DATA } from '@/src/constants/hiring';
 import { COUNTRY_OPTIONS } from '@/src/constants/country-code';
 import SalaryRange from './SalaryRangle';
 import Image from 'next/image';
