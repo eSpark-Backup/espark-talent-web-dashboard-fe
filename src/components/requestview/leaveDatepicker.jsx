@@ -77,4 +77,5 @@ const LeaveDatePicker = ({ label }) => {
     </>
   );
 };
+
 export default LeaveDatePicker;

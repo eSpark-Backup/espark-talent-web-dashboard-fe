@@ -1,4 +1,4 @@
-import { addNewInterviewFormSchema } from '@/src/components/form/schemas/addNewInterviewForm';
+import { addNewInterviewFormSchema } from '@/src/schemas/addNewInterviewForm';
 import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { addNewInterviewForm } from '@/src/constants/data/forms/add-new-interview';
 import { FORM_DATA } from '@/src/constants/form';

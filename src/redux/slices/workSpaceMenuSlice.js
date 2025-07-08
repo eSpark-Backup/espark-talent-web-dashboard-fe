@@ -17,4 +17,5 @@ const workSpaceMenuSlice = createSlice({
 
 export const { handleworkSpaceMenuOpen, handleworkSpaceMenuClose } =
   workSpaceMenuSlice.actions;
+
 export default workSpaceMenuSlice.reducer;

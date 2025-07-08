@@ -22,7 +22,7 @@ import {
 
 import { onCheckDateValidation } from '@/src/utils/onCheckDateValidation';
 import { EMP_WFH_REQUEST } from '@/src/services/apiService/apiEndPoints';
-import { wfhReqfilterModalSchema } from '../form/schemas/wfhReqFilterModal';
+import { wfhReqfilterModalSchema } from '../../schemas/wfhReqFilterModal';
 
 const WFHReqFilterFormModal = forwardRef(
   ({ open, onClose, filterForm }, ref) => {
@@ -283,4 +283,5 @@ const WFHReqFilterFormModal = forwardRef(
 );
 
 WFHReqFilterFormModal.displayName = 'WFHReqFilterFormModal';
+
 export default WFHReqFilterFormModal;

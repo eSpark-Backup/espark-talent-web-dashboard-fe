@@ -17,6 +17,7 @@ export const ATTENDANCE_DATA = {
   joiningDate: 'Joining date',
   view: 'View',
 };
+
 export const EMPLOYEE_DATA = [
   {
     employeeIdCode: '12222',

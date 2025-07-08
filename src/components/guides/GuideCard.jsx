@@ -131,4 +131,5 @@ const GuideCard = ({ guideData, isLoading }) => {
     </Box>
   );
 };
+
 export default GuideCard;

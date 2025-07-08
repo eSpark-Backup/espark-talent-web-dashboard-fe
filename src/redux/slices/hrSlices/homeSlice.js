@@ -22,4 +22,5 @@ const homeSlice = createSlice({
 
 export const { getHomeData, getHomeDataRequest, removeHrData } =
   homeSlice.actions;
+
 export default homeSlice.reducer;

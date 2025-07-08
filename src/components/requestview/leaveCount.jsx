@@ -33,4 +33,5 @@ const LeaveCount = ({ countLabel, totalNo, backgroundColor, component }) => {
     </Box>
   );
 };
+
 export default LeaveCount;

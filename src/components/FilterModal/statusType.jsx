@@ -106,4 +106,5 @@ const StatusType = ({ displayedStatusOptions, setSearchText }) => {
     </Box>
   );
 };
+
 export default StatusType;

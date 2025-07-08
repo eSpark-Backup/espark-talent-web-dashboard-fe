@@ -1,7 +1,7 @@
 import {
   basicInformationSchemaClient,
   securitySchemaClient,
-} from '@/src/components/form/schemas/addClient';
+} from '@/src/schemas/addClient';
 
 const formElements = [
   {
@@ -60,6 +60,7 @@ const formElements = [
     accept: '.png, .jpg, .jpeg, .svg',
   },
 ];
+
 const formElementsStep4 = [
   {
     title: 'Client ID',
@@ -79,6 +80,7 @@ const formElementsStep4 = [
     type: 'password',
   },
 ];
+
 export const formSteps = [
   {
     title: 'Basic Information',

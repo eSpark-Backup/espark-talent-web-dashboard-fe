@@ -43,4 +43,5 @@ const GenderInput = ({ open, SelectOpen, SelectClose }) => {
     </Grid>
   );
 };
+
 export default GenderInput;

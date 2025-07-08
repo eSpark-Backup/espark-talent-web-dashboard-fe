@@ -1,4 +1,4 @@
-import { addNewInterviewFormSchema } from '@/src/components/form/schemas/addNewInterviewForm';
+import { addNewInterviewFormSchema } from '@/src/schemas/addNewInterviewForm';
 import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { Toast } from '@/src/components/Toast/Toast';
 import { countriesList } from '@/src/constants/countries';

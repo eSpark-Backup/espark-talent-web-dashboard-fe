@@ -139,4 +139,5 @@ const AttendanceView = ({ onClose }) => {
     </>
   );
 };
+
 export default AttendanceView;

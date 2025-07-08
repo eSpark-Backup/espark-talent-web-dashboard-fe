@@ -5,7 +5,7 @@ import FormInput from '../form/ui-elements/FormInput';
 import { FORM_DATA } from '@/src/constants/form';
 import { useFormik } from 'formik';
 import { HiringForm } from '@/src/constants/data/forms/start-hiring';
-import { hiringFormSchema } from '../form/schemas/hiringForm';
+import { hiringFormSchema } from '../../schemas/hiringForm';
 import { HIRING_FORM_DATA } from '@/src/constants/hiring';
 import { api } from '@/src/services/apiService';
 import { CLIENT_START_HIRING } from '@/src/services/apiService/apiEndPoints';
@@ -245,4 +245,5 @@ const StartHiringForm = () => {
     </Box>
   );
 };
+
 export default StartHiringForm;

@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 
-export default function middleware(req) {
+const middleware = (req) => {
   const tokenCookie = req.cookies.get('token');
   const userTypeCookie = req.cookies.get('userType');
   const permissionsCookie = req.cookies.get('permissions');
@@ -111,8 +111,12 @@ export default function middleware(req) {
   }
 
   return NextResponse.next();
-}
-
-export const config = {
-  matcher: ['/((?!api|_next/static|image|images|icons|favicon.ico).*)'],
 };
+
+const config = () => ({
+  matcher: ['/((?!api|_next/static|image|images|icons|favicon.ico).*)'],
+});
+
+export { config };
+
+export default middleware;

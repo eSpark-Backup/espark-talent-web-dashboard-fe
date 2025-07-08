@@ -16,6 +16,7 @@ export const contractColumn = [
     flex: 1,
   },
 ];
+
 export const contractData = [
   {
     contractName: 'NDA',

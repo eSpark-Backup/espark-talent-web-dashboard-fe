@@ -45,4 +45,5 @@ const ActionBarComponent = ({ onClose }) => {
     </Box>
   );
 };
+
 export default ActionBarComponent;

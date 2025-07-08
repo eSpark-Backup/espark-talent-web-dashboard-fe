@@ -14,4 +14,5 @@ const GreenCalenderIcon = ({ props, open }) => {
     />
   );
 };
+
 export default GreenCalenderIcon;

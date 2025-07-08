@@ -344,4 +344,5 @@ const TeamManagement = () => {
     </>
   );
 };
+
 export default TeamManagement;

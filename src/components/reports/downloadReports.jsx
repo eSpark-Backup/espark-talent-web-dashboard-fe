@@ -58,4 +58,5 @@ const DownloadReports = ({
     </Box>
   );
 };
+
 export default DownloadReports;

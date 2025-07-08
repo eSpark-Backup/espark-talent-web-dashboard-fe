@@ -45,6 +45,7 @@ export const interviewScheduleColumn = [
     name: 'action',
   },
 ];
+
 export const hiringRequestColumn = [
   {
     title: 'Job title',
@@ -97,6 +98,7 @@ export const hiringRequestColumn = [
     name: 'action',
   },
 ];
+
 export const onboardingColumn = [
   {
     title: 'Employee name',
@@ -149,6 +151,7 @@ export const onboardingColumn = [
     name: 'action',
   },
 ];
+
 export const interviewScheduleData = [
   {
     employeeName: 'Bilal Ahmed Khan',
@@ -223,6 +226,7 @@ export const interviewScheduleData = [
     dropdownStatus: true,
   },
 ];
+
 export const hiringRequestData = [
   {
     jobTitle: 'UI/UX Designer',
@@ -280,6 +284,7 @@ export const hiringRequestData = [
     actionStatus: true,
   },
 ];
+
 export const onBoardingData = [
   {
     employeeName: 'Bilal Ahmed Khan',

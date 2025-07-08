@@ -9,7 +9,7 @@ import {
 } from '@mui/material';
 
 import { useFormik } from 'formik';
-import { OffShContractFormHrPortalSchema } from '../form/schemas/contractSignedForm';
+import { OffShContractFormHrPortalSchema } from '../../schemas/contractSignedForm';
 import { contractFormHrPortal } from '@/src/constants/data/forms/contract';
 import FormInput from '../form/ui-elements/FormInput';
 import { CONTRACT_SIGNED } from '@/src/constants/contract-signed';
@@ -235,4 +235,5 @@ const AddContractHrPortalModal = ({ open, onClose, endPoint }) => {
     </Modal>
   );
 };
+
 export default AddContractHrPortalModal;

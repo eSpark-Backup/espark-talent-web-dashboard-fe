@@ -1,4 +1,5 @@
 export const Active_User_Data = { userName: 'Arman Khan' };
+
 export const NOTIFICATION_DATA = [
   {
     day: 'Today',

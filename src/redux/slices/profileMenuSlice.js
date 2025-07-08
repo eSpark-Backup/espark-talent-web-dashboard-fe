@@ -17,4 +17,5 @@ const profileMenuSlice = createSlice({
 
 export const { handleProfileMenuOpen, handleProfileMenuClose } =
   profileMenuSlice.actions;
+
 export default profileMenuSlice.reducer;

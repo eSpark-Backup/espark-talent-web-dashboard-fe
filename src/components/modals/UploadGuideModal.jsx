@@ -15,7 +15,7 @@ import { HR_GUIDE } from '@/src/services/apiService/apiEndPoints';
 import { useDispatch, useSelector } from 'react-redux';
 import { Toast } from '../Toast/Toast';
 import { uploadGuideForm } from '@/src/constants/data/forms/upload-guide';
-import { uploadGuideFormSchema } from '../form/schemas/uploadGuide';
+import { uploadGuideFormSchema } from '../../schemas/uploadGuide';
 import { UPLOAD_GUIDE } from '@/src/constants/guide';
 import { addGuide } from '@/src/redux/slices/hrSlices/guide';
 import { useMutation } from '@tanstack/react-query';
@@ -249,4 +249,5 @@ const UploadGuideModal = forwardRef(({ open, onClose }, ref) => {
   );
 });
 UploadGuideModal.displayName = 'UploadGuideModal';
+
 export default UploadGuideModal;

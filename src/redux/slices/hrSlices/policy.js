@@ -33,4 +33,5 @@ const policySlice = createSlice({
 
 export const { getPolicyData, updatePolicyValue, addPolicy, removePolicy } =
   policySlice.actions;
+
 export default policySlice.reducer;

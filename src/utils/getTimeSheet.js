@@ -4,7 +4,7 @@ import { filterAttendance } from './filterAttendance';
 
 import { convertDateFormat, getAttendenceShortHand } from './helpers';
 
-export const getTimeSheet = (
+const getTimeSheet = (
   timeSheetData,
   attendanceStatus,
   checkInRange,
@@ -40,3 +40,5 @@ export const getTimeSheet = (
 
   return finalData;
 };
+
+export { getTimeSheet };

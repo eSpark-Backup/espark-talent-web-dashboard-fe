@@ -244,4 +244,5 @@ const EmergencyContact = ({ data }) => {
     </Box>
   );
 };
+
 export default EmergencyContact;

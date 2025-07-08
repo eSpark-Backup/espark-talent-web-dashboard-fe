@@ -15,4 +15,5 @@ const RequestHeading = ({ title }) => {
     </Box>
   );
 };
+
 export default RequestHeading;

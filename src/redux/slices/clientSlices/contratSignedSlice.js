@@ -41,4 +41,5 @@ export const {
   fetchClientEmpContractRequestSuccess,
   fetchClientEmpContractRequestFailed,
 } = contratSignedSlice.actions;
+
 export default contratSignedSlice.reducer;

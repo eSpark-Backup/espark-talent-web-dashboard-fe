@@ -3,7 +3,7 @@ import WideFormInput from '../../../../../src/components/form/ui-elements/WideFo
 import { Box, Button, CircularProgress } from '@mui/material';
 import { useFormik } from 'formik';
 import { createLeaveRequestForm } from '@/src/constants/data/forms/create-leave-request';
-import { createLeaveRequestSchema } from '@/src/components/form/schemas/createLeaveRequest';
+import { createLeaveRequestSchema } from '@/src/schemas/createLeaveRequest';
 import { useMutation } from '@tanstack/react-query';
 import { EMP_LEAVE_REQUEST } from '@/src/services/apiService/apiEndPoints';
 import { api } from '@/src/services/apiService';

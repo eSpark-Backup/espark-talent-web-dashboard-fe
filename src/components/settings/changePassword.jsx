@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Box, useMediaQuery } from '@mui/system';
-import { passwordChangeSchema } from '../form/schemas/password';
+import { passwordChangeSchema } from '../../schemas/password';
 import { passwordformElement } from '@/src/constants/data/forms/password-change-form';
 import { HR_CHANGE_PASSWORD } from '@/src/services/apiService/apiEndPoints';
 import { Toast } from '../Toast/Toast';
@@ -165,4 +165,5 @@ const ChangePassword = () => {
     </form>
   );
 };
+
 export default ChangePassword;

@@ -1,4 +1,4 @@
-export const clientProfileTabsHandler = (
+const clientProfileTabsHandler = (
   clientProfileTabs,
   label,
   nestedLabel,
@@ -32,3 +32,5 @@ export const clientProfileTabsHandler = (
     column: colData?.nestedTabs?.[0]?.column,
   }));
 };
+
+export { clientProfileTabsHandler };

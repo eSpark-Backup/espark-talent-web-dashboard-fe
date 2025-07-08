@@ -18,7 +18,7 @@ import { editEmpBenefit } from '@/src/redux/slices/hrSlices/employeeSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { Toast } from '../Toast/Toast';
 import { benefitForm } from '@/src/constants/data/forms/benefit-form';
-import { benefitFormSchema } from '../form/schemas/benefitForm';
+import { benefitFormSchema } from '../../schemas/benefitForm';
 
 const EditBenefitForm = ({ onClose, open, selectedId }) => {
   const dispatch = useDispatch();
@@ -228,4 +228,5 @@ const EditBenefitForm = ({ onClose, open, selectedId }) => {
     </Modal>
   );
 };
+
 export default EditBenefitForm;

@@ -1,4 +1,4 @@
-export const toCamelCase = (inputString) => {
+const toCamelCase = (inputString) => {
   const { title } = inputString;
   // Use a regular expression to match non-alphanumeric characters excluding white space
   const regex = /[^a-zA-Z0-9]+(.)/g;
@@ -13,7 +13,7 @@ export const toCamelCase = (inputString) => {
   }
 };
 
-export const getCamelCapitalized = (rawStr) => {
+const getCamelCapitalized = (rawStr) => {
   const finalArrStr = [];
   let rawArryStr;
 
@@ -38,7 +38,7 @@ export const getCamelCapitalized = (rawStr) => {
   }
 };
 
-export const pascalToSnake = (string) => {
+const pascalToSnake = (string) => {
   // Replace spaces and dots with empty strings
   const pascalCaseString = string.replace(/[\s.]+(?=[A-Z\s])/g, '');
 
@@ -49,7 +49,8 @@ export const pascalToSnake = (string) => {
 
   return snakeCaseString.split(' ').join('_');
 };
-export const snakeToPascalCase = (str) => {
+
+const snakeToPascalCase = (str) => {
   // Split the string into an array of words
   const words = str.split('_');
 
@@ -61,9 +62,17 @@ export const snakeToPascalCase = (str) => {
   return pascalCase;
 };
 
-export const truncateText = (text, maxLength) => {
+const truncateText = (text, maxLength) => {
   if (text.length > maxLength) {
     return text.substring(0, maxLength) + '...';
   }
   return text;
+};
+
+export {
+  toCamelCase,
+  getCamelCapitalized,
+  pascalToSnake,
+  snakeToPascalCase,
+  truncateText,
 };

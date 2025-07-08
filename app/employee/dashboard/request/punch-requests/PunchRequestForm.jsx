@@ -3,7 +3,7 @@ import WideFormInput from '../../../../../src/components/form/ui-elements/WideFo
 import { createPunchRequestForm } from '@/src/constants/data/forms/create-punch-request';
 import { Box, Button, CircularProgress } from '@mui/material';
 import { useFormik } from 'formik';
-import { createPunchRequestSchema } from '../../../../../src/components/form/schemas/createPunchRequest';
+import { createPunchRequestSchema } from '../../../../../src/schemas/createPunchRequest';
 import { useDispatch, useSelector } from 'react-redux';
 import { api } from '@/src/services/apiService';
 import { EMP_PUNCH_REQUEST } from '@/src/services/apiService/apiEndPoints';

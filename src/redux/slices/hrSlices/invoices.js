@@ -13,4 +13,5 @@ const invoicesSlice = createSlice({
 });
 
 export const { getInvoicesData } = invoicesSlice.actions;
+
 export default invoicesSlice.reducer;

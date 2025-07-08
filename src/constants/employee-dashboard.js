@@ -1,7 +1,11 @@
 export const Attendance_Summary_Title = 'Attendance Summary';
+
 export const Leave_Summary_Title = 'Leave Summary';
+
 export const Clock_Title = 'Clock';
+
 export const Clock_Dial = '/images/sidebar-icons/clock-dial.svg';
+
 export const Summary_Slider_Breakpoints = {
   280: {
     slidesPerView: 1,
@@ -51,6 +55,7 @@ export const Summary_Slider_Breakpoints = {
     spaceBetween: 20,
   },
 };
+
 export const Summary_Boxes = [
   {
     title: 'Shifts',
@@ -374,6 +379,7 @@ export const Timeline_Data = [
     name: 'check_out',
   },
 ];
+
 export const Mark_CLock_Title = {
   title: 'Mark clock in/ clock out',
   clock_icon: '/icons/ClockIcon.svg',

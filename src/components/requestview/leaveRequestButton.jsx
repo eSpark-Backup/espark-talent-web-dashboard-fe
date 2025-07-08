@@ -183,4 +183,5 @@ const LeaveRequestButtons = ({
     </Box>
   );
 };
+
 export default LeaveRequestButtons;

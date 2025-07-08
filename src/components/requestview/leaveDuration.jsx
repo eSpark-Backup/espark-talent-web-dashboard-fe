@@ -50,4 +50,5 @@ const LeaveDuration = ({ employeeId, employeeName, fromTo }) => {
     </Box>
   );
 };
+
 export default LeaveDuration;

@@ -29,4 +29,5 @@ const authSlice = createSlice({
 
 export const { login, logout, getWorkSpace, getEmployeeDetails } =
   authSlice.actions;
+
 export default authSlice.reducer;

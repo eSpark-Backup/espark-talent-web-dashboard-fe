@@ -76,4 +76,5 @@ const TimeOffTabs = () => {
     </Box>
   );
 };
+
 export default TimeOffTabs;

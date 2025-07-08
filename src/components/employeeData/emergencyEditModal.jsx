@@ -11,7 +11,7 @@ import { useFormik } from 'formik';
 
 import { EDIT_MODAL } from '@/src/constants/employee-profile';
 import { emergency_contact_form } from '@/src/constants/data/forms/emergency-contacts';
-import { emergency_contact_schema } from '../form/schemas/emergencyContact';
+import { emergency_contact_schema } from '../../schemas/emergencyContact';
 import FormInput from '../form/ui-elements/FormInput';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
@@ -268,4 +268,5 @@ const EditEmergencyModal = forwardRef(
   }
 );
 EditEmergencyModal.displayName = 'EditEmergencyModal';
+
 export default EditEmergencyModal;

@@ -5,7 +5,7 @@ import { EDIT_MODAL } from '@/src/constants/employee-profile';
 import { useFormik } from 'formik';
 import FormInput from '../form/ui-elements/FormInput';
 import { formEmployeeCredential } from '@/src/constants/data/forms/employee-credential';
-import { editEmployeeCredentialSchema } from '../form/schemas/employeeCredential';
+import { editEmployeeCredentialSchema } from '../../schemas/employeeCredential';
 import { useMutation } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import { HR_UPDATE_EMP_CREDS } from '@/src/services/apiService/apiEndPoints';
@@ -179,4 +179,5 @@ const EditEmployeeCredential = ({ onClose, open }) => {
     </Modal>
   );
 };
+
 export default EditEmployeeCredential;

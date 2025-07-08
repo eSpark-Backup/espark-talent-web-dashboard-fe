@@ -179,4 +179,5 @@ const AttendanceViewModal = forwardRef(
   }
 );
 AttendanceViewModal.displayName = 'AttendanceViewModal';
+
 export default AttendanceViewModal;

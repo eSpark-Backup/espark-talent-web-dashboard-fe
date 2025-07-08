@@ -109,4 +109,5 @@ const LeaveType = ({ displayedOptions, setSearchText }) => {
     </Box>
   );
 };
+
 export default LeaveType;

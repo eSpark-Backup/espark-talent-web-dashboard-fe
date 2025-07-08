@@ -98,4 +98,5 @@ const LeaveDay = ({ employeeId, employeeName }) => {
     </Box>
   );
 };
+
 export default LeaveDay;

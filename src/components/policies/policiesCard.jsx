@@ -134,4 +134,5 @@ const PoliciesCard = ({ data, policyData, isLoading }) => {
     </>
   );
 };
+
 export default PoliciesCard;

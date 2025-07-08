@@ -79,4 +79,5 @@ const SalaryRange = () => {
     </Grid>
   );
 };
+
 export default SalaryRange;

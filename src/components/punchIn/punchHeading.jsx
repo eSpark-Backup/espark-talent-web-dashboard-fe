@@ -15,4 +15,5 @@ const PunchHeading = ({ heading }) => {
     </Box>
   );
 };
+
 export default PunchHeading;

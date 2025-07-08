@@ -92,4 +92,5 @@ const RoleModal = ({ open, handleClose }) => {
     </Modal>
   );
 };
+
 export default RoleModal;

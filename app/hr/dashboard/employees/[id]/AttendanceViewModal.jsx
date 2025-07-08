@@ -181,4 +181,5 @@ const AttendanceViewModal = React.forwardRef(
   }
 );
 AttendanceViewModal.displayName = 'AttendanceViewModal';
+
 export default AttendanceViewModal;

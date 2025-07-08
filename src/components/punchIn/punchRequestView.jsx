@@ -112,4 +112,5 @@ const PunchRequestView = ({ onClose, modalData, createPunch }) => {
     </>
   );
 };
+
 export default PunchRequestView;

@@ -122,4 +122,5 @@ const DiscoverTalentPlatform = ({ isLoading }) => {
     </Box>
   );
 };
+
 export default DiscoverTalentPlatform;

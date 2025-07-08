@@ -12,7 +12,7 @@ import { useFormik } from 'formik';
 import { EDIT_MODAL } from '@/src/constants/employee-profile';
 import FormInput from '../form/ui-elements/FormInput';
 import { assetForm } from '@/src/constants/data/forms/asset-form';
-import { assetFormSchema } from '../form/schemas/assetForm';
+import { assetFormSchema } from '../../schemas/assetForm';
 import { useMutation } from '@tanstack/react-query';
 import { HR_ADD_EMP_ASSET } from '@/src/services/apiService/apiEndPoints';
 import { api } from '@/src/services/apiService';
@@ -212,4 +212,5 @@ const AssetForm = forwardRef(({ onClose, open, empData }, ref) => {
   );
 });
 AssetForm.displayName = 'AssetForm';
+
 export default AssetForm;

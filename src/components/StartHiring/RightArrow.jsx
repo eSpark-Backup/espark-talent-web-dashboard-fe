@@ -12,4 +12,5 @@ const DropdownRightArrow = (props) => {
     />
   );
 };
+
 export default DropdownRightArrow;

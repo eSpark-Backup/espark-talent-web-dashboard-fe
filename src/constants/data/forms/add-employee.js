@@ -4,7 +4,7 @@ import {
   emergencyContactSchema,
   securitySchema,
   timeAndLeaveAllotmentSchema,
-} from '@/src/components/form/schemas/addEmployee';
+} from '@/src/schemas/addEmployee';
 import { jobTitles } from '../dropdown.js/start-hiring';
 
 const formElements = [
@@ -89,6 +89,7 @@ const formElements = [
     accept: '.pdf',
   },
 ];
+
 export const formElementsStep2 = [
   {
     label: 'Primary',
@@ -133,6 +134,7 @@ export const formElementsStep2 = [
     ],
   },
 ];
+
 const formElementsStep3 = [
   {
     title: 'Join date',
@@ -214,6 +216,7 @@ const formElementsStep3 = [
     col: 3,
   },
 ];
+
 const formElementsStep4 = [
   {
     title: 'Checkin time',
@@ -287,6 +290,7 @@ const formElementsStep4 = [
     defaultValue: 0,
   },
 ];
+
 const formElementsStep5 = [
   {
     title: 'Employee ID',
@@ -306,6 +310,7 @@ const formElementsStep5 = [
     type: 'password',
   },
 ];
+
 export const formSteps = [
   {
     title: 'Basic Information',

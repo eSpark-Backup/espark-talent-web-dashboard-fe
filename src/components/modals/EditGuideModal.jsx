@@ -14,7 +14,7 @@ import { api } from '@/src/services/apiService';
 import { HR_GUIDE } from '@/src/services/apiService/apiEndPoints';
 import { Toast } from '../Toast/Toast';
 import { uploadGuideForm } from '@/src/constants/data/forms/upload-guide';
-import { editGuideFormSchema } from '../form/schemas/uploadGuide';
+import { editGuideFormSchema } from '../../schemas/uploadGuide';
 import { UPLOAD_GUIDE } from '@/src/constants/guide';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
@@ -228,4 +228,5 @@ const EditGuideModal = forwardRef(({ open, onClose, modalData }, ref) => {
 });
 
 EditGuideModal.displayName = 'EditGuideModal';
+
 export default EditGuideModal;

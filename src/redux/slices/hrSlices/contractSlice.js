@@ -81,4 +81,5 @@ export const {
   deleteCompanyClientContractSuccess,
   addCompEmpContract,
 } = contractSlice.actions;
+
 export default contractSlice.reducer;

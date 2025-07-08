@@ -30,4 +30,5 @@ const AttendanceDatePicker = ({ createPunch }) => {
     </>
   );
 };
+
 export default AttendanceDatePicker;

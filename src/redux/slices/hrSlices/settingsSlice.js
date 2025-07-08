@@ -47,4 +47,5 @@ export const {
   addAccount,
   getPasswordData,
 } = settingsSlice.actions;
+
 export default settingsSlice.reducer;

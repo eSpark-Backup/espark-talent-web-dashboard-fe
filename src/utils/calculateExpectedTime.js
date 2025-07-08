@@ -1,4 +1,4 @@
-export const calculateExpectedTime = (row) => {
+const calculateExpectedTime = (row) => {
   const { employee_details } = row || {};
 
   if (employee_details?.company) {
@@ -34,3 +34,5 @@ const convertTo24Hour = (time12h) => {
   }
   return `${hours}`;
 };
+
+export { calculateExpectedTime, convertTo24Hour };

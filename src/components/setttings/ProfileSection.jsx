@@ -9,4 +9,5 @@ const ProfileSection = () => {
     </Box>
   );
 };
+
 export default ProfileSection;

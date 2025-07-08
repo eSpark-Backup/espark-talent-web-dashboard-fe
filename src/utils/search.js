@@ -1,6 +1,6 @@
 'use client';
 
-export const filterDataByKeyword = (tempData, keyword, setData) => {
+const filterDataByKeyword = (tempData, keyword, setData) => {
   if (!tempData || tempData.length === 0) {
     setData?.([]);
     return [];
@@ -25,3 +25,5 @@ export const filterDataByKeyword = (tempData, keyword, setData) => {
   setData?.(filteredData);
   return filteredData;
 };
+
+export { filterDataByKeyword };

@@ -13,4 +13,5 @@ const LeaveCalendarIcon = ({ props, open }) => {
     />
   );
 };
+
 export default LeaveCalendarIcon;

@@ -94,4 +94,5 @@ const HrAccess = ({ isHr, data, isLoading }) => {
     </Box>
   );
 };
+
 export default HrAccess;

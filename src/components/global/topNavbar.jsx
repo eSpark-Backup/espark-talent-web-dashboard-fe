@@ -49,4 +49,5 @@ const TopNavNavbar = () => {
     </Box>
   );
 };
+
 export default TopNavNavbar;

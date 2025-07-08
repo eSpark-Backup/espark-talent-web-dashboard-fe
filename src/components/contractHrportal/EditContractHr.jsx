@@ -9,7 +9,7 @@ import {
 } from '@mui/material';
 
 import { useFormik } from 'formik';
-import { editOffShContractFormHrPortalSchema } from '../form/schemas/contractSignedForm';
+import { editOffShContractFormHrPortalSchema } from '../../schemas/contractSignedForm';
 import { editContractFormHrPortal } from '@/src/constants/data/forms/contract';
 import FormInput from '../form/ui-elements/FormInput';
 import { CONTRACT_SIGNED } from '@/src/constants/contract-signed';
@@ -228,4 +228,5 @@ const EditContractHr = ({ open, onClose, modalData }) => {
     </Modal>
   );
 };
+
 export default EditContractHr;

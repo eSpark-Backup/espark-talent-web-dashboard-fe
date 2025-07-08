@@ -43,6 +43,7 @@ export const contractSignedEmployeeColumn = [
     name: 'download',
   },
 ];
+
 export const contractSignedEmployeeData = [
   {
     contractName: 'NDA',
@@ -51,6 +52,7 @@ export const contractSignedEmployeeData = [
     download: 'Download',
   },
 ];
+
 export const contractSignedOffshoreColumn = [
   {
     title: 'Contract name',
@@ -83,6 +85,7 @@ export const contractSignedOffshoreColumn = [
     name: 'action',
   },
 ];
+
 export const contractSignedOffshoreData = [
   {
     contractName: 'NDA',
@@ -94,11 +97,13 @@ export const contractSignedOffshoreData = [
     actionStatus: true,
   },
 ];
+
 export const contractHeading = [
   {
     activeContracts: 'Active contracts',
   },
 ];
+
 export const contractSignedNestClientColumn = [
   {
     title: 'Contract name',
@@ -126,6 +131,7 @@ export const contractSignedNestClientColumn = [
     name: 'action',
   },
 ];
+
 export const contractSignedNestClientData = [
   {
     contractName: 'NDA',
@@ -136,6 +142,7 @@ export const contractSignedNestClientData = [
     actionStatus: true,
   },
 ];
+
 export const contractSignedNestEmployeeColumn = [
   {
     title: 'Contract name',
@@ -163,6 +170,7 @@ export const contractSignedNestEmployeeColumn = [
     name: 'action',
   },
 ];
+
 export const contractSignedNestEmployeeData = [
   {
     contractName: 'NDA',

@@ -15,6 +15,7 @@ export const Auth_Signin = {
   checkText: 'Remember me',
   havingTrouble: 'Having trouble?',
 };
+
 export const Auth_Signup = {
   title: 'Sign up',
   text: 'Have an account?',
@@ -22,6 +23,7 @@ export const Auth_Signup = {
   link: '/signin',
   checkText: 'Remember me',
 };
+
 export const Auth_Fields = [
   {
     label: 'Email:',

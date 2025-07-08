@@ -25,6 +25,7 @@ export const leavesColumn = [
     name: 'status',
   },
 ];
+
 export const leavesData = [
   {
     leaveType: 'Casual leaves',
@@ -75,6 +76,7 @@ export const leavesData = [
     name: 'hajj_leaves',
   },
 ];
+
 export const timeColumn = [
   {
     title: 'Check in',
@@ -88,6 +90,7 @@ export const timeColumn = [
     name: 'check_out',
   },
 ];
+
 export const timeData = [
   {
     checkIn: '09:00 am',

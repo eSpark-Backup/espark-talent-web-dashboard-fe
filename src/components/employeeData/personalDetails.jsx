@@ -109,4 +109,5 @@ const PersonalDetails = ({ handleClick, SelectOpen, SelectClose, isOpen }) => {
     </Box>
   );
 };
+
 export default PersonalDetails;

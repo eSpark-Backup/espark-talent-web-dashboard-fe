@@ -25,6 +25,7 @@ export const teamMembersColumn = [
     name: 'country',
   },
 ];
+
 export const teamMembersData = [
   {
     name: 'Areeba Shakeel',

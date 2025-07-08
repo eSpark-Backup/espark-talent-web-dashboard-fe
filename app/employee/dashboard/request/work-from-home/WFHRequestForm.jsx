@@ -2,7 +2,7 @@ import React from 'react';
 import WideFormInput from '../../../../../src/components/form/ui-elements/WideFormInput';
 import { Box, Button, CircularProgress } from '@mui/material';
 import { useFormik } from 'formik';
-import { createWFHRequestSchema } from '@/src/components/form/schemas/createLeaveRequest';
+import { createWFHRequestSchema } from '@/src/schemas/createLeaveRequest';
 import { useMutation } from '@tanstack/react-query';
 import { EMP_WFH_REQUEST } from '@/src/services/apiService/apiEndPoints';
 import { api } from '@/src/services/apiService';

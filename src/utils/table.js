@@ -1,4 +1,4 @@
-export const filterTableRowsWRTTab = (data, filters) => {
+const filterTableRowsWRTTab = (data, filters) => {
   if (!filters || Object?.keys(filters)?.length === 0) {
     return data;
   } else {
@@ -27,3 +27,5 @@ export const filterTableRowsWRTTab = (data, filters) => {
     return sortedData;
   }
 };
+
+export { filterTableRowsWRTTab };

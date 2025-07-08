@@ -1,6 +1,6 @@
 import Skeleton from '@mui/material/Skeleton';
 import AppTable from '@/src/components/appTableNew/AppTable';
-import { addEmployeModalFormSchema } from '@/src/components/form/schemas/addEmployeeModal';
+import { addEmployeModalFormSchema } from '@/src/schemas/addEmployeeModal';
 import Navigator from '@/src/components/form/step/Navigator';
 import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { Toast } from '@/src/components/Toast/Toast';

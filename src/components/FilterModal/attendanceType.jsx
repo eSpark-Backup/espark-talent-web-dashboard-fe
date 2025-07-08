@@ -107,4 +107,5 @@ const AttendanceType = ({ displayedAttendanceOptions, setSearchText }) => {
     </Box>
   );
 };
+
 export default AttendanceType;

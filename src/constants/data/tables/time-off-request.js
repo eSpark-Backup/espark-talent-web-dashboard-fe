@@ -45,6 +45,7 @@ export const leaveRequestsColumn = [
     name: 'actions',
   },
 ];
+
 export const leaveBalanceColumn = [
   {
     title: 'Name',
@@ -77,6 +78,7 @@ export const leaveBalanceColumn = [
     name: 'balance',
   },
 ];
+
 export const checkInOutColumn = [
   {
     title: 'Employee ID',
@@ -114,6 +116,7 @@ export const checkInOutColumn = [
     name: 'actions',
   },
 ];
+
 export const leaveRequestsData = [
   {
     employeeId: 12222,
@@ -269,6 +272,7 @@ export const leaveRequestsData = [
     actions: ['Reject', 'Approve', 'View'],
   },
 ];
+
 export const leaveBalanceData = [
   {
     name: 'Bilal Ahmed Khan',
@@ -367,6 +371,7 @@ export const leaveBalanceData = [
     balance: '30',
   },
 ];
+
 export const checkInOutRequestData = [
   {
     id: 12222,

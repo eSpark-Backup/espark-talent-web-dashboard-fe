@@ -65,4 +65,5 @@ const DatePickerModal = ({ open, handleClose }) => {
     </Modal>
   );
 };
+
 export default DatePickerModal;

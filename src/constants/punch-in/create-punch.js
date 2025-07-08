@@ -16,4 +16,5 @@ export const PUNCH_IN = {
   checkIn: 'Check in',
   checkOut: 'Check out',
 };
+
 export const PUNCH_TYPE = ['Check in', 'Check out'];

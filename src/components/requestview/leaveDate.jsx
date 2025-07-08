@@ -43,4 +43,5 @@ const LeaveDate = ({ date, backgroundColor, isViewingClient }) => {
     </Box>
   );
 };
+
 export default LeaveDate;

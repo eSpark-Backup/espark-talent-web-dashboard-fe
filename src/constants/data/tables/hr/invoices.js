@@ -35,6 +35,7 @@ export const invoicePaymentColumn = [
     name: 'action',
   },
 ];
+
 export const otherPaymentColumn = [
   {
     title: 'Invoice reference',
@@ -229,6 +230,7 @@ export const invoicePaymentData = [
     actionStatus: true,
   },
 ];
+
 export const otherPaymentData = [
   {
     invoiceReference: 'Macbook purchase',

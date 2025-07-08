@@ -1036,4 +1036,5 @@ const LeaveViewModal = forwardRef(
 );
 
 LeaveViewModal.displayName = 'LeaveViewModal';
+
 export default LeaveViewModal;

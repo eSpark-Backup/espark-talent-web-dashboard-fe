@@ -3,7 +3,7 @@ import Skeleton from '@mui/material/Skeleton';
 import { Box } from '@mui/system';
 
 import { companyformElement } from '@/src/constants/data/forms/company-info';
-import { companyInfoSchema } from '../form/schemas/companyInfo';
+import { companyInfoSchema } from '../../schemas/companyInfo';
 import Step from '../form/step/Step';
 import { useQuery } from '@tanstack/react-query';
 import { useDispatch, useSelector } from 'react-redux';
@@ -109,4 +109,5 @@ const CompanySettings = () => {
     </Box>
   );
 };
+
 export default CompanySettings;

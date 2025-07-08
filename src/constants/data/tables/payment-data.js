@@ -30,6 +30,7 @@ export const invoicePaymentColumn = [
     name: 'download',
   },
 ];
+
 export const otherPaymentColumn = [
   {
     title: 'Invoice reference',
@@ -197,6 +198,7 @@ export const invoicePaymentData = [
     download: 'Download',
   },
 ];
+
 export const otherPaymentData = [
   {
     invoiceReference: 'Macbook purchase',

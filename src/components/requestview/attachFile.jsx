@@ -44,4 +44,5 @@ const AttachDoc = () => {
     />
   );
 };
+
 export default AttachDoc;

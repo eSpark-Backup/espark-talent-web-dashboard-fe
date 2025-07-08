@@ -94,4 +94,5 @@ const HiringForm = () => {
     </>
   );
 };
+
 export default HiringForm;

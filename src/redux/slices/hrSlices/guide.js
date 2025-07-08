@@ -31,4 +31,5 @@ const guideSlice = createSlice({
 
 export const { getGuideData, updateGuideValue, addGuide, removeGuide } =
   guideSlice.actions;
+
 export default guideSlice.reducer;

@@ -32,6 +32,7 @@ export const addEmployeeFormTableColumn = [
     name: 'action',
   },
 ];
+
 export const addEmployeeFormTableData = [
   {
     pic: '/images/users/Bilal.svg',
@@ -195,6 +196,7 @@ export const addEmployeeFormTableData = [
     isSelected: false,
   },
 ];
+
 export const contractHeading = [
   {
     activeContracts: 'Active contracts',

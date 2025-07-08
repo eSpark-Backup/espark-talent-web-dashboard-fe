@@ -26,6 +26,7 @@ export const leaveRequestsStatusTab = [
     color: '#A72A45',
   },
 ];
+
 export const checkInOutRequestsStatusTab = [
   {
     label: 'All',
@@ -52,6 +53,7 @@ export const checkInOutRequestsStatusTab = [
     color: '#A72A45',
   },
 ];
+
 export const employeeRequestsTabs = [
   {
     label: 'All',

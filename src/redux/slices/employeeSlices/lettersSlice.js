@@ -25,4 +25,5 @@ export const {
   fetchEmpLettersFailed,
   fetchEmpLettersSuccess,
 } = lettersSlice.actions;
+
 export default lettersSlice.reducer;

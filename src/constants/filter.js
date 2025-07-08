@@ -13,6 +13,7 @@ export const FILTER = {
 };
 
 export const STATUS = ['Pending', 'Completed', 'Rejected', 'Cancelled'];
+
 export const ATTENDANCE_STATUS = [
   'Present',
   'Absent',

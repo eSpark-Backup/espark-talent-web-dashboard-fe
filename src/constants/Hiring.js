@@ -21,6 +21,7 @@ export const HIRING_FORM_DATA = {
   startHiringLink: '/client/dashboard/hire-onboard/start-hiring',
   newHire: 'New hire',
 };
+
 export const GENDER_OPTION = [
   { label: 'Male', value: 'male' },
   { label: 'Female', value: 'female' },

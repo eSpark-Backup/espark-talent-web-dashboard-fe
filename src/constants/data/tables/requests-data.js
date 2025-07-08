@@ -78,6 +78,7 @@ export const employeeWFHRequestsColumn = [
     name: 'actions',
   },
 ];
+
 export const employeeLeaveBalanceColumn = [
   {
     title: 'Leave type',
@@ -105,6 +106,7 @@ export const employeeLeaveBalanceColumn = [
     name: 'pending',
   },
 ];
+
 export const employeeLeaveRequestsData = [
   {
     employeeId: 12222,
@@ -263,6 +265,7 @@ export const employeeLeaveRequestsData = [
     actionStatus: true,
   },
 ];
+
 export const employeeLeaveBalanceData = [
   {
     leave_type: 'Casual leaves',

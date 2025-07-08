@@ -4,6 +4,7 @@ export const teamManagementColumn = [
   'Team managers',
   'Team members',
 ];
+
 export const teamManagementData = [
   {
     name: 'Team Arman Khan',

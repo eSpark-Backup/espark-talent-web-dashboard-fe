@@ -33,4 +33,5 @@ export const {
   removeClientHomeData,
   updateClientImage,
 } = homeSlice.actions;
+
 export default homeSlice.reducer;

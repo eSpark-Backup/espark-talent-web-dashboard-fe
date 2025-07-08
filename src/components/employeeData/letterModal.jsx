@@ -16,7 +16,7 @@ import { HR_EMP_LETTER } from '@/src/services/apiService/apiEndPoints';
 import { api } from '@/src/services/apiService';
 import { Toast } from '../Toast/Toast';
 import { letterForm } from '@/src/constants/data/forms/letter-form';
-import { letterFormSchema } from '../form/schemas/letterForm';
+import { letterFormSchema } from '../../schemas/letterForm';
 import FormInput from '../form/ui-elements/FormInput';
 
 const LetterForm = forwardRef(({ onClose, open, empData }, ref) => {
@@ -206,4 +206,5 @@ const LetterForm = forwardRef(({ onClose, open, empData }, ref) => {
   );
 });
 LetterForm.displayName = 'LetterForm';
+
 export default LetterForm;

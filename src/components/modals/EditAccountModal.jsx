@@ -17,7 +17,7 @@ import { api } from '@/src/services/apiService';
 import { HR_ACCOUNTS } from '@/src/services/apiService/apiEndPoints';
 import { Toast } from '../Toast/Toast';
 import { useState } from 'react';
-import { editAccountInfoSchema } from '../form/schemas/addAccount';
+import { editAccountInfoSchema } from '../../schemas/addAccount';
 import { editAccountForm } from '@/src/constants/data/forms/add-account';
 import EditSettingProfile from '../employeeData/editSettingProfile';
 
@@ -235,4 +235,5 @@ const EditAccountModal = forwardRef(({ open, onClose, modalData }, ref) => {
   );
 });
 EditAccountModal.displayName = 'EditAccountModal';
+
 export default EditAccountModal;

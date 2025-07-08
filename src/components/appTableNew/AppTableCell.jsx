@@ -82,6 +82,7 @@ const renderUserAvatar = (row, col, commonCellStyle) => {
     </td>
   );
 };
+
 const renderActions = (
   row,
   col,
@@ -251,6 +252,7 @@ const renderActions = (
     </td>
   );
 };
+
 const renderCheckActions = (
   row,
   col,
@@ -426,6 +428,7 @@ const renderCheckActions = (
     );
   }
 };
+
 const renderAttendenceStatus = (statusType, index) => {
   const status = trackingStatusTypes?.find(
     ({ shortForm }) => shortForm === statusType
@@ -534,6 +537,7 @@ const renderDropdownCell = (
     </td>
   );
 };
+
 const renderDownloadButton = (
   row,
   col,

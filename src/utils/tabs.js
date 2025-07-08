@@ -1,6 +1,6 @@
 import { filterTableRowsWRTTab } from './table';
 
-export const changeTab = ({
+const changeTab = ({
   isSingular,
   event,
   newValue,
@@ -38,7 +38,8 @@ const extractedStatus = (str) => {
   const match = str.match(/\n\n(.+)/);
   return match ? match[1] : str;
 };
-export const changeActionStatusTab = ({
+
+const changeActionStatusTab = ({
   isSingular,
   event,
   newValue,
@@ -65,9 +66,11 @@ export const changeActionStatusTab = ({
   }
 };
 
-export const a11yProps = (index) => {
+const a11yProps = (index) => {
   return {
     id: `simple-tab-${index}`,
     'aria-controls': `simple-tabpanel-${index}`,
   };
 };
+
+export { changeTab, changeActionStatusTab, a11yProps, extractedStatus };

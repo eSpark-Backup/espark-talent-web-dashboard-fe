@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 import { trackingStatusTypes } from '../constants/data/tables/time-tracking';
 
-export const generateUniqueString = () => {
+const generateUniqueString = () => {
   let result = '';
   const characters =
     'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -18,12 +18,12 @@ export const generateUniqueString = () => {
   return result;
 };
 
-export const getAttendenceShortHand = (title) => {
+const getAttendenceShortHand = (title) => {
   const val = trackingStatusTypes?.filter(({ label }) => label === title);
   return val[0]?.shortForm;
 };
 
-export const convertDateFormat = (dateString) => {
+const convertDateFormat = (dateString) => {
   var parts = dateString?.split('-');
 
   // Swap day and month parts
@@ -37,7 +37,7 @@ export const convertDateFormat = (dateString) => {
   return newDateString;
 };
 
-export const countWeekendsHandler = (startDate, endDate) => {
+const countWeekendsHandler = (startDate, endDate) => {
   let start = dayjs(startDate);
   const end = dayjs(endDate);
   let weekendCount = 0;
@@ -52,7 +52,7 @@ export const countWeekendsHandler = (startDate, endDate) => {
   return weekendCount;
 };
 
-export const restructureNotificationData = (originalData) => {
+const restructureNotificationData = (originalData) => {
   // Check if originalData is empty or not an array
   if (!Array.isArray(originalData) || originalData.length === 0) {
     return [];
@@ -129,4 +129,12 @@ export const restructureNotificationData = (originalData) => {
     // Step 4: Return the restructured data
     return restructuredData;
   }
+};
+
+export {
+  generateUniqueString,
+  getAttendenceShortHand,
+  convertDateFormat,
+  countWeekendsHandler,
+  restructureNotificationData,
 };

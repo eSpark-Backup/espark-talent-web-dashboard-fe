@@ -19,4 +19,5 @@ const StartHiring = () => {
     </>
   );
 };
+
 export default StartHiring;

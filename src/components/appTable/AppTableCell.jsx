@@ -31,6 +31,7 @@ const renderAssigneeCell = (row, col, commonCellStyle) => {
     </td>
   );
 };
+
 const renderUserAvatar = (row, col, commonCellStyle) => {
   return (
     <td
@@ -44,6 +45,7 @@ const renderUserAvatar = (row, col, commonCellStyle) => {
     </td>
   );
 };
+
 const renderActions = (
   row,
   col,
@@ -154,6 +156,7 @@ const renderActions = (
     </td>
   );
 };
+
 const renderCheckActions = (
   row,
   col,
@@ -261,6 +264,7 @@ const renderCheckActions = (
     );
   }
 };
+
 const renderAttendenceStatus = (statusType, index) => {
   const status = trackingStatusTypes?.find(
     ({ shortForm }) => shortForm === statusType
@@ -343,6 +347,7 @@ const renderDropdownCell = (row, col, commonCellStyle, options) => {
     </td>
   );
 };
+
 const renderDownloadButton = (row, col, commonCellStyle) => {
   return (
     <td key={col?.index} style={{ ...commonCellStyle, flex: col?.flex || 1 }}>
@@ -362,6 +367,7 @@ const renderDownloadButton = (row, col, commonCellStyle) => {
     </td>
   );
 };
+
 const renderInfoOptions = (
   row,
   col,

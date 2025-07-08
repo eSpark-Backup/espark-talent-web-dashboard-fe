@@ -169,4 +169,5 @@ const FilterModal = ({
     </Modal>
   );
 };
+
 export default FilterModal;

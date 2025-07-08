@@ -25,4 +25,5 @@ export const {
   fetchEmpPoliciesDataRequestSuccess,
   fetchEmpPoliciesDataRequestFailed,
 } = empPoliciesSlice.actions;
+
 export default empPoliciesSlice.reducer;

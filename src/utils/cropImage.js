@@ -1,4 +1,4 @@
-export const createImage = (url) =>
+const createImage = (url) =>
   new Promise((resolve, reject) => {
     const image = new Image();
     image.addEventListener('load', () => resolve(image));
@@ -7,14 +7,14 @@ export const createImage = (url) =>
     image.src = url;
   });
 
-export function getRadianAngle(degreeValue) {
+const getRadianAngle = (degreeValue) => {
   return (degreeValue * Math.PI) / 180;
-}
+};
 
 /**
  * Returns the new bounding area of a rotated rectangle.
  */
-export function rotateSize(width, height, rotation) {
+const rotateSize = (width, height, rotation) => {
   const rotRad = getRadianAngle(rotation);
 
   return {
@@ -23,19 +23,19 @@ export function rotateSize(width, height, rotation) {
     height:
       Math.abs(Math.sin(rotRad) * width) + Math.abs(Math.cos(rotRad) * height),
   };
-}
+};
 
 /**
  * This function was adapted from the one in the ReadMe of https://github.com/DominicTobias/react-image-crop
  */
-export default async function getCroppedImg(
+const getCroppedImg = async (
   imageSrc,
   pixelCrop,
   rotation = 0,
   flip = { horizontal: false, vertical: false },
   filename = 'cropped.jpeg', // Default filename
   filetype = 'image/jpeg' // Default filetype
-) {
+) => {
   const image = await createImage(imageSrc);
   const canvas = document.createElement('canvas');
   const ctx = canvas.getContext('2d');
@@ -93,4 +93,6 @@ export default async function getCroppedImg(
       resolve({ file: file, url: URL.createObjectURL(file) });
     }, filetype);
   });
-}
+};
+
+export { getCroppedImg, rotateSize, getRadianAngle, createImage };

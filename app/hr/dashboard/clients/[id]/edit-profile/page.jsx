@@ -5,7 +5,7 @@ import { Box } from '@mui/system';
 import Step from '@/src/components/form/step/Step';
 import Breadcrumb from '@/src/components/form/step/Breadcrumb';
 import { clientEditForm } from '@/src/constants/data/forms/edit-client-info';
-import { editClientSchema } from '@/src/components/form/schemas/editClient';
+import { editClientSchema } from '@/src/schemas/editClient';
 import { useSelector } from 'react-redux';
 import { HR_GET_CLIENT_PROFILE } from '@/src/services/apiService/apiEndPoints';
 import dayjs from 'dayjs';

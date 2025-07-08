@@ -25,4 +25,5 @@ export const {
   fetchClientPoliciesRequestSuccess,
   fetchClientPoliciesRequestFailed,
 } = policiesSlice.actions;
+
 export default policiesSlice.reducer;

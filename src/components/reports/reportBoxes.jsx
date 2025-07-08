@@ -49,4 +49,5 @@ const ReportBoxes = ({ data }) => {
     </>
   );
 };
+
 export default ReportBoxes;

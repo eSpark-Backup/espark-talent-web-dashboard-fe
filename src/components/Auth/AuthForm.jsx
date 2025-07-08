@@ -17,7 +17,7 @@ import Visibility from '@mui/icons-material/Visibility';
 import { useFormik } from 'formik';
 import Cookie from 'js-cookie';
 
-import { AuthSchema } from '../form/schemas/loginAccount';
+import { AuthSchema } from '../../schemas/loginAccount';
 import { useMutation } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import {

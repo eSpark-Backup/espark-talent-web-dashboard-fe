@@ -175,4 +175,5 @@ const CredentialModal = forwardRef(({ onClose, modalData }, ref) => {
 });
 
 CredentialModal.displayName = 'CredentialModal';
+
 export default CredentialModal;

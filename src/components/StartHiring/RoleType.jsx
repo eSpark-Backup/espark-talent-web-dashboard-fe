@@ -27,4 +27,5 @@ const RoleType = () => {
     </Grid>
   );
 };
+
 export default RoleType;

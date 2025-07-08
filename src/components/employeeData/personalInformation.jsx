@@ -89,4 +89,5 @@ const PersonalInformation = ({ data }) => {
     </>
   );
 };
+
 export default PersonalInformation;

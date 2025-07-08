@@ -23,6 +23,7 @@ export const REQUESTVIEW_DATA = {
   close: 'Close',
   save: 'Save',
 };
+
 export const LEAVE_DATA = {
   fromTo: 'Oct 17, 23 - Oct 17, 23',
   leaveweek: 'October week3',
@@ -48,11 +49,13 @@ export const BACKDATE_MODAL = {
   backdate: 'You cannot apply back date leave for this leave type',
   okBtn: 'Ok',
 };
+
 export const USER_TYPES = {
   client: 'Client',
   employee: 'Employee',
   hr: 'Hr',
 };
+
 export const REQUEST_LEAVE = {
   manageLeave: ' Manage Leaves from one place.',
   create: 'Create',

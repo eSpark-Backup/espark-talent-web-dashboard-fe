@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Button, Grid, Modal, Typography } from '@mui/material';
 
-import { addOnboardFormSchema } from '@/src/components/form/schemas/addOnBoardForm';
+import { addOnboardFormSchema } from '@/src/schemas/addOnBoardForm';
 import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { addOnboardForm } from '@/src/constants/data/forms/add-onboard';
 import { useFormik } from 'formik';

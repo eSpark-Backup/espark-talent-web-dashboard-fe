@@ -151,4 +151,5 @@ const Accounts = ({ handleAdd }) => {
     </Box>
   );
 };
+
 export default Accounts;

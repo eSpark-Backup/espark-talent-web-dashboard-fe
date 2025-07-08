@@ -1,6 +1,6 @@
 const { ADD_ACCOUNT_DATA } = require('../constants/account');
 
-export const generateString = () => {
+const generateString = () => {
   const characters =
     'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   let result = '';
@@ -22,3 +22,5 @@ export const generateString = () => {
   }
   return result;
 };
+
+export { generateString };

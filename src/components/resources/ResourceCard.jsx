@@ -86,4 +86,5 @@ const ResourceCard = ({ data }) => {
     </Grid>
   );
 };
+
 export default ResourceCard;

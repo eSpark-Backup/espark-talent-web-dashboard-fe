@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Button, Grid, Modal, Typography } from '@mui/material';
 
-import { leaveManagementFormSchema } from '@/src/components/form/schemas/leaveManagementModal';
+import { leaveManagementFormSchema } from '@/src/schemas/leaveManagementModal';
 import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { leaveManagementForm } from '@/src/constants/data/forms/leave-management-modal';
 import { FORM_DATA } from '@/src/constants/form';

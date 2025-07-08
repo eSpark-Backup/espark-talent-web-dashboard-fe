@@ -17,4 +17,5 @@ const AttendanceHeading = () => {
     </Box>
   );
 };
+
 export default AttendanceHeading;

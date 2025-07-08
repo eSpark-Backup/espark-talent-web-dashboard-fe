@@ -156,6 +156,7 @@ export const editUploadInvoiceForm = [
     filelabel: 'Accept .pdf file only',
   },
 ];
+
 export const uploadOtherInvoiceForm = [
   {
     title: 'Invoice reference',

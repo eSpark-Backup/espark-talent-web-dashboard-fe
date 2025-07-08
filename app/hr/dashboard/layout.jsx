@@ -19,6 +19,7 @@ const LayoutRoot = styled('div')(({ theme }) => ({
     paddingLeft: SIDE_NAV_WIDTH,
   },
 }));
+
 const LayoutBodyRoot = styled('div')(({ theme }) => ({
   display: 'flex',
   flex: '1 1 auto',

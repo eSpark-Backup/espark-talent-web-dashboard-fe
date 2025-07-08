@@ -4,22 +4,26 @@ import { EnvironmentService } from './environmentService';
 import Cookie from 'js-cookie';
 
 const envService = new EnvironmentService();
+
 const instance = axios.create({
   baseURL: envService.getBaseURL(),
   timeout: 50000,
   headers: { 'Content-Type': 'multipart/form-data' },
 });
+
 const jsonInstance = axios.create({
   baseURL: envService.getBaseURL(),
   timeout: 50000,
   headers: { 'Content-Type': 'application/json' },
 });
+
 const fileInstance = axios.create({
   baseURL: envService.getBaseURL(),
   timeout: 50000,
   headers: { 'Content-Type': 'application/json' },
   responseType: 'blob',
 });
+
 const newInstance = axios.create({
   baseURL: envService.getBaseURL(),
   timeout: 50000,

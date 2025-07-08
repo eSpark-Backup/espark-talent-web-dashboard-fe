@@ -28,4 +28,5 @@ export const {
   fetchTimeTrackingDataRequestSuccess,
   fetchTimeTrackingDataRequestFailed,
 } = timeTrackingSlice.actions;
+
 export default timeTrackingSlice.reducer;

@@ -12,4 +12,5 @@ const FlagIcon = ({ countryCode }) => {
     </>
   );
 };
+
 export default FlagIcon;

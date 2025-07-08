@@ -56,4 +56,5 @@ const CheckinTime = ({ checkIn }) => {
     </Box>
   );
 };
+
 export default CheckinTime;

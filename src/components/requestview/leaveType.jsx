@@ -94,4 +94,5 @@ const LeaveType = ({ isViewingClient, leaveType }) => {
     </Box>
   );
 };
+
 export default LeaveType;

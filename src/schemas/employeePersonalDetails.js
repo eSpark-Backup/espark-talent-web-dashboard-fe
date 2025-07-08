@@ -22,6 +22,7 @@ export const employeePersonalDataSchema = Yup.object({
     .max(255, 'Marital status cannot exceed 255 characters'),
   phone_number: phoneValidation,
 });
+
 export const employeeOfficialDataSchema = Yup.object({
   employee_id: Yup.string(),
   job_title: Yup.string(),

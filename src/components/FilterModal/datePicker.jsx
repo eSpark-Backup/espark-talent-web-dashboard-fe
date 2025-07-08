@@ -54,4 +54,5 @@ const DatePicker = ({ title }) => {
     </Box>
   );
 };
+
 export default DatePicker;

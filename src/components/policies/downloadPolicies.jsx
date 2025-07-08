@@ -103,4 +103,5 @@ const DownloadPolicies = ({ image, reportHeading, downloadBtn, data, id }) => {
     </Box>
   );
 };
+
 export default DownloadPolicies;

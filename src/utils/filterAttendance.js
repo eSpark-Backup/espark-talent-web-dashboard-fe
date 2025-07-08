@@ -1,4 +1,4 @@
-export const filterAttendance = (
+const filterAttendance = (
   data,
   attendanceStatus,
   checkInRange,
@@ -49,3 +49,5 @@ export const filterAttendance = (
   });
   return final;
 };
+
+export { filterAttendance };

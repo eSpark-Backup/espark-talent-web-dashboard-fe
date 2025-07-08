@@ -1,5 +1,5 @@
 import AppTable from '@/src/components/appTable/AppTable';
-import { addEmployeModalFormSchema } from '@/src/components/form/schemas/addEmployeeModal';
+import { addEmployeModalFormSchema } from '@/src/schemas/addEmployeeModal';
 import Navigator from '@/src/components/form/step/Navigator';
 import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { countriesList } from '@/src/constants/countries';

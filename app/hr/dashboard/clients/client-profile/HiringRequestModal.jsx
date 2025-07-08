@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Button, Grid, Modal, Typography } from '@mui/material';
 
-import { hiringRequestSchema } from '@/src/components/form/schemas/hiringRequestForm';
+import { hiringRequestSchema } from '@/src/schemas/hiringRequestForm';
 import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { hringRequestForm } from '@/src/constants/data/forms/hiring-request';
 import { useFormik } from 'formik';

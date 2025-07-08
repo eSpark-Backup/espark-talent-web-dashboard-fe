@@ -78,4 +78,5 @@ const ContactDetails = () => {
     </Box>
   );
 };
+
 export default ContactDetails;

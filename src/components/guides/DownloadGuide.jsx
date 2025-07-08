@@ -194,4 +194,5 @@ const DownloadGuide = ({
     </Box>
   );
 };
+
 export default DownloadGuide;

@@ -20,6 +20,7 @@ export const contractSignedColumn = [
     flex: 1,
   },
 ];
+
 export const contractSignedData = [
   {
     contractName: 'NDA',
@@ -30,6 +31,7 @@ export const contractSignedData = [
     actionStatus: true,
   },
 ];
+
 export const contractHeading = [
   {
     activeContracts: 'Active contracts',

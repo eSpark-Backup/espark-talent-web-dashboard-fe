@@ -20,6 +20,7 @@ export const policyColumn = [
     name: 'action',
   },
 ];
+
 export const policyData = [
   {
     policy_name: 'Salary Based Employee Policy',

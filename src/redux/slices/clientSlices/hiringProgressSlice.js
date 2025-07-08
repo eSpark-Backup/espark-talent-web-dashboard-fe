@@ -87,4 +87,5 @@ export const {
   deleteClientHiringRequestSuccess,
   deleteClientHiringRequestFailed,
 } = hiringProgressSlice.actions;
+
 export default hiringProgressSlice.reducer;

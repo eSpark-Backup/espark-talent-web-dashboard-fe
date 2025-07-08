@@ -110,4 +110,5 @@ const LeaveRequest = ({
     </Box>
   );
 };
+
 export default LeaveRequest;

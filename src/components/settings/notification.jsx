@@ -67,4 +67,5 @@ const Notification = () => {
     </Grid>
   );
 };
+
 export default Notification;

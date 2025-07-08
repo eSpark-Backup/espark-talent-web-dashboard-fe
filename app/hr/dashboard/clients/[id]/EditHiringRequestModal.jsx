@@ -8,7 +8,7 @@ import {
   Typography,
 } from '@mui/material';
 
-import { editHiringRequestSchema } from '@/src/components/form/schemas/hiringRequestForm';
+import { editHiringRequestSchema } from '@/src/schemas/hiringRequestForm';
 import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { hringRequestForm } from '@/src/constants/data/forms/hiring-request';
 import { useFormik } from 'formik';

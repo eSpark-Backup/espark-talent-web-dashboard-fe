@@ -1,8 +1,8 @@
 import APIService from './apiService';
 
-export default function useApi(apiOverrideConfig) {
+const useApi = (apiOverrideConfig) => {
   const api = new APIService(apiOverrideConfig);
-  return {
-    api,
-  };
-}
+  return { api };
+};
+
+export default useApi;

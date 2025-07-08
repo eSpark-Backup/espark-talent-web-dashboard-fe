@@ -38,4 +38,5 @@ const DatePicker = ({ placeholder }) => {
     </LocalizationProvider>
   );
 };
+
 export default DatePicker;

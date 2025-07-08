@@ -8,7 +8,7 @@ import {
   Typography,
 } from '@mui/material';
 
-import { uploadInvoiceFormSchema } from '@/src/components/form/schemas/uploadInvoice';
+import { uploadInvoiceFormSchema } from '@/src/schemas/uploadInvoice';
 import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { uploadInvoiceForm } from '@/src/constants/data/forms/upload-invoice';
 import { useFormik } from 'formik';

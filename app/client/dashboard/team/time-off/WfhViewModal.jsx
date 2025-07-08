@@ -595,4 +595,5 @@ const WfhViewModal = forwardRef(
   }
 );
 WfhViewModal.displayName = 'WfhViewModal';
+
 export default WfhViewModal;

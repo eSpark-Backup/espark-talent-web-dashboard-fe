@@ -1,4 +1,4 @@
-import { companyInfoSchema } from '@/src/components/form/schemas/companyInfo';
+import { companyInfoSchema } from '@/src/schemas/companyInfo';
 
 export const companyformElement = [
   {
@@ -30,6 +30,7 @@ export const companyformElement = [
     col: 2.5,
   },
 ];
+
 export const formSteps = [
   {
     schema: companyInfoSchema,

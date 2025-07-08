@@ -29,6 +29,7 @@ export const contractSignedTabs = [
     columns: companyContractColumn,
   },
 ];
+
 export const contractHrSignedTabs = [
   {
     label: 'Company contracts',

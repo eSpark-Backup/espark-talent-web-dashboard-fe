@@ -365,4 +365,5 @@ export const {
   removeCurrentEmployee,
   removeAddEmpForm,
 } = employeeSlice.actions;
+
 export default employeeSlice.reducer;

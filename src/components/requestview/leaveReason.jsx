@@ -16,4 +16,5 @@ const LeaveReason = () => {
     />
   );
 };
+
 export default LeaveReason;

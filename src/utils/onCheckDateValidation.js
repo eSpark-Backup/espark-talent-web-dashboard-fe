@@ -1,4 +1,4 @@
-export const onCheckDateValidation = (dates) => {
+const onCheckDateValidation = (dates) => {
   const errorObject = {};
 
   if (dates.from === 'Invalid date' || isNaN(new Date(dates.from).getTime())) {
@@ -10,3 +10,5 @@ export const onCheckDateValidation = (dates) => {
 
   return errorObject;
 };
+
+export { onCheckDateValidation };

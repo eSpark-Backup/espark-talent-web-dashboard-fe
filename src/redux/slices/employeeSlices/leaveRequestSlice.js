@@ -61,4 +61,5 @@ export const {
   createEmpLeaveRequestFailed,
   getEmpLeaveRequestFilteredDataSuccess,
 } = leaveRequestSlice.actions;
+
 export default leaveRequestSlice.reducer;

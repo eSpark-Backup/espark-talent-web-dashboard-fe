@@ -56,4 +56,5 @@ const HiringDate = () => {
     </Box>
   );
 };
+
 export default HiringDate;

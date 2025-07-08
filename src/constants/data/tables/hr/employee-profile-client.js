@@ -25,6 +25,7 @@ export const activeClientsColumn = [
     name: 'join_date',
   },
 ];
+
 export const contractSignedColumn = [
   {
     title: 'Contract name',
@@ -43,6 +44,7 @@ export const contractSignedColumn = [
     flex: 1,
   },
 ];
+
 export const activeClientData = [
   {
     clientName: 'Bilal Ahmed Khan',
@@ -52,6 +54,7 @@ export const activeClientData = [
     joinDate: '07-October-2021',
   },
 ];
+
 export const contractSignedData = [
   {
     contractName: 'UI/UX Designer',

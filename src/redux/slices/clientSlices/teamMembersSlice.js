@@ -39,4 +39,5 @@ export const {
   fetchTeamMembersRequestOnBoardSuccess,
   fetchTeamMembersRequestTerminatedSuccess,
 } = teamMemberSlice.actions;
+
 export default teamMemberSlice.reducer;

@@ -7,4 +7,5 @@ const defaultConfig = {
   storageRefreshTokenKeyName: 'refreshToken',
   loginEndpoint: LOGIN,
 };
+
 export default defaultConfig;

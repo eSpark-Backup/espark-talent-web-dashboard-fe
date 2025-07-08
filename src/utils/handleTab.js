@@ -1,4 +1,4 @@
-export const handleTabChange = (
+const handleTabChange = (
   event,
   newValue,
   setCurrentTab,
@@ -15,3 +15,5 @@ export const handleTabChange = (
   setValue(newValue);
   setNestedValue(newValue);
 };
+
+export { handleTabChange };

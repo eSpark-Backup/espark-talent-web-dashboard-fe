@@ -1,4 +1,4 @@
-export const notificationCases = (cases, notification) => {
+const notificationCases = (cases, notification) => {
   switch (cases) {
     case 'super_admin':
       return handleAdminNotifications(notification, 'hr');
@@ -143,4 +143,13 @@ const checkIfPathnameIsSame = (url, search) => {
   } else {
     return pathname === url;
   }
+};
+
+export {
+  notificationCases,
+  handleAdminNotifications,
+  handleClientNotifications,
+  handleEmployeeNotifications,
+  constructUrl,
+  checkIfPathnameIsSame,
 };

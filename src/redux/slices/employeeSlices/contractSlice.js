@@ -33,4 +33,5 @@ export const {
   fetchEmpContractsFailed,
   fetchEmpClientContractSuccess,
 } = contractSlice.actions;
+
 export default contractSlice.reducer;

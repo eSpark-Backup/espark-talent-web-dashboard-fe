@@ -12,7 +12,7 @@ import ActionBarComponent from '@/src/components/requestview/actionbarComponent'
 import AppDropdown from '../../dashboard/appDropdown';
 import AppSearchableDropdown from '../../dashboard/appSearchableDropdown';
 import { countWeekendsHandler } from '@/src/utils/helpers';
-import { emailRegExp } from '../schemas/validations';
+import { emailRegExp } from '../../../schemas/validations';
 
 const WideFormInput = ({
   title,

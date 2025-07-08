@@ -4,6 +4,7 @@ export const COMPANY_ONBOARDING = {
   startHiring: 'Start hiring',
   newHire: 'New hire',
 };
+
 export const HIRING_STATUS = {
   status: 'Hiring Status',
   activeEmployee: 'Active Employees',
@@ -24,6 +25,7 @@ export const DASHBOARD_DATA = {
   employeeData:
     'Manage all your Employee data in a secure, organized HR database, and gather insights that lead to strategic action.',
 };
+
 export const DASHBOARD_HEADER = {
   globalHiring: 'Need help getting started with global hiring?',
   callUs: 'Book a call with us',

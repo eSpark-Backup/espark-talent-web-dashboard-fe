@@ -19,7 +19,7 @@ import { addEmpBenefit } from '@/src/redux/slices/hrSlices/employeeSlice';
 import { useDispatch } from 'react-redux';
 import { Toast } from '../Toast/Toast';
 import { benefitForm } from '@/src/constants/data/forms/benefit-form';
-import { benefitFormSchema } from '../form/schemas/benefitForm';
+import { benefitFormSchema } from '../../schemas/benefitForm';
 
 const BenefitForm = forwardRef(({ onClose, open, empData }, ref) => {
   const dispatch = useDispatch();
@@ -213,4 +213,5 @@ const BenefitForm = forwardRef(({ onClose, open, empData }, ref) => {
   );
 });
 BenefitForm.displayName = 'BenefitForm';
+
 export default BenefitForm;

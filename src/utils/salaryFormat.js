@@ -1,4 +1,4 @@
-export const formatSalary = (value, currency) => {
+const formatSalary = (value, currency) => {
   if (value >= 1_000_000_000) {
     return (
       (value % 1_000_000_000 === 0
@@ -25,7 +25,7 @@ export const formatSalary = (value, currency) => {
   return value + ' ' + currency;
 };
 
-export const getSelectedCountry = (countryName, countriesList) => {
+const getSelectedCountry = (countryName, countriesList) => {
   return (
     countriesList?.find((c) => c?.title === countryName) || {
       title: '',
@@ -34,7 +34,7 @@ export const getSelectedCountry = (countryName, countriesList) => {
   );
 };
 
-export const getSalaryAmount = (value) => {
+const getSalaryAmount = (value) => {
   if (typeof value !== 'string') return 0;
 
   // Sirf number aur K, M, B extract karne ke liye regex
@@ -46,3 +46,5 @@ export const getSalaryAmount = (value) => {
 
   return amount * (multiplier[match[2]?.toUpperCase()] || 1);
 };
+
+export { getSalaryAmount, getSelectedCountry, formatSalary };

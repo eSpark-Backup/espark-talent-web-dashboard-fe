@@ -305,4 +305,5 @@ export const {
   removeActiveClientAndData,
   removeClientFormData,
 } = clientSlice.actions;
+
 export default clientSlice.reducer;

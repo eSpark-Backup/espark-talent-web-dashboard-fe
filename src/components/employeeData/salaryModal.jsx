@@ -11,7 +11,7 @@ import { useFormik } from 'formik';
 
 import { EDIT_MODAL } from '@/src/constants/employee-profile';
 import FormInput from '../form/ui-elements/FormInput';
-import { salaryFormSchema } from '../form/schemas/salaryForm';
+import { salaryFormSchema } from '../../schemas/salaryForm';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { HR_EMP_SALARY } from '@/src/services/apiService/apiEndPoints';
 import { api } from '@/src/services/apiService';
@@ -220,4 +220,5 @@ const SalaryForm = forwardRef(({ onClose, open, empData }, ref) => {
   );
 });
 SalaryForm.displayName = 'SalaryForm';
+
 export default SalaryForm;

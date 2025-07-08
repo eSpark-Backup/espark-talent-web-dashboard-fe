@@ -18,7 +18,7 @@ import {
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import AppSearchableDropdown from '../../dashboard/appSearchableDropdown';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { emailRegExp } from '../schemas/validations';
+import { emailRegExp } from '../../../schemas/validations';
 import { ellipsisWithTooltip } from '@/src/utils/tooltipEllipsis';
 
 const DateTimePickerComponent = (props) => {

@@ -40,6 +40,7 @@ export const employeeTableInterviewScheduleColumn = [
     name: 'status',
   },
 ];
+
 export const employeeTableHiringRequestColumn = [
   {
     title: 'Job title',
@@ -92,6 +93,7 @@ export const employeeTableHiringRequestColumn = [
     name: 'action',
   },
 ];
+
 export const employeeTableOnboardingColumn = [
   {
     title: 'Employee name',
@@ -139,6 +141,7 @@ export const employeeTableOnboardingColumn = [
     name: 'salary',
   },
 ];
+
 export const employeeTableDataInterviewSchedule = [
   {
     employeeName: 'Bilal Ahmed Khan',
@@ -213,6 +216,7 @@ export const employeeTableDataInterviewSchedule = [
     dropdownStatus: true,
   },
 ];
+
 export const employeeTableDataHiringRequest = [
   {
     jobTitle: 'UI/UX Designer',
@@ -272,6 +276,7 @@ export const employeeTableDataHiringRequest = [
     actionStatus: true,
   },
 ];
+
 export const employeeTableDataOnBoarding = [
   {
     employeeName: 'Bilal Ahmed Khan',

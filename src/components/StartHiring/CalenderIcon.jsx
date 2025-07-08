@@ -12,4 +12,5 @@ const CalendarIcon = (props) => {
     />
   );
 };
+
 export default CalendarIcon;

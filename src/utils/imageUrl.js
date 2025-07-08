@@ -1,4 +1,4 @@
-export const processImage = (upload) => {
+const processImage = (upload) => {
   return new Promise((resolve, reject) => {
     let imageUrl = '';
     if (upload) {
@@ -38,3 +38,5 @@ export const processImage = (upload) => {
     };
   });
 };
+
+export { processImage };

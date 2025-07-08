@@ -12,7 +12,7 @@ import { EDIT_MODAL } from '@/src/constants/employee-profile';
 import { useFormik } from 'formik';
 import FormInput from '../form/ui-elements/FormInput';
 import { officialDetailsForm } from '@/src/constants/data/forms/employee-personal-details';
-import { employeeOfficialDataSchema } from '../form/schemas/employeePersonalDetails';
+import { employeeOfficialDataSchema } from '../../schemas/employeePersonalDetails';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import { HR_UPDATE_EMP_INFO } from '@/src/services/apiService/apiEndPoints';
@@ -289,4 +289,5 @@ const EditOfficialModal = forwardRef(
   }
 );
 EditOfficialModal.displayName = 'EditOfficialModal';
+
 export default EditOfficialModal;

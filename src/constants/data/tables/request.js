@@ -40,6 +40,7 @@ export const employeeLeaveRequestColumn = [
     name: 'actions',
   },
 ];
+
 export const employeeWhfRequestColumn = [
   {
     title: 'Employee Id',
@@ -77,6 +78,7 @@ export const employeeWhfRequestColumn = [
     name: 'actions',
   },
 ];
+
 export const employeePunchRequestColumn = [
   {
     title: 'Employee Id',

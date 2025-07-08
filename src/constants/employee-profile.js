@@ -41,6 +41,7 @@ export const employeeProfileData = {
   save: 'Save',
   addEmployee: 'Add employee',
 };
+
 export const EDIT_MODAL = {
   editProfile: 'Edit profile picture',
   addassetForm: 'Add Asset',
@@ -99,6 +100,7 @@ export const EDIT_MODAL = {
   uploadPicture: 'Upload picture',
   submit: 'Submit',
 };
+
 export const employeeDataLabel = [
   { label: 'Employee name', value: 'John Doe', name: 'employee_name' },
   { label: 'Employee ID', value: '090078601', name: 'employee_id' },
@@ -115,6 +117,7 @@ export const employeeDataLabel = [
   },
   { label: 'Marital status', value: 'Married', name: 'marital_status' },
 ];
+
 export const employeePersonalDataLabel = [
   {
     label: 'First Name ',
@@ -132,6 +135,7 @@ export const employeePersonalDataLabel = [
   { label: 'Marital status', value: 'Married', name: 'marital_status' },
   { label: 'Phone number', value: '+92 03192013292', name: 'phone_number' },
 ];
+
 export const employeeOfficialDataLabel = [
   { label: 'Employee ID', value: '090078601', name: 'employee_id' },
   { label: 'Official Email', value: 'johndoe@123.com', name: 'email' },
@@ -157,11 +161,13 @@ export const employeeOfficialDataLabel = [
     type: 'date',
   },
 ];
+
 export const emergencyContact = [
   { label: 'Name', value: 'John Doe', name: 'name' },
   { label: 'Relationship', value: 'Father', name: 'relation' },
   { label: 'Phone', value: '03323883838', name: 'phone_number' },
 ];
+
 export const employeeProfileDetails = [
   {
     employeeId: 12222,
@@ -184,6 +190,7 @@ export const employeeProfileDetails = [
     maritalStatus: 'single',
   },
 ];
+
 export const employeesTabs = [
   {
     label: 'Public',
@@ -369,6 +376,7 @@ export const SALARY_TABLECOLUMN = [
     name: 'action',
   },
 ];
+
 export const SALARY_SAMPLE_DATA = [
   {
     id: 8,
@@ -459,6 +467,7 @@ export const SALARY_SAMPLE_DATA = [
     pay_slip: '../filelink',
   },
 ];
+
 export const ASSET_TABLEDATA = [
   {
     gadget: 'LapTop',

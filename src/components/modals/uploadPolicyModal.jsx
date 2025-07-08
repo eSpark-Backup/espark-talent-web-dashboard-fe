@@ -10,7 +10,7 @@ import {
 
 import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { useFormik } from 'formik';
-import { uploadPolicyFormSchema } from '../form/schemas/uploadPolicy';
+import { uploadPolicyFormSchema } from '../../schemas/uploadPolicy';
 import { uploadPolicyForm } from '@/src/constants/data/forms/upload-policy';
 import { UPLOAD_POLICY } from '@/src/constants/upload-policy';
 import { useMutation } from '@tanstack/react-query';
@@ -240,4 +240,5 @@ const UploadPolicyModal = forwardRef(({ open, onClose }, ref) => {
   );
 });
 UploadPolicyModal.displayName = 'UploadPolicyModal';
+
 export default UploadPolicyModal;
