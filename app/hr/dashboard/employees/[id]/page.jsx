@@ -17,7 +17,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 
-import { employeeProfileData } from '@/src/constants/employeeProfile';
+import { employeeProfileData } from '@/src/constants/employee-profile';
 import Profile from '@/src/components/employeeData/profile';
 import AttendanceReport from '@/src/components/employeeData/attendanceReports';
 import EditEmployeeCredential from '@/src/components/employeeData/editEmployeeCredential';

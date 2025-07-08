@@ -1,4 +1,4 @@
-import { PUNCH_IN } from '@/src/constants/punchIn/createPunch';
+import { PUNCH_IN } from '@/src/constants/punchIn/create-punch';
 import { Box, Button } from '@mui/material';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import Image from 'next/image';

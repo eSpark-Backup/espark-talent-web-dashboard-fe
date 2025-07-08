@@ -1,4 +1,4 @@
-import { Timeline_Data } from '@/src/constants/employeeDashboard';
+import { Timeline_Data } from '@/src/constants/employee-dashboard';
 import { Box, Typography } from '@mui/material';
 import Image from 'next/image';
 import React from 'react';

@@ -12,7 +12,7 @@ import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { useFormik } from 'formik';
 import { editUploadPolicyFormSchema } from '../form/schemas/uploadPolicy';
 import { uploadPolicyForm } from '@/src/constants/data/forms/upload-policy';
-import { UPLOAD_POLICY } from '@/src/constants/uploadPolicy';
+import { UPLOAD_POLICY } from '@/src/constants/upload-policy';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import { HR_POLICY } from '@/src/services/apiService/apiEndPoints';

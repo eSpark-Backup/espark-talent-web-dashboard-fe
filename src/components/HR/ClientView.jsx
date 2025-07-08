@@ -13,8 +13,8 @@ import { Box, useTheme } from '@mui/system';
 import { useRouter } from 'next/navigation';
 
 import AppConfirmationMadal from '../modals/AppConfirmationMadal';
-import { REMOVE_MODAL } from '@/src/constants/contractSigned';
-import { CLIENT_VIEW } from '@/src/constants/ClientProfile';
+import { REMOVE_MODAL } from '@/src/constants/contract-signed';
+import { CLIENT_VIEW } from '@/src/constants/client-profile';
 import { api } from '@/src/services/apiService';
 import {
   HR_GET_CLIENTS,

@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import Input from '../dashboard/input';
 import Image from 'next/image';
 import ClientView from './ClientView';
-import { EMPLOYEE_DATA } from '@/src/constants/AllEmployee';
+import { EMPLOYEE_DATA } from '@/src/constants/all-employee';
 import { HR_GET_CLIENTS } from '@/src/services/apiService/apiEndPoints';
 import { api } from '@/src/services/apiService';
 import { useQuery } from '@tanstack/react-query';

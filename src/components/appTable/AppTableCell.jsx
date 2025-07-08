@@ -5,9 +5,9 @@ import Link from 'next/link';
 
 import AppCustomDropdown from '../dashboard/appCustomDropdown';
 import { toCamelCase } from '@/src/utils/stringModification';
-import { trackingStatusTypes } from '@/src/constants/data/tables/timeTracking';
+import { trackingStatusTypes } from '@/src/constants/data/tables/time-tracking';
 import AppTableInfoOptionsCell from './AppTableInfoOptionsCell';
-import { modulepermissionColumn } from '@/src/constants/data/tables/modulePermission';
+import { modulepermissionColumn } from '@/src/constants/data/tables/module-permission';
 
 const renderAssigneeCell = (row, col, commonCellStyle) => {
   const [avatar, name, subtitle] = row.assignee;

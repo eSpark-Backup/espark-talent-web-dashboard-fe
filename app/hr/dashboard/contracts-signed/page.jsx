@@ -5,11 +5,11 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 
 import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
-import { contractHrSignedTabs } from '@/src/constants/data/tabs/contractSignedTabs';
+import { contractHrSignedTabs } from '@/src/constants/data/tabs/contract-signed-tabs';
 import AppTable from '@/src/components/appTableNew/AppTable';
 import AppConfirmationMadal from '@/src/components/modals/AppConfirmationMadal';
 import AddContractHrPortalModal from '@/src/components/contractHrportal/contractHr';
-import { CONTRACT_SIGNED } from '@/src/constants/contractSigned';
+import { CONTRACT_SIGNED } from '@/src/constants/contract-signed';
 import { handleTabChange } from '@/src/utils/handleTab';
 import {
   getClientsCompanyContractRequest,

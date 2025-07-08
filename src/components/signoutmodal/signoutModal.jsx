@@ -7,7 +7,7 @@ import {
   Typography,
 } from '@mui/material';
 
-import { SIGNOUT_MODAL_DATA } from '@/src/constants/signoutModal';
+import { SIGNOUT_MODAL_DATA } from '@/src/constants/signout-modal';
 
 const SignoutModal = ({ openModal, setOpenModal, onClick }) => {
   const handleClose = () => setOpenModal(false);

@@ -2,7 +2,7 @@ import React, { useMemo, useState } from 'react';
 import { Backdrop, Box, Modal, Typography } from '@mui/material';
 
 import { ATTENDANCE_STATUS, FILTER, STATUS } from '@/src/constants/filter';
-import { LEAVE_TYPE } from '@/src/constants/requestviewModal';
+import { LEAVE_TYPE } from '@/src/constants/requestview-modal';
 import CheckinTime from './checkinTime';
 import ResetButton from './resetButton';
 import LeaveType from './leaveType';

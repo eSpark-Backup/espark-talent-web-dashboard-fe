@@ -12,7 +12,7 @@ import { useFormik } from 'formik';
 import { editOffShContractFormHrPortalSchema } from '../form/schemas/contractSignedForm';
 import { editContractFormHrPortal } from '@/src/constants/data/forms/contract';
 import FormInput from '../form/ui-elements/FormInput';
-import { CONTRACT_SIGNED } from '@/src/constants/contractSigned';
+import { CONTRACT_SIGNED } from '@/src/constants/contract-signed';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import dayjs from 'dayjs';

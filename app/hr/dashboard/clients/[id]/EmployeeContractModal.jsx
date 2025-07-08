@@ -12,7 +12,7 @@ import { contractFormHrPortalSchema } from '@/src/components/form/schemas/contra
 import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { employeeContractForm } from '@/src/constants/data/forms/contract';
 import { useFormik } from 'formik';
-import { CONTRACT_SIGNED } from '@/src/constants/contractSigned';
+import { CONTRACT_SIGNED } from '@/src/constants/contract-signed';
 import { FORM_DATA } from '@/src/constants/form';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { HR_COMPANY_CONTRACTS } from '@/src/services/apiService/apiEndPoints';

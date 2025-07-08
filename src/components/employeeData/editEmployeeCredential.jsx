@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Button, Grid, Modal, Typography } from '@mui/material';
 
-import { EDIT_MODAL } from '@/src/constants/employeeProfile';
+import { EDIT_MODAL } from '@/src/constants/employee-profile';
 import { useFormik } from 'formik';
 import FormInput from '../form/ui-elements/FormInput';
 import { formEmployeeCredential } from '@/src/constants/data/forms/employee-credential';

@@ -8,7 +8,7 @@ import {
 } from '@mui/material';
 
 import { HIRING_FORM_DATA } from '@/src/constants/Hiring';
-import { COUNTRY_OPTIONS } from '@/src/constants/countryCode';
+import { COUNTRY_OPTIONS } from '@/src/constants/country-code';
 import SalaryRange from './SalaryRangle';
 import Image from 'next/image';
 import FlagIcon from '@/src/constants/Flag';

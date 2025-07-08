@@ -1,5 +1,5 @@
 import { a11yProps } from '@/src/utils/tabs';
-import { teamMembersColumn, teamMembersData } from '../tables/teamMembers';
+import { teamMembersColumn, teamMembersData } from '../tables/team-members';
 
 export const teamTabs = [
   {

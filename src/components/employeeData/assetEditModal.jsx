@@ -9,7 +9,7 @@ import {
 } from '@mui/material';
 import { useFormik } from 'formik';
 
-import { EDIT_MODAL } from '@/src/constants/employeeProfile';
+import { EDIT_MODAL } from '@/src/constants/employee-profile';
 import FormInput from '../form/ui-elements/FormInput';
 import { editAssetForm } from '@/src/constants/data/forms/asset-form';
 import { assetFormSchema } from '../form/schemas/assetForm';

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Tooltip, Typography } from '@mui/material';
 
-import { employeePersonalDataLabel } from '@/src/constants/employeeProfile';
+import { employeePersonalDataLabel } from '@/src/constants/employee-profile';
 import dayjs from 'dayjs';
 import { ellipsisWithTooltip } from '@/src/utils/tooltipEllipsis';
 

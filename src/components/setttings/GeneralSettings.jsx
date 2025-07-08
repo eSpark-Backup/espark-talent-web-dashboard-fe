@@ -14,7 +14,7 @@ import {
   Profile_Edit_Section,
   User_Detail,
   User_Password,
-} from '@/src/constants/profileEditData';
+} from '@/src/constants/profile-edit-data';
 import { generalSettingFormSchema } from '../form/schemas/generalDetails';
 import { settingForm } from '@/src/constants/data/forms/setting-form';
 import Image from 'next/image';

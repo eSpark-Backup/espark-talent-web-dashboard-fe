@@ -7,7 +7,7 @@ import {
   Auth_Fields,
   Auth_Signin,
   Trouble_Modal,
-} from '@/src/constants/authConstant';
+} from '@/src/constants/auth-constant';
 import { Box, Grid } from '@mui/material';
 import HavingTroubleModal from '../modals/HavingTroubleModal';
 

@@ -1,6 +1,6 @@
 import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
-import { employeeRequestsTabs } from '@/src/constants/data/tabs/requestTabs';
-import { REQUEST_LEAVE } from '@/src/constants/requestviewModal';
+import { employeeRequestsTabs } from '@/src/constants/data/tabs/request-tabs';
+import { REQUEST_LEAVE } from '@/src/constants/requestview-modal';
 import { Box, Button, Tab, Tabs, Typography } from '@mui/material';
 import Image from 'next/image';
 import React, { useState } from 'react';

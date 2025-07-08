@@ -3,7 +3,7 @@ import { Grid, Typography } from '@mui/material';
 
 import { HIRING_FORM_DATA } from '@/src/constants/Hiring';
 import AppDropdown from '../dashboard/appDropdown';
-import { employmentTerm } from '@/src/constants/data/dropdown.js/startHiring';
+import { employmentTerm } from '@/src/constants/data/dropdown.js/start-hiring';
 
 const EmployementTerm = () => {
   const [isLoadingTitles, setIsLoadingTitles] = useState(false);

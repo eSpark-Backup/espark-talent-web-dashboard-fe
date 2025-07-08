@@ -15,7 +15,7 @@ import AddEmployeeModal from './AddEmployeeModal';
 import AddInterviewModal from './AddInterviewModal';
 import AddOnboardModal from './AddOnboardModal';
 import EditModal from '@/src/components/employeeData/editModal';
-import { CLIENTPROFILE } from '@/src/constants/ClientProfile';
+import { CLIENTPROFILE } from '@/src/constants/client-profile';
 import { removeActiveClientAndData } from '@/src/redux/slices/hrSlices/clientSlice';
 import { useDispatch } from 'react-redux';
 

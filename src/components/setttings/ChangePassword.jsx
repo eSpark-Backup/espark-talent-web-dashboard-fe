@@ -5,7 +5,7 @@ import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { useFormik } from 'formik';
 import { changePasswordFormSchema } from '../form/schemas/changePassword';
 import { changePasswordForm } from '@/src/constants/data/forms/change-password';
-import { User_Password } from '@/src/constants/profileEditData';
+import { User_Password } from '@/src/constants/profile-edit-data';
 import { useMutation } from '@tanstack/react-query';
 import { CLIENT_UPDATE_PASSWORD } from '@/src/services/apiService/apiEndPoints';
 import { api } from '@/src/services/apiService';

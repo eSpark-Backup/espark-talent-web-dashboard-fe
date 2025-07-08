@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Tooltip, Typography } from '@mui/material';
 
 import dayjs from 'dayjs';
-import { employeeOfficialDataLabel } from '@/src/constants/employeeProfile';
+import { employeeOfficialDataLabel } from '@/src/constants/employee-profile';
 import { ellipsisWithTooltip } from '@/src/utils/tooltipEllipsis';
 
 const OfficialInformation = ({ data }) => {

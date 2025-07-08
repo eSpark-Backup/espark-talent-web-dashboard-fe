@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Typography } from '@mui/material';
 import Image from 'next/image';
 
-import { LEAVE_DATA } from '@/src/constants/requestviewModal';
+import { LEAVE_DATA } from '@/src/constants/requestview-modal';
 
 const LeaveDay = ({ employeeId, employeeName }) => {
   return (

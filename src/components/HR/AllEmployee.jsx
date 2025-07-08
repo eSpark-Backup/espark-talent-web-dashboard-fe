@@ -6,7 +6,7 @@ import Input from '../dashboard/input';
 import Image from 'next/image';
 import EmployeeView from './EmployeeView';
 import { useRouter } from 'next/navigation';
-import { employeeProfileData } from '@/src/constants/employeeProfile';
+import { employeeProfileData } from '@/src/constants/employee-profile';
 import { useQuery } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import { HR_EMPLOYEES } from '@/src/services/apiService/apiEndPoints';
