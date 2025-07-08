@@ -28,6 +28,7 @@ import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
 import { sheetStatusTypes } from '@/src/constants/data/tables/timeSheet';
 import { renderTrackingStatus } from './renderComponents';
 import { TIME_REQUEST } from '@/src/constants/timeSheet';
+import { formatTimeToHHMM } from '@/src/utils/global';
 
 const Dashboard = () => {
   const months = [
@@ -167,13 +168,6 @@ const Dashboard = () => {
     const [day, month, year] = dateString.split('-');
     const formattedInput = `${year}-${month}-${day}`;
     return dayjs(formattedInput)?.format('D MMMM, YYYY');
-  }
-
-  function formatTimeToHHMM(time) {
-    if (time === '-') return time;
-    const [hour, minute, secondPart] = time?.split(':') || [];
-    const period = secondPart?.split(' ')[1];
-    return `${hour || ''}:${minute || ''} ${period || ''}`;
   }
 
   return (

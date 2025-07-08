@@ -17,8 +17,9 @@ import { getAttendanceRequestSuccess } from '@/src/redux/slices/hrSlices/employe
 import { attendanceReportTableColumn } from '@/src/constants/data/tables/attendanceReport';
 import { calculateExpectedTime } from '@/src/utils/calculateExpectedTime';
 import { ellipsisWithTooltip } from '@/src/utils/tooltipEllipsis';
+import { formatWithSeconds } from '@/src/utils/global';
 
-const AttendanceReport = ({ employeeData }) => {
+const AttendanceReport = ({ employeeData, filterFormValues }) => {
   const dispatch = useDispatch();
   const params = useParams();
   const clientQuery = useQueryClient();
@@ -136,6 +137,60 @@ const AttendanceReport = ({ employeeData }) => {
         : '-',
     })) || [];
 
+  const filteredTimeSheet =
+    formattedTimeSheet?.filter((row) => {
+      const {
+        from,
+        to,
+        attendanceStatus,
+        checkIn = {},
+        checkOut = {},
+      } = filterFormValues || {};
+
+      const rowDate = dayjs(row?.date, 'D MMMM, YYYY');
+      const fromDate = from ? dayjs(from, 'YYYY-MM-DD') : null;
+      const toDate = to ? dayjs(to, 'YYYY-MM-DD') : null;
+
+      const checkInFrom = formatWithSeconds(checkIn?.from); // ex: 02:29:00 PM
+      const checkInTo = formatWithSeconds(checkIn?.to); // ex: 04:15:00 PM
+
+      const checkOutFrom = formatWithSeconds(checkOut?.from); // ex: 03:13:00 PM
+      const checkOutTo = formatWithSeconds(checkOut?.to); // ex: 04:12:07 PM
+
+      const actualCheckIn =
+        row?.check_in !== '-'
+          ? dayjs(row.check_in, ['hh:mm:ss A', 'hh:mm A', 'HH:mm:ss'], true)
+          : null;
+      const actualCheckOut =
+        row?.check_out !== '-'
+          ? dayjs(row.check_out, ['hh:mm:ss A', 'hh:mm A', 'HH:mm:ss'], true)
+          : null;
+
+      const isDateInRange =
+        (!fromDate || rowDate.isSame(fromDate) || rowDate.isAfter(fromDate)) &&
+        (!toDate || rowDate.isSame(toDate) || rowDate.isBefore(toDate));
+
+      const isStatusMatch = attendanceStatus
+        ? row?.status?.includes(attendanceStatus)
+        : true;
+
+      const isCheckInMatch =
+        checkInFrom && checkInTo && actualCheckIn
+          ? actualCheckIn.isSameOrAfter(checkInFrom) &&
+            actualCheckIn.isSameOrBefore(checkInTo)
+          : true;
+
+      const isCheckOutMatch =
+        checkOutFrom && checkOutTo && actualCheckOut
+          ? actualCheckOut.isSameOrAfter(checkOutFrom) &&
+            actualCheckOut.isSameOrBefore(checkOutTo)
+          : true;
+
+      return (
+        isDateInRange && isStatusMatch && isCheckInMatch && isCheckOutMatch
+      );
+    }) || [];
+
   return (
     <>
       <Box
@@ -194,7 +249,11 @@ const AttendanceReport = ({ employeeData }) => {
           <AppTable
             minWidth={'1200px'}
             column={attendanceReportTableColumn}
-            data={formattedTimeSheet || ['No attendance record found!']}
+            data={
+              filteredTimeSheet.length
+                ? filteredTimeSheet
+                : ['No attendance record found!']
+            }
             handleClickActionView={handleAttendanceModal}
             isLoading={isLoading}
           />

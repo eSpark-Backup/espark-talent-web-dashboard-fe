@@ -90,6 +90,7 @@ const Page = () => {
   const [showLetterModal, setLetterModal] = useState(false);
   const [showBenefitModal, setBenefitModal] = useState(false);
   const [showFilterModal, setShowFilterModal] = useState(false);
+  const [filterFormValues, setfilterFormValues] = useState(null);
   const [currentValue, setCurrentValue] = useState(value);
   const [timeTracking, setTimeTracking] = useState({
     month: months[date.getMonth()],
@@ -806,6 +807,8 @@ const Page = () => {
                         onClose={handleClose}
                         attendanceStatus
                         filterForm={filterAttendanceForm}
+                        filterFormValues={filterFormValues}
+                        setfilterFormValues={setfilterFormValues}
                         url={`${HR_GET_EMP_ATTENDENCE}?e_email=${currentEmployee?.email}`}
                         dispatchFunction={dispatchFunction}
                       />
@@ -990,7 +993,10 @@ const Page = () => {
                   <Client />
                 </>
               ) : value === employeeProfileData?.valuethree ? (
-                <AttendanceReport employeeData={currentEmployee || {}} />
+                <AttendanceReport
+                  employeeData={currentEmployee || {}}
+                  filterFormValues={filterFormValues || {}}
+                />
               ) : value === employeeProfileData?.valueFive ? (
                 <TimeAndLeaves />
               ) : value === employeeProfileData?.valueFour ? (
