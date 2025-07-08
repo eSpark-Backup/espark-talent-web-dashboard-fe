@@ -11,7 +11,7 @@ import { filterDataByKeyword } from '@/src/utils/search';
 import { filterTableRowsWRTTab } from '@/src/utils/table';
 import { changeTab } from '@/src/utils/tabs';
 import { teamTabs } from '@/src/constants/data/tabs/team-tabs';
-import { HIRING_FORM_DATA } from '@/src/constants/Hiring';
+import { HIRING_FORM_DATA } from '@/src/constants/hiring';
 import AppTable from '@/src/components/appTableNew/AppTable';
 import { useQuery } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';

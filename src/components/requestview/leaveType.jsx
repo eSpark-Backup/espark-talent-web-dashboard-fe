@@ -8,7 +8,10 @@ import {
 } from '@mui/material';
 import Image from 'next/image';
 
-import { LEAVE_TYPE, REQUESTVIEW_DATA } from '@/src/constants/requestview-modal';
+import {
+  LEAVE_TYPE,
+  REQUESTVIEW_DATA,
+} from '@/src/constants/requestview-modal';
 
 const LeaveType = ({ isViewingClient, leaveType }) => {
   const [selectedValue, setSelectedValue] = useState();

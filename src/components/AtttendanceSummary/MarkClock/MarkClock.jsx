@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { Box, Typography } from '@mui/material';
-import { PUNCH_IN } from '@/src/constants/punchIn/create-punch';
+import { PUNCH_IN } from '@/src/constants/punch-in/create-punch';
 import MarkCheckIn from './MarkCheckin';
 import MarkCheckOut from './MarkCheckout';
 import MarkBreak from './MarkBreakNew';

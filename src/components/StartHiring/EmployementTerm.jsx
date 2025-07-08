@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Grid, Typography } from '@mui/material';
 
-import { HIRING_FORM_DATA } from '@/src/constants/Hiring';
+import { HIRING_FORM_DATA } from '@/src/constants/hiring';
 import AppDropdown from '../dashboard/appDropdown';
 import { employmentTerm } from '@/src/constants/data/dropdown.js/start-hiring';
 

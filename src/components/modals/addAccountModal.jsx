@@ -12,7 +12,7 @@ import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { useFormik } from 'formik';
 import { accountInfoSchema } from '../form/schemas/addAccount';
 import { accountForm } from '@/src/constants/data/forms/add-account';
-import { SETTING } from '@/src/constants/SettingHr';
+import { SETTING } from '@/src/constants/setting-hr';
 import { FORM_DATA } from '@/src/constants/form';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';

@@ -11,7 +11,6 @@ import { useFormik } from 'formik';
 
 import { EDIT_MODAL } from '@/src/constants/employee-profile';
 import FormInput from '../form/ui-elements/FormInput';
-import { letterEditFormSchema } from '../form/schemas/letterForm';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { HR_EMP_LETTER } from '@/src/services/apiService/apiEndPoints';
 import { api } from '@/src/services/apiService';

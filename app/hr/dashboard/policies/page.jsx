@@ -17,7 +17,7 @@ import {
   HR_POLICY_EDIT,
 } from '@/src/services/apiService/apiEndPoints';
 import { Toast } from '@/src/components/Toast/Toast';
-import { SETTING } from '@/src/constants/SettingHr';
+import { SETTING } from '@/src/constants/setting-hr';
 import {
   getPolicyData,
   removePolicy,

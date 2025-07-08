@@ -9,7 +9,7 @@ import { api } from '@/src/services/apiService';
 import { useMutation } from '@tanstack/react-query';
 import { getPasswordData } from '@/src/redux/slices/hrSlices/settingsSlice';
 import { useDispatch } from 'react-redux';
-import { SETTING } from '@/src/constants/SettingHr';
+import { SETTING } from '@/src/constants/setting-hr';
 import { Button, CircularProgress, Grid } from '@mui/material';
 import FormInput from '../form/ui-elements/FormInput';
 import { useFormik } from 'formik';

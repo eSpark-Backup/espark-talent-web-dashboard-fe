@@ -6,7 +6,7 @@ import GenderInput from './GenderInput';
 import JobTitle from './JobTitle';
 import CountryDropdown from './SelectCountry';
 import Submit from './SubmitButton';
-import { HIRING_FORM_DATA } from '@/src/constants/Hiring';
+import { HIRING_FORM_DATA } from '@/src/constants/hiring';
 
 const HiringForm = () => {
   const [open, setOpen] = useState(false);

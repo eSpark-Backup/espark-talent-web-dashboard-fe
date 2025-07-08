@@ -5,7 +5,7 @@ import Skeleton from '@mui/material/Skeleton';
 import AppTable from '../appTableNew/AppTable';
 import { modulepermissionColumn } from '@/src/constants/data/tables/module-permission';
 import RoleModal from './addRoleModal';
-import { SETTING } from '@/src/constants/SettingHr';
+import { SETTING } from '@/src/constants/setting-hr';
 import { useDispatch, useSelector } from 'react-redux';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
