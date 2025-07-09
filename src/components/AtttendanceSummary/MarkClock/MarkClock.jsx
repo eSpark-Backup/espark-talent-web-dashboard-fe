@@ -10,7 +10,7 @@ import { useEffect } from 'react';
 import Stack from '@mui/material/Stack';
 import dayjs from 'dayjs';
 
-function getTimeDifference(startTime, endTime) {
+const getTimeDifference = (startTime, endTime) => {
   const start = new Date(`01/01/2022 ${startTime}`).getTime();
   const end = new Date(`01/01/2022 ${endTime}`).getTime();
   let diff = Math.abs(end - start);
@@ -24,7 +24,7 @@ function getTimeDifference(startTime, endTime) {
   const seconds = Math.floor(diff / 1000);
 
   return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-}
+};
 
 const MarkClock = ({ data, isLoading }) => {
   const { title, clock_icon, break_out_icon } = data || {};
@@ -103,7 +103,7 @@ const MarkClock = ({ data, isLoading }) => {
       return dayjs(time).format('hh:mm A');
     }
   };
-  function convertTimeFormat(timeString) {
+  const convertTimeFormat = (timeString) => {
     if (timeString === '-') {
       return '--:-- --';
     } else {
@@ -114,7 +114,7 @@ const MarkClock = ({ data, isLoading }) => {
       return `${hours}:${minutes} ${ampm}`;
     }
     // Split the time string into hours, minutes, and am/pm parts
-  }
+  };
   return (
     <Box
       sx={{

@@ -76,7 +76,7 @@ const Dashboard = () => {
         });
     },
   });
-  function convertDateFormat(dateStr) {
+  const convertDateFormat = (dateStr) => {
     // Split the date string into day, month, and year
     var parts = dateStr.split('-');
     var day = parts[0];
@@ -87,7 +87,7 @@ const Dashboard = () => {
     var newDateStr = month + '-' + day + '-' + year;
 
     return newDateStr;
-  }
+  };
   const reformTimeSheet = (sheet) => {
     const tempData = sheet?.map((item) => ({
       ...item,
@@ -163,18 +163,18 @@ const Dashboard = () => {
     attendenceReportDownloadMutation.mutate();
   };
 
-  function formatDate(dateString) {
+  const formatDate = (dateString) => {
     const [day, month, year] = dateString.split('-');
     const formattedInput = `${year}-${month}-${day}`;
     return dayjs(formattedInput)?.format('D MMMM, YYYY');
-  }
+  };
 
-  function formatTimeToHHMM(time) {
+  const formatTimeToHHMM = (time) => {
     if (time === '-') return time;
     const [hour, minute, secondPart] = time?.split(':') || [];
     const period = secondPart?.split(' ')[1];
     return `${hour || ''}:${minute || ''} ${period || ''}`;
-  }
+  };
 
   return (
     <>

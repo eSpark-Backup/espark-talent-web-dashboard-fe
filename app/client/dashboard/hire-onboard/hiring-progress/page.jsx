@@ -371,9 +371,9 @@ const Dashboard = () => {
     downloadContractMutation.mutate(id);
   };
 
-  function reverseArrayOrder(array) {
+  const reverseArrayOrder = (array) => {
     return array?.slice()?.reverse();
-  }
+  };
 
   return (
     <>

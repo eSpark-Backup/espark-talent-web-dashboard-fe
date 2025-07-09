@@ -48,12 +48,12 @@ const Dashboard = () => {
   const [leaveRequestDataState, setLeaveRequestDataState] = useState([]);
   const [clockInOutDataState, setClockInOutDataState] = useState([]);
 
-  function formatTimeToHHMM(time) {
+  const formatTimeToHHMM = (time) => {
     if (time === '-') return time;
     const [hour, minute, secondPart] = time?.split(':') || [];
     const period = secondPart?.split(' ')[1];
     return `${hour || ''}:${minute || ''} ${period || ''}`;
-  }
+  };
 
   useEffect(() => {
     setLeaveRequestDataState(data?.leaveRequest);

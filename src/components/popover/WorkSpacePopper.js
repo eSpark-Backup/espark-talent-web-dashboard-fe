@@ -9,15 +9,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addCurrentWorkSpace } from '@/src/redux/slices/employeeSlices/empHomeSlice';
 import { useRouter } from 'next/navigation';
 import { ellipsisWithTooltip } from '@/src/utils/tooltipEllipsis';
-
-export default function WorkSpacePopper({
+const WorkSpacePopper = ({
   button,
   workspace,
   setWorkspace,
   setProfileMenu,
   setNotification,
   sx,
-}) {
+}) => {
   const { workspaces } = useSelector((state) => state?.emp?.home?.homeData);
   const { currentWorkSpace } = useSelector((state) => state?.emp?.home);
   const dispatch = useDispatch();
@@ -195,4 +194,6 @@ export default function WorkSpacePopper({
       </Popper>
     </div>
   );
-}
+};
+
+export default WorkSpacePopper;

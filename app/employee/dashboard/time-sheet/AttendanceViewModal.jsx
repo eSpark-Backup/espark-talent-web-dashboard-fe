@@ -6,7 +6,7 @@ import dayjs from 'dayjs';
 
 const AttendanceViewModal = forwardRef(
   ({ modalData, empData, handleClose }, ref) => {
-    function formatDate(inputDate) {
+    const formatDate = (inputDate) => {
       // Split the date string into day, month, and year
       var parts = inputDate.split('-');
       // Reorder the parts to form the new date format
@@ -16,7 +16,7 @@ const AttendanceViewModal = forwardRef(
         return dayjs(inputDate).format('MMMM DD, YYYY');
       }
       return formattedDate;
-    }
+    };
     const fontSize = {
       '@media (min-width: 280px) and (max-width: 400px)': {
         fontSize: '12px',

@@ -196,11 +196,11 @@ const Role = () => {
     setSelectedRolePermissionIndex(selectedRoleIndex);
   };
 
-  function capitalizeFirstLetter(string) {
+  const capitalizeFirstLetter = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
-  }
+  };
 
-  function generateRoleDetailsWithState(rolesDetails) {
+  const generateRoleDetailsWithState = (rolesDetails) => {
     return rolesDetails?.map((role) => {
       const state = Object.keys(role)
         .filter((key) => key.includes('_perms'))
@@ -223,7 +223,7 @@ const Role = () => {
         state: state,
       };
     });
-  }
+  };
 
   useEffect(() => {
     const tempDataNew = rolesDetails.length
@@ -248,7 +248,7 @@ const Role = () => {
       Toast('error', err.message || 'Failed to update data');
     },
   });
-  function convertArrayToObject(array) {
+  const convertArrayToObject = (array) => {
     const result = {};
 
     array.forEach((item) => {
@@ -257,7 +257,7 @@ const Role = () => {
     });
 
     return result;
-  }
+  };
   const handleSaveRolePermissions = () => {
     if (
       selectedRolePermissionIndex === undefined ||

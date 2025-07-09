@@ -41,18 +41,18 @@ const WideFormInput = ({
   const [isLoadingList, setIsLoadingList] = useState(false);
   const [datePickerValue, setDatePickerValue] = useState(null);
   const handleCloseDatePicker = () => setIsOpenDatePicker(false);
-  function getTimeComponents(timeString) {
+  const getTimeComponents = (timeString) => {
     const arr = timeString.split(':');
     const hour = parseInt(arr[0]);
     const min = parseInt(arr[1]);
     return { hour, min };
-  }
-  function convertTo24HourFormat(time) {
+  };
+  const convertTo24HourFormat = (time) => {
     const parsedTime = dayjs(time, ['h:mm A', 'H:mm']);
     const time24HourFormat = parsedTime.format('HH:mm');
     console.log(setDatePickerValue);
     return time24HourFormat;
-  }
+  };
   const handleSelectItem = (item) => {
     const tempErrors = { ...errors };
     if (Object.hasOwnProperty.call(tempErrors, name)) {
@@ -111,7 +111,7 @@ const WideFormInput = ({
     setFieldValue?.(field, value);
   };
 
-  function getDaysDifference(startDate, endDate) {
+  const getDaysDifference = (startDate, endDate) => {
     const start = new Date(startDate);
     start.setHours(start.getHours() - start.getTimezoneOffset(), 0, 0, 0);
 
@@ -127,7 +127,7 @@ const WideFormInput = ({
     );
 
     return differenceInDays;
-  }
+  };
 
   // const start = dayjs(values.startDate);
   // const end = start.add(values.availableLeaves || 0, 'day');

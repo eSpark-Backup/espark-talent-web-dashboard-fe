@@ -4,7 +4,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import Image from 'next/image';
 
-function CircularProgressWithLabel(props) {
+const CircularProgressWithLabel = (props) => {
   return (
     <Box sx={{ position: 'relative', display: 'inline-flex' }}>
       <CircularProgress variant="determinate" {...props} color="primary" />
@@ -30,7 +30,7 @@ function CircularProgressWithLabel(props) {
       </Box>
     </Box>
   );
-}
+};
 
 CircularProgressWithLabel.propTypes = {
   /**
@@ -41,7 +41,7 @@ CircularProgressWithLabel.propTypes = {
   value: PropTypes.number.isRequired,
 };
 
-export default function ViewLoader() {
+const ViewLoader = () => {
   const [progress, setProgress] = React.useState(10);
 
   React.useEffect(() => {
@@ -56,4 +56,6 @@ export default function ViewLoader() {
   }, []);
 
   return <CircularProgressWithLabel value={progress} size={'25px'} />;
-}
+};
+
+export default ViewLoader;

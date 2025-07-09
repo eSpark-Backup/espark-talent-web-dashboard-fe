@@ -11,7 +11,7 @@ import {
 import { Box, Grid } from '@mui/material';
 import HavingTroubleModal from '../modals/HavingTroubleModal';
 
-export default function Authentication() {
+const Authentication = () => {
   const [troubleModal, setTroubleModal] = React.useState(false);
 
   const handleOpenTroubleModal = () => setTroubleModal(true);
@@ -116,4 +116,6 @@ export default function Authentication() {
       </Grid>
     </>
   );
-}
+};
+
+export default Authentication;

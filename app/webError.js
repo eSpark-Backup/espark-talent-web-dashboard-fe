@@ -9,16 +9,16 @@ class WebError extends React.Component {
     super(props);
     this.refreshPage = this.refreshPage.bind(this);
   }
-  refreshPage() {
+  refreshPage = () => {
     window.location.reload();
-  }
+  };
 
-  static getInitialProps({ res, err }) {
+  static getInitialProps = ({ res, err }) => {
     const statusCode = res ? res.statusCode : err ? err.statusCode : 404;
     return { statusCode };
-  }
+  };
 
-  render() {
+  render = () => {
     return (
       <Box
         sx={{
@@ -89,6 +89,6 @@ class WebError extends React.Component {
         </Box>
       </Box>
     );
-  }
+  };
 }
 export default WebError;

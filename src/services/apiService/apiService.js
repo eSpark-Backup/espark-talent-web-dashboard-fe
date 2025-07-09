@@ -130,13 +130,13 @@ export default class APIService {
       callback(accessToken)
     );
   }
-  getToken() {
+  getToken = () => {
     return JSON.parse(JSON.parse(localStorage.getItem('persist:root'))?.auth)
       ?.userData?.token;
-  }
-  getRefreshToken() {
+  };
+  getRefreshToken = () => {
     return localStorage.getItem(this.config.storageRefreshTokenKeyName);
-  }
+  };
   setToken(value) {
     const token = localStorage.getItem('persist:root');
     const parsedToken = JSON.parse(token);
@@ -189,14 +189,14 @@ export default class APIService {
   async downloadFile(url) {
     return await fileInstance?.get(url);
   }
-  updateHeadersForFormData() {
+  updateHeadersForFormData = () => {
     instance.defaults.headers.common['Content-Type'] = 'multipart/form-data';
-  }
-  resetHeaders() {
+  };
+  resetHeaders = () => {
     if (
       instance.defaults.headers.common['Content-Type'] !== 'application/json'
     ) {
       instance.defaults.headers.common['Content-Type'] = 'application/json';
     }
-  }
+  };
 }

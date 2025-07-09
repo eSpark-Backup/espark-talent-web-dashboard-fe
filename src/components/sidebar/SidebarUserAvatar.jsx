@@ -3,7 +3,7 @@ import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 
-function stringAvatar(name) {
+const stringAvatar = (name) => {
   let initials = '';
   const parts = name?.split(' ');
 
@@ -26,9 +26,8 @@ function stringAvatar(name) {
     },
     children: initials,
   };
-}
-
-export default function SidebarUserAvatar({ userName, userImage }) {
+};
+const SidebarUserAvatar = ({ userName, userImage }) => {
   return (
     <Stack direction="row">
       <Avatar
@@ -57,4 +56,6 @@ export default function SidebarUserAvatar({ userName, userImage }) {
       </Avatar>
     </Stack>
   );
-}
+};
+
+export default SidebarUserAvatar;

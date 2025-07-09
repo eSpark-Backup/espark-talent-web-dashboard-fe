@@ -15,9 +15,9 @@ const AppCustomDropdown = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentState, setCurrentState] = useState('');
-  function capitalizeFirstLetter(str) {
+  const capitalizeFirstLetter = (str) => {
     return str?.charAt(0)?.toUpperCase() + str?.slice(1);
-  }
+  };
   useEffect(() => {
     setCurrentState(capitalizeFirstLetter(row[col]));
   }, [row, col]);

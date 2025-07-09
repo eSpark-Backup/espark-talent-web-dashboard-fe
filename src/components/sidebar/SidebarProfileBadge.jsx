@@ -3,7 +3,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Badge from '@mui/material/Badge';
 
-export default function DotBadge({ icon, color }) {
+const DotBadge = ({ icon, color }) => {
   return (
     <Box sx={{ color: 'action.active' }}>
       <Badge
@@ -14,4 +14,6 @@ export default function DotBadge({ icon, color }) {
       </Badge>
     </Box>
   );
-}
+};
+
+export default DotBadge;

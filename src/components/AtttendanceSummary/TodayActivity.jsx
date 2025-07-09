@@ -9,7 +9,7 @@ import Skeleton from '@mui/material/Skeleton';
 const TodayActivity = ({ isLoading }) => {
   const { today_activity } =
     useSelector((state) => state?.emp?.home?.homeData) || {};
-  function convertTimeFormat(timeString) {
+  const convertTimeFormat = (timeString) => {
     if (timeString === '-') {
       return timeString;
     } else {
@@ -19,7 +19,7 @@ const TodayActivity = ({ isLoading }) => {
       // Return the formatted time string
       return `${hours}:${minutes} ${ampm}`;
     }
-  }
+  };
 
   return (
     <Box

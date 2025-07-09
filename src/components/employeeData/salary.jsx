@@ -106,7 +106,7 @@ const Salary = ({ timeTracking }) => {
       .catch((err) => Toast('error', err.message || 'Failed to delete salary'));
   };
 
-  function processColumns() {
+  const processColumns = () => {
     if (role === 'super_admin') {
       return SALARY_TABLECOLUMN;
     }
@@ -126,7 +126,7 @@ const Salary = ({ timeTracking }) => {
     }
 
     return filteredColumns;
-  }
+  };
 
   return (
     <>

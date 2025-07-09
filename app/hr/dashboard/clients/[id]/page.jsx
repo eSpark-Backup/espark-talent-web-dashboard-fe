@@ -556,7 +556,7 @@ const AddEmployee = () => {
         });
     },
   });
-  function ClientProcessColumns(column) {
+  const ClientProcessColumns = (column) => {
     const download =
       role === 'super_admin' ||
       (role !== 'super_admin' && client_perms?.[0]?.download);
@@ -569,9 +569,9 @@ const AddEmployee = () => {
         (download || item.name !== 'job_description') &&
         (payment_status || item.name !== 'payment_status')
     );
-  }
+  };
 
-  function InvoiceProcessColumns(column) {
+  const InvoiceProcessColumns = (column) => {
     const download =
       role === 'super_admin' ||
       (role !== 'super_admin' && invoices_perms?.[0]?.download);
@@ -584,7 +584,7 @@ const AddEmployee = () => {
         (download || item.name !== 'download') &&
         (payment_status || item.name !== 'payment_status')
     );
-  }
+  };
 
   useEffect(() => {
     ClientHiringReqQuery?.refetch();

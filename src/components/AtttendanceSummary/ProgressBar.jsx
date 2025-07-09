@@ -22,7 +22,7 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
   },
 }));
 
-export default function ProgressBar({ item }) {
+const ProgressBar = ({ item }) => {
   const { leave_summary } = useSelector((state) => state?.emp?.home?.homeData);
 
   const getValue = () => {
@@ -40,4 +40,6 @@ export default function ProgressBar({ item }) {
       <BorderLinearProgress variant="determinate" value={getValue()} />
     </Box>
   );
-}
+};
+
+export default ProgressBar;

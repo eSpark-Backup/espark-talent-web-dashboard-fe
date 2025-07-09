@@ -108,7 +108,7 @@ const Benefits = () => {
     setShowEditModal(false);
   };
 
-  function processColumns() {
+  const processColumns = () => {
     if (role === 'super_admin') {
       return BENEFITS_TABLECOLUMN;
     }
@@ -121,7 +121,7 @@ const Benefits = () => {
     }
 
     return BENEFITS_TABLECOLUMN;
-  }
+  };
 
   return (
     <>

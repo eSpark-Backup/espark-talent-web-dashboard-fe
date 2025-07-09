@@ -104,7 +104,7 @@ const Assets = ({ empData }) => {
     mutate(deletingAssetId);
   };
 
-  function processColumns() {
+  const processColumns = () => {
     if (
       role === 'super_admin' ||
       (role !== 'super_admin' && employee_perms[0].delete)
@@ -113,7 +113,7 @@ const Assets = ({ empData }) => {
     else {
       return ASSET_TABLECOLUMN.filter((item) => item.name !== 'action');
     }
-  }
+  };
 
   return (
     <>

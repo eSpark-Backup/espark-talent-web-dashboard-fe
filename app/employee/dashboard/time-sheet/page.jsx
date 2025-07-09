@@ -49,7 +49,7 @@ const Dashboard = () => {
   const [open, setOpen] = useState(false);
   const [modalData, setModalData] = useState({});
   const [showFilterModal, setShowFilterModal] = useState(false);
-  function convertDateFormat(dateStr) {
+  const convertDateFormat = (dateStr) => {
     // Split the date string into day, month, and year
     var parts = dateStr?.split('-');
     var day = parts[1];
@@ -60,7 +60,7 @@ const Dashboard = () => {
     var newDateStr = month + '-' + day + '-' + year;
 
     return newDateStr;
-  }
+  };
   const { isLoading } = useQuery({
     refetchOnWindowFocus: false,
     queryKey: ['getTimeSheet'],

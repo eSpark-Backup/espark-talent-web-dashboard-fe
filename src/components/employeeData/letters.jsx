@@ -137,7 +137,7 @@ const Letters = () => {
     setShowEditModal(false);
   };
 
-  function processColumns() {
+  const processColumns = () => {
     if (role === 'super_admin') {
       return HR_EMP_LETTERS_TABLECOLUMN;
     }
@@ -161,7 +161,7 @@ const Letters = () => {
     }
 
     return filteredColumns;
-  }
+  };
   return (
     <>
       <Box

@@ -29,14 +29,14 @@ import { notificationCases } from '@/src/utils/notificationCases';
 import { ellipsisWithTooltip } from '@/src/utils/tooltipEllipsis';
 dayjs.extend(relativeTime);
 
-export default function ProfilePopper({
+const ProfilePopper = ({
   button,
   profileMenu,
   setProfileMenu,
   setWorkspace,
   notification,
   setNotification,
-}) {
+}) => {
   const profilePopupRef = React.useRef(null);
   const notificationPopupRef = React.useRef(null);
   const dispatch = useDispatch();
@@ -547,4 +547,6 @@ export default function ProfilePopper({
       </Popper>
     </div>
   );
-}
+};
+
+export default ProfilePopper;

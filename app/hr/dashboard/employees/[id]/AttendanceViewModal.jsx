@@ -7,11 +7,11 @@ import dayjs from 'dayjs';
 // Wrap your component with React.forwardRef
 const AttendanceViewModal = React.forwardRef(
   ({ modalData, empData, handleClose, image }, ref) => {
-    function formatDate(inputDate) {
+    const formatDate = (inputDate) => {
       var parts = inputDate.split('-');
       var formattedDate = parts[1] + '-' + parts[0] + '-' + parts[2];
       return formattedDate;
-    }
+    };
 
     const fontSize = {
       '@media (min-width: 280px) and (max-width: 400px)': {

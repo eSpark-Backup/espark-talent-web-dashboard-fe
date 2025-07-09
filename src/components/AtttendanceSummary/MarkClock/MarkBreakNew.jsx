@@ -17,7 +17,7 @@ import {
 } from '@/src/redux/slices/employeeSlices/empHomeSlice';
 import { Toast } from '../../Toast/Toast';
 
-function getTimeDifference(startTime, endTime) {
+const getTimeDifference = (startTime, endTime) => {
   const start = new Date(`01/01/2022 ${startTime}`).getTime();
   const end = new Date(`01/01/2022 ${endTime}`).getTime();
   let diff = Math.abs(end - start);
@@ -31,7 +31,7 @@ function getTimeDifference(startTime, endTime) {
   const seconds = Math.floor(diff / 1000);
 
   return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-}
+};
 
 const MarkBreak = ({ icon }) => {
   const isValidBreakButton = () => {

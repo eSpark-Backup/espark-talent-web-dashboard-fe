@@ -13,7 +13,7 @@ import { WORK_SPACE_ICON } from '@/src/constants/sidebar';
 import WorkSpaceIcon from './WorkSpaceIcon';
 import { useSelector } from 'react-redux';
 
-export default function ResponsiveNavbar({ openSidebar }) {
+const ResponsiveNavbar = ({ openSidebar }) => {
   const [profileMenu, setProfileMenu] = React.useState(null);
   const [workspace, setWorkspace] = React.useState(null);
   const [notification, setNotification] = React.useState(null);
@@ -137,4 +137,6 @@ export default function ResponsiveNavbar({ openSidebar }) {
       </AppBar>
     </Box>
   );
-}
+};
+
+export default ResponsiveNavbar;
