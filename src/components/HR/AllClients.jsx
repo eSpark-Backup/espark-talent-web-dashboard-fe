@@ -11,7 +11,7 @@ import { HR_GET_CLIENTS } from '@/src/services/apiService/apiEndPoints';
 import { api } from '@/src/services/apiService';
 import { useQuery } from '@tanstack/react-query';
 import { useDispatch, useSelector } from 'react-redux';
-import { Toast } from '../Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import { getClientsData } from '@/src/redux/slices/hrSlices/clientSlice';
 import DashboardHeading from '../dashboard/dashboardHeading';
 

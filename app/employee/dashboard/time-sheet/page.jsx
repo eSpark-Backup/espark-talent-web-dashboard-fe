@@ -34,7 +34,7 @@ import dayjs from 'dayjs';
 import { getAttendenceShortHand } from '@/src/utils/helpers';
 import { getTimeSheet } from '@/src/utils/getTimeSheet';
 import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
-import { Toast } from '@/src/components/Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import Skeleton from '@mui/material/Skeleton';
 import { calculateExpectedTime } from '@/src/utils/calculateExpectedTime';
 import { ellipsisWithTooltip } from '@/src/utils/tooltipEllipsis';

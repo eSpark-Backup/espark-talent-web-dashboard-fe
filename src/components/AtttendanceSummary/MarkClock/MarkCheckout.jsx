@@ -7,7 +7,7 @@ import { api } from '@/src/services/apiService';
 import { markCheckout } from '@/src/redux/slices/employeeSlices/empHomeSlice';
 import { EMP_HOME } from '@/src/services/apiService/apiEndPoints';
 import { useDispatch, useSelector } from 'react-redux';
-import { Toast } from '../../Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import AppConfirmationMadal from '../../modals/AppConfirmationMadal';
 
 const MarkCheckOut = () => {

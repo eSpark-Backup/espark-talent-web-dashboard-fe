@@ -1,6 +1,6 @@
 import { addNewInterviewFormSchema } from '@/src/components/form/schemas/addNewInterviewForm';
 import FormInput from '@/src/components/form/ui-elements/FormInput';
-import { Toast } from '@/src/components/Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import { countriesList } from '@/src/constants/countries';
 import { addNewInterviewForm } from '@/src/constants/data/forms/add-new-interview';
 import { FORM_DATA } from '@/src/constants/form';

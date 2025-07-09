@@ -11,7 +11,7 @@ import {
 import Cropper from 'react-easy-crop';
 import CropIcon from '@mui/icons-material/Crop';
 import { Cancel } from '@mui/icons-material';
-import getCroppedImg from '../utils/cropImage';
+import getCroppedImg from '@/src/utils/cropImage';
 
 const ProfileCroper = ({
   photoURL,

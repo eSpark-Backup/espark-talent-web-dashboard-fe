@@ -16,7 +16,7 @@ import {
   getEmpBenefitRequestSuccess,
   deleteEmpBenefit,
 } from '@/src/redux/slices/hrSlices/employeeSlice';
-import { Toast } from '../Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import EditBenefitForm from './editBenefitModal';
 import dayjs from 'dayjs';
 

@@ -16,7 +16,7 @@ import { CONTRACT_SIGNED } from '@/src/constants/contract-signed';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import dayjs from 'dayjs';
-import { Toast } from '../Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import { HR_OFF_SHORE_CONTRACTS } from '@/src/services/apiService/apiEndPoints';
 
 const EditContractHr = ({ open, onClose, modalData }) => {

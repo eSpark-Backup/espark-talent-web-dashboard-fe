@@ -18,7 +18,7 @@ import { api } from '@/src/services/apiService';
 import dayjs from 'dayjs';
 import { editEmpSalary } from '@/src/redux/slices/hrSlices/employeeSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { Toast } from '../Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import { salaryForm } from '@/src/constants/data/forms/salary-form';
 
 const EditSalaryForm = ({ onClose, open, selectedId }) => {

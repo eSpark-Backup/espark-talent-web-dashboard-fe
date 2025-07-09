@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { HR_COMPANY_SETTINGS } from '@/src/services/apiService/apiEndPoints';
 import { getCompSettingsData } from '@/src/redux/slices/hrSlices/settingsSlice';
 import { api } from '@/src/services/apiService';
-import { Toast } from '../Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import { getHomeData } from '@/src/redux/slices/hrSlices/homeSlice';
 
 const CompanySettings = () => {

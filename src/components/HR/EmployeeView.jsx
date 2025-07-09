@@ -23,7 +23,7 @@ import {
   deleteCurrentEmpDataSuccess,
 } from '@/src/redux/slices/hrSlices/employeeSlice';
 import { api } from '@/src/services/apiService';
-import { Toast } from '../Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import EmployeeCardSkeleton from './EmployeeCardSkeleton';
 
 const EmployeeView = ({ status, data, isLoading }) => {

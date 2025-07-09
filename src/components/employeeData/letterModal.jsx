@@ -14,7 +14,7 @@ import { useDispatch } from 'react-redux';
 import { addEmpLetter } from '@/src/redux/slices/hrSlices/employeeSlice';
 import { HR_EMP_LETTER } from '@/src/services/apiService/apiEndPoints';
 import { api } from '@/src/services/apiService';
-import { Toast } from '../Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import { letterForm } from '@/src/constants/data/forms/letter-form';
 import { letterFormSchema } from '../form/schemas/letterForm';
 import FormInput from '../form/ui-elements/FormInput';

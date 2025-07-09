@@ -24,7 +24,7 @@ import {
   fetchTeamMembersRequestOnBoardSuccess,
   fetchTeamMembersRequestTerminatedSuccess,
 } from '@/src/redux/slices/clientSlices/teamMembersSlice';
-import { Toast } from '@/src/components/Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
 import { useRouter } from 'next/navigation';
 import dayjs from 'dayjs';

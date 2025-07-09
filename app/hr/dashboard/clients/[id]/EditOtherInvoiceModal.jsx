@@ -17,7 +17,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import { HR_CLIENT_OTHER_INVOICE } from '@/src/services/apiService/apiEndPoints';
 import dayjs from 'dayjs';
-import { Toast } from '@/src/components/Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import { getSalaryAmount } from '@/src/utils/salaryFormat';
 
 const EditOtherInvoiceModal = ({ open, onClose, title, existingData }) => {

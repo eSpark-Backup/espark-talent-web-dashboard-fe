@@ -21,7 +21,7 @@ import {
   Attendance_Summary_Title,
   Mark_CLock_Title,
 } from '@/src/constants/employee-dashboard';
-import { Toast } from '@/src/components/Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 
 const Dashboard = () => {
   const { empDetails } = useSelector((state) => state?.auth?.userData);

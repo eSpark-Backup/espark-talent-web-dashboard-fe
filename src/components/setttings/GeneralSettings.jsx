@@ -21,7 +21,7 @@ import Image from 'next/image';
 import { CLIENT_UPDATE_COMPANY } from '@/src/services/apiService/apiEndPoints';
 import { api } from '@/src/services/apiService';
 import { useMutation } from '@tanstack/react-query';
-import { Toast } from '../Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchClientHomeDataRequestSuccess } from '@/src/redux/slices/clientSlices/homeSlice';
 import ClientProfileCroper from './ClientProfileCroper';

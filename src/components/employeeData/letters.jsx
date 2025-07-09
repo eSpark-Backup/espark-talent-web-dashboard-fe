@@ -19,7 +19,7 @@ import {
   getEmpLetterRequestSuccess,
   deleteEmpLetter,
 } from '@/src/redux/slices/hrSlices/employeeSlice';
-import { Toast } from '../Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import dayjs from 'dayjs';
 
 const Letters = () => {

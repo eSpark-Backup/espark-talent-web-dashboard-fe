@@ -8,7 +8,7 @@ import DiscoverTalentPlatform from '@/src/components/dashboard/discoverTalent';
 import { DASHBOARD_DATA } from '@/src/constants/dashboard';
 import { useDispatch, useSelector } from 'react-redux';
 import { api } from '@/src/services/apiService';
-import { Toast } from '@/src/components/Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import {
   fetchClientHomeDataRequest,
   fetchClientHomeDataRequestSuccess,

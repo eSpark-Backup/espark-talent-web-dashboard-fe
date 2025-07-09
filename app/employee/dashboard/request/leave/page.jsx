@@ -28,7 +28,7 @@ import {
   getEmpLeaveRequestDataSuccess,
 } from '@/src/redux/slices/employeeSlices/leaveRequestSlice';
 import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
-import { Toast } from '@/src/components/Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import dayjs from 'dayjs';
 
 const Dashboard = () => {

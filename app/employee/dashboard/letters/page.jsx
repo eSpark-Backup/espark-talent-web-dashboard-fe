@@ -16,7 +16,7 @@ import {
   fetchEmpLettersSuccess,
 } from '@/src/redux/slices/employeeSlices/lettersSlice';
 import { api } from '@/src/services/apiService';
-import { Toast } from '@/src/components/Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import dayjs from 'dayjs';
 
 const Letters = () => {

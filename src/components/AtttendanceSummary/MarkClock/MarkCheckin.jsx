@@ -5,7 +5,7 @@ import { Button, Grid, Typography } from '@mui/material';
 import { useMutation } from '@tanstack/react-query';
 import React from 'react';
 import dayjs from 'dayjs';
-import { Toast } from '../../Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import { useDispatch, useSelector } from 'react-redux';
 import { marKCheckin } from '@/src/redux/slices/employeeSlices/empHomeSlice';
 

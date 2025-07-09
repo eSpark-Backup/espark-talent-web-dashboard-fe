@@ -8,7 +8,7 @@ import { SETTING } from '@/src/constants/setting-hr';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import { usePathname, useRouter } from 'next/navigation';
-import { Toast } from '../../Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import UploadImageModal from '../../employeeData/UploadImageModal';
 
 const Step = ({

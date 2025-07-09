@@ -21,7 +21,7 @@ import {
   fetchTimeTrackingDataRequestSuccess,
 } from '@/src/redux/slices/clientSlices/timeTrackingSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { Toast } from '@/src/components/Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import { getAttendenceShortHand } from '@/src/utils/helpers';
 import dayjs from 'dayjs';
 import DashboardHeading from '@/src/components/dashboard/dashboardHeading';

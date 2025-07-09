@@ -16,7 +16,7 @@ import { HR_EMP_BENEFIT } from '@/src/services/apiService/apiEndPoints';
 import { api } from '@/src/services/apiService';
 import { editEmpBenefit } from '@/src/redux/slices/hrSlices/employeeSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { Toast } from '../Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import { benefitForm } from '@/src/constants/data/forms/benefit-form';
 import { benefitFormSchema } from '../form/schemas/benefitForm';
 

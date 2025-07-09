@@ -10,7 +10,7 @@ import { useMutation } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import { HR_CLIENT_EMPLOYEES } from '@/src/services/apiService/apiEndPoints';
 import { updateClientEmpStatus } from '@/src/redux/slices/hrSlices/clientSlice';
-import { Toast } from '../Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import { useDispatch } from 'react-redux';
 import EmployeeCardSkeleton from './EmployeeCardSkeleton';
 

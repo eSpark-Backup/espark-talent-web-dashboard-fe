@@ -4,7 +4,7 @@ import { Box, useMediaQuery } from '@mui/system';
 import { passwordChangeSchema } from '../form/schemas/password';
 import { passwordformElement } from '@/src/constants/data/forms/password-change-form';
 import { HR_CHANGE_PASSWORD } from '@/src/services/apiService/apiEndPoints';
-import { Toast } from '../Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import { api } from '@/src/services/apiService';
 import { useMutation } from '@tanstack/react-query';
 import { getPasswordData } from '@/src/redux/slices/hrSlices/settingsSlice';

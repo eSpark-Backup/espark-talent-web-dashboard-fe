@@ -8,7 +8,7 @@ import {
   HR_GET_CLIENT_PROFILE,
   HR_UPDATE_EMP_IMAGE,
 } from '@/src/services/apiService/apiEndPoints';
-import { Toast } from '../Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import { updateCurrentEmployeeImage } from '@/src/redux/slices/hrSlices/employeeSlice';
 import ProfileCroper from '../ProfileCroper';
 import { updateCurrentClientImage } from '@/src/redux/slices/hrSlices/clientSlice';

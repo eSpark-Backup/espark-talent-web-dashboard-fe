@@ -9,7 +9,7 @@ import { User_Password } from '@/src/constants/profile-edit-data';
 import { useMutation } from '@tanstack/react-query';
 import { CLIENT_UPDATE_PASSWORD } from '@/src/services/apiService/apiEndPoints';
 import { api } from '@/src/services/apiService';
-import { Toast } from '../Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 
 const ChangePassword = () => {
   const { mutate, isPending } = useMutation({

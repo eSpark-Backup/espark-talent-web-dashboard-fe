@@ -22,7 +22,7 @@ import {
   updateEmpLeaves,
   updateEmpLeavesRequest,
 } from '@/src/redux/slices/hrSlices/employeeSlice';
-import { Toast } from '@/src/components/Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 
 const LeaveManagementModal = ({ open, onClose }) => {
   const { leaves } = useSelector(

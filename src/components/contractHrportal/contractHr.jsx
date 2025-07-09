@@ -18,7 +18,7 @@ import { addOffShoreContract } from '@/src/redux/slices/hrSlices/contractSlice';
 import { useDispatch } from 'react-redux';
 import { api } from '@/src/services/apiService';
 import dayjs from 'dayjs';
-import { Toast } from '../Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 
 const AddContractHrPortalModal = ({ open, onClose, endPoint }) => {
   const [contractFormValues, setContractFormValues] = useState({});

@@ -19,7 +19,7 @@ import { api } from '@/src/services/apiService';
 import dayjs from 'dayjs';
 import { addEmpAsset } from '@/src/redux/slices/hrSlices/employeeSlice';
 import { useDispatch } from 'react-redux';
-import { Toast } from '../Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 
 const AssetForm = forwardRef(({ onClose, open, empData }, ref) => {
   const dispatch = useDispatch();

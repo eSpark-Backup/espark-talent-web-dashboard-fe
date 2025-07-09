@@ -3,7 +3,7 @@ import AppTable from '@/src/components/appTableNew/AppTable';
 import { addEmployeModalFormSchema } from '@/src/components/form/schemas/addEmployeeModal';
 import Navigator from '@/src/components/form/step/Navigator';
 import FormInput from '@/src/components/form/ui-elements/FormInput';
-import { Toast } from '@/src/components/Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import { addEmployeeModalFormSteps } from '@/src/constants/data/forms/add-employee-modal';
 import { FORM_DATA } from '@/src/constants/form';
 import {

@@ -17,7 +17,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import { HR_UPDATE_EMP_INFO } from '@/src/services/apiService/apiEndPoints';
 import { useParams } from 'next/navigation';
-import { Toast } from '../Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import dayjs from 'dayjs';
 
 const EditOfficialModal = forwardRef(

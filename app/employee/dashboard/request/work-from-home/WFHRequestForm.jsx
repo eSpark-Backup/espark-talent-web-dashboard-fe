@@ -17,7 +17,7 @@ import {
   createEmpWfhRequestFailed,
 } from '@/src/redux/slices/employeeSlices/wfhRequestSlice';
 
-import { Toast } from '@/src/components/Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import { createWFHRequestForm } from '@/src/constants/data/forms/create-wfh-request';
 
 const WFHRequestForm = ({ handleClose }) => {

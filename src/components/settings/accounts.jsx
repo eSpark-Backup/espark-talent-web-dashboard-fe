@@ -15,7 +15,7 @@ import {
   getAccountsData,
 } from '@/src/redux/slices/hrSlices/settingsSlice';
 import { api } from '@/src/services/apiService';
-import { Toast } from '../Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import EditAccountModal from '../modals/EditAccountModal';
 
 const Accounts = ({ handleAdd }) => {

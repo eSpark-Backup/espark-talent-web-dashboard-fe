@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { DOWNLOAD_POLICY } from '@/src/services/apiService/apiEndPoints';
 import { useMutation } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
-import { Toast } from '../Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 
 const DownloadPolicies = ({ image, reportHeading, downloadBtn, data, id }) => {
   const { mutate, isPending } = useMutation({

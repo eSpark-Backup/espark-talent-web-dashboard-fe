@@ -10,7 +10,7 @@ import {
   fetchEmpBenefitsSuccess,
 } from '@/src/redux/slices/employeeSlices/benefitsSlice';
 import { api } from '@/src/services/apiService';
-import { Toast } from '@/src/components/Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 
 import { useDispatch } from 'react-redux';
 import DashboardHeading from '@/src/components/dashboard/dashboardHeading';

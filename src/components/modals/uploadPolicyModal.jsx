@@ -18,7 +18,7 @@ import { api } from '@/src/services/apiService';
 import { HR_POLICY } from '@/src/services/apiService/apiEndPoints';
 import { useDispatch, useSelector } from 'react-redux';
 import { addPolicy } from '@/src/redux/slices/hrSlices/policy';
-import { Toast } from '../Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 
 const UploadPolicyModal = forwardRef(({ open, onClose }, ref) => {
   const [policyFormVal, setPolicyFormVal] = useState(null);

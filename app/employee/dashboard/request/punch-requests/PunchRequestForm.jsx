@@ -10,7 +10,7 @@ import { EMP_PUNCH_REQUEST } from '@/src/services/apiService/apiEndPoints';
 import { useMutation } from '@tanstack/react-query';
 import dayjs from 'dayjs';
 import { pascalToSnake } from '@/src/utils/stringModification';
-import { Toast } from '@/src/components/Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import { createEmpPunchRequestSuccess } from '@/src/redux/slices/employeeSlices/punchRequestSlice';
 
 const PunchRequestForm = ({ handleClose }) => {

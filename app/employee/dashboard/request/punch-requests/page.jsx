@@ -36,7 +36,7 @@ import AppConfirmationMadal from '@/src/components/modals/AppConfirmationMadal';
 import EmpPunchReqFilterFormModal from '@/src/components/FilterModal/empPunchReqFilterForm';
 import { empPunchReqfilterForm } from '@/src/constants/data/forms/emp-punch-req-modal-form';
 import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
-import { Toast } from '@/src/components/Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import Skeleton from '@mui/material/Skeleton';
 import dayjs from 'dayjs';
 import { ellipsisWithTooltip } from '@/src/utils/tooltipEllipsis';

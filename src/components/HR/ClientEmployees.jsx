@@ -12,7 +12,7 @@ import { useQuery } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import { HR_CLIENT_EMPLOYEES } from '@/src/services/apiService/apiEndPoints';
 import { useDispatch, useSelector } from 'react-redux';
-import { Toast } from '../Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import { getClientAllEmps } from '@/src/redux/slices/hrSlices/clientSlice';
 
 const ClientEmployees = ({ fromClient, openModal }) => {

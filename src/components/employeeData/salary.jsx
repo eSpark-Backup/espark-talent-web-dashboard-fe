@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import AppTable from '../appTableNew/AppTable';
 import EditSalaryForm from './editSalaryModal';
 import AppConfirmationMadal from '../modals/AppConfirmationMadal';
-import { Toast } from '../Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import { api } from '@/src/services/apiService';
 import {
   getEmpSalaryRequest,

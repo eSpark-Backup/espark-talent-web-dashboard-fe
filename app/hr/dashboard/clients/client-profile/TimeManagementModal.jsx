@@ -12,7 +12,7 @@ import { useFormik } from 'formik';
 import dayjs from 'dayjs';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useDispatch, useSelector } from 'react-redux';
-import { Toast } from '@/src/components/Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import { api } from '@/src/services/apiService';
 import { HR_EMP_TIME_AND_LEAVES } from '@/src/services/apiService/apiEndPoints';
 import {

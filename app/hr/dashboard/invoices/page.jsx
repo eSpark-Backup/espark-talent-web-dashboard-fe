@@ -22,7 +22,7 @@ import {
   getCurrentClientDataSuccess,
 } from '@/src/redux/slices/hrSlices/clientSlice';
 import { useRouter } from 'next/navigation';
-import { Toast } from '@/src/components/Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
 
 const Page = () => {

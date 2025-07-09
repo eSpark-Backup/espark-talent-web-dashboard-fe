@@ -24,7 +24,7 @@ import {
 } from '@/src/redux/slices/employeeSlices/contractSlice';
 import { api } from '@/src/services/apiService';
 import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
-import { Toast } from '@/src/components/Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import dayjs from 'dayjs';
 
 const ContractSigned = () => {

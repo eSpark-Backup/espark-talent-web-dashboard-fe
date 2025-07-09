@@ -12,7 +12,7 @@ import {
   markBreak,
   markResume,
 } from '@/src/redux/slices/employeeSlices/empHomeSlice';
-import { Toast } from '../../Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 
 const MarkBreak = ({ icon }) => {
   const [time, setTime] = useState('');

@@ -33,7 +33,7 @@ import {
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useDispatch, useSelector } from 'react-redux';
 import { filterTableRowsWRTTab } from '@/src/utils/table';
-import { Toast } from '@/src/components/Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
 import { useRouter, useSearchParams } from 'next/navigation';
 import dayjs from 'dayjs';

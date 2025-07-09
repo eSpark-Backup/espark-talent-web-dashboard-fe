@@ -11,7 +11,7 @@ import { useQuery } from '@tanstack/react-query';
 import { HR_GET_EMP_PROFILE } from '@/src/services/apiService/apiEndPoints';
 import { api } from '@/src/services/apiService';
 import { useParams } from 'next/navigation';
-import { Toast } from '../Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 
 const Client = () => {
   const params = useParams();

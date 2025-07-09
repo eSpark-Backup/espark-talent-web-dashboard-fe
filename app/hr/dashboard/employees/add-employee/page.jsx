@@ -14,7 +14,7 @@ import {
 } from '@/src/redux/slices/hrSlices/employeeSlice';
 import { HR_ADD_EMPLOYEES } from '@/src/services/apiService/apiEndPoints';
 import { useRouter } from 'next/navigation';
-import { Toast } from '@/src/components/Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 
 const AddEmployee = () => {
   const dispatch = useDispatch();

@@ -10,7 +10,7 @@ import { api } from '@/src/services/apiService';
 import { useParams } from 'next/navigation';
 import dayjs from 'dayjs';
 import { convertDateFormat, getAttendenceShortHand } from '@/src/utils/helpers';
-import { Toast } from '../Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import AttendanceViewModal from '@/app/hr/dashboard/employees/[id]/AttendanceViewModal';
 import { useDispatch } from 'react-redux';
 import { getAttendanceRequestSuccess } from '@/src/redux/slices/hrSlices/employeeSlice';

@@ -13,7 +13,7 @@ import {
   HR_GUIDE,
   HR_GUIDE_EDIT,
 } from '@/src/services/apiService/apiEndPoints';
-import { Toast } from '@/src/components/Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import { SETTING } from '@/src/constants/setting-hr';
 import { useDispatch, useSelector } from 'react-redux';
 import { GUIDE_DATA, guideColumn } from '@/src/constants/guide';

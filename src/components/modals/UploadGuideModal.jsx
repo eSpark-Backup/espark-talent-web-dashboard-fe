@@ -13,7 +13,7 @@ import { useFormik } from 'formik';
 import { api } from '@/src/services/apiService';
 import { HR_GUIDE } from '@/src/services/apiService/apiEndPoints';
 import { useDispatch, useSelector } from 'react-redux';
-import { Toast } from '../Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import { uploadGuideForm } from '@/src/constants/data/forms/upload-guide';
 import { uploadGuideFormSchema } from '../form/schemas/uploadGuide';
 import { UPLOAD_GUIDE } from '@/src/constants/guide';

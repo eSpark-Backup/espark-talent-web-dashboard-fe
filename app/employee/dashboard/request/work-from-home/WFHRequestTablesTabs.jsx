@@ -17,7 +17,7 @@ import { filterWFHForm } from '@/src/constants/data/forms/filter-form';
 
 import Skeleton from '@mui/material/Skeleton';
 import { api } from '@/src/services/apiService';
-import { Toast } from '@/src/components/Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import { filterTableRowsWRTTab } from '@/src/utils/table';
 import WFHReqFilterFormModal from '@/src/components/FilterModal/WFHReqFilterFormModal';
 import WFHRequestTable from './WFHRequestTable';

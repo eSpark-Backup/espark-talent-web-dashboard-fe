@@ -13,7 +13,7 @@ import {
   fetchClientPoliciesRequestSuccess,
 } from '@/src/redux/slices/clientSlices/policiesSlice';
 import { useDispatch } from 'react-redux';
-import { Toast } from '@/src/components/Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 
 const Policies = () => {
   const dispatch = useDispatch();

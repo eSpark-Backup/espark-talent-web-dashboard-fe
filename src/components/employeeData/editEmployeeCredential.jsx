@@ -9,7 +9,7 @@ import { editEmployeeCredentialSchema } from '../form/schemas/employeeCredential
 import { useMutation } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import { HR_UPDATE_EMP_CREDS } from '@/src/services/apiService/apiEndPoints';
-import { Toast } from '../Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import { useSelector } from 'react-redux';
 
 const EditEmployeeCredential = ({ onClose, open }) => {

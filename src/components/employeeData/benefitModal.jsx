@@ -17,7 +17,7 @@ import { api } from '@/src/services/apiService';
 import dayjs from 'dayjs';
 import { addEmpBenefit } from '@/src/redux/slices/hrSlices/employeeSlice';
 import { useDispatch } from 'react-redux';
-import { Toast } from '../Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import { benefitForm } from '@/src/constants/data/forms/benefit-form';
 import { benefitFormSchema } from '../form/schemas/benefitForm';
 

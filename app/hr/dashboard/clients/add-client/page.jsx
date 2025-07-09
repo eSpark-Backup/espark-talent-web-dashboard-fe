@@ -15,7 +15,7 @@ import {
   removeClientFormData,
 } from '@/src/redux/slices/hrSlices/clientSlice';
 import dayjs from 'dayjs';
-import { Toast } from '@/src/components/Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import { useRouter } from 'next/navigation';
 import { countriesList } from '@/src/constants/countries';
 

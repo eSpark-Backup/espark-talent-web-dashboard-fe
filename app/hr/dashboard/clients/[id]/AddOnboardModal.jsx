@@ -11,7 +11,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import { HR_CLIENT_EMP_ON_BOARDING } from '@/src/services/apiService/apiEndPoints';
 import dayjs from 'dayjs';
-import { Toast } from '@/src/components/Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import { addOnBoard } from '@/src/redux/slices/hrSlices/clientSlice';
 import { countriesList } from '@/src/constants/countries';
 import { hasSymbol } from '@/src/utils/symbolChecker';

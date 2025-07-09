@@ -18,7 +18,7 @@ import {
   getRolesDetailsRequest,
   getRolesDetailsSuccess,
 } from '@/src/redux/slices/hrSlices/settingsSlice';
-import { Toast } from '../Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 
 const Role = () => {
   const dispatch = useDispatch();

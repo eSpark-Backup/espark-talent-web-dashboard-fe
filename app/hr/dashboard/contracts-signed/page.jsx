@@ -29,7 +29,7 @@ import {
   HR_OFF_SHORE_CONTRACTS,
 } from '@/src/services/apiService/apiEndPoints';
 import { useDispatch, useSelector } from 'react-redux';
-import { Toast } from '@/src/components/Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import AddContractModal from '../clients/[id]/AddContractModal';
 import EmployeeContractModal from '../clients/[id]/EmployeeContractModal';
 import DashboardHeading from '@/src/components/dashboard/dashboardHeading';

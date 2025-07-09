@@ -14,7 +14,7 @@ import { useParams } from 'next/navigation';
 import { api } from '@/src/services/apiService';
 import { HR_EMP_TIME_AND_LEAVES } from '@/src/services/apiService/apiEndPoints';
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { Toast } from '../Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   getHrEmpLeaves,

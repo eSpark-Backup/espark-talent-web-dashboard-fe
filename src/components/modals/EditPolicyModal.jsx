@@ -16,7 +16,7 @@ import { UPLOAD_POLICY } from '@/src/constants/upload-policy';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import { HR_POLICY } from '@/src/services/apiService/apiEndPoints';
-import { Toast } from '../Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 
 const EditPolicyModal = forwardRef(({ open, onClose, modalData }, ref) => {
   const [policyFormVal, setPolicyFormVal] = useState(null);

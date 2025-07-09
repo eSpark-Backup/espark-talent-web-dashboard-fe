@@ -41,7 +41,7 @@ import {
   updateEmpInvStatus,
 } from '@/src/redux/slices/clientSlices/invoicePaymentsSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { Toast } from '@/src/components/Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
 import { formatSalary } from '@/src/utils/salaryFormat';
 

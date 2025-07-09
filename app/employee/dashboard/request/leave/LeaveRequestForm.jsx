@@ -21,7 +21,7 @@ import {
   getEmpLeaveRequestDataFailed,
   getEmpLeaveRequestDataSuccess,
 } from '@/src/redux/slices/employeeSlices/leaveRequestSlice';
-import { Toast } from '@/src/components/Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 
 const LeaveRequestForm = ({ handleClose }) => {
   const dispatch = useDispatch();

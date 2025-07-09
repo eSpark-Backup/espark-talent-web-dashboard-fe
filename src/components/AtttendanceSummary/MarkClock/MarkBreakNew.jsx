@@ -15,7 +15,7 @@ import {
   markBreak,
   markResume,
 } from '@/src/redux/slices/employeeSlices/empHomeSlice';
-import { Toast } from '../../Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 
 function getTimeDifference(startTime, endTime) {
   const start = new Date(`01/01/2022 ${startTime}`).getTime();

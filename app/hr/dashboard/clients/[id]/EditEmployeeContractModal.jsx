@@ -16,7 +16,7 @@ import { CONTRACT_SIGNED } from '@/src/constants/contract-signed';
 import { FORM_DATA } from '@/src/constants/form';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { HR_COMPANY_CONTRACTS } from '@/src/services/apiService/apiEndPoints';
-import { Toast } from '@/src/components/Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import { api } from '@/src/services/apiService';
 import dayjs from 'dayjs';
 import { getEmployeesCompanyContractRequestSuccess } from '@/src/redux/slices/hrSlices/contractSlice';

@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { Box, Button, Modal, Typography } from '@mui/material';
-import { Toast } from '../Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import ProfileCroper from '../ProfileCroper';
 
 const UploadImageModal = ({

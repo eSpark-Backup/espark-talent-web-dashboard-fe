@@ -11,7 +11,7 @@ import {
   fetchEmpLeaveRequestData,
   getEmpLeaveRequestDataFailed,
 } from '@/src/redux/slices/employeeSlices/leaveRequestSlice';
-import { Toast } from '@/src/components/Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import dayjs from 'dayjs';
 
 const LeaveBalanceTable = () => {

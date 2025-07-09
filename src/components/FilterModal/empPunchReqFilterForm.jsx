@@ -16,7 +16,7 @@ import {
   getEmpPunchRequestDataFailed,
   getEmpPunchRequestDataSuccess,
 } from '@/src/redux/slices/employeeSlices/punchRequestSlice';
-import { Toast } from '../Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import { onCheckDateValidation } from '@/src/utils/onCheckDateValidation';
 
 const EmpPunchReqFilterFormModal = forwardRef(

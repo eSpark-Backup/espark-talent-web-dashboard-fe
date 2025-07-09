@@ -45,7 +45,7 @@ import {
   fetchClientHomeDataRequestFailed,
   fetchClientHomeDataRequestSuccess,
 } from '@/src/redux/slices/clientSlices/homeSlice';
-import { Toast } from '../Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 
 const AuthForm = ({ uiData, fields, handleOpenTroubleModal }) => {
   const dispatch = useDispatch();

@@ -16,7 +16,7 @@ import { FORM_DATA } from '@/src/constants/form';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import { HR_CLIENT_EMP_HIRING_REQUEST } from '@/src/services/apiService/apiEndPoints';
-import { Toast } from '@/src/components/Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import { countriesList } from '@/src/constants/countries';
 import dayjs from 'dayjs';
 import { getSelectedCountry } from '@/src/utils/salaryFormat';

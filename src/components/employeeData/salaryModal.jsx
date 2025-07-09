@@ -18,7 +18,7 @@ import { api } from '@/src/services/apiService';
 import dayjs from 'dayjs';
 import { addEmpSalary } from '@/src/redux/slices/hrSlices/employeeSlice';
 import { useDispatch } from 'react-redux';
-import { Toast } from '../Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import { salaryForm } from '@/src/constants/data/forms/salary-form';
 
 const SalaryForm = forwardRef(({ onClose, open, empData }, ref) => {

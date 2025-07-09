@@ -16,7 +16,7 @@ import {
   getEmpDataFailed,
   getEmpDataSuccess,
 } from '@/src/redux/slices/hrSlices/employeeSlice';
-import { Toast } from '../Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import EmployeeStatus from './ActiveEmployee';
 import DashboardHeading from '../dashboard/dashboardHeading';
 

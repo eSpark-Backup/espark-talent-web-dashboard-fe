@@ -24,7 +24,7 @@ import {
   fetchClientCompanyContractRequestFailed,
   fetchClientCompanyContractRequestSuccess,
 } from '@/src/redux/slices/clientSlices/contratSignedSlice';
-import { Toast } from '@/src/components/Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
 import dayjs from 'dayjs';
 

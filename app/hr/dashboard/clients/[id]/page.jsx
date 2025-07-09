@@ -65,7 +65,7 @@ import {
 } from '@/src/constants/data/tables/hr/invoices';
 import { getCamelCapitalized } from '@/src/utils/stringModification';
 import UploadOtherInvoiceModal from './UploadOtherInvoiceModal';
-import { Toast } from '@/src/components/Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import ProfileEditSkeleton from '@/src/components/HR/ProfileEditSkeleton';
 import dayjs from 'dayjs';
 import { genderType } from '@/src/utils/genderType';

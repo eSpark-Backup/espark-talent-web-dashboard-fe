@@ -17,7 +17,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { HR_ADD_EMP_ASSET } from '@/src/services/apiService/apiEndPoints';
 import { api } from '@/src/services/apiService';
 import dayjs from 'dayjs';
-import { Toast } from '../Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 
 const AssetEditModal = forwardRef(
   ({ onClose, open, modalData, empData }, ref) => {

@@ -43,7 +43,7 @@ import {
   getCurrentEmpDataSuccess,
   removeCurrentEmployee,
 } from '@/src/redux/slices/hrSlices/employeeSlice';
-import { Toast } from '@/src/components/Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import ProfileEditSkeleton from '@/src/components/HR/ProfileEditSkeleton';
 import { useRouter } from 'next/navigation';
 import { getTimeSheet } from '@/src/utils/getTimeSheet';

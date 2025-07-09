@@ -24,7 +24,7 @@ import {
   getHomeData,
   getHomeDataRequest,
 } from '@/src/redux/slices/hrSlices/homeSlice';
-import { Toast } from '../Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import Cookies from 'js-cookie';
 
 const Sidebar = ({ userName }) => {
