@@ -1,7 +1,7 @@
-import AppTable from '@/src/components/appTableNew/AppTable';
+import AppTable from '@/src/components/app-table-new/AppTable';
 import { Box } from '@mui/material';
 import AppConfirmationMadal from '@/src/components/modals/AppConfirmationMadal';
-import ClientEmployees from '@/src/components/HR/ClientEmployees';
+import ClientEmployees from '@/src/components/hr/ClientEmployees';
 
 export const renderTable = ({
   currentTab,

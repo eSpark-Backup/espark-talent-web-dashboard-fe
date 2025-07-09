@@ -3,7 +3,7 @@ import { alpha } from '@mui/material/styles';
 
 import ResponsiveNavbar from './ResponsiveNavbar';
 import TopNavNavbar from '../global/topNavbar';
-import { Active_User_Data } from '@/src/constants/data/user-data';
+import { Active_User_Data } from '@/src/data/user-data';
 import { SIDE_NAV_WIDTH } from '@/src/constants/sidebar';
 import { useSelector } from 'react-redux';
 

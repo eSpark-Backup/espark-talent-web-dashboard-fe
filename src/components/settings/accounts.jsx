@@ -2,8 +2,8 @@
 import React, { useState } from 'react';
 import { Box, Modal } from '@mui/material';
 
-import AppTable from '../appTableNew/AppTable';
-import { accountColumn } from '@/src/constants/data/tables/hr/account';
+import AppTable from '../app-table-new/AppTable';
+import { accountColumn } from '@/src/data/tables/hr/account';
 import AppConfirmationMadal from '../modals/AppConfirmationMadal';
 import { CONTRACT_SIGNED } from '@/src/constants/contract-signed';
 import CredentialModal from '../modals/credentialModal';

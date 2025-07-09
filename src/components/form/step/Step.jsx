@@ -9,7 +9,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import { usePathname, useRouter } from 'next/navigation';
 import { Toast } from '@/src/utils/toast';
-import UploadImageModal from '../../employeeData/UploadImageModal';
+import UploadImageModal from '../../employee-data/UploadImageModal';
 
 const Step = ({
   handleGoPrev,

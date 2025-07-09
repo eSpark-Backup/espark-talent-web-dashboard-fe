@@ -1,5 +1,5 @@
 import React from 'react';
-import Authentication from '@/src/components/Auth/Authentication';
+import Authentication from '@/src/components/auth/Authentication';
 
 function page() {
   return (

@@ -3,7 +3,7 @@ import React from 'react';
 
 import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
 import { filterTableRowsWRTTab } from '@/src/utils/table';
-import AppTable from '@/src/components/appTableNew/AppTable';
+import AppTable from '@/src/components/app-table-new/AppTable';
 
 export const renderTrackingStatus = ({
   statusIndex,

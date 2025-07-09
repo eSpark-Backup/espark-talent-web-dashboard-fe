@@ -5,10 +5,10 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 
 import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
-import { contractHrSignedTabs } from '@/src/constants/data/tabs/contract-signed-tabs';
-import AppTable from '@/src/components/appTableNew/AppTable';
+import { contractHrSignedTabs } from '@/src/data/tabs/contract-signed-tabs';
+import AppTable from '@/src/components/app-table-new/AppTable';
 import AppConfirmationMadal from '@/src/components/modals/AppConfirmationMadal';
-import AddContractHrPortalModal from '@/src/components/contractHrportal/contractHr';
+import AddContractHrPortalModal from '@/src/components/contract-hr-portal/contractHr';
 import { CONTRACT_SIGNED } from '@/src/constants/contract-signed';
 import { handleTabChange } from '@/src/utils/handleTab';
 import {
@@ -36,7 +36,7 @@ import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
 import dayjs from 'dayjs';
 import EditContractModal from '../clients/[id]/EditContractModal';
 import EditEmployeeContractModal from '../clients/[id]/EditEmployeeContractModal';
-import EditContractHr from '@/src/components/contractHrportal/EditContractHr';
+import EditContractHr from '@/src/components/contract-hr-portal/EditContractHr';
 
 const ContractSigned = () => {
   const dispatch = useDispatch();

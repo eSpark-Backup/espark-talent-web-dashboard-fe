@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Grid, Box, Button } from '@mui/material';
 
 import Heading from '@/src/components/global/Heading';
-import AppTable from '@/src/components/appTableNew/AppTable';
+import AppTable from '@/src/components/app-table-new/AppTable';
 import { CONTRACT_SIGNED } from '@/src/constants/contract-signed';
 import AppConfirmationMadal from '@/src/components/modals/AppConfirmationMadal';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';

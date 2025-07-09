@@ -18,16 +18,16 @@ import Link from 'next/link';
 import { useParams } from 'next/navigation';
 
 import { employeeProfileData } from '@/src/constants/employee-profile';
-import Profile from '@/src/components/employeeData/profile';
-import AttendanceReport from '@/src/components/employeeData/attendanceReports';
-import EditEmployeeCredential from '@/src/components/employeeData/editEmployeeCredential';
-import EditModal from '@/src/components/employeeData/editModal';
-import Client from '@/src/components/employeeData/client';
-import Assets from '@/src/components/employeeData/assets';
-import AssetForm from '@/src/components/employeeData/assetModal';
-import TimeAndLeaves from '@/src/components/employeeData/timeAndLeaves';
-import FilterFormModal from '@/src/components/FilterModal/filterForm';
-import { filterAttendanceForm } from '@/src/constants/data/forms/filter-form';
+import Profile from '@/src/components/employee-data/profile';
+import AttendanceReport from '@/src/components/employee-data/attendanceReports';
+import EditEmployeeCredential from '@/src/components/employee-data/editEmployeeCredential';
+import EditModal from '@/src/components/employee-data/editModal';
+import Client from '@/src/components/employee-data/client';
+import Assets from '@/src/components/employee-data/assets';
+import AssetForm from '@/src/components/employee-data/assetModal';
+import TimeAndLeaves from '@/src/components/employee-data/timeAndLeaves';
+import FilterFormModal from '@/src/components/filter-modal/filterForm';
+import { filterAttendanceForm } from '@/src/data/forms/filter-form';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import {
   DOWNLOAD_EMP_RESUME,
@@ -44,16 +44,16 @@ import {
   removeCurrentEmployee,
 } from '@/src/redux/slices/hrSlices/employeeSlice';
 import { Toast } from '@/src/utils/toast';
-import ProfileEditSkeleton from '@/src/components/HR/ProfileEditSkeleton';
+import ProfileEditSkeleton from '@/src/components/hr/ProfileEditSkeleton';
 import { useRouter } from 'next/navigation';
 import { getTimeSheet } from '@/src/utils/getTimeSheet';
-import Benefits from '@/src/components/employeeData/benefits';
-import Letters from '@/src/components/employeeData/letters';
-import Salary from '@/src/components/employeeData/salary';
-import Requests from '@/src/components/employeeData/requests';
-import BenefitForm from '@/src/components/employeeData/benefitModal';
-import LetterForm from '@/src/components/employeeData/letterModal';
-import SalaryForm from '@/src/components/employeeData/salaryModal';
+import Benefits from '@/src/components/employee-data/benefits';
+import Letters from '@/src/components/employee-data/letters';
+import Salary from '@/src/components/employee-data/salary';
+import Requests from '@/src/components/employee-data/requests';
+import BenefitForm from '@/src/components/employee-data/benefitModal';
+import LetterForm from '@/src/components/employee-data/letterModal';
+import SalaryForm from '@/src/components/employee-data/salaryModal';
 import AppCustomMonthYearPicker from '@/src/components/dashboard/appCustomMonthYearPicker';
 import { ellipsisWithTooltip } from '@/src/utils/tooltipEllipsis';
 

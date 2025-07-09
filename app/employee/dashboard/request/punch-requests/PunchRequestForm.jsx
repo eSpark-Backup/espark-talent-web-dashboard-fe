@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import WideFormInput from '../../../../../src/components/form/ui-elements/WideFormInput';
-import { createPunchRequestForm } from '@/src/constants/data/forms/create-punch-request';
+import { createPunchRequestForm } from '@/src/data/forms/create-punch-request';
 import { Box, Button, CircularProgress } from '@mui/material';
 import { useFormik } from 'formik';
-import { createPunchRequestSchema } from '../../../../../src/components/form/schemas/createPunchRequest';
+import { createPunchRequestSchema } from '../../../../../src/validation/createPunchRequest';
 import { useDispatch, useSelector } from 'react-redux';
 import { api } from '@/src/services/apiService';
 import { EMP_PUNCH_REQUEST } from '@/src/services/apiService/apiEndPoints';

@@ -8,9 +8,9 @@ import {
   Typography,
 } from '@mui/material';
 
-import { leaveManagementFormSchema } from '@/src/components/form/schemas/leaveManagementModal';
+import { leaveManagementFormSchema } from '@/src/validation/leaveManagementModal';
 import FormInput from '@/src/components/form/ui-elements/FormInput';
-import { leaveManagementForm } from '@/src/constants/data/forms/leave-management-modal';
+import { leaveManagementForm } from '@/src/data/forms/leave-management-modal';
 import { FORM_DATA } from '@/src/constants/form';
 import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';

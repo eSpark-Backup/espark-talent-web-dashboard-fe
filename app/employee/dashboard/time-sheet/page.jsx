@@ -14,11 +14,11 @@ import { renderTrackingStatus } from './renderComponents';
 import {
   sheetStatusTypes,
   timeSheetTableColumn,
-} from '@/src/constants/data/tables/time-sheet';
+} from '@/src/data/tables/time-sheet';
 import Image from 'next/image';
 import { EMPLOYEE_TIMESHEET } from '@/src/constants/time-sheet';
 import AttendanceViewModal from './AttendanceViewModal';
-import AppTable from '@/src/components/appTableNew/AppTable';
+import AppTable from '@/src/components/app-table-new/AppTable';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import { useDispatch, useSelector } from 'react-redux';
@@ -28,8 +28,8 @@ import {
   getTimeSheetDataFailed,
   getTimeSheetDataSuccess,
 } from '@/src/redux/slices/employeeSlices/timeSheetSlice';
-import FilterFormModal from '@/src/components/FilterModal/filterForm';
-import { filterAttendanceForm } from '@/src/constants/data/forms/filter-form';
+import FilterFormModal from '@/src/components/filter-modal/filterForm';
+import { filterAttendanceForm } from '@/src/data/forms/filter-form';
 import dayjs from 'dayjs';
 import { getAttendenceShortHand } from '@/src/utils/helpers';
 import { getTimeSheet } from '@/src/utils/getTimeSheet';

@@ -1,5 +1,5 @@
 'use client';
-import AllClients from '@/src/components/HR/AllClients';
+import AllClients from '@/src/components/hr/AllClients';
 import React from 'react';
 
 const page = () => {

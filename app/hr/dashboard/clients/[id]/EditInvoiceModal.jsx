@@ -8,9 +8,9 @@ import {
   Typography,
 } from '@mui/material';
 
-import { EditInvoiceFormSchema } from '@/src/components/form/schemas/uploadInvoice';
+import { EditInvoiceFormSchema } from '@/src/validation/uploadInvoice';
 import FormInput from '@/src/components/form/ui-elements/FormInput';
-import { editUploadInvoiceForm } from '@/src/constants/data/forms/upload-invoice';
+import { editUploadInvoiceForm } from '@/src/data/forms/upload-invoice';
 import { useFormik } from 'formik';
 import { useSelector } from 'react-redux';
 import { useMutation, useQueryClient } from '@tanstack/react-query';

@@ -12,7 +12,7 @@ import {
 import {
   checkInOutColumn,
   leaveRequestsColumn,
-} from '@/src/constants/data/tables/time-off-request';
+} from '@/src/data/tables/time-off-request';
 import { renderNestedTable } from './renderComponents';
 import LeaveViewModal from './LeaveViewModal';
 import { useMutation, useQuery } from '@tanstack/react-query';

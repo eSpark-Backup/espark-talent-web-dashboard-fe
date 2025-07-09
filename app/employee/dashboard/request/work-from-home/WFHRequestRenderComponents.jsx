@@ -1,4 +1,4 @@
-import AppTable from '@/src/components/appTableNew/AppTable';
+import AppTable from '@/src/components/app-table-new/AppTable';
 import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
 import { filterTableRowsWRTTab } from '@/src/utils/table';
 import { Box } from '@mui/material';

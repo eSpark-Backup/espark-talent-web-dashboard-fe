@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { Box, useMediaQuery } from '@mui/system';
-import { passwordChangeSchema } from '../form/schemas/password';
-import { passwordformElement } from '@/src/constants/data/forms/password-change-form';
+import { passwordChangeSchema } from '../../validation/password';
+import { passwordformElement } from '@/src/data/forms/password-change-form';
 import { HR_CHANGE_PASSWORD } from '@/src/services/apiService/apiEndPoints';
 import { Toast } from '@/src/utils/toast';
 import { api } from '@/src/services/apiService';

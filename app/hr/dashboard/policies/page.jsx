@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 import { Grid, Box, Button } from '@mui/material';
 
 import Heading from '@/src/components/global/Heading';
-import AppTable from '@/src/components/appTableNew/AppTable';
-import { policyColumn } from '@/src/constants/data/tables/policy-data';
+import AppTable from '@/src/components/app-table-new/AppTable';
+import { policyColumn } from '@/src/data/tables/policy-data';
 import UploadPolicyModal from '@/src/components/modals/uploadPolicyModal';
 import { POLICIES_DATA } from '@/src/constants/policies';
 import { CONTRACT_SIGNED } from '@/src/constants/contract-signed';

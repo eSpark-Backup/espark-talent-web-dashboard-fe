@@ -2,8 +2,8 @@ import React from 'react';
 import Skeleton from '@mui/material/Skeleton';
 import { Box } from '@mui/system';
 
-import { companyformElement } from '@/src/constants/data/forms/company-info';
-import { companyInfoSchema } from '../form/schemas/companyInfo';
+import { companyformElement } from '@/src/data/forms/company-info';
+import { companyInfoSchema } from '../../validation/companyInfo';
 import Step from '../form/step/Step';
 import { useQuery } from '@tanstack/react-query';
 import { useDispatch, useSelector } from 'react-redux';

@@ -4,8 +4,8 @@ import { Button, Grid } from '@mui/material';
 import { Box, useTheme } from '@mui/system';
 import Image from 'next/image';
 
-import AppTable from '@/src/components/appTableNew/AppTable';
-import { invoicePageColumn } from '@/src/constants/data/tables/hr/invoices-page-data';
+import AppTable from '@/src/components/app-table-new/AppTable';
+import { invoicePageColumn } from '@/src/data/tables/hr/invoices-page-data';
 import Input from '@/src/components/dashboard/input';
 import AppDropdown from '@/src/components/dashboard/appDropdown';
 import { useDispatch, useSelector } from 'react-redux';

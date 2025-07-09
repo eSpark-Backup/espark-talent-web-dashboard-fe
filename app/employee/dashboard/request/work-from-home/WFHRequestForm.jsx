@@ -2,7 +2,7 @@ import React from 'react';
 import WideFormInput from '../../../../../src/components/form/ui-elements/WideFormInput';
 import { Box, Button, CircularProgress } from '@mui/material';
 import { useFormik } from 'formik';
-import { createWFHRequestSchema } from '@/src/components/form/schemas/createLeaveRequest';
+import { createWFHRequestSchema } from '@/src/validation/createLeaveRequest';
 import { useMutation } from '@tanstack/react-query';
 import { EMP_WFH_REQUEST } from '@/src/services/apiService/apiEndPoints';
 import { api } from '@/src/services/apiService';
@@ -18,7 +18,7 @@ import {
 } from '@/src/redux/slices/employeeSlices/wfhRequestSlice';
 
 import { Toast } from '@/src/utils/toast';
-import { createWFHRequestForm } from '@/src/constants/data/forms/create-wfh-request';
+import { createWFHRequestForm } from '@/src/data/forms/create-wfh-request';
 
 const WFHRequestForm = ({ handleClose }) => {
   const dispatch = useDispatch();

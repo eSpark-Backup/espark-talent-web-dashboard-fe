@@ -9,15 +9,15 @@ import Input from '@/src/components/dashboard/input';
 import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
 import { filterDataByKeyword } from '@/src/utils/search';
 import { changeTab } from '@/src/utils/tabs';
-import { paymentStatusTabs } from '@/src/constants/data/tabs/payment-tabs';
+import { paymentStatusTabs } from '@/src/data/tabs/payment-tabs';
 import {
   invoicePaymentColumn,
   invoicePaymentData,
   otherPaymentColumn,
   otherPaymentData,
-} from '@/src/constants/data/tables/payment-data';
+} from '@/src/data/tables/payment-data';
 import { filterTableRowsWRTTab } from '@/src/utils/table';
-import AppTable from '@/src/components/appTableNew/AppTable';
+import AppTable from '@/src/components/app-table-new/AppTable';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import {

@@ -1,6 +1,6 @@
 'use client';
 import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
-import { employeeRequestsTabs } from '@/src/constants/data/tabs/request-tabs';
+import { employeeRequestsTabs } from '@/src/data/tabs/request-tabs';
 import { REQUEST_LEAVE } from '@/src/constants/requestview-modal';
 import {
   Box,
@@ -13,13 +13,13 @@ import {
 import Image from 'next/image';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { filterWFHForm } from '@/src/constants/data/forms/filter-form';
+import { filterWFHForm } from '@/src/data/forms/filter-form';
 
 import Skeleton from '@mui/material/Skeleton';
 import { api } from '@/src/services/apiService';
 import { Toast } from '@/src/utils/toast';
 import { filterTableRowsWRTTab } from '@/src/utils/table';
-import WFHReqFilterFormModal from '@/src/components/FilterModal/WFHReqFilterFormModal';
+import WFHReqFilterFormModal from '@/src/components/filter-modal/WFHReqFilterFormModal';
 import WFHRequestTable from './WFHRequestTable';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import {

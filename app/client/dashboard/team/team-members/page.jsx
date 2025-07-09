@@ -5,14 +5,14 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 
 import Input from '@/src/components/dashboard/input';
-import { teamMembersData } from '@/src/constants/data/tables/team-members';
+import { teamMembersData } from '@/src/data/tables/team-members';
 import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
 import { filterDataByKeyword } from '@/src/utils/search';
 import { filterTableRowsWRTTab } from '@/src/utils/table';
 import { changeTab } from '@/src/utils/tabs';
-import { teamTabs } from '@/src/constants/data/tabs/team-tabs';
+import { teamTabs } from '@/src/data/tabs/team-tabs';
 import { HIRING_FORM_DATA } from '@/src/constants/hiring';
-import AppTable from '@/src/components/appTableNew/AppTable';
+import AppTable from '@/src/components/app-table-new/AppTable';
 import { useQuery } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import { CLIENT_TEAM_MEMBER } from '@/src/services/apiService/apiEndPoints';

@@ -19,7 +19,7 @@ import {
   updateEmpTime,
   updateEmpTimeRequest,
 } from '@/src/redux/slices/hrSlices/employeeSlice';
-import { validationSchema } from '@/src/components/form/schemas/timeManagementModal';
+import { validationSchema } from '@/src/validation/timeManagementModal';
 
 const TimeManagementModal = ({ open, onClose }) => {
   const { id } = useSelector((state) => state?.hr?.employees?.currentEmployee);

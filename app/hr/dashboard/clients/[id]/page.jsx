@@ -57,16 +57,16 @@ import {
   hiringRequestColumn,
   interviewScheduleColumn,
   onboardingColumn,
-} from '@/src/constants/data/tables/hr/hire-on-board';
+} from '@/src/data/tables/hr/hire-on-board';
 import { a11yProps } from '@/src/utils/tabs';
 import {
   invoicePaymentColumn,
   otherPaymentColumn,
-} from '@/src/constants/data/tables/hr/invoices';
+} from '@/src/data/tables/hr/invoices';
 import { getCamelCapitalized } from '@/src/utils/stringModification';
 import UploadOtherInvoiceModal from './UploadOtherInvoiceModal';
 import { Toast } from '@/src/utils/toast';
-import ProfileEditSkeleton from '@/src/components/HR/ProfileEditSkeleton';
+import ProfileEditSkeleton from '@/src/components/hr/ProfileEditSkeleton';
 import dayjs from 'dayjs';
 import { genderType } from '@/src/utils/genderType';
 import { clientProfileTabsHandler } from '@/src/utils/clientProfileTabHandler';

@@ -7,20 +7,20 @@ import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
 import { filterTableRowsWRTTab } from '@/src/utils/table';
 import Image from 'next/image';
 import { renderNestedTable } from './renderComponents';
-import { employeeRequestsTabs } from '@/src/constants/data/tabs/request-tabs';
+import { employeeRequestsTabs } from '@/src/data/tabs/request-tabs';
 import {
   employeeLeaveBalanceColumn,
   employeeLeaveBalanceData,
   employeeLeaveRequestsColumn,
   employeeLeaveRequestsData,
-} from '@/src/constants/data/tables/requests-data';
+} from '@/src/data/tables/requests-data';
 import LeaveRequestModal from './LeaveRequestModal';
 import LeaveViewModal from '@/app/client/dashboard/team/time-off/LeaveViewModal';
-import AppTable from '@/src/components/appTableNew/AppTable';
+import AppTable from '@/src/components/app-table-new/AppTable';
 import AppConfirmationMadal from '@/src/components/modals/AppConfirmationMadal';
 import { REQUEST_LEAVE } from '@/src/constants/requestview-modal';
-import FilterFormModal from '@/src/components/FilterModal/filterForm';
-import { filterLeaveForm } from '@/src/constants/data/forms/filter-form';
+import FilterFormModal from '@/src/components/filter-modal/filterForm';
+import { filterLeaveForm } from '@/src/data/forms/filter-form';
 
 export const Dashboard = () => {
   const [open, setOpen] = useState(false);
