@@ -1,12 +1,12 @@
 import React from 'react';
 import { employeeProfileData } from '@/src/constants/employee-profile';
-import EditEmergencyModal from './emergencyEditModal';
-import EditPersonalModal from './editPersonalData';
-import PersonalInformation from './personalInformation';
-import EmergencyContact from './emergencyContact';
+import EditEmergencyModal from './EmergencyEditModal';
+import EditPersonalModal from './EditPersonalData';
+import PersonalInformation from './PersonalInformation';
+import EmergencyContact from './EmergencyContact';
 import { Stack } from '@mui/system';
-import OfficialInformation from './officialInformation';
-import EditOfficialModal from './editOfficialData';
+import OfficialInformation from './OfficialInformation';
+import EditOfficialModal from './EditOfficialData';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import { Typography } from '@mui/material';

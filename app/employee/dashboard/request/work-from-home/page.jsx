@@ -12,7 +12,7 @@ import {
   deleteEmpWfhRequestSuccess,
   deleteWfhRequestDataFailed,
 } from '@/src/redux/slices/employeeSlices/wfhRequestSlice';
-import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
+import DashboardHeading from '@/src/components/dashboard/DashboardHeading';
 import { Toast } from '@/src/utils/toast';
 import WFHRequestModal from './WFHRequestModal';
 import WFHRequestTablesTabs from './WFHRequestTablesTabs';

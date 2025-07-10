@@ -12,7 +12,7 @@ import {
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 
-import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
+import CustomTabPanel from '@/src/components/dashboard/AppCustomTabPanel';
 import { filterTableRowsWRTTab } from '@/src/utils/table';
 import Image from 'next/image';
 import { renderNestedTable } from './renderComponents';
@@ -33,9 +33,9 @@ import {
   getEmpPunchRequestDataSuccess,
 } from '@/src/redux/slices/employeeSlices/punchRequestSlice';
 import AppConfirmationMadal from '@/src/components/modals/AppConfirmationMadal';
-import EmpPunchReqFilterFormModal from '@/src/components/filter-modal/empPunchReqFilterForm';
+import EmpPunchReqFilterFormModal from '@/src/components/filter-modal/EmpPunchReqFilterForm';
 import { empPunchReqfilterForm } from '@/src/data/forms/emp-punch-req-modal-form';
-import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
+import DashboardHeading from '@/src/components/dashboard/DashboardHeading';
 import { Toast } from '@/src/utils/toast';
 import Skeleton from '@mui/material/Skeleton';
 import dayjs from 'dayjs';

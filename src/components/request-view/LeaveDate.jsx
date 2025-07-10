@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
 
-import LeaveDatePicker from './leaveDatepicker';
+import LeaveDatePicker from './LeaveDatepicker';
 
 const LeaveDate = ({ date, backgroundColor, isViewingClient }) => {
   return (

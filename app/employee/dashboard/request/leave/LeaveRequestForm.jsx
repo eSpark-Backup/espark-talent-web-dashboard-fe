@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import WideFormInput from '../../../../../src/components/form/ui-elements/WideFormInput';
+import WideFormInput from '@/src/components/form/ui-elements/WideFormInput';
 import { Box, Button, CircularProgress } from '@mui/material';
 import { useFormik } from 'formik';
 import { createLeaveRequestForm } from '@/src/data/forms/create-leave-request';

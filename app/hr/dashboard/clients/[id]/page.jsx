@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Typography, Tabs, Tab, Button } from '@mui/material';
 import { Box } from '@mui/system';
 import Breadcrumb from '@/src/components/form/step/Breadcrumb';
-import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
+import CustomTabPanel from '@/src/components/dashboard/AppCustomTabPanel';
 import { renderTable } from './renderComponents';
 import { filterTableRowsWRTTab } from '@/src/utils/table';
 import { useParams } from 'next/navigation';

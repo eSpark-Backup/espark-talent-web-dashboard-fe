@@ -3,7 +3,7 @@ import { Grid, Typography } from '@mui/material';
 import { HIRING_FORM_DATA } from '@/src/constants/hiring';
 
 import EmployementTerm from './EmployementTerm';
-import AppDropdown from '../dashboard/appDropdown';
+import AppDropdown from '../dashboard/AppDropdown';
 import { gender } from '@/src/data/dropdown.js/start-hiring';
 
 const GenderInput = ({ open, SelectOpen, SelectClose }) => {

@@ -8,10 +8,10 @@ import {
 } from '@mui/material';
 import { Box } from '@mui/system';
 import React from 'react';
-import AttendanceDatePicker from '../atttendance-summary/attendanceDatePicker';
+import AttendanceDatePicker from '../atttendance-summary/AttendanceDatePicker';
 import Image from 'next/image';
-import ReasonDescription from './reasonDescription';
-import PunchRequestButton from './punchInButton';
+import ReasonDescription from './ReasonDescription';
+import PunchRequestButton from './PunchInButton';
 
 const PunchRequestView = ({ onClose, modalData, createPunch }) => {
   return (

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Box, Typography } from '@mui/material';
-import SidebarProfileMenu from './sidebarProfileMenu';
+import SidebarProfileMenu from './SidebarProfileMenu';
 import WorkSpaceIcon from './WorkSpaceIcon';
 
 const SidebarWorkSpace = ({ title, image }) => {

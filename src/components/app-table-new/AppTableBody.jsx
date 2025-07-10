@@ -1,6 +1,6 @@
 import { Typography } from '@mui/material';
 import React, { Fragment, useState } from 'react';
-import TableHiddenBody from './appTableHiddenBody';
+import TableHiddenBody from './AppTableHiddenBody';
 import { renderCellContent } from './AppTableCell';
 import Skeleton from '@mui/material/Skeleton';
 

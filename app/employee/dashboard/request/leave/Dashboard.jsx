@@ -3,7 +3,7 @@ import React, { useMemo, useState } from 'react';
 import { Grid, Box, Typography, Button, Modal } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
+import CustomTabPanel from '@/src/components/dashboard/AppCustomTabPanel';
 import { filterTableRowsWRTTab } from '@/src/utils/table';
 import Image from 'next/image';
 import { renderNestedTable } from './renderComponents';
@@ -19,7 +19,7 @@ import LeaveViewModal from '@/app/client/dashboard/team/time-off/LeaveViewModal'
 import AppTable from '@/src/components/app-table-new/AppTable';
 import AppConfirmationMadal from '@/src/components/modals/AppConfirmationMadal';
 import { REQUEST_LEAVE } from '@/src/constants/requestview-modal';
-import FilterFormModal from '@/src/components/filter-modal/filterForm';
+import FilterFormModal from '@/src/components/filter-modal/FilterForm';
 import { filterLeaveForm } from '@/src/data/forms/filter-form';
 
 export const Dashboard = () => {

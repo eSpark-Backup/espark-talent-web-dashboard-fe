@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { Box, Typography } from '@mui/material';
 import Link from 'next/link';
 
-import AppCustomDropdown from '../dashboard/appCustomDropdown';
+import AppCustomDropdown from '../dashboard/AppCustomDropdown';
 import { toCamelCase } from '@/src/utils/stringModification';
 import { trackingStatusTypes } from '@/src/data/tables/time-tracking';
 import AppTableInfoOptionsCell from './AppTableInfoOptionsCell';

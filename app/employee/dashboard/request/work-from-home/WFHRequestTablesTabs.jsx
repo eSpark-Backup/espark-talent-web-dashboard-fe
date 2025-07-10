@@ -1,5 +1,5 @@
 'use client';
-import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
+import CustomTabPanel from '@/src/components/dashboard/AppCustomTabPanel';
 import { employeeRequestsTabs } from '@/src/data/tabs/request-tabs';
 import { REQUEST_LEAVE } from '@/src/constants/requestview-modal';
 import {

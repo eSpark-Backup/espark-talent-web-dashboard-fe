@@ -28,12 +28,12 @@ import {
   getTimeSheetDataFailed,
   getTimeSheetDataSuccess,
 } from '@/src/redux/slices/employeeSlices/timeSheetSlice';
-import FilterFormModal from '@/src/components/filter-modal/filterForm';
+import FilterFormModal from '@/src/components/filter-modal/FilterForm';
 import { filterAttendanceForm } from '@/src/data/forms/filter-form';
 import dayjs from 'dayjs';
 import { getAttendenceShortHand } from '@/src/utils/helpers';
 import { getTimeSheet } from '@/src/utils/getTimeSheet';
-import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
+import DashboardHeading from '@/src/components/dashboard/DashboardHeading';
 import { Toast } from '@/src/utils/toast';
 import Skeleton from '@mui/material/Skeleton';
 import { calculateExpectedTime } from '@/src/utils/calculateExpectedTime';

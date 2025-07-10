@@ -8,9 +8,9 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
-import ActionBarComponent from '@/src/components/request-view/actionbarComponent';
-import AppDropdown from '../../dashboard/appDropdown';
-import AppSearchableDropdown from '../../dashboard/appSearchableDropdown';
+import ActionBarComponent from '@/src/components/request-view/ActionbarComponent';
+import AppDropdown from '../../dashboard/AppDropdown';
+import AppSearchableDropdown from '../../dashboard/AppSearchableDropdown';
 import { countWeekendsHandler } from '@/src/utils/helpers';
 import { emailRegExp } from '../../../validation/validations';
 

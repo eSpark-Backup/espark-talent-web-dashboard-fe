@@ -8,7 +8,7 @@ import Image from 'next/image';
 
 import SidebarUserAvatar from '../sidebar/SidebarUserAvatar';
 import { NOTIFICATION_TITLE, profileMenuData } from '@/src/constants/sidebar';
-import SignoutModal from '../sign-out-modal/signoutModal';
+import SignoutModal from '../sign-out-modal/SignoutModal';
 import DotBadge from '../sidebar/SidebarProfileBadge';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '@/src/redux/slices/authSlice';

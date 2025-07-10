@@ -6,8 +6,8 @@ import Image from 'next/image';
 
 import AppTable from '@/src/components/app-table-new/AppTable';
 import { invoicePageColumn } from '@/src/data/tables/hr/invoices-page-data';
-import Input from '@/src/components/dashboard/input';
-import AppDropdown from '@/src/components/dashboard/appDropdown';
+import Input from '@/src/components/dashboard/Input';
+import AppDropdown from '@/src/components/dashboard/AppDropdown';
 import { useDispatch, useSelector } from 'react-redux';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import {
@@ -23,7 +23,7 @@ import {
 } from '@/src/redux/slices/hrSlices/clientSlice';
 import { useRouter } from 'next/navigation';
 import { Toast } from '@/src/utils/toast';
-import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
+import DashboardHeading from '@/src/components/dashboard/DashboardHeading';
 
 const Page = () => {
   const router = useRouter();

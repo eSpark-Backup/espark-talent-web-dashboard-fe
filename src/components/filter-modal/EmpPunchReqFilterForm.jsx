@@ -4,7 +4,7 @@ import { Box, Grid, Modal, Typography } from '@mui/material';
 import { useFormik } from 'formik';
 import FormInput from '../form/ui-elements/FormInput';
 import { FILTER } from '@/src/constants/filter';
-import ResetButton from './resetButton';
+import ResetButton from './ResetButton';
 import { api } from '@/src/services/apiService';
 import { EMP_PUNCH_REQUEST } from '@/src/services/apiService/apiEndPoints';
 import { useDispatch, useSelector } from 'react-redux';

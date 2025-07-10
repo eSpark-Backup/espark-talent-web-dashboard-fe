@@ -4,7 +4,7 @@ import { Box, Modal } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 
-import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
+import CustomTabPanel from '@/src/components/dashboard/AppCustomTabPanel';
 import { useDispatch, useSelector } from 'react-redux';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';

@@ -4,9 +4,9 @@ import { Grid, Box, Button } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 
-import Input from '@/src/components/dashboard/input';
+import Input from '@/src/components/dashboard/Input';
 import { teamMembersData } from '@/src/data/tables/team-members';
-import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
+import CustomTabPanel from '@/src/components/dashboard/AppCustomTabPanel';
 import { filterDataByKeyword } from '@/src/utils/search';
 import { filterTableRowsWRTTab } from '@/src/utils/table';
 import { changeTab } from '@/src/utils/tabs';
@@ -25,7 +25,7 @@ import {
   fetchTeamMembersRequestTerminatedSuccess,
 } from '@/src/redux/slices/clientSlices/teamMembersSlice';
 import { Toast } from '@/src/utils/toast';
-import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
+import DashboardHeading from '@/src/components/dashboard/DashboardHeading';
 import { useRouter } from 'next/navigation';
 import dayjs from 'dayjs';
 

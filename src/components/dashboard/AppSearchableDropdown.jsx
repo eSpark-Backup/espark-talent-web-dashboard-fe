@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Box, Grid, Tooltip, Typography } from '@mui/material';
 import Image from 'next/image';
-import Input from './input';
+import Input from './Input';
 import Skeleton from '@mui/material/Skeleton';
 import { filterDataByKeyword } from '@/src/utils/search';
 import { ellipsisWithTooltip } from '@/src/utils/tooltipEllipsis';

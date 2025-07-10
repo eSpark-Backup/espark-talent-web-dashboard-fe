@@ -6,7 +6,7 @@ import AppTable from '../app-table-new/AppTable';
 import { accountColumn } from '@/src/data/tables/hr/account';
 import AppConfirmationMadal from '../modals/AppConfirmationMadal';
 import { CONTRACT_SIGNED } from '@/src/constants/contract-signed';
-import CredentialModal from '../modals/credentialModal';
+import CredentialModal from '../modals/CredentialModal';
 import { useDispatch } from 'react-redux';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { HR_ACCOUNTS } from '@/src/services/apiService/apiEndPoints';

@@ -1,7 +1,7 @@
 import Skeleton from '@mui/material/Skeleton';
 import AppTable from '@/src/components/app-table-new/AppTable';
-import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
-import Input from '@/src/components/dashboard/input';
+import CustomTabPanel from '@/src/components/dashboard/AppCustomTabPanel';
+import Input from '@/src/components/dashboard/Input';
 import { leaveBalanceColumn } from '@/src/data/tables/time-off-request';
 import {
   leaveRequestsTab,

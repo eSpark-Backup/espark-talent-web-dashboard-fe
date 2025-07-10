@@ -27,7 +27,7 @@ import {
   getEmpLeaveRequestDataFailed,
   getEmpLeaveRequestDataSuccess,
 } from '@/src/redux/slices/employeeSlices/leaveRequestSlice';
-import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
+import DashboardHeading from '@/src/components/dashboard/DashboardHeading';
 import { Toast } from '@/src/utils/toast';
 import dayjs from 'dayjs';
 

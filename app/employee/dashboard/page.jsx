@@ -4,7 +4,7 @@ import { Box, Grid, Skeleton, Stack } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { useQuery } from '@tanstack/react-query';
 
-import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
+import DashboardHeading from '@/src/components/dashboard/DashboardHeading';
 import AttendanceSummary from '@/src/components/atttendance-summary/AttendanceSummary';
 import LeaveSummary from '@/src/components/atttendance-summary/LeaveSummary';
 import Clock from '@/src/components/atttendance-summary/Clock';

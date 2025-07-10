@@ -13,7 +13,7 @@ import { api } from '@/src/services/apiService';
 import { Toast } from '@/src/utils/toast';
 
 import { useDispatch } from 'react-redux';
-import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
+import DashboardHeading from '@/src/components/dashboard/DashboardHeading';
 import { BenefitsColumn } from '@/src/data/tables/benefits';
 import dayjs from 'dayjs';
 

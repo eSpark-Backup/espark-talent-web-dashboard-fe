@@ -19,7 +19,7 @@ import { Toast } from '@/src/utils/toast';
 import { useState } from 'react';
 import { editAccountInfoSchema } from '../../validation/addAccount';
 import { editAccountForm } from '@/src/data/forms/add-account';
-import EditSettingProfile from '../employee-data/editSettingProfile';
+import EditSettingProfile from '../employee-data/EditSettingProfile';
 
 const EditAccountModal = forwardRef(({ open, onClose, modalData }, ref) => {
   const [showEditModal, setEditModal] = useState(false);

@@ -37,7 +37,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import TimeOffTabs from './TimeOffTabs';
 import RequestStatusTabs from './RequestStatusTabs';
 import { Toast } from '@/src/utils/toast';
-import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
+import DashboardHeading from '@/src/components/dashboard/DashboardHeading';
 import { TIME_REQUEST } from '@/src/constants/time-sheet';
 import dayjs from 'dayjs';
 import PunchRequestDataView from '@/app/employee/dashboard/request/punch-requests/PunchRequestFormView';

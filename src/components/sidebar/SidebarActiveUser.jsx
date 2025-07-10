@@ -3,7 +3,7 @@ import React from 'react';
 import { Box, Typography } from '@mui/material';
 
 import SidebarUserAvatar from './SidebarUserAvatar';
-import SidebarProfileMenu from './sidebarProfileMenu';
+import SidebarProfileMenu from './SidebarProfileMenu';
 import SidebarGlobalIcon from './SidebarGlobalIcon';
 import { useSelector } from 'react-redux';
 

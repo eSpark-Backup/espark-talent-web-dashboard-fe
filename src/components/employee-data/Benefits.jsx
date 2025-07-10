@@ -17,7 +17,7 @@ import {
   deleteEmpBenefit,
 } from '@/src/redux/slices/hrSlices/employeeSlice';
 import { Toast } from '@/src/utils/toast';
-import EditBenefitForm from './editBenefitModal';
+import EditBenefitForm from './EditBenefitModal';
 import dayjs from 'dayjs';
 
 const Benefits = () => {

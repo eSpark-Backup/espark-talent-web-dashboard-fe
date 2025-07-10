@@ -21,7 +21,7 @@ import {
 } from '@/src/redux/slices/hrSlices/employeeSlice';
 import { Toast } from '@/src/utils/toast';
 import dayjs from 'dayjs';
-import AssetEditModal from './assetEditModal';
+import AssetEditModal from './AssetEditModal';
 
 const Assets = ({ empData }) => {
   const [editModalOpen, setEditModalOpen] = useState(null);

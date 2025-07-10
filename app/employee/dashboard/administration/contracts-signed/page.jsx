@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Grid, Box } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
+import CustomTabPanel from '@/src/components/dashboard/AppCustomTabPanel';
 import { changeTab } from '@/src/utils/tabs';
 import { empTabs } from '@/src/data/tabs/emp-tabs';
 import AppTable from '@/src/components/app-table-new/AppTable';
@@ -23,7 +23,7 @@ import {
   fetchEmpCompanyContractsSuccess,
 } from '@/src/redux/slices/employeeSlices/contractSlice';
 import { api } from '@/src/services/apiService';
-import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
+import DashboardHeading from '@/src/components/dashboard/DashboardHeading';
 import { Toast } from '@/src/utils/toast';
 import dayjs from 'dayjs';
 

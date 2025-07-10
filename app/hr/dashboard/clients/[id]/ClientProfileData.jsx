@@ -7,7 +7,7 @@ import {
   Typography,
 } from '@mui/material';
 import React from 'react';
-import EditModal from '@/src/components/employee-data/editModal';
+import EditModal from '@/src/components/employee-data/EditModal';
 import { useRouter } from 'next/navigation';
 import { useSelector } from 'react-redux';
 import { ellipsisWithTooltip } from '@/src/utils/tooltipEllipsis';

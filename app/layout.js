@@ -14,7 +14,7 @@ import { store, persistor } from '@/src/redux/store';
 
 import { ThemeProvider } from '@mui/material/styles';
 import { lightTheme } from './theme';
-import { AOSInit } from '@/src/components/aosint';
+import { AOSInit } from '@/src/components/Aosint';
 
 export default function RootLayout({ children }) {
   const queryClient = new QueryClient();

@@ -1,5 +1,5 @@
 import React from 'react';
-import WideFormInput from '../../../../../src/components/form/ui-elements/WideFormInput';
+import WideFormInput from '@/src/components/form/ui-elements/WideFormInput';
 import { Box, Button, CircularProgress } from '@mui/material';
 import { useFormik } from 'formik';
 import { createWFHRequestSchema } from '@/src/validation/createLeaveRequest';

@@ -3,7 +3,7 @@ import { Box } from '@mui/material';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useDispatch, useSelector } from 'react-redux';
 import AppTable from '../app-table-new/AppTable';
-import EditSalaryForm from './editSalaryModal';
+import EditSalaryForm from './EditSalaryModal';
 import AppConfirmationMadal from '../modals/AppConfirmationMadal';
 import { Toast } from '@/src/utils/toast';
 import { api } from '@/src/services/apiService';

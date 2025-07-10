@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import { Avatar, Box, Tooltip, Typography } from '@mui/material';
 
-import AppCustomDropdown from '../dashboard/appCustomDropdown';
+import AppCustomDropdown from '../dashboard/AppCustomDropdown';
 import {
   getCamelCapitalized,
   toCamelCase,

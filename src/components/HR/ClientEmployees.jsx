@@ -2,7 +2,7 @@
 import { Button, Grid, Tab, Tabs, Typography } from '@mui/material';
 import { Box, useTheme } from '@mui/system';
 import React, { useEffect, useState } from 'react';
-import Input from '../dashboard/input';
+import Input from '../dashboard/Input';
 import Image from 'next/image';
 import EmployeeView from './EmployeeView';
 import { useRouter } from 'next/navigation';

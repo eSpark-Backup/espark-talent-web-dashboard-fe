@@ -10,7 +10,7 @@ import {
   WORK_SPACE_ICON,
   WORK_SPACE_TITLE,
 } from '@/src/constants/sidebar';
-import SidebarLogo from './sidebarLogo';
+import SidebarLogo from './SidebarLogo';
 import SidebarActiveUser from './SidebarActiveUser';
 import ProfilePopper from '../popover/ProfilePopper';
 import { usePathname, useRouter } from 'next/navigation';

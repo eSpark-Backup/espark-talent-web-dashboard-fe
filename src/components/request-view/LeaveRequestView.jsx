@@ -1,17 +1,17 @@
 import React from 'react';
 import { Box } from '@mui/material';
-import LeaveType from './leaveType';
-import LeaveDate from './leaveDate';
+import LeaveType from './LeaveType';
+import LeaveDate from './LeaveDate';
 import {
   LEAVE_DATA,
   REQUESTVIEW_DATA,
 } from '@/src/constants/requestview-modal';
-import LeaveDuration from './leaveDuration';
-import LeaveCount from './leaveCount';
-import LeaveDatePicker from './leaveDatepicker';
-import LeaveReason from './leaveReason';
-import LeaveRequestButtons from './leaveRequestButton';
-import AttachDoc from './attachFile';
+import LeaveDuration from './LeaveDuration';
+import LeaveCount from './LeaveCount';
+import LeaveDatePicker from './LeaveDatepicker';
+import LeaveReason from './LeaveReason';
+import LeaveRequestButtons from './LeaveRequestButton';
+import AttachDoc from './AttachFile';
 
 const LeaveRequest = ({
   modalType,

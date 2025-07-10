@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 
 import { DesktopDatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import ActionBarComponent from './actionbarComponent';
+import ActionBarComponent from './ActionbarComponent';
 import PreviousDateModal from './PreviousDateModal';
 import dayjs from 'dayjs';
 import Image from 'next/image';

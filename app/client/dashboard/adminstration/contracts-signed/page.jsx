@@ -4,7 +4,7 @@ import { Grid, Box } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 
-import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
+import CustomTabPanel from '@/src/components/dashboard/AppCustomTabPanel';
 import { contractSignedTabs } from '@/src/data/tabs/contract-signed-tabs';
 import AppTable from '@/src/components/app-table-new/AppTable';
 import { useDispatch, useSelector } from 'react-redux';
@@ -25,7 +25,7 @@ import {
   fetchClientCompanyContractRequestSuccess,
 } from '@/src/redux/slices/clientSlices/contratSignedSlice';
 import { Toast } from '@/src/utils/toast';
-import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
+import DashboardHeading from '@/src/components/dashboard/DashboardHeading';
 import dayjs from 'dayjs';
 
 const ContractSigned = () => {

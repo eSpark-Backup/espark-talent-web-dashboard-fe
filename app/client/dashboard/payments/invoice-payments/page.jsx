@@ -5,8 +5,8 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Skeleton from '@mui/material/Skeleton';
 
-import Input from '@/src/components/dashboard/input';
-import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
+import Input from '@/src/components/dashboard/Input';
+import CustomTabPanel from '@/src/components/dashboard/AppCustomTabPanel';
 import { filterDataByKeyword } from '@/src/utils/search';
 import { changeTab } from '@/src/utils/tabs';
 import { paymentStatusTabs } from '@/src/data/tabs/payment-tabs';
@@ -42,7 +42,7 @@ import {
 } from '@/src/redux/slices/clientSlices/invoicePaymentsSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { Toast } from '@/src/utils/toast';
-import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
+import DashboardHeading from '@/src/components/dashboard/DashboardHeading';
 import { formatSalary } from '@/src/utils/salaryFormat';
 
 const Dashboard = () => {

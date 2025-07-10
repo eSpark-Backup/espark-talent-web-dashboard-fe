@@ -3,7 +3,7 @@ import React from 'react';
 import { Typography, Box, Grid } from '@mui/material';
 
 import { COMPANY_ONBOARDING, HIRING_STATUS } from '@/src/constants/dashboard';
-import CompanyProfile from './companyProfile';
+import CompanyProfile from './CompanyProfile';
 import { useSelector } from 'react-redux';
 
 const OnBoarding = () => {
