@@ -61,7 +61,7 @@ const GeneralSettings = () => {
     setErrors,
   } = useFormik({
     initialValues: {
-      email: data?.c_email || 'test@example.com',
+      email: data?.email || data?.c_email || 'test@example.com',
       companyName: data?.username || '',
     },
     validationSchema: generalSettingFormSchema,
