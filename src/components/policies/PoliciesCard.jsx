@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Stack } from '@mui/material';
 import Skeleton from '@mui/material/Skeleton';
 
-import DownloadPolicies from './downloadPolicies';
+import DownloadPolicies from './DownloadPolicies';
 
 const PoliciesCard = ({ data, policyData, isLoading }) => {
   return (

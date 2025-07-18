@@ -5,7 +5,7 @@ import { Grid, Box, Button } from '@mui/material';
 import Heading from '@/src/components/global/Heading';
 import AppTable from '@/src/components/app-table-new/AppTable';
 import { policyColumn } from '@/src/data/tables/policy-data';
-import UploadPolicyModal from '@/src/components/modals/uploadPolicyModal';
+import UploadPolicyModal from '@/src/components/modals/UploadPolicyModal';
 import { POLICIES_DATA } from '@/src/constants/policies';
 import { CONTRACT_SIGNED } from '@/src/constants/contract-signed';
 import AppConfirmationMadal from '@/src/components/modals/AppConfirmationMadal';
