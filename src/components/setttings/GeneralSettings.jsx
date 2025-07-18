@@ -32,15 +32,15 @@ const GeneralSettings = () => {
   const { data } = useSelector((state) => state?.client?.home);
 
   const { mutate, isPending } = useMutation({
-    mutationFn: async (data) => {
+    mutationFn: async (formValues) => {
       const updateCompanyPromise = api.updateJSONData(CLIENT_UPDATE_COMPANY, {
-        company_name: data?.companyName,
+        company_name: formValues?.companyName,
       });
 
       return updateCompanyPromise.then((response) => {
         const updatedHomeData = {
-          ...data,
-          username: data?.companyName,
+          ...(data || {}),
+          username: formValues?.companyName,
         };
         dispatch(fetchClientHomeDataRequestSuccess(updatedHomeData || {}));
         return response;
@@ -61,7 +61,7 @@ const GeneralSettings = () => {
     setErrors,
   } = useFormik({
     initialValues: {
-      email: data?.email || 'test@example.com',
+      email: data?.email || data?.c_email || 'test@example.com',
       companyName: data?.username || '',
     },
     validationSchema: generalSettingFormSchema,
