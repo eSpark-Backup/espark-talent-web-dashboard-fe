@@ -8,7 +8,7 @@ import {
   Profile_Edit_Section,
   Setting_Data,
   User_Detail,
-} from '@/src/constants/profileEditData';
+} from '@/src/constants/profile-edit-data';
 import ChangePassword from './ChangePassword';
 
 const EditProfile = () => {

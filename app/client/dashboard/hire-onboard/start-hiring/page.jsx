@@ -2,7 +2,7 @@
 import React from 'react';
 import { Box } from '@mui/material';
 
-import StartHiringForm from '@/src/components/StartHiring/StartHiringForm';
+import StartHiringForm from '@/src/components/start-hiring/StartHiringForm';
 
 const StartHiring = () => {
   return (

@@ -1,9 +1,9 @@
 'use client';
 import React from 'react';
 import { Grid, Box } from '@mui/material';
-import AppTable from '@/src/components/appTableNew/AppTable';
-import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
-import { LETTERS_TABLECOLUMN } from '@/src/constants/employeeProfile';
+import AppTable from '@/src/components/app-table-new/AppTable';
+import DashboardHeading from '@/src/components/dashboard/DashboardHeading';
+import { LETTERS_TABLECOLUMN } from '@/src/constants/employee-profile';
 import { useDispatch } from 'react-redux';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import {
@@ -16,7 +16,7 @@ import {
   fetchEmpLettersSuccess,
 } from '@/src/redux/slices/employeeSlices/lettersSlice';
 import { api } from '@/src/services/apiService';
-import { Toast } from '@/src/components/Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import dayjs from 'dayjs';
 
 const Letters = () => {

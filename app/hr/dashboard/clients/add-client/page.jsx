@@ -4,10 +4,10 @@ import { Typography } from '@mui/material';
 import { Box } from '@mui/system';
 
 import Step from '@/src/components/form/step/Step';
-import { formSteps } from '@/src/constants/data/forms/add-client';
+import { formSteps } from '@/src/data/forms/add-client';
 import Navigator from '@/src/components/form/step/Navigator';
 import Breadcrumb from '@/src/components/form/step/Breadcrumb';
-import { EMPLOYEE_DATA } from '@/src/constants/AllEmployee';
+import { EMPLOYEE_DATA } from '@/src/constants/all-employee';
 import { useDispatch, useSelector } from 'react-redux';
 import { HR_ADD_ClIENT } from '@/src/services/apiService/apiEndPoints';
 import {
@@ -15,7 +15,7 @@ import {
   removeClientFormData,
 } from '@/src/redux/slices/hrSlices/clientSlice';
 import dayjs from 'dayjs';
-import { Toast } from '@/src/components/Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import { useRouter } from 'next/navigation';
 import { countriesList } from '@/src/constants/countries';
 

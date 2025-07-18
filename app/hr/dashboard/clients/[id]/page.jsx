@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Typography, Tabs, Tab, Button } from '@mui/material';
 import { Box } from '@mui/system';
 import Breadcrumb from '@/src/components/form/step/Breadcrumb';
-import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
+import CustomTabPanel from '@/src/components/dashboard/AppCustomTabPanel';
 import { renderTable } from './renderComponents';
 import { filterTableRowsWRTTab } from '@/src/utils/table';
 import { useParams } from 'next/navigation';
@@ -14,7 +14,7 @@ import AddInterviewModal from './AddInterviewModal';
 import AddOnboardModal from './AddOnboardModal';
 
 import { useSearchParams } from 'next/navigation';
-import { CLIENTPROFILE } from '@/src/constants/ClientProfile';
+import { CLIENTPROFILE } from '@/src/constants/client-profile';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import {
@@ -57,16 +57,16 @@ import {
   hiringRequestColumn,
   interviewScheduleColumn,
   onboardingColumn,
-} from '@/src/constants/data/tables/hr/hireOnBoard';
+} from '@/src/data/tables/hr/hire-on-board';
 import { a11yProps } from '@/src/utils/tabs';
 import {
   invoicePaymentColumn,
   otherPaymentColumn,
-} from '@/src/constants/data/tables/hr/invoices';
+} from '@/src/data/tables/hr/invoices';
 import { getCamelCapitalized } from '@/src/utils/stringModification';
 import UploadOtherInvoiceModal from './UploadOtherInvoiceModal';
-import { Toast } from '@/src/components/Toast/Toast';
-import ProfileEditSkeleton from '@/src/components/HR/ProfileEditSkeleton';
+import { Toast } from '@/src/utils/toast';
+import ProfileEditSkeleton from '@/src/components/hr/ProfileEditSkeleton';
 import dayjs from 'dayjs';
 import { genderType } from '@/src/utils/genderType';
 import { clientProfileTabsHandler } from '@/src/utils/clientProfileTabHandler';

@@ -3,11 +3,11 @@ import React, { useState } from 'react';
 import { Grid, Box, Button } from '@mui/material';
 
 import Heading from '@/src/components/global/Heading';
-import AppTable from '@/src/components/appTableNew/AppTable';
-import { policyColumn } from '@/src/constants/data/tables/policyData';
-import UploadPolicyModal from '@/src/components/modals/uploadPolicyModal';
+import AppTable from '@/src/components/app-table-new/AppTable';
+import { policyColumn } from '@/src/data/tables/policy-data';
+import UploadPolicyModal from '@/src/components/modals/UploadPolicyModal';
 import { POLICIES_DATA } from '@/src/constants/policies';
-import { CONTRACT_SIGNED } from '@/src/constants/contractSigned';
+import { CONTRACT_SIGNED } from '@/src/constants/contract-signed';
 import AppConfirmationMadal from '@/src/components/modals/AppConfirmationMadal';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
@@ -16,8 +16,8 @@ import {
   HR_POLICY,
   HR_POLICY_EDIT,
 } from '@/src/services/apiService/apiEndPoints';
-import { Toast } from '@/src/components/Toast/Toast';
-import { SETTING } from '@/src/constants/SettingHr';
+import { Toast } from '@/src/utils/toast';
+import { SETTING } from '@/src/constants/setting-hr';
 import {
   getPolicyData,
   removePolicy,

@@ -4,13 +4,13 @@ import { Grid, Box, Button } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 
-import Input from '@/src/components/dashboard/input';
-import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
+import Input from '@/src/components/dashboard/Input';
+import CustomTabPanel from '@/src/components/dashboard/AppCustomTabPanel';
 import { filterDataByKeyword } from '@/src/utils/search';
 import { changeTab } from '@/src/utils/tabs';
-import { empTabs } from '@/src/constants/data/tabs/empTabs';
-import { HIRING_FORM_DATA } from '@/src/constants/Hiring';
-import AppTable from '@/src/components/appTableNew/AppTable';
+import { empTabs } from '@/src/data/tabs/emp-tabs';
+import { HIRING_FORM_DATA } from '@/src/constants/hiring';
+import AppTable from '@/src/components/app-table-new/AppTable';
 import AppConfirmationMadal from '@/src/components/modals/AppConfirmationMadal';
 import { api } from '@/src/services/apiService';
 import {
@@ -33,8 +33,8 @@ import {
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useDispatch, useSelector } from 'react-redux';
 import { filterTableRowsWRTTab } from '@/src/utils/table';
-import { Toast } from '@/src/components/Toast/Toast';
-import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
+import { Toast } from '@/src/utils/toast';
+import DashboardHeading from '@/src/components/dashboard/DashboardHeading';
 import { useRouter, useSearchParams } from 'next/navigation';
 import dayjs from 'dayjs';
 import { genderType } from '@/src/utils/genderType';

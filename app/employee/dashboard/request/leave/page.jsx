@@ -12,7 +12,7 @@ import Image from 'next/image';
 import LeaveRequestModal from './LeaveRequestModal';
 import LeaveViewModal from '@/app/client/dashboard/team/time-off/LeaveViewModal';
 import AppConfirmationMadal from '@/src/components/modals/AppConfirmationMadal';
-import { REQUEST_LEAVE } from '@/src/constants/requestviewModal';
+import { REQUEST_LEAVE } from '@/src/constants/requestview-modal';
 import LeaveBalanceTable from './LeaveBalanceTable';
 import LeaveRequestTablesTabs from './LeaveRequestTablesTabs';
 import { useMutation } from '@tanstack/react-query';
@@ -27,8 +27,8 @@ import {
   getEmpLeaveRequestDataFailed,
   getEmpLeaveRequestDataSuccess,
 } from '@/src/redux/slices/employeeSlices/leaveRequestSlice';
-import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
-import { Toast } from '@/src/components/Toast/Toast';
+import DashboardHeading from '@/src/components/dashboard/DashboardHeading';
+import { Toast } from '@/src/utils/toast';
 import dayjs from 'dayjs';
 
 const Dashboard = () => {

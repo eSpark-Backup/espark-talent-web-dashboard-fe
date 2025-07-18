@@ -7,7 +7,7 @@ import { useQuery } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 
 import { useDispatch } from 'react-redux';
-import { Toast } from '@/src/components/Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import { EMP_GUIDE } from '@/src/services/apiService/apiEndPoints';
 import {
   fetchEmpGuidesDataRequestFailed,

@@ -4,15 +4,15 @@ import { Grid, Box, Button } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 
-import Input from '@/src/components/dashboard/input';
-import { teamMembersData } from '@/src/constants/data/tables/teamMembers';
-import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
+import Input from '@/src/components/dashboard/Input';
+import { teamMembersData } from '@/src/data/tables/team-members';
+import CustomTabPanel from '@/src/components/dashboard/AppCustomTabPanel';
 import { filterDataByKeyword } from '@/src/utils/search';
 import { filterTableRowsWRTTab } from '@/src/utils/table';
 import { changeTab } from '@/src/utils/tabs';
-import { teamTabs } from '@/src/constants/data/tabs/teamTabs';
-import { HIRING_FORM_DATA } from '@/src/constants/Hiring';
-import AppTable from '@/src/components/appTableNew/AppTable';
+import { teamTabs } from '@/src/data/tabs/team-tabs';
+import { HIRING_FORM_DATA } from '@/src/constants/hiring';
+import AppTable from '@/src/components/app-table-new/AppTable';
 import { useQuery } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import { CLIENT_TEAM_MEMBER } from '@/src/services/apiService/apiEndPoints';
@@ -24,8 +24,8 @@ import {
   fetchTeamMembersRequestOnBoardSuccess,
   fetchTeamMembersRequestTerminatedSuccess,
 } from '@/src/redux/slices/clientSlices/teamMembersSlice';
-import { Toast } from '@/src/components/Toast/Toast';
-import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
+import { Toast } from '@/src/utils/toast';
+import DashboardHeading from '@/src/components/dashboard/DashboardHeading';
 import { useRouter } from 'next/navigation';
 import dayjs from 'dayjs';
 

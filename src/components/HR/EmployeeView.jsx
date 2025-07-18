@@ -13,7 +13,7 @@ import { Box, useTheme } from '@mui/system';
 
 import AppConfirmationMadal from '../modals/AppConfirmationMadal';
 import { useRouter } from 'next/navigation';
-import { REMOVE_MODAL } from '@/src/constants/contractSigned';
+import { REMOVE_MODAL } from '@/src/constants/contract-signed';
 import { useDispatch, useSelector } from 'react-redux';
 import { useMutation } from '@tanstack/react-query';
 import { HR_EMPLOYEES } from '@/src/services/apiService/apiEndPoints';
@@ -23,7 +23,7 @@ import {
   deleteCurrentEmpDataSuccess,
 } from '@/src/redux/slices/hrSlices/employeeSlice';
 import { api } from '@/src/services/apiService';
-import { Toast } from '../Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import EmployeeCardSkeleton from './EmployeeCardSkeleton';
 
 const EmployeeView = ({ status, data, isLoading }) => {

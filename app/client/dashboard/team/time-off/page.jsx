@@ -12,7 +12,7 @@ import {
 import {
   checkInOutColumn,
   leaveRequestsColumn,
-} from '@/src/constants/data/tables/timeOffRequest';
+} from '@/src/data/tables/time-off-request';
 import { renderNestedTable } from './renderComponents';
 import LeaveViewModal from './LeaveViewModal';
 import { useMutation, useQuery } from '@tanstack/react-query';
@@ -36,9 +36,9 @@ import { api } from '@/src/services/apiService';
 import { useDispatch, useSelector } from 'react-redux';
 import TimeOffTabs from './TimeOffTabs';
 import RequestStatusTabs from './RequestStatusTabs';
-import { Toast } from '@/src/components/Toast/Toast';
-import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
-import { TIME_REQUEST } from '@/src/constants/timeSheet';
+import { Toast } from '@/src/utils/toast';
+import DashboardHeading from '@/src/components/dashboard/DashboardHeading';
+import { TIME_REQUEST } from '@/src/constants/time-sheet';
 import dayjs from 'dayjs';
 import PunchRequestDataView from '@/app/employee/dashboard/request/punch-requests/PunchRequestFormView';
 

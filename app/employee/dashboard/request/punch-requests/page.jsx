@@ -12,14 +12,14 @@ import {
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 
-import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
+import CustomTabPanel from '@/src/components/dashboard/AppCustomTabPanel';
 import { filterTableRowsWRTTab } from '@/src/utils/table';
 import Image from 'next/image';
 import { renderNestedTable } from './renderComponents';
-import { checkInOutStatusTabs } from '@/src/constants/data/tabs/checkInOutTabs';
-import { employeeCheckInOutRequestColumn } from '@/src/constants/data/tables/checkInOutRequestsData';
+import { checkInOutStatusTabs } from '@/src/data/tabs/check-in-out-tabs';
+import { employeeCheckInOutRequestColumn } from '@/src/data/tables/check-in-out-requests-data';
 import PunchRequestModal from './PunchRequestModal';
-import { REQUEST_LEAVE } from '@/src/constants/requestviewModal';
+import { REQUEST_LEAVE } from '@/src/constants/requestview-modal';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { EMP_PUNCH_REQUEST } from '@/src/services/apiService/apiEndPoints';
 import { useDispatch, useSelector } from 'react-redux';
@@ -33,10 +33,10 @@ import {
   getEmpPunchRequestDataSuccess,
 } from '@/src/redux/slices/employeeSlices/punchRequestSlice';
 import AppConfirmationMadal from '@/src/components/modals/AppConfirmationMadal';
-import EmpPunchReqFilterFormModal from '@/src/components/FilterModal/empPunchReqFilterForm';
-import { empPunchReqfilterForm } from '@/src/constants/data/forms/emp-punch-req-modal-form';
-import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
-import { Toast } from '@/src/components/Toast/Toast';
+import EmpPunchReqFilterFormModal from '@/src/components/filter-modal/EmpPunchReqFilterForm';
+import { empPunchReqfilterForm } from '@/src/data/forms/emp-punch-req-modal-form';
+import DashboardHeading from '@/src/components/dashboard/DashboardHeading';
+import { Toast } from '@/src/utils/toast';
 import Skeleton from '@mui/material/Skeleton';
 import dayjs from 'dayjs';
 import { ellipsisWithTooltip } from '@/src/utils/tooltipEllipsis';

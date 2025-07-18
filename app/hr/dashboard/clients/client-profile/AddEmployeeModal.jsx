@@ -1,9 +1,9 @@
-import AppTable from '@/src/components/appTable/AppTable';
-import { addEmployeModalFormSchema } from '@/src/components/form/schemas/addEmployeeModal';
+import AppTable from '@/src/components/app-table/AppTable';
+import { addEmployeModalFormSchema } from '@/src/validation/addEmployeeModal';
 import Navigator from '@/src/components/form/step/Navigator';
 import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { countriesList } from '@/src/constants/countries';
-import { addEmployeeModalFormSteps } from '@/src/constants/data/forms/add-employee-modal';
+import { addEmployeeModalFormSteps } from '@/src/data/forms/add-employee-modal';
 import { FORM_DATA } from '@/src/constants/form';
 import { Box, Button, Grid, Modal } from '@mui/material';
 import { useFormik } from 'formik';

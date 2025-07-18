@@ -4,12 +4,12 @@ import { Grid, Box, Button } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 
-import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
-import { contractHrSignedTabs } from '@/src/constants/data/tabs/contractSignedTabs';
-import AppTable from '@/src/components/appTableNew/AppTable';
+import CustomTabPanel from '@/src/components/dashboard/AppCustomTabPanel';
+import { contractHrSignedTabs } from '@/src/data/tabs/contract-signed-tabs';
+import AppTable from '@/src/components/app-table-new/AppTable';
 import AppConfirmationMadal from '@/src/components/modals/AppConfirmationMadal';
-import AddContractHrPortalModal from '@/src/components/contractHrportal/contractHr';
-import { CONTRACT_SIGNED } from '@/src/constants/contractSigned';
+import AddContractHrPortalModal from '@/src/components/contract-hr-portal/ContractHr';
+import { CONTRACT_SIGNED } from '@/src/constants/contract-signed';
 import { handleTabChange } from '@/src/utils/handleTab';
 import {
   getClientsCompanyContractRequest,
@@ -29,14 +29,14 @@ import {
   HR_OFF_SHORE_CONTRACTS,
 } from '@/src/services/apiService/apiEndPoints';
 import { useDispatch, useSelector } from 'react-redux';
-import { Toast } from '@/src/components/Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import AddContractModal from '../clients/[id]/AddContractModal';
 import EmployeeContractModal from '../clients/[id]/EmployeeContractModal';
-import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
+import DashboardHeading from '@/src/components/dashboard/DashboardHeading';
 import dayjs from 'dayjs';
 import EditContractModal from '../clients/[id]/EditContractModal';
 import EditEmployeeContractModal from '../clients/[id]/EditEmployeeContractModal';
-import EditContractHr from '@/src/components/contractHrportal/EditContractHr';
+import EditContractHr from '@/src/components/contract-hr-portal/EditContractHr';
 
 const ContractSigned = () => {
   const dispatch = useDispatch();

@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import WideFormInput from '../../../../../src/components/form/ui-elements/WideFormInput';
+import WideFormInput from '@/src/components/form/ui-elements/WideFormInput';
 import { Box, Button, CircularProgress } from '@mui/material';
 import { useFormik } from 'formik';
-import { createLeaveRequestForm } from '@/src/constants/data/forms/create-leave-request';
-import { createLeaveRequestSchema } from '@/src/components/form/schemas/createLeaveRequest';
+import { createLeaveRequestForm } from '@/src/data/forms/create-leave-request';
+import { createLeaveRequestSchema } from '@/src/validation/createLeaveRequest';
 import { useMutation } from '@tanstack/react-query';
 import { EMP_LEAVE_REQUEST } from '@/src/services/apiService/apiEndPoints';
 import { api } from '@/src/services/apiService';
@@ -21,7 +21,7 @@ import {
   getEmpLeaveRequestDataFailed,
   getEmpLeaveRequestDataSuccess,
 } from '@/src/redux/slices/employeeSlices/leaveRequestSlice';
-import { Toast } from '@/src/components/Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 
 const LeaveRequestForm = ({ handleClose }) => {
   const dispatch = useDispatch();

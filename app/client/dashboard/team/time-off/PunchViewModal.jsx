@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Box, Button, CircularProgress, Grid, Typography } from '@mui/material';
 import Image from 'next/image';
 import { useMutation } from '@tanstack/react-query';
-import { Toast } from '@/src/components/Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import { useDispatch } from 'react-redux';
 import { updateTimeOffRequests } from '@/src/redux/slices/clientSlices/timeOffSlice';
 import { api } from '@/src/services/apiService';

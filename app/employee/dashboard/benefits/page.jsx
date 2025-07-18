@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import { Grid, Box } from '@mui/material';
-import AppTable from '@/src/components/appTableNew/AppTable';
+import AppTable from '@/src/components/app-table-new/AppTable';
 import { useQuery } from '@tanstack/react-query';
 import { EMP_BENEFITS } from '@/src/services/apiService/apiEndPoints';
 import {
@@ -10,11 +10,11 @@ import {
   fetchEmpBenefitsSuccess,
 } from '@/src/redux/slices/employeeSlices/benefitsSlice';
 import { api } from '@/src/services/apiService';
-import { Toast } from '@/src/components/Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 
 import { useDispatch } from 'react-redux';
-import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
-import { BenefitsColumn } from '@/src/constants/data/tables/benefits';
+import DashboardHeading from '@/src/components/dashboard/DashboardHeading';
+import { BenefitsColumn } from '@/src/data/tables/benefits';
 import dayjs from 'dayjs';
 
 const Benefits = () => {

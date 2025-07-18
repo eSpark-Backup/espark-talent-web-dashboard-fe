@@ -4,7 +4,7 @@ import { Grid, Box } from '@mui/material';
 
 import { REPORT_DATA } from '@/src/constants/report';
 import Heading from '@/src/components/global/Heading';
-import ReportBoxes from '@/src/components/reports/reportBoxes';
+import ReportBoxes from '@/src/components/reports/ReportBoxes';
 
 const Reports = () => {
   return (

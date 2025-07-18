@@ -8,16 +8,16 @@ import {
   Typography,
 } from '@mui/material';
 
-import { contractFormSchema } from '@/src/components/form/schemas/contractSignedForm';
+import { contractFormSchema } from '@/src/validation/contractSignedForm';
 import FormInput from '@/src/components/form/ui-elements/FormInput';
-import { contractForm } from '@/src/constants/data/forms/contract';
+import { contractForm } from '@/src/data/forms/contract';
 import { useFormik } from 'formik';
-import { CONTRACT_SIGNED } from '@/src/constants/contractSigned';
+import { CONTRACT_SIGNED } from '@/src/constants/contract-signed';
 import { FORM_DATA } from '@/src/constants/form';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import { HR_COMPANY_CONTRACTS } from '@/src/services/apiService/apiEndPoints';
-import { Toast } from '@/src/components/Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import dayjs from 'dayjs';
 import { useDispatch } from 'react-redux';
 import { addClientContract } from '@/src/redux/slices/hrSlices/contractSlice';

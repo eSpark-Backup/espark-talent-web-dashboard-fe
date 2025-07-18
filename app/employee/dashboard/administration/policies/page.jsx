@@ -4,7 +4,7 @@ import { Grid, Box, Typography } from '@mui/material';
 
 import Heading from '@/src/components/global/Heading';
 import { POLICIES_DATA } from '@/src/constants/policies';
-import PoliciesCard from '@/src/components/policies/policiesCard';
+import PoliciesCard from '@/src/components/policies/PoliciesCard';
 import { useQuery } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import { EMP_POLICIES } from '@/src/services/apiService/apiEndPoints';
@@ -14,7 +14,7 @@ import {
   fetchEmpPoliciesDataRequestFailed,
   fetchEmpPoliciesDataRequestSuccess,
 } from '@/src/redux/slices/employeeSlices/empPoliciesSlice';
-import { Toast } from '@/src/components/Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 
 const Policies = () => {
   const dispatch = useDispatch();

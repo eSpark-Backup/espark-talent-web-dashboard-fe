@@ -4,20 +4,20 @@ import { Grid, Box, Typography, Modal, Button } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 
-import Input from '@/src/components/dashboard/input';
-import { employeeTableDataHiringRequest } from '@/src/constants/data/tables/employee';
-import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
+import Input from '@/src/components/dashboard/Input';
+import { employeeTableDataHiringRequest } from '@/src/data/tables/employee';
+import CustomTabPanel from '@/src/components/dashboard/AppCustomTabPanel';
 import { filterDataByKeyword } from '@/src/utils/search';
 import { a11yProps, changeTab } from '@/src/utils/tabs';
-import { empTabs } from '@/src/constants/data/tabs/empTabs';
+import { empTabs } from '@/src/data/tabs/emp-tabs';
 import {
   teamManagementColumn,
   teamManagementData,
-} from '@/src/constants/data/tables/teamManagement';
-import TopNavNavbar from '@/src/components/global/topNavbar';
+} from '@/src/data/tables/team-management';
+import TopNavNavbar from '@/src/components/global/TopNavbar';
 import Image from 'next/image';
-import AppSearchableDropdown from '@/src/components/dashboard/appSearchableDropdown';
-import AppTable from '@/src/components/appTable/AppTable';
+import AppSearchableDropdown from '@/src/components/dashboard/AppSearchableDropdown';
+import AppTable from '@/src/components/app-table/AppTable';
 
 const TeamManagement = () => {
   const [value, setValue] = useState(0);

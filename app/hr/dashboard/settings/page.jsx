@@ -3,16 +3,16 @@ import React, { useEffect, useState } from 'react';
 import { Button, Grid, Tab, Tabs } from '@mui/material';
 import { Box } from '@mui/system';
 
-import { settingTabs } from '@/src/constants/data/tabs/settingTabs';
-import CompanySettings from '@/src/components/settings/companySettings';
-import ChangePassword from '@/src/components/settings/changePassword';
-import Role from '@/src/components/settings/addRole';
-import AddAccountModal from '@/src/components/modals/addAccountModal';
-import { SETTING } from '@/src/constants/SettingHr';
-import { employeeProfileData } from '@/src/constants/employeeProfile';
-import Accounts from '@/src/components/settings/accounts';
-import { accountData } from '@/src/constants/data/tables/hr/account';
-import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
+import { settingTabs } from '@/src/data/tabs/setting-tabs';
+import CompanySettings from '@/src/components/settings/CompanySettings';
+import ChangePassword from '@/src/components/settings/ChangePassword';
+import Role from '@/src/components/settings/AddRole';
+import AddAccountModal from '@/src/components/modals/AddAccountModal';
+import { SETTING } from '@/src/constants/setting-hr';
+import { employeeProfileData } from '@/src/constants/employee-profile';
+import Accounts from '@/src/components/settings/Accounts';
+import { accountData } from '@/src/data/tables/hr/account';
+import DashboardHeading from '@/src/components/dashboard/DashboardHeading';
 
 const Page = () => {
   const [value, setValue] = useState('one');

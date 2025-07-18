@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import Step from '@/src/components/form/step/Step';
-import { formSteps } from '@/src/constants/data/forms/add-employee';
+import { formSteps } from '@/src/data/forms/add-employee';
 import Navigator from '@/src/components/form/step/Navigator';
 import Breadcrumb from '@/src/components/form/step/Breadcrumb';
 import { useDispatch, useSelector } from 'react-redux';
@@ -14,7 +14,7 @@ import {
 } from '@/src/redux/slices/hrSlices/employeeSlice';
 import { HR_ADD_EMPLOYEES } from '@/src/services/apiService/apiEndPoints';
 import { useRouter } from 'next/navigation';
-import { Toast } from '@/src/components/Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 
 const AddEmployee = () => {
   const dispatch = useDispatch();

@@ -8,16 +8,16 @@ import {
   Typography,
 } from '@mui/material';
 
-import { editOthInvoiceFormSchema } from '@/src/components/form/schemas/uploadInvoice';
+import { editOthInvoiceFormSchema } from '@/src/validation/uploadInvoice';
 import FormInput from '@/src/components/form/ui-elements/FormInput';
-import { uploadOtherInvoiceForm } from '@/src/constants/data/forms/upload-invoice';
+import { uploadOtherInvoiceForm } from '@/src/data/forms/upload-invoice';
 import { useFormik } from 'formik';
 import { useSelector } from 'react-redux';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import { HR_CLIENT_OTHER_INVOICE } from '@/src/services/apiService/apiEndPoints';
 import dayjs from 'dayjs';
-import { Toast } from '@/src/components/Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import { getSalaryAmount } from '@/src/utils/salaryFormat';
 
 const EditOtherInvoiceModal = ({ open, onClose, title, existingData }) => {

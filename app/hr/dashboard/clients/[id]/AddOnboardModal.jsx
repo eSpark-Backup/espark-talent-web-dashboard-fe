@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Box, Button, Grid, Modal, Typography } from '@mui/material';
 
-import { addOnboardFormSchema } from '@/src/components/form/schemas/addOnBoardForm';
+import { addOnboardFormSchema } from '@/src/validation/addOnBoardForm';
 import FormInput from '@/src/components/form/ui-elements/FormInput';
-import { addOnboardForm } from '@/src/constants/data/forms/add-onboard';
+import { addOnboardForm } from '@/src/data/forms/add-onboard';
 import { useFormik } from 'formik';
 import { FORM_DATA } from '@/src/constants/form';
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,7 +11,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import { HR_CLIENT_EMP_ON_BOARDING } from '@/src/services/apiService/apiEndPoints';
 import dayjs from 'dayjs';
-import { Toast } from '@/src/components/Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import { addOnBoard } from '@/src/redux/slices/hrSlices/clientSlice';
 import { countriesList } from '@/src/constants/countries';
 import { hasSymbol } from '@/src/utils/symbolChecker';

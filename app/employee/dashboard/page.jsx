@@ -4,13 +4,13 @@ import { Box, Grid, Skeleton, Stack } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { useQuery } from '@tanstack/react-query';
 
-import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
-import AttendanceSummary from '@/src/components/AtttendanceSummary/AttendanceSummary';
-import LeaveSummary from '@/src/components/AtttendanceSummary/LeaveSummary';
-import Clock from '@/src/components/AtttendanceSummary/Clock';
-import Statistics from '@/src/components/AtttendanceSummary/Statistics';
-import MarkClock from '@/src/components/AtttendanceSummary/MarkClock/MarkClock';
-import TodayActivity from '@/src/components/AtttendanceSummary/TodayActivity';
+import DashboardHeading from '@/src/components/dashboard/DashboardHeading';
+import AttendanceSummary from '@/src/components/atttendance-summary/AttendanceSummary';
+import LeaveSummary from '@/src/components/atttendance-summary/LeaveSummary';
+import Clock from '@/src/components/atttendance-summary/Clock';
+import Statistics from '@/src/components/atttendance-summary/Statistics';
+import MarkClock from '@/src/components/atttendance-summary/mark-clock/MarkClock';
+import TodayActivity from '@/src/components/atttendance-summary/TodayActivity';
 import { getEmpHomeData } from '@/src/redux/slices/employeeSlices/empHomeSlice';
 import { getEmployeeDetails, getWorkSpace } from '@/src/redux/slices/authSlice';
 import { api } from '@/src/services/apiService';
@@ -20,8 +20,8 @@ import { DASHBOARD_DATA } from '@/src/constants/dashboard';
 import {
   Attendance_Summary_Title,
   Mark_CLock_Title,
-} from '@/src/constants/employeeDashboard';
-import { Toast } from '@/src/components/Toast/Toast';
+} from '@/src/constants/employee-dashboard';
+import { Toast } from '@/src/utils/toast';
 
 const Dashboard = () => {
   const { empDetails } = useSelector((state) => state?.auth?.userData);

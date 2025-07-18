@@ -1,6 +1,6 @@
-import { addNewInterviewFormSchema } from '@/src/components/form/schemas/addNewInterviewForm';
+import { addNewInterviewFormSchema } from '@/src/validation/addNewInterviewForm';
 import FormInput from '@/src/components/form/ui-elements/FormInput';
-import { addNewInterviewForm } from '@/src/constants/data/forms/add-new-interview';
+import { addNewInterviewForm } from '@/src/data/forms/add-new-interview';
 import { FORM_DATA } from '@/src/constants/form';
 import { Box, Button, Grid, Modal, Typography } from '@mui/material';
 import { useFormik } from 'formik';

@@ -13,8 +13,8 @@ import { Box, useTheme } from '@mui/system';
 import { useRouter } from 'next/navigation';
 
 import AppConfirmationMadal from '../modals/AppConfirmationMadal';
-import { REMOVE_MODAL } from '@/src/constants/contractSigned';
-import { CLIENT_VIEW } from '@/src/constants/ClientProfile';
+import { REMOVE_MODAL } from '@/src/constants/contract-signed';
+import { CLIENT_VIEW } from '@/src/constants/client-profile';
 import { api } from '@/src/services/apiService';
 import {
   HR_GET_CLIENTS,
@@ -30,7 +30,7 @@ import { useMutation } from '@tanstack/react-query';
 import { fetchClientHomeDataRequestFailed } from '@/src/redux/slices/clientSlices/homeSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import EmployeeCardSkeleton from './EmployeeCardSkeleton';
-import { Toast } from '../Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 
 const ClientView = ({ status, data, isLoading }) => {
   const dispatch = useDispatch();

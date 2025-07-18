@@ -3,11 +3,11 @@ import React, { useState } from 'react';
 import { Grid, Box } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
+import CustomTabPanel from '@/src/components/dashboard/AppCustomTabPanel';
 import { changeTab } from '@/src/utils/tabs';
-import { empTabs } from '@/src/constants/data/tabs/empTabs';
-import AppTable from '@/src/components/appTableNew/AppTable';
-import { contractSignedEmployeeTabs } from '@/src/constants/data/tabs/contractSignedTabs';
+import { empTabs } from '@/src/data/tabs/emp-tabs';
+import AppTable from '@/src/components/app-table-new/AppTable';
+import { contractSignedEmployeeTabs } from '@/src/data/tabs/contract-signed-tabs';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import {
   DOWNLOAD_COMP_CONTRACT,
@@ -23,8 +23,8 @@ import {
   fetchEmpCompanyContractsSuccess,
 } from '@/src/redux/slices/employeeSlices/contractSlice';
 import { api } from '@/src/services/apiService';
-import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
-import { Toast } from '@/src/components/Toast/Toast';
+import DashboardHeading from '@/src/components/dashboard/DashboardHeading';
+import { Toast } from '@/src/utils/toast';
 import dayjs from 'dayjs';
 
 const ContractSigned = () => {

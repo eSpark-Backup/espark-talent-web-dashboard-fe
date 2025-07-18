@@ -1,5 +1,5 @@
-import AllEmployee from '@/src/components/HR/AllEmployee';
-import AppTable from '@/src/components/appTable/AppTable';
+import AllEmployee from '@/src/components/hr/AllEmployee';
+import AppTable from '@/src/components/app-table/AppTable';
 import { Box } from '@mui/material';
 import AppConfirmationMadal from '@/src/components/modals/AppConfirmationMadal';
 

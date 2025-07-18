@@ -10,16 +10,16 @@ import {
 
 import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { useFormik } from 'formik';
-import { SETTING } from '@/src/constants/SettingHr';
+import { SETTING } from '@/src/constants/setting-hr';
 import { FORM_DATA } from '@/src/constants/form';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import { HR_ACCOUNTS } from '@/src/services/apiService/apiEndPoints';
-import { Toast } from '../Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import { useState } from 'react';
-import { editAccountInfoSchema } from '../form/schemas/addAccount';
-import { editAccountForm } from '@/src/constants/data/forms/add-account';
-import EditSettingProfile from '../employeeData/editSettingProfile';
+import { editAccountInfoSchema } from '../../validation/addAccount';
+import { editAccountForm } from '@/src/data/forms/add-account';
+import EditSettingProfile from '../employee-data/EditSettingProfile';
 
 const EditAccountModal = forwardRef(({ open, onClose, modalData }, ref) => {
   const [showEditModal, setEditModal] = useState(false);

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { api } from '@/src/services/apiService';
 import { CLIENT_UPDATE_PIC } from '@/src/services/apiService/apiEndPoints';
-import { Toast } from '../Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import ProfileCroper from '../ProfileCroper';
 import { updateClientImage } from '@/src/redux/slices/clientSlices/homeSlice';
 

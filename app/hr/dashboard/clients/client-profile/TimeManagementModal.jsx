@@ -12,14 +12,14 @@ import { useFormik } from 'formik';
 import dayjs from 'dayjs';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useDispatch, useSelector } from 'react-redux';
-import { Toast } from '@/src/components/Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import { api } from '@/src/services/apiService';
 import { HR_EMP_TIME_AND_LEAVES } from '@/src/services/apiService/apiEndPoints';
 import {
   updateEmpTime,
   updateEmpTimeRequest,
 } from '@/src/redux/slices/hrSlices/employeeSlice';
-import { validationSchema } from '@/src/components/form/schemas/timeManagementModal';
+import { validationSchema } from '@/src/validation/timeManagementModal';
 
 const TimeManagementModal = ({ open, onClose }) => {
   const { id } = useSelector((state) => state?.hr?.employees?.currentEmployee);

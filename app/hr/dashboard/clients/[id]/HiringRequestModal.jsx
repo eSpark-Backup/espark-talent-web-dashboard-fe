@@ -8,9 +8,9 @@ import {
   Typography,
 } from '@mui/material';
 
-import { hiringRequestSchema } from '@/src/components/form/schemas/hiringRequestForm';
+import { hiringRequestSchema } from '@/src/validation/hiringRequestForm';
 import FormInput from '@/src/components/form/ui-elements/FormInput';
-import { hringRequestForm } from '@/src/constants/data/forms/hiring-request';
+import { hringRequestForm } from '@/src/data/forms/hiring-request';
 import { useFormik } from 'formik';
 import { FORM_DATA } from '@/src/constants/form';
 import { useDispatch, useSelector } from 'react-redux';
@@ -18,7 +18,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import { HR_CLIENT_EMP_HIRING_REQUEST } from '@/src/services/apiService/apiEndPoints';
 import dayjs from 'dayjs';
-import { Toast } from '@/src/components/Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import { addHiringRequest } from '@/src/redux/slices/hrSlices/clientSlice';
 import { countriesList } from '@/src/constants/countries';
 import { hasSymbol } from '@/src/utils/symbolChecker';

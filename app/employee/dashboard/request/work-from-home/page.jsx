@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Grid, Box, Modal } from '@mui/material';
 import AppConfirmationMadal from '@/src/components/modals/AppConfirmationMadal';
-import { REQUEST_LEAVE } from '@/src/constants/requestviewModal';
+import { REQUEST_LEAVE } from '@/src/constants/requestview-modal';
 import { useMutation } from '@tanstack/react-query';
 import { EMP_WFH_REQUEST } from '@/src/services/apiService/apiEndPoints';
 import { api } from '@/src/services/apiService';
@@ -12,8 +12,8 @@ import {
   deleteEmpWfhRequestSuccess,
   deleteWfhRequestDataFailed,
 } from '@/src/redux/slices/employeeSlices/wfhRequestSlice';
-import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
-import { Toast } from '@/src/components/Toast/Toast';
+import DashboardHeading from '@/src/components/dashboard/DashboardHeading';
+import { Toast } from '@/src/utils/toast';
 import WFHRequestModal from './WFHRequestModal';
 import WFHRequestTablesTabs from './WFHRequestTablesTabs';
 

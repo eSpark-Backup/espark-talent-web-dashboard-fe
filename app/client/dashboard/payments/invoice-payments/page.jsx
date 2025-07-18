@@ -5,19 +5,19 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Skeleton from '@mui/material/Skeleton';
 
-import Input from '@/src/components/dashboard/input';
-import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
+import Input from '@/src/components/dashboard/Input';
+import CustomTabPanel from '@/src/components/dashboard/AppCustomTabPanel';
 import { filterDataByKeyword } from '@/src/utils/search';
 import { changeTab } from '@/src/utils/tabs';
-import { paymentStatusTabs } from '@/src/constants/data/tabs/paymentTabs';
+import { paymentStatusTabs } from '@/src/data/tabs/payment-tabs';
 import {
   invoicePaymentColumn,
   invoicePaymentData,
   otherPaymentColumn,
   otherPaymentData,
-} from '@/src/constants/data/tables/paymentData';
+} from '@/src/data/tables/payment-data';
 import { filterTableRowsWRTTab } from '@/src/utils/table';
-import AppTable from '@/src/components/appTableNew/AppTable';
+import AppTable from '@/src/components/app-table-new/AppTable';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import {
@@ -41,8 +41,8 @@ import {
   updateEmpInvStatus,
 } from '@/src/redux/slices/clientSlices/invoicePaymentsSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { Toast } from '@/src/components/Toast/Toast';
-import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
+import { Toast } from '@/src/utils/toast';
+import DashboardHeading from '@/src/components/dashboard/DashboardHeading';
 import { formatSalary } from '@/src/utils/salaryFormat';
 
 const Dashboard = () => {

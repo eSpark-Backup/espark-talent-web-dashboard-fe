@@ -1,13 +1,13 @@
-import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
-import { employeeRequestsTabs } from '@/src/constants/data/tabs/requestTabs';
-import { REQUEST_LEAVE } from '@/src/constants/requestviewModal';
+import CustomTabPanel from '@/src/components/dashboard/AppCustomTabPanel';
+import { employeeRequestsTabs } from '@/src/data/tabs/request-tabs';
+import { REQUEST_LEAVE } from '@/src/constants/requestview-modal';
 import { Box, Button, Tab, Tabs, Typography } from '@mui/material';
 import Image from 'next/image';
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import LeaveRequestTable from './LeaveRequestTable';
-import { filterLeaveForm } from '@/src/constants/data/forms/filter-form';
-import LeaveReqFilterFormModal from '@/src/components/FilterModal/leaveReqFilterForm';
+import { filterLeaveForm } from '@/src/data/forms/filter-form';
+import LeaveReqFilterFormModal from '@/src/components/filter-modal/LeaveReqFilterForm';
 import Skeleton from '@mui/material/Skeleton';
 import { filterTableRowsWRTTab } from '@/src/utils/table';
 

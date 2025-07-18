@@ -1,7 +1,7 @@
 import React from 'react';
-import AppTable from '@/src/components/appTableNew/AppTable';
+import AppTable from '@/src/components/app-table-new/AppTable';
 
-import { employeeLeaveBalanceColumn } from '@/src/constants/data/tables/requestsData';
+import { employeeLeaveBalanceColumn } from '@/src/data/tables/requests-data';
 import { useQuery } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import { EMP_LEAVE_REQUEST } from '@/src/services/apiService/apiEndPoints';
@@ -11,7 +11,7 @@ import {
   fetchEmpLeaveRequestData,
   getEmpLeaveRequestDataFailed,
 } from '@/src/redux/slices/employeeSlices/leaveRequestSlice';
-import { Toast } from '@/src/components/Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import dayjs from 'dayjs';
 
 const LeaveBalanceTable = () => {

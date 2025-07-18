@@ -17,7 +17,7 @@ import Visibility from '@mui/icons-material/Visibility';
 import { useFormik } from 'formik';
 import Cookie from 'js-cookie';
 
-import { AuthSchema } from '../form/schemas/loginAccount';
+import { AuthSchema } from '../../validation/loginAccount';
 import { useMutation } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import {
@@ -26,7 +26,7 @@ import {
   login,
 } from '../../redux/slices/authSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { CLIENT_ROLES, EMPLOYEE_ROLES } from '@/src/constants/data/roles';
+import { CLIENT_ROLES, EMPLOYEE_ROLES } from '@/src/data/roles';
 import {
   getHomeData,
   getHomeDataRequest,
@@ -45,7 +45,7 @@ import {
   fetchClientHomeDataRequestFailed,
   fetchClientHomeDataRequestSuccess,
 } from '@/src/redux/slices/clientSlices/homeSlice';
-import { Toast } from '../Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 
 const AuthForm = ({ uiData, fields, handleOpenTroubleModal }) => {
   const dispatch = useDispatch();

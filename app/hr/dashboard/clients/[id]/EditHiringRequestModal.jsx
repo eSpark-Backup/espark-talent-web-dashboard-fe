@@ -8,15 +8,15 @@ import {
   Typography,
 } from '@mui/material';
 
-import { editHiringRequestSchema } from '@/src/components/form/schemas/hiringRequestForm';
+import { editHiringRequestSchema } from '@/src/validation/hiringRequestForm';
 import FormInput from '@/src/components/form/ui-elements/FormInput';
-import { hringRequestForm } from '@/src/constants/data/forms/hiring-request';
+import { hringRequestForm } from '@/src/data/forms/hiring-request';
 import { useFormik } from 'formik';
 import { FORM_DATA } from '@/src/constants/form';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import { HR_CLIENT_EMP_HIRING_REQUEST } from '@/src/services/apiService/apiEndPoints';
-import { Toast } from '@/src/components/Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import { countriesList } from '@/src/constants/countries';
 import dayjs from 'dayjs';
 import { getSelectedCountry } from '@/src/utils/salaryFormat';

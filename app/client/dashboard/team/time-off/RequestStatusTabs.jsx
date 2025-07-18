@@ -1,12 +1,12 @@
 import Skeleton from '@mui/material/Skeleton';
-import AppTable from '@/src/components/appTableNew/AppTable';
-import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
-import Input from '@/src/components/dashboard/input';
-import { leaveBalanceColumn } from '@/src/constants/data/tables/timeOffRequest';
+import AppTable from '@/src/components/app-table-new/AppTable';
+import CustomTabPanel from '@/src/components/dashboard/AppCustomTabPanel';
+import Input from '@/src/components/dashboard/Input';
+import { leaveBalanceColumn } from '@/src/data/tables/time-off-request';
 import {
   leaveRequestsTab,
   requestsStatusTab,
-} from '@/src/constants/data/tabs/timeOffTabs';
+} from '@/src/data/tabs/time-off-tabs';
 import { updateCurrentReqStatusTab } from '@/src/redux/slices/clientSlices/timeOffSlice';
 import { filterTableRowsWRTTab } from '@/src/utils/table';
 import { Box, Button, Tab, Tabs, Typography } from '@mui/material';

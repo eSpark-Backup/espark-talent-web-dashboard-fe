@@ -1,0 +1,32 @@
+import React, { useState } from 'react';
+import { Grid, Typography } from '@mui/material';
+
+import { HIRING_FORM_DATA } from '@/src/constants/hiring';
+import AppDropdown from '../dashboard/AppDropdown';
+import { employmentTerm } from '@/src/data/dropdown.js/start-hiring';
+
+const EmployementTerm = () => {
+  const [isLoadingTitles, setIsLoadingTitles] = useState(false);
+  const [selectedJobTitle, setSelectedJobTitle] = useState('');
+
+  return (
+    <Grid item xs={12} lg={6}>
+      <Typography
+        sx={{
+          mb: '10px',
+        }}
+      >
+        {HIRING_FORM_DATA?.employementTerm}
+      </Typography>
+      <AppDropdown
+        data={employmentTerm}
+        setIsLoadingList={setIsLoadingTitles}
+        isLoadingList={isLoadingTitles}
+        selectedItem={selectedJobTitle || ''}
+        setSelectedItem={setSelectedJobTitle}
+        placeHolder="Select employment terms"
+      />
+    </Grid>
+  );
+};
+export default EmployementTerm;

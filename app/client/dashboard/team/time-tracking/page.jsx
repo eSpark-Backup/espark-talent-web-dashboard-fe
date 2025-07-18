@@ -3,11 +3,11 @@ import React, { useEffect, useState } from 'react';
 import { Grid, Box, Typography, Button, CircularProgress } from '@mui/material';
 import Skeleton from '@mui/material/Skeleton';
 
-import { timeTrackingTableColumn } from '@/src/constants/data/tables/timeTracking';
-import AppSearchableDropdown from '@/src/components/dashboard/appSearchableDropdown';
-import AppCustomMonthYearPicker from '@/src/components/dashboard/appCustomMonthYearPicker';
-import AppTable from '@/src/components/appTableNew/AppTable';
-import { TIMETRACKING } from '@/src/constants/TimeTracking';
+import { timeTrackingTableColumn } from '@/src/data/tables/time-tracking';
+import AppSearchableDropdown from '@/src/components/dashboard/AppSearchableDropdown';
+import AppCustomMonthYearPicker from '@/src/components/dashboard/AppCustomMonthYearPicker';
+import AppTable from '@/src/components/app-table-new/AppTable';
+import { TIMETRACKING } from '@/src/constants/time-tracking';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import {
@@ -21,13 +21,13 @@ import {
   fetchTimeTrackingDataRequestSuccess,
 } from '@/src/redux/slices/clientSlices/timeTrackingSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { Toast } from '@/src/components/Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import { getAttendenceShortHand } from '@/src/utils/helpers';
 import dayjs from 'dayjs';
-import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
-import { sheetStatusTypes } from '@/src/constants/data/tables/timeSheet';
+import DashboardHeading from '@/src/components/dashboard/DashboardHeading';
+import { sheetStatusTypes } from '@/src/data/tables/time-sheet';
 import { renderTrackingStatus } from './renderComponents';
-import { TIME_REQUEST } from '@/src/constants/timeSheet';
+import { TIME_REQUEST } from '@/src/constants/time-sheet';
 
 const Dashboard = () => {
   const months = [

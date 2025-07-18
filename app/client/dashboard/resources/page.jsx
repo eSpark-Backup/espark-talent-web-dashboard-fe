@@ -4,7 +4,7 @@ import { Box, Grid } from '@mui/material';
 
 import ResourceCard from '@/src/components/resources/ResourceCard';
 import { RESOURCE_DATA } from '@/src/constants/resources';
-import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
+import DashboardHeading from '@/src/components/dashboard/DashboardHeading';
 
 const Resource = () => {
   return (

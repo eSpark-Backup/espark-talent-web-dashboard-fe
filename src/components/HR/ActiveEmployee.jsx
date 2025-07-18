@@ -4,13 +4,13 @@ import { Grid, Typography } from '@mui/material';
 import { useMediaQuery, useTheme } from '@mui/system';
 
 import AppConfirmationMadal from '../modals/AppConfirmationMadal';
-import { TERMINATE_MODAL } from '@/src/constants/contractSigned';
+import { TERMINATE_MODAL } from '@/src/constants/contract-signed';
 import EmployeeCard from './EmployeeCard';
 import { useMutation } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import { HR_CLIENT_EMPLOYEES } from '@/src/services/apiService/apiEndPoints';
 import { updateClientEmpStatus } from '@/src/redux/slices/hrSlices/clientSlice';
-import { Toast } from '../Toast/Toast';
+import { Toast } from '@/src/utils/toast';
 import { useDispatch } from 'react-redux';
 import EmployeeCardSkeleton from './EmployeeCardSkeleton';
 
