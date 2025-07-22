@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { Box, Button, CircularProgress, Typography } from '@mui/material';
 import Skeleton from '@mui/material/Skeleton';
 
-import AppTable from '../app-table-new/AppTable';
+import AppTable from '@/src/components/app-table-new/AppTable';
 import { modulepermissionColumn } from '@/src/data/tables/module-permission';
-import RoleModal from './AddRoleModal';
+import RoleModal from '@/src/components/settings/AddRoleModal';
 import { SETTING } from '@/src/constants/setting-hr';
 import { useDispatch, useSelector } from 'react-redux';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';

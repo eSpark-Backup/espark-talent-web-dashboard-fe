@@ -2,7 +2,7 @@
 import React from 'react';
 import { Box, useMediaQuery, useTheme } from '@mui/material';
 
-import SidebarAccordion from './SidebarAccordion';
+import SidebarAccordion from '@/src/components/sidebar/SidebarAccordion';
 import {
   Client_Routes,
   Employee_Routes,
@@ -10,12 +10,12 @@ import {
   WORK_SPACE_ICON,
   WORK_SPACE_TITLE,
 } from '@/src/constants/sidebar';
-import SidebarLogo from './SidebarLogo';
-import SidebarActiveUser from './SidebarActiveUser';
-import ProfilePopper from '../popover/ProfilePopper';
+import SidebarLogo from '@/src/components/sidebar/SidebarLogo';
+import SidebarActiveUser from '@/src/components/sidebar/SidebarActiveUser';
+import ProfilePopper from '@/src/components/popover/ProfilePopper';
 import { usePathname, useRouter } from 'next/navigation';
-import WorkSpacePopper from '../popover/WorkSpacePopper';
-import SidebarWorkSpace from './SidebarWorkSpace';
+import WorkSpacePopper from '@/src/components/popover/WorkSpacePopper';
+import SidebarWorkSpace from '@/src/components/sidebar/SidebarWorkSpace';
 import { useDispatch, useSelector } from 'react-redux';
 import { useQuery } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';

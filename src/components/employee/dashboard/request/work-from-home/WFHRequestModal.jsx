@@ -1,8 +1,8 @@
 import React, { forwardRef, useEffect } from 'react';
 import { Box, Typography } from '@mui/material';
 
-import WFHRequestForm from './WFHRequestForm';
-import WFHRequestDataView from './WFHRequestDataView';
+import WFHRequestForm from '@/src/components/employee/dashboard/request/work-from-home/WFHRequestForm';
+import WFHRequestDataView from '@/src/components/employee/dashboard/request/work-from-home/WFHRequestDataView';
 
 const WFHRequestModal = forwardRef(
   ({ createModal, modalData, handleClose }, ref) => {

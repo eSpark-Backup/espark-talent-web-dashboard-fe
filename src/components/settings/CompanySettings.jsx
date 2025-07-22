@@ -3,8 +3,8 @@ import Skeleton from '@mui/material/Skeleton';
 import { Box } from '@mui/system';
 
 import { companyformElement } from '@/src/data/forms/company-info';
-import { companyInfoSchema } from '../../validation/companyInfo';
-import Step from '../form/step/Step';
+import { companyInfoSchema } from '@/src/validation/companyInfo';
+import Step from '@/src/components/form/step/Step';
 import { useQuery } from '@tanstack/react-query';
 import { useDispatch, useSelector } from 'react-redux';
 import { HR_COMPANY_SETTINGS } from '@/src/services/apiService/apiEndPoints';

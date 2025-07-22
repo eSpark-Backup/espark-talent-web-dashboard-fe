@@ -3,9 +3,9 @@ import { Button, Grid } from '@mui/material';
 import { Box, useTheme } from '@mui/system';
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Input from '../dashboard/Input';
+import Input from '@/src/components/dashboard/Input';
 import Image from 'next/image';
-import ClientView from './ClientView';
+import ClientView from '@/src/components/hr/ClientView';
 import { EMPLOYEE_DATA } from '@/src/constants/all-employee';
 import { HR_GET_CLIENTS } from '@/src/services/apiService/apiEndPoints';
 import { api } from '@/src/services/apiService';
@@ -13,7 +13,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useDispatch, useSelector } from 'react-redux';
 import { Toast } from '@/src/utils/toast';
 import { getClientsData } from '@/src/redux/slices/hrSlices/clientSlice';
-import DashboardHeading from '../dashboard/DashboardHeading';
+import DashboardHeading from '@/src/components/dashboard/DashboardHeading';
 
 const AllClients = () => {
   const router = useRouter();

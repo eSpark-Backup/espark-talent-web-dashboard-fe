@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Box } from '@mui/material';
 
 import { ASSET_TABLECOLUMN } from '@/src/constants/employee-profile';
-import AppTable from '../app-table-new/AppTable';
-import AppConfirmationMadal from '../modals/AppConfirmationMadal';
+import AppTable from '@/src/components/app-table-new/AppTable';
+import AppConfirmationMadal from '@/src/components/modals/AppConfirmationMadal';
 import { CONTRACT_SIGNED } from '@/src/constants/contract-signed';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import {
@@ -21,7 +21,7 @@ import {
 } from '@/src/redux/slices/hrSlices/employeeSlice';
 import { Toast } from '@/src/utils/toast';
 import dayjs from 'dayjs';
-import AssetEditModal from './AssetEditModal';
+import AssetEditModal from '@/src/components/employee-data/AssetEditModal';
 
 const Assets = ({ empData }) => {
   const [editModalOpen, setEditModalOpen] = useState(null);

@@ -3,12 +3,12 @@ import { Backdrop, Box, Modal, Typography } from '@mui/material';
 
 import { ATTENDANCE_STATUS, FILTER, STATUS } from '@/src/constants/filter';
 import { LEAVE_TYPE } from '@/src/constants/requestview-modal';
-import CheckinTime from './CheckinTime';
-import ResetButton from './ResetButton';
-import LeaveType from './LeaveType';
-import StatusType from './StatusType';
-import AttendanceType from './AttendanceType';
-import DatePicker from './DatePicker';
+import CheckinTime from '@/src/components/filter-modal/CheckinTime';
+import ResetButton from '@/src/components/filter-modal/ResetButton';
+import LeaveType from '@/src/components/filter-modal/LeaveType';
+import StatusType from '@/src/components/filter-modal/StatusType';
+import AttendanceType from '@/src/components/filter-modal/AttendanceType';
+import DatePicker from '@/src/components/filter-modal/DatePicker';
 
 const FilterModal = ({
   open,

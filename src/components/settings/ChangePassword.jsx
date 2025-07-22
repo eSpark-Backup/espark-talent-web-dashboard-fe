@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Box, useMediaQuery } from '@mui/system';
-import { passwordChangeSchema } from '../../validation/password';
+import { passwordChangeSchema } from '@/src/validation/password';
 import { passwordformElement } from '@/src/data/forms/password-change-form';
 import { HR_CHANGE_PASSWORD } from '@/src/services/apiService/apiEndPoints';
 import { Toast } from '@/src/utils/toast';
@@ -11,7 +11,7 @@ import { getPasswordData } from '@/src/redux/slices/hrSlices/settingsSlice';
 import { useDispatch } from 'react-redux';
 import { SETTING } from '@/src/constants/setting-hr';
 import { Button, CircularProgress, Grid } from '@mui/material';
-import FormInput from '../form/ui-elements/FormInput';
+import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { useFormik } from 'formik';
 
 const ChangePassword = () => {

@@ -16,8 +16,8 @@ import { HR_EMP_LETTER } from '@/src/services/apiService/apiEndPoints';
 import { api } from '@/src/services/apiService';
 import { Toast } from '@/src/utils/toast';
 import { letterForm } from '@/src/data/forms/letter-form';
-import { letterFormSchema } from '../../validation/letterForm';
-import FormInput from '../form/ui-elements/FormInput';
+import { letterFormSchema } from '@/src/validation/letterForm';
+import FormInput from '@/src/components/form/ui-elements/FormInput';
 
 const LetterForm = forwardRef(({ onClose, open, empData }, ref) => {
   const dispatch = useDispatch();

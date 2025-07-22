@@ -10,7 +10,7 @@ import {
 import { useFormik } from 'formik';
 
 import { EDIT_MODAL } from '@/src/constants/employee-profile';
-import FormInput from '../form/ui-elements/FormInput';
+import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { HR_EMP_BENEFIT } from '@/src/services/apiService/apiEndPoints';
 import { api } from '@/src/services/apiService';
@@ -18,7 +18,7 @@ import { editEmpBenefit } from '@/src/redux/slices/hrSlices/employeeSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { Toast } from '@/src/utils/toast';
 import { benefitForm } from '@/src/data/forms/benefit-form';
-import { benefitFormSchema } from '../../validation/benefitForm';
+import { benefitFormSchema } from '@/src/validation/benefitForm';
 
 const EditBenefitForm = ({ onClose, open, selectedId }) => {
   const dispatch = useDispatch();

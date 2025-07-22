@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import LeaveCalendarIcon from './CalenderIcon';
+import LeaveCalendarIcon from '@/src/components/atttendance-summary/CalenderIcon';
 
 const AttendanceDatePicker = ({ createPunch }) => {
   const [open, setOpen] = useState(false);

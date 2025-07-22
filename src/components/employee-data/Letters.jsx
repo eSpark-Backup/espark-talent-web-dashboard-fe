@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Box } from '@mui/material';
 import { HR_EMP_LETTERS_TABLECOLUMN } from '@/src/constants/employee-profile';
-import AppTable from '../app-table-new/AppTable';
+import AppTable from '@/src/components/app-table-new/AppTable';
 import { CONTRACT_SIGNED } from '@/src/constants/contract-signed';
-import AppConfirmationMadal from '../modals/AppConfirmationMadal';
-import EditLetterForm from './EditLetterModal';
+import AppConfirmationMadal from '@/src/components/modals/AppConfirmationMadal';
+import EditLetterForm from '@/src/components/employee-data/EditLetterModal';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';

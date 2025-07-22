@@ -11,7 +11,7 @@ import {
 } from '@mui/material';
 import { Box, useTheme } from '@mui/system';
 
-import AppConfirmationMadal from '../modals/AppConfirmationMadal';
+import AppConfirmationMadal from '@/src/components/modals/AppConfirmationMadal';
 import { useRouter } from 'next/navigation';
 import { REMOVE_MODAL } from '@/src/constants/contract-signed';
 import { useDispatch, useSelector } from 'react-redux';
@@ -24,7 +24,7 @@ import {
 } from '@/src/redux/slices/hrSlices/employeeSlice';
 import { api } from '@/src/services/apiService';
 import { Toast } from '@/src/utils/toast';
-import EmployeeCardSkeleton from './EmployeeCardSkeleton';
+import EmployeeCardSkeleton from '@/src/components/hr/EmployeeCardSkeleton';
 
 const EmployeeView = ({ status, data, isLoading }) => {
   const { employee_perms } = useSelector((state) => state?.hr?.home?.homeData);

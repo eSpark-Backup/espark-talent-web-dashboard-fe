@@ -11,8 +11,8 @@ import { useFormik } from 'formik';
 
 import { EDIT_MODAL } from '@/src/constants/employee-profile';
 import { emergency_contact_form } from '@/src/data/forms/emergency-contacts';
-import { emergency_contact_schema } from '../../validation/emergencyContact';
-import FormInput from '../form/ui-elements/FormInput';
+import { emergency_contact_schema } from '@/src/validation/emergencyContact';
+import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import { HR_UPDATE_EMP_INFO } from '@/src/services/apiService/apiEndPoints';

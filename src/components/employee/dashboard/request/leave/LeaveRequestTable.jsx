@@ -3,7 +3,7 @@ import { employeeLeaveRequestsColumn } from '@/src/data/tables/requests-data';
 import { filterTableRowsWRTTab } from '@/src/utils/table';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { renderNestedTable } from './renderComponents';
+import { renderNestedTable } from '@/src/components/employee/dashboard/request/leave/renderComponents';
 import dayjs from 'dayjs';
 
 const LeaveRequestTable = ({

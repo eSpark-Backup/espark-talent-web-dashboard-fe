@@ -3,7 +3,7 @@ import { Box } from '@mui/material';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DesktopDatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 
-import CalendarIcon from '../start-hiring/CalenderIcon';
+import CalendarIcon from '@/src/components/start-hiring/CalenderIcon';
 
 const DatePicker = ({ placeholder }) => {
   return (

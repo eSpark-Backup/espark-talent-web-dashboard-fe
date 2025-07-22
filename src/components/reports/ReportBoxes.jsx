@@ -1,8 +1,8 @@
 import React from 'react';
 import { Box, Grid } from '@mui/material';
 
-import DownloadReports from './DownloadReports';
-import PreviousDateModal from '../request-view/PreviousDateModal';
+import DownloadReports from '@/src/components/reports/DownloadReports';
+import PreviousDateModal from '@/src/components/request-view/PreviousDateModal';
 
 const ReportBoxes = ({ data }) => {
   return (

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Box, Grid, Typography } from '@mui/material';
 
-import HiringDate from './HiringDate';
-import GenderInput from './GenderInput';
-import JobTitle from './JobTitle';
-import CountryDropdown from './SelectCountry';
-import Submit from './SubmitButton';
+import HiringDate from '@/src/components/start-hiring/HiringDate';
+import GenderInput from '@/src/components/start-hiring/GenderInput';
+import JobTitle from '@/src/components/start-hiring/JobTitle';
+import CountryDropdown from '@/src/components/start-hiring/SelectCountry';
+import Submit from '@/src/components/start-hiring/SubmitButton';
 import { HIRING_FORM_DATA } from '@/src/constants/hiring';
 
 const HiringForm = () => {

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Box, Button, Tab, Tabs } from '@mui/material';
 import { a11yProps } from '@/src/utils/tabs';
-import AppTable from '../app-table-new/AppTable';
+import AppTable from '@/src/components/app-table-new/AppTable';
 import {
   leavesColumn,
   leavesData,

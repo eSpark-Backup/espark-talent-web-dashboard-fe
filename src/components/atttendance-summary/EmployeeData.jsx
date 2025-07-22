@@ -2,8 +2,8 @@ import React from 'react';
 import { Box } from '@mui/material';
 import Image from 'next/image';
 
-import EmployeeId from './EmployeeDetails';
-import EmployeeName from './EmployeeName';
+import EmployeeId from '@/src/components/atttendance-summary/EmployeeDetails';
+import EmployeeName from '@/src/components/atttendance-summary/EmployeeName';
 
 const EmployeeData = () => {
   return (

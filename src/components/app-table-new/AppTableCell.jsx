@@ -2,17 +2,17 @@ import React from 'react';
 import Image from 'next/image';
 import { Avatar, Box, Tooltip, Typography } from '@mui/material';
 
-import AppCustomDropdown from '../dashboard/AppCustomDropdown';
+import AppCustomDropdown from '@/src/components/dashboard/AppCustomDropdown';
 import {
   getCamelCapitalized,
   toCamelCase,
 } from '@/src/utils/stringModification';
 import { trackingStatusTypes } from '@/src/data/tables/time-tracking';
-import AppTableInfoOptionsCell from './AppTableInfoOptionsCell';
+import AppTableInfoOptionsCell from '@/src/components/app-table-new/AppTableInfoOptionsCell';
 import { modulepermissionColumn } from '@/src/data/tables/module-permission';
 import Link from 'next/link';
 import { ellipsisWithTooltip } from '@/src/utils/tooltipEllipsis';
-import ViewLoader from './ViewLoader';
+import ViewLoader from '@/src/components/app-table-new/ViewLoader';
 
 const renderAssigneeCell = (row, col) => {
   const [name, subtitle] = row.assignee;

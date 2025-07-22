@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Grid, Typography } from '@mui/material';
 import { HIRING_FORM_DATA } from '@/src/constants/hiring';
-import AppDropdown from '../dashboard/AppDropdown';
+import AppDropdown from '@/src/components/dashboard/AppDropdown';
 import { roles } from '@/src/data/dropdown.js/start-hiring';
 
 const RoleType = () => {

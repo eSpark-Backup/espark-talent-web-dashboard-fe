@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Stack } from '@mui/material';
 import Skeleton from '@mui/material/Skeleton';
 
-import DownloadGuide from './DownloadGuide';
+import DownloadGuide from '@/src/components/guides/DownloadGuide';
 
 const GuideCard = ({ guideData, isLoading }) => {
   return (

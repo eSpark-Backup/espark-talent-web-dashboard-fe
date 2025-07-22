@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { Typography } from '@mui/material';
-import TableHiddenBody from './AppTableHiddenBody';
-import { renderCellContent } from './AppTableCell';
+import TableHiddenBody from '@/src/components/app-table/AppTableHiddenBody';
+import { renderCellContent } from '@/src/components/app-table/AppTableCell';
 import Skeleton from '@mui/material/Skeleton';
 
 const AppTableBody = ({

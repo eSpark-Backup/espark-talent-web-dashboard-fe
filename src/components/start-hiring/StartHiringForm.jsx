@@ -1,11 +1,11 @@
 import React from 'react';
 
 import { Box, Grid, Button, Typography, CircularProgress } from '@mui/material';
-import FormInput from '../form/ui-elements/FormInput';
+import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { FORM_DATA } from '@/src/constants/form';
 import { useFormik } from 'formik';
 import { HiringForm } from '@/src/data/forms/start-hiring';
-import { hiringFormSchema } from '../../validation/hiringForm';
+import { hiringFormSchema } from '@/src/validation/hiringForm';
 import { HIRING_FORM_DATA } from '@/src/constants/hiring';
 import { api } from '@/src/services/apiService';
 import { CLIENT_START_HIRING } from '@/src/services/apiService/apiEndPoints';

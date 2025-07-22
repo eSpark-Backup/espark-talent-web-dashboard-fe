@@ -17,14 +17,14 @@ import Visibility from '@mui/icons-material/Visibility';
 import { useFormik } from 'formik';
 import Cookie from 'js-cookie';
 
-import { AuthSchema } from '../../validation/loginAccount';
+import { AuthSchema } from '@/src/validation/loginAccount';
 import { useMutation } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import {
   getEmployeeDetails,
   getWorkSpace,
   login,
-} from '../../redux/slices/authSlice';
+} from '@/src/redux/slices/authSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { CLIENT_ROLES, EMPLOYEE_ROLES } from '@/src/data/roles';
 import {

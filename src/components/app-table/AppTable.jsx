@@ -1,8 +1,8 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { Box, Pagination, Stack } from '@mui/material';
-import TableHead from './AppTableHead';
-import AppTableBody from './AppTableBody';
+import TableHead from '@/src/components/app-table/AppTableHead';
+import AppTableBody from '@/src/components/app-table/AppTableBody';
 
 const AppTable = ({
   column,

@@ -5,7 +5,7 @@ import 'swiper/css/free-mode';
 import 'swiper/css/pagination';
 
 import { FreeMode, Pagination } from 'swiper/modules';
-import StatusBox from './StatusBox';
+import StatusBox from '@/src/components/atttendance-summary/StatusBox';
 import { useSelector } from 'react-redux';
 import Stack from '@mui/material/Stack';
 import Skeleton from '@mui/material/Skeleton';

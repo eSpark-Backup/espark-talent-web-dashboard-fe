@@ -9,10 +9,10 @@ import dayjs from 'dayjs';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import ActionBarComponent from '@/src/components/request-view/ActionbarComponent';
-import AppDropdown from '../../dashboard/AppDropdown';
-import AppSearchableDropdown from '../../dashboard/AppSearchableDropdown';
+import AppDropdown from '@/src/components/dashboard/AppDropdown';
+import AppSearchableDropdown from '@/src/components/dashboard/AppSearchableDropdown';
 import { countWeekendsHandler } from '@/src/utils/helpers';
-import { emailRegExp } from '../../../validation/validations';
+import { emailRegExp } from '@/src/validation/validations';
 
 const WideFormInput = ({
   title,

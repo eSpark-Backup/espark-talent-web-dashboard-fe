@@ -6,10 +6,10 @@ import { Fade, MenuItem, Tooltip, Typography } from '@mui/material';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 
-import SidebarUserAvatar from '../sidebar/SidebarUserAvatar';
+import SidebarUserAvatar from '@/src/components/sidebar/SidebarUserAvatar';
 import { NOTIFICATION_TITLE, profileMenuData } from '@/src/constants/sidebar';
-import SignoutModal from '../sign-out-modal/SignoutModal';
-import DotBadge from '../sidebar/SidebarProfileBadge';
+import SignoutModal from '@/src/components/sign-out-modal/SignoutModal';
+import DotBadge from '@/src/components/sidebar/SidebarProfileBadge';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '@/src/redux/slices/authSlice';
 import Cookie from 'js-cookie';

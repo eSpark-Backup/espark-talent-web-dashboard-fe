@@ -9,9 +9,9 @@ import {
 } from '@mui/material';
 
 import { useFormik } from 'formik';
-import { OffShContractFormHrPortalSchema } from '../../validation/contractSignedForm';
+import { OffShContractFormHrPortalSchema } from '@/src/validation/contractSignedForm';
 import { contractFormHrPortal } from '@/src/data/forms/contract';
-import FormInput from '../form/ui-elements/FormInput';
+import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { CONTRACT_SIGNED } from '@/src/constants/contract-signed';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { addOffShoreContract } from '@/src/redux/slices/hrSlices/contractSlice';

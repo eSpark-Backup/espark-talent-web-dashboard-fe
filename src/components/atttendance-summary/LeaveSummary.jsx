@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
 
-import ProgressBar from './ProgressBar';
+import ProgressBar from '@/src/components/atttendance-summary/ProgressBar';
 import {
   Leave_Summary_Boxes,
   Leave_Summary_Title,

@@ -1,7 +1,7 @@
 import React, { memo, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import TableHead from './AppTableHead';
-import AppTableBody from './AppTableBody';
+import TableHead from '@/src/components/app-table-new/AppTableHead';
+import AppTableBody from '@/src/components/app-table-new/AppTableBody';
 import { Box } from '@mui/material';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';

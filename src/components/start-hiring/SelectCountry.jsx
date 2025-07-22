@@ -9,7 +9,7 @@ import {
 
 import { HIRING_FORM_DATA } from '@/src/constants/hiring';
 import { COUNTRY_OPTIONS } from '@/src/constants/country-code';
-import SalaryRange from './SalaryRangle';
+import SalaryRange from '@/src/components/start-hiring/SalaryRangle';
 import Image from 'next/image';
 import FlagIcon from '@/src/constants/Flag';
 

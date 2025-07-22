@@ -10,9 +10,9 @@ import {
 
 import { EDIT_MODAL } from '@/src/constants/employee-profile';
 import { useFormik } from 'formik';
-import FormInput from '../form/ui-elements/FormInput';
+import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { officialDetailsForm } from '@/src/data/forms/employee-personal-details';
-import { employeeOfficialDataSchema } from '../../validation/employeePersonalDetails';
+import { employeeOfficialDataSchema } from '@/src/validation/employeePersonalDetails';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import { HR_UPDATE_EMP_INFO } from '@/src/services/apiService/apiEndPoints';

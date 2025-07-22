@@ -14,7 +14,7 @@ import { api } from '@/src/services/apiService';
 import { HR_GUIDE } from '@/src/services/apiService/apiEndPoints';
 import { Toast } from '@/src/utils/toast';
 import { uploadGuideForm } from '@/src/data/forms/upload-guide';
-import { editGuideFormSchema } from '../../validation/uploadGuide';
+import { editGuideFormSchema } from '@/src/validation/uploadGuide';
 import { UPLOAD_GUIDE } from '@/src/constants/guide';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Grid, Typography } from '@mui/material';
 
-import RoleType from './RoleType';
-import AppNestedDropdown from '../dashboard/AppDropdown';
+import RoleType from '@/src/components/start-hiring/RoleType';
+import AppNestedDropdown from '@/src/components/dashboard/AppDropdown';
 import { jobTitles } from '@/src/data/dropdown.js/start-hiring';
 
 const JobTitle = ({

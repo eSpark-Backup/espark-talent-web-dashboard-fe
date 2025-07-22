@@ -2,8 +2,8 @@ import React from 'react';
 import { Box, Modal } from '@mui/material';
 import Image from 'next/image';
 
-import RequestHeading from './ModalHeading';
-import LeaveRequest from './LeaveRequestView';
+import RequestHeading from '@/src/components/request-view/ModalHeading';
+import LeaveRequest from '@/src/components/request-view/LeaveRequestView';
 
 const RequestviewModal = ({ open, onClose, isViewingClient, title }) => {
   return (

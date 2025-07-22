@@ -10,9 +10,9 @@ import {
 import { useFormik } from 'formik';
 
 import { EDIT_MODAL } from '@/src/constants/employee-profile';
-import FormInput from '../form/ui-elements/FormInput';
+import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { editAssetForm } from '@/src/data/forms/asset-form';
-import { assetFormSchema } from '../../validation/assetForm';
+import { assetFormSchema } from '@/src/validation/assetForm';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { HR_ADD_EMP_ASSET } from '@/src/services/apiService/apiEndPoints';
 import { api } from '@/src/services/apiService';

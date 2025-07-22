@@ -9,9 +9,9 @@ import {
 } from '@mui/material';
 
 import { useFormik } from 'formik';
-import { editOffShContractFormHrPortalSchema } from '../../validation/contractSignedForm';
+import { editOffShContractFormHrPortalSchema } from '@/src/validation/contractSignedForm';
 import { editContractFormHrPortal } from '@/src/data/forms/contract';
-import FormInput from '../form/ui-elements/FormInput';
+import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { CONTRACT_SIGNED } from '@/src/constants/contract-signed';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';

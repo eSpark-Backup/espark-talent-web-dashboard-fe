@@ -10,7 +10,7 @@ import {
 
 import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { useFormik } from 'formik';
-import { accountInfoSchema } from '../../validation/addAccount';
+import { accountInfoSchema } from '@/src/validation/addAccount';
 import { accountForm } from '@/src/data/forms/add-account';
 import { SETTING } from '@/src/constants/setting-hr';
 import { FORM_DATA } from '@/src/constants/form';
@@ -21,7 +21,7 @@ import { Toast } from '@/src/utils/toast';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addAccount } from '@/src/redux/slices/hrSlices/settingsSlice';
-import UploadImageModal from '../employee-data/UploadImageModal';
+import UploadImageModal from '@/src/components/employee-data/UploadImageModal';
 
 const AddAccountModal = forwardRef(({ open, onClose }, ref) => {
   const [accountFormValues, setAccountFormValues] = useState(null);

@@ -20,7 +20,7 @@ import { api } from '@/src/services/apiService';
 import { Toast } from '@/src/utils/toast';
 import { filterTableRowsWRTTab } from '@/src/utils/table';
 import WFHReqFilterFormModal from '@/src/components/filter-modal/WFHReqFilterFormModal';
-import WFHRequestTable from './WFHRequestTable';
+import WFHRequestTable from '@/src/components/employee/dashboard/request/work-from-home/WFHRequestTable';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import {
   fetchEmpWfhRequestData,

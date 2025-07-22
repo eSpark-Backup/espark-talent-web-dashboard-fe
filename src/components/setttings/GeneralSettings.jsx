@@ -15,7 +15,7 @@ import {
   User_Detail,
   User_Password,
 } from '@/src/constants/profile-edit-data';
-import { generalSettingFormSchema } from '../../validation/generalDetails';
+import { generalSettingFormSchema } from '@/src/validation/generalDetails';
 import { settingForm } from '@/src/data/forms/setting-form';
 import Image from 'next/image';
 import { CLIENT_UPDATE_COMPANY } from '@/src/services/apiService/apiEndPoints';
@@ -24,7 +24,7 @@ import { useMutation } from '@tanstack/react-query';
 import { Toast } from '@/src/utils/toast';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchClientHomeDataRequestSuccess } from '@/src/redux/slices/clientSlices/homeSlice';
-import ClientProfileCroper from './ClientProfileCroper';
+import ClientProfileCroper from '@/src/components/setttings/ClientProfileCroper';
 
 const GeneralSettings = () => {
   const dispatch = useDispatch();

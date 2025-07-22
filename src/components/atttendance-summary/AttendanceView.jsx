@@ -3,8 +3,8 @@ import { Button, TextField, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 
 import { ATTENDANCE_DATA } from '@/src/constants/attendance-view';
-import AttendanceDatePicker from './AttendanceDatePicker';
-import EmployeeData from './EmployeeData';
+import AttendanceDatePicker from '@/src/components/atttendance-summary/AttendanceDatePicker';
+import EmployeeData from '@/src/components/atttendance-summary/EmployeeData';
 
 const AttendanceView = ({ onClose }) => {
   return (

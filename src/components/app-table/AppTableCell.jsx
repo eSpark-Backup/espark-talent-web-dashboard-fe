@@ -3,10 +3,10 @@ import Image from 'next/image';
 import { Box, Typography } from '@mui/material';
 import Link from 'next/link';
 
-import AppCustomDropdown from '../dashboard/AppCustomDropdown';
+import AppCustomDropdown from '@/src/components/dashboard/AppCustomDropdown';
 import { toCamelCase } from '@/src/utils/stringModification';
 import { trackingStatusTypes } from '@/src/data/tables/time-tracking';
-import AppTableInfoOptionsCell from './AppTableInfoOptionsCell';
+import AppTableInfoOptionsCell from '@/src/components/app-table/AppTableInfoOptionsCell';
 import { modulepermissionColumn } from '@/src/data/tables/module-permission';
 
 const renderAssigneeCell = (row, col, commonCellStyle) => {

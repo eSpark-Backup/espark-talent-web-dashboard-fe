@@ -6,7 +6,7 @@ import {
   activeClientsColumn,
 } from '@/src/data/tables/hr/employee-profile-client';
 import { a11yProps } from '@/src/utils/tabs';
-import AppTable from '../app-table-new/AppTable';
+import AppTable from '@/src/components/app-table-new/AppTable';
 import { useQuery } from '@tanstack/react-query';
 import { HR_GET_EMP_PROFILE } from '@/src/services/apiService/apiEndPoints';
 import { api } from '@/src/services/apiService';

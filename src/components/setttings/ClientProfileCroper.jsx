@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { api } from '@/src/services/apiService';
 import { CLIENT_UPDATE_PIC } from '@/src/services/apiService/apiEndPoints';
 import { Toast } from '@/src/utils/toast';
-import ProfileCroper from '../ProfileCroper';
+import ProfileCroper from '@/src/components/ProfileCroper';
 import { updateClientImage } from '@/src/redux/slices/clientSlices/homeSlice';
 
 const ClientProfileCroper = ({ open, onClose, currentImage }) => {

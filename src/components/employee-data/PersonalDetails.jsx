@@ -9,9 +9,9 @@ import {
 } from '@mui/material';
 import Image from 'next/image';
 
-import JobTitle from '../start-hiring/JobTitle';
+import JobTitle from '@/src/components/start-hiring/JobTitle';
 import { EDIT_MODAL, MARITAL_STATUS } from '@/src/constants/employee-profile';
-import DatePicker from './Datepicker';
+import DatePicker from '@/src/components/employee-data/Datepicker';
 
 const PersonalDetails = ({ handleClick, SelectOpen, SelectClose, isOpen }) => {
   const showRoleType = false;

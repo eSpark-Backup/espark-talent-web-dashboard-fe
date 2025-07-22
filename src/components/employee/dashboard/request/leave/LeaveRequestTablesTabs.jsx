@@ -5,7 +5,7 @@ import { Box, Button, Tab, Tabs, Typography } from '@mui/material';
 import Image from 'next/image';
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import LeaveRequestTable from './LeaveRequestTable';
+import LeaveRequestTable from '@/src/components/employee/dashboard/request/leave/LeaveRequestTable';
 import { filterLeaveForm } from '@/src/data/forms/filter-form';
 import LeaveReqFilterFormModal from '@/src/components/filter-modal/LeaveReqFilterForm';
 import Skeleton from '@mui/material/Skeleton';

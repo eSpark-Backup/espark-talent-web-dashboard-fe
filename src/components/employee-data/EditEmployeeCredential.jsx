@@ -3,9 +3,9 @@ import { Box, Button, Grid, Modal, Typography } from '@mui/material';
 
 import { EDIT_MODAL } from '@/src/constants/employee-profile';
 import { useFormik } from 'formik';
-import FormInput from '../form/ui-elements/FormInput';
+import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { formEmployeeCredential } from '@/src/data/forms/employee-credential';
-import { editEmployeeCredentialSchema } from '../../validation/employeeCredential';
+import { editEmployeeCredentialSchema } from '@/src/validation/employeeCredential';
 import { useMutation } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import { HR_UPDATE_EMP_CREDS } from '@/src/services/apiService/apiEndPoints';

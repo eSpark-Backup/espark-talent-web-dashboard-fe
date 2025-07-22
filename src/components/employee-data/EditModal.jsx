@@ -10,7 +10,7 @@ import {
 } from '@/src/services/apiService/apiEndPoints';
 import { Toast } from '@/src/utils/toast';
 import { updateCurrentEmployeeImage } from '@/src/redux/slices/hrSlices/employeeSlice';
-import ProfileCroper from '../ProfileCroper';
+import ProfileCroper from '@/src/components/ProfileCroper';
 import { updateCurrentClientImage } from '@/src/redux/slices/hrSlices/clientSlice';
 
 const EditProfileModal = ({ open, onClose, isClient }) => {

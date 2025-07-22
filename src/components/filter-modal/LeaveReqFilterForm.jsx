@@ -2,9 +2,9 @@ import React, { forwardRef } from 'react';
 import { Box, Grid, Modal, Typography } from '@mui/material';
 
 import { useFormik } from 'formik';
-import FormInput from '../form/ui-elements/FormInput';
+import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { FILTER } from '@/src/constants/filter';
-import ResetButton from './ResetButton';
+import ResetButton from '@/src/components/filter-modal/ResetButton';
 import { api } from '@/src/services/apiService';
 import { Toast } from '@/src/utils/toast';
 import { EMP_LEAVE_REQUEST } from '@/src/services/apiService/apiEndPoints';
@@ -15,7 +15,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import dayjs from 'dayjs';
 import { useMutation } from '@tanstack/react-query';
-import { empLeaveReqfilterModalSchema } from '../../validation/empLeaveReqFilterModal';
+import { empLeaveReqfilterModalSchema } from '@/src/validation/empLeaveReqFilterModal';
 import {
   getEmpLeaveRequestDataFailed,
   getEmpLeaveRequestDataSuccess,

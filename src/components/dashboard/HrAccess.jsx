@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box } from '@mui/material';
 
-import StatusBox from '../atttendance-summary/StatusBox';
+import StatusBox from '@/src/components/atttendance-summary/StatusBox';
 import Stack from '@mui/material/Stack';
 import Skeleton from '@mui/material/Skeleton';
 

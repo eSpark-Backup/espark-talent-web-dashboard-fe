@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Box } from '@mui/material';
 
 import { BENEFITS_TABLECOLUMN } from '@/src/constants/employee-profile';
-import AppTable from '../app-table-new/AppTable';
-import AppConfirmationMadal from '../modals/AppConfirmationMadal';
+import AppTable from '@/src/components/app-table-new/AppTable';
+import AppConfirmationMadal from '@/src/components/modals/AppConfirmationMadal';
 import { CONTRACT_SIGNED } from '@/src/constants/contract-signed';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -17,7 +17,7 @@ import {
   deleteEmpBenefit,
 } from '@/src/redux/slices/hrSlices/employeeSlice';
 import { Toast } from '@/src/utils/toast';
-import EditBenefitForm from './EditBenefitModal';
+import EditBenefitForm from '@/src/components/employee-data/EditBenefitModal';
 import dayjs from 'dayjs';
 
 const Benefits = () => {

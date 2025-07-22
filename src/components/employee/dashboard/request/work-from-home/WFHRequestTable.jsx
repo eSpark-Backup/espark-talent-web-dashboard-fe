@@ -3,7 +3,7 @@ import { employeeWFHRequestsColumn } from '@/src/data/tables/requests-data';
 import { filterTableRowsWRTTab } from '@/src/utils/table';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { WFHRequestRenderComponents } from './WFHRequestRenderComponents';
+import { WFHRequestRenderComponents } from '@/src/components/employee/dashboard/request/work-from-home/WFHRequestRenderComponents';
 import dayjs from 'dayjs';
 
 const WFHRequestTable = ({

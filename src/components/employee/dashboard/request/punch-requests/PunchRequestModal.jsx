@@ -2,8 +2,8 @@
 import React, { forwardRef } from 'react';
 import { Box, Typography } from '@mui/material';
 
-import PunchRequestDataView from './PunchRequestFormView';
-import PunchRequestForm from './PunchRequestForm';
+import PunchRequestDataView from '@/src/components/employee/dashboard/request/punch-requests/PunchRequestFormView';
+import PunchRequestForm from '@/src/components/employee/dashboard/request/punch-requests/PunchRequestForm';
 import dayjs from 'dayjs';
 
 const PunchRequestModal = forwardRef(

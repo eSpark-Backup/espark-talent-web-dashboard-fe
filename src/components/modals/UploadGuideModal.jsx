@@ -15,7 +15,7 @@ import { HR_GUIDE } from '@/src/services/apiService/apiEndPoints';
 import { useDispatch, useSelector } from 'react-redux';
 import { Toast } from '@/src/utils/toast';
 import { uploadGuideForm } from '@/src/data/forms/upload-guide';
-import { uploadGuideFormSchema } from '../../validation/uploadGuide';
+import { uploadGuideFormSchema } from '@/src/validation/uploadGuide';
 import { UPLOAD_GUIDE } from '@/src/constants/guide';
 import { addGuide } from '@/src/redux/slices/hrSlices/guide';
 import { useMutation } from '@tanstack/react-query';

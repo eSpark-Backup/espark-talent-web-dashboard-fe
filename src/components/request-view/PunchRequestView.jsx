@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Grid, Typography } from '@mui/material';
-import LeaveRequestButtons from './LeaveRequestButton';
+import LeaveRequestButtons from '@/src/components/request-view/LeaveRequestButton';
 import Image from 'next/image';
 
 const PunchRequest = ({

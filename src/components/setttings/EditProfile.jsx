@@ -2,14 +2,14 @@
 import React from 'react';
 import { Box } from '@mui/material';
 
-import SettingTitle from './SettingTitle';
-import ProfileSection from './ProfileSection';
+import SettingTitle from '@/src/components/setttings/SettingTitle';
+import ProfileSection from '@/src/components/setttings/ProfileSection';
 import {
   Profile_Edit_Section,
   Setting_Data,
   User_Detail,
 } from '@/src/constants/profile-edit-data';
-import ChangePassword from './ChangePassword';
+import ChangePassword from '@/src/components/setttings/ChangePassword';
 
 const EditProfile = () => {
   return (

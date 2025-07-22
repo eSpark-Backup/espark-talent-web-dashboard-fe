@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Typography } from '@mui/material';
 
 import { REQUESTVIEW_DATA } from '@/src/constants/requestview-modal';
-import LeaveDay from './LeaveDay';
+import LeaveDay from '@/src/components/request-view/LeaveDay';
 
 const LeaveDuration = ({ employeeId, employeeName, fromTo }) => {
   return (

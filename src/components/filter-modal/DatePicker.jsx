@@ -5,7 +5,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs';
 import Image from 'next/image';
 
-import ActionBarComponent from '../request-view/ActionbarComponent';
+import ActionBarComponent from '@/src/components/request-view/ActionbarComponent';
 
 const DatePicker = ({ title }) => {
   const [isOpenDatePicker, setIsOpenDatePicker] = useState(false);

@@ -17,9 +17,9 @@ import { api } from '@/src/services/apiService';
 import { HR_ACCOUNTS } from '@/src/services/apiService/apiEndPoints';
 import { Toast } from '@/src/utils/toast';
 import { useState } from 'react';
-import { editAccountInfoSchema } from '../../validation/addAccount';
+import { editAccountInfoSchema } from '@/src/validation/addAccount';
 import { editAccountForm } from '@/src/data/forms/add-account';
-import EditSettingProfile from '../employee-data/EditSettingProfile';
+import EditSettingProfile from '@/src/components/employee-data/EditSettingProfile';
 
 const EditAccountModal = forwardRef(({ open, onClose, modalData }, ref) => {
   const [showEditModal, setEditModal] = useState(false);

@@ -4,13 +4,13 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import { usePathname } from 'next/navigation';
 
-import SidebarUserAvatar from './SidebarUserAvatar';
+import SidebarUserAvatar from '@/src/components/sidebar/SidebarUserAvatar';
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
-import SidebarGlobalIcon from './SidebarGlobalIcon';
-import ProfilePopper from '../popover/ProfilePopper';
-import WorkSpacePopper from '../popover/WorkSpacePopper';
+import SidebarGlobalIcon from '@/src/components/sidebar/SidebarGlobalIcon';
+import ProfilePopper from '@/src/components/popover/ProfilePopper';
+import WorkSpacePopper from '@/src/components/popover/WorkSpacePopper';
 import { WORK_SPACE_ICON } from '@/src/constants/sidebar';
-import WorkSpaceIcon from './WorkSpaceIcon';
+import WorkSpaceIcon from '@/src/components/sidebar/WorkSpaceIcon';
 import { useSelector } from 'react-redux';
 
 export default function ResponsiveNavbar({ openSidebar }) {

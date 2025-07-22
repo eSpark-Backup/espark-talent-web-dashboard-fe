@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import GeneralSettings from './GeneralSettings';
+import GeneralSettings from '@/src/components/setttings/GeneralSettings';
 
 const ProfileSection = () => {
   return (

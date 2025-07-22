@@ -7,7 +7,7 @@ import copy from 'copy-to-clipboard';
 import dayjs from 'dayjs';
 import PhoneInput from 'react-phone-number-input';
 import 'react-phone-number-input/style.css';
-import AppDropdown from '../../dashboard/AppDropdown';
+import AppDropdown from '@/src/components/dashboard/AppDropdown';
 import {
   DesktopDatePicker,
   DesktopTimePicker,
@@ -16,9 +16,9 @@ import {
   MobileDateTimePicker,
 } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import AppSearchableDropdown from '../../dashboard/AppSearchableDropdown';
+import AppSearchableDropdown from '@/src/components/dashboard/AppSearchableDropdown';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { emailRegExp } from '../../../validation/validations';
+import { emailRegExp } from '@/src/validation/validations';
 import { ellipsisWithTooltip } from '@/src/utils/tooltipEllipsis';
 
 const DateTimePickerComponent = (props) => {

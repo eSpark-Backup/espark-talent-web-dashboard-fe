@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
 
-import SummarySlider from './SummarySlider';
+import SummarySlider from '@/src/components/atttendance-summary/SummarySlider';
 import { Summary_Boxes } from '@/src/constants/employee-dashboard';
 
 const AttendanceSummary = ({ title, isLoading }) => {

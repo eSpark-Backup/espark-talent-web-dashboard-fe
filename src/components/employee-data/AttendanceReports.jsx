@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Modal, Tab, Tabs, Tooltip } from '@mui/material';
-import AppTable from '../app-table-new/AppTable';
+import AppTable from '@/src/components/app-table-new/AppTable';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import {
   HR_GET_EMP_ATTENDENCE,
