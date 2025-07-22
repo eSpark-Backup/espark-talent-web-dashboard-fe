@@ -9,12 +9,12 @@ import {
   CircularProgress,
 } from '@mui/material';
 import Image from 'next/image';
-import LeaveRequestModal from './LeaveRequestModal';
-import LeaveViewModal from '@/app/client/dashboard/team/time-off/LeaveViewModal';
+import LeaveRequestModal from '@/src/components/employee/dashboard/request/leave/LeaveRequestModal';
+import LeaveViewModal from '@/src/components/client/dashboard/team/time-off/LeaveViewModal';
 import AppConfirmationMadal from '@/src/components/modals/AppConfirmationMadal';
 import { REQUEST_LEAVE } from '@/src/constants/requestview-modal';
-import LeaveBalanceTable from './LeaveBalanceTable';
-import LeaveRequestTablesTabs from './LeaveRequestTablesTabs';
+import LeaveBalanceTable from '@/src/components/employee/dashboard/request/leave/LeaveBalanceTable';
+import LeaveRequestTablesTabs from '@/src/components/employee/dashboard/request/leave/LeaveRequestTablesTabs';
 import { useMutation } from '@tanstack/react-query';
 import { EMP_LEAVE_REQUEST } from '@/src/services/apiService/apiEndPoints';
 import { api } from '@/src/services/apiService';

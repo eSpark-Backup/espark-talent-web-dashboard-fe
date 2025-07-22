@@ -30,12 +30,12 @@ import {
 } from '@/src/services/apiService/apiEndPoints';
 import { useDispatch, useSelector } from 'react-redux';
 import { Toast } from '@/src/utils/toast';
-import AddContractModal from '../clients/[id]/AddContractModal';
-import EmployeeContractModal from '../clients/[id]/EmployeeContractModal';
+import AddContractModal from '@/src/components/hr/dashboard/clients/[id]/AddContractModal';
+import EmployeeContractModal from '@/src/components/hr/dashboard/clients/[id]/EmployeeContractModal';
 import DashboardHeading from '@/src/components/dashboard/DashboardHeading';
 import dayjs from 'dayjs';
-import EditContractModal from '../clients/[id]/EditContractModal';
-import EditEmployeeContractModal from '../clients/[id]/EditEmployeeContractModal';
+import EditContractModal from '@/src/components/hr/dashboard/clients/[id]/EditContractModal';
+import EditEmployeeContractModal from '@/src/components/hr/dashboard/clients/[id]/EditEmployeeContractModal';
 import EditContractHr from '@/src/components/contract-hr-portal/EditContractHr';
 
 const ContractSigned = () => {

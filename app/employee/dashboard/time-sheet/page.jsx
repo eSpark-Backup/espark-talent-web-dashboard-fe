@@ -10,14 +10,14 @@ import {
   Tooltip,
 } from '@mui/material';
 
-import { renderTrackingStatus } from './renderComponents';
+import { renderTrackingStatus } from '@/src/components/employee/dashboard/time-sheet/renderComponents';
 import {
   sheetStatusTypes,
   timeSheetTableColumn,
 } from '@/src/data/tables/time-sheet';
 import Image from 'next/image';
 import { EMPLOYEE_TIMESHEET } from '@/src/constants/time-sheet';
-import AttendanceViewModal from './AttendanceViewModal';
+import AttendanceViewModal from '@/src/components/employee/dashboard/time-sheet/AttendanceViewModal';
 import AppTable from '@/src/components/app-table-new/AppTable';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';

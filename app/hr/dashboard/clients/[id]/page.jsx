@@ -4,14 +4,14 @@ import { Typography, Tabs, Tab, Button } from '@mui/material';
 import { Box } from '@mui/system';
 import Breadcrumb from '@/src/components/form/step/Breadcrumb';
 import CustomTabPanel from '@/src/components/dashboard/AppCustomTabPanel';
-import { renderTable } from './renderComponents';
+import { renderTable } from '@/src/components/hr/dashboard/clients/[id]/renderComponents';
 import { filterTableRowsWRTTab } from '@/src/utils/table';
 import { useParams } from 'next/navigation';
-import HiringRequestModal from './HiringRequestModal';
-import UploadInvoiceModal from './UploadInvoiceModal';
-import AddEmployeeModal from './AddEmployeeModal';
-import AddInterviewModal from './AddInterviewModal';
-import AddOnboardModal from './AddOnboardModal';
+import HiringRequestModal from '@/src/components/hr/dashboard/clients/[id]/HiringRequestModal';
+import UploadInvoiceModal from '@/src/components/hr/dashboard/clients/[id]/UploadInvoiceModal';
+import AddEmployeeModal from '@/src/components/hr/dashboard/clients/[id]/AddEmployeeModal';
+import AddInterviewModal from '@/src/components/hr/dashboard/clients/[id]/AddInterviewModal';
+import AddOnboardModal from '@/src/components/hr/dashboard/clients/[id]/AddOnboardModal';
 
 import { useSearchParams } from 'next/navigation';
 import { CLIENTPROFILE } from '@/src/constants/client-profile';
@@ -52,7 +52,7 @@ import {
   updateOthInv,
 } from '@/src/redux/slices/hrSlices/clientSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import ClientProfileData from './ClientProfileData';
+import ClientProfileData from '@/src/components/hr/dashboard/clients/[id]/ClientProfileData';
 import {
   hiringRequestColumn,
   interviewScheduleColumn,
@@ -64,7 +64,7 @@ import {
   otherPaymentColumn,
 } from '@/src/data/tables/hr/invoices';
 import { getCamelCapitalized } from '@/src/utils/stringModification';
-import UploadOtherInvoiceModal from './UploadOtherInvoiceModal';
+import UploadOtherInvoiceModal from '@/src/components/hr/dashboard/clients/[id]/UploadOtherInvoiceModal';
 import { Toast } from '@/src/utils/toast';
 import ProfileEditSkeleton from '@/src/components/hr/ProfileEditSkeleton';
 import dayjs from 'dayjs';
@@ -72,11 +72,11 @@ import { genderType } from '@/src/utils/genderType';
 import { clientProfileTabsHandler } from '@/src/utils/clientProfileTabHandler';
 import { getTimeSheetDataFailed } from '@/src/redux/slices/employeeSlices/timeSheetSlice';
 import { formatSalary } from '@/src/utils/salaryFormat';
-import EditHiringRequestModal from './EditHiringRequestModal';
-import EditInterviewModal from './EditInterviewModal';
-import EditOnboardModal from './EditOnboardModal';
-import EditInvoiceModal from './EditInvoiceModal';
-import EditOtherInvoiceModal from './EditOtherInvoiceModal';
+import EditHiringRequestModal from '@/src/components/hr/dashboard/clients/[id]/EditHiringRequestModal';
+import EditInterviewModal from '@/src/components/hr/dashboard/clients/[id]/EditInterviewModal';
+import EditOnboardModal from '@/src/components/hr/dashboard/clients/[id]/EditOnboardModal';
+import EditInvoiceModal from '@/src/components/hr/dashboard/clients/[id]/EditInvoiceModal';
+import EditOtherInvoiceModal from '@/src/components/hr/dashboard/clients/[id]/EditOtherInvoiceModal';
 
 const AddEmployee = () => {
   const params = useParams();

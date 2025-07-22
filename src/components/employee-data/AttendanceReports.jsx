@@ -11,7 +11,7 @@ import { useParams } from 'next/navigation';
 import dayjs from 'dayjs';
 import { convertDateFormat, getAttendenceShortHand } from '@/src/utils/helpers';
 import { Toast } from '@/src/utils/toast';
-import AttendanceViewModal from '@/app/hr/dashboard/employees/[id]/AttendanceViewModal';
+import AttendanceViewModal from '@/src/components/hr/dashboard/employees/[id]/AttendanceViewModal';
 import { useDispatch } from 'react-redux';
 import { getAttendanceRequestSuccess } from '@/src/redux/slices/hrSlices/employeeSlice';
 import { attendanceReportTableColumn } from '@/src/data/tables/attendance-report';

@@ -26,7 +26,7 @@ import { getAttendenceShortHand } from '@/src/utils/helpers';
 import dayjs from 'dayjs';
 import DashboardHeading from '@/src/components/dashboard/DashboardHeading';
 import { sheetStatusTypes } from '@/src/data/tables/time-sheet';
-import { renderTrackingStatus } from './renderComponents';
+import { renderTrackingStatus } from '@/src/components/client/dashboard/team/time-tracking/renderComponents';
 import { TIME_REQUEST } from '@/src/constants/time-sheet';
 
 const Dashboard = () => {

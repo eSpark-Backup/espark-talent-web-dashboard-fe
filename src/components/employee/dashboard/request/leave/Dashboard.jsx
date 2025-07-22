@@ -6,7 +6,7 @@ import Tab from '@mui/material/Tab';
 import CustomTabPanel from '@/src/components/dashboard/AppCustomTabPanel';
 import { filterTableRowsWRTTab } from '@/src/utils/table';
 import Image from 'next/image';
-import { renderNestedTable } from './renderComponents';
+import { renderNestedTable } from '@/src/components/employee/dashboard/request/leave/renderComponents';
 import { employeeRequestsTabs } from '@/src/data/tabs/request-tabs';
 import {
   employeeLeaveBalanceColumn,
@@ -14,8 +14,8 @@ import {
   employeeLeaveRequestsColumn,
   employeeLeaveRequestsData,
 } from '@/src/data/tables/requests-data';
-import LeaveRequestModal from './LeaveRequestModal';
-import LeaveViewModal from '@/app/client/dashboard/team/time-off/LeaveViewModal';
+import LeaveRequestModal from '@/src/components/employee/dashboard/request/leave/LeaveRequestModal';
+import LeaveViewModal from '@/src/components/client/dashboard/team/time-off/LeaveViewModal';
 import AppTable from '@/src/components/app-table-new/AppTable';
 import AppConfirmationMadal from '@/src/components/modals/AppConfirmationMadal';
 import { REQUEST_LEAVE } from '@/src/constants/requestview-modal';

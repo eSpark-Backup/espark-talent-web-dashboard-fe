@@ -14,8 +14,8 @@ import {
 } from '@/src/redux/slices/employeeSlices/wfhRequestSlice';
 import DashboardHeading from '@/src/components/dashboard/DashboardHeading';
 import { Toast } from '@/src/utils/toast';
-import WFHRequestModal from './WFHRequestModal';
-import WFHRequestTablesTabs from './WFHRequestTablesTabs';
+import WFHRequestModal from '@/src/components/employee/dashboard/request/work-from-home/WFHRequestModal';
+import WFHRequestTablesTabs from '@/src/components/employee/dashboard/request/work-from-home/WFHRequestTablesTabs';
 
 const Dashboard = () => {
   const dispatch = useDispatch();

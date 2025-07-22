@@ -13,8 +13,8 @@ import {
   checkInOutColumn,
   leaveRequestsColumn,
 } from '@/src/data/tables/time-off-request';
-import { renderNestedTable } from './renderComponents';
-import LeaveViewModal from './LeaveViewModal';
+import { renderNestedTable } from '@/src/components/client/dashboard/team/time-off/renderComponents';
+import LeaveViewModal from '@/src/components/client/dashboard/team/time-off/LeaveViewModal';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import {
   CLIENT_LEAVE_BALANCE,
@@ -34,13 +34,13 @@ import {
 } from '@/src/redux/slices/clientSlices/timeOffSlice';
 import { api } from '@/src/services/apiService';
 import { useDispatch, useSelector } from 'react-redux';
-import TimeOffTabs from './TimeOffTabs';
-import RequestStatusTabs from './RequestStatusTabs';
+import TimeOffTabs from '@/src/components/client/dashboard/team/time-off/TimeOffTabs';
+import RequestStatusTabs from '@/src/components/client/dashboard/team/time-off/RequestStatusTabs';
 import { Toast } from '@/src/utils/toast';
 import DashboardHeading from '@/src/components/dashboard/DashboardHeading';
 import { TIME_REQUEST } from '@/src/constants/time-sheet';
 import dayjs from 'dayjs';
-import PunchRequestDataView from '@/app/employee/dashboard/request/punch-requests/PunchRequestFormView';
+import PunchRequestDataView from '@/src/components/employee/dashboard/request/punch-requests/PunchRequestFormView';
 
 const Dashboard = () => {
   const { data, tabData } = useSelector((state) => state?.client?.timeOff);

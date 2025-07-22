@@ -1,7 +1,7 @@
 import React from 'react';
 import { Avatar, Box, Button, Grid, Typography } from '@mui/material';
-import EmployeeDetailRow from './EmployeeDetailRow';
-import EmployeeRequestDetailRow from './EmployeeRequestDetailRow';
+import EmployeeDetailRow from '@/src/components/hr/dashboard/employees/[id]/EmployeeDetailRow';
+import EmployeeRequestDetailRow from '@/src/components/hr/dashboard/employees/[id]/EmployeeRequestDetailRow';
 import dayjs from 'dayjs';
 
 // Wrap your component with React.forwardRef

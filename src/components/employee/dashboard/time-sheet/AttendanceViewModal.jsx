@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 import { Avatar, Box, Button, Grid, Typography } from '@mui/material';
-import EmployeeDetailRow from './EmployeeDetailRow';
-import EmployeeRequestDetailRow from './EmployeeRequestDetailRow';
+import EmployeeDetailRow from '@/src/components/employee/dashboard/time-sheet/EmployeeDetailRow';
+import EmployeeRequestDetailRow from '@/src/components/employee/dashboard/time-sheet/EmployeeRequestDetailRow';
 import dayjs from 'dayjs';
 
 const AttendanceViewModal = forwardRef(

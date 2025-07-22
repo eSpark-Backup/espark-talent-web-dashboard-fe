@@ -7,8 +7,8 @@ import {
   leavesData,
   timeColumn,
 } from '@/src/data/tables/hr/time-and-leaves';
-import TimeManagementModal from '@/app/hr/dashboard/clients/client-profile/TimeManagementModal';
-import LeaveManagementModal from '@/app/hr/dashboard/clients/client-profile/LeaveManagementModal';
+import TimeManagementModal from '@/src/components/hr/dashboard/clients/client-profile/TimeManagementModal';
+import LeaveManagementModal from '@/src/components/hr/dashboard/clients/client-profile/LeaveManagementModal';
 import { FORM_DATA } from '@/src/constants/form';
 import { useParams } from 'next/navigation';
 import { api } from '@/src/services/apiService';

@@ -15,17 +15,17 @@ import {
 } from '@/src/services/apiService/apiEndPoints';
 import { Toast } from '@/src/utils/toast';
 import { EmployeeRequestsTabs } from '@/src/data/tabs/request-tab';
-import LeaveViewModal from '@/app/client/dashboard/team/time-off/LeaveViewModal';
-import WfhViewModal from '@/app/client/dashboard/team/time-off/WfhViewModal';
+import LeaveViewModal from '@/src/components/client/dashboard/team/time-off/LeaveViewModal';
+import WfhViewModal from '@/src/components/client/dashboard/team/time-off/WfhViewModal';
 
 import {
   getEmpRequest,
   getEmpRequestFailed,
   getEmpRequestSuccess,
 } from '@/src/redux/slices/hrSlices/employeeSlice';
-import { renderTable } from '@/app/hr/dashboard/clients/[id]/renderComponents';
+import { renderTable } from '@/src/components/hr/dashboard/clients/[id]/renderComponents';
 import dayjs from 'dayjs';
-import PunchRequestModal from '@/app/employee/dashboard/request/punch-requests/PunchRequestModal';
+import PunchRequestModal from '@/src/components/employee/dashboard/request/punch-requests/PunchRequestModal';
 
 const Request = () => {
   const [value, setValue] = useState(0);
