@@ -41,6 +41,7 @@ const Step = ({
   btnSave,
   fontSize,
   miniFontSize,
+  redirectpath,
 }) => {
   const pathname = usePathname();
   const router = useRouter();
@@ -60,10 +61,8 @@ const Step = ({
       queryClient?.invalidateQueries(['hr-client-info-query']);
       Toast('success', 'Status updated successfully');
       console.log({ data });
-      if (window?.history?.length > 1) {
-        router?.back();
-      } else {
-        router?.push('/hr/dashboard/clients');
+      if (redirectpath) {
+        router?.push(redirectpath);
       }
       setCurrentStep?.(0);
       toast?.();
