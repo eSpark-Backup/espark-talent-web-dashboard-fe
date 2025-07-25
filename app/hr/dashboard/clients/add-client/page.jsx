@@ -119,6 +119,7 @@ const AddEmployee = () => {
                   method="postData"
                   endpoint={HR_ADD_ClIENT}
                   toast={handleToast}
+                  redirectpath="/hr/dashboard/clients"
                   mt={25}
                   errorToast={handleErrorToast}
                   clearForm={clearForm}

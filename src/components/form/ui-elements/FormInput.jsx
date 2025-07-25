@@ -167,6 +167,16 @@ const FormInput = ({
       .reduce((acc, key) => (acc && acc[key] ? acc[key] : ''), obj);
   };
 
+  const handleWheel = (e) => {
+    e.target.blur();
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+      e.preventDefault();
+    }
+  };
+
   return (
     <Grid
       item
@@ -896,6 +906,8 @@ const FormInput = ({
                   placeholder={placeholder}
                   className="form-input-field"
                   type={type}
+                  onWheel={handleWheel}
+                  onKeyDown={handleKeyDown}
                   ref={textRef}
                   readOnly={readOnly}
                   onChange={(e) => {
