@@ -45,7 +45,7 @@ import { Toast } from '@/src/utils/toast';
 import DashboardHeading from '@/src/components/dashboard/DashboardHeading';
 import { formatSalary } from '@/src/utils/salaryFormat';
 
-const Dashboard = () => {
+const Page = () => {
   const { data, otherInvoicesData } = useSelector(
     (state) => state?.client?.invoicePayments
   );
@@ -550,4 +550,4 @@ const Dashboard = () => {
     </>
   );
 };
-export default Dashboard;
+export default Page;

@@ -78,7 +78,7 @@ import EditOnboardModal from '@/src/components/hr/dashboard/clients/[id]/EditOnb
 import EditInvoiceModal from '@/src/components/hr/dashboard/clients/[id]/EditInvoiceModal';
 import EditOtherInvoiceModal from '@/src/components/hr/dashboard/clients/[id]/EditOtherInvoiceModal';
 
-const AddEmployee = () => {
+const Page = () => {
   const params = useParams();
   const dispatch = useDispatch();
   const [modalData, setModalData] = useState({});
@@ -1715,4 +1715,4 @@ const AddEmployee = () => {
     </>
   );
 };
-export default AddEmployee;
+export default Page;

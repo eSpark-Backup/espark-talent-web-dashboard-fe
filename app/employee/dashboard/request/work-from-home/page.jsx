@@ -17,7 +17,7 @@ import { Toast } from '@/src/utils/toast';
 import WFHRequestModal from '@/src/components/employee/dashboard/request/work-from-home/WFHRequestModal';
 import WFHRequestTablesTabs from '@/src/components/employee/dashboard/request/work-from-home/WFHRequestTablesTabs';
 
-const Dashboard = () => {
+const Page = () => {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const [modalData, setModalData] = useState({});
@@ -222,4 +222,4 @@ const Dashboard = () => {
     </>
   );
 };
-export default Dashboard;
+export default Page;

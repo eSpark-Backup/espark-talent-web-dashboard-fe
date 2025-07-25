@@ -19,7 +19,7 @@ import { CLIENTPROFILE } from '@/src/constants/client-profile';
 import { removeActiveClientAndData } from '@/src/redux/slices/hrSlices/clientSlice';
 import { useDispatch } from 'react-redux';
 
-const AddEmployee = () => {
+const Page = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const [isOpenHiringRequestModal, setIsOpenHiringRequestModal] =
@@ -678,4 +678,4 @@ const AddEmployee = () => {
     </>
   );
 };
-export default AddEmployee;
+export default Page;

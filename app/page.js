@@ -1,12 +1,12 @@
 import React from 'react';
 import Authentication from '@/src/components/auth/Authentication';
 
-function page() {
+const Page = () => {
   return (
     <>
       <Authentication />
     </>
   );
-}
+};
 
-export default page;
+export default Page;

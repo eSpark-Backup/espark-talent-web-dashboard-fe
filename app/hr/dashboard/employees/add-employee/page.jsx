@@ -16,7 +16,7 @@ import { HR_ADD_EMPLOYEES } from '@/src/services/apiService/apiEndPoints';
 import { useRouter } from 'next/navigation';
 import { Toast } from '@/src/utils/toast';
 
-const AddEmployee = () => {
+const Page = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const [currentStep, setCurrentStep] = useState(1);
@@ -181,4 +181,4 @@ const AddEmployee = () => {
   );
 };
 
-export default AddEmployee;
+export default Page;

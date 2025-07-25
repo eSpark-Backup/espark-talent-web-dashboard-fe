@@ -41,7 +41,7 @@ import Skeleton from '@mui/material/Skeleton';
 import dayjs from 'dayjs';
 import { ellipsisWithTooltip } from '@/src/utils/tooltipEllipsis';
 
-const Dashboard = () => {
+const Page = () => {
   const dispatch = useDispatch();
   const { empDetails } = useSelector((state) => state?.auth?.userData);
   const { currentWorkSpace } = useSelector((state) => state?.emp?.home);
@@ -517,4 +517,4 @@ const Dashboard = () => {
     </>
   );
 };
-export default Dashboard;
+export default Page;

@@ -31,7 +31,7 @@ import DashboardHeading from '@/src/components/dashboard/DashboardHeading';
 import { Toast } from '@/src/utils/toast';
 import dayjs from 'dayjs';
 
-const Dashboard = () => {
+const Page = () => {
   const { currentWorkSpace } = useSelector((state) => state?.emp?.home);
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
@@ -382,4 +382,4 @@ const Dashboard = () => {
     </>
   );
 };
-export default Dashboard;
+export default Page;

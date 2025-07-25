@@ -19,7 +19,7 @@ import { api } from '@/src/services/apiService';
 import { Toast } from '@/src/utils/toast';
 import dayjs from 'dayjs';
 
-const Letters = () => {
+const Page = () => {
   const dispatch = useDispatch();
 
   const { data: lettersData, isLoading } = useQuery({
@@ -118,4 +118,4 @@ const Letters = () => {
     </>
   );
 };
-export default Letters;
+export default Page;

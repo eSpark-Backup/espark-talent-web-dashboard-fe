@@ -11,7 +11,7 @@ import { HR_GET_CLIENT_PROFILE } from '@/src/services/apiService/apiEndPoints';
 import dayjs from 'dayjs';
 import { countriesList } from '@/src/constants/countries';
 
-const EditClient = () => {
+const Page = () => {
   const [formData, setFormData] = useState({});
   const { currentClient } = useSelector((state) => state?.hr?.clients);
   const handleData = (name, value) => {
@@ -95,4 +95,4 @@ const EditClient = () => {
   );
 };
 
-export default EditClient;
+export default Page;

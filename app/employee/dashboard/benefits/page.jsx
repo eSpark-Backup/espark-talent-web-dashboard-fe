@@ -17,7 +17,7 @@ import DashboardHeading from '@/src/components/dashboard/DashboardHeading';
 import { BenefitsColumn } from '@/src/data/tables/benefits';
 import dayjs from 'dayjs';
 
-const Benefits = () => {
+const Page = () => {
   const dispatch = useDispatch();
   const { data: benefits, isLoading } = useQuery({
     refetchOnWindowFocus: false,
@@ -90,4 +90,4 @@ const Benefits = () => {
     </>
   );
 };
-export default Benefits;
+export default Page;

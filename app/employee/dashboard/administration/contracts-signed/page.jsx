@@ -27,7 +27,7 @@ import DashboardHeading from '@/src/components/dashboard/DashboardHeading';
 import { Toast } from '@/src/utils/toast';
 import dayjs from 'dayjs';
 
-const ContractSigned = () => {
+const Page = () => {
   const dispatch = useDispatch();
 
   const { currentWorkSpace } = useSelector((state) => state?.emp?.home);
@@ -216,4 +216,4 @@ const ContractSigned = () => {
     </>
   );
 };
-export default ContractSigned;
+export default Page;

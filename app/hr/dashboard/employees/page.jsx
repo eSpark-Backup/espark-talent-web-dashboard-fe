@@ -1,7 +1,7 @@
 import React from 'react';
 import AllEmployee from '@/src/components/hr/AllEmployee';
 
-const page = () => {
+const Page = () => {
   return (
     <>
       <AllEmployee />
@@ -9,4 +9,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

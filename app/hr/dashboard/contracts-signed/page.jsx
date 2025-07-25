@@ -38,7 +38,7 @@ import EditContractModal from '@/src/components/hr/dashboard/clients/[id]/EditCo
 import EditEmployeeContractModal from '@/src/components/hr/dashboard/clients/[id]/EditEmployeeContractModal';
 import EditContractHr from '@/src/components/contract-hr-portal/EditContractHr';
 
-const ContractSigned = () => {
+const Page = () => {
   const dispatch = useDispatch();
   const [value, setValue] = useState(0);
   const [deletingContractId, setDeletingContractId] = useState(null);
@@ -634,4 +634,4 @@ const ContractSigned = () => {
     </>
   );
 };
-export default ContractSigned;
+export default Page;

@@ -6,7 +6,7 @@ import ResourceCard from '@/src/components/resources/ResourceCard';
 import { RESOURCE_DATA } from '@/src/constants/resources';
 import DashboardHeading from '@/src/components/dashboard/DashboardHeading';
 
-const Resource = () => {
+const Page = () => {
   return (
     <>
       <Grid container>
@@ -33,4 +33,4 @@ const Resource = () => {
     </>
   );
 };
-export default Resource;
+export default Page;

@@ -17,7 +17,7 @@ import { api } from '@/src/services/apiService';
 import { HR_HOME } from '@/src/services/apiService/apiEndPoints';
 import Cookies from 'js-cookie';
 
-const Dashboard = () => {
+const Page = () => {
   const dispatch = useDispatch();
   const getData = () => {
     const tempData = JSON?.parse(JSON?.stringify(Summary_Boxes))?.map(
@@ -97,4 +97,4 @@ const Dashboard = () => {
     </>
   );
 };
-export default Dashboard;
+export default Page;

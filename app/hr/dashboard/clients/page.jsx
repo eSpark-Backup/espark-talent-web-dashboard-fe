@@ -2,7 +2,7 @@
 import AllClients from '@/src/components/hr/AllClients';
 import React from 'react';
 
-const page = () => {
+const Page = () => {
   return (
     <>
       <AllClients />
@@ -10,4 +10,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

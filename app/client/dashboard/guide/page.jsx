@@ -16,7 +16,7 @@ import { CLIENT_GUIDE } from '@/src/services/apiService/apiEndPoints';
 import Heading from '@/src/components/global/Heading';
 import GuideCard from '@/src/components/guides/GuideCard';
 
-const Guide = () => {
+const Page = () => {
   const dispatch = useDispatch();
   const { isLoading, data } = useQuery({
     staleTime: 10000,
@@ -78,4 +78,4 @@ const Guide = () => {
     </Grid>
   );
 };
-export default Guide;
+export default Page;

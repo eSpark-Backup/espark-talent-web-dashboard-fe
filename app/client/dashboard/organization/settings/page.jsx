@@ -1,7 +1,7 @@
 import React from 'react';
 import EditProfile from '@/src/components/setttings/EditProfile';
 
-const page = () => {
+const Page = () => {
   return (
     <>
       <EditProfile />
@@ -9,4 +9,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

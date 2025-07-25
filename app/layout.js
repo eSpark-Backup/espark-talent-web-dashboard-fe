@@ -16,7 +16,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import { lightTheme } from './theme';
 import { AOSInit } from '@/src/components/Aosint';
 
-export default function RootLayout({ children }) {
+const RootLayout = ({ children }) => {
   const queryClient = new QueryClient();
   return (
     <html lang="en">
@@ -44,4 +44,5 @@ export default function RootLayout({ children }) {
       </body>
     </html>
   );
-}
+};
+export default RootLayout;

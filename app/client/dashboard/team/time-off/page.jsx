@@ -42,7 +42,7 @@ import { TIME_REQUEST } from '@/src/constants/time-sheet';
 import dayjs from 'dayjs';
 import PunchRequestDataView from '@/src/components/employee/dashboard/request/punch-requests/PunchRequestFormView';
 
-const Dashboard = () => {
+const Page = () => {
   const { data, tabData } = useSelector((state) => state?.client?.timeOff);
   const { c_email } = useSelector((state) => state?.client?.home?.data);
   const [leaveRequestDataState, setLeaveRequestDataState] = useState([]);
@@ -485,4 +485,4 @@ const Dashboard = () => {
     </>
   );
 };
-export default Dashboard;
+export default Page;

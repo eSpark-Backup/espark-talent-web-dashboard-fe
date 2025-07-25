@@ -28,7 +28,7 @@ import { Toast } from '@/src/utils/toast';
 import DashboardHeading from '@/src/components/dashboard/DashboardHeading';
 import dayjs from 'dayjs';
 
-const ContractSigned = () => {
+const Page = () => {
   const { data } = useSelector((state) => state?.client?.contract);
   const dispatch = useDispatch();
   const [value, setValue] = useState(0);
@@ -208,4 +208,4 @@ const ContractSigned = () => {
     </>
   );
 };
-export default ContractSigned;
+export default Page;

@@ -16,7 +16,7 @@ import {
 } from '@/src/redux/slices/employeeSlices/empPoliciesSlice';
 import { Toast } from '@/src/utils/toast';
 
-const Policies = () => {
+const Page = () => {
   const dispatch = useDispatch();
   const filteredItems = POLICIES_DATA?.items.filter(
     (item) => item.id !== 4 && item.id !== 5
@@ -88,4 +88,4 @@ const Policies = () => {
     </>
   );
 };
-export default Policies;
+export default Page;

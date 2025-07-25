@@ -4,7 +4,7 @@ import { Box } from '@mui/material';
 
 import StartHiringForm from '@/src/components/start-hiring/StartHiringForm';
 
-const StartHiring = () => {
+const Page = () => {
   return (
     <>
       <Box
@@ -19,4 +19,4 @@ const StartHiring = () => {
     </>
   );
 };
-export default StartHiring;
+export default Page;

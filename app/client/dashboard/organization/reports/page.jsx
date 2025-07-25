@@ -6,7 +6,7 @@ import { REPORT_DATA } from '@/src/constants/report';
 import Heading from '@/src/components/global/Heading';
 import ReportBoxes from '@/src/components/reports/ReportBoxes';
 
-const Reports = () => {
+const Page = () => {
   return (
     <>
       <Grid container>
@@ -35,4 +35,4 @@ const Reports = () => {
     </>
   );
 };
-export default Reports;
+export default Page;

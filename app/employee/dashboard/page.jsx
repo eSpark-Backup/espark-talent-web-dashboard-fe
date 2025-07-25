@@ -23,7 +23,7 @@ import {
 } from '@/src/constants/employee-dashboard';
 import { Toast } from '@/src/utils/toast';
 
-const Dashboard = () => {
+const Page = () => {
   const { empDetails } = useSelector((state) => state?.auth?.userData);
   const dispatch = useDispatch();
 
@@ -124,4 +124,4 @@ const Dashboard = () => {
     </>
   );
 };
-export default Dashboard;
+export default Page;

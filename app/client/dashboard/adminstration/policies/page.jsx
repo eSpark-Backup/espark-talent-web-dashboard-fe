@@ -15,7 +15,7 @@ import {
 import { useDispatch } from 'react-redux';
 import { Toast } from '@/src/utils/toast';
 
-const Policies = () => {
+const Page = () => {
   const dispatch = useDispatch();
   const { isLoading, data } = useQuery({
     staleTime: 10000,
@@ -82,4 +82,4 @@ const Policies = () => {
     </>
   );
 };
-export default Policies;
+export default Page;

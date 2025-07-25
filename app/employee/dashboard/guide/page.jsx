@@ -16,7 +16,7 @@ import {
 import Heading from '@/src/components/global/Heading';
 import GuideCard from '@/src/components/guides/GuideCard';
 
-const Guide = () => {
+const Page = () => {
   const { guide, description } = GUIDE_DATA;
   const dispatch = useDispatch();
   const { isLoading, data } = useQuery({
@@ -79,4 +79,4 @@ const Guide = () => {
     </Grid>
   );
 };
-export default Guide;
+export default Page;

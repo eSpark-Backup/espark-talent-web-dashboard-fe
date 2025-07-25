@@ -26,7 +26,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import EditPolicyModal from '@/src/components/modals/EditPolicyModal';
 
-const Policies = () => {
+const Page = () => {
   const dispatch = useDispatch();
   const { policies_perms } = useSelector((state) => state?.hr?.home?.homeData);
   const { role } = useSelector((state) => state?.auth?.userData);
@@ -364,4 +364,4 @@ const Policies = () => {
     </>
   );
 };
-export default Policies;
+export default Page;

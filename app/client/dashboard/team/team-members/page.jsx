@@ -29,7 +29,7 @@ import DashboardHeading from '@/src/components/dashboard/DashboardHeading';
 import { useRouter } from 'next/navigation';
 import dayjs from 'dayjs';
 
-const Dashboard = () => {
+const Page = () => {
   const { data } = useSelector((state) => state?.client?.teamMembers);
   const dispatch = useDispatch();
   const [value, setValue] = useState(0);
@@ -316,4 +316,4 @@ const Dashboard = () => {
     </>
   );
 };
-export default Dashboard;
+export default Page;

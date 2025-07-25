@@ -29,7 +29,7 @@ import { sheetStatusTypes } from '@/src/data/tables/time-sheet';
 import { renderTrackingStatus } from '@/src/components/client/dashboard/team/time-tracking/renderComponents';
 import { TIME_REQUEST } from '@/src/constants/time-sheet';
 
-const Dashboard = () => {
+const Page = () => {
   const months = [
     'January',
     'February',
@@ -349,4 +349,4 @@ const Dashboard = () => {
     </>
   );
 };
-export default Dashboard;
+export default Page;

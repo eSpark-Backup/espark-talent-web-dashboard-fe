@@ -19,7 +19,7 @@ import Image from 'next/image';
 import AppSearchableDropdown from '@/src/components/dashboard/AppSearchableDropdown';
 import AppTable from '@/src/components/app-table/AppTable';
 
-const TeamManagement = () => {
+const Page = () => {
   const [value, setValue] = useState(0);
   const [currentTab, setCurrentTab] = useState('Hiring Request');
   const [isLoading, setIsLoading] = useState(true);
@@ -343,4 +343,4 @@ const TeamManagement = () => {
     </>
   );
 };
-export default TeamManagement;
+export default Page;

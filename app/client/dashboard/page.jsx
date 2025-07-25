@@ -16,7 +16,7 @@ import {
 import { useMutation } from '@tanstack/react-query';
 import { CLIENT_HOME } from '@/src/services/apiService/apiEndPoints';
 
-const Dashboard = () => {
+const Page = () => {
   const { username } = useSelector((state) => state?.client?.home?.data);
   const dispatch = useDispatch();
 
@@ -74,4 +74,4 @@ const Dashboard = () => {
     </>
   );
 };
-export default Dashboard;
+export default Page;

@@ -39,7 +39,7 @@ import Skeleton from '@mui/material/Skeleton';
 import { calculateExpectedTime } from '@/src/utils/calculateExpectedTime';
 import { ellipsisWithTooltip } from '@/src/utils/tooltipEllipsis';
 
-const Dashboard = () => {
+const Page = () => {
   const { currentWorkSpace } = useSelector((state) => state?.emp?.home);
   const { data } = useSelector((state) => state?.emp?.timeSheet);
   const { employee_details, punch_timings } = useSelector(
@@ -519,4 +519,4 @@ const Dashboard = () => {
     </>
   );
 };
-export default Dashboard;
+export default Page;

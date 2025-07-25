@@ -40,7 +40,7 @@ import dayjs from 'dayjs';
 import { genderType } from '@/src/utils/genderType';
 import { formatSalary } from '@/src/utils/salaryFormat';
 
-const Dashboard = () => {
+const Page = () => {
   const [value, setValue] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
   const [currentTab, setCurrentTab] = useState('Hiring Request');
@@ -515,4 +515,4 @@ const Dashboard = () => {
     </>
   );
 };
-export default Dashboard;
+export default Page;

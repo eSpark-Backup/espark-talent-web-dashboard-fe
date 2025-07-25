@@ -19,7 +19,7 @@ import { Toast } from '@/src/utils/toast';
 import { useRouter } from 'next/navigation';
 import { countriesList } from '@/src/constants/countries';
 
-const AddEmployee = () => {
+const Page = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const [currentStep, setCurrentStep] = useState(1);
@@ -136,4 +136,4 @@ const AddEmployee = () => {
   );
 };
 
-export default AddEmployee;
+export default Page;
