@@ -4,7 +4,7 @@ import { jobTitleRegExp } from './validations';
 export const hiringRequestSchema = Yup.object({
   job_title: Yup.string()
     .required('Job title is required')
-    .matches(jobTitleRegExp, 'Job title is not valid') // Matches the regex
+    .matches(jobTitleRegExp, 'Job title is not valid')
     .min(2, 'Job title must be at least 2 characters long')
     .max(255, 'Job title cannot exceed 255 characters'),
   role_type: Yup.string()
@@ -84,7 +84,7 @@ export const hiringRequestSchema = Yup.object({
 export const editHiringRequestSchema = Yup.object({
   job_title: Yup.string()
     .required('Job title is required')
-    .matches(jobTitleRegExp, 'Job title is not valid') // Matches the regex
+    .matches(jobTitleRegExp, 'Job title is not valid')
     .min(2, 'Job title must be at least 2 characters long')
     .max(255, 'Job title cannot exceed 255 characters'),
   role_type: Yup.string()
@@ -141,7 +141,7 @@ export const editHiringRequestSchema = Yup.object({
     })
     .test('fileSize', 'File size must be less than 5MB', (value) => {
       if (!value) return true;
-      return value.size <= 5 * 1024 * 1024; // ✅ Convert 5MB to bytes
+      return value.size <= 5 * 1024 * 1024;
     })
     .test(
       'fileNameLength',

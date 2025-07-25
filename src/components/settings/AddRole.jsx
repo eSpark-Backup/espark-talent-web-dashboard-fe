@@ -166,7 +166,7 @@ const Role = () => {
       );
       if (updatedPermission['read'] === true && anyOtherTrue) {
         Toast('warning', 'Read cannot be false if any other is true');
-        return; // Abort the function
+        return;
       }
       updatedPermission[column.name] = !updatedPermission[column.name];
     }
@@ -213,8 +213,8 @@ const Role = () => {
           write: role[permissionKey].write,
           delete: role[permissionKey].delete,
           download: role[permissionKey].download,
-          formActionStatus: true, // Assuming default value for formActionStatus
-          isNewModulePermission: true, // Assuming default value for isNewModulePermission
+          formActionStatus: true,
+          isNewModulePermission: true,
         }));
 
       return {

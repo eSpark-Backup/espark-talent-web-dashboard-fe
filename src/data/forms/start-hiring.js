@@ -149,7 +149,6 @@ export const HiringForm = [
     prefixIcon: 'upload',
     type: 'file',
     name: 'job_description',
-    // filelabel: 'Accept .pdf file only',
     accept: '.pdf',
     col: 2.5,
   },

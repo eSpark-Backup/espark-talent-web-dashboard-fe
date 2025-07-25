@@ -51,17 +51,17 @@ const Dashboard = () => {
         const response = await api.getData(
           `${CLIENT_TEAM_MEMBER}?status=active`
         );
-        const data = response.data || []; // Ensure data is always an array
+        const data = response.data || [];
         const tempData = data.map((item) => ({
           ...item,
           joining_date: dayjs(item?.joining_date).format('DD-MMMM-YYYY'),
           status: 'Active',
         }));
         dispatch(fetchTeamMembersRequestActiveSuccess(tempData));
-        return tempData; // Return the transformed data
+        return tempData;
       } catch (err) {
         Toast('error', err.message || 'Failed to get data');
-        return []; // Return an empty array in case of an error
+        return [];
       }
     },
   });
@@ -76,17 +76,17 @@ const Dashboard = () => {
         const response = await api.getData(
           `${CLIENT_TEAM_MEMBER}?status=onboard`
         );
-        const data = response.data || []; // Ensure data is always an array
+        const data = response.data || [];
         const tempData = data.map((item) => ({
           ...item,
           joining_date: dayjs(item?.joining_date).format('DD-MMMM-YYYY'),
           status: 'onBoard',
         }));
         dispatch(fetchTeamMembersRequestOnBoardSuccess(tempData));
-        return tempData; // ✅ **React Query needs this return**
+        return tempData;
       } catch (err) {
         Toast('error', err.message || 'Failed to get data');
-        return []; // ✅ **Return an empty array in case of error**
+        return [];
       }
     },
   });

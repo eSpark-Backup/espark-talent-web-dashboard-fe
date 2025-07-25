@@ -5,7 +5,7 @@ import LeaveRequestForm from '@/src/components/employee/dashboard/request/leave/
 const LeaveRequestModal = forwardRef(({ handleClose }, ref) => {
   return (
     <Box
-      ref={ref} // Attach the forwarded ref here
+      ref={ref}
       tabIndex={-1}
       sx={{
         mx: 'auto',

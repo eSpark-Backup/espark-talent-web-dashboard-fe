@@ -116,10 +116,10 @@ const Dashboard = () => {
               }));
 
         dispatch(fetchClientInterviewSchedulesSuccess(tempData));
-        return tempData; // ✅ Ensure data is returned
+        return tempData;
       } catch (err) {
         Toast('error', err.message || 'Failed to get data');
-        return []; // ✅ Return an empty array in case of error
+        return [];
       }
     },
     enabled: !!c_email,
@@ -145,13 +145,13 @@ const Dashboard = () => {
               }));
 
         dispatch(fetchClientOnboardingSuccess(tempData));
-        return tempData; // ✅ Ensure data is returned
+        return tempData;
       } catch (err) {
         Toast('error', err.message || 'Failed to get data');
-        return []; // ✅ Return an empty array in case of error
+        return [];
       }
     },
-    enabled: !!c_email, // ✅ Run query only if c_email is available
+    enabled: !!c_email,
   });
 
   useEffect(() => {
@@ -173,9 +173,6 @@ const Dashboard = () => {
   const reformData = (dataArr) => {
     if (dataArr?.length) {
       const tempData = dataArr?.map((item) => {
-        // const symbol = item?.salary_currency
-        //   ? item?.salary_currency?.split(' ')[0]
-        //   : item?.salary_range?.currency?.split(' ')[0];
         return {
           ...item,
           salary_range: `${formatSalary(item?.salary_range?.minimum, '')} - ${formatSalary(item.salary_range?.maximum, item?.salary_currency)}`,

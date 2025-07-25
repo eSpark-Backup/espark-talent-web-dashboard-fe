@@ -129,14 +129,6 @@ const WideFormInput = ({
     return differenceInDays;
   }
 
-  // const start = dayjs(values.startDate);
-  // const end = start.add(values.availableLeaves || 0, 'day');
-  // const countOfWeekends = countWeekendsHandler(values.startDate, end.$d);
-  // // const endWithWeekend = start.add(
-  // //   values.availableLeaves - 1 + countOfWeekends || 0,
-  // //   'day'
-  // // );
-
   useEffect(() => {
     if (values.startDate && values.endDate) {
       setFieldValue(
@@ -147,19 +139,6 @@ const WideFormInput = ({
       );
     }
   }, [values]);
-
-  // const shouldDisableDate = (date) => {
-  //   const day = date.day();
-  //   if (title == 'End date') {
-  //     return (
-  //       date.isBefore(start, 'day') ||
-  //       date.isAfter(endWithWeekend, 'day') ||
-  //       day === 0 ||
-  //       day === 6
-  //     );
-  //   }
-  //   return day === 0 || day === 6;
-  // };
 
   return (
     <Box>

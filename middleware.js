@@ -18,16 +18,6 @@ export default function middleware(req) {
     employee: '/employee/dashboard',
   };
 
-  // // *New Logic: Redirect to hr/dashboard on page reload if logged in*
-  // if (
-  //   (loggedin && pathname !== '/hr/dashboard') ||
-  //   userType !== 'super_admin' ||
-  //   userType !== 'employee' ||
-  //   userType !== 'client'
-  // ) {
-  //   return NextResponse.redirect(new URL('/hr/dashboard', req.url));
-  // }
-
   // Redirect if user is not logged in and trying to access a protected route
   if (userType == null && pathname != '/') {
     return NextResponse?.redirect(new URL('/', req?.url)?.toString());

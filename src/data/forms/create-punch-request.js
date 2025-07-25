@@ -43,7 +43,6 @@ export const createPunchRequestForm = [
   },
   {
     title: 'Punch time',
-    // placeholder: 'hh:mm a',
     name: 'punch_time',
     type: 'time',
     hideSuffix: true,

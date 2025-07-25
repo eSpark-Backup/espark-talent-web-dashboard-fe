@@ -1102,20 +1102,13 @@ const AddEmployee = () => {
           : HR_CLIENT_OTHER_INVOICE,
     });
   };
-  // const symbolSalary = (item) => item?.salary_range?.currency?.split(' ')[0] || null;
   const getCurrentTabData = () => {
     if (currentTab?.label === 'Hire & onboard') {
       if (currentTab?.nested.val === 0) {
         return (
           hireAndOnBoard?.hiringRequest?.map((item) => {
-            // salaryRange = JSON.parse(item?.salary_range);
-            // const symbol = item?.salary_currency?.split(' ')[0];
             return {
               ...item,
-              // salary_range:`${salaryRange.minimum} ${salaryRange.currency} - ${salaryRange.maximum} ${salaryRange.currency}`,
-              // salary_currency: salaryRange?.currency || '',
-              // salary_range: `${item?.salary_range?.minimum}${hasSymbol(symbol) ? ' ' + symbol : ' '} - ${item?.salary_range?.maximum}${hasSymbol(symbol) ? ' ' + symbol : ''}`,
-              // currency: item?.salary_range?.currency || '',
               gender: genderType(item?.gender),
               hiring_start_date: dayjs(item?.hiring_start_date)?.format(
                 'DD-MMMM-YYYY'
@@ -1128,10 +1121,6 @@ const AddEmployee = () => {
                 item?.notice_period > 0
                   ? `${item?.notice_period} ${item?.notice_period === 1 ? 'day' : 'days'}`
                   : '-',
-              // comments:
-              //   item?.comments && item.comments.length > 20
-              //     ? item.comments.substring(0, 20) + '…'
-              //     : item.comments,
             };
           }) || []
         );

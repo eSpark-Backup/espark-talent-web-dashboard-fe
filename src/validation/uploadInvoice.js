@@ -65,7 +65,7 @@ export const EditInvoiceFormSchema = Yup.object({
     })
     .test('fileSize', 'File size must be less than 5MB', (value) => {
       if (!value) return true;
-      return value.size <= 5 * 1024 * 1024; // ✅ Convert 5MB to bytes
+      return value.size <= 5 * 1024 * 1024;
     })
     .test(
       'fileNameLength',
@@ -143,7 +143,7 @@ export const editOthInvoiceFormSchema = Yup.object({
     })
     .test('fileSize', 'File size must be less than 5MB', (value) => {
       if (!value) return true;
-      return value.size <= 5 * 1024 * 1024; // ✅ Convert 5MB to bytes
+      return value.size <= 5 * 1024 * 1024;
     })
     .test(
       'fileNameLength',

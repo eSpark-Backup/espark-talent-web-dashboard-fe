@@ -97,7 +97,6 @@ const ClientEmployees = ({ fromClient, openModal }) => {
               borderColor: { xs: 'divider', md: 'none' },
             }}
             TabIndicatorProps={{ style: { backgroundColor: '#068987' } }}
-            // disableRipple={true}
           >
             <Tab
               disableRipple={true}

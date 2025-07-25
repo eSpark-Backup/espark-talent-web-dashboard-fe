@@ -136,6 +136,5 @@ export const addOnboardForm = [
     name: 'salary',
     type: 'number',
     placeholder: 'Salary',
-    // dollarIcon: '$',
   },
 ];

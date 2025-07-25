@@ -60,11 +60,11 @@ export default function ProfilePopper({
         // Dispatch the fetched notifications or an empty array if no data
         dispatch(getNotifications(data || []));
         setIsFetchingNotifications(false);
-        return data || []; // Ensure the function always returns a value
+        return data || [];
       } catch (error) {
         console.error('Error fetching notifications:', error);
         setIsFetchingNotifications(false);
-        return []; // Return an empty array on error
+        return [];
       }
     },
   });

@@ -65,12 +65,12 @@ export const restructureNotificationData = (originalData) => {
 
       // If dates are different, sort based on date
       if (dateA.getTime() !== dateB.getTime()) {
-        return dateB - dateA; // Latest date first
+        return dateB - dateA;
       } else {
         // If dates are same, sort based on time
         const timeA = new Date(`1970-01-01T${a.time}`);
         const timeB = new Date(`1970-01-01T${b.time}`);
-        return timeB - timeA; // Latest time first
+        return timeB - timeA;
       }
     });
 
@@ -113,11 +113,11 @@ export const restructureNotificationData = (originalData) => {
 
       // If the date is within the current week
       if (targetDate.isAfter(currentDate.subtract(7, 'day'), 'day')) {
-        return targetDate.format('dddd'); // Full day name
+        return targetDate.format('dddd');
       }
 
       // If the date is before one week
-      return targetDate.format('YYYY-MM-DD'); // Remain as it is
+      return targetDate.format('YYYY-MM-DD');
     };
 
     // Step 3: Restructure the grouped data with manipulated day values

@@ -58,10 +58,6 @@ const ProfileCroper = ({
           width: '100%',
           maxWidth: { xs: 350 },
           height: { xs: '280px', sm: 280 },
-          //   '& .reactEasyCrop_CropAreaRound': {
-          //     width: '280px !important',
-          //     height: '275px !important',
-          //   },
         }}
       >
         <Cropper

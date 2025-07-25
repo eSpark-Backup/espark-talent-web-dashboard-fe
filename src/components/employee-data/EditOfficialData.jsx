@@ -33,8 +33,8 @@ const EditOfficialModal = forwardRef(
 
     const handleJobTitleSelect = (event, name) => {
       if (event?.target?.value) {
-        setFieldValue(name, event.target.value); // Update the form value
-        setIsJobTitleClicked(false); // Reset dropdown open state
+        setFieldValue(name, event.target.value);
+        setIsJobTitleClicked(false);
       }
     };
 

@@ -55,7 +55,6 @@ const EditLetterForm = ({ onClose, open, selectedId }) => {
     setErrors,
   } = useFormik({
     initialValues: {},
-    // validationSchema: letterEditFormSchema,
     enableReinitialize: true,
     onSubmit: (formValues) => {
       const { issue_date, email, objective, ...filteredFormValues } =

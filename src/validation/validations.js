@@ -22,17 +22,6 @@ export const dobValidation = Yup.string()
     const today = dayjs();
     return dateOfBirth.isBefore(today) || dateOfBirth.isSame(today, 'day');
   });
-
-// export const phoneValidation = Yup.string()
-//   .required('Contact number is required')
-//   .matches(
-//     phoneNumberRegExp,
-//     'Phone number must contain only numeric characters and an optional leading +'
-//   )
-//   .min(6, 'Phone number must be at least 6 digits')
-//   .max(16, 'Phone number must be at most 16 digits');
-
-// added new validation for phone number
 export const phoneValidation = Yup.string()
   .test('phone', 'Invalid phone number', (value) =>
     value ? isValidPhoneNumber(value) : true
@@ -68,9 +57,9 @@ export const websiteValidation = Yup.string()
   });
 
 export const nameValidation = Yup.string()
-  .transform((value) => value.trim()) // Leading & trailing spaces remove karna
-  .matches(nameRegExp, 'Name is not valid') // Sirf letters, hyphens, aur apostrophes allow hain
-  .required('Name is required') // Blank value allowed nahi hai
+  .transform((value) => value.trim())
+  .matches(nameRegExp, 'Name is not valid')
+  .required('Name is required')
   .min(2, 'Name is too short - should be 2 chars minimum.')
   .max(255, 'Name is too long - should be 255 chars maximum.');
 

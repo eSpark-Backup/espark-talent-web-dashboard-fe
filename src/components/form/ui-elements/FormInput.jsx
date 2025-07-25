@@ -273,7 +273,7 @@ const FormInput = ({
         <Box
           style={{
             cursor: disabled && 'no-drop',
-            opacity: disabled ? 0.4 : 1, // Visual cue for disabled state
+            opacity: disabled ? 0.4 : 1,
           }}
         >
           <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -281,7 +281,7 @@ const FormInput = ({
               <DesktopDatePicker
                 className={[
                   error ? 'error-border' : 'no-error-border',
-                  disabled ? 'date-picker-disabled' : 'date-picker-enabled', // Class for disabled state
+                  disabled ? 'date-picker-disabled' : 'date-picker-enabled',
                   'form-date-picker-component',
                 ].join(' ')}
                 slots={{
@@ -296,7 +296,7 @@ const FormInput = ({
                       sx={{
                         mx: 'auto',
                         marginRight: '3px',
-                        opacity: disabled ? 0.5 : 1, // Dim the icon when disabled
+                        opacity: disabled ? 0.5 : 1,
                       }}
                     />
                   ),
@@ -306,13 +306,13 @@ const FormInput = ({
                 autoComplete={autoComplete}
                 style={{
                   cursor: disabled && 'no-drop',
-                  opacity: disabled ? 0.4 : 1, // Visual cue for disabled state
+                  opacity: disabled ? 0.4 : 1,
                 }}
                 placeholder={placeholder}
                 slotProps={{
                   openPickerButton: {
                     disableRipple: true,
-                    'aria-disabled': disabled, // Accessibility enhancement
+                    'aria-disabled': disabled,
                   },
                   textField: {
                     placeholder: placeholder,
@@ -327,7 +327,7 @@ const FormInput = ({
                         background: 'none !important',
                       },
                     },
-                    disabled: disabled, // Ensure text field is also disabled
+                    disabled: disabled,
                   },
                 }}
                 sx={{
@@ -337,7 +337,7 @@ const FormInput = ({
                     width: '100%',
                   },
                   cursor: disabled && 'no-drop',
-                  opacity: disabled ? 0.5 : 1, // Additional visual cue for disabled state
+                  opacity: disabled ? 0.5 : 1,
                 }}
                 maxDate={
                   name === 'from'
@@ -365,7 +365,7 @@ const FormInput = ({
         <Box
           style={{
             cursor: disabled && 'no-drop',
-            opacity: disabled ? 0.4 : 1, // Visual cue for disabled state
+            opacity: disabled ? 0.4 : 1,
           }}
         >
           <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -415,7 +415,7 @@ const FormInput = ({
         <Box
           style={{
             cursor: disabled && 'no-drop',
-            opacity: disabled ? 0.4 : 1, // Visual cue for disabled state
+            opacity: disabled ? 0.4 : 1,
           }}
         >
           <LocalizationProvider dateAdapter={AdapterDayjs}>

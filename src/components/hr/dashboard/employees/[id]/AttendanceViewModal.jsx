@@ -46,7 +46,7 @@ const AttendanceViewModal = React.forwardRef(
     return (
       <Box
         tabIndex={-1}
-        ref={ref} // Forward the ref to this Box component
+        ref={ref}
         sx={{
           position: 'absolute',
           top: '50%',

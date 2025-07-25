@@ -215,7 +215,7 @@ const EditEmergencyModal = forwardRef(
                                   }
                                   touched={
                                     touched['emergency_contact']?.[type]?.[name]
-                                  } // Access touched values by key
+                                  }
                                   setFieldError={setFieldError}
                                   errors={errors}
                                   setErrors={setErrors}

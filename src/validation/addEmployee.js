@@ -64,7 +64,7 @@ export const basicInformationSchema = Yup.object({
     .test(
       'fileSize',
       'File size should not exceed 5MB',
-      (value) => value && value?.size <= 5 * 1024 * 1024 // <= 5MB
+      (value) => value && value?.size <= 5 * 1024 * 1024
     ),
 });
 

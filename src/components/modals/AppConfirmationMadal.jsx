@@ -19,7 +19,6 @@ const AppConfirmationMadal = ({
 }) => {
   return (
     <Modal
-      // closeAfterTransition
       open={Boolean(isOpen)}
       onClose={handleClose}
       aria-labelledby="modal-modal-title"

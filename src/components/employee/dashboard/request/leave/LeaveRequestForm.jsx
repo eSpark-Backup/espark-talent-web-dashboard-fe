@@ -220,7 +220,6 @@ const LeaveRequestForm = ({ handleClose }) => {
                   errors={errors}
                   setErrors={setErrors}
                   values={values}
-                  // minDate={minDate}
                   searchable={searchable}
                   accept={'.pdf'}
                 />

@@ -24,7 +24,7 @@ const DatePickerBox = ({ dateKey, placeholder }) => {
               sx: {
                 '& input': {
                   color: '#88888',
-                  padding: '9.95px 10px', // Set the desired font color for the placeholder
+                  padding: '9.95px 10px',
                 },
               },
             },

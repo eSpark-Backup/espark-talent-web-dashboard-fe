@@ -71,7 +71,6 @@ const AppCustomMonthYearPicker = ({ timeTracking, setTimeTracking }) => {
         <Box
           display={'flex'}
           justifyContent="flex-start"
-          // minWidth={'250px'}
           alignItems="center"
           borderRadius="5px"
           py={'5px'}

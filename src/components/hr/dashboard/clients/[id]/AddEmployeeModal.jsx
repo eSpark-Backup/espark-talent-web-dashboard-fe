@@ -120,11 +120,6 @@ const AddEmployeeModal = ({ open, onClose }) => {
   } = useFormik({
     initialValues: {
       joining_date: null,
-      // benefits: {
-      //   life_insurance_card: false,
-      //   medical_card: false,
-      //   fuel_card: false,
-      // },
     },
     validationSchema: addEmployeModalFormSchema,
     enableReinitialize: true,

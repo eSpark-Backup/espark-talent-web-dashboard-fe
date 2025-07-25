@@ -27,7 +27,6 @@ const TeamManagement = () => {
   const [empData, setEmpData] = useState(employeeTableDataHiringRequest);
   const [isOpenViewDetails, setIsOpenViewDetails] = useState(false);
   const [isOpenAddMemberModal, setIsOpenAddMemberModal] = useState(false);
-  // Searchable States
   const [isLoadingEmployee, setIsLoadingEmployee] = useState(false);
   const [selectedEmployee, setSelectedEmployee] = useState('');
   const listItems = [

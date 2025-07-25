@@ -39,7 +39,6 @@ const WFHRequestTablesTabs = ({
   viewClicked,
 }) => {
   const dispatch = useDispatch();
-  // const { isLoading } = useSelector((state) => state?.emp?.wfhReq);
   const [currentReqStatusTab, setcurrentReqStatusTab] = useState('All');
   const [currentReqStatusTabVal, setcurrentReqStatusTabVal] = useState(0);
   const [leaveRequestDataState, setLeaveRequestDataState] = useState([]);

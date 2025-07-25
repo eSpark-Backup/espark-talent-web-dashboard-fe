@@ -21,16 +21,6 @@ export const createWFHRequestForm = [
     minDate: dayjs().subtract(1, 'month'),
     maxDate: dayjs().add(2, 'month'),
   },
-  // {
-  //   title: 'End date',
-  //   placeholder: 'Enter Date',
-  //   name: 'endDate',
-  //   suffixIcon: 'CalendarOutline',
-  //   type: 'date',
-  //   required: true,
-  //   minDate: dayjs().subtract(1, 'week'),
-  //   maxDate: dayjs().add(1, 'week'),
-  // },
   {
     title: 'Count',
     placeholder: '1',

@@ -3,7 +3,7 @@ export const createImage = (url) =>
     const image = new Image();
     image.addEventListener('load', () => resolve(image));
     image.addEventListener('error', (error) => reject(error));
-    image.setAttribute('crossOrigin', 'anonymous'); // needed to avoid cross-origin issues on CodeSandbox
+    image.setAttribute('crossOrigin', 'anonymous');
     image.src = url;
   });
 
@@ -33,8 +33,8 @@ export default async function getCroppedImg(
   pixelCrop,
   rotation = 0,
   flip = { horizontal: false, vertical: false },
-  filename = 'cropped.jpeg', // Default filename
-  filetype = 'image/jpeg' // Default filetype
+  filename = 'cropped.jpeg',
+  filetype = 'image/jpeg'
 ) {
   const image = await createImage(imageSrc);
   const canvas = document.createElement('canvas');
@@ -82,13 +82,10 @@ export default async function getCroppedImg(
   // paste generated rotate image at the top left corner
   ctx.putImageData(data, 0, 0);
 
-  // As Base64 string
-  // return canvas.toDataURL('image/jpeg');
-
   // As a blob
   return new Promise((resolve) => {
     canvas.toBlob((file) => {
-      file.name = filename; // Set the filename
+      file.name = filename;
 
       resolve({ file: file, url: URL.createObjectURL(file) });
     }, filetype);

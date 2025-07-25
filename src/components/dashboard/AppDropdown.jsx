@@ -41,7 +41,7 @@ const AppDropdown = ({
         return { label, index: i };
       }
     }
-    return { label: null, index: -1 }; // Return null if the value is not found in any children array
+    return { label: null, index: -1 };
   };
   useEffect(() => {
     if (nested) {
@@ -447,8 +447,8 @@ const AppDropdown = ({
                       fontWeight: 400,
                       wordBreak: 'break-word',
                       lineHeight: 'normal',
-                      overflow: 'hidden', // Hide any overflowing content
-                      textOverflow: 'ellipsis', // Show an ellipsis (...) if text overflows
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
                       whiteSpace: 'nowrap',
                     }}
                   >

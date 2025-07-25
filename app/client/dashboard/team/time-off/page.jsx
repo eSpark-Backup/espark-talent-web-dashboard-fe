@@ -230,9 +230,9 @@ const Dashboard = () => {
     queryFn: async () => {
       try {
         const response = await api.getData(`${CLIENT_LEAVE_BALANCE}`);
-        const data = response.data || []; // Ensure data is always an array or fallback to empty array
+        const data = response.data || [];
         dispatch(fetchLeaveBalanceRequestSuccess(data));
-        return data; // ✅ Return data for React Query
+        return data;
       } catch (err) {
         Toast('error', err.message || 'Failed to get data');
         return [];

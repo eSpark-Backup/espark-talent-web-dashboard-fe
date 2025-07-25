@@ -9,7 +9,6 @@ export const salaryFormSchema = Yup.object({
     .typeError('Gross Salary must be a number')
     .required('Gross Salary is required')
     .min(1, 'Gross Salary must be at least Rs. 1'),
-  // .max(1000000, 'Gross Salary cannot exceed Rs. 1,000,000'),
   tax_deduction: Yup.number()
     .typeError('Tax Deduction must be a number')
     .required('Tax Deduction is required')
@@ -59,7 +58,7 @@ export const salaryFormSchema = Yup.object({
     .test(
       'fileSize',
       'File size should not exceed 5MB',
-      (value) => value && value?.size <= 5 * 1024 * 1024 // <= 5MB
+      (value) => value && value?.size <= 5 * 1024 * 1024
     ),
 });
 
