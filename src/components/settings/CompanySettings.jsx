@@ -1,16 +1,23 @@
 import Skeleton from '@mui/material/Skeleton';
 import { Box } from '@mui/system';
 
-import { companyformElement } from '@/src/data/forms/company-info';
-import { companyInfoSchema } from '@/src/validation/companyInfo';
-import Step from '@/src/components/form/step/Step';
 import { useQuery } from '@tanstack/react-query';
+
 import { useDispatch, useSelector } from 'react-redux';
+
+import Step from '@/src/components/form/step/Step';
+
+import { companyformElement } from '@/src/data/forms/company-info';
+
 import { HR_COMPANY_SETTINGS } from '@/src/services/apiService/apiEndPoints';
-import { getCompSettingsData } from '@/src/redux/slices/hrSlices/settingsSlice';
 import { api } from '@/src/services/apiService';
-import { Toast } from '@/src/utils/toast';
+
+import { getCompSettingsData } from '@/src/redux/slices/hrSlices/settingsSlice';
 import { getHomeData } from '@/src/redux/slices/hrSlices/homeSlice';
+
+import { companyInfoSchema } from '@/src/validation/companyInfo';
+
+import { Toast } from '@/src/utils/toast';
 
 const CompanySettings = () => {
   const { companySettings } = useSelector((state) => state?.hr?.settings);

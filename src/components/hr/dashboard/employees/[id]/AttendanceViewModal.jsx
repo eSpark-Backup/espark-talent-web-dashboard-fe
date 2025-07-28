@@ -1,11 +1,11 @@
-import React from 'react';
-
-import { forwardRef } from 'react';
+import React, { forwardRef } from 'react';
 
 import { Avatar, Box, Button, Grid, Typography } from '@mui/material';
+
+import dayjs from 'dayjs';
+
 import EmployeeDetailRow from '@/src/components/hr/dashboard/employees/[id]/EmployeeDetailRow';
 import EmployeeRequestDetailRow from '@/src/components/hr/dashboard/employees/[id]/EmployeeRequestDetailRow';
-import dayjs from 'dayjs';
 
 // Wrap your component with forwardRef
 const AttendanceViewModal = forwardRef(

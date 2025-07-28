@@ -1,4 +1,4 @@
-import { forwardRef } from 'react';
+import { forwardRef, useState } from 'react';
 
 import {
   Box,
@@ -9,19 +9,23 @@ import {
   Typography,
 } from '@mui/material';
 
-import FormInput from '@/src/components/form/ui-elements/FormInput';
-import { useFormik } from 'formik';
-import { SETTING } from '@/src/constants/setting-hr';
-import { FORM_DATA } from '@/src/constants/form';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useFormik } from 'formik';
+
+import EditSettingProfile from '@/src/components/employee-data/EditSettingProfile';
+import FormInput from '@/src/components/form/ui-elements/FormInput';
+
+import { editAccountForm } from '@/src/data/forms/add-account';
+
+import { FORM_DATA } from '@/src/constants/form';
+import { SETTING } from '@/src/constants/setting-hr';
+
 import { api } from '@/src/services/apiService';
 import { HR_ACCOUNTS } from '@/src/services/apiService/apiEndPoints';
-import { Toast } from '@/src/utils/toast';
-import { useState } from 'react';
 
 import { editAccountInfoSchema } from '@/src/validation/addAccount';
-import { editAccountForm } from '@/src/data/forms/add-account';
-import EditSettingProfile from '@/src/components/employee-data/EditSettingProfile';
+
+import { Toast } from '@/src/utils/toast';
 
 const EditAccountModal = forwardRef(({ open, onClose, modalData }, ref) => {
   const [showEditModal, setEditModal] = useState(false);

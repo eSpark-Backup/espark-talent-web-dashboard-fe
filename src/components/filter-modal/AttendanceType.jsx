@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import Image from 'next/image';
+
 import {
   Box,
   FormControl,
@@ -11,7 +13,6 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import Image from 'next/image';
 
 import { FILTER } from '@/src/constants/filter';
 import { employeeProfileData } from '@/src/constants/employee-profile';

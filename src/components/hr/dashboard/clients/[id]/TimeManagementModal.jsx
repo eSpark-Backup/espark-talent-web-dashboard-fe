@@ -2,10 +2,13 @@ import React from 'react';
 
 import { Box, Button, Grid, Modal, Typography } from '@mui/material';
 
-import { timeManagementFormSchema } from '@/src/validation/timeManagementModal';
-import FormInput from '@/src/components/form/ui-elements/FormInput';
-import { timeManagementForm } from '@/src/data/forms/time-management-modal';
 import { useFormik } from 'formik';
+
+import FormInput from '@/src/components/form/ui-elements/FormInput';
+
+import { timeManagementForm } from '@/src/data/forms/time-management-modal';
+import { timeManagementFormSchema } from '@/src/validation/timeManagementModal';
+
 import { FORM_DATA } from '@/src/constants/form';
 
 const TimeManagementModal = ({ open, onClose }) => {

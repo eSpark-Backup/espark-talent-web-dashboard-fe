@@ -1,9 +1,10 @@
 import { Box, Typography } from '@mui/material';
 
-import SidebarUserAvatar from '@/src/components/sidebar/SidebarUserAvatar';
-import SidebarProfileMenu from '@/src/components/sidebar/SidebarProfileMenu';
-import SidebarGlobalIcon from '@/src/components/sidebar/SidebarGlobalIcon';
 import { useSelector } from 'react-redux';
+
+import SidebarGlobalIcon from '@/src/components/sidebar/SidebarGlobalIcon';
+import SidebarProfileMenu from '@/src/components/sidebar/SidebarProfileMenu';
+import SidebarUserAvatar from '@/src/components/sidebar/SidebarUserAvatar';
 
 const SidebarActiveUser = ({ userName }) => {
   const { userData } = useSelector((state) => state?.auth);

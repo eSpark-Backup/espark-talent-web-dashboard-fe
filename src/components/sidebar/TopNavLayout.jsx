@@ -1,11 +1,14 @@
 import { Box, useMediaQuery } from '@mui/material';
 import { alpha } from '@mui/material/styles';
 
-import ResponsiveNavbar from '@/src/components/sidebar/ResponsiveNavbar';
-import TopNavNavbar from '@/src/components/global/TopNavbar';
-import { Active_User_Data } from '@/src/data/user-data';
-import { SIDE_NAV_WIDTH } from '@/src/constants/sidebar';
 import { useSelector } from 'react-redux';
+
+import TopNavNavbar from '@/src/components/global/TopNavbar';
+import ResponsiveNavbar from '@/src/components/sidebar/ResponsiveNavbar';
+
+import { SIDE_NAV_WIDTH } from '@/src/constants/sidebar';
+
+import { Active_User_Data } from '@/src/data/user-data';
 
 export const TopNav = ({ onNavOpen }) => {
   const { role } = useSelector((state) => state?.auth?.userData);

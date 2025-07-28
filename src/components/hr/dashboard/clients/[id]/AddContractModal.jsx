@@ -9,19 +9,26 @@ import {
   Typography,
 } from '@mui/material';
 
-import { contractFormSchema } from '@/src/validation/contractSignedForm';
-import FormInput from '@/src/components/form/ui-elements/FormInput';
-import { contractForm } from '@/src/data/forms/contract';
 import { useFormik } from 'formik';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useDispatch } from 'react-redux';
+
+import dayjs from 'dayjs';
+
+import FormInput from '@/src/components/form/ui-elements/FormInput';
+
+import { contractForm } from '@/src/data/forms/contract';
+import { contractFormSchema } from '@/src/validation/contractSignedForm';
+
 import { CONTRACT_SIGNED } from '@/src/constants/contract-signed';
 import { FORM_DATA } from '@/src/constants/form';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+
 import { api } from '@/src/services/apiService';
 import { HR_COMPANY_CONTRACTS } from '@/src/services/apiService/apiEndPoints';
-import { Toast } from '@/src/utils/toast';
-import dayjs from 'dayjs';
-import { useDispatch } from 'react-redux';
+
 import { addClientContract } from '@/src/redux/slices/hrSlices/contractSlice';
+
+import { Toast } from '@/src/utils/toast';
 
 const AddContractModal = ({ open, onClose }) => {
   const [formData, setFormData] = useState({});

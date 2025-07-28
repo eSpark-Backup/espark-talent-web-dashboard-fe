@@ -1,12 +1,5 @@
-import { addNewInterviewFormSchema } from '@/src/validation/addNewInterviewForm';
-import FormInput from '@/src/components/form/ui-elements/FormInput';
-import { Toast } from '@/src/utils/toast';
-import { countriesList } from '@/src/constants/countries';
-import { addNewInterviewForm } from '@/src/data/forms/add-new-interview';
-import { FORM_DATA } from '@/src/constants/form';
-import { addInterviewSchedule } from '@/src/redux/slices/hrSlices/clientSlice';
-import { api } from '@/src/services/apiService';
-import { HR_CLIENT_EMP_INTERVIEW_SCHEDULE } from '@/src/services/apiService/apiEndPoints';
+import React, { useState } from 'react';
+
 import {
   Box,
   Button,
@@ -15,12 +8,27 @@ import {
   Modal,
   Typography,
 } from '@mui/material';
-import { useMutation } from '@tanstack/react-query';
-import dayjs from 'dayjs';
-import { useFormik } from 'formik';
-import React, { useState } from 'react';
 
+import { useFormik } from 'formik';
+import { useMutation } from '@tanstack/react-query';
 import { useDispatch, useSelector } from 'react-redux';
+
+import dayjs from 'dayjs';
+
+import FormInput from '@/src/components/form/ui-elements/FormInput';
+
+import { addNewInterviewForm } from '@/src/data/forms/add-new-interview';
+import { addNewInterviewFormSchema } from '@/src/validation/addNewInterviewForm';
+
+import { FORM_DATA } from '@/src/constants/form';
+import { countriesList } from '@/src/constants/countries';
+
+import { api } from '@/src/services/apiService';
+import { HR_CLIENT_EMP_INTERVIEW_SCHEDULE } from '@/src/services/apiService/apiEndPoints';
+
+import { addInterviewSchedule } from '@/src/redux/slices/hrSlices/clientSlice';
+
+import { Toast } from '@/src/utils/toast';
 
 const AddInterviewModal = ({ open, onClose }) => {
   const dispatch = useDispatch();

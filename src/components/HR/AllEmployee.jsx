@@ -1,25 +1,31 @@
 'use client';
-import { Button, Grid, Tab, Tabs } from '@mui/material';
-import { Box, useTheme } from '@mui/system';
 import { useEffect, useState } from 'react';
 
-import Input from '@/src/components/dashboard/Input';
+import { Button, Grid, Tab, Tabs } from '@mui/material';
+import { Box, useTheme } from '@mui/system';
+
 import Image from 'next/image';
-import EmployeeView from '@/src/components/hr/EmployeeView';
 import { useRouter } from 'next/navigation';
-import { employeeProfileData } from '@/src/constants/employee-profile';
 import { useQuery } from '@tanstack/react-query';
+import { useDispatch, useSelector } from 'react-redux';
+
+import Input from '@/src/components/dashboard/Input';
+import DashboardHeading from '@/src/components/dashboard/DashboardHeading';
+import EmployeeStatus from '@/src/components/hr/ActiveEmployee';
+import EmployeeView from '@/src/components/hr/EmployeeView';
+
+import { employeeProfileData } from '@/src/constants/employee-profile';
+
 import { api } from '@/src/services/apiService';
 import { HR_EMPLOYEES } from '@/src/services/apiService/apiEndPoints';
-import { useDispatch, useSelector } from 'react-redux';
+
 import {
   getEmpData,
   getEmpDataFailed,
   getEmpDataSuccess,
 } from '@/src/redux/slices/hrSlices/employeeSlice';
+
 import { Toast } from '@/src/utils/toast';
-import EmployeeStatus from '@/src/components/hr/ActiveEmployee';
-import DashboardHeading from '@/src/components/dashboard/DashboardHeading';
 
 const AllEmployee = ({ fromClient, openModal }) => {
   const dispatch = useDispatch();

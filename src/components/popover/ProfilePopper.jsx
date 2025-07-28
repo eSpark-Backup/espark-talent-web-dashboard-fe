@@ -1,33 +1,47 @@
 'use client';
+
 import { useEffect, useRef, useState } from 'react';
 
 import Box from '@mui/material/Box';
 import Popper from '@mui/material/Popper';
-import { Fade, MenuItem, Tooltip, Typography } from '@mui/material';
-import { useRouter } from 'next/navigation';
-import Image from 'next/image';
+import {
+  Fade,
+  MenuItem,
+  Tooltip,
+  Typography,
+  useMediaQuery,
+} from '@mui/material';
 
-import SidebarUserAvatar from '@/src/components/sidebar/SidebarUserAvatar';
-import { NOTIFICATION_TITLE, profileMenuData } from '@/src/constants/sidebar';
-import SignoutModal from '@/src/components/sign-out-modal/SignoutModal';
-import DotBadge from '@/src/components/sidebar/SidebarProfileBadge';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+
 import { useDispatch, useSelector } from 'react-redux';
-import { logout } from '@/src/redux/slices/authSlice';
-import Cookie from 'js-cookie';
-import { useMediaQuery } from '@mui/material';
-import { removeClientHomeData } from '@/src/redux/slices/clientSlices/homeSlice';
-import { removeHrData } from '@/src/redux/slices/hrSlices/homeSlice';
-import { removeHrClientData } from '@/src/redux/slices/hrSlices/clientSlice';
-import { removeHrEmployeeData } from '@/src/redux/slices/hrSlices/employeeSlice';
 import { useQuery } from '@tanstack/react-query';
-import { api } from '@/src/services/apiService';
-import { GET_NOTIFICATIONS } from '@/src/services/apiService/apiEndPoints';
-import { restructureNotificationData } from '@/src/utils/helpers';
-import { getNotifications } from '@/src/redux/slices/notificationSlice';
+
+import Cookie from 'js-cookie';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
-import { notificationCases } from '@/src/utils/notificationCases';
+
+import SidebarUserAvatar from '@/src/components/sidebar/SidebarUserAvatar';
+import DotBadge from '@/src/components/sidebar/SidebarProfileBadge';
+import SignoutModal from '@/src/components/sign-out-modal/SignoutModal';
+
+import { NOTIFICATION_TITLE, profileMenuData } from '@/src/constants/sidebar';
+
+import { api } from '@/src/services/apiService';
+import { GET_NOTIFICATIONS } from '@/src/services/apiService/apiEndPoints';
+
+import { logout } from '@/src/redux/slices/authSlice';
+import { removeClientHomeData } from '@/src/redux/slices/clientSlices/homeSlice';
+import { removeHrClientData } from '@/src/redux/slices/hrSlices/clientSlice';
+import { removeHrData } from '@/src/redux/slices/hrSlices/homeSlice';
+import { removeHrEmployeeData } from '@/src/redux/slices/hrSlices/employeeSlice';
+import { getNotifications } from '@/src/redux/slices/notificationSlice';
+
 import { ellipsisWithTooltip } from '@/src/utils/tooltipEllipsis';
+import { notificationCases } from '@/src/utils/notificationCases';
+import { restructureNotificationData } from '@/src/utils/helpers';
+
 dayjs.extend(relativeTime);
 
 export default function ProfilePopper({

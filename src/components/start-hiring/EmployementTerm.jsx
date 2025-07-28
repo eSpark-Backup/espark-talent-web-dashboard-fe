@@ -2,8 +2,10 @@ import { useState } from 'react';
 
 import { Grid, Typography } from '@mui/material';
 
-import { HIRING_FORM_DATA } from '@/src/constants/hiring';
 import AppDropdown from '@/src/components/dashboard/AppDropdown';
+
+import { HIRING_FORM_DATA } from '@/src/constants/hiring';
+
 import { employmentTerm } from '@/src/data/dropdown.js/start-hiring';
 
 const EmployementTerm = () => {

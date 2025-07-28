@@ -1,6 +1,8 @@
 import { Box, Grid, Typography } from '@mui/material';
-import LeaveRequestButtons from '@/src/components/request-view/LeaveRequestButton';
+
 import Image from 'next/image';
+
+import LeaveRequestButtons from '@/src/components/request-view/LeaveRequestButton';
 
 const PunchRequest = ({
   modalType,

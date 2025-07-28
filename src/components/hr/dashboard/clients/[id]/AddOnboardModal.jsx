@@ -2,20 +2,28 @@ import React, { useState } from 'react';
 
 import { Box, Button, Grid, Modal, Typography } from '@mui/material';
 
-import { addOnboardFormSchema } from '@/src/validation/addOnBoardForm';
-import FormInput from '@/src/components/form/ui-elements/FormInput';
-import { addOnboardForm } from '@/src/data/forms/add-onboard';
 import { useFormik } from 'formik';
-import { FORM_DATA } from '@/src/constants/form';
 import { useDispatch, useSelector } from 'react-redux';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+
+import dayjs from 'dayjs';
+
+import FormInput from '@/src/components/form/ui-elements/FormInput';
+
+import { addOnboardForm } from '@/src/data/forms/add-onboard';
+import { addOnboardFormSchema } from '@/src/validation/addOnBoardForm';
+
+import { FORM_DATA } from '@/src/constants/form';
+import { countriesList } from '@/src/constants/countries';
+
 import { api } from '@/src/services/apiService';
 import { HR_CLIENT_EMP_ON_BOARDING } from '@/src/services/apiService/apiEndPoints';
-import dayjs from 'dayjs';
-import { Toast } from '@/src/utils/toast';
+
 import { addOnBoard } from '@/src/redux/slices/hrSlices/clientSlice';
-import { countriesList } from '@/src/constants/countries';
+
 import { hasSymbol } from '@/src/utils/symbolChecker';
+
+import { Toast } from '@/src/utils/toast';
 
 const AddOnboardModal = ({ open, onClose }) => {
   const { client_perms } =

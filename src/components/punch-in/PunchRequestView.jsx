@@ -1,4 +1,4 @@
-import { PUNCH_IN, PUNCH_TYPE } from '@/src/constants/punch-in/create-punch';
+import { Box } from '@mui/system';
 import {
   InputAdornment,
   MenuItem,
@@ -6,12 +6,14 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import { Box } from '@mui/system';
+
+import Image from 'next/image';
 
 import AttendanceDatePicker from '@/src/components/atttendance-summary/AttendanceDatePicker';
-import Image from 'next/image';
-import ReasonDescription from '@/src/components/punch-in/ReasonDescription';
 import PunchRequestButton from '@/src/components/punch-in/PunchInButton';
+import ReasonDescription from '@/src/components/punch-in/ReasonDescription';
+
+import { PUNCH_IN, PUNCH_TYPE } from '@/src/constants/punch-in/create-punch';
 
 const PunchRequestView = ({ onClose, modalData, createPunch }) => {
   return (

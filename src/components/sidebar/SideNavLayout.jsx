@@ -1,6 +1,8 @@
-import Sidebar from '@/src/components/sidebar/Sidebar';
 import { Backdrop, Drawer, useMediaQuery } from '@mui/material';
+
 import { useSelector } from 'react-redux';
+
+import Sidebar from '@/src/components/sidebar/Sidebar';
 
 export const SideNav = (props) => {
   const { empDetails, role } = useSelector((state) => state?.auth?.userData);

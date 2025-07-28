@@ -1,4 +1,5 @@
 'use client';
+
 import { useState } from 'react';
 
 import {
@@ -9,9 +10,11 @@ import {
   DialogContent,
   Slider,
 } from '@mui/material';
-import Cropper from 'react-easy-crop';
 import CropIcon from '@mui/icons-material/Crop';
 import { Cancel } from '@mui/icons-material';
+
+import Cropper from 'react-easy-crop';
+
 import getCroppedImg from '@/src/utils/cropImage';
 
 const ProfileCroper = ({

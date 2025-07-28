@@ -1,5 +1,5 @@
 import { Typography } from '@mui/material';
-import { Fragment, useState } from 'react';
+import React, {  useState } from 'react';
 
 import TableHiddenBody from '@/src/components/app-table-new/AppTableHiddenBody';
 import { renderCellContent } from '@/src/components/app-table-new/AppTableCell';
@@ -65,7 +65,7 @@ const AppTableBody = ({
                 key={rowIndex}
               >
                 {column?.map((col, colIndex) => (
-                  <Fragment key={colIndex}>
+                  <React.Fragment key={colIndex}>
                     {renderCellContent(
                       row,
                       col,

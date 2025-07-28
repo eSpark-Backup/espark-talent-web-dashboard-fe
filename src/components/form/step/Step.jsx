@@ -2,15 +2,21 @@ import { useState } from 'react';
 
 import { Box, Button, CircularProgress, Grid, Typography } from '@mui/material';
 
-import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { useFormik } from 'formik';
+
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+
+import { usePathname, useRouter } from 'next/navigation';
+
+import FormInput from '@/src/components/form/ui-elements/FormInput';
+import UploadImageModal from '@/src/components/employee-data/UploadImageModal';
+
 import { FORM_DATA } from '@/src/constants/form';
 import { SETTING } from '@/src/constants/setting-hr';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+
 import { api } from '@/src/services/apiService';
-import { usePathname, useRouter } from 'next/navigation';
+
 import { Toast } from '@/src/utils/toast';
-import UploadImageModal from '@/src/components/employee-data/UploadImageModal';
 
 const Step = ({
   handleGoPrev,

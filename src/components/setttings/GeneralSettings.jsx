@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import Image from 'next/image';
+
 import {
   Avatar,
   Box,
@@ -9,23 +11,31 @@ import {
   Typography,
 } from '@mui/material';
 
-import FormInput from '@/src/components/form/ui-elements/FormInput';
+import { useMutation } from '@tanstack/react-query';
+
+import { useDispatch, useSelector } from 'react-redux';
+
 import { useFormik } from 'formik';
+
+import FormInput from '@/src/components/form/ui-elements/FormInput';
+import ClientProfileCroper from '@/src/components/setttings/ClientProfileCroper';
+
 import {
   Profile_Edit_Section,
   User_Detail,
   User_Password,
 } from '@/src/constants/profile-edit-data';
-import { generalSettingFormSchema } from '@/src/validation/generalDetails';
+
 import { settingForm } from '@/src/data/forms/setting-form';
-import Image from 'next/image';
-import { CLIENT_UPDATE_COMPANY } from '@/src/services/apiService/apiEndPoints';
+
 import { api } from '@/src/services/apiService';
-import { useMutation } from '@tanstack/react-query';
-import { Toast } from '@/src/utils/toast';
-import { useDispatch, useSelector } from 'react-redux';
+import { CLIENT_UPDATE_COMPANY } from '@/src/services/apiService/apiEndPoints';
+
 import { fetchClientHomeDataRequestSuccess } from '@/src/redux/slices/clientSlices/homeSlice';
-import ClientProfileCroper from '@/src/components/setttings/ClientProfileCroper';
+
+import { generalSettingFormSchema } from '@/src/validation/generalDetails';
+
+import { Toast } from '@/src/utils/toast';
 
 const GeneralSettings = () => {
   const dispatch = useDispatch();

@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import React from 'react';
 
 import { Box, Grid, TextField, Typography } from '@mui/material';
 
@@ -25,7 +25,7 @@ const SalaryRange = () => {
         }}
       >
         {Array.from({ length: numberOfFields }, (_, index) => (
-          <Fragment key={index}>
+          <React.Fragment key={index}>
             <TextField
               className="text-field-custom"
               required={true}
@@ -74,7 +74,7 @@ const SalaryRange = () => {
                 />
               </Box>
             )}
-          </Fragment>
+          </React.Fragment>
         ))}
       </Box>
     </Grid>

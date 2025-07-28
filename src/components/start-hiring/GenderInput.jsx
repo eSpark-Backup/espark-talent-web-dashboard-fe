@@ -1,10 +1,12 @@
 import { useState } from 'react';
 
 import { Grid, Typography } from '@mui/material';
+
+import AppDropdown from '@/src/components/dashboard/AppDropdown';
+import EmployementTerm from '@/src/components/start-hiring/EmployementTerm';
+
 import { HIRING_FORM_DATA } from '@/src/constants/hiring';
 
-import EmployementTerm from '@/src/components/start-hiring/EmployementTerm';
-import AppDropdown from '@/src/components/dashboard/AppDropdown';
 import { gender } from '@/src/data/dropdown.js/start-hiring';
 
 const GenderInput = ({ open, SelectOpen, SelectClose }) => {

@@ -1,6 +1,8 @@
 import { Box, Typography } from '@mui/material';
-import { DASHBOARD_HEADER } from '@/src/constants/dashboard';
+
 import Link from 'next/link';
+
+import { DASHBOARD_HEADER } from '@/src/constants/dashboard';
 
 const TopNavNavbar = () => {
   return (

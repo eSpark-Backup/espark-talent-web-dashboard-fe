@@ -1,20 +1,26 @@
 'use client';
-import { Button, Grid, Tab, Tabs, Typography } from '@mui/material';
-import { Box, useTheme } from '@mui/system';
 import { useEffect, useState } from 'react';
 
-import Input from '@/src/components/dashboard/Input';
+import { Button, Grid, Tab, Tabs, Typography } from '@mui/material';
+import { Box, useTheme } from '@mui/system';
+
 import Image from 'next/image';
-import EmployeeView from '@/src/components/hr/EmployeeView';
 import { useRouter } from 'next/navigation';
-import EmployeeStatus from '@/src/components/hr/ActiveEmployee';
-import { employeeProfileData } from '@/src/constants/employee-profile';
 import { useQuery } from '@tanstack/react-query';
+import { useDispatch, useSelector } from 'react-redux';
+
+import Input from '@/src/components/dashboard/Input';
+import EmployeeStatus from '@/src/components/hr/ActiveEmployee';
+import EmployeeView from '@/src/components/hr/EmployeeView';
+
+import { employeeProfileData } from '@/src/constants/employee-profile';
+
 import { api } from '@/src/services/apiService';
 import { HR_CLIENT_EMPLOYEES } from '@/src/services/apiService/apiEndPoints';
-import { useDispatch, useSelector } from 'react-redux';
-import { Toast } from '@/src/utils/toast';
+
 import { getClientAllEmps } from '@/src/redux/slices/hrSlices/clientSlice';
+
+import { Toast } from '@/src/utils/toast';
 
 const ClientEmployees = ({ fromClient, openModal }) => {
   const { all } = useSelector(

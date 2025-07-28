@@ -3,22 +3,29 @@ import { useEffect, useState } from 'react';
 import { Box, Button, CircularProgress, Typography } from '@mui/material';
 import Skeleton from '@mui/material/Skeleton';
 
-import AppTable from '@/src/components/app-table-new/AppTable';
-import { modulepermissionColumn } from '@/src/data/tables/module-permission';
-import RoleModal from '@/src/components/settings/AddRoleModal';
-import { SETTING } from '@/src/constants/setting-hr';
-import { useDispatch, useSelector } from 'react-redux';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+
+import { useDispatch, useSelector } from 'react-redux';
+
+import AppTable from '@/src/components/app-table-new/AppTable';
+import RoleModal from '@/src/components/settings/AddRoleModal';
+
+import { SETTING } from '@/src/constants/setting-hr';
+
+import { modulepermissionColumn } from '@/src/data/tables/module-permission';
+
 import { api } from '@/src/services/apiService';
 import {
   HR_ACCOUNTS,
   HR_ROLES_PERMISSIONS,
 } from '@/src/services/apiService/apiEndPoints';
+
 import {
   getAccountsData,
   getRolesDetailsRequest,
   getRolesDetailsSuccess,
 } from '@/src/redux/slices/hrSlices/settingsSlice';
+
 import { Toast } from '@/src/utils/toast';
 
 const Role = () => {

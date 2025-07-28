@@ -1,29 +1,29 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'next/navigation';
+import dayjs from 'dayjs';
+import { useMutation, useQuery } from '@tanstack/react-query';
 
 import { Box, Button, Tab, Tabs } from '@mui/material';
-import { a11yProps } from '@/src/utils/tabs';
+
 import AppTable from '@/src/components/app-table-new/AppTable';
+import LeaveManagementModal from '@/src/components/hr/dashboard/clients/client-profile/LeaveManagementModal';
+import TimeManagementModal from '@/src/components/hr/dashboard/clients/client-profile/TimeManagementModal';
+
+import { FORM_DATA } from '@/src/constants/form';
 import {
   leavesColumn,
   leavesData,
   timeColumn,
 } from '@/src/data/tables/hr/time-and-leaves';
-import TimeManagementModal from '@/src/components/hr/dashboard/clients/client-profile/TimeManagementModal';
-import LeaveManagementModal from '@/src/components/hr/dashboard/clients/client-profile/LeaveManagementModal';
-import { FORM_DATA } from '@/src/constants/form';
-import { useParams } from 'next/navigation';
-import { api } from '@/src/services/apiService';
 import { HR_EMP_TIME_AND_LEAVES } from '@/src/services/apiService/apiEndPoints';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { api } from '@/src/services/apiService';
 import { Toast } from '@/src/utils/toast';
-import { useDispatch, useSelector } from 'react-redux';
+import { a11yProps } from '@/src/utils/tabs';
 import {
   getHrEmpLeaves,
   getHrEmpTime,
 } from '@/src/redux/slices/hrSlices/employeeSlice';
-import { useEffect } from 'react';
-
-import dayjs from 'dayjs';
 
 const TimeAndLeaves = () => {
   const { employee_perms, leaves_perms } = useSelector(

@@ -1,5 +1,6 @@
-import { Box, Button, CircularProgress } from '@mui/material';
 import Image from 'next/image';
+
+import { Box, Button, CircularProgress } from '@mui/material';
 
 import { FILTER } from '@/src/constants/filter';
 

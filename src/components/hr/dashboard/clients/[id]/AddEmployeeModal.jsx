@@ -1,30 +1,44 @@
-import Skeleton from '@mui/material/Skeleton';
+import React, { useEffect, useState } from 'react';
+
+import {
+  Box,
+  Button,
+  CircularProgress,
+  Grid,
+  Modal,
+  Skeleton,
+} from '@mui/material';
+
+import { useFormik } from 'formik';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { useDispatch, useSelector } from 'react-redux';
+
+import dayjs from 'dayjs';
+
 import AppTable from '@/src/components/app-table-new/AppTable';
-import { addEmployeModalFormSchema } from '@/src/validation/addEmployeeModal';
 import Navigator from '@/src/components/form/step/Navigator';
 import FormInput from '@/src/components/form/ui-elements/FormInput';
-import { Toast } from '@/src/utils/toast';
+
 import { addEmployeeModalFormSteps } from '@/src/data/forms/add-employee-modal';
+import { addEmployeModalFormSchema } from '@/src/validation/addEmployeeModal';
+
 import { FORM_DATA } from '@/src/constants/form';
+import { countriesList } from '@/src/constants/countries';
+
+import { api } from '@/src/services/apiService';
+import {
+  HR_CLIENT_EMPLOYEES,
+  HR_OUTSOURCEABLE_EMPS,
+} from '@/src/services/apiService/apiEndPoints';
+
 import {
   getClientAllEmps,
   getClientAllEmpsRequest,
   getOutsourceableEmps,
   selectEmployeeToAdd,
 } from '@/src/redux/slices/hrSlices/clientSlice';
-import { api } from '@/src/services/apiService';
-import {
-  HR_CLIENT_EMPLOYEES,
-  HR_OUTSOURCEABLE_EMPS,
-} from '@/src/services/apiService/apiEndPoints';
-import { Box, Button, CircularProgress, Grid, Modal } from '@mui/material';
-import { useMutation, useQuery } from '@tanstack/react-query';
-import dayjs from 'dayjs';
-import { useFormik } from 'formik';
-import { useEffect, useState } from 'react';
 
-import { useDispatch, useSelector } from 'react-redux';
-import { countriesList } from '@/src/constants/countries';
+import { Toast } from '@/src/utils/toast';
 
 const AddEmployeeModal = ({ open, onClose }) => {
   const { currentClient, outsourceableEmployees, currentEmpToAddInClient } =

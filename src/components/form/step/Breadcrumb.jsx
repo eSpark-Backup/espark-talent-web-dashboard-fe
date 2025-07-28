@@ -1,5 +1,7 @@
 import Image from 'next/image';
+
 import { Box, Typography } from '@mui/material';
+
 import { useRouter } from 'next/navigation';
 
 const Breadcrumb = ({ title, currentPage, root, dispatchFunction }) => {

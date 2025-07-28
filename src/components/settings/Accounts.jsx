@@ -1,23 +1,31 @@
 'use client';
+
 import { useState } from 'react';
 
 import { Box, Modal } from '@mui/material';
 
-import AppTable from '@/src/components/app-table-new/AppTable';
-import { accountColumn } from '@/src/data/tables/hr/account';
-import AppConfirmationMadal from '@/src/components/modals/AppConfirmationMadal';
-import { CONTRACT_SIGNED } from '@/src/constants/contract-signed';
-import CredentialModal from '@/src/components/modals/CredentialModal';
-import { useDispatch } from 'react-redux';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+
+import { useDispatch } from 'react-redux';
+
+import AppTable from '@/src/components/app-table-new/AppTable';
+import AppConfirmationMadal from '@/src/components/modals/AppConfirmationMadal';
+import CredentialModal from '@/src/components/modals/CredentialModal';
+import EditAccountModal from '@/src/components/modals/EditAccountModal';
+
+import { CONTRACT_SIGNED } from '@/src/constants/contract-signed';
+
+import { accountColumn } from '@/src/data/tables/hr/account';
+
+import { api } from '@/src/services/apiService';
 import { HR_ACCOUNTS } from '@/src/services/apiService/apiEndPoints';
+
 import {
   deleteAccount,
   getAccountsData,
 } from '@/src/redux/slices/hrSlices/settingsSlice';
-import { api } from '@/src/services/apiService';
+
 import { Toast } from '@/src/utils/toast';
-import EditAccountModal from '@/src/components/modals/EditAccountModal';
 
 const Accounts = ({ handleAdd }) => {
   const [openEditModal, setOpenEditModal] = useState(false);

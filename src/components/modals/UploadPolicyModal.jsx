@@ -9,16 +9,22 @@ import {
   Typography,
 } from '@mui/material';
 
-import FormInput from '@/src/components/form/ui-elements/FormInput';
-import { useFormik } from 'formik';
-import { uploadPolicyFormSchema } from '@/src/validation/uploadPolicy';
-import { uploadPolicyForm } from '@/src/data/forms/upload-policy';
-import { UPLOAD_POLICY } from '@/src/constants/upload-policy';
+import { useDispatch, useSelector } from 'react-redux';
 import { useMutation } from '@tanstack/react-query';
+import { useFormik } from 'formik';
+
+import FormInput from '@/src/components/form/ui-elements/FormInput';
+
+import { uploadPolicyForm } from '@/src/data/forms/upload-policy';
+import { uploadPolicyFormSchema } from '@/src/validation/uploadPolicy';
+
+import { UPLOAD_POLICY } from '@/src/constants/upload-policy';
+
 import { api } from '@/src/services/apiService';
 import { HR_POLICY } from '@/src/services/apiService/apiEndPoints';
-import { useDispatch, useSelector } from 'react-redux';
+
 import { addPolicy } from '@/src/redux/slices/hrSlices/policy';
+
 import { Toast } from '@/src/utils/toast';
 
 const UploadPolicyModal = forwardRef(({ open, onClose }, ref) => {

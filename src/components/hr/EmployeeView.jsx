@@ -12,20 +12,25 @@ import {
 } from '@mui/material';
 import { Box, useTheme } from '@mui/system';
 
-import AppConfirmationMadal from '@/src/components/modals/AppConfirmationMadal';
 import { useRouter } from 'next/navigation';
-import { REMOVE_MODAL } from '@/src/constants/contract-signed';
 import { useDispatch, useSelector } from 'react-redux';
 import { useMutation } from '@tanstack/react-query';
+
+import AppConfirmationMadal from '@/src/components/modals/AppConfirmationMadal';
+import EmployeeCardSkeleton from '@/src/components/hr/EmployeeCardSkeleton';
+
+import { REMOVE_MODAL } from '@/src/constants/contract-signed';
+
+import { api } from '@/src/services/apiService';
 import { HR_EMPLOYEES } from '@/src/services/apiService/apiEndPoints';
+
 import {
   deleteCurrentEmpData,
   deleteCurrentEmpDataFailed,
   deleteCurrentEmpDataSuccess,
 } from '@/src/redux/slices/hrSlices/employeeSlice';
-import { api } from '@/src/services/apiService';
+
 import { Toast } from '@/src/utils/toast';
-import EmployeeCardSkeleton from '@/src/components/hr/EmployeeCardSkeleton';
 
 const EmployeeView = ({ status, data, isLoading }) => {
   const { employee_perms } = useSelector((state) => state?.hr?.home?.homeData);

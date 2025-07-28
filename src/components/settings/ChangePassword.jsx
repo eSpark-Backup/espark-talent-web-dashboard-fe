@@ -1,16 +1,26 @@
 import { Box, useMediaQuery } from '@mui/system';
-import { passwordChangeSchema } from '@/src/validation/password';
-import { passwordformElement } from '@/src/data/forms/password-change-form';
-import { HR_CHANGE_PASSWORD } from '@/src/services/apiService/apiEndPoints';
-import { Toast } from '@/src/utils/toast';
-import { api } from '@/src/services/apiService';
-import { useMutation } from '@tanstack/react-query';
-import { getPasswordData } from '@/src/redux/slices/hrSlices/settingsSlice';
-import { useDispatch } from 'react-redux';
-import { SETTING } from '@/src/constants/setting-hr';
 import { Button, CircularProgress, Grid } from '@mui/material';
-import FormInput from '@/src/components/form/ui-elements/FormInput';
+
+import { useMutation } from '@tanstack/react-query';
+
+import { useDispatch } from 'react-redux';
+
 import { useFormik } from 'formik';
+
+import FormInput from '@/src/components/form/ui-elements/FormInput';
+
+import { SETTING } from '@/src/constants/setting-hr';
+
+import { passwordformElement } from '@/src/data/forms/password-change-form';
+
+import { api } from '@/src/services/apiService';
+import { HR_CHANGE_PASSWORD } from '@/src/services/apiService/apiEndPoints';
+
+import { getPasswordData } from '@/src/redux/slices/hrSlices/settingsSlice';
+
+import { passwordChangeSchema } from '@/src/validation/password';
+
+import { Toast } from '@/src/utils/toast';
 
 const ChangePassword = () => {
   const dispatch = useDispatch();

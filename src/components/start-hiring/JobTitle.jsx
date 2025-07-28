@@ -2,8 +2,9 @@ import { useState } from 'react';
 
 import { Grid, Typography } from '@mui/material';
 
-import RoleType from '@/src/components/start-hiring/RoleType';
 import AppNestedDropdown from '@/src/components/dashboard/AppDropdown';
+import RoleType from '@/src/components/start-hiring/RoleType';
+
 import { jobTitles } from '@/src/data/dropdown.js/start-hiring';
 
 const JobTitle = ({

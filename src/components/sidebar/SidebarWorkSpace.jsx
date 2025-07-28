@@ -1,4 +1,5 @@
 import { Box, Typography } from '@mui/material';
+
 import SidebarProfileMenu from '@/src/components/sidebar/SidebarProfileMenu';
 import WorkSpaceIcon from '@/src/components/sidebar/WorkSpaceIcon';
 

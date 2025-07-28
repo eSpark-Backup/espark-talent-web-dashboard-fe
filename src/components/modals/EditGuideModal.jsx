@@ -9,15 +9,21 @@ import {
   Typography,
 } from '@mui/material';
 
-import FormInput from '@/src/components/form/ui-elements/FormInput';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useFormik } from 'formik';
+
+import FormInput from '@/src/components/form/ui-elements/FormInput';
+
+import { uploadGuideForm } from '@/src/data/forms/upload-guide';
+
+import { UPLOAD_GUIDE } from '@/src/constants/guide';
+
 import { api } from '@/src/services/apiService';
 import { HR_GUIDE } from '@/src/services/apiService/apiEndPoints';
-import { Toast } from '@/src/utils/toast';
-import { uploadGuideForm } from '@/src/data/forms/upload-guide';
+
 import { editGuideFormSchema } from '@/src/validation/uploadGuide';
-import { UPLOAD_GUIDE } from '@/src/constants/guide';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+
+import { Toast } from '@/src/utils/toast';
 
 const EditGuideModal = forwardRef(({ open, onClose, modalData }, ref) => {
   const [guideFormVal, setGuideFormVal] = useState(null);

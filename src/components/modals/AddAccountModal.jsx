@@ -1,4 +1,4 @@
-import { forwardRef } from 'react';
+import { forwardRef, useState } from 'react';
 
 import {
   Box,
@@ -9,21 +9,27 @@ import {
   Typography,
 } from '@mui/material';
 
-import FormInput from '@/src/components/form/ui-elements/FormInput';
-import { useFormik } from 'formik';
-import { accountInfoSchema } from '@/src/validation/addAccount';
-import { accountForm } from '@/src/data/forms/add-account';
-import { SETTING } from '@/src/constants/setting-hr';
-import { FORM_DATA } from '@/src/constants/form';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { api } from '@/src/services/apiService';
-import { HR_ACCOUNTS } from '@/src/services/apiService/apiEndPoints';
-import { Toast } from '@/src/utils/toast';
-import { useState } from 'react';
+import { useFormik } from 'formik';
 
 import { useDispatch } from 'react-redux';
-import { addAccount } from '@/src/redux/slices/hrSlices/settingsSlice';
+
 import UploadImageModal from '@/src/components/employee-data/UploadImageModal';
+import FormInput from '@/src/components/form/ui-elements/FormInput';
+
+import { accountForm } from '@/src/data/forms/add-account';
+
+import { FORM_DATA } from '@/src/constants/form';
+import { SETTING } from '@/src/constants/setting-hr';
+
+import { api } from '@/src/services/apiService';
+import { HR_ACCOUNTS } from '@/src/services/apiService/apiEndPoints';
+
+import { accountInfoSchema } from '@/src/validation/addAccount';
+
+import { addAccount } from '@/src/redux/slices/hrSlices/settingsSlice';
+
+import { Toast } from '@/src/utils/toast';
 
 const AddAccountModal = forwardRef(({ open, onClose }, ref) => {
   const [accountFormValues, setAccountFormValues] = useState(null);

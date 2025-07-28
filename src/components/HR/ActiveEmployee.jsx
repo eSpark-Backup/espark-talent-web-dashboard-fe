@@ -4,16 +4,21 @@ import { useState } from 'react';
 import { Grid, Typography } from '@mui/material';
 import { useMediaQuery, useTheme } from '@mui/system';
 
-import AppConfirmationMadal from '@/src/components/modals/AppConfirmationMadal';
-import { TERMINATE_MODAL } from '@/src/constants/contract-signed';
-import EmployeeCard from '@/src/components/hr/EmployeeCard';
+import { useDispatch } from 'react-redux';
 import { useMutation } from '@tanstack/react-query';
+
+import AppConfirmationMadal from '@/src/components/modals/AppConfirmationMadal';
+import EmployeeCard from '@/src/components/hr/EmployeeCard';
+import EmployeeCardSkeleton from '@/src/components/hr/EmployeeCardSkeleton';
+
+import { TERMINATE_MODAL } from '@/src/constants/contract-signed';
+
 import { api } from '@/src/services/apiService';
 import { HR_CLIENT_EMPLOYEES } from '@/src/services/apiService/apiEndPoints';
+
 import { updateClientEmpStatus } from '@/src/redux/slices/hrSlices/clientSlice';
+
 import { Toast } from '@/src/utils/toast';
-import { useDispatch } from 'react-redux';
-import EmployeeCardSkeleton from '@/src/components/hr/EmployeeCardSkeleton';
 
 const EmployeeStatus = ({ empData, isFetching }) => {
   const dispatch = useDispatch();

@@ -7,9 +7,10 @@ import {
   Typography,
 } from '@mui/material';
 
-import EditModal from '@/src/components/employee-data/EditModal';
 import { useRouter } from 'next/navigation';
 import { useSelector } from 'react-redux';
+
+import EditModal from '@/src/components/employee-data/EditModal';
 import { ellipsisWithTooltip } from '@/src/utils/tooltipEllipsis';
 
 const ClientProfileData = ({

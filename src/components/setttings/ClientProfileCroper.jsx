@@ -1,14 +1,19 @@
-import { useState, useRef } from 'react';
+import { useRef, useState } from 'react';
 
 import { Avatar, Box, Button, Modal, Typography } from '@mui/material';
+
 import { useMutation } from '@tanstack/react-query';
+
 import { useDispatch, useSelector } from 'react-redux';
+
+import ProfileCroper from '@/src/components/ProfileCroper';
+
+import { updateClientImage } from '@/src/redux/slices/clientSlices/homeSlice';
 
 import { api } from '@/src/services/apiService';
 import { CLIENT_UPDATE_PIC } from '@/src/services/apiService/apiEndPoints';
+
 import { Toast } from '@/src/utils/toast';
-import ProfileCroper from '@/src/components/ProfileCroper';
-import { updateClientImage } from '@/src/redux/slices/clientSlices/homeSlice';
 
 const ClientProfileCroper = ({ open, onClose, currentImage }) => {
   const { isLoading } = useSelector((state) => state?.client?.home?.data);

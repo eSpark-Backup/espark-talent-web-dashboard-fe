@@ -2,14 +2,21 @@ import React from 'react';
 
 import { Box, Button, CircularProgress, Grid, Typography } from '@mui/material';
 
-import FormInput from '@/src/components/form/ui-elements/FormInput';
-import { useFormik } from 'formik';
-import { changePasswordFormSchema } from '@/src/validation/changePassword';
-import { changePasswordForm } from '@/src/data/forms/change-password';
-import { User_Password } from '@/src/constants/profile-edit-data';
 import { useMutation } from '@tanstack/react-query';
-import { CLIENT_UPDATE_PASSWORD } from '@/src/services/apiService/apiEndPoints';
+
+import { useFormik } from 'formik';
+
+import FormInput from '@/src/components/form/ui-elements/FormInput';
+
+import { User_Password } from '@/src/constants/profile-edit-data';
+
+import { changePasswordForm } from '@/src/data/forms/change-password';
+
 import { api } from '@/src/services/apiService';
+import { CLIENT_UPDATE_PASSWORD } from '@/src/services/apiService/apiEndPoints';
+
+import { changePasswordFormSchema } from '@/src/validation/changePassword';
+
 import { Toast } from '@/src/utils/toast';
 
 const ChangePassword = () => {

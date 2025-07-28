@@ -1,7 +1,9 @@
 import { Box, CircularProgress, Typography } from '@mui/material';
 import Image from 'next/image';
-import { DOWNLOAD_POLICY } from '@/src/services/apiService/apiEndPoints';
+
 import { useMutation } from '@tanstack/react-query';
+
+import { DOWNLOAD_POLICY } from '@/src/services/apiService/apiEndPoints';
 import { api } from '@/src/services/apiService';
 import { Toast } from '@/src/utils/toast';
 

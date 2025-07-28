@@ -1,4 +1,5 @@
 import { Box, Modal } from '@mui/material';
+
 import Image from 'next/image';
 
 import RequestHeading from '@/src/components/request-view/ModalHeading';

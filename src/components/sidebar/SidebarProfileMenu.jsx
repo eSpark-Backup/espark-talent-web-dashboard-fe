@@ -1,7 +1,8 @@
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
-import DotBadge from '@/src/components/sidebar/SidebarProfileBadge';
 import { Box } from '@mui/system';
+
+import DotBadge from '@/src/components/sidebar/SidebarProfileBadge';
 
 const SidebarProfileMenu = () => {
   return (

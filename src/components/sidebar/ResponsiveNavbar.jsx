@@ -2,16 +2,21 @@ import { useState } from 'react';
 
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
+
+import MenuOpenIcon from '@mui/icons-material/MenuOpen';
+
 import { usePathname } from 'next/navigation';
 
-import SidebarUserAvatar from '@/src/components/sidebar/SidebarUserAvatar';
-import MenuOpenIcon from '@mui/icons-material/MenuOpen';
-import SidebarGlobalIcon from '@/src/components/sidebar/SidebarGlobalIcon';
+import { useSelector } from 'react-redux';
+
 import ProfilePopper from '@/src/components/popover/ProfilePopper';
 import WorkSpacePopper from '@/src/components/popover/WorkSpacePopper';
-import { WORK_SPACE_ICON } from '@/src/constants/sidebar';
+
+import SidebarGlobalIcon from '@/src/components/sidebar/SidebarGlobalIcon';
+import SidebarUserAvatar from '@/src/components/sidebar/SidebarUserAvatar';
 import WorkSpaceIcon from '@/src/components/sidebar/WorkSpaceIcon';
-import { useSelector } from 'react-redux';
+
+import { WORK_SPACE_ICON } from '@/src/constants/sidebar';
 
 export default function ResponsiveNavbar({ openSidebar }) {
   const [profileMenu, setProfileMenu] = useState(null);

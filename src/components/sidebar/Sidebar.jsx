@@ -1,9 +1,25 @@
 'use client';
+
 import { useState } from 'react';
+
+import Cookies from 'js-cookie';
+
+import { usePathname, useRouter } from 'next/navigation';
+
+import { useDispatch, useSelector } from 'react-redux';
+
+import { useQuery } from '@tanstack/react-query';
 
 import { Box, useMediaQuery, useTheme } from '@mui/material';
 
+import ProfilePopper from '@/src/components/popover/ProfilePopper';
+import WorkSpacePopper from '@/src/components/popover/WorkSpacePopper';
+
 import SidebarAccordion from '@/src/components/sidebar/SidebarAccordion';
+import SidebarActiveUser from '@/src/components/sidebar/SidebarActiveUser';
+import SidebarLogo from '@/src/components/sidebar/SidebarLogo';
+import SidebarWorkSpace from '@/src/components/sidebar/SidebarWorkSpace';
+
 import {
   Client_Routes,
   Employee_Routes,
@@ -11,22 +27,16 @@ import {
   WORK_SPACE_ICON,
   WORK_SPACE_TITLE,
 } from '@/src/constants/sidebar';
-import SidebarLogo from '@/src/components/sidebar/SidebarLogo';
-import SidebarActiveUser from '@/src/components/sidebar/SidebarActiveUser';
-import ProfilePopper from '@/src/components/popover/ProfilePopper';
-import { usePathname, useRouter } from 'next/navigation';
-import WorkSpacePopper from '@/src/components/popover/WorkSpacePopper';
-import SidebarWorkSpace from '@/src/components/sidebar/SidebarWorkSpace';
-import { useDispatch, useSelector } from 'react-redux';
-import { useQuery } from '@tanstack/react-query';
+
 import { api } from '@/src/services/apiService';
 import { HR_HOME } from '@/src/services/apiService/apiEndPoints';
+
 import {
   getHomeData,
   getHomeDataRequest,
 } from '@/src/redux/slices/hrSlices/homeSlice';
+
 import { Toast } from '@/src/utils/toast';
-import Cookies from 'js-cookie';
 
 const Sidebar = ({ userName }) => {
   const theme = useTheme();

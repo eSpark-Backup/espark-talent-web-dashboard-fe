@@ -1,14 +1,22 @@
 'use client';
+
 import { useRef, useState } from 'react';
 
 import { Button, Grid, Tooltip, Typography } from '@mui/material';
 import { Box } from '@mui/system';
+
 import Image from 'next/image';
+
 import copy from 'copy-to-clipboard';
+
 import dayjs from 'dayjs';
+
 import PhoneInput from 'react-phone-number-input';
 import 'react-phone-number-input/style.css';
+
 import AppDropdown from '@/src/components/dashboard/AppDropdown';
+import AppSearchableDropdown from '@/src/components/dashboard/AppSearchableDropdown';
+
 import {
   DesktopDatePicker,
   DesktopTimePicker,
@@ -16,9 +24,11 @@ import {
   DesktopDateTimePicker,
   MobileDateTimePicker,
 } from '@mui/x-date-pickers';
+
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import AppSearchableDropdown from '@/src/components/dashboard/AppSearchableDropdown';
+
 import useMediaQuery from '@mui/material/useMediaQuery';
+
 import { emailRegExp } from '@/src/validation/validations';
 import { ellipsisWithTooltip } from '@/src/utils/tooltipEllipsis';
 

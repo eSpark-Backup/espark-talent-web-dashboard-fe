@@ -1,7 +1,8 @@
 import { Box, Grid } from '@mui/material';
 
+import DatePickerBox from '@/src/components/start-hiring/DatePicker';
+
 import { HIRING_FORM_DATA } from '@/src/constants/hiring';
-import DatePickerBox from '/DatePicker';
 
 const HiringDate = () => {
   return (

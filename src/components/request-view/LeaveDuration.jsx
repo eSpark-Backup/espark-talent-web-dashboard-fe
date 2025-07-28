@@ -1,7 +1,8 @@
 import { Box, Typography } from '@mui/material';
 
-import { REQUESTVIEW_DATA } from '@/src/constants/requestview-modal';
 import LeaveDay from '@/src/components/request-view/LeaveDay';
+
+import { REQUESTVIEW_DATA } from '@/src/constants/requestview-modal';
 
 const LeaveDuration = ({ employeeId, employeeName, fromTo }) => {
   return (

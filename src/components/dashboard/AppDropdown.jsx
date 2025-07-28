@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useRef, useState } from 'react';
+import React, {  useEffect, useRef, useState } from 'react';
 
 import { Box, Grid, Typography } from '@mui/material';
 import Image from 'next/image';
@@ -259,7 +259,7 @@ const AppDropdown = ({
                     </Box>
                   ) : listData?.length ? (
                     listData?.map(({ label, children }, index) => (
-                      <Fragment key={index}>
+                      <React.Fragment key={index}>
                         <Box
                           onMouseEnter={() => {
                             setCurrentHoverIndex(index);
@@ -524,7 +524,7 @@ const AppDropdown = ({
                         )}
                         {selectedCatIndex === null
                           ? listData?.map(({ label }, index) => (
-                              <Fragment key={index}>
+                              <React.Fragment key={index}>
                                 <Box
                                   onMouseEnter={() => {
                                     setCurrentHoverIndex(index);

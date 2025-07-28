@@ -1,20 +1,26 @@
 'use client';
-import { Button, Grid } from '@mui/material';
-import { Box, useTheme } from '@mui/system';
 import { useEffect, useState } from 'react';
 
-import { useRouter } from 'next/navigation';
-import Input from '@/src/components/dashboard/Input';
+import { Button, Grid } from '@mui/material';
+import { Box, useTheme } from '@mui/system';
+
 import Image from 'next/image';
-import ClientView from '@/src/components/hr/ClientView';
-import { EMPLOYEE_DATA } from '@/src/constants/all-employee';
-import { HR_GET_CLIENTS } from '@/src/services/apiService/apiEndPoints';
-import { api } from '@/src/services/apiService';
+import { useRouter } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
 import { useDispatch, useSelector } from 'react-redux';
-import { Toast } from '@/src/utils/toast';
-import { getClientsData } from '@/src/redux/slices/hrSlices/clientSlice';
+
+import Input from '@/src/components/dashboard/Input';
+import ClientView from '@/src/components/hr/ClientView';
 import DashboardHeading from '@/src/components/dashboard/DashboardHeading';
+
+import { EMPLOYEE_DATA } from '@/src/constants/all-employee';
+
+import { api } from '@/src/services/apiService';
+import { HR_GET_CLIENTS } from '@/src/services/apiService/apiEndPoints';
+
+import { getClientsData } from '@/src/redux/slices/hrSlices/clientSlice';
+
+import { Toast } from '@/src/utils/toast';
 
 const AllClients = () => {
   const router = useRouter();

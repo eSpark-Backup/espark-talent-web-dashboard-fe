@@ -1,24 +1,36 @@
-import { Box, Grid, Button, Typography, CircularProgress } from '@mui/material';
+import { Box, Button, CircularProgress, Grid, Typography } from '@mui/material';
+
+import { useRouter } from 'next/navigation';
+
+import { useDispatch } from 'react-redux';
+
+import { useMutation } from '@tanstack/react-query';
+
+import dayjs from 'dayjs';
+
 import FormInput from '@/src/components/form/ui-elements/FormInput';
+
+import { countriesList } from '@/src/constants/countries';
 import { FORM_DATA } from '@/src/constants/form';
-import { useFormik } from 'formik';
-import { HiringForm } from '@/src/data/forms/start-hiring';
-import { hiringFormSchema } from '@/src/validation/hiringForm';
 import { HIRING_FORM_DATA } from '@/src/constants/hiring';
+
+import { useFormik } from 'formik';
+
+import { HiringForm } from '@/src/data/forms/start-hiring';
+
 import { api } from '@/src/services/apiService';
 import { CLIENT_START_HIRING } from '@/src/services/apiService/apiEndPoints';
+
 import {
   createClientHiringRequest,
   createClientHiringRequestFailed,
   createClientHiringRequestSuccess,
 } from '@/src/redux/slices/clientSlices/hiringProgressSlice';
-import { useMutation } from '@tanstack/react-query';
-import { useDispatch } from 'react-redux';
+
 import { generateUniqueString } from '@/src/utils/helpers';
-import dayjs from 'dayjs';
 import { Toast } from '@/src/utils/toast';
-import { useRouter } from 'next/navigation';
-import { countriesList } from '@/src/constants/countries';
+
+import { hiringFormSchema } from '@/src/validation/hiringForm';
 
 const StartHiringForm = () => {
   const router = useRouter();

@@ -1,10 +1,13 @@
-import { useEffect, useState, forwardRef } from 'react';
+import { forwardRef, useEffect, useState } from 'react';
 
 import { Box, Button, CircularProgress, Grid, Typography } from '@mui/material';
-import FormInput from '@/src/components/form/ui-elements/FormInput';
+
 import { useFormik } from 'formik';
-import { CREDENTIAL_FORM } from '@/src/constants/credential';
+
+import FormInput from '@/src/components/form/ui-elements/FormInput';
+
 import { credentialForm } from '@/src/data/forms/add-credential';
+import { CREDENTIAL_FORM } from '@/src/constants/credential';
 
 const CredentialModal = forwardRef(({ onClose, modalData }, ref) => {
   const [isLoading, setisLoading] = useState(false);

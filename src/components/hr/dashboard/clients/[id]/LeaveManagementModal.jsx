@@ -2,11 +2,14 @@ import React, { useEffect, useState } from 'react';
 
 import { Box, Button, Grid, Modal, Typography } from '@mui/material';
 
-import { leaveManagementFormSchema } from '@/src/validation/leaveManagementModal';
-import FormInput from '@/src/components/form/ui-elements/FormInput';
-import { leaveManagementForm } from '@/src/data/forms/leave-management-modal';
-import { FORM_DATA } from '@/src/constants/form';
 import { useFormik } from 'formik';
+
+import FormInput from '@/src/components/form/ui-elements/FormInput';
+
+import { leaveManagementForm } from '@/src/data/forms/leave-management-modal';
+import { leaveManagementFormSchema } from '@/src/validation/leaveManagementModal';
+
+import { FORM_DATA } from '@/src/constants/form';
 
 const LeaveManagementModal = ({ open, onClose }) => {
   const [formData, setFormData] = useState({});
