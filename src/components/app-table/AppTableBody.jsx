@@ -1,4 +1,4 @@
-import React, {  useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { Typography } from '@mui/material';
 import TableHiddenBody from '@/src/components/app-table/AppTableHiddenBody';
@@ -72,7 +72,7 @@ const AppTableBody = ({
                       handleClickActionDelete,
                       options
                     )}
-                  </Fragment>
+                  </React.Fragment>
                 ))}
               </tr>
             ))

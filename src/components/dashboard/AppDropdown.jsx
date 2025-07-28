@@ -1,4 +1,4 @@
-import React, {  useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import { Box, Grid, Typography } from '@mui/material';
 import Image from 'next/image';
@@ -378,7 +378,7 @@ const AppDropdown = ({
                             </Box>
                           )}
                         </Box>
-                      </Fragment>
+                      </React.Fragment>
                     ))
                   ) : (
                     <Box p={'15px'}>
@@ -580,7 +580,7 @@ const AppDropdown = ({
                                     />
                                   )}
                                 </Box>
-                              </Fragment>
+                              </React.Fragment>
                             ))
                           : listData[selectedCatIndex]?.children?.map(
                               (item, chIndex) => (

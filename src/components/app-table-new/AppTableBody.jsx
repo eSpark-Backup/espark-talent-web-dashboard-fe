@@ -1,5 +1,5 @@
 import { Typography } from '@mui/material';
-import React, {  useState } from 'react';
+import React, { useState } from 'react';
 
 import TableHiddenBody from '@/src/components/app-table-new/AppTableHiddenBody';
 import { renderCellContent } from '@/src/components/app-table-new/AppTableCell';
@@ -89,7 +89,7 @@ const AppTableBody = ({
                       viewLoader,
                       setviewLoader
                     )}
-                  </Fragment>
+                  </React.Fragment>
                 ))}
               </tr>
             ))
