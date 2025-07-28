@@ -7,10 +7,10 @@ const workSpaceMenuSlice = createSlice({
   },
   reducers: {
     handleworkSpaceMenuOpen: (state, action) => {
-      state.isOpen = action.payload;
+      state.isOpen = action?.payload;
     },
     handleworkSpaceMenuClose: (state, action) => {
-      state.isOpen = action.payload;
+      state.isOpen = action?.payload;
     },
   },
 });

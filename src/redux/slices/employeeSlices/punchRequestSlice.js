@@ -11,7 +11,7 @@ const punchRequestSlice = createSlice({
       state.isLoading = true;
     },
     getEmpPunchRequestDataSuccess: (state, action) => {
-      state.data = { ...action.payload };
+      state.data = { ...action?.payload };
       state.isLoading = false;
     },
     getEmpPunchRequestDataFailed: (state) => {
@@ -22,7 +22,7 @@ const punchRequestSlice = createSlice({
     },
     deleteEmpPunchRequestSuccess: (state, action) => {
       const tempData = state?.data?.requests.filter(
-        (el) => el.id !== action.payload
+        (el) => el.id !== action?.payload
       );
       state.data.requests = tempData;
       state.isLoading = false;
@@ -34,7 +34,7 @@ const punchRequestSlice = createSlice({
       state.isLoading = true;
     },
     createEmpPunchRequestSuccess: (state, action) => {
-      state.data.requests = [...state.data.requests, action.payload];
+      state.data.requests = [...state.data.requests, action?.payload];
       state.isLoading = false;
     },
     createEmpPunchRequestFailed: (state) => {

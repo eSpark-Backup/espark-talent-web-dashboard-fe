@@ -18,7 +18,7 @@ const contractSlice = createSlice({
       state.isLoading = false;
     },
     fetchEmpClientContractSuccess: (state, action) => {
-      state.contracts.offShores = action.payload.offShores;
+      state.contracts.offShores = action?.payload.offShores;
       state.isLoading = false;
     },
     fetchEmpContractsFailed: (state) => {

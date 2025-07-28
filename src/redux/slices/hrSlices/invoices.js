@@ -7,7 +7,7 @@ const invoicesSlice = createSlice({
   },
   reducers: {
     getInvoicesData: (state, action) => {
-      state.data = action.payload;
+      state.data = action?.payload;
     },
   },
 });

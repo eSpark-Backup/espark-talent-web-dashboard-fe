@@ -59,7 +59,7 @@ const hiringProgressSlice = createSlice({
     },
     deleteClientHiringRequestSuccess: (state, action) => {
       const tempData = state?.data?.hiringRequests.filter(
-        (el) => el.id !== action.payload
+        (el) => el.id !== action?.payload
       );
       state.data.hiringRequests = tempData;
       state.isLoading = false;

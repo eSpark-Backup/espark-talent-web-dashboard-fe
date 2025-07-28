@@ -21,7 +21,7 @@ const homeSlice = createSlice({
       state.data = {};
     },
     updateClientImage: (state, action) => {
-      state.data.client_image = action.payload;
+      state.data.client_image = action?.payload;
     },
   },
 });

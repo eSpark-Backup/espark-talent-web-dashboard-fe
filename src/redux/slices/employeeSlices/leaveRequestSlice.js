@@ -11,11 +11,11 @@ const leaveRequestSlice = createSlice({
       state.isLoading = true;
     },
     getEmpLeaveRequestDataSuccess: (state, action) => {
-      state.data = { ...action.payload };
+      state.data = { ...action?.payload };
       state.isLoading = false;
     },
     getEmpLeaveRequestFilteredDataSuccess: (state, action) => {
-      state.data = { ...state.data, ...action.payload };
+      state.data = { ...state.data, ...action?.payload };
       state.isLoading = false;
     },
     getEmpLeaveRequestDataFailed: (state) => {
@@ -26,7 +26,7 @@ const leaveRequestSlice = createSlice({
     },
     deleteEmpLeaveRequestSuccess: (state, action) => {
       const tempData = state?.data?.requests.filter(
-        (el) => el.id !== action.payload
+        (el) => el.id !== action?.payload
       );
       state.data.requests = tempData;
       state.isLoading = false;
@@ -39,7 +39,7 @@ const leaveRequestSlice = createSlice({
     },
     createEmpLeaveRequestSuccess: (state, action) => {
       const tempData = state?.data?.requests;
-      tempData.push(action.payload);
+      tempData.push(action?.payload);
       state.data.requests = tempData;
       state.isLoading = false;
     },

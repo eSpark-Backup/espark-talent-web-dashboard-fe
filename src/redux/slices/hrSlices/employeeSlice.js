@@ -31,7 +31,7 @@ const employeeSlice = createSlice({
       state.isLoading = true;
     },
     getEmpDataSuccess: (state, action) => {
-      state.data = action.payload;
+      state.data = action?.payload;
       state.isLoading = true;
     },
     getEmpDataFailed: (state) => {
@@ -40,7 +40,7 @@ const employeeSlice = createSlice({
     addEmployeeFormData: (state, action) => {
       state.addEmployeeForm = {
         ...state.addEmployeeForm,
-        ...action.payload,
+        ...action?.payload,
       };
     },
     clearEmployeeFormData: (state) => {
@@ -51,21 +51,21 @@ const employeeSlice = createSlice({
     },
     getEmpAssetRequestSuccess: (state, action) => {
       state.isLoading = false;
-      state.assets = action.payload;
+      state.assets = action?.payload;
     },
     getEmpAssetRequestFailed: (state) => {
       state.isLoading = false;
     },
     addEmpAsset: (state, action) => {
       const tempAssets = state.assets;
-      tempAssets.push(action.payload);
+      tempAssets.push(action?.payload);
       state.assets = tempAssets;
     },
     getAttendanceRequest: (state) => {
       state.isLoading = true;
     },
     getAttendanceRequestSuccess: (state, action) => {
-      state.attendance = action.payload;
+      state.attendance = action?.payload;
       state.isLoading = false;
     },
     getAttendanceRequestFailed: (state) => {
@@ -75,7 +75,7 @@ const employeeSlice = createSlice({
       state.isLoading = true;
     },
     getCurrentEmpDataSuccess: (state, action) => {
-      state.currentEmployee = action.payload;
+      state.currentEmployee = action?.payload;
       state.isLoading = false;
     },
     getCurrentEmpDataFailed: (state) => {
@@ -85,7 +85,7 @@ const employeeSlice = createSlice({
       state.isLoading = true;
     },
     deleteCurrentEmpDataSuccess: (state, action) => {
-      const tempData = state?.data?.filter((el) => el.id !== action.payload);
+      const tempData = state?.data?.filter((el) => el.id !== action?.payload);
       state.data = tempData;
       state.isLoading = false;
     },
@@ -93,32 +93,32 @@ const employeeSlice = createSlice({
       state.isLoading = false;
     },
     getHrEmpTime: (state, action) => {
-      state.timeAndLeaves.time = action.payload;
+      state.timeAndLeaves.time = action?.payload;
       state.isLoading = false;
     },
     getHrEmpLeaves: (state, action) => {
-      state.timeAndLeaves.leaves = action.payload;
+      state.timeAndLeaves.leaves = action?.payload;
       state.isLoading = false;
     },
     updateEmpTimeRequest: (state) => {
       state.isLoading = true;
     },
     updateEmpTime: (state, action) => {
-      state.timeAndLeaves.time = action.payload;
+      state.timeAndLeaves.time = action?.payload;
       state.isLoading = false;
     },
     updateEmpLeavesRequest: (state) => {
       state.isLoading = true;
     },
     updateEmpLeaves: (state, action) => {
-      state.timeAndLeaves.leaves = action.payload;
+      state.timeAndLeaves.leaves = action?.payload;
       state.isLoading = false;
     },
     updateCurrentEmployeeImage: (state, action) => {
-      state.currentEmployee.image_path = action.payload;
+      state.currentEmployee.image_path = action?.payload;
     },
     deleteEmpAsset: (state, action) => {
-      const tempData = state?.assets?.filter((el) => el.id !== action.payload);
+      const tempData = state?.assets?.filter((el) => el.id !== action?.payload);
       state.assets = tempData;
     },
     getEmpLetterRequest: (state) => {
@@ -126,26 +126,26 @@ const employeeSlice = createSlice({
     },
     getEmpLetterRequestSuccess: (state, action) => {
       state.isLoading = false;
-      state.letters = action.payload;
+      state.letters = action?.payload;
     },
     getEmpLetterRequestFailed: (state) => {
       state.isLoading = false;
     },
     addEmpLetter: (state, action) => {
       const tempLetters = state.letters;
-      tempLetters.push(action.payload);
+      tempLetters.push(action?.payload);
       state.letters = tempLetters;
     },
     deleteEmpLetter: (state, action) => {
       const tempLetters = state?.letters?.filter(
-        (el) => el.id !== action.payload
+        (el) => el.id !== action?.payload
       );
       state.letters = tempLetters;
     },
     editEmpLetter: (state, action) => {
       const tempLetters = state.letters.map((letter) => {
-        if (letter.id === action.payload.id) {
-          return action.payload;
+        if (letter.id === action?.payload.id) {
+          return action?.payload;
         }
         return letter;
       });
@@ -156,26 +156,26 @@ const employeeSlice = createSlice({
     },
     getEmpBenefitRequestSuccess: (state, action) => {
       state.isLoading = false;
-      state.benefits = action.payload;
+      state.benefits = action?.payload;
     },
     getEmpBenefitRequestFailed: (state) => {
       state.isLoading = false;
     },
     addEmpBenefit: (state, action) => {
       const tempBenefits = state.benefits;
-      tempBenefits.push(action.payload);
+      tempBenefits.push(action?.payload);
       state.benefits = tempBenefits;
     },
     deleteEmpBenefit: (state, action) => {
       const tempBenefits = state?.benefits?.filter(
-        (el) => el.id !== action.payload
+        (el) => el.id !== action?.payload
       );
       state.benefits = tempBenefits;
     },
     editEmpBenefit: (state, action) => {
       const tempBenefits = state.benefits.map((benefit) => {
-        if (benefit.id === action.payload.id) {
-          return action.payload;
+        if (benefit.id === action?.payload.id) {
+          return action?.payload;
         }
         return benefit;
       });
@@ -186,7 +186,7 @@ const employeeSlice = createSlice({
     },
     getEmpSalaryRequestSuccess: (state, action) => {
       state.isLoading = false;
-      state.salary = action.payload;
+      state.salary = action?.payload;
     },
     getEmpSalaryRequestFailed: (state) => {
       state.isLoading = false;
@@ -195,7 +195,7 @@ const employeeSlice = createSlice({
       state.isLoading = true;
     },
     getEmpRequestSuccess: (state, action) => {
-      const { type, data } = action.payload;
+      const { type, data } = action?.payload;
       state.isLoading = false;
 
       if (state?.requests[type]) {
@@ -209,19 +209,19 @@ const employeeSlice = createSlice({
     },
     addEmpSalary: (state, action) => {
       const tempSalary = state.salary;
-      tempSalary.push(action.payload);
+      tempSalary.push(action?.payload);
       state.salary = tempSalary;
     },
     deleteEmpSalary: (state, action) => {
       const tempSalary = state?.salary?.filter(
-        (el) => el.id !== action.payload
+        (el) => el.id !== action?.payload
       );
       state.salary = tempSalary;
     },
     editEmpSalary: (state, action) => {
       const tempSalary = state.salary.map((salary) => {
-        if (salary.id === action.payload.id) {
-          return action.payload;
+        if (salary.id === action?.payload.id) {
+          return action?.payload;
         }
         return salary;
       });
@@ -232,7 +232,7 @@ const employeeSlice = createSlice({
     },
     getEmpLeaveRequestSuccess: (state, action) => {
       state.isLoading = false;
-      state.leaves = action.payload;
+      state.leaves = action?.payload;
     },
     getEmpLeaveRequestFailed: (state) => {
       state.isLoading = false;
@@ -242,7 +242,7 @@ const employeeSlice = createSlice({
     },
     getEmpPunchRequestSuccess: (state, action) => {
       state.isLoading = false;
-      state.punches = action.payload;
+      state.punches = action?.payload;
     },
     getEmpPunchRequestFailed: (state) => {
       state.isLoading = false;
@@ -252,21 +252,21 @@ const employeeSlice = createSlice({
     },
     getEmpWfhRequestSuccess: (state, action) => {
       state.isLoading = false;
-      state.wfhRequests = action.payload;
+      state.wfhRequests = action?.payload;
     },
     getEmpWfhRequestFailed: (state) => {
       state.isLoading = false;
     },
     acceptEmpWfhRequest: (state, action) => {
       state.wfhRequests = state.wfhRequests.map((request) =>
-        request.id === action.payload
+        request.id === action?.payload
           ? { ...request, status: 'accepted' }
           : request
       );
     },
     rejectEmpWfhRequest: (state, action) => {
       state.wfhRequests = state.wfhRequests.map((request) =>
-        request.id === action.payload
+        request.id === action?.payload
           ? { ...request, status: 'rejected' }
           : request
       );

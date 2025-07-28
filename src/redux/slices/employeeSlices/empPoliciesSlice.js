@@ -11,7 +11,7 @@ const empPoliciesSlice = createSlice({
       state.isLoading = true;
     },
     fetchEmpPoliciesDataRequestSuccess: (state, action) => {
-      state.data = { ...action.payload };
+      state.data = { ...action?.payload };
       state.isLoading = false;
     },
     fetchEmpPoliciesDataRequestFailed: (state) => {

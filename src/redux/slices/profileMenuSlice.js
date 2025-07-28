@@ -7,10 +7,10 @@ const profileMenuSlice = createSlice({
   },
   reducers: {
     handleProfileMenuOpen: (state, action) => {
-      state.isOpen = action.payload;
+      state.isOpen = action?.payload;
     },
     handleProfileMenuClose: (state, action) => {
-      state.isOpen = action.payload;
+      state.isOpen = action?.payload;
     },
   },
 });

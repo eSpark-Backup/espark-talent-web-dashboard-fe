@@ -12,14 +12,14 @@ const empHomeSlice = createSlice({
   },
   reducers: {
     getEmpHomeData: (state, action) => {
-      state.homeData = action.payload;
+      state.homeData = action?.payload;
     },
     marKCheckin: (state, action) => {
       state.homeData = {
         ...state.homeData,
         today_activity: {
           ...state.homeData.today_activity,
-          check_in: action.payload?.check_in,
+          check_in: action?.payload?.check_in,
         },
       };
     },
@@ -28,7 +28,7 @@ const empHomeSlice = createSlice({
         ...state.homeData,
         today_activity: {
           ...state.homeData.today_activity,
-          break: action.payload,
+          break: action?.payload,
         },
       };
     },
@@ -37,7 +37,7 @@ const empHomeSlice = createSlice({
         ...state.homeData,
         today_activity: {
           ...state.homeData.today_activity,
-          resume: action.payload,
+          resume: action?.payload,
         },
       };
     },
@@ -46,12 +46,12 @@ const empHomeSlice = createSlice({
         ...state.homeData,
         today_activity: {
           ...state.homeData.today_activity,
-          check_out: action.payload,
+          check_out: action?.payload,
         },
       };
     },
     addCurrentWorkSpace: (state, action) => {
-      state.currentWorkSpace = action.payload;
+      state.currentWorkSpace = action?.payload;
     },
   },
 });

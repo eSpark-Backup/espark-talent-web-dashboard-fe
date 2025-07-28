@@ -7,25 +7,25 @@ const policySlice = createSlice({
   },
   reducers: {
     getPolicyData: (state, action) => {
-      state.policies = action.payload;
+      state.policies = action?.payload;
     },
     removePolicy: (state, action) => {
       const tempData = state?.policies?.filter(
-        (el) => el.id !== action.payload
+        (el) => el.id !== action?.payload
       );
       state.policies = tempData;
     },
     addPolicy: (state, action) => {
-      state.policies = [...state.policies, action.payload];
+      state.policies = [...state.policies, action?.payload];
     },
     updatePolicyValue: (state, action) => {
       const policyIndex = state.policies.findIndex(
-        (el) => el.id === action.payload.id
+        (el) => el.id === action?.payload.id
       );
-      state.policies[policyIndex][action.payload.key] = [
+      state.policies[policyIndex][action?.payload.key] = [
         'DisabledCheck',
         'EnabledCheck',
-        action.payload.value,
+        action?.payload?.value,
       ];
     },
   },

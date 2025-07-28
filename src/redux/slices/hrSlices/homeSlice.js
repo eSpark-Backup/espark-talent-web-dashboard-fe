@@ -8,7 +8,7 @@ const homeSlice = createSlice({
   },
   reducers: {
     getHomeData: (state, action) => {
-      state.homeData = action.payload;
+      state.homeData = action?.payload;
       state.isLoading = false;
     },
     getHomeDataRequest: (state) => {

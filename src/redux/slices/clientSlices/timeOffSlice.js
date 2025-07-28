@@ -28,11 +28,11 @@ const timeOffSlice = createSlice({
     },
     updateTimeOffRequests: (state, action) => {
       const requestIndex = state.data.clockInOutRequests.findIndex(
-        (el) => el.id === action.payload.id
+        (el) => el.id === action?.payload.id
       );
       state.data.clockInOutRequests[requestIndex].actions = ['View'];
       state.data.clockInOutRequests[requestIndex].status =
-        action.payload.status;
+        action?.payload.status;
     },
     fetchTimeOffRequestFailed: (state) => {
       state.isLoadingTimeOff = false;
@@ -46,10 +46,10 @@ const timeOffSlice = createSlice({
     },
     updateLeaveRequest: (state, action) => {
       const requestIndex = state.data.leaveRequest.findIndex(
-        (el) => el.id === action.payload.id
+        (el) => el.id === action?.payload.id
       );
       state.data.leaveRequest[requestIndex].actions = ['View'];
-      state.data.leaveRequest[requestIndex].status = action.payload.status;
+      state.data.leaveRequest[requestIndex].status = action?.payload.status;
     },
     fetchLeaveRequestsFailed: (state) => {
       state.isLoadingLeaveRequest = false;
@@ -65,12 +65,12 @@ const timeOffSlice = createSlice({
       state.isLoadingLeaveBalance = false;
     },
     updateCurrentReqTypeTab: (state, action) => {
-      state.tabData.currentReqTypeTab = action.payload.tab;
-      state.tabData.currentReqTypeTabVal = action.payload.val;
+      state.tabData.currentReqTypeTab = action?.payload.tab;
+      state.tabData.currentReqTypeTabVal = action?.payload.val;
     },
     updateCurrentReqStatusTab: (state, action) => {
-      state.tabData.currentReqStatusTab = action.payload.tab;
-      state.tabData.currentReqStatusTabVal = action.payload.val;
+      state.tabData.currentReqStatusTab = action?.payload.tab;
+      state.tabData.currentReqStatusTabVal = action?.payload.val;
     },
   },
 });

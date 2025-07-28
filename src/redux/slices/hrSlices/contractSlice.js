@@ -15,7 +15,7 @@ const contractSlice = createSlice({
       state.isLoading = true;
     },
     getClientsCompanyContractRequestSuccess: (state, action) => {
-      state.companyContract.clients = action.payload;
+      state.companyContract.clients = action?.payload;
       state.isLoading = false;
     },
     getClientsCompanyContractRequestFailed: (state) => {
@@ -25,7 +25,7 @@ const contractSlice = createSlice({
       state.isLoading = true;
     },
     getEmployeesCompanyContractRequestSuccess: (state, action) => {
-      state.companyContract.employees = action.payload;
+      state.companyContract.employees = action?.payload;
       state.isLoading = false;
     },
     getEmployeesCompanyContractRequestFailed: (state) => {
@@ -35,7 +35,7 @@ const contractSlice = createSlice({
       state.isLoading = true;
     },
     getOffShoreContractRequestSuccess: (state, action) => {
-      state.offShoreContract = action.payload;
+      state.offShoreContract = action?.payload;
       state.isLoading = false;
     },
     getOffShoreContractRequestFailed: (state) => {
@@ -44,21 +44,21 @@ const contractSlice = createSlice({
     addClientContract: (state, action) => {
       state.companyContract.clients = [
         ...state.companyContract.clients,
-        action.payload,
+        action?.payload,
       ];
     },
     addCompEmpContract: (state, action) => {
       state.companyContract.clients = [
         ...state.companyContract.employees,
-        action.payload,
+        action?.payload,
       ];
     },
     addOffShoreContract: (state, action) => {
-      state.offShoreContract = [...state.offShoreContract, action.payload];
+      state.offShoreContract = [...state.offShoreContract, action?.payload];
     },
     deleteCompanyClientContractSuccess: (state, action) => {
       const tempData = state?.companyContract?.clients.filter(
-        (el) => el.id !== action.payload
+        (el) => el.id !== action?.payload
       );
       state.companyContract.clients = tempData;
       state.isLoading = false;

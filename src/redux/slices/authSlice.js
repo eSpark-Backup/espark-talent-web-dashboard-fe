@@ -15,13 +15,13 @@ const authSlice = createSlice({
     getWorkSpace: (state, action) => {
       state.userData = {
         ...state.userData,
-        workSpace: action.payload,
+        workSpace: action?.payload,
       };
     },
     getEmployeeDetails: (state, action) => {
       state.userData = {
         ...state.userData,
-        empDetails: action.payload,
+        empDetails: action?.payload,
       };
     },
   },

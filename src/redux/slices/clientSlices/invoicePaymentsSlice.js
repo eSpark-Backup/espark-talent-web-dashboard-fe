@@ -18,17 +18,17 @@ const invoiceTrackingSlice = createSlice({
   },
   reducers: {
     updateEmpInvStatus: (state, action) => {
-      const currentType = action.payload.currentVal.toLowerCase();
-      const newType = action.payload.newVal.toLowerCase();
+      const currentType = action?.payload.currentVal.toLowerCase();
+      const newType = action?.payload.newVal.toLowerCase();
       const tempDataOld = state?.data?.[currentType].filter(
-        (el) => el.id !== action.payload.id
+        (el) => el.id !== action?.payload.id
       );
       state.data[currentType] = tempDataOld;
       state.data[newType] = [
         ...state.data[newType],
         {
-          ...action.payload.data,
-          payment_status: action.payload.newVal,
+          ...action?.payload.data,
+          payment_status: action?.payload.newVal,
         },
       ];
     },
@@ -75,7 +75,7 @@ const invoiceTrackingSlice = createSlice({
       state.isLoading = false;
     },
     fetchOtherInvoicesData: (state, action) => {
-      state.otherInvoices = [...state.otherInvoices, ...action.payload];
+      state.otherInvoices = [...state.otherInvoices, ...action?.payload];
     },
   },
 });

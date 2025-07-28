@@ -11,7 +11,7 @@ const empGuidesSlice = createSlice({
       state.isLoading = true;
     },
     fetchEmpGuidesDataRequestSuccess: (state, action) => {
-      state.data = { ...action.payload };
+      state.data = { ...action?.payload };
       state.isLoading = false;
     },
     fetchEmpGuidesDataRequestFailed: (state) => {

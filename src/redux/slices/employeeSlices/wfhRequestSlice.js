@@ -11,11 +11,11 @@ const wfhRequestSlice = createSlice({
       state.isLoading = true;
     },
     getEmpWfhRequestDataSuccess: (state, action) => {
-      state.data = { ...action.payload };
+      state.data = { ...action?.payload };
       state.isLoading = false;
     },
     getEmpWfhRequestFilteredDataSuccess: (state, action) => {
-      state.data = { ...state.data, ...action.payload };
+      state.data = { ...state.data, ...action?.payload };
       state.isLoading = false;
     },
     getEmpWfhRequestDataFailed: (state) => {
@@ -26,7 +26,7 @@ const wfhRequestSlice = createSlice({
     },
     deleteEmpWfhRequestSuccess: (state, action) => {
       const tempData = state?.data?.requests.filter(
-        (el) => el.id !== action.payload
+        (el) => el.id !== action?.payload
       );
       state.data.requests = tempData;
       state.isLoading = false;
@@ -41,7 +41,7 @@ const wfhRequestSlice = createSlice({
       if (!Array.isArray(state.data.requests)) {
         state.data.requests = [];
       }
-      state.data.requests = [...state.data.requests, action.payload];
+      state.data.requests = [...state.data.requests, action?.payload];
       state.isLoading = false;
     },
     createEmpWfhRequestFailed: (state) => {

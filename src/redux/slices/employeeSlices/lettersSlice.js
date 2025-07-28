@@ -15,7 +15,7 @@ const lettersSlice = createSlice({
     },
     fetchEmpLettersSuccess: (state, action) => {
       state.isLoading = false;
-      state.letters = action.payload;
+      state.letters = action?.payload;
     },
   },
 });

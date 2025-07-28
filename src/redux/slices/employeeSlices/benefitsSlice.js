@@ -15,7 +15,7 @@ const benefitSlice = createSlice({
     },
     fetchEmpBenefitsSuccess: (state, action) => {
       state.isLoading = false;
-      state.data = action.payload;
+      state.data = action?.payload;
     },
   },
 });

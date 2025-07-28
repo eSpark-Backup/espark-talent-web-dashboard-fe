@@ -7,7 +7,7 @@ const notificationSlice = createSlice({
   },
   reducers: {
     getNotifications: (state, action) => {
-      state.data = action.payload;
+      state.data = action?.payload;
     },
   },
 });
