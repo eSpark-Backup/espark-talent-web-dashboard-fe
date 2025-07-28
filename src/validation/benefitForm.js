@@ -1,5 +1,5 @@
 import * as Yup from 'yup';
-import { nameRegExp } from './validations';
+import { nameRegExp } from '@/src/validation/validations';
 
 export const benefitFormSchema = Yup.object({
   benefit: Yup.string()

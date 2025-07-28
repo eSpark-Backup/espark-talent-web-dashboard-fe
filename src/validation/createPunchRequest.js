@@ -1,5 +1,5 @@
 import * as Yup from 'yup';
-import { dateFormatRegex } from './validations';
+import { dateFormatRegex } from '@/src/validation/validations';
 
 // Custom function to validate the date format
 const isValidDateFormat = (value) => {

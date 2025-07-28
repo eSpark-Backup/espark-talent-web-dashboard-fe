@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 import dayjs from 'dayjs';
-import { timeRegExp } from './validations';
+import { timeRegExp } from '@/src/validation/validations';
 
 export const validationSchema = Yup.object({
   check_in: Yup.string()

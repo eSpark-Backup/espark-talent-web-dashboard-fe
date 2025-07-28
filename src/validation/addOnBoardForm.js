@@ -1,5 +1,9 @@
 import * as Yup from 'yup';
-import { dojValidation, jobTitleRegExp, nameValidation } from './validations';
+import {
+  dojValidation,
+  jobTitleRegExp,
+  nameValidation,
+} from '@/src/validation/validations';
 
 export const addOnboardFormSchema = Yup.object({
   employee_name: nameValidation,

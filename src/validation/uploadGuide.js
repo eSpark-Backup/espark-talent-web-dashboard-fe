@@ -1,5 +1,5 @@
 import * as Yup from 'yup';
-import { nameValidation } from './validations';
+import { nameValidation } from '@/src/validation/validations';
 
 export const uploadGuideFormSchema = Yup.object({
   guide_name: nameValidation,

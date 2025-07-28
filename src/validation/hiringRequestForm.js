@@ -1,5 +1,5 @@
 import * as Yup from 'yup';
-import { jobTitleRegExp } from './validations';
+import { jobTitleRegExp } from '@/src/validation/validations';
 
 export const hiringRequestSchema = Yup.object({
   job_title: Yup.string()

@@ -1,5 +1,5 @@
 import * as Yup from 'yup';
-import { emailValidation, nameValidation } from './validations';
+import { emailValidation, nameValidation } from '@/src/validation/validations';
 
 export const accountInfoSchema = Yup.object({
   account_name: nameValidation,

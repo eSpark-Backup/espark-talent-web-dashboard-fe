@@ -1,5 +1,5 @@
 import * as Yup from 'yup';
-import { emailValidation } from './validations';
+import { emailValidation } from '@/src/validation/validations';
 
 export const letterFormSchema = Yup.object({
   objective: Yup.string()

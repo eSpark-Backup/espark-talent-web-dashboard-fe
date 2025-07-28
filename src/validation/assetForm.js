@@ -1,5 +1,9 @@
 import * as Yup from 'yup';
-import { emailValidation, nameRegExp, nameValidation } from './validations';
+import {
+  emailValidation,
+  nameRegExp,
+  nameValidation,
+} from '@/src/validation/validations';
 
 export const assetFormSchema = Yup.object({
   gadget: Yup.string()

@@ -6,7 +6,7 @@ import {
   nameValidation,
   phoneValidation,
   timeFormatRegex,
-} from './validations';
+} from '@/src/validation/validations';
 
 export const basicInformationSchema = Yup.object({
   first_name: nameValidation,

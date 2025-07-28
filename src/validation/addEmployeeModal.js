@@ -1,5 +1,5 @@
 import * as Yup from 'yup';
-import { dojValidation, jobTitleRegExp } from './validations';
+import { dojValidation, jobTitleRegExp } from '@/src/validation/validations';
 
 export const addEmployeModalFormSchema = Yup.object({
   salary: Yup.number()

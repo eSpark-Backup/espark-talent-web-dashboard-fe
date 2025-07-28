@@ -4,7 +4,7 @@ import {
   emailValidation,
   nameValidation,
   phoneValidation,
-} from './validations';
+} from '@/src/validation/validations';
 
 export const basicInformationSchemaClient = Yup.object({
   first_name: nameValidation,

@@ -1,5 +1,9 @@
 import * as Yup from 'yup';
-import { emailValidation, nameRegExp, websiteValidation } from './validations';
+import {
+  emailValidation,
+  nameRegExp,
+  websiteValidation,
+} from '@/src/validation/validations';
 
 export const companyInfoSchema = Yup.object({
   company_name: Yup.string()
