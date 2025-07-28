@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { Box, Grid, Button, Typography, CircularProgress } from '@mui/material';
 import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { FORM_DATA } from '@/src/constants/form';
@@ -104,9 +102,9 @@ const StartHiringForm = () => {
       router.push(`/client/dashboard/hire-onboard/hiring-progress`);
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to post data');
+      Toast('error', err?.message || 'Failed to post data');
       dispatch(createClientHiringRequestFailed());
-      console.error({ err: err.message, name: err.name, stack: err.stack });
+      console.error({ err: err?.message, name: err?.name, stack: err?.stack });
     },
   });
 

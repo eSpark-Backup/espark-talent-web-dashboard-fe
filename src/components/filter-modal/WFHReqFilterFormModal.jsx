@@ -1,4 +1,5 @@
-import React, { forwardRef } from 'react';
+import { forwardRef } from 'react';
+
 import { Box, Grid, Modal, Typography } from '@mui/material';
 
 import { useFormik } from 'formik';
@@ -58,7 +59,7 @@ const WFHReqFilterFormModal = forwardRef(
       },
       onError: (err) => {
         dispatch(getTimeSheetDataFailed());
-        Toast('error', err.message || 'Failed to get data');
+        Toast('error', err?.message || 'Failed to get data');
       },
     });
 
@@ -80,7 +81,7 @@ const WFHReqFilterFormModal = forwardRef(
       },
       onError: (err) => {
         dispatch(getEmpWfhRequestDataFailed());
-        Toast('error', err.message || 'Failed to update data');
+        Toast('error', err?.message || 'Failed to update data');
       },
     });
     const {

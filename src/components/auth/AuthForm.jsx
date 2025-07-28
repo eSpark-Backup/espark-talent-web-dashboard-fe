@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
+
 import { useRouter } from 'next/navigation';
 import Typography from '@mui/material/Typography';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -67,7 +68,7 @@ const AuthForm = ({ uiData, fields, handleOpenTroubleModal }) => {
       return data;
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to update data');
+      Toast('error', err?.message || 'Failed to update data');
     },
   });
   const clientHomeMutation = useMutation({
@@ -81,7 +82,7 @@ const AuthForm = ({ uiData, fields, handleOpenTroubleModal }) => {
       return data;
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to update data');
+      Toast('error', err?.message || 'Failed to update data');
       dispatch(fetchClientHomeDataRequestFailed());
     },
   });
@@ -98,7 +99,7 @@ const AuthForm = ({ uiData, fields, handleOpenTroubleModal }) => {
       return data;
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to update data');
+      Toast('error', err?.message || 'Failed to update data');
     },
   });
   const { mutate, isPending } = useMutation({

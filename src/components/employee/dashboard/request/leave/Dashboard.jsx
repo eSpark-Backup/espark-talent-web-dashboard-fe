@@ -1,5 +1,6 @@
 'use client';
-import React, { useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
+
 import { Grid, Box, Typography, Button, Modal } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';

@@ -7,7 +7,7 @@ import { addEmployeeModalFormSteps } from '@/src/data/forms/add-employee-modal';
 import { FORM_DATA } from '@/src/constants/form';
 import { Box, Button, Grid, Modal } from '@mui/material';
 import { useFormik } from 'formik';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const AddEmployeeModal = ({ open, onClose }) => {
   const [currentStep, setCurrentStep] = useState(1);

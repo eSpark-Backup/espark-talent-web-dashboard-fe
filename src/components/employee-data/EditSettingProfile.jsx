@@ -1,5 +1,6 @@
 'use client';
-import React, { useState, useRef } from 'react';
+import { useState, useRef } from 'react';
+
 import { Avatar, Box, Button, Modal, Typography } from '@mui/material';
 import { Toast } from '@/src/utils/toast';
 import ProfileCroper from '@/src/components/ProfileCroper';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Box, Button, Grid, Modal, Typography } from '@mui/material';
 
 import { EDIT_MODAL } from '@/src/constants/employee-profile';
@@ -28,7 +27,7 @@ const EditEmployeeCredential = ({ onClose, open }) => {
       onClose();
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to delete data');
+      Toast('error', err?.message || 'Failed to delete data');
     },
   });
   const {

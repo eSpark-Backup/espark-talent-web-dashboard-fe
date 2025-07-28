@@ -19,6 +19,7 @@ import { useMutation } from '@tanstack/react-query';
 import dayjs from 'dayjs';
 import { useFormik } from 'formik';
 import React, { useState } from 'react';
+
 import { useDispatch, useSelector } from 'react-redux';
 
 const AddInterviewModal = ({ open, onClose }) => {
@@ -52,7 +53,7 @@ const AddInterviewModal = ({ open, onClose }) => {
       Toast('success', 'Data posted successfully');
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to post data');
+      Toast('error', err?.message || 'Failed to post data');
     },
   });
   const {

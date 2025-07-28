@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useState } from 'react';
 
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -14,9 +14,9 @@ import WorkSpaceIcon from '@/src/components/sidebar/WorkSpaceIcon';
 import { useSelector } from 'react-redux';
 
 export default function ResponsiveNavbar({ openSidebar }) {
-  const [profileMenu, setProfileMenu] = React.useState(null);
-  const [workspace, setWorkspace] = React.useState(null);
-  const [notification, setNotification] = React.useState(null);
+  const [profileMenu, setProfileMenu] = useState(null);
+  const [workspace, setWorkspace] = useState(null);
+  const [notification, setNotification] = useState(null);
 
   const pathName = usePathname();
   const employee = pathName.includes('/employee/dashboard');

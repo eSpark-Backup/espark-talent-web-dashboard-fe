@@ -6,7 +6,7 @@ import {
   Tooltip,
   Typography,
 } from '@mui/material';
-import React from 'react';
+
 import EditModal from '@/src/components/employee-data/EditModal';
 import { useRouter } from 'next/navigation';
 import { useSelector } from 'react-redux';

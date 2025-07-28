@@ -1,5 +1,6 @@
 'use client';
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
+
 import { Box, Grid, Skeleton, Stack } from '@mui/material';
 
 import DashboardHeading from '@/src/components/dashboard/DashboardHeading';

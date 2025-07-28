@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { Box, Button, CircularProgress, Grid, Typography } from '@mui/material';
 
 import FormInput from '@/src/components/form/ui-elements/FormInput';
@@ -20,7 +21,7 @@ const ChangePassword = () => {
       Toast('success', 'Data updated successfully');
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to update data');
+      Toast('error', err?.message || 'Failed to update data');
     },
   });
   const {

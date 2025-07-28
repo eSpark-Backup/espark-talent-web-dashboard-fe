@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+
 import { Box, Modal, Tab, Tabs, Tooltip } from '@mui/material';
 import AppTable from '@/src/components/app-table-new/AppTable';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
@@ -51,7 +52,7 @@ const AttendanceReport = ({ employeeData }) => {
         );
         return data || {};
       } catch (err) {
-        Toast('error', err.message || 'Failed to get data');
+        Toast('error', err?.message || 'Failed to get data');
       }
     },
   });
@@ -85,7 +86,7 @@ const AttendanceReport = ({ employeeData }) => {
         dispatch(getAttendanceRequestSuccess(tempData));
         return tempData || [];
       } catch (err) {
-        Toast('error', err.message || 'Failed to get data');
+        Toast('error', err?.message || 'Failed to get data');
       }
     },
     enabled: !!empProfile?.data?.email,

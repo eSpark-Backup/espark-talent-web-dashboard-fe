@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+
 import { Box } from '@mui/material';
 import { HR_EMP_LETTERS_TABLECOLUMN } from '@/src/constants/employee-profile';
 import AppTable from '@/src/components/app-table-new/AppTable';
@@ -73,7 +74,7 @@ const Letters = () => {
         dispatch(getEmpLetterRequestSuccess(tempLetters));
         return tempLetters || [];
       } catch (err) {
-        Toast('error', err.message || 'Failed to get data');
+        Toast('error', err?.message || 'Failed to get data');
         dispatch(getEmpLetterRequestFailed());
         console.error(err);
         return [];
@@ -102,7 +103,7 @@ const Letters = () => {
       await queryClient.invalidateQueries(['hr-employee-get-letter']);
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to delete data');
+      Toast('error', err?.message || 'Failed to delete data');
     },
   });
 
@@ -121,7 +122,7 @@ const Letters = () => {
       Toast('success', 'File downloaded');
     },
     onError: (err) => {
-      Toast('error', err.message || 'File not downloaded');
+      Toast('error', err?.message || 'File not downloaded');
     },
   });
 

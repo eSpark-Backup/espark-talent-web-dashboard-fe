@@ -1,7 +1,7 @@
 import { Timeline_Data } from '@/src/constants/employee-dashboard';
 import { Box, Typography } from '@mui/material';
 import Image from 'next/image';
-import React from 'react';
+
 import { useSelector } from 'react-redux';
 import Stack from '@mui/material/Stack';
 import Skeleton from '@mui/material/Skeleton';

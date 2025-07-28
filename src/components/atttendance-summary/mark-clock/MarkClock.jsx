@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+
 import Image from 'next/image';
 import { Box, Typography } from '@mui/material';
 import { PUNCH_IN } from '@/src/constants/punch-in/create-punch';
@@ -7,6 +8,7 @@ import MarkCheckOut from '@/src/components/atttendance-summary/mark-clock/MarkCh
 import MarkBreak from '@/src/components/atttendance-summary/mark-clock/MarkBreakNew';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
+
 import Stack from '@mui/material/Stack';
 import dayjs from 'dayjs';
 

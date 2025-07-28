@@ -1,5 +1,6 @@
 'use client';
-import React, { useState } from 'react';
+import { useState } from 'react';
+
 import { Box, Modal } from '@mui/material';
 
 import AppTable from '@/src/components/app-table-new/AppTable';
@@ -43,7 +44,7 @@ const Accounts = ({ handleAdd }) => {
           return tempData || [];
         })
         .catch((err) => {
-          Toast('error', err.message || 'Failed to get data');
+          Toast('error', err?.message || 'Failed to get data');
         });
     },
   });
@@ -59,7 +60,7 @@ const Accounts = ({ handleAdd }) => {
       queryClient?.invalidateQueries(['get-company-accounts']);
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to delete account');
+      Toast('error', err?.message || 'Failed to delete account');
     },
   });
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);

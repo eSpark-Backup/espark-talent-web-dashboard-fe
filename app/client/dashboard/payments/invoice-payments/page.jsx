@@ -1,5 +1,6 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+
 import { Grid, Box, Typography } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -111,7 +112,7 @@ const Page = () => {
         })
         .catch((err) => {
           dispatch(fetchPendingInvoicePaymentsRequestFailed());
-          Toast('error', err.message || 'Failed to get data');
+          Toast('error', err?.message || 'Failed to get data');
         });
     },
   });
@@ -158,7 +159,7 @@ const Page = () => {
         })
         .catch((err) => {
           dispatch(fetchProcessingInvoicePaymentsRequestFailed());
-          Toast('error', err.message || 'Failed to get data');
+          Toast('error', err?.message || 'Failed to get data');
         });
     },
   });
@@ -203,7 +204,7 @@ const Page = () => {
         })
         .catch((err) => {
           dispatch(fetchPaidInvoicePaymentsRequestFailed());
-          Toast('error', err.message || 'Failed to get data');
+          Toast('error', err?.message || 'Failed to get data');
         });
     },
   });
@@ -304,7 +305,7 @@ const Page = () => {
       Toast('success', 'Status updated successfully');
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to delete data');
+      Toast('error', err?.message || 'Failed to delete data');
     },
   });
   const updateInvoiceStatus = (data, newVal) => {
@@ -356,7 +357,7 @@ const Page = () => {
       console.log(data, 'data');
     },
     onError: (err) => {
-      Toast('error', err.message || 'File not downloaded');
+      Toast('error', err?.message || 'File not downloaded');
     },
   });
   const downloadInvoice = (id, url) => {

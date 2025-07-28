@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+
 import { Box } from '@mui/material';
 
 import { BENEFITS_TABLECOLUMN } from '@/src/constants/employee-profile';
@@ -69,7 +70,7 @@ const Benefits = () => {
         return tempBenefits || [];
       } catch (err) {
         dispatch(getEmpBenefitRequestFailed());
-        Toast('error', err.message || 'Failed to get data');
+        Toast('error', err?.message || 'Failed to get data');
         return [];
       }
     },
@@ -96,7 +97,7 @@ const Benefits = () => {
       setSelectedId(null);
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to delete data');
+      Toast('error', err?.message || 'Failed to delete data');
     },
   });
 

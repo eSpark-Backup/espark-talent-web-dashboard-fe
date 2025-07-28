@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 import {
   Box,
   Button,
@@ -64,7 +65,7 @@ const HiringRequestModal = ({ open, onClose }) => {
       clientQuery?.invalidateQueries(['hr-client-hiring-req-query']);
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to post data');
+      Toast('error', err?.message || 'Failed to post data');
     },
   });
 

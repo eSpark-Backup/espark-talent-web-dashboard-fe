@@ -1,4 +1,5 @@
-import React, { forwardRef, useEffect, useState } from 'react';
+import { forwardRef, useEffect, useState } from 'react';
+
 import {
   Box,
   Button,
@@ -37,7 +38,7 @@ const EditEmergencyModal = forwardRef(
         await queryClient.invalidateQueries('employee-profile');
       },
       onError: (err) => {
-        Toast('error', err.message || 'Failed to update data');
+        Toast('error', err?.message || 'Failed to update data');
         onClose();
       },
     });

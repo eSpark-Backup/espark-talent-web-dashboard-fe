@@ -1,4 +1,3 @@
-import React from 'react';
 import { Box, Button, Grid, Modal, Typography } from '@mui/material';
 
 import { addOnboardFormSchema } from '@/src/validation/addOnBoardForm';
@@ -14,6 +13,7 @@ import dayjs from 'dayjs';
 import { Toast } from '@/src/utils/toast';
 import { countriesList } from '@/src/constants/countries';
 import { getSalaryAmount, getSelectedCountry } from '@/src/utils/salaryFormat';
+import React from 'react';
 
 const EditOnboardModal = ({ open, onClose, existingData }) => {
   const clientQuery = useQueryClient();
@@ -30,7 +30,7 @@ const EditOnboardModal = ({ open, onClose, existingData }) => {
       clientQuery?.invalidateQueries(['hr-client-on-board-req-query']);
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to post data');
+      Toast('error', err?.message || 'Failed to post data');
     },
   });
 

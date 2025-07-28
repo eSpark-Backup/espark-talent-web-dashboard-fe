@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   Box,
   Button,
@@ -19,6 +18,7 @@ import { HR_CLIENT_OTHER_INVOICE } from '@/src/services/apiService/apiEndPoints'
 import dayjs from 'dayjs';
 import { Toast } from '@/src/utils/toast';
 import { getSalaryAmount } from '@/src/utils/salaryFormat';
+import React from 'react';
 
 const EditOtherInvoiceModal = ({ open, onClose, title, existingData }) => {
   const { email } = useSelector((state) => state?.hr?.clients?.currentClient);
@@ -44,7 +44,7 @@ const EditOtherInvoiceModal = ({ open, onClose, title, existingData }) => {
       ]);
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to post data');
+      Toast('error', err?.message || 'Failed to post data');
     },
   });
   const handleCloseModal = () => {

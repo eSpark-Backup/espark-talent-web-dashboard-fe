@@ -1,4 +1,5 @@
 import React, { forwardRef } from 'react';
+
 import {
   Box,
   Button,
@@ -44,7 +45,7 @@ const LetterForm = forwardRef(({ onClose, open, empData }, ref) => {
       onClose();
     },
     onError: (err) => {
-      Toast('error', err.response?.data?.error || 'Failed to post data');
+      Toast('error', err?.response?.data?.error || 'Failed to post data');
     },
   });
 

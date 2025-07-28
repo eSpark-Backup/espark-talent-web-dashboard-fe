@@ -1,4 +1,3 @@
-import React from 'react';
 import { Box } from '@mui/material';
 
 import StatusBox from '@/src/components/atttendance-summary/StatusBox';

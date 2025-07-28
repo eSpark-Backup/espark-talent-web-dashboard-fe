@@ -1,4 +1,3 @@
-import React from 'react';
 import { Box, Button, Grid, Modal, Typography } from '@mui/material';
 
 import { addOnboardFormSchema } from '@/src/validation/addOnBoardForm';
@@ -6,6 +5,7 @@ import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { addOnboardForm } from '@/src/data/forms/add-onboard';
 import { useFormik } from 'formik';
 import { FORM_DATA } from '@/src/constants/form';
+import React from 'react';
 
 const AddOnboardModal = ({ open, onClose }) => {
   const {

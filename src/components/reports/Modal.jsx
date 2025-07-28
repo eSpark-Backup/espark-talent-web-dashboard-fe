@@ -1,4 +1,3 @@
-import React from 'react';
 import { Box, Modal } from '@mui/material';
 
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';

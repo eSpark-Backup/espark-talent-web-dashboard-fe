@@ -1,5 +1,6 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+
 import { Typography, Tabs, Tab, Button } from '@mui/material';
 import { Box } from '@mui/system';
 import Breadcrumb from '@/src/components/form/step/Breadcrumb';
@@ -104,7 +105,7 @@ const Page = () => {
         })
         .catch((err) => {
           dispatch(getCurrentClientDataFailed());
-          Toast('error', err.message || 'Failed to get data');
+          Toast('error', err?.message || 'Failed to get data');
         });
     },
   });
@@ -153,7 +154,7 @@ const Page = () => {
           return tempData;
         })
         .catch((err) => {
-          Toast('error', err.message || 'Failed to get data');
+          Toast('error', err?.message || 'Failed to get data');
         });
     },
   });
@@ -190,7 +191,7 @@ const Page = () => {
           return tempData;
         })
         .catch((err) => {
-          Toast('error', err.message || 'Failed to get data');
+          Toast('error', err?.message || 'Failed to get data');
         });
     },
   });
@@ -235,7 +236,7 @@ const Page = () => {
           return data;
         })
         .catch((err) => {
-          Toast('error', err.message || 'Failed to get data');
+          Toast('error', err?.message || 'Failed to get data');
         });
     },
   });
@@ -250,7 +251,7 @@ const Page = () => {
           return data;
         })
         .catch((err) => {
-          Toast('error', err.message || 'Failed to get data');
+          Toast('error', err?.message || 'Failed to get data');
         });
     },
   });
@@ -265,7 +266,7 @@ const Page = () => {
           return data;
         })
         .catch((err) => {
-          Toast('error', err.message || 'Failed to get data');
+          Toast('error', err?.message || 'Failed to get data');
         });
     },
   });
@@ -280,7 +281,7 @@ const Page = () => {
           return data;
         })
         .catch((err) => {
-          Toast('error', err.message || 'Failed to get data');
+          Toast('error', err?.message || 'Failed to get data');
         });
     },
   });
@@ -325,7 +326,7 @@ const Page = () => {
           return data;
         })
         .catch((err) => {
-          Toast('error', err.message || 'Failed to get data');
+          Toast('error', err?.message || 'Failed to get data');
         });
     },
   });
@@ -372,7 +373,7 @@ const Page = () => {
           return data;
         })
         .catch((err) => {
-          Toast('error', err.message || 'Failed to get data');
+          Toast('error', err?.message || 'Failed to get data');
         });
     },
   });
@@ -417,7 +418,7 @@ const Page = () => {
           return data;
         })
         .catch((err) => {
-          Toast('error', err.message || 'Failed to get data');
+          Toast('error', err?.message || 'Failed to get data');
         });
     },
   });
@@ -462,7 +463,7 @@ const Page = () => {
           return data;
         })
         .catch((err) => {
-          Toast('error', err.message || 'Failed to get data');
+          Toast('error', err?.message || 'Failed to get data');
         });
     },
   });
@@ -507,7 +508,7 @@ const Page = () => {
           return data;
         })
         .catch((err) => {
-          Toast('error', err.message || 'Failed to get data');
+          Toast('error', err?.message || 'Failed to get data');
         });
     },
   });
@@ -552,7 +553,7 @@ const Page = () => {
           return data;
         })
         .catch((err) => {
-          Toast('error', err.message || 'Failed to get data');
+          Toast('error', err?.message || 'Failed to get data');
         });
     },
   });
@@ -959,7 +960,7 @@ const Page = () => {
       handleClose();
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to delete data');
+      Toast('error', err?.message || 'Failed to delete data');
       handleClose();
     },
   });
@@ -974,7 +975,7 @@ const Page = () => {
       handleClose();
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to delete data');
+      Toast('error', err?.message || 'Failed to delete data');
       handleClose();
     },
   });
@@ -989,7 +990,7 @@ const Page = () => {
       handleClose();
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to delete data');
+      Toast('error', err?.message || 'Failed to delete data');
       handleClose();
     },
   });
@@ -1005,7 +1006,7 @@ const Page = () => {
       handleClose();
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to delete data');
+      Toast('error', err?.message || 'Failed to delete data');
       handleClose();
     },
   });
@@ -1021,7 +1022,7 @@ const Page = () => {
       handleClose();
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to delete data');
+      Toast('error', err?.message || 'Failed to delete data');
       handleClose();
     },
   });
@@ -1063,7 +1064,7 @@ const Page = () => {
       handleClose();
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to update data');
+      Toast('error', err?.message || 'Failed to update data');
       handleClose();
     },
   });
@@ -1224,7 +1225,7 @@ const Page = () => {
       Toast('success', 'File downloaded');
     },
     onError: (err) => {
-      Toast('error', err.message || 'File not downloaded');
+      Toast('error', err?.message || 'File not downloaded');
     },
   });
   const downloadJSMutation = useMutation({
@@ -1245,7 +1246,7 @@ const Page = () => {
     },
     onError: (err) => {
       dispatch(getTimeSheetDataFailed());
-      Toast('error', err.message || 'File not downloaded');
+      Toast('error', err?.message || 'File not downloaded');
     },
   });
 
@@ -1265,7 +1266,7 @@ const Page = () => {
         });
     },
     onError: (err, { setviewLoader }) => {
-      Toast('error', err.message || 'File not downloaded');
+      Toast('error', err?.message || 'File not downloaded');
       if (setviewLoader)
         setviewLoader({
           loader: false,
@@ -1290,7 +1291,7 @@ const Page = () => {
         });
     },
     onError: (err, { setviewLoader }) => {
-      Toast('error', err.message || 'File not downloaded');
+      Toast('error', err?.message || 'File not downloaded');
       if (setviewLoader)
         setviewLoader({
           loader: false,
@@ -1315,7 +1316,7 @@ const Page = () => {
         });
     },
     onError: (err, { setviewLoader }) => {
-      Toast('error', err.message || 'File not downloaded');
+      Toast('error', err?.message || 'File not downloaded');
       if (setviewLoader)
         setviewLoader({
           loader: false,

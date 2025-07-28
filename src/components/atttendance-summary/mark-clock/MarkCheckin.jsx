@@ -3,7 +3,7 @@ import { api } from '@/src/services/apiService';
 import { EMP_HOME } from '@/src/services/apiService/apiEndPoints';
 import { Button, Grid, Typography } from '@mui/material';
 import { useMutation } from '@tanstack/react-query';
-import React from 'react';
+
 import dayjs from 'dayjs';
 import { Toast } from '@/src/utils/toast';
 import { useDispatch, useSelector } from 'react-redux';
@@ -27,7 +27,7 @@ const MarkCheckIn = () => {
       );
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to update data');
+      Toast('error', err?.message || 'Failed to update data');
     },
   });
 

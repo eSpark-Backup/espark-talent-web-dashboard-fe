@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+
 import { Grid, Box } from '@mui/material';
 import AppTable from '@/src/components/app-table-new/AppTable';
 import { useQuery } from '@tanstack/react-query';
@@ -38,7 +38,7 @@ const Page = () => {
           return newData;
         })
         .catch((err) => {
-          Toast('error', err.message || 'Failed to get data');
+          Toast('error', err?.message || 'Failed to get data');
           dispatch(fetchEmpBenefitsFailed());
         });
     },

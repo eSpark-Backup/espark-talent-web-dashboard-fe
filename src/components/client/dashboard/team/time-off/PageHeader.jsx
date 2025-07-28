@@ -4,7 +4,7 @@ import { api } from '@/src/services/apiService';
 import { DOWNLOAD_REPORT } from '@/src/services/apiService/apiEndPoints';
 import { Box, Button, CircularProgress, Typography } from '@mui/material';
 import { useMutation } from '@tanstack/react-query';
-import React from 'react';
+
 import { useSelector } from 'react-redux';
 
 const PageHeader = () => {
@@ -36,7 +36,7 @@ const PageHeader = () => {
       console.log(data, 'data');
     },
     onError: (err) => {
-      Toast('error', err.message || 'File not downloaded');
+      Toast('error', err?.message || 'File not downloaded');
     },
   });
   const handleDownloadReport = () => {

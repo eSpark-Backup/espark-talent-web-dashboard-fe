@@ -1,5 +1,6 @@
 'use client';
-import React from 'react';
+import { useState } from 'react';
+
 import { Box, useMediaQuery, useTheme } from '@mui/material';
 
 import SidebarAccordion from '@/src/components/sidebar/SidebarAccordion';
@@ -34,9 +35,9 @@ const Sidebar = ({ userName }) => {
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('lg'));
   const employee = pathName.includes('/employee/dashboard');
   const { role } = useSelector((state) => state?.auth?.userData);
-  const [profileMenu, setProfileMenu] = React.useState(null);
-  const [workspace, setWorkspace] = React.useState(null);
-  const [notification, setNotification] = React.useState(null);
+  const [profileMenu, setProfileMenu] = useState(null);
+  const [workspace, setWorkspace] = useState(null);
+  const [notification, setNotification] = useState(null);
   const router = useRouter();
 
   const {

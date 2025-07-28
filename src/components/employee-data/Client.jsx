@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+
 import { Box, Tab, Tabs } from '@mui/material';
 
 import {
@@ -26,7 +27,7 @@ const Client = () => {
           return data || [];
         })
         .catch((err) => {
-          Toast('error', err.message || 'Failed to get data');
+          Toast('error', err?.message || 'Failed to get data');
         });
     },
   });

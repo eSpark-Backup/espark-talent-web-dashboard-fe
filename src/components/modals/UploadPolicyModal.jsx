@@ -1,4 +1,5 @@
 import React, { forwardRef, useState } from 'react';
+
 import {
   Box,
   Button,
@@ -65,7 +66,7 @@ const UploadPolicyModal = forwardRef(({ open, onClose }, ref) => {
       onClose();
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to post data');
+      Toast('error', err?.message || 'Failed to post data');
     },
   });
   const {

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Box } from '@mui/material';
 import LeaveType from '@/src/components/request-view/LeaveType';
 import LeaveDate from '@/src/components/request-view/LeaveDate';

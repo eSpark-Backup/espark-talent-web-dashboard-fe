@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
-import PropTypes from 'prop-types';
+import { useEffect, useRef, useState } from 'react';
+
 import { Box, Grid, Tooltip, Typography } from '@mui/material';
 import Image from 'next/image';
 import Input from '@/src/components/dashboard/Input';
@@ -382,14 +382,6 @@ const AppSearchableDropdown = ({
       </Box>
     </Grid>
   );
-};
-
-AppSearchableDropdown.propTypes = {
-  selectedItem: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-  isLoadingList: PropTypes.bool.isRequired,
-  setIsLoadingList: PropTypes.func.isRequired,
-  setSelectedItem: PropTypes.func.isRequired,
-  data: PropTypes.array.isRequired,
 };
 
 export default AppSearchableDropdown;

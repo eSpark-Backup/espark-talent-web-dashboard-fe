@@ -2,7 +2,8 @@ import { leaveRequestsTab } from '@/src/data/tabs/time-off-tabs';
 import { updateCurrentReqTypeTab } from '@/src/redux/slices/clientSlices/timeOffSlice';
 import { Box, Tab, Tabs } from '@mui/material';
 import { useSearchParams } from 'next/navigation';
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
+
 import { useDispatch, useSelector } from 'react-redux';
 
 const TimeOffTabs = () => {

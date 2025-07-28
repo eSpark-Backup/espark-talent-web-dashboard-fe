@@ -1,5 +1,6 @@
 'use client';
-import React, { useState } from 'react';
+import { useState } from 'react';
+
 import {
   Grid,
   Box,
@@ -52,7 +53,7 @@ const Page = () => {
       setModalData({});
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to delete data');
+      Toast('error', err?.message || 'Failed to delete data');
       dispatch(deleteLeaveRequestDataFailed(modalData?.id));
       handleCloseDeleteModal();
     },
@@ -166,7 +167,7 @@ const Page = () => {
       return data;
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to update data');
+      Toast('error', err?.message || 'Failed to update data');
       dispatch(getEmpLeaveRequestDataFailed());
     },
   });

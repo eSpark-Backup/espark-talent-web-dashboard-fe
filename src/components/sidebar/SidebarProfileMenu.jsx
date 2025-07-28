@@ -1,4 +1,3 @@
-import React from 'react';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 import DotBadge from '@/src/components/sidebar/SidebarProfileBadge';

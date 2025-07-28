@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+
 import { Box, Grid, Typography } from '@mui/material';
 import Image from 'next/image';
 

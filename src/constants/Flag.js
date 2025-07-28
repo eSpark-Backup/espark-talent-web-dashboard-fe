@@ -1,4 +1,3 @@
-import React from 'react';
 import Flag from 'react-country-flag';
 
 const FlagIcon = ({ countryCode }) => {

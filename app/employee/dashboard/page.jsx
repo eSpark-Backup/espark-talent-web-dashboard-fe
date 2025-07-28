@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+
 import { Box, Grid, Skeleton, Stack } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { useQuery } from '@tanstack/react-query';
@@ -41,7 +41,7 @@ const Page = () => {
           return data;
         })
         .catch((err) => {
-          Toast('error', err.message || 'Failed to get data');
+          Toast('error', err?.message || 'Failed to get data');
         });
     },
   });

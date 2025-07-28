@@ -1,5 +1,4 @@
 import { Box, Typography } from '@mui/material';
-import React from 'react';
 
 const SettingTitle = ({ Setting_Data }) => {
   const { title, description } = Setting_Data;

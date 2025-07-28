@@ -1,5 +1,6 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+
 import {
   Grid,
   Box,
@@ -114,7 +115,7 @@ const Page = () => {
       Toast('success', 'Request updated successfully');
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to delete data');
+      Toast('error', err?.message || 'Failed to delete data');
     },
   });
 
@@ -184,7 +185,7 @@ const Page = () => {
         dispatch(fetchLeaveRequestsSuccess(tempData));
         return tempData;
       } catch (err) {
-        Toast('error', err.message || 'Failed to get data');
+        Toast('error', err?.message || 'Failed to get data');
         return [];
       }
     },
@@ -216,7 +217,7 @@ const Page = () => {
         dispatch(fetchTimeOffRequestSuccess(tempData));
         return tempData;
       } catch (err) {
-        Toast('error', err.message || 'Failed to get data');
+        Toast('error', err?.message || 'Failed to get data');
         return [];
       }
     },
@@ -234,7 +235,7 @@ const Page = () => {
         dispatch(fetchLeaveBalanceRequestSuccess(data));
         return data;
       } catch (err) {
-        Toast('error', err.message || 'Failed to get data');
+        Toast('error', err?.message || 'Failed to get data');
         return [];
       }
     },
@@ -283,7 +284,7 @@ const Page = () => {
       Toast('success', 'File downloaded');
     },
     onError: (err) => {
-      Toast('error', err.message || 'File not downloaded');
+      Toast('error', err?.message || 'File not downloaded');
     },
   });
   const handleDownloadReport = () => {

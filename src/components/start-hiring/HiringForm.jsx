@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+
 import { Box, Grid, Typography } from '@mui/material';
 
 import HiringDate from '@/src/components/start-hiring/HiringDate';

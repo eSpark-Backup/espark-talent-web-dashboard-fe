@@ -1,6 +1,7 @@
 import { PUNCH_IN } from '@/src/constants/punch-in/create-punch';
 import { Button, Grid, Typography } from '@mui/material';
-import React, { useState } from 'react';
+import { useState } from 'react';
+
 import dayjs from 'dayjs';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
@@ -28,7 +29,7 @@ const MarkCheckOut = () => {
       Toast('success', 'Data updated successfully');
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to update data');
+      Toast('error', err?.message || 'Failed to update data');
     },
   });
 

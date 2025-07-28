@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+
 import { Box } from '@mui/material';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useDispatch, useSelector } from 'react-redux';
@@ -72,7 +73,7 @@ const Salary = ({ timeTracking }) => {
           return tempSalary || [];
         })
         .catch((err) => {
-          Toast('error', err.message || 'Failed to fetch data');
+          Toast('error', err?.message || 'Failed to fetch data');
           dispatch(getEmpSalaryRequestFailed());
           console.error(err);
         });
@@ -91,7 +92,7 @@ const Salary = ({ timeTracking }) => {
       link.parentNode.removeChild(link);
       Toast('success', 'File downloaded');
     },
-    onError: (err) => Toast('error', err.message || 'Failed to download file'),
+    onError: (err) => Toast('error', err?.message || 'Failed to download file'),
   });
 
   const handleDelete = () => {
@@ -103,7 +104,9 @@ const Salary = ({ timeTracking }) => {
         dispatch(deleteEmpSalary(selectedId));
         QueryClient.invalidateQueries(['hr-employee-get-salary']);
       })
-      .catch((err) => Toast('error', err.message || 'Failed to delete salary'));
+      .catch((err) =>
+        Toast('error', err?.message || 'Failed to delete salary')
+      );
   };
 
   function processColumns() {

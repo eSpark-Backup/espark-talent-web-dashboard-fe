@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 import {
   Box,
   Button,
@@ -41,7 +42,7 @@ const EmployeeContractModal = ({ open, onClose }) => {
       dispatch(getEmployeesCompanyContractRequestSuccess(tempData));
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to update data');
+      Toast('error', err?.message || 'Failed to update data');
     },
   });
   const [formData, setFormData] = useState(null);

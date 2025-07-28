@@ -1,5 +1,5 @@
 import { Box } from '@mui/material';
-import React from 'react';
+
 import AppTable from '@/src/components/app-table/AppTable';
 import { contractColumn, contractData } from '@/src/data/tables/hr/contract';
 

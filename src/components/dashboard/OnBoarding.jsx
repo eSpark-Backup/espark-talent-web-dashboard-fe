@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+
 import { Typography, Box, Grid } from '@mui/material';
 
 import { COMPANY_ONBOARDING, HIRING_STATUS } from '@/src/constants/dashboard';

@@ -1,4 +1,3 @@
-import React from 'react';
 import EditProfile from '@/src/components/setttings/EditProfile';
 
 const Page = () => {

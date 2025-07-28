@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo } from 'react';
+
 import {
   Box,
   Button,
@@ -69,7 +70,7 @@ const EditSalaryForm = ({ onClose, open, selectedId }) => {
       onClose();
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to update data');
+      Toast('error', err?.message || 'Failed to update data');
     },
   });
 

@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
+
 import { Box, Typography } from '@mui/material';
 import { Clock_Title } from '@/src/constants/employee-dashboard';
 import { Clock_Dial } from '@/src/constants/employee-dashboard';
@@ -15,7 +16,7 @@ const Clock = () => {
     city: '',
   });
 
-  React.useEffect(() => {
+  useEffect(() => {
     const interval = setInterval(() => {
       const now = new Date();
       const options = {

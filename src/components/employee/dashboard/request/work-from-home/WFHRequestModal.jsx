@@ -1,4 +1,5 @@
-import React, { forwardRef, useEffect } from 'react';
+import { forwardRef, useEffect } from 'react';
+
 import { Box, Typography } from '@mui/material';
 
 import WFHRequestForm from '@/src/components/employee/dashboard/request/work-from-home/WFHRequestForm';

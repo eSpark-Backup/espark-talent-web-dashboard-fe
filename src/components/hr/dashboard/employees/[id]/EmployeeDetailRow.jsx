@@ -1,6 +1,5 @@
 import { ellipsisWithTooltip } from '@/src/utils/tooltipEllipsis';
 import { Box, Grid, Tooltip, Typography } from '@mui/material';
-import React from 'react';
 
 const EmployeeDetailRow = ({ fontSize, darkBack, label, value }) => {
   return (

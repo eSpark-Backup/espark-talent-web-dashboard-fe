@@ -1,5 +1,6 @@
 'use client';
-import React, { useState } from 'react';
+import { useState } from 'react';
+
 import { Typography } from '@mui/material';
 import { Box } from '@mui/system';
 
@@ -23,7 +24,7 @@ const Page = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const [currentStep, setCurrentStep] = useState(1);
-  const { addClientForm } = useSelector((state) => state.hr?.clients);
+  const { addClientForm } = useSelector((state) => state?.hr?.clients);
   const handleGoNext = () => {
     if (currentStep === formSteps.length) return;
     setCurrentStep((ps) => ps + 1);

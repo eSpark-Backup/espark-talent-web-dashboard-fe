@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+
 import { Grid, Box, Typography } from '@mui/material';
 
 import Heading from '@/src/components/global/Heading';
@@ -30,7 +30,7 @@ const Page = () => {
         })
         .catch((err) => {
           dispatch(fetchClientPoliciesRequestFailed());
-          Toast('error', err.message || 'Failed to get data');
+          Toast('error', err?.message || 'Failed to get data');
         });
     },
   });

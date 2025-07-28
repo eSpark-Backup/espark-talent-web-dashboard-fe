@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+
 import { Grid, Box, Typography } from '@mui/material';
 
 import { GUIDE_DATA } from '@/src/constants/guide';
@@ -32,7 +32,7 @@ const Page = () => {
         })
         .catch((err) => {
           dispatch(fetchEmpGuidesDataRequestFailed());
-          Toast('error', err.message || 'Failed to get data');
+          Toast('error', err?.message || 'Failed to get data');
         });
     },
   });

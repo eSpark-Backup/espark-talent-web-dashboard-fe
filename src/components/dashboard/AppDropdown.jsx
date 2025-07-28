@@ -1,5 +1,5 @@
-import React, { Fragment, useEffect, useRef, useState } from 'react';
-import PropTypes from 'prop-types';
+import { Fragment, useEffect, useRef, useState } from 'react';
+
 import { Box, Grid, Typography } from '@mui/material';
 import Image from 'next/image';
 import Skeleton from '@mui/material/Skeleton';
@@ -636,14 +636,6 @@ const AppDropdown = ({
       </Box>
     </Grid>
   );
-};
-
-AppDropdown.propTypes = {
-  selectedItem: PropTypes.string.isRequired,
-  isLoadingList: PropTypes.bool.isRequired,
-  setIsLoadingList: PropTypes.func.isRequired,
-  setSelectedItem: PropTypes.func.isRequired,
-  data: PropTypes.array.isRequired,
 };
 
 export default AppDropdown;

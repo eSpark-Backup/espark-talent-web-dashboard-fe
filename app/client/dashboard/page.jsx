@@ -1,5 +1,6 @@
 'use client';
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
+
 import { Grid, Box, Stack, Skeleton } from '@mui/material';
 
 import OnBoarding from '@/src/components/dashboard/OnBoarding';
@@ -30,7 +31,7 @@ const Page = () => {
       return data;
     },
     onError: (err) => {
-      Toast('error', err.message || 'File not downloaded');
+      Toast('error', err?.message || 'File not downloaded');
     },
   });
   useEffect(() => {

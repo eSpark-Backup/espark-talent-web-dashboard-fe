@@ -1,5 +1,6 @@
 'use client';
-import React, { useState } from 'react';
+import { useState } from 'react';
+
 import {
   Avatar,
   Button,
@@ -49,7 +50,7 @@ const EmployeeView = ({ status, data, isLoading }) => {
       setOpen(null);
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to delete data');
+      Toast('error', err?.message || 'Failed to delete data');
       dispatch(deleteCurrentEmpDataFailed());
     },
   });

@@ -1,4 +1,5 @@
-import React, { forwardRef } from 'react';
+import { forwardRef } from 'react';
+
 import {
   Box,
   Button,
@@ -19,6 +20,7 @@ import { api } from '@/src/services/apiService';
 import { HR_ACCOUNTS } from '@/src/services/apiService/apiEndPoints';
 import { Toast } from '@/src/utils/toast';
 import { useState } from 'react';
+
 import { useDispatch } from 'react-redux';
 import { addAccount } from '@/src/redux/slices/hrSlices/settingsSlice';
 import UploadImageModal from '@/src/components/employee-data/UploadImageModal';
@@ -52,7 +54,7 @@ const AddAccountModal = forwardRef(({ open, onClose }, ref) => {
       queryClient?.invalidateQueries(['get-company-accounts']);
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to post data');
+      Toast('error', err?.message || 'Failed to post data');
     },
   });
   const {

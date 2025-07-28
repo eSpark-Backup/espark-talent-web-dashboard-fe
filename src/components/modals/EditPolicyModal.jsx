@@ -1,4 +1,5 @@
 import React, { forwardRef, useState } from 'react';
+
 import {
   Box,
   Button,
@@ -36,7 +37,7 @@ const EditPolicyModal = forwardRef(({ open, onClose, modalData }, ref) => {
       queryClient.invalidateQueries(['hr-policy-query']);
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to post data');
+      Toast('error', err?.message || 'Failed to post data');
     },
   });
   const {

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 import { Box, Button, Grid, Modal, Typography } from '@mui/material';
 
 import { addOnboardFormSchema } from '@/src/validation/addOnBoardForm';
@@ -51,7 +52,7 @@ const AddOnboardModal = ({ open, onClose }) => {
       clientQuery.invalidateQueries(['hr-client-on-board-req-query']);
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to post data');
+      Toast('error', err?.message || 'Failed to post data');
     },
   });
   const {

@@ -1,5 +1,6 @@
 'use client';
-import React, { useState } from 'react';
+import { useState } from 'react';
+
 import {
   Avatar,
   Button,
@@ -54,7 +55,7 @@ const ClientView = ({ status, data, isLoading }) => {
     },
     onError: (err) => {
       dispatch(fetchClientHomeDataRequestFailed());
-      Toast('error', err.message || 'Failed to update data');
+      Toast('error', err?.message || 'Failed to update data');
     },
   });
 
@@ -71,7 +72,7 @@ const ClientView = ({ status, data, isLoading }) => {
       return data;
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to update status');
+      Toast('error', err?.message || 'Failed to update status');
     },
   });
   const clientDeleteMutation = useMutation({
@@ -87,7 +88,7 @@ const ClientView = ({ status, data, isLoading }) => {
       return data;
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to update status');
+      Toast('error', err?.message || 'Failed to update status');
     },
   });
   const handleConfirmDelete = () => {

@@ -1,4 +1,3 @@
-import React from 'react';
 import AppTable from '@/src/components/app-table-new/AppTable';
 
 import { employeeLeaveBalanceColumn } from '@/src/data/tables/requests-data';
@@ -46,7 +45,7 @@ const LeaveBalanceTable = () => {
         })
         .catch((err) => {
           dispatch(getEmpLeaveRequestDataFailed());
-          Toast('error', err.message || 'Failed to get data');
+          Toast('error', err?.message || 'Failed to get data');
         });
     },
   });

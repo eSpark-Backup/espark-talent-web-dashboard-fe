@@ -1,4 +1,5 @@
-import React, { forwardRef } from 'react';
+import { forwardRef } from 'react';
+
 import { Box, Typography } from '@mui/material';
 import LeaveRequestForm from '@/src/components/employee/dashboard/request/leave/LeaveRequestForm';
 

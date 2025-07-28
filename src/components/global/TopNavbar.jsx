@@ -1,4 +1,3 @@
-import React from 'react';
 import { Box, Typography } from '@mui/material';
 import { DASHBOARD_HEADER } from '@/src/constants/dashboard';
 import Link from 'next/link';

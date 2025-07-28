@@ -1,5 +1,6 @@
 'use client';
-import * as React from 'react';
+import { useEffect, useRef } from 'react';
+
 import Box from '@mui/material/Box';
 import Popper from '@mui/material/Popper';
 import { Button, Fade, MenuItem, Tooltip, Typography } from '@mui/material';
@@ -21,7 +22,7 @@ export default function WorkSpacePopper({
   const { currentWorkSpace } = useSelector((state) => state?.emp?.home);
   const dispatch = useDispatch();
   const router = useRouter();
-  const workspacePopupRef = React.useRef(null);
+  const workspacePopupRef = useRef(null);
 
   const handleClick = (event) => {
     setWorkspace(event?.currentTarget);
@@ -41,7 +42,7 @@ export default function WorkSpacePopper({
     }
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
     document.addEventListener('scroll', () => setWorkspace(null));
     return () => {

@@ -75,7 +75,7 @@ const invoiceTrackingSlice = createSlice({
       state.isLoading = false;
     },
     fetchOtherInvoicesData: (state, action) => {
-      state.otherInvoices = [...state.otherInvoices, ...action?.payload];
+      state.otherInvoices = [...state.otherInvoices, ...action.payload];
     },
   },
 });

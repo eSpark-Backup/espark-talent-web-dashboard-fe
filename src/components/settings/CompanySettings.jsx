@@ -1,4 +1,3 @@
-import React from 'react';
 import Skeleton from '@mui/material/Skeleton';
 import { Box } from '@mui/system';
 
@@ -28,7 +27,7 @@ const CompanySettings = () => {
           return data;
         })
         .catch((err) => {
-          Toast('error', err.message || 'Failed to get data');
+          Toast('error', err?.message || 'Failed to get data');
         });
     },
   });
@@ -72,7 +71,7 @@ const CompanySettings = () => {
         dispatch(getCompSettingsData(data || {}));
       })
       .catch((err) => {
-        Toast('error', err.message || 'Failed to save settings');
+        Toast('error', err?.message || 'Failed to save settings');
         console.error(err);
       });
   };

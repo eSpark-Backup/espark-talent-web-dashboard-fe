@@ -1,4 +1,3 @@
-import React from 'react';
 import { Box, Button, Grid, Modal, Typography } from '@mui/material';
 
 import { hiringRequestSchema } from '@/src/validation/hiringRequestForm';
@@ -6,6 +5,7 @@ import FormInput from '@/src/components/form/ui-elements/FormInput';
 import { hringRequestForm } from '@/src/data/forms/hiring-request';
 import { useFormik } from 'formik';
 import { FORM_DATA } from '@/src/constants/form';
+import React from 'react';
 
 const HiringRequestModal = ({ open, onClose }) => {
   const {

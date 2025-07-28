@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+
 import { Box } from '@mui/material';
 
 import SettingTitle from '@/src/components/setttings/SettingTitle';

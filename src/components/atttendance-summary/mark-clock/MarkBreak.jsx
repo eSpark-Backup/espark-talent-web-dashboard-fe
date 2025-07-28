@@ -2,12 +2,14 @@ import { PUNCH_IN } from '@/src/constants/punch-in/create-punch';
 import { Box, Button } from '@mui/material';
 import { useMutation } from '@tanstack/react-query';
 import Image from 'next/image';
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
+
 import { useDispatch, useSelector } from 'react-redux';
 import dayjs from 'dayjs';
 import { api } from '@/src/services/apiService';
 import { EMP_HOME } from '@/src/services/apiService/apiEndPoints';
 import { useState } from 'react';
+
 import {
   markBreak,
   markResume,
@@ -80,7 +82,7 @@ const MarkBreak = ({ icon }) => {
       }
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to update data');
+      Toast('error', err?.message || 'Failed to update data');
     },
   });
   const handleToggleBreak = () => {

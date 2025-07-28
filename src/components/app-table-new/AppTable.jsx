@@ -1,5 +1,5 @@
-import React, { memo, useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
+import { memo, useEffect, useState } from 'react';
+
 import TableHead from '@/src/components/app-table-new/AppTableHead';
 import AppTableBody from '@/src/components/app-table-new/AppTableBody';
 import { Box } from '@mui/material';
@@ -129,11 +129,6 @@ const AppTable = ({
       )}
     </>
   );
-};
-
-AppTable.propTypes = {
-  prefixIcon: PropTypes.array,
-  suffixIcon: PropTypes.array,
 };
 
 export default memo(AppTable);

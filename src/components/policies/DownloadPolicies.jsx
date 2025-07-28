@@ -1,4 +1,3 @@
-import React from 'react';
 import { Box, CircularProgress, Typography } from '@mui/material';
 import Image from 'next/image';
 import { DOWNLOAD_POLICY } from '@/src/services/apiService/apiEndPoints';
@@ -22,7 +21,7 @@ const DownloadPolicies = ({ image, reportHeading, downloadBtn, data, id }) => {
       Toast('success', 'File downloaded');
     },
     onError: (err) => {
-      Toast('error', err.message || 'File not downloaded');
+      Toast('error', err?.message || 'File not downloaded');
     },
   });
 

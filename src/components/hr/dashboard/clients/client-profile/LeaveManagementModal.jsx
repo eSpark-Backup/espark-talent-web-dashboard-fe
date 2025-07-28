@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   Box,
   Button,
@@ -17,7 +16,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useMutation } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import { HR_EMP_TIME_AND_LEAVES } from '@/src/services/apiService/apiEndPoints';
-import { useState } from 'react';
+import React, { useState } from 'react';
+
 import {
   updateEmpLeaves,
   updateEmpLeavesRequest,
@@ -49,7 +49,7 @@ const LeaveManagementModal = ({ open, onClose }) => {
       onClose();
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to post data');
+      Toast('error', err?.message || 'Failed to post data');
     },
   });
   const objectifiedData = (data, newVals) => {

@@ -1,4 +1,5 @@
-import React, { useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
+
 import { Backdrop, Box, Modal, Typography } from '@mui/material';
 
 import { ATTENDANCE_STATUS, FILTER, STATUS } from '@/src/constants/filter';

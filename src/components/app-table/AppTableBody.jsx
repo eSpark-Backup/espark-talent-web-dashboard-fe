@@ -1,4 +1,5 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
+
 import { Typography } from '@mui/material';
 import TableHiddenBody from '@/src/components/app-table/AppTableHiddenBody';
 import { renderCellContent } from '@/src/components/app-table/AppTableCell';

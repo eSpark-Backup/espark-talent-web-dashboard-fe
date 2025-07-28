@@ -62,7 +62,8 @@ const clientSlice = createSlice({
       };
     },
     getClientInterviewSchedule: (state, action) => {
-      state.currentClientData.hireAndOnBoard.interviewSchedule = action?.payload;
+      state.currentClientData.hireAndOnBoard.interviewSchedule =
+        action?.payload;
     },
     getClientOnboarding: (state, action) => {
       state.currentClientData.hireAndOnBoard.onBoarding = action?.payload;

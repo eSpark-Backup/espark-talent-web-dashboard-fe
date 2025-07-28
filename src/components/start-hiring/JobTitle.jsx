@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+
 import { Grid, Typography } from '@mui/material';
 
 import RoleType from '@/src/components/start-hiring/RoleType';

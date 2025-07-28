@@ -1,5 +1,6 @@
 'use client';
 import React from 'react';
+
 import { Box, Button, Typography } from '@mui/material';
 import ReportGmailerrorredIcon from '@mui/icons-material/ReportGmailerrorred';
 import RefreshOutlinedIcon from '@mui/icons-material/RefreshOutlined';
@@ -14,7 +15,7 @@ class WebError extends React.Component {
   }
 
   static getInitialProps({ res, err }) {
-    const statusCode = res ? res.statusCode : err ? err.statusCode : 404;
+    const statusCode = res ? res.statusCode : err ? err?.statusCode : 404;
     return { statusCode };
   }
 

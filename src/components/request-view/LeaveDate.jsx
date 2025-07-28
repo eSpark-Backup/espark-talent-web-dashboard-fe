@@ -1,4 +1,3 @@
-import React from 'react';
 import { Box, Typography } from '@mui/material';
 
 import LeaveDatePicker from '@/src/components/request-view/LeaveDatepicker';

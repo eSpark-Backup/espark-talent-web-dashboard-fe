@@ -1,5 +1,6 @@
 'use client';
-import React, { useState } from 'react';
+import { useState } from 'react';
+
 import { Grid, Box } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -56,7 +57,7 @@ const Page = () => {
         })
         .catch((err) => {
           dispatch(fetchClientCompanyContractRequestFailed());
-          Toast('error', err.message || 'Failed to get data');
+          Toast('error', err?.message || 'Failed to get data');
         });
     },
   });
@@ -83,7 +84,7 @@ const Page = () => {
         })
         .catch((err) => {
           dispatch(fetchClientEmpContractRequestFailed());
-          Toast('error', err.message || 'Failed to get data');
+          Toast('error', err?.message || 'Failed to get data');
         });
     },
   });
@@ -124,7 +125,7 @@ const Page = () => {
       Toast('success', 'File downloaded');
     },
     onError: (err) => {
-      Toast('error', err.message || 'File not downloaded');
+      Toast('error', err?.message || 'File not downloaded');
     },
   });
 

@@ -195,7 +195,7 @@ const employeeSlice = createSlice({
       state.isLoading = true;
     },
     getEmpRequestSuccess: (state, action) => {
-      const { type, data } = action?.payload;
+      const { type, data } = action.payload;
       state.isLoading = false;
 
       if (state?.requests[type]) {

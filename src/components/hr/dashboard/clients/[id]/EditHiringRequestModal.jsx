@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   Box,
   Button,
@@ -20,6 +19,7 @@ import { Toast } from '@/src/utils/toast';
 import { countriesList } from '@/src/constants/countries';
 import dayjs from 'dayjs';
 import { getSelectedCountry } from '@/src/utils/salaryFormat';
+import React from 'react';
 
 const EditHiringRequestModal = ({ open, onClose, existingData }) => {
   const clientQuery = useQueryClient();
@@ -60,7 +60,7 @@ const EditHiringRequestModal = ({ open, onClose, existingData }) => {
       handleCloseModal();
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to update data');
+      Toast('error', err?.message || 'Failed to update data');
     },
   });
 

@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+
 import { Box, Grid } from '@mui/material';
 
 import ResourceCard from '@/src/components/resources/ResourceCard';

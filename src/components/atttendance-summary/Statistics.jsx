@@ -1,6 +1,6 @@
 import { Statistics_Data } from '@/src/constants/employee-dashboard';
 import { Box, Typography } from '@mui/material';
-import React from 'react';
+
 import { useSelector } from 'react-redux';
 import Stack from '@mui/material/Stack';
 

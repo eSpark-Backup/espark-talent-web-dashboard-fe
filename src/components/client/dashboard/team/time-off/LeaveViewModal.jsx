@@ -1,4 +1,5 @@
-import React, { forwardRef } from 'react';
+import { forwardRef } from 'react';
+
 import { Avatar, Box, Button, Grid, Tooltip, Typography } from '@mui/material';
 import Image from 'next/image';
 import { getCamelCapitalized } from '@/src/utils/stringModification';

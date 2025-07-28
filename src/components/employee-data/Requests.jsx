@@ -1,5 +1,6 @@
 'use client';
-import React, { useState } from 'react';
+import { useState } from 'react';
+
 import { Box, Modal } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -78,7 +79,7 @@ const Request = () => {
         return tempRequest || [];
       } catch (err) {
         dispatch(getEmpRequestFailed());
-        Toast('error', err.message || 'Failed to get data');
+        Toast('error', err?.message || 'Failed to get data');
         return [];
       }
     },
@@ -117,7 +118,7 @@ const Request = () => {
         })
         .catch((err) => {
           dispatch(getEmpRequestFailed());
-          Toast('error', err.message || 'Failed to get data');
+          Toast('error', err?.message || 'Failed to get data');
         });
     },
     enabled: !!currentEmployee?.email,
@@ -165,7 +166,7 @@ const Request = () => {
         })
         .catch((err) => {
           dispatch(getEmpRequestFailed());
-          Toast('error', err.message || 'Failed to get data');
+          Toast('error', err?.message || 'Failed to get data');
         });
     },
   });
@@ -179,7 +180,7 @@ const Request = () => {
       Toast('success', 'Request updated successfully');
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to delete data');
+      Toast('error', err?.message || 'Failed to delete data');
     },
   });
 

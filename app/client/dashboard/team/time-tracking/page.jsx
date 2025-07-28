@@ -1,5 +1,6 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+
 import { Grid, Box, Typography, Button, CircularProgress } from '@mui/material';
 import Skeleton from '@mui/material/Skeleton';
 
@@ -72,7 +73,7 @@ const Page = () => {
         })
         .catch((err) => {
           dispatch(fetchTimeTrackingDataRequestFailed());
-          Toast('error', err.message || 'Failed to get data');
+          Toast('error', err?.message || 'Failed to get data');
         });
     },
   });
@@ -126,7 +127,7 @@ const Page = () => {
     },
     onError: (err) => {
       dispatch(fetchTimeTrackingDataRequestFailed());
-      Toast('error', err.message || 'Failed to get data');
+      Toast('error', err?.message || 'Failed to get data');
     },
   });
   const [isLoadingEmployee, setIsLoadingEmployee] = useState(false);
@@ -156,7 +157,7 @@ const Page = () => {
       Toast('success', 'File downloaded');
     },
     onError: (err) => {
-      Toast('error', err.message || 'File not downloaded');
+      Toast('error', err?.message || 'File not downloaded');
     },
   });
   const handleDownloadReport = () => {

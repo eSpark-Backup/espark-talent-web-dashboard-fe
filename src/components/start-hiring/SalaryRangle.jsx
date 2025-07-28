@@ -1,4 +1,5 @@
-import React, { Fragment } from 'react';
+import { Fragment } from 'react';
+
 import { Box, Grid, TextField, Typography } from '@mui/material';
 
 import { HIRING_FORM_DATA } from '@/src/constants/hiring';

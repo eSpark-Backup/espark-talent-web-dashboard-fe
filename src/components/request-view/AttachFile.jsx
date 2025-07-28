@@ -1,7 +1,7 @@
-import React from 'react';
 import { InputAdornment, TextField } from '@mui/material';
 import Image from 'next/image';
 import { useRef } from 'react';
+
 import styles from '@/src/components/requestview/image.module.css';
 
 const AttachDoc = () => {

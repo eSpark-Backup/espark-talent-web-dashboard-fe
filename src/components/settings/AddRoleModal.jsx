@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { Box, Button, Modal, TextField, Typography } from '@mui/material';
 import { SETTING } from '@/src/constants/setting-hr';
 

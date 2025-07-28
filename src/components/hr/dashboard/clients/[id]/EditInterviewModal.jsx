@@ -19,6 +19,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import dayjs from 'dayjs';
 import { useFormik } from 'formik';
 import React, { useMemo, useCallback } from 'react';
+
 import { useSelector } from 'react-redux';
 
 const EditInterviewModal = ({ open, onClose, existingData }) => {
@@ -56,7 +57,7 @@ const EditInterviewModal = ({ open, onClose, existingData }) => {
       setTimeout(() => handleCloseModal(), 0);
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to post data');
+      Toast('error', err?.message || 'Failed to post data');
     },
   });
 

@@ -1,4 +1,5 @@
-import React, { forwardRef } from 'react';
+import { forwardRef } from 'react';
+
 import { Box, Grid, Modal, Typography } from '@mui/material';
 
 import { useFormik } from 'formik';
@@ -47,7 +48,7 @@ const EmpPunchReqFilterFormModal = forwardRef(
       },
       onError: (err) => {
         dispatch(getEmpPunchRequestDataFailed());
-        Toast('error', err.message || 'Failed to fetch data');
+        Toast('error', err?.message || 'Failed to fetch data');
       },
     });
 
@@ -111,7 +112,7 @@ const EmpPunchReqFilterFormModal = forwardRef(
       },
       onError: (err) => {
         dispatch(getEmpPunchRequestDataFailed());
-        Toast('error', err.message || 'Failed to fetch data');
+        Toast('error', err?.message || 'Failed to fetch data');
       },
     });
 

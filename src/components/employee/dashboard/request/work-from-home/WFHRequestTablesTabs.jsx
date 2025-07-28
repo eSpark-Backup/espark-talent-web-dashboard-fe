@@ -11,7 +11,8 @@ import {
   Typography,
 } from '@mui/material';
 import Image from 'next/image';
-import React, { useState } from 'react';
+import { useState } from 'react';
+
 import { useDispatch } from 'react-redux';
 import { filterWFHForm } from '@/src/data/forms/filter-form';
 
@@ -84,7 +85,7 @@ const WFHRequestTablesTabs = ({
       return data;
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to update data');
+      Toast('error', err?.message || 'Failed to update data');
       dispatch(getEmpWfhRequestDataFailed());
     },
   });
@@ -101,7 +102,7 @@ const WFHRequestTablesTabs = ({
         })
         .catch((err) => {
           dispatch(getEmpWfhRequestDataFailed());
-          Toast('error', err.message || 'Failed to get data');
+          Toast('error', err?.message || 'Failed to get data');
         });
     },
   });

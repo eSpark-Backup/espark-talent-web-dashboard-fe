@@ -1,4 +1,3 @@
-import React from 'react';
 import WideFormInput from '@/src/components/form/ui-elements/WideFormInput';
 import { Box, Button, CircularProgress } from '@mui/material';
 import { useFormik } from 'formik';
@@ -54,7 +53,7 @@ const WFHRequestForm = ({ handleClose }) => {
       return data;
     },
     onError: (err) => {
-      console.log(err.message, 'error invoked');
+      console.log(err?.message, 'error invoked');
       dispatch(getEmpWfhRequestDataFailed());
     },
   });
@@ -80,7 +79,7 @@ const WFHRequestForm = ({ handleClose }) => {
       Toast('success', 'Data posted successfully');
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to post data');
+      Toast('error', err?.message || 'Failed to post data');
       dispatch(createEmpWfhRequestFailed());
     },
   });

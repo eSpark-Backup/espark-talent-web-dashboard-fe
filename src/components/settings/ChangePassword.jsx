@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { Box, useMediaQuery } from '@mui/system';
 import { passwordChangeSchema } from '@/src/validation/password';
 import { passwordformElement } from '@/src/data/forms/password-change-form';
@@ -54,7 +52,9 @@ const ChangePassword = () => {
         return api['updateData'](`${HR_CHANGE_PASSWORD}`, formData);
       } catch (err) {
         console.error('Error during POST request:', err);
-        throw new Error(err.response?.data?.message || 'Failed to update data');
+        throw new Error(
+          err?.response?.data?.message || 'Failed to update data'
+        );
       }
     },
     onSuccess: (data) => {
@@ -63,11 +63,11 @@ const ChangePassword = () => {
       resetForm();
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to post data');
+      Toast('error', err?.message || 'Failed to post data');
       console.error('Error during mutation:', {
-        err: err.message,
-        name: err.name,
-        stack: err.stack,
+        err: err?.message,
+        name: err?.name,
+        stack: err?.stack,
       });
     },
   });

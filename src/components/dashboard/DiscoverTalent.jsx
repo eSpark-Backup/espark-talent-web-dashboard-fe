@@ -1,4 +1,3 @@
-import React from 'react';
 import { Typography, Box, Stack } from '@mui/material';
 import Image from 'next/image';
 import Skeleton from '@mui/material/Skeleton';

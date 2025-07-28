@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+
 import { Grid, Box } from '@mui/material';
 
 import { REPORT_DATA } from '@/src/constants/report';

@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+
 import { Box, Button, Tab, Tabs } from '@mui/material';
 import { a11yProps } from '@/src/utils/tabs';
 import AppTable from '@/src/components/app-table-new/AppTable';
@@ -21,6 +22,7 @@ import {
   getHrEmpTime,
 } from '@/src/redux/slices/hrSlices/employeeSlice';
 import { useEffect } from 'react';
+
 import dayjs from 'dayjs';
 
 const TimeAndLeaves = () => {
@@ -77,7 +79,7 @@ const TimeAndLeaves = () => {
           return tempData || [];
         })
         .catch((err) => {
-          Toast('error', err.message || 'Failed to get data');
+          Toast('error', err?.message || 'Failed to get data');
         });
     },
   });
@@ -125,7 +127,7 @@ const TimeAndLeaves = () => {
     },
     onError: (err) => {
       setIsLoadingMutation(false);
-      Toast('error', err.message || 'Failed to update data');
+      Toast('error', err?.message || 'Failed to update data');
     },
   });
   const updateLeaveStatusMutation = useMutation({
@@ -140,7 +142,7 @@ const TimeAndLeaves = () => {
       Toast('success', 'Leaves updates successfully');
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to post data');
+      Toast('error', err?.message || 'Failed to post data');
     },
   });
 

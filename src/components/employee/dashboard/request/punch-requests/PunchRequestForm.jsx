@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+
 import WideFormInput from '@/src/components/form/ui-elements/WideFormInput';
 import { createPunchRequestForm } from '@/src/data/forms/create-punch-request';
 import { Box, Button, CircularProgress } from '@mui/material';
@@ -44,7 +45,7 @@ const PunchRequestForm = ({ handleClose }) => {
       Toast('success', 'Data posted successfully');
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to post data');
+      Toast('error', err?.message || 'Failed to post data');
     },
   });
   const preetyTime = (time) => {

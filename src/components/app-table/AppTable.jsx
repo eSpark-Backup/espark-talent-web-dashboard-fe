@@ -1,5 +1,5 @@
-import React, { memo } from 'react';
-import PropTypes from 'prop-types';
+import { memo } from 'react';
+
 import { Box, Pagination, Stack } from '@mui/material';
 import TableHead from '@/src/components/app-table/AppTableHead';
 import AppTableBody from '@/src/components/app-table/AppTableBody';
@@ -49,11 +49,6 @@ const AppTable = ({
       )}
     </>
   );
-};
-
-AppTable.propTypes = {
-  prefixIcon: PropTypes.array,
-  suffixIcon: PropTypes.array,
 };
 
 export default memo(AppTable);

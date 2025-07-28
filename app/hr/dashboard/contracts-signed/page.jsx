@@ -1,5 +1,6 @@
 'use client';
-import React, { useState } from 'react';
+import { useState } from 'react';
+
 import { Grid, Box, Button } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -83,7 +84,7 @@ const Page = () => {
         })
         .catch((err) => {
           dispatch(getOffShoreContractRequestFailed());
-          Toast('error', err.message || 'Failed to get data');
+          Toast('error', err?.message || 'Failed to get data');
         });
     },
   });
@@ -112,7 +113,7 @@ const Page = () => {
         })
         .catch((err) => {
           dispatch(getClientsCompanyContractRequestFailed());
-          Toast('error', err.message || 'Failed to get data');
+          Toast('error', err?.message || 'Failed to get data');
         });
     },
   });
@@ -140,7 +141,7 @@ const Page = () => {
       }
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to update data');
+      Toast('error', err?.message || 'Failed to update data');
       dispatch(getClientsCompanyContractRequestFailed());
     },
   });
@@ -163,7 +164,7 @@ const Page = () => {
       dispatch(getOffShoreContractRequestSuccess(tempData || []));
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to update data');
+      Toast('error', err?.message || 'Failed to update data');
       dispatch(getOffShoreContractRequestFailed());
     },
   });
@@ -235,7 +236,7 @@ const Page = () => {
       handleClose();
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to delete data');
+      Toast('error', err?.message || 'Failed to delete data');
       handleClose();
     },
   });
@@ -268,7 +269,7 @@ const Page = () => {
       Toast('success', 'File downloaded');
     },
     onError: (err) => {
-      Toast('error', err.message || 'File not downloaded');
+      Toast('error', err?.message || 'File not downloaded');
     },
   });
   const handleConfirmDelete = () => mutate(deletingContractId);
@@ -330,7 +331,7 @@ const Page = () => {
         });
     },
     onError: (err, { setviewLoader }) => {
-      Toast('error', err.message || 'File not downloaded');
+      Toast('error', err?.message || 'File not downloaded');
       if (setviewLoader)
         setviewLoader({
           loader: false,
@@ -355,7 +356,7 @@ const Page = () => {
         });
     },
     onError: (err, { setviewLoader }) => {
-      Toast('error', err.message || 'File not downloaded');
+      Toast('error', err?.message || 'File not downloaded');
       if (setviewLoader)
         setviewLoader({
           loader: false,
@@ -380,7 +381,7 @@ const Page = () => {
         });
     },
     onError: (err, { setviewLoader }) => {
-      Toast('error', err.message || 'File not downloaded');
+      Toast('error', err?.message || 'File not downloaded');
       if (setviewLoader)
         setviewLoader({
           loader: false,

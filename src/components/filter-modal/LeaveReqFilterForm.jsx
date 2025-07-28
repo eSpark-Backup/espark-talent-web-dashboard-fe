@@ -1,4 +1,5 @@
-import React, { forwardRef } from 'react';
+import { forwardRef } from 'react';
+
 import { Box, Grid, Modal, Typography } from '@mui/material';
 
 import { useFormik } from 'formik';
@@ -66,7 +67,7 @@ const LeaveReqFilterFormModal = forwardRef(
       },
       onError: (err) => {
         dispatch(getTimeSheetDataFailed());
-        Toast('error', err.message || 'Failed to get data');
+        Toast('error', err?.message || 'Failed to get data');
       },
     });
 
@@ -110,7 +111,7 @@ const LeaveReqFilterFormModal = forwardRef(
       },
       onError: (err) => {
         dispatch(getEmpLeaveRequestDataFailed());
-        Toast('error', err.message || 'Failed to update data');
+        Toast('error', err?.message || 'Failed to update data');
       },
     });
     const {

@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
+
 import WideFormInput from '@/src/components/form/ui-elements/WideFormInput';
 import { Box, Button, CircularProgress } from '@mui/material';
 import { useFormik } from 'formik';
@@ -82,7 +83,7 @@ const LeaveRequestForm = ({ handleClose }) => {
       return data;
     },
     onError: (err) => {
-      console.log(err.message, 'error invoked');
+      console.log(err?.message, 'error invoked');
       dispatch(getEmpLeaveRequestDataFailed());
     },
   });

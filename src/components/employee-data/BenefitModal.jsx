@@ -1,4 +1,5 @@
 import React, { forwardRef } from 'react';
+
 import {
   Box,
   Button,
@@ -44,7 +45,7 @@ const BenefitForm = forwardRef(({ onClose, open, empData }, ref) => {
       onClose();
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to post data');
+      Toast('error', err?.message || 'Failed to post data');
     },
   });
   const {

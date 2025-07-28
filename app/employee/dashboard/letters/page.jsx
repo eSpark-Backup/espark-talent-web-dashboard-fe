@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+
 import { Grid, Box } from '@mui/material';
 import AppTable from '@/src/components/app-table-new/AppTable';
 import DashboardHeading from '@/src/components/dashboard/DashboardHeading';
@@ -42,7 +42,7 @@ const Page = () => {
           return newData;
         })
         .catch((err) => {
-          Toast('error', err.message || 'Failed to get data');
+          Toast('error', err?.message || 'Failed to get data');
           dispatch(fetchEmpLettersFailed());
         });
     },
@@ -63,7 +63,7 @@ const Page = () => {
       Toast('success', 'File downloaded');
     },
     onError: (err) => {
-      Toast('error', err.message || 'File not downloaded');
+      Toast('error', err?.message || 'File not downloaded');
     },
   });
 

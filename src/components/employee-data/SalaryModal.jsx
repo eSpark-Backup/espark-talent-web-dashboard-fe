@@ -1,4 +1,5 @@
 import React, { forwardRef, useEffect } from 'react';
+
 import {
   Box,
   Button,
@@ -43,7 +44,7 @@ const SalaryForm = forwardRef(({ onClose, open, empData }, ref) => {
       onClose();
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to post data');
+      Toast('error', err?.message || 'Failed to post data');
     },
   });
   const {

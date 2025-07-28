@@ -21,7 +21,8 @@ import { Box, Button, CircularProgress, Grid, Modal } from '@mui/material';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import dayjs from 'dayjs';
 import { useFormik } from 'formik';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { countriesList } from '@/src/constants/countries';
 
@@ -39,7 +40,7 @@ const AddEmployeeModal = ({ open, onClose }) => {
       dispatch(getClientAllEmps(data));
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to post data');
+      Toast('error', err?.message || 'Failed to post data');
     },
   });
   const { mutate, isPending } = useMutation({
@@ -56,7 +57,7 @@ const AddEmployeeModal = ({ open, onClose }) => {
       Toast('success', 'Data posted successfully');
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to post data');
+      Toast('error', err?.message || 'Failed to post data');
     },
   });
   const dispatch = useDispatch();
@@ -104,7 +105,7 @@ const AddEmployeeModal = ({ open, onClose }) => {
           return tempData;
         })
         .catch((err) => {
-          Toast('error', err.message || 'Failed to get data');
+          Toast('error', err?.message || 'Failed to get data');
         });
     },
   });

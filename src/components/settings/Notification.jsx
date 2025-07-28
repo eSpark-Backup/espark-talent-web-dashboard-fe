@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+
 import { Box, FormControlLabel, Grid, Switch } from '@mui/material';
 
 import { NotificationData } from '@/src/data/tables/notifications';

@@ -1,5 +1,6 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+
 import { Grid, Box, Button } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -60,7 +61,7 @@ const Page = () => {
         dispatch(fetchTeamMembersRequestActiveSuccess(tempData));
         return tempData;
       } catch (err) {
-        Toast('error', err.message || 'Failed to get data');
+        Toast('error', err?.message || 'Failed to get data');
         return [];
       }
     },
@@ -85,7 +86,7 @@ const Page = () => {
         dispatch(fetchTeamMembersRequestOnBoardSuccess(tempData));
         return tempData;
       } catch (err) {
-        Toast('error', err.message || 'Failed to get data');
+        Toast('error', err?.message || 'Failed to get data');
         return [];
       }
     },
@@ -110,7 +111,7 @@ const Page = () => {
         dispatch(fetchTeamMembersRequestTerminatedSuccess(tempData));
         return tempData;
       } catch (err) {
-        Toast('error', err.message || 'Failed to get data');
+        Toast('error', err?.message || 'Failed to get data');
         return [];
       }
     },

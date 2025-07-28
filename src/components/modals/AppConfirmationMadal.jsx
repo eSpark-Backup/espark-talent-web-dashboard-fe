@@ -5,7 +5,6 @@ import {
   Modal,
   Typography,
 } from '@mui/material';
-import React from 'react';
 
 const AppConfirmationMadal = ({
   title,

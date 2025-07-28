@@ -1,4 +1,3 @@
-import React from 'react';
 import { Box, Grid } from '@mui/material';
 
 import { HIRING_FORM_DATA } from '@/src/constants/hiring';

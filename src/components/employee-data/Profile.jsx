@@ -1,4 +1,3 @@
-import React from 'react';
 import { employeeProfileData } from '@/src/constants/employee-profile';
 import EditEmergencyModal from '@/src/components/employee-data/EmergencyEditModal';
 import EditPersonalModal from '@/src/components/employee-data/EditPersonalData';

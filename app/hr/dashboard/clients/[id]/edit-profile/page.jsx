@@ -1,5 +1,6 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+
 import { Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import Step from '@/src/components/form/step/Step';

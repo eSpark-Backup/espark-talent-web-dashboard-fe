@@ -1,4 +1,5 @@
-import React, { forwardRef, useState } from 'react';
+import { forwardRef, useState } from 'react';
+
 import { Box, Grid, Modal, Typography } from '@mui/material';
 
 import { useFormik } from 'formik';
@@ -126,7 +127,7 @@ const FilterFormModal = forwardRef(
       },
       onError: (err) => {
         dispatch(getTimeSheetDataFailed());
-        Toast('error', err.message || 'Failed to get data');
+        Toast('error', err?.message || 'Failed to get data');
       },
     });
     const resetMutation = useMutation({
@@ -220,7 +221,7 @@ const FilterFormModal = forwardRef(
       },
       onError: (err) => {
         dispatch(getTimeSheetDataFailed());
-        Toast('error', err.message || 'Failed to get data');
+        Toast('error', err?.message || 'Failed to get data');
       },
     });
     const {

@@ -1,7 +1,8 @@
 'use client';
 import { Button, Grid } from '@mui/material';
 import { Box, useTheme } from '@mui/system';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+
 import { useRouter } from 'next/navigation';
 import Input from '@/src/components/dashboard/Input';
 import Image from 'next/image';

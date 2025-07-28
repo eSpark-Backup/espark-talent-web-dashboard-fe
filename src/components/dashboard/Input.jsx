@@ -1,6 +1,6 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
+
 import { Box, Tooltip } from '@mui/material';
-import PropTypes from 'prop-types';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
@@ -90,13 +90,6 @@ const Input = ({
       )}
     </Box>
   );
-};
-
-Input.propTypes = {
-  prefixIcon: PropTypes.string,
-  suffixIcon: PropTypes.string,
-  handleChange: PropTypes.func,
-  value: PropTypes.string,
 };
 
 export default Input;

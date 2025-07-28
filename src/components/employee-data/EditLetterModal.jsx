@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+
 import {
   Box,
   Button,
@@ -42,7 +43,7 @@ const EditLetterForm = ({ onClose, open, selectedId }) => {
       onClose();
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to update data');
+      Toast('error', err?.message || 'Failed to update data');
     },
   });
   const {

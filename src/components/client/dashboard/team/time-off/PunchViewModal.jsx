@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+
 import { Box, Button, CircularProgress, Grid, Typography } from '@mui/material';
 import Image from 'next/image';
 import { useMutation } from '@tanstack/react-query';
@@ -26,7 +27,7 @@ const LeaveViewModal = ({ modalData, handleClose }) => {
       handleClose?.();
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to delete data');
+      Toast('error', err?.message || 'Failed to delete data');
     },
   });
   const handleClickDecline = () => {

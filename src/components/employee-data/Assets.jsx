@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+
 import { Box } from '@mui/material';
 
 import { ASSET_TABLECOLUMN } from '@/src/constants/employee-profile';
@@ -41,7 +42,7 @@ const Assets = ({ empData }) => {
       setDeletingAssetId(null);
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to delete data');
+      Toast('error', err?.message || 'Failed to delete data');
     },
   });
   const params = useParams();
@@ -80,7 +81,7 @@ const Assets = ({ empData }) => {
         })
         .catch((err) => {
           dispatch(getEmpAssetRequestFailed());
-          Toast('error', err.message || 'Failed to get data');
+          Toast('error', err?.message || 'Failed to get data');
         });
     },
   });

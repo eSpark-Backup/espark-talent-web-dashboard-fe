@@ -1,5 +1,6 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+
 import { Button, Grid } from '@mui/material';
 import { Box, useTheme } from '@mui/system';
 import Image from 'next/image';
@@ -27,7 +28,7 @@ import DashboardHeading from '@/src/components/dashboard/DashboardHeading';
 
 const Page = () => {
   const router = useRouter();
-  const { data } = useSelector((state) => state.hr.invoices);
+  const { data } = useSelector((state) => state?.hr?.invoices);
   const [status, setStatus] = useState(null);
   const [selectedClient, setSelectedClient] = useState(null);
   const [isLoadingList, setIsLoadingList] = useState(false);
@@ -56,7 +57,7 @@ const Page = () => {
           return data;
         })
         .catch((err) => {
-          Toast('error', err.message || 'Failed to get data');
+          Toast('error', err?.message || 'Failed to get data');
         });
     },
   });
@@ -72,7 +73,7 @@ const Page = () => {
       return data;
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to update data');
+      Toast('error', err?.message || 'Failed to update data');
       dispatch(getCurrentClientDataFailed());
     },
   });

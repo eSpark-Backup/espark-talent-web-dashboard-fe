@@ -1,5 +1,6 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+
 import {
   Grid,
   Box,
@@ -60,7 +61,7 @@ const Page = () => {
         })
         .catch((err) => {
           dispatch(getEmpPunchRequestDataFailed());
-          Toast('error', err.message || 'Failed to get data');
+          Toast('error', err?.message || 'Failed to get data');
         });
     },
   });
@@ -110,7 +111,7 @@ const Page = () => {
       setModalData({});
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to delete data');
+      Toast('error', err?.message || 'Failed to delete data');
       dispatch(deletePunchRequestDataFailed());
       handleCloseDeleteModal();
     },
@@ -137,7 +138,7 @@ const Page = () => {
     },
     onError: (err) => {
       dispatch(getEmpPunchRequestDataFailed());
-      Toast('error', err.message || 'Failed to fetch data');
+      Toast('error', err?.message || 'Failed to fetch data');
     },
   });
   const handleOpenFilterModal = () => {

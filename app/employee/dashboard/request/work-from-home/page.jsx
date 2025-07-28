@@ -1,5 +1,6 @@
 'use client';
-import React, { useState } from 'react';
+import { useState } from 'react';
+
 import { Grid, Box, Modal } from '@mui/material';
 import AppConfirmationMadal from '@/src/components/modals/AppConfirmationMadal';
 import { REQUEST_LEAVE } from '@/src/constants/requestview-modal';
@@ -37,7 +38,7 @@ const Page = () => {
       setModalData({});
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to delete data');
+      Toast('error', err?.message || 'Failed to delete data');
       dispatch(deleteWfhRequestDataFailed(modalData?.id));
       handleCloseDeleteModal();
     },

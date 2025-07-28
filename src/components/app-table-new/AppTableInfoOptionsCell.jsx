@@ -1,7 +1,7 @@
 import { toCamelCase } from '@/src/utils/stringModification';
 import { Box } from '@mui/material';
 import Image from 'next/image';
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const AppTableInfoOptionsCell = ({
   row,

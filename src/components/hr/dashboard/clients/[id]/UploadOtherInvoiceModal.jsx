@@ -1,4 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
+
+import { useState } from 'react';
+
 import {
   Box,
   Button,
@@ -68,7 +71,7 @@ const UploadOtherInvoiceModal = ({ open, onClose, title }) => {
       queryClient.invalidateQueries(['hr-clients-other-invoices-pending']);
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to post data');
+      Toast('error', err?.message || 'Failed to post data');
     },
   });
   const handleCloseModal = () => {

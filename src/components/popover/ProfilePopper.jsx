@@ -1,5 +1,6 @@
 'use client';
-import * as React from 'react';
+import { useEffect, useRef, useState } from 'react';
+
 import Box from '@mui/material/Box';
 import Popper from '@mui/material/Popper';
 import { Fade, MenuItem, Tooltip, Typography } from '@mui/material';
@@ -37,13 +38,12 @@ export default function ProfilePopper({
   notification,
   setNotification,
 }) {
-  const profilePopupRef = React.useRef(null);
-  const notificationPopupRef = React.useRef(null);
+  const profilePopupRef = useRef(null);
+  const notificationPopupRef = useRef(null);
   const dispatch = useDispatch();
   const { data } = useSelector((state) => state?.notifications);
-  const [openModal, setOpenModal] = React.useState(false);
-  const [isFetchingNotifications, setIsFetchingNotifications] =
-    React.useState(false);
+  const [openModal, setOpenModal] = useState(false);
+  const [isFetchingNotifications, setIsFetchingNotifications] = useState(false);
   const userType = Cookie.get('userType');
 
   const handleClick = (event) => {
@@ -107,7 +107,7 @@ export default function ProfilePopper({
     }
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     document?.addEventListener('mousedown', handleClickOutsideNotification);
     document?.addEventListener('scroll', handleClickOutsideNotification);
     return () => {
@@ -119,7 +119,7 @@ export default function ProfilePopper({
     };
   }, [notification]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     document?.addEventListener('click', handleClickOutside);
     document?.addEventListener('scroll', handleClickOutside);
     return () => {

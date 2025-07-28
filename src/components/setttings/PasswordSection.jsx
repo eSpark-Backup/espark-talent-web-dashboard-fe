@@ -1,4 +1,3 @@
-import React from 'react';
 import { Box, Button, TextField, Typography } from '@mui/material';
 
 const PasswordSection = ({ User_Password, handleData }) => {

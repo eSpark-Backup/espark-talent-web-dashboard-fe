@@ -1,6 +1,6 @@
 import { Box, Typography } from '@mui/material';
 import Image from 'next/image';
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const AppCustomDropdown = ({
   options = [

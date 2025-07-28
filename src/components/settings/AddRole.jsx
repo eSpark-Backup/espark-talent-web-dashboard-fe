@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+
 import { Box, Button, CircularProgress, Typography } from '@mui/material';
 import Skeleton from '@mui/material/Skeleton';
 
@@ -43,7 +44,7 @@ const Role = () => {
           return tempData || [];
         })
         .catch((err) => {
-          Toast('error', err.message || 'Failed to get data');
+          Toast('error', err?.message || 'Failed to get data');
         });
     },
   });
@@ -58,7 +59,7 @@ const Role = () => {
           return data;
         })
         .catch((err) => {
-          Toast('error', err.message || 'Failed to get data');
+          Toast('error', err?.message || 'Failed to get data');
         });
     },
   });
@@ -245,7 +246,7 @@ const Role = () => {
       clientQuery?.invalidateQueries(['hrHomeData']);
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to update data');
+      Toast('error', err?.message || 'Failed to update data');
     },
   });
   function convertArrayToObject(array) {

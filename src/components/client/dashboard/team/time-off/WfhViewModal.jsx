@@ -1,4 +1,5 @@
-import React, { forwardRef } from 'react';
+import { forwardRef } from 'react';
+
 import { Box, Button, Grid, Typography } from '@mui/material';
 import Image from 'next/image';
 import dayjs from 'dayjs';

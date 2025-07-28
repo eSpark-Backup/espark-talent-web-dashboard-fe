@@ -1,5 +1,6 @@
 'use client';
-import React, { useState } from 'react';
+import { useState } from 'react';
+
 import { Grid, Box, Button } from '@mui/material';
 
 import Heading from '@/src/components/global/Heading';
@@ -71,7 +72,7 @@ const Page = () => {
           return tempData || [];
         })
         .catch((err) => {
-          Toast('error', err.message || 'Failed to get data');
+          Toast('error', err?.message || 'Failed to get data');
         });
     },
   });
@@ -85,7 +86,7 @@ const Page = () => {
       handleClose?.();
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to post data');
+      Toast('error', err?.message || 'Failed to post data');
     },
   });
   const deletePolicyMutation = useMutation({
@@ -99,7 +100,7 @@ const Page = () => {
       handleClose?.();
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to delete policy');
+      Toast('error', err?.message || 'Failed to delete policy');
     },
   });
   const [openUploadPolicy, setOpenUploadPolicy] = useState(false);
@@ -124,7 +125,7 @@ const Page = () => {
       Toast('success', 'File downloaded');
     },
     onError: (err) => {
-      Toast('error', err.message || 'File not downloaded');
+      Toast('error', err?.message || 'File not downloaded');
     },
   });
 
@@ -144,7 +145,7 @@ const Page = () => {
         });
     },
     onError: (err, { setviewLoader }) => {
-      Toast('error', err.message || 'File not downloaded');
+      Toast('error', err?.message || 'File not downloaded');
       if (setviewLoader)
         setviewLoader({
           loader: false,

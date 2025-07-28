@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+
 import { Grid, Typography } from '@mui/material';
 
 import { HIRING_FORM_DATA } from '@/src/constants/hiring';

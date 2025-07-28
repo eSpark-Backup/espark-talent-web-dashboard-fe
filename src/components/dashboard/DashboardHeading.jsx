@@ -1,4 +1,3 @@
-import React from 'react';
 import { Box, Stack, Tooltip, Typography } from '@mui/material';
 import Skeleton from '@mui/material/Skeleton';
 import { ellipsisWithTooltip } from '@/src/utils/tooltipEllipsis';

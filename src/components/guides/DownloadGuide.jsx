@@ -1,4 +1,3 @@
-import React from 'react';
 import { Box, Button, CircularProgress, Typography } from '@mui/material';
 import Image from 'next/image';
 import { DOWNLOAD_GUIDE } from '@/src/services/apiService/apiEndPoints';
@@ -31,7 +30,7 @@ const DownloadGuide = ({
       Toast('success', 'File downloaded');
     },
     onError: (err) => {
-      Toast('error', err.message || 'File not downloaded');
+      Toast('error', err?.message || 'File not downloaded');
     },
   });
 
@@ -50,7 +49,7 @@ const DownloadGuide = ({
       window?.open(url, '_blank');
     },
     onError: (err) => {
-      Toast('error', err.message || 'File not downloaded');
+      Toast('error', err?.message || 'File not downloaded');
     },
   });
 

@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
+
 import {
   Box,
   Button,
@@ -83,7 +84,7 @@ const TimeManagementModal = ({ open, onClose }) => {
       clientQuery?.invalidateQueries(['employee-time-profile']);
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to post data');
+      Toast('error', err?.message || 'Failed to post data');
     },
   });
 

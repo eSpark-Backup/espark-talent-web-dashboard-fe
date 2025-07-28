@@ -1,5 +1,5 @@
 'use client';
-import * as React from 'react';
+import { useState } from 'react';
 
 import AuthForm from '@/src/components/auth/AuthForm';
 import {
@@ -12,7 +12,7 @@ import { Box, Grid } from '@mui/material';
 import HavingTroubleModal from '@/src/components/modals/HavingTroubleModal';
 
 export default function Authentication() {
-  const [troubleModal, setTroubleModal] = React.useState(false);
+  const [troubleModal, setTroubleModal] = useState(false);
 
   const handleOpenTroubleModal = () => setTroubleModal(true);
   const handleCloseTroubleModal = () => setTroubleModal(false);
