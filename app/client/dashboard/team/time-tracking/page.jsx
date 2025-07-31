@@ -29,22 +29,10 @@ import DashboardHeading from '@/src/components/dashboard/DashboardHeading';
 import { sheetStatusTypes } from '@/src/data/tables/time-sheet';
 import { renderTrackingStatus } from '@/src/components/client/dashboard/team/time-tracking/renderComponents';
 import { TIME_REQUEST } from '@/src/constants/time-sheet';
+import { formatTimeToHHMM } from '@/src/utils';
+import { months } from '@/src/data';
 
 const Page = () => {
-  const months = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ];
   const date = new Date();
   const dispatch = useDispatch();
   const { data } = useSelector((state) => state?.client?.timeTracking);
@@ -168,13 +156,6 @@ const Page = () => {
     const [day, month, year] = dateString.split('-');
     const formattedInput = `${year}-${month}-${day}`;
     return dayjs(formattedInput)?.format('D MMMM, YYYY');
-  }
-
-  function formatTimeToHHMM(time) {
-    if (time === '-') return time;
-    const [hour, minute, secondPart] = time?.split(':') || [];
-    const period = secondPart?.split(' ')[1];
-    return `${hour || ''}:${minute || ''} ${period || ''}`;
   }
 
   return (

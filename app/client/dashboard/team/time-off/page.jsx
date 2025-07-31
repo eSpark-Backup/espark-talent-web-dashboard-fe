@@ -42,20 +42,13 @@ import DashboardHeading from '@/src/components/dashboard/DashboardHeading';
 import { TIME_REQUEST } from '@/src/constants/time-sheet';
 import dayjs from 'dayjs';
 import PunchRequestDataView from '@/src/components/employee/dashboard/request/punch-requests/PunchRequestFormView';
+import { formatTimeToHHMM } from '@/src/utils';
 
 const Page = () => {
   const { data, tabData } = useSelector((state) => state?.client?.timeOff);
   const { c_email } = useSelector((state) => state?.client?.home?.data);
   const [leaveRequestDataState, setLeaveRequestDataState] = useState([]);
   const [clockInOutDataState, setClockInOutDataState] = useState([]);
-
-  function formatTimeToHHMM(time) {
-    if (time === '-') return time;
-    const [hour, minute, secondPart] = time?.split(':') || [];
-    const period = secondPart?.split(' ')[1];
-    return `${hour || ''}:${minute || ''} ${period || ''}`;
-  }
-
   useEffect(() => {
     setLeaveRequestDataState(data?.leaveRequest);
     setClockInOutDataState(data?.clockInOutRequests);

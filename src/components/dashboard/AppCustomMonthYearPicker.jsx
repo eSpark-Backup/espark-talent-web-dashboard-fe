@@ -2,22 +2,9 @@ import { useEffect, useRef, useState } from 'react';
 
 import { Box, Grid, Typography } from '@mui/material';
 import Image from 'next/image';
+import { months } from '@/src/data';
 
 const AppCustomMonthYearPicker = ({ timeTracking, setTimeTracking }) => {
-  const months = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ];
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [isOpenCalendar, setIsOpenCalendar] = useState(false);
   const currentYear = selectedDate.getFullYear();

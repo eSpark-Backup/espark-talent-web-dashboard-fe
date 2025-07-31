@@ -15,6 +15,7 @@ import {
   markResume,
 } from '@/src/redux/slices/employeeSlices/empHomeSlice';
 import { Toast } from '@/src/utils/toast';
+import { formatTime } from '@/src/utils';
 
 const MarkBreak = ({ icon }) => {
   const [time, setTime] = useState('');
@@ -135,15 +136,7 @@ const MarkBreak = ({ icon }) => {
       timerActive: false,
     }));
   };
-  const formatTime = (milliseconds) => {
-    const totalSeconds = Math.floor(milliseconds / 1000);
-    const hours = Math.floor(totalSeconds / 3600);
-    const minutes = Math.floor((totalSeconds % 3600) / 60);
-    const seconds = totalSeconds % 60;
-    return `${hours.toString().padStart(2, '0')}:${minutes
-      .toString()
-      .padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-  };
+
   useEffect(() => {
     setCurrentBreakTime(homeData?.today_activity?.break);
   }, [homeData?.today_activity?.break]);

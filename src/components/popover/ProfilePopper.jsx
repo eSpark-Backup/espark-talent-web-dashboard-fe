@@ -165,26 +165,6 @@ export default function ProfilePopper({
     window?.history?.replaceState(null, '', '/');
   };
 
-  const getTimePassedFromNow = (date, time) => {
-    // Check if the time is in 12-hour or 24-hour format
-    const is12HourFormat = /[0-9]{1,2}:[0-9]{2} [APMapm]{2}/.test(time);
-    const formatString = is12HourFormat
-      ? 'YYYY-MM-DD hh:mm A'
-      : 'YYYY-MM-DD HH:mm';
-
-    // Parse the date and time using the determined format
-    const dateTime = dayjs(`${date} ${time}`, formatString);
-
-    // Check if dateTime is valid
-    if (!dateTime.isValid()) {
-      console.error('Invalid date or time format', { date, time });
-      return 'Invalid date or time';
-    }
-
-    const timeFromNow = dateTime?.fromNow();
-
-    return timeFromNow;
-  };
   return (
     <div>
       <button

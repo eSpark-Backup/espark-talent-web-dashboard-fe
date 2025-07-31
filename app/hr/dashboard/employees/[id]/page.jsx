@@ -57,25 +57,12 @@ import LetterForm from '@/src/components/employee-data/LetterModal';
 import SalaryForm from '@/src/components/employee-data/SalaryModal';
 import AppCustomMonthYearPicker from '@/src/components/dashboard/AppCustomMonthYearPicker';
 import { ellipsisWithTooltip } from '@/src/utils/tooltipEllipsis';
+import { months } from '@/src/data';
 
 const Page = () => {
   const router = useRouter();
   const { employee_perms } = useSelector((state) => state?.hr?.home?.homeData);
   const { role } = useSelector((state) => state?.auth?.userData);
-  const months = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ];
   const date = new Date();
   const dispatch = useDispatch();
   const queryClient = useQueryClient();
