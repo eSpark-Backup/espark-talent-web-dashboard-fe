@@ -8,4 +8,4 @@ services:
       - "3014:80" # Internal 80 → external 3001
     environment:
       - NODE_ENV=production
-      - NEXT_PUBLIC_BASE_URL = https://esparktalent-dashboard-be.stg.esparkconsultants.com/api/
+      - NEXT_PUBLIC_BASE_URL=https://esparktalent-dashboard-be.stg.esparkconsultants.com/api/
