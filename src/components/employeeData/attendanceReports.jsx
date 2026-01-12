@@ -54,7 +54,6 @@ const AttendanceReport = ({ employeeData }) => {
       }
     },
   });
-  console.log(empProfile?.data?.email, 'empProfile');
 
   const { data: attendanceData, isLoading } = useQuery({
     staleTime: 10000,

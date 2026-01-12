@@ -135,7 +135,7 @@ export const securitySchema = Yup.object({
   employee_id: Yup.string().required('Employee ID is required'),
   password: Yup.string()
     .required('Password is required')
-    .min(6, 'Password must be at least 6 characters'),
+    .min(8, 'Password must be at least 8 characters'),
   confirm_password: Yup.string()
     .oneOf([Yup.ref('password'), null], 'Passwords must match')
     .required('Confirm Password is required'),

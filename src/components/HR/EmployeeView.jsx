@@ -45,7 +45,7 @@ const EmployeeView = ({ status, data, isLoading }) => {
       handleCloseModal();
       setCurrentEmpId(null);
       setAnchorEl(null);
-      Toast('success', 'Data deleted successfully');
+      Toast('success', 'Employee deleted successfully');
       setOpen(null);
     },
     onError: (err) => {

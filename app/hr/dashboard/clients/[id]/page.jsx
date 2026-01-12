@@ -108,6 +108,7 @@ const AddEmployee = () => {
     staleTime: 100000,
     refetchOnWindowFocus: false,
     queryKey: ['hr-client-hiring-req-query', email],
+    enabled: !!email,
     queryFn: () => {
       return api
         .getData(`${HR_CLIENT_EMP_HIRING_REQUEST}?id=${params?.id}`)
@@ -146,6 +147,7 @@ const AddEmployee = () => {
     staleTime: 100000,
     refetchOnWindowFocus: false,
     queryKey: ['hr-interview-schedule-req-query', email],
+    enabled: !!email,
     queryFn: () => {
       return api
         .getData(`${HR_CLIENT_EMP_INTERVIEW_SCHEDULE}?id=${params.id}`)
@@ -174,6 +176,7 @@ const AddEmployee = () => {
     staleTime: 100000,
     refetchOnWindowFocus: false,
     queryKey: ['hr-client-on-board-req-query', email],
+    enabled: !!email,
     queryFn: () => {
       return api
         .getData(`${HR_CLIENT_EMP_ON_BOARDING}?id=${params.id}`)
@@ -212,6 +215,7 @@ const AddEmployee = () => {
     staleTime: 100000,
     refetchOnWindowFocus: false,
     queryKey: ['hr-clients-employees-all', email],
+    enabled: !!email,
     queryFn: () => {
       return api
         .getData(`${HR_CLIENT_EMPLOYEES}?c_email=${email}&tab=all`)
@@ -227,6 +231,7 @@ const AddEmployee = () => {
     staleTime: 100000,
     refetchOnWindowFocus: false,
     queryKey: ['hr-clients-employees-active', email],
+    enabled: !!email,
     queryFn: () => {
       return api
         .getData(`${HR_CLIENT_EMPLOYEES}?c_email=${email}&tab=active`)
@@ -242,6 +247,7 @@ const AddEmployee = () => {
     staleTime: 100000,
     refetchOnWindowFocus: false,
     queryKey: ['hr-clients-employees-terminated', email],
+    enabled: !!email,
     queryFn: () => {
       return api
         .getData(`${HR_CLIENT_EMPLOYEES}?c_email=${email}&tab=terminated`)
@@ -257,6 +263,7 @@ const AddEmployee = () => {
     staleTime: 100000,
     refetchOnWindowFocus: false,
     queryKey: ['hr-clients-employees-invoices-pending', email],
+    enabled: !!email,
     queryFn: () => {
       return api
         .getData(`${HR_CLIENT_EMPLOYEE_INVOICE}?client_id=${email}&tab=pending`)
@@ -285,10 +292,12 @@ const AddEmployee = () => {
         });
     },
   });
+  console.log(email, 'email');
   const EmployeeInvoicesProcessing = useQuery({
     staleTime: 100000,
     refetchOnWindowFocus: false,
     queryKey: ['hr-clients-employees-invoices-processing', email],
+    enabled: !!email,
     queryFn: () => {
       return api
         .getData(
@@ -323,6 +332,7 @@ const AddEmployee = () => {
     staleTime: 100000,
     refetchOnWindowFocus: false,
     queryKey: ['hr-clients-employees-invoices-paid', email],
+    enabled: !!email,
     queryFn: () => {
       return api
         .getData(`${HR_CLIENT_EMPLOYEE_INVOICE}?client_id=${email}&tab=paid`)
@@ -355,6 +365,7 @@ const AddEmployee = () => {
     staleTime: 100000,
     refetchOnWindowFocus: false,
     queryKey: ['hr-clients-other-invoices-pending', email],
+    enabled: !!email,
     queryFn: () => {
       return api
         .getData(`${HR_CLIENT_OTHER_INVOICE}?client_id=${email}&tab=pending`)
@@ -387,6 +398,7 @@ const AddEmployee = () => {
     staleTime: 100000,
     refetchOnWindowFocus: false,
     queryKey: ['hr-clients-other-invoices-processing', email],
+    enabled: !!email,
     queryFn: () => {
       return api
         .getData(`${HR_CLIENT_OTHER_INVOICE}?client_id=${email}&tab=processing`)
@@ -419,6 +431,7 @@ const AddEmployee = () => {
     staleTime: 100000,
     refetchOnWindowFocus: false,
     queryKey: ['hr-clients-other-invoices-paid', email],
+    enabled: !!email,
     queryFn: () => {
       return api
         .getData(`${HR_CLIENT_OTHER_INVOICE}?client_id=${email}&tab=paid`)

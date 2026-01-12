@@ -373,7 +373,7 @@ const Page = () => {
                             lg: '25px',
                           },
                           fontWeight: 500,
-                          textTransform: 'capitalize',
+                          // textTransform: 'capitalize',
                           color: '#171717',
                         }}
                       >
@@ -485,7 +485,7 @@ const Page = () => {
 
           {showCredentialModal && (
             <EditEmployeeCredential
-              open={handleCredentialModal}
+              open={showCredentialModal}
               onClose={handleCloseModal}
             />
           )}

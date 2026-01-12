@@ -16,17 +16,25 @@ const UploadImageModal = ({
   const fileInputRef = useRef(null);
 
   const handleFileChange = (event) => {
-    const file = event?.target?.files[0];
+    const files = event?.target?.files;
+
+    if (!files || files.length === 0) {
+      return;
+    }
+
+    const file = files[0];
+
     if (
-      file &&
-      (file?.type === 'image/jpg' ||
-        file?.type === 'image/jpeg' ||
-        file?.type === 'image/png')
+      file.type === 'image/jpg' ||
+      file.type === 'image/jpeg' ||
+      file.type === 'image/png'
     ) {
       setSelectedFile(file);
     } else {
       Toast('error', 'Only .jpg and .png files are allowed');
     }
+
+    event.target.value = '';
   };
 
   const handleUploadImage = () => {

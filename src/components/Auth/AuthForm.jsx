@@ -46,6 +46,11 @@ import {
   fetchClientHomeDataRequestSuccess,
 } from '@/src/redux/slices/clientSlices/homeSlice';
 import { Toast } from '../Toast/Toast';
+import {
+  clearSavedCredentials,
+  getDecryptedCredentials,
+  saveEncryptedCredentials,
+} from '@/src/utils/remember';
 
 const AuthForm = ({ uiData, fields, handleOpenTroubleModal }) => {
   const dispatch = useDispatch();
@@ -110,6 +115,7 @@ const AuthForm = ({ uiData, fields, handleOpenTroubleModal }) => {
       dispatch(login(data));
       Cookie.set('token', data?.token);
       Cookie.set('userType', data?.role);
+
       if (CLIENT_ROLES.includes(data?.role)) {
         setTimeout(() => {
           clientHomeMutation.mutate(CLIENT_HOME);
@@ -138,23 +144,33 @@ const AuthForm = ({ uiData, fields, handleOpenTroubleModal }) => {
     validationSchema: AuthSchema,
     onSubmit: (values) => {
       try {
+        // remember credentials
         if (rememberMe) {
-          localStorage?.setItem('email', values.email);
-          localStorage?.setItem('password', values.password);
+          saveEncryptedCredentials(
+            values?.email,
+            values?.password,
+            values?.remember
+          );
+        } else {
+          clearSavedCredentials();
         }
         mutate(values);
-        // Clear back path history
         window?.history?.replaceState(null, '', '/dashboard');
       } catch (error) {
         console.error('Error submitting form:', error);
       }
     },
   });
+
   useEffect(() => {
-    const email = localStorage.getItem('email');
-    const password = localStorage.getItem('password');
-    if (email && password) {
-      mutate({ email: email, password: password });
+    const saved = getDecryptedCredentials();
+    if (saved) {
+      formik.setValues({
+        email: saved.email,
+        password: saved.password,
+        remember: true,
+      });
+      setRememberMe(true);
     }
   }, []);
 
