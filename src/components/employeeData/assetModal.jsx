@@ -36,17 +36,14 @@ const AssetForm = forwardRef(({ onClose, open, empData }, ref) => {
         action: ['Delete'],
       };
       dispatch(addEmpAsset(reformedData));
-      Toast('success', 'Data posted successfully');
+      Toast('success', data?.message || 'Employee asset added successfully');
       onClose();
     },
     onError: (err) => {
-      console.log(err?.response?.data?.assignee_name[0], 'err');
-      Toast(
-        'error',
-        err?.response?.data?.assignee_name[0] || 'Failed to post data'
-      );
+      Toast('error', err?.response?.data?.message || 'Something went wrong');
     },
   });
+
   const {
     handleSubmit,
     values,

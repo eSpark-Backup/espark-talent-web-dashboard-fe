@@ -43,10 +43,10 @@ const AddOnboardModal = ({ open, onClose }) => {
         })
       );
       setOnBoardFormValues(null);
-      Toast('success', 'Data posted successfully');
+      Toast('success', data?.message || 'Onboarding added successfully');
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to post data');
+      Toast('error', err?.response?.data?.message || 'Something went wrong');
     },
   });
   const {

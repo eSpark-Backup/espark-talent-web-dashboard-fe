@@ -929,7 +929,6 @@ const Page = () => {
               </Box>
             </Box>
             <Box sx={{ width: '100%' }}>
-              {console.log(employeeProfileData, 'dady mammy')}
               {value === employeeProfileData?.valueOne ? (
                 <Profile
                   isLoading={isLoading}

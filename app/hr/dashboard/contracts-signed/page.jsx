@@ -203,7 +203,7 @@ const ContractSigned = () => {
       }
       return api.daleteData(url);
     },
-    onSuccess: () => {
+    onSuccess: ({ data }) => {
       setDeletingContractId(null);
       if (value === 0) {
         if (nestedValue === 0) {
@@ -214,11 +214,11 @@ const ContractSigned = () => {
       } else {
         offShoreContractMutation.mutate();
       }
-      Toast('success', 'Data deleted successfully');
+      Toast('success', data?.message || 'Deleted successfully');
       handleClose();
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to delete data');
+      Toast('error', err?.response?.data?.message || 'Failed to delete data');
       handleClose();
     },
   });

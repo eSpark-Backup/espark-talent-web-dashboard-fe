@@ -56,11 +56,14 @@ const UploadInvoiceModal = ({ open, onClose, title }) => {
       );
       setEmpInvoiceFormValues(null);
       handleCloseModal();
-      Toast('success', 'Data posted successfully');
+      Toast(
+        'success',
+        data?.message || 'Employee invoice created successfully'
+      );
       clientQuery?.invalidateQueries(['hr-clients-employees-invoices-pending']);
     },
     onError: (err) => {
-      Toast('error', err?.response?.data?.message || 'Failed to post data');
+      Toast('error', err?.response?.data?.message || 'Something went wrong');
     },
   });
   const {

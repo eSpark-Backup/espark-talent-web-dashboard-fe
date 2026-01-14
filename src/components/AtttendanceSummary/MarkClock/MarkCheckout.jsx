@@ -22,13 +22,13 @@ const MarkCheckOut = () => {
       const url = `${EMP_HOME}?workspace=${currentWorkSpace?.email}&check_out=${data.time}`;
       return api.patchData(url);
     },
-    onSuccess: () => {
+    onSuccess: ({ data }) => {
       dispatch(markCheckout(dayjs().format('hh:mm:ss A')));
       clientQuery?.invalidateQueries(['get-emp-home']);
-      Toast('success', 'Data updated successfully');
+      Toast('success', data?.message || 'Updated successfully');
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to update data');
+      Toast('error', err?.response?.data?.message || 'Failed to update');
     },
   });
 

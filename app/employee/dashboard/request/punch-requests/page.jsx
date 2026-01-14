@@ -101,14 +101,14 @@ const Dashboard = () => {
       dispatch(deleteEmpPunchRequest());
       return api.daleteData(`${EMP_PUNCH_REQUEST}?id=${id}`);
     },
-    onSuccess: () => {
+    onSuccess: ({ data }) => {
       dispatch(deleteEmpPunchRequestSuccess(modalData?.id));
-      Toast('success', 'Data deleted successfully');
+      Toast('success', data?.message || 'Deleted successfully');
       handleCloseDeleteModal();
       setModalData({});
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to delete data');
+      Toast('error', err?.response?.data?.message || 'Failed to delete');
       dispatch(deletePunchRequestDataFailed());
       handleCloseDeleteModal();
     },

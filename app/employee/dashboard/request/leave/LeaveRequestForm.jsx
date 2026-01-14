@@ -82,7 +82,6 @@ const LeaveRequestForm = ({ handleClose }) => {
       return data;
     },
     onError: (err) => {
-      console.log(err.message, 'error invoked');
       dispatch(getEmpLeaveRequestDataFailed());
     },
   });
@@ -95,7 +94,7 @@ const LeaveRequestForm = ({ handleClose }) => {
       }
       return api.postData(EMP_LEAVE_REQUEST, formData);
     },
-    onSuccess: (data) => {
+    onSuccess: ({ data }) => {
       dispatch(
         createEmpLeaveRequestSuccess({
           ...getRevampedValues(values),
@@ -104,10 +103,10 @@ const LeaveRequestForm = ({ handleClose }) => {
       );
       handleClose();
       refreshMutation.mutate();
-      Toast('success', 'Data posted successfully');
+      Toast('success', data?.message || 'Request created successfully');
     },
     onError: (err) => {
-      Toast('error', err?.response?.data?.error || 'Failed to post data');
+      Toast('error', err?.response?.data?.message || 'Something went wrong');
       dispatch(createEmpLeaveRequestFailed());
     },
   });

@@ -68,7 +68,7 @@ const WFHRequestForm = ({ handleClose }) => {
       }
       return api.postData(EMP_WFH_REQUEST, formData);
     },
-    onSuccess: (data) => {
+    onSuccess: ({ data }) => {
       dispatch(
         createEmpWfhRequestSuccess({
           ...getRevampedValues(values),
@@ -77,10 +77,10 @@ const WFHRequestForm = ({ handleClose }) => {
       );
       handleClose();
       refreshMutation.mutate();
-      Toast('success', 'Data posted successfully');
+      Toast('success', data?.message || 'Request created successfully');
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to post data');
+      Toast('error', err?.response?.data?.message || 'Something went wrong');
       dispatch(createEmpWfhRequestFailed());
     },
   });

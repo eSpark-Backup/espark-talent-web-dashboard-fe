@@ -852,14 +852,14 @@ const AddEmployee = () => {
     mutationFn: async (id) => {
       return api.daleteData(`${HR_CLIENT_EMP_HIRING_REQUEST}?id=${id}`);
     },
-    onSuccess: () => {
+    onSuccess: ({ data }) => {
       dispatch(deleteHiringRequest(deleteRowID));
-      Toast('success', 'Data deleted successfully');
+      Toast('success', data?.message || 'Deleted successfully');
       setDeleteRowID(null);
       handleClose();
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to delete data');
+      Toast('error', err?.response?.data?.message || 'Failed to delete');
       handleClose();
     },
   });
@@ -867,14 +867,14 @@ const AddEmployee = () => {
     mutationFn: async (id) => {
       return api.daleteData(`${HR_CLIENT_EMP_INTERVIEW_SCHEDULE}?id=${id}`);
     },
-    onSuccess: () => {
+    onSuccess: ({ data }) => {
       dispatch(deleteInterSchedule(deleteRowID));
-      Toast('success', 'Data deleted successfully');
+      Toast('success', data?.message || 'Deleted successfully');
       setDeleteRowID(null);
       handleClose();
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to delete data');
+      Toast('error', err?.response?.data?.message || 'Failed to delete');
       handleClose();
     },
   });
@@ -882,14 +882,14 @@ const AddEmployee = () => {
     mutationFn: async (id) => {
       return api.daleteData(`${HR_CLIENT_EMP_ON_BOARDING}?id=${id}`);
     },
-    onSuccess: () => {
+    onSuccess: ({ data }) => {
       dispatch(deleteOnBoarding(deleteRowID));
-      Toast('success', 'Data deleted successfully');
+      Toast('success', data?.message || 'Deleted successfully');
       setDeleteRowID(null);
       handleClose();
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to delete data');
+      Toast('error', err?.response?.data?.message || 'Failed to delete data');
       handleClose();
     },
   });
@@ -897,15 +897,15 @@ const AddEmployee = () => {
     mutationFn: async (id) => {
       return api.daleteData(`${HR_CLIENT_EMPLOYEE_INVOICE}?id=${id}`);
     },
-    onSuccess: () => {
+    onSuccess: ({ data }) => {
       dispatch(deleteEmpInv({ type: deleteInvType, id: deleteRowID }));
-      Toast('success', 'Data deleted successfully');
+      Toast('success', data?.message || 'Deleted successfully');
       setDeleteRowID(null);
       setDeleteInvType(null);
       handleClose();
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to delete data');
+      Toast('error', err?.response?.data?.message || 'Failed to delete');
       handleClose();
     },
   });
@@ -913,15 +913,15 @@ const AddEmployee = () => {
     mutationFn: async (id) => {
       return api.daleteData(`${HR_CLIENT_OTHER_INVOICE}?id=${id}`);
     },
-    onSuccess: () => {
+    onSuccess: ({ data }) => {
       dispatch(deleteOthInv({ type: deleteInvType, id: deleteRowID }));
-      Toast('success', 'Data deleted successfully');
+      Toast('success', data?.message || 'Deleted successfully');
       setDeleteRowID(null);
       setDeleteInvType(null);
       handleClose();
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to delete data');
+      Toast('error', err?.response?.data?.message || 'Failed to delete');
       handleClose();
     },
   });
@@ -933,7 +933,7 @@ const AddEmployee = () => {
       }
       return api.updateData(`${data?.url}?id=${data?.id}`, formData);
     },
-    onSuccess: () => {
+    onSuccess: ({ data }) => {
       if (currentTab?.label === 'Employee invoices') {
         dispatch(
           updateEmpInv({
@@ -953,7 +953,7 @@ const AddEmployee = () => {
           })
         );
       }
-      Toast('success', 'Data updated successfully');
+      Toast('success', data?.message || 'Updated successfully');
       setDeleteRowID(null);
       setUpdateStatusType({
         currentInvData: null,
@@ -963,13 +963,12 @@ const AddEmployee = () => {
       handleClose();
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to update data');
+      Toast('error', err?.response?.data?.message || 'Failed to update');
       handleClose();
     },
   });
   const handleConfirmDeleteHiringReq = () => {
     if (currentTab?.label === 'Hire & onboard') {
-      console.log(deleteRowID, 'deleteRowID');
       if (currentTab?.nested.val === 0) {
         deleteStartHiringMutation.mutate(deleteRowID);
       } else if (currentTab?.nested.val === 1) {
@@ -1143,7 +1142,6 @@ const AddEmployee = () => {
       return api.downloadFile(resolveURL(id));
     },
     onSuccess: ({ data }) => {
-      console.log({ data });
       const url = window.URL.createObjectURL(new Blob([data]));
       const link = document.createElement('a');
       link.href = url;

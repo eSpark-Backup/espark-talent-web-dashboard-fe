@@ -39,11 +39,11 @@ const SalaryForm = forwardRef(({ onClose, open, empData }, ref) => {
       };
       dispatch(addEmpSalary(reformedData));
       QueryClient.invalidateQueries(['hr-employee-get-salary']);
-      Toast('success', 'Data posted successfully');
+      Toast('success', data?.message || 'Salary added successfully');
       onClose();
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to post data');
+      Toast('error', err?.response?.data?.message || 'Something went wrong');
     },
   });
   const {

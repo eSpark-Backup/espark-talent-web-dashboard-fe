@@ -29,8 +29,8 @@ const EditLetterForm = ({ onClose, open, selectedId }) => {
     mutationFn: async (data) => {
       return api.updateData(`${HR_EMP_LETTER}?id=${data?.id}`, data);
     },
-    onSuccess: async () => {
-      Toast('success', 'Data updated successfully');
+    onSuccess: async ({ data }) => {
+      Toast('success', data?.message || 'Updated successfully');
       const reformedData = {
         ...values,
         id: selectedId?.row?.id,
@@ -42,7 +42,7 @@ const EditLetterForm = ({ onClose, open, selectedId }) => {
       onClose();
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to update data');
+      Toast('error', err?.response?.data?.message || 'Failed to update');
     },
   });
   const {

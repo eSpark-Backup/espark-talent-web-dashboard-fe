@@ -40,10 +40,10 @@ const AddInterviewModal = ({ open, onClose }) => {
       );
       setInterviewFormValues(null);
       handleCloseModal();
-      Toast('success', 'Data posted successfully');
+      Toast('success', data?.message || 'Interview schedule is scheduled');
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to post data');
+      Toast('error', err?.response?.data?.message || 'Something went wrong');
     },
   });
   const {

@@ -55,11 +55,11 @@ const UploadOtherInvoiceModal = ({ open, onClose, title }) => {
       );
       setOthInvoiceFormValues(null);
       handleCloseModal();
-      Toast('success', 'Data posted successfully');
+      Toast('success', data?.message || 'Invoice added successfully');
       queryClient.invalidateQueries(['hr-clients-other-invoices-pending']);
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to post data');
+      Toast('error', err?.response?.data?.message || 'Something went wrong');
     },
   });
   const handleCloseModal = () => {

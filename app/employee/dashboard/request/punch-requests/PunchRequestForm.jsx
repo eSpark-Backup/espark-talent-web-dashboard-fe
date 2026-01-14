@@ -41,10 +41,10 @@ const PunchRequestForm = ({ handleClose }) => {
           id: data.id,
         })
       );
-      Toast('success', 'Data posted successfully');
+      Toast('success', data?.message || 'Request created successfully');
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to post data');
+      Toast('error', err?.response?.data?.message || 'Something went wrong');
     },
   });
   const preetyTime = (time) => {

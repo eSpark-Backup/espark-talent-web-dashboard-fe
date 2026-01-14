@@ -40,11 +40,11 @@ const BenefitForm = forwardRef(({ onClose, open, empData }, ref) => {
       };
       dispatch(addEmpBenefit(reformedData));
       await queryClient.invalidateQueries(['hr-employee-get-benefit']);
-      Toast('success', 'Data posted successfully');
+      Toast('success', data?.message || 'Employee benefit added successfully');
       onClose();
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to post data');
+      Toast('error', err?.response?.data?.message || 'Something went wrong');
     },
   });
   const {

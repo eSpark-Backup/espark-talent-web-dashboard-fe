@@ -54,11 +54,11 @@ const HiringRequestModal = ({ open, onClose }) => {
       );
       handleCloseModal();
       setHiringValues(null);
-      Toast('success', 'Data posted successfully');
+      Toast('success', data?.message || 'Hiring request added successfully');
       clientQuery?.invalidateQueries(['hr-client-hiring-req-query']);
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to post data');
+      Toast('error', err?.response?.data?.message || 'Something went wrong');
     },
   });
 
@@ -80,8 +80,6 @@ const HiringRequestModal = ({ open, onClose }) => {
     validationSchema: hiringRequestSchema,
     enableReinitialize: true,
     onSubmit: (formValues) => {
-      console.log(formValues, 'formValues');
-
       const finalData = {
         ...formValues,
         description: 'ok',

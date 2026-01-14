@@ -18,8 +18,8 @@ const MarkCheckIn = () => {
       const url = `${EMP_HOME}?workspace=${currentWorkSpace?.email}&check_in=${data.check_in}`;
       return api.patchData(url);
     },
-    onSuccess: () => {
-      Toast('success', 'Data updated successfully');
+    onSuccess: ({ data }) => {
+      Toast('success', data?.message || 'Updated successfully');
       dispatch(
         marKCheckin({
           check_in: dayjs().format('hh:mm:ss A'),
@@ -27,7 +27,7 @@ const MarkCheckIn = () => {
       );
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to update data');
+      Toast('error', err?.response?.data?.message || 'Failed to update');
     },
   });
 

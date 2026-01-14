@@ -49,14 +49,14 @@ const AddEmployeeModal = ({ open, onClose }) => {
         formVals
       );
     },
-    onSuccess: () => {
+    onSuccess: ({ data }) => {
       setCurrentStep(1);
       handleCloseModal();
       getClientEmpsMutation.mutate();
-      Toast('success', 'Data posted successfully');
+      Toast('success', data?.message || 'Employee added successfully');
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to post data');
+      Toast('error', err?.response?.data?.message || 'Something went wrong');
     },
   });
   const dispatch = useDispatch();

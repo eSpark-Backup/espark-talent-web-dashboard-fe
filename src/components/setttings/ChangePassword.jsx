@@ -16,11 +16,11 @@ const ChangePassword = () => {
     mutationFn: async (data) => {
       return api.updateJSONData(`${CLIENT_UPDATE_PASSWORD}`, data);
     },
-    onSuccess: () => {
-      Toast('success', 'Data updated successfully');
+    onSuccess: ({ data }) => {
+      Toast('success', data?.message || 'Updated successfully');
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to update data');
+      Toast('error', err?.response?.data?.message || 'Failed to update');
     },
   });
   const {

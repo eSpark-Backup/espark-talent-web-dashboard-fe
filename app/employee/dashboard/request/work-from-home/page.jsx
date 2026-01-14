@@ -30,14 +30,14 @@ const Dashboard = () => {
       dispatch(deleteEmpWfhRequest());
       return api.daleteData(`${EMP_WFH_REQUEST}?id=${id}`);
     },
-    onSuccess: () => {
+    onSuccess: ({ data }) => {
       dispatch(deleteEmpWfhRequestSuccess(modalData?.id));
-      Toast('success', 'Data deleted successfully');
+      Toast('success', data?.message || 'Deleted successfully');
       handleCloseDeleteModal();
       setModalData({});
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to delete data');
+      Toast('error', err?.response?.data?.message || 'Failed to delete data');
       dispatch(deleteWfhRequestDataFailed(modalData?.id));
       handleCloseDeleteModal();
     },

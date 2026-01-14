@@ -29,7 +29,7 @@ const EditSalaryForm = ({ onClose, open, selectedId }) => {
     mutationFn: async (data) => {
       return api.updateData(`${HR_EMP_SALARY}?id=${data?.id}`, data);
     },
-    onSuccess: () => {
+    onSuccess: ({ data }) => {
       const reformedData = {
         ...values,
         id: selectedId?.row?.id,
@@ -38,11 +38,11 @@ const EditSalaryForm = ({ onClose, open, selectedId }) => {
       };
       dispatch(editEmpSalary(reformedData));
       clientQuery?.invalidateQueries(['hr-employee-get-salary']);
-      Toast('success', 'Data updated successfully');
+      Toast('success', data?.message || 'Updated successfully');
       onClose();
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to update data');
+      Toast('error', err?.response?.data?.message || 'Failed to update');
     },
   });
 

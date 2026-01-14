@@ -45,14 +45,14 @@ const Dashboard = () => {
       dispatch(deleteEmpLeaveRequest());
       return api.daleteData(`${EMP_LEAVE_REQUEST}?id=${id}`);
     },
-    onSuccess: () => {
+    onSuccess: ({ data }) => {
       dispatch(deleteEmpLeaveRequestSuccess(modalData?.id));
-      Toast('success', 'Data deleted successfully');
+      Toast('success', data?.message || 'Deleted successfully');
       handleCloseDeleteModal();
       setModalData({});
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to delete data');
+      Toast('error', err?.response?.data?.message || 'Failed to delete');
       dispatch(deleteLeaveRequestDataFailed(modalData?.id));
       handleCloseDeleteModal();
     },

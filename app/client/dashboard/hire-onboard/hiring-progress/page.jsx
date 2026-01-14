@@ -281,14 +281,14 @@ const Dashboard = () => {
       dispatch(deleteClientHiringRequest());
       return api.daleteData(`${CLIENT_HIRING_PROGRESS}?id=${id}`);
     },
-    onSuccess: () => {
+    onSuccess: ({ data }) => {
       dispatch(deleteClientHiringRequestSuccess(modalData?.id));
-      Toast('success', 'Data deleted successfully');
+      Toast('success', data?.message || 'Deleted successfully');
       handleClose();
       setModalData({});
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to delete data');
+      Toast('error', err?.response?.data?.message || 'Failed to delete');
       dispatch(deleteClientHiringRequestFailed());
       handleClose();
     },
