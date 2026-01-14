@@ -6,7 +6,7 @@ import Breadcrumb from '@/src/components/form/step/Breadcrumb';
 import CustomTabPanel from '@/src/components/dashboard/appCustomTabPanel';
 import { renderTable } from './renderComponents';
 import { filterTableRowsWRTTab } from '@/src/utils/table';
-import { useParams } from 'next/navigation';
+import { useParams, usePathname, useRouter } from 'next/navigation';
 import HiringRequestModal from './HiringRequestModal';
 import AddContractModal from './AddContractModal';
 import UploadInvoiceModal from './UploadInvoiceModal';
@@ -85,6 +85,8 @@ const AddEmployee = () => {
     (state) => state?.hr?.home?.homeData
   );
   const { role } = useSelector((state) => state?.auth?.userData);
+  const router = useRouter();
+  const pathname = usePathname();
 
   const { isLoading, isFetching } = useQuery({
     staleTime: 100000,
@@ -292,7 +294,6 @@ const AddEmployee = () => {
         });
     },
   });
-  console.log(email, 'email');
   const EmployeeInvoicesProcessing = useQuery({
     staleTime: 100000,
     refetchOnWindowFocus: false,
@@ -512,7 +513,7 @@ const AddEmployee = () => {
 
   const searchParams = useSearchParams();
 
-  const search = searchParams.get('param');
+  const search = searchParams?.get('param');
 
   const clientProfileTabs = [
     {
@@ -651,39 +652,61 @@ const AddEmployee = () => {
         0,
         0
       );
-    } else if (search === 'employee_invoices') {
+    } else if (search === 'employee_invoices_processing') {
       clientProfileTabsHandler(
         clientProfileTabs,
         clientProfileTabs[2]?.label,
-        clientProfileTabs[2]?.nestedTabs[0]?.label,
+        clientProfileTabs[2]?.nestedTabs[1]?.label,
         setCurrentTab,
         employeeInvoices?.pending,
         InvoiceProcessColumns,
         invoicePaymentColumn,
         setCurrentTabTable,
         2,
-        0
+        1
       );
-    } else if (search === 'other_invoices') {
+    } else if (search === 'employee_invoices_paid') {
+      clientProfileTabsHandler(
+        clientProfileTabs,
+        clientProfileTabs[2]?.label,
+        clientProfileTabs[2]?.nestedTabs[2]?.label,
+        setCurrentTab,
+        employeeInvoices?.pending,
+        InvoiceProcessColumns,
+        invoicePaymentColumn,
+        setCurrentTabTable,
+        2,
+        2
+      );
+    } else if (search === 'other_invoices_processing') {
       clientProfileTabsHandler(
         clientProfileTabs,
         clientProfileTabs[3]?.label,
-        clientProfileTabs[3]?.nestedTabs[0]?.label,
+        clientProfileTabs[3]?.nestedTabs[1]?.label,
         setCurrentTab,
         otherInvoices?.pending,
         InvoiceProcessColumns,
         otherPaymentColumn,
         setCurrentTabTable,
         3,
-        0
+        1
+      );
+    } else if (search === 'other_invoices_paid') {
+      clientProfileTabsHandler(
+        clientProfileTabs,
+        clientProfileTabs[3]?.label,
+        clientProfileTabs[3]?.nestedTabs[2]?.label,
+        setCurrentTab,
+        otherInvoices?.pending,
+        InvoiceProcessColumns,
+        otherPaymentColumn,
+        setCurrentTabTable,
+        3,
+        2
       );
     }
-  }, [
-    employeeInvoices?.pending,
-    otherInvoices?.pending,
-    hireAndOnBoard,
-    search,
-  ]);
+  }, []);
+
   const [currentTabTable, setCurrentTabTable] = useState({
     data: hireAndOnBoard?.hiringRequest,
     column: clientProfileTabs?.[0].nestedTabs?.[0]?.column,
@@ -727,6 +750,11 @@ const AddEmployee = () => {
         data: [],
       });
     }
+    if (search !== '') {
+      const params = new URLSearchParams(searchParams?.toString());
+      params?.delete('param');
+      router?.replace(`${pathname}?${params?.toString()}`);
+    }
   };
   const handleChangeNestedTab = (event, newValue, data, rest) => {
     const current = data[newValue];
@@ -750,6 +778,11 @@ const AddEmployee = () => {
         data: rest?.data || [],
         column: rest?.column,
       });
+    }
+    if (search !== '') {
+      const params = new URLSearchParams(searchParams?.toString());
+      params?.delete('param');
+      router?.replace(`${pathname}?${params?.toString()}`);
     }
   };
   const handleOpenModal = () => {

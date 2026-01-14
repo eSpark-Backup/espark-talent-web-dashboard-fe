@@ -43,11 +43,19 @@ const handleAdminNotifications = (notification, userType) => {
       `/${commonUrl}`,
       route,
       needsParams
-        ? notification.type === 'Other Payments'
-          ? 'other_invoices'
-          : notification.type === 'Employee Invoice'
-            ? 'employee_invoices'
-            : paramText
+        ? notification.type === 'Other Payments' &&
+          notification.description.includes('processing')
+          ? 'other_invoices_processing'
+          : notification.type === 'Other Payments' &&
+              notification.description.includes('paid')
+            ? 'other_invoices_paid'
+            : notification.type === 'Employee Invoice' &&
+                notification.description.includes('processing')
+              ? 'employee_invoices_processing'
+              : notification.type === 'Employee Invoice' &&
+                  notification.description.includes('paid')
+                ? 'employee_invoices_paid'
+                : paramText
         : null
     );
 
@@ -72,6 +80,7 @@ const handleClientNotifications = (notification, userType) => {
     Invoice: 'payments/invoice-payments',
     Policy: 'adminstration/policies',
     'Company Contracts': 'adminstration/contracts-signed',
+    'Employee Contracts': 'adminstration/contracts-signed',
   };
 
   const route = routes[notification?.type];
@@ -83,12 +92,18 @@ const handleClientNotifications = (notification, userType) => {
       'Onboarding',
       'Punch Request',
       'Leave Request',
+      'Employee Contracts',
     ].includes(notification?.type);
 
     const url = constructUrl(
       `/${commonUrl}`,
       route,
-      needsParams ? paramText : null
+      needsParams
+        ? notification.type === 'employee_contracts' &&
+          notification.description.includes('employee')
+          ? 'employee_contract'
+          : paramText
+        : null
     );
 
     if (!checkIfPathnameIsSame(url)) {

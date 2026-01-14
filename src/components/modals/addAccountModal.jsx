@@ -44,10 +44,10 @@ const AddAccountModal = forwardRef(({ open, onClose }, ref) => {
       );
       setAccountFormValues(null);
       handleCloseModal();
-      Toast('success', 'Data posted successfully');
+      Toast('success', data?.message || 'Account created successfully');
     },
     onError: (err) => {
-      Toast('error', err.message || 'Failed to post data');
+      Toast('error', err?.response?.data?.message || 'Failed to post data');
     },
   });
   const {

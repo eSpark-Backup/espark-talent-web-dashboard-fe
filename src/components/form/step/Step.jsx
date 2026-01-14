@@ -48,7 +48,6 @@ const Step = ({
   const [showEditModal, setEditModal] = useState(false);
   const { mutate, isPending } = useMutation({
     mutationFn: async (formVals) => {
-      console.log({ formVals });
       const formDataVals = new FormData();
       for (const key in formVals) {
         formDataVals?.append(key, formVals[key]);
@@ -57,8 +56,7 @@ const Step = ({
     },
     onSuccess: ({ data }) => {
       queryClient?.invalidateQueries(['hr-client-info-query']);
-      Toast('success', 'Status updated successfully');
-      console.log({ data });
+      Toast('success', data?.message || 'Updated successfully');
       if (window?.history?.length > 1) {
         router?.back();
       } else {

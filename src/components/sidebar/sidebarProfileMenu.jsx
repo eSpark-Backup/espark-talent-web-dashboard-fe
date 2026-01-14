@@ -3,8 +3,10 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 import DotBadge from './SidebarProfileBadge';
 import { Box } from '@mui/system';
+import { useSelector } from 'react-redux';
 
 const SidebarProfileMenu = () => {
+  const { data } = useSelector((state) => state?.notifications);
   return (
     <Box
       sx={{
@@ -15,7 +17,7 @@ const SidebarProfileMenu = () => {
       }}
     >
       <DotBadge
-        color={'#FF0000'}
+        color={data?.length > 0 ? '#FF0000' : 'transparent'}
         icon={<ArrowForwardIosIcon sx={{ width: '20px', height: '17px' }} />}
       />
     </Box>

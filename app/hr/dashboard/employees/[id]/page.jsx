@@ -14,7 +14,7 @@ import {
 } from '@mui/material';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useParams } from 'next/navigation';
+import { useParams, usePathname, useSearchParams } from 'next/navigation';
 
 import { employeeProfileData } from '@/src/constants/employeeProfile';
 import Profile from '@/src/components/employeeData/profile';
@@ -57,6 +57,7 @@ import AppCustomMonthYearPicker from '@/src/components/dashboard/appCustomMonthY
 
 const Page = () => {
   const router = useRouter();
+  const pathname = usePathname();
   const { employee_perms } = useSelector((state) => state?.hr?.home?.homeData);
   const { role } = useSelector((state) => state?.auth?.userData);
   const months = [
@@ -94,6 +95,8 @@ const Page = () => {
     year: date.getFullYear(),
   });
   const params = useParams();
+  const searchParams = useSearchParams();
+  const param = searchParams.get('param');
 
   const { isLoading } = useQuery({
     staleTime: 1000,
@@ -156,6 +159,12 @@ const Page = () => {
   };
   const handleChange = (event, newValue) => {
     setValue(newValue);
+    if (param === 'wfh_request') {
+      const params = new URLSearchParams(searchParams?.toString());
+      params?.delete('param');
+
+      router?.replace(`${pathname}?${params?.toString()}`);
+    }
   };
 
   const dispatchFunction = (
@@ -230,6 +239,12 @@ const Page = () => {
   const handleDownloadResume = () => {
     downloadResumeMutation.mutate();
   };
+
+  useEffect(() => {
+    if (param === 'wfh_request') {
+      setValue('nine');
+    }
+  }, []);
 
   // Re-render logic when `value` changes
   useEffect(() => {
@@ -914,6 +929,7 @@ const Page = () => {
               </Box>
             </Box>
             <Box sx={{ width: '100%' }}>
+              {console.log(employeeProfileData, 'dady mammy')}
               {value === employeeProfileData?.valueOne ? (
                 <Profile
                   isLoading={isLoading}

@@ -170,6 +170,7 @@ export default function ProfilePopper({
 
     return timeFromNow;
   };
+
   return (
     <div>
       <button
@@ -243,8 +244,9 @@ export default function ProfilePopper({
                   <Box sx={{ display: 'flex', gap: 1.7, px: 2 }}>
                     <Box sx={{ display: 'flex', gap: 0.1 }}>
                       <Box sx={{ marginTop: -1.2 }}>
-                        {item?.text === 'Notifications' &&
-                          data?.length !== 0 && <DotBadge color={'red'} />}
+                        {item?.text === 'Notifications' && data?.length > 0 && (
+                          <DotBadge color={'red'} />
+                        )}
                       </Box>
                       <Image
                         width={20}

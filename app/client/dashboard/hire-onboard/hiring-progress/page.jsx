@@ -58,7 +58,6 @@ const Dashboard = () => {
   const searchParams = useSearchParams();
   const activePrams = searchParams.get('param');
   const clientQuery = useQueryClient();
-
   const { data: hiringRequestQuery } = useQuery({
     staleTime: 10000,
     refetchOnWindowFocus: false,
@@ -482,14 +481,12 @@ const Dashboard = () => {
                           : reverseArrayOrder(onBoardingDataState)
                     }
                     handleClickActionDelete={handleClickDelete}
-                    options={
-                      currentTab === 'Interview' && [
-                        { label: 'Short listed' },
-                        { label: 'Pending' },
-                        { label: 'Rejected' },
-                        { label: 'Hold' },
-                      ]
-                    }
+                    options={[
+                      { label: 'Short listed' },
+                      { label: 'Pending' },
+                      { label: 'Rejected' },
+                      { label: 'Hold' },
+                    ]}
                     updateStatus={updateInterviewStatus}
                     isLoading={
                       value === 0

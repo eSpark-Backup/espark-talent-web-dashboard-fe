@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Grid, Box } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -27,10 +27,15 @@ import {
 import { Toast } from '@/src/components/Toast/Toast';
 import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
 import dayjs from 'dayjs';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 const ContractSigned = () => {
   const { data } = useSelector((state) => state?.client?.contract);
   const dispatch = useDispatch();
+  const searchParams = useSearchParams();
+  const param = searchParams.get('param');
+  const router = useRouter();
+  const pathname = usePathname();
   const [value, setValue] = useState(0);
   const [currentTab, setCurrentTab] = useState('Hiring Request');
 
@@ -95,10 +100,17 @@ const ContractSigned = () => {
     } else {
       tab = tab.join(' ');
     }
+    if (param === 'employee_contracts') {
+      const params = new URLSearchParams(searchParams?.toString());
+      params?.delete('param');
+
+      router?.replace(`${pathname}?${params?.toString()}`);
+    }
     setCurrentTab(tab);
 
     setValue(newValue);
   };
+
   const resolveURL = (id) => {
     let url;
     if (value === 0) {
@@ -108,6 +120,7 @@ const ContractSigned = () => {
     }
     return url;
   };
+  
   const downloadContractMutation = useMutation({
     mutationFn: async (id) => {
       return api.downloadFile(resolveURL(id));
@@ -131,6 +144,13 @@ const ContractSigned = () => {
   const downloadContract = (id) => {
     downloadContractMutation.mutate(id);
   };
+
+  useEffect(() => {
+    if (param === 'employee_contracts') {
+      setValue(1);
+    }
+  }, []);
+
   return (
     <>
       <Grid container>

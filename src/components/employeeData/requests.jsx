@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, Modal } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -26,6 +26,7 @@ import {
 import { renderTable } from '@/app/hr/dashboard/clients/[id]/renderComponents';
 import dayjs from 'dayjs';
 import PunchRequestModal from '@/app/employee/dashboard/request/punch-requests/PunchRequestModal';
+import { useSearchParams } from 'next/navigation';
 
 const Request = () => {
   const [value, setValue] = useState(0);
@@ -39,6 +40,8 @@ const Request = () => {
   const [currentTab, setCurrentTab] = useState('Leave');
   const dispatch = useDispatch();
   const queryClient = useQueryClient();
+  const searchParams = useSearchParams();
+  const param = searchParams.get('param');
 
   const { data: leaveData, isLoading: leaveLoading } = useQuery({
     staleTime: 10000,
@@ -239,6 +242,13 @@ const Request = () => {
     setOpenWfh(false);
     setOpenLeave(false);
   };
+
+  useEffect(() => {
+    if (param === 'wfh_request') {
+      setValue(1);
+    }
+  }, []);
+
   return (
     <>
       <Box sx={{ width: '100%' }}>

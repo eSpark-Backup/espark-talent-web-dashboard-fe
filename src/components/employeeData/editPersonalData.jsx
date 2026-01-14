@@ -52,8 +52,11 @@ const EditPersonalModal = forwardRef(
           updatedData
         );
       },
-      onSuccess: async () => {
-        Toast('success', 'Data updated successfully');
+      onSuccess: async ({ data }) => {
+        Toast(
+          'success',
+          data?.message || 'Personal information updated successfully'
+        );
         onClose();
         await queryClient.invalidateQueries('employee-profile');
       },

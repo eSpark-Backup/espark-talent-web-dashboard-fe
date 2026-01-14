@@ -26,7 +26,13 @@ export const getCamelCapitalized = (rawStr) => {
     rawArryStr = [];
   }
 
-  if (rawStr === '') {
+  if (
+    rawStr === '' ||
+    rawStr === null ||
+    rawStr === undefined ||
+    rawStr === 'null' ||
+    rawStr === 'undefined'
+  ) {
     return '-';
   } else {
     for (let i = 0; i < rawArryStr.length; i++) {

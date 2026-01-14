@@ -1,4 +1,4 @@
-import React, { forwardRef, useEffect, useState } from 'react';
+import React, { forwardRef, useState } from 'react';
 import {
   Box,
   Button,
@@ -31,8 +31,11 @@ const EditEmergencyModal = forwardRef(
           data
         );
       },
-      onSuccess: async () => {
-        Toast('success', 'Data updated successfully');
+      onSuccess: async ({ data }) => {
+        Toast(
+          'success',
+          data?.message || 'Personal information updated successfully'
+        );
         onClose();
         await queryClient.invalidateQueries('employee-profile');
       },
@@ -94,9 +97,6 @@ const EditEmergencyModal = forwardRef(
         });
       }
     };
-    useEffect(() => {
-      console.log({ secPhoneList });
-    }, [secPhoneList]);
 
     return (
       <Modal
@@ -174,7 +174,7 @@ const EditEmergencyModal = forwardRef(
             >
               <Grid container spacing={5}>
                 {emergency_contact_form?.map(
-                  ({ contactTitle, fields }, contactIndex) => (
+                  ({ contactTitle, fields, type: mainType }, contactIndex) => (
                     <Grid item xs={12} md={5.5} lg={6} key={contactIndex}>
                       <Typography
                         sx={{
@@ -196,23 +196,27 @@ const EditEmergencyModal = forwardRef(
                               {(suffixIconOutside !== 'minus' ||
                                 (suffixIconOutside === 'minus' &&
                                   secPhoneList.includes(
-                                    `emergency_contact.${type}.${name}`
+                                    `emergency_contact.${mainType}.${name}`
                                   ))) && (
                                 <FormInput
                                   title={title}
                                   placeholder={placeholder}
-                                  name={`emergency_contact.${type}.${name}`}
+                                  name={`emergency_contact.${mainType}.${name}`}
                                   setFieldValue={setFieldValue}
                                   value={
-                                    values['emergency_contact']?.[type]?.[
+                                    values['emergency_contact']?.[mainType]?.[
                                       name
                                     ] || ''
                                   }
                                   error={
-                                    errors['emergency_contact']?.[type]?.[name]
+                                    errors['emergency_contact']?.[mainType]?.[
+                                      name
+                                    ]
                                   }
                                   touched={
-                                    touched['emergency_contact']?.[type]?.[name]
+                                    touched['emergency_contact']?.[mainType]?.[
+                                      name
+                                    ]
                                   } // Access touched values by key
                                   setFieldError={setFieldError}
                                   errors={errors}
@@ -231,7 +235,7 @@ const EditEmergencyModal = forwardRef(
                                   }
                                   onClickTogglePhoneNumber={() =>
                                     handleClickTogglePhoneNumber(
-                                      `emergency_contact.${type}.${name}`,
+                                      `emergency_contact.${mainType}.${name}`,
                                       suffixIconOutside
                                     )
                                   }
