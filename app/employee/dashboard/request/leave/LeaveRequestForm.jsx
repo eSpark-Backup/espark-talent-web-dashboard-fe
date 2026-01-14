@@ -82,6 +82,7 @@ const LeaveRequestForm = ({ handleClose }) => {
       return data;
     },
     onError: (err) => {
+      console.error(err);
       dispatch(getEmpLeaveRequestDataFailed());
     },
   });

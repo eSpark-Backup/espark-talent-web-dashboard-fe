@@ -120,7 +120,6 @@ const ContractSigned = () => {
     }
     return url;
   };
-  
   const downloadContractMutation = useMutation({
     mutationFn: async (id) => {
       return api.downloadFile(resolveURL(id));
