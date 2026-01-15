@@ -251,6 +251,8 @@ const Page = () => {
     setCurrentValue(value);
   }, [value]);
 
+  const canWrite = role === 'super_admin' || employee_perms?.write;
+
   return (
     <>
       <Grid container>
@@ -519,17 +521,16 @@ const Page = () => {
                       md:
                         value === employeeProfileData?.valuethree
                           ? 'calc(100% - 260px)'
-                          : value === employeeProfileData?.valueFour &&
-                              employee_perms?.write
+                          : value === employeeProfileData?.valueFour && canWrite
                             ? 'calc(100% - 140px)'
                             : value === employeeProfileData?.valueSix &&
-                                employee_perms?.write
+                                canWrite
                               ? 'calc(100% - 140px)'
                               : value === employeeProfileData?.valueSeven &&
-                                  employee_perms?.write
+                                  canWrite
                                 ? 'calc(100% - 140px)'
                                 : value === employeeProfileData?.valueEight &&
-                                    employee_perms?.write
+                                    canWrite
                                   ? 'calc(100% - 393px)'
                                   : '100%',
                     },

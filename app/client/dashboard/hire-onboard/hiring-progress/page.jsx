@@ -35,7 +35,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { filterTableRowsWRTTab } from '@/src/utils/table';
 import { Toast } from '@/src/components/Toast/Toast';
 import DashboardHeading from '@/src/components/dashboard/dashboardHeading';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import dayjs from 'dayjs';
 import { genderType } from '@/src/utils/genderType';
 import { formatSalary } from '@/src/utils/salaryFormat';
@@ -54,7 +54,7 @@ const Dashboard = () => {
     useState([]);
   const [onBoardingDataState, setOnBoardingDataState] = useState([]);
   const router = useRouter();
-
+  const pathname = usePathname();
   const searchParams = useSearchParams();
   const activePrams = searchParams.get('param');
   const clientQuery = useQueryClient();
@@ -224,6 +224,12 @@ const Dashboard = () => {
       setCurrentTab,
       setValue,
     });
+    if (activePrams === 'interview_schedule' || activePrams === 'onboarding') {
+      const params = new URLSearchParams(searchParams?.toString());
+      params?.delete('param');
+
+      router?.replace(`${pathname}?${params?.toString()}`);
+    }
   };
 
   useEffect(() => {

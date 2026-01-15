@@ -68,8 +68,20 @@ const AddEmployee = () => {
       },
     }),
     joining_date: dayjs(values?.joining_date)?.format('YYYY-MM-DD'),
-    ending_date: dayjs(values?.ending_date)?.format('YYYY-MM-DD'),
-    starting_date: dayjs(values?.starting_date)?.format('YYYY-MM-DD'),
+    ...(values?.starting_date &&
+    values?.job_status !== 'Part-Time' &&
+    values?.job_status !== 'Permanent'
+      ? {
+          starting_date: dayjs(values.starting_date).format('YYYY-MM-DD'),
+        }
+      : {}),
+    ...(values?.ending_date &&
+    values?.job_status !== 'Part-Time' &&
+    values?.job_status !== 'Permanent'
+      ? {
+          ending_date: dayjs(values.ending_date).format('YYYY-MM-DD'),
+        }
+      : {}),
     job_status: values?.job_status,
     role: values?.role,
     job_title: values?.job_title,

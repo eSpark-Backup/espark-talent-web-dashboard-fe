@@ -171,6 +171,7 @@ const Request = () => {
           Toast('error', err.message || 'Failed to get data');
         });
     },
+    enabled: !!currentEmployee?.email,
   });
 
   const updateRequestMutation = useMutation({
