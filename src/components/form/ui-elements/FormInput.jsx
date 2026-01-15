@@ -18,6 +18,9 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import AppSearchableDropdown from '../../dashboard/appSearchableDropdown';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { emailRegExp } from '../schemas/validations';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import IconButton from '@mui/material/IconButton';
 
 const DateTimePickerComponent = (props) => {
   const isXsScreen = useMediaQuery('(max-width:600px)');
@@ -78,6 +81,12 @@ const FormInput = ({
   const [imageSrc, setImageSrc] = useState(
     `/images/hiring/${suffixIconInside}.svg`
   );
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleTogglePassword = () => {
+    setShowPassword(!showPassword);
+  };
+
   const handleSelectItem = (item) => {
     const tempErrors = { ...errors };
     if (Object.hasOwnProperty.call(tempErrors, name)) {
@@ -350,7 +359,7 @@ const FormInput = ({
                       : null
                     : null
                 }
-                value={dayjs(value || null)}
+                value={dayjs(value) || null}
                 onChange={(e) => {
                   handleChangeInput(name, `${e}`);
                 }}
@@ -401,7 +410,7 @@ const FormInput = ({
                   width: '100%',
                 },
               }}
-              value={value}
+              value={dayjs(value) || null}
               onChange={(e) => {
                 handleChangeInput(name, `${e?.$d}`);
               }}
@@ -458,7 +467,7 @@ const FormInput = ({
                   width: '100%',
                 },
               }}
-              value={value}
+              value={dayjs(value) || null}
               onChange={(e) => {
                 handleChangeInput(name, `${e?.$d}`);
               }}
@@ -862,31 +871,59 @@ const FormInput = ({
                 </label>
               )}
 
-              <input
-                id={`input-file-${title}`}
-                style={{
-                  background: '#FFF',
-                  display: type === 'file' && 'none',
-                  color: disabled && '#888',
-                  // cursor: 'pointer',
+              <Box
+                sx={{
+                  width: type === 'file' ? 'auto' : '100%',
+                  position: 'relative',
+                  display: 'flex',
+                  alignItems: 'center',
                 }}
-                value={type === 'file' ? '' : value}
-                disabled={disabled}
-                autoComplete={autoComplete}
-                placeholder={placeholder}
-                className="form-input-field"
-                type={type}
-                ref={textRef}
-                readOnly={readOnly}
-                onChange={(e) => {
-                  if (type === 'file') {
-                    handleChangeFileInput(name, e?.currentTarget.files[0]);
-                  } else {
-                    handleChangeInput(name, e?.target?.value);
+              >
+                <input
+                  id={`input-file-${title}`}
+                  style={{
+                    width: '100%',
+                    background: '#FFF',
+                    display: type === 'file' && 'none',
+                    color: disabled && '#888',
+                    paddingRight: type === 'password' ? '40px' : '10px',
+                  }}
+                  value={type === 'file' ? '' : value}
+                  disabled={disabled}
+                  autoComplete={autoComplete}
+                  placeholder={placeholder}
+                  className="form-input-field"
+                  type={
+                    type === 'password'
+                      ? showPassword
+                        ? 'text'
+                        : 'password'
+                      : type
                   }
-                }}
-                accept={accept}
-              />
+                  ref={textRef}
+                  readOnly={readOnly}
+                  onChange={(e) => {
+                    if (type === 'file') {
+                      handleChangeFileInput(name, e?.currentTarget.files[0]);
+                    } else {
+                      handleChangeInput(name, e?.target?.value);
+                    }
+                  }}
+                  accept={accept}
+                />
+                {type === 'password' && (
+                  <IconButton
+                    onClick={handleTogglePassword}
+                    sx={{
+                      position: 'absolute',
+                      right: 0,
+                      height: '100%',
+                    }}
+                  >
+                    {showPassword ? <Visibility /> : <VisibilityOff />}
+                  </IconButton>
+                )}
+              </Box>
               {suffixIcon && (
                 <label
                   htmlFor={`input-file-${title}`}

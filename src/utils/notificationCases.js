@@ -2,12 +2,13 @@ export const notificationCases = (cases, notification) => {
   switch (cases) {
     case 'super_admin':
       return handleAdminNotifications(notification, 'hr');
-    case 'hr':
-      return handleAdminNotifications(notification, 'hr');
     case 'client':
       return handleClientNotifications(notification, cases);
     case 'employee':
       return handleEmployeeNotifications(notification, cases);
+
+    default:
+      return handleAdminNotifications(notification, 'hr');
   }
 };
 

@@ -48,8 +48,6 @@ const TimeAndLeaves = () => {
       column: timeColumn,
     });
   }, []);
-  const [isLoadingMutation, setIsLoadingMutation] = useState(false);
-  console.log(isLoadingMutation, 'isLoadingMutation');
 
   const preetyTime = (time) => {
     if (dayjs(time)?.format('hh:mm A') === 'Invalid Date') {
@@ -101,13 +99,11 @@ const TimeAndLeaves = () => {
   };
   const { mutate } = useMutation({
     mutationFn: async (tab) => {
-      setIsLoadingMutation(true);
       return api.getData(
         `${HR_EMP_TIME_AND_LEAVES}?id=${params?.id}&tab=${tab?.toLowerCase()}`
       );
     },
     onSuccess: ({ data }) => {
-      setIsLoadingMutation(false);
       if (currentTab.label === 'Time') {
         const tempData =
           [
@@ -123,7 +119,6 @@ const TimeAndLeaves = () => {
       return data || [];
     },
     onError: (err) => {
-      setIsLoadingMutation(false);
       Toast('error', err.message || 'Failed to update data');
     },
   });

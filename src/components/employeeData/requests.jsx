@@ -139,12 +139,6 @@ const Request = () => {
       return api
         .getData(`${HR_WFH_REQUEST}?e_email=${currentEmployee?.email}`)
         .then(({ data }) => {
-          console.log(
-            data?.map((item) =>
-              dayjs(item?.start_date)?.format('MMMM D, YYYY')
-            ),
-            'data pppp'
-          );
           const tempRequest =
             data === '' || !data.length
               ? []

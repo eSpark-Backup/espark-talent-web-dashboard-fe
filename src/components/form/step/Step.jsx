@@ -94,7 +94,7 @@ const Step = ({
       } else {
         errToast = 'An unknown error occurred';
       }
-      console.log({
+      console.error({
         errorDetails: err,
         errorMessage: err?.message,
         errorName: err?.name,
@@ -137,7 +137,6 @@ const Step = ({
     validationSchema: schema,
     enableReinitialize: true,
     onSubmit: (formValues) => {
-      console.log({ formValues });
       dispatchFunction?.(formValues);
       handleGoNext?.();
       if (isLastStep) {
