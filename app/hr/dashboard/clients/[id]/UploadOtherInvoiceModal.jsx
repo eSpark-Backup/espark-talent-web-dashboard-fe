@@ -43,7 +43,7 @@ const UploadOtherInvoiceModal = ({ open, onClose, title }) => {
             ...othInvoiceFormValues,
             action:
               role === 'super_admin' ||
-              (role !== 'super_admin' && invoices_perms?.[0]?.write)
+              (role !== 'super_admin' && invoices_perms?.write)
                 ? ['Delete']
                 : ['-'],
             id: data.id,

@@ -132,27 +132,33 @@ const Request = () => {
     queryKey: [
       'hr-employee-get-wfh-request',
       currentEmployee?.email,
-      employee_perms?.[0],
+      employee_perms?.read,
     ],
     queryFn: async () => {
       dispatch(getEmpRequest());
       return api
         .getData(`${HR_WFH_REQUEST}?e_email=${currentEmployee?.email}`)
         .then(({ data }) => {
+          console.log(
+            data?.map((item) =>
+              dayjs(item?.start_date)?.format('MMMM D, YYYY')
+            ),
+            'data pppp'
+          );
           const tempRequest =
             data === '' || !data.length
               ? []
               : data?.map((item) => ({
                   ...item,
-                  date: dayjs(item?.date)?.format('MMMM D, YYYY'),
+                  date: dayjs(item?.start_date)?.format('MMMM D, YYYY'),
                   actionStatus: true,
                   actions: [
                     item?.status === 'pending' &&
-                    (role === 'super_admin' || employee_perms?.[0]?.write)
+                    (role === 'super_admin' || employee_perms?.write)
                       ? 'Reject'
                       : null,
                     item?.status === 'pending' &&
-                    (role === 'super_admin' || employee_perms?.[0]?.write)
+                    (role === 'super_admin' || employee_perms?.write)
                       ? 'Approve'
                       : null,
                     'View',
@@ -246,6 +252,7 @@ const Request = () => {
   useEffect(() => {
     if (param === 'wfh_request') {
       setValue(1);
+      setCurrentTab('WFH');
     }
   }, []);
 

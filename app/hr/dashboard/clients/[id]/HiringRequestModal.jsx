@@ -47,7 +47,7 @@ const HiringRequestModal = ({ open, onClose }) => {
           gender: genderType(hiringValues?.gender),
           action:
             role === 'super_admin' ||
-            (role !== 'super_admin' && client_perms?.[0]?.write)
+            (role !== 'super_admin' && client_perms?.write)
               ? ['Delete']
               : ['-'],
         })

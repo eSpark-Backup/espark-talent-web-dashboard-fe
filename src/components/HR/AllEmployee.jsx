@@ -215,7 +215,7 @@ const AllEmployee = ({ fromClient, openModal }) => {
         {value === 'one' && (
           <>
             {(role === 'super_admin' ||
-              (role !== 'super_admin' && employee_perms?.[0]?.write)) && (
+              (role !== 'super_admin' && employee_perms?.write)) && (
               <Button
                 sx={{
                   backgroundColor: '#029894',

@@ -464,13 +464,12 @@ const AddEmployee = () => {
   function ClientProcessColumns(column) {
     const action =
       role === 'super_admin' ||
-      (role !== 'super_admin' && client_perms?.[0]?.delete);
+      (role !== 'super_admin' && client_perms?.delete);
     const download =
       role === 'super_admin' ||
-      (role !== 'super_admin' && client_perms?.[0]?.download);
+      (role !== 'super_admin' && client_perms?.download);
     const payment_status =
-      role === 'super_admin' ||
-      (role !== 'super_admin' && client_perms?.[0]?.write);
+      role === 'super_admin' || (role !== 'super_admin' && client_perms?.write);
 
     return column?.filter(
       (item) =>
@@ -483,13 +482,13 @@ const AddEmployee = () => {
   function InvoiceProcessColumns(column) {
     const action =
       role === 'super_admin' ||
-      (role !== 'super_admin' && invoices_perms?.[0]?.delete);
+      (role !== 'super_admin' && invoices_perms?.delete);
     const download =
       role === 'super_admin' ||
-      (role !== 'super_admin' && invoices_perms?.[0]?.download);
+      (role !== 'super_admin' && invoices_perms?.download);
     const payment_status =
       role === 'super_admin' ||
-      (role !== 'super_admin' && invoices_perms?.[0]?.write);
+      (role !== 'super_admin' && invoices_perms?.write);
 
     return column?.filter(
       (item) =>
@@ -1326,7 +1325,7 @@ const AddEmployee = () => {
                               <>
                                 {(role === 'super_admin' ||
                                   (role !== 'super_admin' &&
-                                    client_perms?.[0]?.write)) && (
+                                    client_perms?.write)) && (
                                   <Button
                                     onClick={handleOpenHiringRequestModal}
                                     variant="contained"
@@ -1350,7 +1349,7 @@ const AddEmployee = () => {
                               <>
                                 {(role === 'super_admin' ||
                                   (role !== 'super_admin' &&
-                                    client_perms?.[0]?.write)) && (
+                                    client_perms?.write)) && (
                                   <Button
                                     onClick={handleOpenAddInterviewModal}
                                     variant="contained"
@@ -1373,7 +1372,7 @@ const AddEmployee = () => {
                               <>
                                 {(role === 'super_admin' ||
                                   (role !== 'super_admin' &&
-                                    client_perms?.[0]?.write)) && (
+                                    client_perms?.write)) && (
                                   <Button
                                     onClick={handleOpenAddOnboardModal}
                                     variant="contained"
@@ -1398,7 +1397,7 @@ const AddEmployee = () => {
                             <>
                               {(role === 'super_admin' ||
                                 (role !== 'super_admin' &&
-                                  invoices_perms?.[0]?.write)) && (
+                                  invoices_perms?.write)) && (
                                 <Button
                                   onClick={handleOpenUploadInvoiceModal}
                                   disabled={
@@ -1426,7 +1425,7 @@ const AddEmployee = () => {
                             <>
                               {(role === 'super_admin' ||
                                 (role !== 'super_admin' &&
-                                  invoices_perms?.[0]?.write)) && (
+                                  invoices_perms?.write)) && (
                                 <Button
                                   onClick={handleOpenUploadOthInvoiceModal}
                                   variant="contained"

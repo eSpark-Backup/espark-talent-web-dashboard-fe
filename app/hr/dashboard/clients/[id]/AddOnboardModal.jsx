@@ -37,7 +37,7 @@ const AddOnboardModal = ({ open, onClose }) => {
           id: data.id,
           action:
             role === 'super_admin' ||
-            (role !== 'super_admin' && client_perms?.[0]?.write)
+            (role !== 'super_admin' && client_perms?.write)
               ? ['Delete']
               : ['-'],
         })

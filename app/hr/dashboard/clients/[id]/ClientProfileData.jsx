@@ -89,7 +89,7 @@ const ClientProfileData = ({
               }}
             />
             {(role === 'super_admin' ||
-              (role !== 'super_admin' && client_perms?.[0].write)) && (
+              (role !== 'super_admin' && client_perms?.write)) && (
               <Box
                 component="img"
                 sx={{
@@ -205,7 +205,7 @@ const ClientProfileData = ({
           }}
         >
           {(role === 'super_admin' ||
-            (role !== 'super_admin' && client_perms?.[0].write)) && (
+            (role !== 'super_admin' && client_perms?.write)) && (
             <Box
               component="img"
               sx={{

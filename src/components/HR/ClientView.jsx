@@ -141,8 +141,8 @@ const ClientView = ({ status, data, isLoading }) => {
   const handleReturnOptions = (eachItem) => {
     if (
       role !== 'super_admin' &&
-      !client_perms?.[0]?.delete &&
-      !client_perms?.[0]?.write
+      !client_perms?.delete &&
+      !client_perms?.write
     ) {
       return null;
     } else
@@ -201,7 +201,7 @@ const ClientView = ({ status, data, isLoading }) => {
               }}
             >
               {(role === 'super_admin' ||
-                (role !== 'super_admin' && client_perms?.[0]?.delete)) && (
+                (role !== 'super_admin' && client_perms?.delete)) && (
                 <MenuItem
                   onClick={(e) => handleOpenRemove(e, eachItem.id)}
                   sx={{ backgroundColor: '#fff !important' }}
@@ -210,7 +210,7 @@ const ClientView = ({ status, data, isLoading }) => {
                 </MenuItem>
               )}
               {(role === 'super_admin' ||
-                (role !== 'super_admin' && client_perms?.[0]?.write)) && (
+                (role !== 'super_admin' && client_perms?.write)) && (
                 <MenuItem
                   onClick={(e) => {
                     handleOpenChangeStatusModal(

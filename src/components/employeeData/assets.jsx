@@ -85,7 +85,7 @@ const Assets = () => {
   function processColumns() {
     if (
       role === 'super_admin' ||
-      (role !== 'super_admin' && employee_perms[0].delete)
+      (role !== 'super_admin' && employee_perms?.delete)
     )
       return ASSET_TABLECOLUMN;
     else {

@@ -83,7 +83,7 @@ const AllClients = () => {
       >
         <DashboardHeading title={`Clients`} />
         {(role === 'super_admin' ||
-          (role !== 'super_admin' && client_perms?.[0]?.write)) && (
+          (role !== 'super_admin' && client_perms?.write)) && (
           <Button
             sx={{
               backgroundColor: '#029894',

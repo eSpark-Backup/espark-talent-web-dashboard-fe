@@ -41,7 +41,7 @@ const Salary = ({ timeTracking }) => {
       timeTracking?.month || 'all',
       timeTracking?.year || 'all',
       currentEmployee?.email,
-      employee_perms && employee_perms[0],
+      employee_perms && employee_perms?.read,
     ],
     queryFn: async () => {
       dispatch(getEmpSalaryRequest());
@@ -59,11 +59,11 @@ const Salary = ({ timeTracking }) => {
                   date: dayjs(item?.date)?.format('MMMM D, YYYY'),
                   action: [
                     role === 'super_admin' ||
-                    (employee_perms && employee_perms[0]?.delete)
+                    (employee_perms && employee_perms?.delete)
                       ? 'Delete'
                       : null,
                     role === 'super_admin' ||
-                    (employee_perms && employee_perms[0]?.write)
+                    (employee_perms && employee_perms?.write)
                       ? 'View'
                       : null,
                   ]?.filter(Boolean),
@@ -113,13 +113,13 @@ const Salary = ({ timeTracking }) => {
 
     let filteredColumns = SALARY_TABLECOLUMN;
 
-    if (!employee_perms[0]?.download) {
+    if (!employee_perms?.download) {
       filteredColumns = filteredColumns?.filter(
         (col) => col?.name !== 'pay_slip'
       );
     }
 
-    if (!employee_perms?.[0]?.delete && !employee_perms?.[0]?.write) {
+    if (!employee_perms?.delete && !employee_perms?.write) {
       filteredColumns = filteredColumns?.filter(
         (col) => col?.name !== 'action'
       );

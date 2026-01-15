@@ -60,8 +60,7 @@ export default function middleware(req) {
     }
   }
 
-  const hasReadPermission = (key) => permissions[key]?.[0]?.read;
-
+  const hasReadPermission = (key) => permissions[key]?.read;
   // Restrict access based on permissions
   if (
     pathname.startsWith('/hr/dashboard/employees') &&

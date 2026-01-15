@@ -349,7 +349,7 @@ const Page = () => {
                     />
                   </Box>
                   {(role === 'super_admin' ||
-                    (role !== 'super_admin' && employee_perms?.[0]?.write)) && (
+                    (role !== 'super_admin' && employee_perms?.write)) && (
                     <Image
                       src={'/images/dashboard/hr/edit.svg'}
                       width={35}
@@ -447,8 +447,7 @@ const Page = () => {
                   }}
                 >
                   {(role === 'super_admin' ||
-                    (role !== 'super_admin' &&
-                      employee_perms?.[0].download)) && (
+                    (role !== 'super_admin' && employee_perms?.download)) && (
                     <Button
                       variant="contained"
                       sx={{
@@ -479,7 +478,7 @@ const Page = () => {
                     </Button>
                   )}
                   {(role === 'super_admin' ||
-                    (role !== 'super_admin' && employee_perms?.[0].write)) && (
+                    (role !== 'super_admin' && employee_perms?.write)) && (
                     <Button
                       sx={{
                         width: '200px',
@@ -520,25 +519,17 @@ const Page = () => {
                       md:
                         value === employeeProfileData?.valuethree
                           ? 'calc(100% - 260px)'
-                          : (value === employeeProfileData?.valueFour &&
-                                role == 'super_admin') ||
-                              (role !== 'super_admin' &&
-                                employee_perms?.[0]?.write)
+                          : value === employeeProfileData?.valueFour &&
+                              employee_perms?.write
                             ? 'calc(100% - 140px)'
-                            : (value === employeeProfileData?.valueSix &&
-                                  role == 'super_admin') ||
-                                (role !== 'super_admin' &&
-                                  employee_perms?.[0]?.write)
+                            : value === employeeProfileData?.valueSix &&
+                                employee_perms?.write
                               ? 'calc(100% - 140px)'
-                              : (value === employeeProfileData?.valueSeven &&
-                                    role == 'super_admin') ||
-                                  (role !== 'super_admin' &&
-                                    employee_perms?.[0]?.write)
+                              : value === employeeProfileData?.valueSeven &&
+                                  employee_perms?.write
                                 ? 'calc(100% - 140px)'
-                                : (value === employeeProfileData?.valueEight &&
-                                      role == 'super_admin') ||
-                                    (role !== 'super_admin' &&
-                                      employee_perms?.[0]?.write)
+                                : value === employeeProfileData?.valueEight &&
+                                    employee_perms?.write
                                   ? 'calc(100% - 393px)'
                                   : '100%',
                     },
@@ -772,7 +763,7 @@ const Page = () => {
                       <>
                         {(role === 'super_admin' ||
                           (role !== 'super_admin' &&
-                            employee_perms?.[0]?.write)) && (
+                            employee_perms?.write)) && (
                           <Button
                             sx={{
                               minWidth: '160px',
@@ -804,7 +795,7 @@ const Page = () => {
                       <>
                         {(role === 'super_admin' ||
                           (role !== 'super_admin' &&
-                            employee_perms?.[0]?.write)) && (
+                            employee_perms?.write)) && (
                           <Button
                             sx={{
                               minWidth: '160px',
@@ -839,7 +830,7 @@ const Page = () => {
                       <>
                         {(role === 'super_admin' ||
                           (role !== 'super_admin' &&
-                            employee_perms?.[0]?.write)) && (
+                            employee_perms?.write)) && (
                           <Button
                             sx={{
                               minWidth: '160px',
@@ -874,7 +865,7 @@ const Page = () => {
                       <>
                         {(role === 'super_admin' ||
                           (role !== 'super_admin' &&
-                            employee_perms?.[0]?.write)) && (
+                            employee_perms?.write)) && (
                           <Box
                             sx={{
                               display: 'flex',

@@ -86,7 +86,7 @@ const Profile = ({
                   </Typography>
 
                   {(role === 'super_admin' ||
-                    (role !== 'super_admin' && employee_perms?.[0].write)) && (
+                    (role !== 'super_admin' && employee_perms?.write)) && (
                     <Box sx={{ position: 'absolute', right: 0, top: 0 }}>
                       <Box
                         component={'img'}
@@ -184,7 +184,7 @@ const Profile = ({
                   </Typography>
 
                   {(role === 'super_admin' ||
-                    (role !== 'super_admin' && employee_perms?.[0].write)) && (
+                    (role !== 'super_admin' && employee_perms?.write)) && (
                     <Box sx={{ position: 'absolute', right: 0, top: 0 }}>
                       <Box
                         component={'img'}
@@ -279,7 +279,7 @@ const Profile = ({
                     {employeeProfileData?.emergencyContact}
                   </Typography>
                   {(role === 'super_admin' ||
-                    (role !== 'super_admin' && employee_perms?.[0].write)) && (
+                    (role !== 'super_admin' && employee_perms?.write)) && (
                     <Box sx={{ position: 'absolute', right: 0, top: 0 }}>
                       <Box
                         component={'img'}

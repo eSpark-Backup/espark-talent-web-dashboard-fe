@@ -144,12 +144,12 @@ const TimeAndLeaves = () => {
   });
 
   const getLeavesColumn = (leaves_perms, columns) => {
-    const writeAcess = leaves_perms?.[0]?.write;
+    const writeAcess = leaves_perms?.write;
     return columns?.filter((column) => writeAcess || column?.name !== 'status');
   };
 
   const getLeavesData = (leaves_perms, data) => {
-    const readAcess = leaves_perms?.[0]?.read;
+    const readAcess = leaves_perms?.read;
     return !readAcess ? [] : data;
   };
 
@@ -254,8 +254,8 @@ const TimeAndLeaves = () => {
         </Tabs>
         {(role === 'super_admin' ||
           (role !== 'super_admin' && currentTab?.val === 1
-            ? leaves_perms[0]?.write
-            : employee_perms[0]?.write)) && (
+            ? leaves_perms?.write
+            : employee_perms?.write)) && (
           <Box
             sx={{
               width: { xs: '100%', sm: 'auto' },

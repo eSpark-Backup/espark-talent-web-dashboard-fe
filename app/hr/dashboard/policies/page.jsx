@@ -93,7 +93,7 @@ const Policies = () => {
   const handleSelectRow = (id, column, row) => {
     if (
       role === 'super_admin' ||
-      (role !== 'super_admin' && policies_perms?.[0]?.write)
+      (role !== 'super_admin' && policies_perms?.write)
     ) {
       dispatch(
         updatePolicyValue({
@@ -131,7 +131,7 @@ const Policies = () => {
   function processColumns(column) {
     const action =
       role === 'super_admin' ||
-      (role !== 'super_admin' && policies_perms?.[0].delete);
+      (role !== 'super_admin' && policies_perms?.delete);
     return column.filter((item) => action || item.name !== 'action');
   }
   return (
@@ -174,7 +174,7 @@ const Policies = () => {
               />
             </Box>
             {(role === 'super_admin' ||
-              (role !== 'super_admin' && policies_perms?.[0].write)) && (
+              (role !== 'super_admin' && policies_perms?.write)) && (
               <Box>
                 <Button
                   sx={{
@@ -221,7 +221,7 @@ const Policies = () => {
             />
           </Box>
           {(role === 'super_admin' ||
-            (role !== 'super_admin' && policies_perms?.[0].write)) && (
+            (role !== 'super_admin' && policies_perms?.write)) && (
             <Box
               sx={{
                 mt: { xs: '-40px', md: '-85px' },

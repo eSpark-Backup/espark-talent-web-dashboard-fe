@@ -86,8 +86,8 @@ const EmployeeView = ({ status, data, isLoading }) => {
   const handleReturnOptions = (eachItem) => {
     if (
       role !== 'super_admin' &&
-      !employee_perms?.[0]?.delete &&
-      !employee_perms?.[0]?.write
+      !employee_perms?.delete &&
+      !employee_perms?.write
     ) {
       return null;
     } else
@@ -149,7 +149,7 @@ const EmployeeView = ({ status, data, isLoading }) => {
               }}
             >
               {(role === 'super_admin' ||
-                (role !== 'super_admin' && employee_perms?.[0]?.delete)) && (
+                (role !== 'super_admin' && employee_perms?.delete)) && (
                 <MenuItem
                   onClick={(e) => {
                     e.stopPropagation();

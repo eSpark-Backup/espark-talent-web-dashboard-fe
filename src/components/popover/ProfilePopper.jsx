@@ -25,8 +25,12 @@ import { restructureNotificationData } from '@/src/utils/helpers';
 import { getNotifications } from '@/src/redux/slices/notificationSlice';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
+import utc from 'dayjs/plugin/utc';
+import timezone from 'dayjs/plugin/timezone';
 import { notificationCases } from '@/src/utils/notificationCases';
 dayjs.extend(relativeTime);
+dayjs.extend(utc);
+dayjs.extend(timezone);
 
 export default function ProfilePopper({
   button,
@@ -151,24 +155,22 @@ export default function ProfilePopper({
   };
 
   const getTimePassedFromNow = (date, time) => {
-    // Check if the time is in 12-hour or 24-hour format
-    const is12HourFormat = /[0-9]{1,2}:[0-9]{2} [APMapm]{2}/.test(time);
-    const formatString = is12HourFormat
-      ? 'YYYY-MM-DD hh:mm A'
-      : 'YYYY-MM-DD HH:mm';
+    if (!date || !time) return '';
 
-    // Parse the date and time using the determined format
-    const dateTime = dayjs(`${date} ${time}`, formatString);
+    // ✅ seconds included
+    const formatString = 'YYYY-MM-DD HH:mm:ss';
 
-    // Check if dateTime is valid
+    // ✅ parse as UTC then convert to local timezone
+    const dateTime = dayjs
+      .utc(`${date} ${time}`, formatString)
+      .tz('Asia/Karachi');
+
     if (!dateTime.isValid()) {
       console.error('Invalid date or time format', { date, time });
-      return 'Invalid date or time';
+      return '';
     }
 
-    const timeFromNow = dateTime?.fromNow();
-
-    return timeFromNow;
+    return dateTime.fromNow();
   };
 
   return (

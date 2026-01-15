@@ -100,17 +100,14 @@ const Sidebar = ({ userName }) => {
 
   const filteredRoutes = (routes) => {
     return routes?.filter((route) => {
-      if (
-        route?.text === 'Employees' &&
-        !employeePerms?.employee_perms?.[0]?.read
-      ) {
+      if (route?.text === 'Employees' && !employeePerms?.employee_perms?.read) {
         if (pathName?.includes(route?.link)) {
           router?.push('/hr/dashboard');
         }
         return false;
       }
 
-      const clientPerms = employeePerms?.client_perms?.[0];
+      const clientPerms = employeePerms?.client_perms;
       if (route.text === 'Clients' && !clientPerms?.read) {
         if (pathName?.includes(route?.link)) {
           router?.push('/hr/dashboard');
@@ -118,7 +115,7 @@ const Sidebar = ({ userName }) => {
         return false;
       }
 
-      const invoicePerms = employeePerms.invoices_perms?.[0];
+      const invoicePerms = employeePerms.invoices_perms;
       if (route.text === 'Invoices' && !invoicePerms?.read) {
         if (pathName?.includes(route?.link)) {
           router?.push('/hr/dashboard');
@@ -126,7 +123,7 @@ const Sidebar = ({ userName }) => {
         return false;
       }
 
-      const policyPerms = employeePerms.policies_perms?.[0];
+      const policyPerms = employeePerms.policies_perms;
       if (route.text === 'Policies' && !policyPerms?.read) {
         if (pathName?.includes(route?.link)) {
           router?.push('/hr/dashboard');

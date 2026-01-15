@@ -37,7 +37,7 @@ const Benefits = () => {
     queryKey: [
       'hr-employee-get-benefit',
       currentEmployee?.email,
-      employee_perms && employee_perms?.[0],
+      employee_perms && employee_perms?.read,
     ],
     queryFn: async () => {
       try {
@@ -55,11 +55,11 @@ const Benefits = () => {
               issue_date: dayjs(item?.issue_date)?.format('MMMM D, YYYY'),
               action: [
                 role === 'super_admin' ||
-                (employee_perms && employee_perms[0]?.delete)
+                (employee_perms && employee_perms?.delete)
                   ? 'Delete'
                   : null,
                 role === 'super_admin' ||
-                (employee_perms && employee_perms[0]?.write)
+                (employee_perms && employee_perms?.write)
                   ? 'View'
                   : null,
               ]?.filter(Boolean),
@@ -113,8 +113,8 @@ const Benefits = () => {
       return BENEFITS_TABLECOLUMN;
     }
 
-    const hasDeletePermission = employee_perms?.[0]?.delete;
-    const hasWritePermission = employee_perms?.[0]?.write;
+    const hasDeletePermission = employee_perms?.delete;
+    const hasWritePermission = employee_perms?.write;
 
     if (!hasDeletePermission && !hasWritePermission) {
       return BENEFITS_TABLECOLUMN?.filter((item) => item?.name !== 'action');

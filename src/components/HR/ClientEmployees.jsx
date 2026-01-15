@@ -135,7 +135,7 @@ const ClientEmployees = ({ fromClient, openModal }) => {
             />
           </Tabs>
           {(role === 'super_admin' ||
-            (role !== 'super_admin' && client_perms?.[0]?.write)) && (
+            (role !== 'super_admin' && client_perms?.write)) && (
             <Button
               onClick={openModal}
               variant="contained"
