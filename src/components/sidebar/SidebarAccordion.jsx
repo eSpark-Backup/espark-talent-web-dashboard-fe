@@ -20,16 +20,16 @@ const SidebarAccordion = ({ sidebarLinks }) => {
 
   // 🔹 Find the link with longest match
   const getActiveLink = () => {
-    let allLinks = [];
+    const allLinks = [];
 
     sidebarLinks.forEach((item) => {
-      allLinks.push(item);
-      if (item.sublinks) {
-        item.sublinks.forEach((sub) => allLinks.push(sub));
+      allLinks?.push(item);
+      if (item?.sublinks) {
+        item?.sublinks?.forEach((sub) => allLinks?.push(sub));
       }
     });
 
-    const matches = allLinks.filter((l) => pathname.startsWith(l.link));
+    const matches = allLinks?.filter((l) => pathname.startsWith(l.link));
 
     if (matches.length === 0) return null;
 
