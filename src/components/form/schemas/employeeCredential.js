@@ -1,7 +1,6 @@
 import * as Yup from 'yup';
 
 export const editEmployeeCredentialSchema = Yup.object({
-  current_password: Yup.string().required('Current Password is required'),
   new_password: Yup.string()
     .required('Password is required')
     .min(6, 'Password must be at least 6 characters')

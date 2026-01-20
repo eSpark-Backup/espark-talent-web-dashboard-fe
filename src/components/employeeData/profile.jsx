@@ -6,11 +6,11 @@ import PersonalInformation from './personalInformation';
 import EmergencyContact from './emergencyContact';
 import { Stack } from '@mui/system';
 import OfficialInformation from './officialInformation';
-import EditOfficialModal from './editOfficialData';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import { Typography } from '@mui/material';
 import { useSelector } from 'react-redux';
+import EditOfficialModal from './EditOfficialModal';
 
 const Profile = ({
   handleCloseModal,

@@ -53,13 +53,8 @@ const EditOfficialModal = forwardRef(
         if (data.status === 'Part-Time' || data.status === 'Permanent') {
           delete updatedData.starting_date;
           delete updatedData.ending_date;
-        } else {
-          updatedData.starting_date = dayjs(data?.starting_date).format(
-            'YYYY-MM-DD'
-          );
-          updatedData.ending_date = dayjs(data?.ending_date).format(
-            'YYYY-MM-DD'
-          );
+          delete updatedData.probation_started;
+          delete updatedData.probation_ended;
         }
         return api.updateJSONData(
           `${HR_UPDATE_EMP_INFO}?id=${params.id}`,
@@ -98,8 +93,20 @@ const EditOfficialModal = forwardRef(
         job_title: data?.job_title || '',
         role: data?.role || '',
         job_status: data?.status || '',
-        starting_date: data?.probation_started || '',
-        ending_date: data?.probation_ended || '',
+        ...(data?.starting_date &&
+        data?.job_status !== 'Part-Time' &&
+        data?.job_status !== 'Permanent'
+          ? {
+              starting_date: dayjs(data.starting_date).format('YYYY-MM-DD'),
+            }
+          : {}),
+        ...(data?.ending_date &&
+        data?.job_status !== 'Part-Time' &&
+        data?.job_status !== 'Permanent'
+          ? {
+              ending_date: dayjs(data.ending_date).format('YYYY-MM-DD'),
+            }
+          : {}),
         joining_date: data?.joining_date || '',
       },
       validationSchema: employeeOfficialDataSchema,

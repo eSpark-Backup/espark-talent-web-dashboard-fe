@@ -104,7 +104,7 @@ const EmergencyContact = ({ data }) => {
                     textTransform: 'capitalize',
                   }}
                 >
-                  {data?.emergency_contact?.primary[item?.name]}
+                  {data?.emergency_contact?.primary[item?.name] || '-'}
                 </Typography>
               </Typography>
             ))}
@@ -197,7 +197,7 @@ const EmergencyContact = ({ data }) => {
                     textTransform: 'capitalize',
                   }}
                 >
-                  {data?.emergency_contact?.secondary[contactData?.name]}
+                  {data?.emergency_contact?.secondary[contactData?.name] || '-'}
                 </Typography>
               </Typography>
             ))}

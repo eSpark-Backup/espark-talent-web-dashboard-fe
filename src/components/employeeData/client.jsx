@@ -50,14 +50,13 @@ const Client = () => {
       column: activeClientsColumn,
     },
   ];
-  const handleChangeTab = (event, newValue, rest) => {
+  const handleChangeTab = (newValue) => {
     setCurrentTab({
       label: tabs[newValue].label,
       val: newValue,
       data: tabs[newValue].data,
       column: tabs[newValue].column,
     });
-    console.log(event, rest);
   };
   return (
     <>
@@ -74,7 +73,7 @@ const Client = () => {
         <Tabs
           value={currentTab.val}
           onChange={(ev, newVal) => {
-            handleChangeTab(ev, newVal);
+            handleChangeTab(newVal);
           }}
           aria-label="basic tabs example"
           variant="scrollable"

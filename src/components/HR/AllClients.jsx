@@ -1,5 +1,5 @@
 'use client';
-import { Button, Grid } from '@mui/material';
+import { Button, Grid, Stack, Typography } from '@mui/material';
 import { Box, useTheme } from '@mui/system';
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -69,6 +69,9 @@ const AllClients = () => {
     setFilteredData(searchFunction());
   };
 
+  const hasClients = clients?.length > 0;
+  const hasSearchResults = filteredData?.length > 0;
+
   return (
     <>
       <Box
@@ -108,17 +111,13 @@ const AllClients = () => {
           container
           sx={{
             marginTop: '-5px',
-            [theme.breakpoints.down('md')]: {
-              paddingLeft: '0px',
-            },
-            [theme.breakpoints.up('md')]: {
-              paddingLeft: '60px',
-            },
+            paddingLeft: { xs: '0px', lg: '60px' },
           }}
           spacing={3}
         >
           <Grid item xs={12} md={6} lg={3}>
             <Input
+              disabled={!hasClients}
               value={id}
               width={'100%'}
               handleChange={(e) => setId(e)}
@@ -129,6 +128,7 @@ const AllClients = () => {
           </Grid>
           <Grid item xs={12} md={6} lg={3}>
             <Input
+              disabled={!hasClients}
               value={name}
               width={'100%'}
               handleChange={(e) => setName(e)}
@@ -139,12 +139,23 @@ const AllClients = () => {
           </Grid>
           <Grid item xs={12} md={12} lg={0.5}>
             <Button
+              disabled={!hasClients}
               onClick={handleSearch}
-              style={{
+              sx={{
                 backgroundColor: '#029894',
                 color: '#FFF',
                 height: '40px',
                 width: '100%',
+                '&:hover': {
+                  backgroundColor: '#029894',
+                  color: '#FFF',
+                },
+
+                '&.Mui-disabled': {
+                  backgroundColor: '#B2DFDD',
+                  color: '#7A7A7A',
+                  cursor: 'not-allowed',
+                },
               }}
             >
               <Image
@@ -156,7 +167,7 @@ const AllClients = () => {
             </Button>
           </Grid>
         </Grid>
-        {filteredData && filteredData.length > 0 && (
+        {filteredData && filteredData.length > 0 ? (
           <ClientView
             search={search}
             id={id}
@@ -165,6 +176,16 @@ const AllClients = () => {
             data={filteredData}
             isLoading={isLoading}
           />
+        ) : (
+          <Stack px={{ xs: 3, lg: 7.5 }} py={3}>
+            <Typography variant="body1" color={'#767676'}>
+              {!hasClients
+                ? 'No client yet'
+                : !hasSearchResults
+                  ? 'No client found'
+                  : ''}
+            </Typography>
+          </Stack>
         )}
       </Box>
     </>

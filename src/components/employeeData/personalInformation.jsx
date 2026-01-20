@@ -68,7 +68,7 @@ const PersonalInformation = ({ data }) => {
             >
               {empData?.type === 'date'
                 ? dayjs(data?.[empData?.name]).format('DD/MM/YYYY')
-                : data?.[empData?.name]}
+                : data?.[empData?.name] || '-'}
             </Typography>
           </Box>
         ))}

@@ -15,6 +15,7 @@ function stringAvatar(name) {
 
   return {
     sx: {
+      textTransform: 'capitalize',
       bgcolor: '#e6f5f4',
       color: '#029E9C',
       fontSize: '12px',

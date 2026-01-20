@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
 const Input = ({
+  disabled = false,
   prefixIcon,
   suffixIcon,
   handleChange,
@@ -42,7 +43,12 @@ const Input = ({
         sx={
           addClient
             ? { borderBottom: 'solid 1px #ccc', borderRadius: '0px' }
-            : { border: 'solid 1px #ccc' }
+            : {
+                border: disabled ? '1px solid #E0E0E0' : '1px solid #ccc',
+                backgroundColor: disabled ? '#F2F2F2' : 'transparent',
+                color: disabled ? '#9E9E9E' : '#000',
+                cursor: disabled ? 'not-allowed' : 'text',
+              }
         }
         padding={1}
         borderRadius={1}
@@ -60,6 +66,7 @@ const Input = ({
           </Box>
         )}
         <input
+          disabled={disabled}
           ref={inputRef}
           value={value}
           onChange={(e) => {
@@ -70,7 +77,7 @@ const Input = ({
           style={{
             overflow: 'hidden',
             width: '100%',
-            background: 'transparent',
+            cursor: disabled ? 'not-allowed' : 'text',
           }}
           onKeyDown={onKeyDown}
           name={name || ''}

@@ -80,14 +80,10 @@ const AttendanceViewModal = React.forwardRef(
           <Grid
             container
             display={'flex'}
-            flexDirection={'row'}
-            sx={{
-              '@media (min-width: 900px) and (max-width: 1370px)': {
-                flexDirection: 'column',
-              },
-            }}
+            flexDirection={{ xs: 'column', lg: 'row' }}
+            justifyContent={'space-between'}
           >
-            <Grid item xs={12} md={2.25}>
+            <Grid item xs={12} md={2}>
               <Box
                 sx={{
                   width: '176px',
@@ -109,15 +105,15 @@ const AttendanceViewModal = React.forwardRef(
                       marginBottom: '15px',
                     },
                   }}
-                  src={image || ''}
+                  src={image || '/'}
                 />
               </Box>
             </Grid>
-            <Grid item xs={12} md={9.75}>
+            <Grid item xs={12} lg={9.2}>
               <Grid container columnSpacing={'40px'}>
                 {employeeData?.map((item, empIndex) => {
                   return (
-                    <Grid item xs={12} md={6} key={empIndex}>
+                    <Grid item xs={12} md={6} pt={3} key={empIndex}>
                       {item?.map((row, rowIndex) => (
                         <EmployeeDetailRow
                           darkBack={!(rowIndex % 2)}

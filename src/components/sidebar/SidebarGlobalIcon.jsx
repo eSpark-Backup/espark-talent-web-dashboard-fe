@@ -32,7 +32,6 @@ const SidebarGlobalIcon = ({ company_img }) => {
           onError={handleError}
           height={'25px'}
           sx={{
-            mr: -0.2,
             width: '25px',
             borderRadius: '100%',
             '@media(min-width: 1200px)': {

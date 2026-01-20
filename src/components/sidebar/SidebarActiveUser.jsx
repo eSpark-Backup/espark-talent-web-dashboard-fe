@@ -23,6 +23,8 @@ const SidebarActiveUser = ({ userName }) => {
   }
   if (userData?.role == 'client') {
     companyImage = data?.company_image;
+  } else {
+    companyImage = homeData?.company_image;
   }
 
   return (
@@ -52,7 +54,7 @@ const SidebarActiveUser = ({ userName }) => {
                 ? userData?.empDetails?.image
                 : userData?.role === 'client'
                   ? data?.client_image
-                  : homeData?.user_image?.[0]
+                  : homeData?.user_image
             }
           />
           <Typography

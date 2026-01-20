@@ -15,7 +15,12 @@ const StatusBox = ({
 }) => {
   return (
     <>
-      <Link href={link ? link : ''}>
+      <Link
+        href={count >= 1 && link ? link : '#'}
+        style={{
+          pointerEvents: count >= 1 ? 'auto' : 'none',
+        }}
+      >
         <Box
           sx={{
             display: 'flex',

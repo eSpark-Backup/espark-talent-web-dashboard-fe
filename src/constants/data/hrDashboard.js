@@ -21,6 +21,7 @@ export const Summary_Boxes = [
     backgroundColor: '#FFF8EB',
     image: '/images/dashboard/hr/hiring.svg',
     name: 'hiring_requests',
+    link: '/hr/dashboard/clients',
   },
   {
     title: 'All interview schedule',
@@ -28,5 +29,6 @@ export const Summary_Boxes = [
     backgroundColor: '#E0F6FA',
     image: '/images/dashboard/hr/interview.svg',
     name: 'interview_schedules',
+    link: '/hr/dashboard/clients',
   },
 ];

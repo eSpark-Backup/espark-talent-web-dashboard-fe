@@ -1,5 +1,5 @@
 'use client';
-import { Button, Grid, Tab, Tabs } from '@mui/material';
+import { Button, Grid, Stack, Tab, Tabs, Typography } from '@mui/material';
 import { Box, useTheme } from '@mui/system';
 import React, { useEffect, useState } from 'react';
 import Input from '../dashboard/input';
@@ -92,6 +92,9 @@ const AllEmployee = ({ fromClient, openModal }) => {
     setSearch(true);
     setFilteredData(searchFunction());
   };
+
+  const hasEmployees = data?.length > 0;
+  const hasSearchResults = filteredData?.length > 0;
 
   if (fromClient)
     return (
@@ -315,6 +318,7 @@ const AllEmployee = ({ fromClient, openModal }) => {
         >
           <Grid item xs={12} md={6} lg={2.75}>
             <Input
+              disabled={!hasEmployees}
               value={id}
               width={'100%'}
               handleChange={(e) => setId(e)}
@@ -325,6 +329,7 @@ const AllEmployee = ({ fromClient, openModal }) => {
           </Grid>
           <Grid item xs={12} md={6} lg={2.75}>
             <Input
+              disabled={!hasEmployees}
               value={name}
               width={'100%'}
               handleChange={(e) => setName(e)}
@@ -335,6 +340,7 @@ const AllEmployee = ({ fromClient, openModal }) => {
           </Grid>
           <Grid item xs={12} md={6} lg={2.75}>
             <Input
+              disabled={!hasEmployees}
               value={designation}
               width={'100%'}
               handleChange={(e) => setDesignation(e)}
@@ -345,6 +351,7 @@ const AllEmployee = ({ fromClient, openModal }) => {
           </Grid>
           <Grid item xs={12} md={6} lg={2.75}>
             <Input
+              disabled={!hasEmployees}
               value={company}
               width={'100%'}
               handleChange={(e) => setCompany(e)}
@@ -355,15 +362,23 @@ const AllEmployee = ({ fromClient, openModal }) => {
           </Grid>
           <Grid item xs={12} md={6} lg={1}>
             <Button
+              disabled={!hasEmployees}
               onClick={handleSearch}
               sx={{
                 backgroundColor: '#029894',
                 color: '#FFF',
                 height: '40px',
                 width: { xs: '100%', md: '50%' },
+
                 '&:hover': {
                   backgroundColor: '#029894',
                   color: '#FFF',
+                },
+
+                '&.Mui-disabled': {
+                  backgroundColor: '#B2DFDD',
+                  color: '#7A7A7A',
+                  cursor: 'not-allowed',
                 },
               }}
             >
@@ -376,7 +391,7 @@ const AllEmployee = ({ fromClient, openModal }) => {
             </Button>
           </Grid>
         </Grid>
-        {filteredData && filteredData.length > 0 && (
+        {filteredData && filteredData?.length > 0 ? (
           <>
             {value === 'one' ? (
               <EmployeeView
@@ -410,6 +425,16 @@ const AllEmployee = ({ fromClient, openModal }) => {
               />
             )}
           </>
+        ) : (
+          <Stack p={3}>
+            <Typography variant="body1" color={'#767676'}>
+              {!hasEmployees
+                ? 'No employees yet'
+                : !hasSearchResults
+                  ? 'No employees found'
+                  : ''}
+            </Typography>
+          </Stack>
         )}
       </Box>
     </>

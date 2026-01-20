@@ -298,7 +298,7 @@ const EmployeeView = ({ status, data, isLoading }) => {
                     <Typography
                       sx={{
                         color: '#595959',
-                        fontSize: '16px',
+                        fontSize: '14px',
                         textAlign: 'center',
                         textWrap: 'nowrap',
                         overflow: 'hidden',
@@ -308,6 +308,21 @@ const EmployeeView = ({ status, data, isLoading }) => {
                     >
                       {eachItem.job_title || eachItem.designation}
                     </Typography>
+                    {eachItem?.company && (
+                      <Typography
+                        sx={{
+                          color: '#595959',
+                          fontSize: '14px',
+                          textAlign: 'center',
+                          textWrap: 'nowrap',
+                          overflow: 'hidden',
+                          textOverflow: 'ellipsis',
+                          maxWidth: '160px',
+                        }}
+                      >
+                        {`@ ${eachItem?.company}`}
+                      </Typography>
+                    )}
                   </Box>
                 </Box>
               </Grid>

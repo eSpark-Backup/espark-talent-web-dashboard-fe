@@ -70,15 +70,19 @@ const OfficialInformation = ({ data }) => {
                   whiteSpace: 'normal',
                   overflowWrap: 'break-word',
                   textTransform:
-                    empData?.name === 'employee_id' ||
-                    data?.[empData?.name]?.includes('@')
-                      ? 'lowercase'
-                      : 'capitalize',
+                    empData?.label === 'Company'
+                      ? 'none'
+                      : empData?.name === 'employee_id' ||
+                          data?.[empData?.name]?.includes('@')
+                        ? 'lowercase'
+                        : 'capitalize',
                 }}
               >
                 {empData?.type === 'date'
-                  ? dayjs(data?.[empData?.name]).format('DD/MM/YYYY')
-                  : data?.[empData?.name]}
+                  ? data?.[empData?.name]
+                    ? dayjs(data[empData?.name])?.format('DD/MM/YYYY')
+                    : '-'
+                  : data?.[empData?.name] || '-'}
               </Typography>
             </Typography>
           ))}
