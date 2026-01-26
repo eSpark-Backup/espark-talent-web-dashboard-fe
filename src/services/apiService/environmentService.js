@@ -1,22 +1,17 @@
 export class EnvironmentService {
   getBaseURL() {
-    const env = process.env.NODE_ENV;
+    const appEnv = process.env.NEXT_PUBLIC_APP_ENV;
 
-    if (env === 'production') {
-      if (!process.env.NEXT_PUBLIC_BASE_URL) {
-        throw new Error('NEXT_PUBLIC_BASE_URL is missing in production');
-      }
-      return process.env.NEXT_PUBLIC_BASE_URL;
+    console.log('[ENV]', {
+      NODE_ENV: process.env.NODE_ENV,
+      APP_ENV: appEnv,
+      BASE_URL: process.env.NEXT_PUBLIC_BASE_URL,
+    });
+
+    if (!process.env.NEXT_PUBLIC_BASE_URL) {
+      throw new Error('NEXT_PUBLIC_BASE_URL is missing');
     }
 
-    // development / staging
-    if (env === 'development') {
-      return (
-        process.env.NEXT_PUBLIC_BASE_URL ||
-        'https://dashboard-stg-api.esparktalent.com/api'
-      );
-    }
-
-    throw new Error(`Unsupported NODE_ENV: ${env}`);
+    return process.env.NEXT_PUBLIC_BASE_URL;
   }
 }
