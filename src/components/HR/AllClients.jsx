@@ -26,7 +26,7 @@ const AllClients = () => {
   const [search, setSearch] = useState(false);
   const [filteredData, setFilteredData] = useState([]);
 
-  const theme = useTheme();
+  // const theme = useTheme();
 
   const { isLoading } = useQuery({
     staleTime: 10000,
