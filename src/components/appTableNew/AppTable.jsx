@@ -30,8 +30,10 @@ const AppTable = ({
   rejectReq,
   isLoading,
   handleClickDownload,
-  isPendingDownload,
+  handleClickPayNow,
   commonRowStyle,
+  isPendingDownload,
+  isPaying,
 }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [currPageData, setCurrPageData] = useState([]);
@@ -102,7 +104,9 @@ const AppTable = ({
           approveReq={approveReq}
           isLoading={isLoading}
           handleClickDownload={handleClickDownload}
+          handleClickPayNow={handleClickPayNow}
           isPendingDownload={isPendingDownload}
+          isPaying={isPaying}
         />
       </table>
       {!noPagination && (

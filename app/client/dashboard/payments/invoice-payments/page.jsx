@@ -22,6 +22,7 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import { api } from '@/src/services/apiService';
 import {
   CLIENT_INVOICE_PAYMENTS,
+  CLIENT_PAYFAST_SINGLE_PAYMENT_INIT,
   DOWNLOAD_EMP_INV,
   DOWNLOAD_OTH_INV,
 } from '@/src/services/apiService/apiEndPoints';
@@ -359,9 +360,59 @@ const Dashboard = () => {
       Toast('error', err.message || 'File not downloaded');
     },
   });
+
   const downloadInvoice = (id, url) => {
     downloadInvoiceMutation.mutate({ id, url });
   };
+
+  const { mutate: initiatePayment, isPending: isPaying } = useMutation({
+    mutationFn: async (payload) => {
+      return api.postData(CLIENT_PAYFAST_SINGLE_PAYMENT_INIT, payload);
+    },
+
+    onSuccess: ({ data }) => {
+      const responseData = data?.data;
+
+      if (!responseData?.formUrl || !responseData?.formData) {
+        Toast('error', 'Invalid payment response');
+        return;
+      }
+
+      // ✅ Create form dynamically
+      const form = document.createElement('form');
+      form.method = 'POST';
+      form.action = responseData.formUrl;
+
+      // ✅ Add hidden fields
+      Object.entries(responseData.formData).forEach(([key, value]) => {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = key;
+        input.value = value;
+        form.appendChild(input);
+      });
+
+      // ✅ Append & submit
+      document.body.appendChild(form);
+      form.submit();
+    },
+
+    onError: (err) => {
+      Toast('error', err?.response?.data?.message || 'Payment failed');
+    },
+  });
+
+  const handleClickPayNow = (row) => {
+    const { id, inv_type } = row;
+
+    // if (inv_type === 'SALARY' || inv_type === 'CUSTOM') {
+    initiatePayment({
+      invoiceId: id,
+      invoiceType: inv_type,
+    });
+    // }
+  };
+
   return (
     <>
       <Grid container>
@@ -471,7 +522,9 @@ const Dashboard = () => {
                     handleClickDownload={(id) =>
                       downloadInvoice(id, DOWNLOAD_EMP_INV)
                     }
+                    handleClickPayNow={(row) => handleClickPayNow(row)}
                     isLoading={isLoading}
+                    isPaying={isPaying}
                   />
                 </Box>
               </CustomTabPanel>
@@ -541,7 +594,9 @@ const Dashboard = () => {
                 handleClickDownload={(id) =>
                   downloadInvoice(id, DOWNLOAD_OTH_INV)
                 }
+                handleClickPayNow={(row) => handleClickPayNow(row)}
                 isLoading={isLoading}
+                isPaying={isPaying}
               />
             </Box>
           </Box>

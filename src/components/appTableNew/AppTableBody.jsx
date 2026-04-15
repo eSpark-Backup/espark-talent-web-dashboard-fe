@@ -23,6 +23,8 @@ const AppTableBody = ({
   approveReq,
   isLoading = false,
   handleClickDownload,
+  handleClickPayNow,
+  isPaying,
 }) => {
   const commonCellStyle = {
     display: 'flex',
@@ -78,7 +80,9 @@ const AppTableBody = ({
                       updateLeaveStatus,
                       approveReq,
                       rejectReq,
-                      handleClickDownload
+                      handleClickDownload,
+                      handleClickPayNow,
+                      isPaying
                     )}
                   </Fragment>
                 ))}

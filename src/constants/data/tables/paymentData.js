@@ -25,11 +25,17 @@ export const invoicePaymentColumn = [
     name: 'payment_status',
   },
   {
+    title: 'Payment Due',
+    flex: 2,
+    name: 'payment_due',
+  },
+  {
     title: 'Download',
     flex: 2,
     name: 'download',
   },
 ];
+
 export const otherPaymentColumn = [
   {
     title: 'Invoice reference',
@@ -55,6 +61,11 @@ export const otherPaymentColumn = [
     title: 'Payment status',
     flex: 2,
     name: 'payment_status',
+  },
+  {
+    title: 'Payment Due',
+    flex: 2,
+    name: 'payment_due',
   },
   {
     title: 'Download',

@@ -81,6 +81,9 @@ export const CLIENT_UPDATE_PASSWORD = '/c_updpass/';
 export const CLIENT_UPDATE_PIC = '/c_updpic/';
 export const CLIENT_UPDATE_COMPANY = '/c_upduser/';
 
+//POST
+export const CLIENT_PAYFAST_SINGLE_PAYMENT_INIT = '/payments/initiate';
+
 //Downloads
 export const DOWNLOAD_EMP_RESUME = '/down_resume/';
 export const DOWNLOAD_COMP_CONTRACT = '/down_comp_cont/';

@@ -473,6 +473,39 @@ const renderDownloadButton = (
   );
 };
 
+const renderPaynowButton = (
+  row,
+  col,
+  commonCellStyle,
+  handleClickPayNow,
+  isPaying
+) => {
+  return (
+    <td key={col?.index} style={{ ...commonCellStyle, flex: col?.flex || 1 }}>
+      <button
+        disabled={isPaying}
+        loading={isPaying}
+        onClick={() => {
+          handleClickPayNow(row);
+        }}
+        style={{
+          borderRadius: '30px',
+          padding: '5px 0',
+          display: 'block',
+          width: '120px',
+          background: '#FFD6D6',
+          border: 'solid 1px #A72A45',
+          color: '#A72A45',
+          cursor: 'pointer',
+          opacity: isPaying ? 0.6 : 1,
+        }}
+      >
+        {isPaying ? 'Processing...' : 'Pay Now'}
+      </button>
+    </td>
+  );
+};
+
 const renderInfoOptions = (
   row,
   col,
@@ -517,7 +550,9 @@ export const renderCellContent = (
   updateLeaveStatus,
   approveReq,
   rejectReq,
-  handleClickDownload
+  handleClickDownload,
+  handleClickPayNow,
+  isPaying
 ) => {
   if (
     col?.title === 'Employee ID' ||
@@ -636,6 +671,16 @@ export const renderCellContent = (
 
     case 'Payment status':
       return renderDropdownCell(row, col, commonCellStyle, '', updateStatus);
+
+    case 'Payment Due':
+      return renderPaynowButton(
+        row,
+        col,
+        commonCellStyle,
+        handleClickPayNow,
+        isPaying
+      );
+
     case 'Team members':
       return renderInfoOptions(
         row,
