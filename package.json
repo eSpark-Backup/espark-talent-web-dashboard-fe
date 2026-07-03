@@ -40,7 +40,7 @@
     "formik": "^2.4.5",
     "js-cookie": "^3.0.5",
     "next": "16.2.9",
-    "npm": "^10.2.5",
+    "npm": "^11.18.0",
     "postcss": "^8.4.31",
     "react": "^19",
     "react-copy-to-clipboard": "^5.1.1",
